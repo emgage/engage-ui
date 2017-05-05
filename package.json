@@ -1,7 +1,7 @@
 {
   "name": "engage-ui",
   "description": "Emgage's UI Component Library for React.",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "private": true,
   "license": "MIT",
   "author": "Emgage <dev@emgage.com.com>",
@@ -9,6 +9,9 @@
   "repository": "https://github.com/emgage/engage-ui",
   "bugs": {
     "url": "https://github.com/emgage/engage-ui/issues"
+  },
+  "publishConfig": {
+    "registry": "http://localhost:4873"
   },
   "keywords": [
     "emgage",
