@@ -1,8 +1,7 @@
 {
   "name": "engage-ui",
   "description": "Emgage's UI Component Library for React.",
-  "version": "0.0.3",
-  "private": true,
+  "version": "0.0.4",
   "license": "MIT",
   "author": "Emgage <dev@emgage.com.com>",
   "homepage": "https://github.com/emgage/engage-ui#readme",
