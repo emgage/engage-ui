@@ -105,7 +105,7 @@ describe('<TextField />', () => {
 
   describe('error', () => {
     it('marks the input as invalid', () => {
-      const textField = shallow(<TextField error label="TextField" />);
+      const textField = shallow(<TextField errors={['error']} label="TextField" />);
       expect(textField.find('input').prop<string>('aria-invalid')).toBe(true);
 
       textField.setProps({error: 'Some error'});
@@ -113,14 +113,14 @@ describe('<TextField />', () => {
     });
 
     it('connects the input to the error', () => {
-      const textField = mount(<TextField label="TextField" error="Some error" />);
+      const textField = mount(<TextField label="TextField" errors={['error']} />);
       const errorID = textField.find('input').prop<string>('aria-describedby');
       expect(typeof errorID).toBe('string');
       expect(textField.find(`#${errorID}`).text()).toBe('Some error');
     });
 
     it('connects the input to both an error and help text', () => {
-      const textField = mount(<TextField label="TextField" error="Some error" helpText="Some help" />);
+      const textField = mount(<TextField label="TextField" errors={['error']} helpText="Some help" />);
       const descriptions = textField.find('input').prop<string>('aria-describedby').split(' ');
       expect(descriptions.length).toBe(2);
       expect(textField.find(`#${descriptions[0]}`).text()).toBe('Some error');

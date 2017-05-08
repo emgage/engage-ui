@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "baseUrl": "./src",
-    "rootDir": "./src",
+    "rootDir": "./",
     "target": "es2016",
     "module": "commonjs",
     "moduleResolution": "node",
@@ -28,5 +28,8 @@
   "include": [
     "./config/typescript/**/*",
     "./src/**/*"
+  ],
+  "exclude": [
+    "./@types"
   ]
 }

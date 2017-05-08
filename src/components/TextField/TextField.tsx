@@ -3,7 +3,7 @@ import autobind from '@shopify/javascript-utilities/autobind';
 import {createUniqueIDFactory} from '@shopify/javascript-utilities/other';
 import {classNames} from '@shopify/react-utilities/styles';
 
-import Labelled, {Action, Error, helpTextID, errorID, labelID} from '../Labelled';
+import Labelled, {Action, helpTextID, errorID, labelID} from '../Labelled';
 import Connected from '../Connected';
 
 import Resizer from './Resizer';
@@ -29,7 +29,7 @@ export interface Props {
   readOnly?: boolean,
   autoFocus?: boolean,
   multiline?: boolean | number,
-  error?: Error,
+  errors?: [string],
   connectedRight?: React.ReactNode,
   connectedLeft?: React.ReactNode,
   type?: Type,
@@ -42,6 +42,7 @@ export interface Props {
   min?: number,
   minLength?: number,
   pattern?: string,
+  required?: boolean,
   spellCheck?: boolean,
   onChange?(value: string): void,
   onFocus?(): void,
@@ -65,7 +66,7 @@ export default class TextField extends React.PureComponent<Props, State> {
       autoFocus,
       type,
       name,
-      error,
+      errors,
       multiline,
       connectedRight,
       connectedLeft,
@@ -75,6 +76,7 @@ export default class TextField extends React.PureComponent<Props, State> {
       helpText,
       prefix,
       suffix,
+      required,
       onFocus,
       onBlur,
       autoComplete,
@@ -88,7 +90,7 @@ export default class TextField extends React.PureComponent<Props, State> {
       Boolean(value) && styles.hasValue,
       disabled && styles.disabled,
       readOnly && styles.readOnly,
-      error && styles.error,
+      errors && styles.error,
       multiline && styles.multiline,
     );
 
@@ -118,7 +120,7 @@ export default class TextField extends React.PureComponent<Props, State> {
       : null;
 
     const describedBy: string[] = [];
-    if (error && typeof error === 'string') { describedBy.push(errorID(id)); }
+    if (errors) { describedBy.push(errorID(id)); }
     if (helpText) { describedBy.push(helpTextID(id)); }
 
     const labelledBy = [labelID(id)];
@@ -138,20 +140,23 @@ export default class TextField extends React.PureComponent<Props, State> {
       onFocus,
       onBlur,
       style,
+      formNoValidate: true,
       autoComplete: normalizeAutoComplete(autoComplete),
       className: styles.Input,
       onChange: this.handleChange,
       ref: this.setInput,
+      required,
+      'aria-required': required ? true : false,
       'aria-describedby': describedBy.length ? describedBy.join(' ') : undefined,
       'aria-labelledby': labelledBy.join(' '),
-      'aria-invalid': Boolean(error),
+      'aria-invalid': Boolean(errors),
     });
 
     return (
       <Labelled
         label={label}
         id={id}
-        error={error}
+        errors={errors}
         action={labelAction}
         labelHidden={labelHidden}
         helpText={helpText}
