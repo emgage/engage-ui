@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {
   Button,
+  Link,
   TextField,
   ValidatedTextField,
   ValidatedForm,
@@ -27,6 +28,7 @@ class App extends React.Component<{}, State> {
   render() {
     return (
       <ValidatedForm>
+        <Link>This is a link</Link>
         <ValidatedTextField
           id="tom"
           required={true}
