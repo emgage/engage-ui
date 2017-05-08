@@ -7,15 +7,7 @@
     "**/.git": true,
     "**/.svn": true,
     "**/.hg": true,
-    "**/.DS_Store": true,
-    "**/node_modules": true,
-    "build/": true,
-    "build-intermediate/": true,
-    "styles/": true,
-    "types/": true,
-    "index.*": true,
-    "embedded.*": true,
-    "styles.{css,scss}": true
+    "**/.DS_Store": true
   },
   "search.exclude": {
     "**/node_modules": true,
