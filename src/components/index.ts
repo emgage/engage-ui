@@ -29,6 +29,11 @@ export {
 } from './Link';
 
 export {
+  default as Message,
+  Props as MessageProps,
+} from './Message';
+
+export {
   default as TextField,
   Props as TextFieldProps,
 } from './TextField';
@@ -38,3 +43,13 @@ export {
   Props as UnstyledLinkProps,
   LinkLikeComponent,
 } from './UnstyledLink';
+
+export {
+  default as ValidatedForm,
+  Props as ValidatedFormProps,
+} from './ValidatedForm';
+
+export {
+  default as ValidatedTextField,
+  Props as ValidatedTextFieldProps,
+} from './ValidatedTextField';

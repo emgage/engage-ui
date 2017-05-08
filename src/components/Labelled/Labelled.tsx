@@ -2,7 +2,7 @@ import * as React from 'react';
 import {classNames} from '@shopify/react-utilities/styles';
 
 import Label, {Props as LabelProps, Action, labelID} from '../Label';
-import Icon from '../Icon';
+import Message from '../Message';
 
 import * as styles from './Labelled.scss';
 
@@ -13,7 +13,7 @@ export type Error = boolean | string;
 export interface Props {
   id: LabelProps['id'],
   label: string,
-  error?: Error,
+  errors?: [string],
   action: LabelProps['action'],
   helpText?: React.ReactNode,
   children?: React.ReactNode,
@@ -23,7 +23,7 @@ export interface Props {
 export default function Labelled({
   id,
   label,
-  error,
+  errors,
   children,
   labelHidden,
   helpText,
@@ -37,14 +37,12 @@ export default function Labelled({
     ? <div className={styles.HelpText} id={helpTextID(id)}>{helpText}</div>
     : null;
 
-  const errorMarkup = typeof error === 'string'
+  const errorId = errorID(id);
+  const errorMarkup = errors
     ? (
-      <div id={errorID(id)} className={styles.Error}>
-        <div className={styles.ErrorIcon}>
-          <Icon source="alert" />
-        </div>
-        {error}
-      </div>
+      <Message id={errorId} isVisible={true}>
+        {errors.join(', ')}
+      </Message>
     )
     : null;
 
@@ -57,10 +55,10 @@ export default function Labelled({
     : null;
 
   return (
-    <div className={className}>
+    <div className={className} aria-describedby={errorId}>
+      {errorMarkup}
       {labelMarkup}
       {children}
-      {errorMarkup}
       {helpTextMarkup}
     </div>
   );

@@ -36,6 +36,18 @@ export interface IconableAction extends Action {
 export interface ComplexAction extends Action, DisableableAction, DestructableAction, IconableAction {
 }
 
+export interface RequiredValidationRule {
+    required: boolean,
+    message: string,
+}
+
+export interface TypeValidationRule {
+    type: string,
+    message: string,
+}
+
+export type ValidationRule = RequiredValidationRule | TypeValidationRule;
+
 export enum Keys {
   BACKSPACE = 8,
   TAB = 9,
