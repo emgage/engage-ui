@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {
   Button,
+  FormLayout,
   Link,
   TextField,
   ValidatedTextField,
@@ -29,49 +30,51 @@ class App extends React.Component<{}, State> {
     return (
       <ValidatedForm>
         <Link>This is a link</Link>
-        <ValidatedTextField
-          id="tom"
-          required={true}
-          label="First Name"
-          placeholder="Tom"
-          onChange={this.valueUpdater('last')}
-          value={this.state.first}
-          name="tom"
-          validateTrigger={['onBlur']}
-          validateRules={[
-              { required: true, message: 'This is required dude.'},
-              { type: 'email', message: 'This should be an email dude.'},
-          ]}
-        />
-        <ValidatedTextField
-          id="last"
-          name="last"
-          value={this.state.last}
-          label="Last Name"
-          placeholder="Ford"
-          onChange={this.valueUpdater('last')}
-          validateTrigger={['onBlur']}
-          validateRules={[
-              { required: true, message: 'This is required too dude.'},
-          ]}
-        />
+        <FormLayout>
+          <ValidatedTextField
+            id="tom"
+            required={true}
+            label="First Name"
+            placeholder="Tom"
+            onChange={this.valueUpdater('last')}
+            value={this.state.first}
+            name="tom"
+            validateTrigger={['onBlur']}
+            validateRules={[
+                { required: true, message: 'This is required dude.'},
+                { type: 'email', message: 'This should be an email dude.'},
+            ]}
+          />
+          <ValidatedTextField
+            id="last"
+            name="last"
+            value={this.state.last}
+            label="Last Name"
+            placeholder="Ford"
+            onChange={this.valueUpdater('last')}
+            validateTrigger={['onBlur']}
+            validateRules={[
+                { required: true, message: 'This is required too dude.'},
+            ]}
+          />
 
-        <TextField
-          value={this.state.email}
-          label="Email"
-          placeholder="example@email.com"
-          onChange={this.valueUpdater('email')}
-        />
+          <TextField
+            value={this.state.email}
+            label="Email"
+            placeholder="example@email.com"
+            onChange={this.valueUpdater('email')}
+          />
 
-        <TextField
-          multiline
-          label="How did you hear about us?"
-          placeholder="Website, ads, email, etc."
-          value={this.state.autoGrow}
-          onChange={this.valueUpdater('autoGrow')}
-        />
+          <TextField
+            multiline
+            label="How did you hear about us?"
+            placeholder="Website, ads, email, etc."
+            value={this.state.autoGrow}
+            onChange={this.valueUpdater('autoGrow')}
+          />
 
-        <Button primary>Submit</Button>
+          <Button primary>Submit</Button>
+        </FormLayout>
       </ValidatedForm>
     );
   }
