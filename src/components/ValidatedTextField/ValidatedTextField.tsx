@@ -23,10 +23,10 @@ export default class ValidatedTextFieldComponent extends React.PureComponent<Pro
     }
 
     const {
-        form,
         validateTrigger,
         validator,
         validateRules,
+        form,
         ...rest,
     } = this.props;
     const initialValue = rest.value;

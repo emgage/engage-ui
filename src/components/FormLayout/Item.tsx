@@ -6,7 +6,16 @@ export interface Props {
 }
 
 export default function Item(props: Props) {
+  const {
+    children,
+    ...otherProps,
+  } = props;
+
   return (
-    <div className={styles.Item}>{props.children}</div>
+    <div className={styles.Item}>
+      {React.Children.map(children, (child: React.ReactElement<{}>) => {
+          return React.cloneElement(child, otherProps);
+      })}
+    </div>
   );
 }

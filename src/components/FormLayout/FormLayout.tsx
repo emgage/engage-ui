@@ -13,17 +13,19 @@ export default class FormLayout extends React.PureComponent<Props, never> {
   static Group = Group;
 
   render() {
-    const {children} = this.props;
+    const {children, ...otherProps} = this.props;
 
     return (
       <div className={styles.FormLayout}>
-        {React.Children.map(children, wrapChildren)}
+        {React.Children.map(children, (child: React.ReactElement<{}>, index: number) => {
+          return wrapChildren(child, index, otherProps);
+        })}
       </div>
     );
   }
 }
 
-function wrapChildren(child: React.ReactElement<{}>, index: number) {
+function wrapChildren(child: React.ReactElement<{}>, index: number, props: {}) {
   if (isElementOfType(child, Group)) { return child; }
-  return wrapWithComponent(child, Item, {key: index} as ItemProps);
+  return wrapWithComponent(child, Item, {key: index, ...props} as ItemProps);
 }
