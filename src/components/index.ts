@@ -9,6 +9,11 @@ export {
 } from './Connected';
 
 export {
+  default as FormLayout,
+  Props as FormLayoutProps,
+} from './FormLayout';
+
+export {
   default as Icon,
   Props as IconProps,
 } from './Icon';

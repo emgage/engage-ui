@@ -1,0 +1,42 @@
+@import 'foundation/colors';
+@import 'foundation/spacing';
+@import 'shared/accessibility';
+@import 'shared/icons';
+@import 'shared/typography';
+
+.hidden > .LabelWrapper {
+  @include visually-hidden;
+}
+
+.LabelWrapper {
+  position: absolute;
+  z-index: 21;
+  //margin-bottom: spacing(extra-tight);
+  color: #999;
+  font-weight: normal;
+  padding: 0;
+  -webkit-transform: translate3D(0,calc(0.94em + 1px),0);
+  -ms-transform: translate3D(0,calc(0.94em + 1px)x,0);
+  transform: translate3D(0,calc(0.94em + 1px),0);
+  
+    .focused,
+    :not(.empty) {
+      color: #333;
+      -webkit-transform: translate3D(0,5px,0);
+      -ms-transform: translate3D(0,5px,0);
+      transform: translate3D(0,5px,0);
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+
+      .Text {
+        font-size: 85.71%
+      }
+
+    }
+}
+
+.HelpText {
+  @include text-style-body;
+  @include text-emphasis-subdued;
+  margin-top: spacing(extra-tight);
+}
