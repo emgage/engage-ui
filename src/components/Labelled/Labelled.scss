@@ -8,6 +8,22 @@
   @include visually-hidden;
 }
 
+.required {
+  color: greenyellow;
+}
+
+.focused {
+  color: yellow;
+}
+
+.invalid {
+  color: red;
+}
+
+.empty {
+  color: blue;
+}
+
 .LabelWrapper {
   margin-bottom: spacing(extra-tight);
 }

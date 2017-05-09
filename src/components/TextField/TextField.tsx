@@ -152,6 +152,8 @@ export default class TextField extends React.PureComponent<Props, State> {
       'aria-invalid': Boolean(errors),
     });
 
+    const hasValue = (this.props.value != null && this.props.value.length > 0);
+
     return (
       <Labelled
         label={label}
@@ -160,6 +162,9 @@ export default class TextField extends React.PureComponent<Props, State> {
         action={labelAction}
         labelHidden={labelHidden}
         helpText={helpText}
+        focused={false}
+        hasValue={hasValue}
+        required={required}
       >
         <Connected
           left={connectedLeft}

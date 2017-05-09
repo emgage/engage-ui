@@ -18,6 +18,9 @@ export interface Props {
   helpText?: React.ReactNode,
   children?: React.ReactNode,
   labelHidden?: boolean,
+  required?: boolean,
+  focused?: boolean,
+  hasValue?: boolean,
 }
 
 export default function Labelled({
@@ -27,10 +30,21 @@ export default function Labelled({
   children,
   labelHidden,
   helpText,
+  required,
+  focused,
+  hasValue,
   ...rest,
 }: Props) {
-  const className = classNames(
+  const wrapperClassName = classNames(
     labelHidden && styles.hidden,
+  );
+
+  const labelWrapperClassName = classNames(
+    styles.LabelWrapper,
+    required && styles.required,
+    focused && styles.focused,
+    (errors && errors.length > 0) && styles.invalid,
+    !hasValue && styles.empty,
   );
 
   const helpTextMarkup = helpText
@@ -48,14 +62,14 @@ export default function Labelled({
 
   const labelMarkup = label
     ? (
-      <div className={styles.LabelWrapper}>
+      <div className={labelWrapperClassName}>
         <Label id={id} {...rest} hidden={false}>{label}</Label>
       </div>
     )
     : null;
 
   return (
-    <div className={className} aria-describedby={errorId}>
+    <div className={wrapperClassName} aria-describedby={errorId}>
       {errorMarkup}
       {labelMarkup}
       {children}
