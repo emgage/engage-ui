@@ -11,7 +11,7 @@ export interface Props extends TextFieldProps {
     validator?(rule: object, value: any, callback: (error?: Error) => void): void,
 }
 
-export default class ValidatedTextFieldComponent extends React.PureComponent<Props, {}> {
+export default class  ValidatedTextFieldComponent extends React.PureComponent<Props, {}> {
 
   constructor(props: Props) {
     super(props);
@@ -27,19 +27,25 @@ export default class ValidatedTextFieldComponent extends React.PureComponent<Pro
         validator,
         validateRules,
         form,
-        ...rest,
+        onChange,
+        onBlur,
+        ...otherProps,
     } = this.props;
-    const initialValue = rest.value;
+    const initialValue = otherProps.value;
+    const {...otherFieldProps} = form.getFieldProps(this.props.name, {
+        validateTrigger,
+        rules: validateRules,
+        initialValue,
+        onChange,
+        onBlur,
+    });
 
     return (
         <div>
             <TextField
-                {...rest}
-                {...form.getFieldProps(this.props.name, {
-                    validateTrigger,
-                    rules: validateRules,
-                    initialValue,
-                })}
+                {...otherProps}
+                {...otherFieldProps}
+                value={initialValue}
                 errors={form.getFieldError(this.props.name)}
             />
         </div>

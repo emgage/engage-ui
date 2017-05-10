@@ -36,7 +36,7 @@ class App extends React.Component<{}, State> {
             required={true}
             label="First Name"
             placeholder="Tom"
-            onChange={this.valueUpdater('last')}
+            onChange={this.valueUpdater('first')}
             value={this.state.first}
             name="tom"
             validateTrigger={['onBlur']}

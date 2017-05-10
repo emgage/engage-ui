@@ -14,6 +14,7 @@ export type Type = 'text' | 'email' | 'number' | 'password' | 'search' | 'tel' |
 
 export interface State {
   height?: number | null,
+  focused?: boolean,
 }
 
 export interface Props {
@@ -46,7 +47,7 @@ export interface Props {
   spellCheck?: boolean,
   onChange?(value: string): void,
   onFocus?(): void,
-  onBlur?(): void,
+  onBlur?(e?: any): void,
 }
 
 const getUniqueID = createUniqueIDFactory('TextField');
@@ -137,8 +138,8 @@ export default class TextField extends React.PureComponent<Props, State> {
       autoFocus,
       value,
       placeholder,
-      onFocus,
-      onBlur,
+      onFocus: this.handleInputOnFocus,
+      onBlur: this.handleInputOnBlur,
       style,
       formNoValidate: true,
       autoComplete: normalizeAutoComplete(autoComplete),
@@ -152,7 +153,7 @@ export default class TextField extends React.PureComponent<Props, State> {
       'aria-invalid': Boolean(errors),
     });
 
-    const hasValue = (this.props.value != null && this.props.value.length > 0);
+    const hasValue = (!!this.props.value && this.props.value.length > 0);
 
     return (
       <Labelled
@@ -162,7 +163,7 @@ export default class TextField extends React.PureComponent<Props, State> {
         action={labelAction}
         labelHidden={labelHidden}
         helpText={helpText}
-        focused={false}
+        focused={this.state.focused}
         hasValue={hasValue}
         required={required}
       >
@@ -210,6 +211,30 @@ export default class TextField extends React.PureComponent<Props, State> {
     const {onChange} = this.props;
     if (onChange == null) { return; }
     onChange(event.currentTarget.value);
+  }
+
+  @autobind
+  private handleInputOnFocus() {
+    this.setState((prevState: State) => ({
+      ...prevState,
+      focused: true,
+    }));
+
+    const {onFocus} = this.props;
+    if (onFocus == null) { return; }
+    onFocus();
+  }
+
+  @autobind
+  private handleInputOnBlur(e: any) {
+    this.setState((prevState: State) => ({
+      ...prevState,
+      focused: false,
+    }));
+
+    const {onBlur} = this.props;
+    if (onBlur == null) { return; }
+    onBlur(e);
   }
 
   @autobind
