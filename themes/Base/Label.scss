@@ -19,4 +19,5 @@
   flex: 1 1 auto;
   color: currentColor;
   -webkit-tap-highlight-color: transparent;
+  @if(mixin-exists(hook-text)) {@include hook-text();}
 }

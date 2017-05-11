@@ -1,10 +1,11 @@
 import * as React from 'react';
+import { themr } from 'react-css-themr';
 import {classNames} from '@shopify/react-utilities/styles';
 
 import Label, {Props as LabelProps, Action, labelID} from '../Label';
 import Message from '../Message';
-
-import * as styles from './Labelled.scss';
+import { LABELLED } from '../ThemeIdentifiers';
+import * as baseTheme from './Labelled.scss';
 
 export {Action, labelID};
 
@@ -21,9 +22,10 @@ export interface Props {
   required?: boolean,
   focused?: boolean,
   hasValue?: boolean,
+  theme?: any,
 }
 
-export default function Labelled({
+const Labelled = ({
   id,
   label,
   errors,
@@ -33,22 +35,23 @@ export default function Labelled({
   required,
   focused,
   hasValue,
+  theme,
   ...rest,
-}: Props) {
+}: Props) => {
   const wrapperClassName = classNames(
-    labelHidden && styles.hidden,
+    labelHidden && theme.hidden,
   );
 
   const labelWrapperClassName = classNames(
-    styles.LabelWrapper,
-    required && styles.required,
-    focused && styles.focused,
-    (errors && errors.length > 0) && styles.invalid,
-    !hasValue && styles.empty,
+    theme.LabelWrapper,
+    required && theme.required,
+    focused && theme.focused,
+    (errors && errors.length > 0) && theme.invalid,
+    !hasValue && theme.empty,
   );
 
   const helpTextMarkup = helpText
-    ? <div className={styles.HelpText} id={helpTextID(id)}>{helpText}</div>
+    ? <div className={theme.HelpText} id={helpTextID(id)}>{helpText}</div>
     : null;
 
   const errorId = errorID(id);
@@ -85,3 +88,5 @@ export function errorID(id: string) {
 export function helpTextID(id: string) {
   return `${id}HelpText`;
 }
+
+export default themr(LABELLED, baseTheme)(Labelled);

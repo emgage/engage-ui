@@ -1,21 +1,27 @@
 import * as React from 'react';
-import * as styles from './FormLayout.scss';
+import { themr } from 'react-css-themr';
+
+import { FORM_LAYOUT } from '../ThemeIdentifiers';
 
 export interface Props {
   children?: React.ReactNode,
+  theme?: any,
 }
 
-export default function Item(props: Props) {
+const Item = (props: Props)  => {
   const {
     children,
+    theme,
     ...otherProps,
   } = props;
 
   return (
-    <div className={styles.Item}>
+    <div className={theme.Item}>
       {React.Children.map(children, (child: React.ReactElement<{}>) => {
           return React.cloneElement(child, otherProps);
       })}
     </div>
   );
 }
+
+export default themr(FORM_LAYOUT)(Item);

@@ -1,0 +1,27 @@
+.messageBlock {
+    margin: 0 0 13px;
+}
+.messagePrompt {
+    display: inline-block;
+    position: relative;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 5px 8px;
+    background: #c31032  ;
+    color: #fff;
+    font-size: .8125em;
+    line-height: 1.2em;
+    text-align: center;
+}
+.messagePrompt:after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 0;
+    height: 0;
+    bottom: -5px;
+    border: 5px solid #c31032  ;
+    border-bottom: 0;
+    border-left-color: transparent;
+    border-right-color: transparent;
+}

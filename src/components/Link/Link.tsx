@@ -11,16 +11,8 @@ export interface Props {
   onClick?(): void,
 }
 
-class Link extends React.Component<Props, {}> {
-  render() {
-    const {
-      url,
-      children,
-      onClick,
-      external,
-      theme,
-    } = this.props;
-    return url
+const Link = ({url, children, onClick, external, theme }: Props) => {
+  return url
     ? (
       <UnstyledLink className={theme.Link} url={url} external={external}>
         {children}
@@ -31,7 +23,6 @@ class Link extends React.Component<Props, {}> {
         {children}
       </button>
     );
-  }
 }
 
 export default themr(LINK)(Link);

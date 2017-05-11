@@ -23,6 +23,10 @@
       "es2017",
       "dom.iterable",
       "scripthost"
+    ],
+    "typeRoots": [
+      "./@types",
+      "./node_modules/@types"
     ]
   },
   "include": [
