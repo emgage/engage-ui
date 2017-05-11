@@ -1,9 +1,10 @@
 import * as React from 'react';
+import { themr } from 'react-css-themr';
 import {createUniqueIDFactory} from '@shopify/javascript-utilities/other';
 import {classNames} from '@shopify/react-utilities/styles';
 import {wrapWithComponent} from '@shopify/react-utilities/components';
 
-import * as styles from './FormLayout.scss';
+import { FORM_LAYOUT } from '../ThemeIdentifiers';
 import Item from './Item';
 
 export interface Props {
@@ -12,13 +13,14 @@ export interface Props {
   title?: string,
   helpText?: React.ReactNode,
   style?: React.CSSProperties,
+  theme?: any,
 }
 
 const getUniqueID = createUniqueIDFactory('FormLayoutGroup');
 
-export default function Group({children, condensed, title, helpText, style}: Props) {
+export default function Group({children, condensed, title, helpText, style, theme}: Props) {
   const className = classNames(
-    condensed && styles.condensed,
+    condensed && theme.condensed,
   );
 
   const id = getUniqueID();
@@ -30,12 +32,12 @@ export default function Group({children, condensed, title, helpText, style}: Pro
 
   if (helpText) {
     helpTextID = `${id}HelpText`;
-    helpTextElement = <div id={helpTextID} className={styles.HelpText}>{helpText}</div>;
+    helpTextElement = <div id={helpTextID} className={theme.HelpText}>{helpText}</div>;
   }
 
   if (title) {
     titleID = `${id}Title`;
-    titleElement = <div id={titleID} className={styles.Title}>{title}</div>;
+    titleElement = <div id={titleID} className={theme.Title}>{title}</div>;
   }
 
   const itemsMarkup = React.Children.map(children, (child) => wrapWithComponent(child, Item));
@@ -49,10 +51,12 @@ export default function Group({children, condensed, title, helpText, style}: Pro
       style={style}
     >
       {titleElement}
-      <div className={styles.Items}>
+      <div className={theme.Items}>
         {itemsMarkup}
       </div>
       {helpTextElement}
     </div>
   );
 }
+
+export default themr(FORM_LAYOUT)(Group);

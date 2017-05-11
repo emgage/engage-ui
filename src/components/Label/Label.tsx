@@ -1,10 +1,12 @@
 import * as React from 'react';
+import { themr } from 'react-css-themr';
 import {classNames} from '@shopify/react-utilities/styles';
 
 import {Action} from '../../types';
 import {buttonFrom} from '../Button';
+import { LABEL } from '../ThemeIdentifiers';
 
-import * as styles from './Label.scss';
+import * as baseTheme from './Label.scss';
 
 export {Action};
 
@@ -14,16 +16,17 @@ export interface Props {
   action?: Action,
   hidden?: boolean,
   style?: React.CSSProperties,
+  theme?: any,
 };
 
 export function labelID(id: string) {
   return `${id}Label`;
 }
 
-export default function Label({children, id, action, hidden, style}: Props) {
+export default function Label({children, id, action, hidden, style, theme}: Props) {
   const className = classNames(
-    styles.Label,
-    hidden && styles.hidden,
+    theme.Label,
+    hidden && theme.hidden,
   );
 
   const actionMarkup = action
@@ -32,8 +35,10 @@ export default function Label({children, id, action, hidden, style}: Props) {
 
   return (
     <div className={className}>
-      <label id={labelID(id)} htmlFor={id} className={styles.Text} style={style}>{children}</label>
+      <label id={labelID(id)} htmlFor={id} className={theme.Text} style={style}>{children}</label>
       {actionMarkup}
     </div>
   );
 }
+
+export default themr(LABEL, baseTheme)(Label);

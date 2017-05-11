@@ -1,7 +1,7 @@
-@import 'foundation/colors';
-@import 'foundation/typography';
-@import 'foundation/utilities';
-@import 'shared/breakpoints';
+@import '../foundation/colors';
+@import '../foundation/typography';
+@import '../foundation/utilities';
+@import 'breakpoints';
 
 $typography-condensed: em(640px);
 

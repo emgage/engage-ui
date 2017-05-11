@@ -64,7 +64,7 @@ module.exports = {
     },
     resolve: {
         extensions: [
-            '.ts', '.tsx', '.js', '.jsx'
+            '.ts', '.tsx', '.js', '.jsx', '.scss'
         ],
         plugins: [
              new TsConfigPathsPlugin(TypeScriptConfigFile),
@@ -79,6 +79,9 @@ module.exports = {
         }),
         new webpack.NoEmitOnErrorsPlugin(),
         new CheckerPlugin(),
+        new webpack.LoaderOptionsPlugin({
+            debug: true
+       })
     ],
-    devtool: 'source-map'
+    devtool: 'source-map',
 };

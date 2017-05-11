@@ -1,14 +1,16 @@
 import * as React from 'react';
+import { themr } from 'react-css-themr';
 import autobind from '@shopify/javascript-utilities/autobind';
 import {createUniqueIDFactory} from '@shopify/javascript-utilities/other';
 import {classNames} from '@shopify/react-utilities/styles';
 
 import Labelled, {Action, helpTextID, errorID, labelID} from '../Labelled';
 import Connected from '../Connected';
+import { TEXTFIELD } from '../ThemeIdentifiers';
+import * as baseTheme from './TextField.scss';
 
 import Resizer from './Resizer';
 import Spinner from './Spinner';
-import * as styles from './TextField.scss';
 
 export type Type = 'text' | 'email' | 'number' | 'password' | 'search' | 'tel' | 'url' | 'date' | 'datetime-local' | 'month' | 'time' | 'week';
 
@@ -46,6 +48,7 @@ export interface Props {
   required?: boolean,
   spellCheck?: boolean,
   style?: React.CSSProperties,
+  theme?: any,
   onChange?(value: string): void,
   onFocus?(): void,
   onBlur?(e?: any): void,
@@ -53,7 +56,7 @@ export interface Props {
 
 const getUniqueID = createUniqueIDFactory('TextField');
 
-export default class TextField extends React.PureComponent<Props, State> {
+class TextField extends React.PureComponent<Props, State> {
   state: State = {height: null};
 
   private input: HTMLElement;
@@ -79,6 +82,7 @@ export default class TextField extends React.PureComponent<Props, State> {
       prefix,
       suffix,
       required,
+      theme,
       onFocus,
       onBlur,
       autoComplete,
@@ -89,20 +93,20 @@ export default class TextField extends React.PureComponent<Props, State> {
     const {height} = this.state;
 
     const className = classNames(
-      styles.TextField,
-      Boolean(value) && styles.hasValue,
-      disabled && styles.disabled,
-      readOnly && styles.readOnly,
-      errors && styles.error,
-      multiline && styles.multiline,
+      theme.TextField,
+      Boolean(value) && theme.hasValue,
+      disabled && theme.disabled,
+      readOnly && theme.readOnly,
+      errors && theme.error,
+      multiline && theme.multiline,
     );
 
     const prefixMarkup = prefix
-      ? <div onClick={this.handleInputFocus} className={styles.Prefix} id={`${id}Prefix`}>{prefix}</div>
+      ? <div onClick={this.handleInputFocus} className={theme.Prefix} id={`${id}Prefix`}>{prefix}</div>
       : null;
 
     const suffixMarkup = suffix
-      ? <div onClick={this.handleInputFocus} className={styles.Suffix} id={`${id}Suffix`}>{suffix}</div>
+      ? <div onClick={this.handleInputFocus} className={theme.Suffix} id={`${id}Suffix`}>{suffix}</div>
       : null;
 
     const spinnerMarkup = type === 'number'
@@ -145,7 +149,7 @@ export default class TextField extends React.PureComponent<Props, State> {
       style: componentStyle,
       formNoValidate: true,
       autoComplete: normalizeAutoComplete(autoComplete),
-      className: styles.Input,
+      className: theme.Input,
       onChange: this.handleChange,
       ref: this.setInput,
       required,
@@ -178,7 +182,7 @@ export default class TextField extends React.PureComponent<Props, State> {
             {input}
             {suffixMarkup}
             {spinnerMarkup}
-            <div className={styles.Backdrop} />
+            <div className={theme.Backdrop} />
             {resizer}
           </div>
         </Connected>
@@ -249,3 +253,5 @@ function normalizeAutoComplete(autoComplete?: boolean) {
   if (autoComplete == null) { return autoComplete; }
   return autoComplete ? 'on' : 'off';
 }
+
+export default themr(TEXTFIELD, baseTheme)(TextField);

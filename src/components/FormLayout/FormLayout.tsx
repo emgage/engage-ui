@@ -1,23 +1,25 @@
 import * as React from 'react';
+import { themr } from 'react-css-themr';
 import {wrapWithComponent, isElementOfType} from '@shopify/react-utilities/components';
 
 import Group from './Group';
 import Item, {Props as ItemProps} from './Item';
-import * as styles from './FormLayout.scss';
+import { FORM_LAYOUT } from '../ThemeIdentifiers';
 
 export interface Props {
   children?: React.ReactNode,
+  theme?: any,
   style?: React.CSSProperties,
 }
 
-export default class FormLayout extends React.PureComponent<Props, never> {
+class FormLayout extends React.PureComponent<Props, never> {
   static Group = Group;
 
   render() {
-    const {children, style, ...otherProps} = this.props;
+    const {children, style, theme, ...otherProps} = this.props;
 
     return (
-      <div className={styles.FormLayout} style={style}>
+      <div className={theme.FormLayout} style={style}>
         {React.Children.map(children, (child: React.ReactElement<{}>, index: number) => {
           return wrapChildren(child, index, otherProps);
         })}
@@ -30,3 +32,5 @@ function wrapChildren(child: React.ReactElement<{}>, index: number, props: {}) {
   if (isElementOfType(child, Group)) { return child; }
   return wrapWithComponent(child, Item, {key: index, ...props} as ItemProps);
 }
+
+export default themr(FORM_LAYOUT)(FormLayout);
