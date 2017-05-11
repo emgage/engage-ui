@@ -11,11 +11,12 @@ export interface Props {
   condensed?: boolean,
   title?: string,
   helpText?: React.ReactNode,
+  style?: React.CSSProperties,
 }
 
 const getUniqueID = createUniqueIDFactory('FormLayoutGroup');
 
-export default function Group({children, condensed, title, helpText}: Props) {
+export default function Group({children, condensed, title, helpText, style}: Props) {
   const className = classNames(
     condensed && styles.condensed,
   );
@@ -45,6 +46,7 @@ export default function Group({children, condensed, title, helpText}: Props) {
       className={className}
       aria-labelledby={titleID}
       aria-describedby={helpTextID}
+      style={style}
     >
       {titleElement}
       <div className={styles.Items}>

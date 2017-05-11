@@ -9,6 +9,7 @@ export interface Props {
     getFieldError: any,
     validateFieldsAndScroll: any,
   },
+  style?: React.CSSProperties,
   onSubmit: (values: [any]) => void,
   onSubmitError: (values: [any], error: Error) => void,
 }
@@ -27,7 +28,7 @@ class ValidatedForm extends React.Component<Props, {}> {
 
   render() {
     return(
-      <form onSubmit={this.onSubmit}>
+      <form onSubmit={this.onSubmit} style={this.props.style}>
         {this.props.children && React.Children.map(this.props.children, (child: any) => {
           return React.cloneElement(child, {form: this.props.form});
         })}

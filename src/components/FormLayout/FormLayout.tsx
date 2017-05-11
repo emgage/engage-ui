@@ -7,16 +7,17 @@ import * as styles from './FormLayout.scss';
 
 export interface Props {
   children?: React.ReactNode,
+  style?: React.CSSProperties,
 }
 
 export default class FormLayout extends React.PureComponent<Props, never> {
   static Group = Group;
 
   render() {
-    const {children, ...otherProps} = this.props;
+    const {children, style, ...otherProps} = this.props;
 
     return (
-      <div className={styles.FormLayout}>
+      <div className={styles.FormLayout} style={style}>
         {React.Children.map(children, (child: React.ReactElement<{}>, index: number) => {
           return wrapChildren(child, index, otherProps);
         })}

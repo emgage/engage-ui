@@ -21,6 +21,7 @@ export interface Props {
   required?: boolean,
   focused?: boolean,
   hasValue?: boolean,
+  style?: React.CSSProperties,
 }
 
 export default function Labelled({
@@ -33,6 +34,7 @@ export default function Labelled({
   required,
   focused,
   hasValue,
+  style,
   ...rest,
 }: Props) {
   const wrapperClassName = classNames(
@@ -69,7 +71,7 @@ export default function Labelled({
     : null;
 
   return (
-    <div className={wrapperClassName} aria-describedby={errorId}>
+    <div className={wrapperClassName} aria-describedby={errorId} style={style}>
       {errorMarkup}
       {labelMarkup}
       {children}

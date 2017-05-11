@@ -6,15 +6,16 @@ export interface Props {
   children?: React.ReactNode,
   isVisible?: boolean,
   id: string,
+  style?: React.CSSProperties,
 }
 
-export default function Message({children, isVisible, id}: Props) {
+export default function Message({children, isVisible, id, style}: Props) {
   if (!isVisible) {
     return null;
   }
 
   return (
-    <div id={id} className={styles.messageBlock} role="alert" aria-live="polite">
+    <div id={id} className={styles.messageBlock} style={style} role="alert" aria-live="polite">
       <span className={styles.messagePrompt}>
         {children}
       </span>

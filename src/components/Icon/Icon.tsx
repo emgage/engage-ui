@@ -106,6 +106,7 @@ export interface Props {
   color?: Color,
   backdrop?: boolean,
   accessibilityLabel?: string,
+  style?: React.CSSProperties,
 }
 
 export default function Icon({
@@ -113,6 +114,7 @@ export default function Icon({
   color,
   backdrop,
   accessibilityLabel,
+  style,
 }: Props) {
   if (color && backdrop && COLORS_WITH_BACKDROPS.indexOf(color) < 0) {
     // tslint:disable-next-line no-console
@@ -141,7 +143,7 @@ export default function Icon({
   }
 
   return (
-    <span className={className} aria-label={accessibilityLabel}>
+    <span className={className} style={style} aria-label={accessibilityLabel}>
       {contentMarkup}
     </span>
   );

@@ -24,6 +24,7 @@ export interface Props {
   disclosure?: boolean,
   accessibilityLabel?: string,
   icon?: IconProps['source'],
+  style?: React.CSSProperties,
   onClick?(): void,
   onFocus?(): void,
   onBlur?(): void,
@@ -47,6 +48,7 @@ export default function Button({
   submit,
   size,
   fullWidth,
+  style,
 }: Props) {
   const className = classNames(
     styles.Button,
@@ -95,6 +97,7 @@ export default function Button({
         className={className}
         disabled={disabled}
         aria-label={accessibilityLabel}
+        style={style}
       >
         {content}
       </UnstyledLink>
@@ -109,6 +112,7 @@ export default function Button({
         className={className}
         disabled={disabled}
         aria-label={accessibilityLabel}
+        style={style}
       >
         {content}
       </button>

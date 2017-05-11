@@ -7,6 +7,7 @@ export interface Props extends React.HTMLProps<HTMLAnchorElement> {
   external?: boolean,
   children?: React.ReactNode,
   [key: string]: any,
+  style?: React.CSSProperties,
 }
 
 export type LinkLikeComponent = ReactComponent<Props>;
@@ -26,6 +27,6 @@ export default class UnstyledLink extends React.PureComponent<Props, never> {
     const {external, url, ...rest} = this.props;
     const target = external ? '_blank' : undefined;
     const rel = external ? 'noopener noreferrer' : undefined;
-    return <a target={target} {...rest} href={url} rel={rel} {...unstyled.props} />;
+    return <a style={this.props.style} target={target} {...rest} href={url} rel={rel} {...unstyled.props} />;
   }
 }

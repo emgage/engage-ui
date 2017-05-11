@@ -6,13 +6,14 @@ export interface Props {
   left?: React.ReactNode,
   right?: React.ReactNode,
   children?: React.ReactNode,
+  style?: React.CSSProperties,
 }
 
 export interface State {
   focused?: Position | null,
 }
 
-export default function Connected({children, left, right}: Props) {
+export default function Connected({children, left, right, style}: Props) {
   if (left == null && right == null) {
     return React.Children.only(children);
   }
@@ -26,7 +27,7 @@ export default function Connected({children, left, right}: Props) {
     : null;
 
   return (
-    <div className={styles.Connected}>
+    <div className={styles.Connected} style={style}>
       {leftConnectionMarkup}
       <Item position={Position.Primary}>
         {children}

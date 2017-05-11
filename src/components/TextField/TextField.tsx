@@ -45,6 +45,7 @@ export interface Props {
   pattern?: string,
   required?: boolean,
   spellCheck?: boolean,
+  style?: React.CSSProperties,
   onChange?(value: string): void,
   onFocus?(): void,
   onBlur?(e?: any): void,
@@ -81,6 +82,7 @@ export default class TextField extends React.PureComponent<Props, State> {
       onFocus,
       onBlur,
       autoComplete,
+      style,
       ...rest,
     } = this.props;
 
@@ -107,7 +109,7 @@ export default class TextField extends React.PureComponent<Props, State> {
       ? <Spinner onClick={this.handleInputFocus} onChange={this.handleNumberChange} />
       : null;
 
-    const style = (multiline && height) ? {height} : null;
+    let componentStyle = (multiline && height) ? {height, ...style} : style;
 
     const resizer = multiline != null
       ? (
@@ -140,7 +142,7 @@ export default class TextField extends React.PureComponent<Props, State> {
       placeholder,
       onFocus: this.handleInputOnFocus,
       onBlur: this.handleInputOnBlur,
-      style,
+      style: componentStyle,
       formNoValidate: true,
       autoComplete: normalizeAutoComplete(autoComplete),
       className: styles.Input,
