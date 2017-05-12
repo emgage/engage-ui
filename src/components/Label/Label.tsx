@@ -23,7 +23,7 @@ export function labelID(id: string) {
   return `${id}Label`;
 }
 
-export default function Label({children, id, action, hidden, style, theme}: Props) {
+function Label({children, id, action, hidden, style, theme}: Props) {
   const className = classNames(
     theme.Label,
     hidden && theme.hidden,

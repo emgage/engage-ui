@@ -12,7 +12,7 @@ export interface Props {
   theme?: any,
 }
 
-export default function Message({children, isVisible, id, style, theme}: Props) {
+function Message({children, isVisible, id, style, theme}: Props) {
   if (!isVisible) {
     // TODO This seems to be a bug. We want to return null.
     return <noscript />;

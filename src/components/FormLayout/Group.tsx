@@ -18,7 +18,7 @@ export interface Props {
 
 const getUniqueID = createUniqueIDFactory('FormLayoutGroup');
 
-export default function Group({children, condensed, title, helpText, style, theme}: Props) {
+function Group({children, condensed, title, helpText, style, theme}: Props) {
   const className = classNames(
     condensed && theme.condensed,
   );
