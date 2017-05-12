@@ -1,12 +1,10 @@
 @import './foundation/colors';
 @import './shared/accessibility';
-@import './styles/shared/typography';
+@import './shared/typography';
 
-// Text
+// Component
 // ========================================================================
 
-@mixin hook-text(){
-  color: color(red, dark);
-}
+// @mixin hook-text(){}
 
-@import '../../../themes/Base/Label.scss';
+@import '../../../src/components/Label/Label.scss';

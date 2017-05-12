@@ -26,6 +26,7 @@ $stacking-order: (
   align-items: baseline;
   padding: 0 $backdrop-horizontal-spacing;
   color: color(ink, lightest);
+  @if(mixin-exists(hook-textfield)) {@include hook-textfield();}
 }
 
 .multiline {
@@ -36,24 +37,34 @@ $stacking-order: (
     padding-left: $backdrop-horizontal-spacing;
     padding-right: $backdrop-horizontal-spacing;
     resize: none;
+    @if(mixin-exists(hook-textfield-input)) {@include hook-textfield-input();}
   }
 }
 
 .hasValue {
-  color: color(ink);
+  .Input {
+    color: color(ink);
+    @if(mixin-exists(hook-input-hasvalue)) {@include hook-input-hasvalue();}
+  }
 }
 
 .error {
+  .Input {
+    @if(mixin-exists(hook-input-error)) {@include hook-input-error();}
+  }
+  
   .Input::placeholder {
     // This is the only place this color is used.
     // stylelint-disable-next-line color-no-hex
     color: #9c9798;
+    @if(mixin-exists(hook-placeholder-error)) {@include hook-placeholder-error();}
   }
 
   > .Input ~ .Backdrop {
     background-color: color(red, lighter);
     border-color: color(red);
     box-shadow: none;
+    @if(mixin-exists(hook-backdrop-error)) {@include hook-backdrop-error();}
   }
 
   // We need this to override the box-shadow in the focus state.
@@ -63,17 +74,20 @@ $stacking-order: (
     box-shadow:
       inset shadow(transparent),
       0 0 0 1px color(indigo);
+    @if(mixin-exists(hook-backdrop-focus)) {@include hook-backdrop-focus();}
   }
 }
 
 .readOnly > .Backdrop {
   background-color: color(sky, lighter);
+  @if(mixin-exists(hook-backdrop-readonly)) {@include hook-backdrop-readonly();}
 }
 
 .disabled > .Backdrop {
   background-color: color(sky, lighter);
   border: border();
   box-shadow: none;
+  @if(mixin-exists(hook-backdrop-disabled)) {@include hook-backdrop-disabled();}
 }
 
 .Input {
@@ -92,9 +106,11 @@ $stacking-order: (
   font-size: inherit;
   font-weight: inherit;
   appearance: none;
+  @if(mixin-exists(hook-input)) {@include hook-input();}
 
   &:disabled {
     color: color(ink, lightest);
+    @if(mixin-exists(hook-input-disabled)) {@include hook-input-disabled();}
   }
 
   &:focus {
@@ -105,11 +121,14 @@ $stacking-order: (
       box-shadow:
         inset shadow(transparent),
         0 0 0 1px color(indigo);
+      @if(mixin-exists(hook-backdrop-focused)) {@include hook-backdrop-focused();}
+
     }
   }
 
   &::placeholder {
     color: color(ink, lightest);
+    @if(mixin-exists(hook-placeholder)) {@include hook-placeholder();}
   }
 
   // These properties are used to remove the default "spinner" controls
@@ -138,6 +157,7 @@ $stacking-order: (
   border-radius: border-radius();
   will-change: box-shadow;
   transition: box-shadow duration() easing();
+  @if(mixin-exists(hook-backdrop)) {@include hook-backdrop();}
 }
 
 .Prefix {
@@ -169,6 +189,7 @@ $stacking-order: (
 .SpinnerIcon {
   height: $spinner-icon-size;
   width: $spinner-icon-size;
+  @if(mixin-exists(hook-spinner-icon)) {@include hook-spinner-icon();}
 }
 
 .Resizer {
