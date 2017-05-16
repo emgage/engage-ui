@@ -33,9 +33,11 @@ module.exports = {
                         options: {
                             localIdentName: '[name]__[local]__[hash:base64:5]',
                             modules: true,
-                            sourceMap: true,
+                            importLoaders: 1,
+                            sourceMap: false,
                         }
-                    }, {
+                    }, 
+                    {
                         loader: 'sass-loader',
                         options: {
                             includePaths: [
@@ -43,9 +45,18 @@ module.exports = {
                                 path.join(__dirname, 'src', 'styles'),
                                 path.join(__dirname, 'src', 'styles', 'components'),
                             ],
-                            sourceMap: true
+                            sourceMap: false
                         }
-                    }
+                    },
+                    {
+                        loader: 'sass-resources-loader',
+                        options: {
+                            resources: [
+                                './src/styles/foundation.scss',
+                                './src/styles/shared.scss',
+                            ],
+                        },
+                    },
                 ],
                 exclude: /node_modules/
             },

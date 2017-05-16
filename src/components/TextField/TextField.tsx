@@ -7,6 +7,7 @@ import {classNames} from '@shopify/react-utilities/styles';
 import Labelled, {Action, helpTextID, errorID, labelID} from '../Labelled';
 import Connected from '../Connected';
 import { TEXTFIELD } from '../ThemeIdentifiers';
+
 import * as baseTheme from './TextField.scss';
 
 import Resizer from './Resizer';

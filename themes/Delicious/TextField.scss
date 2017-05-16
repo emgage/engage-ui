@@ -1,78 +1,33 @@
-@import './foundation/borders';
-@import './foundation/border-radius';
-@import './foundation/duration';
-@import './foundation/easing';
-@import './foundation/spacing';
-@import './foundation/utilities';
-@import './foundation/z-index';
-@import './foundation/easing';
-@import './foundation/duration';
-@import './shared/controls';
-@import './shared/typography';
+.Input {
+  height: auto;
+  padding: 0.94em 0;
+  transition: 0.3s all ease;
 
-$backdrop-horizontal-spacing: spacing(tight) * 1.5;
-$addon-horizontal-spacing: 0.25em;
-$spinner-icon-size: rem(12px);
+  &:focus {
+    padding-top: 1.5em;
+    padding-bottom: 0.38em;
+  }
 
-// Component
-// ========================================================================
-
-@mixin hook-textfield(){
-  padding: 0 $backdrop-horizontal-spacing;
+  &::placeholder {
+    text-align: right;
+  }
 }
 
-@mixin hook-textfield-input(){
-  padding-left: $backdrop-horizontal-spacing;
-  padding-right: $backdrop-horizontal-spacing;
+.hasValue {
+
+  .Input{
+    padding-top: 1.5em;
+    padding-bottom: 0.38em;
+  }
 }
 
+.error {
 
-// Input
-// ========================================================================
-
-// @mixin hook-input(){}
-
-// @mixin hook-input-hasvalue(){}
-
-// @mixin hook-input-error(){}
-
-// @mixin hook-input-disabled(){}
-
-
-// Placeholder
-// ========================================================================
-
-// @mixin hook-placeholder(){}
-
-// @mixin hook-placeholder-error(){}
-
-
-// Backdrop
-// ========================================================================
-
-// @mixin hook-backdrop(){}
-
-// @mixin hook-backdrop-focus(){}
-
-// @mixin hook-backdrop-readonly(){}
-
-// @mixin hook-backdrop-disabled(){}
-
-@mixin hook-backdrop-error(){
-  background-color: theme-color(error, lighter);
-  border-color: theme-color(error);
+  > .Input ~ .Backdrop {
+    background-color: theme-color(error, lighter);
+    border-color: theme-color(error);
+    box-shadow:
+    inset shadow(transparent),
+    0 0 0 1px theme-color(error);
+  }
 }
-
-// @mixin hook-backdrop-error-focused(){}
-
-
-// Misc
-// ========================================================================
-
-@mixin hook-spinner-icon(){
-  height: $spinner-icon-size;
-  width: $spinner-icon-size;
-}
-
-
-@import '../../../src/components/TextField/TextField.scss';

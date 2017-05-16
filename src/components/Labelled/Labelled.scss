@@ -1,21 +1,21 @@
-@import 'foundation/colors';
-@import 'foundation/spacing';
-@import 'shared/accessibility';
-@import 'shared/icons';
-@import 'shared/typography';
-
 .hidden > .LabelWrapper {
   @include visually-hidden;
 }
 
 .LabelWrapper {
   margin-bottom: spacing(extra-tight);
-  @if(mixin-exists(hook-labelwrapper)) {@include hook-labelwrapper();}
 }
+
+.required {}
+
+.focused {}
+
+.invalid {}
+
+.empty {}
 
 .HelpText {
   @include text-style-body;
   @include text-emphasis-subdued;
   margin-top: spacing(extra-tight);
-  @if(mixin-exists(hook-helptext)) {@include hook-helptext();}
 }

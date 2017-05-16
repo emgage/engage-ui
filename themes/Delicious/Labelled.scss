@@ -1,15 +1,41 @@
-@import 'foundation/colors';
-@import 'foundation/spacing';
-@import 'shared/accessibility';
-@import 'shared/icons';
-@import 'shared/typography';
+$label-horizontal-spacing: spacing(tight) * 1.5;
 
-// Component
-// ========================================================================
-
-// @mixin hook-labelwrapper(){}
-
-// @mixin hook-helptext(){}
+$stacking-order: (
+  label: 11,
+);
 
 
-@import '../../../src/components/Labelled/Labelled.scss';
+.LabelWrapper {
+  margin-bottom: 0;
+  margin-left: $label-horizontal-spacing;
+  position: absolute;
+  z-index: z-index(label, $stacking-order);
+  -webkit-transform: translate3D(0, calc(0.94em + 3px), 0);
+  -ms-transform: translate3D(0, calc(0.94em + 3px), 0);
+  transform: translate3D(0, calc(0.94em + 3px), 0);
+  transition: all .2s ease-out;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+
+
+//.required {}
+
+  &.focused,
+  &:not(.empty) {
+    -webkit-transform: translate3D(0,0.38em,0);
+    -ms-transform: translate3D(0,0.38em,0);
+    transform: translate3D(0,0.38em,0);
+  }
+
+//.invalid {}
+
+}
+
+
+.empty {
+  // -webkit-transform: translate3D(0,16px,0);
+  // -ms-transform: translate3D(0,16px,0);
+  // transform: translate3D(0,16px,0);
+}
+
+//.HelpText {}

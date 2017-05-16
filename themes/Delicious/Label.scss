@@ -1,10 +1,5 @@
-@import './foundation/colors';
-@import './shared/accessibility';
-@import './shared/typography';
+$lable-text-color: #999;
 
-// Component
-// ========================================================================
-
-// @mixin hook-text(){}
-
-@import '../../../src/components/Label/Label.scss';
+.Text {
+  color: $lable-text-color;
+}

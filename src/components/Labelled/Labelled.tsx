@@ -5,6 +5,7 @@ import {classNames} from '@shopify/react-utilities/styles';
 import Label, {Props as LabelProps, Action, labelID} from '../Label';
 import Message from '../Message';
 import { LABELLED } from '../ThemeIdentifiers';
+
 import * as baseTheme from './Labelled.scss';
 
 export {Action, labelID};
