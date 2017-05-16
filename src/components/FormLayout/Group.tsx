@@ -7,6 +7,8 @@ import {wrapWithComponent} from '@shopify/react-utilities/components';
 import { FORM_LAYOUT } from '../ThemeIdentifiers';
 import Item from './Item';
 
+import * as baseTheme from './FormLayout.scss';
+
 export interface Props {
   children?: React.ReactNode,
   condensed?: boolean,
@@ -59,4 +61,4 @@ function Group({children, condensed, title, helpText, style, theme}: Props) {
   );
 }
 
-export default themr(FORM_LAYOUT)(Group);
+export default themr(FORM_LAYOUT, baseTheme)(Group);

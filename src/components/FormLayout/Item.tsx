@@ -3,6 +3,8 @@ import { themr } from 'react-css-themr';
 
 import { FORM_LAYOUT } from '../ThemeIdentifiers';
 
+import * as baseTheme from './FormLayout.scss';
+
 export interface Props {
   children?: React.ReactNode,
   theme?: any,
@@ -22,6 +24,6 @@ const Item = (props: Props)  => {
       })}
     </div>
   );
-}
+};
 
-export default themr(FORM_LAYOUT)(Item);
+export default themr(FORM_LAYOUT, baseTheme)(Item);
