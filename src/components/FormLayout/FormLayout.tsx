@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { themr } from 'react-css-themr';
-import {wrapWithComponent, isElementOfType} from '@shopify/react-utilities/components';
+import { wrapWithComponent, isElementOfType } from '../../utilities';
 
 import Group from './Group';
 import Item, {Props as ItemProps} from './Item';
@@ -28,7 +28,9 @@ class FormLayout extends React.PureComponent<Props, never> {
   }
 }
 
-function wrapChildren(child: React.ReactElement<{}>, index: number, props: {}) {
+function wrapChildren(child: any, index: number, props: {}) {
+  // TODO: isElementOfType(child, Group) does not work because themr HOC shadows the underlying component.
+  // This is a wacky workaround until we figure out a better approach to this.
   if (isElementOfType(child, Group)) { return child; }
   return wrapWithComponent(child, Item, {key: index, ...props} as ItemProps);
 }

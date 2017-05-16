@@ -2,7 +2,7 @@ import * as React from 'react';
 import { themr } from 'react-css-themr';
 import {createUniqueIDFactory} from '@shopify/javascript-utilities/other';
 import {classNames} from '@shopify/react-utilities/styles';
-import {wrapWithComponent} from '@shopify/react-utilities/components';
+import { wrapWithComponent } from '../../utilities';
 
 import { FORM_LAYOUT } from '../ThemeIdentifiers';
 import Item from './Item';
