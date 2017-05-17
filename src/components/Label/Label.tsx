@@ -17,16 +17,22 @@ export interface Props {
   hidden?: boolean,
   style?: React.CSSProperties,
   theme?: any,
+  required?: boolean,
+  focused?: boolean,
+  hasValue?: boolean,
 };
 
 export function labelID(id: string) {
   return `${id}Label`;
 }
 
-function Label({children, id, action, hidden, style, theme}: Props) {
+function Label({children, id, action, hidden, required, focused, hasValue, style, theme}: Props) {
   const className = classNames(
-    theme.Label,
+    theme.Text,
     hidden && theme.hidden,
+    required && theme.required,
+    focused && theme.focused,
+    !hasValue && theme.empty,
   );
 
   const actionMarkup = action
@@ -34,8 +40,8 @@ function Label({children, id, action, hidden, style, theme}: Props) {
     : null;
 
   return (
-    <div className={className}>
-      <label id={labelID(id)} htmlFor={id} className={theme.Text} style={style}>{children}</label>
+    <div className={theme.Label}>
+      <label id={labelID(id)} htmlFor={id} className={className} style={style}>{children}</label>
       {actionMarkup}
     </div>
   );

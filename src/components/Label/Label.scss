@@ -17,3 +17,11 @@
   -webkit-tap-highlight-color: transparent;
   @if(mixin-exists(hook-text)) {@include hook-text();}
 }
+
+.required {}
+
+.focused {}
+
+.invalid {}
+
+.empty {}
