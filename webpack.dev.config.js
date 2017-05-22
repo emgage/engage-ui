@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const BaseConfig = require('./webpack.base.config');
 
 BaseConfig.entry = [
-  './example/src/index.tsx',
+   './example/src/index.tsx',
 ];
 
 BaseConfig.output = {
