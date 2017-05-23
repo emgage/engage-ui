@@ -1,5 +1,7 @@
 export const BUTTON = 'PButton';
+export const DISPLAY_TEXT = 'PDisplayText';
 export const FORM_LAYOUT = 'PFormLayout';
+export const HEADING = 'Heading';
 export const LINK = 'PLink';
 export const LABEL = 'PLabel';
 export const LABELLED = 'PLabelled';

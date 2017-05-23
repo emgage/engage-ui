@@ -69,7 +69,16 @@ const Labelled = ({
   const labelMarkup = label
     ? (
       <div className={labelWrapperClassName}>
-        <Label id={id} {...rest} hidden={false}>{label}</Label>
+        <Label
+          id={id}
+          hidden={false}
+          focused={focused}
+          hasValue={hasValue}
+          required={required}
+          {...rest}
+        >
+          {label}
+        </Label>
       </div>
     )
     : null;
@@ -82,7 +91,7 @@ const Labelled = ({
       {helpTextMarkup}
     </div>
   );
-}
+};
 
 export function errorID(id: string) {
   return `${id}Error`;

@@ -4,14 +4,29 @@ export {
 } from './Button';
 
 export {
+  default as ButtonGroup,
+  Props as ButtonGroupProps,
+} from './ButtonGroup';
+
+export {
   default as Connected,
   Props as ConnectedProps,
 } from './Connected';
 
 export {
+  default as DisplayText,
+  Props as DisplayTextProps,
+} from './DisplayText';
+
+export {
   default as FormLayout,
   Props as FormLayoutProps,
 } from './FormLayout';
+
+export {
+  default as Heading,
+  Props as HeadingProps,
+} from './Heading';
 
 export {
   default as Icon,

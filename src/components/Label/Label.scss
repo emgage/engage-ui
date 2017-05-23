@@ -18,10 +18,10 @@
   @if(mixin-exists(hook-text)) {@include hook-text();}
 }
 
-.required {}
+// .required {}
 
-.focused {}
+// .focused {}
 
-.invalid {}
+// .invalid {}
 
-.empty {}
+// .empty {}
