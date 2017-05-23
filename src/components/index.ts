@@ -53,3 +53,8 @@ export {
   default as ValidatedTextField,
   Props as ValidatedTextFieldProps,
 } from './ValidatedTextField';
+
+export {
+  default as FlexBox,
+  Props as FlexBoxProps,
+} from './FlexBox';
