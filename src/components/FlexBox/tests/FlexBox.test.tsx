@@ -180,8 +180,8 @@ describe('when direction and alignment are set', () => {
       expect(subject.find('div').hasClass('flex-row')).toBe(false);
     });
     it('div should have flex align end style', () => {
-      expect(subject.find('div').hasClass('align-items-end')).toBe(true);
-      expect(subject.find('div').hasClass('align-items-stretch')).toBe(false);
+      expect(subject.find('div').hasClass('align-items-end')).toBe(false);
+      expect(subject.find('div').hasClass('align-items-stretch')).toBe(true);
     });
     it('div should have default flex justify start style', () => {
       expect(subject.find('div').hasClass('justify-content-start')).toBe(true);
@@ -195,7 +195,7 @@ describe('when direction, justify and alignment are set', () => {
       expect(subject.find('div').hasClass('flex-inline')).toBe(false);
     });
     it('div should have flex direction column-reverse style', () => {
-      expect(subject.find('div').hasClass('flex-column-reverse')).toBe(true);
+      expect(subject.find('div').hasClass('flex-row-reverse')).toBe(true);
       expect(subject.find('div').hasClass('flex-row')).toBe(false);
     });
     it('div should have flex justify space-between style', () => {
