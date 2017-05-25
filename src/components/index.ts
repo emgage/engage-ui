@@ -53,3 +53,8 @@ export {
   default as ValidatedTextField,
   Props as ValidatedTextFieldProps,
 } from './ValidatedTextField';
+
+export {
+  default as Chip,
+  Props as ChipProps,
+} from './Chip';
