@@ -53,9 +53,9 @@ module.exports = {
                         options: {
                             resources: [
                                 //'./src/styles/global.scss',
-                                //'./src/styles/foundation.scss',
+                                './src/styles/foundation.scss',
                                 './themes/Delicious/foundation.scss',
-                                //'./src/styles/shared.scss',
+                                './src/styles/shared.scss',
                                 './themes/Delicious/shared.scss',
                             ],
                         },

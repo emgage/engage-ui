@@ -1,3 +1,47 @@
+// Variables
+// ========================================================================
+
+$extra-large-font-size: (
+  base: 27px,
+  large-screen: 42px
+);
+$large-font-size: (
+  base: 24px,
+  large-screen: 28px
+);
+$medium-font-size: (
+  base: 21px,
+  large-screen: 26px
+);
+$small-font-size: (
+  base: 16px,
+  large-screen: 20px
+);
+$heading-font-size: (
+  base: 17px,
+  large-screen: 16px
+);
+$subheading-font-size:(
+  base: 17px,
+  large-screen: 16px
+);
+$body-font-size: (
+  base: 15px,
+  large-screen: 14px
+);
+$caption-font-size: (
+  base: 13px,
+  large-screen: 12px
+);
+$input-font-size: (
+  base: 16px,
+  large-screen: 14px
+);
+
+
+// Styles
+// ========================================================================
+
 $typography-condensed: em(640px);
 
 $font-family-data: (
@@ -42,40 +86,40 @@ $line-height-data: (
 
 $font-size-data: (
   caption: (
-    base: rem(13px),
-    large-screen: rem(12px)
+    base: rem(map-get($caption-font-size, base)),
+    large-screen: rem(map-get($caption-font-size, large-screen))
   ),
   heading: (
-    base: rem(17px),
-    large-screen: rem(16px)
+    base: rem(map-get($heading-font-size, base)),
+    large-screen: rem(map-get($heading-font-size, large-screen))
   ),
   subheading: (
-    base: rem(13px),
-    large-screen: rem(12px)
+    base: rem(map-get($subheading-font-size, base)),
+    large-screen: rem(map-get($subheading-font-size, large-screen))
   ),
   input: (
-    base: rem(16px),
-    large-screen: rem(14px)
+    base: rem(map-get($input-font-size, base)),
+    large-screen: rem(map-get($input-font-size, large-screen))
   ),
   body: (
-    base: rem(15px),
-    large-screen: rem(14px)
+    base: rem(map-get($body-font-size, base)),
+    large-screen: rem(map-get($body-font-size, large-screen))
   ),
   display-x-large: (
-    base: rem(27px),
-    large-screen: rem(42px)
+    base: rem(map-get($extra-large-font-size, base)),
+    large-screen: rem(map-get($extra-large-font-size, large-screen))
   ),
   display-large: (
-    base: rem(24px),
-    large-screen: rem(28px)
+    base: rem(map-get($large-font-size, base)),
+    large-screen: rem(map-get($large-font-size, large-screen))
   ),
   display-medium: (
-    base: rem(21px),
-    large-screen: rem(26px)
+    base: rem(map-get($medium-font-size, base)),
+    large-screen: rem(map-get($medium-font-size, large-screen))
   ),
   display-small: (
-    base: rem(16px),
-    large-screen: rem(20px)
+    base: rem(map-get($small-font-size, base)),
+    large-screen: rem(map-get($small-font-size, large-screen))
   )
 );
 

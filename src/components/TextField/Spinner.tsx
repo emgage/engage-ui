@@ -2,7 +2,7 @@ import * as React from 'react';
 import { themr } from 'react-css-themr';
 import Icon from '../Icon';
 
-import { TEXTFIELD } from '../ThemeIdentifiers';
+import { TEXT_FIELD } from '../ThemeIdentifiers';
 import * as baseTheme from './TextField.scss';
 
 export interface Props {
@@ -43,4 +43,4 @@ const Spinner = ({theme, onChange, onClick}: Props)  => {
   );
 }
 
-export default themr(TEXTFIELD, baseTheme)(Spinner);
+export default themr(TEXT_FIELD, baseTheme)(Spinner);

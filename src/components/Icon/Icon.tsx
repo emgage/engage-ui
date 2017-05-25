@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { themr } from 'react-css-themr';
 import {SVGSource} from '@shopify/images';
 import {classNames, variationName} from '@shopify/react-utilities/styles';
 
@@ -42,7 +43,8 @@ import {
   view,
 } from '../../icons';
 
-import * as styles from './Icon.scss';
+import { ICON } from '../ThemeIdentifiers';
+import * as baseTheme from './Icon.scss';
 
 export type Color = (
   'white' |
@@ -107,35 +109,37 @@ export interface Props {
   backdrop?: boolean,
   accessibilityLabel?: string,
   style?: React.CSSProperties,
+  theme?: any,
 }
 
-export default function Icon({
+const Icon = ({
   source,
   color,
   backdrop,
   accessibilityLabel,
   style,
-}: Props) {
+  theme,
+}: Props) => {
   if (color && backdrop && COLORS_WITH_BACKDROPS.indexOf(color) < 0) {
     // tslint:disable-next-line no-console
     console.warn(`The ${color} icon doesn't accept backdrops. The icon colors that have backdrops are: ${COLORS_WITH_BACKDROPS.join(', ')}`);
   }
 
   const className = classNames(
-    styles.Icon,
-    color && styles[variationName('color', color)],
-    backdrop && styles.hasBackdrop,
+    theme.Icon,
+    color && theme[variationName('color', color)],
+    backdrop && theme.hasBackdrop,
   );
 
   let contentMarkup: React.ReactNode;
 
   if (source === 'placeholder') {
-    contentMarkup = <div className={styles.Placeholder} />;
+    contentMarkup = <div className={theme.Placeholder} />;
   } else {
     const iconSource = typeof source === 'string' ? BUNDLED_ICONS[source] : source;
     contentMarkup = (
       <svg
-        className={styles.Svg}
+        className={theme.Svg}
         viewBox={iconSource.viewBox}
         dangerouslySetInnerHTML={{__html: iconSource.body}}
       />
@@ -148,3 +152,5 @@ export default function Icon({
     </span>
   );
 }
+
+export default themr(ICON, baseTheme)(Icon);

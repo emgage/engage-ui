@@ -31,7 +31,8 @@ class App extends React.Component<{}, State> {
 
          <Heading>App Basics</Heading>
 
-         <DisplayText size="small">Some fun text can go here.</DisplayText>
+         <DisplayText size="large">This is Display Text, which is used to make a bold visual statement.</DisplayText>
+         <p>This is just some fun regular text.</p>
 
         <FormLayout>
           <ValidatedTextField

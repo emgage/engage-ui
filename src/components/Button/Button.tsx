@@ -124,6 +124,8 @@ const Button = ({
   );
 };
 
+const ThemedButton = themr(BUTTON, baseTheme)(Button);
+
 function handleMouseUp({currentTarget}: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) {
   currentTarget.blur();
 }
@@ -144,7 +146,7 @@ export function buttonFrom(
   key?: any,
 ) {
   return (
-    <Button
+    <ThemedButton
       key={key}
       children={content}
       onClick={onAction}
@@ -154,4 +156,4 @@ export function buttonFrom(
   );
 }
 
-export default themr(BUTTON, baseTheme)(Button);
+export default ThemedButton;

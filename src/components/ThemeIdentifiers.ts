@@ -1,9 +1,12 @@
 export const BUTTON = 'PButton';
+export const BUTTON_GROUP = 'PButtonGroup';
+export const CONNECTED = 'PConnected';
 export const DISPLAY_TEXT = 'PDisplayText';
 export const FORM_LAYOUT = 'PFormLayout';
 export const HEADING = 'Heading';
+export const ICON = 'PIcon';
 export const LINK = 'PLink';
 export const LABEL = 'PLabel';
 export const LABELLED = 'PLabelled';
 export const MESSAGE = 'PMessage';
-export const TEXTFIELD = 'PTextField';
+export const TEXT_FIELD = 'PTextField';

@@ -6,7 +6,7 @@ import {classNames} from '@shopify/react-utilities/styles';
 
 import Labelled, {Action, helpTextID, errorID, labelID} from '../Labelled';
 import Connected from '../Connected';
-import { TEXTFIELD } from '../ThemeIdentifiers';
+import { TEXT_FIELD } from '../ThemeIdentifiers';
 
 import * as baseTheme from './TextField.scss';
 
@@ -255,4 +255,4 @@ function normalizeAutoComplete(autoComplete?: boolean) {
   return autoComplete ? 'on' : 'off';
 }
 
-export default themr(TEXTFIELD, baseTheme)(TextField);
+export default themr(TEXT_FIELD, baseTheme)(TextField);

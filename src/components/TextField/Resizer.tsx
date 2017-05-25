@@ -3,7 +3,7 @@ import { themr } from 'react-css-themr';
 import autobind from '@shopify/javascript-utilities/autobind';
 import EventListener from '../EventListener';
 
-import { TEXTFIELD } from '../ThemeIdentifiers';
+import { TEXT_FIELD } from '../ThemeIdentifiers';
 import * as baseTheme from './TextField.scss';
 
 export interface Props {
@@ -111,4 +111,4 @@ function getFinalContents(contents?: string) {
     : '<br>';
 }
 
-export default themr(TEXTFIELD, baseTheme)(Resizer);
+export default themr(TEXT_FIELD, baseTheme)(Resizer);

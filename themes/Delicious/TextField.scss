@@ -41,7 +41,7 @@ $backdrop-horizontal-spacing: spacing(tight) * 1.5;
 .error {
 
   > .Input ~ .Backdrop {
-    background-color: theme-color(error, lighter);
+    background-color: theme-color(error, 50);
     border-color: theme-color(error);
     box-shadow:
     inset shadow(transparent),

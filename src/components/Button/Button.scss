@@ -1,9 +1,25 @@
+// Variables
+// ========================================================================
+
+$default-button-text-color: color(ink);
+$primary-button-color: color(indigo);
+$primary-button-text-color: color(white);
+$primary-button-icon-color: color(white);
+$destructive-button-color: color(red);
+$destructive-button-icon-color: color(white);
+$outline-button-color: color(ink, lighter);
+
+
+// Styles
+// ========================================================================
+
 $min-height: control-height();
 $vertical-padding: ($min-height - line-height(body) - rem(2px)) / 2;
 $slim-min-height: rem(30px);
 $slim-vertical-padding: ($slim-min-height - line-height(body) - rem(2px)) / 2;
 $large-min-height: rem(44px);
 $large-vertical-padding: ($large-min-height - line-height(body) - rem(2px)) / 2;
+
 
 .Button {
   @include recolor-icon(color(ink, lighter));
@@ -18,7 +34,7 @@ $large-vertical-padding: ($large-min-height - line-height(body) - rem(2px)) / 2;
   box-shadow: shadow(faint);
   border-radius: border-radius();
   line-height: 1;
-  color: color(ink);
+  color: $default-button-text-color;
   text-align: center;
   cursor: pointer;
   user-select: none;
@@ -56,25 +72,26 @@ $large-vertical-padding: ($large-min-height - line-height(body) - rem(2px)) / 2;
 }
 
 .primary {
-  @include button-filled(color(indigo), color(indigo, dark));
-  @include recolor-icon(color(white));
+  @include button-filled($primary-button-color, color(indigo, dark));
+  @include recolor-icon($primary-button-icon-color);
+  color: $primary-button-text-color;
 
   &.disabled {
-    @include recolor-icon(color(white));
+    @include recolor-icon($primary-button-icon-color);
     background: color(indigo, light);
     border-color: color(indigo, light);
     box-shadow: none;
-    color: color(white);
+    color: $primary-button-text-color;
   }
 }
 
 .destructive {
-  @include button-filled(color(red), color(red, dark));
-  @include recolor-icon(color(white));
+  @include button-filled($destructive-button-color, color(red, dark));
+  @include recolor-icon($destructive-button-icon-color);
 }
 
 .outline {
-  @include button-outline(color(ink, lighter));
+  @include button-outline($outline-button-color);
 
   &.disabled {
     background-color: color(white);
