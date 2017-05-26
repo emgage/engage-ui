@@ -4,6 +4,7 @@ import {
   TextField,
   ValidatedTextField,
   ValidatedForm,
+  Chip,
 } from '../../src/components';
 
 interface State {
@@ -24,8 +25,17 @@ class App extends React.Component<{}, State> {
     };
   }
 
+  chipClick = () => {
+    console.log('chip clicked...');
+  }
+
+  chipRemove = () => {
+    console.log('chip removed...');
+  }
+
   render() {
     return (
+      <div>
       <ValidatedForm>
         <ValidatedTextField
           id="tom"
@@ -71,6 +81,21 @@ class App extends React.Component<{}, State> {
 
         <Button primary>Submit</Button>
       </ValidatedForm>
+
+      <div>
+        <br/>
+        <Chip>
+          Basic Chip
+        </Chip>
+        <Chip onClick={this.chipClick} clickable={true}>
+          Clickable Chip
+        </Chip>
+        <Chip onRemove={this.chipRemove} removable={true}>
+          Removable Chip
+        </Chip>
+        <br/>
+      </div>
+      </div>
     );
   }
 
