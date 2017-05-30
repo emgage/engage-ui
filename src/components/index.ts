@@ -58,3 +58,8 @@ export {
   default as Chip,
   Props as ChipProps,
 } from './Chip';
+
+export {
+  default as Video,
+  Props as VideoProps,
+} from './Video';

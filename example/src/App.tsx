@@ -5,6 +5,7 @@ import {
   ValidatedTextField,
   ValidatedForm,
   Chip,
+  Video,
 } from '../../src/components';
 
 interface State {
@@ -34,6 +35,11 @@ class App extends React.Component<{}, State> {
   }
 
   render() {
+
+const posterUrl = new URL('http://4.bp.blogspot.com/_JSR8IC77Ub4/TKB-XAWXmhI/AAAAAAAABJA/MqOpdFTOaHo/w1200-' +
+    'h630-p-k-no-nu/C:%5Cfakepath%5Cbird1.jpg');
+const videoSource = ['http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_1mb.mp4'];
+
     return (
       <div>
       <ValidatedForm>
@@ -87,13 +93,18 @@ class App extends React.Component<{}, State> {
         <Chip>
           Basic Chip
         </Chip>
+        < br />
         <Chip onClick={this.chipClick} clickable={true}>
           Clickable Chip
         </Chip>
+        < br />
         <Chip onRemove={this.chipRemove} removable={true}>
           Removable Chip
         </Chip>
         <br/>
+      </div>
+      <div>
+        <Video poster={posterUrl} src={videoSource} autoplay={false} controls={true} style={{height: 400, width: 400}} />
       </div>
       </div>
     );
