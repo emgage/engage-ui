@@ -1,4 +1,5 @@
 import * as React from 'react';
+import TextField from '../TextField';
 
 export enum PeoplePickerSearchType {
     Users,
@@ -10,36 +11,35 @@ export interface IPickerSource {
 }
 
 export interface Props {
-  required?: boolean,
-  selectedResultsBehavior?: string,
-  filterPlaceHolder?: string,
-  maxSelectedItems: number,
-  minSelectedItems: number,
-  searchBehavior?: void,
-  millisecondsToWaitBeforeSearch: number,
-  chipComponent?: React.ReactNode,
-  searchResultComponent?: React.ReactNode,
-  moreInfoComponent?: React.ReactNode,
-  peoplePickerSearchType?: PeoplePickerSearchType,
-  source?: IPickerSource,
-  onSelect?(): void,
-  onRemove?(): void,
-  moreInfoComponentShowOn?(): void,
+    required?: boolean,
+    selectedResultsBehavior?: string,
+    filterPlaceHolder?: string,
+    maxSelectedItems?: number,
+    minSelectedItems?: number,
+    searchBehavior?: void,
+    millisecondsToWaitBeforeSearch?: number,
+    chipComponent?: React.ReactNode,
+    searchResultComponent?: React.ReactNode,
+    moreInfoComponent?: React.ReactNode,
+    peoplePickerSearchType?: PeoplePickerSearchType,
+    source?: IPickerSource,
+    onSelect?(): void,
+    onRemove?(): void,
+    moreInfoComponentShowOn?(): void,
 }
 
 
 export default class Picker extends React.PureComponent<Props, {}> {
     render() {
         const {
-            inline,
-            direction ,
-            justify,
-            align,
-         } = this.props;
+            // TODO:
+        } = this.props;
 
         return (
             <div>
-                {this.props.children}
+                <div></div>
+                <TextField label="lbl" placeholder="example@email.com" required={this.props.required} />
+                <div>{this.props.chipComponent}</div>
             </div>
         );
     }

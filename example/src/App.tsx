@@ -7,6 +7,7 @@ import {
   ValidatedTextField,
   ValidatedForm,
   Chip,
+  Picker,
 } from '../../src/components';
 
 interface State {
@@ -38,6 +39,7 @@ class App extends React.Component<{}, State> {
   render() {
     return (
       <div>
+        <Picker required={true} />
       <ValidatedForm>
         <ValidatedTextField
           id="tom"

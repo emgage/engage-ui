@@ -63,3 +63,8 @@ export {
   default as Chip,
   Props as ChipProps,
 } from './Chip';
+
+export {
+  default as Picker,
+  Props as PickerProps,
+} from './Picker';
