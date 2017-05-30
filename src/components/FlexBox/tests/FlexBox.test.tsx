@@ -49,7 +49,7 @@ describe('when default props are provided', () => {
 
     describe('when set to column', () => {
       it('div should have flex direction column style', () => {
-        const subject = shallow(<FlexBox direction={FlexDirection.COLUMN} />);
+        const subject = shallow(<FlexBox direction={FlexDirection.Column} />);
         expect(subject.find('div').hasClass('flex-column')).toBe(true);
         expect(subject.find('div').hasClass('flex-row')).toBe(false);
       });
@@ -57,7 +57,7 @@ describe('when default props are provided', () => {
 
     describe('when set to column-reverse', () => {
       it('div should have flex direction column reverse style', () => {
-        const subject = shallow(<FlexBox direction={FlexDirection.COLUMN_REVERSE} />);
+        const subject = shallow(<FlexBox direction={FlexDirection.ColumnReverse} />);
         expect(subject.find('div').hasClass('flex-column-reverse')).toBe(true);
         expect(subject.find('div').hasClass('flex-column')).toBe(false);
       });
@@ -65,7 +65,7 @@ describe('when default props are provided', () => {
 
     describe('when set to row', () => {
       it('div should have flex direction row style', () => {
-        const subject = shallow(<FlexBox direction={FlexDirection.ROW} />);
+        const subject = shallow(<FlexBox direction={FlexDirection.Row} />);
         expect(subject.find('div').hasClass('flex-row')).toBe(true);
         expect(subject.find('div').hasClass('flex-column-reverse')).toBe(false);
       });
@@ -73,7 +73,7 @@ describe('when default props are provided', () => {
 
     describe('when set to row-reverse', () => {
       it('div should have flex direction row reverse style', () => {
-        const subject = shallow(<FlexBox direction={FlexDirection.ROW_REVERSE} />);
+        const subject = shallow(<FlexBox direction={FlexDirection.RowReverse} />);
         expect(subject.find('div').hasClass('flex-row-reverse')).toBe(true);
         expect(subject.find('div').hasClass('flex-row')).toBe(false);
       });
@@ -90,14 +90,14 @@ describe('when default props are provided', () => {
 
     describe('when set to start', () => {
       it('div should have flex justify start style', () => {
-        const subject = shallow(<FlexBox justify={FlexJustify.START}/>);
+        const subject = shallow(<FlexBox justify={FlexJustify.Start}/>);
         expect(subject.find('div').hasClass('justify-content-start')).toBe(true);
       });
     });
 
     describe('when set to center', () => {
       it('div should have flex justify center style', () => {
-        const subject = shallow(<FlexBox justify={FlexJustify.CENTER}/>);
+        const subject = shallow(<FlexBox justify={FlexJustify.Center}/>);
         expect(subject.find('div').hasClass('justify-content-center')).toBe(true);
         expect(subject.find('div').hasClass('justify-content-start')).toBe(false);
       });
@@ -105,7 +105,7 @@ describe('when default props are provided', () => {
 
     describe('when set to end', () => {
       it('div should have flex justify end style', () => {
-        const subject = shallow(<FlexBox justify={FlexJustify.END}/>);
+        const subject = shallow(<FlexBox justify={FlexJustify.End}/>);
         expect(subject.find('div').hasClass('justify-content-end')).toBe(true);
         expect(subject.find('div').hasClass('justify-content-center')).toBe(false);
       });
@@ -113,7 +113,7 @@ describe('when default props are provided', () => {
 
     describe('when set to space around', () => {
       it('div should have flex justify space around style', () => {
-        const subject = shallow(<FlexBox justify={FlexJustify.SPACE_AROUND}/>);
+        const subject = shallow(<FlexBox justify={FlexJustify.SpaceAround}/>);
         expect(subject.find('div').hasClass('justify-content-around')).toBe(true);
         expect(subject.find('div').hasClass('justify-content-end')).toBe(false);
       });
@@ -121,7 +121,7 @@ describe('when default props are provided', () => {
 
     describe('when set to space between', () => {
       it('div should have flex justify space between style', () => {
-        const subject = shallow(<FlexBox justify={FlexJustify.SPACE_BETWEEN}/>);
+        const subject = shallow(<FlexBox justify={FlexJustify.SpaceBetween}/>);
         expect(subject.find('div').hasClass('justify-content-between')).toBe(true);
         expect(subject.find('div').hasClass('justify-content-around')).toBe(false);
       });
@@ -138,7 +138,7 @@ describe('when default props are provided', () => {
 
     describe('when set to start', () => {
       it('div should have flex align start style', () => {
-        const subject = shallow(<FlexBox align={FlexAlign.START}/>);
+        const subject = shallow(<FlexBox align={FlexAlign.Start}/>);
         expect(subject.find('div').hasClass('align-items-start')).toBe(true);
         expect(subject.find('div').hasClass('align-items-stretch')).toBe(false);
       });
@@ -146,7 +146,7 @@ describe('when default props are provided', () => {
 
     describe('when set to center', () => {
       it('div should have flex align center style', () => {
-        const subject = shallow(<FlexBox align={FlexAlign.CENTER}/>);
+        const subject = shallow(<FlexBox align={FlexAlign.Center}/>);
         expect(subject.find('div').hasClass('align-items-center')).toBe(true);
         expect(subject.find('div').hasClass('align-items-start')).toBe(false);
       });
@@ -154,7 +154,7 @@ describe('when default props are provided', () => {
 
     describe('when set to end', () => {
       it('div should have flex align end style', () => {
-        const subject = shallow(<FlexBox align={FlexAlign.END}/>);
+        const subject = shallow(<FlexBox align={FlexAlign.End}/>);
         expect(subject.find('div').hasClass('align-items-end')).toBe(true);
         expect(subject.find('div').hasClass('align-items-center')).toBe(false);
       });
@@ -162,7 +162,7 @@ describe('when default props are provided', () => {
 
     describe('when set to stretch', () => {
       it('div should have flex align stretch style', () => {
-        const subject = shallow(<FlexBox align={FlexAlign.STRETCH}/>);
+        const subject = shallow(<FlexBox align={FlexAlign.Stretch}/>);
         expect(subject.find('div').hasClass('align-items-stretch')).toBe(true);
         expect(subject.find('div').hasClass('align-items-end')).toBe(false);
       });
@@ -170,7 +170,7 @@ describe('when default props are provided', () => {
 });
 
 describe('when direction and alignment are set', () => {
-    const subject = shallow(<FlexBox align={FlexAlign.STRETCH} direction={FlexDirection.ROW_REVERSE} />);
+    const subject = shallow(<FlexBox align={FlexAlign.Stretch} direction={FlexDirection.RowReverse} />);
     it('div should have default flex inline style', () => {
       expect(subject.find('div').hasClass('d-flex')).toBe(true);
       expect(subject.find('div').hasClass('flex-inline')).toBe(false);
@@ -189,7 +189,7 @@ describe('when direction and alignment are set', () => {
 });
 
 describe('when direction, justify and alignment are set', () => {
-    const subject = shallow(<FlexBox justify={FlexJustify.SPACE_BETWEEN} align={FlexAlign.START} direction={FlexDirection.ROW_REVERSE} />);
+    const subject = shallow(<FlexBox justify={FlexJustify.SpaceBetween} align={FlexAlign.Start} direction={FlexDirection.RowReverse} />);
     it('div should have default flex inline style', () => {
       expect(subject.find('div').hasClass('d-flex')).toBe(true);
       expect(subject.find('div').hasClass('flex-inline')).toBe(false);

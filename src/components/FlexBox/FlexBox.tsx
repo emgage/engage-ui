@@ -3,9 +3,9 @@ import { FlexAlign, FlexDirection, FlexJustify } from './FlexProps';
 
 export interface Props {
   inline?: boolean,
-  direction?: string ,
-  justify?: string,
-  align?: string,
+  direction?: FlexDirection ,
+  justify?: FlexJustify,
+  align?: FlexAlign,
 }
 
 export default class FlexBox extends React.PureComponent<Props, {}> {
@@ -20,51 +20,51 @@ export default class FlexBox extends React.PureComponent<Props, {}> {
         let className = inline ? 'd-inline-flex' : 'd-flex';
         // set direction property css
         switch (direction) {
-            case FlexDirection.COLUMN:
+            case FlexDirection.Column:
                 className += ' flex-column';
                 break;
-            case FlexDirection.ROW_REVERSE:
+            case FlexDirection.RowReverse:
                 className += ' flex-row-reverse';
                 break;
-            case FlexDirection.COLUMN_REVERSE:
+            case FlexDirection.ColumnReverse:
                 className += ' flex-column-reverse';
                 break;
-            case FlexDirection.ROW:
+            case FlexDirection.Row:
             default:
                 className += ' flex-row';
                 break;
         }
         // set justify property css
         switch (justify) {
-            case FlexJustify.END:
+            case FlexJustify.End:
                 className += ' justify-content-end';
                 break;
-            case FlexJustify.CENTER:
+            case FlexJustify.Center:
                 className += ' justify-content-center';
                 break;
-            case FlexJustify.SPACE_AROUND:
+            case FlexJustify.SpaceAround:
                 className += ' justify-content-around';
                 break;
-            case FlexJustify.SPACE_BETWEEN:
+            case FlexJustify.SpaceBetween:
                 className += ' justify-content-between';
                 break;
-            case FlexJustify.START:
+            case FlexJustify.Start:
             default:
                 className += ' justify-content-start';
                 break;
         }
         // set align property css
         switch (align) {
-            case FlexAlign.START:
+            case FlexAlign.Start:
                 className += ' align-items-start';
                 break;
-            case FlexAlign.END:
+            case FlexAlign.End:
                 className += ' align-items-end';
                 break;
-            case FlexAlign.CENTER:
+            case FlexAlign.Center:
                 className += ' align-items-center';
                 break;
-            case FlexAlign.STRETCH:
+            case FlexAlign.Stretch:
             default:
                 className += ' align-items-stretch';
                 break;
