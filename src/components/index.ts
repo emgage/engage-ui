@@ -58,3 +58,8 @@ export {
   default as FlexBox,
   Props as FlexBoxProps,
 } from './FlexBox';
+
+export {
+  default as Chip,
+  Props as ChipProps,
+} from './Chip';
