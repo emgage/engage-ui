@@ -62,4 +62,5 @@ export {
 export {
   default as Video,
   Props as VideoProps,
+  VideoType,
 } from './Video';

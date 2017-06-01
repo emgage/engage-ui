@@ -6,6 +6,7 @@ import {
   ValidatedForm,
   Chip,
   Video,
+  VideoType,
 } from '../../src/components';
 
 interface State {
@@ -38,7 +39,20 @@ class App extends React.Component<{}, State> {
 
 const posterUrl = new URL('http://4.bp.blogspot.com/_JSR8IC77Ub4/TKB-XAWXmhI/AAAAAAAABJA/MqOpdFTOaHo/w1200-' +
     'h630-p-k-no-nu/C:%5Cfakepath%5Cbird1.jpg');
-const videoSource = ['http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_1mb.mp4'];
+const singleVideoSource = [
+              {
+                src: 'http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_1mb.mp4',
+                type: VideoType.MP4,
+              }];
+const multiVideoSource = [
+              {
+                src: 'http://www.sample-videos.com/video/mp4/480/big_buck_bunny_480p_30mb.mp4',
+                type: VideoType.MP4,
+              },
+              {
+                src: 'http://www.sample-videos.com/video/mp4/240/big_buck_bunny_240p_30mb.mp4',
+                type: VideoType.MP4,
+              }];
 
     return (
       <div>
@@ -104,7 +118,10 @@ const videoSource = ['http://www.sample-videos.com/video/mp4/720/big_buck_bunny_
         <br/>
       </div>
       <div>
-        <Video poster={posterUrl} src={videoSource} autoplay={false} controls={true} style={{height: 400, width: 400}} />
+        <h4>Single source video</h4>
+        <Video poster={posterUrl} src={singleVideoSource} autoplay={false} controls={true} style={{height: 400, width: 400}} />
+        <h4>Multi source video</h4>
+        <Video poster={posterUrl} src={multiVideoSource} autoplay={false} controls={true} style={{height: 400, width: 400}} />
       </div>
       </div>
     );
