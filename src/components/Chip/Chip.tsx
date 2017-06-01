@@ -8,8 +8,8 @@ export interface Props {
                 alt: string,
             },
     transparent?: boolean,
-    onRemove?(): void,
-    onClick?(): void,
+    onRemove?(event: any): void,
+    onClick?(event: any): void,
 };
 
 export default class Chip extends React.PureComponent<Props, any> {
