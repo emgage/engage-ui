@@ -4,7 +4,6 @@ import Chip from '../Chip';
 import { PeoplePickerSearchType } from './PickerSearchType';
 import { PeopleInfo } from './PeopleInfo';
 import { IPickerSource } from './IPickerSource';
-import { PeoplePickerSource } from './PickerSource';
 export interface State {
     people: string,
     searchItems: PeopleInfo[],
@@ -18,11 +17,11 @@ export interface Props {
     maxSelectedItems?: number,
     minSelectedItems?: number,
     millisecondsToWaitBeforeSearch?: number,
-    chipComponent?: React.ReactNode,
-    searchResultComponent?: React.ReactNode,
+    chipComponent: React.ReactNode,
+    searchResultComponent: React.ReactNode,
     moreInfoComponent?: React.ReactNode,
-    peoplePickerSearchType?: PeoplePickerSearchType,
-    source?: IPickerSource,
+    peoplePickerSearchType: PeoplePickerSearchType,
+    source: IPickerSource,
     searchBehavior?(): void,
     onSelect?(item: any): void,
     onRemove?(item: any): void,
@@ -52,7 +51,7 @@ class Picker extends React.Component<Props, State> {
             onRemove = this.handleRemove,
          } = this.props;
         let className = '';
-        if (selectedResultsBehavior === 'hide') {
+        if (selectedResultsBehavior === 'hide' || selectedResultsBehavior === undefined) {
             className += ' hideclass';
         } else {
             className += ' showclass';
@@ -91,8 +90,8 @@ class Picker extends React.Component<Props, State> {
     private handleChange = (value: string) => {
        this.setState({ ['people']: value });
         setTimeout(() => {
-           new PeoplePickerSource(PeoplePickerSearchType.Both).performFilter(value).then(this.onSuccess).catch(this.onError);
-           // this.props.source.performFilter(value, this.onFilterSuccess, this.onFilterError);
+           // new PeoplePickerSource(PeoplePickerSearchType.Both).performFilter(value).then(this.onSuccess).catch(this.onError);
+           this.props.source.performFilter(value).then(this.onSuccess).catch(this.onError);
         }, this.props.millisecondsToWaitBeforeSearch === undefined ? 0 : this.props.millisecondsToWaitBeforeSearch);
     }
     private onSuccess = (item: any) => {
@@ -105,6 +104,9 @@ class Picker extends React.Component<Props, State> {
     private handleRemove = (event: any) => {
         const item = this.state.selectedItems.find((x) => x.Name === event.currentTarget.previousElementSibling.text);
         const items = this.state.selectedItems;
+         if (this.props.minSelectedItems !== undefined && this.props.minSelectedItems === items.length) {
+            return;
+        }
         if (item !== undefined) {
             const index: number = items.indexOf(item);
             if (index !== -1) {

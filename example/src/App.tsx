@@ -1,5 +1,10 @@
 import * as React from 'react';
 import { FlexAlign, FlexDirection, FlexJustify } from '../../src/components/FlexBox/FlexProps';
+import { PeoplePickerSearchType } from '../../src/components/Picker/PickerSearchType';
+import { PeopleInfo } from '../../src/components/Picker/PeopleInfo';
+import { IPickerSource } from '../../src/components/Picker/IPickerSource';
+import { PeoplePickerSource } from '../../src/components/Picker/PickerSource';
+
 import {
   Button,
   TextField,
@@ -39,7 +44,18 @@ class App extends React.Component<{}, State> {
   render() {
     return (
       <div>
-        <Picker required={true} />
+        <Picker required={true}
+        chipComponent={Chip}
+        filterPlaceHolder="People"
+        peoplePickerSearchType={PeoplePickerSearchType.Both}
+        searchResultComponent={Chip}
+        source={new PeoplePickerSource(PeoplePickerSearchType.Both)}
+        maxSelectedItems={5}
+        minSelectedItems={2}
+        millisecondsToWaitBeforeSearch={20}
+        moreInfoComponent ={<Button children="ranmal"/>}
+
+         />
       <ValidatedForm>
         <ValidatedTextField
           id="tom"
