@@ -7,6 +7,7 @@ import {
   Chip,
   Video,
   VideoType,
+  Panel,
 } from '../../src/components';
 
 interface State {
@@ -53,6 +54,22 @@ const multiVideoSource = [
                 src: 'http://www.sample-videos.com/video/mp4/240/big_buck_bunny_240p_30mb.mp4',
                 type: VideoType.MP4,
               }];
+
+const sampleVideoCmp = <Video
+  poster={posterUrl}
+  src={singleVideoSource}
+  autoplay={false}
+  controls={false}
+  style={{
+  height: 100,
+  width: 100,
+}} />;
+
+const theme = {
+  Panel: 'thm-pnl',
+  Heading: 'thm-hdr',
+  Body: 'thm-body',
+};
 
     return (
       <div>
@@ -122,6 +139,32 @@ const multiVideoSource = [
         <Video poster={posterUrl} src={singleVideoSource} autoplay={false} controls={true} style={{height: 400, width: 400}} />
         <h4>Multi source video</h4>
         <Video poster={posterUrl} src={multiVideoSource} autoplay={false} controls={true} style={{height: 400, width: 400}} />
+      </div>
+      <div>
+        <h4>Panel Component</h4>
+        <Panel heading="BASIC PANEL" theme={theme}>
+          <div>
+            Lorem ipsum lorem ipsum
+          </div>
+        </Panel>
+        <br/>
+        <Panel heading="BASIC PANEL WITH VIDEO" video={sampleVideoCmp}>
+          <div>
+            Lorem ipsum lorem ipsum
+          </div>
+        </Panel>
+        <br/>
+        <Panel heading={<div>Custom Panel</div>}>
+          <div>
+            Lorem ipsum lorem ipsum
+          </div>
+        </Panel>
+        <br/>
+        <Panel heading={<div>Custom Panel with Video</div>} video={sampleVideoCmp} theme={theme}>
+          <div>
+            Lorem ipsum lorem ipsum
+          </div>
+        </Panel>
       </div>
       </div>
     );

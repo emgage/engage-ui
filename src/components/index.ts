@@ -64,3 +64,8 @@ export {
   Props as VideoProps,
   VideoType,
 } from './Video';
+
+export {
+  default as Panel,
+  Props as PanelProps,
+} from './Panel';
