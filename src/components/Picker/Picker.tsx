@@ -1,13 +1,14 @@
 import * as React from 'react';
 import TextField from '../TextField';
 import Chip from '../Chip';
-import { PeoplePickerSearchType } from './PickerSearchType';
+import { PeoplePickerSearchType, MoreInfoOn } from './PickerEnum';
 import { PeopleInfo } from './PeopleInfo';
 import { IPickerSource } from './IPickerSource';
 export interface State {
     people: string,
     searchItems: PeopleInfo[],
     selectedItems: PeopleInfo[],
+    moreInfo: boolean,
 }
 
 export interface Props {
@@ -22,10 +23,11 @@ export interface Props {
     moreInfoComponent?: React.ReactNode,
     peoplePickerSearchType: PeoplePickerSearchType,
     source: IPickerSource,
+    moreInfoComponentShowOn?: MoreInfoOn,
     searchBehavior?(): void,
     onSelect?(item: any): void,
     onRemove?(item: any): void,
-    moreInfoComponentShowOn?(): void,
+
 }
 
 class Picker extends React.Component<Props, State> {
@@ -35,6 +37,7 @@ class Picker extends React.Component<Props, State> {
             people: '',
             searchItems: [],
             selectedItems: [],
+            moreInfo: false,
         };
     }
     render() {
@@ -46,7 +49,7 @@ class Picker extends React.Component<Props, State> {
             chipComponent = Chip,
             searchResultComponent = Chip,
             searchBehavior = this.handleChange,
-            moreInfoComponentShowOn = this.handleClick,
+            moreInfoComponentShowOn = MoreInfoOn.onClick,
             onSelect = this.handleSelect,
             onRemove = this.handleRemove,
          } = this.props;
@@ -56,13 +59,25 @@ class Picker extends React.Component<Props, State> {
         } else {
             className += ' showclass';
         }
+        let InfoLinkComponent = null;
+        if (moreInfoComponentShowOn === MoreInfoOn.onClick) {
+            InfoLinkComponent = <a onClick={this.handleMoreInfo}>Info</a>;
+        } else {
+            InfoLinkComponent = <a onMouseEnter={this.handleMoreInfo} onMouseLeave={this.handleMoreInfo}>Info</a>;
+        }
+        let InfoComponent = null;
+        if (this.state.moreInfo) {
+            InfoComponent = moreInfoComponent;
+        } else {
+            InfoComponent = null;
+        }
         return (
             <div>
                 <div>
                     <div className={className}>
                         {
                              this.state.selectedItems.map(function(i) {
-                                return React.createElement(chipComponent, {key: i.Id, clickable: true, removable: true, onRemove: onRemove}, [i.Name]);
+                                return React.createElement(chipComponent, {key: i.Id, clickable: true, removable: true, onRemove}, [i.Name]);
                              })
                         }
                      </div>
@@ -72,8 +87,8 @@ class Picker extends React.Component<Props, State> {
                         placeholder={filterPlaceHolder}
                         onChange={searchBehavior}
                         required={required} />
-                    {moreInfoComponent}
-                    <a onClick={moreInfoComponentShowOn}>Info</a>
+                    {InfoLinkComponent}                        
+                    {InfoComponent}
                 </div>
                 <div>
                     {
@@ -133,9 +148,8 @@ class Picker extends React.Component<Props, State> {
         return;
     }
 
-    private handleClick = (event: any) => {
-        // TODO: show more info control
-        alert(event);
+    private handleMoreInfo = () => {
+        this.setState({ ['moreInfo']: !this.state.moreInfo });
         return;
     }
 }

@@ -1,4 +1,4 @@
-import { PeoplePickerSearchType } from './PickerSearchType';
+import { PeoplePickerSearchType } from './PickerEnum';
 import { PeopleInfo } from './PeopleInfo';
 import { IPickerSource } from './IPickerSource';
 

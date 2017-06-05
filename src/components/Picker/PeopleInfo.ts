@@ -1,4 +1,4 @@
-import { PeoplePickerSearchType } from './PickerSearchType';
+import { PeoplePickerSearchType } from './PickerEnum';
 
 export class PeopleInfo {
     Id?: number;

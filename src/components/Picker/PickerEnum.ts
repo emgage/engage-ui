@@ -3,3 +3,8 @@ export enum PeoplePickerSearchType {
     Groups,
     Both,
 }
+
+export enum MoreInfoOn {
+    onHover,
+    onClick,
+}
