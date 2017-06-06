@@ -9,10 +9,10 @@ export interface State {
     selectedItems: PeopleInfo[],
     moreInfo: boolean,
 }
-
+export type Type = 'hide' | 'mark' ;
 export interface Props {
     required?: boolean,
-    selectedResultsBehavior?: string,
+    selectedResultsBehavior?: Type,
     filterPlaceHolder?: string,
     maxSelectedItems?: number,
     minSelectedItems?: number,
@@ -54,9 +54,9 @@ class Picker extends React.Component<Props, State> {
          } = this.props;
         let className = '';
         if (selectedResultsBehavior === 'hide' || selectedResultsBehavior === undefined) {
-            className += ' hideclass';
+            className += 'hideclass';
         } else {
-            className += ' showclass';
+            className += 'showclass';
         }
         let InfoLinkComponent = null;
         if (moreInfoComponentShowOn === MoreInfoOn.onClick) {

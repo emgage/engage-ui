@@ -1,5 +1,5 @@
 {
-    "testRegex": ".test.(tsx?|js)$",
+    "testRegex": "Picker.test.(tsx?|js)$",
     "roots": [
         "<rootDir>/src",
         "<rootDir>/tests"
