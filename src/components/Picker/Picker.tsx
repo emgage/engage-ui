@@ -1,6 +1,5 @@
 import * as React from 'react';
 import TextField from '../TextField';
-import Chip from '../Chip';
 import { PeoplePickerSearchType, MoreInfoOn } from './PickerEnum';
 import { PeopleInfo } from './PeopleInfo';
 import { IPickerSource } from './IPickerSource';
@@ -46,8 +45,8 @@ class Picker extends React.Component<Props, State> {
             filterPlaceHolder,
             selectedResultsBehavior,
             moreInfoComponent,
-            chipComponent = Chip,
-            searchResultComponent = Chip,
+            chipComponent,
+            searchResultComponent,
             searchBehavior = this.handleChange,
             moreInfoComponentShowOn = MoreInfoOn.onClick,
             onSelect = this.handleSelect,
@@ -77,7 +76,7 @@ class Picker extends React.Component<Props, State> {
                     <div className={className}>
                         {
                              this.state.selectedItems.map(function(i) {
-                                return React.createElement(chipComponent, {key: i.Id, clickable: true, removable: true, onRemove}, [i.Name]);
+                                return React.createElement(chipComponent as React.ComponentClass<{ clickable: boolean, removable: boolean, onRemove(item: any): void}>, {key: i.Id, clickable: true, removable: true, onRemove}, [i.Name]);
                              })
                         }
                      </div>
@@ -93,7 +92,7 @@ class Picker extends React.Component<Props, State> {
                 <div>
                     {
                         this.state.searchItems.map(function(i) {
-                            return React.createElement(searchResultComponent, {key: i.Id, clickable: true, onClick: onSelect}, [i.Name]);
+                            return React.createElement(searchResultComponent as React.ComponentClass<{ clickable: boolean, onClick(item: any): void }>, {key: i.Id, clickable: true, onClick: onSelect}, [i.Name]);
                         })
                     }
                    
