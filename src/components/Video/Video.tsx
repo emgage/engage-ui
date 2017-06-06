@@ -55,37 +55,23 @@ export default class Video extends React.PureComponent<Props, any> {
 
     render() {
         return (
-            this.props.src.length === 1 ?
-                (<video
-                src={this.props.src[0].src}
-                autoPlay={this.props.autoplay}
-                poster={this.props.poster.toString()}
-                controls={this.props.controls}
-                loop={this.props.loop}
-                muted={this.props.muted}
-                style={this.props.style}
-                preload={this.props.preload}
-                crossOrigin = {this.props.crossorigin}
-                />)
-                :
-                (<video
-                autoPlay={this.props.autoplay}
-                poster={this.props.poster.toString()}
-                controls={this.props.controls}
-                loop={this.props.loop}
-                muted={this.props.muted}
-                style={this.props.style}
-                preload={this.props.preload}
-                crossOrigin = {this.props.crossorigin}>
-                   {
-                       this.props.src.map((obj, index) => (
-                            <source
-                                src={obj.src}
-                                type={this.getVideoType(obj.type)} key={index} />
-                       ))
-                   }
+                <video
+                    autoPlay={this.props.autoplay}
+                    poster={this.props.poster.toString()}
+                    controls={this.props.controls}
+                    loop={this.props.loop}
+                    muted={this.props.muted}
+                    style={this.props.style}
+                    preload={this.props.preload}
+                    crossOrigin = {this.props.crossorigin}>
+                    {
+                        this.props.src.map((obj, index) => (
+                                <source
+                                    src={obj.src}
+                                    type={this.getVideoType(obj.type)} key={index} />
+                        ))
+                    }
                 </video>
-                )
         );
     }
 }
