@@ -13,7 +13,7 @@ export default class Panel extends React.PureComponent<Props, any> {
         return (
             <div className={this.props.theme ? this.props.theme.Panel : ''}>
                 {
-                    this.props.heading as string
+                  typeof this.props.heading === 'string'
                         ? <div className={this.props.theme ? this.props.theme.Heading : ''}>{this.props.heading}</div>
                         : this.props.heading
                 }

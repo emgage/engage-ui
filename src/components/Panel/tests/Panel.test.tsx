@@ -40,7 +40,7 @@ describe('<Panel />', () => {
             const headCmp = <h3>Panel</h3>;
             it('panel should have header', () => {
                 const subject = shallow(<Panel heading={headCmp}/>);
-                expect(subject.find('div')).toHaveLength(3);
+                expect(subject.find('div')).toHaveLength(2);
                 expect(subject.find('h3').text()).toBe('Panel');
             });
         });
