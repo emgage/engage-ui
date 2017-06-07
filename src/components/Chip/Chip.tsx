@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { MoreInfoOn } from '../Picker/PickerEnum';
 
 export interface Props {
     clickable?: boolean,
@@ -8,8 +9,11 @@ export interface Props {
                 alt: string,
             },
     transparent?: boolean,
+    moreInfoComponent?: React.ReactNode,
+    moreInfoComponentShowOn?: MoreInfoOn,
     onRemove?(event: any): void,
     onClick?(event: any): void,
+    handleMoreInfo?(): void,
 };
 
 export default class Chip extends React.PureComponent<Props, any> {
@@ -20,6 +24,7 @@ export default class Chip extends React.PureComponent<Props, any> {
         transparent: false,
         onRemove: () => undefined,
         onClick: () => undefined,
+        handleMoreInfo: () => undefined,
     };
 
     getChipCssClass(): string {

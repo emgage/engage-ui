@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { mount } from 'enzyme';
 import { PeoplePickerSearchType, MoreInfoOn } from '../PickerEnum';
-import { PeopleInfo } from '../PeopleInfo';
 import { PeoplePickerSource } from './PickerSource';
 import Chip from '../../Chip/Chip';
 import Button from '../../Button/Button';

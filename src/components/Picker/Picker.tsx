@@ -26,6 +26,7 @@ export interface Props {
     searchBehavior?(): void,
     onSelect?(item: any): void,
     onRemove?(item: any): void,
+    onMoreInfo?(): void,
 
 }
 
@@ -51,24 +52,13 @@ class Picker extends React.Component<Props, State> {
             moreInfoComponentShowOn = MoreInfoOn.onClick,
             onSelect = this.handleSelect,
             onRemove = this.handleRemove,
-         } = this.props;
+            onMoreInfo = this.handleMoreInfo,
+          } = this.props;
         let className = '';
         if (selectedResultsBehavior === 'hide' || selectedResultsBehavior === undefined) {
             className += 'hideclass';
         } else {
             className += 'showclass';
-        }
-        let InfoLinkComponent = null;
-        if (moreInfoComponentShowOn === MoreInfoOn.onClick) {
-            InfoLinkComponent = <a onClick={this.handleMoreInfo}>Info</a>;
-        } else {
-            InfoLinkComponent = <a onMouseEnter={this.handleMoreInfo} onMouseLeave={this.handleMoreInfo}>Info</a>;
-        }
-        let InfoComponent = null;
-        if (this.state.moreInfo) {
-            InfoComponent = moreInfoComponent;
-        } else {
-            InfoComponent = null;
         }
         return (
             <div>
@@ -86,13 +76,11 @@ class Picker extends React.Component<Props, State> {
                         placeholder={filterPlaceHolder}
                         onChange={searchBehavior}
                         required={required} />
-                    {InfoLinkComponent}                        
-                    {InfoComponent}
-                </div>
+                 </div>
                 <div>
                     {
                         this.state.searchItems.map(function(i) {
-                            return React.createElement(searchResultComponent as React.ComponentClass<{ clickable: boolean, onClick(item: any): void }>, {key: i.Id, clickable: true, onClick: onSelect}, [i.Name]);
+                            return React.createElement(searchResultComponent as React.ComponentClass<{ clickable: boolean, moreInfoComponent: React.ReactNode, moreInfoComponentShowOn: MoreInfoOn, onClick(item: any): void, handleMoreInfo(): void }>, { key: i.Id, clickable: true, moreInfoComponent, moreInfoComponentShowOn, onClick: onSelect, handleMoreInfo: onMoreInfo }, [i.Name]);
                         })
                     }
                    
@@ -104,7 +92,6 @@ class Picker extends React.Component<Props, State> {
     private handleChange = (value: string) => {
        this.setState({ ['people']: value });
         setTimeout(() => {
-           // new PeoplePickerSource(PeoplePickerSearchType.Both).performFilter(value).then(this.onSuccess).catch(this.onError);
            this.props.source.performFilter(value).then(this.onSuccess).catch(this.onError);
         }, this.props.millisecondsToWaitBeforeSearch === undefined ? 0 : this.props.millisecondsToWaitBeforeSearch);
     }
