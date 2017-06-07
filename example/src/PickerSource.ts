@@ -1,6 +1,6 @@
-import { PeoplePickerSearchType } from './PickerEnum';
-import { PeopleInfo } from './PeopleInfo';
-import { IPickerSource } from './IPickerSource';
+import { PeoplePickerSearchType } from '../../src/components/Picker/PickerEnum';
+import { PeopleInfo } from '../../src/components/Picker/PeopleInfo';
+import { IPickerSource } from '../../src/components/Picker/IPickerSource';
 
 
 export class PeoplePickerSource implements IPickerSource {

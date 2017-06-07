@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { mount } from 'enzyme';
 import { PeoplePickerSearchType, MoreInfoOn } from '../PickerEnum';
-import { PeoplePickerSource } from '../PickerSource';
+import { PeopleInfo } from '../PeopleInfo';
+import { PeoplePickerSource } from './PickerSource';
 import Chip from '../../Chip/Chip';
 import Button from '../../Button/Button';
 import Picker from '..';
@@ -46,11 +47,9 @@ describe('when default props are provided', () => {
                 peoplePickerSearchType={PeoplePickerSearchType.Both}
                 searchBehavior = {spy}
             />);
-            // console.log((subject.find('input') as any).node);
             (subject.find('input') as any).node.value = 'ran';
             subject.find('input').simulate('change');
             expect(spy).toHaveBeenCalledWith('ran');
-            // expect(subject.find('span').length).toBe(10);
         });
     });
     describe('onSelect()', () => {
