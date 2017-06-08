@@ -56,9 +56,9 @@ class Picker extends React.Component<Props, State> {
           } = this.props;
         let className = '';
         if (selectedResultsBehavior === 'hide' || selectedResultsBehavior === undefined) {
-            className += 'hideclass';
+            className += 'hideClass';
         } else {
-            className += 'showclass';
+            className += 'showClass';
         }
         return (
             <div>
@@ -66,7 +66,7 @@ class Picker extends React.Component<Props, State> {
                     <div className={className}>
                         {
                              this.state.selectedItems.map(function(i) {
-                                return React.createElement(chipComponent as React.ComponentClass<{ clickable: boolean, removable: boolean, onRemove(item: any): void}>, {key: i.Id, clickable: true, removable: true, onRemove}, [i.Name]);
+                                return React.createElement(chipComponent as React.ComponentClass<{ clickable: boolean, removable: boolean, onRemove(item: any): void}>, {key: i.Id, clickable: false, removable: true, onRemove}, [i.Name]);
                              })
                         }
                      </div>
@@ -103,7 +103,7 @@ class Picker extends React.Component<Props, State> {
          alert(item);
     }
     private handleRemove = (event: any) => {
-        const item = this.state.selectedItems.find((x) => x.Name === event.currentTarget.previousElementSibling.text);
+        const item = this.state.selectedItems.find((x) => x.Name === event.currentTarget.previousElementSibling.innerText);
         const items = this.state.selectedItems;
          if (this.props.minSelectedItems !== undefined && this.props.minSelectedItems === items.length) {
             return;
