@@ -10,12 +10,12 @@ import * as baseTheme from './Labelled.scss';
 
 export {Action, labelID};
 
-export type Error = boolean | string;
+export type Error = string;
 
 export interface Props {
   id: LabelProps['id'],
   label: string,
-  errors?: [string],
+  errors?: [string] | Error,
   action: LabelProps['action'],
   helpText?: React.ReactNode,
   children?: React.ReactNode,
@@ -49,7 +49,7 @@ const Labelled = ({
     theme.LabelWrapper,
     required && theme.required,
     focused && theme.focused,
-    (errors && errors.length > 0) && theme.invalid,
+    (errors && errors) && theme.invalid,
     !hasValue && theme.empty,
   );
 
@@ -61,7 +61,7 @@ const Labelled = ({
   const errorMarkup = errors
     ? (
       <Message id={errorId} isVisible={true}>
-        {errors.join(', ')}
+        {errors instanceof Array ? errors.join(', ') : (typeof errors === 'string' ? errors : 'An error occurred.')}
       </Message>
     )
     : null;
