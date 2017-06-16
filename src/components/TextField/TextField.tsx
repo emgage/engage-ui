@@ -9,7 +9,6 @@ import Connected from '../Connected';
 import { TEXT_FIELD } from '../ThemeIdentifiers';
 
 import * as baseTheme from './TextField.scss';
-
 import Resizer from './Resizer';
 import Spinner from './Spinner';
 

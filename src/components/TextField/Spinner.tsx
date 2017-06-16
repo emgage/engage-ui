@@ -3,6 +3,7 @@ import { themr } from 'react-css-themr';
 import Icon from '../Icon';
 
 import { TEXT_FIELD } from '../ThemeIdentifiers';
+
 import * as baseTheme from './TextField.scss';
 
 export interface Props {

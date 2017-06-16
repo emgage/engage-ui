@@ -26,7 +26,17 @@ export function labelID(id: string) {
   return `${id}Label`;
 }
 
-function Label({children, id, action, hidden, required, focused, hasValue, style, theme}: Props) {
+function Label({
+  children,
+  id,
+  action,
+  hidden,
+  required,
+  focused,
+  hasValue,
+  style,
+  theme,
+}: Props) {
   const className = classNames(
     theme.Text,
     hidden && theme.hidden,

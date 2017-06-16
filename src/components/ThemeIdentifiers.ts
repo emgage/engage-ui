@@ -1,5 +1,6 @@
 export const BUTTON = 'PButton';
 export const BUTTON_GROUP = 'PButtonGroup';
+export const CARD = 'PCard';
 export const CONNECTED = 'PConnected';
 export const DISPLAY_TEXT = 'PDisplayText';
 export const FORM_LAYOUT = 'PFormLayout';
@@ -9,4 +10,9 @@ export const LINK = 'PLink';
 export const LABEL = 'PLabel';
 export const LABELLED = 'PLabelled';
 export const MESSAGE = 'PMessage';
+export const POPOVER = 'PPopover';
+export const POSITIONED_OVERLAY = 'PPositionedOverlay';
+export const SCROLLABLE = 'PScrollable';
+export const STACK = 'PStack';
+export const SUBHEADING = 'PSubheading';
 export const TEXT_FIELD = 'PTextField';
