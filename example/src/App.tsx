@@ -1,13 +1,19 @@
 import * as React from 'react';
+import { FlexAlign, FlexDirection, FlexJustify } from '../../src/components/FlexBox/FlexProps';
+import { PeoplePickerSearchType } from '../../src/components/Picker/PickerEnum';
+import { PeoplePickerSource } from './PickerSource';
+
 import {
   Button,
   TextField,
+  FlexBox,
   ValidatedTextField,
   ValidatedForm,
   Chip,
   Video,
   VideoType,
   Panel,
+  Picker,
 } from '../../src/components';
 
 interface State {
@@ -73,6 +79,18 @@ const theme = {
 
     return (
       <div>
+        <Picker required={true}
+        chipComponent={Chip}
+        filterPlaceHolder="People"
+        peoplePickerSearchType={PeoplePickerSearchType.Both}
+        searchResultComponent={Chip}
+        source={new PeoplePickerSource(PeoplePickerSearchType.Both)}
+        maxSelectedItems={5}
+        minSelectedItems={2}
+        millisecondsToWaitBeforeSearch={20}
+        moreInfoComponent ={<Button children="ranmal"/>}
+
+         />
       <ValidatedForm>
         <ValidatedTextField
           id="tom"
@@ -118,6 +136,26 @@ const theme = {
 
         <Button primary>Submit</Button>
       </ValidatedForm>
+
+      <br />
+      <FlexBox>
+        <div>Demo 1</div>
+        <div>Demo 2</div>
+        <div>Demo 3</div>
+      </FlexBox>
+      <br />
+      <FlexBox direction={FlexDirection.Column} align={FlexAlign.Stretch} justify={FlexJustify.Center}>
+        <div>Demo 1</div>
+        <div>Demo 2</div>
+        <div>Demo 3</div>
+      </FlexBox>
+      <br />
+      <FlexBox inline={true} direction={FlexDirection.Column} align={FlexAlign.Stretch} justify={FlexJustify.Center}>
+        <div>Demo 1</div>
+        <div>Demo 2</div>
+        <div>Demo 3</div>
+      </FlexBox>
+      <br />
 
       <div>
         <br/>
