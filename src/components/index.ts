@@ -65,6 +65,17 @@ export {
 } from './Chip';
 
 export {
+  default as Video,
+  Props as VideoProps,
+  VideoType,
+} from './Video';
+
+export {
+  default as Panel,
+  Props as PanelProps,
+} from './Panel';
+
   default as Picker,
   Props as PickerProps,
 } from './Picker';
+
