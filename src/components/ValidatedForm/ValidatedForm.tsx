@@ -1,11 +1,15 @@
 /// <reference path="../../../@types/rc-form.d.ts" />
 
 import * as React from 'react';
-import ValidatedTextField from '../ValidatedTextField';
 import { createForm } from 'rc-form';
 
 export interface Props {
-  form: any,
+  form: {
+    getFieldProps: any,
+    getFieldError: any,
+    validateFieldsAndScroll: any,
+  },
+  style?: React.CSSProperties,
   onSubmit: (values: [any]) => void,
   onSubmitError: (values: [any], error: Error) => void,
 }
@@ -23,15 +27,10 @@ class ValidatedForm extends React.Component<Props, {}> {
   }
 
   render() {
-    const { getFieldProps, getFieldError } = this.props.form;
     return(
-      <form onSubmit={this.onSubmit}>
+      <form onSubmit={this.onSubmit} style={this.props.style}>
         {this.props.children && React.Children.map(this.props.children, (child: any) => {
-          if (child.type === ValidatedTextField) {
-            return React.cloneElement(child, {form: { getFieldProps, getFieldError }});
-          } else {
-            return child;
-          }
+          return React.cloneElement(child, {form: this.props.form});
         })}
       </form>
     );

@@ -1,0 +1,55 @@
+$backdrop-horizontal-spacing: spacing(tight) * 1.5;
+
+.TextField {
+  @include text-style-input;
+  padding: 0 $backdrop-horizontal-spacing;
+  color: color(ink, lightest);
+}
+
+.multiline {
+
+  > .Input {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.Input {
+  height: auto;
+  min-height: control-height();
+  padding: control-vertical-padding() 0;
+  transition: 0.3s all ease;
+
+  &:focus {
+    padding-top: 1.7rem;
+    padding-bottom: 0.5rem;
+  }
+
+  &::placeholder {
+    text-align: right;
+  }
+}
+
+.hasValue {
+
+  .Input{
+    padding-top: 1.7rem;
+    padding-bottom: 0.5rem;
+  }
+}
+
+.error {
+
+  > .Input ~ .Backdrop {
+    background-color: theme-color(error, 50);
+    border-color: theme-color(error);
+    box-shadow:
+    inset shadow(transparent),
+    0 0 0 1px theme-color(error);
+  }
+}
+
+.DummyInput {
+  @include text-style-input;
+  padding: control-vertical-padding() $backdrop-horizontal-spacing;
+}

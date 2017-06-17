@@ -1,16 +1,20 @@
 import * as React from 'react';
+import { themr } from 'react-css-themr';
 import autobind from '@shopify/javascript-utilities/autobind';
 import EventListener from '../EventListener';
-import * as styles from './TextField.scss';
+
+import { TEXT_FIELD } from '../ThemeIdentifiers';
+import * as baseTheme from './TextField.scss';
 
 export interface Props {
+  theme?: any,
   contents?: string,
   currentHeight?: number | null,
   minimumLines?: number,
   onHeightChange(height: number): void,
 }
 
-export default class Resizer extends React.PureComponent<Props, never> {
+class Resizer extends React.PureComponent<Props, never> {
   private contentNode: HTMLElement;
   private minimumLinesNode: HTMLElement;
 
@@ -35,18 +39,18 @@ export default class Resizer extends React.PureComponent<Props, never> {
       ? (
         <div
           ref={this.setMinimumLinesNode}
-          className={styles.DummyInput}
+          className={this.props.theme.DummyInput}
           dangerouslySetInnerHTML={{__html: getContentsForMinimumLines(minimumLines)}}
         />
       )
       : null;
 
     return (
-      <div aria-hidden className={styles.Resizer}>
+      <div aria-hidden className={this.props.theme.Resizer}>
         <EventListener event="resize" handler={this.handleHeightCheck} />
         <div
           ref={this.setContentNode}
-          className={styles.DummyInput}
+          className={this.props.theme.DummyInput}
           dangerouslySetInnerHTML={{__html: getFinalContents(contents)}}
         />
         {minimumLinesMarkup}
@@ -106,3 +110,5 @@ function getFinalContents(contents?: string) {
     ? `${contents.replace(REPLACE_REGEX, replaceEntity)}<br>`
     : '<br>';
 }
+
+export default themr(TEXT_FIELD, baseTheme)(Resizer);

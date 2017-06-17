@@ -1,0 +1,33 @@
+// Variables
+// ========================================================================
+
+$default-button-text-color: theme-color(m-grey, 900);
+$primary-button-color: theme-color(m-pink);
+$primary-button-text-color: theme-color(white);
+$primary-button-icon-color: theme-color(white);
+$destructive-button-color: theme-color(m-red);
+$destructive-button-icon-color: theme-color(white);
+$outline-button-color: theme-color(m-blue-grey);
+
+// Styles
+// ========================================================================
+
+.Button {
+  border-radius: border-radius();
+  color: $default-button-text-color;
+}
+
+.primary {
+  @include button-filled($primary-button-color, theme-color(m-pink, 700));
+  @include recolor-icon($primary-button-icon-color);
+  color: $primary-button-text-color;
+}
+
+.destructive {
+  @include button-filled($destructive-button-color, color(red, dark));
+  @include recolor-icon($destructive-button-icon-color);
+}
+
+.outline {
+  @include button-outline($outline-button-color);
+}

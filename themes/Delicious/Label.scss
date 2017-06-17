@@ -1,0 +1,14 @@
+$lable-placeholder-text-color: #999;
+$lable-text-color: #999;
+
+.Text {
+  color: $lable-placeholder-text-color;
+  transition: 0.3s all ease;
+
+  &.focused,
+  &:not(.empty) {
+    font-size: 12px;
+    color: $lable-text-color;
+  }
+
+}

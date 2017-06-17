@@ -2,7 +2,6 @@ const BaseConfig = require('./webpack.base.config');
 const path = require('path');
 
 BaseConfig.entry = {
-    style: './src/styles.scss',
     index: './src/index.ts', 
 };
 BaseConfig.output = {

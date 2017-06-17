@@ -1,11 +1,13 @@
 import * as React from 'react';
+import { themr } from 'react-css-themr';
 import {classNames, variationName} from '@shopify/react-utilities';
 
 import {ComplexAction} from '../../types';
 import UnstyledLink from '../UnstyledLink';
 import Icon, {Props as IconProps} from '../Icon';
 
-import * as styles from './Button.scss';
+import { BUTTON } from '../ThemeIdentifiers';
+import * as baseTheme from './Button.scss';
 
 export type Size = 'slim' | 'large';
 
@@ -24,12 +26,14 @@ export interface Props {
   disclosure?: boolean,
   accessibilityLabel?: string,
   icon?: IconProps['source'],
+  style?: React.CSSProperties,
+  theme?: any,
   onClick?(): void,
   onFocus?(): void,
   onBlur?(): void,
 }
 
-export default function Button({
+const Button = ({
   url,
   disabled,
   children,
@@ -47,38 +51,40 @@ export default function Button({
   submit,
   size,
   fullWidth,
-}: Props) {
+  style,
+  theme,
+}: Props) => {
   const className = classNames(
-    styles.Button,
-    primary && styles.primary,
-    outline && styles.outline,
-    destructive && styles.destructive,
-    disabled && styles.disabled,
-    plain && styles.plain,
-    size && styles[variationName('size', size)],
-    fullWidth && styles.fullWidth,
-    icon && children == null && styles.iconOnly,
+    theme.Button,
+    primary && theme.primary,
+    outline && theme.outline,
+    destructive && theme.destructive,
+    disabled && theme.disabled,
+    plain && theme.plain,
+    size && theme[variationName('size', size)],
+    fullWidth && theme.fullWidth,
+    icon && children == null && theme.iconOnly,
   );
 
   const disclosureIconMarkup = disclosure
-    ? <span className={styles.Icon}><Icon source="caretDown" /></span>
+    ? <span className={theme.Icon}><Icon source="caretDown" /></span>
     : null;
 
   const iconMarkup = icon
-    ? <span className={styles.Icon}><Icon source={icon} /></span>
+    ? <span className={theme.Icon}><Icon source={icon} /></span>
     : null;
 
   const childMarkup = children ? <span>{children}</span> : null;
 
   const content = iconMarkup || disclosureIconMarkup
     ? (
-      <span className={styles.Content}>
+      <span className={theme.Content}>
         {iconMarkup}
         {childMarkup}
         {disclosureIconMarkup}
       </span>
     )
-    : <span className={styles.Content}>{childMarkup}</span>;
+    : <span className={theme.Content}>{childMarkup}</span>;
 
   const type = submit ? 'submit' : 'button';
 
@@ -95,6 +101,7 @@ export default function Button({
         className={className}
         disabled={disabled}
         aria-label={accessibilityLabel}
+        style={style}
       >
         {content}
       </UnstyledLink>
@@ -109,12 +116,15 @@ export default function Button({
         className={className}
         disabled={disabled}
         aria-label={accessibilityLabel}
+        style={style}
       >
         {content}
       </button>
     )
   );
-}
+};
+
+const ThemedButton = themr(BUTTON, baseTheme)(Button);
 
 function handleMouseUp({currentTarget}: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) {
   currentTarget.blur();
@@ -136,7 +146,7 @@ export function buttonFrom(
   key?: any,
 ) {
   return (
-    <Button
+    <ThemedButton
       key={key}
       children={content}
       onClick={onAction}
@@ -145,3 +155,5 @@ export function buttonFrom(
     />
   );
 }
+
+export default ThemedButton;

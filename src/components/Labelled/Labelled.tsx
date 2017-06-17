@@ -1,68 +1,97 @@
 import * as React from 'react';
+import { themr } from 'react-css-themr';
 import {classNames} from '@shopify/react-utilities/styles';
 
 import Label, {Props as LabelProps, Action, labelID} from '../Label';
 import Message from '../Message';
+import { LABELLED } from '../ThemeIdentifiers';
 
-import * as styles from './Labelled.scss';
+import * as baseTheme from './Labelled.scss';
 
 export {Action, labelID};
 
-export type Error = boolean | string;
+export type Error = string;
 
 export interface Props {
   id: LabelProps['id'],
   label: string,
-  errors?: [string],
+  errors?: [string] | Error,
   action: LabelProps['action'],
   helpText?: React.ReactNode,
   children?: React.ReactNode,
   labelHidden?: boolean,
+  required?: boolean,
+  focused?: boolean,
+  hasValue?: boolean,
+  style?: React.CSSProperties,
+  theme?: any,
 }
 
-export default function Labelled({
+const Labelled = ({
   id,
   label,
   errors,
   children,
   labelHidden,
   helpText,
+  required,
+  focused,
+  hasValue,
+  style,
+  theme,
   ...rest,
-}: Props) {
-  const className = classNames(
-    labelHidden && styles.hidden,
+}: Props) => {
+  const wrapperClassName = classNames(
+    labelHidden && theme.hidden,
+  );
+
+  const labelWrapperClassName = classNames(
+    theme.LabelWrapper,
+    required && theme.required,
+    focused && theme.focused,
+    (errors && errors) && theme.invalid,
+    !hasValue && theme.empty,
   );
 
   const helpTextMarkup = helpText
-    ? <div className={styles.HelpText} id={helpTextID(id)}>{helpText}</div>
+    ? <div className={theme.HelpText} id={helpTextID(id)}>{helpText}</div>
     : null;
 
   const errorId = errorID(id);
   const errorMarkup = errors
     ? (
       <Message id={errorId} isVisible={true}>
-        {errors.join(', ')}
+        {errors instanceof Array ? errors.join(', ') : (typeof errors === 'string' ? errors : 'An error occurred.')}
       </Message>
     )
     : null;
 
   const labelMarkup = label
     ? (
-      <div className={styles.LabelWrapper}>
-        <Label id={id} {...rest} hidden={false}>{label}</Label>
+      <div className={labelWrapperClassName}>
+        <Label
+          id={id}
+          hidden={false}
+          focused={focused}
+          hasValue={hasValue}
+          required={required}
+          {...rest}
+        >
+          {label}
+        </Label>
       </div>
     )
     : null;
 
   return (
-    <div className={className} aria-describedby={errorId}>
+    <div className={wrapperClassName} aria-describedby={errorId} style={style}>
       {errorMarkup}
       {labelMarkup}
       {children}
       {helpTextMarkup}
     </div>
   );
-}
+};
 
 export function errorID(id: string) {
   return `${id}Error`;
@@ -71,3 +100,5 @@ export function errorID(id: string) {
 export function helpTextID(id: string) {
   return `${id}HelpText`;
 }
+
+export default themr(LABELLED, baseTheme)(Labelled);
