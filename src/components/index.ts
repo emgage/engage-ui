@@ -55,6 +55,16 @@ export {
 } from './ValidatedTextField';
 
 export {
+  default as FlexBox,
+  Props as FlexBoxProps,
+} from './FlexBox';
+
+export {
   default as Chip,
   Props as ChipProps,
 } from './Chip';
+
+export {
+  default as Picker,
+  Props as PickerProps,
+} from './Picker';
