@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr } from 'react-css-themr';
+import { themr, ThemedComponentClass } from 'react-css-themr';
 
 import { FORM_LAYOUT } from '../ThemeIdentifiers';
 
@@ -26,4 +26,4 @@ const Item = (props: Props)  => {
   );
 };
 
-export default themr(FORM_LAYOUT, baseTheme)(Item);
+export default themr(FORM_LAYOUT, baseTheme)(Item) as ThemedComponentClass<Props, {}>;

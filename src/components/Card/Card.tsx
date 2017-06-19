@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr } from 'react-css-themr';
+import { themr, ThemedComponentClass } from 'react-css-themr';
 import {classNames} from '@shopify/react-utilities/styles';
 
 import {Action} from '../../types';
@@ -76,4 +76,4 @@ class Card extends React.PureComponent<Props, never> {
   }
 }
 
-export default themr(CARD, baseTheme)(Card);
+export default themr(CARD, baseTheme)(Card) as ThemedComponentClass<Props, {}>;

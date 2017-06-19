@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr } from 'react-css-themr';
+import { themr, ThemedComponentClass } from 'react-css-themr';
 import {classNames} from '@shopify/react-utilities/styles';
 import {wrapWithComponent} from '@shopify/react-utilities/components';
 
@@ -39,4 +39,4 @@ const Pane = ({fixed, sectioned, children, theme}: Props) => {
     );
 }
 
-export default themr(POPOVER, baseTheme)(Pane);
+export default themr(POPOVER, baseTheme)(Pane) as ThemedComponentClass<Props, {}>;

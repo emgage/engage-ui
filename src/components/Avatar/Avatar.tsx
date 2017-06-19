@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr } from 'react-css-themr';
+import { themr, ThemedComponentClass } from 'react-css-themr';
 import {classNames, variationName} from '@shopify/react-utilities/styles';
 
 import Image from '../Image';
@@ -83,4 +83,4 @@ function customerPlaceholder(name?: string) {
     : AVATAR_IMAGES[0];
 }
 
-export default themr(AVATAR, baseTheme)(Avatar);
+export default themr(AVATAR, baseTheme)(Avatar) as ThemedComponentClass<Props, {}>;

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr } from 'react-css-themr';
+import { themr, ThemedComponentClass } from 'react-css-themr';
 import {classNames} from '@shopify/react-utilities/styles';
 
 import Icon from '../Icon';
@@ -76,4 +76,4 @@ export function errorID(id: string) {
   return `${id}Error`;
 }
 
-export default themr(CHOICE, baseTheme)(Choice);
+export default themr(CHOICE, baseTheme)(Choice) as ThemedComponentClass<Props, {}>;
