@@ -1,19 +1,22 @@
 import * as React from 'react';
+import { themr } from 'react-css-themr';
 import autobind from '@shopify/javascript-utilities/autobind';
 import {createUniqueIDFactory} from '@shopify/javascript-utilities/other';
 import {classNames} from '@shopify/react-utilities/styles';
 
 import Labelled, {Action, helpTextID, errorID, labelID} from '../Labelled';
 import Connected from '../Connected';
+import { TEXT_FIELD } from '../ThemeIdentifiers';
 
+import * as baseTheme from './TextField.scss';
 import Resizer from './Resizer';
 import Spinner from './Spinner';
-import * as styles from './TextField.scss';
 
 export type Type = 'text' | 'email' | 'number' | 'password' | 'search' | 'tel' | 'url' | 'date' | 'datetime-local' | 'month' | 'time' | 'week';
 
 export interface State {
   height?: number | null,
+  focused?: boolean,
 }
 
 export interface Props {
@@ -44,14 +47,16 @@ export interface Props {
   pattern?: string,
   required?: boolean,
   spellCheck?: boolean,
+  style?: React.CSSProperties,
+  theme?: any,
   onChange?(value: string): void,
   onFocus?(): void,
-  onBlur?(): void,
+  onBlur?(e?: any): void,
 }
 
 const getUniqueID = createUniqueIDFactory('TextField');
 
-export default class TextField extends React.PureComponent<Props, State> {
+class TextField extends React.PureComponent<Props, State> {
   state: State = {height: null};
 
   private input: HTMLElement;
@@ -77,36 +82,38 @@ export default class TextField extends React.PureComponent<Props, State> {
       prefix,
       suffix,
       required,
+      theme,
       onFocus,
       onBlur,
       autoComplete,
+      style,
       ...rest,
     } = this.props;
 
     const {height} = this.state;
 
     const className = classNames(
-      styles.TextField,
-      Boolean(value) && styles.hasValue,
-      disabled && styles.disabled,
-      readOnly && styles.readOnly,
-      errors && styles.error,
-      multiline && styles.multiline,
+      theme.TextField,
+      Boolean(value) && theme.hasValue,
+      disabled && theme.disabled,
+      readOnly && theme.readOnly,
+      errors && theme.error,
+      multiline && theme.multiline,
     );
 
     const prefixMarkup = prefix
-      ? <div onClick={this.handleInputFocus} className={styles.Prefix} id={`${id}Prefix`}>{prefix}</div>
+      ? <div onClick={this.handleInputFocus} className={theme.Prefix} id={`${id}Prefix`}>{prefix}</div>
       : null;
 
     const suffixMarkup = suffix
-      ? <div onClick={this.handleInputFocus} className={styles.Suffix} id={`${id}Suffix`}>{suffix}</div>
+      ? <div onClick={this.handleInputFocus} className={theme.Suffix} id={`${id}Suffix`}>{suffix}</div>
       : null;
 
     const spinnerMarkup = type === 'number'
       ? <Spinner onClick={this.handleInputFocus} onChange={this.handleNumberChange} />
       : null;
 
-    const style = (multiline && height) ? {height} : null;
+    let componentStyle = (multiline && height) ? {height, ...style} : style;
 
     const resizer = multiline != null
       ? (
@@ -137,12 +144,12 @@ export default class TextField extends React.PureComponent<Props, State> {
       autoFocus,
       value,
       placeholder,
-      onFocus,
-      onBlur,
-      style,
+      onFocus: this.handleInputOnFocus,
+      onBlur: this.handleInputOnBlur,
+      style: componentStyle,
       formNoValidate: true,
       autoComplete: normalizeAutoComplete(autoComplete),
-      className: styles.Input,
+      className: theme.Input,
       onChange: this.handleChange,
       ref: this.setInput,
       required,
@@ -152,6 +159,8 @@ export default class TextField extends React.PureComponent<Props, State> {
       'aria-invalid': Boolean(errors),
     });
 
+    const hasValue = (!!this.props.value && this.props.value.length > 0);
+
     return (
       <Labelled
         label={label}
@@ -160,6 +169,9 @@ export default class TextField extends React.PureComponent<Props, State> {
         action={labelAction}
         labelHidden={labelHidden}
         helpText={helpText}
+        focused={this.state.focused}
+        hasValue={hasValue}
+        required={required}
       >
         <Connected
           left={connectedLeft}
@@ -170,7 +182,7 @@ export default class TextField extends React.PureComponent<Props, State> {
             {input}
             {suffixMarkup}
             {spinnerMarkup}
-            <div className={styles.Backdrop} />
+            <div className={theme.Backdrop} />
             {resizer}
           </div>
         </Connected>
@@ -208,6 +220,30 @@ export default class TextField extends React.PureComponent<Props, State> {
   }
 
   @autobind
+  private handleInputOnFocus() {
+    this.setState((prevState: State) => ({
+      ...prevState,
+      focused: true,
+    }));
+
+    const {onFocus} = this.props;
+    if (onFocus == null) { return; }
+    onFocus();
+  }
+
+  @autobind
+  private handleInputOnBlur(e: any) {
+    this.setState((prevState: State) => ({
+      ...prevState,
+      focused: false,
+    }));
+
+    const {onBlur} = this.props;
+    if (onBlur == null) { return; }
+    onBlur(e);
+  }
+
+  @autobind
   private handleInputFocus() {
     this.input.focus();
   }
@@ -217,3 +253,5 @@ function normalizeAutoComplete(autoComplete?: boolean) {
   if (autoComplete == null) { return autoComplete; }
   return autoComplete ? 'on' : 'off';
 }
+
+export default themr(TEXT_FIELD, baseTheme)(TextField);

@@ -5,6 +5,11 @@ import { PeoplePickerSource } from './PickerSource';
 
 import {
   Button,
+  ButtonGroup,
+  DisplayText,
+  FormLayout,
+  Heading,
+  //Link,
   TextField,
   FlexBox,
   ValidatedTextField,
@@ -17,20 +22,16 @@ import {
 } from '../../src/components';
 
 interface State {
-  first?: string,
-  last?: string,
-  email?: string,
-  autoGrow: string,
+  appName?: string,
+  appDescription: string,
 }
 
 class App extends React.Component<{}, State> {
   constructor(props: any) {
     super(props);
     this.state = {
-      first: '',
-      last: '',
-      email: '',
-      autoGrow: '',
+      appName: '',
+      appDescription: '',
     };
   }
 
@@ -92,49 +93,47 @@ const theme = {
 
          />
       <ValidatedForm>
-        <ValidatedTextField
-          id="tom"
-          required={true}
-          label="First Name"
-          placeholder="Tom"
-          onChange={this.valueUpdater('last')}
-          value={this.state.first}
-          name="tom"
-          validateTrigger={['onBlur']}
-          validateRules={[
-              { required: true, message: 'This is required dude.'},
-              { type: 'email', message: 'This should be an email dude.'},
-          ]}
-        />
-        <ValidatedTextField
-          id="last"
-          name="last"
-          value={this.state.last}
-          label="Last Name"
-          placeholder="Ford"
-          onChange={this.valueUpdater('last')}
-          validateTrigger={['onBlur']}
-          validateRules={[
-              { required: true, message: 'This is required too dude.'},
-          ]}
-        />
 
-        <TextField
-          value={this.state.email}
-          label="Email"
-          placeholder="example@email.com"
-          onChange={this.valueUpdater('email')}
-        />
+         <Heading>App Basics</Heading>
 
-        <TextField
-          multiline
-          label="How did you hear about us?"
-          placeholder="Website, ads, email, etc."
-          value={this.state.autoGrow}
-          onChange={this.valueUpdater('autoGrow')}
-        />
+         <DisplayText size="large">This is Display Text, which is used to make a bold visual statement.</DisplayText>
+         <p>This is just some fun regular text.</p>
 
-        <Button primary>Submit</Button>
+        <FormLayout>
+          <ValidatedTextField
+            id="AppName"
+            required={true}
+            label="App Name"
+            placeholder=""
+            helpText="We recommend keeping your app name under 23 characters."
+            onChange={this.valueUpdater('appName')}
+            value={this.state.appName}
+            name="App Name"
+            validateTrigger={['onBlur']}
+            validateRules={[
+                { required: true, message: 'App Name is required.'},
+            ]}
+          />
+          <ValidatedTextField
+            multiline
+            id="appDescription"
+            name="App Description"
+            value={this.state.appDescription}
+            label="App Description"
+            placeholder=""
+            helpText="Provide an engaging description that highlights the features and functionality of your app. Let potential users know what makes your app unique and why they will love it."
+            onChange={this.valueUpdater('appDescription')}
+            validateTrigger={['onBlur']}
+            validateRules={[
+                { required: true, message: 'App Description is required.'},
+            ]}
+          />
+
+          <ButtonGroup>
+            <Button>Cancel</Button>
+            <Button primary>Next</Button>
+          </ButtonGroup>
+        </FormLayout>
       </ValidatedForm>
 
       <br />

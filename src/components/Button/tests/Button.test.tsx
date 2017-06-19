@@ -39,6 +39,18 @@ describe('<Button />', () => {
     });
   });
 
+  describe('style', () => {
+    it('sets the style attribute on the button to color: red ', () => {
+      const button = shallow(<Button style={{color: 'red'}}>Disabled test</Button>);
+      expect(button.find('button').prop('style')).toBe('color: red');
+    });
+
+    it('sets the style attribute on the button to null', () => {
+      const button = shallow(<Button>Disabled test</Button>);
+      expect(button.find('button').prop('style')).toBeNull();
+    });
+  });
+
   describe('submit', () => {
     it('sets the button’s type to submit', () => {
       const button = shallow(<Button submit>Submit test</Button>);

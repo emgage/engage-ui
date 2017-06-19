@@ -1,7 +1,3 @@
-@import 'foundation/colors';
-@import 'shared/accessibility';
-@import 'shared/typography';
-
 .Label {
   display: flex;
   justify-content: space-between;
@@ -19,4 +15,13 @@
   flex: 1 1 auto;
   color: currentColor;
   -webkit-tap-highlight-color: transparent;
+  @if(mixin-exists(hook-text)) {@include hook-text();}
 }
+
+// .required {}
+
+// .focused {}
+
+// .invalid {}
+
+// .empty {}
