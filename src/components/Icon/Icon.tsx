@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr } from 'react-css-themr';
+import { themr, ThemedComponentClass } from 'react-css-themr';
 import {SVGSource} from '@shopify/images';
 import {classNames, variationName} from '@shopify/react-utilities/styles';
 
@@ -153,4 +153,4 @@ const Icon = ({
   );
 }
 
-export default themr(ICON, baseTheme)(Icon);
+export default themr(ICON, baseTheme)(Icon) as ThemedComponentClass<Props, {}>;

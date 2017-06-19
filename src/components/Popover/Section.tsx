@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr } from 'react-css-themr';
+import { themr, ThemedComponentClass } from 'react-css-themr';
 
 import { POPOVER } from '../ThemeIdentifiers';
 
@@ -14,4 +14,4 @@ const Section = ({children, theme}: Props) => {
   return <div className={theme.Section}>{children}</div>;
 }
 
-export default themr(POPOVER, baseTheme)(Section);
+export default themr(POPOVER, baseTheme)(Section) as ThemedComponentClass<Props, {}>;

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr } from 'react-css-themr';
+import { themr, ThemedComponentClass } from 'react-css-themr';
 import {HeadingTagName} from '../../types';
 
 import { SUBHEADING } from '../ThemeIdentifiers';
@@ -21,4 +21,4 @@ const Subheading = ({
   return <Element aria-label={ariaLabel} className={theme.Subheading}>{children}</Element>;
 }
 
-export default themr(SUBHEADING, baseTheme)(Subheading);
+export default themr(SUBHEADING, baseTheme)(Subheading) as ThemedComponentClass<Props, {}>;

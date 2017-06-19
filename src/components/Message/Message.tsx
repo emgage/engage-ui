@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr } from 'react-css-themr';
+import { themr, ThemedComponentClass } from 'react-css-themr';
 
 import { MESSAGE } from '../ThemeIdentifiers';
 import * as baseTheme from './Message.scss';
@@ -27,4 +27,4 @@ function Message({children, isVisible, id, style, theme}: Props) {
   );
 }
 
-export default themr(MESSAGE, baseTheme)(Message);
+export default themr(MESSAGE, baseTheme)(Message) as ThemedComponentClass<Props, {}>;

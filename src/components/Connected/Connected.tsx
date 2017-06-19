@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { themr } from 'react-css-themr';
+import { themr, ThemedComponentClass } from 'react-css-themr';
+import { CONNECTED } from '../ThemeIdentifiers';
 import Item, {Position} from './Item';
 
-import { CONNECTED } from '../ThemeIdentifiers';
 import * as baseTheme from './Connected.scss';
 
 export interface Props {
@@ -47,4 +47,4 @@ const Connected = ({
   );
 }
 
-export default themr(CONNECTED, baseTheme)(Connected);
+export default themr(CONNECTED, baseTheme)(Connected) as ThemedComponentClass<Props, State>;
