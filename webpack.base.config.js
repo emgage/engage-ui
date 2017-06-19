@@ -33,9 +33,11 @@ module.exports = {
                         options: {
                             localIdentName: '[name]__[local]__[hash:base64:5]',
                             modules: true,
-                            sourceMap: true,
+                            importLoaders: 1,
+                            sourceMap: false,
                         }
-                    }, {
+                    }, 
+                    {
                         loader: 'sass-loader',
                         options: {
                             includePaths: [
@@ -43,9 +45,21 @@ module.exports = {
                                 path.join(__dirname, 'src', 'styles'),
                                 path.join(__dirname, 'src', 'styles', 'components'),
                             ],
-                            sourceMap: true
+                            sourceMap: false
                         }
-                    }
+                    },
+                    {
+                        loader: 'sass-resources-loader',
+                        options: {
+                            resources: [
+                                //'./src/styles/global.scss',
+                                './src/styles/foundation.scss',
+                                './themes/Delicious/foundation.scss',
+                                './src/styles/shared.scss',
+                                './themes/Delicious/shared.scss',
+                            ],
+                        },
+                    },
                 ],
                 exclude: /node_modules/
             },
@@ -64,7 +78,7 @@ module.exports = {
     },
     resolve: {
         extensions: [
-            '.ts', '.tsx', '.js', '.jsx'
+            '.ts', '.tsx', '.js', '.jsx', '.scss'
         ],
         plugins: [
              new TsConfigPathsPlugin(TypeScriptConfigFile),
@@ -79,6 +93,9 @@ module.exports = {
         }),
         new webpack.NoEmitOnErrorsPlugin(),
         new CheckerPlugin(),
+        new webpack.LoaderOptionsPlugin({
+            debug: true
+       })
     ],
-    devtool: 'source-map'
+    devtool: 'source-map',
 };

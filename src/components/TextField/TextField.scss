@@ -1,15 +1,3 @@
-@import 'foundation/borders';
-@import 'foundation/border-radius';
-@import 'foundation/duration';
-@import 'foundation/easing';
-@import 'foundation/spacing';
-@import 'foundation/utilities';
-@import 'foundation/z-index';
-@import 'foundation/easing';
-@import 'foundation/duration';
-@import 'shared/controls';
-@import 'shared/typography';
-
 $backdrop-horizontal-spacing: spacing(tight) * 1.5;
 $addon-horizontal-spacing: 0.25em;
 $spinner-icon-size: rem(12px);
@@ -40,10 +28,13 @@ $stacking-order: (
 }
 
 .hasValue {
-  color: color(ink);
+  .Input {
+    color: color(ink);
+  }
 }
 
 .error {
+  
   .Input::placeholder {
     // This is the only place this color is used.
     // stylelint-disable-next-line color-no-hex
@@ -105,6 +96,7 @@ $stacking-order: (
       box-shadow:
         inset shadow(transparent),
         0 0 0 1px color(indigo);
+    
     }
   }
 

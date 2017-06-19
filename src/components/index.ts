@@ -4,9 +4,29 @@ export {
 } from './Button';
 
 export {
+  default as ButtonGroup,
+  Props as ButtonGroupProps,
+} from './ButtonGroup';
+
+export {
   default as Connected,
   Props as ConnectedProps,
 } from './Connected';
+
+export {
+  default as DisplayText,
+  Props as DisplayTextProps,
+} from './DisplayText';
+
+export {
+  default as FormLayout,
+  Props as FormLayoutProps,
+} from './FormLayout';
+
+export {
+  default as Heading,
+  Props as HeadingProps,
+} from './Heading';
 
 export {
   default as Icon,
@@ -65,6 +85,17 @@ export {
 } from './Chip';
 
 export {
+  default as Video,
+  Props as VideoProps,
+  VideoType,
+} from './Video';
+
+export {
+  default as Panel,
+  Props as PanelProps,
+} from './Panel';
+
   default as Picker,
   Props as PickerProps,
 } from './Picker';
+

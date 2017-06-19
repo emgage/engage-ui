@@ -1,9 +1,3 @@
-@import 'foundation/colors';
-@import 'foundation/spacing';
-@import 'shared/accessibility';
-@import 'shared/icons';
-@import 'shared/typography';
-
 .hidden > .LabelWrapper {
   @include visually-hidden;
 }
@@ -12,19 +6,16 @@
   margin-bottom: spacing(extra-tight);
 }
 
+.required {}
+
+.focused {}
+
+.invalid {}
+
+.empty {}
+
 .HelpText {
   @include text-style-body;
   @include text-emphasis-subdued;
   margin-top: spacing(extra-tight);
-}
-
-.Error {
-  display: flex;
-  margin-top: spacing(extra-tight);
-  color: color(red, dark);
-}
-
-.ErrorIcon {
-  @include recolor-icon(color(red));
-  margin: 0 spacing(extra-tight) 0 -2px;
 }

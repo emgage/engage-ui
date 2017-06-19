@@ -1,0 +1,19 @@
+.DisplayText {
+  margin: 0;
+}
+
+.sizeSmall {
+  @include text-style-display-small;
+}
+
+.sizeMedium {
+  @include text-style-display-medium;
+}
+
+.sizeLarge {
+  @include text-style-display-large;
+}
+
+.sizeExtraLarge {
+  @include text-style-display-x-large;
+}
