@@ -23,3 +23,4 @@ export const SELECT = 'PSelect';
 export const STACK = 'PStack';
 export const SUBHEADING = 'PSubheading';
 export const TEXT_FIELD = 'PTextField';
+export const CHIP = 'PChip';

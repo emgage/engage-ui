@@ -82,9 +82,9 @@ const theme = {
 
     return (
       <div>
-        <div>
+        <div> 
           <Heading>Popover</Heading>
-          <Popover active={true} activator={<Chip>Batman</Chip>} onClose={this.cardClose('active')}>
+          <Popover active={true} activator={<Chip>Batman</Chip>} onClose={this.popoverClose()}>
               <Card title="More about Batman">
                 <p>Batman is a fictional superhero who appears in American comic books published by DC Comics. The character was created by artist Bob Kane and writer Bill Finger, and first appeared in Detective Comics #27</p>
               </Card>
@@ -221,9 +221,8 @@ const theme = {
     return (value: any) => this.setState({[field]: value});
   }
 
-  cardClose(field: any) {
-    return;
-  // TODO: Need to discuss
+  popoverClose(field: any) {
+   return;
   }
 }
 
