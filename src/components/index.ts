@@ -95,6 +95,7 @@ export {
   Props as PanelProps,
 } from './Panel';
 
+export {
   default as Picker,
   Props as PickerProps,
 } from './Picker';

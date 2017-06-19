@@ -1,14 +1,20 @@
 import * as React from 'react';
+import { themr } from 'react-css-themr';
+import { classNames } from '@shopify/react-utilities';
+import { FLEXBOX } from '../ThemeIdentifiers';
 import { FlexAlign, FlexDirection, FlexJustify } from './FlexProps';
+import * as baseTheme from './FlexBox.scss';
 
 export interface Props {
   inline?: boolean,
   direction?: FlexDirection ,
   justify?: FlexJustify,
   align?: FlexAlign,
+  style?: React.CSSProperties,
+  theme?: any,
 }
 
-export default class FlexBox extends React.PureComponent<Props, {}> {
+class FlexBox extends React.PureComponent<Props, {}> {
     render() {
         const {
             inline,
@@ -17,63 +23,65 @@ export default class FlexBox extends React.PureComponent<Props, {}> {
             align,
          } = this.props;
 
-        let className = inline ? 'd-inline-flex' : 'd-flex';
+        let className = inline ? this.props.theme.Inline : this.props.theme.Flex;
         // set direction property css
         switch (direction) {
             case FlexDirection.Column:
-                className += ' flex-column';
+                className = classNames(this.props.theme.Column, className);
                 break;
             case FlexDirection.RowReverse:
-                className += ' flex-row-reverse';
+                className = classNames(this.props.theme.RowReverse, className);
                 break;
             case FlexDirection.ColumnReverse:
-                className += ' flex-column-reverse';
+                className = classNames(this.props.theme.ColumnReverse, className);
                 break;
             case FlexDirection.Row:
             default:
-                className += ' flex-row';
+                className = classNames(this.props.theme.Row, className);
                 break;
         }
         // set justify property css
         switch (justify) {
             case FlexJustify.End:
-                className += ' justify-content-end';
+                className = classNames(this.props.theme.ContentEnd, className);
                 break;
             case FlexJustify.Center:
-                className += ' justify-content-center';
+                className = classNames(this.props.theme.ContentCenter, className);
                 break;
             case FlexJustify.SpaceAround:
-                className += ' justify-content-around';
+                className = classNames(this.props.theme.ContentAround, className);
                 break;
             case FlexJustify.SpaceBetween:
-                className += ' justify-content-between';
+                className = classNames(this.props.theme.ContentBetween, className);
                 break;
             case FlexJustify.Start:
             default:
-                className += ' justify-content-start';
+                className = classNames(this.props.theme.ContentStart, className);
                 break;
         }
         // set align property css
         switch (align) {
             case FlexAlign.Start:
-                className += ' align-items-start';
+                className = classNames(this.props.theme.AlignStart, className);
                 break;
             case FlexAlign.End:
-                className += ' align-items-end';
+                className = classNames(this.props.theme.AlignEnd, className);
                 break;
             case FlexAlign.Center:
-                className += ' align-items-center';
+                className = classNames(this.props.theme.AlignCenter, className);
                 break;
             case FlexAlign.Stretch:
             default:
-                className += ' align-items-stretch';
+                className = classNames(this.props.theme.AlignStretch, className);
                 break;
         }
+
         return (
-            <div className={className}>
+            <div className={className} style={this.props.style}>
                 {this.props.children}
             </div>
         );
     }
-}
+};
 
+export default themr(FLEXBOX, baseTheme)(FlexBox);

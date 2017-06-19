@@ -72,12 +72,6 @@ const sampleVideoCmp = <Video
   width: 100,
 }} />;
 
-const theme = {
-  Panel: 'thm-pnl',
-  Heading: 'thm-hdr',
-  Body: 'thm-body',
-};
-
     return (
       <div>
         <Picker required={true}
@@ -179,7 +173,7 @@ const theme = {
       </div>
       <div>
         <h4>Panel Component</h4>
-        <Panel heading="BASIC PANEL" theme={theme}>
+        <Panel heading="BASIC PANEL">
           <div>
             Lorem ipsum lorem ipsum
           </div>
@@ -197,7 +191,7 @@ const theme = {
           </div>
         </Panel>
         <br/>
-        <Panel heading={<div>Custom Panel with Video</div>} video={sampleVideoCmp} theme={theme}>
+        <Panel heading={<div>Custom Panel with Video</div>} video={sampleVideoCmp}>
           <div>
             Lorem ipsum lorem ipsum
           </div>
