@@ -1,10 +1,4 @@
-export enum PeoplePickerSearchType {
-    Users,
-    Groups,
-    Both,
-}
-
-export enum MoreInfoOn {
+export enum DisplayMoreInfo {
     onHover,
     onClick,
 }

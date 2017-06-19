@@ -33,15 +33,15 @@ class Chip extends React.PureComponent<Props, any> {
         } = this.props;
 
         const className = classNames(
-            theme.Chip,
-            clickable && theme.ChipClickable,
-            removable && theme.ChipRemovable,
-            transparent && theme.ChipTransparent,
+            theme.chip,
+            clickable && theme.chipClickable,
+            removable && theme.chipRemovable,
+            transparent && theme.chipTransparent,
         );
         const chipContents = [(
             image
                 ?
-                <img className={theme.ChipImage} src={image.url} alt={image.alt} key="1" />
+                <img className={theme.chipImage} src={image.url} alt={image.alt} key="1" />
                 : ''
         ),
         <span key="2">
@@ -63,7 +63,7 @@ class Chip extends React.PureComponent<Props, any> {
                 {
                     this.props.removable
                         ?
-                        <button type="button" className={theme.ChipRemove} aria-label="Remove" onClick={this.props.onRemove}>
+                        <button type="button" className={theme.chipRemove} aria-label="Remove" onClick={this.props.onRemove}>
                             <span aria-hidden="true">×</span>
                         </button>
                         : ''

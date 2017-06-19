@@ -1,12 +1,18 @@
 import * as React from 'react';
+import { themr } from 'react-css-themr';
+import { classNames } from '@shopify/react-utilities/styles';
+import { PICKER } from '../ThemeIdentifiers';
 import TextField from '../TextField';
-import { PeoplePickerSearchType, MoreInfoOn } from './PickerEnum';
-import { PeopleInfo } from './PeopleInfo';
+import { DisplayMoreInfo } from './PickerEnum';
+import { IPickerInfo } from './IPickerInfo';
 import { IPickerSource } from './IPickerSource';
+
+import * as baseTheme from './Chip.scss';
+
 export interface State {
     people: string,
-    searchItems: PeopleInfo[],
-    selectedItems: PeopleInfo[],
+    searchItems: IPickerInfo[],
+    selectedItems: IPickerInfo[],
     moreInfo: boolean,
 }
 export type Type = 'hide' | 'mark' ;
@@ -20,9 +26,10 @@ export interface Props {
     chipComponent: React.ReactNode,
     searchResultComponent: React.ReactNode,
     moreInfoComponent?: React.ReactNode,
-    peoplePickerSearchType: PeoplePickerSearchType,
     source: IPickerSource,
-    moreInfoComponentShowOn?: MoreInfoOn,
+    moreInfoComponentShowOn?: DisplayMoreInfo,
+    style?: React.CSSProperties,
+    theme?: any,
     searchBehavior?(): void,
     onSelect?(item: any): void,
     onRemove?(item: any): void,
@@ -53,12 +60,13 @@ class Picker extends React.Component<Props, State> {
             onSelect = this.handleSelect,
             onRemove = this.handleRemove,
             onMoreInfo = this.handleMoreInfo,
+            theme,
           } = this.props;
         let className = '';
         if (selectedResultsBehavior === 'hide' || selectedResultsBehavior === undefined) {
-            className += 'hideClass';
+            className = theme.pickerResultHide;
         } else {
-            className += 'showClass';
+            className = theme.pickerResultShow;
         }
         return (
             <div>
@@ -140,5 +148,5 @@ class Picker extends React.Component<Props, State> {
     }
 }
 
-export default Picker;
+export default themr(PICKER, baseTheme)(Picker);
 

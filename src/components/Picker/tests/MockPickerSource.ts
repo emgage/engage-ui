@@ -2,7 +2,7 @@ import { PeopleInfo } from '../PeopleInfo';
 import { IPickerSource } from '../IPickerSource';
 
 
-export class PeoplePickerSource implements IPickerSource {
+export class MockPickerSource implements IPickerSource {
 
     // tslint:disable-next-line:no-empty
     constructor() {
