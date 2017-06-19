@@ -10,7 +10,7 @@ import {
   FormLayout,
   Heading,
   //Link,
-  TextField,
+  //TextField,
   FlexBox,
   ValidatedTextField,
   ValidatedForm,
@@ -19,6 +19,8 @@ import {
   VideoType,
   Panel,
   Picker,
+  Card,
+  Popover,
 } from '../../src/components';
 
 interface State {
@@ -80,7 +82,15 @@ const theme = {
 
     return (
       <div>
-        <Picker required={true}
+        <div>
+          <Heading>Popover</Heading>
+          <Popover active={true} activator={<Chip>Batman</Chip>} onClose={this.cardClose('active')}>
+              <Card title="More about Batman">
+                <p>Batman is a fictional superhero who appears in American comic books published by DC Comics. The character was created by artist Bob Kane and writer Bill Finger, and first appeared in Detective Comics #27</p>
+              </Card>
+          </Popover>
+        </div>
+      <Picker required={true}
         chipComponent={Chip}
         filterPlaceHolder="People"
         peoplePickerSearchType={PeoplePickerSearchType.Both}
@@ -209,6 +219,11 @@ const theme = {
 
   valueUpdater(field: any) {
     return (value: any) => this.setState({[field]: value});
+  }
+
+  cardClose(field: any) {
+    return;
+  // TODO: Need to discuss
   }
 }
 

@@ -95,7 +95,17 @@ export {
   Props as PanelProps,
 } from './Panel';
 
+export {
   default as Picker,
   Props as PickerProps,
 } from './Picker';
 
+export {
+  default as Popover,
+  Props as PopoverProps,
+} from './Popover';
+
+export {
+  default as Card,
+  Props as CardProps,
+} from './Card';
