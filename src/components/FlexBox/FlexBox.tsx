@@ -23,56 +23,56 @@ class FlexBox extends React.PureComponent<Props, {}> {
             align,
          } = this.props;
 
-        let className = inline ? this.props.theme.Inline : this.props.theme.Flex;
+        let className = inline ? this.props.theme.inline : this.props.theme.flex;
         // set direction property css
         switch (direction) {
             case FlexDirection.Column:
-                className = classNames(this.props.theme.Column, className);
+                className = classNames(this.props.theme.column, className);
                 break;
             case FlexDirection.RowReverse:
-                className = classNames(this.props.theme.RowReverse, className);
+                className = classNames(this.props.theme.rowReverse, className);
                 break;
             case FlexDirection.ColumnReverse:
-                className = classNames(this.props.theme.ColumnReverse, className);
+                className = classNames(this.props.theme.columnReverse, className);
                 break;
             case FlexDirection.Row:
             default:
-                className = classNames(this.props.theme.Row, className);
+                className = classNames(this.props.theme.row, className);
                 break;
         }
         // set justify property css
         switch (justify) {
             case FlexJustify.End:
-                className = classNames(this.props.theme.ContentEnd, className);
+                className = classNames(this.props.theme.contentEnd, className);
                 break;
             case FlexJustify.Center:
-                className = classNames(this.props.theme.ContentCenter, className);
+                className = classNames(this.props.theme.contentCenter, className);
                 break;
             case FlexJustify.SpaceAround:
-                className = classNames(this.props.theme.ContentAround, className);
+                className = classNames(this.props.theme.contentAround, className);
                 break;
             case FlexJustify.SpaceBetween:
-                className = classNames(this.props.theme.ContentBetween, className);
+                className = classNames(this.props.theme.contentBetween, className);
                 break;
             case FlexJustify.Start:
             default:
-                className = classNames(this.props.theme.ContentStart, className);
+                className = classNames(this.props.theme.contentStart, className);
                 break;
         }
         // set align property css
         switch (align) {
             case FlexAlign.Start:
-                className = classNames(this.props.theme.AlignStart, className);
+                className = classNames(this.props.theme.alignStart, className);
                 break;
             case FlexAlign.End:
-                className = classNames(this.props.theme.AlignEnd, className);
+                className = classNames(this.props.theme.alignEnd, className);
                 break;
             case FlexAlign.Center:
-                className = classNames(this.props.theme.AlignCenter, className);
+                className = classNames(this.props.theme.alignCenter, className);
                 break;
             case FlexAlign.Stretch:
             default:
-                className = classNames(this.props.theme.AlignStretch, className);
+                className = classNames(this.props.theme.alignStretch, className);
                 break;
         }
 

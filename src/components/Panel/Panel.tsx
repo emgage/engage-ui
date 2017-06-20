@@ -14,13 +14,13 @@ export interface Props {
 class Panel extends React.PureComponent<Props, any> {
     render() {
         return (
-            <div className={this.props.theme.Panel} style={this.props.style}>
+            <div className={this.props.theme.panel} style={this.props.style}>
                 {
                   typeof this.props.heading === 'string'
-                        ? <div className={this.props.theme.Heading}>{this.props.heading}</div>
+                        ? <div className={this.props.theme.heading}>{this.props.heading}</div>
                         : this.props.heading
                 }
-                <div className={this.props.theme.Body}>
+                <div className={this.props.theme.body}>
                     {this.props.video}
                     {this.props.children}
                 </div>
