@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr } from 'react-css-themr';
+import { themr, ThemedComponentClass } from 'react-css-themr';
 import {classNames} from '@shopify/react-utilities/styles';
 import {ReactComponent} from '@shopify/react-utilities/types';
 import {noop, createUniqueIDFactory} from '@shopify/javascript-utilities/other';
@@ -99,4 +99,4 @@ function updateSelectedChoices({value}: Choice, checked: boolean, selected: stri
   return selected.filter((selectedChoice) => selectedChoice !== value);
 }
 
-export default themr(CHOICE_LIST, baseTheme)(ChoiceList);
+export default themr(CHOICE_LIST, baseTheme)(ChoiceList) as ThemedComponentClass<Props, {}>;

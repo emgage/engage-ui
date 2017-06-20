@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr } from 'react-css-themr';
+import { themr, ThemedComponentClass } from 'react-css-themr';
 import {classNames, variationName} from '@shopify/react-utilities/styles';
 
 import { LIST } from '../ThemeIdentifiers';
@@ -30,4 +30,4 @@ class ContentList extends React.PureComponent<Props, never> {
   }
 }
 
-export default themr(LIST, baseTheme)(ContentList);
+export default themr(LIST, baseTheme)(ContentList) as ThemedComponentClass<Props, {}>;
