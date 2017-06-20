@@ -14,7 +14,7 @@ export interface State {
     selectedItems: IPickerInfo[],
     moreInfo: boolean,
 }
-export type Type = 'hide' | 'mark' ;
+export type Type = 'hide' | 'mark';
 export interface Props {
     required?: boolean,
     selectedResultsBehavior?: Type,
@@ -72,48 +72,45 @@ class Picker extends React.Component<Props, State> {
                 <div>
                     <div className={className}>
                         {
-                             this.state.selectedItems.map(function(i) {
-                                return React.createElement(chipComponent as React.ComponentClass<{ clickable: boolean, removable: boolean, onRemove(item: any): void}>, {key: i.Id, clickable: false, removable: true, onRemove}, [i.Name]);
-                             })
+                            this.state.selectedItems.map(function (i) {
+                                return React.createElement(chipComponent as React.ComponentClass<{ clickable: boolean, removable: boolean, onRemove(item: any): void }>, { key: i.Id, clickable: false, removable: true, onRemove }, [i.Name]);
+                            })
                         }
-                     </div>
+                    </div>
                     <TextField
                         label="lbl"
                         value={this.state.people}
                         placeholder={filterPlaceHolder}
                         onChange={searchBehavior}
                         required={required} />
-                 </div>
+                </div>
                 <div>
-                    {console.log(this.state.searchItems)}
                     {
-                        this.state.searchItems.map(function(i) {
+                        this.state.searchItems.map(function (i) {
                             return React.createElement(searchResultComponent as React.ComponentClass<{ clickable: boolean, moreInfoComponent: React.ReactNode, moreInfoComponentShowOn: DisplayMoreInfo, onClick(item: any): void, handleMoreInfo(): void }>, { key: i.Id, clickable: true, moreInfoComponent, moreInfoComponentShowOn, onClick: onSelect, handleMoreInfo: onMoreInfo }, [i.Name]);
                         })
                     }
-                   
                 </div>
             </div>
         );
-
     }
     private handleChange = (value: string) => {
         this.setState({ ['people']: value });
         setTimeout(() => {
-           this.props.source.performFilter(value).then(this.onSuccess).catch(this.onError);
+            this.props.source.performFilter(value).then(this.onSuccess).catch(this.onError);
         }, this.props.millisecondsToWaitBeforeSearch === undefined ? 0 : this.props.millisecondsToWaitBeforeSearch);
     }
     private onSuccess = (item: any) => {
-       this.setState({ ['searchItems']: item });
+        this.setState({ ['searchItems']: item });
     }
     private onError = (item: any) => {
         // TODO: Error display
-         alert(item);
+        alert(item);
     }
     private handleRemove = (event: any) => {
         const item = this.state.selectedItems.find((x) => x.Name === event.currentTarget.previousElementSibling.innerText);
         const items = this.state.selectedItems;
-         if (this.props.minSelectedItems !== undefined && this.props.minSelectedItems === items.length) {
+        if (this.props.minSelectedItems !== undefined && this.props.minSelectedItems === items.length) {
             return;
         }
         if (item !== undefined) {

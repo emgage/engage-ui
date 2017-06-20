@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { render, mount } from 'enzyme';
+import { mount } from 'enzyme';
 import Button from '../../Button/Button';
 import Chip from '../../Chip/Chip';
 import { DisplayMoreInfo } from '../PickerEnum';
