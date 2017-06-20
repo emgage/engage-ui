@@ -180,3 +180,8 @@ export {
   Props as VideoProps,
   VideoType,
 } from './Video';
+
+export {
+  default as Loading,
+  Props as LoadingProps,
+} from './Loading';
