@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr } from 'react-css-themr';
+import { themr, ThemedComponentClass } from 'react-css-themr';
 import { classNames } from '@shopify/react-utilities';
 import { FLEXBOX } from '../ThemeIdentifiers';
 import { FlexAlign, FlexDirection, FlexJustify } from './FlexProps';
@@ -84,4 +84,4 @@ class FlexBox extends React.PureComponent<Props, {}> {
     }
 };
 
-export default themr(FLEXBOX, baseTheme)(FlexBox);
+export default themr(FLEXBOX, baseTheme)(FlexBox) as ThemedComponentClass<Props, {}>;

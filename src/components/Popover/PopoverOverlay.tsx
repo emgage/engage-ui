@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr } from 'react-css-themr';
+import { themr, ThemedComponentClass } from 'react-css-themr';
 import autobind from '@shopify/javascript-utilities/autobind';
 import {nodeContainsDescendant} from '@shopify/javascript-utilities/dom';
 import {write} from '@shopify/javascript-utilities/fastdom';
@@ -208,4 +208,4 @@ function animationVariations(status: TransitionStatus, theme: any) {
   }
 }
 
-export default themr(POPOVER, baseTheme)(PopoverOverlay);
+export default themr(POPOVER, baseTheme)(PopoverOverlay) as ThemedComponentClass<Props, {}>;

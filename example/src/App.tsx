@@ -9,8 +9,6 @@ import {
   DisplayText,
   FormLayout,
   Heading,
-  //Link,
-  TextField,
   FlexBox,
   ValidatedTextField,
   ValidatedForm,
@@ -19,6 +17,7 @@ import {
   VideoType,
   Panel,
   Picker,
+  Checkbox,
 } from '../../src/components';
 
 interface State {
@@ -92,6 +91,8 @@ const sampleVideoCmp = <Video
 
          <DisplayText size="large">This is Display Text, which is used to make a bold visual statement.</DisplayText>
          <p>This is just some fun regular text.</p>
+
+        <Checkbox label="Is this good?" />
 
         <FormLayout>
           <ValidatedTextField

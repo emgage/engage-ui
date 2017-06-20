@@ -1,6 +1,10 @@
 import * as React from 'react';
+import { themr, ThemedComponentClass } from 'react-css-themr';
 import TextField, { Props as TextFieldProps } from '../TextField';
 import { ValidationRule } from '../../types';
+
+import { TEXT_FIELD } from '../ThemeIdentifiers';
+import * as baseTheme from '../TextField/TextField.scss';
 
 export interface Props extends TextFieldProps {
     id: string,
@@ -11,7 +15,7 @@ export interface Props extends TextFieldProps {
     validator?(rule: object, value: any, callback: (error?: Error) => void): void,
 }
 
-export default class  ValidatedTextFieldComponent extends React.PureComponent<Props, {}> {
+class ValidatedTextFieldComponent extends React.PureComponent<Props, {}> {
 
   constructor(props: Props) {
     super(props);
@@ -41,14 +45,14 @@ export default class  ValidatedTextFieldComponent extends React.PureComponent<Pr
     });
 
     return (
-        <div>
-            <TextField
-                {...otherProps}
-                {...otherFieldProps}
-                value={initialValue}
-                errors={form.getFieldError(this.props.name)}
-            />
-        </div>
+        <TextField
+            {...otherProps}
+            {...otherFieldProps}
+            value={initialValue}
+            errors={form.getFieldError(this.props.name)}
+        />
     );
   }
 }
+
+export default themr(TEXT_FIELD, baseTheme)(ValidatedTextFieldComponent) as ThemedComponentClass<Props, {}>;

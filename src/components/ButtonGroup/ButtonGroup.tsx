@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr } from 'react-css-themr';
+import { themr, ThemedComponentClass } from 'react-css-themr';
 import {classNames} from '@shopify/react-utilities/styles';
 import {elementChildren} from '@shopify/react-utilities/components';
 import {Props as ButtonProps} from '../Button';
@@ -30,4 +30,4 @@ const ButtonGroup = ({
   return <div className={className}>{contents}</div>;
 }
 
-export default themr(BUTTON_GROUP, baseTheme)(ButtonGroup);
+export default themr(BUTTON_GROUP, baseTheme)(ButtonGroup) as ThemedComponentClass<Props, {}>;
