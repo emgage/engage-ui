@@ -1,15 +1,14 @@
-import { PeopleInfo } from '../PeopleInfo';
 import { IPickerSource } from '../IPickerSource';
+import { MockPeopleInfo } from './MockPeopleInfo';
 
-
-export class MockPickerSource implements IPickerSource {
+export class MockPickerSource implements IPickerSource<MockPeopleInfo> {
 
     // tslint:disable-next-line:no-empty
     constructor() {
 
     };
-    performFilter(): Promise<PeopleInfo[]> {
-        const data: PeopleInfo[] = [];
+    performFilter(): Promise<MockPeopleInfo[]> {
+        const data: MockPeopleInfo[] = [];
         return Promise.all(data);
     }
 }

@@ -1,9 +1,8 @@
-import { PeoplePickerSearchType } from '../../src/components/Picker/PickerEnum';
-import { PeopleInfo } from '../../src/components/Picker/PeopleInfo';
 import { IPickerSource } from '../../src/components/Picker/IPickerSource';
+import { PeoplePickerSearchType } from './PickerEnum';
+import { PeopleInfo } from './PeopleInfo';
 
-
-export class PeoplePickerSource implements IPickerSource {
+export class PeoplePickerSource implements IPickerSource<PeopleInfo> {
 
     private readonly searchType: PeoplePickerSearchType;
     private readonly activeOnly: boolean;

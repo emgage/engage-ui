@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { FlexAlign, FlexDirection, FlexJustify } from '../../src/components/FlexBox/FlexProps';
-import { PeoplePickerSearchType } from '../../src/components/Picker/PickerEnum';
+import { PeoplePickerSearchType } from './PickerEnum';
 import { PeoplePickerSource } from './PickerSource';
 
 import {
@@ -84,16 +84,15 @@ const theme = {
       <div>
         <div> 
           <Heading>Popover</Heading>
-          <Popover active={true} activator={<Chip>Batman</Chip>} onClose={this.popoverClose()}>
+          <Popover active={true} activator={<Chip>Batman</Chip>} onClose={this.popoverClose}>
               <Card title="More about Batman">
                 <p>Batman is a fictional superhero who appears in American comic books published by DC Comics. The character was created by artist Bob Kane and writer Bill Finger, and first appeared in Detective Comics #27</p>
               </Card>
-          </Popover>
+          </Popover> 
         </div>
       <Picker required={true}
         chipComponent={Chip}
         filterPlaceHolder="People"
-        peoplePickerSearchType={PeoplePickerSearchType.Both}
         searchResultComponent={Chip}
         source={new PeoplePickerSource(PeoplePickerSearchType.Both)}
         maxSelectedItems={5}

@@ -1,5 +1,3 @@
-import { PeoplePickerSearchType } from './PickerEnum';
-
 export interface IPickerInfo {
     Id?: number,
     Name: string,

@@ -1,13 +1,12 @@
 import * as React from 'react';
-import { themr } from 'react-css-themr';
-import { classNames } from '@shopify/react-utilities/styles';
+import { themr, ThemedComponentClass } from 'react-css-themr';
 import { PICKER } from '../ThemeIdentifiers';
 import TextField from '../TextField';
 import { DisplayMoreInfo } from './PickerEnum';
 import { IPickerInfo } from './IPickerInfo';
 import { IPickerSource } from './IPickerSource';
 
-import * as baseTheme from './Chip.scss';
+import * as baseTheme from './Picker.scss';
 
 export interface State {
     people: string,
@@ -26,7 +25,7 @@ export interface Props {
     chipComponent: React.ReactNode,
     searchResultComponent: React.ReactNode,
     moreInfoComponent?: React.ReactNode,
-    source: IPickerSource,
+    source: IPickerSource<IPickerInfo>,
     moreInfoComponentShowOn?: DisplayMoreInfo,
     style?: React.CSSProperties,
     theme?: any,
@@ -56,14 +55,14 @@ class Picker extends React.Component<Props, State> {
             chipComponent,
             searchResultComponent,
             searchBehavior = this.handleChange,
-            moreInfoComponentShowOn = MoreInfoOn.onClick,
+            moreInfoComponentShowOn = DisplayMoreInfo.onClick,
             onSelect = this.handleSelect,
             onRemove = this.handleRemove,
             onMoreInfo = this.handleMoreInfo,
             theme,
           } = this.props;
         let className = '';
-        if (selectedResultsBehavior === 'hide' || selectedResultsBehavior === undefined) {
+        if (selectedResultsBehavior === 'hide') {
             className = theme.pickerResultHide;
         } else {
             className = theme.pickerResultShow;
@@ -86,9 +85,10 @@ class Picker extends React.Component<Props, State> {
                         required={required} />
                  </div>
                 <div>
+                    {console.log(this.state.searchItems)}
                     {
                         this.state.searchItems.map(function(i) {
-                            return React.createElement(searchResultComponent as React.ComponentClass<{ clickable: boolean, moreInfoComponent: React.ReactNode, moreInfoComponentShowOn: MoreInfoOn, onClick(item: any): void, handleMoreInfo(): void }>, { key: i.Id, clickable: true, moreInfoComponent, moreInfoComponentShowOn, onClick: onSelect, handleMoreInfo: onMoreInfo }, [i.Name]);
+                            return React.createElement(searchResultComponent as React.ComponentClass<{ clickable: boolean, moreInfoComponent: React.ReactNode, moreInfoComponentShowOn: DisplayMoreInfo, onClick(item: any): void, handleMoreInfo(): void }>, { key: i.Id, clickable: true, moreInfoComponent, moreInfoComponentShowOn, onClick: onSelect, handleMoreInfo: onMoreInfo }, [i.Name]);
                         })
                     }
                    
@@ -98,7 +98,7 @@ class Picker extends React.Component<Props, State> {
 
     }
     private handleChange = (value: string) => {
-       this.setState({ ['people']: value });
+        this.setState({ ['people']: value });
         setTimeout(() => {
            this.props.source.performFilter(value).then(this.onSuccess).catch(this.onError);
         }, this.props.millisecondsToWaitBeforeSearch === undefined ? 0 : this.props.millisecondsToWaitBeforeSearch);
@@ -148,5 +148,5 @@ class Picker extends React.Component<Props, State> {
     }
 }
 
-export default themr(PICKER, baseTheme)(Picker);
+export default themr(PICKER, baseTheme)(Picker) as ThemedComponentClass<Props, State>;
 

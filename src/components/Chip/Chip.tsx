@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { themr } from 'react-css-themr';
+import { themr, ThemedComponentClass } from 'react-css-themr';
 import { classNames } from '@shopify/react-utilities/styles';
-import { MoreInfoOn } from '../Picker/PickerEnum';
+import { DisplayMoreInfo } from '../Picker/PickerEnum';
 import { CHIP } from '../ThemeIdentifiers';
 import * as baseTheme from './Chip.scss';
 
@@ -14,7 +14,7 @@ export interface Props {
     },
     transparent?: boolean,
     moreInfoComponent?: React.ReactNode,
-    moreInfoComponentShowOn?: MoreInfoOn,
+    moreInfoComponentShowOn?: DisplayMoreInfo,
     style?: React.CSSProperties,
     theme?: any,
     onRemove?(event: any): void,
@@ -73,4 +73,4 @@ class Chip extends React.PureComponent<Props, any> {
     }
 }
 
-export default themr(CHIP, baseTheme)(Chip);
+export default themr(CHIP, baseTheme)(Chip) as ThemedComponentClass<Props, {}>;

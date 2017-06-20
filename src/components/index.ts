@@ -97,7 +97,7 @@ export {
 
 export {
   default as Picker,
-  MoreInfo as DisplayMoreInfo,
+  DisplayMoreInfo,
   Props as PickerProps,
 } from './Picker';
 
