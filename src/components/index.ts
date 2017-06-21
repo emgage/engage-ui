@@ -185,3 +185,8 @@ export {
   default as Loading,
   Props as LoadingProps,
 } from './Loading';
+
+export {
+  default as ClickableChip,
+  Props as ClickableChipProps,
+} from './ClickableChip';

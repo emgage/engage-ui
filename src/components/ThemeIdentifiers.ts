@@ -26,3 +26,4 @@ export const TEXT_FIELD = 'PTextField';
 export const CHIP = 'PChip';
 export const PICKER = 'PPicker';
 export const LOADING = 'PLoading';
+export const CLICKABLECHIP = 'PClickableChip';

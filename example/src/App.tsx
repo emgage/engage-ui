@@ -20,7 +20,7 @@ import {
   Panel,
   Picker,
   Card,
-  Popover,
+  ClickableChip,
   Loading,
 } from '../../src/components';
 
@@ -83,18 +83,19 @@ class App extends React.Component<{}, State> {
 
     return (
       <div>
+        <div>
+          <Heading>Popover</Heading>
+          <ClickableChip chip={<Chip>Batman</Chip>}>
+            <Card title="More about Batman">
+              <p>Batman is a fictional superhero who appears in American comic books published by DC Comics. The character was created by artist Bob Kane and writer Bill Finger, and first appeared in Detective Comics #27</p>
+            </Card>
+          </ClickableChip>
+        </div>
         <Loading />
         <Loading>
           <div><span>Ranmal</span></div>
         </Loading>
-        <div>
-          <Heading>Popover</Heading>
-          <Popover active={true} activator={<Chip>Batman</Chip>} onClose={this.popoverClose}>
-            <Card title="More about Batman">
-              <p>Batman is a fictional superhero who appears in American comic books published by DC Comics. The character was created by artist Bob Kane and writer Bill Finger, and first appeared in Detective Comics #27</p>
-            </Card>
-          </Popover>
-        </div>
+        
         <Picker required={true}
           chipComponent={Chip}
           filterPlaceHolder="People"
