@@ -1,4 +1,3 @@
-import { PeopleInfo } from './PeopleInfo';
-export interface IPickerSource {
-    performFilter(filterString: string): Promise<PeopleInfo[]>,
+export interface IPickerSource<T> {
+    performFilter(filterString: string): Promise<T[]>,
 }

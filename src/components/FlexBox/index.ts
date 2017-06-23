@@ -1,4 +1,4 @@
 import FlexBox from './FlexBox';
 
-export {Props} from './FlexBox';
+export * from './FlexBox';
 export default FlexBox;

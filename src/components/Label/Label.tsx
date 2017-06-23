@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr } from 'react-css-themr';
+import { themr, ThemedComponentClass } from 'react-css-themr';
 import {classNames} from '@shopify/react-utilities/styles';
 
 import {Action} from '../../types';
@@ -57,4 +57,4 @@ function Label({
   );
 }
 
-export default themr(LABEL, baseTheme)(Label);
+export default themr(LABEL, baseTheme)(Label) as ThemedComponentClass<Props, {}>;

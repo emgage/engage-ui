@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr } from 'react-css-themr';
+import { themr, ThemedComponentClass } from 'react-css-themr';
 import autobind from '@shopify/javascript-utilities/autobind';
 import EventListener from '../EventListener';
 
@@ -111,4 +111,4 @@ function getFinalContents(contents?: string) {
     : '<br>';
 }
 
-export default themr(TEXT_FIELD, baseTheme)(Resizer);
+export default themr(TEXT_FIELD, baseTheme)(Resizer) as ThemedComponentClass<Props, {}>;

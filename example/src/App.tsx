@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { FlexAlign, FlexDirection, FlexJustify } from '../../src/components/FlexBox/FlexProps';
-import { PeoplePickerSearchType } from '../../src/components/Picker/PickerEnum';
+import { PeoplePickerSearchType } from './PickerEnum';
 import { PeoplePickerSource } from './PickerSource';
 
 import {
@@ -9,7 +9,7 @@ import {
   DisplayText,
   FormLayout,
   Heading,
-  //Link,
+  Link,
   TextField,
   FlexBox,
   ValidatedTextField,
@@ -20,6 +20,8 @@ import {
   Panel,
   Picker,
   Column,
+  Card,
+  Popover,
 } from '../../src/components';
 
 interface State {
@@ -73,18 +75,19 @@ const sampleVideoCmp = <Video
   width: 100,
 }} />;
 
-const theme = {
-  Panel: 'thm-pnl',
-  Heading: 'thm-hdr',
-  Body: 'thm-body',
-};
-
     return (
       <div>
-        <Picker required={true}
+        <div> 
+          <Heading>Popover</Heading>
+          <Popover active={true} activator={<Chip>Batman</Chip>} onClose={this.popoverClose}>
+              <Card title="More about Batman">
+                <p>Batman is a fictional superhero who appears in American comic books published by DC Comics. The character was created by artist Bob Kane and writer Bill Finger, and first appeared in Detective Comics #27</p>
+              </Card>
+          </Popover> 
+        </div>
+      <Picker required={true}
         chipComponent={Chip}
         filterPlaceHolder="People"
-        peoplePickerSearchType={PeoplePickerSearchType.Both}
         searchResultComponent={Chip}
         source={new PeoplePickerSource(PeoplePickerSearchType.Both)}
         maxSelectedItems={5}
@@ -180,7 +183,7 @@ const theme = {
       </div>
       <div>
         <h4>Panel Component</h4>
-        <Panel heading="BASIC PANEL" theme={theme}>
+        <Panel heading="BASIC PANEL">
           <div>
             Lorem ipsum lorem ipsum
           </div>
@@ -198,7 +201,7 @@ const theme = {
           </div>
         </Panel>
         <br/>
-        <Panel heading={<div>Custom Panel with Video</div>} video={sampleVideoCmp} theme={theme}>
+        <Panel heading={<div>Custom Panel with Video</div>} video={sampleVideoCmp}>
           <div>
             Lorem ipsum lorem ipsum
           </div>
@@ -375,6 +378,10 @@ const theme = {
 
   valueUpdater(field: any) {
     return (value: any) => this.setState({[field]: value});
+  }
+
+  popoverClose(field: any) {
+   return;
   }
 }
 

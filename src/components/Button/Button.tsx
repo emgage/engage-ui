@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr } from 'react-css-themr';
+import { themr, ThemedComponentClass } from 'react-css-themr';
 import {classNames, variationName} from '@shopify/react-utilities';
 
 import {ComplexAction} from '../../types';
@@ -124,7 +124,7 @@ const Button = ({
   );
 };
 
-const ThemedButton = themr(BUTTON, baseTheme)(Button);
+const ThemedButton = themr(BUTTON, baseTheme)(Button) as ThemedComponentClass<Props, {}>;
 
 function handleMouseUp({currentTarget}: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) {
   currentTarget.blur();
@@ -156,4 +156,4 @@ export function buttonFrom(
   );
 }
 
-export default ThemedButton;
+export default ThemedButton
