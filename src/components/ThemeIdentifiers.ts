@@ -23,3 +23,6 @@ export const SELECT = 'PSelect';
 export const STACK = 'PStack';
 export const SUBHEADING = 'PSubheading';
 export const TEXT_FIELD = 'PTextField';
+export const FLEXBOX = 'PFlexBox';
+export const PANEL = 'PPanel';
+export const VIDEO = 'PVideo';
