@@ -69,7 +69,7 @@ class Column extends React.PureComponent<Props, {}> {
     }
 
     render() {
-        let className = ''; // this.props.theme.column;
+        let className = '';
 
         if (this.props.small) {
             className = classNames(this.getClassName(this.props.small, 'small'), className);
