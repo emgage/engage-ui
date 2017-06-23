@@ -27,3 +27,6 @@ export const CHIP = 'PChip';
 export const PICKER = 'PPicker';
 export const LOADING = 'PLoading';
 export const CLICKABLECHIP = 'PClickableChip';
+export const FLEXBOX = 'PFlexBox';
+export const PANEL = 'PPanel';
+export const VIDEO = 'PVideo';
