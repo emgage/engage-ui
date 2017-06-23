@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { FlexAlign, FlexDirection, FlexJustify } from '../../src/components/FlexBox/FlexProps';
-import { PeoplePickerSearchType } from '../../src/components/Picker/PickerEnum';
+import { PeoplePickerSearchType } from './PickerEnum';
 import { PeoplePickerSource } from './PickerSource';
 
 import {
@@ -9,6 +9,8 @@ import {
   DisplayText,
   FormLayout,
   Heading,
+  Link,
+  TextField,
   FlexBox,
   ValidatedTextField,
   ValidatedForm,
@@ -17,7 +19,8 @@ import {
   VideoType,
   Panel,
   Picker,
-  Checkbox,
+  Card,
+  Popover,
 } from '../../src/components';
 
 interface State {
@@ -73,10 +76,17 @@ const sampleVideoCmp = <Video
 
     return (
       <div>
-        <Picker required={true}
+        <div> 
+          <Heading>Popover</Heading>
+          <Popover active={true} activator={<Chip>Batman</Chip>} onClose={this.popoverClose}>
+              <Card title="More about Batman">
+                <p>Batman is a fictional superhero who appears in American comic books published by DC Comics. The character was created by artist Bob Kane and writer Bill Finger, and first appeared in Detective Comics #27</p>
+              </Card>
+          </Popover> 
+        </div>
+      <Picker required={true}
         chipComponent={Chip}
         filterPlaceHolder="People"
-        peoplePickerSearchType={PeoplePickerSearchType.Both}
         searchResultComponent={Chip}
         source={new PeoplePickerSource(PeoplePickerSearchType.Both)}
         maxSelectedItems={5}
@@ -91,8 +101,6 @@ const sampleVideoCmp = <Video
 
          <DisplayText size="large">This is Display Text, which is used to make a bold visual statement.</DisplayText>
          <p>This is just some fun regular text.</p>
-
-        <Checkbox label="Is this good?" />
 
         <FormLayout>
           <ValidatedTextField
@@ -204,6 +212,10 @@ const sampleVideoCmp = <Video
 
   valueUpdater(field: any) {
     return (value: any) => this.setState({[field]: value});
+  }
+
+  popoverClose(field: any) {
+   return;
   }
 }
 

@@ -115,6 +115,7 @@ export {
 
 export {
   default as Picker,
+  DisplayMoreInfo,
   Props as PickerProps,
 } from './Picker';
 
