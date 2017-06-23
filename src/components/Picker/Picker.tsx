@@ -60,6 +60,7 @@ class Picker extends React.Component<Props, State> {
             onRemove = this.handleRemove,
             onMoreInfo = this.handleMoreInfo,
             theme,
+            style,
           } = this.props;
         let className = '';
         if (selectedResultsBehavior === 'hide') {
@@ -68,7 +69,7 @@ class Picker extends React.Component<Props, State> {
             className = theme.pickerResultShow;
         }
         return (
-            <div>
+            <div style={style}>
                 <div>
                     <div className={className}>
                         {
