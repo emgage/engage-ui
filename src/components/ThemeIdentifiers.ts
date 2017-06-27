@@ -1,4 +1,6 @@
 export const AVATAR = 'PAvatar';
+export const BADGE = 'PBadge';
+export const BANNER = 'PBanner';
 export const BUTTON = 'PButton';
 export const BUTTON_GROUP = 'PButtonGroup';
 export const CARD = 'PCard';
@@ -22,4 +24,7 @@ export const SCROLLABLE = 'PScrollable';
 export const SELECT = 'PSelect';
 export const STACK = 'PStack';
 export const SUBHEADING = 'PSubheading';
+export const TAG = 'PTag';
 export const TEXT_FIELD = 'PTextField';
+export const TOOLTIP = 'PTooltip';
+export const VISUALLY_HIDDEN = 'PVisuallyHidden';
