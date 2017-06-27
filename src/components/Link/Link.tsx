@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr } from 'react-css-themr';
+import { themr, ThemedComponentClass } from 'react-css-themr';
 import UnstyledLink from '../UnstyledLink';
 import { LINK } from '../ThemeIdentifiers';
 
@@ -25,4 +25,4 @@ const Link = ({url, children, onClick, external, theme }: Props) => {
     );
 }
 
-export default themr(LINK)(Link);
+export default themr(LINK)(Link) as ThemedComponentClass<Props, {}>;
