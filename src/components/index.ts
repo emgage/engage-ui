@@ -190,3 +190,8 @@ export {
   default as ClickableChip,
   Props as ClickableChipProps,
 } from './ClickableChip';
+
+export {
+  default as MaskTextField,
+  Props as MaskTextFieldrops,
+} from './MaskTextField';

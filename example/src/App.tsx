@@ -22,6 +22,7 @@ import {
   Card,
   ClickableChip,
   Loading,
+  MaskTextField,
 } from '../../src/components';
 
 interface State {
@@ -84,6 +85,9 @@ class App extends React.Component<{}, State> {
     return (
       <div>
         <div>
+          <MaskTextField mask="card" maskValue="99-99-999" />
+        </div>
+        <div>
           <Heading>Popover</Heading>
           <ClickableChip chip={<Chip>Batman</Chip>}>
             <Card title="More about Batman">
@@ -95,7 +99,7 @@ class App extends React.Component<{}, State> {
         <Loading>
           <div><span>Ranmal</span></div>
         </Loading>
-        
+
         <Picker required={true}
           chipComponent={Chip}
           filterPlaceHolder="People"

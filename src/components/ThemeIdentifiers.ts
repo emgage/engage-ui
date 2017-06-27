@@ -30,3 +30,4 @@ export const CLICKABLECHIP = 'PClickableChip';
 export const FLEXBOX = 'PFlexBox';
 export const PANEL = 'PPanel';
 export const VIDEO = 'PVideo';
+export const MASK_TEXT_FIELD = 'PMaskTextField';
