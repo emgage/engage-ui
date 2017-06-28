@@ -23,6 +23,7 @@ export const SELECT = 'PSelect';
 export const STACK = 'PStack';
 export const SUBHEADING = 'PSubheading';
 export const TEXT_FIELD = 'PTextField';
+export const COLUMN = 'PColumn';
 export const CHIP = 'PChip';
 export const PICKER = 'PPicker';
 export const FLEXBOX = 'PFlexBox';
