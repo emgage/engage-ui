@@ -1,3 +1,4 @@
+/// <reference path="../../../@types/inputmask-core.d.ts" />
 import * as React from 'react';
 import { getSelection, setSelection } from 'react-dom/lib/ReactInputSelection';
 import InputMask from 'inputmask-core';
@@ -51,6 +52,7 @@ class MaskTextField extends React.PureComponent<Props, State> {
     }
     debugger;
     this.mask = new InputMask(options);
+    this.mask = InputMask(options);
   }
 
   componentWillReceiveProps(nextProps: any) {

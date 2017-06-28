@@ -89,7 +89,7 @@
     "webpack": "^2.4.1"
   },
   "peerDependencies": {
-    "react": "0.14.x || 15.x.x",
+    "react": "^15.5.4",
     "react-dom": "^15.5.4"
   },
   "babel": {
