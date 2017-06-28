@@ -1,22 +1,22 @@
 import * as React from 'react';
-import { getSelection, setSelection } from 'react/lib/ReactInputSelection';
+import { getSelection, setSelection } from 'react-dom/lib/ReactInputSelection';
 import InputMask from 'inputmask-core';
 import { themr, ThemedComponentClass } from 'react-css-themr';
-import { Props as TextFiledProps } from '../TextField';
+import { Props as TextFieldProps } from '../TextField';
 import { State } from '../TextField/TextField';
 import TextField from '../TextField';
 import { MASK_TEXT_FIELD } from '../ThemeIdentifiers';
 import * as baseTheme from './MaskTextField.scss';
 
-export interface Props extends TextFiledProps {
+export interface Props extends TextFieldProps {
   mask?: string,
   formatCharacters?: any,
   placeholderChar?: string,
-  size: any,
+  size?: any,
   onPaste?(e: any): void,
   onKeyPress?(e: any): void,
   onKeyDown?(e: any): void,
-  onEnter(e: any): void,
+  onEnter?(e: any): void,
 }
 const KEYCODE_Z = 90;
 const KEYCODE_Y = 89;
@@ -49,6 +49,7 @@ class MaskTextField extends React.PureComponent<Props, State> {
     if (this.props.placeholderChar) {
       options.placeholderChar = this.props.placeholderChar;
     }
+    debugger;
     this.mask = new InputMask(options);
   }
 
@@ -109,7 +110,9 @@ class MaskTextField extends React.PureComponent<Props, State> {
 
   onKeyDown(e: any) {
     if (e.key === 'Enter') {
-      this.props.onEnter(this.mask.getValue());
+      if (this.props.onEnter !== undefined) {
+        this.props.onEnter(this.mask.getValue());
+      }
     }
 
     // console.log('onKeyDown', JSON.stringify(getSelection(this.input)), e.key, e.target.value)
@@ -157,7 +160,9 @@ class MaskTextField extends React.PureComponent<Props, State> {
     // console.log('onKeyPress', JSON.stringify(getSelection(this.input)), e.key, e.target.value)
 
     if (e.key === 'Enter') {
-      this.props.onEnter(this.mask.getValue());
+      if (this.props.onEnter !== undefined) {
+        this.props.onEnter(this.mask.getValue());
+      }
     }
 
     // Ignore modified key presses
