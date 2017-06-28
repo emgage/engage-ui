@@ -4,6 +4,16 @@ export {
 } from './Avatar';
 
 export {
+  default as Badge,
+  Props as BadgeProps,
+} from './Badge';
+
+export {
+  default as Banner,
+  Props as BannerProps,
+} from './Banner';
+
+export {
   default as Button,
   Props as ButtonProps,
 } from './Button';
@@ -59,9 +69,14 @@ export {
 } from './Heading';
 
 export {
-  default as DisplayText,
-  Props as DisplayTextProps,
-} from './DisplayText';
+  default as Icon,
+  Props as IconProps,
+} from './Icon';
+
+export {
+  default as Image,
+  Props as ImageProps,
+} from './Image';
 
 export {
   default as EventListener,
@@ -72,26 +87,6 @@ export {
   default as FlexBox,
   Props as FlexBoxProps,
 } from './FlexBox';
-
-export {
-  default as FormLayout,
-  Props as FormLayoutProps,
-} from './FormLayout';
-
-export {
-  default as Heading,
-  Props as HeadingProps,
-} from './Heading';
-
-export {
-  default as Icon,
-  Props as IconProps,
-} from './Icon';
-
-export {
-  default as Image,
-  Props as ImageProps,
-} from './Image';
 
 export {
   default as KeypressListener,
@@ -170,9 +165,19 @@ export {
 } from './Subheading';
 
 export {
+  default as Tag,
+  Props as TagProps,
+} from './Tag';
+
+export {
   default as TextField,
   Props as TextFieldProps,
 } from './TextField';
+
+export {
+  default as Tooltip,
+  Props as TooltipProps,
+} from './Tooltip';
 
 export {
   default as UnstyledLink,
@@ -195,3 +200,8 @@ export {
   Props as VideoProps,
   VideoType,
 } from './Video';
+
+export {
+  default as VisuallyHidden,
+  Props as VisuallyHiddenProps,
+} from './VisuallyHidden';
