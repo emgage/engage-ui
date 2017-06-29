@@ -185,3 +185,8 @@ export {
   default as Column,
   Props as ColumnProps,
 } from './Column';
+
+export {
+  default as ClickableChip,
+  Props as ClickableChipProps,
+} from './ClickableChip';
