@@ -6,8 +6,8 @@ import {focusFirstFocusableNode, findFirstFocusableNode} from '@shopify/javascri
 
 import {PreferredPosition} from '../PositionedOverlay';
 import PopoverOverlay, {CloseSource} from './PopoverOverlay';
-import Pane from './Pane';
-import Section from './Section';
+// import Pane from './Pane';
+// import Section from './Section';
 
 export interface Props {
   children?: React.ReactNode,
@@ -28,8 +28,8 @@ const getUniqueID = createUniqueIDFactory('Popover');
 
 @layeredComponent({idPrefix: 'Popover'})
 export default class Popover extends React.PureComponent<Props, State> {
-  static Pane = Pane;
-  static Section = Section;
+  // static Pane = Pane;
+  // static Section = Section;
 
   state: State = {
     activatorFocused: false,

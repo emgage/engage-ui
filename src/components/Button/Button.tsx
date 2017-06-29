@@ -136,7 +136,7 @@ export function buttonsFrom(actions: ComplexAction[] | ComplexAction, overrides:
   if ((actions as ComplexAction[]).length != null) {
     return (actions as ComplexAction[]).map((action, index) => buttonFrom(action, overrides, index));
   } else {
-    return buttonFrom(actions, overrides);
+    return buttonFrom(actions as ComplexAction, overrides);
   }
 }
 
