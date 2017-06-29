@@ -6070,6 +6070,12 @@ react-proxy@^3.0.0-alpha.0:
   dependencies:
     lodash "^4.6.1"
 
+react-text-mask-hoc@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/react-text-mask-hoc/-/react-text-mask-hoc-0.3.0.tgz#02711a9104a5f7bbc30caa0066977a83a485d0f7"
+  dependencies:
+    prop-types "^15.5.10"
+
 react-transition-group@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/react-transition-group/-/react-transition-group-1.2.0.tgz#b51fc921b0c3835a7ef7c571c79fc82c73e9204f"

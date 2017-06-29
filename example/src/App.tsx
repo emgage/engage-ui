@@ -21,7 +21,7 @@ import {
   Picker,
   Column,
   Card,
-  Popover,
+  ClickableChip,
 } from '../../src/components';
 
 interface State {
@@ -79,11 +79,11 @@ const sampleVideoCmp = <Video
       <div>
         <div> 
           <Heading>Popover</Heading>
-          <Popover active={true} activator={<Chip>Batman</Chip>} onClose={this.popoverClose}>
-              <Card title="More about Batman">
-                <p>Batman is a fictional superhero who appears in American comic books published by DC Comics. The character was created by artist Bob Kane and writer Bill Finger, and first appeared in Detective Comics #27</p>
-              </Card>
-          </Popover> 
+          <ClickableChip chip={<Chip>Batman</Chip>}>
+            <Card title="More about Batman">
+              <p>Batman is a fictional superhero who appears in American comic books published by DC Comics. The character was created by artist Bob Kane and writer Bill Finger, and first appeared in Detective Comics #27</p>
+            </Card>
+          </ClickableChip>
         </div>
       <Picker required={true}
         chipComponent={Chip}
