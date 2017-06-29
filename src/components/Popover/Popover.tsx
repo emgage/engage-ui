@@ -17,7 +17,7 @@ export interface Props {
   activatorWrapper?: string,
   preventAutofocus?: boolean,
   sectioned?: boolean,
-  onClose(source: CloseSource): void,
+  onClose?(source: CloseSource): void,
 }
 
 export interface State {

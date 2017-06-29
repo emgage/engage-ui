@@ -19,8 +19,9 @@ import {
   VideoType,
   Panel,
   Picker,
+  Column,
   Card,
-  Popover,
+  ClickableChip,
 } from '../../src/components';
 
 interface State {
@@ -78,11 +79,11 @@ const sampleVideoCmp = <Video
       <div>
         <div> 
           <Heading>Popover</Heading>
-          <Popover active={true} activator={<Chip>Batman</Chip>} onClose={this.popoverClose}>
-              <Card title="More about Batman">
-                <p>Batman is a fictional superhero who appears in American comic books published by DC Comics. The character was created by artist Bob Kane and writer Bill Finger, and first appeared in Detective Comics #27</p>
-              </Card>
-          </Popover> 
+          <ClickableChip chip={<Chip>Batman</Chip>}>
+            <Card title="More about Batman">
+              <p>Batman is a fictional superhero who appears in American comic books published by DC Comics. The character was created by artist Bob Kane and writer Bill Finger, and first appeared in Detective Comics #27</p>
+            </Card>
+          </ClickableChip>
         </div>
       <Picker required={true}
         chipComponent={Chip}
@@ -206,6 +207,171 @@ const sampleVideoCmp = <Video
           </div>
         </Panel>
       </div>
+       <div>
+        <h2>Column Component Demo</h2>
+        <div>
+          <Column small="1-1">
+            <p>Small 1-1!</p>
+          </Column>
+        </div>
+        <br />
+        <div className="Column__column__2cVdb">
+          <Column small="1-2" medium="1-2" large="3-5">
+            <span>Hello small=1-2 medium=1-2 large=3-5</span>
+          </Column> 
+          <Column small="1-2" medium="1-2" large="4-10"> 
+            <span>Hello small=1-2 medium=1-2 large=4-10</span>
+          </Column>
+        </div>
+        <br />
+        <div className="Column__column__2cVdb">
+          <Column large="2-3">
+            <span>2-3 large</span>
+          </Column> 
+          <Column large="3-10"> 
+            <span>large 3-10</span>
+          </Column>
+        </div>
+        <br />
+        <h3>XLarge 1-10</h3>
+        <div className="Column__column__2cVdb">
+          <Column extraLarge="1-10">
+            <span>1</span>
+          </Column> 
+          <Column extraLarge="1-10">
+            <span>2</span>
+          </Column> 
+          <Column extraLarge="1-10">
+            <span>3</span>
+          </Column> 
+          <Column extraLarge="1-10">
+            <span>4</span>
+          </Column> 
+          <Column extraLarge="1-10">
+            <span>5</span>
+          </Column> 
+          <Column extraLarge="1-10">
+            <span>6</span>
+          </Column> 
+          <Column extraLarge="1-10">
+            <span>7</span>
+          </Column> 
+          <Column extraLarge="1-10">
+            <span>8</span>
+          </Column> 
+          <Column extraLarge="1-10">
+            <span>9</span>
+          </Column>
+          <Column extraLarge="1-10">
+            <span>10</span>
+          </Column>  
+        </div>
+        <br />
+        <h3>Small 1-10</h3>
+        <div className="Column__column__2cVdb">
+          <Column small="1-10">
+            <span>1</span>
+          </Column> 
+          <Column small="1-10">
+            <span>2</span>
+          </Column> 
+          <Column small="1-10">
+            <span>3</span>
+          </Column> 
+          <Column small="1-10">
+            <span>4</span>
+          </Column> 
+          <Column small="1-10">
+            <span>5</span>
+          </Column> 
+          <Column small="1-10">
+            <span>6</span>
+          </Column> 
+          <Column small="1-10">
+            <span>7</span>
+          </Column> 
+          <Column small="1-10">
+            <span>8</span>
+          </Column> 
+          <Column small="1-10">
+            <span>9</span>
+          </Column>
+          <Column small="1-10">
+            <span>10</span>
+          </Column>  
+        </div>
+        <br />
+        <h3>Medium 1-10</h3>
+        <div className="Column__column__2cVdb">
+          <Column medium="1-10">
+            <span>1</span>
+          </Column> 
+          <Column medium="1-10">
+            <span>2</span>
+          </Column> 
+          <Column medium="1-10">
+            <span>3</span>
+          </Column> 
+          <Column medium="1-10">
+            <span>4</span>
+          </Column> 
+          <Column medium="1-10">
+            <span>5</span>
+          </Column> 
+          <Column medium="1-10">
+            <span>6</span>
+          </Column> 
+          <Column medium="1-10">
+            <span>7</span>
+          </Column> 
+          <Column medium="1-10">
+            <span>8</span>
+          </Column> 
+          <Column medium="1-10">
+            <span>9</span>
+          </Column>
+          <Column medium="1-10">
+            <span>10</span>
+          </Column>  
+        </div>
+        <br />
+        <h3>Large 1-10</h3>
+        <div className="Column__column__2cVdb">
+          <Column large="1-10">
+            <span>1</span>
+          </Column> 
+          <Column large="1-10">
+            <span>2</span>
+          </Column> 
+          <Column large="1-10">
+            <span>3</span>
+          </Column> 
+          <Column large="1-10">
+            <span>4</span>
+          </Column> 
+          <Column large="1-10">
+            <span>5</span>
+          </Column> 
+          <Column large="1-10">
+            <span>6</span>
+          </Column> 
+          <Column large="1-10">
+            <span>7</span>
+          </Column> 
+          <Column large="1-10">
+            <span>8</span>
+          </Column> 
+          <Column large="1-10">
+            <span>9</span>
+          </Column>
+          <Column large="1-10">
+            <span>10</span>
+          </Column>  
+        </div>
+      </div>
+      <br />
+      <br />
+      <br />
       </div>
     );
   }

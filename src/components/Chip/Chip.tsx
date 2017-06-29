@@ -30,7 +30,6 @@ class Chip extends React.PureComponent<Props, any> {
             image,
             transparent,
             theme,
-            style,
         } = this.props;
 
         const className = classNames(
@@ -51,7 +50,7 @@ class Chip extends React.PureComponent<Props, any> {
         ];
 
         return (
-            <span className={className} style={style}>
+            <span className={className}>
                 {
                     this.props.clickable
                         ?

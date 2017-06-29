@@ -49,6 +49,16 @@ export {
 } from './ChoiceList';
 
 export {
+  default as ClickableChip,
+  Props as ClickableChipProps,
+} from './ClickableChip';
+
+export {
+  default as Column,
+  Props as ColumnProps,
+} from './Column';
+
+export {
   default as Connected,
   Props as ConnectedProps,
 } from './Connected';
