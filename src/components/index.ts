@@ -124,6 +124,11 @@ export {
 } from './List';
 
 export {
+  default as Loading,
+  Props as LoadingProps,
+} from './Loading';
+
+export {
   default as Message,
   Props as MessageProps,
 } from './Message';
@@ -215,3 +220,4 @@ export {
   default as VisuallyHidden,
   Props as VisuallyHiddenProps,
 } from './VisuallyHidden';
+
