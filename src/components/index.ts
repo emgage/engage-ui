@@ -4,6 +4,16 @@ export {
 } from './Avatar';
 
 export {
+  default as Badge,
+  Props as BadgeProps,
+} from './Badge';
+
+export {
+  default as Banner,
+  Props as BannerProps,
+} from './Banner';
+
+export {
   default as Button,
   Props as ButtonProps,
 } from './Button';
@@ -39,6 +49,16 @@ export {
 } from './ChoiceList';
 
 export {
+  default as ClickableChip,
+  Props as ClickableChipProps,
+} from './ClickableChip';
+
+export {
+  default as Column,
+  Props as ColumnProps,
+} from './Column';
+
+export {
   default as Connected,
   Props as ConnectedProps,
 } from './Connected';
@@ -47,16 +67,6 @@ export {
   default as DisplayText,
   Props as DisplayTextProps,
 } from './DisplayText';
-
-export {
-  default as EventListener,
-  Props as EventListenerProps,
-} from './EventListener';
-
-export {
-  default as FlexBox,
-  Props as FlexBoxProps,
-} from './FlexBox';
 
 export {
   default as FormLayout,
@@ -77,6 +87,16 @@ export {
   default as Image,
   Props as ImageProps,
 } from './Image';
+
+export {
+  default as EventListener,
+  Props as EventListenerProps,
+} from './EventListener';
+
+export {
+  default as FlexBox,
+  Props as FlexBoxProps,
+} from './FlexBox';
 
 export {
   default as KeypressListener,
@@ -102,6 +122,11 @@ export {
   default as List,
   Props as ListProps,
 } from './List';
+
+export {
+  default as Loading,
+  Props as LoadingProps,
+} from './Loading';
 
 export {
   default as Message,
@@ -155,9 +180,19 @@ export {
 } from './Subheading';
 
 export {
+  default as Tag,
+  Props as TagProps,
+} from './Tag';
+
+export {
   default as TextField,
   Props as TextFieldProps,
 } from './TextField';
+
+export {
+  default as Tooltip,
+  Props as TooltipProps,
+} from './Tooltip';
 
 export {
   default as UnstyledLink,
@@ -182,15 +217,7 @@ export {
 } from './Video';
 
 export {
-  default as Column,
-  Props as ColumnProps,
-} from './Column';
-export {
-  default as ClickableChip,
-  Props as ClickableChipProps,
-} from './ClickableChip';
+  default as VisuallyHidden,
+  Props as VisuallyHiddenProps,
+} from './VisuallyHidden';
 
-export {
-  default as Loading,
-  Props as LoadingProps,
-} from './Loading';
