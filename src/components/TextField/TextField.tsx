@@ -50,7 +50,7 @@ export interface Props {
   style?: React.CSSProperties,
   theme?: any,
   onChange?(value: string): void,
-  onFocus?(): void,
+  onFocus?(e?: any): void,
   onBlur?(e?: any): void,
 }
 
@@ -220,7 +220,7 @@ class TextField extends React.PureComponent<Props, State> {
   }
 
   @autobind
-  private handleInputOnFocus() {
+  private handleInputOnFocus(e: any) {
     this.setState((prevState: State) => ({
       ...prevState,
       focused: true,
@@ -228,7 +228,7 @@ class TextField extends React.PureComponent<Props, State> {
 
     const {onFocus} = this.props;
     if (onFocus == null) { return; }
-    onFocus();
+    onFocus(e);
   }
 
   @autobind

@@ -85,7 +85,7 @@ class App extends React.Component<{}, State> {
     return (
       <div>
         <div>
-          <MaskTextField label="lb1" value={this.state.appName} mask="1111 1111 1111 1111" onChange={this.valueUpdater('appName')} />
+          <MaskTextField label="lb1" placeholder="Enter Data"  mask="99/99/9999" />
         </div>
         <div>
           <Heading>Popover</Heading>

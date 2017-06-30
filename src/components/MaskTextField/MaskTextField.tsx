@@ -1,275 +1,495 @@
-/// <reference path="../../../@types/inputmask-core.d.ts" />
 import * as React from 'react';
-import { getSelection, setSelection } from 'react-dom/lib/ReactInputSelection';
-import InputMask from 'inputmask-core';
 import { themr, ThemedComponentClass } from 'react-css-themr';
 import { Props as TextFieldProps } from '../TextField';
 import { State } from '../TextField/TextField';
 import TextField from '../TextField';
 import { MASK_TEXT_FIELD } from '../ThemeIdentifiers';
+import {IMaskOption, IBackSpace } from './IMaskInterface';
+import parseMask from './parseMask';
+import { isAndroidBrowser, isWindowsPhoneBrowser, isAndroidFirefox } from './environment';
+import {
+  clearRange,
+  formatValue,
+  getFilledLength,
+  isFilled,
+  isEmpty,
+  isPermanentChar,
+  getInsertStringLength,
+  insertString,
+} from './string';
+import defer from './defer';
 import * as baseTheme from './MaskTextField.scss';
 
 export interface Props extends TextFieldProps {
   mask?: string,
-  formatCharacters?: any,
-  placeholderChar?: string,
-  size?: any,
+  formatChars?: any,
+  maskChar?: string,
+  defaultValue?: string,
+  alwaysShowMask?: boolean,
   onPaste?(e: any): void,
   onKeyPress?(e: any): void,
   onKeyDown?(e: any): void,
   onEnter?(e: any): void,
 }
-const KEYCODE_Z = 90;
-const KEYCODE_Y = 89;
-
-function isUndo(e: any) {
-  return (e.ctrlKey || e.metaKey) && e.keyCode === (e.shiftKey ? KEYCODE_Y : KEYCODE_Z);
-}
-
-function isRedo(e: any) {
-  return (e.ctrlKey || e.metaKey) && e.keyCode === (e.shiftKey ? KEYCODE_Z : KEYCODE_Y);
-}
 class MaskTextField extends React.PureComponent<Props, State> {
-  public static defaultProps: Partial<Props> = {
-    value: '',
-    onEnter: () => { },
-  };
-  public mask: any;
-  public input: any;
-  constructor(props: Props) {
+  lastCursorPos: number;
+  hasValue = false;
+  maskOptions: IMaskOption;
+  value = '';
+   isAndroidBrowser: boolean;
+   isWindowsPhoneBrowser: boolean;
+   isAndroidFirefox: boolean;
+  backspaceOrDeleteRemoval?: IBackSpace;
+   input: any;
+   paste: any;
+  constructor(props: any) {
     super(props);
-    this.mask = '';
-  }
-  componentWillMount() {
-    const options = {
-      pattern: this.props.mask,
-      value: this.props.value,
-      placeholderChar: '',
-      formatCharacters: this.props.formatCharacters,
-    };
-    if (this.props.placeholderChar) {
-      options.placeholderChar = this.props.placeholderChar;
+
+    const { mask, maskChar, formatChars, alwaysShowMask } = props;
+    let {  defaultValue, value } = props;
+
+    this.hasValue = value != null;
+    this.maskOptions = parseMask(mask, maskChar, formatChars);
+
+    if (defaultValue == null) {
+      defaultValue = '';
     }
-    debugger;
-    this.mask = new InputMask(options);
-    this.mask = InputMask(options);
+    if (value == null) {
+      value = defaultValue;
+    }
+
+    value = this.getStringValue(value);
+
+    if (this.maskOptions.mask && (alwaysShowMask || value)) {
+      value = formatValue(this.maskOptions, value);
+    }
+
+    this.value = value;
+  }
+
+  componentDidMount() {
+    this.isAndroidBrowser = isAndroidBrowser();
+    this.isWindowsPhoneBrowser = isWindowsPhoneBrowser();
+    this.isAndroidFirefox = isAndroidFirefox();
+
+    if (this.getInputValue() !== this.value) {
+      this.setInputValue(this.value);
+    }
   }
 
   componentWillReceiveProps(nextProps: any) {
-    if (this.props.mask !== nextProps.mask && this.props.value !== nextProps.mask) {
-      /**
-       * if we get a new value and a new mask at the same time
-       * check if the mask.value is still the initial value
-       * - if so use the nextProps value
-       * - otherwise the `this.mask` has a value for us (most likely from paste action)
-       */
-      if (this.mask.getValue() === this.mask.emptyValue) {
-        this.mask.setPattern(nextProps.mask, { value: nextProps.value });
+    const oldMaskOptions = this.maskOptions;
+
+    this.hasValue = nextProps.value != null;
+    this.maskOptions = parseMask(nextProps.mask, nextProps.maskChar, nextProps.formatChars);
+
+    if (!this.maskOptions.mask) {
+      this.lastCursorPos = 0;
+      return;
+    }
+
+    const isMaskChanged = this.maskOptions.mask && this.maskOptions.mask !== oldMaskOptions.mask;
+    const showEmpty = nextProps.alwaysShowMask || this.isFocused();
+    let newValue = this.hasValue
+      ? this.getStringValue(nextProps.value)
+      : this.value;
+
+    if (!oldMaskOptions.mask && !this.hasValue) {
+      newValue = this.getInputDOMNode().value;
+    }
+
+    if (isMaskChanged || (this.maskOptions.mask && (newValue || showEmpty))) {
+      newValue = formatValue(this.maskOptions, newValue);
+
+      if (isMaskChanged) {
+        let pos = this.lastCursorPos;
+        const filledLen = getFilledLength(this.maskOptions, newValue);
+        if (pos === null || filledLen < pos) {
+          if (isFilled(this.maskOptions, newValue)) {
+            pos = filledLen;
+          } else {
+            pos = this.getRightEditablePos(filledLen);
+          }
+          this.setCursorPos(pos);
+        }
+      }
+    }
+
+    if (this.maskOptions.mask && isEmpty(this.maskOptions, newValue) && !showEmpty && (!this.hasValue || !nextProps.value)) {
+      newValue = '';
+    }
+
+    this.value = newValue;
+  }
+
+  componentDidUpdate() {
+    if (this.getInputValue() !== this.value) {
+      this.setInputValue(this.value);
+    }
+  }
+
+  isDOMElement= (element: any) => {
+    return typeof HTMLElement === 'object'
+      ? element instanceof HTMLElement // DOM2
+      : element.nodeType === 1 && typeof element.nodeName === 'string';
+  }
+
+  getInputDOMNode = () => {
+    const input = this.input;
+    if (!input) {
+      return null;
+    }
+
+    if (this.isDOMElement(input)) {
+      return input;
+    }
+  }
+
+  getInputValue = () => {
+    const input = this.getInputDOMNode();
+    if (!input) {
+      return null;
+    }
+
+    return input.value;
+  }
+
+  setInputValue = (value: any) => {
+    const input = this.getInputDOMNode();
+    if (!input) {
+      return;
+    }
+
+    this.value = value;
+    input.value = value;
+  }
+
+  getLeftEditablePos = (pos: any) => {
+    for (let i = pos; i >= 0; --i) {
+      if (!isPermanentChar(this.maskOptions, i)) {
+        return i;
+      }
+    }
+    return null;
+  }
+
+  getRightEditablePos = (pos: any) => {
+    const { mask } = this.maskOptions;
+    for (let i = pos; i < mask.length; ++i) {
+      if (!isPermanentChar(this.maskOptions, i)) {
+        return i;
+      }
+    }
+    return null;
+  }
+
+  setCursorToEnd = () => {
+    const filledLen = getFilledLength(this.maskOptions, this.value);
+    const pos = this.getRightEditablePos(filledLen);
+    if (pos !== null) {
+      this.setCursorPos(pos);
+    }
+  }
+
+  setSelection = (start: any, len = 0) => {
+    const input = this.getInputDOMNode();
+    if (!input) {
+      return;
+    }
+
+    const end = start + len;
+    if ('selectionStart' in input && 'selectionEnd' in input) {
+      input.selectionStart = start;
+      input.selectionEnd = end;
+    } else {
+      const range = input.createTextRange();
+      range.collapse(true);
+      range.moveStart('character', start);
+      range.moveEnd('character', end - start);
+      range.select();
+    }
+  }
+
+  getSelection = () => {
+        const input = this.getInputDOMNode();
+    let start = 0;
+    let end = 0;
+
+    if ('selectionStart' in input && 'selectionEnd' in input) {
+      start = input.selectionStart;
+      end = input.selectionEnd;
+    }
+    return {
+      start,
+      end,
+      length: end - start,
+    };
+  }
+
+  getCursorPos = () => {
+    return this.getSelection().start;
+  }
+
+  setCursorPos = (pos: any) => {
+    this.setSelection(pos, 0);
+
+    defer(() => {
+      this.setSelection(pos, 0);
+    });
+
+    this.lastCursorPos = pos;
+  }
+
+  isFocused = () => {
+    debugger;
+    return document.activeElement === this.getInputDOMNode();
+  }
+
+  getStringValue = (value: any) => {
+    return !value && value !== 0 ? '' : value + '';
+  }
+
+  onKeyDown = (event: any) => {
+     debugger;
+    this.backspaceOrDeleteRemoval = undefined;
+
+    if (typeof this.props.onKeyDown === 'function') {
+      this.props.onKeyDown(event);
+    }
+
+    const { key, ctrlKey, metaKey, defaultPrevented } = event;
+    if (ctrlKey || metaKey || defaultPrevented) {
+      return;
+    }
+
+    if (key === 'Backspace' || key === 'Delete') {
+      this.backspaceOrDeleteRemoval = {
+        key,
+        selection: this.getSelection(),
+      };
+
+      defer(() => {
+        this.backspaceOrDeleteRemoval = undefined;
+      });
+    }
+  }
+
+  onChange = (event: any) => {
+     debugger;
+    const { paste } = this;
+    const { mask, maskChar, lastEditablePos, prefix } = this.maskOptions;
+
+    let value = this.getInputValue();
+    const oldValue = this.value;
+
+    if (paste) {
+      this.paste = null;
+      this.pasteText(paste.value, value, paste.selection, event);
+      return;
+    }
+
+    let selection = this.getSelection();
+    let cursorPos = selection.end;
+    const maskLen = mask.length;
+    const valueLen = value.length;
+    const oldValueLen = oldValue.length;
+
+    let clearedValue;
+    let enteredString;
+
+    if (this.backspaceOrDeleteRemoval) {
+      const deleteFromRight = this.backspaceOrDeleteRemoval.key === 'Delete';
+      value = this.value;
+      selection = this.backspaceOrDeleteRemoval.selection;
+      cursorPos = selection.start;
+
+      this.backspaceOrDeleteRemoval = undefined;
+
+      if (selection.length) {
+        value = clearRange(this.maskOptions, value, selection.start, selection.length);
+      } else if (selection.start < prefix.length || (!deleteFromRight && selection.start === prefix.length)) {
+        cursorPos = prefix.length;
       } else {
-        this.mask.setPattern(nextProps.mask, { value: this.mask.getRawValue() });
-      }
-    } else if (this.props.mask !== nextProps.mask) {
-      this.mask.setPattern(nextProps.mask, { value: this.mask.getRawValue() });
-    } else if (this.props.value !== nextProps.value) {
-      this.mask.setValue(nextProps.value);
-    }
-  }
+        const editablePos = deleteFromRight
+          ? this.getRightEditablePos(cursorPos)
+          : this.getLeftEditablePos(cursorPos - 1);
 
-  componentWillUpdate(nextProps: any) {
-    if (nextProps.mask !== this.props.mask) {
-      this.updatePattern(nextProps);
-    }
-  }
-
-  componentDidUpdate(prevProps: any) {
-    if (prevProps.mask !== this.props.mask && this.mask.selection.start) {
-      this.updateInputSelection();
-    }
-  }
-
-  onChange(e: any) {
-    // console.log('onChange', JSON.stringify(getSelection(this.input)), e.target.value)
-
-    const maskValue = this.mask.getValue();
-    if (e.target.value !== maskValue) {
-      // Cut or delete operations will have shortened the value
-      if (e.target.value.length < maskValue.length) {
-        const sizeDiff = maskValue.length - e.target.value.length;
-        this.updateMaskSelection();
-        this.mask.selection.end = this.mask.selection.start + sizeDiff;
-        this.mask.backspace();
-      }
-      const value = this.getDisplayValue();
-      e.target.value = value; // eslint-disable-line no-param-reassign
-      if (value) {
-        this.updateInputSelection();
-      }
-    }
-    if (this.props.onChange) {
-      this.props.onChange(e);
-    }
-  }
-
-  onKeyDown(e: any) {
-    if (e.key === 'Enter') {
-      if (this.props.onEnter !== undefined) {
-        this.props.onEnter(this.mask.getValue());
-      }
-    }
-
-    // console.log('onKeyDown', JSON.stringify(getSelection(this.input)), e.key, e.target.value)
-    if (e.metaKey || e.altKey || e.ctrlKey || e.key === 'Enter') { e.preventDefault(); return; }
-
-    if (isUndo(e)) {
-      e.preventDefault();
-      if (this.mask.undo()) {
-        e.target.value = this.getDisplayValue(); // eslint-disable-line no-param-reassign
-        this.updateInputSelection();
-        if (this.props.onChange) {
-          this.props.onChange(e);
+        if (editablePos !== null) {
+          value = clearRange(this.maskOptions, value, editablePos, 1);
+          cursorPos = editablePos;
         }
       }
-      return;
-    } else if (isRedo(e)) {
-      e.preventDefault();
-      if (this.mask.redo()) {
-        e.target.value = this.getDisplayValue(); // eslint-disable-line no-param-reassign
-        this.updateInputSelection();
-        if (this.props.onChange) {
-          this.props.onChange(e);
+    } else if (valueLen > oldValueLen) {
+      const enteredStringLen = valueLen - oldValueLen;
+      const startPos = selection.end - enteredStringLen;
+      enteredString = value.substr(startPos, enteredStringLen);
+
+      if (startPos < lastEditablePos && (enteredStringLen !== 1 || enteredString !== mask[startPos])) {
+        cursorPos = this.getRightEditablePos(startPos);
+      } else {
+        cursorPos = startPos;
+      }
+
+      value = value.substr(0, startPos) + value.substr(startPos + enteredStringLen);
+
+      clearedValue = clearRange(this.maskOptions, value, startPos, maskLen - startPos);
+      clearedValue = insertString(this.maskOptions, clearedValue, enteredString, cursorPos);
+
+      value = insertString(this.maskOptions, oldValue, enteredString, cursorPos);
+
+      if (enteredStringLen !== 1 || (cursorPos >= prefix.length && cursorPos < lastEditablePos)) {
+        cursorPos = Math.max(getFilledLength(this.maskOptions, clearedValue), cursorPos);
+        if (cursorPos < lastEditablePos) {
+          cursorPos = this.getRightEditablePos(cursorPos);
         }
+      } else if (cursorPos < lastEditablePos) {
+        cursorPos++;
       }
-      return;
-    }
+    } else if (valueLen < oldValueLen) {
+      const removedLen = maskLen - valueLen;
+      enteredString = value.substr(0, selection.end);
+      const clearOnly = enteredString === oldValue.substr(0, selection.end);
 
-    if (e.key === 'Backspace') {
-      e.preventDefault();
-      this.updateMaskSelection();
-      if (this.mask.backspace()) {
-        const value = this.getDisplayValue();
-        e.target.value = value; // eslint-disable-line no-param-reassign
-        if (value) {
-          this.updateInputSelection();
+      clearedValue = clearRange(this.maskOptions, oldValue, selection.end, removedLen);
+
+      if (maskChar) {
+        value = insertString(this.maskOptions, clearedValue, enteredString, 0);
+      }
+
+      clearedValue = clearRange(this.maskOptions, clearedValue, selection.end, maskLen - selection.end);
+      clearedValue = insertString(this.maskOptions, clearedValue, enteredString, 0);
+
+      if (!clearOnly) {
+        cursorPos = Math.max(getFilledLength(this.maskOptions, clearedValue), cursorPos);
+        if (cursorPos < lastEditablePos) {
+          cursorPos = this.getRightEditablePos(cursorPos);
         }
-        if (this.props.onChange) {
-          this.props.onChange(e);
-        }
+      } else if (cursorPos < prefix.length) {
+        cursorPos = prefix.length;
       }
     }
+    value = formatValue(this.maskOptions, value);
+
+    this.setInputValue(value);
+
+    if (typeof this.props.onChange === 'function') {
+      this.props.onChange(event);
+    }
+
+    if (this.isWindowsPhoneBrowser) {
+      defer(() => {
+        this.setSelection(cursorPos, 0);
+      });
+    } else {
+      this.setCursorPos(cursorPos);
+    }
   }
 
-  onKeyPress(e: any) {
-    // console.log('onKeyPress', JSON.stringify(getSelection(this.input)), e.key, e.target.value)
+  onFocus = (event: any) => {
+     debugger;
+    if (!this.value) {
+      const prefix = this.maskOptions.prefix;
+      const value = formatValue(this.maskOptions, prefix);
+      const inputValue = formatValue(this.maskOptions, value);
 
-    if (e.key === 'Enter') {
-      if (this.props.onEnter !== undefined) {
-        this.props.onEnter(this.mask.getValue());
+      // do not use this.getInputValue and this.setInputValue as this.input
+      // can be undefined at this moment if autoFocus attribute is set
+      const isInputValueChanged = inputValue !== event.target.value;
+
+      if (isInputValueChanged) {
+        event.target.value = inputValue;
+      }
+
+      this.value = inputValue;
+
+      if (isInputValueChanged && typeof this.props.onChange === 'function') {
+        this.props.onChange(event);
+      }
+
+      this.setCursorToEnd();
+    } else if (getFilledLength(this.maskOptions, this.value) < this.maskOptions.mask.length) {
+      this.setCursorToEnd();
+    }
+
+    if (typeof this.props.onFocus === 'function') {
+      this.props.onFocus(event);
+    }
+  }
+
+  onBlur = (event: any) => {
+    if (!this.props.alwaysShowMask && isEmpty(this.maskOptions, this.value)) {
+      const inputValue = '';
+      const isInputValueChanged = inputValue !== this.getInputValue();
+
+      if (isInputValueChanged) {
+        this.setInputValue(inputValue);
+      }
+
+      if (isInputValueChanged && typeof this.props.onChange === 'function') {
+        this.props.onChange(event);
       }
     }
 
-    // Ignore modified key presses
-    // Ignore enter key to allow form submission
-    if (e.metaKey || e.altKey || e.ctrlKey || e.key === 'Enter') { e.preventDefault(); return; }
+    if (typeof this.props.onBlur === 'function') {
+      this.props.onBlur(event);
+    }
+  }
+  onPaste = (event: any) => {
+    if (typeof this.props.onPaste === 'function') {
+      this.props.onPaste(event);
+    }
 
-    e.preventDefault();
-    this.updateMaskSelection();
-    if (this.mask.input((e.key || e.data))) {
-      e.target.value = this.mask.getValue(); // eslint-disable-line no-param-reassign
-      this.updateInputSelection();
-      if (this.props.onChange) {
-        this.props.onChange(e);
+    if (this.isAndroidBrowser && !event.defaultPrevented) {
+      this.paste = {
+        value: this.getInputValue(),
+        selection: this.getSelection(),
+      };
+      this.setInputValue('');
+    }
+  }
+
+  pasteText = (value: any, text: any, selection: any, event: any) => {
+    let cursorPos = selection.start;
+    if (selection.length) {
+      value = clearRange(this.maskOptions, value, cursorPos, selection.length);
+    }
+    const textLen = getInsertStringLength(this.maskOptions, value, text, cursorPos);
+    value = insertString(this.maskOptions, value, text, cursorPos);
+    cursorPos += textLen;
+    cursorPos = this.getRightEditablePos(cursorPos) || cursorPos;
+
+    if (value !== this.getInputValue()) {
+      this.setInputValue(value);
+      if (event && typeof this.props.onChange === 'function') {
+        this.props.onChange(event);
       }
     }
+
+    this.setCursorPos(cursorPos);
   }
 
-  onPaste(e: any) {
-    e.preventDefault();
-    this.updateMaskSelection();
-    // getData value needed for IE also works in FF & Chrome
-    if (this.mask.paste(e.clipboardData.getData('Text'))) {
-      e.target.value = this.mask.getValue(); // eslint-disable-line no-param-reassign
-      // Timeout needed for IE
-      setTimeout(this.updateInputSelection, 0);
-      if (this.props.onChange) {
-        this.props.onChange(e);
-      }
-    }
-  }
-
-  getDisplayValue() {
-    const value = this.mask.getValue();
-    if (this.state.focused && (value === this.mask.emptyValue)) {
-      setTimeout(
-        () => {
-          setSelection(this.input, { start: 0, end: 0 });
-        },
-        1,
-      );
-      return value;
-    }
-    return value === this.mask.emptyValue ? '' : value;
-  }
-
-  updatePattern(props: any) {
-    this.mask.setPattern(props.mask, {
-      value: this.mask.getRawValue(),
-      selection: getSelection(this.input),
-    });
-  }
-
-  updateMaskSelection() {
-    this.mask.selection = getSelection(this.input);
-  }
-
-  updateInputSelection() {
-    setSelection(this.input, this.mask.selection);
-  }
-
-  focus() {
-    this.setState({
-      focused: true,
-    });
-    this.input.focus();
-    const { onFocus } = this.props;
-    if (onFocus == null) { return; }
-    onFocus();
-  }
-
-  blur() {
-    this.setState({
-      focused: false,
-    });
-    this.input.blur();
-    const { onBlur } = this.props;
-    if (onBlur == null) { return; }
-    onBlur();
-  }
 
   render() {
     const {
       mask,
-      placeholderChar,
-      formatCharacters,
-      onPaste = this.onPaste,
-      onKeyDown = this.onKeyDown,
-      onKeyPress = this.onKeyPress,
-      onChange = this.onChange,
-      onBlur = this.blur,
-      onFocus = this.focus,
-      size = this.props.size || this.mask.pattern.length,
-      ...otherProps,
+      alwaysShowMask,
+      maskChar,
+      formatChars,
+      ...props,
     } = this.props;
-
-    return (<TextField
-      {...otherProps}
-      ref={(r) => this.input = r}
-      maxLength={this.mask.pattern.length}
-      onChange={onChange}
-      onFocus={onFocus}
-      onBlur={onBlur}
-      placeholder={this.props.placeholder || this.mask.emptyValue}
-      value={this.getDisplayValue()}
-    />);
+    if (this.maskOptions.mask) {
+      if (!props.disabled && !props.readOnly) {
+        const handlersKeys = ['onFocus', 'onBlur', 'onChange', 'onKeyDown', 'onPaste'];
+        handlersKeys.forEach((key) => {
+          props[key] = this[key];
+        });
+      }
+      if (props.value != null) {
+        props.value = this.value;
+      }
+    }
+    return <TextField
+    ref={(ref) => this.input = ref} {...props} />;
   }
 }
 export default themr(MASK_TEXT_FIELD, baseTheme)(MaskTextField) as ThemedComponentClass<Props, {}>;
