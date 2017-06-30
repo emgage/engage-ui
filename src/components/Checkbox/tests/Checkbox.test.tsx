@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {shallow, mount} from 'enzyme';
+import {shallow as mount} from 'enzyme';
 import Checkbox from '..';
 
 describe('<Checkbox />', () => {
