@@ -397,7 +397,6 @@ class MaskTextField extends React.PureComponent<Props, State> {
       this.setState({ ['value']: inputValue });
 
       if (isInputValueChanged && typeof this.props.onChange === 'function') {
-        debugger;
         this.props.onChange(event.target.value);
       }
 
