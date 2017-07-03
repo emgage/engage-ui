@@ -1,18 +1,18 @@
 import * as React from 'react';
-import {shallow, mount, ReactWrapper} from 'enzyme';
+import { shallow, mount, ReactWrapper } from 'enzyme';
 
 import ChoiceList from '..';
 import RadioButton from '../../RadioButton';
 import Checkbox from '../../Checkbox';
 
 describe('<ChoiceList />', () => {
-  let choices: ({label: string, value: string})[];
+  let choices: ({ label: string, value: string })[];
 
   beforeEach(() => {
     choices = [
-      {label: 'One', value: 'one'},
-      {label: 'Two', value: 'two'},
-      {label: 'Three', value: 'three'},
+      { label: 'One', value: 'one' },
+      { label: 'Two', value: 'two' },
+      { label: 'Three', value: 'three' },
     ];
   });
 
@@ -59,18 +59,15 @@ describe('<ChoiceList />', () => {
       });
       const choiceList = mount(<ChoiceList allowMultiple onChange={spy} selected={selected} choices={choices} />);
       const choiceElements = choiceList.find(Checkbox);
-
       changeCheckedForChoice(choiceElements.at(1), true);
       expect(spy).toHaveBeenLastCalledWith(['one', 'two']);
-      choiceList.setProps({selected});
-
+      choiceList.setProps({ selected });
       changeCheckedForChoice(choiceElements.at(2), true);
       expect(spy).toHaveBeenLastCalledWith(['one', 'two', 'three']);
-      choiceList.setProps({selected});
-
+      choiceList.setProps({ selected });
       changeCheckedForChoice(choiceElements.at(0), false);
       expect(spy).toHaveBeenLastCalledWith(['two', 'three']);
-      choiceList.setProps({selected});
+      choiceList.setProps({ selected });
     });
 
     function changeCheckedForChoice(choice: ReactWrapper<any, any>, checked: boolean, triggerChange = true) {

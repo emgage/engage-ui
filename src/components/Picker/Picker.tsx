@@ -68,7 +68,6 @@ class Picker extends React.Component<Props, State> {
             onRemove = this.handleRemove,
             onMoreInfo = this.handleMoreInfo,
             theme,
-            style,
           } = this.props;
         let className = '';
         if (selectedResultsBehavior === 'hide') {
@@ -77,7 +76,7 @@ class Picker extends React.Component<Props, State> {
             className = theme.pickerResultShow;
         }
         return (
-            <div style={style}>
+            <div>
                 <div>
                     <div className={className}>
                         {
@@ -154,5 +153,6 @@ class Picker extends React.Component<Props, State> {
     }
 }
 
+export { Picker as UnthemedPicker };
 export default themr(PICKER, baseTheme)(Picker) as ThemedComponentClass<Props, State>;
 
