@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from 'react-css-themr';
 import { Props as TextFieldProps } from '../TextField';
-import { State } from '../TextField/TextField';
+import { State as TextFieldState } from '../TextField/TextField';
 import TextField from '../TextField';
 import { MASK_TEXT_FIELD } from '../ThemeIdentifiers';
-import {IMaskOption, IBackSpace } from './IMaskInterface';
+import { IMaskOption, IBackSpace } from './IMaskInterface';
 import parseMask from './parseMask';
 import { isAndroidBrowser, isWindowsPhoneBrowser, isAndroidFirefox } from './environment';
 import {
@@ -20,6 +20,9 @@ import {
 import defer from './defer';
 import * as baseTheme from './MaskTextField.scss';
 
+export interface State extends TextFieldState {
+  value?: string,
+}
 export interface Props extends TextFieldProps {
   mask?: string,
   formatChars?: any,
@@ -35,18 +38,17 @@ class MaskTextField extends React.PureComponent<Props, State> {
   lastCursorPos: number;
   hasValue = false;
   maskOptions: IMaskOption;
-  value = '';
-   isAndroidBrowser: boolean;
-   isWindowsPhoneBrowser: boolean;
-   isAndroidFirefox: boolean;
+  isAndroidBrowser: boolean;
+  isWindowsPhoneBrowser: boolean;
+  isAndroidFirefox: boolean;
   backspaceOrDeleteRemoval?: IBackSpace;
-   input: any;
-   paste: any;
+  input: any;
+  paste: any;
   constructor(props: any) {
     super(props);
 
     const { mask, maskChar, formatChars, alwaysShowMask } = props;
-    let {  defaultValue, value } = props;
+    let { defaultValue, value } = props;
 
     this.hasValue = value != null;
     this.maskOptions = parseMask(mask, maskChar, formatChars);
@@ -63,8 +65,9 @@ class MaskTextField extends React.PureComponent<Props, State> {
     if (this.maskOptions.mask && (alwaysShowMask || value)) {
       value = formatValue(this.maskOptions, value);
     }
-
-    this.value = value;
+    this.state = {
+      value,
+    };
   }
 
   componentDidMount() {
@@ -72,8 +75,8 @@ class MaskTextField extends React.PureComponent<Props, State> {
     this.isWindowsPhoneBrowser = isWindowsPhoneBrowser();
     this.isAndroidFirefox = isAndroidFirefox();
 
-    if (this.getInputValue() !== this.value) {
-      this.setInputValue(this.value);
+    if (this.getInputValue() !== this.state.value) {
+      this.setInputValue(this.state.value);
     }
   }
 
@@ -92,7 +95,7 @@ class MaskTextField extends React.PureComponent<Props, State> {
     const showEmpty = nextProps.alwaysShowMask || this.isFocused();
     let newValue = this.hasValue
       ? this.getStringValue(nextProps.value)
-      : this.value;
+      : this.state.value;
 
     if (!oldMaskOptions.mask && !this.hasValue) {
       newValue = this.getInputDOMNode().value;
@@ -118,20 +121,19 @@ class MaskTextField extends React.PureComponent<Props, State> {
     if (this.maskOptions.mask && isEmpty(this.maskOptions, newValue) && !showEmpty && (!this.hasValue || !nextProps.value)) {
       newValue = '';
     }
-
-    this.value = newValue;
+    this.setState({ ['value']: newValue });
   }
 
   componentDidUpdate() {
-    if (this.getInputValue() !== this.value) {
-      this.setInputValue(this.value);
+    if (this.getInputValue() !== this.state.value) {
+      this.setInputValue(this.state.value);
     }
   }
 
-  isDOMElement= (element: any) => {
-    return typeof HTMLElement === 'object'
-      ? element instanceof HTMLElement // DOM2
-      : element.nodeType === 1 && typeof element.nodeName === 'string';
+  isDOMElement = (element: any) => {
+    return true;
+    // return (typeof HTMLElement === 'undefined' ? 'undefined' : typeof(HTMLElement)) === 'object' ? element instanceof HTMLElement 
+    //   : element.nodeType === 1 && typeof element.nodeName === 'string';
   }
 
   getInputDOMNode = () => {
@@ -139,9 +141,9 @@ class MaskTextField extends React.PureComponent<Props, State> {
     if (!input) {
       return null;
     }
-
     if (this.isDOMElement(input)) {
-      return input;
+      // return this.input;
+      return this.input._reactInternalInstance._renderedComponent._instance.input;
     }
   }
 
@@ -159,9 +161,7 @@ class MaskTextField extends React.PureComponent<Props, State> {
     if (!input) {
       return;
     }
-
-    this.value = value;
-    input.value = value;
+    this.setState({ ['value']: value });
   }
 
   getLeftEditablePos = (pos: any) => {
@@ -184,7 +184,7 @@ class MaskTextField extends React.PureComponent<Props, State> {
   }
 
   setCursorToEnd = () => {
-    const filledLen = getFilledLength(this.maskOptions, this.value);
+    const filledLen = getFilledLength(this.maskOptions, this.state.value);
     const pos = this.getRightEditablePos(filledLen);
     if (pos !== null) {
       this.setCursorPos(pos);
@@ -211,7 +211,7 @@ class MaskTextField extends React.PureComponent<Props, State> {
   }
 
   getSelection = () => {
-        const input = this.getInputDOMNode();
+    const input = this.getInputDOMNode();
     let start = 0;
     let end = 0;
 
@@ -232,7 +232,6 @@ class MaskTextField extends React.PureComponent<Props, State> {
 
   setCursorPos = (pos: any) => {
     this.setSelection(pos, 0);
-
     defer(() => {
       this.setSelection(pos, 0);
     });
@@ -241,7 +240,6 @@ class MaskTextField extends React.PureComponent<Props, State> {
   }
 
   isFocused = () => {
-    debugger;
     return document.activeElement === this.getInputDOMNode();
   }
 
@@ -250,7 +248,6 @@ class MaskTextField extends React.PureComponent<Props, State> {
   }
 
   onKeyDown = (event: any) => {
-     debugger;
     this.backspaceOrDeleteRemoval = undefined;
 
     if (typeof this.props.onKeyDown === 'function') {
@@ -275,12 +272,11 @@ class MaskTextField extends React.PureComponent<Props, State> {
   }
 
   onChange = (event: any) => {
-     debugger;
     const { paste } = this;
     const { mask, maskChar, lastEditablePos, prefix } = this.maskOptions;
 
     let value = this.getInputValue();
-    const oldValue = this.value;
+    const oldValue = this.state.value === undefined ? '' : this.state.value;
 
     if (paste) {
       this.paste = null;
@@ -299,7 +295,7 @@ class MaskTextField extends React.PureComponent<Props, State> {
 
     if (this.backspaceOrDeleteRemoval) {
       const deleteFromRight = this.backspaceOrDeleteRemoval.key === 'Delete';
-      value = this.value;
+      value = this.state.value;
       selection = this.backspaceOrDeleteRemoval.selection;
       cursorPos = selection.start;
 
@@ -386,8 +382,7 @@ class MaskTextField extends React.PureComponent<Props, State> {
   }
 
   onFocus = (event: any) => {
-     debugger;
-    if (!this.value) {
+    if (!this.state.value) {
       const prefix = this.maskOptions.prefix;
       const value = formatValue(this.maskOptions, prefix);
       const inputValue = formatValue(this.maskOptions, value);
@@ -399,15 +394,15 @@ class MaskTextField extends React.PureComponent<Props, State> {
       if (isInputValueChanged) {
         event.target.value = inputValue;
       }
-
-      this.value = inputValue;
+      this.setState({ ['value']: inputValue });
 
       if (isInputValueChanged && typeof this.props.onChange === 'function') {
-        this.props.onChange(event);
+        debugger;
+        this.props.onChange(event.target.value);
       }
 
       this.setCursorToEnd();
-    } else if (getFilledLength(this.maskOptions, this.value) < this.maskOptions.mask.length) {
+    } else if (getFilledLength(this.maskOptions, this.state.value) < this.maskOptions.mask.length) {
       this.setCursorToEnd();
     }
 
@@ -417,7 +412,7 @@ class MaskTextField extends React.PureComponent<Props, State> {
   }
 
   onBlur = (event: any) => {
-    if (!this.props.alwaysShowMask && isEmpty(this.maskOptions, this.value)) {
+    if (!this.props.alwaysShowMask && isEmpty(this.maskOptions, this.state.value)) {
       const inputValue = '';
       const isInputValueChanged = inputValue !== this.getInputValue();
 
@@ -468,7 +463,6 @@ class MaskTextField extends React.PureComponent<Props, State> {
     this.setCursorPos(cursorPos);
   }
 
-
   render() {
     const {
       mask,
@@ -480,16 +474,12 @@ class MaskTextField extends React.PureComponent<Props, State> {
     if (this.maskOptions.mask) {
       if (!props.disabled && !props.readOnly) {
         const handlersKeys = ['onFocus', 'onBlur', 'onChange', 'onKeyDown', 'onPaste'];
-        handlersKeys.forEach((key) => {
+        handlersKeys.forEach((key: any) => {
           props[key] = this[key];
         });
       }
-      if (props.value != null) {
-        props.value = this.value;
-      }
     }
-    return <TextField
-    ref={(ref) => this.input = ref} {...props} />;
+    return <TextField value={this.state.value} ref={(ref) => this.input = ref} {...props} />;
   }
 }
-export default themr(MASK_TEXT_FIELD, baseTheme)(MaskTextField) as ThemedComponentClass<Props, {}>;
+export default themr(MASK_TEXT_FIELD, baseTheme)(MaskTextField) as ThemedComponentClass<Props, State>;

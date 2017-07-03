@@ -28,6 +28,7 @@ import {
 interface State {
   appName?: string,
   appDescription: string,
+  maskInput: string,
 }
 
 class App extends React.Component<{}, State> {
@@ -36,6 +37,7 @@ class App extends React.Component<{}, State> {
     this.state = {
       appName: '',
       appDescription: '',
+      maskInput: '',
     };
   }
 
@@ -85,7 +87,23 @@ class App extends React.Component<{}, State> {
     return (
       <div>
         <div>
-          <MaskTextField label="lb1" placeholder="Enter Data"  mask="99/99/9999" />
+          <Heading>Phone</Heading>
+          <MaskTextField label="lblPhone1" placeholder="Enter Data" mask="+4\9 99 999 99" />
+          <MaskTextField label="lblPhone2" placeholder="Enter Data" mask="+7 (999) 999-99-99" />
+        </div>
+        <div>
+          <Heading>Date</Heading>
+          <MaskTextField label="lblDate1" mask="99-99-9999" defaultValue="03-06-2017" />
+          <MaskTextField label="lblDate2" placeholder="Enter Data" mask="99/99/9999" />
+        </div>
+        <div>
+          <Heading>Card</Heading>
+          <MaskTextField label="lblCard1" placeholder="Enter Card" mask="9999-9999-9999-9999" />
+          <MaskTextField label="lblCard2" placeholder="Enter Card" mask="**-aaa" />
+        </div>
+        <div>
+          <Heading>Mask Input Event</Heading>
+          <MaskTextField label="lblCard2" placeholder="Enter Card" mask="**-aaa" value={this.state.maskInput} onChange={this.maskValueUpdater('maskInput')} />
         </div>
         <div>
           <Heading>Popover</Heading>
@@ -229,7 +247,10 @@ class App extends React.Component<{}, State> {
   valueUpdater(field: any) {
     return (value: any) => this.setState({ [field]: value });
   }
-
+  maskValueUpdater(field: any) {
+    // TODO: need to write all change event code for mask char update
+    return (value: any) => this.setState({ [field]: value });
+  }
   popoverClose(field: any) {
     return;
   }
