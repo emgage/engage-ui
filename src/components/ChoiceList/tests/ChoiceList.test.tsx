@@ -17,20 +17,20 @@ describe('<ChoiceList />', () => {
   });
 
   it('renders a fieldset', () => {
-    const element = shallow(<ChoiceList selected={[]} choices={choices} />);
+    const element = mount(<ChoiceList selected={[]} choices={choices} />);
     expect(element.find('fieldset').exists()).toBe(true);
   });
 
   describe('title', () => {
     it('renders a legend for the fieldset', () => {
-      const element = shallow(<ChoiceList title="My title" selected={[]} choices={choices} />);
+      const element = mount(<ChoiceList title="My title" selected={[]} choices={choices} />);
       expect(element.find('legend').text()).toBe('My title');
     });
   });
 
   describe('choices', () => {
     it('renders a choice with the label and value properties', () => {
-      const choiceElements = shallow(<ChoiceList selected={[]} choices={choices} />).find(RadioButton);
+      const choiceElements = mount(<ChoiceList selected={[]} choices={choices} />).find(RadioButton);
 
       choiceElements.forEach((choiceElement, index) => {
         expect(choiceElement.prop('label')).toBe(choices[index].label);
@@ -43,7 +43,7 @@ describe('<ChoiceList />', () => {
     it('sets the appropriate choices to be selected', () => {
       const selectedIndexes = [0, 2];
       const selected = selectedIndexes.map((index) => choices[index].value);
-      const choiceElements = shallow(<ChoiceList selected={selected} choices={choices} />).find(RadioButton);
+      const choiceElements = mount(<ChoiceList selected={selected} choices={choices} />).find(RadioButton);
 
       choiceElements.forEach((choiceElement, index) => {
         expect(choiceElement.prop('checked')).toBe(selectedIndexes.includes(index));
@@ -120,17 +120,17 @@ describe('<ChoiceList />', () => {
 
   describe('allowMultiple', () => {
     it('renders a radio button for each option when allowMultiple is not true', () => {
-      let element = shallow(<ChoiceList selected={[]} choices={choices} />);
+      let element = mount(<ChoiceList selected={[]} choices={choices} />);
       expect(element.find(RadioButton).length).toBe(choices.length);
       expect(element.find(Checkbox).exists()).toBe(false);
 
-      element = shallow(<ChoiceList selected={[]} choices={choices} allowMultiple={false} />);
+      element = mount(<ChoiceList selected={[]} choices={choices} allowMultiple={false} />);
       expect(element.find(RadioButton).length).toBe(choices.length);
       expect(element.find(Checkbox).exists()).toBe(false);
     });
 
     it('renders a checkbox each option when allowMultiple is true', () => {
-      const element = shallow(<ChoiceList allowMultiple selected={[]} choices={choices} />);
+      const element = mount(<ChoiceList allowMultiple selected={[]} choices={choices} />);
       expect(element.find(RadioButton).exists()).toBe(false);
       expect(element.find(Checkbox).length).toBe(choices.length);
     });
