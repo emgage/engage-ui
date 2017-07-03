@@ -390,7 +390,7 @@ class MaskTextField extends React.PureComponent<Props, State> {
     if (this.maskOptions.mask) {
       if (!props.disabled && !props.readOnly) {
         const handlersKeys = ['onFocus', 'onBlur', 'onChange', 'onKeyDown', 'onPaste'];
-        handlersKeys.forEach((key: any) => {
+        handlersKeys.forEach((key: string) => {
           props[key] = this[key];
         });
       }
