@@ -26,8 +26,9 @@
     "ts": "tsc --noEmit",
     "test": "jest --config ./config/jest/config.json",
     "check": "npm-run-all lint ts test",
-    "build": "webpack",
-    "dev": "webpack-dev-server --config webpack.dev.config"
+    "build-dev": "webpack",
+    "build-release": "webpack -p",
+    "example": "webpack-dev-server --config webpack.dev.config"
   },
   "devDependencies": {
     "@types/enzyme": "^2.7.7",

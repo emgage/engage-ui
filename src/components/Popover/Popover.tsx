@@ -94,7 +94,9 @@ export default class Popover extends React.PureComponent<Props, State> {
 
   @autobind
   private handleClose(source: CloseSource) {
-    this.props.onClose(source);
+    if (!!this.props.onClose) {
+      this.props.onClose(source);
+    }
 
     if (this.activatorContainer == null) { return; }
     if (
