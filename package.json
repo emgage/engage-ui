@@ -22,12 +22,11 @@
   "main": "lib/",
   "types": "lib/@types/src/index.d.ts",
   "scripts": {
-    "lint": "tslint --config tslint.json './{components}/**/*.{ts,tsx}' --project tsconfig.json --type-check",
-    "ts": "tsc --noEmit",
-    "test": "jest --config ./config/jest/config.json",
-    "check": "npm-run-all lint ts test",
-    "build-dev": "webpack",
-    "build-release": "webpack -p",
+    "lint": "node node_modules/tslint/bin/tslint --config tslint.json './{components}/**/*.{ts,tsx}' --project tsconfig.json --type-check",
+    "test": "node node_modules/jest/bin/jest.js --config ./config/jest/config.json",
+    "check": "npm-run-all lint build-dev test",
+    "build-dev": "node node_modules/webpack/bin/webpack.js",
+    "build-release": "node node_modules/webpack/bin/webpack.js -p",
     "example": "webpack-dev-server --config webpack.dev.config"
   },
   "devDependencies": {
