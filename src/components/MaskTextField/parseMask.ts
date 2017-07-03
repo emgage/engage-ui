@@ -6,7 +6,6 @@ export default function(mask: any, maskChar: any, charsRules: any) {
     if (charsRules == null) {
         charsRules = defaultCharsRules;
     }
-
     if (!mask || typeof mask !== 'string') {
         return {
             maskChar,
@@ -22,7 +21,6 @@ export default function(mask: any, maskChar: any, charsRules: any) {
     const permanents: any = [];
     let isPermanent = false;
     let lastEditablePos;
-
     mask.split('')
         .forEach((character) => {
             if (!isPermanent && character === '\\') {
@@ -40,7 +38,6 @@ export default function(mask: any, maskChar: any, charsRules: any) {
                 isPermanent = false;
             }
         });
-
     return {
         maskChar,
         charsRules,

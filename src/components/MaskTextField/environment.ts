@@ -3,11 +3,7 @@ export function isAndroidBrowser() {
     const firefox = new RegExp('firefox', 'i');
     const android = new RegExp('android', 'i');
     const ua = navigator.userAgent;
-    return !windows.test(ua)
-        &&
-        !firefox.test(ua)
-        &&
-        android.test(ua);
+    return !windows.test(ua) && !firefox.test(ua) && android.test(ua);
 }
 
 export function isWindowsPhoneBrowser() {
@@ -22,9 +18,5 @@ export function isAndroidFirefox() {
     const firefox = new RegExp('firefox', 'i');
     const android = new RegExp('android', 'i');
     const ua = navigator.userAgent;
-    return !windows.test(ua)
-        &&
-        firefox.test(ua)
-        &&
-        android.test(ua);
+    return !windows.test(ua) && firefox.test(ua) && android.test(ua);
 };

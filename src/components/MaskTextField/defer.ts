@@ -4,6 +4,5 @@ export default function(fn: any) {
         window.webkitRequestAnimationFrame
         ||
         (() => setTimeout(fn, 0));
-
     return defer(fn);
 };

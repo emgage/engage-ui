@@ -3,5 +3,4 @@ export const defaultCharsRules = {
     a: '[A-Za-z]',
     '*': '[A-Za-z0-9]',
 };
-
 export const defaultMaskChar = '_';

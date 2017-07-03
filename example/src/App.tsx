@@ -102,10 +102,6 @@ class App extends React.Component<{}, State> {
           <MaskTextField label="lblCard2" placeholder="Enter Card" mask="**-aaa" />
         </div>
         <div>
-          <Heading>Mask Input Event</Heading>
-          <MaskTextField label="lblCard2" placeholder="Enter Card" mask="**-aaa" value={this.state.maskInput} onChange={this.maskValueUpdater('maskInput')} />
-        </div>
-        <div>
           <Heading>Popover</Heading>
           <ClickableChip chip={<Chip>Batman</Chip>}>
             <Card title="More about Batman">
@@ -245,10 +241,6 @@ class App extends React.Component<{}, State> {
   }
 
   valueUpdater(field: any) {
-    return (value: any) => this.setState({ [field]: value });
-  }
-  maskValueUpdater(field: any) {
-    // TODO: need to write all change event code for mask char update
     return (value: any) => this.setState({ [field]: value });
   }
   popoverClose(field: any) {

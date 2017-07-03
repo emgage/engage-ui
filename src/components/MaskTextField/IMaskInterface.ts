@@ -6,7 +6,6 @@ export interface IMaskOption {
         lastEditablePos: any,
         permanents: any,
 };
-
 export interface IBackSpace {
        key: string,
        selection: any,
