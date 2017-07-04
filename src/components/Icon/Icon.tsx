@@ -133,22 +133,17 @@ const Icon = ({
 
   let contentMarkup: React.ReactNode;
 
-  if (!source) {
-    // tslint:disable-next-line no-console
-    console.warn(`The source prop is null in Icon Component.`);
-  } else if (source === 'placeholder') {
+  if (source === 'placeholder') {
     contentMarkup = <div className={theme.Placeholder} />;
   } else {
     const iconSource = typeof source === 'string' ? BUNDLED_ICONS[source] : source;
-    if (iconSource) {
-      contentMarkup = (
-        <svg
-          className={theme.Svg}
-          viewBox={iconSource.viewBox}
-          dangerouslySetInnerHTML={{__html: iconSource.body}}
-        />
-      );
-    }
+    contentMarkup = (
+      <svg
+        className={theme.Svg}
+        viewBox={iconSource.viewBox}
+        dangerouslySetInnerHTML={{__html: iconSource.body}}
+      />
+    );
   }
 
   return (
@@ -156,6 +151,6 @@ const Icon = ({
       {contentMarkup}
     </span>
   );
-};
+}
 
 export default themr(ICON, baseTheme)(Icon) as ThemedComponentClass<Props, {}>;

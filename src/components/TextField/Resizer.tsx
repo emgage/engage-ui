@@ -38,7 +38,7 @@ class Resizer extends React.PureComponent<Props, never> {
     const minimumLinesMarkup = minimumLines
       ? (
         <div
-          ref={(input) => {this.setMinimumLinesNode(input as HTMLElement);}}
+          ref={this.setMinimumLinesNode}
           className={this.props.theme.DummyInput}
           dangerouslySetInnerHTML={{__html: getContentsForMinimumLines(minimumLines)}}
         />
@@ -49,7 +49,7 @@ class Resizer extends React.PureComponent<Props, never> {
       <div aria-hidden className={this.props.theme.Resizer}>
         <EventListener event="resize" handler={this.handleHeightCheck} />
         <div
-          ref={(input) => {this.setContentNode(input as HTMLElement);}}
+          ref={this.setContentNode}
           className={this.props.theme.DummyInput}
           dangerouslySetInnerHTML={{__html: getFinalContents(contents)}}
         />

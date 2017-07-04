@@ -30,7 +30,7 @@ describe('<ChoiceList />', () => {
 
   describe('choices', () => {
     it('renders a choice with the label and value properties', () => {
-      const choiceElements = mount(<ChoiceList selected={[]} choices={choices} />).find(RadioButton);
+      const choiceElements = shallow(<ChoiceList selected={[]} choices={choices} />).find(RadioButton);
 
       choiceElements.forEach((choiceElement, index) => {
         expect(choiceElement.prop('label')).toBe(choices[index].label);
@@ -43,7 +43,7 @@ describe('<ChoiceList />', () => {
     it('sets the appropriate choices to be selected', () => {
       const selectedIndexes = [0, 2];
       const selected = selectedIndexes.map((index) => choices[index].value);
-      const choiceElements = mount(<ChoiceList selected={selected} choices={choices} />).find(RadioButton);
+      const choiceElements = shallow(<ChoiceList selected={selected} choices={choices} />).find(RadioButton);
 
       choiceElements.forEach((choiceElement, index) => {
         expect(choiceElement.prop('checked')).toBe(selectedIndexes.includes(index));

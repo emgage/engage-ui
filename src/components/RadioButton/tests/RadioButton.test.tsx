@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {mount} from 'enzyme';
+import {shallow, mount} from 'enzyme';
 import RadioButton from '..';
 
 describe('<RadioButton />', () => {
