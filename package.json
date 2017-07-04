@@ -9,9 +9,6 @@
   "bugs": {
     "url": "https://github.com/emgage/engage-ui/issues"
   },
-  "publishConfig": {
-    "registry": "http://localhost:4873"
-  },
   "keywords": [
     "emgage",
     "engage-ui",
