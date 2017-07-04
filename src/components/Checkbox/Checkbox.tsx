@@ -91,4 +91,5 @@ const Checkbox = ({
   );
 }
 
+export { Checkbox as UnthemedCheckbox }
 export default themr(CHECKBOX, baseTheme)(Checkbox) as ThemedComponentClass<Props, {}>;
