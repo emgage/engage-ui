@@ -1,7 +1,17 @@
-import { ReactComponent } from '@shopify/react-utilities';
 import * as React from 'react';
 
+export type ReactComponent<P> = React.StatelessComponent<P> | React.ComponentClass<P>;
+
 const { isValidElement } = React;
+
+export function FirstChild(props: {children?: React.ReactNode}) {
+  const childrenArray = React.Children.toArray(props.children);
+  return childrenArray[0] || null;
+}
+
+export function getDisplayName(Component: ReactComponent<any>) {
+  return Component.displayName || (Component as React.StatelessComponent<any>).name || 'Component';
+}
 
 /// Wraps `element` in `Component`, if it is not already an instance of
 /// `Component`. If `props` is passed, those will be added as props on the
