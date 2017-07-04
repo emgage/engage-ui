@@ -4,26 +4,27 @@ import Checkbox from '..';
 
 describe('<Checkbox />', () => {
   it('sets all pass through properties on the input', () => {
-    const input = mount(
+    const subject = shallow(
       <Checkbox
         label="Checkbox"
         checked
         name="Checkbox"
         value="Some value"
       />,
-    ).find('input');
+    );
 
-    expect(input.prop('checked')).toBe(true);
-    expect(input.prop('name')).toBe('Checkbox');
-    expect(input.prop('value')).toBe('Some value');
+    expect(subject.prop('checked')).toBe(true);
+    expect(subject.prop('name')).toBe('Checkbox');
+    expect(subject.prop('value')).toBe('Some value');
   });
 
   describe('onChange()', () => {
     it('is called with the new checked value of the input on change', () => {
       const spy = jest.fn();
-      const element = mount(<Checkbox label="Checkbox" onChange={spy} />);
-      (element.find('input') as any).node.checked = true;
-      element.find('input').simulate('change');
+      const subject = mount(<Checkbox label="Checkbox" onChange={spy} />);
+
+      (subject.find('input') as any).node.checked = true;
+      subject.find('input').simulate('change');
       expect(spy).toHaveBeenCalledWith(true);
     });
   });
