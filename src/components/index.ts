@@ -74,6 +74,10 @@ export {
 } from './FormLayout';
 
 export {
+  default as DataGrid,
+} from './DataGrid';
+
+export {
   default as Heading,
   Props as HeadingProps,
 } from './Heading';

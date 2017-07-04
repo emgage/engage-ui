@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "allowJs": true,
     "baseUrl": "./src",
     "rootDir": "./",
     "target": "es2016",
