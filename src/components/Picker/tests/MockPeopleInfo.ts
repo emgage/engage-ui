@@ -1,4 +1,4 @@
-import { IPickerInfo } from '../Picker';
+import { IPickerInfo } from '../IPickerInfo';
 export class MockPeopleInfo implements IPickerInfo {
     Id?: number;
     Name: string;

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr, ThemedComponentClass } from 'react-css-themr';
+import { themr } from 'react-css-themr';
 import Icon from '../Icon';
 
 import { TEXT_FIELD } from '../ThemeIdentifiers';
@@ -44,4 +44,4 @@ const Spinner = ({theme, onChange, onClick}: Props)  => {
   );
 }
 
-export default themr(TEXT_FIELD, baseTheme)(Spinner) as ThemedComponentClass<Props, {}>;
+export default themr(TEXT_FIELD, baseTheme)(Spinner);

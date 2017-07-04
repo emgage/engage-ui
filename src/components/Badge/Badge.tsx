@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr, ThemedComponentClass } from 'react-css-themr';
+import { themr } from 'react-css-themr';
 import {classNames, variationName} from '@shopify/react-utilities/styles';
 
 import VisuallyHidden from '../VisuallyHidden';
@@ -56,6 +56,6 @@ const Badge = ({children, status, progress, theme}: Props) => {
       {children}
     </span>
   );
-};
+}
 
-export default themr(BADGE, baseTheme)(Badge) as ThemedComponentClass<Props, {}>;
+export default themr(BADGE, baseTheme)(Badge);

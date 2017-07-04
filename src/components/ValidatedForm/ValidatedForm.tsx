@@ -1,3 +1,5 @@
+/// <reference path="../../../@types/rc-form.d.ts" />
+
 import * as React from 'react';
 import { createForm } from 'rc-form';
 

@@ -6,7 +6,7 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "declaration": true,
-    "declarationDir": "./lib/@types",
+    "declarationDir": "lib",
     "jsx": "react",
     "strictNullChecks": true,
     "noImplicitAny": true,
@@ -28,13 +28,11 @@
     "typeRoots": [
       "./@types",
       "./node_modules/@types"
-    ],
-    "outDir": "./lib"
+    ]
   },
   "include": [
     "./config/typescript/**/*",
-    "./src/**/*",
-    "./typings/*"
+    "./src/**/*"
   ],
   "exclude": [
     "./@types"

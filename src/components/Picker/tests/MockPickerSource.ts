@@ -1,4 +1,4 @@
-import { IPickerSource } from '../Picker';
+import { IPickerSource } from '../IPickerSource';
 import { MockPeopleInfo } from './MockPeopleInfo';
 
 export class MockPickerSource implements IPickerSource<MockPeopleInfo> {

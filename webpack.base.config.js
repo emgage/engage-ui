@@ -7,7 +7,7 @@ const TypeScriptConfigFile = require('./tsconfig.json');
 module.exports = {
     resolveLoader: {
         alias: {
-            "shopify-icons-loader": path.join(__dirname, "./config/webpack/SvgToJsonPlugin.js")
+            "shopify-icons-loader": path.join(__dirname, "./scripts/SvgToJsonPlugin.js")
         }
     },
     module: {
