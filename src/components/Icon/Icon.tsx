@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr } from 'react-css-themr';
+import { themr, ThemedComponentClass } from 'react-css-themr';
 import {SVGSource} from '@shopify/images';
 import {classNames, variationName} from '@shopify/react-utilities/styles';
 
@@ -133,17 +133,22 @@ const Icon = ({
 
   let contentMarkup: React.ReactNode;
 
-  if (source === 'placeholder') {
+  if (!source) {
+    // tslint:disable-next-line no-console
+    console.warn(`The source prop is null in Icon Component.`);
+  } else if (source === 'placeholder') {
     contentMarkup = <div className={theme.Placeholder} />;
   } else {
     const iconSource = typeof source === 'string' ? BUNDLED_ICONS[source] : source;
-    contentMarkup = (
-      <svg
-        className={theme.Svg}
-        viewBox={iconSource.viewBox}
-        dangerouslySetInnerHTML={{__html: iconSource.body}}
-      />
-    );
+    if (iconSource) {
+      contentMarkup = (
+        <svg
+          className={theme.Svg}
+          viewBox={iconSource.viewBox}
+          dangerouslySetInnerHTML={{__html: iconSource.body}}
+        />
+      );
+    }
   }
 
   return (
@@ -151,6 +156,6 @@ const Icon = ({
       {contentMarkup}
     </span>
   );
-}
+};
 
-export default themr(ICON, baseTheme)(Icon);
+export default themr(ICON, baseTheme)(Icon) as ThemedComponentClass<Props, {}>;

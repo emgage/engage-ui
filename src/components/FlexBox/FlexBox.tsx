@@ -1,14 +1,20 @@
 import * as React from 'react';
+import { themr, ThemedComponentClass } from 'react-css-themr';
+import { classNames } from '@shopify/react-utilities';
+import { FLEXBOX } from '../ThemeIdentifiers';
 import { FlexAlign, FlexDirection, FlexJustify } from './FlexProps';
+import * as baseTheme from './FlexBox.scss';
 
 export interface Props {
   inline?: boolean,
   direction?: FlexDirection ,
   justify?: FlexJustify,
   align?: FlexAlign,
+  style?: React.CSSProperties,
+  theme?: any,
 }
 
-export default class FlexBox extends React.PureComponent<Props, {}> {
+class FlexBox extends React.PureComponent<Props, {}> {
     render() {
         const {
             inline,
@@ -17,63 +23,65 @@ export default class FlexBox extends React.PureComponent<Props, {}> {
             align,
          } = this.props;
 
-        let className = inline ? 'd-inline-flex' : 'd-flex';
+        let className = inline ? this.props.theme.inline : this.props.theme.flex;
         // set direction property css
         switch (direction) {
             case FlexDirection.Column:
-                className += ' flex-column';
+                className = classNames(this.props.theme.column, className);
                 break;
             case FlexDirection.RowReverse:
-                className += ' flex-row-reverse';
+                className = classNames(this.props.theme.rowReverse, className);
                 break;
             case FlexDirection.ColumnReverse:
-                className += ' flex-column-reverse';
+                className = classNames(this.props.theme.columnReverse, className);
                 break;
             case FlexDirection.Row:
             default:
-                className += ' flex-row';
+                className = classNames(this.props.theme.row, className);
                 break;
         }
         // set justify property css
         switch (justify) {
             case FlexJustify.End:
-                className += ' justify-content-end';
+                className = classNames(this.props.theme.contentEnd, className);
                 break;
             case FlexJustify.Center:
-                className += ' justify-content-center';
+                className = classNames(this.props.theme.contentCenter, className);
                 break;
             case FlexJustify.SpaceAround:
-                className += ' justify-content-around';
+                className = classNames(this.props.theme.contentAround, className);
                 break;
             case FlexJustify.SpaceBetween:
-                className += ' justify-content-between';
+                className = classNames(this.props.theme.contentBetween, className);
                 break;
             case FlexJustify.Start:
             default:
-                className += ' justify-content-start';
+                className = classNames(this.props.theme.contentStart, className);
                 break;
         }
         // set align property css
         switch (align) {
             case FlexAlign.Start:
-                className += ' align-items-start';
+                className = classNames(this.props.theme.alignStart, className);
                 break;
             case FlexAlign.End:
-                className += ' align-items-end';
+                className = classNames(this.props.theme.alignEnd, className);
                 break;
             case FlexAlign.Center:
-                className += ' align-items-center';
+                className = classNames(this.props.theme.alignCenter, className);
                 break;
             case FlexAlign.Stretch:
             default:
-                className += ' align-items-stretch';
+                className = classNames(this.props.theme.alignStretch, className);
                 break;
         }
+
         return (
-            <div className={className}>
+            <div className={className} style={this.props.style}>
                 {this.props.children}
             </div>
         );
     }
-}
+};
 
+export default themr(FLEXBOX, baseTheme)(FlexBox) as ThemedComponentClass<Props, {}>;

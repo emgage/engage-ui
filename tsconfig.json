@@ -1,12 +1,13 @@
 {
   "compilerOptions": {
+    "allowJs": true,
     "baseUrl": "./src",
     "rootDir": "./",
     "target": "es2016",
     "module": "commonjs",
     "moduleResolution": "node",
     "declaration": true,
-    "declarationDir": "lib",
+    "declarationDir": "./lib/@types",
     "jsx": "react",
     "strictNullChecks": true,
     "noImplicitAny": true,
@@ -28,11 +29,13 @@
     "typeRoots": [
       "./@types",
       "./node_modules/@types"
-    ]
+    ],
+    "outDir": "./lib"
   },
   "include": [
     "./config/typescript/**/*",
-    "./src/**/*"
+    "./src/**/*",
+    "./typings/*"
   ],
   "exclude": [
     "./@types"

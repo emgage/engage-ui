@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr } from 'react-css-themr';
+import { themr, ThemedComponentClass } from 'react-css-themr';
 import autobind from '@shopify/javascript-utilities/autobind';
 import {addEventListener, removeEventListener} from '@shopify/javascript-utilities/events';
 import {closest} from '@shopify/javascript-utilities/dom';
@@ -69,7 +69,7 @@ class Scrollable extends React.Component<Props, State> {
         className={finalClassName}
         {...scrollable.props}
         {...rest}
-        ref={this.setScrollArea}
+        ref={(input) => {this.setScrollArea(input as HTMLElement);}}
       >
         {children}
       </div>
@@ -101,5 +101,5 @@ function forNode(node: HTMLElement) {
   return (closest(node, scrollable.selector) as HTMLElement | null) || document.body;
 }
 
-export default themr(SCROLLABLE, baseTheme)(Scrollable);
+export default themr(SCROLLABLE, baseTheme)(Scrollable) as ThemedComponentClass<Props, State>;
 export { forNode }

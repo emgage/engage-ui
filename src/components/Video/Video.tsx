@@ -1,4 +1,7 @@
 import * as React from 'react';
+import { themr, ThemedComponentClass } from 'react-css-themr';
+import { VIDEO } from '../ThemeIdentifiers';
+import * as baseTheme from './Video.scss';
 
 export type CrossOrigin = 'anonymous' | 'use-credentials';
 
@@ -28,7 +31,7 @@ export interface Props {
     style?: React.CSSProperties,
 };
 
-export default class Video extends React.PureComponent<Props, any> {
+class Video extends React.PureComponent<Props, any> {
     public static defaultProps: Partial<Props> = {
         loop: false,
         muted: false,
@@ -75,3 +78,5 @@ export default class Video extends React.PureComponent<Props, any> {
         );
     }
 }
+
+export default themr(VIDEO, baseTheme)(Video) as ThemedComponentClass<Props, {}>;

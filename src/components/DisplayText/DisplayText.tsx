@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr } from 'react-css-themr';
+import { themr, ThemedComponentClass } from 'react-css-themr';
 import {classNames, variationName} from '@shopify/react-utilities/styles';
 
 import {HeadingTagName} from '../../types';
@@ -28,4 +28,4 @@ const DisplayText = ({
   return <Element className={className}>{children}</Element>;
 };
 
-export default themr(DISPLAY_TEXT, baseTheme)(DisplayText);
+export default themr(DISPLAY_TEXT, baseTheme)(DisplayText) as ThemedComponentClass<Props, {}>;

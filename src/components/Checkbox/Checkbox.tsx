@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { themr } from 'react-css-themr';
-import {classNames} from '@shopify/react-utilities/styles';
-import {createUniqueIDFactory} from '@shopify/javascript-utilities/other';
+import { themr, ThemedComponentClass } from 'react-css-themr';
+import { classNames } from '@shopify/react-utilities/styles';
+import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
 
-import Choice, {Error, errorID, helpTextID} from '../Choice';
+import Choice, { Error, errorID, helpTextID } from '../Choice';
 import Icon from '../Icon';
 import { CHECKBOX } from '../ThemeIdentifiers';
 
@@ -91,4 +91,5 @@ const Checkbox = ({
   );
 }
 
-export default themr(CHECKBOX, baseTheme)(Checkbox);
+export { Checkbox as UnthemedCheckbox }
+export default themr(CHECKBOX, baseTheme)(Checkbox) as ThemedComponentClass<Props, {}>;

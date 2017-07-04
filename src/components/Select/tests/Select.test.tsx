@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {shallow, mount} from 'enzyme';
+import {mount} from 'enzyme';
 import Select from '..';
 
 describe('<Select />', () => {
@@ -16,7 +16,7 @@ describe('<Select />', () => {
   describe('onFocus()', () => {
     it('is called when the select is focused', () => {
       const spy = jest.fn();
-      shallow(<Select label="Select" options={[]} onFocus={spy} />).find('select').simulate('focus');
+      mount(<Select label="Select" options={[]} onFocus={spy} />).find('select').simulate('focus');
       expect(spy).toHaveBeenCalled();
     });
   });
@@ -24,7 +24,7 @@ describe('<Select />', () => {
   describe('onBlur()', () => {
     it('is called when the select is blurred', () => {
       const spy = jest.fn();
-      const element = shallow(<Select label="Select" options={[]} onBlur={spy} />);
+      const element = mount(<Select label="Select" options={[]} onBlur={spy} />);
       element.find('select').simulate('focus').simulate('blur');
       expect(spy).toHaveBeenCalled();
     });
@@ -33,7 +33,7 @@ describe('<Select />', () => {
   describe('options', () => {
     it('translates an array of strings into options', () => {
       const options = ['one', 'two'];
-      const optionElements = shallow(<Select label="Select" options={options} />).find('option');
+      const optionElements = mount(<Select label="Select" options={options} />).find('option');
 
       options.forEach((option, index) => {
         const optionElement = optionElements.at(index);
@@ -48,7 +48,7 @@ describe('<Select />', () => {
         {value: 'one', label: 'One'},
         {value: 'two', label: 'Two'},
       ];
-      const optionElements = shallow(<Select label="Select" options={options} />).find('option');
+      const optionElements = mount(<Select label="Select" options={options} />).find('option');
 
       options.forEach(({value, label}, index) => {
         const optionElement = optionElements.at(index);
@@ -67,7 +67,7 @@ describe('<Select />', () => {
         'two',
         {title: 'Group two', options: ['two.1', 'two.2']},
       ];
-      const optionOrOptgroupElements = shallow(<Select label="Select" groups={optionsAndGroups} />).find('select').children();
+      const optionOrOptgroupElements = mount(<Select label="Select" groups={optionsAndGroups} />).find('select').children();
 
       optionsAndGroups.forEach((optionOrGroup, index) => {
         const optionOrOptgroupElement = optionOrOptgroupElements.at(index);
@@ -96,19 +96,19 @@ describe('<Select />', () => {
 
   describe('value', () => {
     it('uses the passed value for the select', () => {
-      const value = shallow(<Select label="Select" value="Some value" options={[]} />).find('select').prop('value');
+      const value = mount(<Select label="Select" value="Some value" options={[]} />).find('select').prop('value');
       expect(value).toBe('Some value');
     });
   });
 
   describe('id', () => {
     it('sets the id on the input', () => {
-      const id = shallow(<Select label="Select" id="MySelect" options={[]} />).find('select').prop('id');
+      const id = mount(<Select label="Select" id="MySelect" options={[]} />).find('select').prop('id');
       expect(id).toBe('MySelect');
     });
 
     it('sets a random id on the input when none is passed', () => {
-      const id = shallow(<Select label="Select" options={[]} />).find('select').prop('id');
+      const id = mount(<Select label="Select" options={[]} />).find('select').prop('id');
       expect(typeof id).toBe('string');
       expect(id).toBeTruthy();
     });
@@ -116,15 +116,15 @@ describe('<Select />', () => {
 
   describe('disabled', () => {
     it('sets the disabled attribute on the select', () => {
-      const select = shallow(<Select label="Select" disabled options={[]} />);
+      const select = mount(<Select label="Select" disabled options={[]} />);
       expect(select.find('select').prop('disabled')).toBe(true);
     });
 
     it('is only disabled when disabled is explicitly set to true', () => {
-      let select = shallow(<Select label="Select" options={[]} />);
+      let select = mount(<Select label="Select" options={[]} />);
       expect(select.find('select').prop('disabled')).toBeFalsy();
 
-      select = shallow(<Select label="Select" disabled={false} options={[]} />);
+      select = mount(<Select label="Select" disabled={false} options={[]} />);
       expect(select.find('select').prop('disabled')).toBeFalsy();
     });
   });
@@ -140,7 +140,7 @@ describe('<Select />', () => {
 
   describe('placeholder', () => {
     it('renders an unselectable option for the placeholder', () => {
-      const select = shallow(<Select label="Select" placeholder="Choose something" options={[]} />);
+      const select = mount(<Select label="Select" placeholder="Choose something" options={[]} />);
       const placeholderOption = select.find('option').first();
       expect(placeholderOption.prop('value')).toBe(select.find('select').prop('defaultValue'));
       expect(placeholderOption.prop('disabled')).toBe(true);
@@ -148,7 +148,7 @@ describe('<Select />', () => {
     });
 
     it('does not render the placeholder when there is an existing value', () => {
-      const select = shallow(<Select label="Select" placeholder="Choose something" options={['one']} value="one" />);
+      const select = mount(<Select label="Select" placeholder="Choose something" options={['one']} value="one" />);
       const placeholderOption = select.find('option');
       expect(placeholderOption.length).toBe(1);
       expect(placeholderOption.prop('disabled')).toBeFalsy();

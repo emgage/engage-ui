@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr } from 'react-css-themr';
+import { themr, ThemedComponentClass } from 'react-css-themr';
 import autobind from '@shopify/javascript-utilities/autobind';
 import EventListener from '../EventListener';
 
@@ -38,7 +38,7 @@ class Resizer extends React.PureComponent<Props, never> {
     const minimumLinesMarkup = minimumLines
       ? (
         <div
-          ref={this.setMinimumLinesNode}
+          ref={(input) => {this.setMinimumLinesNode(input as HTMLElement);}}
           className={this.props.theme.DummyInput}
           dangerouslySetInnerHTML={{__html: getContentsForMinimumLines(minimumLines)}}
         />
@@ -49,7 +49,7 @@ class Resizer extends React.PureComponent<Props, never> {
       <div aria-hidden className={this.props.theme.Resizer}>
         <EventListener event="resize" handler={this.handleHeightCheck} />
         <div
-          ref={this.setContentNode}
+          ref={(input) => {this.setContentNode(input as HTMLElement);}}
           className={this.props.theme.DummyInput}
           dangerouslySetInnerHTML={{__html: getFinalContents(contents)}}
         />
@@ -111,4 +111,4 @@ function getFinalContents(contents?: string) {
     : '<br>';
 }
 
-export default themr(TEXT_FIELD, baseTheme)(Resizer);
+export default themr(TEXT_FIELD, baseTheme)(Resizer) as ThemedComponentClass<Props, {}>;

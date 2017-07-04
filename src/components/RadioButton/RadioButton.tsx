@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr } from 'react-css-themr';
+import { themr, ThemedComponentClass } from 'react-css-themr';
 import {createUniqueIDFactory} from '@shopify/javascript-utilities/other';
 
 import Choice, {helpTextID} from '../Choice';
@@ -70,4 +70,4 @@ const RadioButton = ({
   );
 }
 
-export default themr(RADIO_BUTTON, baseTheme)(RadioButton);
+export default themr(RADIO_BUTTON, baseTheme)(RadioButton) as ThemedComponentClass<Props, {}>;

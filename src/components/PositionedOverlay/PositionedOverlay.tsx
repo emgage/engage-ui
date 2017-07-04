@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr } from 'react-css-themr';
+import { themr, ThemedComponentClass } from 'react-css-themr';
 import autobind from '@shopify/javascript-utilities/autobind';
 import {addEventListener, removeEventListener} from '@shopify/javascript-utilities/events';
 import {getRectForNode, Rect} from '@shopify/javascript-utilities/geometry';
@@ -93,7 +93,7 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
       <div
         className={theme.PositionedOverlay}
         style={{top, left, zIndex}}
-        ref={this.setOverlay}
+        ref={(input) => { this.setOverlay(input as HTMLElement); }} 
       >
         {render(this.overlayDetails())}
       </div>
@@ -173,4 +173,4 @@ function getZIndexForLayerFromNode(node: HTMLElement) {
   return isNaN(zIndex) ? 0 : zIndex;
 }
 
-export default themr(POSITIONED_OVERLAY, baseTheme)(PositionedOverlay);
+export default themr(POSITIONED_OVERLAY, baseTheme)(PositionedOverlay) as ThemedComponentClass<Props, State>;
