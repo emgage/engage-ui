@@ -1,19 +1,26 @@
-import React, { PropTypes } from 'react';
+import * as React from 'react';
 import AppConstants from './AppConstants';
 
-const CellExpand = React.createClass({
-  getInitialState() {
-    let expanded = this.props.expandableOptions && this.props.expandableOptions.expanded;
-    return { expanded: expanded };
-  },
-  propTypes: {
-    expandableOptions: PropTypes.object.isRequired,
-    onCellExpand: PropTypes.func.isRequired
-  },
-  onCellExpand(e) {
+export interface Props {
+    expandableOptions: {
+      expanded: boolean,
+    },
+    onCellExpand: Function,
+};
+
+class CellExpand extends React.Component<Props, any> {
+
+  constructor(props: Props) {
+    super(props);
+
+    this.state = {expanded: this.props.expandableOptions && this.props.expandableOptions.expanded};
+  }
+
+  onCellExpand(e: any) {
     this.setState({ expanded: !this.state.expanded });
     this.props.onCellExpand(e);
-  },
+  }
+
   render() {
     return (
       <span className="rdg-cell-expand" onClick={this.onCellExpand} >
@@ -21,6 +28,6 @@ const CellExpand = React.createClass({
       </span>
     );
   }
-});
+};
 
 export default CellExpand;

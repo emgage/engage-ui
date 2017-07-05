@@ -1,7 +1,7 @@
-import React from 'react';
+import * as React from 'react';
 import classNames from 'classnames';
 
-const ChildRowDeleteButton = ({treeDepth, cellHeight, siblingIndex, numberSiblings, onDeleteSubRow, isDeleteSubRowEnabled, allowAddChildRow = true }) => {
+const ChildRowDeleteButton = ({treeDepth, cellHeight, siblingIndex, numberSiblings, onDeleteSubRow, isDeleteSubRowEnabled, allowAddChildRow = true }: any) => {
   const lastSibling = siblingIndex === numberSiblings - 1;
   let className = classNames(
     { 'rdg-child-row-action-cross': allowAddChildRow === true || !lastSibling },

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import focusableComponentWrapper from './focusableComponentWrapper';
 import '../../../themes/react-data-grid-row.css';
 

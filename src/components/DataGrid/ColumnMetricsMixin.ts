@@ -1,43 +1,29 @@
-const ColumnMetrics        = require('./ColumnMetrics');
-const DOMMetrics           = require('./DOMMetrics');
-Object.assign            = require('object-assign');
-const PropTypes            = require('react').PropTypes;
-const ColumnUtils = require('./ColumnUtils');
 import ReactDOM from 'react-dom';
+import Immutable from 'immutable';
+import ColumnMetrics, { Column, ColumnMetricsType } from './ColumnMetrics';
+import DOMMetrics from './DOMMetrics';
+import ColumnUtils from './ColumnUtils';
 
-
-class Column {
-  key: string;
-  left: number;
-  width: number;
+export interface Props {
+    columns: Array<Column>,
+    minColumnWidth: number,
+    columnEquality: Function,
+    onColumnResize: Function,
 }
 
-type ColumnMetricsType = {
-    columns: Array<Column>;
-    totalWidth: number;
-    minColumnWidth: number;
-};
-
-module.exports = {
+export default {
   mixins: [DOMMetrics.MetricsMixin],
-
-  propTypes: {
-    columns: PropTypes.arrayOf(Column),
-    minColumnWidth: PropTypes.number,
-    columnEquality: PropTypes.func,
-    onColumnResize: PropTypes.func
-  },
 
   DOMMetrics: {
     gridWidth(): number {
-      return ReactDOM.findDOMNode(this).parentElement.offsetWidth;
-    }
+      return (ReactDOM.findDOMNode(this).parentElement as any).offsetWidth;
+    },
   },
 
   getDefaultProps(): {minColumnWidth: number; columnEquality: (a: Column, b: Column) => boolean}  {
     return {
       minColumnWidth: 80,
-      columnEquality: ColumnMetrics.sameColumn
+      columnEquality: ColumnMetrics.sameColumn,
     };
   },
 
@@ -65,18 +51,20 @@ module.exports = {
     return totalWidth;
   },
 
-  getColumnMetricsType(metrics: ColumnMetricsType): { columns: ColumnMetricsType } {
+  getColumnMetricsType(metrics: ColumnMetricsType): ColumnMetricsType {
     let totalWidth = metrics.totalWidth || this.getTotalWidth();
-    let currentMetrics = {
+    let currentMetrics: ColumnMetricsType = {
       columns: metrics.columns,
-      totalWidth: totalWidth,
-      minColumnWidth: metrics.minColumnWidth
+      totalWidth,
+      minColumnWidth: metrics.minColumnWidth,
+      width: 0,
+      minWidth: 0,
     };
     let updatedMetrics = ColumnMetrics.recalculate(currentMetrics);
     return updatedMetrics;
   },
 
-  getColumn(idx) {
+  getColumn(idx: any) {
     let columns = this.state.columnMetrics.columns;
     if (Array.isArray(columns)) {
       return columns[idx];
@@ -114,5 +102,5 @@ module.exports = {
     if (this.props.onColumnResize) {
       this.props.onColumnResize(index, width);
     }
-  }
+  },
 };

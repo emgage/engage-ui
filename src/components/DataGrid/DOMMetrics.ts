@@ -1,8 +1,8 @@
-const React               = require('react');
-const shallowCloneObject  = require('./shallowCloneObject');
+import * as React from 'react';
+import shallowCloneObject from './shallowCloneObject';
 
 let contextTypes = {
-  metricsComputator: React.PropTypes.object
+  metricsComputator: {},
 };
 
 let MetricsComputatorMixin = {
@@ -17,8 +17,8 @@ let MetricsComputatorMixin = {
     return this._DOMMetrics.metrics[name].value;
   },
 
-  registerMetricsImpl(component: ReactComponent, metrics: any): {[key:string]: any} {
-    let getters = {};
+  registerMetricsImpl(component: React.Component, metrics: any): {[key:string]: any} {
+    let getters = {} as any;
     let s = this._DOMMetrics;
 
     for (let name in metrics) {
@@ -36,7 +36,7 @@ let MetricsComputatorMixin = {
     return getters;
   },
 
-  unregisterMetricsFor(component: ReactComponent) {
+  unregisterMetricsFor(component: React.Component) {
     let s = this._DOMMetrics;
     let idx = s.components.indexOf(component);
 
@@ -44,7 +44,7 @@ let MetricsComputatorMixin = {
       s.components.splice(idx, 1);
 
       let name;
-      let metricsToDelete = {};
+      let metricsToDelete = {} as any;
 
       for (name in s.metrics) {
         if (s.metrics[name].component === component) {
@@ -154,7 +154,7 @@ let MetricsMixin = {
   }
 };
 
-module.exports = {
+export default {
   MetricsComputatorMixin,
-  MetricsMixin
+  MetricsMixin,
 };

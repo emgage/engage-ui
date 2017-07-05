@@ -1,14 +1,21 @@
 import { List } from 'immutable';
+import isEmptyArray from './isEmptyArray';
+import isEmptyObject from './isEmptyObject';
+import isFunction from './isFunction';
+import isImmutableCollection from './isImmutableCollection';
+import getMixedTypeValueRetriever from './mixedTypeValueRetriever';
+import isColumnsImmutable from './isColumnsImmutable';
+import isImmutableMap from './isImmutableMap';
 
-module.exports = {
-  isEmptyArray: require('./isEmptyArray'),
-  isEmptyObject: require('./isEmptyObject'),
-  isFunction: require('./isFunction'),
-  isImmutableCollection: require('./isImmutableCollection'),
-  getMixedTypeValueRetriever: require('./mixedTypeValueRetriever'),
-  isColumnsImmutable: require('./isColumnsImmutable'),
-  isImmutableMap: require('./isImmutableMap'),
-  last: (arrayOrList) => {
+export default {
+  isEmptyArray,
+  isEmptyObject,
+  isFunction,
+  isImmutableCollection,
+  getMixedTypeValueRetriever,
+  isColumnsImmutable,
+  isImmutableMap,
+  last: (arrayOrList: any) => {
     if (arrayOrList == null) {
       throw new Error('arrayOrCollection is null');
     }
@@ -22,5 +29,5 @@ module.exports = {
     }
 
     throw new Error('Cant get last of: ' + typeof(arrayOrList));
-  }
+  },
 };

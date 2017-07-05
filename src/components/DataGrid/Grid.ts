@@ -7,57 +7,44 @@ const DOMMetrics           = require('./DOMMetrics');
 const cellMetaDataShape    = require('./PropTypeShapes/CellMetaDataShape');
 require('../../../themes/react-data-grid-core.css');
 
-const Grid = React.createClass({
-  propTypes: {
-    rowGetter: PropTypes.oneOfType([PropTypes.array, PropTypes.func]).isRequired,
-    columns: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
-    columnMetrics: PropTypes.object,
-    minHeight: PropTypes.number,
-    totalWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    headerRows: PropTypes.oneOfType([PropTypes.array, PropTypes.func]),
-    rowHeight: PropTypes.number,
-    rowRenderer: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
-    emptyRowsView: PropTypes.func,
-    expandedRows: PropTypes.oneOfType([PropTypes.array, PropTypes.func]),
-    selectedRows: PropTypes.oneOfType([PropTypes.array, PropTypes.func]),
-    rowSelection: React.PropTypes.oneOfType([
-      React.PropTypes.shape({
-        indexes: React.PropTypes.arrayOf(React.PropTypes.number).isRequired
-      }),
-      React.PropTypes.shape({
-        isSelectedKey: React.PropTypes.string.isRequired
-      }),
-      React.PropTypes.shape({
-        keys: React.PropTypes.shape({
-          values: React.PropTypes.array.isRequired,
-          rowKey: React.PropTypes.string.isRequired
-        }).isRequired
-      })
-    ]),
-    rowsCount: PropTypes.number,
-    onRows: PropTypes.func,
-    sortColumn: React.PropTypes.string,
-    sortDirection: React.PropTypes.oneOf(['ASC', 'DESC', 'NONE']),
-    rowOffsetHeight: PropTypes.number.isRequired,
-    onViewportKeydown: PropTypes.func.isRequired,
-    onViewportKeyup: PropTypes.func,
-    onViewportDragStart: PropTypes.func.isRequired,
-    onViewportDragEnd: PropTypes.func.isRequired,
-    onViewportDoubleClick: PropTypes.func.isRequired,
-    onColumnResize: PropTypes.func,
-    onSort: PropTypes.func,
-    onHeaderDrop: PropTypes.func,
-    cellMetaData: PropTypes.shape(cellMetaDataShape),
-    rowKey: PropTypes.string.isRequired,
-    rowScrollTimeout: PropTypes.number,
-    contextMenu: PropTypes.element,
-    getSubRowDetails: PropTypes.func,
-    draggableHeaderCell: PropTypes.func,
-    getValidFilterValues: PropTypes.func,
-    rowGroupRenderer: PropTypes.func,
-    overScan: PropTypes.object
-  },
+export interface Props {
+    rowGetter: any,
+    columns: any,
+    columnMetrics: object,
+    minHeight: number,
+    totalWidth: any,
+    headerRows: any,
+    rowHeight: number,
+    rowRenderer: any,
+    emptyRowsView: Function,
+    expandedRows: any,
+    selectedRows: any,
+    rowSelection: any,
+    rowsCount: number,
+    onRows: Function,
+    sortColumn: string,
+    sortDirection: 'ASC' | 'DESC' | 'NONE',
+    rowOffsetHeight: number,
+    onViewportKeydown: Function,
+    onViewportKeyup: Function,
+    onViewportDragStart: Function,
+    onViewportDragEnd: Function,
+    onViewportDoubleClick: Function,
+    onColumnResize: Function,
+    onSort: Function,
+    onHeaderDrop: Function,
+    cellMetaData: cellMetaDataShape,
+    rowKey: string,
+    rowScrollTimeout: number,
+    contextMenu: any,
+    getSubRowDetails: Function,
+    draggableHeaderCell: Function,
+    getValidFilterValues: Function,
+    rowGroupRenderer: Function,
+    overScan: object,
+};
 
+const Grid = React.createClass({
   mixins: [
     GridScrollMixin,
     DOMMetrics.MetricsComputatorMixin

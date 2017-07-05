@@ -1,7 +1,7 @@
 import { Iterable } from 'immutable';
 
-const isImmutableCollection = (objToVerify) => {
+const isImmutableCollection = (objToVerify: any) => {
   return Iterable.isIterable(objToVerify);
 };
 
-module.exports = isImmutableCollection;
+export default isImmutableCollection;

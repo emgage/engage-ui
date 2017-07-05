@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import ReactTestUtils from 'react-addons-test-utils';
 import RowsContainer from '../RowsContainer';
 

@@ -1,11 +1,11 @@
-const getMixedTypeValueRetriever = (isImmutable) => {
-  let retObj = {};
-  const retriever = (item, key) => { return item[key]; };
-  const immutableRetriever =  (immutable, key) => { return immutable.get(key); };
+const getMixedTypeValueRetriever = (isImmutable: boolean) => {
+  let retObj: any = {};
+  const retriever = (item: any, key: any) => item[key];
+  const immutableRetriever =  (immutable: any, key: any) => immutable.get(key);
 
   retObj.getValue = isImmutable ? immutableRetriever : retriever;
 
   return retObj;
 };
 
-module.exports = getMixedTypeValueRetriever;
+export default getMixedTypeValueRetriever;

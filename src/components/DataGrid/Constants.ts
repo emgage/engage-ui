@@ -1,3 +1,3 @@
 export const DragItemTypes = {
-  Column: 'column'
+  Column: 'column',
 };

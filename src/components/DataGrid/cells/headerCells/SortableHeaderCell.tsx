@@ -10,8 +10,14 @@ export const DEFINE_SORT = {
 export interface Props {
   columnKey: string,
   column: {name: any},
-  onSort(): void,
   sortDirection: string,
+  onSort(col: string, dir: string): void,
+}
+
+interface IUnicodeKeys {
+  ASC: number,
+  DESC: number,
+  [key: string]: number,
 }
 
 class SortableHeaderCell extends React.Component<Props, {}> {
@@ -38,9 +44,9 @@ class SortableHeaderCell extends React.Component<Props, {}> {
   }
 
   getSortByText = () => {
-    const unicodeKeys = {
-      ASC: '9650',
-      DESC: '9660',
+    const unicodeKeys: IUnicodeKeys = {
+      ASC: 9650,
+      DESC: 9660,
     };
     return this.props.sortDirection === 'NONE' ? '' : String.fromCharCode(unicodeKeys[this.props.sortDirection]);
   }
@@ -49,7 +55,7 @@ class SortableHeaderCell extends React.Component<Props, {}> {
     const className = joinClasses({
       'react-grid-HeaderCell-sortable': true,
       'react-grid-HeaderCell-sortable--ascending': this.props.sortDirection === 'ASC',
-      'react-grid-HeaderCell-sortable--descending': this.props.sortDirection === 'DESC'
+      'react-grid-HeaderCell-sortable--descending': this.props.sortDirection === 'DESC',
     });
 
     return (

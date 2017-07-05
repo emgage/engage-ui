@@ -1,5 +1,7 @@
+import * as React from 'react';
+
 let KeyboardHandlerMixin = {
-  onKeyDown(e: SyntheticKeyboardEvent) {
+  onKeyDown(e: React.SyntheticKeyboardEvent) {
     if (this.isCtrlKeyHeldDown(e)) {
       this.checkAndCall('onPressKeyWithCtrl', e);
     } else if (this.isKeyExplicitlyHandled(e.key)) {
@@ -66,4 +68,4 @@ let KeyboardHandlerMixin = {
   }
 };
 
-module.exports = KeyboardHandlerMixin;
+export default KeyboardHandlerMixin;

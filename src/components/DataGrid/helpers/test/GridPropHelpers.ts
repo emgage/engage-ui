@@ -1,37 +1,37 @@
-let _rows = [];
+let rows: any[] = [];
 for (let i = 0; i < 1000; i++) {
-  _rows.push({
+  rows.push({
     id: i,
     title: 'Title ' + i,
-    count: i * 1000
+    count: i * 1000,
   });
 }
-module.exports = {
+export default {
   columns: [{
     key: 'id',
     name: 'ID',
-    width: 100
+    width: 100,
   },
   {
     key: 'title',
     name: 'Title',
-    width: 100
+    width: 100,
   },
   {
     key: 'count',
     name: 'Count',
-    width: 100
-  }
-  ],
-  rowGetter: function(i) {
-    return _rows[i];
+    width: 100,
   },
-  rowsCount: function() {
-    return _rows.length;
+  ],
+  rowGetter(i: number) {
+    return rows[i];
+  },
+  rowsCount() {
+    return rows.length;
   },
   cellMetaData: {
     selected: { idx: 2, rowIdx: 3 },
     dragged: null,
-    copied: null
-  }
+    copied: null,
+  },
 };

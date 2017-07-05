@@ -1,23 +1,25 @@
-const shallowCloneObject = require('./shallowCloneObject');
-const sameColumn = require('./ColumnComparer');
-const ColumnUtils = require('./ColumnUtils');
-const getScrollbarSize  = require('./getScrollbarSize');
-const isColumnsImmutable  = require('./utils/isColumnsImmutable');
+import shallowCloneObject from './shallowCloneObject';
+import sameColumn from './ColumnComparer';
+import ColumnUtils from './ColumnUtils';
+import getScrollbarSize from './getScrollbarSize';
+import isColumnsImmutable from './utils/isColumnsImmutable';
 
-type Column = {
-  key: string;
-  left: number;
-  width: number;
+export interface Column {
+  left: number,
+  width: number,
+  [key: string]: number,
 };
 
-type ColumnMetricsType = {
-    columns: Array<Column>;
-    totalWidth: number;
-    minColumnWidth: number;
+export interface ColumnMetricsType {
+    columns: Array<Column>,
+    totalWidth: number,
+    minColumnWidth: number,
+    width: any,
+    minWidth: any,
 };
 
-function setColumnWidths(columns, totalWidth) {
-  return columns.map(column => {
+function setColumnWidths(columns: any, totalWidth: any) {
+  return columns.map((column: any) => {
     let colInfo = Object.assign({}, column);
     if (column.width) {
       if (/^([0-9]+)%$/.exec(column.width.toString())) {
@@ -29,9 +31,9 @@ function setColumnWidths(columns, totalWidth) {
   });
 }
 
-function setDefferedColumnWidths(columns, unallocatedWidth, minColumnWidth) {
-  let defferedColumns = columns.filter(c => !c.width);
-  return columns.map((column) => {
+function setDefferedColumnWidths(columns: any, unallocatedWidth: any, minColumnWidth: any) {
+  let defferedColumns = columns.filter((c: any) => !c.width);
+  return columns.map((column: any) => {
     if (!column.width) {
       if (unallocatedWidth <= 0) {
         column.width = minColumnWidth;
@@ -48,9 +50,9 @@ function setDefferedColumnWidths(columns, unallocatedWidth, minColumnWidth) {
   });
 }
 
-function setColumnOffsets(columns) {
+function setColumnOffsets(columns: any) {
   let left = 0;
-  return columns.map(column => {
+  return columns.map((column: any) => {
     column.left = left;
     left += column.width;
     return column;
@@ -66,12 +68,12 @@ function recalculate(metrics: ColumnMetricsType): ColumnMetricsType {
     // compute width for columns which specify width
   let columns = setColumnWidths(metrics.columns, metrics.totalWidth);
 
-  let unallocatedWidth = columns.filter(c => c.width).reduce((w, column) => {
+  let unallocatedWidth = columns.filter((c: any) => c.width).reduce((w: any, column: any) => {
     return w - column.width;
   }, metrics.totalWidth);
   unallocatedWidth -= getScrollbarSize();
 
-  let width = columns.filter(c => c.width).reduce((w, column) => {
+  let width = columns.filter((c: any) => c.width).reduce((w: any, column: any) => {
     return w + column.width;
   }, 0);
 
@@ -85,7 +87,7 @@ function recalculate(metrics: ColumnMetricsType): ColumnMetricsType {
     columns,
     width,
     totalWidth: metrics.totalWidth,
-    minColumnWidth: metrics.minColumnWidth
+    minColumnWidth: metrics.minColumnWidth,
   };
 }
 
@@ -157,4 +159,4 @@ function sameColumns(prevColumns: Array<Column>, nextColumns: Array<Column>, isS
   return compareEachColumn(prevColumns, nextColumns, isSameColumn);
 }
 
-module.exports = { recalculate, resizeColumn, sameColumn, sameColumns };
+export default { recalculate, resizeColumn, sameColumn, sameColumns };

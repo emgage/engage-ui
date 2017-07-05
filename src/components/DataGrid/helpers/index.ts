@@ -1,5 +1,5 @@
 import GridPropHelpers from './test/GridPropHelpers';
 
-module.exports = {
-  test: { GridPropHelpers }
+export default {
+  test: { GridPropHelpers },
 };

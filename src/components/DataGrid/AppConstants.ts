@@ -5,15 +5,15 @@ const constants = {
     CELL_UPDATE: null,
     COLUMN_FILL: null,
     COPY_PASTE: null,
-    CELL_DRAG: null
+    CELL_DRAG: null,
   }),
   DragItemTypes: {
-    Column: 'column'
+    Column: 'column',
   },
   CellExpand: {
-    DOWN_TRIANGLE: String.fromCharCode('9660'),
-    RIGHT_TRIANGLE: String.fromCharCode('9654')
-  }
+    DOWN_TRIANGLE: String.fromCharCode(9660),
+    RIGHT_TRIANGLE: String.fromCharCode(9654),
+  },
 };
 
-module.exports = constants;
+export default constants;

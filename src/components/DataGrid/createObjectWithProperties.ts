@@ -1,5 +1,5 @@
-function createObjectWithProperties(originalObj: any, properties: any): any {
-  let result = {};
+export default function createObjectWithProperties(originalObj: any, properties: any): any {
+  let result = {} as any;
   for (let property of properties) {
     if (originalObj[property]) {
       result[property] = originalObj[property];
@@ -7,5 +7,3 @@ function createObjectWithProperties(originalObj: any, properties: any): any {
   }
   return result;
 }
-
-module.exports = createObjectWithProperties;

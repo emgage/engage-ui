@@ -1,7 +1,6 @@
-let isValidElement = require('react').isValidElement;
+import { isValidElement } from 'react';
 
-module.exports =
-function sameColumn(a: Column, b: Column): boolean {
+export default function sameColumn(a: Column, b: Column): boolean {
   let k;
 
   for (k in a) {

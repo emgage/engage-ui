@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom';
 
-let ScrollShim = {
+const ScrollShim = {
 
   appendScrollShim() {
     if (!this._scrollShim) {
@@ -12,8 +12,8 @@ let ScrollShim = {
         shim.className += ' react-grid-ScrollShim';
       }
       shim.style.position = 'absolute';
-      shim.style.top = 0;
-      shim.style.left = 0;
+      shim.style.top = '0';
+      shim.style.left = '0';
       shim.style.width = `${size.width}px`;
       shim.style.height = `${size.height}px`;
       ReactDOM.findDOMNode(this).appendChild(shim);
@@ -45,4 +45,4 @@ let ScrollShim = {
   }
 };
 
-module.exports = ScrollShim;
+export default ScrollShim;
