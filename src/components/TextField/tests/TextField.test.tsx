@@ -35,6 +35,7 @@ describe('<TextField />', () => {
     expect(input.prop('maxLength')).toBe(2);
     expect(input.prop('spellCheck')).toBe(false);
     expect(input.prop('pattern')).toBe(pattern);
+    expect(input.prop('enableTextCouter')).toBe(true);
   });
 
   describe('onChange()', () => {
@@ -162,6 +163,21 @@ describe('<TextField />', () => {
     it('sets the type on the input', () => {
       const type = mount(<TextField label="TextField" type="email" />).find('input').prop('type');
       expect(type).toBe('email');
+    });
+
+    it('sets the enableTextCouter on the input', () => {
+      const enableTextCouter = mount(<TextField label="TextField" enableTextCouter={true} />).find('input').prop('enableTextCouter');
+      expect(typeof enableTextCouter).toBe('boolean');
+    });
+
+    it('sets the counterText on the input', () => {
+      const counterText = mount(<TextField label="TextField" counterText={'Text'} />).find('input').prop('counterText');
+      expect(typeof counterText).toBe('string');
+    });
+
+    it('sets the maxLength on the input', () => {
+      const maxLength = mount(<TextField label="TextField" maxLength={100} />).find('input').prop('maxLength');
+      expect(typeof maxLength).toBe('number');
     });
 
     describe('number', () => {
