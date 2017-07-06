@@ -1,15 +1,15 @@
-const Grid = require('./ReactDataGrid');
+import Grid from './ReactDataGrid';
+import Row from './Row';
+import Cell from './Cell';
+import HeaderCell from './HeaderCell';
+import EmptyChildRow from './EmptyChildRow';
+import editors from './editors';
+import utils from './utils';
+import shapes from './PropTypeShapes';
+import _constants from './AppConstants';
+import _helpers from './helpers';
 import RowComparer from './RowComparer';
 import RowsContainer from './RowsContainer';
-module.exports = Grid;
-module.exports.Row = require('./Row');
-module.exports.Cell = require('./Cell');
-module.exports.HeaderCell = require('./HeaderCell');
-module.exports.RowComparer = RowComparer;
-module.exports.EmptyChildRow = require('./EmptyChildRow');
-module.exports.RowsContainer = RowsContainer;
-module.exports.editors = require('./editors');
-module.exports.utils = require('./utils');
-module.exports.shapes = require('./PropTypeShapes');
-module.exports._constants = require('./AppConstants');
-module.exports._helpers = require('./helpers');
+
+export default Grid;
+export { Row, Cell, HeaderCell, EmptyChildRow, editors, utils, shapes, _constants, _helpers, RowComparer, RowsContainer };

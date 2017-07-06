@@ -2,7 +2,7 @@ export default interface CellMetaDataShape {
   selected: any,
   copied: any,
   dragged: any,
-  onCellClick(): void,
+  onCellClick(obj: {}): void,
   onCellDoubleClick(): void,
   onCommit(): void,
   onCommitCancel(): void,

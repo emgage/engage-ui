@@ -6,7 +6,7 @@ export interface State {
 };
 
 export interface Props {
-  column: ExcelColumn,
+  column?: ExcelColumn,
   onChange(e: any): void,
 };
 

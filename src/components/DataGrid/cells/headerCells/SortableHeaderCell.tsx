@@ -9,7 +9,7 @@ export const DEFINE_SORT = {
 
 export interface Props {
   columnKey: string,
-  column: {name: any},
+  column?: {name: any},
   sortDirection: string,
   onSort(col: string, dir: string): void,
 }

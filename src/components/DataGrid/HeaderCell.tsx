@@ -1,45 +1,42 @@
-const React          = require('react');
-const ReactDOM      = require('react-dom');
-const joinClasses    = require('classnames');
-const ExcelColumn    = require('./PropTypeShapes/ExcelColumn');
-const ResizeHandle   = require('./ResizeHandle');
-require('../../../themes/react-data-grid-header.css');
+import * as React from 'react';
+import ReactDOM from 'react-dom';
+import joinClasses from 'classnames';
+import ExcelColumn from './PropTypeShapes/ExcelColumn';
+import ResizeHandle from './ResizeHandle';
+// TODO: Add CSS require('../../../themes/react-data-grid-header.css');
 
-const PropTypes      = React.PropTypes;
-
-function simpleCellRenderer(objArgs: {column: {name: string}}): ReactElement {
-  let headerText = objArgs.column.rowType === 'header' ? objArgs.column.name : '';
+function simpleCellRenderer(objArgs: any) {
+  const headerText = objArgs.column.rowType === 'header' ? objArgs.column.name : '';
   return <div className="widget-HeaderCell__value">{headerText}</div>;
 }
 
-const HeaderCell = React.createClass({
+export interface Props {
+    renderer: any,
+    column: ExcelColumn,
+    onResize: Function,
+    height: number,
+    onResizeEnd: Function,
+    className: string,
+};
 
-  propTypes: {
-    renderer: PropTypes.oneOfType([PropTypes.func, PropTypes.element]).isRequired,
-    column: PropTypes.shape(ExcelColumn).isRequired,
-    onResize: PropTypes.func.isRequired,
-    height: PropTypes.number.isRequired,
-    onResizeEnd: PropTypes.func.isRequired,
-    className: PropTypes.string
-  },
+class HeaderCell extends React.Component<Props, any> {
 
-  getDefaultProps(): {renderer: ReactComponent | (props: {column: {name: string}}) => ReactElement} {
-    return {
-      renderer: simpleCellRenderer
-    };
-  },
+  public static defaultProps: Partial<Props> = {
+    renderer: simpleCellRenderer,
+  };
 
-  getInitialState(): {resizing: boolean} {
-    return {resizing: false};
-  },
+  constructor(props: Props) {
+    super(props);
+    this.state = {resizing: false};
+  }
 
-  onDragStart(e: SyntheticMouseEvent) {
+  onDragStart(e: any) {
     this.setState({resizing: true});
     // need to set dummy data for FF
     if (e && e.dataTransfer && e.dataTransfer.setData) e.dataTransfer.setData('text/plain', 'dummy');
-  },
+  }
 
-  onDrag(e: SyntheticMouseEvent) {
+  onDrag(e: any) {
     let resize = this.props.onResize || null; // for flows sake, doesnt recognise a null check direct
     if (resize) {
       let width = this.getWidthFromMouseEvent(e);
@@ -47,60 +44,60 @@ const HeaderCell = React.createClass({
         resize(this.props.column, width);
       }
     }
-  },
+  }
 
-  onDragEnd(e: SyntheticMouseEvent) {
+  onDragEnd(e: any) {
     let width = this.getWidthFromMouseEvent(e);
     this.props.onResizeEnd(this.props.column, width);
     this.setState({resizing: false});
-  },
+  }
 
-  getWidthFromMouseEvent(e: SyntheticMouseEvent): number {
+  getWidthFromMouseEvent(e: any): number {
     let right = e.pageX || (e.touches && e.touches[0] && e.touches[0].pageX) || (e.changedTouches && e.changedTouches[e.changedTouches.length - 1].pageX);
     let left = ReactDOM.findDOMNode(this).getBoundingClientRect().left;
     return right - left;
-  },
+  }
 
-  getCell(): ReactComponent {
+  getCell() {
     if (React.isValidElement(this.props.renderer)) {
       // if it is a string, it's an HTML element, and column is not a valid property, so only pass height
       if (typeof this.props.renderer.type === 'string') {
-        return React.cloneElement(this.props.renderer, {height: this.props.height});
+        return React.cloneElement(this.props.renderer as any, {height: this.props.height});
       }
-      return React.cloneElement(this.props.renderer, {column: this.props.column, height: this.props.height});
+      return React.cloneElement(this.props.renderer as any, {column: this.props.column, height: this.props.height});
     }
     return this.props.renderer({column: this.props.column});
-  },
+  }
 
-  getStyle(): {width:number; left: number; display: string; position: string; overflow: string; height: number; margin: number; textOverflow: string; whiteSpace: string } {
+  getStyle() {
     return {
       width: this.props.column.width,
       left: this.props.column.left,
       display: 'inline-block',
-      position: 'absolute',
+      position: 'absolute' as any,
       height: this.props.height,
       margin: 0,
       textOverflow: 'ellipsis',
-      whiteSpace: 'nowrap'
+      whiteSpace: 'nowrap',
     };
-  },
+  }
 
   setScrollLeft(scrollLeft: number) {
-    let node = ReactDOM.findDOMNode(this);
+    let node = ReactDOM.findDOMNode(this) as HTMLElement;
     node.style.webkitTransform = `translate3d(${scrollLeft}px, 0px, 0px)`;
     node.style.transform = `translate3d(${scrollLeft}px, 0px, 0px)`;
-  },
+  }
 
   removeScroll() {
-    let node = ReactDOM.findDOMNode(this);
+    let node = ReactDOM.findDOMNode(this) as HTMLElement;
     if (node) {
       let transform = 'none';
       node.style.webkitTransform = transform;
       node.style.transform = transform;
     }
-  },
+  }
 
-  render(): ?ReactElement {
+  render() {
     let resizeHandle;
     if (this.props.column.resizable) {
       resizeHandle = (<ResizeHandle
@@ -123,6 +120,6 @@ const HeaderCell = React.createClass({
       </div>
     );
   }
-});
+};
 
-module.exports = HeaderCell;
+export default HeaderCell;

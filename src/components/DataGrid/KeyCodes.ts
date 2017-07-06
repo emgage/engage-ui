@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   Backspace: 8,
   Tab: 9,
   Enter: 13,
@@ -95,6 +95,6 @@ module.exports = {
   OpenBracket: 219,
   BackSlash: 220,
   CloseBracket: 221,
-  SingleQuote: 222
+  SingleQuote: 222,
 };
 

@@ -1,7 +1,5 @@
-import * as React from 'react';
-
-let KeyboardHandlerMixin = {
-  onKeyDown(e: React.SyntheticKeyboardEvent) {
+const KeyboardHandlerMixin = {
+  onKeyDown(e: any) {
     if (this.isCtrlKeyHeldDown(e)) {
       this.checkAndCall('onPressKeyWithCtrl', e);
     } else if (this.isKeyExplicitlyHandled(e.key)) {
@@ -21,7 +19,7 @@ let KeyboardHandlerMixin = {
     }
   },
 
-  onKeyUp(e) {
+  onKeyUp(e: any) {
     // Track which keys are currently down for shift clicking etc
     this._keysDown = this._keysDown || {};
     delete this._keysDown[e.keyCode];
@@ -30,12 +28,12 @@ let KeyboardHandlerMixin = {
       this.props.onGridKeyUp(e);
     }
   },
-  isKeyDown(keyCode) {
+  isKeyDown(keyCode: any) {
     if (!this._keysDown) return false;
     return keyCode in this._keysDown;
   },
 
-  isSingleKeyDown(keyCode) {
+  isSingleKeyDown(keyCode: any) {
     if (!this._keysDown) return false;
     return keyCode in this._keysDown && Object.keys(this._keysDown).length === 1;
   },
@@ -57,7 +55,7 @@ let KeyboardHandlerMixin = {
     return typeof this['onPress' + key] === 'function';
   },
 
-  isCtrlKeyHeldDown(e: SyntheticKeyboardEvent): boolean {
+  isCtrlKeyHeldDown(e: any): boolean {
     return e.ctrlKey === true && e.key !== 'Control';
   },
 

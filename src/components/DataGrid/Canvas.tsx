@@ -43,6 +43,13 @@ export interface Props {
 };
 
 class Canvas extends React.Component<Props, any> {
+  public static defaultProps: Partial<Props> = {
+      rowRenderer: Row,
+      onRows: () => { },
+      selectedRows: [],
+      rowScrollTimeout: 0,
+  };
+
   mixins: [ScrollShim];
 
   rows: any[];
@@ -50,22 +57,15 @@ class Canvas extends React.Component<Props, any> {
   _currentRowsRange: { start: 0, end: 0 };
   _scroll: { scrollTop: 0, scrollLeft: 0 };
 
-  getDefaultProps() {
-    return {
-      rowRenderer: Row,
-      onRows: () => { },
-      selectedRows: [],
-      rowScrollTimeout: 0,
-    };
-  }
+  constructor(props: Props) {
+    super(props);
 
-  getInitialState() {
-    return {
-      displayStart: this.props.displayStart,
-      displayEnd: this.props.displayEnd,
-      scrollingTimeout: null,
-    };
-  }
+    this.state = {
+        displayStart: this.props.displayStart,
+        displayEnd: this.props.displayEnd,
+        scrollingTimeout: null,
+      };
+  };
 
   componentWillMount() {
     this._currentRowsLength = 0;

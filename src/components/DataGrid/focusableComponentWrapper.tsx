@@ -1,24 +1,28 @@
 /* eslint-disable react/prop-types */
-import React, { Component } from 'react';
+import * as React from 'react';
 import ReactDOM from 'react-dom';
 
-const focusableComponentWrapper = WrappedComponent => {
+export interface State {
+  isScrolling: boolean,
+}
+
+const focusableComponentWrapper = (WrappedComponent: any) => {
   return (
-    class ComponentWrapper extends Component {
+    class ComponentWrapper extends React.Component<{}, State> {
       constructor() {
         super();
         this.checkFocus = this.checkFocus.bind(this);
         this.state = { isScrolling: false };
       }
 
-      shouldComponentUpdate(nextProps) {
+      shouldComponentUpdate(nextProps: any) {
         return WrappedComponent.isSelected(this.props) !== WrappedComponent.isSelected(nextProps);
       }
 
-      componentWillReceiveProps(nextProps) {
-        let isScrolling = WrappedComponent.isScrolling(nextProps);
+      componentWillReceiveProps(nextProps: any) {
+        const isScrolling = WrappedComponent.isScrolling(nextProps);
         if (isScrolling && !this.state.isScrolling) {
-          this.setState({isScrolling: isScrolling});
+          this.setState({isScrolling});
         }
       }
 
@@ -38,7 +42,7 @@ const focusableComponentWrapper = WrappedComponent => {
       }
 
       focus() {
-        ReactDOM.findDOMNode(this).focus();
+        (ReactDOM.findDOMNode(this) as HTMLElement).focus();
       }
 
       render() {

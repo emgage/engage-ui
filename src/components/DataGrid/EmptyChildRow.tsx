@@ -1,7 +1,16 @@
 import React, { PropTypes } from 'react';
 import ColumnUtils from './ColumnUtils';
 
-class EmptyChildRow extends React.Component {
+class EmptyChildRow extends React.Component<any, any> {
+
+  static PropTypes = {
+    treeDepth: PropTypes.number.isRequired,
+    cellHeight: PropTypes.number.isRequired,
+    onAddSubRow: PropTypes.func.isRequired,
+    parentRowId: PropTypes.number,
+    columns: PropTypes.array.isRequired,
+    expandColumnKey: PropTypes.string.isRequired,
+  };
 
   constructor() {
     super();
@@ -36,7 +45,7 @@ class EmptyChildRow extends React.Component {
       height: cellHeight,
       borderBottom: '1px solid #dddddd'
     };
-    let expandColumn = ColumnUtils.getColumn(this.props.columns.filter(c => c.key === this.props.expandColumnKey), 0);
+    let expandColumn = ColumnUtils.getColumn(this.props.columns.filter((c: any) => c.key === this.props.expandColumnKey), 0);
 
     let cellLeft = expandColumn ? expandColumn.left  : 0;
     return (<div className="react-grid-Row rdg-add-child-row-container" style={style}>
@@ -51,14 +60,5 @@ class EmptyChildRow extends React.Component {
     </div>);
   }
 }
-
-EmptyChildRow.propTypes = {
-  treeDepth: PropTypes.number.isRequired,
-  cellHeight: PropTypes.number.isRequired,
-  onAddSubRow: PropTypes.func.isRequired,
-  parentRowId: PropTypes.number,
-  columns: PropTypes.array.isRequired,
-  expandColumnKey: PropTypes.string.isRequired
-};
 
 export default EmptyChildRow;

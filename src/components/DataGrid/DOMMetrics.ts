@@ -1,11 +1,11 @@
 import * as React from 'react';
 import shallowCloneObject from './shallowCloneObject';
 
-let contextTypes = {
+export const contextTypes = {
   metricsComputator: {},
 };
 
-let MetricsComputatorMixin = {
+export const MetricsComputatorMixin = {
 
   childContextTypes: contextTypes,
 
@@ -105,7 +105,7 @@ let MetricsComputatorMixin = {
   }
 };
 
-let MetricsMixin = {
+export const MetricsMixin = {
 
   contextTypes: contextTypes,
 
@@ -152,9 +152,4 @@ let MetricsMixin = {
 
     return this.context.metricsComputator.getMetricImpl(name);
   }
-};
-
-export default {
-  MetricsComputatorMixin,
-  MetricsMixin,
 };

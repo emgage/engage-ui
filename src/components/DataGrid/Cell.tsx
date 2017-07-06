@@ -43,21 +43,19 @@ export interface Props {
 
 class Cell extends React.Component<Props, any> {
 
+  public static defaultProps: Partial<Props> = {
+    tabIndex: -1,
+    isExpanded: false,
+    value: '',
+    isCellValueChanging: (value: any, nextValue: any) => value !== nextValue,
+  };
+
   constructor(props: Props) {
     super(props);
 
     this.state = {
       isCellValueChanging: false,
       isLockChanging: false,
-    };
-  }
-
-  getDefaultProps() {
-    return {
-      tabIndex: -1,
-      isExpanded: false,
-      value: '',
-      isCellValueChanging: (value: any, nextValue: any) => value !== nextValue,
     };
   }
 

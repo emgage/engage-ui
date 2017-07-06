@@ -1,4 +1,4 @@
-let size;
+let size: any;
 
 function getScrollbarSize() {
   if (size === undefined) {
@@ -28,4 +28,4 @@ function getScrollbarSize() {
   return size;
 }
 
-module.exports = getScrollbarSize;
+export default getScrollbarSize;

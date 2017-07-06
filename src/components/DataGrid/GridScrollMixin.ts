@@ -1,6 +1,6 @@
-const ReactDOM = require('react-dom');
+import ReactDOM from 'react-dom';
 
-module.exports = {
+export default {
 
   componentDidMount() {
     this._scrollLeft = this.viewport ? this.viewport.getScroll().scrollLeft : 0;
@@ -19,14 +19,14 @@ module.exports = {
     this._scrollLeft = undefined;
   },
 
-  onScroll(props) {
+  onScroll(props: any) {
     if (this._scrollLeft !== props.scrollLeft) {
       this._scrollLeft = props.scrollLeft;
       this._onScroll();
     }
   },
 
-  onHeaderScroll(e) {
+  onHeaderScroll(e: any) {
     let scrollLeft = e.target.scrollLeft;
     if (this._scrollLeft !== scrollLeft) {
       this._scrollLeft = scrollLeft;
@@ -44,5 +44,5 @@ module.exports = {
         this.viewport.setScrollLeft(this._scrollLeft);
       }
     }
-  }
+  },
 };

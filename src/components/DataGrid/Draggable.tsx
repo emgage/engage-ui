@@ -15,6 +15,12 @@ export interface Props {
 
 class Draggable extends React.Component<Props, any> {
 
+  public static defaultProps: Partial<Props> = {
+      onDragStart: () => true,
+      onDragEnd: () => {},
+      onDrag: () => {},
+  };
+
   constructor(props: Props) {
     super(props);
 

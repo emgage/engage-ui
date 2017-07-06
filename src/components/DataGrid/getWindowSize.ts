@@ -21,4 +21,4 @@ function getWindowSize(): {width: number; height: number} {
   return {width, height};
 }
 
-module.exports = getWindowSize;
+export default getWindowSize;

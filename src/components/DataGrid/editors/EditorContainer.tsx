@@ -29,15 +29,19 @@ export interface State {
 }
 
 class EditorContainer extends React.Component<Props, State> {
+
+  constructor(props) {
+    super(props);
+    
+    this.state = {isInvalid: false};
+  }
+  
+
   mixins: [KeyboardHandlerMixin];
 
   changeCommitted: false;
   changeCanceled: false;
   editor: any;
-
-  getInitialState = () => {
-    return {isInvalid: false};
-  }
 
   componentDidMount() {
     let inputNode = this.getInputNode();
