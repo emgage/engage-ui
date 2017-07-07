@@ -1,6 +1,6 @@
 import ColumnMetrics from './ColumnMetrics';
 
-function doesRowContainSelectedCell(props) {
+function doesRowContainSelectedCell(props: any) {
   let selected = props.cellMetaData.selected;
   if (selected && selected.rowIdx === props.idx) {
     return true;
@@ -8,17 +8,17 @@ function doesRowContainSelectedCell(props) {
   return false;
 }
 
-function willRowBeDraggedOver(props) {
+function willRowBeDraggedOver(props: any) {
   let dragged = props.cellMetaData.dragged;
   return dragged != null && (dragged.rowIdx >= 0 || dragged.complete === true);
 }
 
-function hasRowBeenCopied(props) {
+function hasRowBeenCopied(props: any) {
   let copied = props.cellMetaData.copied;
   return copied != null && copied.rowIdx === props.idx;
 }
 
-export const shouldRowUpdate = (nextProps, currentProps) => {
+export const shouldRowUpdate = (nextProps: any, currentProps: any) => {
   return !(ColumnMetrics.sameColumns(currentProps.columns, nextProps.columns, ColumnMetrics.sameColumn)) ||
     doesRowContainSelectedCell(currentProps) ||
     doesRowContainSelectedCell(nextProps) ||

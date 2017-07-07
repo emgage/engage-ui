@@ -1,12 +1,14 @@
-let RowUtils = {
-  get: function(row, property) {
+const RowUtils = {
+
+  get: (row: any, property: any): any => {
     if (typeof row.get === 'function') {
       return row.get(property);
     }
 
     return row[property];
   },
-  isRowSelected(keys, indexes, isSelectedKey, rowData, rowIdx) {
+
+  isRowSelected(keys: any, indexes: any, isSelectedKey: any, rowData: any, rowIdx: any) {
     if (indexes && Object.prototype.toString.call(indexes) === '[object Array]') {
       return indexes.indexOf(rowIdx) > -1;
     } else if (keys && keys.rowKey && keys.values && Object.prototype.toString.call(keys.values) === '[object Array]') {
@@ -15,7 +17,7 @@ let RowUtils = {
       return rowData[isSelectedKey];
     }
     return false;
-  }
+  },
 };
 
-module.exports = RowUtils;
+export default RowUtils;

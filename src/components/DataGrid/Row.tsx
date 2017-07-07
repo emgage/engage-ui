@@ -1,85 +1,82 @@
+import * as React from 'react';
+import joinClasses from 'classnames';
 import OverflowCell from './OverflowCell';
 import rowComparer from './RowComparer';
-const React = require('react');
-const joinClasses = require('classnames');
-const Cell = require('./Cell');
-const ColumnUtilsMixin = require('./ColumnUtils');
-const cellMetaDataShape = require('./PropTypeShapes/CellMetaDataShape');
-const PropTypes = React.PropTypes;
-const createObjectWithProperties = require('./createObjectWithProperties');
-require('../../../themes/react-data-grid-row.css');
+import Cell from './Cell';
+import ColumnUtilsMixin from './ColumnUtils';
+import cellMetaDataShape from './PropTypeShapes/CellMetaDataShape';
+import createObjectWithProperties from './createObjectWithProperties';
 
-const CellExpander = React.createClass({
-  render() {
-    return (<Cell {...this.props} />);
-  }
-});
+// TODO: Add CSS require('../../../themes/react-data-grid-row.css');
+
+const CellExpander = (props: any) => {
+  return <Cell {...props} />;
+};
 
 // The list of the propTypes that we want to include in the Row div
 const knownDivPropertyKeys = ['height'];
 
-const Row = React.createClass({
+export interface Props {
+    height: number,
+    columns: any,
+    row: any,
+    cellRenderer: Function,
+    cellMetaData: cellMetaDataShape,
+    isSelected: boolean,
+    idx: number,
+    expandedRows: any,
+    extraClasses: string,
+    forceUpdate: boolean,
+    subRowDetails: any,
+    isRowHovered: boolean,
+    colVisibleStart: number,
+    colVisibleEnd: number,
+    colDisplayStart: number,
+    colDisplayEnd: number,
+    isScrolling: boolean,
+};
 
-  propTypes: {
-    height: PropTypes.number.isRequired,
-    columns: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
-    row: PropTypes.any.isRequired,
-    cellRenderer: PropTypes.func,
-    cellMetaData: PropTypes.shape(cellMetaDataShape),
-    isSelected: PropTypes.bool,
-    idx: PropTypes.number.isRequired,
-    expandedRows: PropTypes.arrayOf(PropTypes.object),
-    extraClasses: PropTypes.string,
-    forceUpdate: PropTypes.bool,
-    subRowDetails: PropTypes.object,
-    isRowHovered: PropTypes.bool,
-    colVisibleStart: PropTypes.number.isRequired,
-    colVisibleEnd: PropTypes.number.isRequired,
-    colDisplayStart: PropTypes.number.isRequired,
-    colDisplayEnd: PropTypes.number.isRequired,
-    isScrolling: React.PropTypes.bool.isRequired
-  },
+class Row extends React.Component<Props, any> {
 
-  mixins: [ColumnUtilsMixin],
-
-  getDefaultProps() {
-    return {
+  public static defaultProps: Partial<Props> = {
       cellRenderer: Cell,
       isSelected: false,
-      height: 35
-    };
-  },
+      height: 35,
+  };
 
-  shouldComponentUpdate(nextProps) {
+  [key: string]: React.ReactNode;
+  mixins: [ColumnUtilsMixin];
+
+  shouldComponentUpdate(nextProps: Props) {
     return rowComparer(nextProps, this.props);
-  },
+  }
 
   handleDragEnter() {
-    let handleDragEnterRow = this.props.cellMetaData.handleDragEnterRow;
+    const handleDragEnterRow = this.props.cellMetaData.handleDragEnterRow;
     if (handleDragEnterRow) {
       handleDragEnterRow(this.props.idx);
     }
-  },
+  }
 
   getSelectedColumn() {
     if (this.props.cellMetaData) {
-      let selected = this.props.cellMetaData.selected;
+      const selected = this.props.cellMetaData.selected;
       if (selected && selected.idx) {
         return this.getColumn(this.props.columns, selected.idx);
       }
     }
-  },
+  }
 
-  getCellRenderer(columnKey) {
-    let CellRenderer = this.props.cellRenderer;
+  getCellRenderer(columnKey: any) {
+    const CellRenderer = this.props.cellRenderer;
     if (this.props.subRowDetails && this.props.subRowDetails.field === columnKey) {
       return CellExpander;
     }
     return CellRenderer;
-  },
+  }
 
-  getCell(column, i, selectedColumn) {
-    let CellRenderer = this.props.cellRenderer;
+  getCell(column: any, i: any, selectedColumn: any) {
+    const CellRenderer: any = this.props.cellRenderer;
     const { colVisibleStart, colVisibleEnd, idx, cellMetaData } = this.props;
     const { key, formatter, locked } = column;
     const baseCellProps = { key: `${key}-${idx}`, idx: i, rowIdx: idx, height: this.getRowHeight(), column, cellMetaData };
@@ -90,7 +87,7 @@ const Row = React.createClass({
 
     const { row, isSelected } = this.props;
     const cellProps = {
-      ref: (node) => this[key] = node,
+      ref: (node: any) => this[key] = node,
       value: this.getCellValue(key || i),
       rowData: row,
       isRowSelected: isSelected,
@@ -101,15 +98,15 @@ const Row = React.createClass({
     };
 
     return <CellRenderer {...baseCellProps} {...cellProps} />;
-  },
+  }
 
   getCells() {
-    let cells = [];
-    let lockedCells = [];
+    let cells: any[] = [];
+    let lockedCells: any = [];
     let selectedColumn = this.getSelectedColumn();
     let lastColumnIdx = this.props.columns.size - 1;
     if (this.props.columns) {
-      this.props.columns.forEach((column, i) => {
+      this.props.columns.forEach((column: any, i: any) => {
         if (i === lastColumnIdx) {
           column.isLastColumn = true;
         }
@@ -123,7 +120,7 @@ const Row = React.createClass({
     }
 
     return cells.concat(lockedCells);
-  },
+  }
 
   getRowHeight() {
     let rows = this.props.expandedRows || null;
@@ -134,9 +131,9 @@ const Row = React.createClass({
       }
     }
     return this.props.height;
-  },
+  }
 
-  getCellValue(key) {
+  getCellValue(key: any) {
     let val;
     if (key === 'select-row') {
       return this.props.isSelected;
@@ -146,7 +143,7 @@ const Row = React.createClass({
       val = this.props.row[key];
     }
     return val;
-  },
+  }
 
   isContextMenuDisplayed() {
     if (this.props.cellMetaData) {
@@ -156,30 +153,30 @@ const Row = React.createClass({
       }
     }
     return false;
-  },
+  }
 
-  getExpandableOptions(columnKey) {
+  getExpandableOptions(columnKey: any) {
     let subRowDetails = this.props.subRowDetails;
     if (subRowDetails) {
       return { canExpand: subRowDetails && subRowDetails.field === columnKey && ((subRowDetails.children && subRowDetails.children.length > 0) || subRowDetails.group === true), field: subRowDetails.field, expanded: subRowDetails && subRowDetails.expanded, children: subRowDetails && subRowDetails.children, treeDepth: subRowDetails ? subRowDetails.treeDepth : 0, subRowDetails: subRowDetails };
     }
     return {};
-  },
+  }
 
-  setScrollLeft(scrollLeft) {
-    this.props.columns.forEach((column) => {
+  setScrollLeft(scrollLeft: any) {
+    this.props.columns.forEach((column: any) => {
       if (column.locked) {
         if (!this[column.key]) return;
-        this[column.key].setScrollLeft(scrollLeft);
+        (this[column.key] as any).setScrollLeft(scrollLeft);
       }
     });
-  },
+  }
 
   getKnownDivProps() {
     return createObjectWithProperties(this.props, knownDivPropertyKeys);
-  },
+  }
 
-  renderCell(props) {
+  renderCell(props: any) {
     if (typeof this.props.cellRenderer === 'function') {
       this.props.cellRenderer.call(this, props);
     }
@@ -188,7 +185,7 @@ const Row = React.createClass({
     }
 
     return this.props.cellRenderer(props);
-  },
+  }
 
   render() {
     let className = joinClasses(
@@ -202,9 +199,9 @@ const Row = React.createClass({
     );
 
     let style = {
-      height: this.getRowHeight(this.props),
+      height: this.getRowHeight(),
       overflow: 'hidden',
-      contain: 'layout'
+      contain: 'layout',
     };
 
     let cells = this.getCells();
@@ -217,6 +214,6 @@ const Row = React.createClass({
       </div >
     );
   }
-});
+};
 
-module.exports = Row;
+export default Row;

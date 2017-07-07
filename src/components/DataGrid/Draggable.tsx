@@ -9,8 +9,8 @@ export interface Props {
     onDragStart: Function,
     onDragEnd: Function,
     onDrag: Function,
-    component: any,
     style: any,
+    className: any,
 };
 
 class Draggable extends React.Component<Props, any> {
@@ -76,11 +76,12 @@ class Draggable extends React.Component<Props, any> {
   }
 
   render() {
+    const classname = this.props.className ? this.props.className : 'react-grid-HeaderCell__draggable';
     return (
       <div {...this.getKnownDivProps()}
         onMouseDown={this.onMouseDown}
         onTouchStart={this.onMouseDown}
-        className="react-grid-HeaderCell__draggable" />
+        className={classname} />
     );
   }
 };

@@ -33,9 +33,9 @@ export interface Props {
     handleDragStart: Function,
     className: string,
     cellControls: any,
-    rowData: object,
+    rowData: any,
     forceUpdate: boolean,
-    expandableOptions: object,
+    expandableOptions: any,
     isScrolling: boolean,
     tooltip: string,
     isCellValueChanging: Function,
@@ -295,7 +295,7 @@ class Cell extends React.Component<Props, any> {
   setScrollLeft(scrollLeft: number) {
     let ctrl: any = this; // flow on windows has an outdated react declaration, once that gets updated, we can remove this
     if (ctrl.isMounted()) {
-      let node = ReactDOM.findDOMNode(this);
+      let node = ReactDOM.findDOMNode(this) as HTMLElement;
       if (node) {
         let transform = `translate3d(${scrollLeft}px, 0px, 0px)`;
         node.style.webkitTransform = transform;
@@ -305,7 +305,7 @@ class Cell extends React.Component<Props, any> {
   }
 
   removeScroll() {
-    let node = ReactDOM.findDOMNode(this);
+    let node = ReactDOM.findDOMNode(this) as HTMLElement;
     if (node) {
       node.style.webkitTransform = null;
       node.style.transform = null;
@@ -392,7 +392,7 @@ class Cell extends React.Component<Props, any> {
       // Meaning focus should not be stolen from elements that the grid doesnt control.
       let dataGridDOMNode = this.props.cellMetaData && this.props.cellMetaData.getDataGridDOMNode ? this.props.cellMetaData.getDataGridDOMNode() : null;
       if (this.isFocusedOnCell() || this.isFocusedOnBody() || (dataGridDOMNode && dataGridDOMNode.contains(document.activeElement))) {
-        let cellDOMNode = ReactDOM.findDOMNode(this);
+        let cellDOMNode = ReactDOM.findDOMNode(this) as HTMLElement;
         if (cellDOMNode) {
           cellDOMNode.focus();
         }
@@ -426,7 +426,7 @@ class Cell extends React.Component<Props, any> {
 
     for (let eventKey in columnEvents) {
       if (columnEvents.hasOwnProperty(eventKey)) {
-        let event: any = columnEvents[event];
+        // let event: any = columnEvents[eventKey];
         let eventInfo = { idx: this.props.idx, rowIdx: this.props.rowIdx, rowId: this.props.rowData[this.props.cellMetaData.rowKey], name: eventKey };
         let eventCallback = this.createColumEventCallBack(onColumnEvent, eventInfo);
 

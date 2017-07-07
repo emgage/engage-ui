@@ -18,10 +18,11 @@ export interface Props {
       onCellClick(): void,
       onCellDoubleClick(): void,
       onCommitCancel(): void,
-      onCommit(): void,
+      onCommit(obj: any): void,
   },
   column: any,
   height: number,
+  idx?: any,
 };
 
 export interface State {
@@ -30,18 +31,15 @@ export interface State {
 
 class EditorContainer extends React.Component<Props, State> {
 
-  constructor(props) {
+  changeCommitted: boolean;
+  changeCanceled: boolean;
+  editor: any;
+
+  constructor(props: Props) {
     super(props);
-    
+
     this.state = {isInvalid: false};
   }
-  
-
-  mixins: [KeyboardHandlerMixin];
-
-  changeCommitted: false;
-  changeCanceled: false;
-  editor: any;
 
   componentDidMount() {
     let inputNode = this.getInputNode();
@@ -72,19 +70,19 @@ class EditorContainer extends React.Component<Props, State> {
       rowData: this.props.rowData,
       height: this.props.height,
       onBlur: this.commit,
-      onOverrideKeyDown: this.onKeyDown,
+      onOverrideKeyDown: KeyboardHandlerMixin.onKeyDown,
     };
 
     let CustomEditor = this.props.column.editor;
     // return custom column editor or SimpleEditor if none specified
     if (React.isValidElement(CustomEditor)) {
-      return React.cloneElement(CustomEditor, editorProps);
+      return React.cloneElement(CustomEditor as any, editorProps);
     }
     if (isFunction(CustomEditor)) {
       return <CustomEditor ref={editorRef} {...editorProps} />;
     }
 
-    return <SimpleTextEditor ref={editorRef} column={this.props.column} value={this.getInitialValue()} onBlur={this.commit} rowMetaData={this.getRowMetaData()} onKeyDown={() => {}} commit={() => {}}/>;
+    return <SimpleTextEditor ref={editorRef} column={this.props.column} value={this.getInitialValue()} rowMetaData={this.getRowMetaData()} onKeyDown={() => {}} commit={() => {}} onBlur={() => { this.onPressTab(); }}/>;
   }
 
   onPressEnter() {
@@ -95,7 +93,7 @@ class EditorContainer extends React.Component<Props, State> {
     this.commit({key: 'Tab'});
   }
 
-  onPressEscape(e: SyntheticKeyboardEvent) {
+  onPressEscape(e: any) {
     if (!this.editorIsSelectOpen()) {
       this.commitCancel();
     } else {
@@ -104,7 +102,7 @@ class EditorContainer extends React.Component<Props, State> {
     }
   }
 
-  onPressArrowDown(e: SyntheticKeyboardEvent) {
+  onPressArrowDown(e: any) {
     if (this.editorHasResults()) {
       // dont want to propogate as that then moves us round the grid
       e.stopPropagation();
@@ -113,7 +111,7 @@ class EditorContainer extends React.Component<Props, State> {
     }
   }
 
-  onPressArrowUp(e: SyntheticKeyboardEvent) {
+  onPressArrowUp(e: any) {
     if (this.editorHasResults()) {
       // dont want to propogate as that then moves us round the grid
       e.stopPropagation();
@@ -122,7 +120,7 @@ class EditorContainer extends React.Component<Props, State> {
     }
   }
 
-  onPressArrowLeft(e: SyntheticKeyboardEvent) {
+  onPressArrowLeft(e: any) {
     // prevent event propogation. this disables left cell navigation
     if (!this.isCaretAtBeginningOfInput()) {
       e.stopPropagation();
@@ -131,7 +129,7 @@ class EditorContainer extends React.Component<Props, State> {
     }
   }
 
-  onPressArrowRight(e: SyntheticKeyboardEvent) {
+  onPressArrowRight(e: any) {
     // prevent event propogation. this disables right cell navigation
     if (!this.isCaretAtEndOfInput()) {
       e.stopPropagation();
@@ -164,7 +162,7 @@ class EditorContainer extends React.Component<Props, State> {
     }
   }
 
-  getEditor(): Editor {
+  getEditor(): any {
     return this.editor;
   }
 
@@ -217,7 +215,7 @@ class EditorContainer extends React.Component<Props, State> {
   }
 
   setCaretAtEndOfInput() {
-    let input = this.getInputNode();
+    let input = this.getInputNode() as any;
     // taken from http://stackoverflow.com/questions/511088/use-javascript-to-place-cursor-at-end-of-text-in-text-input-element
     let txtLength = input.value.length;
     if (input.setSelectionRange) {
@@ -262,11 +260,11 @@ class EditorContainer extends React.Component<Props, State> {
             document.activeElement; // IE11
   }
 
-  handleRightClick(e: Event) {
+  handleRightClick(e: any) {
     e.stopPropagation();
   }
 
-  handleBlur(e: Event) {
+  handleBlur(e: any) {
     e.stopPropagation();
     if (this.isBodyClicked(e)) {
       this.commit(e);
@@ -286,7 +284,7 @@ class EditorContainer extends React.Component<Props, State> {
     let inputNode = this.getInputNode();
     inputNode.focus();
     if (inputNode.tagName === 'INPUT') {
-      if (!this.isKeyPrintable(keyCode)) {
+      if (!KeyboardHandlerMixin.isKeyPrintable(keyCode)) {
         inputNode.focus();
         inputNode.select();
       } else {
@@ -303,7 +301,7 @@ class EditorContainer extends React.Component<Props, State> {
 
   render() {
     return (
-        <div className={this.getContainerClass()} onBlur={this.handleBlur} onKeyDown={this.onKeyDown} onContextMenu={this.handleRightClick}>
+        <div className={this.getContainerClass()} onBlur={this.handleBlur} onKeyDown={KeyboardHandlerMixin.onKeyDown} onContextMenu={this.handleRightClick}>
           {this.createEditor()}
           {this.renderStatusIcon()}
         </div>

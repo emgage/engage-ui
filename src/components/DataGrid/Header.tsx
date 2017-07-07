@@ -23,7 +23,7 @@ export interface Props {
     height: number,
     headerRows: any,
     sortColumn: string,
-    sortDirection: ['ASC', 'DESC', 'NONE'],
+    sortDirection: 'ASC' | 'DESC' | 'NONE',
     onSort: Function,
     onColumnResize: Function,
     onScroll: Function,

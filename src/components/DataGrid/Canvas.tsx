@@ -15,8 +15,8 @@ export interface Props {
     height: number,
     width: number,
     totalWidth: any,
-    style: string,
-    className: string,
+    style?: string,
+    className?: string,
     displayStart: number,
     displayEnd: number,
     visibleStart: number,
@@ -49,8 +49,6 @@ class Canvas extends React.Component<Props, any> {
       selectedRows: [],
       rowScrollTimeout: 0,
   };
-
-  mixins: [ScrollShim];
 
   rows: any[];
   _currentRowsLength = 0;
@@ -129,7 +127,7 @@ class Canvas extends React.Component<Props, any> {
     if (ReactDOM.findDOMNode(this) !== e.target) {
       return;
     }
-    this.appendScrollShim();
+    ScrollShim.appendScrollShim();
     let scrollLeft = e.target.scrollLeft;
     let scrollTop = e.target.scrollTop;
     let scroll = { scrollTop, scrollLeft };
@@ -159,7 +157,7 @@ class Canvas extends React.Component<Props, any> {
   getScrollbarWidth() {
     let scrollbarWidth = 0;
     // Get the scrollbar width
-    let canvas = ReactDOM.findDOMNode(this);
+    let canvas = ReactDOM.findDOMNode(this) as HTMLElement;
     scrollbarWidth = canvas.offsetWidth - canvas.clientWidth;
     return scrollbarWidth;
   }
@@ -259,7 +257,6 @@ class Canvas extends React.Component<Props, any> {
         visibleEnd: this.props.visibleEnd,
         row: r.row,
         height: rowHeight,
-        onMouseOver: this.onMouseOver,
         columns: this.props.columns,
         isSelected: this.isRowSelected(displayStart + idx, r.row),
         expandedRows: this.props.expandedRows,

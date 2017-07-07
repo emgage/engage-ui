@@ -18,18 +18,18 @@ class FilterableHeaderCell extends React.Component<Props, State> {
     };
   }
 
-  const = (e: any) => {
+  handleChange = (e: any) => {
     const val = e.target.value;
     this.setState({filterTerm: val });
     this.props.onChange({filterTerm: val, column: this.props.column});
   }
 
   renderInput = () => {
-    if (this.props.column.filterable === false) {
+    if (this.props.column && this.props.column.filterable === false) {
       return <span/>;
     }
 
-    const inputKey = 'header-filter-' + this.props.column.key;
+    const inputKey = 'header-filter-' + (this.props.column ? this.props.column.key : '');
     return (<input key={inputKey} type="text" className="form-control input-sm" placeholder="Search" value={this.state.filterTerm} onChange={this.handleChange}/>);
   }
 

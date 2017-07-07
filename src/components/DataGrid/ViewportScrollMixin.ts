@@ -1,40 +1,47 @@
+import * as React from 'react';
+import ReactDOM from 'react-dom';
 import ColumnUtils from './ColumnUtils';
-const React = require('react');
-const ReactDOM = require('react-dom');
-const DOMMetrics = require('./DOMMetrics');
+import * as DOMMetrics from './DOMMetrics';
 const min = Math.min;
 const max = Math.max;
 const floor = Math.floor;
 const ceil = Math.ceil;
 
-type ViewportScrollState = {
-  displayStart: number;
-  displayEnd: number;
-  height: number;
-  scrollTop: number;
-  scrollLeft: number;
+export interface ViewportScrollState {
+  displayStart: number,
+  displayEnd: number,
+  height: number,
+  scrollTop: number,
+  scrollLeft: number,
+  visibleStart: number,
+  visibleEnd: number,
+  colVisibleStart: number,
+  colVisibleEnd: number,
+  colDisplayStart: number,
+  colDisplayEnd: number,
 };
 
-module.exports = {
+export default {
+
+  propTypes: {
+    rowHeight: React.PropTypes.number,
+    rowsCount: React.PropTypes.number.isRequired,
+  },
+
   mixins: [DOMMetrics.MetricsMixin],
 
   DOMMetrics: {
     viewportHeight(): number {
-      return ReactDOM.findDOMNode(this).offsetHeight;
+      return (ReactDOM.findDOMNode(this) as HTMLElement).offsetHeight;
     },
     viewportWidth(): number {
-      return ReactDOM.findDOMNode(this).offsetWidth;
-    }
-  },
-
-  propTypes: {
-    rowHeight: React.PropTypes.number,
-    rowsCount: React.PropTypes.number.isRequired
+      return (ReactDOM.findDOMNode(this) as HTMLElement).offsetWidth;
+    },
   },
 
   getDefaultProps(): { rowHeight: number } {
     return {
-      rowHeight: 30
+      rowHeight: 30,
     };
   },
 
@@ -42,7 +49,7 @@ module.exports = {
     return this.getGridState(this.props);
   },
 
-  getGridState(props: { rowHeight: number; rowsCount: number; minHeight: number }): ViewportScrollState {
+  getGridState(props: { rowHeight: number; rowsCount: number; minHeight: number; columnMetrics: any; rowOffsetHeight: any; }): ViewportScrollState {
     let totalNumberColumns = ColumnUtils.getSize(props.columnMetrics.columns);
     let canvasHeight = props.minHeight - props.rowOffsetHeight;
     let renderedRowsCount = ceil((props.minHeight - props.rowHeight) / props.rowHeight);
@@ -58,14 +65,14 @@ module.exports = {
       colVisibleStart: 0,
       colVisibleEnd: totalNumberColumns,
       colDisplayStart: 0,
-      colDisplayEnd: totalNumberColumns
+      colDisplayEnd: totalNumberColumns,
     };
   },
 
-  getRenderedColumnCount(displayStart, width) {
+  getRenderedColumnCount(displayStart: any, width: any) {
     let remainingWidth = width && width > 0 ? width : this.props.columnMetrics.totalWidth;
     if (remainingWidth === 0) {
-      remainingWidth = ReactDOM.findDOMNode(this).offsetWidth;
+      remainingWidth = (ReactDOM.findDOMNode(this) as HTMLElement).offsetWidth;
     }
     let columnIndex = displayStart;
     let columnCount = 0;
@@ -83,7 +90,7 @@ module.exports = {
     return columnCount;
   },
 
-  getVisibleColStart(scrollLeft) {
+  getVisibleColStart(scrollLeft: any) {
     let remainingScroll = scrollLeft;
     let columnIndex = -1;
     while (remainingScroll >= 0) {
@@ -100,18 +107,18 @@ module.exports = {
 
     this.resetScrollStateTimeoutId = setTimeout(
       this.resetScrollStateAfterDelayCallback,
-      500
+      500,
     );
   },
 
   resetScrollStateAfterDelayCallback() {
     this.resetScrollStateTimeoutId = null;
     this.setState({
-      isScrolling: false
+      isScrolling: false,
     });
   },
 
-  updateScroll(scrollTop: number, scrollLeft: number, height: number, rowHeight: number, length: number, width) {
+  updateScroll(scrollTop: number, scrollLeft: number, height: number, rowHeight: number, length: number, width: any) {
     let isScrolling = true;
     this.resetScrollStateAfterDelay();
 
@@ -132,7 +139,7 @@ module.exports = {
     let colDisplayStart = max(0, colVisibleStart - this.props.overScan.colsStart);
     let colDisplayEnd = min(colVisibleEnd + this.props.overScan.colsEnd, totalNumberColumns);
 
-    let nextScrollState = {
+    const nextScrollState = {
       visibleStart,
       visibleEnd,
       displayStart,
@@ -144,15 +151,15 @@ module.exports = {
       colVisibleEnd,
       colDisplayStart,
       colDisplayEnd,
-      isScrolling
+      isScrolling,
     };
 
     this.setState(nextScrollState);
   },
 
   metricsUpdated() {
-    let height = this.DOMMetrics.viewportHeight();
-    let width = this.DOMMetrics.viewportWidth();
+    const height = this.DOMMetrics.viewportHeight();
+    const width = this.DOMMetrics.viewportWidth();
     if (height) {
       this.updateScroll(
         this.state.scrollTop,
@@ -160,12 +167,12 @@ module.exports = {
         height,
         this.props.rowHeight,
         this.props.rowsCount,
-        width
+        width,
       );
     }
   },
 
-  componentWillReceiveProps(nextProps: { rowHeight: number; rowsCount: number, rowOffsetHeight: number }) {
+  componentWillReceiveProps(nextProps: { rowHeight: number; rowsCount: number, rowOffsetHeight: number, minHeight: any, columnMetrics: any }) {
     if (this.props.rowHeight !== nextProps.rowHeight ||
       this.props.minHeight !== nextProps.minHeight ||
       ColumnUtils.getSize(this.props.columnMetrics.columns) !== ColumnUtils.getSize(nextProps.columnMetrics.columns)) {
@@ -176,20 +183,20 @@ module.exports = {
         this.state.scrollLeft,
         this.state.height,
         nextProps.rowHeight,
-        nextProps.rowsCount
+        nextProps.rowsCount,
       );
       // Added to fix the hiding of the bottom scrollbar when showing the filters.
     } else if (this.props.rowOffsetHeight !== nextProps.rowOffsetHeight) {
       // The value of height can be positive or negative and will be added to the current height to cater for changes in the header height (due to the filer)
-      let height = this.props.rowOffsetHeight - nextProps.rowOffsetHeight;
+      const height = this.props.rowOffsetHeight - nextProps.rowOffsetHeight;
 
       this.updateScroll(
         this.state.scrollTop,
         this.state.scrollLeft,
         this.state.height + height,
         nextProps.rowHeight,
-        nextProps.rowsCount
+        nextProps.rowsCount,
       );
     }
-  }
+  },
 };

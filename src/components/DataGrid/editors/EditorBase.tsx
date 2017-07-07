@@ -10,6 +10,7 @@ export interface Props {
   onKeyDown(): void,
   onBlur(): void,
   commit(): void,
+  rowMetaData(): void,
 };
 
 class EditorBase extends React.Component<Props, any> {

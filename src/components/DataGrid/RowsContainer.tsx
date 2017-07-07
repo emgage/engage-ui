@@ -1,6 +1,11 @@
-import React, {PropTypes} from 'react';
+import * as React from 'react';
 
-const SimpleRowsContainer = (props) => {
+export interface SimpleRowsContainerProps {
+  width: number,
+  rows: Array<any>,
+};
+
+const SimpleRowsContainer = (props: SimpleRowsContainerProps) => {
   return (
     <div key="rows-container">
       {props.rows}
@@ -8,19 +13,24 @@ const SimpleRowsContainer = (props) => {
   );
 };
 
-SimpleRowsContainer.propTypes = {
-  width: PropTypes.number,
-  rows: PropTypes.array
+export interface RowsContainerProps {
+  contextMenu: any,
+  rowIdx: number,
+  idx: number,
+  window?: any,
 };
 
-class RowsContainer extends React.Component {
-  constructor(props) {
+class RowsContainer extends React.Component<RowsContainerProps & SimpleRowsContainerProps, any> {
+
+  plugins: any;
+
+  constructor(props: RowsContainerProps & SimpleRowsContainerProps) {
     super(props);
-    this.plugins = props.window ? props.window.ReactDataGridPlugins : window.ReactDataGridPlugins;
+    this.plugins = props.window ? props.window.ReactDataGridPlugins : (window as any).ReactDataGridPlugins;
     this.hasContextMenu = this.hasContextMenu.bind(this);
     this.renderRowsWithContextMenu = this.renderRowsWithContextMenu.bind(this);
     this.getContextMenuContainer = this.getContextMenuContainer.bind(this);
-    this.state = {ContextMenuContainer: this.getContextMenuContainer(props)};
+    this.state = {ContextMenuContainer: this.getContextMenuContainer()};
   }
 
   getContextMenuContainer() {
@@ -37,9 +47,9 @@ class RowsContainer extends React.Component {
   }
 
   renderRowsWithContextMenu() {
-    let ContextMenuRowsContainer = this.state.ContextMenuContainer;
-    let newProps = {rowIdx: this.props.rowIdx, idx: this.props.idx};
-    let contextMenu = React.cloneElement(this.props.contextMenu, newProps);
+    const ContextMenuRowsContainer = this.state.ContextMenuContainer;
+    const newProps = {rowIdx: this.props.rowIdx, idx: this.props.idx};
+    const contextMenu = React.cloneElement(this.props.contextMenu, newProps);
     // Initialise the context menu if it is available
     return (<div><ContextMenuRowsContainer {...this.props} />{contextMenu}</div>);
   }
@@ -47,13 +57,6 @@ class RowsContainer extends React.Component {
   render() {
     return this.hasContextMenu() ? this.renderRowsWithContextMenu() : <SimpleRowsContainer {...this.props} />;
   }
-}
-
-RowsContainer.propTypes = {
-  contextMenu: PropTypes.element,
-  rowIdx: PropTypes.number,
-  idx: PropTypes.number,
-  window: PropTypes.object
 };
 
 export default RowsContainer;
