@@ -1,5 +1,6 @@
 import * as React from 'react';
 import ReactDOM from 'react-dom';
+import ReactMixin from 'react-mixin';
 import ColumnUtils from './ColumnUtils';
 import * as DOMMetrics from './DOMMetrics';
 const min = Math.min;
@@ -21,7 +22,7 @@ export interface ViewportScrollState {
   colDisplayEnd: number,
 };
 
-export default {
+const ViewPortMixin = {
 
   propTypes: {
     rowHeight: React.PropTypes.number,
@@ -200,3 +201,7 @@ export default {
     }
   },
 };
+
+ReactMixin(ViewPortMixin, DOMMetrics.MetricsMixin);
+
+export default ViewPortMixin;

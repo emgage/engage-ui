@@ -8,7 +8,7 @@ export default interface CellMetaDataShape {
   rowKey?: any,
   onCellClick(obj?: {}, e?: any): void,
   onCellDoubleClick(obj?: {}, e?: any): void,
-  onCommit(): void,
+  onCommit(obj?: any): void,
   onCommitCancel(): void,
   handleDragEnterRow(idx: any): void,
   handleTerminateDrag(): void,
@@ -18,5 +18,5 @@ export default interface CellMetaDataShape {
   onDeleteSubRow(obj?: any): any,
   onDragHandleDoubleClick(obj?: any): any,
   getDataGridDOMNode(): any,
-  onColumnEvent(): any,
+  onColumnEvent(obj?: any, e?: any): any,
 };

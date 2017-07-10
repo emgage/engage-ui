@@ -1,5 +1,6 @@
 import * as React from 'react';
 import ReactDOM from 'react-dom';
+import ReactMixin from 'react-mixin';
 import BaseGrid from './Grid';
 import KeyboardHandlerMixin from './KeyboardHandlerMixin';
 import CheckboxEditor from './editors/CheckboxEditor';
@@ -36,49 +37,51 @@ export interface RowUpdateEvent {
 };
 
 export interface Props {
-    rowHeight: number,
-    headerRowHeight: number,
-    headerFiltersHeight: number,
+    rowHeight?: number,
+    headerRowHeight?: number,
+    headerFiltersHeight?: number,
     minHeight: number,
-    minWidth: number,
-    enableRowSelect: any,
-    onRowUpdated: Function,
+    minWidth?: number,
+    enableRowSelect?: any,
+    onRowUpdated?: Function,
     rowGetter: Function,
     rowsCount: number,
-    toolbar: any,
-    enableCellSelect: boolean,
+    toolbar?: any,
+    enableCellSelect?: boolean,
     columns: any,
-    onFilter: Function,
-    onCellCopyPaste: Function,
-    onCellsDragged: Function,
-    onAddFilter: any,
-    onGridSort: Function,
-    onDragHandleDoubleClick: Function,
-    onGridRowsUpdated: Function,
-    onRowSelect: Function,
-    rowKey: string,
-    rowScrollTimeout: number,
-    onClearFilters: Function,
-    contextMenu: any,
-    cellNavigationMode: 'none' | 'loopOverRow' | 'changeRow',
-    onCellSelected: Function,
-    onCellDeSelected: Function,
-    onCellExpand: Function,
-    enableDragAndDrop: boolean,
-    onRowExpandToggle: Function,
-    draggableHeaderCell: Function,
-    getValidFilterValues: Function,
-    rowSelection: any,
-    onRowClick: Function,
-    onGridKeyUp: Function,
-    onGridKeyDown: Function,
-    rowGroupRenderer: Function,
-    rowActionsCell: Function,
-    onCheckCellIsEditable: Function,
+    onFilter?: Function,
+    onCellCopyPaste?: Function,
+    onCellsDragged?: Function,
+    onAddFilter?: any,
+    onGridSort?: Function,
+    onDragHandleDoubleClick?: Function,
+    onGridRowsUpdated?: Function,
+    onRowSelect?: Function,
+    rowKey?: string,
+    rowScrollTimeout?: number,
+    onClearFilters?: Function,
+    contextMenu?: any,
+    cellNavigationMode?: 'none' | 'loopOverRow' | 'changeRow',
+    onCellSelected?: Function,
+    onCellDeSelected?: Function,
+    onCellExpand?: Function,
+    enableDragAndDrop?: boolean,
+    onRowExpandToggle?: Function,
+    draggableHeaderCell?: Function,
+    getValidFilterValues?: Function,
+    rowSelection?: any,
+    onRowClick?: Function,
+    onGridKeyUp?: Function,
+    onGridKeyDown?: Function,
+    rowRenderer?: any,
+    emptyRowsView?: any,
+    rowGroupRenderer?: Function,
+    rowActionsCell?: Function,
+    onCheckCellIsEditable?: Function,
     /* called before cell is set active, returns a boolean to determine whether cell is editable */
-    overScan: any,
-    onDeleteSubRow: Function,
-    onAddSubRow: Function,
+    overScan?: any,
+    onDeleteSubRow?: any,
+    onAddSubRow?: Function,
 };
 
 class ReactDataGrid extends React.Component<Props, any> {
@@ -104,12 +107,9 @@ class ReactDataGrid extends React.Component<Props, any> {
   _gridNode: any;
   row: any;
   filterRow: any;
-
-  // mixins: [
-  //    ColumnMetricsMixin,
-  //    DOMMetrics.MetricsComputatorMixin,
-  //    KeyboardHandlerMixin
-  // ];
+  selectAllCheckbox: any;
+  _cachedColumns: any;
+  _cachedComputedColumns: any;
 
   constructor(props: Props) {
     super(props);
@@ -117,7 +117,7 @@ class ReactDataGrid extends React.Component<Props, any> {
   }
 
   getInitState() {
-    let columnMetrics = this.createColumnMetrics();
+    let columnMetrics = ColumnMetricsMixin.createColumnMetrics();
     let initialState = {columnMetrics, selectedRows: [], copied: null, expandedRows: [], canFilter: false, columnFilters: {}, sortDirection: null, sortColumn: null, dragged: null, scrollOffset: 0, lastRowIdxUiSelected: -1, selected: {}};
     if (this.props.enableCellSelect) {
       initialState.selected = {rowIdx: 0, idx: 0};
@@ -142,7 +142,7 @@ class ReactDataGrid extends React.Component<Props, any> {
     let {idx, name} = columnEvent;
 
     if (name && typeof idx !== 'undefined') {
-      let column = this.getColumn(idx);
+      let column = ColumnMetricsMixin.getColumn(idx);
 
       if (column && column.events && column.events[name] && typeof column.events[name] === 'function') {
         let eventArgs = {
@@ -242,7 +242,7 @@ class ReactDataGrid extends React.Component<Props, any> {
   }
 
   onPressChar(e: any) {
-    if (this.isKeyPrintable(e.keyCode)) {
+    if (KeyboardHandlerMixin.isKeyPrintable(e.keyCode)) {
       this.setActive(e.keyCode);
     }
   }
@@ -259,7 +259,7 @@ class ReactDataGrid extends React.Component<Props, any> {
     let row = this.props.rowGetter(rowIdx);
 
     let idx = this.state.selected.idx;
-    let col = this.getColumn(idx);
+    let col = ColumnMetricsMixin.getColumn(idx);
 
     if (ColumnUtils.canEdit(col, row, this.props.enableCellSelect)) {
       if (e.keyCode === keys.KeyCode_c || e.keyCode === keys.KeyCode_C) {
@@ -341,7 +341,7 @@ class ReactDataGrid extends React.Component<Props, any> {
     }
 
     if (this.props.onGridRowsUpdated) {
-      let cellKey = this.getColumn(e.idx).key;
+      let cellKey = ColumnMetricsMixin.getColumn(e.idx).key;
       this.onGridRowsUpdated(cellKey, e.rowIdx, this.props.rowsCount - 1, {[cellKey]: e.rowData[cellKey]}, AppConstants.UpdateActions.COLUMN_FILL, undefined);
     }
   }
@@ -375,7 +375,7 @@ class ReactDataGrid extends React.Component<Props, any> {
   handleDragEnd() {
     if (!this.dragEnabled()) { return; }
     const { selected, dragged } = this.state;
-    const column = this.getColumn(this.state.selected.idx);
+    const column = ColumnMetricsMixin.getColumn(this.state.selected.idx);
     if (selected && dragged && column) {
       let cellKey = column.key;
       let fromRow = selected.rowIdx < dragged.overRowIdx ? selected.rowIdx : dragged.overRowIdx;
@@ -405,7 +405,7 @@ class ReactDataGrid extends React.Component<Props, any> {
   handlePaste() {
     if (!this.copyPasteEnabled() || !(this.state.copied)) { return; }
     let selected = this.state.selected;
-    let cellKey = this.getColumn(this.state.selected.idx).key;
+    let cellKey = ColumnMetricsMixin.getColumn(this.state.selected.idx).key;
     let textToCopy = this.state.textToCopy;
     let fromRow = this.state.copied.rowIdx;
     let toRow = selected.rowIdx;
@@ -454,7 +454,7 @@ class ReactDataGrid extends React.Component<Props, any> {
   }
   // return false if not a shift select so can be handled as normal row selection
   handleShiftSelect(rowIdx: any) {
-    if (this.state.lastRowIdxUiSelected > -1 && this.isSingleKeyDown(KeyCodes.Shift)) {
+    if (this.state.lastRowIdxUiSelected > -1 && KeyboardHandlerMixin.isSingleKeyDown(KeyCodes.Shift)) {
       let {keys, indexes, isSelectedKey} = this.props.rowSelection.selectBy;
       let isPreviouslySelected = RowUtils.isRowSelected(keys, indexes, isSelectedKey, this.props.rowGetter(rowIdx), rowIdx);
 
@@ -643,7 +643,7 @@ class ReactDataGrid extends React.Component<Props, any> {
   getSelectedValue(): string {
     let rowIdx = this.state.selected.rowIdx;
     let idx = this.state.selected.idx;
-    let cellKey = this.getColumn(idx).key;
+    let cellKey = ColumnMetricsMixin.getColumn(idx).key;
     let row = this.props.rowGetter(rowIdx);
     return RowUtils.get(row, cellKey);
   }
@@ -722,7 +722,7 @@ class ReactDataGrid extends React.Component<Props, any> {
 
   openCellEditor(rowIdx: any, idx: any) {
     let row = this.props.rowGetter(rowIdx);
-    let col = this.getColumn(idx);
+    let col = ColumnMetricsMixin.getColumn(idx);
 
     if (!ColumnUtils.canEdit(col, row, this.props.enableCellSelect)) {
       return;
@@ -745,7 +745,7 @@ class ReactDataGrid extends React.Component<Props, any> {
       let locked = 0;
 
       for (let i = 0; i < colIdx; i++) {
-        let column = this.getColumn(i);
+        let column = ColumnMetricsMixin.getColumn(i);
         if (column) {
           if (column.width) {
             left += column.width;
@@ -756,7 +756,7 @@ class ReactDataGrid extends React.Component<Props, any> {
         }
       }
 
-      let selectedColumn = this.getColumn(colIdx);
+      let selectedColumn = ColumnMetricsMixin.getColumn(colIdx);
       if (selectedColumn) {
         let scrollLeft = left - locked - canvas.scrollLeft;
         let scrollRight =  left + selectedColumn.width - canvas.scrollLeft;
@@ -776,7 +776,7 @@ class ReactDataGrid extends React.Component<Props, any> {
     let row = this.props.rowGetter(rowIdx);
 
     let idx = this.state.selected.idx;
-    let column = this.getColumn(idx);
+    let column = ColumnMetricsMixin.getColumn(idx);
 
     if (ColumnUtils.canEdit(column, row, this.props.enableCellSelect) && !this.isActive()) {
       let selected = Object.assign({}, this.state.selected, {idx: idx, rowIdx: rowIdx, active: true, initialKeyCode: keyPressed});
@@ -801,7 +801,7 @@ class ReactDataGrid extends React.Component<Props, any> {
     let row = this.props.rowGetter(rowIdx);
 
     let idx = this.state.selected.idx;
-    let col = this.getColumn(idx);
+    let col = ColumnMetricsMixin.getColumn(idx);
 
     if (ColumnUtils.canEdit(col, row, this.props.enableCellSelect) && this.isActive()) {
       let selected = Object.assign({}, this.state.selected, {idx: idx, rowIdx: rowIdx, active: false});
@@ -826,7 +826,7 @@ class ReactDataGrid extends React.Component<Props, any> {
     if (this.props.rowActionsCell || (this.props.enableRowSelect && !this.props.rowSelection) || (this.props.rowSelection && this.props.rowSelection.showCheckbox !== false)) {
       let headerRenderer = this.props.enableRowSelect === 'single' ? null :
       <div className="react-grid-checkbox-container checkbox-align">
-        <input className="react-grid-checkbox" type="checkbox" name="select-all-checkbox" id="select-all-checkbox" ref={grid => this.selectAllCheckbox = grid} onChange={this.handleCheckboxChange} />
+        <input className="react-grid-checkbox" type="checkbox" name="select-all-checkbox" id="select-all-checkbox" ref={(grid: any) => this.selectAllCheckbox = grid} onChange={this.handleCheckboxChange} />
         <label htmlFor="select-all-checkbox" className="react-grid-checkbox-label"></label>
       </div>;
       let Formatter: any = this.props.rowActionsCell ? this.props.rowActionsCell : CheckboxEditor;
@@ -885,12 +885,12 @@ class ReactDataGrid extends React.Component<Props, any> {
       onDragHandleDoubleClick: this.onDragHandleDoubleClick,
       onCellExpand: this.onCellExpand,
       onRowExpandToggle: this.onRowExpandToggle,
-      onRowHover: this.onRowHover,
+      // onRowHover: this.onRowHover,
       getDataGridDOMNode: this.getDataGridDOMNode,
       onDeleteSubRow: this.props.onDeleteSubRow,
       onAddSubRow: this.props.onAddSubRow,
-      isScrollingVerticallyWithKeyboard: this.isKeyDown(KeyCodes.DownArrow) || this.isKeyDown(KeyCodes.UpArrow),
-      isScrollingHorizontallyWithKeyboard: this.isKeyDown(KeyCodes.LeftArrow) || this.isKeyDown(KeyCodes.RightArrow) || this.isKeyDown(KeyCodes.Tab)
+      isScrollingVerticallyWithKeyboard: KeyboardHandlerMixin.isKeyDown(KeyCodes.DownArrow) || KeyboardHandlerMixin.isKeyDown(KeyCodes.UpArrow),
+      isScrollingHorizontallyWithKeyboard: KeyboardHandlerMixin.isKeyDown(KeyCodes.LeftArrow) || KeyboardHandlerMixin.isKeyDown(KeyCodes.RightArrow) || KeyboardHandlerMixin.isKeyDown(KeyCodes.Tab),
     };
 
     let toolbar = this.renderToolbar();
@@ -913,6 +913,8 @@ class ReactDataGrid extends React.Component<Props, any> {
           <BaseGrid
             {...this.props}
             ref={(node: any) => this.base = node}
+            rowRenderer={this.props.rowRenderer}
+            emptyRowsView={this.props.emptyRowsView}
             rowKey={this.props.rowKey}
             headerRows={this.getHeaderRows()}
             columnMetrics={this.state.columnMetrics}
@@ -929,12 +931,12 @@ class ReactDataGrid extends React.Component<Props, any> {
             onSort={this.handleSort}
             minHeight={this.props.minHeight}
             totalWidth={gridWidth}
-            onViewportKeydown={this.onKeyDown}
-            onViewportKeyup={this.onKeyUp}
+            onViewportKeydown={KeyboardHandlerMixin.onKeyDown}
+            onViewportKeyup={KeyboardHandlerMixin.onKeyUp}
             onViewportDragStart={this.onDragStart}
             onViewportDragEnd={this.handleDragEnd}
             onViewportDoubleClick={this.onViewportDoubleClick}
-            onColumnResize={this.onColumnResize}
+            onColumnResize={ColumnMetricsMixin.onColumnResize}
             rowScrollTimeout={this.props.rowScrollTimeout}
             contextMenu={this.props.contextMenu}
             overScan={this.props.overScan} />
@@ -943,5 +945,7 @@ class ReactDataGrid extends React.Component<Props, any> {
       );
   }
 };
+
+ReactMixin(ReactDataGrid.prototype, DOMMetrics.MetricsComputatorMixin);
 
 export default ReactDataGrid;

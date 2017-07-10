@@ -88,6 +88,7 @@ function recalculate(metrics: ColumnMetricsType): ColumnMetricsType {
     width,
     totalWidth: metrics.totalWidth,
     minColumnWidth: metrics.minColumnWidth,
+    minWidth: metrics.minWidth,
   };
 }
 

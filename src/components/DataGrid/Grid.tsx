@@ -1,9 +1,11 @@
 import * as React from 'react';
+import ReactMixin from 'react-mixin';
 import Header from './Header';
 import Viewport from './Viewport';
 import GridScrollMixin from './GridScrollMixin';
 import { MetricsComputatorMixin } from './DOMMetrics';
 import cellMetaDataShape from './PropTypeShapes/CellMetaDataShape';
+import { DEFINE_SORT } from './cells/headerCells/SortableHeaderCell';
 // // TODO: Add CSS require('../../../themes/react-data-grid-core.css');
 
 export interface Props {
@@ -20,9 +22,9 @@ export interface Props {
     selectedRows: any,
     rowSelection: any,
     rowsCount: number,
-    onRows: Function,
+    onRows?: Function,
     sortColumn: string,
-    sortDirection: 'ASC' | 'DESC' | 'NONE',
+    sortDirection: typeof DEFINE_SORT,
     rowOffsetHeight: number,
     onViewportKeydown: any,
     onViewportKeyup: any,
@@ -31,12 +33,12 @@ export interface Props {
     onViewportDoubleClick: any,
     onColumnResize: Function,
     onSort: Function,
-    onHeaderDrop: Function,
+    onHeaderDrop?: Function,
     cellMetaData: cellMetaDataShape,
     rowKey: string,
     rowScrollTimeout: number,
     contextMenu: any,
-    getSubRowDetails: Function,
+    getSubRowDetails?: Function,
     draggableHeaderCell: Function,
     getValidFilterValues: Function,
     rowGroupRenderer: Function,
@@ -49,10 +51,6 @@ class Grid extends React.Component<Props, {}> {
       minHeight: 350,
     };
 
-    mixins: [
-        GridScrollMixin,
-        MetricsComputatorMixin
-    ];
     row: any;
     emptyView: any;
     header: any;
@@ -69,8 +67,8 @@ class Grid extends React.Component<Props, {}> {
     }
 
     render() {
-        let headerRows = this.props.headerRows || [{ref: (node: any) => this.row = node}];
-        let EmptyRowsView = this.props.emptyRowsView;
+        const headerRows = this.props.headerRows || [{ref: (node: any) => this.row = node}];
+        const EmptyRowsView = this.props.emptyRowsView;
 
     return (
         <div style={this.getStyle()} className="react-grid-Grid">
@@ -85,8 +83,8 @@ class Grid extends React.Component<Props, {}> {
                 sortDirection={this.props.sortDirection}
                 draggableHeaderCell={this.props.draggableHeaderCell}
                 onSort={this.props.onSort}
-                onHeaderDrop={this.props.onHeaderDrop}
-                onScroll={this.onHeaderScroll}
+                onHeaderDrop={this.props.onHeaderDrop as any}
+                onScroll={GridScrollMixin.onHeaderScroll}
                 getValidFilterValues={this.props.getValidFilterValues}
                 cellMetaData={this.props.cellMetaData}
             />
@@ -95,7 +93,6 @@ class Grid extends React.Component<Props, {}> {
                 <Viewport
                   ref={(node: any) => { this.viewport = node; } }
                   rowKey={this.props.rowKey}
-                  width={this.props.columnMetrics.width}
                   rowHeight={this.props.rowHeight}
                   rowRenderer={this.props.rowRenderer}
                   rowGetter={this.props.rowGetter}
@@ -104,17 +101,16 @@ class Grid extends React.Component<Props, {}> {
                   expandedRows={this.props.expandedRows}
                   columnMetrics={this.props.columnMetrics}
                   totalWidth={this.props.totalWidth}
-                  onScroll={this.onScroll}
-                  onRows={this.props.onRows}
+                  onScroll={GridScrollMixin.onScroll}
+                  onRows={this.props.onRows as any}
                   cellMetaData={this.props.cellMetaData}
                   rowOffsetHeight={this.props.rowOffsetHeight || this.props.rowHeight * headerRows.length}
                   minHeight={this.props.minHeight}
                   rowScrollTimeout={this.props.rowScrollTimeout}
                   contextMenu={this.props.contextMenu}
                   rowSelection={this.props.rowSelection}
-                  getSubRowDetails={this.props.getSubRowDetails}
+                  getSubRowDetails={this.props.getSubRowDetails as any}
                   rowGroupRenderer={this.props.rowGroupRenderer}
-                  overScan={this.props.overScan}
                 />
             </div>
         :
@@ -126,5 +122,8 @@ class Grid extends React.Component<Props, {}> {
     );
     }
 };
+
+ReactMixin(Grid.prototype, GridScrollMixin);
+ReactMixin(Grid.prototype, MetricsComputatorMixin);
 
 export default Grid;

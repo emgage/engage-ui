@@ -45,7 +45,6 @@ class Row extends React.Component<Props, any> {
   };
 
   [key: string]: React.ReactNode;
-  mixins: [ColumnUtilsMixin];
 
   shouldComponentUpdate(nextProps: Props) {
     return rowComparer(nextProps, this.props);
@@ -62,7 +61,7 @@ class Row extends React.Component<Props, any> {
     if (this.props.cellMetaData) {
       const selected = this.props.cellMetaData.selected;
       if (selected && selected.idx) {
-        return this.getColumn(this.props.columns, selected.idx);
+        return ColumnUtilsMixin.getColumn(this.props.columns, selected.idx);
       }
     }
   }
@@ -94,7 +93,7 @@ class Row extends React.Component<Props, any> {
       expandableOptions: this.getExpandableOptions(key),
       selectedColumn,
       formatter,
-      isScrolling: this.props.isScrolling
+      isScrolling: this.props.isScrolling,
     };
 
     return <CellRenderer {...baseCellProps} {...cellProps} />;
@@ -193,9 +192,9 @@ class Row extends React.Component<Props, any> {
       `react-grid-Row--${this.props.idx % 2 === 0 ? 'even' : 'odd'}`,
       {
         'row-selected': this.props.isSelected,
-        'row-context-menu': this.isContextMenuDisplayed()
+        'row-context-menu': this.isContextMenuDisplayed(),
       },
-      this.props.extraClasses
+      this.props.extraClasses,
     );
 
     let style = {

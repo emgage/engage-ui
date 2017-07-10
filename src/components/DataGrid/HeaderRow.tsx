@@ -12,7 +12,7 @@ import createObjectWithProperties from './createObjectWithProperties';
 export interface HeaderRowStyle {
   overflow: string,
   width: any,
-  height: number,
+  height?: number,
   position: string,
 };
 
@@ -26,8 +26,8 @@ export interface Props {
     style: HeaderRowStyle,
     sortColumn: string,
     sortDirection: typeof DEFINE_SORT,
-    cellRenderer: Function,
-    headerCellRenderer: Function,
+    cellRenderer?: Function,
+    headerCellRenderer?: Function,
     filterable: boolean,
     onFilterChange: any,
     resizing: {},
@@ -43,7 +43,6 @@ const knownDivPropertyKeys = ['width', 'height', 'style', 'onScroll'];
 class HeaderRow extends React.Component<Props, any> {
 
   cells: any;
-  mixins: [ColumnUtilsMixin];
 
   componentWillMount() {
     this.cells = [];
@@ -115,8 +114,8 @@ class HeaderRow extends React.Component<Props, any> {
   getCells() {
     let cells = [];
     let lockedCells = [];
-    for (let i = 0, len = this.getSize(this.props.columns); i < len; i++) {
-      let column = Object.assign({ rowType: this.props.rowType }, this.getColumn(this.props.columns, i));
+    for (let i = 0, len = ColumnUtilsMixin.getSize(this.props.columns); i < len; i++) {
+      let column = Object.assign({ rowType: this.props.rowType }, ColumnUtilsMixin.getColumn(this.props.columns, i));
       let _renderer = this.getHeaderRenderer(column);
       if (column.key === 'select-row' && this.props.rowType === 'filter') {
         _renderer = <div></div>;

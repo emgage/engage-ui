@@ -1,6 +1,7 @@
 import * as React from 'react';
+import ReactMixin from 'react-mixin';
 import Canvas from './Canvas';
-import ViewportScroll from './ViewportScrollMixin';
+import ViewPortScrollMixin from './ViewportScrollMixin';
 import cellMetaDataShape from './PropTypeShapes/CellMetaDataShape';
 
 export interface Props {
@@ -28,14 +29,14 @@ export interface Props {
 class Viewport extends React.Component<Props, any> {
 
   canvas: any;
-  mixins: [ViewportScroll];
 
   onScroll(scroll: {scrollTop: number; scrollLeft: number}) {
-    this.updateScroll(
+    ViewPortScrollMixin.updateScroll(
       scroll.scrollTop, scroll.scrollLeft,
       this.state.height,
       this.props.rowHeight,
       this.props.rowsCount,
+      this.props.columnMetrics.width,
     );
 
     if (this.props.onScroll) {
@@ -100,5 +101,7 @@ class Viewport extends React.Component<Props, any> {
     );
   }
 };
+
+ReactMixin(Viewport.prototype, ViewPortScrollMixin);
 
 export default Viewport;

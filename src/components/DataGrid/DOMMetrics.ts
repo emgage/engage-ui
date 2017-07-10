@@ -95,7 +95,7 @@ export const MetricsComputatorMixin = {
     if (window.addEventListener) {
       window.addEventListener('resize', this.updateMetrics);
     } else {
-      window.attachEvent('resize', this.updateMetrics);
+      (window as any).attachEvent('resize', this.updateMetrics);
     }
     this.updateMetrics();
   },

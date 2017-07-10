@@ -8,6 +8,7 @@ import HeaderRow from './HeaderRow';
 import getScrollbarSize from './getScrollbarSize';
 import createObjectWithProperties from './createObjectWithProperties';
 import cellMetaDataShape from './PropTypeShapes/CellMetaDataShape';
+import { DEFINE_SORT } from './cells/headerCells/SortableHeaderCell';
 // TODO: Add CSS require('../../../themes/react-data-grid-header.css');
 
 export interface Column {
@@ -23,7 +24,7 @@ export interface Props {
     height: number,
     headerRows: any,
     sortColumn: string,
-    sortDirection: 'ASC' | 'DESC' | 'NONE',
+    sortDirection: typeof DEFINE_SORT,
     onSort: Function,
     onColumnResize: Function,
     onScroll: Function,
@@ -107,8 +108,8 @@ class Header extends React.Component<Props, any> {
         top: this.getCombinedHeaderHeights(index),
         left: 0,
         width: updatedWidth,
-        overflowX: 'hidden',
-        minHeight: rowHeight
+        overflow: 'hidden',
+        minHeight: rowHeight,
       };
 
       headerRows.push(<HeaderRow
@@ -130,7 +131,6 @@ class Header extends React.Component<Props, any> {
         sortDirection={this.props.sortDirection}
         onSort={this.props.onSort}
         onScroll={this.props.onScroll}
-        getValidFilterValues={this.props.getValidFilterValues}
         />);
     });
     return headerRows;

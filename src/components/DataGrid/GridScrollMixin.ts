@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom';
 
-export default {
+const GridScrollMixin = {
 
   componentDidMount() {
     this._scrollLeft = this.viewport ? this.viewport.getScroll().scrollLeft : 0;
@@ -46,3 +46,5 @@ export default {
     }
   },
 };
+
+export default GridScrollMixin;

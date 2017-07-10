@@ -1,6 +1,6 @@
 import { isValidElement } from 'react';
 
-export default function sameColumn(a: Column, b: Column): boolean {
+export default function sameColumn(a: any, b: any): boolean {
   let k;
 
   for (k in a) {

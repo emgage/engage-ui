@@ -1,5 +1,6 @@
 import ReactDOM from 'react-dom';
 import Immutable from 'immutable';
+import ReactMixin from 'react-mixin';
 import ColumnMetrics, { Column, ColumnMetricsType } from './ColumnMetrics';
 import DOMMetrics from './DOMMetrics';
 import ColumnUtils from './ColumnUtils';
@@ -11,8 +12,7 @@ export interface Props {
     onColumnResize: Function,
 }
 
-export default {
-  mixins: [DOMMetrics.MetricsMixin],
+const ColumnMetricsMixin = {
 
   DOMMetrics: {
     gridWidth(): number {
@@ -104,3 +104,7 @@ export default {
     }
   },
 };
+
+ReactMixin(ColumnMetricsMixin, DOMMetrics.MetricsMixin);
+
+export default ColumnMetricsMixin;

@@ -3,7 +3,7 @@ import Draggable from './Draggable';
 // TODO: Add CSS require('../../../themes/react-data-grid-header.css');
 
 export interface Props {
-  style: any,
+  style?: any,
   onDragStart: any,
   onDragEnd: any,
   onDrag: any,
