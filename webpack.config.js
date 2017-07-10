@@ -27,6 +27,14 @@ BaseConfig.externals = [
             amd: 'react-dom',
         },
     }
+    // {
+    //   'react-onclickoutside': {
+    //     root: 'onClickOutside',
+    //     commonjs2: 'react-onclickoutside',
+    //     commonjs: 'react-onclickoutside',
+    //     amd: 'react-onclickoutside'
+    //   }
+    // }
 ],
 
 module.exports = BaseConfig;

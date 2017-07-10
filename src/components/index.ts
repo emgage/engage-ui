@@ -221,3 +221,7 @@ export {
   Props as VisuallyHiddenProps,
 } from './VisuallyHidden';
 
+export {
+  default as DatePicker,
+} from './DatePicker';
+

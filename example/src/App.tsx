@@ -23,7 +23,12 @@ import {
   Card,
   ClickableChip,
   Loading,
+  DatePicker,
 } from '../../src/components';
+
+// import
+// DateApp
+//   from '../../src/components/Date/index';
 
 interface State {
   appName?: string,
@@ -78,6 +83,12 @@ class App extends React.Component<{}, State> {
 
     return (
       <div>
+        <div>
+          
+          <Heading>This is my DatePicker!!</Heading> 
+          <DatePicker />
+        </div>
+
         <div>
           <Heading>Popover</Heading>
           <ClickableChip chip={<Chip>Batman</Chip>}>
@@ -374,6 +385,8 @@ class App extends React.Component<{}, State> {
             </Column>
           </div>
         </div>
+
+
         <br />
         <br />
         <br />
@@ -388,6 +401,7 @@ class App extends React.Component<{}, State> {
   popoverClose(field: any) {
     return;
   }
+
 }
 
 export default App;
