@@ -104,6 +104,32 @@ describe('<TextField />', () => {
     });
   });
 
+  describe('enableTextCouter', () => {
+    it('defaults to no enableTextCouter attribute', () => {
+      const textField = mount(<TextField label="TextField" />);
+      expect(textField.prop('enableTextCouter')).toBeUndefined();
+    });
+    it('sets enableTextCouter to "off" when false', () => {
+      const textField = mount(<TextField label="TextField" enableTextCouter={false} />);
+      expect(textField.prop('enableTextCouter')).toBe(false);
+    });
+    it('sets enableTextCouter to "on" when true', () => {
+      const textField = mount(<TextField label="TextField" enableTextCouter={true} />);      
+      expect(textField.prop('enableTextCouter')).toBe(true);
+    });
+  });
+
+  describe('mexLenght', () => {
+    it('defaults to no maxLength attribute', () => {
+      const textField = mount(<TextField label="TextField"/>);      
+      expect(textField.prop('maxLength')).toBeUndefined();
+    });
+    it('connects the input to the max length', () => {
+      const textField = mount(<TextField label="TextField" maxLength={100} />);      
+      expect(textField.prop('maxLength')).toBe(100);
+    });
+  });
+
   describe('error', () => {
     it('marks the input as invalid', () => {
       const textField = mount(<TextField errors={['error']} label="TextField" />);
@@ -165,18 +191,13 @@ describe('<TextField />', () => {
       expect(type).toBe('email');
     });
 
-    it('sets the enableTextCouter on the input', () => {
-      const enableTextCouter = mount(<TextField label="TextField" enableTextCouter={true} />).find('input').prop('enableTextCouter');
+    it('sets the enableTextCouter on the input', () => {      
+      const enableTextCouter = mount(<TextField label="TextField" enableTextCouter={true} />).prop('enableTextCouter');
       expect(typeof enableTextCouter).toBe('boolean');
-    });
-
-    it('sets the counterText on the input', () => {
-      const counterText = mount(<TextField label="TextField" counterText={'Text'} />).find('input').prop('counterText');
-      expect(typeof counterText).toBe('string');
-    });
+    });   
 
     it('sets the maxLength on the input', () => {
-      const maxLength = mount(<TextField label="TextField" maxLength={100} />).find('input').prop('maxLength');
+      const maxLength = mount(<TextField label="TextField" maxLength={100} />).prop('maxLength');      
       expect(typeof maxLength).toBe('number');
     });
 

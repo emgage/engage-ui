@@ -25,8 +25,7 @@ export interface Props {
   placeholder?: string,
   value?: string,
   helpText?: React.ReactNode,
-  enableTextCouter?: boolean,
-  counterText?: React.ReactNode,
+  enableTextCouter?: boolean,  
   label: string,
   labelAction?: Action,
   labelHidden?: boolean,
@@ -81,8 +80,7 @@ class TextField extends React.PureComponent<Props, State> {
       labelAction,
       labelHidden,
       helpText,
-      enableTextCouter,
-      counterText,
+      enableTextCouter,      
       maxLength,
       prefix,
       suffix,
@@ -132,13 +130,11 @@ class TextField extends React.PureComponent<Props, State> {
       : null;
     
     var counterTextMarkup;
-    if(enableTextCouter == true)
+    if(enableTextCouter)
     {
-      var maxLengthString = '';
-      if(maxLength)
-        maxLengthString = "/" + maxLength;
-      var textCount = counterText ? counterText.toString().length : 0;
-      counterTextMarkup = <div className={theme.CounterText} id={`${id}Prefix`}>{textCount}{maxLengthString}</div>;
+      const maxLengthString = maxLength ? "/" + maxLength : '';
+      var textCount = this.props.value ? this.props.value.toString().length : 0;
+      counterTextMarkup = <div className={theme.CounterText} id={`${id}Counter`}>{textCount}{maxLengthString}</div>;
     }
 
     const describedBy: string[] = [];
