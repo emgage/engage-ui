@@ -35,6 +35,7 @@ describe('<TextField />', () => {
     expect(input.prop('maxLength')).toBe(2);
     expect(input.prop('spellCheck')).toBe(false);
     expect(input.prop('pattern')).toBe(pattern);
+    expect(input.prop('enableTextCouter')).toBe(true);
   });
 
   describe('onChange()', () => {
@@ -103,6 +104,45 @@ describe('<TextField />', () => {
     });
   });
 
+  describe('enableTextCouter', () => {
+    it('defaults to no enableTextCouter attribute', () => {
+      const textField = mount(<TextField label="TextField" />);
+      expect(textField.prop('enableTextCouter')).toBeUndefined();
+    });
+    it('sets enableTextCouter to "off" when false', () => {
+      const textField = mount(<TextField label="TextField" enableTextCouter={false} />);
+      expect(textField.prop('enableTextCouter')).toBe(false);
+    });
+    it('sets enableTextCouter to "on" when true', () => {
+      const textField = mount(<TextField label="TextField" enableTextCouter={true} />);      
+      expect(textField.prop('enableTextCouter')).toBe(true);
+    });
+  });
+
+  describe('mexLenght', () => {
+    it('defaults to no maxLength attribute', () => {
+      const textField = mount(<TextField label="TextField"/>);      
+      expect(textField.prop('maxLength')).toBeUndefined();
+    });
+    it('connects the input to the max length', () => {
+      const textField = mount(<TextField label="TextField" maxLength={100} />);      
+      expect(textField.prop('maxLength')).toBe(100);
+    });
+  });
+
+  describe('counterTextMarkup',()=>{    
+    it('display counter text while no maxLength', () => {
+      const counterTextMarkup=mount(<div>{9}</div>);
+      const textField = mount(<TextField label="TextField" value="Some Text" />);
+      expect(counterTextMarkup.text()).toBe(textField.prop('value').length.toString());
+    });
+    it('display counter text and maxLength', () => {
+      const counterTextMarkup=mount(<div>{9}/{100}</div>);
+      const textField = mount(<TextField label="TextField" maxLength={100} value="Some Text" />);
+      expect(counterTextMarkup.text()).toBe(textField.prop('value').length.toString()+"/"+textField.prop('maxLength').toString());    
+    });
+  });
+
   describe('error', () => {
     it('marks the input as invalid', () => {
       const textField = mount(<TextField errors={['error']} label="TextField" />);
@@ -162,6 +202,16 @@ describe('<TextField />', () => {
     it('sets the type on the input', () => {
       const type = mount(<TextField label="TextField" type="email" />).find('input').prop('type');
       expect(type).toBe('email');
+    });
+
+    it('sets the enableTextCouter on the input', () => {      
+      const enableTextCouter = mount(<TextField label="TextField" enableTextCouter={true} />).prop('enableTextCouter');
+      expect(typeof enableTextCouter).toBe('boolean');
+    });   
+
+    it('sets the maxLength on the input', () => {
+      const maxLength = mount(<TextField label="TextField" maxLength={100} />).prop('maxLength');      
+      expect(typeof maxLength).toBe('number');
     });
 
     describe('number', () => {
