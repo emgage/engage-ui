@@ -34,6 +34,7 @@
     "babel-core": "^6.23.1",
     "babel-jest": "^19.0.0",
     "babel-loader": "^7.0.0",
+    "babel-preset-flow": "^6.23.0",
     "babel-preset-shopify": "^16.0.2",
     "crypto": "^0.0.3",
     "css-loader": "^0.28.0",
@@ -67,6 +68,7 @@
     "tslint": "^4.4.2",
     "tslint-config-shopify": "^1.1.4",
     "typescript": "^2.3.2",
+    "underscore": "^1.8.3",
     "webpack": "^2.4.1"
   },
   "peerDependencies": {
@@ -75,6 +77,9 @@
   },
   "babel": {
     "presets": [
+      "react",
+      "es2015",
+      "flow",
       "shopify/node"
     ]
   },
@@ -91,8 +96,12 @@
     "@types/prop-types": "^15.5.1",
     "@types/react": "^15.0.11",
     "@types/react-dom": "^0.14.23",
+    "babel-loader": "^7.1.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
     "babel-runtime": "^6.23.0",
     "core-js": "^2.4.1",
+    "immutable": "^3.8.1",
     "lodash": "^4.17.4",
     "prop-types": "^15.5.8",
     "rc-form": "^1.3.1",

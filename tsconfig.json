@@ -8,6 +8,7 @@
     "declaration": true,
     "declarationDir": "./lib/@types",
     "jsx": "react",
+    "allowJs": true,
     "strictNullChecks": true,
     "noImplicitAny": true,
     "experimentalDecorators": true,

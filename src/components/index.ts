@@ -160,6 +160,10 @@ export {
 } from './RadioButton';
 
 export {
+  default as DataGrid,
+} from './DataGrid';
+
+export {
   default as Scrollable,
   Props as ScrollableProps,
 } from './Scrollable';
