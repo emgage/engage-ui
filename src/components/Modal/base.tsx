@@ -16,7 +16,7 @@ export interface Props{
     display     : any,
     float       : any,
     hidden      : string,
-    kitid       : string,
+    id       : string,
     margin      : string,
     order       : any,
     padding     : string,
@@ -36,7 +36,7 @@ export interface Props{
 export interface State{}
 
 
-const base: any = (Cmpt: any) => {
+const Base: any = (Cmpt: any) => {
   class UIKitBase extends React.Component<Props, State> {
     render () {
       const props = this.props;
@@ -44,10 +44,10 @@ const base: any = (Cmpt: any) => {
 
       const containerClasses = cleanClasses([]);
 
-      const kitid = props.kitid ; //|| cuid()
+      const id = props.id ; //|| cuid()
 
       // Elementd
-      const component = <Cmpt {...this.props} kitid={kitid} classes={(classes)}/>;
+      const component = <Cmpt {...this.props} id={id} classes={(classes)}/>;
 
 
       const list = props.list ? (<li className={containerClasses}>{component}</li>) : null;
@@ -70,4 +70,4 @@ const base: any = (Cmpt: any) => {
   return UIKitBase;
 };
 
-export default base;
+export default Base;

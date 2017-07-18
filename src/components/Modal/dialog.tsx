@@ -1,5 +1,6 @@
 import * as React from 'react';
-import uikit from './uikit';
+import Helpers from './helpers';
+import Base from './base';
 import { themr, ThemedComponentClass } from 'react-css-themr';
 import { MODAL } from '../ThemeIdentifiers';
 import * as baseTheme from './Modal.scss';
@@ -10,7 +11,7 @@ export interface Props {
   close?: boolean,
   footer?: React.ReactNode,
   header: string | React.ReactNode,
-  kitid?: string,
+  id?: string,
   onClose: any,
   closeOnBackgroud?: any,
   modalOverflow?: boolean,
@@ -23,11 +24,11 @@ export interface State { }
 const Dialog = (props: Props, State: State) => {
   // CSS classes
 
-  const cssClassNames = uikit.helpers.cleanClasses([
+  const cssClassNames = Helpers.cleanClasses([
     props.theme.dialog,
     typeof props.size === 'string' ? baseTheme[`dialog-${props.size}`] : null
   ]);
-  const closeCSSClasses = uikit.helpers.cleanClasses([
+  const closeCSSClasses = Helpers.cleanClasses([
     props.theme.close
   ]);
 
@@ -35,7 +36,7 @@ const Dialog = (props: Props, State: State) => {
 
   const close = props.onClose ? <a href='#'
     className={closeCSSClasses}
-    data-kitid={props.kitid ? props.kitid : `close-${props.kitid}`}
+    data-id={props.id ? props.id : `close-${props.id}`}
     onClick={props.onClose}
   /> : null; 
 
@@ -54,7 +55,7 @@ const Dialog = (props: Props, State: State) => {
   const PropSize: any = typeof props.size === 'string' ? null : { width: `${props.size}px` } ;
   
   const type = {
-    block: <div className={cssClassNames} style={PropSize} data-kitid={`dialog-${props.kitid}`} >
+    block: <div className={cssClassNames} style={PropSize} data-id={`dialog-${props.id}`} >
       {close}
       {header}
       {props.children}
@@ -65,4 +66,4 @@ const Dialog = (props: Props, State: State) => {
   return type['block'];
 };
 
-export default themr(MODAL, baseTheme)(uikit.base(Dialog)) as ThemedComponentClass<Props, State>;
+export default themr(MODAL, baseTheme)(Base(Dialog)) as ThemedComponentClass<Props, State>;

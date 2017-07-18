@@ -1,5 +1,5 @@
 export const getElement: any = (dataId: any) => {
-  return queryData(`kitid="${dataId}"`);
+  return queryData(`id="${dataId}"`);
 };
 
 export const cleanClasses = (c: any) => {
@@ -20,7 +20,7 @@ export const cleanProps = (ignoreKeys: any) => {
     'colLarge',
     'colMedium',
     'colSmall',
-    'kitid',
+    'id',
     'list'
   ];
 

@@ -1,5 +1,6 @@
 import * as React from 'react';
-import uikit from './uikit';
+import Helpers from './helpers';
+import Base from './base';
 import Dialog from './dialog';
 import Trigger from './trigger';
 import KeypressListener from '../KeypressListener';
@@ -14,10 +15,10 @@ const bodyStyle = (pading: any, overflow: any) => {
   body[0].style.overflow = overflow;
 };
 
-const getModalElement = (kitid: any) => {
+const getModalElement = (id: any) => {
   return {
-    modal: uikit.helpers.getElement(`modal-${kitid}`),
-    dialog: uikit.helpers.getElement(`dialog-${kitid}`)
+    modal: Helpers.getElement(`modal-${id}`),
+    dialog: Helpers.getElement(`dialog-${id}`)
   };
 };
 
@@ -31,7 +32,7 @@ export interface Props {
   dialog?: object,
   footer?: any,
   header?: any,
-  kitid?: string,
+  id?: string,
   show: boolean,
   trigger: any,
   closeOnEsc?: boolean,
@@ -56,7 +57,7 @@ class Modal extends React.Component<Props, State> {
     e && e.preventDefault();
 
     const props = this.props;
-    const { modal, dialog } = getModalElement(props.kitid);
+    const { modal, dialog } = getModalElement(props.id);
 
     props.trigger.animate.out(modal, dialog);
     setTimeout(() => bodyStyle('', ''), 200);
@@ -64,7 +65,7 @@ class Modal extends React.Component<Props, State> {
 
   handleToggleClick(e: any) {
     const props = this.props;
-    const { modal, dialog } = getModalElement(props.kitid);
+    const { modal, dialog } = getModalElement(props.id);
 
     const show = () => {
       bodyStyle('16px', 'hidden');
@@ -72,11 +73,11 @@ class Modal extends React.Component<Props, State> {
     };
 
     const hide = () => {
-      const kitid = (e.target.dataset ? e.target.dataset.kitid : undefined);
+      const id = (e.target.dataset ? e.target.dataset.id : undefined);
 
 
-      if (typeof kitid !== 'undefined') {
-        const prefix = kitid.substr(0, kitid.indexOf('-'));
+      if (typeof id !== 'undefined') {
+        const prefix = id.substr(0, id.indexOf('-'));
 
         if (prefix === 'modal' && this.props.closeOnBackgroud) {
           this.handleCloseClick(e);
@@ -92,7 +93,7 @@ class Modal extends React.Component<Props, State> {
 
     const props = this.props;
 
-    const cssClassNames = uikit.helpers.cleanClasses([
+    const cssClassNames = Helpers.cleanClasses([
       props.theme.overflow,
       props.theme.modal,
       props.classes,
@@ -107,7 +108,7 @@ class Modal extends React.Component<Props, State> {
       'close',
       'footer',
       'header',
-      'kitid',
+      'id',
       'show',
       'trigger',
       'closeOnBackgroud',
@@ -120,7 +121,7 @@ class Modal extends React.Component<Props, State> {
 
     const CloseonEscProp = this.props.closeOnEsc ? (<KeypressListener keyCode={Keys.ESCAPE} handler={this.handleCloseClick} />) : null;  //either(<KeypressListener keyCode={Keys.ESCAPE} handler={this.handleCloseClick} />, null)(this.props.closeOnEsc);
 
-    const cleanProps = uikit.helpers.cleanProps(ignoreProps)({
+    const cleanProps = Helpers.cleanProps(ignoreProps)({
       ...props,
       ok: null,
       show: null,
@@ -132,17 +133,17 @@ class Modal extends React.Component<Props, State> {
     });
 
     const cssClassForOverflow = props.modalOverflow
-      ? uikit.helpers.cleanClasses([props.theme.overflow, props.theme.autoHeight])
+      ? Helpers.cleanClasses([props.theme.overflow, props.theme.autoHeight])
       : null;
 
     // Return Component
     return <div>
 
-      <Trigger {...props.trigger} kitid={`trigger-${props.kitid}`} onClick={this.handleToggleClick} />
+      <Trigger {...props.trigger} id={`trigger-${props.id}`} onClick={this.handleToggleClick} />
       {CloseonEscProp}
       <div {...cleanProps}
         className={cssClassNames}
-        data-kitid={`modal-${props.kitid}`}
+        data-id={`modal-${props.id}`}
         onClick={(this.props.close || this.props.closeOnBackgroud || this.props.closeOnEsc ) ? this.handleToggleClick: null}
 
       >
@@ -151,7 +152,7 @@ class Modal extends React.Component<Props, State> {
           {...props.dialog}
           footer={props.footer}
           header={props.header}
-          kitid={props.kitid}
+          id={props.id}
           onClose={props.close ? this.handleCloseClick : null}
           closeOnBackgroud={props.closeOnBackgroud ? this.handleToggleClick : null}
           modalOverflow={props.modalOverflow}
@@ -167,4 +168,4 @@ class Modal extends React.Component<Props, State> {
   }
 }
 
-export default themr(MODAL, baseTheme)(uikit.base(Modal)) as ThemedComponentClass<Props, State>;
+export default themr(MODAL, baseTheme)(Base(Modal)) as ThemedComponentClass<Props, State>;

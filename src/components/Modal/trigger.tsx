@@ -1,15 +1,14 @@
 import * as  React from 'react';
-import  base  from './base';
-
 import Button from '../Button';
-import { helpers } from "./uikit";
+import Helpers from './helpers';
+import Base from './base';
 
 export interface Props {
   body      : any,
   children  : any,
   className : string,
   classes   : any,
-  kitid     : string,
+  id     : string,
   onClick   : any,
   opened    : boolean,
   type      : 'button'|'link'|'span'|'div',
@@ -19,7 +18,7 @@ export interface Props {
 const Trigger = (props: Props) => {
   const icon = props.icon ? <i className={`uk-icon-${props.icon}`}/> : null; 
 
-  const cssClassNames = helpers.cleanClasses([
+  const cssClassNames = Helpers.cleanClasses([
     props.classes,
     props.className
   ]);
@@ -30,12 +29,12 @@ const Trigger = (props: Props) => {
     'body',
     'children',
     'classes',
-    'kitid',
+    'id',
     'opened',
     'type'
   ];
 
-  const cleanProps = helpers.cleanProps(ignoreProps)(props);
+  const cleanProps = Helpers.cleanProps(ignoreProps)(props);
 
 
   // Element
@@ -53,9 +52,8 @@ const Trigger = (props: Props) => {
 
     span : <span
       {...cleanProps}
-      {...helpers.events}
       className={cssClassNames}
-      data-kitid={props.kitid}
+      data-id={props.id}
     >
       {props.body}
       {props.children} {icon}
@@ -64,18 +62,14 @@ const Trigger = (props: Props) => {
     div: <div
       {...cleanProps}
       className={cssClassNames}
-      {...helpers.events}
-      data-kitid={props.kitid}
+      data-id={props.id}
     >
       {props.body}
       {props.children} {icon}
     </div>
   };
-if(props.type === 'span') {
-
-}
 
   return props.type ? type[props.type] : type['button'];
 };
 
-export default base(Trigger);
+export default Base(Trigger);
