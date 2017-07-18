@@ -2,7 +2,7 @@
     "setupFiles": [
         "<rootDir>/tests/setup.ts"
     ],
-    "testRegex": ".test.(tsx?|js)$",
+    "testRegex": "Modal.test.tsx",
     "rootDir": "../..",
     "roots": [
         "<rootDir>/src",

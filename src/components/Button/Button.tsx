@@ -13,7 +13,7 @@ export type Size = 'slim' | 'large';
 
 export interface Props {
   url?: string,
-  children?: string,
+  children?: any,
   size?: Size,
   fullWidth?: boolean,
   primary?: boolean,

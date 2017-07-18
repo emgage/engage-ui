@@ -2,6 +2,8 @@ import * as React from 'react';
 import { FlexAlign, FlexDirection, FlexJustify } from '../../src/components/FlexBox/FlexProps';
 import { PeoplePickerSearchType } from './PickerEnum';
 import { PeoplePickerSource } from './PickerSource';
+import * as velocity from 'velocity-animate';
+
 
 import {
   Button,
@@ -23,20 +25,41 @@ import {
   Card,
   ClickableChip,
   Loading,
+  Modal
 } from '../../src/components';
 
 interface State {
   appName?: string,
   appDescription: string,
+  show: boolean,
+  confirm: boolean
+
 }
 
 class App extends React.Component<{}, State> {
+
   constructor(props: any) {
     super(props);
     this.state = {
       appName: '',
       appDescription: '',
+      show: false,
+      confirm: false
     };
+  }
+
+  animateIn(modal: any, dialog: any) {
+    this.setState({ show: true });
+    velocity(modal, { opacity: 1 }, { display: 'block' }, 300);
+    velocity(dialog, { translateY: 1, opacity: 1 }, { display: 'block' }, 200);
+  }
+
+
+  animateOut(modal: any, dialog: any) {
+    this.setState({ show: false });
+    this.setState({ confirm: false });
+    velocity(modal, { opacity: 0 }, { display: 'none' }, 300);
+    velocity(dialog, { translateY: -100, opacity: 0 }, { display: 'none' }, 200);
   }
 
   chipClick = () => {
@@ -79,6 +102,53 @@ class App extends React.Component<{}, State> {
     return (
       <div>
         <div>
+          <h1>This is my Modal Component!!</h1>
+          <Modal
+            close
+            closeOnBackgroud
+            closeOnEsc
+            modalOverflow
+            header='this is my modal header'
+            footer={<Button>ok</Button>}
+            size='Medium'
+            show={this.state.show}
+            trigger={{
+              body: 'Open',
+              animate: {
+                in: (modal: any, dialog: any) => this.animateIn(modal, dialog),
+                out: (modal: any, dialog: any) => this.animateOut(modal, dialog)
+              }
+            }}
+          >
+          
+              <h2>Headline test</h2>
+              <p>
+                test Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in
+            voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+            sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+            mollit anim id est laborum.
+            test Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in
+            voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+            sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+            mollit anim id est laborum.
+            test Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in
+            voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+            sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+            mollit anim id est laborum.
+              </p>
+            
+          </Modal>
+
+
           <Heading>Popover</Heading>
           <ClickableChip chip={<Chip>Batman</Chip>}>
             <Card title="More about Batman">
