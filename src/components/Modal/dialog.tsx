@@ -1,8 +1,8 @@
 import * as React from 'react';
-import Helpers from './helpers';
-import Base from './base';
 import { themr, ThemedComponentClass } from 'react-css-themr';
 import { MODAL } from '../ThemeIdentifiers';
+import Helpers from './helpers';
+import Base from './base';
 import * as baseTheme from './Modal.scss';
 
 
@@ -10,13 +10,14 @@ export interface Props {
   children: any,
   close?: boolean,
   footer?: React.ReactNode,
-  header: string | React.ReactNode,
+  header?: string | React.ReactNode,
   id?: string,
-  onClose: any,
+  onClose?: any,
   closeOnBackgroud?: any,
   modalOverflow?: boolean,
-  size: any
+  size?: any,
   closeOnEsc?: boolean,
+  backdropEnabled?: boolean,
   theme?: any,
 }
 export interface State { }
@@ -25,20 +26,19 @@ const Dialog = (props: Props, State: State) => {
   // CSS classes
 
   const cssClassNames = Helpers.cleanClasses([
-    props.theme.dialog,
-    typeof props.size === 'string' ? baseTheme[`dialog-${props.size}`] : null
+    props.backdropEnabled ? props.theme.dialog : props.theme.backDrop,
+    typeof props.size === 'string' ? baseTheme[`dialog-${props.size}`] : null,
   ]);
   const closeCSSClasses = Helpers.cleanClasses([
-    props.theme.close
+    props.theme.close,
   ]);
 
 
-
-  const close = props.onClose ? <a href='#'
+  const close = props.onClose ? <a href="#"
     className={closeCSSClasses}
     data-id={props.id ? props.id : `close-${props.id}`}
     onClick={props.onClose}
-  /> : null; 
+  /> : null;
 
   const clsheader = props.theme.header;
   const clsfooter = props.theme.footer;
@@ -46,21 +46,25 @@ const Dialog = (props: Props, State: State) => {
   const footer: any = (children: any, right: any) => props.footer
                                                     ? <div className={clsfooter}> {children} </div>
                                                     : null;
-  
+
   const header = typeof props.header === 'string' ? <div className={clsheader}><h2>{props.header}</h2></div>
      : <div className={clsheader}>{props.header}</div>;
 
+     const dynamicStyle: any = {
+            width: `${props.size}px`,
+            marginLeft: `-${props.size / 2}px`, 
+            left: '50%',    
+        };
 
+     const PropSize: any = typeof props.size === 'string' ? null : dynamicStyle ;
 
-  const PropSize: any = typeof props.size === 'string' ? null : { width: `${props.size}px` } ;
-  
   const type = {
     block: <div className={cssClassNames} style={PropSize} data-id={`dialog-${props.id}`} >
       {close}
       {header}
       {props.children}
       {footer(props.footer)}
-    </div>
+    </div>,
   };
 
   return type['block'];

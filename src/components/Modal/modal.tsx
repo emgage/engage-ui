@@ -1,12 +1,12 @@
 import * as React from 'react';
+import { themr, ThemedComponentClass } from 'react-css-themr';
+import { Keys } from '../../types';
+import { MODAL } from '../ThemeIdentifiers';
+import KeypressListener from '../KeypressListener';
 import Helpers from './helpers';
 import Base from './base';
 import Dialog from './dialog';
 import Trigger from './trigger';
-import KeypressListener from '../KeypressListener';
-import { Keys } from '../../types';
-import { themr, ThemedComponentClass } from 'react-css-themr';
-import { MODAL } from '../ThemeIdentifiers';
 import * as baseTheme from './Modal.scss';
 
 const bodyStyle = (pading: any, overflow: any) => {
@@ -18,7 +18,7 @@ const bodyStyle = (pading: any, overflow: any) => {
 const getModalElement = (id: any) => {
   return {
     modal: Helpers.getElement(`modal-${id}`),
-    dialog: Helpers.getElement(`dialog-${id}`)
+    dialog: Helpers.getElement(`dialog-${id}`),
   };
 };
 
@@ -30,14 +30,15 @@ export interface Props {
   classes?: any,
   close?: boolean,
   dialog?: object,
-  footer?: any,
-  header?: any,
+  footer?: React.ReactNode,
+  header?: string | React.ReactNode,
   id?: string,
   show: boolean,
   trigger: any,
   closeOnEsc?: boolean,
   closeOnBackgroud?: boolean,
   modalOverflow?: boolean,
+  backdropEnabled?: boolean,
   size?: any,
   theme?: any,
 }
@@ -54,7 +55,7 @@ class Modal extends React.Component<Props, State> {
 
 
   handleCloseClick(e: any) {
-    e && e.preventDefault();
+    e.preventDefault();
 
     const props = this.props;
     const { modal, dialog } = getModalElement(props.id);
@@ -64,17 +65,18 @@ class Modal extends React.Component<Props, State> {
   }
 
   handleToggleClick(e: any) {
+
     const props = this.props;
     const { modal, dialog } = getModalElement(props.id);
 
     const show = () => {
       bodyStyle('16px', 'hidden');
       props.trigger.animate.in(modal, dialog);
+
     };
 
     const hide = () => {
       const id = (e.target.dataset ? e.target.dataset.id : undefined);
-
 
       if (typeof id !== 'undefined') {
         const prefix = id.substr(0, id.indexOf('-'));
@@ -84,7 +86,7 @@ class Modal extends React.Component<Props, State> {
         }
       }
     };
- 
+
     !this.props.show ? show() : hide();
   }
 
@@ -95,9 +97,9 @@ class Modal extends React.Component<Props, State> {
 
     const cssClassNames = Helpers.cleanClasses([
       props.theme.overflow,
-      props.theme.modal,
+      props.backdropEnabled ? props.theme.modal : null,
       props.classes,
-      props.className
+      props.className,
     ]);
 
     const ignoreProps = [
@@ -113,13 +115,14 @@ class Modal extends React.Component<Props, State> {
       'trigger',
       'closeOnBackgroud',
       'modalOverflow',
+      'backdropEnabled',
       'closeOnEsc',
       'size',
-      'theme'
+      'theme',
 
     ];
 
-    const CloseonEscProp = this.props.closeOnEsc ? (<KeypressListener keyCode={Keys.ESCAPE} handler={this.handleCloseClick} />) : null;  //either(<KeypressListener keyCode={Keys.ESCAPE} handler={this.handleCloseClick} />, null)(this.props.closeOnEsc);
+    const CloseonEscProp = this.props.closeOnEsc ? (<KeypressListener keyCode={Keys.ESCAPE} handler={this.handleCloseClick} />) : null;
 
     const cleanProps = Helpers.cleanProps(ignoreProps)({
       ...props,
@@ -129,7 +132,9 @@ class Modal extends React.Component<Props, State> {
       close: null,
       closeOnBackgroud: null,
       modalOverflow: null,
-      closeOnEsc: null
+      closeOnEsc: null,
+      backdropEnabled: null,
+      header: null,
     });
 
     const cssClassForOverflow = props.modalOverflow
@@ -144,7 +149,7 @@ class Modal extends React.Component<Props, State> {
       <div {...cleanProps}
         className={cssClassNames}
         data-id={`modal-${props.id}`}
-        onClick={(this.props.close || this.props.closeOnBackgroud || this.props.closeOnEsc ) ? this.handleToggleClick: null}
+        onClick={(this.props.close || this.props.closeOnBackgroud || this.props.closeOnEsc) ? this.handleToggleClick : null}
 
       >
 
@@ -156,6 +161,7 @@ class Modal extends React.Component<Props, State> {
           onClose={props.close ? this.handleCloseClick : null}
           closeOnBackgroud={props.closeOnBackgroud ? this.handleToggleClick : null}
           modalOverflow={props.modalOverflow}
+          backdropEnabled={props.backdropEnabled}
           size={props.size}
         >
           <div className={cssClassForOverflow}>  {props.children}</div>

@@ -4,53 +4,49 @@ import Helpers from './helpers';
 import Base from './base';
 
 export interface Props {
-  body      : any,
-  children  : any,
-  className : string,
-  classes   : any,
-  id     : string,
-  onClick   : any,
-  opened    : boolean,
-  type      : 'button'|'link'|'span'|'div',
-  icon      : any,
+  body: any,
+  children: any,
+  className: string,
+  classes: any,
+  id: string,
+  onClick: any,
+  opened: boolean,
+  type: 'button' | 'link' | 'span' | 'div',
+  icon: any,
 }
 
 const Trigger = (props: Props) => {
-  const icon = props.icon ? <i className={`uk-icon-${props.icon}`}/> : null; 
+  const icon = props.icon ? <i className={`uk-icon-${props.icon}`} /> : null;
 
   const cssClassNames = Helpers.cleanClasses([
     props.classes,
-    props.className
+    props.className,
   ]);
 
-
-  // Remove non valid html attributes
   const ignoreProps = [
     'body',
     'children',
     'classes',
     'id',
     'opened',
-    'type'
+    'type',
   ];
 
   const cleanProps = Helpers.cleanProps(ignoreProps)(props);
 
-
-  // Element
   const type = {
     button: <Button
       {...props}
     >Open
     </Button>,
 
-    link: <Button
+    link: <a
       {...props}
     >
-    click here to open modal
-    </Button>,
+      click here to open modal
+    </a>,
 
-    span : <span
+    span: <span
       {...cleanProps}
       className={cssClassNames}
       data-id={props.id}
@@ -66,7 +62,7 @@ const Trigger = (props: Props) => {
     >
       {props.body}
       {props.children} {icon}
-    </div>
+    </div>,
   };
 
   return props.type ? type[props.type] : type['button'];

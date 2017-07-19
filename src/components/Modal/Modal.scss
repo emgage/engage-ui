@@ -23,15 +23,13 @@
   /* 7 */
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
-
-
-
 }
 
 
 .dialog {
   /* 1 */
   position: relative;
+
   /* 2 */
   border: solid 1px;
   box-sizing: border-box;
@@ -41,6 +39,47 @@
   //height: 400px;
   max-width: 100%;
   max-width: calc(100% - 20px);
+
+
+  //////for adding modal at backdrop
+  //   left: 50%;
+  // margin-left: -300px;//500
+  // position: fixed;
+  // z-index: 1010;
+  
+  // max-height: -moz-calc(100% - (20px + 30px));
+  // max-height: -webkit-calc(100% - (20px + 30px));
+  // max-height: calc(100% - (20px + 30px));
+  /* 3 */
+  background: #fff;
+  /* 4 */
+  opacity: 0;
+  -webkit-transform: translateY(-100px);
+  transform: translateY(-100px);
+  -webkit-transition: opacity 0.3s linear, -webkit-transform 0.3s ease-out;
+  transition: opacity 0.3s linear, transform 0.3s ease-out;
+}
+
+.backDrop {
+  /* 1 */
+  position: fixed;
+
+  /* 2 */
+  border: solid 1px;
+  box-sizing: border-box;
+  margin: 50px auto;
+  padding: 20px;
+  width: 600px;
+  //height: 400px;
+  max-width: 100%;
+  max-width: calc(100% - 20px);
+
+
+  //////for adding modal at backdrop
+  left: 50%;
+  margin-left: -300px;//500
+  z-index: 1010;
+  
   // max-height: -moz-calc(100% - (20px + 30px));
   // max-height: -webkit-calc(100% - (20px + 30px));
   // max-height: calc(100% - (20px + 30px));
@@ -60,14 +99,20 @@
 
 .dialog-Small {
   width: 200px;
+  left: 50%;
+  margin-left: -100px;
 }
 
 .dialog-Medium {
   width: 500px;
+  left: 50%;
+  margin-left: -250px;
 }
 
 .dialog-Large {
   width: 900px;
+  left: 50%;
+  margin-left: -450px;
 }
 
 .close {
@@ -126,12 +171,14 @@
   float: right;
 }
 
+.backDrop > .close:first-child {
+  margin: -10px -10px 0 0;
+  float: right;
+}
+
 .autoHeight{
-  
   height: 200px;
   max-height: -moz-calc(100% - (20px + 30px));
   max-height: -webkit-calc(100% - (20px + 30px));
   max-height: calc(100% - (20px + 30px));
-
-    
 }

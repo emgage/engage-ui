@@ -1,9 +1,8 @@
 import * as React from 'react';
+import * as velocity from 'velocity-animate';
 import { FlexAlign, FlexDirection, FlexJustify } from '../../src/components/FlexBox/FlexProps';
 import { PeoplePickerSearchType } from './PickerEnum';
 import { PeoplePickerSource } from './PickerSource';
-import * as velocity from 'velocity-animate';
-
 
 import {
   Button,
@@ -25,14 +24,14 @@ import {
   Card,
   ClickableChip,
   Loading,
-  Modal
+  Modal,
 } from '../../src/components';
 
 interface State {
   appName?: string,
   appDescription: string,
   show: boolean,
-  confirm: boolean
+  confirm: boolean,
 
 }
 
@@ -44,7 +43,7 @@ class App extends React.Component<{}, State> {
       appName: '',
       appDescription: '',
       show: false,
-      confirm: false
+      confirm: false,
     };
   }
 
@@ -108,16 +107,17 @@ class App extends React.Component<{}, State> {
             closeOnBackgroud
             closeOnEsc
             modalOverflow
-            header='this is my modal header'
+            backdropEnabled
+            header="this is my modal header"
             footer={<Button>ok</Button>}
-            size='Medium'
+            size="Medium"
             show={this.state.show}
             trigger={{
               body: 'Open',
               animate: {
                 in: (modal: any, dialog: any) => this.animateIn(modal, dialog),
-                out: (modal: any, dialog: any) => this.animateOut(modal, dialog)
-              }
+                out: (modal: any, dialog: any) => this.animateOut(modal, dialog),
+              },
             }}
           >
           
