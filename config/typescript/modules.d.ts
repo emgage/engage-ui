@@ -5,5 +5,4 @@ declare module 'hoist-non-react-statics' {
   export = hoistNonReactStatics;
 }
 
-declare module 'ufunc';
 declare module 'velocity-animate';
