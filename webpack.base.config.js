@@ -64,7 +64,7 @@ module.exports = {
                 ],
                 exclude: /node_modules/
             },
-            {
+            {  
                 test: /\.svg$/,
                 loader: 'shopify-icons-loader',
                 exclude: path.join(__dirname, 'src/components/DatePicker')
