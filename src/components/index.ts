@@ -160,8 +160,8 @@ export {
 } from './RadioButton';
 
 export {
-  default as DataGrid,
-} from './DataGrid';
+  default as ReactDataGrid,
+} from './ReactDataGrid';
 
 export {
   default as Scrollable,
