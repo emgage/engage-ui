@@ -38,6 +38,7 @@
     "./typings/*"
   ],
   "exclude": [
-    "./@types"
+    "./@types",
+    "./src/components/ReactDataGrid/"
   ]
 }
