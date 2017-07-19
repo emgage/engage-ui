@@ -52,7 +52,8 @@ module.exports = {
                         loader: 'sass-resources-loader',
                         options: {
                             resources: [
-                                //'./src/styles/global.scss',
+                                // './src/styles/global.scss',
+                                './src/styles/calendar.scss',
                                 './src/styles/foundation.scss',
                                 './themes/Delicious/foundation.scss',
                                 './src/styles/shared.scss',
@@ -65,7 +66,25 @@ module.exports = {
             },
             {
                 test: /\.svg$/,
-                loader: 'shopify-icons-loader'
+                loader: 'shopify-icons-loader',
+                exclude: path.join(__dirname, 'src/components/DatePicker')
+            },
+            {
+                test: /DatePicker.*\.svg/,
+                loaders: [
+                  {
+                    loader: 'babel-loader',
+                    query: {
+                      presets: ['es2015', 'react'],
+                    }
+                  },
+                  {
+                    loader: 'react-svg-loader',
+                    query: {
+                      jsx: false,
+                    }
+                  }
+                ],
             }, 
             {
                 test: /\.(jpe?g|png|gif)$/i,
@@ -84,7 +103,6 @@ module.exports = {
              new TsConfigPathsPlugin(TypeScriptConfigFile),
         ]
     },
-
     plugins: [
         new webpack.DefinePlugin({
             'process.env': {
