@@ -31,6 +31,7 @@ interface State {
   appName?: string,
   appDescription: string,
   show: boolean,
+  appTextCounter: string
 }
 
 class App extends React.Component<{}, State> {
@@ -41,6 +42,7 @@ class App extends React.Component<{}, State> {
       appName: '',
       appDescription: '',
       show: false,
+      appTextCounter: ''
     };
   }
 
@@ -146,6 +148,7 @@ class App extends React.Component<{}, State> {
 
 
           <Heading>Popover</Heading>
+          <TextField id='TestName' label='Text Counter' placeholder='' value={this.state.appTextCounter} helpText='Helper Text' enableTextCouter={true} maxLength={100} onChange={this.valueUpdater('appTextCounter')}/>
           <ClickableChip chip={<Chip>Batman</Chip>}>
             <Card title="More about Batman">
               <p>Batman is a fictional superhero who appears in American comic books published by DC Comics. The character was created by artist Bob Kane and writer Bill Finger, and first appeared in Detective Comics #27</p>
