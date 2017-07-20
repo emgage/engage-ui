@@ -3,49 +3,55 @@ import { themr, ThemedComponentClass } from 'react-css-themr';
 import { Keys } from '../../types';
 import { MODAL } from '../ThemeIdentifiers';
 import KeypressListener from '../KeypressListener';
+import Button from '../Button';
 import Helpers from './helpers';
-import Base from './base';
 import Dialog from './dialog';
-import Trigger from './trigger';
 import * as baseTheme from './Modal.scss';
 
-const bodyStyle = (pading: any, overflow: any) => {
+const bodyStyle = (pading: string, overflow: string): void => {
   const body = document.getElementsByTagName('body');
   body[0].style.paddingRight = pading;
   body[0].style.overflow = overflow;
 };
 
-const getModalElement = (id: any) => {
+const getModalElement = (id: string) => {
   return {
     modal: Helpers.getElement(`modal-${id}`),
     dialog: Helpers.getElement(`dialog-${id}`),
   };
 };
 
+export type Size = 'Small' | 'Medium' | 'Large' | number;
+
+export interface Ianimate {
+  in: Function,
+  out: Function,
+}
+
+export interface Itrigger {
+  body: string,
+  animate: Ianimate,
+}
 
 export interface Props {
-
-  children: any,
   className?: string,
-  classes?: any,
+  classes?: string,
   close?: boolean,
-  dialog?: object,
   footer?: React.ReactNode,
   header?: string | React.ReactNode,
   id?: string,
   show: boolean,
-  trigger: any,
+  trigger: Itrigger,
   closeOnEsc?: boolean,
   closeOnBackgroud?: boolean,
   modalOverflow?: boolean,
   backdropEnabled?: boolean,
-  size?: any,
+  size?: Size,
   theme?: any,
 }
-export interface State { }
 
-class Modal extends React.Component<Props, State> {
-  constructor(props: any) {
+class Modal extends React.Component<Props, {}> {
+  constructor(props: Props) {
     super(props);
 
     this.handleCloseClick = this.handleCloseClick.bind(this);
@@ -53,29 +59,28 @@ class Modal extends React.Component<Props, State> {
 
   }
 
-
-  handleCloseClick(e: any) {
+  handleCloseClick(e: any): void {
     e.preventDefault();
 
     const props = this.props;
-    const { modal, dialog } = getModalElement(props.id);
+    const { modal, dialog } = getModalElement(props.id as string);
 
     props.trigger.animate.out(modal, dialog);
     setTimeout(() => bodyStyle('', ''), 200);
   }
 
-  handleToggleClick(e: any) {
+  handleToggleClick(e: any): void {
 
     const props = this.props;
-    const { modal, dialog } = getModalElement(props.id);
+    const { modal, dialog } = getModalElement(props.id as string);
 
-    const show = () => {
+    const show = (): void => {
       bodyStyle('16px', 'hidden');
       props.trigger.animate.in(modal, dialog);
 
     };
 
-    const hide = () => {
+    const hide = (): void => {
       const id = (e.target.dataset ? e.target.dataset.id : undefined);
 
       if (typeof id !== 'undefined') {
@@ -104,7 +109,6 @@ class Modal extends React.Component<Props, State> {
 
     const ignoreProps = [
       'blank',
-      'children',
       'className',
       'classes',
       'close',
@@ -119,7 +123,6 @@ class Modal extends React.Component<Props, State> {
       'closeOnEsc',
       'size',
       'theme',
-
     ];
 
     const CloseonEscProp = this.props.closeOnEsc ? (<KeypressListener keyCode={Keys.ESCAPE} handler={this.handleCloseClick} />) : null;
@@ -141,31 +144,25 @@ class Modal extends React.Component<Props, State> {
       ? Helpers.cleanClasses([props.theme.overflow, props.theme.autoHeight])
       : null;
 
-    // Return Component
     return <div>
-
-      <Trigger {...props.trigger} id={`trigger-${props.id}`} onClick={this.handleToggleClick} />
+      <Button onClick={this.handleToggleClick}>Open</Button>
       {CloseonEscProp}
       <div {...cleanProps}
         className={cssClassNames}
         data-id={`modal-${props.id}`}
         onClick={(this.props.close || this.props.closeOnBackgroud || this.props.closeOnEsc) ? this.handleToggleClick : null}
-
       >
-
-        <Dialog
-          {...props.dialog}
+      <Dialog
           footer={props.footer}
           header={props.header}
           id={props.id}
-          onClose={props.close ? this.handleCloseClick : null}
-          closeOnBackgroud={props.closeOnBackgroud ? this.handleToggleClick : null}
-          modalOverflow={props.modalOverflow}
+          onClose={props.close ? this.handleCloseClick : undefined}
+          closeOnBackgroud={props.closeOnBackgroud ? this.handleToggleClick : undefined}
           backdropEnabled={props.backdropEnabled}
           size={props.size}
-        >
+      >
           <div className={cssClassForOverflow}>  {props.children}</div>
-        </Dialog>
+      </Dialog>
 
       </div>
 
@@ -174,4 +171,4 @@ class Modal extends React.Component<Props, State> {
   }
 }
 
-export default themr(MODAL, baseTheme)(Base(Modal)) as ThemedComponentClass<Props, State>;
+export default themr(MODAL, baseTheme)((Modal)) as ThemedComponentClass<Props, {}>;

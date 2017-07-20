@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from 'react-css-themr';
-import {classNames, variationName} from '@shopify/react-utilities';
+import { classNames, variationName } from '@shopify/react-utilities';
 
-import {ComplexAction} from '../../types';
+import { ComplexAction } from '../../types';
 import UnstyledLink from '../UnstyledLink';
-import Icon, {Props as IconProps} from '../Icon';
+import Icon, { Props as IconProps } from '../Icon';
 
 import { BUTTON } from '../ThemeIdentifiers';
 import * as baseTheme from './Button.scss';
@@ -13,7 +13,7 @@ export type Size = 'slim' | 'large';
 
 export interface Props {
   url?: string,
-  children?: any,
+  children?: string,
   size?: Size,
   fullWidth?: boolean,
   primary?: boolean,
@@ -28,7 +28,7 @@ export interface Props {
   icon?: IconProps['source'],
   style?: React.CSSProperties,
   theme?: any,
-  onClick?(): void,
+  onClick?(e: any): void,
   onFocus?(): void,
   onBlur?(): void,
 }
@@ -90,43 +90,43 @@ const Button = ({
 
   return (
     url
-    ? (
-      <UnstyledLink
-        url={url}
-        external={external}
-        onClick={onClick}
-        onFocus={onFocus}
-        onBlur={onBlur}
-        onMouseUp={handleMouseUp}
-        className={className}
-        disabled={disabled}
-        aria-label={accessibilityLabel}
-        style={style}
-      >
-        {content}
-      </UnstyledLink>
-    )
-    : (
-      <button
-        type={type}
-        onClick={onClick}
-        onFocus={onFocus}
-        onBlur={onBlur}
-        onMouseUp={handleMouseUp}
-        className={className}
-        disabled={disabled}
-        aria-label={accessibilityLabel}
-        style={style}
-      >
-        {content}
-      </button>
-    )
+      ? (
+        <UnstyledLink
+          url={url}
+          external={external}
+          onClick={onClick}
+          onFocus={onFocus}
+          onBlur={onBlur}
+          onMouseUp={handleMouseUp}
+          className={className}
+          disabled={disabled}
+          aria-label={accessibilityLabel}
+          style={style}
+        >
+          {content}
+        </UnstyledLink>
+      )
+      : (
+        <button
+          type={type}
+          onClick={onClick}
+          onFocus={onFocus}
+          onBlur={onBlur}
+          onMouseUp={handleMouseUp}
+          className={className}
+          disabled={disabled}
+          aria-label={accessibilityLabel}
+          style={style}
+        >
+          {content}
+        </button>
+      )
   );
 };
 
 const ThemedButton = themr(BUTTON, baseTheme)(Button) as ThemedComponentClass<Props, {}>;
 
-function handleMouseUp({currentTarget}: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) {
+function handleMouseUp({ currentTarget }: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) {
   currentTarget.blur();
 }
 
@@ -141,7 +141,7 @@ export function buttonsFrom(actions: ComplexAction[] | ComplexAction, overrides:
 }
 
 export function buttonFrom(
-  {content, onAction, ...action}: ComplexAction,
+  { content, onAction, ...action }: ComplexAction,
   overrides?: Partial<Props>,
   key?: any,
 ) {

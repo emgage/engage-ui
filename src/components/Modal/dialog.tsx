@@ -2,72 +2,91 @@ import * as React from 'react';
 import { themr, ThemedComponentClass } from 'react-css-themr';
 import { MODAL } from '../ThemeIdentifiers';
 import Helpers from './helpers';
-import Base from './base';
 import * as baseTheme from './Modal.scss';
 
+export enum SizeType {
+  Small = 300,
+  Medium = 600,
+  Large = 900,
+}
+
+export type Size = 'Small' | 'Medium' | 'Large' | number;
+
+
+export interface SizeStyle {
+  width: string,
+  marginLeft: string,
+  left: string,
+}
 
 export interface Props {
-  children: any,
   close?: boolean,
+  children?: React.ReactNode,
   footer?: React.ReactNode,
   header?: string | React.ReactNode,
   id?: string,
-  onClose?: any,
-  closeOnBackgroud?: any,
-  modalOverflow?: boolean,
-  size?: any,
-  closeOnEsc?: boolean,
   backdropEnabled?: boolean,
+  size?: Size,
   theme?: any,
+  onClose?(e: any): void,
+  closeOnBackgroud?(e: any): void,
 }
-export interface State { }
 
-const Dialog = (props: Props, State: State) => {
-  // CSS classes
+const Dialog = (props: Props) => {
+
+  let dialogWidthSize;
+
+  switch (props.size) {
+    case 'Small':
+      dialogWidthSize = SizeType.Small;
+      break;
+
+    case 'Medium':
+      dialogWidthSize = SizeType.Medium;
+      break;
+
+    case 'Large':
+      dialogWidthSize = SizeType.Large;
+      break;
+
+    default:
+      dialogWidthSize = props.size as number;
+      break;
+  };
 
   const cssClassNames = Helpers.cleanClasses([
     props.backdropEnabled ? props.theme.dialog : props.theme.backDrop,
-    typeof props.size === 'string' ? baseTheme[`dialog-${props.size}`] : null,
   ]);
   const closeCSSClasses = Helpers.cleanClasses([
     props.theme.close,
   ]);
 
+  const close = props.onClose
+    ? <a href="#" className={closeCSSClasses} data-id={props.id ? props.id : `close-${props.id}`} onClick={props.onClose} />
+    : null;
 
-  const close = props.onClose ? <a href="#"
-    className={closeCSSClasses}
-    data-id={props.id ? props.id : `close-${props.id}`}
-    onClick={props.onClose}
-  /> : null;
+  const classHeader = props.theme.header;
 
-  const clsheader = props.theme.header;
-  const clsfooter = props.theme.footer;
+  const header = typeof props.header === 'string'
+    ? <div className={classHeader}><h2>{props.header}</h2></div>
+    : <div className={classHeader}>{props.header}</div>;
 
-  const footer: any = (children: any, right: any) => props.footer
-                                                    ? <div className={clsfooter}> {children} </div>
-                                                    : null;
-
-  const header = typeof props.header === 'string' ? <div className={clsheader}><h2>{props.header}</h2></div>
-     : <div className={clsheader}>{props.header}</div>;
-
-     const dynamicStyle: any = {
-            width: `${props.size}px`,
-            marginLeft: `-${props.size / 2}px`, 
-            left: '50%',    
-        };
-
-     const PropSize: any = typeof props.size === 'string' ? null : dynamicStyle ;
+  const propSize: SizeStyle = {
+    width: `${dialogWidthSize}px`,
+    marginLeft: `-${dialogWidthSize as number / 2}px`,
+    left: '50%',
+  };
 
   const type = {
-    block: <div className={cssClassNames} style={PropSize} data-id={`dialog-${props.id}`} >
+    block: <div className={cssClassNames} style={propSize} data-id={`dialog-${props.id}`} >
       {close}
       {header}
       {props.children}
-      {footer(props.footer)}
+      <div className={props.theme.footer}>{props.footer}</div>
     </div>,
   };
 
   return type['block'];
 };
 
-export default themr(MODAL, baseTheme)(Base(Dialog)) as ThemedComponentClass<Props, State>;
+export default themr(MODAL, baseTheme)((Dialog)) as ThemedComponentClass<Props, {}>;

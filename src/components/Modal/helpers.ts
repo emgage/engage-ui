@@ -1,43 +1,8 @@
-export const colSpan = [
-  '1-1',
-  '1-2',
-  '1-3', '2-3',
-  '1-4', '2-4', '3-4',
-  '1-5', '2-5', '3-5', '4-5',
-  '1-6', '2-6', '3-6', '4-6', '5-6',
-  '1-10', '2-10', '3-10', '4-10', '5-10', '6-10', '7-10', '8-10', '9-10',
-];
-
-
-export const stringToClasses = (str: string, cssClasses: any) => {
-  const classes = str.split(' ').map((item) => {
-    return cssClasses[item];
-  });
-
-  return classes.join(' ');
-};
-
-
-export const getClasses = (str: string, cssClasses: any) => {
-  return typeof str === 'string' ? stringToClasses(str, cssClasses) : '';
-};
-
-
-export const getClass = (str: string, cssClasses: any) => {
-  return cssClasses[str] ? cssClasses[str] : '';
-};
-
-
-export const queryData = (value: any) => {
+export const queryData = (value: string) => {
   return document.querySelector(`[data-${value}]`);
 };
 
-
-export const queryDataAll = (value: any) => {
-  return document.querySelectorAll(`[data-${value}]`);
-};
-
-export const getElement: any = (dataId: any) => {
+export const getElement = (dataId: string) => {
   return queryData(`id="${dataId}"`);
 };
 
@@ -46,21 +11,9 @@ export const cleanClasses = (c: any) => {
   return str !== '' ? str : null;
 };
 
-
 export const cleanProps = (ignoreKeys: any) => {
   const ignore = [
     ...ignoreKeys,
-    'animate',
-    'center',
-    'children',
-    'classes',
-    'contrast',
-    'col',
-    'colLarge',
-    'colMedium',
-    'colSmall',
-    'id',
-    'list',
   ];
 
   return (obj: any) => {
@@ -80,15 +33,9 @@ export const cleanProps = (ignoreKeys: any) => {
   };
 };
 
-
 export default {
-  colSpan,
   cleanClasses,
   cleanProps,
-  getClasses,
-  getClass,
   getElement,
-  stringToClasses,
   queryData,
-  queryDataAll,
 };

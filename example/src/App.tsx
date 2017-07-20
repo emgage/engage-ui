@@ -31,8 +31,6 @@ interface State {
   appName?: string,
   appDescription: string,
   show: boolean,
-  confirm: boolean,
-
 }
 
 class App extends React.Component<{}, State> {
@@ -43,20 +41,18 @@ class App extends React.Component<{}, State> {
       appName: '',
       appDescription: '',
       show: false,
-      confirm: false,
     };
   }
 
-  animateIn(modal: any, dialog: any) {
+  animateIn(modal: object, dialog: object) {
     this.setState({ show: true });
     velocity(modal, { opacity: 1 }, { display: 'block' }, 300);
     velocity(dialog, { translateY: 1, opacity: 1 }, { display: 'block' }, 200);
   }
 
 
-  animateOut(modal: any, dialog: any) {
+  animateOut(modal: object, dialog: object) {
     this.setState({ show: false });
-    this.setState({ confirm: false });
     velocity(modal, { opacity: 0 }, { display: 'none' }, 300);
     velocity(dialog, { translateY: -100, opacity: 0 }, { display: 'none' }, 200);
   }
@@ -108,15 +104,15 @@ class App extends React.Component<{}, State> {
             closeOnEsc
             modalOverflow
             backdropEnabled
-            header="this is my modal header"
+            header="This is my modal header"
             footer={<Button>ok</Button>}
             size="Medium"
             show={this.state.show}
             trigger={{
               body: 'Open',
               animate: {
-                in: (modal: any, dialog: any) => this.animateIn(modal, dialog),
-                out: (modal: any, dialog: any) => this.animateOut(modal, dialog),
+                in: (modal: object, dialog: object) => this.animateIn(modal, dialog),
+                out: (modal: object, dialog: object) => this.animateOut(modal, dialog),
               },
             }}
           >
