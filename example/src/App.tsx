@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { FlexAlign, FlexDirection, FlexJustify } from '../../src/components/FlexBox/FlexProps';
+import { OffCanvas, OffCanvasMenu, OffCanvasBody, OffCanvasAnimationType } from '../../src/components/OffCanvas';
 import { PeoplePickerSearchType } from './PickerEnum';
 import { PeoplePickerSource } from './PickerSource';
-import { OffCanvas, OffCanvasMenu, OffCanvasBody } from '../../src/components/OffCanvas';
 
 import {
   Button,
@@ -29,8 +29,8 @@ import {
 interface State {
   appName?: string,
   appDescription: string,
-  isMenuOpened:boolean,
-  animation:string
+  isMenuOpened: boolean,
+  animation?: OffCanvasAnimationType,
 }
 
 class App extends React.Component<{}, State> {
@@ -39,8 +39,7 @@ class App extends React.Component<{}, State> {
     this.state = {
       appName: '',
       appDescription: '',
-      isMenuOpened:false,
-      animation:''
+      isMenuOpened: false,
     };
   }
 
@@ -50,6 +49,22 @@ class App extends React.Component<{}, State> {
 
   chipRemove = () => {
     console.log('chip removed...');
+  }
+
+  handleClick = () => {
+    this.setState({isMenuOpened: !this.state.isMenuOpened});
+  }
+
+  handleClickSlide = () => {
+    this.setState({isMenuOpened: !this.state.isMenuOpened, animation: OffCanvasAnimationType.Slide});
+  }
+
+  handleClickReveal = () => {
+    this.setState({isMenuOpened: !this.state.isMenuOpened, animation: OffCanvasAnimationType.Reveal});
+  }
+
+  handleClickNone = () => {
+    this.setState({isMenuOpened: !this.state.isMenuOpened, animation: OffCanvasAnimationType.None});
   }
 
   render() {
@@ -82,15 +97,15 @@ class App extends React.Component<{}, State> {
       }} />;
 
     return (
-      <div>
-        <OffCanvas width = {270} transitionDuration = {270} isMenuOpened = {this.state.isMenuOpened}>
-            <OffCanvasBody animation = {this.state.animation}>
+      <div> 
+        <OffCanvas width={270} transitionDuration={270} isMenuOpened={this.state.isMenuOpened}>
+            <OffCanvasBody animation={this.state.animation}>
               <p>This is the main body container.</p>
-              <p><a href = "#" onClick = {this.handleClickSlide.bind(this)} >Slide</a> to toggle the menu.</p>
-              <p><a href = "#" onClick = {this.handleClickReveal.bind(this)} >Reveal</a> to toggle the menu.</p>
-              <p><a href = "#" onClick = {this.handleClickNone.bind(this)} >None</a> to toggle the menu.</p>
+              <p><a href="#" onClick={this.handleClickSlide}>Slide</a> to toggle the menu.</p>
+              <p><a href="#" onClick={this.handleClickReveal}>Reveal</a> to toggle the menu.</p>
+              <p><a href="#" onClick={this.handleClickNone}>None</a> to toggle the menu.</p>
             </OffCanvasBody>
-            <OffCanvasMenu animation = {this.state.animation}>
+            <OffCanvasMenu animation={this.state.animation}>
               <p>Placeholder content.</p>
               <ul>
                 <li>Link 1</li>
@@ -98,10 +113,10 @@ class App extends React.Component<{}, State> {
                 <li>Link 3</li>
                 <li>Link 4</li>
                 <li>Link 5</li>
-                <li><a href = "#" onClick = {this.handleClick.bind(this)} >Toggle Menu</a></li>
+                <li><a href="#" onClick={this.handleClick}>Toggle Menu</a></li>
               </ul>
             </OffCanvasMenu>
-          </OffCanvas>
+          </OffCanvas>       
         <div>
           <Heading>Popover</Heading>
           <ClickableChip chip={<Chip>Batman</Chip>}>
@@ -411,19 +426,6 @@ class App extends React.Component<{}, State> {
 
   popoverClose(field: any) {
     return;
-  }
-  
-  handleClick() {
-    this.setState({ isMenuOpened: !this.state.isMenuOpened });    
-  }
-  handleClickSlide() {
-    this.setState({ isMenuOpened: !this.state.isMenuOpened, animation: 'Slide' });    
-  }
-  handleClickReveal() {
-    this.setState({ isMenuOpened: !this.state.isMenuOpened, animation: 'Reveal' });    
-  }
-  handleClickNone() {    
-    this.setState({ isMenuOpened: !this.state.isMenuOpened, animation: 'None' });    
   }
 }
 

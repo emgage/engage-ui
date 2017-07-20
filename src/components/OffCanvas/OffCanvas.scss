@@ -3,8 +3,8 @@
 }
 
 body {
-  margin: 0px;
-  padding: 0px;  
+  margin: 0;
+  padding: 0;  
 }
 
 p {
@@ -16,9 +16,10 @@ p {
 }
 
 .menuClass {
+  position: absolute;
   height: 100%;
   z-index: 12;
   background-color: #333;
   padding: 15px;
-  color: #777;  
+  color: #777;
 }
