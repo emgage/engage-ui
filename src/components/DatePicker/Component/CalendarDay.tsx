@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { themr, ThemedComponentClass } from 'react-css-themr';
 //import PropTypes from 'prop-types';
 // import shallowCompare from 'react-addons-shallow-compare';
 // import momentPropTypes from 'react-moment-proptypes';
@@ -10,6 +11,8 @@ import CalendarDayPhrases from './defaultPhrases';
 //import getPhrasePropTypes from '../utils/getPhrasePropTypes';
 import getPhrase from '../utils/getPhrase';
 import Constants from './constants';
+import { DATEPICKER } from '../../ThemeIdentifiers';
+import * as baseTheme from './../style/style.scss';
 
 export interface State { }
 export interface Props {
@@ -25,6 +28,7 @@ export interface Props {
   onDayClick?: any,
   // internationalization
   phrases?: any,
+  theme?: any,
 }
 
 // static propTypes = ({
@@ -43,13 +47,7 @@ export interface Props {
 //   phrases,
 // }: Props) => {};
 
-
-
-
-
-
-
-export default class CalendarDay extends React.Component<Props, State> {
+class CalendarDay extends React.Component<Props, State> {
   [x: string]: any;
 
   //   static propTypes = ({
@@ -125,13 +123,14 @@ export default class CalendarDay extends React.Component<Props, State> {
         chooseAvailableDate,
         dateIsUnavailable,
       },
+      theme,
     } = this.props;
 
     if (!day) return <td />;
 
-    const className = cx('CalendarDay', {
-      'CalendarDay--outside': isOutsideDay,
-    }, Array.from(modifiers, mod => `CalendarDay--${mod}`));
+    const className = cx(theme.CalendarDay, {
+      [theme['CalendarDay--outside']]: isOutsideDay,
+    }, Array.from(modifiers, mod => theme[`CalendarDay--${mod}`]));
 
     const formattedDate = `${day.format('dddd')}, ${day.format('LL')}`;
 
@@ -153,7 +152,7 @@ export default class CalendarDay extends React.Component<Props, State> {
         <button
           type="button"
           ref={(ref) => { this.buttonRef = ref; }}
-          className="CalendarDay__button"
+          className={theme["CalendarDay__button"]}
           aria-label={ariaLabel}
           onMouseEnter={(e) => { this.onDayMouseEnter(day, e); }}
           onMouseLeave={(e) => { this.onDayMouseLeave(day, e); }}
@@ -167,6 +166,8 @@ export default class CalendarDay extends React.Component<Props, State> {
     );
   }
 }
+
+export default themr(DATEPICKER, baseTheme)(CalendarDay) as ThemedComponentClass<Props, State>;
 
 //  CalendarDay.propTypes = propTypes;
 //  CalendarDay.defaultProps = defaultProps;

@@ -60,6 +60,7 @@
     "react-addons-test-utils": "^15.4.2",
     "react-dom": "^15.5.4",
     "react-perf-tool": "^0.2.0",
+    "react-svg-loader": "^1.1.1",
     "sass-loader": "^6.0.3",
     "sass-resources-loader": "^1.2.1",
     "style-loader": "^0.16.1",
@@ -67,7 +68,7 @@
     "tslint": "^4.4.2",
     "tslint-config-shopify": "^1.1.4",
     "typescript": "^2.3.2",
-    "webpack": "^2.4.1"
+    "webpack": "^3.3.0"
   },
   "peerDependencies": {
     "react": "^15.5.4",
@@ -107,6 +108,7 @@
     "react-css-themr": "^2.0.0",
     "react-onclickoutside": "^6.1.1",
     "react-popper": "^0.7.0",
+    "react-portal": "^3.1.0",
     "react-text-mask-hoc": "^0.3.0",
     "tslib": "^1.6.0"
   },

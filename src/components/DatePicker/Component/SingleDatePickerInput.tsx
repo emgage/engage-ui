@@ -1,6 +1,8 @@
+import * as v8 from 'v8';
 import * as React from 'react';
 //import PropTypes from 'prop-types';
 // import { forbidExtraProps } from 'airbnb-prop-types';
+import { themr, ThemedComponentClass } from 'react-css-themr';
 import * as cx from 'classnames';
 
 import  SingleDatePickerInputPhrases  from './defaultPhrases';
@@ -10,7 +12,8 @@ import DateInput from './DateInput';
 import CloseButton from '../svg/close.svg';
 import CalendarIcon from '../svg/calendar.svg';
 
-
+import { DATEPICKER } from '../../ThemeIdentifiers';
+import * as baseTheme from './../style/style.scss';
 
 export interface State { 
   isClearDateHovered: any
@@ -39,9 +42,37 @@ export interface Props {
   phrases?: any,
   isRTL?: any,
   customCloseIcon?: any,
+  theme?: any,
 }
 
-export default class SingleDatePickerInput extends React.Component<Props, State> {
+class SingleDatePickerInput extends React.Component<Props, State> {
+  static defaultProps = {
+    placeholder: 'Select Date',
+    displayValue: '',
+    inputValue: '',
+    screenReaderMessage: '',
+    focused: false,
+    isFocused: false,
+    disabled: false,
+    required: false,
+    readOnly: false,
+    showCaret: false,
+    showClearDate: false,
+    showDefaultInputIcon: false,
+    customCloseIcon: null,
+    customInputIcon: null,
+    isRTL: false,
+
+    onChange() { },
+    onClearDate() { },
+    onFocus() { },
+    onKeyDownShiftTab() { },
+    onKeyDownTab() { },
+    onKeyDownArrowDown() { },
+
+    // i18n
+    phrases: SingleDatePickerInputPhrases,
+  };
   constructor(props: any) {
     super(props);
     this.state = {
@@ -80,33 +111,6 @@ export default class SingleDatePickerInput extends React.Component<Props, State>
   //   phrases: PropTypes.shape(getPhrasePropTypes(SingleDatePickerInputPhrases)),
   // });
 
-  static defaultProps = {
-    placeholder: 'Select Date',
-    displayValue: '',
-    inputValue: '',
-    screenReaderMessage: '',
-    focused: false,
-    isFocused: false,
-    disabled: false,
-    required: false,
-    readOnly: false,
-    showCaret: false,
-    showClearDate: false,
-    showDefaultInputIcon: false,
-    customCloseIcon: null,
-    customInputIcon: null,
-    isRTL: false,
-
-    onChange() { },
-    onClearDate() { },
-    onFocus() { },
-    onKeyDownShiftTab() { },
-    onKeyDownTab() { },
-    onKeyDownArrowDown() { },
-
-    // i18n
-    phrases: SingleDatePickerInputPhrases,
-  };
 
   onClearDateMouseEnter() {
     this.setState({
@@ -148,6 +152,7 @@ export default class SingleDatePickerInput extends React.Component<Props, State>
       customCloseIcon,
       customInputIcon,
       isRTL,
+      theme,
     } = this.props;
 
     const inputIcon = customInputIcon || (<CalendarIcon />);
@@ -156,14 +161,14 @@ export default class SingleDatePickerInput extends React.Component<Props, State>
 
     return (
       <div
-        className={cx('SingleDatePickerInput', {
-          'SingleDatePickerInput--rtl': isRTL,
+        className={cx(theme['SingleDatePickerInput'], {
+          [theme['SingleDatePickerInput--rtl']]: isRTL,
         })}
       >
         {(showDefaultInputIcon || customInputIcon !== null) && (
           <button
             type="button"
-            className="SingleDatePickerInput__calendar-icon"
+            className={theme["SingleDatePickerInput__calendar-icon"]}
             disabled={disabled}
             aria-label={phrases.focusStartDate}
             onClick={onFocus}
@@ -193,16 +198,16 @@ export default class SingleDatePickerInput extends React.Component<Props, State>
         {showClearDate && (
           <button
             type="button"
-            className={cx('SingleDatePickerInput__clear-date', {
-              'SingleDatePickerInput__clear-date--hide': !displayValue,
-              'SingleDatePickerInput__clear-date--hover': isClearDateHovered,
+            className={cx(theme['SingleDatePickerInput__clear-date'], {
+              [theme['SingleDatePickerInput__clear-date--hide']]: !displayValue,
+              [theme['SingleDatePickerInput__clear-date--hover']]: isClearDateHovered,
             })}
             aria-label={phrases.clearDate}
             onMouseEnter={this.onClearDateMouseEnter}
             onMouseLeave={this.onClearDateMouseLeave}
             onClick={onClearDate}
           >
-            <div className="DateRangePickerInput__close">
+            <div className={theme["DateRangePickerInput__close"]}>
               {closeIcon}
             </div>
           </button>
@@ -211,6 +216,8 @@ export default class SingleDatePickerInput extends React.Component<Props, State>
     );
   }
 }
+
+export default themr(DATEPICKER, baseTheme)(SingleDatePickerInput) as ThemedComponentClass<Props, State>;
 
 // SingleDatePickerInput.propTypes = propTypes;
 // SingleDatePickerInput.defaultProps = defaultProps;

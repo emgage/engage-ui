@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { themr, ThemedComponentClass } from 'react-css-themr';
 //import PropTypes from 'prop-types';
 // import shallowCompare from 'react-addons-shallow-compare';
 import * as ReactDOM from 'react-dom';
@@ -7,7 +8,7 @@ import * as cx from 'classnames';
 //import throttle from 'lodash/throttle';
 // import isTouchDevice from 'is-touch-device';
 
-import  DayPickerPhrases  from './defaultPhrases';
+import DayPickerPhrases  from './defaultPhrases';
 //import getPhrasePropTypes from '../utils/getPhrasePropTypes';
 
 import OutsideClickHandler from './OutsideClickHandler';
@@ -27,13 +28,13 @@ import isDayVisible from '../utils/isDayVisible';
 //import ScrollableOrientationShape from '../shapes/ScrollableOrientationShape';
 import Constants from './constants';
 
+import { DATEPICKER } from '../../ThemeIdentifiers';
+import * as baseTheme from './../style/style.scss';
 
 const MONTH_PADDING = 23;
 const DAY_PICKER_PADDING = 9;
 const PREV_TRANSITION = 'prev';
 const NEXT_TRANSITION = 'next';
-
-
 
 function applyTransformStyles(el: any, transform: any, opacity: any = '') {
   const transformStyles: any = getTransformStyles(transform);
@@ -101,7 +102,6 @@ export interface State {
   calendarMonthWidth: any,
   nextFocusedDate: any,
   withMouseInteractions: any,
-
 }
 export interface Props {
   daySize?: any,
@@ -132,9 +132,51 @@ export interface Props {
   monthFormat?: any,
   hidden?: any,
   initialVisibleMonth?: Function,
+  theme?: any,
 }
 
-export default class DayPicker extends React.Component<Props, State> {
+class DayPicker extends React.Component<Props, State> {
+  static defaultProps = {    //export const
+    // calendar presentation props
+    enableOutsideDays: false,
+    numberOfMonths: 2,
+    orientation: Constants.HORIZONTAL_ORIENTATION,
+    withPortal: false,
+    onOutsideClick() { },
+    hidden: false,
+    initialVisibleMonth: () => moment(),
+    renderCalendarInfo: null,
+    hideKeyboardShortcutsPanel: false,
+    daySize: Constants.DAY_SIZE,
+    isRTL: false,
+
+    // navigation props
+    navPrev: null,
+    navNext: null,
+    onPrevMonthClick() { },
+    onNextMonthClick() { },
+    onMultiplyScrollableMonths() { },
+
+    // month props
+    renderMonth: null,
+
+    // day props
+    modifiers: {},
+    renderDay: null,
+    onDayClick() { },
+    onDayMouseEnter() { },
+    onDayMouseLeave() { },
+
+    // accessibility props
+    isFocused: false,
+    getFirstFocusableDay: null,
+    onBlur() { },
+    showKeyboardShortcuts: false,
+
+    // internationalization
+    monthFormat: 'MMMM YYYY',
+    phrases: DayPickerPhrases,
+  };
   monthHeight: number;
   calendarMonthGrid: any;
   transitionContainer: any;
@@ -223,47 +265,6 @@ export default class DayPicker extends React.Component<Props, State> {
   //   phrases: PropTypes.shape(getPhrasePropTypes(DayPickerPhrases)),
   // });
 
-  static defaultProps = {    //export const
-    // calendar presentation props
-    enableOutsideDays: false,
-    numberOfMonths: 2,
-    orientation: Constants.HORIZONTAL_ORIENTATION,
-    withPortal: false,
-    onOutsideClick() { },
-    hidden: false,
-    initialVisibleMonth: () => moment(),
-    renderCalendarInfo: null,
-    hideKeyboardShortcutsPanel: false,
-    daySize: Constants.DAY_SIZE,
-    isRTL: false,
-
-    // navigation props
-    navPrev: null,
-    navNext: null,
-    onPrevMonthClick() { },
-    onNextMonthClick() { },
-    onMultiplyScrollableMonths() { },
-
-    // month props
-    renderMonth: null,
-
-    // day props
-    modifiers: {},
-    renderDay: null,
-    onDayClick() { },
-    onDayMouseEnter() { },
-    onDayMouseLeave() { },
-
-    // accessibility props
-    isFocused: false,
-    getFirstFocusableDay: null,
-    onBlur() { },
-    showKeyboardShortcuts: false,
-
-    // internationalization
-    monthFormat: 'MMMM YYYY',
-    phrases: DayPickerPhrases,
-  };
   componentDidMount() {
     this.setState({ isTouchDevice: false }); ///isTouchDevice()
 
@@ -740,7 +741,7 @@ export default class DayPicker extends React.Component<Props, State> {
 
     return (
       <div
-        className="DayPicker__week-header"
+        className={this.props.theme['DayPicker__week-header']}
         key={`week-${index}`}
         style={style}
       >
@@ -781,6 +782,7 @@ export default class DayPicker extends React.Component<Props, State> {
       daySize,
       isFocused,
       phrases,
+      theme,
     } = this.props;
 
     const numOfWeekHeaders = this.isVertical() ? 1 : numberOfMonths;
@@ -799,16 +801,16 @@ export default class DayPicker extends React.Component<Props, State> {
     const verticalScrollable = this.props.orientation === Constants.VERTICAL_SCROLLABLE;
     if (verticalScrollable) firstVisibleMonthIndex = 0;
 
-    const dayPickerClassNames = cx('DayPicker', {
-      'DayPicker--horizontal': this.isHorizontal(),
-      'DayPicker--vertical': this.isVertical(),
-      'DayPicker--vertical-scrollable': verticalScrollable,
+    const dayPickerClassNames = cx(theme.DayPicker, {
+      [theme['DayPicker--horizontal']]: this.isHorizontal(),
+      [theme['DayPicker--vertical']]: this.isVertical(),
+      [theme['DayPicker--vertical-scrollable']]: verticalScrollable,
       'DayPicker--portal': withPortal,
     });
 
     const transitionContainerClasses = cx('transition-container', {
-      'transition-container--horizontal': this.isHorizontal(),
-      'transition-container--vertical': this.isVertical(),
+      [theme['transition-container--horizontal']]: this.isHorizontal(),
+      [theme['transition-container--vertical']]: this.isVertical(),
     });
 
     const horizontalWidth = (calendarMonthWidth * numberOfMonths) + (2 * DAY_PICKER_PADDING);
@@ -848,7 +850,7 @@ export default class DayPicker extends React.Component<Props, State> {
       >
         <OutsideClickHandler onOutsideClick={onOutsideClick}>
           <div
-            className="DayPicker__week-headers"
+            className={theme['DayPicker__week-headers']}
             aria-hidden="true"
             role="presentation"
           >
@@ -856,7 +858,7 @@ export default class DayPicker extends React.Component<Props, State> {
           </div>
 
           <div // eslint-disable-line jsx-a11y/no-noninteractive-element-interactions              {/*onKeyDown={throttle(this.onKeyDown, 300)}*/}
-            className="DayPicker__focus-region"
+            className={theme['DayPicker__focus-region']}
             ref={(ref) => { this.container = ref; }}
             onClick={(e) => { e.stopPropagation(); }}
             onMouseUp={() => { this.setState({ withMouseInteractions: true }); }}
@@ -913,6 +915,8 @@ export default class DayPicker extends React.Component<Props, State> {
     );
   }
 }
+
+export default themr(DATEPICKER, baseTheme)(DayPicker) as ThemedComponentClass<Props, State>;
 
 // DayPicker.propTypes = propTypes;
 // DayPicker.defaultProps = defaultProps;

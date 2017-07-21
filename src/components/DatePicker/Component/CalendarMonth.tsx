@@ -1,6 +1,7 @@
 /* eslint react/no-array-index-key: 0 */
 
 import * as React from 'react';
+import { themr, ThemedComponentClass } from 'react-css-themr';
 // import PropTypes from 'prop-types';
 // import shallowCompare from 'react-addons-shallow-compare';
 // import momentPropTypes from 'react-moment-proptypes';
@@ -20,8 +21,9 @@ import toISODateString from '../utils/toISODateString';
 // import ScrollableOrientationShape from '../shapes/ScrollableOrientationShape';
 import Constants from './constants';
 
-
-
+// import './../style/CalendarMonth.scss';
+import { DATEPICKER } from '../../ThemeIdentifiers';
+import * as baseTheme from './../style/style.scss';
 
 export interface State {
   weeks: any,
@@ -45,7 +47,28 @@ export interface Props {
    
 }
 
-export default class CalendarMonth extends React.Component<Props, State> {
+class CalendarMonth extends React.Component<Props, State> {
+  static defaultProps = {
+    month: {},
+    isVisible: true,
+    enableOutsideDays: false,
+    modifiers: {},
+    orientation: Constants.HORIZONTAL_ORIENTATION,
+    daySize: Constants.DAY_SIZE,
+    onDayClick() { },
+    onDayMouseEnter() { },
+    onDayMouseLeave() { },
+    renderMonth: null,
+    renderDay: null,
+
+    focusedDate: null,
+    isFocused: false,
+
+    // i18n
+    monthFormat: 'MMMM YYYY', // english locale
+    phrases: CalendarDayPhrases,
+  };
+
   constructor(props: any) {
     super(props);
     this.state = {
@@ -74,26 +97,6 @@ export default class CalendarMonth extends React.Component<Props, State> {
   //   phrases: shape(getPhrasePropTypes(CalendarDayPhrases)),
   // });
 
-  static defaultProps = {
-    month: {},
-    isVisible: true,
-    enableOutsideDays: false,
-    modifiers: {},
-    orientation: Constants.HORIZONTAL_ORIENTATION,
-    daySize: Constants.DAY_SIZE,
-    onDayClick() { },
-    onDayMouseEnter() { },
-    onDayMouseLeave() { },
-    renderMonth: null,
-    renderDay: null,
-
-    focusedDate: null,
-    isFocused: false,
-
-    // i18n
-    monthFormat: 'MMMM YYYY', // english locale
-    phrases: CalendarDayPhrases,
-  };
 
   componentWillReceiveProps(nextProps: any) {
     const { month, enableOutsideDays } = nextProps;
@@ -124,21 +127,22 @@ export default class CalendarMonth extends React.Component<Props, State> {
       focusedDate,
       isFocused,
       phrases,
+      theme,
     } = this.props;
 
     const { weeks } = this.state;
     const monthTitle = renderMonth ? renderMonth(month) : month.format(monthFormat);
 
-    const calendarMonthClasses = cx('CalendarMonth', {
-      'CalendarMonth--horizontal': orientation === Constants.HORIZONTAL_ORIENTATION,
-      'CalendarMonth--vertical': orientation === Constants.VERTICAL_ORIENTATION,
-      'CalendarMonth--vertical-scrollable': orientation === Constants.VERTICAL_SCROLLABLE,
+    const calendarMonthClasses = cx(theme.CalendarMonth, {
+      [theme['CalendarMonth--horizontal']: orientation === Constants.HORIZONTAL_ORIENTATION,
+      [theme['CalendarMonth--vertical']]: orientation === Constants.VERTICAL_ORIENTATION,
+      [theme['CalendarMonth--vertical-scrollable']]: orientation === Constants.VERTICAL_SCROLLABLE,
     });
 
     return (
       <div className={calendarMonthClasses} data-visible={isVisible}>
         <table>
-          <caption className="CalendarMonth__caption js-CalendarMonth__caption">
+          <caption className={theme["CalendarMonth__caption js-CalendarMonth__caption"]}>
             <strong>{monthTitle}</strong>
           </caption>
 
@@ -169,6 +173,10 @@ export default class CalendarMonth extends React.Component<Props, State> {
     );
   }
 }
+
+export default themr(DATEPICKER, baseTheme)(CalendarMonth) as ThemedComponentClass<Props, State>;
+
+
 
 // CalendarMonth.propTypes = propTypes;
 // CalendarMonth.defaultProps = defaultProps;

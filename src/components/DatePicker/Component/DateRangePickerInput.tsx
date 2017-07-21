@@ -13,6 +13,8 @@ import CloseButton from '../svg/close.svg';
 import CalendarIcon from '../svg/calendar.svg';
 import Constants from './constants';
 
+import './../style/DateRangePickerInput.scss';
+
 
 export interface State {
   isClearDatesHovered: any

@@ -1,3 +1,14 @@
+import './style/style.scss';
+
+import SingleDatePickerWrapper from './SingleDatePickerWrapper';
+import DateRangePickerWrapper from './DateRangePickerWrapper';
+
+export {
+  SingleDatePickerWrapper,
+  DateRangePickerWrapper
+};
+
+
 // import * as React from 'react';
 
 // import SingleDatePickerWrapper from './SingleDatePickerWrapper';
@@ -34,9 +45,3 @@
 //         );
 //     }
 // }
-
-
-
-import SingleDatePickerWrapper from './SingleDatePickerWrapper';
-export default SingleDatePickerWrapper;
-

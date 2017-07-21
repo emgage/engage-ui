@@ -23,7 +23,7 @@ import {
   Card,
   ClickableChip,
   Loading,
-  DatePicker,
+  // SingleDatePicker as DatePicker,
 } from '../../src/components';
 
 // import
@@ -86,7 +86,7 @@ class App extends React.Component<{}, State> {
         <div>
           
           <Heading>This is my DatePicker!!</Heading> 
-          <DatePicker />
+          {/* <DatePicker /> */}
         </div>
 
         <div>

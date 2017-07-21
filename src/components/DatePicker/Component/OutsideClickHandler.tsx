@@ -4,8 +4,6 @@ import * as React from 'react';
 // import { forbidExtraProps } from 'airbnb-prop-types'; // TODO: add to propTypes; semver-major
 import { addEventListener, removeEventListener } from 'consolidated-events';
 
-
-
 export interface State {
  }
 

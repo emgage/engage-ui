@@ -24,7 +24,6 @@ import Constants from './constants';
 import DayPicker from './DayPicker';
 
 
-
 export interface State { }
 export interface Props {
   numberOfMonths?: any,

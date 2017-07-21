@@ -27,9 +27,8 @@ import Constants from './constants';
 
 import DayPicker from './DayPicker';
 
-
 export interface State {
-  hoverDate: any, 
+  hoverDate: any,
   visibleDays: any,
       currentMonth: any,
       phrases: any,

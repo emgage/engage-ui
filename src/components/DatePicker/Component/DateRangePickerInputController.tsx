@@ -20,7 +20,6 @@ import Constants from './constants';
 // import { START_DATE, END_DATE } from '../../constants';
 
 
-
 export interface State {}
 export interface Props {
   onFocusChange?: any, 

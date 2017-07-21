@@ -25,6 +25,7 @@ import CloseButton from '../svg/close.svg';
 import isInclusivelyAfterDay from '../utils/isInclusivelyAfterDay';
 import Constants from './constants';
 
+import './../style/SingleDatePicker.scss';
 
 
 export interface State {}

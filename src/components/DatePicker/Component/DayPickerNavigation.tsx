@@ -3,6 +3,8 @@ import * as React from 'react';
 // import { forbidExtraProps } from 'airbnb-prop-types';
 import * as cx from 'classnames';
 
+import { themr, ThemedComponentClass } from 'react-css-themr';
+
 import DayPickerNavigationPhrases from './defaultPhrases';
 //import getPhrasePropTypes from '../utils/getPhrasePropTypes';
 
@@ -13,8 +15,10 @@ import ChevronDown from '../svg/chevron-down.svg';
 //import ScrollableOrientationShape from '../shapes/ScrollableOrientationShape';
 import Constants from './constants';
 
-export interface State {
+import { DATEPICKER } from '../../ThemeIdentifiers';
+import * as baseTheme from './../style/style.scss';
 
+export interface State {
 
 }
 export interface Props {
@@ -25,10 +29,22 @@ export interface Props {
   orientation?: any,
   phrases?: any,
   isRTL?: any,
-
+  theme?: any,
 }
 
-export default class DayPickerNavigation extends React.Component<Props, State> {
+class DayPickerNavigation extends React.Component<Props, State> {
+  static defaultProps = {
+    navPrev: null,
+    navNext: null,
+    orientation: Constants.HORIZONTAL_ORIENTATION,
+
+    onPrevMonthClick() { },
+    onNextMonthClick() { },
+
+    // internationalization
+    phrases: DayPickerNavigationPhrases,
+    isRTL: false,
+  };
   //export default function DayPickerNavigation(props:any) {
 
   constructor(props: any) {
@@ -54,18 +70,6 @@ export default class DayPickerNavigation extends React.Component<Props, State> {
   //   isRTL: PropTypes.bool,
   // });
 
-  static defaultProps = {
-    navPrev: null,
-    navNext: null,
-    orientation: Constants.HORIZONTAL_ORIENTATION,
-
-    onPrevMonthClick() { },
-    onNextMonthClick() { },
-
-    // internationalization
-    phrases: DayPickerNavigationPhrases,
-    isRTL: false,
-  };
   render() {
 
     const {
@@ -76,6 +80,7 @@ export default class DayPickerNavigation extends React.Component<Props, State> {
       orientation,
       phrases,
       isRTL,
+      theme,
   } = this.props;
 
     const isVertical = orientation !== Constants.HORIZONTAL_ORIENTATION;
@@ -102,18 +107,18 @@ export default class DayPickerNavigation extends React.Component<Props, State> {
 
 
 
-    const navClassNames = cx('DayPickerNavigation', {
-      'DayPickerNavigation--horizontal': !isVertical,
-      'DayPickerNavigation--vertical': isVertical,
-      'DayPickerNavigation--vertical-scrollable': isVerticalScrollable,
+    const navClassNames = cx(theme.DayPickerNavigation, {
+      [theme['DayPickerNavigation--horizontal']]: !isVertical,
+      [theme['DayPickerNavigation--vertical']]: isVertical,
+      [theme['DayPickerNavigation--vertical-scrollable']]: isVerticalScrollable,
     });
-    const prevClassNames = cx('DayPickerNavigation__prev', {
-      'DayPickerNavigation__prev--default': isDefaultNavPrev,
-      'DayPickerNavigation__prev--rtl': isRTL,
+    const prevClassNames = cx(theme['DayPickerNavigation__prev'], {
+      [theme['DayPickerNavigation__prev--default']]: isDefaultNavPrev,
+      [theme['DayPickerNavigation__prev--rtl']]: isRTL,
     });
-    const nextClassNames = cx('DayPickerNavigation__next', {
-      'DayPickerNavigation__next--default': isDefaultNavNext,
-      'DayPickerNavigation__next--rtl': isRTL,
+    const nextClassNames = cx(theme['DayPickerNavigation__next'], {
+      [theme['DayPickerNavigation__next--default']]: isDefaultNavNext,
+      [theme['DayPickerNavigation__next--rtl']]: isRTL,
     });
 // debugger;
     return (
@@ -147,5 +152,7 @@ export default class DayPickerNavigation extends React.Component<Props, State> {
     );
   }
 }
+
+export default themr(DATEPICKER, baseTheme)(DayPickerNavigation) as ThemedComponentClass<Props, {}>;
 // DayPickerNavigation.propTypes = propTypes;
 // DayPickerNavigation.defaultProps = defaultProps;

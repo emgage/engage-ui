@@ -2,10 +2,12 @@ import * as React from 'react';
 //import PropTypes from 'prop-types';
 // import { forbidExtraProps } from 'airbnb-prop-types';
 import * as  cx from 'classnames';
+import { themr, ThemedComponentClass } from 'react-css-themr';
 // import * as  throttle from 'lodash/throttle';
 // import isTouchDevice from 'is-touch-device';
 
-
+import { DATEPICKER } from '../../ThemeIdentifiers';
+import * as baseTheme from './../style/style.scss';
 
 export interface State {
   dateString: any,
@@ -29,11 +31,34 @@ export interface Props {
   disabled?: any,
   required?: any,
   readOnly?: any,
+  theme?: any,
 }
 
-export default class DateInput extends React.Component<Props, State> {
-  inputRef: any;
+class DateInput extends React.Component<Props, State> {
+  static defaultProps = {
+    placeholder: 'Select Date',
+    displayValue: '',
+    inputValue: '',
+    screenReaderMessage: '',
+    focused: false,
+    disabled: false,
+    required: false,
+    readOnly: null,
+    showCaret: false,
 
+    onChange() { },
+    onFocus() { },
+    onKeyDownShiftTab() { },
+    onKeyDownTab() { },
+
+    onKeyDownArrowDown() { },
+    onKeyDownQuestionMark() { },
+
+    // accessibility
+    isFocused: false,
+  };
+
+  inputRef: any;
   constructor(props: any) {
     super(props);
     this.state = {
@@ -69,28 +94,6 @@ export default class DateInput extends React.Component<Props, State> {
   //   isFocused: PropTypes.bool, // describes actual DOM focus
   // });
 
-  static defaultProps = {
-    placeholder: 'Select Date',
-    displayValue: '',
-    inputValue: '',
-    screenReaderMessage: '',
-    focused: false,
-    disabled: false,
-    required: false,
-    readOnly: null,
-    showCaret: false,
-
-    onChange() { },
-    onFocus() { },
-    onKeyDownShiftTab() { },
-    onKeyDownTab() { },
-
-    onKeyDownArrowDown() { },
-    onKeyDownQuestionMark() { },
-
-    // accessibility
-    isFocused: false,
-  };
 
   componentDidMount() {
     this.setState({ isTouchDevice: false });  //isTouchDevice()
@@ -173,6 +176,7 @@ export default class DateInput extends React.Component<Props, State> {
       disabled,
       required,
       readOnly,
+      theme,
     } = this.props;
 
     const displayText = displayValue || inputValue || dateString || placeholder || '';
@@ -181,14 +185,14 @@ export default class DateInput extends React.Component<Props, State> {
 
     return (
       <div
-        className={cx('DateInput', {
-          'DateInput--with-caret': showCaret && focused,
-          'DateInput--disabled': disabled,
+        className={cx(theme.DateInput, {
+          [theme['DateInput--with-caret']]: showCaret && focused,
+          [theme['DateInput--disabled']]: disabled,
         })}
       >
         <input
           aria-label={placeholder}
-          className="DateInput__input needsclick"
+          className={theme["DateInput__input needsclick"]}
           type="text"
           id={id}
           name={id}
@@ -212,10 +216,10 @@ export default class DateInput extends React.Component<Props, State> {
         )}
 
         <div
-          className={cx('DateInput__display-text', {
-            'DateInput__display-text--has-input': !!value,
-            'DateInput__display-text--focused': focused,
-            'DateInput__display-text--disabled': disabled,
+          className={cx(theme['DateInput__display-text'], {
+            [theme['DateInput__display-text--has-input']]: !!value,
+            [theme['DateInput__display-text--focused']]: focused,
+            [theme['DateInput__display-text--disabled']]: disabled,
           })}
         >
           {displayText}
@@ -224,6 +228,8 @@ export default class DateInput extends React.Component<Props, State> {
     );
   }
 }
+
+export default themr(DATEPICKER, baseTheme)(DateInput) as ThemedComponentClass<Props, State>;
 
 // DateInput.propTypes = propTypes;
 // DateInput.defaultProps = defaultProps;

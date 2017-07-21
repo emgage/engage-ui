@@ -3,11 +3,15 @@ import * as React from 'react';
 
 // import { forbidExtraProps } from 'airbnb-prop-types';
 import * as cx from 'classnames';
+import { themr, ThemedComponentClass } from 'react-css-themr';
 
 // import { DayPickerKeyboardShortcutsPhrases } from './defaultPhrases';
 // import getPhrasePropTypes from '../utils/getPhrasePropTypes';
 
 import CloseButton from '../svg/close.svg';
+
+import { DATEPICKER } from '../../ThemeIdentifiers';
+import * as baseTheme from './../style/style.scss';
 
 export const TOP_LEFT = 'top-left';
 export const TOP_RIGHT = 'top-right';
@@ -33,12 +37,12 @@ export const BOTTOM_RIGHT = 'bottom-right';
 
 export function KeyboardShortcutRow({ unicode, label, action }: any) {
   return (
-    <li className="KeyboardShortcutRow">
+    <li className={this.props.theme["KeyboardShortcutRow"]}>
       <div
-        className="KeyboardShortcutRow__key-container"
+        className={this.props.theme["KeyboardShortcutRow__key-container"]}
       >
         <span
-          className="KeyboardShortcutRow__key"
+          className={this.props.theme["KeyboardShortcutRow__key"]}
           role="img"
           aria-label={label}
         >
@@ -46,7 +50,7 @@ export function KeyboardShortcutRow({ unicode, label, action }: any) {
         </span>
       </div>
 
-      <div className="KeyboardShortcutRow__action">
+      <div className={this.props.theme["KeyboardShortcutRow__action"]}>
         {action}
       </div>
     </li>
@@ -59,13 +63,14 @@ export function KeyboardShortcutRow({ unicode, label, action }: any) {
 //   action: PropTypes.string.isRequired,
 // };
 
-export default function DayPickerKeyboardShortcuts({
+function DayPickerKeyboardShortcuts({
   block,
   buttonLocation,
   showKeyboardShortcutsPanel,
   openKeyboardShortcutsPanel,
   closeKeyboardShortcutsPanel,
   phrases,
+  theme,
 }: any) {
   const keyboardShortcuts = [{
     unicode: '↵',
@@ -109,20 +114,23 @@ export default function DayPickerKeyboardShortcuts({
     ? phrases.hideKeyboardShortcutsPanel
     : phrases.showKeyboardShortcutsPanel;
 
+  let buttonRef: HTMLButtonElement;
+
   return (
     <div>
       <button
-        ref={(ref) => { this.showKeyboardShortcutsButton = ref; }}
-        className={cx('DayPickerKeyboardShortcuts__show', {
-          'DayPickerKeyboardShortcuts__show--bottom-right': buttonLocation === BOTTOM_RIGHT,
-          'DayPickerKeyboardShortcuts__show--top-right': buttonLocation === TOP_RIGHT,
-          'DayPickerKeyboardShortcuts__show--top-left': buttonLocation === TOP_LEFT,
+      // some kind of error with showKeyboardShortcutsButton
+        ref={(ref) => { buttonRef = ref; }}
+        className={cx(theme['DayPickerKeyboardShortcuts__show'], {
+          [theme['DayPickerKeyboardShortcuts__show--bottom-right']]: buttonLocation === BOTTOM_RIGHT,
+          [theme['DayPickerKeyboardShortcuts__show--top-right']]: buttonLocation === TOP_RIGHT,
+          [theme['DayPickerKeyboardShortcuts__show--top-left']]: buttonLocation === TOP_LEFT,
         })}
         type="button"
         aria-label={toggleButtonText}
         onClick={() => {
           // we want to return focus to this button after closing the keyboard shortcuts panel
-          openKeyboardShortcutsPanel(() => { this.showKeyboardShortcutsButton.focus(); });
+          openKeyboardShortcutsPanel(() => { buttonRef.focus(); });
         }}
         onMouseUp={(e) => {
           e.currentTarget.blur();
@@ -133,8 +141,8 @@ export default function DayPickerKeyboardShortcuts({
 
       {showKeyboardShortcutsPanel &&
         <div
-          className={cx('DayPickerKeyboardShortcuts__panel', {
-            'DayPickerKeyboardShortcuts__panel--block': block,
+          className={cx(theme['DayPickerKeyboardShortcuts__panel'], {
+            [theme['DayPickerKeyboardShortcuts__panel--block']]: block,
           })}
           role="dialog"
           aria-labelledby="DayPickerKeyboardShortcuts__title"
@@ -147,7 +155,7 @@ export default function DayPickerKeyboardShortcuts({
           </div>
 
           <button
-            className="DayPickerKeyboardShortcuts__close"
+            className={theme["DayPickerKeyboardShortcuts__close"]}
             type="button"
             aria-label={phrases.hideKeyboardShortcutsPanel}
             onClick={closeKeyboardShortcutsPanel}
@@ -163,7 +171,7 @@ export default function DayPickerKeyboardShortcuts({
             <CloseButton />
           </button>
 
-          <ul className="DayPickerKeyboardShortcuts__list">
+          <ul className={theme["DayPickerKeyboardShortcuts__list"]}>
             {keyboardShortcuts.map(({ unicode, label, action }) => (
               <KeyboardShortcutRow key={label} unicode={unicode} label={label} action={action} />
             ))}
@@ -173,6 +181,9 @@ export default function DayPickerKeyboardShortcuts({
     </div>
   );
 }
+
+export default themr(DATEPICKER, baseTheme)(DayPickerKeyboardShortcuts) as ThemedComponentClass<{}, {}>;
+
 
 // DayPickerKeyboardShortcuts.propTypes = propTypes;
 // DayPickerKeyboardShortcuts.defaultProps = defaultProps;

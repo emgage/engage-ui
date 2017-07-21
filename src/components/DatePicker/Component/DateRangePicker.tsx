@@ -6,6 +6,8 @@ import * as cx from 'classnames';
 import * as Portal from 'react-portal';
 // import { forbidExtraProps } from 'airbnb-prop-types';
 import { addEventListener, removeEventListener } from 'consolidated-events';
+
+import { themr, ThemedComponentClass } from 'react-css-themr';
 // import isTouchDevice from 'is-touch-device';
 
 import DateRangePickerPhrases from './defaultPhrases';
@@ -23,8 +25,10 @@ import CloseButton from '../svg/close.svg';
 // import DateRangePickerShape from '../shapes/DateRangePickerShape';
 import Constants from './constants';
 
-// const propTypes = forbidExtraProps(DateRangePickerShape);
+import { DATEPICKER } from '../../ThemeIdentifiers';
+import * as baseTheme from './../style/style.scss';
 
+// const propTypes = forbidExtraProps(DateRangePickerShape);
 
 
 export interface State { 
@@ -82,16 +86,10 @@ export interface Props {
   renderCalendarInfo?: any,
   initialVisibleMonth?: Function,
   hideKeyboardShortcutsPanel?: any,
+  theme?: any,
 }
 
-export default class DateRangePicker extends React.Component<Props, State> {
-  
-  dayPickerContainer: any;
-  dayPicker: any;
-  resizeHandle: any;
-  isTouchDevice: boolean;
-
-
+class DateRangePicker extends React.Component<Props, State> {
   static defaultProps = {
     // required props for a functional interactive DateRangePicker
     startDate: null,
@@ -152,6 +150,10 @@ export default class DateRangePicker extends React.Component<Props, State> {
     phrases: DateRangePickerPhrases,
   };
 
+  dayPickerContainer: any;
+  dayPicker: any;
+  resizeHandle: any;
+  isTouchDevice: boolean;
 
   constructor(props: any) {
     super(props);
@@ -261,16 +263,17 @@ export default class DateRangePicker extends React.Component<Props, State> {
       withFullScreenPortal,
       anchorDirection,
       isRTL,
+      theme,
     } = this.props;
 
-    const dayPickerClassName = cx('DateRangePicker__picker', {
-      'DateRangePicker__picker--direction-left': anchorDirection === Constants.ANCHOR_LEFT,
-      'DateRangePicker__picker--direction-right': anchorDirection === Constants.ANCHOR_RIGHT,
-      'DateRangePicker__picker--horizontal': orientation === Constants.HORIZONTAL_ORIENTATION,
-      'DateRangePicker__picker--vertical': orientation === Constants.VERTICAL_ORIENTATION,
-      'DateRangePicker__picker--portal': withPortal || withFullScreenPortal,
-      'DateRangePicker__picker--full-screen-portal': withFullScreenPortal,
-      'DateRangePicker__picker--rtl': isRTL,
+    const dayPickerClassName = cx(theme['DateRangePicker__picker'], {
+      [theme['DateRangePicker__picker--direction-left']]: anchorDirection === Constants.ANCHOR_LEFT,
+      [theme['DateRangePicker__picker--direction-right']]: anchorDirection === Constants.ANCHOR_RIGHT,
+      [theme['DateRangePicker__picker--horizontal']]: orientation === Constants.HORIZONTAL_ORIENTATION,
+      [theme['DateRangePicker__picker--vertical']]: orientation === Constants.VERTICAL_ORIENTATION,
+      [theme['DateRangePicker__picker--portal']]: withPortal || withFullScreenPortal,
+      [theme['DateRangePicker__picker--full-screen-portal']]: withFullScreenPortal,
+      [theme['DateRangePicker__picker--rtl']]: isRTL,
     });
 
     return dayPickerClassName;
@@ -515,6 +518,8 @@ export default class DateRangePicker extends React.Component<Props, State> {
     );
   }
 }
+
+export default themr(DATEPICKER, baseTheme)(DateRangePicker) as ThemedComponentClass<Props, State>;
 
 // DateRangePicker.propTypes = propTypes;
 // DateRangePicker.defaultProps = defaultProps;

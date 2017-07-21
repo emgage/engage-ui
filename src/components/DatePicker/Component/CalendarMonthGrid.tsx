@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { themr, ThemedComponentClass } from 'react-css-themr';
 //import PropTypes from 'prop-types';
 // import shallowCompare from 'react-addons-shallow-compare';
 // import momentPropTypes from 'react-moment-proptypes';
@@ -11,7 +12,6 @@ import  CalendarDayPhrases  from './defaultPhrases';
 //import getPhrasePropTypes from '../utils/getPhrasePropTypes';
 
 import CalendarMonth from './CalendarMonth';
-
 import isTransitionEndSupported from '../utils/isTransitionEndSupported';
 import getTransformStyles from '../utils/getTransformStyles';
 import getCalendarMonthWidth from '../utils/getCalendarMonthWidth';
@@ -21,7 +21,8 @@ import isAfterDay from '../utils/isAfterDay';
 //import ScrollableOrientationShape from '../shapes/ScrollableOrientationShape';
 import Constants from './constants';
 
-
+import { DATEPICKER } from '../../ThemeIdentifiers';
+import * as baseTheme from './../style/style.scss';
 
 
 function getMonths(initialMonth: any, numberOfMonths: any, withoutTransitionMonths: any) {
@@ -58,10 +59,33 @@ export interface Props {
   isFocused?: any,
   phrases?: any,
   initialMonth?: any,
-  
+  theme?: any,
 }
 
-export default class CalendarMonthGrid extends React.Component<Props, State> {
+class CalendarMonthGrid extends React.Component<Props, State> {
+  static defaultProps = {
+    enableOutsideDays: false,
+    firstVisibleMonthIndex: 0,
+    initialMonth: {},
+    isAnimating: false,
+    numberOfMonths: 1,
+    modifiers: {},
+    orientation: Constants.HORIZONTAL_ORIENTATION,
+    onDayClick() { },
+    onDayMouseEnter() { },
+    onDayMouseLeave() { },
+    onMonthTransitionEnd() { },
+    renderMonth: null,
+    renderDay: null,
+    transformValue: 'none',
+    daySize: Constants.DAY_SIZE,
+    focusedDate: null,
+    isFocused: false,
+
+    // i18n
+    monthFormat: 'MMMM YYYY', // english locale
+    phrases: CalendarDayPhrases,
+  };
   container: any;
   eventHandle: any;
   isTransitionEndSupported: boolean;
@@ -100,29 +124,6 @@ export default class CalendarMonthGrid extends React.Component<Props, State> {
   //   phrases: PropTypes.shape(getPhrasePropTypes(CalendarDayPhrases)),
   // });
 
-  static defaultProps = {
-    enableOutsideDays: false,
-    firstVisibleMonthIndex: 0,
-    initialMonth: {},
-    isAnimating: false,
-    numberOfMonths: 1,
-    modifiers: {},
-    orientation: Constants.HORIZONTAL_ORIENTATION,
-    onDayClick() { },
-    onDayMouseEnter() { },
-    onDayMouseLeave() { },
-    onMonthTransitionEnd() { },
-    renderMonth: null,
-    renderDay: null,
-    transformValue: 'none',
-    daySize: Constants.DAY_SIZE,
-    focusedDate: null,
-    isFocused: false,
-
-    // i18n
-    monthFormat: 'MMMM YYYY', // english locale
-    phrases: CalendarDayPhrases,
-  };
 
   componentDidMount() {
     this.eventHandle = addEventListener(
@@ -202,6 +203,7 @@ export default class CalendarMonthGrid extends React.Component<Props, State> {
       focusedDate,
       isFocused,
       phrases,
+      theme,
     }: any = this.props;
 
     const { months }: any = this.state;
@@ -209,11 +211,11 @@ export default class CalendarMonthGrid extends React.Component<Props, State> {
     const isVerticalScrollable: any = orientation === Constants.VERTICAL_SCROLLABLE;
     const isHorizontal: any = orientation === Constants.HORIZONTAL_ORIENTATION;
 
-    const className = cx('CalendarMonthGrid', {
-      'CalendarMonthGrid--horizontal': isHorizontal,
-      'CalendarMonthGrid--vertical': isVertical,
-      'CalendarMonthGrid--vertical-scrollable': isVerticalScrollable,
-      'CalendarMonthGrid--animating': isAnimating,
+    const className = cx(theme.CalendarMonthGrid, {
+      [theme['CalendarMonthGrid--horizontal']]: isHorizontal,
+      [theme['CalendarMonthGrid--vertical']]: isVertical,
+      [theme['CalendarMonthGrid--vertical-scrollable']]: isVerticalScrollable,
+      [theme['CalendarMonthGrid--animating']]: isAnimating,
     });
 
     const calendarMonthWidth = getCalendarMonthWidth(daySize);
@@ -263,6 +265,9 @@ export default class CalendarMonthGrid extends React.Component<Props, State> {
     );
   }
 }
+
+export default themr(DATEPICKER, baseTheme)(CalendarMonthGrid) as ThemedComponentClass<Props, State>;
+
 
 // CalendarMonthGrid.propTypes = propTypes;
 // CalendarMonthGrid.defaultProps = defaultProps;

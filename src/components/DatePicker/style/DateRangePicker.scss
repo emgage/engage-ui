@@ -1,30 +1,41 @@
-@import 'variables';
+@import "./variables";
 
-.SingleDatePicker {
+.screen-reader-only {
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+.DateRangePicker {
   position: relative;
   display: inline-block;
 }
 
-.SingleDatePicker__picker {
+.DateRangePicker__picker {
   z-index: $react-dates-z-index + 1;
   background-color: $react-dates-color-white;
   position: absolute;
   top: $react-dates-spacing-vertical-picker;
 }
 
-.SingleDatePicker__picker--rtl {
+.DateRangePicker__picker--rtl {    
   direction: rtl;
 }
 
-.SingleDatePicker__picker--direction-left {
+.DateRangePicker__picker--direction-left {
   left: 0;
 }
 
-.SingleDatePicker__picker--direction-right {
+.DateRangePicker__picker--direction-right {
   right: 0;
 }
 
-.SingleDatePicker__picker--portal {
+.DateRangePicker__picker--portal {
   background-color: rgba(0, 0, 0, 0.3);
   position: fixed;
   top: 0;
@@ -33,11 +44,11 @@
   width: 100%;
 }
 
-.SingleDatePicker__picker--full-screen-portal {
+.DateRangePicker__picker--full-screen-portal {
   background-color: $react-dates-color-white;
 }
 
-.SingleDatePicker__close {
+.DateRangePicker__close {
   background: none;
   border: 0;
   color: inherit;
