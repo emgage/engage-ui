@@ -169,22 +169,18 @@ class App extends React.Component<{}, State> {
         <br />
 
         <div>
-          <br />
           <Chip>
             Basic Chip
-        </Chip>
-          < br />
+          </Chip>
           <Chip onClick={this.chipClick} clickable={true}>
             Clickable Chip
-        </Chip>
-          < br />
+          </Chip>
           <Chip onRemove={this.chipRemove} removable={true}>
             Removable Chip
-        </Chip>
-          <br />
+          </Chip>
           <Chip transparent>
             Transparent Chip
-        </Chip>
+          </Chip>
         </div>
         <div>
           <h4>Single source video</h4>
