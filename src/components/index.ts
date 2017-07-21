@@ -226,3 +226,9 @@ export {
   default as VisuallyHidden,
   Props as VisuallyHiddenProps,
 } from './VisuallyHidden';
+
+export {
+  default as Modal,
+  Props as ModalProps,
+} from './Modal';
+
