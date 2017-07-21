@@ -1,18 +1,10 @@
 import * as React from 'react';
-import { classNames } from '@shopify/react-utilities/styles';
 import * as baseTheme from './OffCanvas.scss';
 import { OffCanvasAnimationType, OffCanvasPosition } from './OffCanvasProps';
+import { Props } from './OffCanvas';
 
 export interface State {
     isMenuOpened: false,
-}
-export interface Props {
-    width?: number,
-    transitionDuration?: number,
-    isMenuOpened?: boolean,
-    position?: OffCanvasPosition,
-    style?: any,
-    animation?: OffCanvasAnimationType,
 }
 
 export class OffCanvasMenu extends React.PureComponent<Props, State> {
@@ -27,10 +19,6 @@ export class OffCanvasMenu extends React.PureComponent<Props, State> {
       style,
       animation,
     } = this.props;
-
-    const className = classNames(
-      baseTheme.menuClass,
-    );
 
     const left = position === OffCanvasPosition.Left ? (-1 * width) + 'px' : 'auto';
     const tranDuration = animation === OffCanvasAnimationType.None ? 0 : transitionDuration;
@@ -49,12 +37,12 @@ export class OffCanvasMenu extends React.PureComponent<Props, State> {
       transform: 'translate(0px, 0px)',
     };
 
-    let currStyle = Object.assign({}, closedStyle);
+    let currStyle = closedStyle;
     if (isMenuOpened) {
-      currStyle = Object.assign({}, currStyle, openStyle);
+      currStyle = {...currStyle, ...openStyle};
     }
     return (
-      <div style = {{...currStyle, ...style}} className = {className}>
+      <div style={{...currStyle, ...style}} className={baseTheme.menuClass}>
         {children}
       </div>
     );
