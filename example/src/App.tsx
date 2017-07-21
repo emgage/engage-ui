@@ -182,6 +182,9 @@ class App extends React.Component<{}, State> {
             Removable Chip
         </Chip>
           <br />
+          <Chip transparent>
+            Transparent Chip
+        </Chip>
         </div>
         <div>
           <h4>Single source video</h4>

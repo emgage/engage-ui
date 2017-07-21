@@ -1,6 +1,45 @@
-.chip {    display: block;}
-.chipClickable{display: block;}
-.chipImage{display: block;}
-.chipRemovable{display: block;}
-.chipTransparent{display: block;}
-.chipRemove{display: block;}
+.Chip {
+    display: inline-block;
+    height: 32px;
+    font-size: 13px;
+    font-weight: normal;
+    color: rgba(0,0,0,0.6);
+    line-height: 32px;
+    padding: 0 12px;
+    border-radius: 16px;
+    background-color: #e4e4e4;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.Image {
+    float: left;
+    margin: 0 8px 0 -12px;
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+}
+
+.Remove {
+    cursor: pointer;
+    float: right;
+    font-size: 16px;
+    height: 24px;
+    width: 24px;
+    line-height: 30px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    margin: 4px -4px 4px 4px;
+    transition: background 0.15s linear;
+    display: block;
+}
+
+.transparent{
+    background-color: transparent;
+}
