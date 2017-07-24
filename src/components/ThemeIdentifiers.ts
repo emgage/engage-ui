@@ -49,3 +49,4 @@ export const TEXT_FIELD = 'PTextField';
 export const TOOLTIP = 'PTooltip';
 export const VIDEO = 'PVideo';
 export const VISUALLY_HIDDEN = 'PVisuallyHidden';
+export const MODAL = 'PModal';
