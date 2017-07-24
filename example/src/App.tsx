@@ -3,6 +3,8 @@ import { FlexAlign, FlexDirection, FlexJustify } from '../../src/components/Flex
 import { PeoplePickerSearchType } from './PickerEnum';
 import { PeoplePickerSource } from './PickerSource';
 
+import Example from '../../src/components/ReactDataExample';
+
 import {
   Button,
   ButtonGroup,
@@ -23,7 +25,7 @@ import {
   Card,
   ClickableChip,
   Loading,
-  // SingleDatePicker as DatePicker,
+  SingleDatePicker as DatePicker,
 } from '../../src/components';
 
 // import
@@ -33,6 +35,9 @@ import {
 interface State {
   appName?: string,
   appDescription: string,
+  appTextCounter: string,
+  columns: object[],
+  rows: object[],
 }
 
 class App extends React.Component<{}, State> {
@@ -41,8 +46,21 @@ class App extends React.Component<{}, State> {
     this.state = {
       appName: '',
       appDescription: '',
+      appTextCounter: '',
+      columns: [
+        { key: 'id', name: 'ID' },
+        { key: 'title', name: 'Title' },
+        { key: 'count', name: 'Count' }
+      ],
+      rows: [
+        { id: 1, title: 'Title 1', count: 1 },
+        { id: 2, title: 'Title 2', count: 2 },
+        { id: 3, title: 'Title 3', count: 3 }
+      ],
     };
   }
+
+  rowGetter = (index) => this.state.rows[index];
 
   chipClick = () => {
     console.log('chip clicked...');
@@ -84,13 +102,17 @@ class App extends React.Component<{}, State> {
     return (
       <div>
         <div>
-          
-          <Heading>This is my DatePicker!!</Heading> 
-          {/* <DatePicker /> */}
-        </div>
 
-        <div>
+          <Heading>This is my DatePicker!!</Heading> 
+           <DatePicker /> 
+          <Example
+            columns={this.state.columns}
+            rowGetter={this.rowGetter}
+            rowsCount={this.state.rows.length}
+            minHeight={2}
+          />
           <Heading>Popover</Heading>
+          <TextField id='TestName' label='Text Counter' placeholder='' value={this.state.appTextCounter} helpText='Helper Text' enableTextCouter={true} maxLength={100} onChange={this.valueUpdater('appTextCounter')}/>
           <ClickableChip chip={<Chip>Batman</Chip>}>
             <Card title="More about Batman">
               <p>Batman is a fictional superhero who appears in American comic books published by DC Comics. The character was created by artist Bob Kane and writer Bill Finger, and first appeared in Detective Comics #27</p>

@@ -221,3 +221,10 @@ $stacking-order: (
     border-bottom-right-radius: border-radius();
   }
 }
+.CounterText{
+  @include text-style-body;
+  @include text-emphasis-subdued;
+  margin-top: spacing(extra-tight);
+  display: inline;
+  float: right;
+}
