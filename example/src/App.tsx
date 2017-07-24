@@ -102,9 +102,9 @@ class App extends React.Component<{}, State> {
     return (
       <div>
         <div>
-
           <Heading>This is my DatePicker!!</Heading> 
-           <DatePicker /> 
+             <DatePicker /> 
+
           <Example
             columns={this.state.columns}
             rowGetter={this.rowGetter}
