@@ -2,8 +2,7 @@ $height: rem(32px);
 $horizontal-padding: (3 * $height / 8);
 
 .Chip {
-    display: inline-flex;
-    align-items: center;
+    display: inline-block;
     font-size: rem(13px);
     color: color(ink);//rgba(0,0,0,0.6);
     line-height: $height;
