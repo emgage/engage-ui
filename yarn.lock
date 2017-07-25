@@ -146,6 +146,19 @@ acorn@^5.0.0, acorn@^5.0.1:
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-5.1.1.tgz#53fe161111f912ab999ee887a90a0bc52822fd75"
 
+airbnb-prop-types@^2.7.1:
+  version "2.7.1"
+  resolved "https://registry.yarnpkg.com/airbnb-prop-types/-/airbnb-prop-types-2.7.1.tgz#1431e40a02449d968f9ac03b2f35794018290408"
+  dependencies:
+    array.prototype.find "^2.0.4"
+    function.prototype.name "^1.0.1"
+    has "^1.0.1"
+    is-regex "^1.0.4"
+    object.assign "^4.0.4"
+    object.entries "^1.0.4"
+    prop-types "^15.5.10"
+    prop-types-exact "^1.1.1"
+
 ajv-keywords@^1.0.0:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/ajv-keywords/-/ajv-keywords-1.5.1.tgz#314dd0a4b3368fad3dfcdc54ede6171b886daf3c"
@@ -310,7 +323,7 @@ array-unique@^0.3.2:
   version "0.3.2"
   resolved "https://registry.yarnpkg.com/array-unique/-/array-unique-0.3.2.tgz#a894b75d4bc4f6cd679ef3244a9fd8f46ae2d428"
 
-array.prototype.find@^2.0.1:
+array.prototype.find@^2.0.1, array.prototype.find@^2.0.4:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/array.prototype.find/-/array.prototype.find-2.0.4.tgz#556a5c5362c08648323ddaeb9de9d14bc1864c90"
   dependencies:
@@ -3254,7 +3267,7 @@ function-bind@^1.0.2, function-bind@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/function-bind/-/function-bind-1.1.0.tgz#16176714c801798e4e8f2cf7f7529467bb4a5771"
 
-function.prototype.name@^1.0.0:
+function.prototype.name@^1.0.0, function.prototype.name@^1.0.1:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/function.prototype.name/-/function.prototype.name-1.0.3.tgz#0099ae5572e9dd6f03c97d023fd92bcc5e639eac"
   dependencies:
@@ -4120,7 +4133,7 @@ is-redirect@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/is-redirect/-/is-redirect-1.0.0.tgz#1d03dded53bd8db0f30c26e4f95d36fc7c87dc24"
 
-is-regex@^1.0.3:
+is-regex@^1.0.3, is-regex@^1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/is-regex/-/is-regex-1.0.4.tgz#5517489b547091b0930e095654ced25ee97e9491"
   dependencies:
@@ -4161,6 +4174,10 @@ is-symbol@^1.0.1:
 is-tar@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/is-tar/-/is-tar-1.0.0.tgz#2f6b2e1792c1f5bb36519acaa9d65c0d26fe853d"
+
+is-touch-device@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/is-touch-device/-/is-touch-device-1.0.1.tgz#9a2fd59f689e9a9bf6ae9a86924c4ba805a42eab"
 
 is-typedarray@~1.0.0:
   version "1.0.0"
@@ -5148,7 +5165,7 @@ modify-babel-preset@^1.0.0:
   dependencies:
     require-relative "^0.8.7"
 
-moment@*, moment@>=2.14.0, moment@^2.10.6:
+moment@*, moment@>=1.6.0, moment@>=2.14.0, moment@^2.10.6:
   version "2.18.1"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.18.1.tgz#c36193dd3ce1c2eed2adb7c802dbbc77a81b1c0f"
 
@@ -6114,6 +6131,13 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
+prop-types-exact@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/prop-types-exact/-/prop-types-exact-1.1.1.tgz#c2620207e4f77f9762fa1835b0387a464bd08978"
+  dependencies:
+    has "^1.0.1"
+    object.assign "^4.0.4"
+
 prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.6, prop-types@^15.5.8:
   version "15.5.10"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.5.10.tgz#2797dfc3126182e3a95e3dfbb2e893ddd7456154"
@@ -6268,6 +6292,12 @@ react-hot-loader@3.0.0-beta.6:
     react-proxy "^3.0.0-alpha.0"
     redbox-react "^1.2.5"
     source-map "^0.4.4"
+
+react-moment-proptypes@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/react-moment-proptypes/-/react-moment-proptypes-1.5.0.tgz#4a448cd6479efc5dd509283f361f3753c3abe60e"
+  dependencies:
+    moment ">=1.6.0"
 
 react-onclickoutside@^6.1.1:
   version "6.4.0"
