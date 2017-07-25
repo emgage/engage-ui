@@ -97,7 +97,7 @@ class CalendarDay extends Component {
 
     const className = cx(theme['CalendarDay'], {
       [theme['CalendarDay--outside']]: isOutsideDay,
-    }, Array.from(modifiers, mod => `CalendarDay--${mod}`));
+    }, Array.from(modifiers, mod => theme[`CalendarDay--${mod}`]));
 
     const formattedDate = `${day.format('dddd')}, ${day.format('LL')}`;
 
