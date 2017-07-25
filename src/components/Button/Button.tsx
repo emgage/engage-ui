@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from 'react-css-themr';
-import {classNames, variationName} from '@shopify/react-utilities';
+import { classNames, variationName } from '@shopify/react-utilities';
 
-import {ComplexAction} from '../../types';
+import { ComplexAction } from '../../types';
 import UnstyledLink from '../UnstyledLink';
-import Icon, {Props as IconProps} from '../Icon';
+import Icon, { Props as IconProps } from '../Icon';
 
 import { BUTTON } from '../ThemeIdentifiers';
 import * as baseTheme from './Button.scss';
@@ -12,25 +12,25 @@ import * as baseTheme from './Button.scss';
 export type Size = 'slim' | 'large';
 
 export interface Props {
-  url?: string,
-  children?: string,
-  size?: Size,
-  fullWidth?: boolean,
-  primary?: boolean,
-  outline?: boolean,
-  destructive?: boolean,
-  disabled?: boolean,
-  plain?: boolean,
-  external?: boolean,
-  submit?: boolean,
-  disclosure?: boolean,
-  accessibilityLabel?: string,
-  icon?: IconProps['source'],
-  style?: React.CSSProperties,
-  theme?: any,
-  onClick?(): void,
-  onFocus?(): void,
-  onBlur?(): void,
+  url?: string;
+  children?: string;
+  size?: Size;
+  fullWidth?: boolean;
+  primary?: boolean;
+  outline?: boolean;
+  destructive?: boolean;
+  disabled?: boolean;
+  plain?: boolean;
+  external?: boolean;
+  submit?: boolean;
+  disclosure?: boolean;
+  accessibilityLabel?: string;
+  icon?: IconProps['source'];
+  style?: React.CSSProperties;
+  theme?: any;
+  onClick?(): void;
+  onFocus?(): void;
+  onBlur?(): void;
 }
 
 const Button = ({
@@ -126,7 +126,7 @@ const Button = ({
 
 const ThemedButton = themr(BUTTON, baseTheme)(Button) as ThemedComponentClass<Props, {}>;
 
-function handleMouseUp({currentTarget}: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) {
+function handleMouseUp({ currentTarget }: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) {
   currentTarget.blur();
 }
 
@@ -141,7 +141,7 @@ export function buttonsFrom(actions: ComplexAction[] | ComplexAction, overrides:
 }
 
 export function buttonFrom(
-  {content, onAction, ...action}: ComplexAction,
+  { content, onAction, ...action }: ComplexAction,
   overrides?: Partial<Props>,
   key?: any,
 ) {
@@ -156,4 +156,4 @@ export function buttonFrom(
   );
 }
 
-export default ThemedButton
+export default ThemedButton;

@@ -5,14 +5,14 @@ import { MESSAGE } from '../ThemeIdentifiers';
 import * as baseTheme from './Message.scss';
 
 export interface Props {
-  children?: React.ReactNode,
-  isVisible?: boolean,
-  id: string,
-  style?: React.CSSProperties,
-  theme?: any,
+  children?: React.ReactNode;
+  isVisible?: boolean;
+  id: string;
+  style?: React.CSSProperties;
+  theme?: any;
 }
 
-function Message({children, isVisible, id, style, theme}: Props) {
+function Message({ children, isVisible, id, style, theme }: Props) {
   if (!isVisible) {
     // TODO This seems to be a bug. We want to return null.
     return <noscript />;

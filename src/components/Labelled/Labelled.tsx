@@ -1,30 +1,30 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from 'react-css-themr';
-import {classNames} from '@shopify/react-utilities/styles';
+import { classNames } from '@shopify/react-utilities/styles';
 
-import Label, {Props as LabelProps, Action, labelID} from '../Label';
+import Label, { Props as LabelProps, Action, labelID } from '../Label';
 import Message from '../Message';
 import { LABELLED } from '../ThemeIdentifiers';
 
 import * as baseTheme from './Labelled.scss';
 
-export {Action, labelID};
+export { Action, labelID };
 
 export type Error = string;
 
 export interface Props {
-  id: LabelProps['id'],
-  label: string,
-  errors?: [string] | Error,
-  action: LabelProps['action'],
-  helpText?: React.ReactNode,
-  children?: React.ReactNode,
-  labelHidden?: boolean,
-  required?: boolean,
-  focused?: boolean,
-  hasValue?: boolean,
-  style?: React.CSSProperties,
-  theme?: any,
+  id: LabelProps['id'];
+  label: string;
+  errors?: [string] | Error;
+  action: LabelProps['action'];
+  helpText?: React.ReactNode;
+  children?: React.ReactNode;
+  labelHidden?: boolean;
+  required?: boolean;
+  focused?: boolean;
+  hasValue?: boolean;
+  style?: React.CSSProperties;
+  theme?: any;
 }
 
 const Labelled = ({

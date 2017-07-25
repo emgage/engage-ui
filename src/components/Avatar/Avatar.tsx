@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from 'react-css-themr';
-import {classNames, variationName} from '@shopify/react-utilities/styles';
+import { classNames, variationName } from '@shopify/react-utilities/styles';
 
 import Image from '../Image';
 import { AVATAR } from '../ThemeIdentifiers';
@@ -14,13 +14,13 @@ const STYLE_CLASSES = ['one', 'two', 'three', 'four', 'five', 'six'];
 const AVATAR_IMAGES = Object.keys(avatars).map((key: keyof typeof avatars) => avatars[key]);
 
 export interface Props {
-  size?: Size,
-  name?: string,
-  initials?: string,
-  customer?: boolean,
-  source?: string,
-  accessibilityLabel?: string,
-  theme?: any,
+  size?: Size;
+  name?: string;
+  initials?: string;
+  customer?: boolean;
+  source?: string;
+  accessibilityLabel?: string;
+  theme?: any;
 }
 
 const Avatar = ({
@@ -66,10 +66,10 @@ const Avatar = ({
     content = <Image className={theme.Image} source={finalSource} alt="" role="presentation" />;
   } else if (initials) {
     content = <span aria-hidden className={theme.Initials}>{initials}</span>;
-  };
+  }
 
   return <div aria-label={label} role="img" className={className}>{content}</div>;
-}
+};
 
 function styleClass(name?: string) {
   return name

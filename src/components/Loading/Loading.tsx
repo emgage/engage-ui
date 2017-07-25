@@ -4,18 +4,18 @@ import { LOADING } from '../ThemeIdentifiers';
 import * as baseTheme from './Loading.scss';
 
 export interface Props {
-    style?: React.CSSProperties,
-    theme?: any,
-};
+  style?: React.CSSProperties;
+  theme?: any;
+}
 
 class Loading extends React.PureComponent<Props, {}> {
-    render() {
-        const {
+  render() {
+    const {
             style,
             theme,
         } = this.props;
 
-        return (
+    return (
             <div>
                 <span style={style}>
                     <i className={theme.loader}></i>
@@ -23,8 +23,8 @@ class Loading extends React.PureComponent<Props, {}> {
                 </span>
                 {this.props.children}
             </div>
-        );
-    }
+    );
+  }
 }
 
 export default themr(LOADING, baseTheme)(Loading) as ThemedComponentClass<Props, {}>;

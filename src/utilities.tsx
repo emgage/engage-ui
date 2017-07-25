@@ -37,8 +37,8 @@ const isComponent = (AComponent: ReactComponent<any>, AnotherComponent: ReactCom
 
     if ((isAComponentThemed && !isAnotherComponentThemed) ||
         (!isAComponentThemed && isAnotherComponentThemed)) {
-          return false;
-        }
+      return false;
+    }
 
     return AComponent.displayName === AnotherComponent.displayName;
   }
@@ -56,7 +56,7 @@ export function isElementOfType(
     return false;
   }
 
-  const {type} = element;
+  const { type } = element;
   const Components = Array.isArray(Component) ? Component : [Component];
 
   return Components.some((AComponent) => typeof type !== 'string' && isComponent(AComponent, type));

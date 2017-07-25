@@ -1,6 +1,6 @@
 {
   "extends": [
-    "tslint-config-shopify"
+    "tslint-config-airbnb"
   ],
   "rules": {
     "no-for-in-array": false,

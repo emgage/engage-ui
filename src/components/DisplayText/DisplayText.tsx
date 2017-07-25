@@ -1,19 +1,19 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from 'react-css-themr';
-import {classNames, variationName} from '@shopify/react-utilities/styles';
+import { classNames, variationName } from '@shopify/react-utilities/styles';
 
-import {HeadingTagName} from '../../types';
+import { HeadingTagName } from '../../types';
 import { DISPLAY_TEXT } from '../ThemeIdentifiers';
 import * as baseTheme from './DisplayText.scss';
 
 export type Size = 'small' | 'medium' | 'large' | 'extraLarge';
 
 export interface Props {
-  element?: HeadingTagName,
-  children?: React.ReactNode,
-  size?: Size,
-  theme?: any,
-};
+  element?: HeadingTagName;
+  children?: React.ReactNode;
+  size?: Size;
+  theme?: any;
+}
 
 const DisplayText = ({
   element: Element = 'p',

@@ -6,8 +6,8 @@ import { FORM_LAYOUT } from '../ThemeIdentifiers';
 import * as baseTheme from './FormLayout.scss';
 
 export interface Props {
-  children?: React.ReactNode,
-  theme?: any,
+  children?: React.ReactNode;
+  theme?: any;
 }
 
 const Item = (props: Props)  => {
@@ -20,7 +20,7 @@ const Item = (props: Props)  => {
   return (
     <div className={theme.Item}>
       {React.Children.map(children, (child: React.ReactElement<{}>) => {
-          return React.cloneElement(child, otherProps);
+        return React.cloneElement(child, otherProps);
       })}
     </div>
   );

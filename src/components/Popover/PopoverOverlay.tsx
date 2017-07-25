@@ -1,21 +1,21 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from 'react-css-themr';
 import autobind from '@shopify/javascript-utilities/autobind';
-import {nodeContainsDescendant} from '@shopify/javascript-utilities/dom';
-import {write} from '@shopify/javascript-utilities/fastdom';
-import {findFirstFocusableNode} from '@shopify/javascript-utilities/focus';
-import {classNames} from '@shopify/react-utilities/styles';
-import {isElementOfType, wrapWithComponent} from '@shopify/react-utilities/components';
-import {TransitionGroup, TransitionStatus} from '@shopify/react-utilities/animation';
+import { nodeContainsDescendant } from '@shopify/javascript-utilities/dom';
+import { write } from '@shopify/javascript-utilities/fastdom';
+import { findFirstFocusableNode } from '@shopify/javascript-utilities/focus';
+import { classNames } from '@shopify/react-utilities/styles';
+import { isElementOfType, wrapWithComponent } from '@shopify/react-utilities/components';
+import { TransitionGroup, TransitionStatus } from '@shopify/react-utilities/animation';
 
-import {Keys} from '../../types';
-import {overlay} from '../shared';
+import { Keys } from '../../types';
+import { overlay } from '../shared';
 import EventListener from '../EventListener';
 import KeypressListener from '../KeypressListener';
-import PositionedOverlay, {OverlayDetails, PreferredPosition} from '../PositionedOverlay';
+import PositionedOverlay, { OverlayDetails, PreferredPosition } from '../PositionedOverlay';
 import { POPOVER } from '../ThemeIdentifiers';
 
-import Pane, {Props as PaneProps} from './Pane';
+import Pane, { Props as PaneProps } from './Pane';
 import * as baseTheme from './Popover.scss';
 
 export enum CloseSource {
@@ -26,22 +26,22 @@ export enum CloseSource {
 }
 
 export interface Props {
-  id: string,
-  active: boolean,
-  preventAutofocus?: boolean,
-  sectioned?: boolean,
-  preferredPosition?: PreferredPosition,
-  children?: React.ReactNode,
-  activator: HTMLElement,
-  theme?: any,
-  onClose(source: CloseSource): void,
+  id: string;
+  active: boolean;
+  preventAutofocus?: boolean;
+  sectioned?: boolean;
+  preferredPosition?: PreferredPosition;
+  children?: React.ReactNode;
+  activator: HTMLElement;
+  theme?: any;
+  onClose(source: CloseSource): void;
 }
 
 class PopoverOverlay extends React.PureComponent<Props, never> {
   private contentNode: HTMLElement | null;
 
-  componentDidUpdate({active: wasActive}: Props) {
-    const {active, preventAutofocus} = this.props;
+  componentDidUpdate({ active: wasActive }: Props) {
+    const { active, preventAutofocus } = this.props;
     if (!active || preventAutofocus || !active || active === wasActive) { return; }
     if (this.contentNode == null) { return; }
 
@@ -53,7 +53,7 @@ class PopoverOverlay extends React.PureComponent<Props, never> {
   }
 
   render() {
-    const {active, theme} = this.props;
+    const { active, theme } = this.props;
     const selector = `.${theme.Popover}`;
     const markup = active
       ? (
@@ -119,7 +119,7 @@ class PopoverOverlay extends React.PureComponent<Props, never> {
     const tipMarkup = !measuring
       ? (
         <div
-          style={{left: activatorRect.center.x - left}}
+          style={{ left: activatorRect.center.x - left }}
           className={theme.Tip}
         />
       )
@@ -127,7 +127,7 @@ class PopoverOverlay extends React.PureComponent<Props, never> {
 
     const contentStyles = measuring
       ? undefined
-      : {height: desiredHeight};
+      : { height: desiredHeight };
 
     const content = (
       <div
@@ -137,7 +137,7 @@ class PopoverOverlay extends React.PureComponent<Props, never> {
         style={contentStyles}
         ref={this.setContentNode}
       >
-        {renderPopoverContent(children, {sectioned})}
+        {renderPopoverContent(children, { sectioned })}
       </div>
     );
 
@@ -164,7 +164,7 @@ class PopoverOverlay extends React.PureComponent<Props, never> {
   @autobind
   private handleClick(event: Event) {
     const target = event.target as HTMLElement;
-    const {contentNode, props: {activator, onClose}} = this;
+    const { contentNode, props: { activator, onClose } } = this;
     if (
       (contentNode != null && nodeContainsDescendant(contentNode, target)) ||
       nodeContainsDescendant(activator, target)

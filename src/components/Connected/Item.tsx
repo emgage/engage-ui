@@ -1,6 +1,6 @@
 import * as React from 'react';
 import autobind from '@shopify/javascript-utilities/autobind';
-import {classNames} from '@shopify/react-utilities/styles';
+import { classNames } from '@shopify/react-utilities/styles';
 import * as styles from './Connected.scss';
 
 export enum Position {
@@ -10,20 +10,20 @@ export enum Position {
 }
 
 export interface Props {
-  position: Position,
-  children?: React.ReactNode,
+  position: Position;
+  children?: React.ReactNode;
 }
 
 export interface State {
-  focused: boolean,
+  focused: boolean;
 }
 
 export default class Item extends React.PureComponent<Props, State> {
-  state: State = {focused: false};
+  state: State = { focused: false };
 
   render() {
-    const {focused} = this.state;
-    const {children, position} = this.props;
+    const { focused } = this.state;
+    const { children, position } = this.props;
     const className = classNames(
       styles.Item,
       focused && styles['Item-focused'],
@@ -43,11 +43,11 @@ export default class Item extends React.PureComponent<Props, State> {
 
   @autobind
   private handleBlur() {
-    this.setState({focused: false});
+    this.setState({ focused: false });
   }
 
   @autobind
   private handleFocus() {
-    this.setState({focused: true});
+    this.setState({ focused: true });
   }
 }

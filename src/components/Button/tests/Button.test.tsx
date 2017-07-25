@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {shallow} from 'enzyme';
+import { shallow } from 'enzyme';
 import Button from '..';
 
 describe('<Button />', () => {
@@ -41,7 +41,7 @@ describe('<Button />', () => {
 
   describe('style', () => {
     it('sets the style attribute on the button to color: red ', () => {
-      const button = shallow(<Button style={{color: 'red'}}>Disabled test</Button>);
+      const button = shallow(<Button style={{ color: 'red' }}>Disabled test</Button>);
       expect(button.prop('style')).toMatchObject({ color: 'red' });
     });
 

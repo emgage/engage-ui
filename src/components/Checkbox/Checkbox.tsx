@@ -11,19 +11,19 @@ import checkmark from './icons/checkmark.svg';
 import * as baseTheme from './Checkbox.scss';
 
 export interface Props {
-  label: string,
-  labelHidden?: boolean,
-  checked?: boolean,
-  helpText?: React.ReactNode,
-  id?: string,
-  name?: string,
-  value?: string,
-  error?: Error,
-  disabled?: boolean,
-  theme?: any,
-  onChange?(newValue: boolean): void,
-  onFocus?(): void,
-  onBlur?(): void,
+  label: string;
+  labelHidden?: boolean;
+  checked?: boolean;
+  helpText?: React.ReactNode;
+  id?: string;
+  name?: string;
+  value?: string;
+  error?: Error;
+  disabled?: boolean;
+  theme?: any;
+  onChange?(newValue: boolean): void;
+  onFocus?(): void;
+  onBlur?(): void;
 }
 
 const getUniqueID = createUniqueIDFactory('Checkbox');
@@ -45,7 +45,7 @@ const Checkbox = ({
 }: Props) => {
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     if (onChange == null) { return; }
-    const {currentTarget} = event;
+    const { currentTarget } = event;
     onChange(currentTarget.checked);
   }
 
@@ -89,7 +89,7 @@ const Checkbox = ({
       </div>
     </Choice>
   );
-}
+};
 
-export { Checkbox as UnthemedCheckbox }
+export { Checkbox as UnthemedCheckbox };
 export default themr(CHECKBOX, baseTheme)(Checkbox) as ThemedComponentClass<Props, {}>;

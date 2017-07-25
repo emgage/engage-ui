@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from 'react-css-themr';
-import {classNames} from '@shopify/react-utilities/styles';
-import {ReactComponent} from '@shopify/react-utilities/types';
-import {noop, createUniqueIDFactory} from '@shopify/javascript-utilities/other';
+import { classNames } from '@shopify/react-utilities/styles';
+import { ReactComponent } from '@shopify/react-utilities/types';
+import { noop, createUniqueIDFactory } from '@shopify/javascript-utilities/other';
 
 import Checkbox from '../Checkbox';
 import RadioButton from '../RadioButton';
@@ -11,21 +11,21 @@ import { CHOICE_LIST } from '../ThemeIdentifiers';
 import * as baseTheme from './ChoiceList.scss';
 
 export interface ChoiceDescriptor {
-  value: string,
-  label: string,
+  value: string;
+  label: string;
 }
 
 export type Choice = ChoiceDescriptor;
 
 export interface Props {
-  title?: string,
-  titleHidden?: boolean,
-  choices: Choice[],
-  selected: string[],
-  name?: string,
-  allowMultiple?: boolean,
-  theme?: any,
-  onChange?(selected: string[]): void,
+  title?: string;
+  titleHidden?: boolean;
+  choices: Choice[];
+  selected: string[];
+  name?: string;
+  allowMultiple?: boolean;
+  theme?: any;
+  onChange?(selected: string[]): void;
 }
 
 type ChooseableComponent = ReactComponent<{
@@ -85,13 +85,13 @@ const ChoiceList = ({
       </ul>
     </fieldset>
   );
-}
+};
 
-function choiceIsSelected({value}: Choice, selected: string[]) {
+function choiceIsSelected({ value }: Choice, selected: string[]) {
   return selected.indexOf(value) >= 0;
 }
 
-function updateSelectedChoices({value}: Choice, checked: boolean, selected: string[], allowMultiple = false) {
+function updateSelectedChoices({ value }: Choice, checked: boolean, selected: string[], allowMultiple = false) {
   if (checked) {
     return allowMultiple ? [...selected, value] : [value];
   }

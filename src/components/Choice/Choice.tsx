@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from 'react-css-themr';
-import {classNames} from '@shopify/react-utilities/styles';
+import { classNames } from '@shopify/react-utilities/styles';
 
 import Icon from '../Icon';
 import { CHOICE } from '../ThemeIdentifiers';
@@ -10,13 +10,13 @@ import * as baseTheme from './Choice.scss';
 export type Error = boolean | string;
 
 export interface Props {
-  id: string,
-  label: string,
-  error?: Error,
-  labelHidden?: boolean,
-  children?: React.ReactNode,
-  helpText?: React.ReactNode,
-  theme?: any,
+  id: string;
+  label: string;
+  error?: Error;
+  labelHidden?: boolean;
+  children?: React.ReactNode;
+  helpText?: React.ReactNode;
+  theme?: any;
 }
 
 const Choice = ({
@@ -66,7 +66,7 @@ const Choice = ({
       </div>
     )
     : labelMarkup;
-}
+};
 
 export function helpTextID(id: string) {
   return `${id}HelpText`;

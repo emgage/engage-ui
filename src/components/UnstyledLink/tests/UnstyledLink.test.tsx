@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {shallow} from 'enzyme';
+import { shallow } from 'enzyme';
 import UnstyledLink from '..';
 
 describe('<UnstyledLink />', () => {

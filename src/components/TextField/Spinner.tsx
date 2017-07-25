@@ -7,12 +7,12 @@ import { TEXT_FIELD } from '../ThemeIdentifiers';
 import * as baseTheme from './TextField.scss';
 
 export interface Props {
-  theme?: any,
-  onChange(delta: number): void,
-  onClick?(): void,
+  theme?: any;
+  onChange(delta: number): void;
+  onClick?(): void;
 }
 
-const Spinner = ({theme, onChange, onClick}: Props)  => {
+const Spinner = ({ theme, onChange, onClick }: Props)  => {
   function handleStep(step: number) {
     return () => onChange(step);
   }
@@ -42,6 +42,6 @@ const Spinner = ({theme, onChange, onClick}: Props)  => {
       </div>
     </div>
   );
-}
+};
 
 export default themr(TEXT_FIELD, baseTheme)(Spinner) as ThemedComponentClass<Props, {}>;

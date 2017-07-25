@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from 'react-css-themr';
-import {classNames, variationName} from '@shopify/react-utilities/styles';
+import { classNames, variationName } from '@shopify/react-utilities/styles';
 
-import {Action} from '../../types';
-import Button, {buttonFrom} from '../Button';
+import { Action } from '../../types';
+import Button, { buttonFrom } from '../Button';
 import Heading from '../Heading';
 import ButtonGroup from '../ButtonGroup';
 import UnstyledLink from '../UnstyledLink';
-import Icon, {Props as IconProps} from '../Icon';
+import Icon, { Props as IconProps } from '../Icon';
 import { BANNER } from '../ThemeIdentifiers';
 
 import * as baseTheme from './Banner.scss';
@@ -21,14 +21,14 @@ import fallbackIcon from './icons/confetti.svg';
 export type Status = 'success' | 'info' | 'warning' | 'critical';
 
 export interface Props {
-  icon?: IconProps['source'],
-  title?: string,
-  status?: Status,
-  action?: Action,
-  secondaryAction?: Action,
-  children?: React.ReactNode,
-  theme?: any,
-  onDismiss?(): void,
+  icon?: IconProps['source'];
+  title?: string;
+  status?: Status;
+  action?: Action;
+  secondaryAction?: Action;
+  children?: React.ReactNode;
+  theme?: any;
+  onDismiss?(): void;
 }
 
 const Banner = ({
@@ -95,7 +95,7 @@ const Banner = ({
     ? (
       <div className={theme.Actions}>
         <ButtonGroup>
-          {buttonFrom(action, {outline: true})}
+          {buttonFrom(action, { outline: true })}
           {secondaryActionMarkup}
         </ButtonGroup>
       </div>
@@ -141,7 +141,7 @@ const Banner = ({
       </div>
     </div>
   );
-}
+};
 
 let index = 1;
 function uniqueID() {

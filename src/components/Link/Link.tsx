@@ -4,14 +4,14 @@ import UnstyledLink from '../UnstyledLink';
 import { LINK } from '../ThemeIdentifiers';
 
 export interface Props {
-  url?: string,
-  children?: React.ReactNode,
-  external?: boolean,
-  theme?: any,
-  onClick?(): void,
+  url?: string;
+  children?: React.ReactNode;
+  external?: boolean;
+  theme?: any;
+  onClick?(): void;
 }
 
-const Link = ({url, children, onClick, external, theme }: Props) => {
+const Link = ({ url, children, onClick, external, theme }: Props) => {
   return url
     ? (
       <UnstyledLink className={theme.Link} url={url} external={external}>
@@ -23,6 +23,6 @@ const Link = ({url, children, onClick, external, theme }: Props) => {
         {children}
       </button>
     );
-}
+};
 
 export default themr(LINK)(Link) as ThemedComponentClass<Props, {}>;

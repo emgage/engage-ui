@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from 'react-css-themr';
-import {SVGSource} from '@shopify/images';
-import {classNames, variationName} from '@shopify/react-utilities/styles';
+import { SVGSource } from '@shopify/images';
+import { classNames, variationName } from '@shopify/react-utilities/styles';
 
 import {
   add,
@@ -104,12 +104,12 @@ export const BUNDLED_ICONS = {
 const COLORS_WITH_BACKDROPS = ['teal', 'tealDark', 'greenDark', 'redDark', 'yellowDark', 'ink'];
 
 export interface Props {
-  source: SVGSource | 'placeholder' | keyof typeof BUNDLED_ICONS,
-  color?: Color,
-  backdrop?: boolean,
-  accessibilityLabel?: string,
-  style?: React.CSSProperties,
-  theme?: any,
+  source: SVGSource | 'placeholder' | keyof typeof BUNDLED_ICONS;
+  color?: Color;
+  backdrop?: boolean;
+  accessibilityLabel?: string;
+  style?: React.CSSProperties;
+  theme?: any;
 }
 
 const Icon = ({
@@ -145,7 +145,7 @@ const Icon = ({
         <svg
           className={theme.Svg}
           viewBox={iconSource.viewBox}
-          dangerouslySetInnerHTML={{__html: iconSource.body}}
+          dangerouslySetInnerHTML={{ __html: iconSource.body }}
         />
       );
     }

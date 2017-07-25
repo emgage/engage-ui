@@ -1,20 +1,20 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from 'react-css-themr';
 import { CONNECTED } from '../ThemeIdentifiers';
-import Item, {Position} from './Item';
+import Item, { Position } from './Item';
 
 import * as baseTheme from './Connected.scss';
 
 export interface Props {
-  left?: React.ReactNode,
-  right?: React.ReactNode,
-  children?: React.ReactNode,
-  style?: React.CSSProperties,
-  theme?: any,
+  left?: React.ReactNode;
+  right?: React.ReactNode;
+  children?: React.ReactNode;
+  style?: React.CSSProperties;
+  theme?: any;
 }
 
 export interface State {
-  focused?: Position | null,
+  focused?: Position | null;
 }
 
 const Connected = ({
@@ -45,6 +45,6 @@ const Connected = ({
       {rightConnectionMarkup}
     </div>
   );
-}
+};
 
 export default themr(CONNECTED, baseTheme)(Connected) as ThemedComponentClass<Props, State>;

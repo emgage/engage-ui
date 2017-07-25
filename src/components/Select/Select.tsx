@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from 'react-css-themr';
-import {classNames} from '@shopify/react-utilities/styles';
-import {createUniqueIDFactory} from '@shopify/javascript-utilities/other';
+import { classNames } from '@shopify/react-utilities/styles';
+import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
 
-import Labelled, {Action, Error, helpTextID, errorID} from '../Labelled';
+import Labelled, { Action, Error, helpTextID, errorID } from '../Labelled';
 import Icon from '../Icon';
 import { SELECT } from '../ThemeIdentifiers';
 
@@ -16,27 +16,27 @@ export type Option = string | {
 };
 
 export interface Group {
-  title: string,
-  options: Option[],
+  title: string;
+  options: Option[];
 }
 
 export interface Props {
-  options?: Option[],
-  groups?: (Group | Option)[],
-  label: string,
-  labelAction?: Action,
-  labelHidden?: boolean,
-  helpText?: React.ReactNode,
-  id?: string,
-  name?: string,
-  error?: Error,
-  disabled?: boolean,
-  value?: string,
-  placeholder?: string,
-  theme?: any,
-  onChange?(selected: string): void,
-  onFocus?(): void,
-  onBlur?(): void,
+  options?: Option[];
+  groups?: (Group | Option)[];
+  label: string;
+  labelAction?: Action;
+  labelHidden?: boolean;
+  helpText?: React.ReactNode;
+  id?: string;
+  name?: string;
+  error?: Error;
+  disabled?: boolean;
+  value?: string;
+  placeholder?: string;
+  theme?: any;
+  onChange?(selected: string): void;
+  onFocus?(): void;
+  onBlur?(): void;
 }
 
 const PLACEHOLDER_VALUE = '__placeholder__';
@@ -122,7 +122,7 @@ const Select = ({
       </div>
     </Labelled>
   );
-}
+};
 
 function renderOption(option: Option) {
   if (typeof option === 'string') {
@@ -134,7 +134,7 @@ function renderOption(option: Option) {
 
 function renderGroup(groupOrOption: Group | Option) {
   if (groupOrOption.hasOwnProperty('title')) {
-    const {title, options} = groupOrOption as Group;
+    const { title, options } = groupOrOption as Group;
     return (
       <optgroup label={title} key={title}>
         {options.map(renderOption)}

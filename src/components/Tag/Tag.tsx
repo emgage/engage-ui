@@ -7,12 +7,12 @@ import { TAG } from '../ThemeIdentifiers';
 import * as baseTheme from './Tag.scss';
 
 export interface Props {
-  children?: string,
-  theme?: any,
-  onRemove?(): void,
-};
+  children?: string;
+  theme?: any;
+  onRemove?(): void;
+}
 
-const Tag = ({children, onRemove, theme}: Props) => {
+const Tag = ({ children, onRemove, theme }: Props) => {
   return (
     <span className={theme.Tag}>
       <span>{children}</span>
@@ -26,9 +26,9 @@ const Tag = ({children, onRemove, theme}: Props) => {
       </button>
     </span>
   );
-}
+};
 
-function handleMouseUp({currentTarget}: React.MouseEvent<HTMLButtonElement>) {
+function handleMouseUp({ currentTarget }: React.MouseEvent<HTMLButtonElement>) {
   currentTarget.blur();
 }
 

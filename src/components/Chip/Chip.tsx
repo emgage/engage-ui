@@ -6,25 +6,25 @@ import { CHIP } from '../ThemeIdentifiers';
 import * as baseTheme from './Chip.scss';
 
 export interface Props {
-    clickable?: boolean,
-    removable?: boolean,
-    image?: {
-        url: string,
-        alt: string,
-    },
-    transparent?: boolean,
-    moreInfoComponent?: React.ReactNode,
-    moreInfoComponentShowOn?: DisplayMoreInfo,
-    style?: React.CSSProperties,
-    theme?: any,
-    onRemove?(event: any): void,
-    onClick?(event: any): void,
-    handleMoreInfo?(): void,
-};
+  clickable?: boolean;
+  removable?: boolean;
+  image?: {
+    url: string,
+    alt: string,
+  };
+  transparent?: boolean;
+  moreInfoComponent?: React.ReactNode;
+  moreInfoComponentShowOn?: DisplayMoreInfo;
+  style?: React.CSSProperties;
+  theme?: any;
+  onRemove?(event: any): void;
+  onClick?(event: any): void;
+  handleMoreInfo?(): void;
+}
 
 class Chip extends React.PureComponent<Props, any> {
-    render() {
-        const {
+  render() {
+    const {
             clickable,
             removable,
             image,
@@ -32,24 +32,24 @@ class Chip extends React.PureComponent<Props, any> {
             theme,
         } = this.props;
 
-        const className = classNames(
+    const className = classNames(
             theme.chip,
             clickable && theme.chipClickable,
             removable && theme.chipRemovable,
             transparent && theme.chipTransparent,
         );
-        const chipContents = [(
+    const chipContents = [(
             image
                 ?
                 <img className={theme.chipImage} src={image.url} alt={image.alt} key="1" />
                 : ''
         ),
-        <span key="2">
+      <span key="2">
             {this.props.children}
         </span>,
-        ];
+    ];
 
-        return (
+    return (
             <span className={className}>
                 {
                     this.props.clickable
@@ -69,8 +69,8 @@ class Chip extends React.PureComponent<Props, any> {
                         : ''
                 }
             </span>
-        );
-    }
+    );
+  }
 }
 
 export default themr(CHIP, baseTheme)(Chip) as ThemedComponentClass<Props, {}>;
