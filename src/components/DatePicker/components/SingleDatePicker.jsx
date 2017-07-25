@@ -5,6 +5,7 @@ import Portal from 'react-portal';
 import { forbidExtraProps } from 'airbnb-prop-types';
 import { addEventListener, removeEventListener } from 'consolidated-events';
 import isTouchDevice from 'is-touch-device';
+import { themr } from 'react-css-themr';
 
 import SingleDatePickerShape from '../shapes/SingleDatePickerShape';
 import { SingleDatePickerPhrases } from '../defaultPhrases';
@@ -13,6 +14,9 @@ import OutsideClickHandler from './OutsideClickHandler';
 import toMomentObject from '../utils/toMomentObject';
 import toLocalizedDateString from '../utils/toLocalizedDateString';
 import getResponsiveContainerStyles from '../utils/getResponsiveContainerStyles';
+
+import { DATEPICKER } from './../../ThemeIdentifiers';
+import * as baseTheme from './../style/style.scss';
 
 import toISODateString from '../utils/toISODateString';
 
@@ -90,7 +94,7 @@ const defaultProps = {
   phrases: SingleDatePickerPhrases,
 };
 
-export default class SingleDatePicker extends React.Component {
+class SingleDatePicker extends React.Component {
   constructor(props) {
     super(props);
 
@@ -216,16 +220,16 @@ export default class SingleDatePicker extends React.Component {
   }
 
   getDayPickerContainerClasses() {
-    const { orientation, withPortal, withFullScreenPortal, anchorDirection, isRTL } = this.props;
+    const { orientation, withPortal, withFullScreenPortal, anchorDirection, isRTL, theme } = this.props;
 
-    const dayPickerClassName = cx('SingleDatePicker__picker', {
-      'SingleDatePicker__picker--direction-left': anchorDirection === ANCHOR_LEFT,
-      'SingleDatePicker__picker--direction-right': anchorDirection === ANCHOR_RIGHT,
-      'SingleDatePicker__picker--horizontal': orientation === HORIZONTAL_ORIENTATION,
-      'SingleDatePicker__picker--vertical': orientation === VERTICAL_ORIENTATION,
-      'SingleDatePicker__picker--portal': withPortal || withFullScreenPortal,
-      'SingleDatePicker__picker--full-screen-portal': withFullScreenPortal,
-      'SingleDatePicker__picker--rtl': isRTL,
+    const dayPickerClassName = cx(theme['SingleDatePicker__picker'], {
+      [theme['SingleDatePicker__picker--direction-left']]: anchorDirection === ANCHOR_LEFT,
+      [theme['SingleDatePicker__picker--direction-right']]: anchorDirection === ANCHOR_RIGHT,
+      [theme['SingleDatePicker__picker--horizontal']]: orientation === HORIZONTAL_ORIENTATION,
+      [theme['SingleDatePicker__picker--vertical']]: orientation === VERTICAL_ORIENTATION,
+      [theme['SingleDatePicker__picker--portal']]: withPortal || withFullScreenPortal,
+      [theme['SingleDatePicker__picker--full-screen-portal']]: withFullScreenPortal,
+      [theme['SingleDatePicker__picker--rtl']]: isRTL,
     });
 
     return dayPickerClassName;
@@ -324,6 +328,7 @@ export default class SingleDatePicker extends React.Component {
       isOutsideRange,
       isDayBlocked,
       isDayHighlighted,
+      theme,
     } = this.props;
     const { dayPickerContainerStyles, isDayPickerFocused } = this.state;
 
@@ -368,11 +373,11 @@ export default class SingleDatePicker extends React.Component {
         {withFullScreenPortal && (
           <button
             aria-label={phrases.closeDatePicker}
-            className="SingleDatePicker__close"
+            className={theme["SingleDatePicker__close"]}
             type="button"
             onClick={this.onClearFocus}
           >
-            <div className="SingleDatePicker__close-icon">
+            <div className={theme["SingleDatePicker__close-icon"]}>
               {closeIcon}
             </div>
           </button>
@@ -398,6 +403,7 @@ export default class SingleDatePicker extends React.Component {
       withFullScreenPortal,
       screenReaderInputMessage,
       isRTL,
+      theme,
     } = this.props;
 
     const { isInputFocused } = this.state;
@@ -408,7 +414,7 @@ export default class SingleDatePicker extends React.Component {
     const onOutsideClick = (!withPortal && !withFullScreenPortal) ? this.onClearFocus : undefined;
 
     return (
-      <div className="SingleDatePicker">
+      <div className={theme["SingleDatePicker"]}>
         <OutsideClickHandler onOutsideClick={onOutsideClick}>
           <SingleDatePickerInput
             id={id}
@@ -441,6 +447,9 @@ export default class SingleDatePicker extends React.Component {
     );
   }
 }
+
+export default themr(DATEPICKER, baseTheme)(SingleDatePicker);
+
 
 SingleDatePicker.propTypes = propTypes;
 SingleDatePicker.defaultProps = defaultProps;

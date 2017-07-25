@@ -7,16 +7,15 @@ import momentPropTypes from 'react-moment-proptypes';
 import { forbidExtraProps, nonNegativeInteger } from 'airbnb-prop-types';
 import moment from 'moment';
 import cx from 'classnames';
+import { themr, ThemedComponentClass } from 'react-css-themr';
 
 import { CalendarDayPhrases } from '../defaultPhrases';
 import getPhrasePropTypes from '../utils/getPhrasePropTypes';
 
 import CalendarDay from './CalendarDay';
-
 import getCalendarMonthWeeks from '../utils/getCalendarMonthWeeks';
 import isSameDay from '../utils/isSameDay';
 import toISODateString from '../utils/toISODateString';
-
 import ScrollableOrientationShape from '../shapes/ScrollableOrientationShape';
 import DayOfWeekShape from '../shapes/DayOfWeekShape';
 
@@ -26,6 +25,9 @@ import {
   VERTICAL_SCROLLABLE,
   DAY_SIZE,
 } from '../constants';
+
+import { DATEPICKER } from './../../ThemeIdentifiers';
+import * as baseTheme from './../style/style.scss';
 
 const propTypes = forbidExtraProps({
   month: momentPropTypes.momentObj,
@@ -71,7 +73,7 @@ const defaultProps = {
   phrases: CalendarDayPhrases,
 };
 
-export default class CalendarMonth extends React.Component {
+class CalendarMonth extends React.Component {
   constructor(props) {
     super(props);
 
@@ -119,25 +121,26 @@ export default class CalendarMonth extends React.Component {
       focusedDate,
       isFocused,
       phrases,
+      theme,
     } = this.props;
 
     const { weeks } = this.state;
     const monthTitle = renderMonth ? renderMonth(month) : month.format(monthFormat);
 
-    const calendarMonthClasses = cx('CalendarMonth', {
-      'CalendarMonth--horizontal': orientation === HORIZONTAL_ORIENTATION,
-      'CalendarMonth--vertical': orientation === VERTICAL_ORIENTATION,
-      'CalendarMonth--vertical-scrollable': orientation === VERTICAL_SCROLLABLE,
+    const calendarMonthClasses = cx(theme['CalendarMonth'], {
+      [theme['CalendarMonth--horizontal']]: orientation === HORIZONTAL_ORIENTATION,
+      [theme['CalendarMonth--vertical']]: orientation === VERTICAL_ORIENTATION,
+      [theme['CalendarMonth--vertical-scrollable']]: orientation === VERTICAL_SCROLLABLE,
     });
 
     return (
       <div className={calendarMonthClasses} data-visible={isVisible}>
         <table>
-          <caption className="CalendarMonth__caption js-CalendarMonth__caption">
+          <caption className={theme["CalendarMonth__caption js-CalendarMonth__caption"]}>
             <strong>{monthTitle}</strong>
           </caption>
 
-          <tbody className="js-CalendarMonth__grid">
+          <tbody className={theme["js-CalendarMonth__grid"]}>
             {weeks.map((week, i) => (
               <tr key={i}>
                 {week.map((day, dayOfWeek) => (
@@ -164,6 +167,8 @@ export default class CalendarMonth extends React.Component {
     );
   }
 }
+
+export default themr(DATEPICKER, baseTheme)(CalendarMonth);
 
 CalendarMonth.propTypes = propTypes;
 CalendarMonth.defaultProps = defaultProps;

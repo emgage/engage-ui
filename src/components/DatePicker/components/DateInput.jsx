@@ -4,6 +4,10 @@ import { forbidExtraProps } from 'airbnb-prop-types';
 import cx from 'classnames';
 import throttle from 'lodash/throttle';
 import isTouchDevice from 'is-touch-device';
+import { themr } from 'react-css-themr';
+
+import { DATEPICKER } from './../../ThemeIdentifiers';
+import * as baseTheme from './../style/style.scss';
 
 const propTypes = forbidExtraProps({
   id: PropTypes.string.isRequired,
@@ -52,7 +56,7 @@ const defaultProps = {
   isFocused: false,
 };
 
-export default class DateInput extends React.Component {
+class DateInput extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -145,6 +149,7 @@ export default class DateInput extends React.Component {
       disabled,
       required,
       readOnly,
+      theme,
     } = this.props;
 
     const displayText = displayValue || inputValue || dateString || placeholder || '';
@@ -153,14 +158,14 @@ export default class DateInput extends React.Component {
 
     return (
       <div
-        className={cx('DateInput', {
-          'DateInput--with-caret': showCaret && focused,
-          'DateInput--disabled': disabled,
+        className={cx(theme['DateInput'], {
+          [theme['DateInput--with-caret']]: showCaret && focused,
+          [theme['DateInput--disabled']]: disabled,
         })}
       >
         <input
           aria-label={placeholder}
-          className="DateInput__input needsclick"
+          className={theme["DateInput__input needsclick"]}
           type="text"
           id={id}
           name={id}
@@ -178,16 +183,16 @@ export default class DateInput extends React.Component {
         />
 
         {screenReaderMessage && (
-          <p id={screenReaderMessageId} className="screen-reader-only">
+          <p id={screenReaderMessageId} className={theme["screen-reader-only"]}>
             {screenReaderMessage}
           </p>
         )}
 
         <div
-          className={cx('DateInput__display-text', {
-            'DateInput__display-text--has-input': !!value,
-            'DateInput__display-text--focused': focused,
-            'DateInput__display-text--disabled': disabled,
+          className={cx(theme['DateInput__display-text'], {
+            [theme['DateInput__display-text--has-input']]: !!value,
+            [theme['DateInput__display-text--focused']]: focused,
+            [theme['DateInput__display-text--disabled']]: disabled,
           })}
         >
           {displayText}
@@ -196,6 +201,9 @@ export default class DateInput extends React.Component {
     );
   }
 }
+
+export default themr(DATEPICKER, baseTheme)(DateInput);
+
 
 DateInput.propTypes = propTypes;
 DateInput.defaultProps = defaultProps;

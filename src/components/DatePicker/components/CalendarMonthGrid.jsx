@@ -6,6 +6,7 @@ import { forbidExtraProps, nonNegativeInteger } from 'airbnb-prop-types';
 import moment from 'moment';
 import cx from 'classnames';
 import { addEventListener, removeEventListener } from 'consolidated-events';
+import { themr } from 'react-css-themr';
 
 import { CalendarDayPhrases } from '../defaultPhrases';
 import getPhrasePropTypes from '../utils/getPhrasePropTypes';
@@ -20,6 +21,8 @@ import isAfterDay from '../utils/isAfterDay';
 
 import ScrollableOrientationShape from '../shapes/ScrollableOrientationShape';
 import DayOfWeekShape from '../shapes/DayOfWeekShape';
+import { DATEPICKER } from './../../ThemeIdentifiers';
+import * as baseTheme from './../style/style.scss';
 
 import {
   HORIZONTAL_ORIENTATION,
@@ -91,7 +94,7 @@ function getMonths(initialMonth, numberOfMonths, withoutTransitionMonths) {
   return months;
 }
 
-export default class CalendarMonthGrid extends React.Component {
+class CalendarMonthGrid extends React.Component {
   constructor(props) {
     super(props);
     const withoutTransitionMonths = props.orientation === VERTICAL_SCROLLABLE;
@@ -182,6 +185,7 @@ export default class CalendarMonthGrid extends React.Component {
       focusedDate,
       isFocused,
       phrases,
+      theme,
     } = this.props;
 
     const { months } = this.state;
@@ -189,11 +193,11 @@ export default class CalendarMonthGrid extends React.Component {
     const isVerticalScrollable = orientation === VERTICAL_SCROLLABLE;
     const isHorizontal = orientation === HORIZONTAL_ORIENTATION;
 
-    const className = cx('CalendarMonthGrid', {
-      'CalendarMonthGrid--horizontal': isHorizontal,
-      'CalendarMonthGrid--vertical': isVertical,
-      'CalendarMonthGrid--vertical-scrollable': isVerticalScrollable,
-      'CalendarMonthGrid--animating': isAnimating,
+    const className = cx(theme['CalendarMonthGrid'], {
+      [theme['CalendarMonthGrid--horizontal']]: isHorizontal,
+      [theme['CalendarMonthGrid--vertical']]: isVertical,
+      [theme['CalendarMonthGrid--vertical-scrollable']]: isVerticalScrollable,
+      [theme['CalendarMonthGrid--animating']]: isAnimating,
     });
 
     const calendarMonthWidth = getCalendarMonthWidth(daySize);
@@ -244,6 +248,8 @@ export default class CalendarMonthGrid extends React.Component {
     );
   }
 }
+
+export default themr(DATEPICKER, baseTheme)(CalendarMonthGrid);
 
 CalendarMonthGrid.propTypes = propTypes;
 CalendarMonthGrid.defaultProps = defaultProps;

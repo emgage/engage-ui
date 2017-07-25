@@ -7,6 +7,7 @@ import Portal from 'react-portal';
 import { forbidExtraProps } from 'airbnb-prop-types';
 import { addEventListener, removeEventListener } from 'consolidated-events';
 import isTouchDevice from 'is-touch-device';
+import { themr } from 'react-css-themr';
 
 import { DateRangePickerPhrases } from '../defaultPhrases';
 
@@ -21,6 +22,9 @@ import DayPickerRangeController from './DayPickerRangeController';
 import CloseButton from '../svg/close.svg';
 
 import DateRangePickerShape from '../shapes/DateRangePickerShape';
+
+import { DATEPICKER } from './../../ThemeIdentifiers';
+import * as baseTheme from './../style/style.scss';
 
 import {
   START_DATE,
@@ -95,7 +99,7 @@ const defaultProps = {
   phrases: DateRangePickerPhrases,
 };
 
-export default class DateRangePicker extends React.Component {
+class DateRangePicker extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -204,16 +208,17 @@ export default class DateRangePicker extends React.Component {
       withFullScreenPortal,
       anchorDirection,
       isRTL,
+      theme,
     } = this.props;
 
-    const dayPickerClassName = cx('DateRangePicker__picker', {
-      'DateRangePicker__picker--direction-left': anchorDirection === ANCHOR_LEFT,
-      'DateRangePicker__picker--direction-right': anchorDirection === ANCHOR_RIGHT,
-      'DateRangePicker__picker--horizontal': orientation === HORIZONTAL_ORIENTATION,
-      'DateRangePicker__picker--vertical': orientation === VERTICAL_ORIENTATION,
-      'DateRangePicker__picker--portal': withPortal || withFullScreenPortal,
-      'DateRangePicker__picker--full-screen-portal': withFullScreenPortal,
-      'DateRangePicker__picker--rtl': isRTL,
+    const dayPickerClassName = cx(theme['DateRangePicker__picker'], {
+      [theme['DateRangePicker__picker--direction-left']]: anchorDirection === ANCHOR_LEFT,
+      [theme['DateRangePicker__picker--direction-right']]: anchorDirection === ANCHOR_RIGHT,
+      [theme['DateRangePicker__picker--horizontal']]: orientation === HORIZONTAL_ORIENTATION,
+      [theme['DateRangePicker__picker--vertical']]: orientation === VERTICAL_ORIENTATION,
+      [theme['DateRangePicker__picker--portal']]: withPortal || withFullScreenPortal,
+      [theme['DateRangePicker__picker--full-screen-portal']]: withFullScreenPortal,
+      [theme['DateRangePicker__picker--rtl']]: isRTL,
     });
 
     return dayPickerClassName;
@@ -313,6 +318,7 @@ export default class DateRangePicker extends React.Component {
       onClose,
       phrases,
       isRTL,
+      theme,
     } = this.props;
     const { dayPickerContainerStyles, isDayPickerFocused, showKeyboardShortcuts } = this.state;
 
@@ -369,12 +375,12 @@ export default class DateRangePicker extends React.Component {
 
         {withFullScreenPortal && (
           <button
-            className="DateRangePicker__close"
+            className={theme["DateRangePicker__close"]}
             type="button"
             onClick={this.onOutsideClick}
             aria-label={phrases.closeDatePicker}
           >
-            <div className="DateRangePicker__close">
+            <div className={theme["DateRangePicker__close"]}>
               {closeIcon}
             </div>
           </button>
@@ -412,6 +418,7 @@ export default class DateRangePicker extends React.Component {
       onDatesChange,
       onClose,
       isRTL,
+      theme,
     } = this.props;
 
     const { isDateRangePickerInputFocused } = this.state;
@@ -419,7 +426,7 @@ export default class DateRangePicker extends React.Component {
     const onOutsideClick = (!withPortal && !withFullScreenPortal) ? this.onOutsideClick : undefined;
 
     return (
-      <div className="DateRangePicker">
+      <div className={theme["DateRangePicker"]}>
         <OutsideClickHandler onOutsideClick={onOutsideClick}>
           <DateRangePickerInputController
             startDate={startDate}
@@ -462,6 +469,8 @@ export default class DateRangePicker extends React.Component {
     );
   }
 }
+
+export default themr(DATEPICKER, baseTheme)(DateRangePicker);
 
 DateRangePicker.propTypes = propTypes;
 DateRangePicker.defaultProps = defaultProps;

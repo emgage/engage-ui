@@ -5,6 +5,7 @@ import cx from 'classnames';
 
 import { DateRangePickerInputPhrases } from '../defaultPhrases';
 import getPhrasePropTypes from '../utils/getPhrasePropTypes';
+import { themr } from 'react-css-themr';
 
 import DateInput from './DateInput';
 import RightArrow from '../svg/arrow-right.svg';
@@ -13,6 +14,8 @@ import CloseButton from '../svg/close.svg';
 import CalendarIcon from '../svg/calendar.svg';
 
 import { START_DATE, END_DATE } from '../constants';
+import { DATEPICKER } from './../../ThemeIdentifiers';
+import * as baseTheme from './../style/style.scss';
 
 const propTypes = forbidExtraProps({
   startDateId: PropTypes.string,
@@ -100,7 +103,7 @@ const defaultProps = {
   isRTL: false,
 };
 
-export default class DateRangePickerInput extends React.Component {
+class DateRangePickerInput extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -158,6 +161,7 @@ export default class DateRangePickerInput extends React.Component {
       isFocused,
       phrases,
       isRTL,
+      theme,
     } = this.props;
 
     const inputIcon = customInputIcon || (<CalendarIcon />);
@@ -167,15 +171,15 @@ export default class DateRangePickerInput extends React.Component {
 
     return (
       <div
-        className={cx('DateRangePickerInput', {
-          'DateRangePickerInput--disabled': disabled,
-          'DateRangePickerInput--rtl': isRTL,
+        className={cx(theme['DateRangePickerInput'], {
+          [theme['DateRangePickerInput--disabled']]: disabled,
+          [theme['DateRangePickerInput--rtl']]: isRTL,
         })}
       >
         {(showDefaultInputIcon || customInputIcon !== null) && (
           <button
             type="button"
-            className="DateRangePickerInput__calendar-icon"
+            className={theme["DateRangePickerInput__calendar-icon"]}
             disabled={disabled}
             aria-label={phrases.focusStartDate}
             onClick={onArrowDown}
@@ -205,7 +209,7 @@ export default class DateRangePickerInput extends React.Component {
         />
 
         <div
-          className="DateRangePickerInput__arrow"
+          className={theme["DateRangePickerInput__arrow"]}
           aria-hidden="true"
           role="presentation"
         >
@@ -236,15 +240,15 @@ export default class DateRangePickerInput extends React.Component {
           <button
             type="button"
             aria-label={phrases.clearDates}
-            className={cx('DateRangePickerInput__clear-dates', {
-              'DateRangePickerInput__clear-dates--hide': !(startDate || endDate),
-              'DateRangePickerInput__clear-dates--hover': isClearDatesHovered,
+            className={cx(theme['DateRangePickerInput__clear-dates'], {
+              [theme['DateRangePickerInput__clear-dates--hide']]: !(startDate || endDate),
+              [theme['DateRangePickerInput__clear-dates--hover']]: isClearDatesHovered,
             })}
             onMouseEnter={this.onClearDatesMouseEnter}
             onMouseLeave={this.onClearDatesMouseLeave}
             onClick={onClearDates}
           >
-            <div className="DateRangePickerInput__close-icon">
+            <div className={theme["DateRangePickerInput__close-icon"]}>
               {closeIcon}
             </div>
           </button>
@@ -253,6 +257,8 @@ export default class DateRangePickerInput extends React.Component {
     );
   }
 }
+
+export default themr(DATEPICKER, baseTheme)(DateRangePickerInput);
 
 DateRangePickerInput.propTypes = propTypes;
 DateRangePickerInput.defaultProps = defaultProps;
