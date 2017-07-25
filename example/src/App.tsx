@@ -1,4 +1,4 @@
-port * as React from 'react';
+import * as React from 'react';
 import { FlexAlign, FlexDirection, FlexJustify } from '../../src/components/FlexBox/FlexProps';
 import { OffCanvas, OffCanvasMenu, OffCanvasBody, OffCanvasAnimationType } from '../../src/components/OffCanvas';
 import { PeoplePickerSearchType } from './PickerEnum';
@@ -6,7 +6,7 @@ import { PeoplePickerSource } from './PickerSource';
 
 import Example from '../../src/components/ReactDataExample';
 
-mport {
+import {
   Button,
   ButtonGroup,
   DisplayText,
@@ -36,7 +36,6 @@ interface State {
   rows: object[],
   isMenuOpened: boolean,
   animation?: OffCanvasAnimationType,
-  appTextCounter: string
 }
 
 class App extends React.Component<{}, State> {
@@ -57,7 +56,6 @@ class App extends React.Component<{}, State> {
         { id: 3, title: 'Title 3', count: 3 }
       ],
       isMenuOpened: false,
-      appTextCounter: ''
     };
   }
 
