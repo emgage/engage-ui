@@ -59,7 +59,8 @@ KeyboardShortcutRow.propTypes = {
   action: PropTypes.string.isRequired,
 };
 
-export default function DayPickerKeyboardShortcuts({
+export default function DayPickerKeyboardShortcuts(
+  {
   block,
   buttonLocation,
   showKeyboardShortcutsPanel,
@@ -112,7 +113,10 @@ export default function DayPickerKeyboardShortcuts({
   return (
     <div>
       <button
-        ref={(ref) => { this.showKeyboardShortcutsButton = ref; }}
+        ref={(ref) => { 
+          this.showKeyboardShortcutsButton = ref; 
+          }
+        }
         className={cx('DayPickerKeyboardShortcuts__show', {
           'DayPickerKeyboardShortcuts__show--bottom-right': buttonLocation === BOTTOM_RIGHT,
           'DayPickerKeyboardShortcuts__show--top-right': buttonLocation === TOP_RIGHT,

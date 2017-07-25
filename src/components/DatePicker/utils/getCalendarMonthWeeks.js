@@ -11,9 +11,6 @@ export default function getCalendarMonthWeeks(
     throw new TypeError('`month` must be a valid moment object');
   }
 
-  // console.log('firstDayOfWeek', firstDayOfWeek);
-  // console.log('WEEKDAYS', WEEKDAYS);
-
   if (WEEKDAYS.indexOf(firstDayOfWeek) === -1) {
     throw new TypeError('`firstDayOfWeek` must be an integer between 0 and 6');
   }
