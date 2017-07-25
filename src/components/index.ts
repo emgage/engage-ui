@@ -1,4 +1,3 @@
-import undefined from '../../lib/@types/src/components/DatePicker/Component/SingleDatePicker';
 export {
   default as Avatar,
   Props as AvatarProps,
@@ -64,10 +63,7 @@ export {
   Props as ConnectedProps,
 } from './Connected';
 
-export {
-  SingleDatePickerWrapper as SingleDatePicker,
-  DateRangePickerWrapper as DateRangePicker,
-} from './DatePicker';
+export * from './DatePicker';
 
 export {
   default as DisplayText,

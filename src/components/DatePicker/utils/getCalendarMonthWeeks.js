@@ -1,6 +1,6 @@
 import moment from 'moment';
 
-import { WEEKDAYS } from '../constants';
+import { WEEKDAYS } from '../Constants';
 
 export default function getCalendarMonthWeeks(
   month,
@@ -10,6 +10,10 @@ export default function getCalendarMonthWeeks(
   if (!moment.isMoment(month) || !month.isValid()) {
     throw new TypeError('`month` must be a valid moment object');
   }
+
+  // console.log('firstDayOfWeek', firstDayOfWeek);
+  // console.log('WEEKDAYS', WEEKDAYS);
+
   if (WEEKDAYS.indexOf(firstDayOfWeek) === -1) {
     throw new TypeError('`firstDayOfWeek` must be an integer between 0 and 6');
   }

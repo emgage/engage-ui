@@ -1,3 +1,5 @@
+// import undefined from '../../../lib/@types/src/components/DatePicker/utils/toMomentObject';
+// import moment from 'moment';
 import DateRangePicker from './components/DateRangePicker';
 import DateRangePickerInput from './components/DateRangePickerInput';
 import DateRangePickerInputController from './components/DateRangePickerInputController';
@@ -22,7 +24,7 @@ import toISODateString from './utils/toISODateString';
 import toLocalizedDateString from './utils/toLocalizedDateString';
 import toMomentObject from './utils/toMomentObject';
 
-module.exports = {
+export {
   DateRangePicker,
   SingleDatePicker,
 
@@ -46,5 +48,6 @@ module.exports = {
 
   toISODateString,
   toLocalizedDateString,
+  // toMomentObject: moment(toMomentObject),
   toMomentObject,
-};
+}

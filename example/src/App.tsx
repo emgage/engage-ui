@@ -2,6 +2,7 @@ import * as React from 'react';
 import { FlexAlign, FlexDirection, FlexJustify } from '../../src/components/FlexBox/FlexProps';
 import { PeoplePickerSearchType } from './PickerEnum';
 import { PeoplePickerSource } from './PickerSource';
+import DatePicker from './SingleDatePickerWrapper';
 
 import Example from '../../src/components/ReactDataExample';
 
@@ -25,7 +26,7 @@ import {
   Card,
   ClickableChip,
   Loading,
-  SingleDatePicker as DatePicker,
+  // SingleDatePicker as DatePicker,
 } from '../../src/components';
 
 // import
@@ -103,7 +104,7 @@ class App extends React.Component<{}, State> {
       <div>
         <div>
           <Heading>This is my DatePicker!!</Heading> 
-             <DatePicker /> 
+               <DatePicker />   
 
           <Example
             columns={this.state.columns}
