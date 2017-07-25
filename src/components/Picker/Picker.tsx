@@ -106,7 +106,7 @@ class Picker extends React.Component<Props, State> {
     this.setState({ ['people']: value });
     setTimeout(() => {
       this.props.source.performFilter(value).then(this.onSuccess).catch(this.onError);
-    },       this.props.millisecondsToWaitBeforeSearch === undefined ? 0 : this.props.millisecondsToWaitBeforeSearch);
+    },         this.props.millisecondsToWaitBeforeSearch === undefined ? 0 : this.props.millisecondsToWaitBeforeSearch);
   }
   private onSuccess = (item: any) => {
     this.setState({ ['searchItems']: item });
@@ -124,8 +124,8 @@ class Picker extends React.Component<Props, State> {
     if (item !== undefined) {
       const index: number = items.indexOf(item);
       if (index !== -1) {
-          items.splice(index, 1);
-        }
+        items.splice(index, 1);
+      }
     }
     this.setState({ ['selectedItems']: items });
     return;
@@ -139,8 +139,8 @@ class Picker extends React.Component<Props, State> {
     }
     if (item !== undefined) {
       if (!items.some((x) => x.Name === item.Name)) {
-          items.push(item);
-        }
+        items.push(item);
+      }
     }
     this.setState({ ['selectedItems']: items });
     this.setState({ ['searchItems']: [] });

@@ -5,6 +5,9 @@
   "rules": {
     "no-for-in-array": false,
     "no-inferred-empty-object-type": false,
-    "restrict-plus-operands": false
+    "restrict-plus-operands": false,
+    "max-line-length": [
+      false
+    ]
   }
 }

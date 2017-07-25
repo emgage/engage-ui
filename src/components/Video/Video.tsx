@@ -40,18 +40,18 @@ class Video extends React.PureComponent<Props, any> {
   getVideoType = (videoType: VideoType): string => {
     let result = '';
     switch (videoType) {
-        case VideoType.MP4:
-          result = 'video/mp4';
-          break;
-        case VideoType.WebM:
-          result = 'video/webm';
-          break;
-        case VideoType.Ogg:
-          result = 'video/ogg';
-          break;
-        default:
-          break;
-      }
+      case VideoType.MP4:
+        result = 'video/mp4';
+        break;
+      case VideoType.WebM:
+        result = 'video/webm';
+        break;
+      case VideoType.Ogg:
+        result = 'video/ogg';
+        break;
+      default:
+        break;
+    }
     return result;
   }
 
@@ -74,7 +74,7 @@ class Video extends React.PureComponent<Props, any> {
                         ))
                     }
                 </video>
-      );
+    );
   }
 }
 

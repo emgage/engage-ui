@@ -62,8 +62,8 @@ describe('<OffCanvasBody />', () => {
       expect(offcanvasbody.prop('isMenuOpened')).toBe(true);
 
       const openStyle = {
-          transform: 'translate(270px, 0px)',
-        };
+        transform: 'translate(270px, 0px)',
+      };
       currStyle = Object.assign({}, currStyle, openStyle);
       const offcanvasbodystyle = mount(<div style={currStyle}/>);
       expect(offcanvasbodystyle.prop('style')).toBe(currStyle);
@@ -134,8 +134,8 @@ describe('<OffCanvasMenu />', () => {
       expect(offcanvasmenu.prop('isMenuOpened')).toBe(true);
 
       const openStyle = {
-          transform: 'translate(270px, 0px)',
-        };
+        transform: 'translate(270px, 0px)',
+      };
       currStyle = Object.assign({}, currStyle, openStyle);
       const offcanvasmenustyle = mount(<div style={currStyle}/>);
       expect(offcanvasmenustyle.prop('style')).toBe(currStyle);
