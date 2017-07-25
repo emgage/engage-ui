@@ -1,4 +1,4 @@
-/* @flow */
+/* tslint:disable */
 
 const isFunction = function(functionToCheck: any): boolean {
   let getType = {};

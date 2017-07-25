@@ -19,7 +19,7 @@
   "main": "lib/",
   "types": "lib/@types/src/index.d.ts",
   "scripts": {
-    "lint": "node node_modules/tslint/bin/tslint --config tslint.json './{components}/**/*.{ts,tsx}' --project tsconfig.json --type-check",
+    "lint": "node node_modules/tslint/bin/tslint './{components}/**/*.{ts,tsx}' --config tslint.json --exclude \"src/**/*.{js,jsx}\" --project tsconfig.json --type-check",
     "test": "node node_modules/jest/bin/jest.js --config ./config/jest/config.json",
     "check": "npm-run-all lint build-dev test",
     "build-dev": "node node_modules/webpack/bin/webpack.js",
@@ -65,11 +65,11 @@
     "sass-resources-loader": "^1.2.1",
     "style-loader": "^0.16.1",
     "svgo": "^0.7.2",
-    "tslint": "^4.4.2",
-    "tslint-config-shopify": "^1.1.4",
-    "typescript": "^2.3.2",
+    "tslint": "^5.5.0",
+    "tslint-config-shopify": "^3.0.0",
+    "typescript": "^2.4.2",
     "underscore": "^1.8.3",
-    "webpack": "^2.4.1"
+    "webpack": "^3.3.0"
   },
   "peerDependencies": {
     "react": "^15.5.4",
@@ -107,7 +107,7 @@
     "rc-form": "^1.3.1",
     "react-css-themr": "^2.0.0",
     "react-text-mask-hoc": "^0.3.0",
-    "tslib": "^1.6.0"
+    "tslib": "^1.7.1"
   },
   "version": "1.0.0"
 }
