@@ -31,6 +31,8 @@ const propTypes = forbidExtraProps({
 
   // accessibility
   isFocused: PropTypes.bool, // describes actual DOM focus
+
+  theme: PropTypes.any,
 });
 
 const defaultProps = {

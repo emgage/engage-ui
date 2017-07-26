@@ -30,6 +30,8 @@ const propTypes = forbidExtraProps({
 
   // internationalization
   phrases: PropTypes.shape(getPhrasePropTypes(CalendarDayPhrases)),
+
+  theme: PropTypes.any,
 });
 
 const defaultProps = {

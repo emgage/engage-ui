@@ -40,6 +40,8 @@ const propTypes = forbidExtraProps({
 
   // i18n
   phrases: PropTypes.shape(getPhrasePropTypes(SingleDatePickerInputPhrases)),
+  
+  theme: PropTypes.any,
 });
 
 const defaultProps = {

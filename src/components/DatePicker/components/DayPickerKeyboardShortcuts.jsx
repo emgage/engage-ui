@@ -210,6 +210,7 @@ const propTypes = forbidExtraProps({
   openKeyboardShortcutsPanel: PropTypes.func,
   closeKeyboardShortcutsPanel: PropTypes.func,
   phrases: PropTypes.shape(getPhrasePropTypes(DayPickerKeyboardShortcutsPhrases)),
+  theme: PropTypes.any,
 });
 
 const defaultProps = {
@@ -301,11 +302,13 @@ function DayPickerKeyboardShortcuts(
     ? phrases.hideKeyboardShortcutsPanel
     : phrases.showKeyboardShortcutsPanel;
 
+  let showKeyboardShortcutsButton;
+
   return (
     <div>
       <button
         ref={(ref) => { 
-          this.showKeyboardShortcutsButton = ref; 
+          showKeyboardShortcutsButton = ref; 
           }
         }
         className={cx(theme['DayPickerKeyboardShortcuts__show'], {
@@ -317,7 +320,7 @@ function DayPickerKeyboardShortcuts(
         aria-label={toggleButtonText}
         onClick={() => {
           // we want to return focus to this button after closing the keyboard shortcuts panel
-          openKeyboardShortcutsPanel(() => { this.showKeyboardShortcutsButton.focus(); });
+          openKeyboardShortcutsPanel(() => { showKeyboardShortcutsButton.focus(); });
         }}
         onMouseUp={(e) => {
           e.currentTarget.blur();

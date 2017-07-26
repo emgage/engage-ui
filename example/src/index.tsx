@@ -12,7 +12,7 @@ ReactDOM.render(
   <BaseTheme>
     <div>
       <App />
-      <ReactPerfTool perf={Perf} />
+      {/* <ReactPerfTool perf={Perf} /> */}
     </div>
   </BaseTheme>,
   document.getElementById('root'),

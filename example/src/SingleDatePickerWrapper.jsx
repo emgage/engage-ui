@@ -4,13 +4,33 @@ import momentPropTypes from 'react-moment-proptypes';
 import moment from 'moment';
 import omit from 'lodash/omit';
 
-import {SingleDatePicker} from '../../src/components';
+import {DayPickerRangeController} from '../../src/components';
 import { SingleDatePickerPhrases } from '../../src/components/DatePicker/defaultPhrases';
+import {SingleDatePicker} from '../../src/components';
 
 import { defaultPhrases } from '../../src/components';
 import {SingleDatePickerShape} from '../../src/components';
 import { HORIZONTAL_ORIENTATION, ANCHOR_LEFT } from '../../src/components';
 import {isInclusivelyAfterDay} from '../../src/components';
+
+// export default class YaDude extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       startDate: '10/10/2010',
+//       endDate: '10/2/2018',
+//       focusedInput: undefined,
+//     }
+//   }
+//   render() {
+//     return (
+//       <DayPickerRangeController
+//           onDatesChange={({ startDate, endDate }) => {} }
+//           onFocusChange={focusedInput => {}}
+//         />
+//     );
+//   }
+// }
 
 const propTypes = {
   // example props for the demo
@@ -120,3 +140,6 @@ SingleDatePickerWrapper.propTypes = propTypes;
 SingleDatePickerWrapper.defaultProps = defaultProps;
 
 export default SingleDatePickerWrapper;
+
+
+

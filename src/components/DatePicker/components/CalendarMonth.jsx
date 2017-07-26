@@ -49,6 +49,8 @@ const propTypes = forbidExtraProps({
   // i18n
   monthFormat: PropTypes.string,
   phrases: PropTypes.shape(getPhrasePropTypes(CalendarDayPhrases)),
+
+  theme: PropTypes.any,
 });
 
 const defaultProps = {
@@ -136,7 +138,7 @@ class CalendarMonth extends React.Component {
     return (
       <div className={calendarMonthClasses} data-visible={isVisible}>
         <table>
-          <caption className={theme["CalendarMonth__caption js-CalendarMonth__caption"]}>
+          <caption className={`${theme["CalendarMonth__caption"]} ${theme["js-CalendarMonth__caption"]}`}>
             <strong>{monthTitle}</strong>
           </caption>
 

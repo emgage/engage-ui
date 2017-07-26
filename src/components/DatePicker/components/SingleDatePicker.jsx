@@ -328,7 +328,7 @@ class SingleDatePicker extends React.Component {
       isOutsideRange,
       isDayBlocked,
       isDayHighlighted,
-      theme,
+      // theme,
     } = this.props;
     const { dayPickerContainerStyles, isDayPickerFocused } = this.state;
 
@@ -414,7 +414,7 @@ class SingleDatePicker extends React.Component {
     const onOutsideClick = (!withPortal && !withFullScreenPortal) ? this.onClearFocus : undefined;
 
     return (
-      <div className={theme["SingleDatePicker"]}>
+      <div id="joemama" className={theme["SingleDatePicker"]}>
         <OutsideClickHandler onOutsideClick={onOutsideClick}>
           <SingleDatePickerInput
             id={id}

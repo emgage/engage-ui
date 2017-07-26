@@ -33,6 +33,8 @@ const propTypes = forbidExtraProps({
   phrases: PropTypes.shape(getPhrasePropTypes(DayPickerNavigationPhrases)),
 
   isRTL: PropTypes.bool,
+
+  theme: PropTypes.any,
 });
 
 const defaultProps = {
