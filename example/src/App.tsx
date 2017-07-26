@@ -1,10 +1,10 @@
-port * as React from 'react';
+import * as React from 'react';
 import { FlexAlign, FlexDirection, FlexJustify } from '../../src/components/FlexBox/FlexProps';
 import { OffCanvas, OffCanvasMenu, OffCanvasBody, OffCanvasAnimationType } from '../../src/components/OffCanvas';
 import { PeoplePickerSearchType } from './PickerEnum';
 import { PeoplePickerSource } from './PickerSource';
 
-mport {
+import {
   Button,
   ButtonGroup,
   DisplayText,
