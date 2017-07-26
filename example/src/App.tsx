@@ -147,6 +147,7 @@ class App extends React.Component<{}, State> {
             backdropEnabled
             header="This is my modal header"
             footer={<Button>ok</Button>}
+            activator={<Button>Modal</Button>}
             size="Medium"
             show={this.state.show}
             trigger={{

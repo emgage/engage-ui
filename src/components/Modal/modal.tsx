@@ -3,7 +3,6 @@ import { themr, ThemedComponentClass } from 'react-css-themr';
 import { Keys } from '../../types';
 import { MODAL } from '../ThemeIdentifiers';
 import KeypressListener from '../KeypressListener';
-import Button from '../Button';
 import Helpers from './helpers';
 import Dialog from './dialog';
 import * as baseTheme from './Modal.scss';
@@ -39,6 +38,7 @@ export interface Props {
   close?: boolean,
   footer?: React.ReactNode,
   header?: string | React.ReactNode,
+  activator: React.ReactElement<any>,
   id?: string,
   show: boolean,
   trigger: Itrigger,
@@ -114,6 +114,7 @@ class Modal extends React.Component<Props, {}> {
       'close',
       'footer',
       'header',
+      'activator',
       'id',
       'show',
       'trigger',
@@ -145,7 +146,7 @@ class Modal extends React.Component<Props, {}> {
       : null;
 
     return <div>
-      <Button onClick={this.handleToggleClick}>Open</Button>
+      <span onClick={this.handleToggleClick}>{this.props.activator}</span> 
       {CloseonEscProp}
       <div {...cleanProps}
         className={cssClassNames}
