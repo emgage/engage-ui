@@ -74,10 +74,10 @@ class Tooltip extends React.PureComponent<Props, State> {
   }
 
   render() {
-    const { activatorWrapper: WrapperComponent = 'span' } = this.props;
+    const { activatorWrapper: WRAPPERCOMPONENT = 'span' } = this.props;
 
     return (
-      <WrapperComponent
+      <WRAPPERCOMPONENT
         onFocus={this.handleFocus}
         onBlur={this.handleBlur}
         onMouseEnter={this.handleMouseEnter}
@@ -85,7 +85,7 @@ class Tooltip extends React.PureComponent<Props, State> {
         ref={this.setActivator}
       >
         {this.props.children}
-      </WrapperComponent>
+      </WRAPPERCOMPONENT>
     );
   }
 

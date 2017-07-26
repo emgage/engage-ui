@@ -25,8 +25,8 @@ class ContentList extends React.PureComponent<Props, never> {
       type && theme[variationName('type', type)],
     );
 
-    const ListElement = type === 'bullet' ? 'ul' : 'ol';
-    return <ListElement className={className}>{children}</ListElement>;
+    const LISTELEMENT = type === 'bullet' ? 'ul' : 'ol';
+    return <LISTELEMENT className={className}>{children}</LISTELEMENT>;
   }
 }
 

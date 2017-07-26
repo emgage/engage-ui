@@ -27,7 +27,7 @@ export interface Props {
   theme?: any;
 }
 
-const Labelled = ({
+const labelled = ({
   id,
   label,
   errors,
@@ -101,4 +101,4 @@ export function helpTextID(id: string) {
   return `${id}HelpText`;
 }
 
-export default themr(LABELLED, baseTheme)(Labelled) as ThemedComponentClass<Props, {}>;
+export default themr(LABELLED, baseTheme)(labelled) as ThemedComponentClass<Props, {}>;

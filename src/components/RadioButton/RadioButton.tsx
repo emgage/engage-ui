@@ -24,7 +24,7 @@ export interface Props {
 
 const getUniqueID = createUniqueIDFactory('RadioButton');
 
-const RadioButton = ({
+const radioButton = ({
   label,
   labelHidden,
   helpText,
@@ -49,7 +49,7 @@ const RadioButton = ({
 
   return (
     <Choice label={label} labelHidden={labelHidden} id={id} helpText={helpText}>
-      <div className={theme.RadioButton}>
+      <div className={theme.radioButton}>
         <input
           id={id}
           name={name}
@@ -70,4 +70,4 @@ const RadioButton = ({
   );
 };
 
-export default themr(RADIO_BUTTON, baseTheme)(RadioButton) as ThemedComponentClass<Props, {}>;
+export default themr(RADIO_BUTTON, baseTheme)(radioButton) as ThemedComponentClass<Props, {}>;

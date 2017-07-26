@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { mount } from 'enzyme';
-import Video, { VideoType } from '..';
+import Video, { VideoType } from '../Video';
 
 describe('<Video />', () => {
 

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { shallow, mount } from 'enzyme';
-import Checkbox from '..';
+import Checkbox from '../Checkbox';
 
 describe('<Checkbox />', () => {
   it('sets all pass through properties on the input', () => {

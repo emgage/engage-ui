@@ -25,9 +25,9 @@ export class OffCanvasMenu extends React.PureComponent<Props, State> {
 
     const translateCloseX = position === OffCanvasPosition.Left ? width : (-1 * width);
     const closedStyle = {
+      left,
       width: width + 'px',
       top: '0px',
-      left,
       transform: 'translate(' + translateCloseX + 'px, 0px)',
       transitionDuration: tranDuration + 'ms',
       backfaceVisibility: 'hidden',

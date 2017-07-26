@@ -10,7 +10,7 @@ export interface Props {
   theme?: any;
 }
 
-const Item = (props: Props)  => {
+const item = (props: Props)  => {
   const {
     children,
     theme,
@@ -26,4 +26,4 @@ const Item = (props: Props)  => {
   );
 };
 
-export default themr(FORM_LAYOUT, baseTheme)(Item) as ThemedComponentClass<Props, {}>;
+export default themr(FORM_LAYOUT, baseTheme)(item) as ThemedComponentClass<Props, {}>;

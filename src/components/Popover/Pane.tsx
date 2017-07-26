@@ -16,10 +16,10 @@ export interface Props {
   theme?: any;
 }
 
-const Pane = ({ fixed, sectioned, children, theme }: Props) => {
+const pane = ({ fixed, sectioned, children, theme }: Props) => {
   const className = classNames(
-    theme.Pane,
-    fixed && theme['Pane-fixed'],
+    theme.pane,
+    fixed && theme['pane-fixed'],
   );
 
   const content = sectioned
@@ -39,4 +39,4 @@ const Pane = ({ fixed, sectioned, children, theme }: Props) => {
     );
 };
 
-export default themr(POPOVER, baseTheme)(Pane) as ThemedComponentClass<Props, {}>;
+export default themr(POPOVER, baseTheme)(pane) as ThemedComponentClass<Props, {}>;

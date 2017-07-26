@@ -14,7 +14,7 @@ export interface Props {
   theme?: any;
 }
 
-const Section = ({ children, title, subdued, theme }: Props) => {
+const section = ({ children, title, subdued, theme }: Props) => {
   const headerContent = title
     ? (
       <div className={theme.SectionHeader}>
@@ -25,7 +25,7 @@ const Section = ({ children, title, subdued, theme }: Props) => {
 
   const className = classNames(
     theme.Section,
-    subdued && theme['Section-subdued'],
+    subdued && theme['section-subdued'],
   );
 
   return (
@@ -36,4 +36,4 @@ const Section = ({ children, title, subdued, theme }: Props) => {
   );
 };
 
-export default themr(CARD, baseTheme)(Section) as ThemedComponentClass<Props, {}>;
+export default themr(CARD, baseTheme)(section) as ThemedComponentClass<Props, {}>;

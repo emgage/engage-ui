@@ -12,11 +12,11 @@ import { BANNER } from '../ThemeIdentifiers';
 
 import * as baseTheme from './Banner.scss';
 
-import successIcon from './icons/circle-check-mark.svg';
-import infoIcon from './icons/flag.svg';
-import warningIcon from './icons/circle-alert.svg';
-import criticalIcon from './icons/circle-barred.svg';
-import fallbackIcon from './icons/confetti.svg';
+import circleCheckMarkSvg from './icons/circle-check-mark.svg';
+import flagSvg from './icons/flag.svg';
+import circleAlertSvg from './icons/circle-alert.svg';
+import circleBarredSvg from './icons/circle-barred.svg';
+import confettiSvg from './icons/confetti.svg';
 
 export type Status = 'success' | 'info' | 'warning' | 'critical';
 
@@ -31,7 +31,7 @@ export interface Props {
   onDismiss?(): void;
 }
 
-const Banner = ({
+const banner = ({
   icon,
   action,
   secondaryAction,
@@ -47,27 +47,27 @@ const Banner = ({
   switch (status) {
     case 'success':
       color = 'greenDark';
-      defaultIcon = successIcon;
+      defaultIcon = circleCheckMarkSvg;
       break;
     case 'info' :
       color = 'tealDark';
-      defaultIcon = infoIcon;
+      defaultIcon = flagSvg;
       break;
     case 'warning':
       color = 'yellowDark';
-      defaultIcon = warningIcon;
+      defaultIcon = circleAlertSvg;
       break;
     case 'critical':
       color = 'redDark';
-      defaultIcon = criticalIcon;
+      defaultIcon = circleBarredSvg;
       break;
     default:
       color = 'ink';
-      defaultIcon = fallbackIcon;
+      defaultIcon = confettiSvg;
   }
 
   const className = classNames(
-    theme.Banner,
+    theme.banner,
     status && theme[variationName('status', status)],
     onDismiss && theme.hasDismiss,
   );
@@ -145,7 +145,7 @@ const Banner = ({
 
 let index = 1;
 function uniqueID() {
-  return `Banner${index++}`;
+  return `banner${index += 1}`;
 }
 
 function secondaryActionFrom(action: Action, theme: any) {
@@ -164,4 +164,4 @@ function secondaryActionFrom(action: Action, theme: any) {
   );
 }
 
-export default themr(BANNER, baseTheme)(Banner) as ThemedComponentClass<Props, {}>;
+export default themr(BANNER, baseTheme)(banner) as ThemedComponentClass<Props, {}>;

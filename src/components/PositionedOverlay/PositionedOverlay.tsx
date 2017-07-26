@@ -107,9 +107,9 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
     return {
       measuring,
       left,
-      desiredHeight: height,
       positioning,
       activatorRect,
+      desiredHeight: height,
     };
   }
 
@@ -145,6 +145,7 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
       const horizontalPosition = calculateHorizontalPosition(activatorRect, overlayRect, containerRect);
 
       this.setState({
+        zIndex,
         measuring: false,
         activatorRect: getRectForNode(activator),
         left: horizontalPosition,
@@ -152,7 +153,6 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
         height: verticalPosition.height,
         positioning: verticalPosition.positioning as Positioning,
         outsideScrollableContainer: onScrollOut != null && rectIsOutsideOfRect(activatorRect, scrollableContainerRect),
-        zIndex,
       });
     });
   }

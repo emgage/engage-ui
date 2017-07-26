@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { shallow } from 'enzyme';
-import UnstyledLink from '..';
+import UnstyledLink from '../UnstyledLink';
 
 describe('<UnstyledLink />', () => {
   describe('external', () => {

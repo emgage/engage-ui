@@ -20,7 +20,8 @@ export interface Props {
 
 const getUniqueID = createUniqueIDFactory('FormLayoutGroup');
 
-function Group({ children, condensed, title, helpText, style, theme }: Props) {
+const group = () => (
+  { children, condensed, title, helpText, style, theme }: Props) => {
   const className = classNames(
     condensed && theme.condensed,
   );
@@ -42,7 +43,7 @@ function Group({ children, condensed, title, helpText, style, theme }: Props) {
     titleElement = <div id={titleID} className={theme.Title}>{title}</div>;
   }
 
-  const itemsMarkup = React.Children.map(children, (child) => wrapWithComponent(child, Item));
+  const itemsMarkup = React.Children.map(children, child => wrapWithComponent(child, Item));
 
   return (
     <div
@@ -59,6 +60,6 @@ function Group({ children, condensed, title, helpText, style, theme }: Props) {
       {helpTextElement}
     </div>
   );
-}
+};
 
-export default themr(FORM_LAYOUT, baseTheme)(Group) as ThemedComponentClass<Props, {}>;
+export default themr(FORM_LAYOUT, baseTheme)(group) as ThemedComponentClass<Props, {}>;

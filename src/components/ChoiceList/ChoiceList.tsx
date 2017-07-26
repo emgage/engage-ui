@@ -38,7 +38,7 @@ type ChooseableComponent = ReactComponent<{
 
 const getUniqueID = createUniqueIDFactory('ChoiceList');
 
-const ChoiceList = ({
+const choiceList = ({
   title,
   titleHidden,
   allowMultiple,
@@ -48,9 +48,9 @@ const ChoiceList = ({
   theme,
   name = getUniqueID(),
 }: Props) => {
-  const ControlComponent: ChooseableComponent = allowMultiple ? Checkbox : RadioButton;
+  const CONTROLCOMPONENT: ChooseableComponent = allowMultiple ? Checkbox : RadioButton;
   const finalName = allowMultiple ? `${name}[]` : name;
-  const className = classNames(theme.ChoiceList, titleHidden && theme.titleHidden);
+  const className = classNames(theme.choiceList, titleHidden && theme.titleHidden);
   const titleMarkup = title
     ? <legend className={theme.Title}>{title}</legend>
     : null;
@@ -66,7 +66,7 @@ const ChoiceList = ({
 
     return (
       <li key={key}>
-        <ControlComponent
+        <CONTROLCOMPONENT
           name={finalName}
           value={value}
           label={label}
@@ -96,7 +96,7 @@ function updateSelectedChoices({ value }: Choice, checked: boolean, selected: st
     return allowMultiple ? [...selected, value] : [value];
   }
 
-  return selected.filter((selectedChoice) => selectedChoice !== value);
+  return selected.filter(selectedChoice => selectedChoice !== value);
 }
 
-export default themr(CHOICE_LIST, baseTheme)(ChoiceList) as ThemedComponentClass<Props, {}>;
+export default themr(CHOICE_LIST, baseTheme)(choiceList) as ThemedComponentClass<Props, {}>;

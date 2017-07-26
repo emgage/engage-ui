@@ -10,8 +10,8 @@ export interface Props {
   theme?: any;
 }
 
-const Section = ({ children, theme }: Props) => {
-  return <div className={theme.Section}>{children}</div>;
+const section = ({ children, theme }: Props) => {
+  return <div className={theme.section}>{children}</div>;
 };
 
-export default themr(POPOVER, baseTheme)(Section) as ThemedComponentClass<Props, {}>;
+export default themr(POPOVER, baseTheme)(section) as ThemedComponentClass<Props, {}>;

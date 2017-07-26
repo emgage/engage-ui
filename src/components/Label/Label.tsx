@@ -26,7 +26,7 @@ export function labelID(id: string) {
   return `${id}Label`;
 }
 
-function Label({
+function label({
   children,
   id,
   action,
@@ -50,11 +50,11 @@ function Label({
     : null;
 
   return (
-    <div className={theme.Label}>
+    <div className={theme.label}>
       <label id={labelID(id)} htmlFor={id} className={className} style={style}>{children}</label>
       {actionMarkup}
     </div>
   );
 }
 
-export default themr(LABEL, baseTheme)(Label) as ThemedComponentClass<Props, {}>;
+export default themr(LABEL, baseTheme)(label) as ThemedComponentClass<Props, {}>;

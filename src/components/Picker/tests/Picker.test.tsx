@@ -4,7 +4,7 @@ import Button from '../../Button/Button';
 import Chip from '../../Chip/Chip';
 import { DisplayMoreInfo } from '../PickerEnum';
 import { MockPickerSource } from './MockPickerSource';
-import Picker from '..';
+import Picker from '../Picker';
 
 const theme = {
   pickerResultHide: 'pickerResultHide',

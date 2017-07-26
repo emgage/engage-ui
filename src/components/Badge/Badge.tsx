@@ -30,9 +30,9 @@ const STATUS_LABELS = {
   attention: 'Attention',
 };
 
-const Badge = ({ children, status, progress, theme }: Props) => {
+const badge = ({ children, status, progress, theme }: Props) => {
   const className = classNames(
-    theme.Badge,
+    theme.badge,
     status && theme[variationName('status', status)],
     progress && theme[variationName('progress', progress)],
   );
@@ -58,4 +58,4 @@ const Badge = ({ children, status, progress, theme }: Props) => {
   );
 };
 
-export default themr(BADGE, baseTheme)(Badge) as ThemedComponentClass<Props, {}>;
+export default themr(BADGE, baseTheme)(badge) as ThemedComponentClass<Props, {}>;

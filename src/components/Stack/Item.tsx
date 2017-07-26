@@ -12,13 +12,13 @@ export interface Props {
   theme?: any;
 }
 
-const Item = ({ children, fill, theme }: Props) => {
+const item = ({ children, fill, theme }: Props) => {
   const className = classNames(
-    theme.Item,
-    fill && theme['Item-fill'],
+    theme.item,
+    fill && theme['item-fill'],
   );
 
   return <div className={className}>{children}</div>;
 };
 
-export default themr(STACK, baseTheme)(Item) as ThemedComponentClass<Props, {}>;
+export default themr(STACK, baseTheme)(item) as ThemedComponentClass<Props, {}>;

@@ -33,7 +33,7 @@ export interface Props {
   onBlur?(): void;
 }
 
-const Button = ({
+const button = ({
   url,
   disabled,
   children,
@@ -55,7 +55,7 @@ const Button = ({
   theme,
 }: Props) => {
   const className = classNames(
-    theme.Button,
+    theme.button,
     primary && theme.primary,
     outline && theme.outline,
     destructive && theme.destructive,
@@ -124,7 +124,7 @@ const Button = ({
   );
 };
 
-const ThemedButton = themr(BUTTON, baseTheme)(Button) as ThemedComponentClass<Props, {}>;
+const THEMEDBUTTON = themr(BUTTON, baseTheme)(button) as ThemedComponentClass<Props, {}>;
 
 function handleMouseUp({ currentTarget }: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) {
   currentTarget.blur();
@@ -146,7 +146,7 @@ export function buttonFrom(
   key?: any,
 ) {
   return (
-    <ThemedButton
+    <THEMEDBUTTON
       key={key}
       children={content}
       onClick={onAction}
@@ -156,4 +156,4 @@ export function buttonFrom(
   );
 }
 
-export default ThemedButton;
+export default THEMEDBUTTON;

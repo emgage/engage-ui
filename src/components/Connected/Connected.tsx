@@ -17,7 +17,7 @@ export interface State {
   focused?: Position | null;
 }
 
-const Connected = ({
+const connected = ({
   children,
   left,
   right,
@@ -37,7 +37,7 @@ const Connected = ({
     : null;
 
   return (
-    <div className={theme.Connected} style={style}>
+    <div className={theme.connected} style={style}>
       {leftConnectionMarkup}
       <Item position={Position.Primary}>
         {children}
@@ -47,4 +47,4 @@ const Connected = ({
   );
 };
 
-export default themr(CONNECTED, baseTheme)(Connected) as ThemedComponentClass<Props, State>;
+export default themr(CONNECTED, baseTheme)(connected) as ThemedComponentClass<Props, State>;

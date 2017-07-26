@@ -130,8 +130,7 @@ class TextField extends React.PureComponent<Props, State> {
       : null;
     
     let counterTextMarkup;
-    if (enableTextCouter)
-    {
+    if (enableTextCouter) {
       const maxLengthString = maxLength ? '/' + maxLength : '';
       const textCount = this.props.value ? this.props.value.toString().length : 0;
       counterTextMarkup = <div className={theme.CounterText} id={`${id}Counter`}>{textCount}{maxLengthString}</div>;
@@ -155,6 +154,7 @@ class TextField extends React.PureComponent<Props, State> {
       autoFocus,
       value,
       placeholder,
+      required,
       onFocus: this.handleInputOnFocus,
       onBlur: this.handleInputOnBlur,
       style: componentStyle,
@@ -163,7 +163,6 @@ class TextField extends React.PureComponent<Props, State> {
       className: theme.Input,
       onChange: this.handleChange,
       ref: this.setInput,
-      required,
       'aria-required': required ? true : false,
       'aria-describedby': describedBy.length ? describedBy.join(' ') : undefined,
       'aria-labelledby': labelledBy.join(' '),

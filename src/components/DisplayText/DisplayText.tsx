@@ -15,17 +15,17 @@ export interface Props {
   theme?: any;
 }
 
-const DisplayText = ({
-  element: Element = 'p',
+const displayText = ({
+  element: ELEMENT = 'p',
   children,
   size = 'medium',
   theme,
 }: Props) => {
   const className = classNames(
-  theme.DisplayText,
+  theme.displayText,
   size && theme[variationName('size', size)],
 );
-  return <Element className={className}>{children}</Element>;
+  return <ELEMENT className={className}>{children}</ELEMENT>;
 };
 
-export default themr(DISPLAY_TEXT, baseTheme)(DisplayText) as ThemedComponentClass<Props, {}>;
+export default themr(DISPLAY_TEXT, baseTheme)(displayText) as ThemedComponentClass<Props, {}>;

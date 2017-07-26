@@ -7,7 +7,7 @@ import Choice, { Error, errorID, helpTextID } from '../Choice';
 import Icon from '../Icon';
 import { CHECKBOX } from '../ThemeIdentifiers';
 
-import checkmark from './icons/checkmark.svg';
+import checkmarkSvg from './icons/checkmark.svg';
 import * as baseTheme from './Checkbox.scss';
 
 export interface Props {
@@ -28,7 +28,7 @@ export interface Props {
 
 const getUniqueID = createUniqueIDFactory('Checkbox');
 
-const Checkbox = ({
+const checkbox = ({
   id = getUniqueID(),
   label,
   labelHidden,
@@ -54,7 +54,7 @@ const Checkbox = ({
   if (helpText) { describedBy.push(helpTextID(id)); }
 
   const className = classNames(
-    theme.Checkbox,
+    theme.checkbox,
     error && theme.error,
   );
 
@@ -84,12 +84,12 @@ const Checkbox = ({
 
         <div className={theme.Backdrop} />
         <div className={theme.Icon}>
-          <Icon source={checkmark} />
+          <Icon source={checkmarkSvg} />
         </div>
       </div>
     </Choice>
   );
 };
 
-export { Checkbox as UnthemedCheckbox };
-export default themr(CHECKBOX, baseTheme)(Checkbox) as ThemedComponentClass<Props, {}>;
+export { checkbox as UnthemedCheckbox };
+export default themr(CHECKBOX, baseTheme)(checkbox) as ThemedComponentClass<Props, {}>;

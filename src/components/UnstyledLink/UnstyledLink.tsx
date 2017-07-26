@@ -12,16 +12,16 @@ export interface Props extends React.HTMLProps<HTMLAnchorElement> {
 
 export type LinkLikeComponent = ReactComponent<Props>;
 
-let LinkComponent: LinkLikeComponent;
+let LINKCOMPONENT: LinkLikeComponent;
 
 export default class UnstyledLink extends React.PureComponent<Props, never> {
-  static use(NewLinkComponent: LinkLikeComponent) {
-    LinkComponent = NewLinkComponent;
+  static use(newLinkComponent: LinkLikeComponent) {
+    LINKCOMPONENT = newLinkComponent;
   }
 
   render() {
-    if (LinkComponent) {
-      return <LinkComponent {...this.props} {...unstyled.props} />;
+    if (LINKCOMPONENT) {
+      return <LINKCOMPONENT {...this.props} {...unstyled.props} />;
     }
 
     const { external, url, ...rest } = this.props;

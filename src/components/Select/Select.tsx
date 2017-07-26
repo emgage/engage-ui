@@ -8,7 +8,7 @@ import Icon from '../Icon';
 import { SELECT } from '../ThemeIdentifiers';
 
 import * as baseTheme from './Select.scss';
-import arrowIcon from './icons/arrow.svg';
+import arrowSvg from './icons/arrow.svg';
 
 export type Option = string | {
   value: string,
@@ -42,7 +42,7 @@ export interface Props {
 const PLACEHOLDER_VALUE = '__placeholder__';
 const getUniqueID = createUniqueIDFactory('Select');
 
-const Select = ({
+const select = ({
   id = getUniqueID(),
   name,
   groups,
@@ -70,7 +70,7 @@ const Select = ({
 
   const isPlaceholder = value == null && placeholder != null;
   const className = classNames(
-    theme.Select,
+    theme.select,
     error && theme.error,
     disabled && theme.disabled,
     isPlaceholder && theme.placeholder,
@@ -116,7 +116,7 @@ const Select = ({
         </select>
 
         <div className={theme.Icon}>
-          <Icon source={arrowIcon} />
+          <Icon source={arrowSvg} />
         </div>
         <div className={theme.Backdrop} />
       </div>
@@ -145,5 +145,5 @@ function renderGroup(groupOrOption: Group | Option) {
   return renderOption(groupOrOption as Option);
 }
 
-export { Select as UnthemedSelect };
-export default themr(SELECT, baseTheme)(Select) as ThemedComponentClass<Props, {}>;
+export { select as UnthemedSelect };
+export default themr(SELECT, baseTheme)(select) as ThemedComponentClass<Props, {}>;

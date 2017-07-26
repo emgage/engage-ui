@@ -14,13 +14,13 @@ export interface Props {
   theme?: any;
 }
 
-const ButtonGroup = ({
+const buttonGroup = ({
   children,
   segmented,
   theme,
 }: Props) => {
   const className = classNames(
-    theme.ButtonGroup,
+    theme.buttonGroup,
     segmented && theme.segmented,
   );
 
@@ -30,4 +30,4 @@ const ButtonGroup = ({
   return <div className={className}>{contents}</div>;
 };
 
-export default themr(BUTTON_GROUP, baseTheme)(ButtonGroup) as ThemedComponentClass<Props, {}>;
+export default themr(BUTTON_GROUP, baseTheme)(buttonGroup) as ThemedComponentClass<Props, {}>;

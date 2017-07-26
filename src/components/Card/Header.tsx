@@ -16,7 +16,7 @@ export interface Props {
   theme?: any;
 }
 
-const Header = ({ children, actions, theme }: Props) => {
+const header = ({ children, actions, theme }: Props) => {
   const actionMarkup = actions
     ? (
       <ButtonGroup>
@@ -38,10 +38,10 @@ const Header = ({ children, actions, theme }: Props) => {
     : <Heading>{children}</Heading>;
 
   return (
-    <div className={theme.Header}>
+    <div className={theme.header}>
       {headingMarkup}
     </div>
   );
 };
 
-export default themr(CARD, baseTheme)(Header) as ThemedComponentClass<Props, {}>;
+export default themr(CARD, baseTheme)(header) as ThemedComponentClass<Props, {}>;

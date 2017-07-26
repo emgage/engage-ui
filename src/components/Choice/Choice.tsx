@@ -19,7 +19,7 @@ export interface Props {
   theme?: any;
 }
 
-const Choice = ({
+const choice = ({
   id,
   label,
   error,
@@ -28,7 +28,7 @@ const Choice = ({
   helpText,
   theme,
 }: Props) => {
-  const className = classNames(theme.Choice, labelHidden && theme.labelHidden);
+  const className = classNames(theme.choice, labelHidden && theme.labelHidden);
   const labelMarkup = (
     <label className={className} htmlFor={id}>
       <div className={theme.Control}>{children}</div>
@@ -76,4 +76,4 @@ export function errorID(id: string) {
   return `${id}Error`;
 }
 
-export default themr(CHOICE, baseTheme)(Choice) as ThemedComponentClass<Props, {}>;
+export default themr(CHOICE, baseTheme)(choice) as ThemedComponentClass<Props, {}>;

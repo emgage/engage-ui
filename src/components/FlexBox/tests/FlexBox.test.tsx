@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { mount } from 'enzyme';
 import { FlexAlign, FlexDirection, FlexJustify } from '../FlexProps';
-import FlexBox from '..';
+import FlexBox from '../FlexBox';
 
 const theme = {
   flex: 'flex',

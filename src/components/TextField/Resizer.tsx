@@ -98,7 +98,7 @@ function replaceEntity(entity: keyof typeof ENTITIES_TO_REPLACE) {
 function getContentsForMinimumLines(minimumLines: number) {
   let content = '';
 
-  for (let line = 0; line < minimumLines; line++) {
+  for (let line = 0; line < minimumLines; line += 1) {
     content += '<br>';
   }
 

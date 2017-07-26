@@ -11,7 +11,7 @@ export interface Props extends React.HTMLProps<HTMLImageElement> {
   sourceSet?: SourceSet[];
 }
 
-export default function Image({ sourceSet, source, ...rest }: Props) {
+const image = () => ({ sourceSet, source, ...rest }: Props) => {
   const finalSourceSet = sourceSet
     ? (
       sourceSet
@@ -23,4 +23,6 @@ export default function Image({ sourceSet, source, ...rest }: Props) {
   return finalSourceSet
     ? <img src={source} srcSet={finalSourceSet} {...rest} />
     : <img src={source} {...rest} />;
-}
+};
+
+export default image;

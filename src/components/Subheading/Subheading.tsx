@@ -12,13 +12,13 @@ export interface Props {
   theme?: any;
 }
 
-const Subheading = ({
-  element: Element = 'h3',
+const subheading = ({
+  element: ELEMENT = 'h3',
   children,
   theme,
 }: Props) => {
   const ariaLabel = typeof children === 'string' ? children : null;
-  return <Element aria-label={ariaLabel} className={theme.Subheading}>{children}</Element>;
+  return <ELEMENT aria-label={ariaLabel} className={theme.subheading}>{children}</ELEMENT>;
 };
 
-export default themr(SUBHEADING, baseTheme)(Subheading) as ThemedComponentClass<Props, {}>;
+export default themr(SUBHEADING, baseTheme)(subheading) as ThemedComponentClass<Props, {}>;

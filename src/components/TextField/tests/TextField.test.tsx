@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { mount } from 'enzyme';
-import TextField from '..';
+import TextField from '../TextField';
 
 describe('<TextField />', () => {
   it('sets all pass through properties on the input', () => {

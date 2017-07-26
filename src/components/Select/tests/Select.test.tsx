@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { mount } from 'enzyme';
-import Select from '..';
+import Select from '../Select';
 
 describe('<Select />', () => {
   describe('onChange()', () => {

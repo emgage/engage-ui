@@ -84,21 +84,21 @@ export const BUNDLED_ICONS = {
   circleChevronUp,
   circlePlus,
   conversation,
-  delete: deleteIcon,
   disable,
   dispute,
   duplicate,
   embed,
-  export: exportIcon,
   external,
   horizontalDots,
-  import: importIcon,
   notes,
   print,
   refresh,
   risk,
   search,
   view,
+  delete: deleteIcon,
+  export: exportIcon,
+  import: importIcon,
 };
 
 const COLORS_WITH_BACKDROPS = ['teal', 'tealDark', 'greenDark', 'redDark', 'yellowDark', 'ink'];
@@ -112,7 +112,7 @@ export interface Props {
   theme?: any;
 }
 
-const Icon = ({
+const icon = ({
   source,
   color,
   backdrop,
@@ -126,7 +126,7 @@ const Icon = ({
   }
 
   const className = classNames(
-    theme.Icon,
+    theme.icon,
     color && theme[variationName('color', color)],
     backdrop && theme.hasBackdrop,
   );
@@ -158,4 +158,4 @@ const Icon = ({
   );
 };
 
-export default themr(ICON, baseTheme)(Icon) as ThemedComponentClass<Props, {}>;
+export default themr(ICON, baseTheme)(icon) as ThemedComponentClass<Props, {}>;

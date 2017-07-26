@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { mount } from 'enzyme';
-import Chip from '..';
+import Chip from '../Chip';
 
 const theme = {
   chip: 'chip',

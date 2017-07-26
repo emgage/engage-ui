@@ -11,12 +11,12 @@ export interface Props {
   theme?: any;
 }
 
-const Heading = ({
-  element: Element = 'h2',
+const heading = ({
+  element: ELEMENT = 'h2',
   children,
   theme,
 }: Props) => {
-  return <Element className={theme.Heading}>{children}</Element>;
+  return <ELEMENT className={theme.heading}>{children}</ELEMENT>;
 };
 
-export default themr(HEADING, baseTheme)(Heading) as ThemedComponentClass<Props, {}>;
+export default themr(HEADING, baseTheme)(heading) as ThemedComponentClass<Props, {}>;

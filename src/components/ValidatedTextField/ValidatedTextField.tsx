@@ -37,11 +37,11 @@ class ValidatedTextFieldComponent extends React.PureComponent<Props, {}> {
     } = this.props;
     const initialValue = otherProps.value;
     const { ...otherFieldProps } = form.getFieldProps(this.props.name, {
-      validateTrigger,
-      rules: validateRules,
       initialValue,
       onChange,
       onBlur,
+      validateTrigger,
+      rules: validateRules,
     });
 
     return (

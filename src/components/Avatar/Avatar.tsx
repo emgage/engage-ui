@@ -23,7 +23,7 @@ export interface Props {
   theme?: any;
 }
 
-const Avatar = ({
+const avatar = ({
   name,
   source,
   initials,
@@ -54,7 +54,7 @@ const Avatar = ({
   }
 
   const className = classNames(
-    theme.Avatar,
+    theme.avatar,
     theme[variationName('style', styleClass(nameString))],
     source && theme.hasImage,
     size && theme[variationName('size', size)],
@@ -83,4 +83,4 @@ function customerPlaceholder(name?: string) {
     : AVATAR_IMAGES[0];
 }
 
-export default themr(AVATAR, baseTheme)(Avatar) as ThemedComponentClass<Props, {}>;
+export default themr(AVATAR, baseTheme)(avatar) as ThemedComponentClass<Props, {}>;

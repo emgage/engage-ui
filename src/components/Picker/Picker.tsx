@@ -13,11 +13,11 @@ export interface State {
   moreInfo: boolean;
 }
 export interface IPickerInfo {
-  Id?: number;
-  Name: string;
-  Description: string;
-  ImageUrl?: string;
-  Url?: string;
+  id?: number;
+  name: string;
+  description: string;
+  imageUrl?: string;
+  url?: string;
 }
 export interface IPickerSource<T> {
   performFilter(filterString: string): Promise<T[]>;
@@ -80,8 +80,8 @@ class Picker extends React.Component<Props, State> {
                 <div>
                     <div className={className}>
                         {
-                            this.state.selectedItems.map(function (i) {
-                              return React.createElement(chipComponent as React.ComponentClass<{ clickable: boolean, removable: boolean, onRemove(item: any): void }>, { key: i.Id, clickable: false, removable: true, onRemove }, [i.Name]);
+                            this.state.selectedItems.map((i) => {
+                              return React.createElement(chipComponent as React.ComponentClass<{ clickable: boolean, removable: boolean, onRemove(item: any): void }>, { onRemove, key: i.id, clickable: false, removable: true }, [i.name]);
                             })
                         }
                     </div>
@@ -94,8 +94,8 @@ class Picker extends React.Component<Props, State> {
                 </div>
                 <div>
                     {
-                        this.state.searchItems.map(function (i) {
-                          return React.createElement(searchResultComponent as React.ComponentClass<{ clickable: boolean, moreInfoComponent: React.ReactNode, moreInfoComponentShowOn: DisplayMoreInfo, onClick(item: any): void, handleMoreInfo(): void }>, { key: i.Id, clickable: true, moreInfoComponent, moreInfoComponentShowOn, onClick: onSelect, handleMoreInfo: onMoreInfo }, [i.Name]);
+                        this.state.searchItems.map((i) => {
+                          return React.createElement(searchResultComponent as React.ComponentClass<{ clickable: boolean, moreInfoComponent: React.ReactNode, moreInfoComponentShowOn: DisplayMoreInfo, onClick(item: any): void, handleMoreInfo(): void }>, { moreInfoComponent, moreInfoComponentShowOn, key: i.id, clickable: true, onClick: onSelect, handleMoreInfo: onMoreInfo }, [i.name]);
                         })
                     }
                 </div>
@@ -116,7 +116,7 @@ class Picker extends React.Component<Props, State> {
     alert(item);
   }
   private handleRemove = (event: any) => {
-    const item = this.state.selectedItems.find((x) => x.Name === event.currentTarget.previousElementSibling.innerText);
+    const item = this.state.selectedItems.find(x => x.name === event.currentTarget.previousElementSibling.innerText);
     const items = this.state.selectedItems;
     if (this.props.minSelectedItems !== undefined && this.props.minSelectedItems === items.length) {
       return;
@@ -132,13 +132,13 @@ class Picker extends React.Component<Props, State> {
   }
 
   private handleSelect = (event: any) => {
-    const item = this.state.searchItems.find((x) => x.Name === event.currentTarget.text);
+    const item = this.state.searchItems.find(x => x.name === event.currentTarget.text);
     const items = this.state.selectedItems;
     if (this.props.maxSelectedItems !== undefined && this.props.maxSelectedItems === items.length) {
       return;
     }
     if (item !== undefined) {
-      if (!items.some((x) => x.Name === item.Name)) {
+      if (!items.some(x => x.name === item.name)) {
         items.push(item);
       }
     }

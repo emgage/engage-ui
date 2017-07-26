@@ -12,7 +12,7 @@ export interface Props {
   theme?: any;
 }
 
-function Message({ children, isVisible, id, style, theme }: Props) {
+const message = () => ({ children, isVisible, id, style, theme }: Props) => {
   if (!isVisible) {
     // TODO This seems to be a bug. We want to return null.
     return <noscript />;
@@ -25,6 +25,6 @@ function Message({ children, isVisible, id, style, theme }: Props) {
       </span>
     </div>
   );
-}
+};
 
-export default themr(MESSAGE, baseTheme)(Message) as ThemedComponentClass<Props, {}>;
+export default themr(MESSAGE, baseTheme)(message) as ThemedComponentClass<Props, {}>;
