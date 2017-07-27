@@ -4,18 +4,18 @@
 $number-size: rem(12px);
 $bullet-size: rem(18px);
 
-.List {
+.list {
   list-style: none;
   margin-top: 0;
   padding-left: 0;
 
-  + .List {
+  + .list {
     margin-top: spacing();
   }
 }
 
 .typeBullet {
-  > .Item::before {
+  > .item::before {
     content: '\2022'; // bullet
     font-size: $bullet-size;
   }
@@ -24,7 +24,7 @@ $bullet-size: rem(18px);
 .typeNumber {
   counter-reset: ordered-counter;
 
-  > .Item::before {
+  > .item::before {
     @include text-emphasis-strong;
     content: counter(ordered-counter, decimal) '.';
     counter-increment: ordered-counter;
@@ -33,7 +33,7 @@ $bullet-size: rem(18px);
   }
 }
 
-.Item {
+.item {
   position: relative;
   margin-bottom: spacing(tight);
   padding-left: spacing();
@@ -49,7 +49,7 @@ $bullet-size: rem(18px);
     display: block;
   }
 
-  .List:first-child {
+  .list:first-child {
     margin-top: spacing(tight);
   }
 }

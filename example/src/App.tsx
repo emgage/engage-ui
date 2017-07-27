@@ -4,7 +4,7 @@ import { OffCanvas, OffCanvasMenu, OffCanvasBody, OffCanvasAnimationType } from 
 import { PeoplePickerSearchType } from './PickerEnum';
 import { PeoplePickerSource } from './PickerSource';
 
-import Example from '../../src/components/ReactDataExample';
+import Example from './ReactDataExample';
 
 import {
   Button,

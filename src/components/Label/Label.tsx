@@ -38,7 +38,7 @@ function label({
   theme,
 }: Props) {
   const className = classNames(
-    theme.Text,
+    theme.text,
     hidden && theme.hidden,
     required && theme.required,
     focused && theme.focused,

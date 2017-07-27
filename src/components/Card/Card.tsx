@@ -37,7 +37,7 @@ class Card extends React.PureComponent<Props, never> {
       theme,
     } = this.props;
 
-    const className = classNames(theme.Card, subdued && theme.subdued);
+    const className = classNames(theme.card, subdued && theme.subdued);
 
     const headerMarkup = title
       ? <Header actions={actions}>{title}</Header>
@@ -57,7 +57,7 @@ class Card extends React.PureComponent<Props, never> {
 
     const footerMarkup = primaryFooterActionMarkup || secondaryFooterActionMarkup
       ? (
-        <div className={theme.Footer}>
+        <div className={theme.footer}>
           <ButtonGroup>
             {primaryFooterActionMarkup}
             {secondaryFooterActionMarkup}

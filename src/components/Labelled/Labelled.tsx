@@ -46,7 +46,7 @@ const labelled = ({
   );
 
   const labelWrapperClassName = classNames(
-    theme.LabelWrapper,
+    theme.labelWrapper,
     required && theme.required,
     focused && theme.focused,
     (errors && errors) && theme.invalid,
@@ -54,7 +54,7 @@ const labelled = ({
   );
 
   const helpTextMarkup = helpText
-    ? <div className={theme.HelpText} id={helpTextID(id)}>{helpText}</div>
+    ? <div className={theme.helpText} id={helpTextID(id)}>{helpText}</div>
     : null;
 
   const errorId = errorID(id);

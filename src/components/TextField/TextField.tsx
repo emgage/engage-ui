@@ -96,7 +96,7 @@ class TextField extends React.PureComponent<Props, State> {
     const { height } = this.state;
 
     const className = classNames(
-      theme.TextField,
+      theme.textField,
       Boolean(value) && theme.hasValue,
       disabled && theme.disabled,
       readOnly && theme.readOnly,
@@ -105,11 +105,11 @@ class TextField extends React.PureComponent<Props, State> {
     );
 
     const prefixMarkup = prefix
-      ? <div onClick={this.handleInputFocus} className={theme.Prefix} id={`${id}Prefix`}>{prefix}</div>
+      ? <div onClick={this.handleInputFocus} className={theme.prefix} id={`${id}prefix`}>{prefix}</div>
       : null;
 
     const suffixMarkup = suffix
-      ? <div onClick={this.handleInputFocus} className={theme.Suffix} id={`${id}Suffix`}>{suffix}</div>
+      ? <div onClick={this.handleInputFocus} className={theme.suffix} id={`${id}suffix`}>{suffix}</div>
       : null;
 
     const spinnerMarkup = type === 'number'
@@ -133,7 +133,7 @@ class TextField extends React.PureComponent<Props, State> {
     if (enableTextCouter) {
       const maxLengthString = maxLength ? '/' + maxLength : '';
       const textCount = this.props.value ? this.props.value.toString().length : 0;
-      counterTextMarkup = <div className={theme.CounterText} id={`${id}Counter`}>{textCount}{maxLengthString}</div>;
+      counterTextMarkup = <div className={theme.counterText} id={`${id}counter`}>{textCount}{maxLengthString}</div>;
     }
 
     const describedBy: string[] = [];
@@ -160,7 +160,7 @@ class TextField extends React.PureComponent<Props, State> {
       style: componentStyle,
       formNoValidate: true,
       autoComplete: normalizeAutoComplete(autoComplete),
-      className: theme.Input,
+      className: theme.input,
       onChange: this.handleChange,
       ref: this.setInput,
       'aria-required': required ? true : false,
@@ -192,7 +192,7 @@ class TextField extends React.PureComponent<Props, State> {
             {input}
             {suffixMarkup}
             {spinnerMarkup}
-            <div className={theme.Backdrop} />
+            <div className={theme.backdrop} />
             {resizer}
           </div>
         </Connected>

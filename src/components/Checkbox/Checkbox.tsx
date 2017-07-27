@@ -74,7 +74,7 @@ const checkbox = ({
           type="checkbox"
           checked={checked}
           disabled={disabled}
-          className={theme.Input}
+          className={theme.input}
           onChange={handleChange}
           onFocus={onFocus}
           onBlur={onBlur}
@@ -82,8 +82,8 @@ const checkbox = ({
           aria-describedby={describedBy.length ? describedBy.join(' ') : undefined}
         />
 
-        <div className={theme.Backdrop} />
-        <div className={theme.Icon}>
+        <div className={theme.backdrop} />
+        <div className={theme.icon}>
           <Icon source={checkmarkSvg} />
         </div>
       </div>

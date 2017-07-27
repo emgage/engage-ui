@@ -7,7 +7,7 @@ $stacking-order: (
   backdrop: 10,
 );
 
-.TextField {
+.textField {
   @include text-style-input;
   position: relative;
   display: flex;
@@ -19,7 +19,7 @@ $stacking-order: (
 .multiline {
   padding: 0;
 
-  > .Input {
+  > .input {
     overflow: auto;
     padding-left: $backdrop-horizontal-spacing;
     padding-right: $backdrop-horizontal-spacing;
@@ -28,20 +28,20 @@ $stacking-order: (
 }
 
 .hasValue {
-  .Input {
+  .input {
     color: color(ink);
   }
 }
 
 .error {
   
-  .Input::placeholder {
+  .input::placeholder {
     // This is the only place this color is used.
     // stylelint-disable-next-line color-no-hex
     color: #9c9798;
   }
 
-  > .Input ~ .Backdrop {
+  > .input ~ .backdrop {
     background-color: color(red, lighter);
     border-color: color(red);
     box-shadow: none;
@@ -49,7 +49,7 @@ $stacking-order: (
 
   // We need this to override the box-shadow in the focus state.
   // stylelint-disable-next-line selector-max-specificity
-  > .Input:focus ~ .Backdrop {
+  > .input:focus ~ .backdrop {
     border-color: color(indigo);
     box-shadow:
       inset shadow(transparent),
@@ -57,17 +57,17 @@ $stacking-order: (
   }
 }
 
-.readOnly > .Backdrop {
+.readOnly > .backdrop {
   background-color: color(sky, lighter);
 }
 
-.disabled > .Backdrop {
+.disabled > .backdrop {
   background-color: color(sky, lighter);
   border: border();
   box-shadow: none;
 }
 
-.Input {
+.input {
   @include text-style-input;
   position: relative;
   z-index: z-index(contents, $stacking-order);
@@ -91,7 +91,7 @@ $stacking-order: (
   &:focus {
     outline: none;
 
-    ~ .Backdrop {
+    ~ .backdrop {
       border-color: color(indigo);
       box-shadow:
         inset shadow(transparent),
@@ -117,7 +117,7 @@ $stacking-order: (
   }
 }
 
-.Backdrop {
+.backdrop {
   position: absolute;
   z-index: z-index(backdrop, $stacking-order);
   top: 0;
@@ -132,7 +132,7 @@ $stacking-order: (
   transition: box-shadow duration() easing();
 }
 
-.Prefix {
+.prefix {
   position: relative;
   z-index: z-index(contents, $stacking-order);
   flex: 0 0 auto;
@@ -140,7 +140,7 @@ $stacking-order: (
   color: currentColor;
 }
 
-.Suffix {
+.suffix {
   position: relative;
   z-index: z-index(contents, $stacking-order);
   flex: 0 0 auto;
@@ -148,7 +148,7 @@ $stacking-order: (
   color: currentColor;
 }
 
-.Spinner {
+.spinner {
   z-index: z-index(contents, $stacking-order);
   display: flex;
   align-self: stretch;
@@ -158,12 +158,12 @@ $stacking-order: (
   color: color(ink);
 }
 
-.SpinnerIcon {
+.spinnerIcon {
   height: $spinner-icon-size;
   width: $spinner-icon-size;
 }
 
-.Resizer {
+.resizer {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -172,7 +172,7 @@ $stacking-order: (
   visibility: hidden;
 }
 
-.DummyInput {
+.dummyinput {
   @include text-style-input;
   padding: control-vertical-padding() $backdrop-horizontal-spacing;
   border: border(transparent);
@@ -183,7 +183,7 @@ $stacking-order: (
   word-wrap: break-word;
 }
 
-.Segment {
+.segment {
   display: flex;
   flex: 1 1 0%;
   justify-content: center;
@@ -221,7 +221,7 @@ $stacking-order: (
     border-bottom-right-radius: border-radius();
   }
 }
-.CounterText{
+.counterText{
   @include text-style-body;
   @include text-emphasis-subdued;
   margin-top: spacing(extra-tight);

@@ -26,7 +26,7 @@ class FormLayout extends React.PureComponent<Props, never> {
     } = this.props;
 
     return (
-      <div className={theme.FormLayout} style={style}>
+      <div className={theme.formLayout} style={style}>
         {React.Children.map(children, (child: React.ReactElement<{}>, index: number) => {
           return wrapChildren(child, index, otherProps);
         })}

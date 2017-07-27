@@ -39,7 +39,7 @@ const badge = ({ children, status, progress, theme }: Props) => {
 
   const pipMarkup = progress
     ? (
-      <span className={theme.Pip}>
+      <span className={theme.pip}>
         <VisuallyHidden>{PROGRESS_LABELS[progress]}</VisuallyHidden>
       </span>
     )

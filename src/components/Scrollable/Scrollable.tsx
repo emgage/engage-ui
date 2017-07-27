@@ -57,7 +57,7 @@ class Scrollable extends React.Component<Props, State> {
 
     const finalClassName = classNames(
       className,
-      theme.Scrollable,
+      theme.scrollable,
       vertical && theme.vertical,
       horizontal && theme.horizontal,
       topShadow && theme.hasTopShadow,

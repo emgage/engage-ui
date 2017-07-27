@@ -57,14 +57,14 @@ const radioButton = ({
           type="radio"
           checked={checked}
           disabled={disabled}
-          className={theme.Input}
+          className={theme.input}
           onChange={handleChange}
           onFocus={onFocus}
           onBlur={onBlur}
           aria-describedby={describedBy}
         />
-        <div className={theme.Backdrop} />
-        <div className={theme.Icon} />
+        <div className={theme.backdrop} />
+        <div className={theme.icon} />
       </div>
     </Choice>
   );

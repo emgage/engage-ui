@@ -18,7 +18,7 @@ const tag = ({ children, onRemove, theme }: Props) => {
       <span>{children}</span>
       <button
         aria-label="Remove"
-        className={theme.Button}
+        className={theme.button}
         onClick={onRemove}
         onMouseUp={handleMouseUp}
       >

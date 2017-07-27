@@ -21,7 +21,7 @@ $large-min-height: rem(44px);
 $large-vertical-padding: ($large-min-height - line-height(body) - rem(2px)) / 2;
 
 
-.Button {
+.button {
   @include recolor-icon(color(ink, lighter));
   position: relative;
   display: inline-block;
@@ -133,7 +133,7 @@ $large-vertical-padding: ($large-min-height - line-height(body) - rem(2px)) / 2;
     color: color(blue, dark);
   }
 
-  &:focus > .Content::after {
+  &:focus > .content::after {
     opacity: 1;
   }
 
@@ -150,7 +150,7 @@ $large-vertical-padding: ($large-min-height - line-height(body) - rem(2px)) / 2;
     margin: (-1 * $large-vertical-padding) (-1 * spacing(loose));
   }
 
-  > .Content::after {
+  > .content::after {
     @include plain-button-backdrop;
     content: '';
     opacity: 0;
@@ -193,7 +193,7 @@ $large-vertical-padding: ($large-min-height - line-height(body) - rem(2px)) / 2;
   min-width: $slim-min-height;
   padding: $slim-vertical-padding spacing();
 
-  .Content {
+  .content {
     @include when-typography-condensed {
       font-size: font-size(body, large-screen);
     }
@@ -211,7 +211,7 @@ $large-vertical-padding: ($large-min-height - line-height(body) - rem(2px)) / 2;
   width: 100%;
 }
 
-.Content {
+.content {
   @include text-style-body;
   position: relative;
   display: flex;
@@ -219,7 +219,7 @@ $large-vertical-padding: ($large-min-height - line-height(body) - rem(2px)) / 2;
   align-items: center;
 }
 
-.Icon {
+.icon {
   @include text-style-body;
   transition: color duration() easing();
 

@@ -81,7 +81,7 @@ const banner = ({
   if (title) {
     headingID = `${id}Heading`;
     headingMarkup = (
-      <div className={theme.Heading} id={headingID}>
+      <div className={theme.heading} id={headingID}>
         <Heading element="p">{title}</Heading>
       </div>
     );
@@ -108,7 +108,7 @@ const banner = ({
   if (children || actionMarkup) {
     contentID = `${id}Content`;
     contentMarkup = (
-      <div className={theme.Content} id={contentID}>
+      <div className={theme.content} id={contentID}>
         {children}
         {actionMarkup}
       </div>
@@ -117,7 +117,7 @@ const banner = ({
 
   const dismissButton = onDismiss
     ? (
-      <div className={theme.Dismiss}>
+      <div className={theme.dismiss}>
         <Button plain icon="cancelSmall" accessibilityLabel="Dismiss notification" />
       </div>
     )
@@ -132,7 +132,7 @@ const banner = ({
       aria-describedby={contentID}
     >
       {dismissButton}
-      <div className={theme.Ribbon}>
+      <div className={theme.ribbon}>
         <Icon source={iconName} color={color} backdrop />
       </div>
       <div>
@@ -151,15 +151,15 @@ function uniqueID() {
 function secondaryActionFrom(action: Action, theme: any) {
   if (action.url) {
     return (
-      <UnstyledLink className={theme.SecondaryAction} url={action.url}>
-        <span className={theme.Text}>{action.content}</span>
+      <UnstyledLink className={theme.secondaryAction} url={action.url}>
+        <span className={theme.text}>{action.content}</span>
       </UnstyledLink>
     );
   }
 
   return (
-    <button className={theme.SecondaryAction} onClick={action.onAction}>
-      <span className={theme.Text}>{action.content}</span>
+    <button className={theme.secondaryAction} onClick={action.onAction}>
+      <span className={theme.text}>{action.content}</span>
     </button>
   );
 }

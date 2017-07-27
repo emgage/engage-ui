@@ -54,7 +54,7 @@ class PopoverOverlay extends React.PureComponent<Props, never> {
 
   render() {
     const { active, theme } = this.props;
-    const selector = `.${theme.Popover}`;
+    const selector = `.${theme.popover}`;
     const markup = active
       ? (
         <TransitionGroup.TransitionChild
@@ -110,7 +110,7 @@ class PopoverOverlay extends React.PureComponent<Props, never> {
     } = this.props;
 
     const className = classNames(
-      theme.Popover,
+      theme.popover,
       transitionStatus && animationVariations(transitionStatus, theme),
       positioning === 'above' && theme.positionedAbove,
       measuring && theme.measuring,
@@ -120,7 +120,7 @@ class PopoverOverlay extends React.PureComponent<Props, never> {
       ? (
         <div
           style={{ left: activatorRect.center.x - left }}
-          className={theme.Tip}
+          className={theme.tip}
         />
       )
       : null;
@@ -133,7 +133,7 @@ class PopoverOverlay extends React.PureComponent<Props, never> {
       <div
         id={id}
         tabIndex={-1}
-        className={theme.Content}
+        className={theme.content}
         style={contentStyles}
         ref={this.setContentNode}
       >
@@ -147,11 +147,11 @@ class PopoverOverlay extends React.PureComponent<Props, never> {
         <EventListener event="touchstart" handler={this.handleClick} />
         <KeypressListener keyCode={Keys.ESCAPE} handler={this.handleEscape} />
         {tipMarkup}
-        <div className={theme.FocusTracker} tabIndex={0} onFocus={this.handleFocusFirstItem} />
-        <div className={theme.Wrapper}>
+        <div className={theme.focusTracker} tabIndex={0} onFocus={this.handleFocusFirstItem} />
+        <div className={theme.wrapper}>
           {content}
         </div>
-        <div className={theme.FocusTracker} tabIndex={0} onFocus={this.handleFocusLastItem} />
+        <div className={theme.focusTracker} tabIndex={0} onFocus={this.handleFocusLastItem} />
       </div>
     );
   }

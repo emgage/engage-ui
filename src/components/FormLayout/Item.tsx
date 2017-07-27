@@ -18,7 +18,7 @@ const item = (props: Props)  => {
   } = props;
 
   return (
-    <div className={theme.Item}>
+    <div className={theme.item}>
       {React.Children.map(children, (child: React.ReactElement<{}>) => {
         return React.cloneElement(child, otherProps);
       })}

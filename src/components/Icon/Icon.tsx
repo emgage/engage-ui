@@ -137,13 +137,13 @@ const icon = ({
     // tslint:disable-next-line no-console
     console.warn(`The source prop is null in Icon Component.`);
   } else if (source === 'placeholder') {
-    contentMarkup = <div className={theme.Placeholder} />;
+    contentMarkup = <div className={theme.placeholder} />;
   } else {
     const iconSource = typeof source === 'string' ? BUNDLED_ICONS[source] : source;
     if (iconSource) {
       contentMarkup = (
         <svg
-          className={theme.Svg}
+          className={theme.svg}
           viewBox={iconSource.viewBox}
           dangerouslySetInnerHTML={{ __html: iconSource.body }}
         />

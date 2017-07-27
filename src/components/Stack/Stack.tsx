@@ -34,7 +34,7 @@ class Stack extends React.PureComponent<Props, never> {
     } = this.props;
 
     const className = classNames(
-      theme.Stack,
+      theme.stack,
       vertical && theme.vertical,
       spacing && theme[variationName('spacing', spacing)],
       distribution && theme[variationName('distribution', distribution)],

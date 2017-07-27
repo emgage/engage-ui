@@ -21,22 +21,22 @@ const spinner = ({ theme, onChange, onClick }: Props)  => {
     <div className={theme.spinner} onClick={onClick} aria-hidden>
       <div
         role="button"
-        className={theme.Segment}
+        className={theme.segment}
         tabIndex={-1}
         onClick={handleStep(1)}
       >
-        <div className={theme.SpinnerIcon}>
+        <div className={theme.spinnerIcon}>
           <Icon source="caretUp" />
         </div>
       </div>
 
       <div
         role="button"
-        className={theme.Segment}
+        className={theme.segment}
         tabIndex={-1}
         onClick={handleStep(-1)}
       >
-        <div className={theme.SpinnerIcon}>
+        <div className={theme.spinnerIcon}>
           <Icon source="caretDown" />
         </div>
       </div>

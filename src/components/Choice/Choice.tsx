@@ -31,19 +31,19 @@ const choice = ({
   const className = classNames(theme.choice, labelHidden && theme.labelHidden);
   const labelMarkup = (
     <label className={className} htmlFor={id}>
-      <div className={theme.Control}>{children}</div>
-      <div className={theme.Label}>{label}</div>
+      <div className={theme.control}>{children}</div>
+      <div className={theme.label}>{label}</div>
     </label>
   );
 
   const helpTextMarkup = helpText
-    ? <div className={theme.HelpText} id={helpTextID(id)}>{helpText}</div>
+    ? <div className={theme.helpText} id={helpTextID(id)}>{helpText}</div>
     : null;
 
   const errorMarkup = typeof error === 'string'
     ? (
-      <div className={theme.Error} id={errorID(id)}>
-        <div className={theme.ErrorIcon}><Icon source="alert" /></div>
+      <div className={theme.error} id={errorID(id)}>
+        <div className={theme.errorIcon}><Icon source="alert" /></div>
         {error}
       </div>
     )
@@ -51,7 +51,7 @@ const choice = ({
 
   const descriptionMarkup = helpTextMarkup || errorMarkup
     ? (
-      <div className={theme.Descriptions}>
+      <div className={theme.descriptions}>
         {errorMarkup}
         {helpTextMarkup}
       </div>

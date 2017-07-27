@@ -17,14 +17,14 @@ export interface Props {
 const section = ({ children, title, subdued, theme }: Props) => {
   const headerContent = title
     ? (
-      <div className={theme.SectionHeader}>
+      <div className={theme.sectionHeader}>
         <Subheading>{title}</Subheading>
       </div>
     )
     : null;
 
   const className = classNames(
-    theme.Section,
+    theme.section,
     subdued && theme['section-subdued'],
   );
 

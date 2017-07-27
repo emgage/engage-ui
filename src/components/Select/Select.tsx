@@ -103,7 +103,7 @@ const select = ({
           name={name}
           value={value}
           defaultValue={PLACEHOLDER_VALUE}
-          className={theme.Input}
+          className={theme.input}
           disabled={disabled}
           onFocus={onFocus}
           onBlur={onBlur}
@@ -115,10 +115,10 @@ const select = ({
           {optionsMarkup}
         </select>
 
-        <div className={theme.Icon}>
+        <div className={theme.icon}>
           <Icon source={arrowSvg} />
         </div>
-        <div className={theme.Backdrop} />
+        <div className={theme.backdrop} />
       </div>
     </Labelled>
   );

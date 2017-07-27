@@ -16,10 +16,10 @@ export interface Props {
 }
 
 const displayText = ({
-  element: ELEMENT = 'p',
   children,
-  size = 'medium',
   theme,
+  size = 'medium',
+  element: ELEMENT = 'p',
 }: Props) => {
   const className = classNames(
   theme.displayText,

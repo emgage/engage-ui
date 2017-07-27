@@ -35,12 +35,12 @@ const group = () => (
 
   if (helpText) {
     helpTextID = `${id}HelpText`;
-    helpTextElement = <div id={helpTextID} className={theme.HelpText}>{helpText}</div>;
+    helpTextElement = <div id={helpTextID} className={theme.helpText}>{helpText}</div>;
   }
 
   if (title) {
     titleID = `${id}Title`;
-    titleElement = <div id={titleID} className={theme.Title}>{title}</div>;
+    titleElement = <div id={titleID} className={theme.title}>{title}</div>;
   }
 
   const itemsMarkup = React.Children.map(children, child => wrapWithComponent(child, Item));
@@ -54,7 +54,7 @@ const group = () => (
       style={style}
     >
       {titleElement}
-      <div className={theme.Items}>
+      <div className={theme.items}>
         {itemsMarkup}
       </div>
       {helpTextElement}

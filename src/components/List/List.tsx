@@ -21,7 +21,7 @@ class ContentList extends React.PureComponent<Props, never> {
   render() {
     const { children, type = 'bullet', theme } = this.props;
     const className = classNames(
-      theme.List,
+      theme.list,
       type && theme[variationName('type', type)],
     );
 

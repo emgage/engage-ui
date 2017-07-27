@@ -52,7 +52,7 @@ const choiceList = ({
   const finalName = allowMultiple ? `${name}[]` : name;
   const className = classNames(theme.choiceList, titleHidden && theme.titleHidden);
   const titleMarkup = title
-    ? <legend className={theme.Title}>{title}</legend>
+    ? <legend className={theme.title}>{title}</legend>
     : null;
 
   const choicesMarkup = choices.map((choice) => {
@@ -80,7 +80,7 @@ const choiceList = ({
   return (
     <fieldset className={className}>
       {titleMarkup}
-      <ul className={theme.Choices}>
+      <ul className={theme.choices}>
         {choicesMarkup}
       </ul>
     </fieldset>
