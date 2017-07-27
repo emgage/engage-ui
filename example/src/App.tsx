@@ -192,27 +192,27 @@ class App extends React.Component<{}, State> {
 
         <Heading>Flexbox</Heading>
         <FlexBox>
-          <div>Demo 1</div>
-          <div>Demo 2</div>
-          <div>Demo 3</div>
+          <div style={{backgroundColor: 'aqua'}}>Demo 1</div>
+          <div style={{backgroundColor: 'pink'}}>Demo 2</div>
+          <div style={{backgroundColor: 'lime'}}>Demo 3</div>
         </FlexBox>
 
         <FlexBox direction={FlexDirection.Column} align={FlexAlign.Stretch} justify={FlexJustify.Center}>
-          <div>Demo 1</div>
-          <div>Demo 2</div>
-          <div>Demo 3</div>
+          <div style={{backgroundColor: 'aqua'}}>Demo 1</div>
+          <div style={{backgroundColor: 'pink'}}>Demo 2</div>
+          <div style={{backgroundColor: 'lime'}}>Demo 3</div>
         </FlexBox>
 
         <FlexBox direction={FlexDirection.Row} align={FlexAlign.Stretch} justify={FlexJustify.SpaceAround}>
-          <div>Demo 1</div>
-          <div>Demo 2</div>
-          <div>Demo 3</div>
+          <div style={{backgroundColor: 'aqua'}}>Demo 1</div>
+          <div style={{backgroundColor: 'pink'}}>Demo 2</div>
+          <div style={{backgroundColor: 'lime'}}>Demo 3</div>
         </FlexBox>
 
         <FlexBox inline={true} direction={FlexDirection.Column} align={FlexAlign.Stretch} justify={FlexJustify.Center}>
-          <div>Demo 1</div>
-          <div>Demo 2</div>
-          <div>Demo 3</div>
+          <div style={{backgroundColor: 'aqua'}}>Demo 1</div>
+          <div style={{backgroundColor: 'pink'}}>Demo 2</div>
+          <div style={{backgroundColor: 'lime'}}>Demo 3</div>
         </FlexBox>
 
         <Heading>Chip</Heading>
