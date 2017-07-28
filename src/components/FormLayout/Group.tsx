@@ -20,46 +20,48 @@ export interface Props {
 
 const getUniqueID = createUniqueIDFactory('FormLayoutGroup');
 
-const group = () => (
-  { children, condensed, title, helpText, style, theme }: Props) => {
-  const className = classNames(
-    condensed && theme.condensed,
-  );
+class Group extends React.Component<Props, {}> {
+  render() {
+    const { children, condensed, title, helpText, style, theme } = this.props;
+    const className = classNames(
+      condensed && theme.condensed,
+    );
 
-  const id = getUniqueID();
+    const id = getUniqueID();
 
-  let helpTextElement = null;
-  let helpTextID: undefined | string;
-  let titleElement = null;
-  let titleID: undefined | string;
+    let helpTextElement = null;
+    let helpTextID: undefined | string;
+    let titleElement = null;
+    let titleID: undefined | string;
 
-  if (helpText) {
-    helpTextID = `${id}HelpText`;
-    helpTextElement = <div id={helpTextID} className={theme.helpText}>{helpText}</div>;
-  }
+    if (helpText) {
+      helpTextID = `${id}HelpText`;
+      helpTextElement = <div id={helpTextID} className={theme.helpText}>{helpText}</div>;
+    }
 
-  if (title) {
-    titleID = `${id}Title`;
-    titleElement = <div id={titleID} className={theme.title}>{title}</div>;
-  }
+    if (title) {
+      titleID = `${id}Title`;
+      titleElement = <div id={titleID} className={theme.title}>{title}</div>;
+    }
 
-  const itemsMarkup = React.Children.map(children, child => wrapWithComponent(child, Item));
+    const itemsMarkup = React.Children.map(children, child => wrapWithComponent(child, Item));
 
-  return (
-    <div
-      role="group"
-      className={className}
-      aria-labelledby={titleID}
-      aria-describedby={helpTextID}
-      style={style}
-    >
-      {titleElement}
-      <div className={theme.items}>
-        {itemsMarkup}
+    return (
+      <div
+        role="group"
+        className={className}
+        aria-labelledby={titleID}
+        aria-describedby={helpTextID}
+        style={style}
+      >
+        {titleElement}
+        <div className={theme.items}>
+          {itemsMarkup}
+        </div>
+        {helpTextElement}
       </div>
-      {helpTextElement}
-    </div>
-  );
-};
+    );
+  }
+}
 
-export default themr(FORM_LAYOUT, baseTheme)(group) as ThemedComponentClass<Props, {}>;
+export default themr(FORM_LAYOUT, baseTheme)(Group) as ThemedComponentClass<Props, {}>;

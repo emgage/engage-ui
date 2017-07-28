@@ -12,19 +12,23 @@ export interface Props {
   theme?: any;
 }
 
-const message = () => ({ children, isVisible, id, style, theme }: Props) => {
-  if (!isVisible) {
-    // TODO This seems to be a bug. We want to return null.
-    return <noscript />;
+class Message extends React.Component<Props, {}> {
+  render() {
+    const { children, isVisible, id, style, theme } = this.props;
+
+    if (!isVisible) {
+      // TODO This seems to be a bug. We want to return null.
+      return <noscript />;
+    }
+
+    return (
+      <div id={id} className={theme.messageBlock} style={style} role="alert" aria-live="polite">
+        <span className={theme.messagePrompt}>
+          {children}
+        </span>
+      </div>
+    );
   }
+}
 
-  return (
-    <div id={id} className={theme.messageBlock} style={style} role="alert" aria-live="polite">
-      <span className={theme.messagePrompt}>
-        {children}
-      </span>
-    </div>
-  );
-};
-
-export default themr(MESSAGE, baseTheme)(message) as ThemedComponentClass<Props, {}>;
+export default themr(MESSAGE, baseTheme)(Message) as ThemedComponentClass<Props, {}>;

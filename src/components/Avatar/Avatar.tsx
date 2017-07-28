@@ -23,53 +23,57 @@ export interface Props {
   theme?: any;
 }
 
-const avatar = ({
-  name,
-  source,
-  initials,
-  customer,
-  size = 'medium',
-  accessibilityLabel,
-  theme,
-}: Props) => {
-  const nameString = name || initials;
+class Avatar extends React.Component<Props, {}> {
+  render() {
+    const {
+      name,
+      source,
+      initials,
+      customer,
+      size = 'medium',
+      accessibilityLabel,
+      theme,
+    } = this.props;
 
-  let finalSource: string | undefined;
-  let label: string | undefined;
+    const nameString = name || initials;
 
-  if (accessibilityLabel) {
-    label = accessibilityLabel;
-  } else if (name) {
-    label = name;
-  } else if (initials) {
-    label = `Avatar with initials ${initials.split('').join(' ')}`;
-  } else {
-    label = 'Avatar';
+    let finalSource: string | undefined;
+    let label: string | undefined;
+
+    if (accessibilityLabel) {
+      label = accessibilityLabel;
+    } else if (name) {
+      label = name;
+    } else if (initials) {
+      label = `Avatar with initials ${initials.split('').join(' ')}`;
+    } else {
+      label = 'Avatar';
+    }
+
+    if (source) {
+      finalSource = source;
+    } else if (customer) {
+      finalSource = customerPlaceholder(nameString);
+    }
+
+    const className = classNames(
+      theme.avatar,
+      theme[variationName('style', styleClass(nameString))],
+      source && theme.hasImage,
+      size && theme[variationName('size', size)],
+    );
+
+    let content = null;
+
+    if (finalSource) {
+      content = <Image className={theme.Image} source={finalSource} alt="" role="presentation" />;
+    } else if (initials) {
+      content = <span aria-hidden className={theme.Initials}>{initials}</span>;
+    }
+
+    return <div aria-label={label} role="img" className={className}>{content}</div>;
   }
-
-  if (source) {
-    finalSource = source;
-  } else if (customer) {
-    finalSource = customerPlaceholder(nameString);
-  }
-
-  const className = classNames(
-    theme.avatar,
-    theme[variationName('style', styleClass(nameString))],
-    source && theme.hasImage,
-    size && theme[variationName('size', size)],
-  );
-
-  let content = null;
-
-  if (finalSource) {
-    content = <Image className={theme.Image} source={finalSource} alt="" role="presentation" />;
-  } else if (initials) {
-    content = <span aria-hidden className={theme.Initials}>{initials}</span>;
-  }
-
-  return <div aria-label={label} role="img" className={className}>{content}</div>;
-};
+}
 
 function styleClass(name?: string) {
   return name
@@ -83,4 +87,4 @@ function customerPlaceholder(name?: string) {
     : AVATAR_IMAGES[0];
 }
 
-export default themr(AVATAR, baseTheme)(avatar) as ThemedComponentClass<Props, {}>;
+export default themr(AVATAR, baseTheme)(Avatar) as ThemedComponentClass<Props, {}>;
