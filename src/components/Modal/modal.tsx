@@ -22,14 +22,14 @@ const getModalElement = (id: string) => {
 
 export type Size = 'Small' | 'Medium' | 'Large' | number;
 
-export interface Ianimate {
+export interface IAnimate {
   in: Function,
   out: Function,
 }
 
-export interface Itrigger {
+export interface ITrigger {
   body: string,
-  animate: Ianimate,
+  animate: IAnimate,
 }
 
 export interface Props {
@@ -37,11 +37,11 @@ export interface Props {
   classes?: string,
   close?: boolean,
   footer?: React.ReactNode,
-  header?: string | React.ReactNode,
+  header?: React.ReactNode,
   activator: React.ReactElement<any>,
   id?: string,
   show: boolean,
-  trigger: Itrigger,
+  trigger: ITrigger,
   closeOnEsc?: boolean,
   closeOnBackgroud?: boolean,
   modalOverflow?: boolean,
@@ -53,13 +53,9 @@ export interface Props {
 class Modal extends React.Component<Props, {}> {
   constructor(props: Props) {
     super(props);
-
-    this.handleCloseClick = this.handleCloseClick.bind(this);
-    this.handleToggleClick = this.handleToggleClick.bind(this);
-
   }
 
-  handleCloseClick(e: any): void {
+  handleCloseClick = (e: any): void => {
     e.preventDefault();
 
     const props = this.props;
@@ -69,18 +65,15 @@ class Modal extends React.Component<Props, {}> {
     setTimeout(() => bodyStyle('', ''), 200);
   }
 
-  handleToggleClick(e: any): void {
+  handleToggleClick = (e: any): void => {
 
     const props = this.props;
     const { modal, dialog } = getModalElement(props.id as string);
 
-    const show = (): void => {
+    if (!this.props.show) {
       bodyStyle('16px', 'hidden');
       props.trigger.animate.in(modal, dialog);
-
-    };
-
-    const hide = (): void => {
+    } else {
       const id = (e.target.dataset ? e.target.dataset.id : undefined);
 
       if (typeof id !== 'undefined') {
@@ -90,11 +83,8 @@ class Modal extends React.Component<Props, {}> {
           this.handleCloseClick(e);
         }
       }
-    };
-
-    !this.props.show ? show() : hide();
+    }
   }
-
 
   render() {
 
@@ -146,14 +136,14 @@ class Modal extends React.Component<Props, {}> {
       : null;
 
     return <div>
-      <span onClick={this.handleToggleClick}>{this.props.activator}</span> 
+      <span onClick={this.handleToggleClick}>{this.props.activator}</span>
       {CloseonEscProp}
       <div {...cleanProps}
         className={cssClassNames}
         data-id={`modal-${props.id}`}
         onClick={(this.props.close || this.props.closeOnBackgroud || this.props.closeOnEsc) ? this.handleToggleClick : null}
       >
-      <Dialog
+        <Dialog
           footer={props.footer}
           header={props.header}
           id={props.id}
@@ -161,9 +151,9 @@ class Modal extends React.Component<Props, {}> {
           closeOnBackgroud={props.closeOnBackgroud ? this.handleToggleClick : undefined}
           backdropEnabled={props.backdropEnabled}
           size={props.size}
-      >
+        >
           <div className={cssClassForOverflow}>  {props.children}</div>
-      </Dialog>
+        </Dialog>
 
       </div>
 

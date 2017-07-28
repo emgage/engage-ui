@@ -12,7 +12,6 @@ export enum SizeType {
 
 export type Size = 'Small' | 'Medium' | 'Large' | number;
 
-
 export interface SizeStyle {
   width: string,
   marginLeft: string,
@@ -23,7 +22,7 @@ export interface Props {
   close?: boolean,
   children?: React.ReactNode,
   footer?: React.ReactNode,
-  header?: string | React.ReactNode,
+  header?: React.ReactNode,
   id?: string,
   backdropEnabled?: boolean,
   size?: Size,
