@@ -10,7 +10,7 @@ export interface Props {
     style?: any,
     animation?: OffCanvasAnimationType,
 }
-export class OffCanvas extends React.PureComponent<Props> {
+export class OffCanvas extends React.PureComponent<Props, any> {
   render() {
     const{
         width,
