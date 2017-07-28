@@ -23,8 +23,8 @@ const getModalElement = (id: string) => {
 export type Size = 'Small' | 'Medium' | 'Large' | number;
 
 export interface IAnimate {
-  in: Function,
-  out: Function,
+  in(modal?: Element, dialog?: Element): void,
+  out(modal?: Element, dialog?: Element): void,
 }
 
 export interface ITrigger {
@@ -61,7 +61,7 @@ class Modal extends React.Component<Props, {}> {
     const props = this.props;
     const { modal, dialog } = getModalElement(props.id as string);
 
-    props.trigger.animate.out(modal, dialog);
+    props.trigger.animate.out(modal as Element, dialog as Element);
     setTimeout(() => bodyStyle('', ''), 200);
   }
 
@@ -72,7 +72,7 @@ class Modal extends React.Component<Props, {}> {
 
     if (!this.props.show) {
       bodyStyle('16px', 'hidden');
-      props.trigger.animate.in(modal, dialog);
+      props.trigger.animate.in(modal  as Element, dialog as Element);
     } else {
       const id = (e.target.dataset ? e.target.dataset.id : undefined);
 

@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as velocity from 'velocity-animate';
 import { FlexAlign, FlexDirection, FlexJustify } from '../../src/components/FlexBox/FlexProps';
 import { OffCanvas, OffCanvasMenu, OffCanvasBody, OffCanvasAnimationType } from '../../src/components/OffCanvas';
+import { ITrigger, IAnimate } from '../../src/components/Modal/Modal';
 import { PeoplePickerSearchType } from './PickerEnum';
 import { PeoplePickerSource } from './PickerSource';
 
@@ -39,6 +40,16 @@ interface State {
 
 class App extends React.Component<{}, State> {
 
+  animate: IAnimate = {
+    in: (modal, dialog) => this.animateIn(modal, dialog),
+    out: (modal, dialog) => this.animateOut(modal, dialog),
+  };
+
+  trigger: ITrigger = {
+    body: 'Open',
+    animate: this.animate,
+  };
+
   constructor(props: any) {
     super(props);
     this.state = {
@@ -50,14 +61,13 @@ class App extends React.Component<{}, State> {
     };
   }
 
-  animateIn(modal: object, dialog: object) {
+  animateIn(modal?: Element, dialog?: Element): void {
     this.setState({ show: true });
     velocity(modal, { opacity: 1 }, { display: 'block' }, 300);
     velocity(dialog, { translateY: 1, opacity: 1 }, { display: 'block' }, 200);
   }
 
-
-  animateOut(modal: object, dialog: object) {
+  animateOut(modal?: Element, dialog?: Element): void {
     this.setState({ show: false });
     velocity(modal, { opacity: 0 }, { display: 'none' }, 300);
     velocity(dialog, { translateY: -100, opacity: 0 }, { display: 'none' }, 200);
@@ -72,19 +82,19 @@ class App extends React.Component<{}, State> {
   }
 
   handleClick = () => {
-    this.setState({isMenuOpened: !this.state.isMenuOpened});
+    this.setState({ isMenuOpened: !this.state.isMenuOpened });
   }
 
   handleClickSlide = () => {
-    this.setState({isMenuOpened: !this.state.isMenuOpened, animation: OffCanvasAnimationType.Slide});
+    this.setState({ isMenuOpened: !this.state.isMenuOpened, animation: OffCanvasAnimationType.Slide });
   }
 
   handleClickReveal = () => {
-    this.setState({isMenuOpened: !this.state.isMenuOpened, animation: OffCanvasAnimationType.Reveal});
+    this.setState({ isMenuOpened: !this.state.isMenuOpened, animation: OffCanvasAnimationType.Reveal });
   }
 
   handleClickNone = () => {
-    this.setState({isMenuOpened: !this.state.isMenuOpened, animation: OffCanvasAnimationType.None});
+    this.setState({ isMenuOpened: !this.state.isMenuOpened, animation: OffCanvasAnimationType.None });
   }
 
   render() {
@@ -117,26 +127,26 @@ class App extends React.Component<{}, State> {
       }} />;
 
     return (
-      <div> 
+      <div>
         <OffCanvas width={270} transitionDuration={270} isMenuOpened={this.state.isMenuOpened}>
-            <OffCanvasBody animation={this.state.animation}>
-              <p>This is the main body container.</p>
-              <p><a href="#" onClick={this.handleClickSlide}>Slide</a> to toggle the menu.</p>
-              <p><a href="#" onClick={this.handleClickReveal}>Reveal</a> to toggle the menu.</p>
-              <p><a href="#" onClick={this.handleClickNone}>None</a> to toggle the menu.</p>
-            </OffCanvasBody>
-            <OffCanvasMenu animation={this.state.animation}>
-              <p>Placeholder content.</p>
-              <ul>
-                <li>Link 1</li>
-                <li>Link 2</li>
-                <li>Link 3</li>
-                <li>Link 4</li>
-                <li>Link 5</li>
-                <li><a href="#" onClick={this.handleClick}>Toggle Menu</a></li>
-              </ul>
-            </OffCanvasMenu>
-          </OffCanvas>       
+          <OffCanvasBody animation={this.state.animation}>
+            <p>This is the main body container.</p>
+            <p><a href="#" onClick={this.handleClickSlide}>Slide</a> to toggle the menu.</p>
+            <p><a href="#" onClick={this.handleClickReveal}>Reveal</a> to toggle the menu.</p>
+            <p><a href="#" onClick={this.handleClickNone}>None</a> to toggle the menu.</p>
+          </OffCanvasBody>
+          <OffCanvasMenu animation={this.state.animation}>
+            <p>Placeholder content.</p>
+            <ul>
+              <li>Link 1</li>
+              <li>Link 2</li>
+              <li>Link 3</li>
+              <li>Link 4</li>
+              <li>Link 5</li>
+              <li><a href="#" onClick={this.handleClick}>Toggle Menu</a></li>
+            </ul>
+          </OffCanvasMenu>
+        </OffCanvas>
         <div>
           <h1>This is my Modal Component!!</h1>
           <Modal
@@ -150,18 +160,12 @@ class App extends React.Component<{}, State> {
             activator={<Button>Modal</Button>}
             size="Medium"
             show={this.state.show}
-            trigger={{
-              body: 'Open',
-              animate: {
-                in: (modal: object, dialog: object) => this.animateIn(modal, dialog),
-                out: (modal: object, dialog: object) => this.animateOut(modal, dialog),
-              },
-            }}
+            trigger={this.trigger}
           >
-          
-              <h2>Headline test</h2>
-              <p>
-                test Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+
+            <h2>Headline test</h2>
+            <p>
+              test Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
             tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
             veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
             ea commodo consequat. Duis aute irure dolor in reprehenderit in
@@ -183,12 +187,12 @@ class App extends React.Component<{}, State> {
             sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
             mollit anim id est laborum.
               </p>
-            
+
           </Modal>
 
 
           <Heading>Popover</Heading>
-          <TextField id='TestName' label='Text Counter' placeholder='' value={this.state.appTextCounter} helpText='Helper Text' enableTextCouter={true} maxLength={100} onChange={this.valueUpdater('appTextCounter')}/>
+          <TextField id='TestName' label='Text Counter' placeholder='' value={this.state.appTextCounter} helpText='Helper Text' enableTextCouter={true} maxLength={100} onChange={this.valueUpdater('appTextCounter')} />
           <ClickableChip chip={<Chip>Batman</Chip>}>
             <Card title="More about Batman">
               <p>Batman is a fictional superhero who appears in American comic books published by DC Comics. The character was created by artist Bob Kane and writer Bill Finger, and first appeared in Detective Comics #27</p>
