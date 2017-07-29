@@ -134,9 +134,7 @@ class App extends React.Component<{}, State> {
             </Card>
           </ClickableChip>
         </div>
-        <Loading>
-          <div><span>Loading!!!!!</span></div>
-        </Loading>
+        <Loading />
         <Picker required={true}
           chipComponent={Chip}
           filterPlaceHolder="People"
