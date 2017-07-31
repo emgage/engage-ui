@@ -7,7 +7,7 @@ describe ('Visually Hidden - Test Suit', () => {
     const theme = {
         VisuallyHidden: 'VisuallyHidden',
     };
-    it('should verify that is should have one span.', () => {
+    it('should verify that it should have one span tag.', () => {
         const visuallyHiddenWrapper = mount(<VisuallyHidden theme={theme}>
                                                 <Heading>Title and description</Heading>
                                             </VisuallyHidden>,
