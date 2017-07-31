@@ -12,6 +12,10 @@ $bullet-size: rem(18px);
   + .List {
     margin-top: spacing();
   }
+
+  ul {
+    padding-left: spacing(loose);
+  }
 }
 
 .typeBullet {

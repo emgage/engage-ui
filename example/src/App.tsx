@@ -15,6 +15,7 @@ import {
   FormLayout,
   Heading,
   Link,
+  List,
   Loading,
   OffCanvas,
   OffCanvasMenu,
@@ -134,6 +135,30 @@ class App extends React.Component<{}, State> {
             </Card>
           </ClickableChip>
         </div>
+        <List type="bullet">
+          <List.Item>Yellow shirt</List.Item>
+          <List.Item>Red shirt</List.Item>
+          <List type="bullet">
+            <List.Item>Yellow shirt</List.Item>
+            <List.Item>Red shirt</List.Item>
+            <List.Item>Green shirt</List.Item>
+            <List type="bullet">
+              <List.Item>Yellow shirt</List.Item>
+              <List.Item>Red shirt</List.Item>
+              <List.Item>Green shirt</List.Item>
+            </List>
+          </List>
+        </List>
+        <List type="bullet">
+          <List.Item>Yellow shirt</List.Item>
+          <List.Item>Red shirt</List.Item>
+          <List.Item>Green shirt</List.Item>
+        </List>
+        <List type="number">
+          <List.Item>First item</List.Item>
+          <List.Item>Second item</List.Item>
+          <List.Item>Third Item</List.Item>
+        </List>
         <Loading />
         <Picker required={true}
           chipComponent={Chip}
