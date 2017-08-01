@@ -107,10 +107,14 @@ $stacking-order: (
   // These properties are used to remove the default "spinner" controls
   // for number fields, since we add our own, custom versions instead.
   &[type='number'] {
+    -webkit-appearance: textfield;
+    -moz-appearance: textfield;
     appearance: textfield;
 
     &::-webkit-outer-spin-button,
     &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      -moz-appearance: none;
       appearance: none;
       margin: 0;
     }

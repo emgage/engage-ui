@@ -1,13 +1,19 @@
+import undefined from '../../src/components/Card/Header';
 import * as React from 'react';
 import { FlexAlign, FlexDirection, FlexJustify } from '../../src/components/FlexBox/FlexProps';
 import { PeoplePickerSearchType } from './PickerEnum';
 import { PeoplePickerSource } from './PickerSource';
+
+// This is funk - do we need to uniqly import the Item component like this?
+import Item from '../../src/components/List/Item';
+
 
 import {
   Button,
   ButtonGroup,
   Card,
   Chip,
+  ChoiceList,
   ClickableChip,
   Column,
   DisplayText,
@@ -23,6 +29,7 @@ import {
   OffCanvasAnimationType,
   Panel,
   Picker,
+  Select,
   TextField,
   ValidatedTextField,
   ValidatedForm,
@@ -48,7 +55,7 @@ class App extends React.Component<{}, State> {
       appDescription: '',
 
       isMenuOpened: false,
-      appTextCounter: ''
+      appTextCounter: '',
     };
   }
 
@@ -135,30 +142,47 @@ class App extends React.Component<{}, State> {
             </Card>
           </ClickableChip>
         </div>
+        <Heading>List</Heading>
         <List type="bullet">
-          <List.Item>Yellow shirt</List.Item>
-          <List.Item>Red shirt</List.Item>
+          <Item>Yellow shirt</Item>
+          <Item>Red shirt</Item>
           <List type="bullet">
-            <List.Item>Yellow shirt</List.Item>
-            <List.Item>Red shirt</List.Item>
-            <List.Item>Green shirt</List.Item>
+            <Item>Yellow shirt</Item>
+            <Item>Red shirt</Item>
+            <Item>Green shirt</Item>
             <List type="bullet">
-              <List.Item>Yellow shirt</List.Item>
-              <List.Item>Red shirt</List.Item>
-              <List.Item>Green shirt</List.Item>
+              <Item>Yellow shirt</Item>
+              <Item>Red shirt</Item>
+              <Item>Green shirt</Item>
             </List>
           </List>
-        </List>
-        <List type="bullet">
-          <List.Item>Yellow shirt</List.Item>
-          <List.Item>Red shirt</List.Item>
-          <List.Item>Green shirt</List.Item>
+          <Item>Yellow shirt</Item>
+          <Item>Red shirt</Item>
+          <Item>Green shirt</Item>
         </List>
         <List type="number">
-          <List.Item>First item</List.Item>
-          <List.Item>Second item</List.Item>
-          <List.Item>Third Item</List.Item>
+          <Item>First item</Item>
+          <Item>Second item</Item>
+          <Item>Third Item</Item>
         </List>
+        <ChoiceList
+  title="Company name"
+  choices={[
+    {
+      label: 'Hidden',
+      value: 'hidden',
+    },
+    {
+      label: 'Optional',
+      value: 'optional',
+    },
+    {
+      label: 'Required',
+      value: 'required',
+    },
+  ]}
+  selected={['hidden']}
+/>
         <Loading />
         <Picker required={true}
           chipComponent={Chip}
@@ -212,6 +236,22 @@ class App extends React.Component<{}, State> {
             </ButtonGroup>
           </FormLayout>
         </ValidatedForm>
+
+        <Heading>Connected Text Field</Heading>
+        <TextField
+          label="Connected Text Field"
+          type="number"
+          placeholder=""
+          value={this.state.appTextCounter}
+          helpText="Helper Text"
+          enableTextCouter={true}
+          maxLength={100}
+          onChange={this.valueUpdater('appTextCounter')}
+          connectedRight={<Select label="Weight unit" labelHidden options={[
+              'kg',
+              'lb',
+            ]} />}
+        />
 
         <Heading>Flexbox</Heading>
         <FlexBox>

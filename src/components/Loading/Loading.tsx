@@ -1,7 +1,10 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from 'react-css-themr';
+
 import Icon from '../Icon';
+import VisuallyHidden from '../VisuallyHidden';
 import { LOADING } from '../ThemeIdentifiers';
+
 import * as baseTheme from './Loading.scss';
 
 export interface Props {
@@ -19,7 +22,7 @@ class Loading extends React.PureComponent<Props, {}> {
         return (
             <div style={style}>
                 <span className={theme.loading}><Icon source="horizontalDots" backdrop /></span>
-                <span className={theme.srOnly}>Loading...</span>
+                <VisuallyHidden>Loading...</VisuallyHidden>
             </div>
         );
     }
