@@ -82,6 +82,8 @@ $stacking-order: (
   font-family: inherit;
   font-size: inherit;
   font-weight: inherit;
+  -webkit-appearance: none;
+  -moz-appearance: none;
   appearance: none;
 
   &:disabled {
@@ -107,10 +109,14 @@ $stacking-order: (
   // These properties are used to remove the default "spinner" controls
   // for number fields, since we add our own, custom versions instead.
   &[type='number'] {
+    -webkit-appearance: textfield;
+    -moz-appearance: textfield;
     appearance: textfield;
 
     &::-webkit-outer-spin-button,
     &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      -moz-appearance: none;
       appearance: none;
       margin: 0;
     }
@@ -188,6 +194,8 @@ $stacking-order: (
   flex: 1 1 0%;
   justify-content: center;
   align-items: center;
+  -webkit-appearance: none;
+  -moz-appearance: none;
   appearance: none;
   background: linear-gradient(to bottom, color(white), color(sky, lighter));
   border: none;

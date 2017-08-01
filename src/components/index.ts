@@ -1,3 +1,4 @@
+import { Packet } from '_debugger';
 export {
   default as Avatar,
   Props as AvatarProps,
@@ -132,6 +133,15 @@ export {
   default as Message,
   Props as MessageProps,
 } from './Message';
+
+export {
+  default as OffCanvas,
+  Props as OffCanvasProps,
+  OffCanvasBody,
+  OffCanvasMenu,
+  OffCanvasAnimationType,
+  OffCanvasPosition,
+} from './OffCanvas';
 
 export {
   default as Panel,
