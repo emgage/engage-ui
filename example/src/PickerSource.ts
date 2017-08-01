@@ -1,4 +1,4 @@
-import { IPickerSource } from '../../src/components/Picker/IPickerSource';
+import { IPickerSource } from '../../src/components/Picker';
 import { PeoplePickerSearchType } from './PickerEnum';
 import { PeopleInfo } from './PeopleInfo';
 

@@ -4,7 +4,7 @@ import { OffCanvas, OffCanvasMenu, OffCanvasBody, OffCanvasAnimationType } from 
 import { PeoplePickerSearchType } from './PickerEnum';
 import { PeoplePickerSource } from './PickerSource';
 
-import Example from './ReactDataExample';
+import ReactDataExample from './ReactDataExample';
 
 import {
   Button,
@@ -12,7 +12,6 @@ import {
   DisplayText,
   FormLayout,
   Heading,
-  Link,
   TextField,
   FlexBox,
   ValidatedTextField,
@@ -59,7 +58,7 @@ class App extends React.Component<{}, State> {
     };
   }
 
-  rowGetter = (index) => this.state.rows[index];
+  rowGetter = index => this.state.rows[index];
 
   chipClick = () => {
     console.log('chip clicked...');
@@ -70,23 +69,22 @@ class App extends React.Component<{}, State> {
   }
 
   handleClick = () => {
-    this.setState({isMenuOpened: !this.state.isMenuOpened});
+    this.setState({ isMenuOpened: !this.state.isMenuOpened });
   }
 
   handleClickSlide = () => {
-    this.setState({isMenuOpened: !this.state.isMenuOpened, animation: OffCanvasAnimationType.Slide});
+    this.setState({ isMenuOpened: !this.state.isMenuOpened, animation: OffCanvasAnimationType.Slide });
   }
 
   handleClickReveal = () => {
-    this.setState({isMenuOpened: !this.state.isMenuOpened, animation: OffCanvasAnimationType.Reveal});
+    this.setState({ isMenuOpened: !this.state.isMenuOpened, animation: OffCanvasAnimationType.Reveal });
   }
 
   handleClickNone = () => {
-    this.setState({isMenuOpened: !this.state.isMenuOpened, animation: OffCanvasAnimationType.None});
+    this.setState({ isMenuOpened: !this.state.isMenuOpened, animation: OffCanvasAnimationType.None });
   }
 
   render() {
-
     const posterUrl = new URL('http://4.bp.blogspot.com/_JSR8IC77Ub4/TKB-XAWXmhI/AAAAAAAABJA/MqOpdFTOaHo/w1200-' +
       'h630-p-k-no-nu/C:%5Cfakepath%5Cbird1.jpg');
     const singleVideoSource = [
@@ -136,14 +134,14 @@ class App extends React.Component<{}, State> {
             </OffCanvasMenu>
           </OffCanvas>       
         <div>
-          <Example
+          <ReactDataExample
             columns={this.state.columns}
             rowGetter={this.rowGetter}
             rowsCount={this.state.rows.length}
             minHeight={2}
           />
           <Heading>Popover</Heading>
-          <TextField id='TestName' label='Text Counter' placeholder='' value={this.state.appTextCounter} helpText='Helper Text' enableTextCouter={true} maxLength={100} onChange={this.valueUpdater('appTextCounter')}/>
+          <TextField id="TestName" label="Text Counter" placeholder="test-placeholder" value={this.state.appTextCounter} helpText="Helper Text" enableTextCouter={true} maxLength={100} onChange={this.valueUpdater('appTextCounter')}/>
           <ClickableChip chip={<Chip>Batman</Chip>}>
             <Card title="More about Batman">
               <p>Batman is a fictional superhero who appears in American comic books published by DC Comics. The character was created by artist Bob Kane and writer Bill Finger, and first appeared in Detective Comics #27</p>

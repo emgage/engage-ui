@@ -11,18 +11,22 @@ export interface Props extends React.HTMLProps<HTMLImageElement> {
   sourceSet?: SourceSet[];
 }
 
-const image = () => ({ sourceSet, source, ...rest }: Props) => {
-  const finalSourceSet = sourceSet
-    ? (
-      sourceSet
-        .map(({ source: subSource, descriptor }) => `${subSource} ${descriptor}`)
-        .join(',')
-    )
-    : null;
 
-  return finalSourceSet
-    ? <img src={source} srcSet={finalSourceSet} {...rest} />
-    : <img src={source} {...rest} />;
-};
+class Image extends React.Component<Props, {}> {
+  render() {
+    const { sourceSet, source, ...rest } = this.props;
+    const finalSourceSet = sourceSet
+      ? (
+        sourceSet
+          .map(({ source: subSource, descriptor }) => `${subSource} ${descriptor}`)
+          .join(',')
+      )
+      : null;
 
-export default image;
+    return finalSourceSet
+      ? <img src={source} srcSet={finalSourceSet} {...rest} />
+      : <img src={source} {...rest} />;
+  }
+}
+
+export default Image;
