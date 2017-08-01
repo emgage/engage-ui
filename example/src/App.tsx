@@ -152,7 +152,8 @@ class App extends React.Component<{}, State> {
         <Loading>
           <div><span>Loading!!!!!</span></div>
         </Loading>
-        <Picker required={true}
+        <Picker
+          required
           chipComponent={Chip}
           filterPlaceHolder="People"
           searchResultComponent={Chip}
@@ -161,7 +162,6 @@ class App extends React.Component<{}, State> {
           minSelectedItems={2}
           millisecondsToWaitBeforeSearch={20}
           moreInfoComponent={<Button children="ranmal" />}
-
         />
         <ValidatedForm>
 

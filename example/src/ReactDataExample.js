@@ -1,7 +1,7 @@
-const ReactDataGrid = require('../ReactDataGrid');
+const ReactDataGrid = require('../../src/components/ReactDataGrid/ReactDataGrid');
 const React = require('react');
 
-const Example = React.createClass({
+const ReactDataExample = React.createClass({
   getInitialState() {
     this.createRows();
     this._columns = [
@@ -39,4 +39,4 @@ const Example = React.createClass({
   }
 });
 
-export default Example;
+export default ReactDataExample;

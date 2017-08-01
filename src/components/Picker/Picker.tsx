@@ -56,19 +56,19 @@ class Picker extends React.Component<Props, State> {
   }
   render() {
     const {
-            required,
-            filterPlaceHolder,
-            selectedResultsBehavior,
-            moreInfoComponent,
-            chipComponent,
-            searchResultComponent,
-            searchBehavior = this.handleChange,
-            moreInfoComponentShowOn = DisplayMoreInfo.onClick,
-            onSelect = this.handleSelect,
-            onRemove = this.handleRemove,
-            onMoreInfo = this.handleMoreInfo,
-            theme,
-          } = this.props;
+      required,
+      filterPlaceHolder,
+      selectedResultsBehavior,
+      moreInfoComponent,
+      chipComponent,
+      searchResultComponent,
+      searchBehavior = this.handleChange,
+      moreInfoComponentShowOn = DisplayMoreInfo.onClick,
+      onSelect = this.handleSelect,
+      onRemove = this.handleRemove,
+      onMoreInfo = this.handleMoreInfo,
+      theme,
+    } = this.props;
     let className = '';
     if (selectedResultsBehavior === 'hide') {
       className = theme.pickerResultHide;
@@ -86,11 +86,12 @@ class Picker extends React.Component<Props, State> {
                         }
                     </div>
                     <TextField
-                        label="lbl"
-                        value={this.state.people}
-                        placeholder={filterPlaceHolder}
-                        onChange={searchBehavior}
-                        required={required} />
+                      label="lbl"
+                      value={this.state.people}
+                      placeholder={filterPlaceHolder}
+                      onChange={searchBehavior}
+                      required={required}
+                    />
                 </div>
                 <div>
                     {
