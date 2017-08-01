@@ -1,10 +1,11 @@
 import * as React from 'react';
-import {Page, Section} from 'react-page-layout';
+import { Page, Section } from 'react-page-layout';
 import PrismCode from 'react-prism';
 import ChoiceListExample from '../example/ChoiceListExample';
 import ChoiceListMultipleExample from '../example/ChoiceListMultipleExample';
 
 const ChoiceListExampleSource = require('!raw-loader!../example/ChoiceListExample') as string;
+const ChoiceListMultipleExampleSource = require('!raw-loader!../example/ChoiceListMultipleExample') as string;
 
 export default() => (
     <div>
@@ -16,9 +17,11 @@ export default() => (
             </Section>
             <Section slot="mainExample">
                 <ChoiceListExample/>
-                <PrismCode className="language-jsx">
-                    {ChoiceListExampleSource}
-                </PrismCode>
+                <pre>
+                    <PrismCode className="language-jsx">
+                        {ChoiceListExampleSource}
+                    </PrismCode>
+                </pre>
             </Section>
             <Section slot="props">
                 <table style={{border: '1px solid black'}}>
@@ -48,6 +51,11 @@ export default() => (
             </Section>
             <Section slot="otherExamples">
                 <ChoiceListMultipleExample/>
+                <pre>
+                    <PrismCode className="language-jsx">
+                        {ChoiceListMultipleExampleSource}
+                    </PrismCode>
+                </pre>
             </Section>
         </Page>
     </div>
