@@ -24,6 +24,7 @@ import {
   Card,
   ClickableChip,
   Loading,
+  CardList,
 } from '../../src/components';
 
 interface State {
@@ -57,19 +58,19 @@ class App extends React.Component<{}, State> {
   }
 
   handleClick = () => {
-    this.setState({isMenuOpened: !this.state.isMenuOpened});
+    this.setState({ isMenuOpened: !this.state.isMenuOpened });
   }
 
   handleClickSlide = () => {
-    this.setState({isMenuOpened: !this.state.isMenuOpened, animation: OffCanvasAnimationType.Slide});
+    this.setState({ isMenuOpened: !this.state.isMenuOpened, animation: OffCanvasAnimationType.Slide });
   }
 
   handleClickReveal = () => {
-    this.setState({isMenuOpened: !this.state.isMenuOpened, animation: OffCanvasAnimationType.Reveal});
+    this.setState({ isMenuOpened: !this.state.isMenuOpened, animation: OffCanvasAnimationType.Reveal });
   }
 
   handleClickNone = () => {
-    this.setState({isMenuOpened: !this.state.isMenuOpened, animation: OffCanvasAnimationType.None});
+    this.setState({ isMenuOpened: !this.state.isMenuOpened, animation: OffCanvasAnimationType.None });
   }
 
   render() {
@@ -101,30 +102,87 @@ class App extends React.Component<{}, State> {
         width: 100,
       }} />;
 
+    const cardListData = [{
+      id: 1,
+      name: 'Managing Director',
+      people: [
+        {
+          id: 2,
+          name: 'Sales Director',
+        }, {
+          id: 3,
+          name: 'IT Director',
+          people: [
+            {
+              id: 4,
+              name: 'Technical Lead',
+              people: [
+                {
+                  id: 5,
+                  name: 'Software Developer',
+                  people: [
+                    {
+                      id: 6,
+                      name: 'Android Developer',
+                    },
+                    {
+                      id: 7,
+                      name: 'IOS Developer',
+                    },
+                  ],
+                },
+                {
+                  id: 8,
+                  name: 'Support Technician',
+                },
+              ],
+            },
+          ],
+        }, {
+          id: 9,
+          name: 'HR Department',
+          people: [
+            {
+              id: 10,
+              name: 'HR Officer',
+              people: [{
+                id: 11,
+                name: 'HR Assistant 1',
+              }, {
+                id: 12,
+                name: 'HR Assistant 2',
+              }],
+            },
+          ],
+        },
+      ],
+    }];
+
     return (
-      <div> 
+      <div>
         <OffCanvas width={270} transitionDuration={270} isMenuOpened={this.state.isMenuOpened}>
-            <OffCanvasBody animation={this.state.animation}>
-              <p>This is the main body container.</p>
-              <p><a href="#" onClick={this.handleClickSlide}>Slide</a> to toggle the menu.</p>
-              <p><a href="#" onClick={this.handleClickReveal}>Reveal</a> to toggle the menu.</p>
-              <p><a href="#" onClick={this.handleClickNone}>None</a> to toggle the menu.</p>
-            </OffCanvasBody>
-            <OffCanvasMenu animation={this.state.animation}>
-              <p>Placeholder content.</p>
-              <ul>
-                <li>Link 1</li>
-                <li>Link 2</li>
-                <li>Link 3</li>
-                <li>Link 4</li>
-                <li>Link 5</li>
-                <li><a href="#" onClick={this.handleClick}>Toggle Menu</a></li>
-              </ul>
-            </OffCanvasMenu>
-          </OffCanvas>       
+          <OffCanvasBody animation={this.state.animation}>
+            <p>This is the main body container.</p>
+            <p><a href="#" onClick={this.handleClickSlide}>Slide</a> to toggle the menu.</p>
+            <p><a href="#" onClick={this.handleClickReveal}>Reveal</a> to toggle the menu.</p>
+            <p><a href="#" onClick={this.handleClickNone}>None</a> to toggle the menu.</p>
+          </OffCanvasBody>
+          <OffCanvasMenu animation={this.state.animation}>
+            <p>Placeholder content.</p>
+            <ul>
+              <li>Link 1</li>
+              <li>Link 2</li>
+              <li>Link 3</li>
+              <li>Link 4</li>
+              <li>Link 5</li>
+              <li><a href="#" onClick={this.handleClick}>Toggle Menu</a></li>
+            </ul>
+          </OffCanvasMenu>
+        </OffCanvas>
         <div>
+          <CardList data={cardListData}/>
           <Heading>Popover</Heading>
-          <TextField id='TestName' label='Text Counter' placeholder='' value={this.state.appTextCounter} helpText='Helper Text' enableTextCouter={true} maxLength={100} onChange={this.valueUpdater('appTextCounter')}/>
+          <TextField id='TestName' label='Text Counter' placeholder='' value={this.state.appTextCounter} helpText='Helper Text' enableTextCouter={true} maxLength={100} onChange={this.valueUpdater('appTextCounter')} />
           <ClickableChip chip={<Chip>Batman</Chip>}>
             <Card title="More about Batman">
               <p>Batman is a fictional superhero who appears in American comic books published by DC Comics. The character was created by artist Bob Kane and writer Bill Finger, and first appeared in Detective Comics #27</p>
