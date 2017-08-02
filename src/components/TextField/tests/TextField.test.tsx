@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {mount} from 'enzyme';
-import TextField from '..';
+import { mount } from 'enzyme';
+import TextField from '../TextField';
 
 describe('<TextField />', () => {
   it('sets all pass through properties on the input', () => {
@@ -130,16 +130,16 @@ describe('<TextField />', () => {
     });
   });
 
-  describe('counterTextMarkup',()=>{    
+  describe('counterTextMarkup',() => {    
     it('display counter text while no maxLength', () => {
-      const counterTextMarkup=mount(<div>{9}</div>);
+      const counterTextMarkup = mount(<div>{9}</div>);
       const textField = mount(<TextField label="TextField" value="Some Text" />);
       expect(counterTextMarkup.text()).toBe(textField.prop('value').length.toString());
     });
     it('display counter text and maxLength', () => {
-      const counterTextMarkup=mount(<div>{9}/{100}</div>);
+      const counterTextMarkup = mount(<div>{9}/{100}</div>);
       const textField = mount(<TextField label="TextField" maxLength={100} value="Some Text" />);
-      expect(counterTextMarkup.text()).toBe(textField.prop('value').length.toString()+"/"+textField.prop('maxLength').toString());    
+      expect(counterTextMarkup.text()).toBe(textField.prop('value').length.toString() + '/' + textField.prop('maxLength').toString());    
     });
   });
 
@@ -148,7 +148,7 @@ describe('<TextField />', () => {
       const textField = mount(<TextField errors={['error']} label="TextField" />);
       expect(textField.find('input').prop<string>('aria-invalid')).toBe(true);
 
-      textField.setProps({error: 'Some error'});
+      textField.setProps({ error: 'Some error' });
       expect(textField.find('input').prop<string>('aria-invalid')).toBe(true);
     });
 

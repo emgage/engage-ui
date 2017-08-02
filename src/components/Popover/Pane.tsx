@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from 'react-css-themr';
-import {classNames} from '@shopify/react-utilities/styles';
-import {wrapWithComponent} from '@shopify/react-utilities/components';
+import { classNames } from '@shopify/react-utilities/styles';
+import { wrapWithComponent } from '@shopify/react-utilities/components';
 
 import Scrollable from '../Scrollable';
 import { POPOVER } from '../ThemeIdentifiers';
@@ -10,16 +10,16 @@ import Section from './Section';
 import * as baseTheme from './Popover.scss';
 
 export interface Props {
-  fixed?: boolean,
-  sectioned?: boolean,
-  children?: React.ReactNode,
-  theme?: any,
+  fixed?: boolean;
+  sectioned?: boolean;
+  children?: React.ReactNode;
+  theme?: any;
 }
 
-const Pane = ({fixed, sectioned, children, theme}: Props) => {
+const pane = ({ fixed, sectioned, children, theme }: Props) => {
   const className = classNames(
-    theme.Pane,
-    fixed && theme['Pane-fixed'],
+    theme.pane,
+    fixed && theme['pane-fixed'],
   );
 
   const content = sectioned
@@ -37,6 +37,6 @@ const Pane = ({fixed, sectioned, children, theme}: Props) => {
         {content}
       </Scrollable>
     );
-}
+};
 
-export default themr(POPOVER, baseTheme)(Pane) as ThemedComponentClass<Props, {}>;
+export default themr(POPOVER, baseTheme)(pane) as ThemedComponentClass<Props, {}>;

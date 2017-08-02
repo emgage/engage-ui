@@ -12,28 +12,28 @@ import * as baseTheme from './Button.scss';
 export type Size = 'slim' | 'large';
 
 export interface Props {
-  url?: string,
-  children?: string,
-  size?: Size,
-  fullWidth?: boolean,
-  primary?: boolean,
-  outline?: boolean,
-  destructive?: boolean,
-  disabled?: boolean,
-  plain?: boolean,
-  external?: boolean,
-  submit?: boolean,
-  disclosure?: boolean,
-  accessibilityLabel?: string,
-  icon?: IconProps['source'],
-  style?: React.CSSProperties,
-  theme?: any,
+  url?: string;
+  children?: string;
+  size?: Size;
+  fullWidth?: boolean;
+  primary?: boolean;
+  outline?: boolean;
+  destructive?: boolean;
+  disabled?: boolean;
+  plain?: boolean;
+  external?: boolean;
+  submit?: boolean;
+  disclosure?: boolean;
+  accessibilityLabel?: string;
+  icon?: IconProps['source'];
+  style?: React.CSSProperties;
+  theme?: any;
   onClick?(e: any): void,
-  onFocus?(): void,
-  onBlur?(): void,
+  onFocus?(): void;
+  onBlur?(): void;
 }
 
-const Button = ({
+const button = ({
   url,
   disabled,
   children,
@@ -55,7 +55,7 @@ const Button = ({
   theme,
 }: Props) => {
   const className = classNames(
-    theme.Button,
+    theme.button,
     primary && theme.primary,
     outline && theme.outline,
     destructive && theme.destructive,
@@ -67,11 +67,11 @@ const Button = ({
   );
 
   const disclosureIconMarkup = disclosure
-    ? <span className={theme.Icon}><Icon source="caretDown" /></span>
+    ? <span className={theme.icon}><Icon source="caretDown" /></span>
     : null;
 
   const iconMarkup = icon
-    ? <span className={theme.Icon}><Icon source={icon} /></span>
+    ? <span className={theme.icon}><Icon source={icon} /></span>
     : null;
 
   const childMarkup = children ? <span>{children}</span> : null;
@@ -124,7 +124,7 @@ const Button = ({
   );
 };
 
-const ThemedButton = themr(BUTTON, baseTheme)(Button) as ThemedComponentClass<Props, {}>;
+const THEMEDBUTTON = themr(BUTTON, baseTheme)(button) as ThemedComponentClass<Props, {}>;
 
 function handleMouseUp({ currentTarget }: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) {
   currentTarget.blur();
@@ -146,7 +146,7 @@ export function buttonFrom(
   key?: any,
 ) {
   return (
-    <ThemedButton
+    <THEMEDBUTTON
       key={key}
       children={content}
       onClick={onAction}
@@ -156,4 +156,4 @@ export function buttonFrom(
   );
 }
 
-export default ThemedButton
+export default THEMEDBUTTON;

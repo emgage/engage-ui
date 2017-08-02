@@ -7,11 +7,11 @@ import { TEXT_FIELD } from '../ThemeIdentifiers';
 import * as baseTheme from './TextField.scss';
 
 export interface Props {
-  theme?: any,
-  contents?: string,
-  currentHeight?: number | null,
-  minimumLines?: number,
-  onHeightChange(height: number): void,
+  theme?: any;
+  contents?: string;
+  currentHeight?: number | null;
+  minimumLines?: number;
+  onHeightChange(height: number): void;
 }
 
 class Resizer extends React.PureComponent<Props, never> {
@@ -33,25 +33,25 @@ class Resizer extends React.PureComponent<Props, never> {
   }
 
   render() {
-    const {contents, minimumLines} = this.props;
+    const { contents, minimumLines } = this.props;
 
     const minimumLinesMarkup = minimumLines
       ? (
         <div
           ref={(input) => {this.setMinimumLinesNode(input as HTMLElement);}}
-          className={this.props.theme.DummyInput}
-          dangerouslySetInnerHTML={{__html: getContentsForMinimumLines(minimumLines)}}
+          className={this.props.theme.dummyInput}
+          dangerouslySetInnerHTML={{ __html: getContentsForMinimumLines(minimumLines) }}
         />
       )
       : null;
 
     return (
-      <div aria-hidden className={this.props.theme.Resizer}>
+      <div aria-hidden className={this.props.theme.resizer}>
         <EventListener event="resize" handler={this.handleHeightCheck} />
         <div
           ref={(input) => {this.setContentNode(input as HTMLElement);}}
-          className={this.props.theme.DummyInput}
-          dangerouslySetInnerHTML={{__html: getFinalContents(contents)}}
+          className={this.props.theme.dummyInput}
+          dangerouslySetInnerHTML={{ __html: getFinalContents(contents) }}
         />
         {minimumLinesMarkup}
       </div>
@@ -64,7 +64,7 @@ class Resizer extends React.PureComponent<Props, never> {
     const minimumHeight = this.setMinimumLinesNode ? this.minimumLinesNode.offsetHeight : 0;
     const newHeight = Math.max(contentHeight, minimumHeight);
 
-    const {currentHeight, onHeightChange} = this.props;
+    const { currentHeight, onHeightChange } = this.props;
 
     if (newHeight !== currentHeight) {
       onHeightChange(newHeight);
@@ -98,7 +98,7 @@ function replaceEntity(entity: keyof typeof ENTITIES_TO_REPLACE) {
 function getContentsForMinimumLines(minimumLines: number) {
   let content = '';
 
-  for (let line = 0; line < minimumLines; line++) {
+  for (let line = 0; line < minimumLines; line += 1) {
     content += '<br>';
   }
 
