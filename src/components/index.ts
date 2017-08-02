@@ -96,6 +96,9 @@ export {
 export {
   default as FlexBox,
   Props as FlexBoxProps,
+  FlexAlign, 
+  FlexDirection, 
+  FlexJustify,
 } from './FlexBox';
 
 export {
@@ -121,6 +124,7 @@ export {
 export {
   default as List,
   Props as ListProps,
+  Item,
 } from './List';
 
 export {

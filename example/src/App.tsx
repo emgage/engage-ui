@@ -1,6 +1,4 @@
-import undefined from '../../src/components/Card/Header';
 import * as React from 'react';
-import { FlexAlign, FlexDirection, FlexJustify } from '../../src/components/FlexBox/FlexProps';
 import { PeoplePickerSearchType } from './PickerEnum';
 import { PeoplePickerSource } from './PickerSource';
 
@@ -18,9 +16,13 @@ import {
   Column,
   DisplayText,
   FlexBox,
+  FlexAlign, 
+  FlexDirection, 
+  FlexJustify,
   FormLayout,
   Heading,
   List,
+  Item,
   Loading,
   OffCanvas,
   OffCanvasMenu,
@@ -67,7 +69,7 @@ class App extends React.Component<{}, State> {
     };
   }
 
-  rowGetter = index => this.state.rows[index];
+  rowGetter = (index: number) => this.state.rows[index];
 
   chipClick = () => {
     console.log('chip clicked...');

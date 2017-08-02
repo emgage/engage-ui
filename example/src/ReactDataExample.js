@@ -1,4 +1,4 @@
-const ReactDataGrid = require('../../src/components/ReactDataGrid/ReactDataGrid');
+import { ReactDataGrid } from '../../src/components';
 const React = require('react');
 
 const ReactDataExample = React.createClass({
