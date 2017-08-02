@@ -67,7 +67,7 @@ describe('<Video />', () => {
         const subject = mount(<Video poster={poster} src={singleVideoSource} />);
         expect(subject.find('video')).toHaveLength(1);
         expect(subject.find('video').childAt(0).prop('src')).toBe(singleVideoSource[0].src);
-        expect(subject.find('video').props().autoPlay).toBe(false);
+        expect(subject.find('video').prop('autoPlay')).toBe(false);
       });
     });
     describe('when set to true', () => {
@@ -75,7 +75,7 @@ describe('<Video />', () => {
         const subject = mount(<Video poster={poster} src={singleVideoSource} autoplay={true} />);
         expect(subject.find('video')).toHaveLength(1);
         expect(subject.find('video').childAt(0).prop('src')).toBe(singleVideoSource[0].src);
-        expect(subject.find('video').props().autoPlay).toBe(true);
+        expect(subject.find('video').prop('autoPlay')).toBe(true);
       });
     });
     describe('when set to false', () => {
@@ -83,7 +83,7 @@ describe('<Video />', () => {
         const subject = mount(<Video poster={poster} src={singleVideoSource} autoplay={false} />);
         expect(subject.find('video')).toHaveLength(1);
         expect(subject.find('video').childAt(0).prop('src')).toBe(singleVideoSource[0].src);
-        expect(subject.find('video').props().autoPlay).toBe(false);
+        expect(subject.find('video').prop('autoPlay')).toBe(false);
       });
     });
   });
@@ -94,7 +94,7 @@ describe('<Video />', () => {
         const subject = mount(<Video poster={poster} src={singleVideoSource} />);
         expect(subject.find('video')).toHaveLength(1);
         expect(subject.find('video').childAt(0).prop('src')).toBe(singleVideoSource[0].src);
-        expect(subject.find('video').props().controls).toBeUndefined();
+        expect(subject.find('video').prop('controls')).toBeUndefined();
       });
     });
     describe('when set to true', () => {
@@ -102,7 +102,7 @@ describe('<Video />', () => {
         const subject = mount(<Video poster={poster} src={singleVideoSource} controls={true} />);
         expect(subject.find('video')).toHaveLength(1);
         expect(subject.find('video').childAt(0).prop('src')).toBe(singleVideoSource[0].src);
-        expect(subject.find('video').props().controls).toBe(true);
+        expect(subject.find('video').prop('controls')).toBe(true);
       });
     });
     describe('when set to false', () => {
@@ -110,7 +110,7 @@ describe('<Video />', () => {
         const subject = mount(<Video poster={poster} src={singleVideoSource} controls={false} />);
         expect(subject.find('video')).toHaveLength(1);
         expect(subject.find('video').childAt(0).prop('src')).toBe(singleVideoSource[0].src);
-        expect(subject.find('video').props().controls).toBe(false);
+        expect(subject.find('video').prop('controls')).toBe(false);
       });
     });
   });
@@ -121,7 +121,7 @@ describe('<Video />', () => {
         const subject = mount(<Video poster={poster} src={singleVideoSource} />);
         expect(subject.find('video')).toHaveLength(1);
         expect(subject.find('video').childAt(0).prop('src')).toBe(singleVideoSource[0].src);
-        expect(subject.find('video').props().crossOrigin).toBeUndefined();
+        expect(subject.find('video').prop('crossOrigin')).toBeUndefined();
       });
     });
     describe('when set to anonymous', () => {
@@ -129,7 +129,7 @@ describe('<Video />', () => {
         const subject = mount(<Video poster={poster} src={singleVideoSource} crossorigin="anonymous" />);
         expect(subject.find('video')).toHaveLength(1);
         expect(subject.find('video').childAt(0).prop('src')).toBe(singleVideoSource[0].src);
-        expect(subject.find('video').props().crossOrigin).toBe('anonymous');
+        expect(subject.find('video').prop('crossOrigin')).toBe('anonymous');
       });
     });
     describe('when set to use-credentials', () => {
@@ -137,7 +137,7 @@ describe('<Video />', () => {
         const subject = mount(<Video poster={poster} src={singleVideoSource} crossorigin="use-credentials" />);
         expect(subject.find('video')).toHaveLength(1);
         expect(subject.find('video').childAt(0).prop('src')).toBe(singleVideoSource[0].src);
-        expect(subject.find('video').props().crossOrigin).toBe('use-credentials');
+        expect(subject.find('video').prop('crossOrigin')).toBe('use-credentials');
       });
     });
   });
@@ -148,7 +148,7 @@ describe('<Video />', () => {
         const subject = mount(<Video poster={poster} src={singleVideoSource} />);
         expect(subject.find('video')).toHaveLength(1);
         expect(subject.find('video').childAt(0).prop('src')).toBe(singleVideoSource[0].src);
-        expect(subject.find('video').props().loop).toBe(false);
+        expect(subject.find('video').prop('loop')).toBe(false);
       });
     });
     describe('when set to true', () => {
@@ -156,7 +156,7 @@ describe('<Video />', () => {
         const subject = mount(<Video poster={poster} src={singleVideoSource} loop={true} />);
         expect(subject.find('video')).toHaveLength(1);
         expect(subject.find('video').childAt(0).prop('src')).toBe(singleVideoSource[0].src);
-        expect(subject.find('video').props().loop).toBe(true);
+        expect(subject.find('video').prop('loop')).toBe(true);
       });
     });
     describe('when set to false', () => {
@@ -164,7 +164,7 @@ describe('<Video />', () => {
         const subject = mount(<Video poster={poster} src={singleVideoSource} loop={false} />);
         expect(subject.find('video')).toHaveLength(1);
         expect(subject.find('video').childAt(0).prop('src')).toBe(singleVideoSource[0].src);
-        expect(subject.find('video').props().loop).toBe(false);
+        expect(subject.find('video').prop('loop')).toBe(false);
       });
     });
   });
@@ -175,7 +175,7 @@ describe('<Video />', () => {
         const subject = mount(<Video poster={poster} src={singleVideoSource} />);
         expect(subject.find('video')).toHaveLength(1);
         expect(subject.find('video').childAt(0).prop('src')).toBe(singleVideoSource[0].src);
-        expect(subject.find('video').props().muted).toBe(false);
+        expect(subject.find('video').prop('muted')).toBe(false);
       });
     });
     describe('when set to true', () => {
@@ -183,7 +183,7 @@ describe('<Video />', () => {
         const subject = mount(<Video poster={poster} src={singleVideoSource} muted={true} />);
         expect(subject.find('video')).toHaveLength(1);
         expect(subject.find('video').childAt(0).prop('src')).toBe(singleVideoSource[0].src);
-        expect(subject.find('video').props().muted).toBe(true);
+        expect(subject.find('video').prop('muted')).toBe(true);
       });
     });
     describe('when set to false', () => {
@@ -191,7 +191,7 @@ describe('<Video />', () => {
         const subject = mount(<Video poster={poster} src={singleVideoSource} muted={false} />);
         expect(subject.find('video')).toHaveLength(1);
         expect(subject.find('video').childAt(0).prop('src')).toBe(singleVideoSource[0].src);
-        expect(subject.find('video').props().muted).toBe(false);
+        expect(subject.find('video').prop('muted')).toBe(false);
       });
     });
   });
@@ -202,7 +202,7 @@ describe('<Video />', () => {
         const subject = mount(<Video poster={poster} src={singleVideoSource} />);
         expect(subject.find('video')).toHaveLength(1);
         expect(subject.find('video').childAt(0).prop('src')).toBe(singleVideoSource[0].src);
-        expect(subject.find('video').props().preload).toBeUndefined();
+        expect(subject.find('video').prop('preload')).toBeUndefined();
       });
     });
     describe('when set to auto', () => {
@@ -210,7 +210,7 @@ describe('<Video />', () => {
         const subject = mount(<Video poster={poster} src={singleVideoSource} preload="auto" />);
         expect(subject.find('video')).toHaveLength(1);
         expect(subject.find('video').childAt(0).prop('src')).toBe(singleVideoSource[0].src);
-        expect(subject.find('video').props().preload).toBe('auto');
+        expect(subject.find('video').prop('preload')).toBe('auto');
       });
     });
     describe('when set to none', () => {
@@ -218,7 +218,7 @@ describe('<Video />', () => {
         const subject = mount(<Video poster={poster} src={singleVideoSource} preload="none" />);
         expect(subject.find('video')).toHaveLength(1);
         expect(subject.find('video').childAt(0).prop('src')).toBe(singleVideoSource[0].src);
-        expect(subject.find('video').props().preload).toBe('none');
+        expect(subject.find('video').prop('preload')).toBe('none');
       });
     });
   });
