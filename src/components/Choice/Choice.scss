@@ -14,7 +14,7 @@ $control-vertical-adjustment: 2px;
 // within its viewbox.
 $icon-horizontal-adjustment: 2px;
 
-.Choice {
+.choice {
   display: flex;
   align-items: flex-start;
   padding: spacing(extra-tight) 0;
@@ -26,7 +26,7 @@ $icon-horizontal-adjustment: 2px;
   }
 }
 
-.Control {
+.control {
   display: flex;
   flex: 0 0 auto;
   align-items: stretch;
@@ -40,29 +40,29 @@ $icon-horizontal-adjustment: 2px;
   }
 }
 
-.Label {
+.label {
   @include text-style-body;
   flex: 1 1 0%;
   -webkit-tap-highlight-color: transparent;
 }
 
-.Descriptions {
+.descriptions {
   padding-left: spacing(tight) + $control-size;
 }
 
-.HelpText {
+.helpText {
   @include text-style-body;
   @include text-emphasis-subdued;
   margin-bottom: spacing(extra-tight);
 }
 
-.Error {
+.error {
   display: flex;
   margin-bottom: spacing(extra-tight);
   color: color(red, dark);
 }
 
-.ErrorIcon {
+.errorIcon {
   @include recolor-icon(color(red));
   margin: 0 spacing(extra-tight) 0 (-1 * $icon-horizontal-adjustment);
 }

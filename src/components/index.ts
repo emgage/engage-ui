@@ -1,4 +1,3 @@
-import { Packet } from '_debugger';
 export {
   default as Avatar,
   Props as AvatarProps,
@@ -168,6 +167,10 @@ export {
   default as RadioButton,
   Props as RadioButtonProps,
 } from './RadioButton';
+
+export {
+  default as ReactDataGrid,
+} from './ReactDataGrid';
 
 export {
   default as Scrollable,
