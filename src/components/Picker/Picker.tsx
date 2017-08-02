@@ -2,6 +2,7 @@ import * as React from 'react';
 import { themr, ThemedComponentClass } from 'react-css-themr';
 import { PICKER } from '../ThemeIdentifiers';
 import TextField from '../TextField';
+import List from '../List';
 import { DisplayMoreInfo } from './PickerEnum';
 
 import * as baseTheme from './Picker.scss';
@@ -95,7 +96,10 @@ class Picker extends React.Component<Props, State> {
                 <div>
                     {
                         this.state.searchItems.map(function (i) {
-                            return React.createElement(searchResultComponent as React.ComponentClass<{ clickable: boolean, moreInfoComponent: React.ReactNode, moreInfoComponentShowOn: DisplayMoreInfo, onClick(item: any): void, handleMoreInfo(): void }>, { key: i.Id, clickable: true, moreInfoComponent, moreInfoComponentShowOn, onClick: onSelect, handleMoreInfo: onMoreInfo }, [i.Name]);
+                            return (<List key={i.Id}>
+                                {React.createElement(searchResultComponent as React.ComponentClass<{ clickable: boolean, moreInfoComponent: React.ReactNode, moreInfoComponentShowOn: DisplayMoreInfo, onClick(item: any): void, handleMoreInfo(): void }>, { key: i.Id, clickable: true, moreInfoComponent, moreInfoComponentShowOn, onClick: onSelect, handleMoreInfo: onMoreInfo }, [i.Name])}
+                            </List>
+                            );
                         })
                     }
                 </div>
