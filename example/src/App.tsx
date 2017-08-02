@@ -4,8 +4,8 @@ import { FlexAlign, FlexDirection, FlexJustify } from '../../src/components/Flex
 import { PeoplePickerSearchType } from './PickerEnum';
 import { PeoplePickerSource } from './PickerSource';
 
-// This is funk - do we need to uniqly import the Item component like this?
-import Item from '../../src/components/List/Item';
+import ReactDataExample from './ReactDataExample';
+
 
 
 import {
@@ -20,7 +20,6 @@ import {
   FlexBox,
   FormLayout,
   Heading,
-  Link,
   List,
   Loading,
   OffCanvas,
@@ -40,11 +39,11 @@ import {
 interface State {
   appName?: string,
   appDescription: string,
-
+  appTextCounter: string,
+  columns: object[],
+  rows: object[],
   isMenuOpened: boolean,
   animation?: OffCanvasAnimationType,
-
-  appTextCounter: string,
 }
 
 class App extends React.Component<{}, State> {
@@ -53,11 +52,22 @@ class App extends React.Component<{}, State> {
     this.state = {
       appName: '',
       appDescription: '',
-
-      isMenuOpened: false,
       appTextCounter: '',
+      columns: [
+        { key: 'id', name: 'ID' },
+        { key: 'title', name: 'Title' },
+        { key: 'count', name: 'Count' }
+      ],
+      rows: [
+        { id: 1, title: 'Title 1', count: 1 },
+        { id: 2, title: 'Title 2', count: 2 },
+        { id: 3, title: 'Title 3', count: 3 }
+      ],
+      isMenuOpened: false,
     };
   }
+
+  rowGetter = index => this.state.rows[index];
 
   chipClick = () => {
     console.log('chip clicked...');
@@ -68,23 +78,22 @@ class App extends React.Component<{}, State> {
   }
 
   handleClick = () => {
-    this.setState({isMenuOpened: !this.state.isMenuOpened});
+    this.setState({ isMenuOpened: !this.state.isMenuOpened });
   }
 
   handleClickSlide = () => {
-    this.setState({isMenuOpened: !this.state.isMenuOpened, animation: OffCanvasAnimationType.Slide});
+    this.setState({ isMenuOpened: !this.state.isMenuOpened, animation: OffCanvasAnimationType.Slide });
   }
 
   handleClickReveal = () => {
-    this.setState({isMenuOpened: !this.state.isMenuOpened, animation: OffCanvasAnimationType.Reveal});
+    this.setState({ isMenuOpened: !this.state.isMenuOpened, animation: OffCanvasAnimationType.Reveal });
   }
 
   handleClickNone = () => {
-    this.setState({isMenuOpened: !this.state.isMenuOpened, animation: OffCanvasAnimationType.None});
+    this.setState({ isMenuOpened: !this.state.isMenuOpened, animation: OffCanvasAnimationType.None });
   }
 
   render() {
-
     const posterUrl = new URL('http://4.bp.blogspot.com/_JSR8IC77Ub4/TKB-XAWXmhI/AAAAAAAABJA/MqOpdFTOaHo/w1200-' +
       'h630-p-k-no-nu/C:%5Cfakepath%5Cbird1.jpg');
     const singleVideoSource = [
@@ -134,8 +143,14 @@ class App extends React.Component<{}, State> {
             </OffCanvasMenu>
           </OffCanvas>       
         <div>
+          <ReactDataExample
+            columns={this.state.columns}
+            rowGetter={this.rowGetter}
+            rowsCount={this.state.rows.length}
+            minHeight={2}
+          />
           <Heading>Popover</Heading>
-          <TextField id="TestName" label="Text Counter" placeholder="" value={this.state.appTextCounter} helpText="Helper Text" enableTextCouter={true} maxLength={100} onChange={this.valueUpdater('appTextCounter')}/>
+          <TextField id="TestName" label="Text Counter" placeholder="test-placeholder" value={this.state.appTextCounter} helpText="Helper Text" enableTextCouter={true} maxLength={100} onChange={this.valueUpdater('appTextCounter')}/>
           <ClickableChip chip={<Chip>Batman</Chip>}>
             <Card title="More about Batman">
               <p>Batman is a fictional superhero who appears in American comic books published by DC Comics. The character was created by artist Bob Kane and writer Bill Finger, and first appeared in Detective Comics #27</p>
@@ -184,7 +199,8 @@ class App extends React.Component<{}, State> {
   selected={['hidden']}
 />
         <Loading />
-        <Picker required={true}
+        <Picker
+          required
           chipComponent={Chip}
           filterPlaceHolder="People"
           searchResultComponent={Chip}

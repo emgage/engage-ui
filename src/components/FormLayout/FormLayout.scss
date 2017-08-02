@@ -1,32 +1,32 @@
 $item-min-size: rem(220px);
 
-.FormLayout {
+.formLayout {
   margin-top: -1 * spacing();
   margin-left: -1 * spacing(loose);
 }
 
-.condensed .Item {
+.condensed .item {
   flex-basis: (0.5 * $item-min-size);
   min-width: (0.5 * $item-min-size);
 }
 
-.Title {
+.title {
   margin-bottom: -1 * spacing(tight);
   padding: spacing() spacing(loose) 0;
 }
 
-.Items {
+.items {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
 }
 
-.HelpText {
+.helpText {
   @include text-emphasis-subdued;
   padding: spacing(tight) spacing(loose) 0;
 }
 
-.Item {
+.item {
   flex: 1 1 $item-min-size;
   margin-top: spacing();
   margin-left: spacing(loose);

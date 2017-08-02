@@ -1,10 +1,8 @@
-import OffCanvas from './OffCanvas';
-import { Props } from './OffCanvas';
-
-export { OffCanvasBody } from './OffCanvasBody';
-export { OffCanvasMenu } from './OffCanvasMenu';
+import OffCanvas, { Props } from './OffCanvas';
+import OffCanvasBody from './OffCanvasBody';
+import OffCanvasMenu from './OffCanvasMenu';
 export { OffCanvasAnimationType, OffCanvasPosition } from './OffCanvasProps';
 
-export { Props };
+export { Props, OffCanvasBody, OffCanvasMenu };
 
 export default OffCanvas;
