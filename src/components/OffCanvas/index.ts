@@ -1,5 +1,4 @@
-import OffCanvas from './OffCanvas';
-import { Props } from './OffCanvas';
+import OffCanvas, { Props } from './OffCanvas';
 
 export { OffCanvasBody } from './OffCanvasBody';
 export { OffCanvasMenu } from './OffCanvasMenu';
