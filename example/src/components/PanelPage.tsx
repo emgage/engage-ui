@@ -1,8 +1,26 @@
 import * as React from 'react';
-// import {Page, Section} from 'react-page-layout';
-// import ChoiceListExample from '../example/ChoiceListExample';
-// import ChoiceListMultipleExample from '../example/ChoiceListMultipleExample';
+import {DocumentPage, Header, Example} from '../layout';
+
+import PanelExample from '../example/PanelExample';
+const PanelExampleSource = require('!raw-loader!../example/PanelExample')as string;
+
+const properties = [
+    {
+        property: 'title',
+        type: 'string',
+        value: '',
+        notes: 'Panel title',
+    },
+];
 
 export default() => (
-    <div>Panel Page</div>
+    <DocumentPage
+        header={
+            <Header title="Panel">
+                This is a short description for Panel component.
+            </Header>
+        }
+        properties={properties}
+        examples={<Example source={PanelExampleSource} demo={<PanelExample/>} />}
+    />
 );

@@ -2,8 +2,8 @@
 
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import * as ReactPerfTool from 'react-perf-tool';
-import * as Perf from 'react-addons-perf';
+// import * as ReactPerfTool from 'react-perf-tool';
+// import * as Perf from 'react-addons-perf';
 import { LayoutProvider } from 'react-page-layout';
 import App from './App';
 import BaseTheme from '../../themes/Delicious/index';

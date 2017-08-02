@@ -102,6 +102,7 @@
     "react-page-layout": "^0.9.6",
     "react-prism": "^4.3.0",
     "react-router-dom": "^4.1.2",
+    "react-table": "^6.5.1",
     "react-text-mask-hoc": "^0.3.0",
     "tslib": "^1.6.0"
   },

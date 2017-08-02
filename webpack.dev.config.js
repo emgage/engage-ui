@@ -27,6 +27,8 @@ BaseConfig.plugins.push(new CopyWebpackPlugin([{
   from: './example/assets/prism.js'
 },{
   from: './example/assets/prism.css'
+},{
+  from: './node_modules/react-table/react-table.css'
 }]));
 
 module.exports = BaseConfig;

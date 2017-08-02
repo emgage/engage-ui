@@ -1,62 +1,71 @@
 import * as React from 'react';
-import { Page, Section } from 'react-page-layout';
-import PrismCode from 'react-prism';
-import ChoiceListExample from '../example/ChoiceListExample';
-import ChoiceListMultipleExample from '../example/ChoiceListMultipleExample';
+import {DocumentPage, Header, Example} from '../layout';
 
-const ChoiceListExampleSource = require('!raw-loader!../example/ChoiceListExample') as string;
-const ChoiceListMultipleExampleSource = require('!raw-loader!../example/ChoiceListMultipleExample') as string;
+import ChoiceListExample from '../example/ChoiceListExample';
+// import ChoiceListMultipleExample from '../example/ChoiceListMultipleExample';
+
+const ChoiceListExampleSource = require('!raw-loader!../example/ChoiceListExample')as string;
+// const ChoiceListMultipleExampleSource = require('!raw-loader!../example/ChoiceListMultipleExample')as string;
+
+const properties = [
+    {
+        property: 'name',
+        type: 'string',
+        value: '',
+        notes: 'Name of component',
+    }, {
+        property: 'value',
+        type: 'any',
+        value: 'undefined',
+        notes: 'Value of component',
+    }, {
+        property: 'onClick',
+        type: 'void',
+        value: 'Function',
+        notes: 'onClick event function.',
+    },
+];
 
 export default() => (
-    <div>
-        <Page layout="docs">
-            <Section slot="documentHeader">
-                <h1>
-                    Choice List
-                </h1>
-            </Section>
-            <Section slot="mainExample">
-                <ChoiceListExample/>
-                <pre>
-                    <PrismCode className="language-jsx">
-                        {ChoiceListExampleSource}
-                    </PrismCode>
-                </pre>
-            </Section>
-            <Section slot="props">
-                <table style={{border: '1px solid black'}}>
-                    <thead>
-                        <tr>
-                            <th>Proeprty</th>
-                            <th>Type</th>
-                            <th>Default Value</th>
-                            <th>Notes</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>name</td>
-                            <td>string</td>
-                            <td>''</td>
-                            <td>Name of component</td>
-                        </tr>
-                        <tr>
-                            <td>value</td>
-                            <td>any</td>
-                            <td>undefined</td>
-                            <td>Value of component</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </Section>
-            <Section slot="otherExamples">
-                <ChoiceListMultipleExample/>
-                <pre>
-                    <PrismCode className="language-jsx">
-                        {ChoiceListMultipleExampleSource}
-                    </PrismCode>
-                </pre>
-            </Section>
-        </Page>
-    </div>
+    <DocumentPage
+        header={
+            <Header title="Choice List">
+                This is a short description for choice list component.
+            </Header>
+        }
+        properties={properties}
+        examples={<Example source={ChoiceListExampleSource} demo={<ChoiceListExample/>} />}
+    />
 );
+
+/*
+    <DocumentPage>
+        <Section slot="documentHeader">
+            <Header>
+                Choice List
+            </Header>
+            <div>
+                description
+                </div>
+        </Section>
+        <Section slot="mainExample">
+            <Example>
+                <ChoiceListExample/>
+                <ShowCode>
+                    {ChoiceListExampleSource}
+                </ShowCode>
+            </Example>
+        </Section>
+        <Section slot="props">
+            <Properties data={properties}/>
+        </Section>
+        <Section slot="otherExamples">
+            <Example>
+            <ChoiceListMultipleExample/>
+            <ShowCode>
+                {ChoiceListMultipleExampleSource}
+            </ShowCode>
+            </Example>
+        </Section>
+    </DocumentPage>
+*/
