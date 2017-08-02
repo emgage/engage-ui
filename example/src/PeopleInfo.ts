@@ -1,4 +1,4 @@
-import { IPickerInfo } from '../../src/components/Picker/IPickerInfo';
+import { IPickerInfo } from '../../src/components/Picker/Picker';
 import { PeoplePickerSearchType } from './PickerEnum';
 
 export class PeopleInfo implements IPickerInfo {
