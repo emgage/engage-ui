@@ -7,7 +7,7 @@ export interface State {
   isMenuOpened: false;
 }
 
-export class OffCanvasBody extends React.PureComponent<Props, State> {
+export default class OffCanvasBody extends React.PureComponent<Props, State> {
   state: State = { isMenuOpened: false };
   render() {
     const{

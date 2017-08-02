@@ -1,4 +1,3 @@
-import { Packet } from '_debugger';
 export {
   default as Avatar,
   Props as AvatarProps,

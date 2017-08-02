@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { mount } from 'enzyme';
-import { OffCanvas, OffCanvasBody, OffCanvasMenu, OffCanvasAnimationType, OffCanvasPosition } from '..';
+import { OffCanvasBody, OffCanvasMenu, OffCanvasAnimationType, OffCanvasPosition } from '..';
+import OffCanvas from '../OffCanvas';
 
 describe('<OffCanvas/>', () => {
   describe('width', () => {
