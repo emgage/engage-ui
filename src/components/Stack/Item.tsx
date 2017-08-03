@@ -1,24 +1,24 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from 'react-css-themr';
-import {classNames} from '@shopify/react-utilities/styles';
+import { classNames } from '@shopify/react-utilities/styles';
 
 import { STACK } from '../ThemeIdentifiers';
 
 import * as baseTheme from './Stack.scss';
 
 export interface Props {
-  children?: React.ReactNode,
-  fill?: boolean,
-  theme?: any,
+  children?: React.ReactNode;
+  fill?: boolean;
+  theme?: any;
 }
 
-const Item = ({children, fill, theme}: Props) => {
+const item = ({ children, fill, theme }: Props) => {
   const className = classNames(
-    theme.Item,
-    fill && theme['Item-fill'],
+    theme.item,
+    fill && theme['item-fill'],
   );
 
   return <div className={className}>{children}</div>;
-}
+};
 
-export default themr(STACK, baseTheme)(Item) as ThemedComponentClass<Props, {}>;
+export default themr(STACK, baseTheme)(item) as ThemedComponentClass<Props, {}>;

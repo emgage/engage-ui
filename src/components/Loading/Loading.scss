@@ -1,2 +1,14 @@
-.loader {display: block;}
-.srOnly{display: block;}
+.loading {
+    display: inline-block;
+    animation: spin 1s infinite steps(8);
+    //animation: spin 2s infinite linear;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(359deg);
+  }
+}
