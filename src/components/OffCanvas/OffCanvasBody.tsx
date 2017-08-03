@@ -4,11 +4,11 @@ import { OffCanvasAnimationType, OffCanvasPosition } from './OffCanvasProps';
 import { Props } from './OffCanvas';
 
 export interface State {
-    isMenuOpened: false,
+  isMenuOpened: false;
 }
 
-export class OffCanvasBody extends React.PureComponent<Props, State> {
-  state: State = {isMenuOpened: false};
+export default class OffCanvasBody extends React.PureComponent<Props, State> {
+  state: State = { isMenuOpened: false };
   render() {
     const{
       width = 270,
@@ -34,12 +34,12 @@ export class OffCanvasBody extends React.PureComponent<Props, State> {
 
     let currStyle = closedStyle;
     if (isMenuOpened) {
-      currStyle = {...currStyle, ...openStyle};
+      currStyle = { ...currStyle, ...openStyle };
     }
     const finalStyle = animation ===  OffCanvasAnimationType.Reveal ? currStyle : style;
 
     return (
-      <div style={{...finalStyle}} className={baseTheme.bodyClass}>
+      <div style={{ ...finalStyle }} className={baseTheme.bodyClass}>
         {children}
       </div>
     );

@@ -1,11 +1,11 @@
-import {Rect} from '@shopify/javascript-utilities/geometry';
+import { Rect } from '@shopify/javascript-utilities/geometry';
 
 export type PreferredPosition = 'above' | 'below' | 'mostSpace';
 
 export interface Margins {
-  activator: number,
-  container: number,
-  horizontal: number,
+  activator: number;
+  container: number;
+  horizontal: number;
 }
 
 export function calculateVerticalPosition(
@@ -82,7 +82,7 @@ export function calculateHorizontalPosition(
 }
 
 export function rectIsOutsideOfRect(inner: Rect, outer: Rect) {
-  const {center} = inner;
+  const { center } = inner;
 
   return (
     center.y < outer.top ||
