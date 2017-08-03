@@ -268,7 +268,18 @@ describe('Labelled component - Test Suit', () => {
                                                 Hello World
                                             </Labelled>,
                                     );
-                                        
+            expect(labelledWrapper.prop('required')).toBe(true);
+            expect(labelledWrapper.prop('helpText')).toBe('HelpText');
+            expect(labelledWrapper.prop('labelHidden')).toBe(true);
+            expect(labelledWrapper.prop('focused')).toBe(true);
+            expect(labelledWrapper.prop('hasValue')).toBe(true);
+            expect(labelledWrapper.find('div').length).toBe(4);
+            expect(labelledWrapper.find('Label').length).toBe(1);
+            expect(labelledWrapper.find('button').length).toBe(1);
+            expect(labelledWrapper.find('span').length).toBe(2);
+            expect(labelledWrapper.prop('id')).toBe('Id');
+            expect(labelledWrapper.prop('label')).toBe('Click Here');
+            expect(labelledWrapper.prop('children')).toBe('Hello World');
         });
     });
 });
