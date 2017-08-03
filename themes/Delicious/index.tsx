@@ -10,6 +10,7 @@ const contextTheme = {
   PLabel: require('./Label.scss'),
   PLabelled: require('./Labelled.scss'),
   PMessage: require('./Message.scss'),
+  PSelect: require('./Select.scss'),
   PTextField: require('./TextField.scss'),
 };
 

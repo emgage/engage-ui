@@ -11,7 +11,7 @@ $visible-portion-of-arrow: rem(5px);
 $content-max-height: rem(100px);
 $content-max-width: rem(200px);
 
-.Tooltip {
+.tooltip {
   margin: $visible-portion-of-arrow spacing() spacing();
   opacity: 1;
   box-shadow: shadow(deep);
@@ -28,24 +28,24 @@ $content-max-width: rem(200px);
 .positionedAbove {
   margin: spacing() spacing() $visible-portion-of-arrow;
 
-  .Tip {
+  .tip {
     top: inherit;
     bottom: 0;
   }
 }
 
 .light {
-  .Wrapper {
+  .wrapper {
     background: color(white);
     color: color(ink);
   }
 
-  .Tip {
+  .tip {
     background: color(white);
   }
 }
 
-.Wrapper {
+.wrapper {
   position: relative;
   display: flex;
   background-color: color(ink);
@@ -54,7 +54,7 @@ $content-max-width: rem(200px);
   max-height: $content-max-height;
 }
 
-.Content {
+.content {
   position: relative;
   margin-top: spacing(extra-tight);
   border-radius: border-radius();
@@ -62,7 +62,7 @@ $content-max-width: rem(200px);
   max-height: $content-max-height;
 }
 
-.Tip {
+.tip {
   position: absolute;
   top: 0;
   left: 50%;
@@ -73,6 +73,6 @@ $content-max-width: rem(200px);
   box-shadow: shadow(deep);
 }
 
-.Label {
+.label {
   padding: 0 spacing(tight) spacing(extra-tight);
 }

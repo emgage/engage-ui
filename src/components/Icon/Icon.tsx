@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from 'react-css-themr';
-import {SVGSource} from '@shopify/images';
-import {classNames, variationName} from '@shopify/react-utilities/styles';
+import { SVGSource } from '@shopify/images';
+import { classNames, variationName } from '@shopify/react-utilities/styles';
 
 import {
   add,
@@ -84,35 +84,35 @@ export const BUNDLED_ICONS = {
   circleChevronUp,
   circlePlus,
   conversation,
-  delete: deleteIcon,
   disable,
   dispute,
   duplicate,
   embed,
-  export: exportIcon,
   external,
   horizontalDots,
-  import: importIcon,
   notes,
   print,
   refresh,
   risk,
   search,
   view,
+  delete: deleteIcon,
+  export: exportIcon,
+  import: importIcon,
 };
 
 const COLORS_WITH_BACKDROPS = ['teal', 'tealDark', 'greenDark', 'redDark', 'yellowDark', 'ink'];
 
 export interface Props {
-  source: SVGSource | 'placeholder' | keyof typeof BUNDLED_ICONS,
-  color?: Color,
-  backdrop?: boolean,
-  accessibilityLabel?: string,
-  style?: React.CSSProperties,
-  theme?: any,
+  source: SVGSource | 'placeholder' | keyof typeof BUNDLED_ICONS;
+  color?: Color;
+  backdrop?: boolean;
+  accessibilityLabel?: string;
+  style?: React.CSSProperties;
+  theme?: any;
 }
 
-const Icon = ({
+const icon = ({
   source,
   color,
   backdrop,
@@ -126,7 +126,7 @@ const Icon = ({
   }
 
   const className = classNames(
-    theme.Icon,
+    theme.icon,
     color && theme[variationName('color', color)],
     backdrop && theme.hasBackdrop,
   );
@@ -137,15 +137,15 @@ const Icon = ({
     // tslint:disable-next-line no-console
     console.warn(`The source prop is null in Icon Component.`);
   } else if (source === 'placeholder') {
-    contentMarkup = <div className={theme.Placeholder} />;
+    contentMarkup = <div className={theme.placeholder} />;
   } else {
     const iconSource = typeof source === 'string' ? BUNDLED_ICONS[source] : source;
     if (iconSource) {
       contentMarkup = (
         <svg
-          className={theme.Svg}
+          className={theme.svg}
           viewBox={iconSource.viewBox}
-          dangerouslySetInnerHTML={{__html: iconSource.body}}
+          dangerouslySetInnerHTML={{ __html: iconSource.body }}
         />
       );
     }
@@ -158,4 +158,4 @@ const Icon = ({
   );
 };
 
-export default themr(ICON, baseTheme)(Icon) as ThemedComponentClass<Props, {}>;
+export default themr(ICON, baseTheme)(icon) as ThemedComponentClass<Props, {}>;

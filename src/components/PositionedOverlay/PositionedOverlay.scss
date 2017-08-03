@@ -1,6 +1,6 @@
 @import 'foundation/z-index';
 
-.PositionedOverlay {
+.positionedOverlay {
   position: absolute;
   z-index: z-index(overlay);
 }

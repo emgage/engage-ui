@@ -1,0 +1,23 @@
+$stacking-order: (
+  item: 10,
+  primary: 20,
+  focused: 30,
+);
+
+.Item {
+  z-index: z-index(item, $stacking-order);
+}
+
+// This is a violation of our component model, but it's the cleanest
+// way to remove the border radii on connected elements.
+// stylelint-disable declaration-no-important
+
+.Item-primary {
+  z-index: z-index(primary, $stacking-order);
+}
+
+// stylelint-enable declaration-no-important
+
+.Item-focused {
+  z-index: z-index(focused, $stacking-order);
+}
