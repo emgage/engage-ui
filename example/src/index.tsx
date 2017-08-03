@@ -1,26 +1,20 @@
-/// <reference path="../../@types/rc-form.d.ts" />
-
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-// import * as ReactPerfTool from 'react-perf-tool';
-// import * as Perf from 'react-addons-perf';
-import { LayoutProvider } from 'react-page-layout';
-import App from './App';
-import BaseTheme from '../../themes/Delicious/index';
-import DocumnentLayout from './layout/DocumentLayout';
+import { Provider } from 'react-redux';
+import { Router, browserHistory } from 'react-router';
+import { syncHistoryWithStore } from 'react-router-redux';
+import routes from './routes';
+import configureStore from './store/configureStore';
+import './styles/global-styles.scss';
 
-const layouts = {
-  docs: DocumnentLayout,
-};
+require('../assets/favicon.ico');
+
+const store = configureStore();
+const history = syncHistoryWithStore(browserHistory, store);
 
 ReactDOM.render(
-  <LayoutProvider layouts={layouts}>
-    <BaseTheme>
-      <div>
-        <App />
-        {/* <ReactPerfTool perf={Perf} /> */}
-      </div>
-    </BaseTheme>
-  </LayoutProvider>,
-  document.getElementById('root'),
+  <Provider store={store}>
+    <Router history={history} routes={routes} />
+  </Provider>, 
+  document.getElementById('app'),
 );
