@@ -7,41 +7,41 @@ import { TEXT_FIELD } from '../ThemeIdentifiers';
 import * as baseTheme from './TextField.scss';
 
 export interface Props {
-  theme?: any,
-  onChange(delta: number): void,
-  onClick?(): void,
+  theme?: any;
+  onChange(delta: number): void;
+  onClick?(): void;
 }
 
-const Spinner = ({theme, onChange, onClick}: Props)  => {
+const spinner = ({ theme, onChange, onClick }: Props)  => {
   function handleStep(step: number) {
     return () => onChange(step);
   }
 
   return (
-    <div className={theme.Spinner} onClick={onClick} aria-hidden>
+    <div className={theme.spinner} onClick={onClick} aria-hidden>
       <div
         role="button"
-        className={theme.Segment}
+        className={theme.segment}
         tabIndex={-1}
         onClick={handleStep(1)}
       >
-        <div className={theme.SpinnerIcon}>
+        <div className={theme.spinnerIcon}>
           <Icon source="caretUp" />
         </div>
       </div>
 
       <div
         role="button"
-        className={theme.Segment}
+        className={theme.segment}
         tabIndex={-1}
         onClick={handleStep(-1)}
       >
-        <div className={theme.SpinnerIcon}>
+        <div className={theme.spinnerIcon}>
           <Icon source="caretDown" />
         </div>
       </div>
     </div>
   );
-}
+};
 
-export default themr(TEXT_FIELD, baseTheme)(Spinner) as ThemedComponentClass<Props, {}>;
+export default themr(TEXT_FIELD, baseTheme)(spinner) as ThemedComponentClass<Props, {}>;

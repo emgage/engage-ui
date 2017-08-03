@@ -1,30 +1,30 @@
 import * as React from 'react';
-import {layeredComponent} from '@shopify/react-utilities/components';
+import { layeredComponent } from '@shopify/react-utilities/components';
 import autobind from '@shopify/javascript-utilities/autobind';
-import {createUniqueIDFactory} from '@shopify/javascript-utilities/other';
-import {focusFirstFocusableNode, findFirstFocusableNode} from '@shopify/javascript-utilities/focus';
+import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
+import { focusFirstFocusableNode, findFirstFocusableNode } from '@shopify/javascript-utilities/focus';
 
-import {PreferredPosition} from '../PositionedOverlay';
-import PopoverOverlay, {CloseSource} from './PopoverOverlay';
+import { PreferredPosition } from '../PositionedOverlay';
+import PopoverOverlay, { CloseSource } from './PopoverOverlay';
 
 export interface Props {
-  children?: React.ReactNode,
-  preferredPosition?: PreferredPosition,
-  active: boolean,
-  activator: React.ReactElement<any>,
-  activatorWrapper?: string,
-  preventAutofocus?: boolean,
-  sectioned?: boolean,
-  onClose?(source: CloseSource): void,
+  children?: React.ReactNode;
+  preferredPosition?: PreferredPosition;
+  active: boolean;
+  activator: React.ReactElement<any>;
+  activatorWrapper?: string;
+  preventAutofocus?: boolean;
+  sectioned?: boolean;
+  onClose?(source: CloseSource): void;
 }
 
 export interface State {
-  activatorFocused: boolean,
+  activatorFocused: boolean;
 }
 
 const getUniqueID = createUniqueIDFactory('Popover');
 
-@layeredComponent({idPrefix: 'Popover'})
+@layeredComponent({ idPrefix: 'Popover' })
 export default class Popover extends React.PureComponent<Props, State> {
 
   state: State = {
@@ -69,17 +69,17 @@ export default class Popover extends React.PureComponent<Props, State> {
   }
 
   render() {
-    const {activatorWrapper: WrapperComponent = 'div'} = this.props;
+    const { activatorWrapper: WRAPPERCOMPONENT = 'div' } = this.props;
 
     return (
-      <WrapperComponent ref={this.setActivator}>
+      <WRAPPERCOMPONENT ref={this.setActivator}>
         {React.Children.only(this.props.activator)}
-      </WrapperComponent>
+      </WRAPPERCOMPONENT>
     );
   }
 
   private setAccessibilityAttributes() {
-    const {id, activatorContainer} = this;
+    const { id, activatorContainer } = this;
     if (activatorContainer == null) { return; }
 
     const firstFocusable = findFirstFocusableNode(activatorContainer);

@@ -4,16 +4,16 @@ import { PANEL } from '../ThemeIdentifiers';
 import * as baseTheme from './Panel.scss';
 
 export interface Props {
-    heading: string | React.ReactNode,
-    video?: React.ReactNode,
-    children?: React.ReactNode,
-    theme?: any,
-    style?: React.CSSProperties,
-};
+  heading: string | React.ReactNode;
+  video?: React.ReactNode;
+  children?: React.ReactNode;
+  theme?: any;
+  style?: React.CSSProperties;
+}
 
 class Panel extends React.PureComponent<Props, any> {
-    render() {
-        return (
+  render() {
+    return (
             <div className={this.props.theme.panel} style={this.props.style}>
                 {
                   typeof this.props.heading === 'string'
@@ -25,8 +25,8 @@ class Panel extends React.PureComponent<Props, any> {
                     {this.props.children}
                 </div>
             </div>
-        );
-    }
+    );
+  }
 }
 
 export default themr(PANEL, baseTheme)(Panel) as ThemedComponentClass<Props, {}>;
