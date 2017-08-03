@@ -71,10 +71,10 @@ describe('<Heading />', () => {
                 expect(headingWrapper.prop('children')).toBeUndefined();
             });
             it('should not have children property', () => {
-                const stackWrapper = mount(
+                const headingWrapper = mount(
                                         <Heading theme={theme} />,
                                     );
-                expect(stackWrapper.find('children')).toHaveLength(0);
+                expect(headingWrapper.find('children')).toHaveLength(0);
             });
         });
     });
@@ -220,7 +220,7 @@ describe('<Heading />', () => {
                                         );
                 expect(headingWrapper.find('h2').hasClass('Heading')).toBe(true);
             });
-            it('should verify element property when not defined', () => {
+            it('should verify element property is not defined', () => {
                 const headingWrapper = mount(
                                             <Heading theme={theme}>
                                                 Online store dashboard
@@ -229,12 +229,12 @@ describe('<Heading />', () => {
                 expect(headingWrapper.prop('element')).toBeUndefined();
             });
             it('should not have element property', () => {
-                const stackWrapper = mount(
+                const headingWrapper = mount(
                                         <Heading theme={theme}>
                                             Online store dashboard
                                         </Heading>,
                                     );
-                expect(stackWrapper.find('element')).toHaveLength(0);
+                expect(headingWrapper.find('element')).toHaveLength(0);
             });
         });
     });
