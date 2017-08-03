@@ -1,45 +1,160 @@
 import * as React from 'react';
-import Image from '..';
 import { mount } from 'enzyme';
+import Image from '../Image';
+  const url = 'https://www.w3schools.com/css/trolltunga.jpg';
+    const alt = 'No Image.. Thanks!!';
+    const title = 'Text tooltip';
 
-describe('source', () => {
-    it('should verify the source type of the string', () => {
-        const imageWrapper = mount(<Image source="string" title ="" alt=""/>);
-        expect(typeof imageWrapper.prop('source')).toBe('string');
+describe('<Image />', () => {
+
+    describe('when default props are provided', () => {
+        it('basic image should have rendered 1 div elements', () => {
+            const imageWrapper = mount(
+                                    <Image source={url} alt={alt} />,
+                                 );
+            expect(imageWrapper.find('Image')).toHaveLength(1);
+        });
+        it('should verify defult source property', () => {
+            const imageWrapper = mount(
+                                    <Image source={url} alt={alt} />,
+                                 );
+            expect(imageWrapper.find('source')).toBeTruthy();
+        });
+        it('should verify default alt property', () => {
+            const imageWrapper = mount(
+                                    <Image  source={url} alt={alt} />,
+                                 );
+            expect(imageWrapper.find('alt')).toBeTruthy();
+        });
     });
 
-    it('should verify the source of the Image url', () => {
-        const imageWrapper = mount(<Image source="https://www.w3schools.com/css/trolltunga.jpg" title ="" alt=""/>);
-        expect(imageWrapper.prop('source')).toBe('https://www.w3schools.com/css/trolltunga.jpg');
+    describe('source prop', () => {
+
+        describe('when set', () => {
+            it('basic image should have rendered 1 div elements', () => {
+                const imageWrapper = mount(
+                                        <Image source={url} alt={alt} />,
+                                     );
+                expect(imageWrapper.find('Image')).toHaveLength(1);
+            });
+            it('should verify defult source property', () => {
+                const imageWrapper = mount(
+                                        <Image source={url} alt={alt} />,
+                                     );
+                expect(imageWrapper.find('source')).toBeTruthy();
+            });
+            it('should verify default alt property', () => {
+                const imageWrapper = mount(
+                                        <Image  source={url} alt={alt} />,
+                                    );
+                expect(imageWrapper.find('alt')).toBeTruthy();
+            });
+            it('should verify the source of the url', () => {
+                const imageWrapper = mount(
+                                        <Image source={url} alt={alt} />,
+                                     );
+                expect(imageWrapper.prop('source')).toBe(url);
+            });
+        });
+    });
+
+    describe('alt prop', () => {
+
+        describe('when set', () => {
+            it('basic image should have rendered 1 div elements', () => {
+            const imageWrapper = mount(
+                                    <Image source={url} alt={alt} />,
+                                 );
+            expect(imageWrapper.find('Image')).toHaveLength(1);
+            });
+            it('should verify defult source property', () => {
+            const imageWrapper = mount(
+                                    <Image source={url} alt={alt} />,
+                                 );
+            expect(imageWrapper.find('source')).toBeTruthy();
+            });
+            it('should verify default alt property', () => {
+            const imageWrapper = mount(
+                                    <Image  source={url} alt={alt} />,
+                                 );
+            expect(imageWrapper.find('alt')).toBeTruthy();
+            });
+            it('should verify the alt of the text', () => {
+                const imageWrapper = mount(
+                                        <Image source={url} alt={alt} />,
+                                     );
+                expect(imageWrapper.prop('alt')).toBe(alt);
+            });
+        });
+    });
+
+    describe('title prop', () => {
+
+        describe('when set', () => {
+            it('basic image should have rendered 1 div elements', () => {
+                const imageWrapper = mount(
+                                        <Image source={url} alt={alt} title={title} />,
+                                     );
+                expect(imageWrapper.find('Image')).toHaveLength(1);
+            });
+
+            it('should verify defult source property', () => {
+                const imageWrapper = mount(
+                                        <Image source={url} alt={alt} title={title} />,
+                                     );
+                expect(imageWrapper.find('source')).toBeTruthy();
+            });
+            it('should verify default alt property', () => {
+                const imageWrapper = mount(
+                                        <Image  source={url} alt={alt} title={title} />,
+                                     );
+                expect(imageWrapper.find('alt')).toBeTruthy();
+            });
+            it('should verify title property', () => {
+                const imageWrapper = mount(
+                                        <Image source={url} alt={alt} title={title} />,
+                                     );
+                expect(imageWrapper.find('title')).toBeTruthy();
+            });
+            it('should verify set the text of title is', () => {
+                const imageWrapper = mount(
+                                        <Image source={url} alt={alt} title={title} />,
+                                     );
+                expect(imageWrapper.prop('title')).toBe(title);
+            });
+        });
+
+        describe('when not set', () => {
+            it('basic title should have rendered 1 div elements', () => {
+                const imageWrapper = mount(
+                                        <Image source={url} alt={alt} />,
+                                     );
+                expect(imageWrapper.find('Image')).toHaveLength(1);
+            });
+            it('should verify defult source property', () => {
+                const imageWrapper = mount(
+                                        <Image source={url} alt={alt} />,
+                                     );
+                expect(imageWrapper.find('source')).toBeTruthy();
+            });
+            it('should verify default alt property', () => {
+                const imageWrapper = mount(
+                                        <Image source={url} alt={alt} />,
+                                     );
+                expect(imageWrapper.find('title')).toBeTruthy();
+            });
+            it('should verify title property', () => {
+                const imageWrapper = mount(
+                                        <Image source={url} alt={alt} />,
+                                     );
+                expect(imageWrapper.prop('title')).toBeUndefined();
+            });
+            it('should not have title element', () => {
+                const imageWrapper = mount(
+                                        <Image source={url} alt={alt} />,
+                                     );
+                expect(imageWrapper.find('title')).toHaveLength(0);
+            });
+        });
     });
 });
-
-describe('alt', () => {
-    it('should verify the alt type of the string', () => {
-        const imageWrapper = mount(<Image source="" alt="string" title=""/>);
-        expect(typeof imageWrapper.prop('alt')).toBe('string');
-    });
-
-    it('should verify the text of alt is empty', () => {
-        const imageWrapper = mount(<Image source="" title="" alt="" />);
-        expect(imageWrapper.prop('alt')).toBeUndefined;
-    });
-
-    it('should verify the text of alt is', () => {
-        const imageWrapper = mount(<Image source="" alt="No Image.. Thanks!!" title=""/>);
-        expect(imageWrapper.prop('alt')).toBe('No Image.. Thanks!!');
-    });
-});
-
-describe('title', () => {
-    it('should verify the title type of the string', () => {
-        const imageWrapper = mount(<Image source="" title="string" alt=""/>);
-        expect(typeof imageWrapper.prop('title')).toBe('string');
-    });
-
-    it('should verify the title', () => {
-        const imageWrapper = mount(<Image source="" title ="Text tooltip" alt=""/>);
-        expect(imageWrapper.prop('title')).toBe('Text tooltip');
-    });
-});
-
