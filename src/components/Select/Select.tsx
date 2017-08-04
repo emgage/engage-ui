@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from 'react-css-themr';
-import {classNames} from '@shopify/react-utilities/styles';
-import {createUniqueIDFactory} from '@shopify/javascript-utilities/other';
+import { classNames } from '@shopify/react-utilities/styles';
+import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
 
-import Labelled, {Action, Error, helpTextID, errorID} from '../Labelled';
+import Labelled, { Action, Error, helpTextID, errorID } from '../Labelled';
 import Icon from '../Icon';
 import { SELECT } from '../ThemeIdentifiers';
 
 import * as baseTheme from './Select.scss';
-import arrowIcon from './icons/arrow.svg';
+import arrowSvg from './icons/arrow.svg';
 
 export type Option = string | {
   value: string,
@@ -16,33 +16,33 @@ export type Option = string | {
 };
 
 export interface Group {
-  title: string,
-  options: Option[],
+  title: string;
+  options: Option[];
 }
 
 export interface Props {
-  options?: Option[],
-  groups?: (Group | Option)[],
-  label: string,
-  labelAction?: Action,
-  labelHidden?: boolean,
-  helpText?: React.ReactNode,
-  id?: string,
-  name?: string,
-  error?: Error,
-  disabled?: boolean,
-  value?: string,
-  placeholder?: string,
-  theme?: any,
-  onChange?(selected: string): void,
-  onFocus?(): void,
-  onBlur?(): void,
+  options?: Option[];
+  groups?: (Group | Option)[];
+  label: string;
+  labelAction?: Action;
+  labelHidden?: boolean;
+  helpText?: React.ReactNode;
+  id?: string;
+  name?: string;
+  error?: Error;
+  disabled?: boolean;
+  value?: string;
+  placeholder?: string;
+  theme?: any;
+  onChange?(selected: string): void;
+  onFocus?(): void;
+  onBlur?(): void;
 }
 
 const PLACEHOLDER_VALUE = '__placeholder__';
 const getUniqueID = createUniqueIDFactory('Select');
 
-const Select = ({
+const select = ({
   id = getUniqueID(),
   name,
   groups,
@@ -70,7 +70,7 @@ const Select = ({
 
   const isPlaceholder = value == null && placeholder != null;
   const className = classNames(
-    theme.Select,
+    theme.select,
     error && theme.error,
     disabled && theme.disabled,
     isPlaceholder && theme.placeholder,
@@ -103,7 +103,7 @@ const Select = ({
           name={name}
           value={value}
           defaultValue={PLACEHOLDER_VALUE}
-          className={theme.Input}
+          className={theme.input}
           disabled={disabled}
           onFocus={onFocus}
           onBlur={onBlur}
@@ -115,14 +115,14 @@ const Select = ({
           {optionsMarkup}
         </select>
 
-        <div className={theme.Icon}>
-          <Icon source={arrowIcon} />
+        <div className={theme.icon}>
+          <Icon source={arrowSvg} />
         </div>
-        <div className={theme.Backdrop} />
+        <div className={theme.backdrop} />
       </div>
     </Labelled>
   );
-}
+};
 
 function renderOption(option: Option) {
   if (typeof option === 'string') {
@@ -134,7 +134,7 @@ function renderOption(option: Option) {
 
 function renderGroup(groupOrOption: Group | Option) {
   if (groupOrOption.hasOwnProperty('title')) {
-    const {title, options} = groupOrOption as Group;
+    const { title, options } = groupOrOption as Group;
     return (
       <optgroup label={title} key={title}>
         {options.map(renderOption)}
@@ -145,5 +145,5 @@ function renderGroup(groupOrOption: Group | Option) {
   return renderOption(groupOrOption as Option);
 }
 
-export { Select as UnthemedSelect };
-export default themr(SELECT, baseTheme)(Select) as ThemedComponentClass<Props, {}>;
+export { select as UnthemedSelect };
+export default themr(SELECT, baseTheme)(select) as ThemedComponentClass<Props, {}>;

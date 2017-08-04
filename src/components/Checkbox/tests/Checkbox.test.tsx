@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {shallow, mount} from 'enzyme';
-import Checkbox from '..';
+import { shallow, mount } from 'enzyme';
+import Checkbox from '../Checkbox';
 
 describe('<Checkbox />', () => {
   it('sets all pass through properties on the input', () => {
@@ -89,7 +89,7 @@ describe('<Checkbox />', () => {
       const checkbox = mount(<Checkbox error label="Checkbox" />);
       expect(checkbox.find('input').prop<string>('aria-invalid')).toBe(true);
 
-      checkbox.setProps({error: 'Some error'});
+      checkbox.setProps({ error: 'Some error' });
       expect(checkbox.find('input').prop<string>('aria-invalid')).toBe(true);
     });
 

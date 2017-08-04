@@ -72,6 +72,8 @@
 }
 
 @mixin unstyled-button() {
+  -webkit-appearance: none;
+  -moz-appearance: none;
   appearance: none;
   margin: 0;
   padding: 0;

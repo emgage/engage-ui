@@ -7,150 +7,151 @@ import { DisplayMoreInfo } from './PickerEnum';
 import * as baseTheme from './Picker.scss';
 
 export interface State {
-    people: string,
-    searchItems: IPickerInfo[],
-    selectedItems: IPickerInfo[],
-    moreInfo: boolean,
+  people: string;
+  searchItems: IPickerInfo[];
+  selectedItems: IPickerInfo[];
+  moreInfo: boolean;
 }
 export interface IPickerInfo {
-    Id?: number,
-    Name: string,
-    Description: string,
-    ImageUrl?: string,
-    Url?: string,
+  id?: number;
+  name: string;
+  description: string;
+  imageUrl?: string;
+  url?: string;
 }
 export interface IPickerSource<T> {
-    performFilter(filterString: string): Promise<T[]>,
+  performFilter(filterString: string): Promise<T[]>;
 }
 export type Type = 'hide' | 'mark';
 export interface Props {
-    required?: boolean,
-    selectedResultsBehavior?: Type,
-    filterPlaceHolder?: string,
-    maxSelectedItems?: number,
-    minSelectedItems?: number,
-    millisecondsToWaitBeforeSearch?: number,
-    chipComponent: React.ReactNode,
-    searchResultComponent: React.ReactNode,
-    moreInfoComponent?: React.ReactNode,
-    source: IPickerSource<IPickerInfo>,
-    moreInfoComponentShowOn?: DisplayMoreInfo,
-    style?: React.CSSProperties,
-    theme?: any,
-    searchBehavior?(): void,
-    onSelect?(item: any): void,
-    onRemove?(item: any): void,
-    onMoreInfo?(): void,
+  required?: boolean;
+  selectedResultsBehavior?: Type;
+  filterPlaceHolder?: string;
+  maxSelectedItems?: number;
+  minSelectedItems?: number;
+  millisecondsToWaitBeforeSearch?: number;
+  chipComponent: React.ReactNode;
+  searchResultComponent: React.ReactNode;
+  moreInfoComponent?: React.ReactNode;
+  source: IPickerSource<IPickerInfo>;
+  moreInfoComponentShowOn?: DisplayMoreInfo;
+  style?: React.CSSProperties;
+  theme?: any;
+  searchBehavior?(): void;
+  onSelect?(item: any): void;
+  onRemove?(item: any): void;
+  onMoreInfo?(): void;
 
 }
 
 class Picker extends React.Component<Props, State> {
-    constructor(props: any) {
-        super(props);
-        this.state = {
-            people: '',
-            searchItems: [],
-            selectedItems: [],
-            moreInfo: false,
-        };
+  constructor(props: any) {
+    super(props);
+    this.state = {
+      people: '',
+      searchItems: [],
+      selectedItems: [],
+      moreInfo: false,
+    };
+  }
+  render() {
+    const {
+      required,
+      filterPlaceHolder,
+      selectedResultsBehavior,
+      moreInfoComponent,
+      chipComponent,
+      searchResultComponent,
+      searchBehavior = this.handleChange,
+      moreInfoComponentShowOn = DisplayMoreInfo.onClick,
+      onSelect = this.handleSelect,
+      onRemove = this.handleRemove,
+      onMoreInfo = this.handleMoreInfo,
+      theme,
+    } = this.props;
+    let className = '';
+    if (selectedResultsBehavior === 'hide') {
+      className = theme.pickerResultHide;
+    } else {
+      className = theme.pickerResultShow;
     }
-    render() {
-        const {
-            required,
-            filterPlaceHolder,
-            selectedResultsBehavior,
-            moreInfoComponent,
-            chipComponent,
-            searchResultComponent,
-            searchBehavior = this.handleChange,
-            moreInfoComponentShowOn = DisplayMoreInfo.onClick,
-            onSelect = this.handleSelect,
-            onRemove = this.handleRemove,
-            onMoreInfo = this.handleMoreInfo,
-            theme,
-          } = this.props;
-        let className = '';
-        if (selectedResultsBehavior === 'hide') {
-            className = theme.pickerResultHide;
-        } else {
-            className = theme.pickerResultShow;
-        }
-        return (
+    return (
             <div>
                 <div>
                     <div className={className}>
                         {
-                            this.state.selectedItems.map(function (i) {
-                                return React.createElement(chipComponent as React.ComponentClass<{ clickable: boolean, removable: boolean, onRemove(item: any): void }>, { key: i.Id, clickable: false, removable: true, onRemove }, [i.Name]);
+                            this.state.selectedItems.map((i) => {
+                              return React.createElement(chipComponent as React.ComponentClass<{ clickable: boolean, removable: boolean, onRemove(item: any): void }>, { onRemove, key: i.id, clickable: false, removable: true }, [i.name]);
                             })
                         }
                     </div>
                     <TextField
-                        label="lbl"
-                        value={this.state.people}
-                        placeholder={filterPlaceHolder}
-                        onChange={searchBehavior}
-                        required={required} />
+                      label="lbl"
+                      value={this.state.people}
+                      placeholder={filterPlaceHolder}
+                      onChange={searchBehavior}
+                      required={required}
+                    />
                 </div>
                 <div>
                     {
-                        this.state.searchItems.map(function (i) {
-                            return React.createElement(searchResultComponent as React.ComponentClass<{ clickable: boolean, moreInfoComponent: React.ReactNode, moreInfoComponentShowOn: DisplayMoreInfo, onClick(item: any): void, handleMoreInfo(): void }>, { key: i.Id, clickable: true, moreInfoComponent, moreInfoComponentShowOn, onClick: onSelect, handleMoreInfo: onMoreInfo }, [i.Name]);
+                        this.state.searchItems.map((i) => {
+                          return React.createElement(searchResultComponent as React.ComponentClass<{ clickable: boolean, moreInfoComponent: React.ReactNode, moreInfoComponentShowOn: DisplayMoreInfo, onClick(item: any): void, handleMoreInfo(): void }>, { moreInfoComponent, moreInfoComponentShowOn, key: i.id, clickable: true, onClick: onSelect, handleMoreInfo: onMoreInfo }, [i.name]);
                         })
                     }
                 </div>
             </div>
-        );
-    }
-    private handleChange = (value: string) => {
-        this.setState({ ['people']: value });
-        setTimeout(() => {
-            this.props.source.performFilter(value).then(this.onSuccess).catch(this.onError);
-        }, this.props.millisecondsToWaitBeforeSearch === undefined ? 0 : this.props.millisecondsToWaitBeforeSearch);
-    }
-    private onSuccess = (item: any) => {
-        this.setState({ ['searchItems']: item });
-    }
-    private onError = (item: any) => {
+    );
+  }
+  private handleChange = (value: string) => {
+    this.setState({ ['people']: value });
+    setTimeout(() => {
+      this.props.source.performFilter(value).then(this.onSuccess).catch(this.onError);
+    },         this.props.millisecondsToWaitBeforeSearch === undefined ? 0 : this.props.millisecondsToWaitBeforeSearch);
+  }
+  private onSuccess = (item: any) => {
+    this.setState({ ['searchItems']: item });
+  }
+  private onError = (item: any) => {
         // TODO: Error display
-        alert(item);
+    alert(item);
+  }
+  private handleRemove = (event: any) => {
+    const item = this.state.selectedItems.find(x => x.name === event.currentTarget.previousElementSibling.innerText);
+    const items = this.state.selectedItems;
+    if (this.props.minSelectedItems !== undefined && this.props.minSelectedItems === items.length) {
+      return;
     }
-    private handleRemove = (event: any) => {
-        const item = this.state.selectedItems.find((x) => x.Name === event.currentTarget.previousElementSibling.innerText);
-        const items = this.state.selectedItems;
-        if (this.props.minSelectedItems !== undefined && this.props.minSelectedItems === items.length) {
-            return;
-        }
-        if (item !== undefined) {
-            const index: number = items.indexOf(item);
-            if (index !== -1) {
-                items.splice(index, 1);
-            }
-        }
-        this.setState({ ['selectedItems']: items });
-        return;
+    if (item !== undefined) {
+      const index: number = items.indexOf(item);
+      if (index !== -1) {
+        items.splice(index, 1);
+      }
     }
+    this.setState({ ['selectedItems']: items });
+    return;
+  }
 
-    private handleSelect = (event: any) => {
-        const item = this.state.searchItems.find((x) => x.Name === event.currentTarget.text);
-        const items = this.state.selectedItems;
-        if (this.props.maxSelectedItems !== undefined && this.props.maxSelectedItems === items.length) {
-            return;
-        }
-        if (item !== undefined) {
-            if (!items.some((x) => x.Name === item.Name)) {
-                items.push(item);
-            }
-        }
-        this.setState({ ['selectedItems']: items });
-        this.setState({ ['searchItems']: [] });
-        return;
+  private handleSelect = (event: any) => {
+    const item = this.state.searchItems.find(x => x.name === event.currentTarget.text);
+    const items = this.state.selectedItems;
+    if (this.props.maxSelectedItems !== undefined && this.props.maxSelectedItems === items.length) {
+      return;
     }
+    if (item !== undefined) {
+      if (!items.some(x => x.name === item.name)) {
+        items.push(item);
+      }
+    }
+    this.setState({ ['selectedItems']: items });
+    this.setState({ ['searchItems']: [] });
+    return;
+  }
 
-    private handleMoreInfo = () => {
-        this.setState({ ['moreInfo']: !this.state.moreInfo });
-        return;
-    }
+  private handleMoreInfo = () => {
+    this.setState({ ['moreInfo']: !this.state.moreInfo });
+    return;
+  }
 }
 
 export { Picker as UnthemedPicker };

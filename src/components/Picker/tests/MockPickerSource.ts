@@ -4,11 +4,11 @@ import { MockPeopleInfo } from './MockPeopleInfo';
 export class MockPickerSource implements IPickerSource<MockPeopleInfo> {
 
     // tslint:disable-next-line:no-empty
-    constructor() {
+  constructor() {
 
-    };
-    performFilter(): Promise<MockPeopleInfo[]> {
-        const data: MockPeopleInfo[] = [];
-        return Promise.all(data);
-    }
+  }
+  performFilter(): Promise<MockPeopleInfo[]> {
+    const data: MockPeopleInfo[] = [];
+    return Promise.all(data);
+  }
 }
