@@ -1,7 +1,9 @@
-export default {
+import { IDocument } from '../../Types';
+
+const listState: IDocument = {
   heading : 'List Component',
   subheading : 'this component does lots of really cool things with lists. You should use it.',
-  example : [
+  property : [
     {
       name: 'heading',
       type: 'string',
@@ -21,3 +23,5 @@ export default {
       listFunc(prop);
     `,
 };
+
+export default listState;

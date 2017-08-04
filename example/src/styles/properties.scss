@@ -1,0 +1,17 @@
+@import './variables';
+
+.table {
+  border-collapse: collapse;
+}
+
+.heading {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.border {
+  padding: 10px;
+  margin: 10px;
+  text-align: center;
+  border: 1px solid black;
+}

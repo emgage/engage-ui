@@ -1,7 +1,8 @@
 import * as types from '../constants/ComponentActionTypes';
 import InitialState from './InitialState';
+import { IDocument, IAction } from '../Types';
 
-export default function componentReducer(state = InitialState.Components, action) {
+export default function componentReducer(state: IDocument[] = InitialState.Components, action: IAction) {
   switch (action.type) {
     case types.REQUEST_COMPONENTS: {
       return {

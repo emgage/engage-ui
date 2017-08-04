@@ -8,7 +8,7 @@ export function requestComponents() {
   return { type: types.REQUEST_COMPONENTS };
 }
 
-export function loadComponents(allComponents) {
+export function loadComponents(allComponents: any) {
   return {type: types.LOAD_COMPONENTS, payload: {
     allComponents,
   }};

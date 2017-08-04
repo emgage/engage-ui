@@ -1,8 +1,10 @@
-export default {
-  heading : 'Link Component',
-  subheading : 'the link component is an elusive beast. You should only use it if you would like' +
+import { IDocument } from '../../Types';
+
+const linkState: IDocument = {
+  heading: 'Link Component',
+  subheading: 'the link component is an elusive beast. You should only use it if you would like' +
                 ' to go somewhere',
-  example : [
+  property: [
     {
       name: 'url',
       type: 'string',
@@ -17,7 +19,7 @@ export default {
       desc: 'the url link to',
     },
   ],
-  code : `
+  code: `
       const linkFunc = propy => {
         console.log('propy', propy);
         return propy + 'this is really a propy';
@@ -26,3 +28,5 @@ export default {
       linkFunc(prop);
     `,
 };
+
+export default linkState;

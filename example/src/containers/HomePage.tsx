@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Heading from '../components/Heading';
+
 import '../styles/home-page.scss';
 
 // tslint:disable-next-line:variable-name

@@ -1,0 +1,25 @@
+@import './variables';
+
+button {
+  display: block;
+  height: 48px;
+  margin: 2em auto;
+  border-radius: 0.5em;
+  box-shadow: none;
+  text-shadow: none;
+  color: $white;
+  font-size: 18px;
+  line-height: 1px;
+  font-weight: 800;
+  text-align: center;
+  background: $red;
+  border: none;
+  padding: 15px 30px;
+
+  &:hover {
+    cursor: pointer;
+    border: 1px solid $red;
+    color: $red;
+    background-color: $white;
+  }
+}
