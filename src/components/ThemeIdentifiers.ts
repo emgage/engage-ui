@@ -4,6 +4,7 @@ export const BANNER = 'PBanner';
 export const BUTTON = 'PButton';
 export const BUTTON_GROUP = 'PButtonGroup';
 export const CARD = 'PCard';
+export const CARDLIST = 'PCardList';
 export const CHECKBOX = 'PCheckbox';
 export const CHIP = 'PChip';
 export const CLICKABLECHIP = 'PClickableChip';

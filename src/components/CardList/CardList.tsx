@@ -1,15 +1,20 @@
 import * as React from 'react';
 import Item from './Item';
+import List from '../List';
+import { themr, ThemedComponentClass } from 'react-css-themr';
+import { CARDLIST } from '../ThemeIdentifiers';
+import * as baseTheme from './CardList.scss';
 
 export interface INodeItem {
-  id: number,
-  name: string,
-  people?: INodeItem[],
+  id: number;
+  name: string;
+  people?: INodeItem[];
 }
 
 export interface Props {
-  data: INodeItem[],
-  selectedId?: number,
+  data: INodeItem[];
+  selectedId?: number;
+  theme?: any;
 }
 
 class CardList extends React.Component<Props, never> {
@@ -18,20 +23,23 @@ class CardList extends React.Component<Props, never> {
 
     const nodes = this.props.data.map((person: INodeItem, index: number) => {
       return (
-        <Item key={person.id || index}
+        <Item
+          key={person.id || index}
           node={person}
           children={person.people}
-          selectedId={this.props.selectedId} />
+          selectedId={this.props.selectedId}
+        />
       );
     });
 
-//indentation is not proper for List Component, So used <ul />, SO need to replace it with List.
-    return <div>
-      <ul>
-        {nodes}
-      </ul>
-    </div>;
+    return (
+      <div>
+        <List>
+          {nodes}
+        </List>
+      </div>
+    );
   }
 }
 
-export default CardList;
+export default themr(CARDLIST, baseTheme)(CardList) as ThemedComponentClass<Props, {}>;
