@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from 'react-css-themr';
+import { classNames } from '@shopify/react-utilities/styles';
 import { Keys } from '../../types';
 import { MODAL } from '../ThemeIdentifiers';
 import KeypressListener from '../KeypressListener';
@@ -23,31 +24,31 @@ const getModalElement = (id: string) => {
 export type Size = 'Small' | 'Medium' | 'Large' | number;
 
 export interface IAnimate {
-  in(modal?: Element, dialog?: Element): void,
-  out(modal?: Element, dialog?: Element): void,
+  in(modal?: Element, dialog?: Element): void;
+  out(modal?: Element, dialog?: Element): void;
 }
 
 export interface ITrigger {
-  body: string,
-  animate: IAnimate,
+  body: string;
+  animate: IAnimate;
 }
 
 export interface Props {
-  className?: string,
-  classes?: string,
-  close?: boolean,
-  footer?: React.ReactNode,
-  header?: React.ReactNode,
-  activator: React.ReactElement<any>,
-  id?: string,
-  show: boolean,
-  trigger: ITrigger,
-  closeOnEsc?: boolean,
-  closeOnBackgroud?: boolean,
-  modalOverflow?: boolean,
-  backdropEnabled?: boolean,
-  size?: Size,
-  theme?: any,
+  className?: string;
+  classes?: string;
+  close?: boolean;
+  footer?: React.ReactNode;
+  header?: React.ReactNode;
+  activator: React.ReactNode;
+  id?: string;
+  show: boolean;
+  trigger: ITrigger;
+  closeOnEsc?: boolean;
+  closeOnBackgroud?: boolean;
+  modalOverflow?: boolean;
+  backdropEnabled?: boolean;
+  size?: Size;
+  theme?: any;
 }
 
 class Modal extends React.Component<Props, {}> {
@@ -55,9 +56,9 @@ class Modal extends React.Component<Props, {}> {
     super(props);
   }
 
-  handleCloseClick = (e: any): void => {
-    e.preventDefault();
+  handleCloseClick = (event: React.SyntheticEvent<HTMLElement>): void => {
 
+    event.preventDefault();
     const props = this.props;
     const { modal, dialog } = getModalElement(props.id as string);
 
@@ -65,16 +66,27 @@ class Modal extends React.Component<Props, {}> {
     setTimeout(() => bodyStyle('', ''), 200);
   }
 
-  handleToggleClick = (e: any): void => {
+  handleCloseClickOnKeyPress = (event: KeyboardEvent): void => {
+
+    event.preventDefault();
+    const props = this.props;
+    const { modal, dialog } = getModalElement(props.id as string);
+
+    props.trigger.animate.out(modal as Element, dialog as Element);
+    setTimeout(() => bodyStyle('', ''), 200);
+  }
+
+  handleToggleClick = (e: React.SyntheticEvent<HTMLElement>): void => {
 
     const props = this.props;
     const { modal, dialog } = getModalElement(props.id as string);
 
     if (!this.props.show) {
       bodyStyle('16px', 'hidden');
-      props.trigger.animate.in(modal  as Element, dialog as Element);
+      props.trigger.animate.in(modal as Element, dialog as Element);
     } else {
-      const id = (e.target.dataset ? e.target.dataset.id : undefined);
+      const target = e.target as HTMLInputElement;
+      const id = (target ? target.dataset.id : undefined);
 
       if (typeof id !== 'undefined') {
         const prefix = id.substr(0, id.indexOf('-'));
@@ -116,8 +128,7 @@ class Modal extends React.Component<Props, {}> {
       'theme',
     ];
 
-    const CloseonEscProp = this.props.closeOnEsc ? (<KeypressListener keyCode={Keys.ESCAPE} handler={this.handleCloseClick} />) : null;
-
+    const closeonEscProp = this.props.closeOnEsc ? (<KeypressListener keyCode={Keys.ESCAPE} handler={this.handleCloseClickOnKeyPress} />) : null;
     const cleanProps = Helpers.cleanProps(ignoreProps)({
       ...props,
       ok: null,
@@ -131,33 +142,33 @@ class Modal extends React.Component<Props, {}> {
       header: null,
     });
 
-    const cssClassForOverflow = props.modalOverflow
-      ? Helpers.cleanClasses([props.theme.overflow, props.theme.autoHeight])
-      : null;
+    const cssClassForOverflow = classNames(props.theme.overflow, props.theme.autoHeight);
 
-    return <div>
-      <span onClick={this.handleToggleClick}>{this.props.activator}</span>
-      {CloseonEscProp}
-      <div {...cleanProps}
-        className={cssClassNames}
-        data-id={`modal-${props.id}`}
-        onClick={(this.props.close || this.props.closeOnBackgroud || this.props.closeOnEsc) ? this.handleToggleClick : null}
-      >
-        <Dialog
-          footer={props.footer}
-          header={props.header}
-          id={props.id}
-          onClose={props.close ? this.handleCloseClick : undefined}
-          closeOnBackgroud={props.closeOnBackgroud ? this.handleToggleClick : undefined}
-          backdropEnabled={props.backdropEnabled}
-          size={props.size}
+    return (
+      <div>
+        <span onClick={this.handleToggleClick}>{this.props.activator}</span>
+        {closeonEscProp}
+        <div {...cleanProps}
+          className={cssClassNames}
+          data-id={`modal-${props.id}`}
+          onClick={(this.props.close || this.props.closeOnBackgroud || this.props.closeOnEsc) ? this.handleToggleClick : null}
         >
-          <div className={cssClassForOverflow}>  {props.children}</div>
-        </Dialog>
+          <Dialog
+            footer={props.footer}
+            header={props.header}
+            id={props.id}
+            onClose={this.handleCloseClick}
+            closeOnBackgroud={props.closeOnBackgroud ? this.handleToggleClick : undefined}
+            backdropEnabled={props.backdropEnabled}
+            size={props.size}
+          >
+            <div className={cssClassForOverflow}>  {props.children}</div>
+          </Dialog>
+
+        </div>
 
       </div>
-
-    </div>;
+    );
 
   }
 }

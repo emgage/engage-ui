@@ -64,7 +64,7 @@ class App extends React.Component<{}, State> {
     animate: this.animate,
   };
 
-  constructor(props: any) {
+  constructor(props: {}) {
     super(props);
     
     this.state = {

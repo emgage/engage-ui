@@ -13,22 +13,22 @@ export enum SizeType {
 export type Size = 'Small' | 'Medium' | 'Large' | number;
 
 export interface SizeStyle {
-  width: string,
-  marginLeft: string,
-  left: string,
+  width: string;
+  marginLeft: string;
+  left: string;
 }
 
 export interface Props {
-  close?: boolean,
-  children?: React.ReactNode,
-  footer?: React.ReactNode,
-  header?: React.ReactNode,
-  id?: string,
-  backdropEnabled?: boolean,
-  size?: Size,
-  theme?: any,
-  onClose?(e: any): void,
-  closeOnBackgroud?(e: any): void,
+  close?: boolean;
+  children?: React.ReactNode;
+  footer?: React.ReactNode;
+  header?: React.ReactNode;
+  id?: string;
+  backdropEnabled?: boolean;
+  size?: Size;
+  theme?: any;
+  onClose?(e: React.SyntheticEvent<HTMLElement>): void;
+  closeOnBackgroud?(e: React.SyntheticEvent<HTMLElement>): void;
 }
 
 const Dialog = (props: Props) => {
