@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from 'react-css-themr';
 import autobind from '@shopify/javascript-utilities/autobind';
-import {addEventListener, removeEventListener} from '@shopify/javascript-utilities/events';
-import {getRectForNode, Rect} from '@shopify/javascript-utilities/geometry';
-import {closest} from '@shopify/javascript-utilities/dom';
+import { addEventListener, removeEventListener } from '@shopify/javascript-utilities/events';
+import { getRectForNode, Rect } from '@shopify/javascript-utilities/geometry';
+import { closest } from '@shopify/javascript-utilities/dom';
 
 import { forNode as ScrollableForNode } from '../Scrollable';
-import {layer} from '../shared';
+import { layer } from '../shared';
 import { POSITIONED_OVERLAY } from '../ThemeIdentifiers';
 
 import {
@@ -18,35 +18,35 @@ import {
 
 import * as baseTheme from './PositionedOverlay.scss';
 
-export {PreferredPosition};
+export { PreferredPosition };
 export type Positioning = 'above' | 'below';
 
 export interface OverlayDetails {
-  left: number,
-  desiredHeight: number,
-  positioning: Positioning,
-  measuring: boolean,
-  activatorRect: Rect,
+  left: number;
+  desiredHeight: number;
+  positioning: Positioning;
+  measuring: boolean;
+  activatorRect: Rect;
 }
 
 export interface Props {
-  active: boolean,
-  activator: HTMLElement,
-  preferredPosition?: PreferredPosition,
-  theme?: any,
-  render(overlayDetails: OverlayDetails): React.ReactNode,
-  onScrollOut?(): void,
+  active: boolean;
+  activator: HTMLElement;
+  preferredPosition?: PreferredPosition;
+  theme?: any;
+  render(overlayDetails: OverlayDetails): React.ReactNode;
+  onScrollOut?(): void;
 }
 
 export interface State {
-  measuring: boolean,
-  activatorRect: Rect,
-  left: number,
-  top: number,
-  height: number,
-  positioning: Positioning,
-  zIndex: number,
-  outsideScrollableContainer: boolean,
+  measuring: boolean;
+  activatorRect: Rect;
+  left: number;
+  top: number;
+  height: number;
+  positioning: Positioning;
+  zIndex: number;
+  outsideScrollableContainer: boolean;
 }
 
 class PositionedOverlay extends React.PureComponent<Props, State> {
@@ -72,8 +72,8 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
   }
 
   componentDidUpdate() {
-    const {outsideScrollableContainer, top} = this.state;
-    const {onScrollOut, active} = this.props;
+    const { outsideScrollableContainer, top } = this.state;
+    const { onScrollOut, active } = this.props;
 
     if (active && onScrollOut != null && top !== 0 && outsideScrollableContainer) {
       onScrollOut();
@@ -86,13 +86,13 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
   }
 
   render() {
-    const {left, top, zIndex} = this.state;
-    const {render, theme} = this.props;
+    const { left, top, zIndex } = this.state;
+    const { render, theme } = this.props;
 
     return (
       <div
-        className={theme.PositionedOverlay}
-        style={{top, left, zIndex}}
+        className={theme.positionedOverlay}
+        style={{ top, left, zIndex }}
         ref={(input) => { this.setOverlay(input as HTMLElement); }} 
       >
         {render(this.overlayDetails())}
@@ -102,14 +102,14 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
 
   @autobind
   private overlayDetails(): OverlayDetails {
-    const {measuring, left, positioning, height, activatorRect} = this.state;
+    const { measuring, left, positioning, height, activatorRect } = this.state;
 
     return {
       measuring,
       left,
-      desiredHeight: height,
       positioning,
       activatorRect,
+      desiredHeight: height,
     };
   }
 
@@ -126,7 +126,7 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
       height: 0,
       positioning: 'below',
       measuring: true,
-    }, () => {
+    },            () => {
       const {
         activator,
         preferredPosition = 'below',
@@ -138,13 +138,14 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
       const scrollableContainerRect = getRectForNode(this.scrollableContainer);
       const overlayMargins = this.overlay.firstElementChild
         ? getMarginsForNode(this.overlay.firstElementChild as HTMLElement)
-        : {activator: 0, container: 0, horizontal: 0};
+        : { activator: 0, container: 0, horizontal: 0 };
       const containerRect = getRectForNode(window);
       const zIndex = getZIndexForLayerFromNode(activator) + 1;
       const verticalPosition = calculateVerticalPosition(activatorRect, overlayRect, overlayMargins, scrollableContainerRect, containerRect, preferredPosition);
       const horizontalPosition = calculateHorizontalPosition(activatorRect, overlayRect, containerRect);
 
       this.setState({
+        zIndex,
         measuring: false,
         activatorRect: getRectForNode(activator),
         left: horizontalPosition,
@@ -152,7 +153,6 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
         height: verticalPosition.height,
         positioning: verticalPosition.positioning as Positioning,
         outsideScrollableContainer: onScrollOut != null && rectIsOutsideOfRect(activatorRect, scrollableContainerRect),
-        zIndex,
       });
     });
   }

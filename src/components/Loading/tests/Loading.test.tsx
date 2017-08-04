@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { mount } from 'enzyme';
-import Loading from '..';
+import Loading from '../Loading';
 
 const theme = {
   loader: 'loader',

@@ -1,20 +1,20 @@
 import * as React from 'react';
 import autobind from '@shopify/javascript-utilities/autobind';
-import {classNames} from '@shopify/react-utilities/styles';
+import { classNames } from '@shopify/react-utilities/styles';
 
-import {layer} from '../shared';
-import PositionedOverlay, {OverlayDetails, PreferredPosition} from '../PositionedOverlay';
+import { layer } from '../shared';
+import PositionedOverlay, { OverlayDetails, PreferredPosition } from '../PositionedOverlay';
 
 import * as styles from './Tooltip.scss';
 
 export interface Props {
-  id: string,
-  active: boolean,
-  light?: boolean,
-  preferredPosition?: PreferredPosition,
-  children?: React.ReactNode,
-  activator: HTMLElement,
-  onClose(): void,
+  id: string;
+  active: boolean;
+  light?: boolean;
+  preferredPosition?: PreferredPosition;
+  children?: React.ReactNode;
+  activator: HTMLElement;
+  onClose(): void;
 }
 
 export default class TooltipOverlay extends React.PureComponent<Props, never> {
@@ -53,12 +53,12 @@ export default class TooltipOverlay extends React.PureComponent<Props, never> {
       positioning,
       activatorRect,
     } = overlayDetails;
-    const {id, children, light} = this.props;
+    const { id, children, light } = this.props;
 
     const tipStyle = calculateTipPosition(activatorRect.center.x, left);
 
     const containerClassName = classNames(
-      styles.Tooltip,
+      styles.tooltip,
       light && styles.light,
       measuring && styles.measuring,
       positioning === 'above' && styles.positionedAbove,
@@ -66,20 +66,20 @@ export default class TooltipOverlay extends React.PureComponent<Props, never> {
 
     const contentStyles = measuring
       ? undefined
-      : {maxHeight: desiredHeight};
+      : { maxHeight: desiredHeight };
 
     const tipMarkup = !measuring
-      ? <div style={tipStyle} className={styles.Tip} />
+      ? <div style={tipStyle} className={styles.tip} />
       : null;
 
     return (
       <div className={containerClassName} {...layer.props}>
         {tipMarkup}
-        <div className={styles.Wrapper}>
+        <div className={styles.wrapper}>
           <div
             id={id}
             role="tooltip"
-            className={styles.Content}
+            className={styles.content}
             style={contentStyles}
           >
             {children}
@@ -91,5 +91,5 @@ export default class TooltipOverlay extends React.PureComponent<Props, never> {
 }
 
 function calculateTipPosition(activatorRectXAxisCenter: number, left: number) {
-  return {left: activatorRectXAxisCenter - left};
+  return { left: activatorRectXAxisCenter - left };
 }

@@ -22,7 +22,7 @@ $input-horizontal-padding: spacing(tight) * 1.5;
 // in the Select does not appear vertically centered.
 $input-vertical-adjust: rem(1px);
 
-.Select {
+.select {
   position: relative;
 
   // IE 11 fix to remove default dropdown arrow
@@ -66,7 +66,7 @@ $input-vertical-adjust: rem(1px);
   }
 }
 
-.Backdrop {
+.backdrop {
   @include control-backdrop;
   position: absolute;
   z-index: z-index(backdrop, $stacking-order);
@@ -76,7 +76,7 @@ $input-vertical-adjust: rem(1px);
   right: 0;
 }
 
-.Icon {
+.icon {
   @include recolor-icon(color(ink, lighter));
   position: absolute;
   z-index: z-index(icon, $stacking-order);
@@ -87,7 +87,7 @@ $input-vertical-adjust: rem(1px);
   pointer-events: none;
 }
 
-.Input {
+.input {
   @include text-style-input;
   position: relative;
   z-index: z-index(input, $stacking-order);
@@ -97,13 +97,15 @@ $input-vertical-adjust: rem(1px);
   padding: control-vertical-padding() ($input-horizontal-padding + $icon-size) control-vertical-padding() $input-horizontal-padding;
   background: transparent;
   border: border(transparent);
+  -webkit-appearance: none;
+  -moz-appearance: none;
   appearance: none;
   line-height: rem(20px);
 
   &:focus {
     outline: none;
 
-    ~ .Backdrop {
+    ~ .backdrop {
       @include control-backdrop(focused);
     }
   }
