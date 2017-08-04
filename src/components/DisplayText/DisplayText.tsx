@@ -1,31 +1,31 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from 'react-css-themr';
-import {classNames, variationName} from '@shopify/react-utilities/styles';
+import { classNames, variationName } from '@shopify/react-utilities/styles';
 
-import {HeadingTagName} from '../../types';
+import { HeadingTagName } from '../../types';
 import { DISPLAY_TEXT } from '../ThemeIdentifiers';
 import * as baseTheme from './DisplayText.scss';
 
 export type Size = 'small' | 'medium' | 'large' | 'extraLarge';
 
 export interface Props {
-  element?: HeadingTagName,
-  children?: React.ReactNode,
-  size?: Size,
-  theme?: any,
-};
+  element?: HeadingTagName;
+  children?: React.ReactNode;
+  size?: Size;
+  theme?: any;
+}
 
-const DisplayText = ({
-  element: Element = 'p',
+const displayText = ({
   children,
-  size = 'medium',
   theme,
+  size = 'medium',
+  element: ELEMENT = 'p',
 }: Props) => {
   const className = classNames(
-  theme.DisplayText,
+  theme.displayText,
   size && theme[variationName('size', size)],
 );
-  return <Element className={className}>{children}</Element>;
+  return <ELEMENT className={className}>{children}</ELEMENT>;
 };
 
-export default themr(DISPLAY_TEXT, baseTheme)(DisplayText) as ThemedComponentClass<Props, {}>;
+export default themr(DISPLAY_TEXT, baseTheme)(displayText) as ThemedComponentClass<Props, {}>;

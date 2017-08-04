@@ -1,11 +1,11 @@
 $label-horizontal-spacing: spacing(tight) * 1.5;
 
 $stacking-order: (
-  label: 11,
+  label: 40,
 );
 
 
-.LabelWrapper {
+.labelWrapper {
   margin-bottom: 0;
   margin-left: $label-horizontal-spacing;
   position: absolute;

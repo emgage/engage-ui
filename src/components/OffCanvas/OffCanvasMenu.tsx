@@ -4,11 +4,11 @@ import { OffCanvasAnimationType, OffCanvasPosition } from './OffCanvasProps';
 import { Props } from './OffCanvas';
 
 export interface State {
-    isMenuOpened: false,
+  isMenuOpened: false;
 }
 
-export class OffCanvasMenu extends React.PureComponent<Props, State> {
-  state: State = {isMenuOpened: false};
+export default class OffCanvasMenu extends React.PureComponent<Props, State> {
+  state: State = { isMenuOpened: false };
   render() {
     const {
       width = 270,
@@ -25,9 +25,9 @@ export class OffCanvasMenu extends React.PureComponent<Props, State> {
 
     const translateCloseX = position === OffCanvasPosition.Left ? width : (-1 * width);
     const closedStyle = {
+      left,
       width: width + 'px',
       top: '0px',
-      left,
       transform: 'translate(' + translateCloseX + 'px, 0px)',
       transitionDuration: tranDuration + 'ms',
       backfaceVisibility: 'hidden',
@@ -39,10 +39,10 @@ export class OffCanvasMenu extends React.PureComponent<Props, State> {
 
     let currStyle = closedStyle;
     if (isMenuOpened) {
-      currStyle = {...currStyle, ...openStyle};
+      currStyle = { ...currStyle, ...openStyle };
     }
     return (
-      <div style={{...currStyle, ...style}} className={baseTheme.menuClass}>
+      <div style={{ ...currStyle, ...style }} className={baseTheme.menuClass}>
         {children}
       </div>
     );

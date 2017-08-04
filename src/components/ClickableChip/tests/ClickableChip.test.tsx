@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { mount } from 'enzyme';
 import Chip from '../../Chip';
-import ClickableChip from '..';
+import ClickableChip from '../ClickableChip';
 
 describe('<ClickableChip />', () => {
   describe('when default props are provided', () => {
