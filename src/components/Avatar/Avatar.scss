@@ -6,7 +6,7 @@ $small-size: rem(32px);
 $medium-size: rem(40px);
 $large-size: rem(60px);
 
-.Avatar {
+.avatar {
   position: relative;
   display: flex;
   overflow: hidden;
@@ -63,11 +63,11 @@ $large-size: rem(60px);
   background: transparent;
 }
 
-.Image {
+.image {
   width: 100%;
 }
 
-.Initials {
+.initials {
   line-height: 0;
   color: color(white);
   text-transform: uppercase;

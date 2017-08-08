@@ -1,11 +1,11 @@
 import * as React from 'react';
 import autobind from '@shopify/javascript-utilities/autobind';
-import {addEventListener, removeEventListener} from '@shopify/javascript-utilities/events';
-import {Keys} from '../../types';
+import { addEventListener, removeEventListener } from '@shopify/javascript-utilities/events';
+import { Keys } from '../../types';
 
 export interface Props {
-  keyCode: Keys,
-  handler(event: KeyboardEvent): void,
+  keyCode: Keys;
+  handler(event: KeyboardEvent): void;
 }
 
 export default class KeypressListener extends React.Component<Props, never> {
@@ -24,7 +24,7 @@ export default class KeypressListener extends React.Component<Props, never> {
 
   @autobind
   private handleKeyEvent(event: KeyboardEvent) {
-    const {keyCode, handler} = this.props;
+    const { keyCode, handler } = this.props;
 
     if (event.keyCode === keyCode) {
       handler(event);

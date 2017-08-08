@@ -1,6 +1,46 @@
-.chip {    display: block;}
-.chipClickable{display: block;}
-.chipImage{display: block;}
-.chipRemovable{display: block;}
-.chipTransparent{display: block;}
-.chipRemove{display: block;}
+$height: rem(32px);
+$horizontal-padding: (3 * $height / 8);
+
+.Chip {
+    display: inline-block;
+    font-size: rem(13px);
+    color: color(ink);//rgba(0,0,0,0.6);
+    line-height: $height;
+    padding: 0 $horizontal-padding;
+    border-radius: $height / 2;
+    background-color: color(sky);//#e4e4e4;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.Image {
+    float: left;
+    margin: 0 ($height / 4) 0 (-1 * $horizontal-padding);
+    height: $height;
+    width: $height;
+    border-radius: 50%;
+}
+
+.Remove {
+    cursor: pointer;
+    float: right;
+    font-size: rem(16px);
+    height: $height - $horizontal-padding;
+    width: $height - $horizontal-padding;
+    line-height: $height - $horizontal-padding;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    margin: ($horizontal-padding / 2) (-1 * $horizontal-padding / 2) ($horizontal-padding / 2) ($horizontal-padding / 2);
+    transition: background 0.15s linear;
+    display: block;
+}
+
+.transparent{
+    background-color: transparent;
+}

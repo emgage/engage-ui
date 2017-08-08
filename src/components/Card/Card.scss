@@ -4,12 +4,12 @@
 @import 'foundation/spacing';
 @import 'shared/breakpoints';
 
-.Card {
+.card {
   overflow: hidden;
   background-color: color(white);
   box-shadow: shadow();
 
-  + .Card {
+  + .card {
     margin-top: spacing(loose);
   }
 
@@ -22,27 +22,27 @@
   background-color: color(sky, lighter);
 }
 
-.Header {
+.header {
   padding: spacing(loose) spacing(loose) 0;
 }
 
-.Section {
+.section {
   padding: spacing(loose);
 
-  + .Section {
+  + .section {
     border-top: 1px solid color(sky);
   }
 }
 
-.Section-subdued {
+.section-subdued {
   background-color: color(sky, lighter);
 }
 
-.SectionHeader {
+.sectionHeader {
   padding-bottom: spacing(tight);
 }
 
-.Footer {
+.footer {
   display: flex;
   justify-content: flex-end;
   padding: 0 spacing(loose) spacing(loose);
