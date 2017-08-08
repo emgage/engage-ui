@@ -3,7 +3,7 @@ import { mount } from 'enzyme';
 import Labelled from '../Labelled';
 import { Action } from '../../../types';
 
-describe('Labelled component - Test Suit', () => {
+describe('<Labelled /> - Test Suit', () => {
     const spy = jest.fn();
     const action: Action = {
       content: ' Action Content ',
