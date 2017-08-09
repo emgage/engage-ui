@@ -229,12 +229,20 @@ describe('<DisplayText />', () => {
                                          </DisplayText>,
                                    );
         expect(displaytextWrapper.prop('children')).toBe('Good Morning');
+        expect(displaytextWrapper.prop('children')).toBeDefined;
       });
       it('should verify children when set in same tag', () => {
         const displaytextWrapper = mount(
                                          <DisplayText children="Good Morning" theme={theme} />,
                                    );
         expect(displaytextWrapper.prop('children')).toBe('Good Morning');
+        expect(displaytextWrapper.prop('children')).toBeDefined;
+      });
+      it('should verify children when set as blank', () => {
+        const displaytextWrapper = mount(
+                                         <DisplayText children="" theme={theme} />,
+                                   );
+        expect(displaytextWrapper.prop('children')).toBeDefined;
       });
     });
   });
