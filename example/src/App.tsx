@@ -106,7 +106,9 @@ class App extends React.Component<{}, State> {
       <div>
         <div>
           <Heading>This is my DatePicker!!</Heading> 
-          {/* <DatePicker />    */}
+           <DatePicker />    
+
+           <br />
 
           <DateRangePickerWrapper />
 
