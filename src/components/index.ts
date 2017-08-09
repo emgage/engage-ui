@@ -139,9 +139,7 @@ export {
 
 export {
   default as OffCanvas,
-  Props as OffCanvasProps,
-  OffCanvasBody,
-  OffCanvasMenu,
+  Props as OffCanvasProps,  
   OffCanvasAnimationType,
   OffCanvasPosition,
 } from './OffCanvas';

@@ -24,9 +24,7 @@ import {
   List,
   Item,
   Loading,
-  OffCanvas,
-  OffCanvasMenu,
-  OffCanvasBody,
+  OffCanvas,  
   OffCanvasAnimationType,
   Panel,
   Picker,
@@ -87,8 +85,8 @@ class App extends React.Component<{}, State> {
     this.setState({ isMenuOpened: !this.state.isMenuOpened, animation: OffCanvasAnimationType.Slide });
   }
 
-  handleClickReveal = () => {
-    this.setState({ isMenuOpened: !this.state.isMenuOpened, animation: OffCanvasAnimationType.Reveal });
+  handleClickPush = () => {
+    this.setState({ isMenuOpened: !this.state.isMenuOpened, animation: OffCanvasAnimationType.Push });
   }
 
   handleClickNone = () => {
@@ -124,26 +122,21 @@ class App extends React.Component<{}, State> {
       }} />;
 
     return (
-      <div> 
-        <OffCanvas width={270} transitionDuration={270} isMenuOpened={this.state.isMenuOpened}>
-            <OffCanvasBody animation={this.state.animation}>
-              <p>This is the main body container.</p>
-              <p><a href="#" onClick={this.handleClickSlide}>Slide</a> to toggle the menu.</p>
-              <p><a href="#" onClick={this.handleClickReveal}>Reveal</a> to toggle the menu.</p>
-              <p><a href="#" onClick={this.handleClickNone}>None</a> to toggle the menu.</p>
-            </OffCanvasBody>
-            <OffCanvasMenu animation={this.state.animation}>
-              <p>Placeholder content.</p>
-              <ul>
-                <li>Link 1</li>
-                <li>Link 2</li>
-                <li>Link 3</li>
-                <li>Link 4</li>
-                <li>Link 5</li>
-                <li><a href="#" onClick={this.handleClick}>Toggle Menu</a></li>
-              </ul>
-            </OffCanvasMenu>
-          </OffCanvas>       
+      <div id="dvRoot">        
+        <OffCanvas animation={this.state.animation} isMenuOpened={this.state.isMenuOpened} rootElementId="dvRoot">
+          <p>Placeholder content.</p>
+          <ul>
+            <li>Link 1</li>
+            <li>Link 2</li>
+            <li>Link 3</li>
+            <li>Link 4</li>
+            <li>Link 5</li>
+            <li><a href="#" onClick={this.handleClick}>Toggle Menu</a></li>
+          </ul>
+        </OffCanvas> 
+        <a href="#" onClick={this.handleClickPush}>Push</a> &nbsp;&nbsp;
+        <a href="#" onClick={this.handleClickSlide}>Slide</a> &nbsp;&nbsp;        
+        <a href="#" onClick={this.handleClickNone}>None</a>       
         <div>
           <ReactDataExample
             columns={this.state.columns}
