@@ -79,10 +79,6 @@ function DayPickerKeyboardShortcuts(
   testingThis,
 }) {
   const fakeThis = testingThis;
-  // console.log('test TESTINGTHIS:', testingThis);
-  // this = testingThis;
-  // console.log('theme!!!:', theme)
-  // console.log('this daypickerkeyboardshorcut', this);
   const keyboardShortcuts = [{
     unicode: '↵',
     label: phrases.enterKey,
@@ -138,8 +134,6 @@ function DayPickerKeyboardShortcuts(
     <div>
       <button
         ref={(ref) => { 
-
-          {/* console.log('ref at daypickerkeyboardshorcut', ref) */}
           fakeThis.showKeyboardShortcutsButton = ref; 
           }
         }

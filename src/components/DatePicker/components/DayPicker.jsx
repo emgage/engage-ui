@@ -147,22 +147,17 @@ export function calculateDimension(el, axis, borderBox = false, withMargin = fal
     return 0;
   }
 
-  // if (axis === 'height') console.log('el:', el);
   const axisStart = axis === 'width' ? 'Left' : 'Top';
   const axisEnd = axis === 'width' ? 'Right' : 'Bottom';
 
-  // console.log('getComputedStyle:', window.getComputedStyle(el))
 
   // Only read styles if we need to
   const style = (!borderBox || withMargin) ? window.getComputedStyle(el) : null;
   // style = theme[style] ? theme[style] : style;
 
-  // console.log('style:', style)
   // Offset includes border and padding
   const { offsetWidth, offsetHeight } = el;
   let size = axis === 'width' ? offsetWidth : offsetHeight;
-
-  // console.log('size:', size)
 
   // Get the inner size
   if (!borderBox) {
@@ -180,25 +175,16 @@ export function calculateDimension(el, axis, borderBox = false, withMargin = fal
     size += (parseFloat(style[`margin${axisStart}`]) + parseFloat(style[`margin${axisEnd}`]));
   }
 
-  // console.log('size!!:', size)
-
   return size;
 }
 
 function getMonthHeight(el, theme) {
-  // console.log('theme from getmonthheight:', theme);
-  // console.log('is there a value here?', theme[el.querySelector('.js-CalendarMonth__caption')])
 
   const themedCaption = theme['CalendarMonth__caption'];
   const caption = el.querySelector(`.${themedCaption}`);
 
   const themedGrid = theme['CalendarMonth__grid'];
   const grid = el.querySelector('tbody');
-  // console.log('grid!!!', grid);
-
-  // console.log('caption:', calculateDimension(caption, 'height', true, true, theme));
-  // console.log('grid:', calculateDimension(grid, 'height', false, false, theme))
-
   // Need to separate out table children for FF
   // Add an additional +1 for the border
   return (
@@ -477,8 +463,6 @@ class DayPicker extends React.Component {
   }
 
   getMonthHeightByIndex(i) {
-    // console.log('props from getmonthehgiht by index:', this.props.theme);
-    // console.log('month height?:', getMonthHeight(this.transitionContainer.querySelectorAll(`.${this.props.theme}['CalendarMonth']`)[i], this.props.theme))
     return getMonthHeight(this.transitionContainer.querySelectorAll(`.${this.props.theme}['CalendarMonth']`)[i], this.props.theme);
   }
 
@@ -621,21 +605,15 @@ class DayPicker extends React.Component {
     Array.prototype.forEach.call(this.transitionContainer.querySelectorAll(`.${themedStyle}`),
       (el) => {
         if (el.getAttribute('data-visible') === 'true') {
-          // console.log('adjustdaypickerheight this.props.theme:', this.props.theme)
           heights.push(getMonthHeight(el, this.props.theme));
         }
       },
     );
-    // console.log('heights', heights);
 
     const newMonthHeight = Math.max(...heights) + MONTH_PADDING;
 
-    // console.log('newMonthHeight:', newMonthHeight);
-    // console.log('calculateDimension:', calculateDimension(this.transitionContainer, 'height', false, false, this.props.theme))
-    // console.log('transitioncontainer:', this.transitionContainer);
     if (newMonthHeight !== calculateDimension(this.transitionContainer, 'height', false, false, this.props.theme)) {
       this.monthHeight = newMonthHeight;
-      // console.log('monthheight', newMonthHeight);
       this.transitionContainer.style.height = `${newMonthHeight}px`;
     }
   }
@@ -652,7 +630,6 @@ class DayPicker extends React.Component {
     const transformValue = `${transformType}(${convertedTranslationValue}px)`;
 
     const styledTheme = theme['CalendarMonth'];
-    // console.log('styledTheme:', styledTheme)
     applyTransformStyles(
       this.transitionContainer.querySelector(`.${styledTheme}`),
       transformValue,
@@ -661,8 +638,6 @@ class DayPicker extends React.Component {
   }
 
   openKeyboardShortcutsPanel(onCloseCallBack) {
-    console.log('this openKeyboardShortcutsPanel', this);
-    console.log('oncloseballback', onCloseCallBack)
     this.setState({
       showKeyboardShortcuts: true,
       onKeyboardShortcutsPanelClose: onCloseCallBack,
@@ -846,8 +821,6 @@ class DayPicker extends React.Component {
     if (this.isVertical()) {
       keyboardShortcutButtonLocation = withPortal ? TOP_LEFT : TOP_RIGHT;
     }
-
-    console.log('daypicker THIS:', this);
 
     return (
       <div

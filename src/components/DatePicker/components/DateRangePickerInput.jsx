@@ -59,6 +59,8 @@ const propTypes = forbidExtraProps({
   phrases: PropTypes.shape(getPhrasePropTypes(DateRangePickerInputPhrases)),
 
   isRTL: PropTypes.bool,
+
+  theme: PropTypes.object,
 });
 
 const defaultProps = {

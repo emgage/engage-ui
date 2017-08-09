@@ -1,8 +1,10 @@
+import { DateRangePickerPhrases } from '../../lib/@types/src/components/DatePicker/Component/defaultPhrases';
 import * as React from 'react';
 import { FlexAlign, FlexDirection, FlexJustify } from '../../src/components/FlexBox/FlexProps';
 import { PeoplePickerSearchType } from './PickerEnum';
 import { PeoplePickerSource } from './PickerSource';
 import DatePicker from './SingleDatePickerWrapper';
+import DateRangePickerWrapper from './DateRangePickerWrapper';
 
 import Example from '../../src/components/ReactDataExample';
 
@@ -104,7 +106,9 @@ class App extends React.Component<{}, State> {
       <div>
         <div>
           <Heading>This is my DatePicker!!</Heading> 
-          <DatePicker />   
+          {/* <DatePicker />    */}
+
+          <DateRangePickerWrapper />
 
           {/* <Example
             columns={this.state.columns}
