@@ -4,7 +4,7 @@ import LinkState from './componentState/LinkState';
 import ListState from './componentState/ListState';
 
 const intialState : IDocumentAppState = {
-  Components: [
+  components: [
     LinkState,
     ListState,
   ],

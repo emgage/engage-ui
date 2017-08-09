@@ -1,6 +1,7 @@
 import { IDocument } from '../../Types';
 
 const listState: IDocument = {
+  id: 'link',
   heading : 'List Component',
   subheading : 'this component does lots of really cool things with lists. You should use it.',
   property : [

@@ -1,10 +1,11 @@
 import * as redux from 'redux';
 
 export interface IDocumentAppState {
-  Components: IDocument[];
+  components: IDocument[];
 }
 
 export interface IDocument {
+  id: string;
   heading: string;
   subheading: string;
   property:IProperty[];

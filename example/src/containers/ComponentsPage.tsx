@@ -20,7 +20,10 @@ export interface IProps {
 class ComponentsPage extends React.Component<IProps, any> {
   render() {
     const currentComponent = this.props.routeParams.component;
-    const currentState = this.props.state[currentComponent];
+    const currentState = this.props.state.find((c) => { return c.id === currentComponent; });
+    if (!currentState)
+      return (null);
+   
     return (
       <div className="component-container">
         <Heading value={currentState.heading} />
@@ -36,7 +39,7 @@ class ComponentsPage extends React.Component<IProps, any> {
 
 function mapStateToProps(state: IDocumentAppState) {
   return {
-    state: state.Components,
+    state: state.components,
   };
 }
 

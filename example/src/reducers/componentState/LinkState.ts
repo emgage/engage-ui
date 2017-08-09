@@ -1,6 +1,7 @@
 import { IDocument } from '../../Types';
 
 const linkState: IDocument = {
+  id: 'link',
   heading: 'Link Component',
   subheading: 'the link component is an elusive beast. You should only use it if you would like' +
                 ' to go somewhere',
