@@ -264,36 +264,43 @@ function DayPickerKeyboardShortcuts(
     unicode: '↵',
     label: phrases.enterKey,
     action: phrases.selectFocusedDate,
+    theme: theme,
   },
   {
     unicode: '←/→',
     label: phrases.leftArrowRightArrow,
     action: phrases.moveFocusByOneDay,
+    theme: theme,
   },
   {
     unicode: '↑/↓',
     label: phrases.upArrowDownArrow,
     action: phrases.moveFocusByOneWeek,
+    theme: theme,
   },
   {
     unicode: 'PgUp/PgDn',
     label: phrases.pageUpPageDown,
     action: phrases.moveFocusByOneMonth,
+    theme: theme,
   },
   {
     unicode: 'Home/End',
     label: phrases.homeEnd,
     action: phrases.moveFocustoStartAndEndOfWeek,
+    theme: theme,
   },
   {
     unicode: 'Esc',
     label: phrases.escape,
     action: phrases.returnFocusToInput,
+    theme: theme,
   },
   {
     unicode: '?',
     label: phrases.questionMark,
     action: phrases.openThisPanel,
+    theme: theme,
   },
   ];
 
@@ -363,7 +370,7 @@ function DayPickerKeyboardShortcuts(
 
           <ul className={theme["DayPickerKeyboardShortcuts__list"]}>
             {keyboardShortcuts.map(({ unicode, label, action }) => (
-              <KeyboardShortcutRow key={label} unicode={unicode} label={label} action={action} />
+              <KeyboardShortcutRow key={label} unicode={unicode} label={label} action={action} theme={theme}/>
             ))}
           </ul>
         </div>
