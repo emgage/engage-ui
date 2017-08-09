@@ -4,14 +4,14 @@ import { VISUALLY_HIDDEN } from '../ThemeIdentifiers';
 import * as baseTheme from './VisuallyHidden.scss';
 
 export interface Props {
-  children?: React.ReactNode,
-  theme?: any,
+  children?: React.ReactNode;
+  theme?: any;
 }
 
-const VisuallyHidden = ({children, theme}: Props) => {
+const visuallyHidden = ({ children, theme }: Props) => {
   return (
-    <span className={theme.VisuallyHidden}>{children}</span>
+    <span className={theme.visuallyHidden}>{children}</span>
   );
-}
+};
 
-export default themr(VISUALLY_HIDDEN, baseTheme)(VisuallyHidden) as ThemedComponentClass<Props, {}>;
+export default themr(VISUALLY_HIDDEN, baseTheme)(visuallyHidden) as ThemedComponentClass<Props, {}>;

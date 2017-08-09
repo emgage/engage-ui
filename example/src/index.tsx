@@ -7,7 +7,6 @@ import * as Perf from 'react-addons-perf';
 import App from './App';
 import BaseTheme from '../../themes/Delicious/index';
 
-
 ReactDOM.render(
   <BaseTheme>
     <div>

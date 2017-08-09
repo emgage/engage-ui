@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { shallow, mount, ReactWrapper } from 'enzyme';
 
-import ChoiceList from '..';
+import ChoiceList from '../ChoiceList';
 import RadioButton from '../../RadioButton';
 import Checkbox from '../../Checkbox';
 
@@ -42,7 +42,7 @@ describe('<ChoiceList />', () => {
   describe('selected', () => {
     it('sets the appropriate choices to be selected', () => {
       const selectedIndexes = [0, 2];
-      const selected = selectedIndexes.map((index) => choices[index].value);
+      const selected = selectedIndexes.map(index => choices[index].value);
       const choiceElements = mount(<ChoiceList selected={selected} choices={choices} />).find(RadioButton);
 
       choiceElements.forEach((choiceElement, index) => {

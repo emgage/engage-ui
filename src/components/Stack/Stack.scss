@@ -8,14 +8,14 @@
   margin-top: -1 * spacing($spacing);
   margin-left: -1 * spacing($spacing);
 
-  > .Item {
+  > .item {
     margin-top: spacing($spacing);
     margin-left: spacing($spacing);
     max-width: calc(100% - #{spacing($spacing)});
   }
 }
 
-.Stack {
+.stack {
   @include stack-spacing;
   display: flex;
   flex-wrap: wrap;
@@ -60,7 +60,6 @@
 
 .distributionFillEvenly > .Item {
   flex: 1 1 auto;
-
   @supports (min-width: fit-content) {
     flex: 1 0 0%;
     min-width: fit-content;
@@ -87,11 +86,11 @@
   align-items: baseline;
 }
 
-.Item {
+.item {
   flex: 0 0 auto;
   min-width: 0;
 }
 
-.Item-fill {
+.item-fill {
   flex: 1 1 auto;
 }
