@@ -147,7 +147,7 @@ export function calculateDimension(el, axis, borderBox = false, withMargin = fal
     return 0;
   }
 
-  if (axis === 'height') console.log('el:', el);
+  // if (axis === 'height') console.log('el:', el);
   const axisStart = axis === 'width' ? 'Left' : 'Top';
   const axisEnd = axis === 'width' ? 'Right' : 'Bottom';
 
@@ -194,10 +194,10 @@ function getMonthHeight(el, theme) {
 
   const themedGrid = theme['CalendarMonth__grid'];
   const grid = el.querySelector('tbody');
-  console.log('grid!!!', grid);
+  // console.log('grid!!!', grid);
 
   // console.log('caption:', calculateDimension(caption, 'height', true, true, theme));
-  console.log('grid:', calculateDimension(grid, 'height', false, false, theme))
+  // console.log('grid:', calculateDimension(grid, 'height', false, false, theme))
 
   // Need to separate out table children for FF
   // Add an additional +1 for the border
@@ -661,6 +661,8 @@ class DayPicker extends React.Component {
   }
 
   openKeyboardShortcutsPanel(onCloseCallBack) {
+    console.log('this openKeyboardShortcutsPanel', this);
+    console.log('oncloseballback', onCloseCallBack)
     this.setState({
       showKeyboardShortcuts: true,
       onKeyboardShortcutsPanelClose: onCloseCallBack,
@@ -845,6 +847,8 @@ class DayPicker extends React.Component {
       keyboardShortcutButtonLocation = withPortal ? TOP_LEFT : TOP_RIGHT;
     }
 
+    console.log('daypicker THIS:', this);
+
     return (
       <div
         className={dayPickerClassNames}
@@ -909,6 +913,7 @@ class DayPicker extends React.Component {
                 openKeyboardShortcutsPanel={this.openKeyboardShortcutsPanel}
                 closeKeyboardShortcutsPanel={this.closeKeyboardShortcutsPanel}
                 phrases={phrases}
+                testingThis={this}  
               />
             }
           </div>
