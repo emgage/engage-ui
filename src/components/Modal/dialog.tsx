@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from 'react-css-themr';
 import { MODAL } from '../ThemeIdentifiers';
-import Helpers from './helpers';
+import helpers from './helpers';
 import * as baseTheme from './Modal.scss';
 
 export enum SizeType {
@@ -51,12 +51,12 @@ const Dialog = (props: Props) => {
     default:
       dialogWidthSize = props.size as number;
       break;
-  };
+  }
 
-  const cssClassNames = Helpers.cleanClasses([
+  const cssClassNames = helpers.cleanClasses([
     props.backdropEnabled ? props.theme.dialog : props.theme.backDrop,
   ]);
-  const closeCSSClasses = Helpers.cleanClasses([
+  const closeCSSClasses = helpers.cleanClasses([
     props.theme.close,
   ]);
 

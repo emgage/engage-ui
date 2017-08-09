@@ -7,7 +7,7 @@ const ReactDataExample = React.createClass({
     this._columns = [
       { key: 'id', name: 'ID' },
       { key: 'title', name: 'Title' },
-      { key: 'count', name: 'Count' } ];
+      { key: 'count', name: 'Count' }];
 
     return null;
   },
@@ -30,7 +30,7 @@ const ReactDataExample = React.createClass({
   },
 
   render() {
-    return  (
+    return (
       <ReactDataGrid
         columns={this._columns}
         rowGetter={this.rowGetter}

@@ -4,7 +4,7 @@ import { classNames } from '@shopify/react-utilities/styles';
 import { Keys } from '../../types';
 import { MODAL } from '../ThemeIdentifiers';
 import KeypressListener from '../KeypressListener';
-import Helpers from './helpers';
+import helpers from './helpers';
 import Dialog from './dialog';
 import * as baseTheme from './Modal.scss';
 
@@ -16,8 +16,8 @@ const bodyStyle = (pading: string, overflow: string): void => {
 
 const getModalElement = (id: string) => {
   return {
-    modal: Helpers.getElement(`modal-${id}`),
-    dialog: Helpers.getElement(`dialog-${id}`),
+    modal: helpers.getElement(`modal-${id}`),
+    dialog: helpers.getElement(`dialog-${id}`),
   };
 };
 
@@ -66,6 +66,7 @@ class Modal extends React.Component<Props, {}> {
     setTimeout(() => bodyStyle('', ''), 200);
   }
 
+  // I had to call this extra method 
   handleCloseClickOnKeyPress = (event: KeyboardEvent): void => {
 
     event.preventDefault();
@@ -102,7 +103,7 @@ class Modal extends React.Component<Props, {}> {
 
     const props = this.props;
 
-    const cssClassNames = Helpers.cleanClasses([
+    const cssClassNames = helpers.cleanClasses([
       props.theme.overflow,
       props.backdropEnabled ? props.theme.modal : null,
       props.classes,
@@ -129,7 +130,7 @@ class Modal extends React.Component<Props, {}> {
     ];
 
     const closeonEscProp = this.props.closeOnEsc ? (<KeypressListener keyCode={Keys.ESCAPE} handler={this.handleCloseClickOnKeyPress} />) : null;
-    const cleanProps = Helpers.cleanProps(ignoreProps)({
+    const cleanProps = helpers.cleanProps(ignoreProps)({
       ...props,
       ok: null,
       show: null,
@@ -164,9 +165,7 @@ class Modal extends React.Component<Props, {}> {
           >
             <div className={cssClassForOverflow}>  {props.children}</div>
           </Dialog>
-
         </div>
-
       </div>
     );
 
