@@ -10,6 +10,7 @@ import Properties from '../components/Properties';
 import CodeExample from '../components/CodeExample';
 
 import '../styles/components-page.scss';
+import * as styles from '../styles/global-styles.scss';
 
 export interface IProps {
   state: IDocument[];
@@ -25,12 +26,12 @@ class ComponentsPage extends React.Component<IProps, any> {
       return (null);
    
     return (
-      <div className="component-container">
+      <div className={styles.component_container}>
         <Heading value={currentState.heading} />
-        <Subheading value={currentState.subheading} />
-        <Properties tableValues={currentState.property} />
-        <CodeExample codeString={currentState.code} />
-        <div style={{ marginTop: 100 }}>{'<Best Practices Component />'}</div>
+        {currentState.subheading && <Subheading value={currentState.subheading} />}
+        {currentState.property && <Properties tableValues={currentState.property} />}
+        {currentState.code && <CodeExample codeString={currentState.code} />}
+        <div style={{ marginTop: 50 }}>{'<Best Practices Component />'}</div>
         <div>{'<GuideLines Component />'}</div>
       </div>
     );

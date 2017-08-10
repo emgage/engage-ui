@@ -7,9 +7,9 @@ export interface IDocumentAppState {
 export interface IDocument {
   id: string;
   heading: string;
-  subheading: string;
-  property:IProperty[];
-  code: string;
+  subheading?: string;
+  property?:IProperty[];
+  code?: string;
 }
 
 export interface IProperty {

@@ -1,12 +1,12 @@
 import { IDocumentAppState } from '../Types';
 
-import LinkState from './componentState/LinkState';
-import ListState from './componentState/ListState';
+import ChoiceListState from './componentState/ChoiceListState';
+import PanelState from './componentState/PanelState';
 
 const intialState : IDocumentAppState = {
   components: [
-    LinkState,
-    ListState,
+    ChoiceListState,
+    PanelState,
   ],
 };
 

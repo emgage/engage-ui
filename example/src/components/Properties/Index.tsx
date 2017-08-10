@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import '../../styles/properties.scss';
+import * as styles from '../../styles/properties.scss';
 
 export interface IProps{
   tableValues: any[];
@@ -10,7 +10,7 @@ class Properties extends React.Component<IProps, any> {
   createHeadings = () => {
     // creates an array of th components based on the keys in the first object
     return Object.keys(this.props.tableValues[0]).map((value, index) => {
-      return <th key={index} className="border">{value}</th>;
+      return <th key={index} className={styles.border}>{value}</th>;
     });
   }
 
@@ -21,7 +21,7 @@ class Properties extends React.Component<IProps, any> {
       return (
         <tr
           key={index}
-          className="border"
+          className={styles.border}
         >
         {cells}
         </tr>
@@ -35,7 +35,7 @@ class Properties extends React.Component<IProps, any> {
       return (
         <td
           key={index}
-          className="border"
+          className={styles.border}
         >
           {row[key]}
         </td>);
@@ -46,8 +46,8 @@ class Properties extends React.Component<IProps, any> {
     const headings = this.createHeadings();
     const contents = this.createRows();
     return (
-      <table className="border table">
-        <thead className="heading">
+      <table className={styles.border + ' ' + styles.table}>
+        <thead className={styles.heading}>
           <tr>{headings}</tr>
         </thead>
         <tbody>
