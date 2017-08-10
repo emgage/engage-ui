@@ -225,20 +225,20 @@ describe('<Badge />', () => {
                                    </Badge>,
                              );
         expect(badgeWrapper.prop('children')).toBe('Sample Badge');
-        expect(badgeWrapper.prop('children')).toBeDefined;
+        expect(badgeWrapper.prop('children')).toBeDefined();
       });
       it('should verify the children property of badge in same tag', () => {
         const badgeWrapper = mount(
                                    <Badge children="Sample Badge" theme={theme} />,
                              );
         expect(badgeWrapper.prop('children')).toBe('Sample Badge');
-        expect(badgeWrapper.prop('children')).toBeDefined;
+        expect(badgeWrapper.prop('children')).toBeDefined();
       });
       it('should verify the children property of badge when set as blank', () => {
         const badgeWrapper = mount(
                                    <Badge children="" theme={theme} />,
                              );
-        expect(badgeWrapper.prop('children')).toBeDefined;
+        expect(badgeWrapper.prop('children')).toBeDefined();
       });
     });
   });
