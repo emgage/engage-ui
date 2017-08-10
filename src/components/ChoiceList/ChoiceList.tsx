@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from 'react-css-themr';
-import {classNames} from '@shopify/react-utilities/styles';
-import {ReactComponent} from '@shopify/react-utilities/types';
-import {noop, createUniqueIDFactory} from '@shopify/javascript-utilities/other';
+import { classNames } from '@shopify/react-utilities/styles';
+import { ReactComponent } from '@shopify/react-utilities/types';
+import { noop, createUniqueIDFactory } from '@shopify/javascript-utilities/other';
 
 import Checkbox from '../Checkbox';
 import RadioButton from '../RadioButton';
@@ -11,21 +11,21 @@ import { CHOICE_LIST } from '../ThemeIdentifiers';
 import * as baseTheme from './ChoiceList.scss';
 
 export interface ChoiceDescriptor {
-  value: string,
-  label: string,
+  value: string;
+  label: string;
 }
 
 export type Choice = ChoiceDescriptor;
 
 export interface Props {
-  title?: string,
-  titleHidden?: boolean,
-  choices: Choice[],
-  selected: string[],
-  name?: string,
-  allowMultiple?: boolean,
-  theme?: any,
-  onChange?(selected: string[]): void,
+  title?: string;
+  titleHidden?: boolean;
+  choices: Choice[];
+  selected: string[];
+  name?: string;
+  allowMultiple?: boolean;
+  theme?: any;
+  onChange?(selected: string[]): void;
 }
 
 type ChooseableComponent = ReactComponent<{
@@ -38,7 +38,7 @@ type ChooseableComponent = ReactComponent<{
 
 const getUniqueID = createUniqueIDFactory('ChoiceList');
 
-const ChoiceList = ({
+const choiceList = ({
   title,
   titleHidden,
   allowMultiple,
@@ -48,11 +48,11 @@ const ChoiceList = ({
   theme,
   name = getUniqueID(),
 }: Props) => {
-  const ControlComponent: ChooseableComponent = allowMultiple ? Checkbox : RadioButton;
+  const CONTROLCOMPONENT: ChooseableComponent = allowMultiple ? Checkbox : RadioButton;
   const finalName = allowMultiple ? `${name}[]` : name;
-  const className = classNames(theme.ChoiceList, titleHidden && theme.titleHidden);
+  const className = classNames(theme.choiceList, titleHidden && theme.titleHidden);
   const titleMarkup = title
-    ? <legend className={theme.Title}>{title}</legend>
+    ? <legend className={theme.title}>{title}</legend>
     : null;
 
   const choicesMarkup = choices.map((choice) => {
@@ -66,7 +66,7 @@ const ChoiceList = ({
 
     return (
       <li key={key}>
-        <ControlComponent
+        <CONTROLCOMPONENT
           name={finalName}
           value={value}
           label={label}
@@ -80,23 +80,23 @@ const ChoiceList = ({
   return (
     <fieldset className={className}>
       {titleMarkup}
-      <ul className={theme.Choices}>
+      <ul className={theme.choices}>
         {choicesMarkup}
       </ul>
     </fieldset>
   );
-}
+};
 
-function choiceIsSelected({value}: Choice, selected: string[]) {
+function choiceIsSelected({ value }: Choice, selected: string[]) {
   return selected.indexOf(value) >= 0;
 }
 
-function updateSelectedChoices({value}: Choice, checked: boolean, selected: string[], allowMultiple = false) {
+function updateSelectedChoices({ value }: Choice, checked: boolean, selected: string[], allowMultiple = false) {
   if (checked) {
     return allowMultiple ? [...selected, value] : [value];
   }
 
-  return selected.filter((selectedChoice) => selectedChoice !== value);
+  return selected.filter(selectedChoice => selectedChoice !== value);
 }
 
-export default themr(CHOICE_LIST, baseTheme)(ChoiceList) as ThemedComponentClass<Props, {}>;
+export default themr(CHOICE_LIST, baseTheme)(choiceList) as ThemedComponentClass<Props, {}>;

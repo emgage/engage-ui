@@ -1,5 +1,5 @@
-import {UnstyledLink, LinkLikeComponent} from './components';
+import { UnstyledLink, LinkLikeComponent } from './components';
 
-export function useLinkComponent(LinkComponent: LinkLikeComponent) {
-  UnstyledLink.use(LinkComponent);
+export function useLinkComponent(linkComponent: LinkLikeComponent) {
+  UnstyledLink.use(linkComponent);
 }

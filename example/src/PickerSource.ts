@@ -1,4 +1,4 @@
-import { IPickerSource } from '../../src/components/Picker/IPickerSource';
+import { IPickerSource } from '../../src/components/Picker';
 import { PeoplePickerSearchType } from './PickerEnum';
 import { PeopleInfo } from './PeopleInfo';
 
@@ -23,21 +23,21 @@ export class PeoplePickerSource implements IPickerSource<PeopleInfo> {
           return data;
         }
         data = [
-            { Id: 0, Name: 'ranmal0', Description: 'r', ImageUrl: '', Url: '', Type: PeoplePickerSearchType.Groups },
-            { Id: 1, Name: 'ranmal1', Description: 'r', ImageUrl: '', Url: '', Type: PeoplePickerSearchType.Groups },
-            { Id: 2, Name: 'ranmal2', Description: 'r', ImageUrl: '', Url: '', Type: PeoplePickerSearchType.Groups },
-            { Id: 3, Name: 'ranmal3', Description: 'r', ImageUrl: '', Url: '', Type: PeoplePickerSearchType.Groups },
-            { Id: 4, Name: 'ranmal4', Description: 'r', ImageUrl: '', Url: '', Type: PeoplePickerSearchType.Groups },
-            { Id: 5, Name: 'ranmal5', Description: 'r', ImageUrl: '', Url: '', Type: PeoplePickerSearchType.Users },
-            { Id: 6, Name: 'ranmal6', Description: 'r', ImageUrl: '', Url: '', Type: PeoplePickerSearchType.Users },
-            { Id: 7, Name: 'ranmal7', Description: 'r', ImageUrl: '', Url: '', Type: PeoplePickerSearchType.Users },
-            { Id: 8, Name: 'ranmal8', Description: 'r', ImageUrl: '', Url: '', Type: PeoplePickerSearchType.Users },
-            { Id: 9, Name: 'ranmal9', Description: 'r', ImageUrl: '', Url: '', Type: PeoplePickerSearchType.Users },
+            { id: 0, name: 'ranmal0', description: 'r', imageUrl: '', url: '', type: PeoplePickerSearchType.Groups },
+            { id: 1, name: 'ranmal1', description: 'r', imageUrl: '', url: '', type: PeoplePickerSearchType.Groups },
+            { id: 2, name: 'ranmal2', description: 'r', imageUrl: '', url: '', type: PeoplePickerSearchType.Groups },
+            { id: 3, name: 'ranmal3', description: 'r', imageUrl: '', url: '', type: PeoplePickerSearchType.Groups },
+            { id: 4, name: 'ranmal4', description: 'r', imageUrl: '', url: '', type: PeoplePickerSearchType.Groups },
+            { id: 5, name: 'ranmal5', description: 'r', imageUrl: '', url: '', type: PeoplePickerSearchType.Users },
+            { id: 6, name: 'ranmal6', description: 'r', imageUrl: '', url: '', type: PeoplePickerSearchType.Users },
+            { id: 7, name: 'ranmal7', description: 'r', imageUrl: '', url: '', type: PeoplePickerSearchType.Users },
+            { id: 8, name: 'ranmal8', description: 'r', imageUrl: '', url: '', type: PeoplePickerSearchType.Users },
+            { id: 9, name: 'ranmal9', description: 'r', imageUrl: '', url: '', type: PeoplePickerSearchType.Users },
         ];
         if (searchType === PeoplePickerSearchType.Both) {
-            return data.filter((x) => x.Name.startsWith(filterString));
+            return data.filter((x) => x.name.startsWith(filterString));
         } else {
-            return data.filter((x) => x.Name.startsWith(filterString) && x.Type === searchType);
+            return data.filter((x) => x.name.startsWith(filterString) && x.type === searchType);
         }
     }
 

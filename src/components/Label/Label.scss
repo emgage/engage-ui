@@ -1,4 +1,4 @@
-.Label {
+.label {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
@@ -9,7 +9,7 @@
   @include visually-hidden;
 }
 
-.Text {
+.text {
   @include text-style-body;
   display: block;
   flex: 1 1 auto;

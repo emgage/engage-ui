@@ -53,43 +53,43 @@ export type ResponsiveWidth =
     '9-10';
 
 export interface Props {
-  small?: ResponsiveWidth,
-  medium?: ResponsiveWidth,
-  large?: ResponsiveWidth,
-  extraLarge?: ResponsiveWidth,
-  style?: React.CSSProperties,
-  theme?: any,
+  small?: ResponsiveWidth;
+  medium?: ResponsiveWidth;
+  large?: ResponsiveWidth;
+  extraLarge?: ResponsiveWidth;
+  style?: React.CSSProperties;
+  theme?: any;
 }
 
 class Column extends React.PureComponent<Props, {}> {
 
-    getClassName = (resWidth: ResponsiveWidth, resType: string): string => {
-        const columnClassPrefix = `column-width-${resType === 'extraLarge' ? 'xlarge' : resType}-`;
-        return this.props.theme[columnClassPrefix + resWidth];
+  getClassName = (resWidth: ResponsiveWidth, resType: string): string => {
+    const columnClassPrefix = `column-width-${resType === 'extraLarge' ? 'xlarge' : resType}-`;
+    return this.props.theme[columnClassPrefix + resWidth];
+  }
+
+  render() {
+    let className = '';
+
+    if (this.props.small) {
+      className = classNames(this.getClassName(this.props.small, 'small'), className);
+    }
+    if (this.props.medium) {
+      className = classNames(this.getClassName(this.props.medium, 'medium'), className);
+    }
+    if (this.props.large) {
+      className = classNames(this.getClassName(this.props.large, 'large'), className);
+    }
+    if (this.props.extraLarge) {
+      className = classNames(this.getClassName(this.props.extraLarge, 'extraLarge'), className);
     }
 
-    render() {
-        let className = '';
-
-        if (this.props.small) {
-            className = classNames(this.getClassName(this.props.small, 'small'), className);
-        }
-        if (this.props.medium) {
-            className = classNames(this.getClassName(this.props.medium, 'medium'), className);
-        }
-        if (this.props.large) {
-            className = classNames(this.getClassName(this.props.large, 'large'), className);
-        }
-        if (this.props.extraLarge) {
-            className = classNames(this.getClassName(this.props.extraLarge, 'extraLarge'), className);
-        }
-
-        return (
+    return (
             <div className={className} style={this.props.style}>
                 {this.props.children}
             </div>
-        );
-    }
+    );
+  }
 }
 
 export default themr(COLUMN, baseTheme)(Column) as ThemedComponentClass<Props, {}>;

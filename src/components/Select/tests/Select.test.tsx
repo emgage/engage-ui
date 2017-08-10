@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {mount} from 'enzyme';
-import Select from '..';
+import { mount } from 'enzyme';
+import Select from '../Select';
 
 describe('<Select />', () => {
   describe('onChange()', () => {
@@ -45,12 +45,12 @@ describe('<Select />', () => {
 
     it('translates an array of option descriptions into options', () => {
       const options = [
-        {value: 'one', label: 'One'},
-        {value: 'two', label: 'Two'},
+        { value: 'one', label: 'One' },
+        { value: 'two', label: 'Two' },
       ];
       const optionElements = mount(<Select label="Select" options={options} />).find('option');
 
-      options.forEach(({value, label}, index) => {
+      options.forEach(({ value, label }, index) => {
         const optionElement = optionElements.at(index);
         expect(optionElement.key()).toBe(value);
         expect(optionElement.prop('value')).toBe(value);
@@ -62,10 +62,10 @@ describe('<Select />', () => {
   describe('groups', () => {
     it('translates groups into optgroup tags', () => {
       const optionsAndGroups = [
-        {title: 'Group one', options: ['one.1', 'one.2']},
+        { title: 'Group one', options: ['one.1', 'one.2'] },
         'one',
         'two',
-        {title: 'Group two', options: ['two.1', 'two.2']},
+        { title: 'Group two', options: ['two.1', 'two.2'] },
       ];
       const optionOrOptgroupElements = mount(<Select label="Select" groups={optionsAndGroups} />).find('select').children();
 

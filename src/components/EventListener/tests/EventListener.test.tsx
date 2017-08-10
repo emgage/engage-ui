@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {mount} from 'enzyme';
-import EventListener from '..';
+import { mount } from 'enzyme';
+import EventListener from '../EventListener';
 
 describe('<EventListener />', () => {
   it('calls handler when the appropriate event is fired', () => {
