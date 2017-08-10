@@ -6,7 +6,7 @@ const theme = {
   Label: 'Label',
   hidden: 'hidden',
   Text: 'Text',
-};
+ };
 
 describe('<Label />', () => {
 
@@ -58,10 +58,10 @@ describe('<Label />', () => {
         expect(labelWrapper.find('div').at(0).hasClass('Label')).toBe(true);
       });
       it('basic label should have default text css clss on label', () => {
-        const labelWrapper = mount(
+      const labelWrapper = mount(
                                 <Label id="lblid" theme={theme} />,
                           );
-        expect(labelWrapper.find('label').hasClass('Text')).toBe(true);
+      expect(labelWrapper.find('label').hasClass('Text')).toBe(true);
       });
       it('should verify hidden property is not defined', () => {
         const labelWrapper = mount(
@@ -97,10 +97,10 @@ describe('<Label />', () => {
         expect(labelWrapper.find('div').at(0).hasClass('Label')).toBe(true);
       });
       it('basic label should have default text hidden css clss on label', () => {
-        const labelWrapper = mount(
+      const labelWrapper = mount(
                                 <Label id="lblid" hidden={true} theme={theme} />,
                           );
-        expect(labelWrapper.find('label').hasClass('hidden')).toBe(true);
+      expect(labelWrapper.find('label').hasClass('hidden')).toBe(true);
       });
       it('should have hidden elememt and set as true', () => {
         const labelWrapper = mount(
@@ -130,10 +130,10 @@ describe('<Label />', () => {
         expect(labelWrapper.find('div').at(0).hasClass('Label')).toBe(true);
       });
       it('basic label should have default text css clss on label', () => {
-        const labelWrapper = mount(
+      const labelWrapper = mount(
                                 <Label id="lblid" hidden={false} theme={theme} />,
                           );
-        expect(labelWrapper.find('label').hasClass('Text')).toBe(true);
+      expect(labelWrapper.find('label').hasClass('Text')).toBe(true);
       });
       it('should have hidden elememt and set as false', () => {
         const labelWrapper = mount(
@@ -165,10 +165,10 @@ describe('<Label />', () => {
         expect(labelWrapper.find('div').at(0).hasClass('Label')).toBe(true);
       });
       it('basic label should have default text css clss on label', () => {
-        const labelWrapper = mount(
+      const labelWrapper = mount(
                                 <Label id="lblid" theme={theme} />,
                           );
-        expect(labelWrapper.find('label').hasClass('Text')).toBe(true);
+      expect(labelWrapper.find('label').hasClass('Text')).toBe(true);
       });
       it('should verify id given', () => {
         const labelWrapper = mount(
@@ -198,10 +198,10 @@ describe('<Label />', () => {
         expect(labelWrapper.find('div').at(0).hasClass('Label')).toBe(true);
       });
       it('basic label should have default text css clss on label', () => {
-        const labelWrapper = mount(
+      const labelWrapper = mount(
                                 <Label id="lblid" theme={theme} />,
                           );
-        expect(labelWrapper.find('label').hasClass('Text')).toBe(true);
+      expect(labelWrapper.find('label').hasClass('Text')).toBe(true);
       });
       it('Sets a random id when none is passed', () => {
         const labelWrapper = mount(<Label id="lblid" theme={theme} />).prop('id');
@@ -238,12 +238,12 @@ describe('<Label />', () => {
         expect(labelWrapper.find('div').at(0).hasClass('Label')).toBe(true);
       });
       it('basic label should have default text css clss on label', () => {
-        const labelWrapper = mount(
+      const labelWrapper = mount(
                                 <Label id="lblid" theme={theme}>
                                   Test
                                 </Label>,
                           );
-        expect(labelWrapper.find('label').hasClass('Text')).toBe(true);
+      expect(labelWrapper.find('label').hasClass('Text')).toBe(true);
       });
       it('should verify children is defined', () => {
         const labelWrapper = mount(
@@ -275,10 +275,10 @@ describe('<Label />', () => {
         expect(labelWrapper.find('div').at(0).hasClass('Label')).toBe(true);
       });
       it('basic label should have default text css clss on label', () => {
-        const labelWrapper = mount(
+      const labelWrapper = mount(
                                 <Label id="lblid" theme={theme} />,
                           );
-        expect(labelWrapper.find('label').hasClass('Text')).toBe(true);
+      expect(labelWrapper.find('label').hasClass('Text')).toBe(true);
       });
       it('should not have children element', () => {
         const labelWrapper = mount(
