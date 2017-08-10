@@ -1,8 +1,8 @@
-.hidden > .LabelWrapper {
+.hidden > .labelWrapper {
   @include visually-hidden;
 }
 
-.LabelWrapper {
+.labelWrapper {
   margin-bottom: spacing(extra-tight);
 }
 
@@ -14,7 +14,7 @@
 
 .empty {}
 
-.HelpText {
+.helpText {
   @include text-style-body;
   @include text-emphasis-subdued;
   margin-top: spacing(extra-tight);

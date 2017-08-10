@@ -9,12 +9,12 @@ $pip-size: rem(10px);
 $pip-spacing: ($height - $pip-size) / 2;
 
 @mixin pip-color($color) {
-  .Pip {
+  .pip {
     color: $color;
   }
 }
 
-.Badge {
+.badge {
   @include pip-color(color(ink, lightest));
   display: inline-flex;
   align-items: center;
@@ -59,7 +59,7 @@ $pip-spacing: ($height - $pip-size) / 2;
   background: currentColor;
 }
 
-.Pip {
+.pip {
   height: $pip-size;
   width: $pip-size;
   margin: 0 spacing(extra-tight) 0 ($pip-spacing - $horizontal-padding);

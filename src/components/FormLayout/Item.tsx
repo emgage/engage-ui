@@ -6,11 +6,11 @@ import { FORM_LAYOUT } from '../ThemeIdentifiers';
 import * as baseTheme from './FormLayout.scss';
 
 export interface Props {
-  children?: React.ReactNode,
-  theme?: any,
+  children?: React.ReactNode;
+  theme?: any;
 }
 
-const Item = (props: Props)  => {
+const item = (props: Props)  => {
   const {
     children,
     theme,
@@ -18,12 +18,12 @@ const Item = (props: Props)  => {
   } = props;
 
   return (
-    <div className={theme.Item}>
+    <div className={theme.item}>
       {React.Children.map(children, (child: React.ReactElement<{}>) => {
-          return React.cloneElement(child, otherProps);
+        return React.cloneElement(child, otherProps);
       })}
     </div>
   );
 };
 
-export default themr(FORM_LAYOUT, baseTheme)(Item) as ThemedComponentClass<Props, {}>;
+export default themr(FORM_LAYOUT, baseTheme)(item) as ThemedComponentClass<Props, {}>;

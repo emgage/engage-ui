@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { mount } from 'enzyme';
-import Chip from '..';
+import Chip from '../Chip';
 
 const theme = {
   chip: 'chip',
@@ -16,7 +16,7 @@ describe('<Chip />', () => {
   describe('when default props are provided', () => {
     it('basic chip should have rendered 2 span elements', () => {
       const subject = mount(<Chip theme={theme} />);
-        expect(subject.find('span')).toHaveLength(2);
+      expect(subject.find('span')).toHaveLength(2);
     });
     it('basic chip should have default chip css class on span', () => {
       const subject = mount(<Chip theme={theme} />);
@@ -271,8 +271,8 @@ describe('<Chip />', () => {
     const onChipClick = jest.fn();
     const onRemoveClick = jest.fn();
     const image = {
-        url: 'http://placehold.it/50x50',
-        alt: 'Alternate Text',
+      url: 'http://placehold.it/50x50',
+      alt: 'Alternate Text',
     };
 
     it('should have rendered 3 span elements', () => {

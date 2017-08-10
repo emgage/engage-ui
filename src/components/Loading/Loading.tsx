@@ -1,30 +1,31 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from 'react-css-themr';
+
+import Icon from '../Icon';
+import VisuallyHidden from '../VisuallyHidden';
 import { LOADING } from '../ThemeIdentifiers';
+
 import * as baseTheme from './Loading.scss';
 
 export interface Props {
-    style?: React.CSSProperties,
-    theme?: any,
-};
+  style?: React.CSSProperties;
+  theme?: any;
+}
 
 class Loading extends React.PureComponent<Props, {}> {
-    render() {
-        const {
+  render() {
+    const {
             style,
             theme,
         } = this.props;
 
-        return (
-            <div>
-                <span style={style}>
-                    <i className={theme.loader}></i>
-                    <span className={theme.srOnly}>Loading...</span>
-                </span>
-                {this.props.children}
+    return (
+            <div style={style}>
+                <span className={theme.loading}><Icon source="horizontalDots" backdrop /></span>
+                <VisuallyHidden>Loading...</VisuallyHidden>
             </div>
-        );
-    }
+    );
+  }
 }
 
 export default themr(LOADING, baseTheme)(Loading) as ThemedComponentClass<Props, {}>;
