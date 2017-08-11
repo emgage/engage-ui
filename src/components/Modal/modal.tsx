@@ -56,18 +56,7 @@ class Modal extends React.Component<Props, {}> {
     super(props);
   }
 
-  handleCloseClick = (event: React.SyntheticEvent<HTMLElement>): void => {
-
-    event.preventDefault();
-    const props = this.props;
-    const { modal, dialog } = getModalElement(props.id as string);
-
-    props.trigger.animate.out(modal as Element, dialog as Element);
-    setTimeout(() => bodyStyle('', ''), 200);
-  }
-
-  // I had to call this extra method 
-  handleCloseClickOnKeyPress = (event: KeyboardEvent): void => {
+  handleCloseClick = (event: React.SyntheticEvent<HTMLElement> | KeyboardEvent): void => {
 
     event.preventDefault();
     const props = this.props;
@@ -129,7 +118,7 @@ class Modal extends React.Component<Props, {}> {
       'theme',
     ];
 
-    const closeonEscProp = this.props.closeOnEsc ? (<KeypressListener keyCode={Keys.ESCAPE} handler={this.handleCloseClickOnKeyPress} />) : null;
+    const closeonEscProp = this.props.closeOnEsc ? (<KeypressListener keyCode={Keys.ESCAPE} handler={this.handleCloseClick} />) : null;
     const cleanProps = helpers.cleanProps(ignoreProps)({
       ...props,
       ok: null,
