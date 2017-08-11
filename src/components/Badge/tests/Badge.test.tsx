@@ -3,7 +3,7 @@ import { mount } from 'enzyme';
 import Badge from '../Badge';
 
 const theme = {
-  Badge: 'Badge',
+  badge: 'Badge',
   statusSuccess: 'statusSuccess',
   statusInfo: 'statusInfo',
   statusAttention: 'statusAttention',
@@ -12,7 +12,7 @@ const theme = {
   progressIncomplete: 'progressIncomplete',
   progressPartiallyComplete: 'progressPartiallyComplete',
   progressComplete: 'progressComplete',
-  Pip: 'Pip',
+  pip: 'Pip',
 };
 
 describe('<Badge />', () => {
@@ -27,6 +27,7 @@ describe('<Badge />', () => {
       const badgeWrapper = mount(
                                  <Badge  theme = {theme} />,
                            );
+      console.log(badgeWrapper.html());             
       expect(badgeWrapper.find('span').at(0).hasClass('Badge')).toBe(true);
     });
   });
@@ -369,8 +370,8 @@ describe('<Badge />', () => {
       });
     });
   });
-describe('verify all property together', () => {
-  it('basic badge should have rendered 4 span clss element', () => {
+  describe('verify all property together', () => {
+    it('basic badge should have rendered 4 span clss element', () => {
       const badgeWrapper = mount(
                                   <Badge progress="complete" status="info" theme={theme}  >
                                       All properties are set for Badge.
