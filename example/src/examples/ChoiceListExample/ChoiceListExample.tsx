@@ -1,16 +1,19 @@
 import * as React from 'react';
 import { ChoiceList } from '../../../../src/components/';
 
-export interface IState {
-  radioValues?: string[];
+export interface IProps{
 }
 
-class ChoiceListExample extends React.Component<any, IState> {
-  constructor(props) {
+export interface IState {
+  radioValues: string[];
+}
+
+class ChoiceListExample extends React.Component<IProps, IState> {
+  constructor(props: IProps) {
     super(props);
 
     this.state = {
-      radioValues: undefined,
+      radioValues: [],
     };
   }
 
@@ -35,7 +38,7 @@ class ChoiceListExample extends React.Component<any, IState> {
               value: 'required',
             },
           ]}
-          selected={['hidden']}
+          selected={this.state.radioValues}
           onChange={this.valueUpdater('radioValues')}/>
       </div>
     );

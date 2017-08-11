@@ -1,4 +1,5 @@
 import { IDocument } from '../../Types';
+import ChoiceListExample from '../../examples/ChoiceListExample/ChoiceListExample';
 
 const code = require('!raw-loader!../../examples/ChoiceListExample/ChoiceListExample') as string;
 
@@ -44,6 +45,7 @@ const choiceListState: IDocument = {
       desc: 'Function to handle on change of choice list.',
     },
   ],
+  exampleComponent: ChoiceListExample,
 };
 
 export default choiceListState;

@@ -1,3 +1,4 @@
+// import * as React from 'react';
 import * as redux from 'redux';
 
 export interface IDocumentAppState {
@@ -10,6 +11,7 @@ export interface IDocument {
   subheading?: string;
   property?:IProperty[];
   code?: string;
+  exampleComponent?: any;
 }
 
 export interface IProperty {

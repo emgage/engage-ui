@@ -21,7 +21,7 @@ BaseConfig.plugins.push(new HtmlWebpackPlugin({
   filename: 'index.html',
   template: './example/src/index.html',
 }));
-
+/*
 BaseConfig.module.rules.splice(2, 1, {
     test: /\.scss$/,
     use: [
@@ -56,6 +56,6 @@ BaseConfig.module.rules.splice(2, 1, {
         },
     ],
     exclude: /node_modules/
-});
+});*/
 
 module.exports = BaseConfig;
