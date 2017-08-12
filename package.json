@@ -25,7 +25,7 @@
     "check": "npm-run-all lint build-dev test",
     "build-dev": "node node_modules/webpack/bin/webpack.js",
     "build-release": "node node_modules/webpack/bin/webpack.js -p",
-    "example": "webpack-dev-server --config webpack.dev.config"
+    "example": "node node_modules/webpack-dev-server/bin/webpack-dev-server.js --config webpack.dev.config"
   },
   "devDependencies": {
     "@types/enzyme": "^2.8.5",
@@ -69,7 +69,8 @@
     "tslint-config-shopify": "^3.0.0",
     "typescript": "^2.4.2",
     "underscore": "^1.8.3",
-    "webpack": "3.3.0"
+    "webpack": "3.3.0",
+    "webpack-dev-server": "^2.7.1"
   },
   "peerDependencies": {
     "react": "^15.5.4",

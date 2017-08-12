@@ -183,7 +183,7 @@ class App extends React.Component<{}, State> {
             modalOverflow
             backdropEnabled
             header="This is my modal header"
-            footer={<Button>ok</Button>}
+            footer={<Button>OK</Button>}
             activator={<Button>Modal</Button>}
             size="Medium"
             show={this.state.show}
