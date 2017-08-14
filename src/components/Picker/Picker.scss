@@ -29,4 +29,33 @@
 }
 .emailStyle {
   width: 240px; 
+  color: grey;
+}
+.grey {
+  background-color: #D3D3D3;
+}
+
+// Picked Card 
+.pickedCardContainer {
+  border: 1px solid black;
+  border-radius: 20%;
+  width: 20px;
+  display: flex;
+  align-items: center; 
+  height: 20px;
+  // width: 1px;
+}
+.pickedCard {
+  background-color: white;
+}
+
+.pickedAvatarImage {
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+}
+
+.pickedNameStyle {
+  font-size: 5px;
+  width: 18px;
 }

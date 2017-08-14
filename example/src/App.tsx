@@ -5,6 +5,7 @@ import * as React from 'react';
 // import ReactDataExample from './ReactDataExample';
 
 import CardList from '../../src/components/Picker/CardList';
+// import PickedCard from '../../src/components/Picker/PickedCard';
 // import Card from '../../src/components/Picker/Card';
 
 // import {
@@ -43,7 +44,9 @@ interface State {
 //   appName?: string,
 //   appDescription: string,
 //   appTextCounter: string,
-  array: { key: number, image: string, name: string, email: string }[];
+  array: { key: number, image: string, name: string, email: string, grey: boolean }[];
+  // image: string;
+  // name: string;
 //   columns: object[],
 //   rows: object[],
 //   isMenuOpened: boolean,
@@ -55,11 +58,13 @@ class App extends React.Component<{}, State> {
     super(props);
     this.state = {
       array: [
-        { key: 1, image: 'http://msaadvertising.com/wp-content/uploads/2014/06/Larry-cartoon-headshot.jpg', name: 'John Doe', email: 'test@gmail.com' },
-        { key: 2, image: 'http://cdn.photographyproject.com.au/wp-content/uploads/2013/04/corporate-headshot.jpg', name: 'Pedro Sanchez', email: 'pedrosanchez@gmail.com' },
-        { key: 3, image: 'https://media.licdn.com/mpr/mpr/p/5/005/08f/04d/02df10d.jpg', name: 'Jane Doe', email: 'jane@gmail.com' },
-        { key: 4, image: 'http://www.roanokecreditrepair.com/wp-content/uploads/2016/06/Headshot-1.png', name: 'Person McPerson', email: 'yahoogmail@gmail.com' },
+        { key: 1, image: 'http://msaadvertising.com/wp-content/uploads/2014/06/Larry-cartoon-headshot.jpg', name: 'John Doe', email: 'test@gmail.com', grey: false },
+        { key: 2, image: 'http://cdn.photographyproject.com.au/wp-content/uploads/2013/04/corporate-headshot.jpg', name: 'Pedro Sanchez', email: 'pedrosanchez@gmail.com', grey: false },
+        { key: 3, image: 'https://media.licdn.com/mpr/mpr/p/5/005/08f/04d/02df10d.jpg', name: 'Jane Doe', email: 'jane@gmail.com', grey: true },
+        { key: 4, image: 'http://www.roanokecreditrepair.com/wp-content/uploads/2016/06/Headshot-1.png', name: 'Person McPerson', email: 'yahoogmail@gmail.com', grey: false },
       ],
+      // image: 'http://cdn.photographyproject.com.au/wp-content/uploads/2013/04/corporate-headshot.jpg',
+      // name: 'Pedro Sanchez',
       // columns: [
       //   { key: 'id', name: 'ID' },
       //   { key: 'title', name: 'Title' },
@@ -132,6 +137,8 @@ class App extends React.Component<{}, State> {
       <div> 
         {/* <Card array={this.state.array}/>  */}
         <CardList array={this.state.array}/>  
+
+        {/* <PickedCard image={this.state.image} name={this.state.name} /> */}
         {/* <OffCanvas width={270} transitionDuration={270} isMenuOpened={this.state.isMenuOpened}>
             <OffCanvasBody animation={this.state.animation}>
               <p>This is the main body container.</p>
