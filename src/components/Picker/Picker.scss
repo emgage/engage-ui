@@ -1,2 +1,24 @@
 .pickerResultShow{display:block;}
 .pickerResultHide{display:none;}
+
+// Card Component
+.cardItem {
+  display: flex;
+  flex-direction: row;
+  width: 300px;
+  background-color: yellow;
+  justify-content: space-between;
+}
+.cardElem {
+  display: flex;
+  align-items: center; 
+  margin: 5px 10px 5px 10px;
+}
+.grey {
+  color: grey;
+}
+.avatarImage {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}

@@ -1,131 +1,140 @@
 import * as React from 'react';
-import { PeoplePickerSearchType } from './PickerEnum';
-import { PeoplePickerSource } from './PickerSource';
+// import { PeoplePickerSearchType } from './PickerEnum';
+// import { PeoplePickerSource } from './PickerSource';
 
-import ReactDataExample from './ReactDataExample';
+// import ReactDataExample from './ReactDataExample';
 
+import CardList from '../../src/components/Picker/CardList';
+// import Card from '../../src/components/Picker/Card';
 
-
-import {
-  Button,
-  ButtonGroup,
-  Card,
-  Chip,
-  ChoiceList,
-  ClickableChip,
-  Column,
-  DisplayText,
-  FlexBox,
-  FlexAlign, 
-  FlexDirection, 
-  FlexJustify,
-  FormLayout,
-  Heading,
-  List,
-  Item,
-  Loading,
-  OffCanvas,
-  OffCanvasMenu,
-  OffCanvasBody,
-  OffCanvasAnimationType,
-  Panel,
-  Picker,
-  Select,
-  TextField,
-  ValidatedTextField,
-  ValidatedForm,
-  Video,
-  VideoType,
-} from '../../src/components';
+// import {
+//   Button,
+//   ButtonGroup,
+//   // Card,
+//   Chip,
+//   ChoiceList,
+//   ClickableChip,
+//   Column,
+//   DisplayText,
+//   FlexBox,
+//   FlexAlign, 
+//   FlexDirection, 
+//   FlexJustify,
+//   FormLayout,
+//   Heading,
+//   List,
+//   Item,
+//   Loading,
+//   OffCanvas,
+//   OffCanvasMenu,
+//   OffCanvasBody,
+//   OffCanvasAnimationType,
+//   Panel,
+//   Picker,
+//   Select,
+//   TextField,
+//   ValidatedTextField,
+//   ValidatedForm,
+//   Video,
+//   VideoType,
+// } from '../../src/components';
 
 interface State {
-  appName?: string,
-  appDescription: string,
-  appTextCounter: string,
-  columns: object[],
-  rows: object[],
-  isMenuOpened: boolean,
-  animation?: OffCanvasAnimationType,
+//   appName?: string,
+//   appDescription: string,
+//   appTextCounter: string,
+  array: { key: number, image: string, name: string, email: string }[];
+//   columns: object[],
+//   rows: object[],
+//   isMenuOpened: boolean,
+//   animation?: OffCanvasAnimationType,
 }
 
 class App extends React.Component<{}, State> {
   constructor(props: any) {
     super(props);
     this.state = {
-      appName: '',
-      appDescription: '',
-      appTextCounter: '',
-      columns: [
-        { key: 'id', name: 'ID' },
-        { key: 'title', name: 'Title' },
-        { key: 'count', name: 'Count' }
+      // appName: '',
+      // appDescription: '',
+      // appTextCounter: '',
+      array: [
+        { key: 1, image: 'http://msaadvertising.com/wp-content/uploads/2014/06/Larry-cartoon-headshot.jpg', name: 'John Doe', email: 'test@gmail.com' },
+        { key: 2, image: 'http://cdn.photographyproject.com.au/wp-content/uploads/2013/04/corporate-headshot.jpg', name: 'Pedro Sanchez', email: '@gmail.com' },
+        { key: 3, image: 'https://media.licdn.com/mpr/mpr/p/5/005/08f/04d/02df10d.jpg', name: 'Jane Doe', email: 'jane@gmail.com' },
       ],
-      rows: [
-        { id: 1, title: 'Title 1', count: 1 },
-        { id: 2, title: 'Title 2', count: 2 },
-        { id: 3, title: 'Title 3', count: 3 }
-      ],
-      isMenuOpened: false,
+      // columns: [
+      //   { key: 'id', name: 'ID' },
+      //   { key: 'title', name: 'Title' },
+      //   { key: 'count', name: 'Count' }
+      // ],
+      // rows: [
+      //   { id: 1, title: 'Title 1', count: 1 },
+      //   { id: 2, title: 'Title 2', count: 2 },
+      //   { id: 3, title: 'Title 3', count: 3 }
+      // ],
+      // isMenuOpened: false,
     };
   }
 
-  rowGetter = (index: number) => this.state.rows[index];
+  // rowGetter = (index: number) => this.state.rows[index];
 
-  chipClick = () => {
-    console.log('chip clicked...');
-  }
+  // chipClick = () => {
+  //   console.log('chip clicked...');
+  // }
 
-  chipRemove = () => {
-    console.log('chip removed...');
-  }
+  // chipRemove = () => {
+  //   console.log('chip removed...');
+  // }
 
-  handleClick = () => {
-    this.setState({ isMenuOpened: !this.state.isMenuOpened });
-  }
+  // handleClick = () => {
+  //   this.setState({ isMenuOpened: !this.state.isMenuOpened });
+  // }
 
-  handleClickSlide = () => {
-    this.setState({ isMenuOpened: !this.state.isMenuOpened, animation: OffCanvasAnimationType.Slide });
-  }
+  // handleClickSlide = () => {
+  //   this.setState({ isMenuOpened: !this.state.isMenuOpened, animation: OffCanvasAnimationType.Slide });
+  // }
 
-  handleClickReveal = () => {
-    this.setState({ isMenuOpened: !this.state.isMenuOpened, animation: OffCanvasAnimationType.Reveal });
-  }
+  // handleClickReveal = () => {
+  //   this.setState({ isMenuOpened: !this.state.isMenuOpened, animation: OffCanvasAnimationType.Reveal });
+  // }
 
-  handleClickNone = () => {
-    this.setState({ isMenuOpened: !this.state.isMenuOpened, animation: OffCanvasAnimationType.None });
-  }
+  // handleClickNone = () => {
+  //   this.setState({ isMenuOpened: !this.state.isMenuOpened, animation: OffCanvasAnimationType.None });
+  // }
 
   render() {
-    const posterUrl = new URL('http://4.bp.blogspot.com/_JSR8IC77Ub4/TKB-XAWXmhI/AAAAAAAABJA/MqOpdFTOaHo/w1200-' +
-      'h630-p-k-no-nu/C:%5Cfakepath%5Cbird1.jpg');
-    const singleVideoSource = [
-      {
-        src: 'http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_1mb.mp4',
-        type: VideoType.MP4,
-      }];
-    const multiVideoSource = [
-      {
-        src: 'http://www.sample-videos.com/video/mp4/480/big_buck_bunny_480p_30mb.mp4',
-        type: VideoType.MP4,
-      },
-      {
-        src: 'http://www.sample-videos.com/video/mp4/240/big_buck_bunny_240p_30mb.mp4',
-        type: VideoType.MP4,
-      }];
+  //   const posterUrl = new URL('http://4.bp.blogspot.com/_JSR8IC77Ub4/TKB-XAWXmhI/AAAAAAAABJA/MqOpdFTOaHo/w1200-' +
+  //     'h630-p-k-no-nu/C:%5Cfakepath%5Cbird1.jpg');
+  //   const singleVideoSource = [
+  //     {
+  //       src: 'http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_1mb.mp4',
+  //       type: VideoType.MP4,
+  //     }];
+  //   const multiVideoSource = [
+  //     {
+  //       src: 'http://www.sample-videos.com/video/mp4/480/big_buck_bunny_480p_30mb.mp4',
+  //       type: VideoType.MP4,
+  //     },
+  //     {
+  //       src: 'http://www.sample-videos.com/video/mp4/240/big_buck_bunny_240p_30mb.mp4',
+  //       type: VideoType.MP4,
+  //     }];
 
-    const sampleVideoCmp = <Video
-      poster={posterUrl}
-      src={singleVideoSource}
-      autoplay={false}
-      controls={false}
-      style={{
-        height: 100,
-        width: 100,
-      }} />;
+  //   const sampleVideoCmp = <Video
+  //     poster={posterUrl}
+  //     src={singleVideoSource}
+  //     autoplay={false}
+  //     controls={false}
+  //     style={{
+  //       height: 100,
+  //       width: 100,
+  //     }} />;
 
     return (
       <div> 
-        <OffCanvas width={270} transitionDuration={270} isMenuOpened={this.state.isMenuOpened}>
+        {/* <Card array={this.state.array}/>  */}
+        <CardList array={this.state.array}/>  
+        {/* <OffCanvas width={270} transitionDuration={270} isMenuOpened={this.state.isMenuOpened}>
             <OffCanvasBody animation={this.state.animation}>
               <p>This is the main body container.</p>
               <p><a href="#" onClick={this.handleClickSlide}>Slide</a> to toggle the menu.</p>
@@ -374,18 +383,18 @@ class App extends React.Component<{}, State> {
           <Column small="1-2" medium="3-4" large="4-10">
             <span>Hello small=1-2 medium=3-4 large=4-10</span>
           </Column>
-        </FlexBox>
+        </FlexBox> */}
       </div>
     );
   }
 
-  valueUpdater(field: any) {
-    return (value: any) => this.setState({ [field]: value });
-  }
+  // valueUpdater(field: any) {
+  //   return (value: any) => this.setState({ [field]: value });
+  // }
 
-  popoverClose(field: any) {
-    return;
-  }
+  // popoverClose(field: any) {
+  //   return;
+  // }
 }
 
 export default App;
