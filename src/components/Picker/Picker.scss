@@ -2,23 +2,34 @@
 .pickerResultHide{display:none;}
 
 // Card Component
-.cardItem {
-  display: flex;
-  flex-direction: row;
-  width: 300px;
-  background-color: yellow;
-  justify-content: space-between;
-}
-.cardElem {
-  display: flex;
-  align-items: center; 
-  margin: 5px 10px 5px 10px;
-}
-.grey {
-  color: grey;
-}
 .avatarImage {
   border-radius: 50%;
   width: 40px;
   height: 40px;
+}
+.cardBorder {
+  border: .5px solid grey;
+  width: 400px;
+}
+.cardElem {
+  display: flex;
+  align-items: center; 
+  margin: 5px 5px 5px 15px;
+}
+.cardItem {
+  display: flex;
+  flex-direction: row;
+  width: 400px;
+}
+.grey {
+  color: grey;
+}
+.nameStyle {
+  width: 100px;
+}
+.emailStyle {
+  width: 240px;
+  // white-space: nowrap;
+  // overflow-x: auto; 
+  // word-wrap: break-word;
 }

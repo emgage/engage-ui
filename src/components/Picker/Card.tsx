@@ -29,8 +29,8 @@ class Card extends React.Component<Props, {}> {
       <div>
         <div className={style.cardItem}>
           <img className={ style.avatarImage + ' ' + style.cardElem } src={ this.props.image } alt="not found" />
-          <span className={style.cardElem}>{ this.props.name }</span>
-          <span className={ style.cardElem + ' ' + style.grey }>{ this.props.email }</span>
+          <div className={style.cardElem + ' ' + style.nameStyle }>{ this.props.name }</div>
+          <span className={ style.cardElem + ' ' + style.emailStyle + ' ' + style.grey }>{ this.props.email }</span>
         </div>
       </div>
     );

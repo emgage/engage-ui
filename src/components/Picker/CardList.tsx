@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Card from './Card';
-// import * as style from './Picker.scss';
+import * as style from './Picker.scss';
 
 export interface Props {
   array: { key: number, image: string, name: string, email: string }[];
@@ -24,7 +24,7 @@ class CardList extends React.Component<Props, {}> {
     //   array: [],
     // } = this.props;
     return (
-      <div>
+      <div className={style.cardBorder}>
          { arrayCard.map(input => <Card key={input.key} image={input.image} name={input.name} email={input.email} />)}
       </div>
     );
