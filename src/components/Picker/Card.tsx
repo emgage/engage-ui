@@ -1,19 +1,10 @@
 import * as React from 'react';
-// import { themr, ThemedComponentClass } from 'react-css-themr';
-// import { PICKER } from '../ThemeIdentifiers';
-// import TextField from '../TextField';
-// import { DisplayMoreInfo } from './PickerEnum';
 
 import * as style from './Picker.scss';
-
 export interface Props {
   image: string;
   name: string;
   email: string;
-}
-
-export interface State {
-  array?: object[];
 }
 
 class Card extends React.Component<Props, {}> {
@@ -21,10 +12,6 @@ class Card extends React.Component<Props, {}> {
     super(props);
   }
   render() {
-    // const {
-    //   array: [],
-    // } = this.props;
-    console.log('this.props:', this.props);
     return (
       <div>
         <div className={style.cardItem}>
@@ -37,5 +24,4 @@ class Card extends React.Component<Props, {}> {
   }
 }
 
-// export default themr(PICKER, baseTheme)(Card) as ThemedComponentClass<Props, State>;
 export default Card;
