@@ -2,10 +2,10 @@ import * as React from 'react';
 
 import * as style from './Picker.scss';
 export interface Props {
-  image: string;
-  name: string;
-  email: string;
-  grey: boolean;
+  image?: string;
+  name?: string;
+  email?: string;
+  grey?: boolean;
 }
 
 class Card extends React.Component<Props, {}> {
@@ -19,7 +19,7 @@ class Card extends React.Component<Props, {}> {
     return (
       <div>
         <div className={ cardBackground }>
-          <img className={ style.avatarImage + ' ' + style.cardElem } src={ this.props.image } alt="not found" />
+          <span><img className={ style.avatarImage + ' ' + style.cardElem } src={ this.props.image } alt="not found" /></span>
           <span className={style.cardElem + ' ' + style.nameStyle }>{ this.props.name }</span>
           <span className={ style.cardElem + ' ' + style.emailStyle }>{ this.props.email }</span>
         </div>

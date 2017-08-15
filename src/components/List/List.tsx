@@ -20,13 +20,13 @@ class ContentList extends React.PureComponent<Props, never> {
 
   render() {
     const { children, type = 'bullet', theme } = this.props;
-    const background = type === 'divider' ? baseTheme['list-divider'] : type === 'striped' ? baseTheme['list-striped'] : '';
+    const background = type === 'divider' ? baseTheme['list-divider'] : type === 'striped' ? baseTheme['list-striped'] : type === 'default' ? baseTheme['naked'] : '';
     const className = classNames(
       theme.list,
       type && theme[variationName('type', type)],
     );
 
-    const LISTELEMENT = type === 'bullet' ? 'ul' : type === 'number' ? 'ol' : 'li';
+    const LISTELEMENT = type === 'number' ? 'ol' : 'ul';
     return <LISTELEMENT className={className + ' ' + background}>{children}</LISTELEMENT>;
   }
 }

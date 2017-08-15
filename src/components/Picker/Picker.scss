@@ -17,12 +17,15 @@
 .cardElem {
   display: flex;
   align-items: center; 
-  margin: 5px 5px 5px 15px;
+  margin: 5px 5px 5px 5px;
 }
 .cardItem {
   display: flex;
   flex-direction: row;
   width: 400px;
+}
+.flex {
+  display: flex;
 }
 .nameStyle {
   width: 100px;

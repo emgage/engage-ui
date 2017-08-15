@@ -59,7 +59,6 @@ $bullet-size: rem(18px);
 
 .item {
   position: relative;
-  // margin-bottom: spacing(tight);
   padding-left: spacing();
 
   &:last-child {
@@ -71,6 +70,10 @@ $bullet-size: rem(18px);
     top: 0;
     left: 0;
     display: block;
+  }
+
+  .naked {
+    list-style-type: none;
   }
 
   .list:first-child {
