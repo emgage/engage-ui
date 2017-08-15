@@ -8,8 +8,11 @@
   height: 40px;
 }
 .cardBorder {
-  border: .5px solid grey;
   width: 400px;
+  background-color: white;
+  margin: 0;
+  padding: 0;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .cardElem {
   display: flex;
@@ -21,9 +24,6 @@
   flex-direction: row;
   width: 400px;
 }
-.grey {
-  color: grey;
-}
 .nameStyle {
   width: 100px;
 }
@@ -32,30 +32,30 @@
   color: grey;
 }
 .grey {
-  background-color: #D3D3D3;
+  background-color: #E8E8E8;
 }
 
-// Picked Card 
-.pickedCardContainer {
-  border: 1px solid black;
-  border-radius: 20%;
-  width: 20px;
-  display: flex;
-  align-items: center; 
-  height: 20px;
-  // width: 1px;
-}
-.pickedCard {
-  background-color: white;
-}
+// // Picked Card 
+// .pickedCardContainer {
+//   border: 1px solid black;
+//   border-radius: 20%;
+//   width: 20px;
+//   display: flex;
+//   align-items: center; 
+//   height: 20px;
+//   // width: 1px;
+// }
+// .pickedCard {
+//   background-color: white;
+// }
 
-.pickedAvatarImage {
-  border-radius: 50%;
-  width: 20px;
-  height: 20px;
-}
+// .pickedAvatarImage {
+//   border-radius: 50%;
+//   width: 20px;
+//   height: 20px;
+// }
 
-.pickedNameStyle {
-  font-size: 5px;
-  width: 18px;
-}
+// .pickedNameStyle {
+//   font-size: 5px;
+//   width: 18px;
+// }
