@@ -17,9 +17,11 @@ class CardList extends React.Component<Props, {}> {
     const arrayCard = this.props.array;
     // console.log('arrayCard:', arrayCard);
     return (
-      <div className={style.cardBorder}>
-         { arrayCard.map(input => <Card key={input.key} image={input.image} name={input.name} email={input.email} grey={input.grey} />)}
-      </div>
+      // <div className={style.center}>
+        <div className={style.cardBorder}>
+          { arrayCard.map(input => <Card key={input.key} image={input.image} name={input.name} email={input.email} grey={input.grey} />)}
+        </div>
+      // </div>
     );
   }
 }
