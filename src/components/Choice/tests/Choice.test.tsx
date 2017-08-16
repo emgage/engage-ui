@@ -30,25 +30,6 @@ describe('<Choice />', () => {
     });
   });
 
-  describe('clickability for choice', () => {
-    // We want the entire choice to be clickable, including the space
-    // between the choice and the visual appearance of the label.
-    it('should render the content as a child of the label', () => {
-      const MYCOMPONENT = () => {
-        return (
-        <div />
-        ); 
-      };
-      const choiceWrapper = mount(
-                                  <Choice id="MyChoice" label="Label" theme={theme}>
-                                    <MYCOMPONENT />
-                                  </Choice>,
-                            );
-      const label = choiceWrapper.find('label');
-      expect(label.containsMatchingElement(<MYCOMPONENT />)).toBe(true);
-    });
-  });
-
   describe('id property', () => {
     describe('when set', () => {
       it('should verify choice when id is set', () => {
