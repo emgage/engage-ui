@@ -19,7 +19,6 @@ describe('<ClickableChip />', () => {
       expect(clickablechipWrapper.find('span').at(0).hasClass(''));
       expect(clickablechipWrapper.find('span').at(1).hasClass('Batman'));
       expect(clickablechipWrapper.find('a')).toHaveLength(1);
-      //expect(clickablechipWrapper.prop('children'));
     });
   });
 
@@ -34,7 +33,6 @@ describe('<ClickableChip />', () => {
         expect(clickablechipWrapper.find('span').at(0).hasClass(''));
         expect(clickablechipWrapper.find('span').at(1).hasClass('Batman'));
         expect(clickablechipWrapper.find('a')).toHaveLength(1);
-        //expect(clickablechipWrapper.prop('children'));
       });
     });
   });
@@ -54,7 +52,6 @@ describe('<ClickableChip />', () => {
         expect(clickablechipWrapper.find('span').at(0).hasClass(''));
         expect(clickablechipWrapper.find('span').at(1).hasClass('Batman'));
         expect(clickablechipWrapper.find('a')).toHaveLength(1);
-        //expect(clickablechipWrapper.prop('children'));
       });
     });
 
@@ -105,5 +102,18 @@ describe('<ClickableChip />', () => {
         expect(clickablechipWrapper.find('a')).toHaveLength(1);
       });
     });
+
+    describe('when set', () => {
+      it('should verify choice when theme is set', () => {
+        const clickablechipWrapper = mount(
+                                        <ClickableChip chip={<Chip>Batman</Chip>} theme={theme} />,
+                                    );
+        expect(clickablechipWrapper.find('div')).toHaveLength(1);
+        expect(clickablechipWrapper.find('span')).toHaveLength(2);
+        expect(clickablechipWrapper.find('span').at(0).hasClass(''));
+        expect(clickablechipWrapper.find('span').at(1).hasClass('Batman'));
+        expect(clickablechipWrapper.find('a')).toHaveLength(1);
+      });
+    }); 
   });
 });
