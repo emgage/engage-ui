@@ -3,7 +3,7 @@ import { mount } from 'enzyme';
 import Avatar from '../Avatar';
 
 const theme = {
-  Avatar: 'Avatar',
+  avatar: 'Avatar',
   sizeSmall: 'sizeSmall',
   sizeMedium: 'sizeMedium',
   sizeLarge: 'sizeLarge',
