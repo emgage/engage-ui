@@ -96,6 +96,9 @@ export {
 export {
   default as FlexBox,
   Props as FlexBoxProps,
+  FlexAlign, 
+  FlexDirection, 
+  FlexJustify,
 } from './FlexBox';
 
 export {
@@ -121,6 +124,7 @@ export {
 export {
   default as List,
   Props as ListProps,
+  Item,
 } from './List';
 
 export {
@@ -132,6 +136,15 @@ export {
   default as Message,
   Props as MessageProps,
 } from './Message';
+
+export {
+  default as OffCanvas,
+  Props as OffCanvasProps,
+  OffCanvasBody,
+  OffCanvasMenu,
+  OffCanvasAnimationType,
+  OffCanvasPosition,
+} from './OffCanvas';
 
 export {
   default as Panel,
@@ -158,6 +171,10 @@ export {
   default as RadioButton,
   Props as RadioButtonProps,
 } from './RadioButton';
+
+export {
+  default as ReactDataGrid,
+} from './ReactDataGrid';
 
 export {
   default as Scrollable,

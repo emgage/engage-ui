@@ -1,37 +1,37 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from 'react-css-themr';
-import {classNames, variationName} from '@shopify/react-utilities/styles';
+import { classNames, variationName } from '@shopify/react-utilities/styles';
 
-import {Action} from '../../types';
-import Button, {buttonFrom} from '../Button';
+import { Action } from '../../types';
+import Button, { buttonFrom } from '../Button';
 import Heading from '../Heading';
 import ButtonGroup from '../ButtonGroup';
 import UnstyledLink from '../UnstyledLink';
-import Icon, {Props as IconProps} from '../Icon';
+import Icon, { Props as IconProps } from '../Icon';
 import { BANNER } from '../ThemeIdentifiers';
 
 import * as baseTheme from './Banner.scss';
 
-import successIcon from './icons/circle-check-mark.svg';
-import infoIcon from './icons/flag.svg';
-import warningIcon from './icons/circle-alert.svg';
-import criticalIcon from './icons/circle-barred.svg';
-import fallbackIcon from './icons/confetti.svg';
+import circleCheckMarkSvg from './icons/circle-check-mark.svg';
+import flagSvg from './icons/flag.svg';
+import circleAlertSvg from './icons/circle-alert.svg';
+import circleBarredSvg from './icons/circle-barred.svg';
+import confettiSvg from './icons/confetti.svg';
 
 export type Status = 'success' | 'info' | 'warning' | 'critical';
 
 export interface Props {
-  icon?: IconProps['source'],
-  title?: string,
-  status?: Status,
-  action?: Action,
-  secondaryAction?: Action,
-  children?: React.ReactNode,
-  theme?: any,
-  onDismiss?(): void,
+  icon?: IconProps['source'];
+  title?: string;
+  status?: Status;
+  action?: Action;
+  secondaryAction?: Action;
+  children?: React.ReactNode;
+  theme?: any;
+  onDismiss?(): void;
 }
 
-const Banner = ({
+const banner = ({
   icon,
   action,
   secondaryAction,
@@ -47,27 +47,27 @@ const Banner = ({
   switch (status) {
     case 'success':
       color = 'greenDark';
-      defaultIcon = successIcon;
+      defaultIcon = circleCheckMarkSvg;
       break;
     case 'info' :
       color = 'tealDark';
-      defaultIcon = infoIcon;
+      defaultIcon = flagSvg;
       break;
     case 'warning':
       color = 'yellowDark';
-      defaultIcon = warningIcon;
+      defaultIcon = circleAlertSvg;
       break;
     case 'critical':
       color = 'redDark';
-      defaultIcon = criticalIcon;
+      defaultIcon = circleBarredSvg;
       break;
     default:
       color = 'ink';
-      defaultIcon = fallbackIcon;
+      defaultIcon = confettiSvg;
   }
 
   const className = classNames(
-    theme.Banner,
+    theme.banner,
     status && theme[variationName('status', status)],
     onDismiss && theme.hasDismiss,
   );
@@ -81,7 +81,7 @@ const Banner = ({
   if (title) {
     headingID = `${id}Heading`;
     headingMarkup = (
-      <div className={theme.Heading} id={headingID}>
+      <div className={theme.heading} id={headingID}>
         <Heading element="p">{title}</Heading>
       </div>
     );
@@ -95,7 +95,7 @@ const Banner = ({
     ? (
       <div className={theme.Actions}>
         <ButtonGroup>
-          {buttonFrom(action, {outline: true})}
+          {buttonFrom(action, { outline: true })}
           {secondaryActionMarkup}
         </ButtonGroup>
       </div>
@@ -108,7 +108,7 @@ const Banner = ({
   if (children || actionMarkup) {
     contentID = `${id}Content`;
     contentMarkup = (
-      <div className={theme.Content} id={contentID}>
+      <div className={theme.content} id={contentID}>
         {children}
         {actionMarkup}
       </div>
@@ -117,7 +117,7 @@ const Banner = ({
 
   const dismissButton = onDismiss
     ? (
-      <div className={theme.Dismiss}>
+      <div className={theme.dismiss}>
         <Button plain icon="cancelSmall" accessibilityLabel="Dismiss notification" />
       </div>
     )
@@ -132,7 +132,7 @@ const Banner = ({
       aria-describedby={contentID}
     >
       {dismissButton}
-      <div className={theme.Ribbon}>
+      <div className={theme.ribbon}>
         <Icon source={iconName} color={color} backdrop />
       </div>
       <div>
@@ -141,27 +141,27 @@ const Banner = ({
       </div>
     </div>
   );
-}
+};
 
 let index = 1;
 function uniqueID() {
-  return `Banner${index++}`;
+  return `banner${index += 1}`;
 }
 
 function secondaryActionFrom(action: Action, theme: any) {
   if (action.url) {
     return (
-      <UnstyledLink className={theme.SecondaryAction} url={action.url}>
-        <span className={theme.Text}>{action.content}</span>
+      <UnstyledLink className={theme.secondaryAction} url={action.url}>
+        <span className={theme.text}>{action.content}</span>
       </UnstyledLink>
     );
   }
 
   return (
-    <button className={theme.SecondaryAction} onClick={action.onAction}>
-      <span className={theme.Text}>{action.content}</span>
+    <button className={theme.secondaryAction} onClick={action.onAction}>
+      <span className={theme.text}>{action.content}</span>
     </button>
   );
 }
 
-export default themr(BANNER, baseTheme)(Banner) as ThemedComponentClass<Props, {}>;
+export default themr(BANNER, baseTheme)(banner) as ThemedComponentClass<Props, {}>;

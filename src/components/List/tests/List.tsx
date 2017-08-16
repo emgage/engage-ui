@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {mount} from 'enzyme';
-import List from '..';
+import { mount } from 'enzyme';
+import List from '../List';
 
 describe('<List />', () => {
   it('sets the list type to ul when is a bullet list', () => {
