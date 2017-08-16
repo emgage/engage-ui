@@ -1,49 +1,51 @@
 @import 'foundation/colors';
 @import 'shared/controls';
 
-.RadioButton {
+.radioButton {
   position: relative;
 }
 
-.Input {
+.input {
   margin: 0;
   padding: 0;
   opacity: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
   appearance: none;
 
   &:focus,
   &:active,
   &:checked {
-    + .Backdrop {
+    + .backdrop {
       background: color(indigo);
     }
   }
 
   &:checked {
-    ~ .Icon {
+    ~ .icon {
       transform: translate(-50%, -50%) scale(1);
     }
   }
 
   &:focus,
   &:active {
-    + .Backdrop {
+    + .backdrop {
       @include control-backdrop(focused);
     }
   }
 
   &:disabled {
-    + .Backdrop {
+    + .backdrop {
       @include control-backdrop(disabled);
     }
 
-    ~ .Icon {
+    ~ .icon {
       background-color: color(sky, dark);
     }
   }
 }
 
-.Backdrop {
+.backdrop {
   @include control-backdrop;
   position: absolute;
   top: 0;
@@ -57,7 +59,7 @@
   }
 }
 
-.Icon {
+.icon {
   position: absolute;
   top: 50%;
   left: 50%;

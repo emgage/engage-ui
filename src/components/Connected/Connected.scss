@@ -1,17 +1,17 @@
-$staacking-order: (
+$stacking-order: (
   item: 10,
   primary: 20,
   focused: 30,
 );
 
-.Connected {
+.connected {
   position: relative;
   display: flex;
 }
 
-.Item {
+.item {
   position: relative;
-  z-index: z-index(item, $staacking-order);
+  z-index: z-index(item, $stacking-order);
   flex: 0 0 auto;
 
   &:not(:first-child) {
@@ -23,8 +23,8 @@ $staacking-order: (
 // way to remove the border radii on connected elements.
 // stylelint-disable declaration-no-important
 
-.Item-primary {
-  z-index: z-index(primary, $staacking-order);
+.item-primary {
+  z-index: z-index(primary, $stacking-order);
   flex: 1 1 auto;
 
   &:not(:first-child) * {
@@ -38,7 +38,7 @@ $staacking-order: (
   }
 }
 
-.Item-connection {
+.item-connection {
   &:first-child * {
     border-top-right-radius: 0 !important;
     border-bottom-right-radius: 0 !important;
@@ -62,6 +62,6 @@ $staacking-order: (
 
 // stylelint-enable declaration-no-important
 
-.Item-focused {
-  z-index: z-index(focused, $staacking-order);
+.item-focused {
+  z-index: z-index(focused, $stacking-order);
 }
