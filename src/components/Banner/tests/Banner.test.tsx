@@ -291,8 +291,6 @@ describe('<Banner />', () => {
                                         </p> 
                                     </Banner>,
                             );
-                            
-                            
         expect(bannerWrapper.find('div')).toHaveLength(9);
         expect(bannerWrapper.find('span')).toHaveLength(4);
         expect(bannerWrapper.find('button')).toHaveLength(3);
@@ -362,8 +360,6 @@ describe('<Banner />', () => {
                                      </p>
                                    </Banner>,
                                   );
-      console.log(bannerWrapper.html());
-                        
       expect(bannerWrapper.find('div')).toHaveLength(9);
       expect(bannerWrapper.find('span')).toHaveLength(4);
       expect(bannerWrapper.find('button')).toHaveLength(3);

@@ -2,87 +2,593 @@ import * as React from 'react';
 import { mount } from 'enzyme';
 import Avatar from '../Avatar';
 
-describe('Avatar Component Test Suit', () => {
-    describe('Verify Avatar component size', () => {
-      it('should verify the avatar image size prop set as default', () => {
-          const avatarWrapper = mount(<Avatar customer />);
-          expect(avatarWrapper.prop('size')).toBeFalsy();
-          });
+const theme = {
+  avatar: 'Avatar',
+  sizeSmall: 'sizeSmall',
+  sizeMedium: 'sizeMedium',
+  sizeLarge: 'sizeLarge',
+  styleOne: 'styleOne',
+  styleTwo: 'styleTwo',
+  styleThree: 'styleThree',
+  styleFour: 'styleFour',
+  styleFive: 'styleFive',
+  styleSix: 'styleSix',
+  hasImage: 'hasImage',
+  Image: 'Image',
+  Initials: 'Initials',
+};
 
-      it('should verify the avatar image size prop set as small', () => {
-        const avatarWrapper = mount(<Avatar customer size="small" />);
+describe('<Avatar />', () => {
+  describe('when default props are provided', () => {
+    it('basic avatar should have rendered one div clss element', () => {
+      const avatarWrapper = mount(
+                                  <Avatar theme = {theme} />,
+                            );
+      expect(avatarWrapper.find('div')).toHaveLength(1);
+    });
+    it('basic avatar should have default avatar css clss on div', () => {
+      const avatarWrapper = mount(
+                                  <Avatar theme={theme} />,
+                            );
+      expect(avatarWrapper.find('div').at(0).hasClass('Avatar')).toBe(true);
+    });
+    it('basic avatar should have default styleOne css clss on div', () => {
+      const avatarWrapper = mount(
+                                  <Avatar theme={theme} />,
+                            );
+      expect(avatarWrapper.find('div').at(0).hasClass('styleOne')).toBe(true);
+    });
+    it('basic avatar should have default sizeMedium css clss on div', () => {
+      const avatarWrapper = mount(
+                                  <Avatar theme={theme} />,
+                            );
+      expect(avatarWrapper.find('div').at(0).hasClass('sizeMedium')).toBe(true);
+    });
+  });
+
+  describe('size property', () => {
+    describe('when not set', () => {
+      it('basic avatar should have rendered one div clss element', () => {
+        const avatarWrapper = mount(
+                                    <Avatar customer theme={theme} />,
+                              );
+        expect(avatarWrapper.find('div')).toHaveLength(1);
+      });
+      it('basic avatar should have default avatar css clss on div', () => {
+        const avatarWrapper = mount(
+                                  <Avatar customer theme={theme} />,
+                              );
+        expect(avatarWrapper.find('div').at(0).hasClass('Avatar')).toBe(true);
+      });
+      it('basic avatar should have default styleOne css clss on div', () => {
+        const avatarWrapper = mount(
+                                    <Avatar customer theme={theme} />,
+                              );
+        expect(avatarWrapper.find('div').at(0).hasClass('styleOne')).toBe(true);
+      });
+      it('basic avatar should have default sizeMedium css clss on div', () => {
+        const avatarWrapper = mount(
+                                    <Avatar customer theme={theme} />,
+                              );
+        expect(avatarWrapper.find('div').at(0).hasClass('sizeMedium')).toBe(true);
+      });
+      it('should verify size property when not set or which consider default', () => {
+        const avatarWrapper = mount(
+                                    <Avatar customer theme={theme} />,
+                              );
+        expect(avatarWrapper.prop('size')).toBeFalsy();
+      });
+    });
+    describe('when set', () => {
+      it('basic avatar should have rendered one div clss element', () => {
+        const avatarWrapper = mount(
+                                    <Avatar customer size="small" theme={theme} />,
+                              );
+        expect(avatarWrapper.find('div')).toHaveLength(1);
+      });
+      it('basic avatar should have default avatar css clss on div', () => {
+        const avatarWrapper = mount(
+                                  <Avatar customer size="small" theme={theme} />,
+                              );
+        expect(avatarWrapper.find('div').at(0).hasClass('Avatar')).toBe(true);
+      });
+      it('basic avatar should have default styleOne css clss on div', () => {
+        const avatarWrapper = mount(
+                                    <Avatar customer size="small" theme={theme} />,
+                              );
+        expect(avatarWrapper.find('div').at(0).hasClass('styleOne')).toBe(true);
+      });
+      it('should verify the avatar image size property set as small', () => {
+        const avatarWrapper = mount(
+                                    <Avatar customer size="small" theme={theme} />,
+                              );
         expect(avatarWrapper.prop('size')).toBe('small');
-        });
-
-      it('should verify the avatar image size prop set as medium', () => {
-        const avatarWrapper = mount(<Avatar customer size="medium" />);
+      });
+      it('should have sizeSmall css clss on div when size set as small', () => {
+        const avatarWrapper = mount(
+                                    <Avatar customer size="small" theme={theme} />,
+                              );
+        expect(avatarWrapper.find('div').at(0).hasClass('sizeSmall')).toBe(true);
+      });
+      it('should verify the avatar image size property set as medium', () => {
+        const avatarWrapper = mount(
+                                    <Avatar customer size="medium" theme={theme} />,
+                              );
         expect(avatarWrapper.prop('size')).toBe('medium');
-        });
-
-      it('should verify the avatar image size prop set as large', () => {
-        const avatarWrapper = mount(<Avatar customer size="large" />);
+      });
+      it('should have sizeSmall css clss on div when size set as medium', () => {
+        const avatarWrapper = mount(
+                                    <Avatar customer size="medium" theme={theme} />,
+                              );
+        expect(avatarWrapper.find('div').at(0).hasClass('sizeMedium')).toBe(true);
+      });
+      it('should verify the avatar image size property set as large', () => {
+        const avatarWrapper = mount(
+                                    <Avatar customer size="large" theme={theme} />,
+                              );
         expect(avatarWrapper.prop('size')).toBe('large');
-        });
+      });
+      it('should have sizeSmall css clss on div when size set as large', () => {
+        const avatarWrapper = mount(
+                                    <Avatar customer size="large" theme={theme} />,
+                              );
+        expect(avatarWrapper.find('div').at(0).hasClass('sizeLarge')).toBe(true);
+      });
     });
-
-    describe('Verify Avatar component name, initials, customer, source and accessibilityLabel prop', () => {
-      it('should verify the avatar image name prop', () => {
-        const avatarWrapper = mount(<Avatar customer={false} name="Hardik Shah" />);
+  });
+  describe('name property', () => {
+    describe('when not set', () => {
+      it('basic avatar should have rendered one div clss element', () => {
+        const avatarWrapper = mount(
+                                    <Avatar customer theme={theme} />,
+                              );
+        expect(avatarWrapper.find('div')).toHaveLength(1);
+      });
+      it('basic avatar should have default avatar css clss on div', () => {
+        const avatarWrapper = mount(
+                                  <Avatar customer theme={theme} />,
+                              );
+        expect(avatarWrapper.find('div').at(0).hasClass('Avatar')).toBe(true);
+      });
+      it('basic avatar should have default styleOne css clss on div', () => {
+        const avatarWrapper = mount(
+                                    <Avatar customer theme={theme} />,
+                              );
+        expect(avatarWrapper.find('div').at(0).hasClass('styleOne')).toBe(true);
+      });
+      it('basic avatar should have default sizeMedium css clss on div', () => {
+        const avatarWrapper = mount(
+                                    <Avatar customer theme={theme} />,
+                              );
+        expect(avatarWrapper.find('div').at(0).hasClass('sizeMedium')).toBe(true);
+      });
+      it('should verify name property when not set', () => {
+        const avatarWrapper = mount(
+                                    <Avatar customer={false} theme={theme} />,
+                              );
+        expect(avatarWrapper.prop('name')).toBeFalsy();
+      });
+    });
+    describe('when set', () => {
+      it('basic avatar should have rendered one div clss element', () => {
+        const avatarWrapper = mount(
+                                    <Avatar customer={false} name="Hardik Shah" theme={theme} />,
+                              );
+        expect(avatarWrapper.find('div')).toHaveLength(1);
+      });
+      it('basic avatar should have default avatar css clss on div', () => {
+        const avatarWrapper = mount(
+                                  <Avatar customer={false} name="Hardik Shah" theme={theme} />,
+                              );
+        expect(avatarWrapper.find('div').at(0).hasClass('Avatar')).toBe(true);
+      });
+      it('basic avatar should have default styleOne css clss on div', () => {
+        const avatarWrapper = mount(
+                                    <Avatar customer={false} name="Hardik Shah" theme={theme} />,
+                              );
+        expect(avatarWrapper.find('div').at(0).hasClass('styleOne')).toBe(true);
+      });
+      it('basic avatar should have default sizeMedium css clss on div', () => {
+        const avatarWrapper = mount(
+                                    <Avatar customer={false} name="Hardik Shah" theme={theme} />,
+                              );
+        expect(avatarWrapper.find('div').at(0).hasClass('sizeMedium')).toBe(true);
+      });
+      it('should verify name property when set', () => {
+        const avatarWrapper = mount(
+                                    <Avatar customer={false} name="Hardik Shah" theme={theme} />,
+                              );
         expect(avatarWrapper.prop('name')).toBe('Hardik Shah');
-        });
-
-      it('should verify the avatar initials prop', () => {
-        const avatarWrapper = mount(<Avatar customer initials="HS" />);
+      });
+    });
+  });
+  describe('initials property', () => {
+    describe('when not set', () => {
+      it('basic avatar should have rendered one div clss element', () => {
+        const avatarWrapper = mount(
+                                    <Avatar customer theme={theme} />,
+                              );
+        expect(avatarWrapper.find('div')).toHaveLength(1);
+      });
+      it('basic avatar should have default avatar css clss on div', () => {
+        const avatarWrapper = mount(
+                                  <Avatar customer theme={theme} />,
+                              );
+        expect(avatarWrapper.find('div').at(0).hasClass('Avatar')).toBe(true);
+      });
+      it('basic avatar should have default styleOne css clss on div', () => {
+        const avatarWrapper = mount(
+                                    <Avatar customer theme={theme} />,
+                              );
+        expect(avatarWrapper.find('div').at(0).hasClass('styleOne')).toBe(true);
+      });
+      it('basic avatar should have default sizeMedium css clss on div', () => {
+        const avatarWrapper = mount(
+                                    <Avatar customer theme={theme} />,
+                              );
+        expect(avatarWrapper.find('div').at(0).hasClass('sizeMedium')).toBe(true);
+      });
+      it('should verify initials property when not set', () => {
+        const avatarWrapper = mount(
+                                    <Avatar customer={false} theme={theme} />,
+                              );
+        expect(avatarWrapper.prop('initials')).toBeFalsy();
+      });
+    });
+    describe('when set', () => {
+      it('basic avatar should have rendered one div clss element', () => {
+        const avatarWrapper = mount(
+                                    <Avatar customer={false} initials="HS" theme={theme} />,
+                              );
+        expect(avatarWrapper.find('div')).toHaveLength(1);
+      });
+      it('basic avatar should have default avatar css clss on div', () => {
+        const avatarWrapper = mount(
+                                  <Avatar customer={false} initials="HS" theme={theme} />,
+                              );
+        expect(avatarWrapper.find('div').at(0).hasClass('Avatar')).toBe(true);
+      });
+      it('basic avatar should have default styleOne css clss on div', () => {
+        const avatarWrapper = mount(
+                                    <Avatar customer={false} initials="HS" theme={theme} />,
+                              );
+        expect(avatarWrapper.find('div').at(0).hasClass('styleOne')).toBe(true);
+      });
+      it('basic avatar should have default sizeMedium css clss on div', () => {
+        const avatarWrapper = mount(
+                                    <Avatar customer={false} initials="HS" theme={theme} />,
+                              );
+        expect(avatarWrapper.find('div').at(0).hasClass('sizeMedium')).toBe(true);
+      });
+      it('should verify initials property when set', () => {
+        const avatarWrapper = mount(
+                                    <Avatar customer={false} initials="HS" theme={theme} />,
+                              );
         expect(avatarWrapper.prop('initials')).toBe('HS');
-        });
+      });
+    });
+  });
 
-      it('should verify the avatar customer prop set as true', () => {
-        const avatarWrapper = mount(<Avatar customer initials="HS" size="small" />);
+  describe('customer property', () => {
+    describe('when not set', () => {
+      it('basic avatar should have rendered one div clss element', () => {
+        const avatarWrapper = mount(
+                                    <Avatar theme={theme} />,
+                              );
+        expect(avatarWrapper.find('div')).toHaveLength(1);
+      });
+      it('basic avatar should have default avatar css clss on div', () => {
+        const avatarWrapper = mount(
+                                    <Avatar theme={theme} />,
+                              );
+        expect(avatarWrapper.find('div').at(0).hasClass('Avatar')).toBe(true);
+      });
+      it('basic avatar should have default styleOne css clss on div', () => {
+        const avatarWrapper = mount(
+                                    <Avatar theme={theme} />,
+                              );
+        expect(avatarWrapper.find('div').at(0).hasClass('styleOne')).toBe(true);
+      });
+      it('basic avatar should have default sizeMedium css clss on div', () => {
+        const avatarWrapper = mount(
+                                    <Avatar theme={theme} />,
+                              );
+        expect(avatarWrapper.find('div').at(0).hasClass('sizeMedium')).toBe(true);
+      });
+      it('should verify customer property when not set', () => {
+        const avatarWrapper = mount(
+                                    <Avatar theme={theme} />,
+                              );
+        expect(avatarWrapper.prop('customer')).toBeFalsy();
+      });
+    });
+
+    describe('when set to true', () => {
+      it('basic avatar should have rendered one div clss element', () => {
+        const avatarWrapper = mount(
+                                    <Avatar customer theme={theme} />,
+                              );
+        expect(avatarWrapper.find('div')).toHaveLength(1);
+      });
+      it('basic avatar should have default avatar css clss on div', () => {
+        const avatarWrapper = mount(
+                                    <Avatar customer theme={theme} />,
+                              );
+        expect(avatarWrapper.find('div').at(0).hasClass('Avatar')).toBe(true);
+      });
+      it('basic avatar should have default styleOne css clss on div', () => {
+        const avatarWrapper = mount(
+                                    <Avatar customer theme={theme} />,
+                              );
+        expect(avatarWrapper.find('div').at(0).hasClass('styleOne')).toBe(true);
+      });
+      it('basic avatar should have default sizeMedium css clss on div', () => {
+        const avatarWrapper = mount(
+                                    <Avatar customer theme={theme} />,
+                              );
+        expect(avatarWrapper.find('div').at(0).hasClass('sizeMedium')).toBe(true);
+      });
+      it('should verify customer property when set as true', () => {
+        const avatarWrapper = mount(
+                                    <Avatar customer theme={theme} />,
+                              );
         expect(avatarWrapper.prop('customer')).toBe(true);
-        });
+      });
+    });
 
-      it('should verify the avatar customer prop set as fasle', () => {
-        const avatarWrapper = mount(<Avatar customer={false} />);
+    describe('when set to false', () => {
+      it('basic avatar should have rendered one div clss element', () => {
+        const avatarWrapper = mount(
+                                    <Avatar customer={false} theme={theme} />,
+                              );
+        expect(avatarWrapper.find('div')).toHaveLength(1);
+      });
+      it('basic avatar should have default avatar css clss on div', () => {
+        const avatarWrapper = mount(
+                                    <Avatar customer={false} theme={theme} />,
+                              );
+        expect(avatarWrapper.find('div').at(0).hasClass('Avatar')).toBe(true);
+      });
+      it('basic avatar should have default styleOne css clss on div', () => {
+        const avatarWrapper = mount(
+                                    <Avatar customer={false} theme={theme} />,
+                              );
+        expect(avatarWrapper.find('div').at(0).hasClass('styleOne')).toBe(true);
+      });
+      it('basic avatar should have default sizeMedium css clss on div', () => {
+        const avatarWrapper = mount(
+                                    <Avatar customer={false} theme={theme} />,
+                              );
+        expect(avatarWrapper.find('div').at(0).hasClass('sizeMedium')).toBe(true);
+      });
+      it('should verify customer property when set as false', () => {
+        const avatarWrapper = mount(
+                                    <Avatar customer={false} theme={theme} />,
+                              );
         expect(avatarWrapper.prop('customer')).toBe(false);
-        });
+      });
+    });
+  });
 
-      it('should verify the avatar source prop', () => {
-        const avatarWrapper = mount(<Avatar customer  size="small" accessibilityLabel="helloavatar"
-        source="http://www.newsshare.in/wp-content/uploads/2017/04/Miniclip-8-Ball-Pool-Avatar-5.jpg" />);
-        expect(avatarWrapper.prop('source')).toBe('http://www.newsshare.in/wp-content/uploads/2017/04/Miniclip-8-Ball-Pool-Avatar-5.jpg');
-        });
+  describe('source property', () => {
+    describe('when not set', () => {
+      it('basic avatar should have rendered one div clss element', () => {
+        const avatarWrapper = mount(
+                                    <Avatar customer theme={theme} />,
+                              );
+        expect(avatarWrapper.find('div')).toHaveLength(1);
+      });
+      it('basic avatar should have default avatar css clss on div', () => {
+        const avatarWrapper = mount(
+                                    <Avatar customer theme={theme} />,
+                              );
+        expect(avatarWrapper.find('div').at(0).hasClass('Avatar')).toBe(true);
+      });
+      it('basic avatar should have default styleOne css clss on div', () => {
+        const avatarWrapper = mount(
+                                    <Avatar customer theme={theme} />,
+                              );
+        expect(avatarWrapper.find('div').at(0).hasClass('styleOne')).toBe(true);
+      });
+      it('basic avatar should have default sizeMedium css clss on div', () => {
+        const avatarWrapper = mount(
+                                    <Avatar customer theme={theme} />,
+                              );
+        expect(avatarWrapper.find('div').at(0).hasClass('sizeMedium')).toBe(true);
+      });
+      it('should verify source property when not set', () => {
+        const avatarWrapper = mount(
+                                    <Avatar customer={false} theme={theme} />,
+                              );
+        expect(avatarWrapper.prop('source')).toBeFalsy();
+      });
+    });
 
-      it('should verify the avatar accessibilityLabel prop', () => {
-        const avatarWrapper = mount(<Avatar customer  size="small"  accessibilityLabel="helloavatar"/>);
+    describe('when set', () => {
+      it('basic avatar should have rendered one div clss element', () => {
+        const avatarWrapper = mount(
+                                    <Avatar customer={false}
+                                    source="https://cdn.vectorstock.com/i/thumb-large/66/60/9646660.jpg/9646660.jpg" theme={theme} />,
+                              );
+        expect(avatarWrapper.find('div')).toHaveLength(1);
+      });
+      it('basic avatar should have default avatar css clss on div', () => {
+        const avatarWrapper = mount(
+                                    <Avatar customer={false}
+                                    source="https://cdn.vectorstock.com/i/thumb-large/66/60/9646660.jpg/9646660.jpg" theme={theme} />,
+                              );
+        expect(avatarWrapper.find('div').at(0).hasClass('Avatar')).toBe(true);
+      });
+      it('basic avatar should have default styleOne css clss on div', () => {
+        const avatarWrapper = mount(
+                                    <Avatar customer={false}
+                                    source="https://cdn.vectorstock.com/i/thumb-large/66/60/9646660.jpg/9646660.jpg" theme={theme} />,
+                              );
+        expect(avatarWrapper.find('div').at(0).hasClass('styleOne')).toBe(true);
+      });
+      it('basic avatar should have default sizeMedium css clss on div', () => {
+        const avatarWrapper = mount(
+                                    <Avatar customer={false}
+                                    source="https://cdn.vectorstock.com/i/thumb-large/66/60/9646660.jpg/9646660.jpg" theme={theme} />,
+                              );
+        expect(avatarWrapper.find('div').at(0).hasClass('sizeMedium')).toBe(true);
+      });
+      it('basic avatar should have default hasImage css clss on div', () => {
+        const avatarWrapper = mount(
+                                    <Avatar customer={false}
+                                    source="https://cdn.vectorstock.com/i/thumb-large/66/60/9646660.jpg/9646660.jpg" theme={theme} />,
+                              );
+        expect(avatarWrapper.find('div').at(0).hasClass('hasImage')).toBe(true);
+      });
+      it('should verify source property when set', () => {
+        const avatarWrapper = mount(
+                                    <Avatar customer={false}
+                                    source="https://cdn.vectorstock.com/i/thumb-large/66/60/9646660.jpg/9646660.jpg" theme={theme} />,
+                              );
+        expect(avatarWrapper.prop('source')).toBe('https://cdn.vectorstock.com/i/thumb-large/66/60/9646660.jpg/9646660.jpg');
+      });
+    });
+  });
+
+  describe('accessibilityLabel property', () => {
+    describe('when not set', () => {
+      it('basic avatar should have rendered one div clss element', () => {
+        const avatarWrapper = mount(
+                                    <Avatar customer theme={theme} />,
+                              );
+        expect(avatarWrapper.find('div')).toHaveLength(1);
+      });
+      it('basic avatar should have default avatar css clss on div', () => {
+        const avatarWrapper = mount(
+                                  <Avatar customer theme={theme} />,
+                              );
+        expect(avatarWrapper.find('div').at(0).hasClass('Avatar')).toBe(true);
+      });
+      it('basic avatar should have default styleOne css clss on div', () => {
+        const avatarWrapper = mount(
+                                    <Avatar customer theme={theme} />,
+                              );
+        expect(avatarWrapper.find('div').at(0).hasClass('styleOne')).toBe(true);
+      });
+      it('basic avatar should have default sizeMedium css clss on div', () => {
+        const avatarWrapper = mount(
+                                    <Avatar customer theme={theme} />,
+                              );
+        expect(avatarWrapper.find('div').at(0).hasClass('sizeMedium')).toBe(true);
+      });
+      it('should verify accessibilityLabel property when not set', () => {
+        const avatarWrapper = mount(
+                                    <Avatar customer={false} theme={theme} />,
+                              );
+        expect(avatarWrapper.prop('accessibilityLabel')).toBeFalsy();
+      });
+    });
+
+    describe('when set', () => {
+      it('basic avatar should have rendered one div clss element', () => {
+        const avatarWrapper = mount(
+                                    <Avatar customer={false} accessibilityLabel="helloavatar" theme={theme} />,
+                              );
+        expect(avatarWrapper.find('div')).toHaveLength(1);
+      });
+      it('basic avatar should have default avatar css clss on div', () => {
+        const avatarWrapper = mount(
+                                  <Avatar customer={false} accessibilityLabel="helloavatar" theme={theme} />,
+                              );
+        expect(avatarWrapper.find('div').at(0).hasClass('Avatar')).toBe(true);
+      });
+      it('basic avatar should have default styleOne css clss on div', () => {
+        const avatarWrapper = mount(
+                                    <Avatar customer={false} accessibilityLabel="helloavatar" theme={theme} />,
+                              );
+        expect(avatarWrapper.find('div').at(0).hasClass('styleOne')).toBe(true);
+      });
+      it('basic avatar should have default sizeMedium css clss on div', () => {
+        const avatarWrapper = mount(
+                                    <Avatar customer={false} accessibilityLabel="helloavatar" theme={theme} />,
+                              );
+        expect(avatarWrapper.find('div').at(0).hasClass('sizeMedium')).toBe(true);
+      });
+      it('should verify accessibilityLabel property when set', () => {
+        const avatarWrapper = mount(
+                                    <Avatar customer={false} accessibilityLabel="helloavatar" theme={theme} />,
+                              );
         expect(avatarWrapper.prop('accessibilityLabel')).toBe('helloavatar');
-        });
+      });
     });
+  });
 
-    describe('Verify Avatar component prop datatype', () => {
-      it('should verify the avatar name prop datatype', () => {
-        const avatarWrapper = mount(<Avatar customer={ false } name="Hardik Shah" />).prop('name');
-        expect(typeof (avatarWrapper)).toBe('string');
-        });
-
-      it('should verify the avatar initials prop datatype', () => {
-        const avatarWrapper = mount(<Avatar customer={ false } initials="HS" />).prop('initials');
-        expect(typeof (avatarWrapper)).toBe('string');
-        });
-
-      it('should verify the avatar customer prop datatype', () => {
-        const avatarWrapper = mount(<Avatar customer={ false } />).prop('customer');
-        expect(typeof (avatarWrapper)).toBe('boolean');
-        });
-
-      it('should verify the avatar source prop datatype', () => {
-        const avatarWrapper = mount(<Avatar customer={ false }
-        source="http://www.newsshare.in/wp-content/uploads/2017/04/Miniclip-8-Ball-Pool-Avatar-5.jpg" />).prop('source');
-        expect(typeof (avatarWrapper)).toBe('string');
-        });
-
-      it('should verify the avatar accessibilityLabel prop datatype', () => {
-        const avatarWrapper = mount(<Avatar customer={ false } accessibilityLabel="helloavatar" />).prop('accessibilityLabel');
-        expect(typeof (avatarWrapper)).toBe('string');
-        });
+  describe('verify all property together', () => {
+    it('basic avatar should have rendered one div clss element', () => {
+      const avatarWrapper = mount(
+                                  <Avatar customer theme={theme}
+                                  size="large"
+                                  name="Hardik Shah"
+                                  initials="HS"
+                                  source="http://www.newsshare.in/wp-content/uploads/2017/04/Miniclip-8-Ball-Pool-Avatar-5.jpg"
+                                  accessibilityLabel="hello"/>,
+                            );
+      expect(avatarWrapper.find('div')).toHaveLength(1);
     });
+    it('basic avatar should have default avatar css clss on div', () => {
+      const avatarWrapper = mount(
+                                  <Avatar customer theme={theme}
+                                  size="large"
+                                  name="Hardik Shah"
+                                  initials="HS"
+                                  source="http://www.newsshare.in/wp-content/uploads/2017/04/Miniclip-8-Ball-Pool-Avatar-5.jpg"
+                                  accessibilityLabel="hello"/>,
+                            );
+      expect(avatarWrapper.find('div').at(0).hasClass('Avatar')).toBe(true);
+    });
+    it('basic avatar should have default styleOne css clss on div', () => {
+      const avatarWrapper = mount(
+                                  <Avatar customer theme={theme}
+                                  size="large"
+                                  name="Hardik Shah"
+                                  initials="HS"
+                                  source="http://www.newsshare.in/wp-content/uploads/2017/04/Miniclip-8-Ball-Pool-Avatar-5.jpg"
+                                  accessibilityLabel="hello"/>,
+                            );
+      expect(avatarWrapper.find('div').at(0).hasClass('styleOne')).toBe(true);
+    });
+    it('basic avatar should have default sizeMedium css clss on div', () => {
+      const avatarWrapper = mount(
+                                  <Avatar customer theme={theme}
+                                  size="large"
+                                  name="Hardik Shah"
+                                  initials="HS"
+                                  source="http://www.newsshare.in/wp-content/uploads/2017/04/Miniclip-8-Ball-Pool-Avatar-5.jpg"
+                                  accessibilityLabel="hello"/>,
+                            );
+      expect(avatarWrapper.find('div').at(0).hasClass('sizeLarge')).toBe(true);
+    });
+    it('basic avatar should have default hasImage css clss on div', () => {
+      const avatarWrapper = mount(
+                                  <Avatar customer theme={theme}
+                                  size="large"
+                                  name="Hardik Shah"
+                                  initials="HS"
+                                  source="http://www.newsshare.in/wp-content/uploads/2017/04/Miniclip-8-Ball-Pool-Avatar-5.jpg"
+                                  accessibilityLabel="hello"/>,
+                            );
+      expect(avatarWrapper.find('div').at(0).hasClass('hasImage')).toBe(true);
+    });
+    it('should verify all properties are set', () => {
+      const avatarWrapper = mount(
+                                  <Avatar customer theme={theme}
+                                  size="large"
+                                  name="Hardik Shah"
+                                  initials="HS"
+                                  source="http://www.newsshare.in/wp-content/uploads/2017/04/Miniclip-8-Ball-Pool-Avatar-5.jpg"
+                                  accessibilityLabel="hello"/>,
+                            );
+      expect(avatarWrapper.prop('customer')).toBe(true);
+      expect(avatarWrapper.prop('size')).toBe('large');
+      expect(avatarWrapper.prop('name')).toBe('Hardik Shah');
+      expect(avatarWrapper.prop('initials')).toBe('HS');
+      expect(avatarWrapper.prop('source')).toBe('http://www.newsshare.in/wp-content/uploads/2017/04/Miniclip-8-Ball-Pool-Avatar-5.jpg');
+      expect(avatarWrapper.prop('accessibilityLabel')).toBe('hello');
+    });
+  });
 });
