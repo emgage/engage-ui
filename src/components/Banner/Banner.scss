@@ -29,7 +29,7 @@ $secondary-action-horizontal-padding: 1.5 * spacing(tight);
   }
 }
 
-.Banner {
+.banner {
   @include banner-colors(color(ink, lighter), color(sky, light));
   position: relative;
   display: flex;
@@ -66,20 +66,20 @@ $secondary-action-horizontal-padding: 1.5 * spacing(tight);
   @include banner-colors(color(red), color(red, lighter));
 }
 
-.Ribbon {
+.ribbon {
   flex: 0 0 $ribbon-flex-basis;
   margin-right: spacing();
 }
 
-.Heading {
+.heading {
   margin-top: spacing(extra-tight);
 }
 
-.Actions {
+.actions {
   margin-top: spacing();
 }
 
-.Content {
+.content {
   margin: spacing(tight) 0;
 }
 
@@ -88,22 +88,22 @@ $secondary-action-horizontal-padding: 1.5 * spacing(tight);
 // so that the borders/ backgrounds do not extend outside of it.
 // stylelint-disable selector-max-specificity
 
-.SecondaryAction {
+.secondaryAction {
   @include unstyled-button;
   @include unstyled-link;
   margin: (-1 * $secondary-action-vertical-padding) (-0.5 * $secondary-action-horizontal-padding);
   padding: $secondary-action-vertical-padding $secondary-action-horizontal-padding;
   color: color(ink);
 
-  &:hover > .Text::after {
+  &:hover > .text::after {
     opacity: 0.75;
   }
 
-  &:active > .Text::after {
+  &:active > .text::after {
     opacity: 0;
   }
 
-  &:focus > .Text {
+  &:focus > .text {
     &::before {
       opacity: 1;
     }
@@ -116,7 +116,7 @@ $secondary-action-horizontal-padding: 1.5 * spacing(tight);
 
 // stylelint-enable selector-max-specificity
 
-.Text {
+.text {
   position: relative;
 
   &::after,
@@ -142,7 +142,7 @@ $secondary-action-horizontal-padding: 1.5 * spacing(tight);
   }
 }
 
-.Dismiss {
+.dismiss {
   position: absolute;
   top: $accent-height;
   right: 0;

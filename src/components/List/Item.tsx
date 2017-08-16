@@ -6,12 +6,12 @@ import { LIST } from '../ThemeIdentifiers';
 import * as baseTheme from './List.scss';
 
 export interface Props {
-  children?: React.ReactNode,
-  theme?: any,
+  children?: React.ReactNode;
+  theme?: any;
 }
 
-const Item = ({children, theme}: Props) => {
-  return <li className={theme.Item}>{children}</li>;
+const item = ({ children, theme }: Props) => {
+  return <li className={theme.item}>{children}</li>;
 };
 
-export default themr(LIST, baseTheme)(Item) as ThemedComponentClass<Props, {}>;
+export default themr(LIST, baseTheme)(item) as ThemedComponentClass<Props, {}>;
