@@ -1,39 +1,51 @@
-port * as React from 'react';
-import { FlexAlign, FlexDirection, FlexJustify } from '../../src/components/FlexBox/FlexProps';
-import { OffCanvas, OffCanvasMenu, OffCanvasBody, OffCanvasAnimationType } from '../../src/components/OffCanvas';
+import * as React from 'react';
 import { PeoplePickerSearchType } from './PickerEnum';
 import { PeoplePickerSource } from './PickerSource';
 
-mport {
+import ReactDataExample from './ReactDataExample';
+
+
+
+import {
   Button,
   ButtonGroup,
+  Card,
+  Chip,
+  ChoiceList,
+  ClickableChip,
+  Column,
   DisplayText,
+  FlexBox,
+  FlexAlign, 
+  FlexDirection, 
+  FlexJustify,
   FormLayout,
   Heading,
-  Link,
-  TextField,
-  FlexBox,
-  ValidatedTextField,
-  ValidatedForm,
-  Chip,
-  Video,
-  VideoType,
+  List,
+  Item,
+  Loading,
+  OffCanvas,
+  OffCanvasMenu,
+  OffCanvasBody,
+  OffCanvasAnimationType,
   Panel,
   Picker,
-  Column,
-  Card,
-  ClickableChip,
-  Loading,
+  Select,
+  TextField,
+  ValidatedTextField,
+  ValidatedForm,
+  Video,
+  VideoType,
 } from '../../src/components';
 
 interface State {
   appName?: string,
   appDescription: string,
-
+  appTextCounter: string,
+  columns: object[],
+  rows: object[],
   isMenuOpened: boolean,
   animation?: OffCanvasAnimationType,
-
-  appTextCounter: string
 }
 
 class App extends React.Component<{}, State> {
@@ -42,11 +54,22 @@ class App extends React.Component<{}, State> {
     this.state = {
       appName: '',
       appDescription: '',
-
+      appTextCounter: '',
+      columns: [
+        { key: 'id', name: 'ID' },
+        { key: 'title', name: 'Title' },
+        { key: 'count', name: 'Count' }
+      ],
+      rows: [
+        { id: 1, title: 'Title 1', count: 1 },
+        { id: 2, title: 'Title 2', count: 2 },
+        { id: 3, title: 'Title 3', count: 3 }
+      ],
       isMenuOpened: false,
-      appTextCounter: ''
     };
   }
+
+  rowGetter = (index: number) => this.state.rows[index];
 
   chipClick = () => {
     console.log('chip clicked...');
@@ -57,23 +80,22 @@ class App extends React.Component<{}, State> {
   }
 
   handleClick = () => {
-    this.setState({isMenuOpened: !this.state.isMenuOpened});
+    this.setState({ isMenuOpened: !this.state.isMenuOpened });
   }
 
   handleClickSlide = () => {
-    this.setState({isMenuOpened: !this.state.isMenuOpened, animation: OffCanvasAnimationType.Slide});
+    this.setState({ isMenuOpened: !this.state.isMenuOpened, animation: OffCanvasAnimationType.Slide });
   }
 
   handleClickReveal = () => {
-    this.setState({isMenuOpened: !this.state.isMenuOpened, animation: OffCanvasAnimationType.Reveal});
+    this.setState({ isMenuOpened: !this.state.isMenuOpened, animation: OffCanvasAnimationType.Reveal });
   }
 
   handleClickNone = () => {
-    this.setState({isMenuOpened: !this.state.isMenuOpened, animation: OffCanvasAnimationType.None});
+    this.setState({ isMenuOpened: !this.state.isMenuOpened, animation: OffCanvasAnimationType.None });
   }
 
   render() {
-
     const posterUrl = new URL('http://4.bp.blogspot.com/_JSR8IC77Ub4/TKB-XAWXmhI/AAAAAAAABJA/MqOpdFTOaHo/w1200-' +
       'h630-p-k-no-nu/C:%5Cfakepath%5Cbird1.jpg');
     const singleVideoSource = [
@@ -123,19 +145,64 @@ class App extends React.Component<{}, State> {
             </OffCanvasMenu>
           </OffCanvas>       
         <div>
+          <ReactDataExample
+            columns={this.state.columns}
+            rowGetter={this.rowGetter}
+            rowsCount={this.state.rows.length}
+            minHeight={2}
+          />
           <Heading>Popover</Heading>
-          <TextField id='TestName' label='Text Counter' placeholder='' value={this.state.appTextCounter} helpText='Helper Text' enableTextCouter={true} maxLength={100} onChange={this.valueUpdater('appTextCounter')}/>
+          <TextField id="TestName" label="Text Counter" placeholder="test-placeholder" value={this.state.appTextCounter} helpText="Helper Text" enableTextCouter={true} maxLength={100} onChange={this.valueUpdater('appTextCounter')}/>
           <ClickableChip chip={<Chip>Batman</Chip>}>
             <Card title="More about Batman">
               <p>Batman is a fictional superhero who appears in American comic books published by DC Comics. The character was created by artist Bob Kane and writer Bill Finger, and first appeared in Detective Comics #27</p>
             </Card>
           </ClickableChip>
         </div>
+        <Heading>List</Heading>
+        <List type="bullet">
+          <Item>Yellow shirt</Item>
+          <Item>Red shirt</Item>
+          <List type="bullet">
+            <Item>Yellow shirt</Item>
+            <Item>Red shirt</Item>
+            <Item>Green shirt</Item>
+            <List type="bullet">
+              <Item>Yellow shirt</Item>
+              <Item>Red shirt</Item>
+              <Item>Green shirt</Item>
+            </List>
+          </List>
+          <Item>Yellow shirt</Item>
+          <Item>Red shirt</Item>
+          <Item>Green shirt</Item>
+        </List>
+        <List type="number">
+          <Item>First item</Item>
+          <Item>Second item</Item>
+          <Item>Third Item</Item>
+        </List>
+        <ChoiceList
+  title="Company name"
+  choices={[
+    {
+      label: 'Hidden',
+      value: 'hidden',
+    },
+    {
+      label: 'Optional',
+      value: 'optional',
+    },
+    {
+      label: 'Required',
+      value: 'required',
+    },
+  ]}
+  selected={['hidden']}
+/>
         <Loading />
-        <Loading>
-          <div><span>Loading!!!!!</span></div>
-        </Loading>
-        <Picker required={true}
+        <Picker
+          required
           chipComponent={Chip}
           filterPlaceHolder="People"
           searchResultComponent={Chip}
@@ -144,7 +211,6 @@ class App extends React.Component<{}, State> {
           minSelectedItems={2}
           millisecondsToWaitBeforeSearch={20}
           moreInfoComponent={<Button children="ranmal" />}
-
         />
         <ValidatedForm>
 
@@ -182,7 +248,6 @@ class App extends React.Component<{}, State> {
                 { required: true, message: 'App Description is required.' },
               ]}
             />
-
             <ButtonGroup>
               <Button>Cancel</Button>
               <Button primary>Next</Button>
@@ -190,238 +255,126 @@ class App extends React.Component<{}, State> {
           </FormLayout>
         </ValidatedForm>
 
-        <br />
-        <FlexBox>
-          <div>Demo 1</div>
-          <div>Demo 2</div>
-          <div>Demo 3</div>
-        </FlexBox>
-        <br />
-        <FlexBox direction={FlexDirection.Column} align={FlexAlign.Stretch} justify={FlexJustify.Center}>
-          <div>Demo 1</div>
-          <div>Demo 2</div>
-          <div>Demo 3</div>
-        </FlexBox>
-        <br />
-        <FlexBox inline={true} direction={FlexDirection.Column} align={FlexAlign.Stretch} justify={FlexJustify.Center}>
-          <div>Demo 1</div>
-          <div>Demo 2</div>
-          <div>Demo 3</div>
-        </FlexBox>
-        <br />
+        <Heading>Connected Text Field</Heading>
+        <TextField
+          label="Connected Text Field"
+          type="number"
+          placeholder=""
+          value={this.state.appTextCounter}
+          helpText="Helper Text"
+          enableTextCouter={true}
+          maxLength={100}
+          onChange={this.valueUpdater('appTextCounter')}
+          connectedRight={<Select label="Weight unit" labelHidden options={[
+              'kg',
+              'lb',
+            ]} />}
+        />
 
+        <Heading>Flexbox</Heading>
+        <FlexBox>
+          <div style={{backgroundColor: 'aqua'}}>Demo 1</div>
+          <div style={{backgroundColor: 'pink'}}>Demo 2</div>
+          <div style={{backgroundColor: 'lime'}}>Demo 3</div>
+        </FlexBox>
+
+        <FlexBox direction={FlexDirection.Column} align={FlexAlign.Stretch} justify={FlexJustify.Center}>
+          <div style={{backgroundColor: 'aqua'}}>Demo 1</div>
+          <div style={{backgroundColor: 'pink'}}>Demo 2</div>
+          <div style={{backgroundColor: 'lime'}}>Demo 3</div>
+        </FlexBox>
+
+        <FlexBox direction={FlexDirection.Row} align={FlexAlign.Stretch} justify={FlexJustify.SpaceAround}>
+          <div style={{backgroundColor: 'aqua'}}>Demo 1</div>
+          <div style={{backgroundColor: 'pink'}}>Demo 2</div>
+          <div style={{backgroundColor: 'lime'}}>Demo 3</div>
+        </FlexBox>
+
+        <FlexBox inline={true} direction={FlexDirection.Column} align={FlexAlign.Stretch} justify={FlexJustify.Center}>
+          <div style={{backgroundColor: 'aqua'}}>Demo 1</div>
+          <div style={{backgroundColor: 'pink'}}>Demo 2</div>
+          <div style={{backgroundColor: 'lime'}}>Demo 3</div>
+        </FlexBox>
+
+        <Heading>Chip</Heading>
         <div>
-          <br />
           <Chip>
             Basic Chip
-        </Chip>
-          < br />
+          </Chip>
+          <Chip
+            image={{
+              url: 'example/src/images/netguru-cartoon-characters3.png',
+              alt: 'Your mom',
+            }}
+            removable={true}
+          >
+            Image Chip
+          </Chip>
           <Chip onClick={this.chipClick} clickable={true}>
             Clickable Chip
-        </Chip>
-          < br />
+          </Chip>
           <Chip onRemove={this.chipRemove} removable={true}>
             Removable Chip
-        </Chip>
-          <br />
+          </Chip>
+          <Chip transparent>
+            Transparent Chip
+          </Chip>
         </div>
+
         <div>
           <h4>Single source video</h4>
-          <Video poster={posterUrl} src={singleVideoSource} autoplay={false} controls={true} style={{ height: 400, width: 400 }} />
+          <Video
+            poster={posterUrl}
+            src={
+              [{
+                src: 'http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_1mb.mp4',
+                type: VideoType.MP4,
+              }]
+            }
+            autoplay={false}
+            controls={true}
+            style={{ height: 400, width: 400 }}
+          />
           <h4>Multi source video</h4>
           <Video poster={posterUrl} src={multiVideoSource} autoplay={false} controls={true} style={{ height: 400, width: 400 }} />
         </div>
-        <div>
-          <h4>Panel Component</h4>
-          <Panel heading="BASIC PANEL">
-            <div>
-              Lorem ipsum lorem ipsum
-          </div>
-          </Panel>
-          <br />
-          <Panel heading="BASIC PANEL WITH VIDEO" video={sampleVideoCmp}>
-            <div>
-              Lorem ipsum lorem ipsum
-          </div>
-          </Panel>
-          <br />
-          <Panel heading={<div>Custom Panel</div>}>
-            <div>
-              Lorem ipsum lorem ipsum
-          </div>
-          </Panel>
-          <br />
-          <Panel heading={<div>Custom Panel with Video</div>} video={sampleVideoCmp}>
-            <div>
-              Lorem ipsum lorem ipsum
-          </div>
-          </Panel>
-        </div>
-        <div>
-          <h2>Column Component Demo</h2>
+        <h4>Panel Component</h4>
+        <Panel heading="BASIC PANEL">
           <div>
-            <Column small="1-1">
-              <p>Small 1-1!</p>
-            </Column>
-          </div>
-          <br />
-          <div className="Column__column__2cVdb">
-            <Column small="1-2" medium="1-2" large="3-5">
-              <span>Hello small=1-2 medium=1-2 large=3-5</span>
-            </Column>
-            <Column small="1-2" medium="1-2" large="4-10">
-              <span>Hello small=1-2 medium=1-2 large=4-10</span>
-            </Column>
-          </div>
-          <br />
-          <div className="Column__column__2cVdb">
-            <Column large="2-3">
-              <span>2-3 large</span>
-            </Column>
-            <Column large="3-10">
-              <span>large 3-10</span>
-            </Column>
-          </div>
-          <br />
-          <h3>XLarge 1-10</h3>
-          <div className="Column__column__2cVdb">
-            <Column extraLarge="1-10">
-              <span>1</span>
-            </Column>
-            <Column extraLarge="1-10">
-              <span>2</span>
-            </Column>
-            <Column extraLarge="1-10">
-              <span>3</span>
-            </Column>
-            <Column extraLarge="1-10">
-              <span>4</span>
-            </Column>
-            <Column extraLarge="1-10">
-              <span>5</span>
-            </Column>
-            <Column extraLarge="1-10">
-              <span>6</span>
-            </Column>
-            <Column extraLarge="1-10">
-              <span>7</span>
-            </Column>
-            <Column extraLarge="1-10">
-              <span>8</span>
-            </Column>
-            <Column extraLarge="1-10">
-              <span>9</span>
-            </Column>
-            <Column extraLarge="1-10">
-              <span>10</span>
-            </Column>
-          </div>
-          <br />
-          <h3>Small 1-10</h3>
-          <div className="Column__column__2cVdb">
-            <Column small="1-10">
-              <span>1</span>
-            </Column>
-            <Column small="1-10">
-              <span>2</span>
-            </Column>
-            <Column small="1-10">
-              <span>3</span>
-            </Column>
-            <Column small="1-10">
-              <span>4</span>
-            </Column>
-            <Column small="1-10">
-              <span>5</span>
-            </Column>
-            <Column small="1-10">
-              <span>6</span>
-            </Column>
-            <Column small="1-10">
-              <span>7</span>
-            </Column>
-            <Column small="1-10">
-              <span>8</span>
-            </Column>
-            <Column small="1-10">
-              <span>9</span>
-            </Column>
-            <Column small="1-10">
-              <span>10</span>
-            </Column>
-          </div>
-          <br />
-          <h3>Medium 1-10</h3>
-          <div className="Column__column__2cVdb">
-            <Column medium="1-10">
-              <span>1</span>
-            </Column>
-            <Column medium="1-10">
-              <span>2</span>
-            </Column>
-            <Column medium="1-10">
-              <span>3</span>
-            </Column>
-            <Column medium="1-10">
-              <span>4</span>
-            </Column>
-            <Column medium="1-10">
-              <span>5</span>
-            </Column>
-            <Column medium="1-10">
-              <span>6</span>
-            </Column>
-            <Column medium="1-10">
-              <span>7</span>
-            </Column>
-            <Column medium="1-10">
-              <span>8</span>
-            </Column>
-            <Column medium="1-10">
-              <span>9</span>
-            </Column>
-            <Column medium="1-10">
-              <span>10</span>
-            </Column>
-          </div>
-          <br />
-          <h3>Large 1-10</h3>
-          <div className="Column__column__2cVdb">
-            <Column large="1-10">
-              <span>1</span>
-            </Column>
-            <Column large="1-10">
-              <span>2</span>
-            </Column>
-            <Column large="1-10">
-              <span>3</span>
-            </Column>
-            <Column large="1-10">
-              <span>4</span>
-            </Column>
-            <Column large="1-10">
-              <span>5</span>
-            </Column>
-            <Column large="1-10">
-              <span>6</span>
-            </Column>
-            <Column large="1-10">
-              <span>7</span>
-            </Column>
-            <Column large="1-10">
-              <span>8</span>
-            </Column>
-            <Column large="1-10">
-              <span>9</span>
-            </Column>
-            <Column large="1-10">
-              <span>10</span>
-            </Column>
-          </div>
+            Lorem ipsum lorem ipsum
         </div>
-        <br />
-        <br />
-        <br />
+        </Panel>
+        <Panel heading="BASIC PANEL WITH VIDEO" video={sampleVideoCmp}>
+          <div>
+            Lorem ipsum lorem ipsum
+        </div>
+        </Panel>
+        <Panel heading={<div>Custom Panel</div>}>
+          <div>
+            Lorem ipsum lorem ipsum
+        </div>
+        </Panel>
+        <Panel heading={<div>Custom Panel with Video</div>} video={sampleVideoCmp}>
+          <div>
+            Lorem ipsum lorem ipsum
+        </div>
+        </Panel>
+        <h2>Column Component Demo</h2>
+        <div>
+          <Column small="1-1">
+            <p>Small 1-1!</p>
+          </Column>
+        </div>
+       
+       <Heading>Grid</Heading>
+        <FlexBox>
+          <Column small="1-2" medium="1-4" large="3-5">
+            <span>Hello small=1-2 medium=1-4 large=3-5</span>
+          </Column>
+          <Column small="1-2" medium="3-4" large="4-10">
+            <span>Hello small=1-2 medium=3-4 large=4-10</span>
+          </Column>
+        </FlexBox>
       </div>
     );
   }

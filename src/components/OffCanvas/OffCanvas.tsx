@@ -2,15 +2,15 @@ import * as React from 'react';
 import { OffCanvasAnimationType, OffCanvasPosition } from './OffCanvasProps';
 
 export interface Props {
-    width?: number,
-    transitionDuration?: number,
-    isMenuOpened?: boolean,
-    position?: OffCanvasPosition,
-    children?: any,
-    style?: any,
-    animation?: OffCanvasAnimationType,
+  width?: number;
+  transitionDuration?: number;
+  isMenuOpened?: boolean;
+  position?: OffCanvasPosition;
+  children?: any;
+  style?: any;
+  animation?: OffCanvasAnimationType;
 }
-export class OffCanvas extends React.PureComponent<Props> {
+export default class OffCanvas extends React.PureComponent<Props, {}> {
   render() {
     const{
         width,
@@ -20,7 +20,7 @@ export class OffCanvas extends React.PureComponent<Props> {
         children,
     } = this.props;
     const transferProps = (element: any) => {
-      return React.cloneElement(element, {width, transitionDuration, isMenuOpened, position});
+      return React.cloneElement(element, { width, transitionDuration, isMenuOpened, position });
     };
 
     const offCanvasChildren = React.Children.map(children, transferProps);

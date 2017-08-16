@@ -7,28 +7,28 @@ import Choice, { Error, errorID, helpTextID } from '../Choice';
 import Icon from '../Icon';
 import { CHECKBOX } from '../ThemeIdentifiers';
 
-import checkmark from './icons/checkmark.svg';
+import checkmarkSvg from './icons/checkmark.svg';
 import * as baseTheme from './Checkbox.scss';
 
 export interface Props {
-  label: string,
-  labelHidden?: boolean,
-  checked?: boolean,
-  helpText?: React.ReactNode,
-  id?: string,
-  name?: string,
-  value?: string,
-  error?: Error,
-  disabled?: boolean,
-  theme?: any,
-  onChange?(newValue: boolean): void,
-  onFocus?(): void,
-  onBlur?(): void,
+  label: string;
+  labelHidden?: boolean;
+  checked?: boolean;
+  helpText?: React.ReactNode;
+  id?: string;
+  name?: string;
+  value?: string;
+  error?: Error;
+  disabled?: boolean;
+  theme?: any;
+  onChange?(newValue: boolean): void;
+  onFocus?(): void;
+  onBlur?(): void;
 }
 
 const getUniqueID = createUniqueIDFactory('Checkbox');
 
-const Checkbox = ({
+const checkbox = ({
   id = getUniqueID(),
   label,
   labelHidden,
@@ -45,7 +45,7 @@ const Checkbox = ({
 }: Props) => {
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     if (onChange == null) { return; }
-    const {currentTarget} = event;
+    const { currentTarget } = event;
     onChange(currentTarget.checked);
   }
 
@@ -54,7 +54,7 @@ const Checkbox = ({
   if (helpText) { describedBy.push(helpTextID(id)); }
 
   const className = classNames(
-    theme.Checkbox,
+    theme.checkbox,
     error && theme.error,
   );
 
@@ -74,7 +74,7 @@ const Checkbox = ({
           type="checkbox"
           checked={checked}
           disabled={disabled}
-          className={theme.Input}
+          className={theme.input}
           onChange={handleChange}
           onFocus={onFocus}
           onBlur={onBlur}
@@ -82,14 +82,14 @@ const Checkbox = ({
           aria-describedby={describedBy.length ? describedBy.join(' ') : undefined}
         />
 
-        <div className={theme.Backdrop} />
-        <div className={theme.Icon}>
-          <Icon source={checkmark} />
+        <div className={theme.backdrop} />
+        <div className={theme.icon}>
+          <Icon source={checkmarkSvg} />
         </div>
       </div>
     </Choice>
   );
-}
+};
 
-export { Checkbox as UnthemedCheckbox }
-export default themr(CHECKBOX, baseTheme)(Checkbox) as ThemedComponentClass<Props, {}>;
+export { checkbox as UnthemedCheckbox };
+export default themr(CHECKBOX, baseTheme)(checkbox) as ThemedComponentClass<Props, {}>;

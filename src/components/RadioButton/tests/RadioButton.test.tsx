@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {mount} from 'enzyme';
-import RadioButton from '..';
+import { mount } from 'enzyme';
+import RadioButton from '../RadioButton';
 
 describe('<RadioButton />', () => {
   it('sets all pass through properties on the input', () => {
