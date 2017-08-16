@@ -2,9 +2,9 @@ import * as React from 'react';
 import { mount } from 'enzyme';
 import Tag from '../Tag';
 const theme = {
-                  Tag: 'Wholesale',
-                  Button: 'Button',
-                };
+  tag: 'Wholesale',
+  button: 'Button',
+};
 
 describe('<Tag />', () => {
 
@@ -27,33 +27,33 @@ describe('<Tag />', () => {
       expect(tagWrapper.find('span')).toHaveLength(3);
     });
     it('should have default Tag css class on span', () => {
-        const tagWrapper = mount(
+      const tagWrapper = mount(
                           <Tag theme={theme} />,
                         );
-        expect(tagWrapper.find('span').at(0).hasClass('Wholesale')).toBe(true);
+      expect(tagWrapper.find('span').at(0).hasClass('Wholesale')).toBe(true);
     });
     it('should have default Icon-Button css class on span', () => {
-        const tagWrapper = mount(
+      const tagWrapper = mount(
                             <Tag theme={theme} />,
                            );
-        expect(tagWrapper.find('button').hasClass('Button')).toBe(true);
+      expect(tagWrapper.find('button').hasClass('Button')).toBe(true);
     });
   });
 
   describe('children property ', () => {
     it('should verify the children text', () => {
-    const tagWrapper = mount(
+      const tagWrapper = mount(
                         <Tag>
                           Wholesale
                         </Tag>,
                        );
-    expect(tagWrapper.prop('children')).toBe('Wholesale');
+      expect(tagWrapper.prop('children')).toBe('Wholesale');
     });
     it('should verify the children', () => {
-    const tagWrapper = mount(
+      const tagWrapper = mount(
                         <Tag children = "Wholesale" />,
                        );
-    expect(tagWrapper.prop('children')).toBe('Wholesale');
+      expect(tagWrapper.prop('children')).toBe('Wholesale');
     });
   });
 });
