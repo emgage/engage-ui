@@ -482,7 +482,7 @@ describe('<Avatar />', () => {
                               );
         expect(avatarWrapper.prop('accessibilityLabel')).toBeFalsy();
       });
-      });
+    });
 
     describe('when set', () => {
       it('basic avatar should have rendered one div clss element', () => {
