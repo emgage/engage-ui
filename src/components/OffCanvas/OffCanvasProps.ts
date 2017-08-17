@@ -1,6 +1,7 @@
 export enum OffCanvasAnimationType {
-    Slide,
     Push,
+    Slide,
+    Reveal,
     None,
 }
 

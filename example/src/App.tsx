@@ -81,18 +81,6 @@ class App extends React.Component<{}, State> {
     this.setState({ isMenuOpened: !this.state.isMenuOpened });
   }
 
-  handleClickSlide = () => {
-    this.setState({ isMenuOpened: !this.state.isMenuOpened, animation: OffCanvasAnimationType.Slide });
-  }
-
-  handleClickPush = () => {
-    this.setState({ isMenuOpened: !this.state.isMenuOpened, animation: OffCanvasAnimationType.Push });
-  }
-
-  handleClickNone = () => {
-    this.setState({ isMenuOpened: !this.state.isMenuOpened, animation: OffCanvasAnimationType.None });
-  }
-
   render() {
     const posterUrl = new URL('http://4.bp.blogspot.com/_JSR8IC77Ub4/TKB-XAWXmhI/AAAAAAAABJA/MqOpdFTOaHo/w1200-' +
       'h630-p-k-no-nu/C:%5Cfakepath%5Cbird1.jpg');
@@ -122,8 +110,8 @@ class App extends React.Component<{}, State> {
       }} />;
 
     return (
-      <div id="dvRoot">        
-        <OffCanvas animation={this.state.animation} isMenuOpened={this.state.isMenuOpened} rootElementId="dvRoot">
+      <div>
+        <OffCanvas animation={OffCanvasAnimationType.Reveal} isMenuOpened={this.state.isMenuOpened} activator={<Button onClick={this.handleClick}>Trigger</Button>}>
           <p>Placeholder content.</p>
           <ul>
             <li>Link 1</li>
@@ -133,10 +121,7 @@ class App extends React.Component<{}, State> {
             <li>Link 5</li>
             <li><a href="#" onClick={this.handleClick}>Toggle Menu</a></li>
           </ul>
-        </OffCanvas> 
-        <a href="#" onClick={this.handleClickPush}>Push</a> &nbsp;&nbsp;
-        <a href="#" onClick={this.handleClickSlide}>Slide</a> &nbsp;&nbsp;        
-        <a href="#" onClick={this.handleClickNone}>None</a>       
+        </OffCanvas>         
         <div>
           <ReactDataExample
             columns={this.state.columns}

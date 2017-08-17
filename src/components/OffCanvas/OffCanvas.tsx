@@ -9,8 +9,8 @@ export interface Props {
   position?: OffCanvasPosition;
   children?: any;
   style?: any;
-  animation?: OffCanvasAnimationType;
-  rootElementId?: string;
+  animation?: OffCanvasAnimationType; 
+  activator?: React.ReactNode;
 }
 
 export interface State {
@@ -28,11 +28,14 @@ export default class OffCanvas extends React.PureComponent<Props, State> {
       children,
       style,
       animation,
-      rootElementId,
+      activator,
     } = this.props;
 
+    let animationMode = animation;    
+    animationMode = animation === undefined ? OffCanvasAnimationType.Push : animation;
+
     const left = position === OffCanvasPosition.Left ? (-1 * width) + 'px' : 'auto';
-    const tranDuration = animation === OffCanvasAnimationType.None ? 0 : transitionDuration;
+    const tranDuration = animationMode === OffCanvasAnimationType.None || animationMode === OffCanvasAnimationType.Reveal ? 0 : transitionDuration;
 
     const translateCloseX = position === OffCanvasPosition.Left ? width : (-1 * width);
     const closedStyle = {
@@ -43,7 +46,7 @@ export default class OffCanvas extends React.PureComponent<Props, State> {
       transitionDuration: tranDuration + 'ms',
     };
 
-    const translateOpenX = animation ===  OffCanvasAnimationType.Push ? (-1 * width) : 0;
+    const translateOpenX = animationMode ===  OffCanvasAnimationType.Push || animationMode ===  OffCanvasAnimationType.Reveal ? (-1 * width) : 0;
     const openStyle = {
       transform: 'translate(' + translateOpenX + 'px, 0px)',
     };
@@ -53,17 +56,18 @@ export default class OffCanvas extends React.PureComponent<Props, State> {
       currStyle = { ...currStyle, ...openStyle };
     }
 
-    if (rootElementId !== undefined) {
-      const rootElement = document.getElementById(rootElementId);
-      if (rootElement !== null) {
-        rootElement.style.setProperty('transition-duration', '' + transitionDuration + 'ms');        
-        rootElement.style.setProperty('transform', animation ===  OffCanvasAnimationType.Push ? isMenuOpened ? 'translate(' + width + 'px, 0px)' : 'translate(0px, 0px)' : 'translate(0px, 0px)');
-      }
+    const rootElement = document.body;
+    if (rootElement !== null) {
+      rootElement.style.setProperty('transition-duration', '' + transitionDuration + 'ms');        
+      rootElement.style.setProperty('transform', animationMode ===  OffCanvasAnimationType.Push || animationMode ===  OffCanvasAnimationType.Reveal ? isMenuOpened ? 'translate(' + width + 'px, 0px)' : 'translate(0px, 0px)' : 'translate(0px, 0px)');
     }
     
     return (
-      <div style={{ ...currStyle, ...style }} className={baseTheme.menuClass}>
-        {children}
+      <div>
+        {activator}
+        <div style={{ ...currStyle, ...style }} className={baseTheme.menuClass}>
+          {children}
+        </div>
       </div>
     );
   }
