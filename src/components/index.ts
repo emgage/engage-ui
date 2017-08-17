@@ -238,3 +238,7 @@ export {
   Props as VisuallyHiddenProps,
 } from './VisuallyHidden';
 
+export {
+  default as CardList,
+  Props as CardListProps,
+} from './CardList';
