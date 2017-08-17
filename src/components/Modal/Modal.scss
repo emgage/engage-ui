@@ -8,9 +8,8 @@
   bottom: 0;
   left: 0;
   z-index: 1010;
-  overflow: auto;
+  overflow: hidden;
   /* 3 */
-  /*overflow-y: auto;*/
   -webkit-overflow-scrolling: touch;
   /* 4 */
   background: rgba(0, 0, 0, 0.6);
@@ -39,17 +38,6 @@
   //height: 400px;
   max-width: 100%;
   max-width: calc(100% - 20px);
-
-
-  //////for adding modal at backdrop
-  //   left: 50%;
-  // margin-left: -300px;//500
-  // position: fixed;
-  // z-index: 1010;
-  
-  // max-height: -moz-calc(100% - (20px + 30px));
-  // max-height: -webkit-calc(100% - (20px + 30px));
-  // max-height: calc(100% - (20px + 30px));
   /* 3 */
   background: #fff;
   /* 4 */
@@ -58,6 +46,7 @@
   transform: translateY(-100px);
   -webkit-transition: opacity 0.3s linear, -webkit-transform 0.3s ease-out;
   transition: opacity 0.3s linear, transform 0.3s ease-out;
+  
 }
 
 .backDrop {
@@ -79,10 +68,8 @@
   left: 50%;
   margin-left: -300px;//500
   z-index: 1010;
-  
-  // max-height: -moz-calc(100% - (20px + 30px));
-  // max-height: -webkit-calc(100% - (20px + 30px));
-  // max-height: calc(100% - (20px + 30px));
+  top: 0;
+
   /* 3 */
   background: #fff;
   /* 4 */
@@ -93,9 +80,6 @@
   transition: opacity 0.3s linear, transform 0.3s ease-out;
 }
 
-.overflow{
- overflow-y: scroll;
-}
 
 .close {
   /* 1 */
@@ -123,12 +107,6 @@
   vertical-align: middle;
   opacity: 0.3;
 }
-/* Icon */
-.close:after {
-  display: block;
-  font-size: 18px;
-  font: bolder;
-  content: "X";}
 
 .header {
     margin-bottom: 15px;
@@ -159,8 +137,6 @@
 }
 
 .autoHeight{
-  height: 200px;
-  max-height: -moz-calc(100% - (20px + 30px));
-  max-height: -webkit-calc(100% - (20px + 30px));
-  max-height: calc(100% - (20px + 30px));
+  height: calc(100vh - 400px);
+  overflow: auto;
 }

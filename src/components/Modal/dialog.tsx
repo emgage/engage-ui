@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from 'react-css-themr';
 import { MODAL } from '../ThemeIdentifiers';
+import Heading from '../Heading';
+import Button from '../Button';
 import helpers from './helpers';
 import * as baseTheme from './Modal.scss';
 
@@ -56,19 +58,22 @@ const Dialog = (props: Props) => {
   const cssClassNames = helpers.cleanClasses([
     props.backdropEnabled ? props.theme.dialog : props.theme.backDrop,
   ]);
-  const closeCSSClasses = helpers.cleanClasses([
-    props.theme.close,
-  ]);
+
+  const ButtonStyle = {
+    float: `right`,
+  };
 
   const close = props.onClose
-    ? <a href="#" className={closeCSSClasses} data-id={props.id ? props.id : `close-${props.id}`} onClick={props.onClose} />
+    ? <Button style={ButtonStyle} data-id={props.id ? props.id : `close-${props.id}`} onClick={props.onClose} icon="cancel" />
     : null;
 
   const classHeader = props.theme.header;
 
-  const header = typeof props.header === 'string'
-    ? <div className={classHeader}><h2>{props.header}</h2></div>
-    : <div className={classHeader}>{props.header}</div>;
+  const header = props.header ? (typeof props.header === 'string'
+    ? <div className={classHeader}><Heading>{props.header}</Heading></div>
+    : <div className={classHeader}>{props.header}</div>) : null;
+
+  const footer = props.footer ? <div className={props.theme.footer}>{props.footer}</div> : null;
 
   const propSize: SizeStyle = {
     width: `${dialogWidthSize}px`,
@@ -81,7 +86,7 @@ const Dialog = (props: Props) => {
       {close}
       {header}
       {props.children}
-      <div className={props.theme.footer}>{props.footer}</div>
+      {footer}
     </div>,
   };
 

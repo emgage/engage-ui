@@ -18,8 +18,8 @@ import {
   Column,
   DisplayText,
   FlexBox,
-  FlexAlign, 
-  FlexDirection, 
+  FlexAlign,
+  FlexDirection,
   FlexJustify,
   FormLayout,
   Heading,
@@ -66,7 +66,7 @@ class App extends React.Component<{}, State> {
 
   constructor(props: {}) {
     super(props);
-    
+
     this.state = {
       appName: '',
       appDescription: '',
@@ -185,7 +185,7 @@ class App extends React.Component<{}, State> {
             header="This is my modal header"
             footer={<Button>OK</Button>}
             activator={<Button>Modal</Button>}
-            size="Medium"
+            size={500}
             show={this.state.show}
             trigger={this.trigger}
           >
@@ -227,7 +227,7 @@ class App extends React.Component<{}, State> {
             minHeight={2}
           />
           <Heading>Popover</Heading>
-          <TextField id="TestName" label="Text Counter" placeholder="test-placeholder" value={this.state.appTextCounter} helpText="Helper Text" enableTextCouter={true} maxLength={100} onChange={this.valueUpdater('appTextCounter')}/>
+          <TextField id="TestName" label="Text Counter" placeholder="test-placeholder" value={this.state.appTextCounter} helpText="Helper Text" enableTextCouter={true} maxLength={100} onChange={this.valueUpdater('appTextCounter')} />
           <ClickableChip chip={<Chip>Batman</Chip>}>
             <Card title="More about Batman">
               <p>Batman is a fictional superhero who appears in American comic books published by DC Comics. The character was created by artist Bob Kane and writer Bill Finger, and first appeared in Detective Comics #27</p>
@@ -258,25 +258,25 @@ class App extends React.Component<{}, State> {
           <Item>Third Item</Item>
         </List>
         <ChoiceList
-  title="Company name"
-  choices={[
-    {
-      label: 'Hidden',
-      value: 'hidden',
-    },
-    {
-      label: 'Optional',
-      value: 'optional',
-    },
-    {
-      label: 'Required',
-      value: 'required',
-    },
-  ]}
-  selected={['hidden']}
-/>
+          title="Company name"
+          choices={[
+            {
+              label: 'Hidden',
+              value: 'hidden',
+            },
+            {
+              label: 'Optional',
+              value: 'optional',
+            },
+            {
+              label: 'Required',
+              value: 'required',
+            },
+          ]}
+          selected={['hidden']}
+        />
         <Loading />
-         <Picker
+        <Picker
           required
           chipComponent={Chip}
           filterPlaceHolder="People"
@@ -286,7 +286,7 @@ class App extends React.Component<{}, State> {
           minSelectedItems={2}
           millisecondsToWaitBeforeSearch={20}
           moreInfoComponent={<Button children="ranmal" />}
-        /> 
+        />
         <ValidatedForm>
 
           <Heading>App Basics</Heading>
@@ -341,34 +341,34 @@ class App extends React.Component<{}, State> {
           maxLength={100}
           onChange={this.valueUpdater('appTextCounter')}
           connectedRight={<Select label="Weight unit" labelHidden options={[
-              'kg',
-              'lb',
-            ]} />}
+            'kg',
+            'lb',
+          ]} />}
         />
 
         <Heading>Flexbox</Heading>
         <FlexBox>
-          <div style={{backgroundColor: 'aqua'}}>Demo 1</div>
-          <div style={{backgroundColor: 'pink'}}>Demo 2</div>
-          <div style={{backgroundColor: 'lime'}}>Demo 3</div>
+          <div style={{ backgroundColor: 'aqua' }}>Demo 1</div>
+          <div style={{ backgroundColor: 'pink' }}>Demo 2</div>
+          <div style={{ backgroundColor: 'lime' }}>Demo 3</div>
         </FlexBox>
 
         <FlexBox direction={FlexDirection.Column} align={FlexAlign.Stretch} justify={FlexJustify.Center}>
-          <div style={{backgroundColor: 'aqua'}}>Demo 1</div>
-          <div style={{backgroundColor: 'pink'}}>Demo 2</div>
-          <div style={{backgroundColor: 'lime'}}>Demo 3</div>
+          <div style={{ backgroundColor: 'aqua' }}>Demo 1</div>
+          <div style={{ backgroundColor: 'pink' }}>Demo 2</div>
+          <div style={{ backgroundColor: 'lime' }}>Demo 3</div>
         </FlexBox>
 
         <FlexBox direction={FlexDirection.Row} align={FlexAlign.Stretch} justify={FlexJustify.SpaceAround}>
-          <div style={{backgroundColor: 'aqua'}}>Demo 1</div>
-          <div style={{backgroundColor: 'pink'}}>Demo 2</div>
-          <div style={{backgroundColor: 'lime'}}>Demo 3</div>
+          <div style={{ backgroundColor: 'aqua' }}>Demo 1</div>
+          <div style={{ backgroundColor: 'pink' }}>Demo 2</div>
+          <div style={{ backgroundColor: 'lime' }}>Demo 3</div>
         </FlexBox>
 
         <FlexBox inline={true} direction={FlexDirection.Column} align={FlexAlign.Stretch} justify={FlexJustify.Center}>
-          <div style={{backgroundColor: 'aqua'}}>Demo 1</div>
-          <div style={{backgroundColor: 'pink'}}>Demo 2</div>
-          <div style={{backgroundColor: 'lime'}}>Demo 3</div>
+          <div style={{ backgroundColor: 'aqua' }}>Demo 1</div>
+          <div style={{ backgroundColor: 'pink' }}>Demo 2</div>
+          <div style={{ backgroundColor: 'lime' }}>Demo 3</div>
         </FlexBox>
 
         <Heading>Chip</Heading>
@@ -440,8 +440,8 @@ class App extends React.Component<{}, State> {
             <p>Small 1-1!</p>
           </Column>
         </div>
-       
-       <Heading>Grid</Heading>
+
+        <Heading>Grid</Heading>
         <FlexBox>
           <Column small="1-2" medium="1-4" large="3-5">
             <span>Hello small=1-2 medium=1-4 large=3-5</span>

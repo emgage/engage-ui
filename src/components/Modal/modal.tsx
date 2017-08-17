@@ -1,11 +1,10 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from 'react-css-themr';
-import { classNames } from '@shopify/react-utilities/styles';
 import { Keys } from '../../types';
 import { MODAL } from '../ThemeIdentifiers';
 import KeypressListener from '../KeypressListener';
 import helpers from './helpers';
-import Dialog from './dialog';
+import Dialog from './Dialog';
 import * as baseTheme from './Modal.scss';
 
 const bodyStyle = (pading: string, overflow: string): void => {
@@ -132,8 +131,6 @@ class Modal extends React.Component<Props, {}> {
       header: null,
     });
 
-    const cssClassForOverflow = classNames(props.theme.overflow, props.theme.autoHeight);
-
     return (
       <div>
         <span onClick={this.handleToggleClick}>{this.props.activator}</span>
@@ -152,7 +149,7 @@ class Modal extends React.Component<Props, {}> {
             backdropEnabled={props.backdropEnabled}
             size={props.size}
           >
-            <div className={cssClassForOverflow}>  {props.children}</div>
+            <div className={props.theme.autoHeight}>  {props.children}</div>
           </Dialog>
         </div>
       </div>
