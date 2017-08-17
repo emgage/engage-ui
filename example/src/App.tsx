@@ -5,14 +5,18 @@ import * as React from 'react';
 // import ReactDataExample from './ReactDataExample';
 
 import CardList from '../../src/components/Picker/CardList';
+import AutoSuggestTest from '../../src/components/Picker/AutoSuggestTest';
+// import AutoSuggestTest from '../../src/components/Picker/AutoSuggestTest';
 // import PickedCard from '../../src/components/Picker/PickedCard';
 // import Card from '../../src/components/Picker/Card';
+// import * as Autosuggest from 'react-autosuggest';
+// import autosuggestTheme from '../../src/components/Picker/Picker.scss';
 
 import {
-//   Button,
+  // Button,
 //   ButtonGroup,
   // Card,
-//   Chip,
+  // Chip,
 //   ChoiceList,
 //   ClickableChip,
 //   Column,
@@ -31,7 +35,7 @@ import {
 //   OffCanvasBody,
 //   OffCanvasAnimationType,
 //   Panel,
-//   Picker,
+  // Picker,
 //   Select,
 //   TextField,
 //   ValidatedTextField,
@@ -52,7 +56,6 @@ interface State {
 //   isMenuOpened: boolean,
 //   animation?: OffCanvasAnimationType,
 }
-
 class App extends React.Component<{}, State> {
   constructor(props: any) {
     super(props);
@@ -65,7 +68,8 @@ class App extends React.Component<{}, State> {
         { key: 5, image: 'https://d38zhw9ti31loc.cloudfront.net/wp-content/uploads/2013/07/Crystal-headshot-new.jpg', name: 'Laura Person', email: 'yahooldjadslkjgmail@gmail.com', grey: false },
         { key: 6, image: 'https://d38zhw9ti31loc.cloudfront.net/wp-content/uploads/2013/07/Crystal-headshot-new.jpg', name: 'Laura Person', email: 'slkjgmail@gmail.com', grey: false },
       ],
-      
+
+    };    
       // image: 'http://cdn.photographyproject.com.au/wp-content/uploads/2013/04/corporate-headshot.jpg',
       // name: 'Pedro Sanchez',
       // columns: [
@@ -79,7 +83,7 @@ class App extends React.Component<{}, State> {
       //   { id: 3, title: 'Title 3', count: 3 }
       // ],
       // isMenuOpened: false,
-    };
+    // };
 
   }
 
@@ -139,7 +143,17 @@ class App extends React.Component<{}, State> {
     return (
       <div> 
          {/* <Card array={this.state.array}/>   */}
-         <CardList array={this.state.array}/>   
+          <CardList array={this.state.array}/>    
+          {/* <div>
+          <Autosuggest 
+            suggestions={suggestions}
+            onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
+            onSuggestionsClearRequested={this.onSuggestionsClearRequested}
+            getSuggestionValue={getSuggestionValue}
+            renderSuggestion={renderSuggestion}
+            inputProps={inputProps} />
+        </div>  */}
+          <AutoSuggestTest /> 
 
         {/* <PickedCard image={this.state.image} name={this.state.name} /> */}
         {/* <OffCanvas width={270} transitionDuration={270} isMenuOpened={this.state.isMenuOpened}>
@@ -232,8 +246,8 @@ class App extends React.Component<{}, State> {
   ]}
   selected={['hidden']}
 />
-        <Loading />
-        <Picker
+        <Loading /> */}
+         {/* <Picker
           required
           chipComponent={Chip}
           filterPlaceHolder="People"
@@ -243,8 +257,8 @@ class App extends React.Component<{}, State> {
           minSelectedItems={2}
           millisecondsToWaitBeforeSearch={20}
           moreInfoComponent={<Button children="ranmal" />}
-        />
-        <ValidatedForm>
+        />  */}
+        {/* <ValidatedForm>
 
           <Heading>App Basics</Heading>
 

@@ -46,6 +46,7 @@ module.exports = {
                                 path.join(__dirname, 'src'),
                                 path.join(__dirname, 'src', 'styles'),
                                 path.join(__dirname, 'src', 'styles', 'components'),
+                                // path.join(__dirname, 'example', 'src'),
                             ],
                             sourceMap: false
                         }
