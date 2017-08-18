@@ -4,8 +4,8 @@ import * as React from 'react';
 
 // import ReactDataExample from './ReactDataExample';
 
-import CardList from '../../src/components/Picker/CardList';
-import AutoSuggestTest from '../../src/components/Picker/AutoSuggestTest';
+// import CardList from '../../src/components/Picker/CardList';
+// import AutoSuggestTest from '../../src/components/Picker/AutoSuggestTest';
 // import AutoSuggestTest from '../../src/components/Picker/AutoSuggestTest';
 // import PickedCard from '../../src/components/Picker/PickedCard';
 // import Card from '../../src/components/Picker/Card';
@@ -27,8 +27,8 @@ import {
 //   FlexJustify,
 //   FormLayout,
 //   Heading,
-  // List,
-  // Item,
+  List,
+  Item,
 //   Loading,
 //   OffCanvas,
 //   OffCanvasMenu,
@@ -48,7 +48,7 @@ interface State {
 //   appName?: string,
 //   appDescription: string,
 //   appTextCounter: string,
-  array: { key: number, image: string, name: string, email: string, grey: boolean }[];
+  // array: { key: number, image: string, name: string, email: string, grey: boolean }[];
   // image: string;
   // name: string;
 //   columns: object[],
@@ -143,7 +143,7 @@ class App extends React.Component<{}, State> {
     return (
       <div> 
          {/* <Card array={this.state.array}/>   */}
-          <CardList array={this.state.array}/>    
+          {/* <CardList array={this.state.array}/>     */}
           {/* <div>
           <Autosuggest 
             suggestions={suggestions}
@@ -153,7 +153,7 @@ class App extends React.Component<{}, State> {
             renderSuggestion={renderSuggestion}
             inputProps={inputProps} />
         </div>  */}
-          <AutoSuggestTest /> 
+          {/* <AutoSuggestTest />  */}
 
         {/* <PickedCard image={this.state.image} name={this.state.name} /> */}
         {/* <OffCanvas width={270} transitionDuration={270} isMenuOpened={this.state.isMenuOpened}>
@@ -190,12 +190,12 @@ class App extends React.Component<{}, State> {
             </Card>
           </ClickableChip>
         </div>
-        <Heading>List</Heading>
+        <Heading>List</Heading> */}
         <List type="bullet"> 
           <Item>Yellow shirt</Item>
           <Item>Red shirt</Item>
           <List type="bullet">
-            <Item>Yellow shirt</Item>
+             <Item>Yellow shirt</Item>
             <Item>Red shirt</Item>
             <Item>Green shirt</Item>
             <List type="bullet">
@@ -227,7 +227,7 @@ class App extends React.Component<{}, State> {
           <Item>First item</Item>
           <Item>Second item</Item>
           <Item>Third Item</Item>
-        </List>
+        </List> 
         {/*<ChoiceList
   title="Company name"
   choices={[
