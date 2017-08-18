@@ -26,8 +26,7 @@ const choiceListState: IDocument = {
       name: 'selected',
       type: 'string[]',
       desc: 'Selected values',
-    },
-    {
+    }, {
       name: 'name',
       type: 'string',
       desc: '',

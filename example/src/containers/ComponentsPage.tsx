@@ -20,8 +20,8 @@ export interface IProps {
 
 class ComponentsPage extends React.Component<IProps, any> {
   render() {
-    const currentComponent = this.props.routeParams.component;
-    const currentState = this.props.state.find((c) => { return c.id === currentComponent; });
+    const currentComponentId = this.props.routeParams.component;
+    const currentState = this.props.state.find((document) => { return document.id === currentComponentId; });
     if (!currentState)
       return (null);
    
@@ -31,7 +31,7 @@ class ComponentsPage extends React.Component<IProps, any> {
         {currentState.subheading && <Subheading value={currentState.subheading} />}
         {currentState.property && <Properties tableValues={currentState.property} />}
         {currentState.code && <CodeExample codeString={currentState.code} />}
-        <currentState.exampleComponent />
+        {currentState.exampleComponent && <currentState.exampleComponent /> }
         <div style={{ marginTop: 50 }}>{'<Best Practices Component />'}</div>
         <div>{'<GuideLines Component />'}</div>
       </div>

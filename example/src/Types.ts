@@ -1,4 +1,3 @@
-// import * as React from 'react';
 import * as redux from 'redux';
 
 export interface IDocumentAppState {
