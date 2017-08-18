@@ -22,16 +22,17 @@ describe('<ChoiceList />', () => {
       { label: 'Three', value: 'three' },
     ];
   });
-
-  it('should verify renders a fieldset', () => {
-    const element = mount(
-                          <ChoiceList selected={[]} choices={choices} theme={theme} />,
-                         );
-    expect(element.find('fieldset').exists()).toBe(true);
-    expect(element.find('fieldset').hasClass('choiceList')).toBe(true);   
+  describe('when default props are provided', () => {
+    it('should verify renders a fieldset', () => {
+      const element = mount(
+                            <ChoiceList selected={[]} choices={choices} theme={theme} />,
+                          );
+      expect(element.find('fieldset').exists()).toBe(true);
+      expect(element.find('fieldset').hasClass('choiceList')).toBe(true);   
+    });
   });
-
-  describe('title', () => {
+    
+  describe('title property', () => {
     describe('when not set', () => {
       it('should verify not renders a legend for the fieldset', () => {
         const element = mount(
@@ -52,7 +53,7 @@ describe('<ChoiceList />', () => {
     });
   });
 
-  describe('choices', () => {
+  describe('choices property', () => {
     it('shoild verify renders a choice with the label and value properties', () => {
       const choiceElements = mount(
                                    <ChoiceList selected={[]} choices={choices} theme={theme} />,
@@ -64,7 +65,7 @@ describe('<ChoiceList />', () => {
     });
   });
 
-  describe('selected', () => {
+  describe('selected property', () => {
     it('sets the appropriate choices to be selected', () => {
       const selectedIndexes = [0, 2];
       const selected = selectedIndexes.map(index => choices[index].value);
@@ -109,7 +110,7 @@ describe('<ChoiceList />', () => {
     }
   });
 
-  describe('name', () => {
+  describe('name property', () => {
     it('provides a unique name when none is provided', () => {
       const choiceElements = shallow(
                                      <ChoiceList selected={[]} choices={choices} theme={theme} />,
@@ -149,7 +150,7 @@ describe('<ChoiceList />', () => {
     });
   });
 
-  describe('allowMultiple', () => {
+  describe('allowMultiple property', () => {
     it('renders a radio button for each option when allowMultiple is not true', () => {
       let element = mount(
                           <ChoiceList selected={[]} choices={choices} theme={theme} />,
@@ -173,7 +174,7 @@ describe('<ChoiceList />', () => {
     });
   });
   
-  describe('titlehidden', () => {
+  describe('titlehidden property', () => {
     describe('when not set', () => {
       it('should verify not renders a titlehidden for the choicelist', () => {
         const element = mount(
