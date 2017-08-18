@@ -25,7 +25,7 @@ import {
   Item,
   Loading,
   OffCanvas,  
-  OffCanvasAnimationType,
+  OffCanvasMode,
   Panel,
   Picker,
   Select,
@@ -41,9 +41,8 @@ interface State {
   appDescription: string,
   appTextCounter: string,
   columns: object[],
-  rows: object[],
-  isMenuOpened: boolean,
-  animation?: OffCanvasAnimationType,
+  rows: object[],  
+  mode?: OffCanvasMode,
 }
 
 class App extends React.Component<{}, State> {
@@ -62,8 +61,7 @@ class App extends React.Component<{}, State> {
         { id: 1, title: 'Title 1', count: 1 },
         { id: 2, title: 'Title 2', count: 2 },
         { id: 3, title: 'Title 3', count: 3 }
-      ],
-      isMenuOpened: false,
+      ],      
     };
   }
 
@@ -75,11 +73,7 @@ class App extends React.Component<{}, State> {
 
   chipRemove = () => {
     console.log('chip removed...');
-  }
-
-  handleClick = () => {
-    this.setState({ isMenuOpened: !this.state.isMenuOpened });
-  }
+  }  
 
   render() {
     const posterUrl = new URL('http://4.bp.blogspot.com/_JSR8IC77Ub4/TKB-XAWXmhI/AAAAAAAABJA/MqOpdFTOaHo/w1200-' +
@@ -111,15 +105,24 @@ class App extends React.Component<{}, State> {
 
     return (
       <div>
-        <OffCanvas animation={OffCanvasAnimationType.Reveal} isMenuOpened={this.state.isMenuOpened} activator={<Button onClick={this.handleClick}>Trigger</Button>}>
+        <OffCanvas mode={OffCanvasMode.push} overlay activator={<Button>Push Left</Button>}>
           <p>Placeholder content.</p>
           <ul>
             <li>Link 1</li>
             <li>Link 2</li>
             <li>Link 3</li>
             <li>Link 4</li>
-            <li>Link 5</li>
-            <li><a href="#" onClick={this.handleClick}>Toggle Menu</a></li>
+            <li>Link 5</li>            
+          </ul>
+        </OffCanvas>
+        <OffCanvas mode={OffCanvasMode.slide} flip activator={<Button>Slide Right</Button>}>
+          <p>Placeholder content.</p>
+          <ul>
+            <li>Link 1</li>
+            <li>Link 2</li>
+            <li>Link 3</li>
+            <li>Link 4</li>
+            <li>Link 5</li>            
           </ul>
         </OffCanvas>         
         <div>

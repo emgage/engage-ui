@@ -1,74 +1,83 @@
 import * as React from 'react';
 import * as baseTheme from './OffCanvas.scss';
-import { OffCanvasAnimationType, OffCanvasPosition } from './OffCanvasProps';
+import { OffCanvasMode } from './OffCanvasProps';
 
 export interface Props {
   width?: number;
-  transitionDuration?: number;  
-  isMenuOpened?: boolean;
-  position?: OffCanvasPosition;
+  transitionDuration?: number;    
+  flip?: boolean;
+  overlay?: boolean;
   children?: any;
   style?: any;
-  animation?: OffCanvasAnimationType; 
+  mode?: OffCanvasMode; 
   activator?: React.ReactNode;
 }
 
 export interface State {
-  isMenuOpened: false;
+  active: boolean;
 }
 
 export default class OffCanvas extends React.PureComponent<Props, State> {
-  state: State = { isMenuOpened: false };
+  state: State = { active: false };
   render() {
     const {
       width = 270,
-      transitionDuration = 270,      
-      isMenuOpened = false,
-      position = OffCanvasPosition.Right,
+      transitionDuration = 270,            
+      flip,
+      overlay,
       children,
       style,
-      animation,
+      mode,
       activator,
     } = this.props;
 
-    let animationMode = animation;    
-    animationMode = animation === undefined ? OffCanvasAnimationType.Push : animation;
+    let offCanvasMode = mode;    
+    offCanvasMode = mode === undefined ? OffCanvasMode.push : mode;
 
-    const left = position === OffCanvasPosition.Left ? (-1 * width) + 'px' : 'auto';
-    const tranDuration = animationMode === OffCanvasAnimationType.None || animationMode === OffCanvasAnimationType.Reveal ? 0 : transitionDuration;
-
-    const translateCloseX = position === OffCanvasPosition.Left ? width : (-1 * width);
+    const leftClose = flip ? 'auto' : (-1 * width) + 'px';
+    const rightClose = flip ? (-1 * width) + 'px' : 'auto';
+    const tranDuration = offCanvasMode === OffCanvasMode.none || offCanvasMode === OffCanvasMode.reveal ? '' : transitionDuration;
+    
     const closedStyle = {
-      left,
+      left: leftClose,
+      right: rightClose,
+      top: '0px',
       width: width + 'px',
-      top: '0px',      
-      transform: 'translate(' + translateCloseX + 'px, 0px)',
       transitionDuration: tranDuration + 'ms',
     };
-
-    const translateOpenX = animationMode ===  OffCanvasAnimationType.Push || animationMode ===  OffCanvasAnimationType.Reveal ? (-1 * width) : 0;
+        
     const openStyle = {
-      transform: 'translate(' + translateOpenX + 'px, 0px)',
+      left: flip ? 'auto' : '0px',
+      right: flip ? '0px' : 'auto',    
     };
 
     let currStyle = closedStyle;
-    if (isMenuOpened) {
+    if (this.state.active) {
       currStyle = { ...currStyle, ...openStyle };
     }
 
     const rootElement = document.body;
-    if (rootElement !== null) {
-      rootElement.style.setProperty('transition-duration', '' + transitionDuration + 'ms');        
-      rootElement.style.setProperty('transform', animationMode ===  OffCanvasAnimationType.Push || animationMode ===  OffCanvasAnimationType.Reveal ? isMenuOpened ? 'translate(' + width + 'px, 0px)' : 'translate(0px, 0px)' : 'translate(0px, 0px)');
+    if (rootElement !== null) {            
+      if (offCanvasMode ===  OffCanvasMode.push || offCanvasMode ===  OffCanvasMode.reveal) {    
+        rootElement.style.setProperty('transition-duration', '' + transitionDuration + 'ms');
+        rootElement.style.setProperty('margin-left', this.state.active ? flip ? '' + (-1 * width) + 'px' : '' + width + 'px' : '0px');
+      }
+      rootElement.className = overlay && this.state.active ? (baseTheme.menuOverlay) : '';      
     }
     
     return (
       <div>
-        {activator}
+        <div onClick={this.handleClick}>
+          {activator}
+        </div>
         <div style={{ ...currStyle, ...style }} className={baseTheme.menuClass}>
+          <div onClick={this.handleClick} className={baseTheme.menuClose}>X</div>
           {children}
         </div>
       </div>
     );
-  }
+  } 
+  private handleClick = () => {
+    this.setState({ active: !this.state.active });
+  } 
 }

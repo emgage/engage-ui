@@ -1,11 +1,6 @@
-export enum OffCanvasAnimationType {
-    Push,
-    Slide,
-    Reveal,
-    None,
-}
-
-export enum OffCanvasPosition {
-    Left,
-    Right,
+export enum OffCanvasMode {
+    slide,
+    reveal,
+    push,
+    none,
 }
