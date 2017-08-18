@@ -1,10 +1,11 @@
 import { IDocument } from '../../Types';
 import ChoiceListExample from '../../examples/ChoiceListExample/ChoiceListExample';
+import ChoiceListExampleMultiple from '../../examples/ChoiceListExample/ChoiceListExampleMultiple';
 
-const code = require('!raw-loader!../../examples/ChoiceListExample/ChoiceListExample') as string;
+const ChoiceListExampleCode = require('!raw-loader!../../examples/ChoiceListExample/ChoiceListExample') as string;
+const ChoiceListExampleMultipleCode = require('!raw-loader!../../examples/ChoiceListExample/ChoiceListExampleMultiple') as string;
 
 const choiceListState: IDocument = {
-  code,
   id: 'choicelist',
   heading: 'Choice List Component',
   subheading: `A choice list lets you create a list of grouped radio buttons or checkboxes.
@@ -44,7 +45,10 @@ const choiceListState: IDocument = {
       desc: 'Function to handle on change of choice list.',
     },
   ],
+  exampleCode: ChoiceListExampleCode,
   exampleComponent: ChoiceListExample,
+  exampleCodeExtra: ChoiceListExampleMultipleCode,
+  exampleComponentExtra: ChoiceListExampleMultiple,
 };
 
 export default choiceListState;

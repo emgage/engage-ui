@@ -30,8 +30,10 @@ class ComponentsPage extends React.Component<IProps, any> {
         <Heading value={currentState.heading} />
         {currentState.subheading && <Subheading value={currentState.subheading} />}
         {currentState.property && <Properties tableValues={currentState.property} />}
-        {currentState.code && <CodeExample codeString={currentState.code} />}
+        {currentState.exampleCode && <CodeExample codeString={currentState.exampleCode} />}
         {currentState.exampleComponent && <currentState.exampleComponent /> }
+        {currentState.exampleCodeExtra && <CodeExample codeString={currentState.exampleCodeExtra} />}
+        {currentState.exampleComponentExtra && <currentState.exampleComponentExtra /> }
         <div style={{ marginTop: 50 }}>{'<Best Practices Component />'}</div>
         <div>{'<GuideLines Component />'}</div>
       </div>

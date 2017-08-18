@@ -9,8 +9,10 @@ export interface IDocument {
   heading: string;
   subheading?: string;
   property?:IProperty[];
-  code?: string;
+  exampleCode?: string;
   exampleComponent?: any;
+  exampleCodeExtra?: string;
+  exampleComponentExtra?: any;
 }
 
 export interface IProperty {
