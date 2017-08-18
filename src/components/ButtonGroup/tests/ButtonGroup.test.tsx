@@ -3,11 +3,12 @@ import { mount } from 'enzyme';
 import ButtonGroup from '../ButtonGroup';
 
 const theme = {
-  buttonGroup:'ButtonGroup',
-  segmented:'segmented',
+  buttonGroup: 'ButtonGroup',
+  segmented: 'segmented',
 };
 
 describe('<ButtonGroup />', () => {
+
   describe('when default props are provided', () => {
     it('buttongroup should be rendered with default props', () => {
       const buttonWrapper = mount(<ButtonGroup theme={theme} />);
@@ -15,17 +16,17 @@ describe('<ButtonGroup />', () => {
       expect(buttonWrapper.find('div').hasClass('ButtonGroup'));
     });
   });
+
   describe('segmented property', () => {
-    
     describe('when set', () => {
       describe('when set to true', () => {
         it('buttongroup should have segmented property', () => {
           const buttonWrapper = mount(
-                                       <ButtonGroup segmented theme={theme}>
-                                          <button>Button 1</button>
+                                       <ButtonGroup segmented theme={theme}>
+                                          <button>Button 1</button>
                                           <button>Button 2</button>
-                                        </ButtonGroup>,
-                                      );
+                                        </ButtonGroup>,
+                                      );
           expect(buttonWrapper.find('div')).toHaveLength(3);
           expect(buttonWrapper.find('div').at(0).hasClass('segmented'));
           expect(buttonWrapper.find('div').at(1).hasClass(''));
@@ -88,7 +89,6 @@ describe('<ButtonGroup />', () => {
         expect(buttonWrapper.find('button').at(1).prop('children')).toBe('Button 2');
       });
     });
-
 
     describe('when not set', () => {
       it('buttongroup should have children property', () => {
