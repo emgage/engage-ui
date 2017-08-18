@@ -4,7 +4,7 @@ import Card from '../Card';
 import Section from '../Section';
 import { Action } from '../../../types';
 
-describe('Card - Test Suit', () => {
+describe('<Card /> Test Suit', () => {
   const theme = {
     Card: 'Card',
     subdued: 'subdued',

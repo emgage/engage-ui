@@ -8,6 +8,9 @@
     "restrict-plus-operands": false,
     "max-line-length": [
       false
+    ],
+    "variable-name": [
+      "allow-pascal-case"
     ]
   }
 }
