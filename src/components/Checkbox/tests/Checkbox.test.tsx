@@ -37,6 +37,15 @@ describe('<Checkbox />', () => {
       (checkboxWrapper.find('input') as any).node.checked = true;
       checkboxWrapper.find('input').simulate('change');
       expect(spy).toHaveBeenCalledWith(true);
+      expect(checkboxWrapper.find('label')).toHaveLength(1);
+      expect(checkboxWrapper.find('div')).toHaveLength(5);
+      expect(checkboxWrapper.find('input')).toHaveLength(1);
+      expect(checkboxWrapper.find('span')).toHaveLength(1);
+      expect(checkboxWrapper.find('input').at(0).hasClass('input')).toBe(true);
+      expect(checkboxWrapper.find('div').at(1).hasClass('checkbox')).toBe(true);
+      expect(checkboxWrapper.find('div').at(2).hasClass('backdrop')).toBe(true);
+      expect(checkboxWrapper.find('div').at(3).hasClass('icon')).toBe(true);
+      expect(checkboxWrapper.prop('label')).toBe('Checkbox');
     });
   });
 
@@ -48,6 +57,15 @@ describe('<Checkbox />', () => {
                                    );
       checkboxWrapper.find('input').simulate('focus');
       expect(spy).toHaveBeenCalled();
+      expect(checkboxWrapper.find('label')).toHaveLength(1);
+      expect(checkboxWrapper.find('div')).toHaveLength(5);
+      expect(checkboxWrapper.find('input')).toHaveLength(1);
+      expect(checkboxWrapper.find('span')).toHaveLength(1);
+      expect(checkboxWrapper.find('input').at(0).hasClass('input')).toBe(true);
+      expect(checkboxWrapper.find('div').at(1).hasClass('checkbox')).toBe(true);
+      expect(checkboxWrapper.find('div').at(2).hasClass('backdrop')).toBe(true);
+      expect(checkboxWrapper.find('div').at(3).hasClass('icon')).toBe(true);
+      expect(checkboxWrapper.prop('label')).toBe('Checkbox');
     });
   });
 
@@ -59,6 +77,15 @@ describe('<Checkbox />', () => {
                                    );
       checkboxWrapper.find('input').simulate('blur');
       expect(spy).toHaveBeenCalled();
+      expect(checkboxWrapper.find('label')).toHaveLength(1);
+      expect(checkboxWrapper.find('div')).toHaveLength(5);
+      expect(checkboxWrapper.find('input')).toHaveLength(1);
+      expect(checkboxWrapper.find('span')).toHaveLength(1);
+      expect(checkboxWrapper.find('input').at(0).hasClass('input')).toBe(true);
+      expect(checkboxWrapper.find('div').at(1).hasClass('checkbox')).toBe(true);
+      expect(checkboxWrapper.find('div').at(2).hasClass('backdrop')).toBe(true);
+      expect(checkboxWrapper.find('div').at(3).hasClass('icon')).toBe(true);
+      expect(checkboxWrapper.prop('label')).toBe('Checkbox');
     });
   });
 
