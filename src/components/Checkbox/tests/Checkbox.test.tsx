@@ -418,7 +418,7 @@ describe('<Checkbox />', () => {
       });
     });  
   });    
-  
+ 
   describe('error property', () => {
     describe('when set as string', () => {
       describe('when not set', () => {
