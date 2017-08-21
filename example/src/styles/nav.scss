@@ -1,0 +1,35 @@
+@import './_variables.scss';
+
+
+.nav {
+  width: 25%;
+
+  ul {
+    padding-top: 20px;
+    list-style: none;
+    background-color: $white;
+    font-size: 24px;
+    height: 100vh;
+    text-align: center;
+  }
+
+  li {
+    font-family: 'Oswald', sans-serif;
+    line-height: 24px;
+    height: 40px;
+  }
+
+  a {
+    padding-top: 8px;
+    text-decoration: none;
+    color: $red;
+    display: block;
+    transition: .3s background-color;
+  }
+
+  a:hover {
+    background-color: $red;
+    color: $white;
+    height: 40px;
+  }
+}
