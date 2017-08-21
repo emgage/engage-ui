@@ -22,8 +22,12 @@
 .cardItem {
   display: flex;
   flex-direction: row;
-  width: 400px;
+  // width: 400px;
+  list-style-type: none;
 }
+
+
+
 .flex {
   display: flex;
 }

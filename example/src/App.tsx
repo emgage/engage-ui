@@ -4,9 +4,8 @@ import * as React from 'react';
 
 // import ReactDataExample from './ReactDataExample';
 
-// import CardList from '../../src/components/Picker/CardList';
-// import AutoSuggestTest from '../../src/components/Picker/AutoSuggestTest';
-// import AutoSuggestTest from '../../src/components/Picker/AutoSuggestTest';
+import CardList from '../../src/components/Picker/CardList';
+import AutoSuggestTest from '../../src/components/Picker/AutoSuggestTest';
 // import PickedCard from '../../src/components/Picker/PickedCard';
 // import Card from '../../src/components/Picker/Card';
 // import * as Autosuggest from 'react-autosuggest';
@@ -16,7 +15,7 @@ import {
   // Button,
 //   ButtonGroup,
   // Card,
-  // Chip,
+  Chip,
 //   ChoiceList,
 //   ClickableChip,
 //   Column,
@@ -27,8 +26,8 @@ import {
 //   FlexJustify,
 //   FormLayout,
 //   Heading,
-  List,
-  Item,
+  // List,
+  // Item,
 //   Loading,
 //   OffCanvas,
 //   OffCanvasMenu,
@@ -48,7 +47,7 @@ interface State {
 //   appName?: string,
 //   appDescription: string,
 //   appTextCounter: string,
-  // array: { key: number, image: string, name: string, email: string, grey: boolean }[];
+  array: { key: number, image: string, name: string, email: string, grey: boolean }[];
   // image: string;
   // name: string;
 //   columns: object[],
@@ -89,13 +88,13 @@ class App extends React.Component<{}, State> {
 
   // rowGetter = (index: number) => this.state.rows[index];
 
-  // chipClick = () => {
-  //   console.log('chip clicked...');
-  // }
+  chipClick = () => {
+    console.log('chip clicked...');
+  }
 
-  // chipRemove = () => {
-  //   console.log('chip removed...');
-  // }
+  chipRemove = () => {
+    console.log('chip removed...');
+  }
 
   // handleClick = () => {
   //   this.setState({ isMenuOpened: !this.state.isMenuOpened });
@@ -143,17 +142,17 @@ class App extends React.Component<{}, State> {
     return (
       <div> 
          {/* <Card array={this.state.array}/>   */}
-          {/* <CardList array={this.state.array}/>     */}
+             <CardList array={this.state.array}/>       
           {/* <div>
-          <Autosuggest 
+           <Autosuggest 
             suggestions={suggestions}
             onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
             onSuggestionsClearRequested={this.onSuggestionsClearRequested}
             getSuggestionValue={getSuggestionValue}
             renderSuggestion={renderSuggestion}
             inputProps={inputProps} />
-        </div>  */}
-          {/* <AutoSuggestTest />  */}
+        </div>   */}
+           <AutoSuggestTest />  
 
         {/* <PickedCard image={this.state.image} name={this.state.name} /> */}
         {/* <OffCanvas width={270} transitionDuration={270} isMenuOpened={this.state.isMenuOpened}>
@@ -190,7 +189,7 @@ class App extends React.Component<{}, State> {
             </Card>
           </ClickableChip>
         </div>
-        <Heading>List</Heading> */}
+        <Heading>List</Heading>
         <List type="bullet"> 
           <Item>Yellow shirt</Item>
           <Item>Red shirt</Item>
@@ -228,7 +227,7 @@ class App extends React.Component<{}, State> {
           <Item>Second item</Item>
           <Item>Third Item</Item>
         </List> 
-        {/*<ChoiceList
+        <ChoiceList
   title="Company name"
   choices={[
     {
@@ -256,7 +255,7 @@ class App extends React.Component<{}, State> {
           maxSelectedItems={5}
           minSelectedItems={2}
           millisecondsToWaitBeforeSearch={20}
-          moreInfoComponent={<Button children="ranmal" />}
+            ={<Button children="ranmal" />}
         />  */}
         {/* <ValidatedForm>
 
@@ -342,7 +341,7 @@ class App extends React.Component<{}, State> {
           <div style={{backgroundColor: 'lime'}}>Demo 3</div>
         </FlexBox>
 
-        <Heading>Chip</Heading>
+        <Heading>Chip</Heading> */}
         <div>
           <Chip>
             Basic Chip
@@ -365,9 +364,12 @@ class App extends React.Component<{}, State> {
           <Chip transparent>
             Transparent Chip
           </Chip>
+           <Chip removable={true}>
+            just a chip
+          </Chip> 
         </div>
 
-        <div>
+        {/* <div>
           <h4>Single source video</h4>
           <Video
             poster={posterUrl}

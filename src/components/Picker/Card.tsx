@@ -6,6 +6,7 @@ export interface Props {
   name?: string;
   email?: string;
   grey?: boolean;
+  bold?: string;
 }
 
 class Card extends React.Component<Props, {}> {
