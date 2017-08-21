@@ -1,6 +1,7 @@
 import * as React from 'react';
 import * as baseTheme from './OffCanvas.scss';
 import { OffCanvasMode } from './OffCanvasProps';
+import Button from '../Button';
 
 export interface Props {
   width?: number;
@@ -67,16 +68,15 @@ export default class OffCanvas extends React.PureComponent<Props, State> {
     
     return (
       <div>
-        <div onClick={this.handleClick}>
-          {activator}
-        </div>
+        <div onClick={this.handleClick}>{activator}</div>
         <div style={{ ...currStyle, ...style }} className={baseTheme.menuClass}>
-          <div onClick={this.handleClick} className={baseTheme.menuClose}>X</div>
+          <Button onClick={this.handleClick}>X</Button>
           {children}
         </div>
       </div>
     );
-  } 
+  }
+  
   private handleClick = () => {
     this.setState({ active: !this.state.active });
   } 
