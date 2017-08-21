@@ -20,6 +20,7 @@ export interface Props {
   onRemove?(event: any): void;
   onClick?(event: any): void;
   handleMoreInfo?(): void;
+  key?: any;
 }
 
 class Chip extends React.PureComponent<Props, any> {

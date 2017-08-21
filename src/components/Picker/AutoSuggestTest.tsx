@@ -41,7 +41,7 @@ export interface Props {
 }
 
 export interface State {
-  chipListState: object[];
+  chipListState: { key: any, image?: string, text: string, email?: string, grey?: boolean }[];
   value: string;
   suggestions: object[];
 }
@@ -54,27 +54,24 @@ class AutoSuggestTest extends React.Component<Props, State> {
       value: '',
       suggestions: [],
       chipListState: [
-        { text: 'just a chip' },
-        { text: 'just another chip' },
+        { key: 'just a chip!!!!!!!!!!', text: 'just a chip' },
+        { key: 'just another chip', text: 'just another chip' },
       ],
     };
   }
 
 
   getSuggestionValue = (suggestion:any) => {
-    const chipListState = this.state.chipListState.concat({ text: suggestion.name });
-    this.setState({ chipListState }, () => chipListState);
+    const chipListState = this.state.chipListState.concat({ key: suggestion.name, text: suggestion.name });
+    this.setState({ chipListState });
+    // this.setState({ suggestions: [] });
     // this.state.chipListState.push({ text: suggestion.name });
-    // return suggestion.name;
+    return '';
   }
   onChange = (event:any, { newValue, method }:any) => {
     this.setState({
       value: newValue,
     });
-  }
-
-  addChip = () => {
-    this.state.chipListState.push();
   }
   
   onSuggestionsFetchRequested = ({ value }:any) => {
@@ -108,7 +105,7 @@ class AutoSuggestTest extends React.Component<Props, State> {
     return (
       <div>
         <div>
-          { chipListState.map((input: any) => <div><Chip>{input.text}</Chip></div>) }
+          { chipListState.map((input: any) => <div key={input.text}><Chip key={input.text}>{input.text}</Chip></div>) }
         </div>
         <Autosuggest 
           suggestions={suggestions}
