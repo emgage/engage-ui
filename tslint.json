@@ -11,6 +11,11 @@
     ],
     "variable-name": [
       "allow-pascal-case"
+    ],
+    "indent": [
+      true,
+      "spaces",
+      2
     ]
   }
 }
