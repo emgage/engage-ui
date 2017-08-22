@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { mount } from 'enzyme';
-import { OffCanvasMode } from '..';
+import { OffCanvasMode } from '../OffCanvasProps';
 import OffCanvas from '../OffCanvas';
 import Button from '../../Button';
 
