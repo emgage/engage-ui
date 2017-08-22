@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from 'react-css-themr';
-import {classNames, variationName} from '@shopify/react-utilities/styles';
+import { classNames, variationName } from '@shopify/react-utilities/styles';
 
 import VisuallyHidden from '../VisuallyHidden';
 import { BADGE } from '../ThemeIdentifiers';
@@ -11,10 +11,10 @@ export type Status = 'success' | 'info' | 'attention' | 'warning';
 export type Progress = 'incomplete' | 'partiallyComplete' | 'complete';
 
 export interface Props {
-  children?: string,
-  status?: Status,
-  progress?: Progress,
-  theme?: any,
+  children?: string;
+  status?: Status;
+  progress?: Progress;
+  theme?: any;
 }
 
 const PROGRESS_LABELS = {
@@ -30,16 +30,16 @@ const STATUS_LABELS = {
   attention: 'Attention',
 };
 
-const Badge = ({children, status, progress, theme}: Props) => {
+const badge = ({ children, status, progress, theme }: Props) => {
   const className = classNames(
-    theme.Badge,
+    theme.badge,
     status && theme[variationName('status', status)],
     progress && theme[variationName('progress', progress)],
   );
 
   const pipMarkup = progress
     ? (
-      <span className={theme.Pip}>
+      <span className={theme.pip}>
         <VisuallyHidden>{PROGRESS_LABELS[progress]}</VisuallyHidden>
       </span>
     )
@@ -58,4 +58,4 @@ const Badge = ({children, status, progress, theme}: Props) => {
   );
 };
 
-export default themr(BADGE, baseTheme)(Badge) as ThemedComponentClass<Props, {}>;
+export default themr(BADGE, baseTheme)(badge) as ThemedComponentClass<Props, {}>;

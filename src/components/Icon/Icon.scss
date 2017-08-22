@@ -3,7 +3,7 @@ $stacking-order: (
   icon: 2,
 );
 
-.Icon {
+.icon {
   display: block;
   height: rem(20px);
   width: rem(20px);
@@ -210,7 +210,7 @@ $stacking-order: (
   fill: color(purple);
 }
 
-.Svg {
+.svg {
   position: relative;
   z-index: z-index(icon, $stacking-order);
   display: block;
@@ -220,7 +220,7 @@ $stacking-order: (
   max-height: 100%;
 }
 
-.Placeholder {
+.placeholder {
   padding-bottom: 100%;
   background: currentColor;
 }
