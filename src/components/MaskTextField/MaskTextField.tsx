@@ -24,17 +24,19 @@ export interface State extends TextFieldState {
   value?: string,
 }
 export interface Props extends TextFieldProps {
-  mask?: string,
-  formatChars?: any,
-  maskChar?: string,
-  defaultValue?: string,
-  alwaysShowMask?: boolean,
-  onPaste?(e: any): void,
-  onKeyPress?(e: any): void,
-  onKeyDown?(e: any): void,
-  onEnter?(e: any): void,
+  [key: string]: any;
+  mask?: string;
+  formatChars?: any;
+  maskChar?: string;
+  defaultValue?: string;
+  alwaysShowMask?: boolean;
+  onPaste?(e: any): void;
+  onKeyPress?(e: any): void;
+  onKeyDown?(e: any): void;
+  onEnter?(e: any): void;
 }
 class MaskTextField extends React.PureComponent<Props, State> {
+  [key: string]: any;
   lastCursorPos: number;
   hasValue = false;
   maskOptions: IMaskOption;
@@ -387,15 +389,26 @@ class MaskTextField extends React.PureComponent<Props, State> {
       formatChars,
       ...props,
     } = this.props;
+    let copyProps;
     if (this.maskOptions.mask) {
       if (!props.disabled && !props.readOnly) {
         const handlersKeys = ['onFocus', 'onBlur', 'onChange', 'onKeyDown', 'onPaste'];
-        handlersKeys.forEach((key: string) => {
-          props[key] = this[key];
-        });
+        console.log('fired ');
+        copyProps = handlersKeys.reduce((currObj, key) => {
+          return {
+            ...currObj,
+            [key]: this[key],
+          };
+        }, {...props});
+        // handlersKeys.forEach((key: string) => {
+        //   props[key] = this[key];
+        // });
       }
     }
-    return <TextField value={this.state.value} ref={(ref) => this.input = ref} {...props} />;
+    console.log('passProps ', copyProps);
+    const passProps = copyProps ? copyProps : props;
+    console.log('chosen ', passProps);
+    return <TextField value={this.state.value} ref={(ref) => this.input = ref} {...passProps} />;
   }
 }
 export default themr(MASK_TEXT_FIELD, baseTheme)(MaskTextField) as ThemedComponentClass<Props, State>;

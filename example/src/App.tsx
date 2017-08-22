@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { FlexAlign, FlexDirection, FlexJustify } from '../../src/components/FlexBox/FlexProps';
-import { PeoplePickerSearchType } from './PickerEnum';
-import { PeoplePickerSource } from './PickerSource';
+
 
 import {
   Button,
