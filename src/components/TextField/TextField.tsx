@@ -51,7 +51,7 @@ export interface Props {
   style?: React.CSSProperties;
   theme?: any;
   onChange?(value: string): void;
-  onFocus?(): void;
+  onFocus?(e?: any): void;
   onBlur?(e?: any): void;
 }
 
