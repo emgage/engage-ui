@@ -49,7 +49,7 @@ class Chip extends React.PureComponent<Props, any> {
     ];
 
     return (
-            <span className={className}>
+            <div className={className}>
                 {
                     clickable
                         ?
@@ -67,7 +67,7 @@ class Chip extends React.PureComponent<Props, any> {
                         </button>
                         : ''
                 }
-            </span>
+            </div>
     );
   }
 }

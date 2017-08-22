@@ -5,8 +5,8 @@ export interface Props {
   image?: string;
   name?: string;
   email?: string;
-  grey?: boolean;
   bold?: string;
+  isHighlighted?: boolean;
 }
 
 class Card extends React.Component<Props, {}> {
@@ -15,7 +15,7 @@ class Card extends React.Component<Props, {}> {
   }
   render() {
     let cardBackground;
-    if (this.props.grey) cardBackground = style.cardItem + ' ' + style.grey;
+    if (this.props.isHighlighted) cardBackground = style.cardItem + ' ' + style.grey;
     else cardBackground = style.cardItem;
     return (
       <div>

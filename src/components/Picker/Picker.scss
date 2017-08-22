@@ -13,6 +13,10 @@
   margin: 0;
   padding: 0;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  // position: fixed;
+}
+.check {
+  width: 100px;
 }
 .cardElem {
   display: flex;
@@ -23,10 +27,53 @@
   display: flex;
   flex-direction: row;
   // width: 400px;
-  list-style-type: none;
+  // position: fixed;
 }
 
+.suggestionsList {
+  position: fixed;
+  list-style-type: none;
+  background-color: white; 
+  padding: 0;
+  margin: 0;
+}
 
+.autosuggestInput {
+  border:none;
+  background-color:transparent;
+  display: inline-block;
+  font-size: 1.3rem;
+  color: #212b36;
+  padding: 0 1.2rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 200px;
+
+  // width: 100%;
+  // height: 100%;
+  // position: relative;
+}
+
+.container {
+  // margin: 0;
+  // padding: 0;
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.autosuggestInput:focus {
+  outline:none;
+  // display: block;
+}
+
+.inputOutline {
+  border-bottom: 1px solid black;
+  cursor: text;
+  // height: 25px;
+  // position: relative;
+  // display: inline;
+}
 
 .flex {
   display: flex;
@@ -41,28 +88,3 @@
 .grey {
   background-color: #E8E8E8;
 }
-
-// // Picked Card 
-// .pickedCardContainer {
-//   border: 1px solid black;
-//   border-radius: 20%;
-//   width: 20px;
-//   display: flex;
-//   align-items: center; 
-//   height: 20px;
-//   // width: 1px;
-// }
-// .pickedCard {
-//   background-color: white;
-// }
-
-// .pickedAvatarImage {
-//   border-radius: 50%;
-//   width: 20px;
-//   height: 20px;
-// }
-
-// .pickedNameStyle {
-//   font-size: 5px;
-//   width: 18px;
-// }
