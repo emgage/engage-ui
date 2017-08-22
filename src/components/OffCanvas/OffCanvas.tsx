@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { themr, ThemedComponentClass } from 'react-css-themr';
+import { OFFCANVAS } from '../ThemeIdentifiers';
 import * as baseTheme from './OffCanvas.scss';
 import { OffCanvasMode } from './OffCanvasProps';
 import Button from '../Button';
@@ -12,13 +14,14 @@ export interface Props {
   style?: any;
   mode?: OffCanvasMode; 
   activator?: React.ReactNode;
+  theme?: any;
 }
 
 export interface State {
   active: boolean;
 }
 
-export default class OffCanvas extends React.PureComponent<Props, State> {
+class OffCanvas extends React.PureComponent<Props, State> {
   state: State = { active: false };
   render() {
     const {
@@ -30,6 +33,7 @@ export default class OffCanvas extends React.PureComponent<Props, State> {
       style,
       mode,
       activator,
+      theme,
     } = this.props;
 
     let offCanvasMode = mode;    
@@ -63,13 +67,13 @@ export default class OffCanvas extends React.PureComponent<Props, State> {
         rootElement.style.setProperty('transition-duration', '' + transitionDuration + 'ms');
         rootElement.style.setProperty('margin-left', this.state.active ? flip ? '' + (-1 * width) + 'px' : '' + width + 'px' : '0px');
       }
-      rootElement.className = overlay && this.state.active ? (baseTheme.menuOverlay) : '';      
+      rootElement.className = overlay && this.state.active ? (theme.menuOverlay) : '';      
     }
     
     return (
       <div>
         <div onClick={this.handleClick}>{activator}</div>
-        <div style={{ ...currStyle, ...style }} className={baseTheme.menuClass}>
+        <div style={{ ...currStyle, ...style }} className={theme.menuClass}>
           <Button onClick={this.handleClick}>X</Button>
           {children}
         </div>
@@ -81,3 +85,4 @@ export default class OffCanvas extends React.PureComponent<Props, State> {
     this.setState({ active: !this.state.active });
   } 
 }
+export default themr(OFFCANVAS, baseTheme)(OffCanvas) as ThemedComponentClass<Props, State>;
