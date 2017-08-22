@@ -6,7 +6,6 @@ import { IDocumentAppState, IDocument } from '../Types';
 
 import Heading from '../components/Heading';
 import Subheading from '../components/Subheading';
-import Description from '../components/Description';
 import Properties from '../components/Properties';
 import CodeExample from '../components/CodeExample';
 
@@ -29,10 +28,8 @@ class ComponentsPage extends React.Component<IProps, any> {
     return (
       <div className={styles.component_container}>
         <Heading value={currentState.heading} />
-        {currentState.description && <Description value={currentState.description} />}
         {currentState.subheading && <Subheading value={currentState.subheading} />}        
         {currentState.property && <Properties tableValues={currentState.property} />}
-        
         {currentState.exampleComponent && <currentState.exampleComponent /> }
         {currentState.exampleCode && <CodeExample codeString={currentState.exampleCode} />}
         {currentState.exampleComponentExtra && <currentState.exampleComponentExtra /> }

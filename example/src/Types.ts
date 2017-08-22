@@ -8,7 +8,6 @@ export interface IDocument {
   id: string;
   heading: string;
   subheading?: string;
-  description?: string;
   property?:IProperty[];
   exampleCode?: string;
   exampleComponent?: any;

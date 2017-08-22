@@ -9,11 +9,8 @@ export interface IProps {
   
 // tslint:disable-next-line:variable-name
 const Subheading = ({ value, className }: IProps) => {
-  const containerClass = `default-heading ${className}`;
   return (
-    <div className={containerClass}>
-      <h3>{value}</h3>
-    </div>
+      <p>{value}</p>
   );
 };
 

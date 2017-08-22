@@ -8,9 +8,8 @@ const ChoiceListExampleMultipleCode = require('!raw-loader!../../examples/Choice
 const choiceListState: IDocument = {
   id: 'choicelist',
   heading: 'Choice List Component',
-  description: `A choice list lets you create a list of grouped radio buttons or checkboxes.
+  subheading: `A choice list lets you create a list of grouped radio buttons or checkboxes.
                Use this component if you need to group together a related list of interactive choices.`,
-  subheading: `Properties`,             
   property: [
     {
       name: 'title',
