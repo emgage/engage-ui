@@ -76,8 +76,40 @@ describe('<ValidatedTextField / >', () => {
   });
 
   describe('validateTrigger property', () => {
-    describe('when set with onBlur', () => {
-      it('should verify validatedtextfield when validateTrigger props are set', () => {
+    describe('when set with onBlur with value given', () => {
+      it('should verify validatedtextfield when onBlur prop is set', () => {
+        const spy = jest.fn();
+        const validatedTextFieldWrapper = mount(
+                                            <ValidatedForm>
+                                                <ValidatedTextField
+                                                id="AppName"                                            
+                                                label="App Name"                                            
+                                                name="App Name"
+                                                value="Test"
+                                                required={true} 
+                                                onBlur={ () => spy()}
+                                                validateTrigger={['onBlur']}
+                                                validateRules={[{ required: true, message: 'App Name is required.' },
+                                                ]} />
+                                            </ValidatedForm>);
+        expect(validatedTextFieldWrapper.find('form')).toHaveLength(1);
+        expect(validatedTextFieldWrapper.find('div')).toHaveLength(5);
+        expect(validatedTextFieldWrapper.find('input')).toHaveLength(1);
+        expect(validatedTextFieldWrapper.find('label')).toHaveLength(2);
+        expect(validatedTextFieldWrapper.find('input').prop('name')).toBe('App Name');
+        expect(validatedTextFieldWrapper.find('label').at(1).prop('id')).toBe('AppNameLabel');
+        expect(validatedTextFieldWrapper.find('label').at(1).text()).toBe('App Name');
+        expect(validatedTextFieldWrapper.find('input').prop('id')).toBe('AppName');
+        expect(validatedTextFieldWrapper.find('input').prop('name')).toBe('App Name');
+        expect(validatedTextFieldWrapper.find('input').prop('value')).toBe('Test');
+        expect(validatedTextFieldWrapper.find('input').prop('required')).toBe(true);
+        validatedTextFieldWrapper.find('input').slice().simulate('blur');
+        expect(validatedTextFieldWrapper.find('span')).toHaveLength(0);
+      });
+    });
+
+    describe('when set with onBlur without value given', () => {
+      it('should verify validatedtextfield when onBlur prop is set', () => {
         const spy = jest.fn();
         const validatedTextFieldWrapper = mount(
                                             <ValidatedForm>
@@ -86,11 +118,52 @@ describe('<ValidatedTextField / >', () => {
                                                 label="App Name"                                            
                                                 name="App Name"
                                                 value=""
+                                                required={true} 
                                                 onBlur={ () => spy()}
-                                                validateTrigger={['onBlur']} />
+                                                validateTrigger={['onBlur']}
+                                                validateRules={[{ required: true, message: 'App Name is required.' },
+                                                ]} />
                                             </ValidatedForm>);
         expect(validatedTextFieldWrapper.find('form')).toHaveLength(1);
-        expect(validatedTextFieldWrapper.find('div')).toHaveLength(5);
+        expect(validatedTextFieldWrapper.find('div')).toHaveLength(5);
+        expect(validatedTextFieldWrapper.find('input')).toHaveLength(1);
+        expect(validatedTextFieldWrapper.find('label')).toHaveLength(2);
+        expect(validatedTextFieldWrapper.find('input').prop('name')).toBe('App Name');
+        expect(validatedTextFieldWrapper.find('label').at(1).prop('id')).toBe('AppNameLabel');
+        expect(validatedTextFieldWrapper.find('label').at(1).text()).toBe('App Name');
+        expect(validatedTextFieldWrapper.find('input').prop('id')).toBe('AppName');
+        expect(validatedTextFieldWrapper.find('input').prop('name')).toBe('App Name');
+        expect(validatedTextFieldWrapper.find('input').prop('value')).toBe('');
+        expect(validatedTextFieldWrapper.find('input').prop('required')).toBe(true);
+        validatedTextFieldWrapper.find('input').slice().simulate('blur');
+        expect(validatedTextFieldWrapper.find('span').text()).toBe('App Name is required.');
+      });
+    });
+
+    describe('when not set', () => {
+      it('should verify validatedtextfield when onBlur prop is not set', () => {
+        const validatedTextFieldWrapper = mount(
+                                            <ValidatedForm>
+                                                <ValidatedTextField
+                                                id="AppName"                                            
+                                                label="App Name"                                            
+                                                name="App Name"
+                                                value="Test"
+                                                required={true} 
+                                                validateRules={[{ required: true, message: 'App Name is required.' },
+                                                ]} />
+                                            </ValidatedForm>);
+        expect(validatedTextFieldWrapper.find('form')).toHaveLength(1);
+        expect(validatedTextFieldWrapper.find('div')).toHaveLength(5);
+        expect(validatedTextFieldWrapper.find('input')).toHaveLength(1);
+        expect(validatedTextFieldWrapper.find('label')).toHaveLength(2);
+        expect(validatedTextFieldWrapper.find('input').prop('name')).toBe('App Name');
+        expect(validatedTextFieldWrapper.find('label').at(1).prop('id')).toBe('AppNameLabel');
+        expect(validatedTextFieldWrapper.find('label').at(1).text()).toBe('App Name');
+        expect(validatedTextFieldWrapper.find('input').prop('id')).toBe('AppName');
+        expect(validatedTextFieldWrapper.find('input').prop('name')).toBe('App Name');
+        expect(validatedTextFieldWrapper.find('input').prop('value')).toBe('Test');
+        expect(validatedTextFieldWrapper.find('input').prop('required')).toBe(true);
       });
     });
   });
@@ -104,14 +177,14 @@ describe('<ValidatedTextField / >', () => {
                                                 <ValidatedTextField
                                                 id="AppName"                                            
                                                 label="App Name"  
-                                                required={true}                                          
+                                                required={true}      
+                                                onBlur={ () => spy()}                                    
                                                 name="App Name"
                                                 value=""
                                                 validateTrigger={['onBlur']}
                                                 validateRules={[{ required: true, message: 'App Name is required.' },
                                                 ]} />
                                             </ValidatedForm>);
-        //console.log('validateRules: '+ validatedTextFieldWrapper.html());
         expect(validatedTextFieldWrapper.find('form')).toHaveLength(1);
         expect(validatedTextFieldWrapper.find('div')).toHaveLength(5);
         expect(validatedTextFieldWrapper.find('input')).toHaveLength(1);
@@ -125,12 +198,38 @@ describe('<ValidatedTextField / >', () => {
         expect(validatedTextFieldWrapper.find('input').prop('required')).toBe(true);
         validatedTextFieldWrapper.find('input').slice().simulate('blur');
         expect(validatedTextFieldWrapper.find('span').text()).toBe('App Name is required.');
-        //expect(validatedTextFieldWrapper.prop('message')).toBe('App Name is required');
+      });
+    });
 
+    describe('when not set', () => {
+      it('should verify validatedtextfield when validateRules props are not set', () => {
+        const spy = jest.fn();
+        const validatedTextFieldWrapper = mount(
+                                            <ValidatedForm>
+                                                <ValidatedTextField
+                                                id="AppName"                                            
+                                                label="App Name"  
+                                                required={true}      
+                                                onBlur={ () => spy()}                                    
+                                                name="App Name"
+                                                value=""
+                                                validateTrigger={['onBlur']} />
+                                            </ValidatedForm>);
+        expect(validatedTextFieldWrapper.find('form')).toHaveLength(1);
+        expect(validatedTextFieldWrapper.find('div')).toHaveLength(5);
+        expect(validatedTextFieldWrapper.find('input')).toHaveLength(1);
+        expect(validatedTextFieldWrapper.find('label')).toHaveLength(2);
+        expect(validatedTextFieldWrapper.find('input').prop('name')).toBe('App Name');
+        expect(validatedTextFieldWrapper.find('label').at(1).prop('id')).toBe('AppNameLabel');
+        expect(validatedTextFieldWrapper.find('label').at(1).text()).toBe('App Name');
+        expect(validatedTextFieldWrapper.find('input').prop('id')).toBe('AppName');
+        expect(validatedTextFieldWrapper.find('input').prop('name')).toBe('App Name');
+        expect(validatedTextFieldWrapper.find('input').prop('value')).toBe('');
+        expect(validatedTextFieldWrapper.find('input').prop('required')).toBe(true);
+        validatedTextFieldWrapper.find('input').slice().simulate('blur');
       });
     });
   });
-
 
   describe('all property', () => {
     describe('when set', () => {
@@ -151,7 +250,6 @@ describe('<ValidatedTextField / >', () => {
                                                 validateRules={[{ required: true, message: 'App Name is required.' },
                                                 ]} />
                                             </ValidatedForm>);
-    //console.log('1: '+ validatedTextFieldWrapper.html());
         expect(validatedTextFieldWrapper.find('form')).toHaveLength(1);
         expect(validatedTextFieldWrapper.find('div')).toHaveLength(6);
         expect(validatedTextFieldWrapper.find('input')).toHaveLength(1);
