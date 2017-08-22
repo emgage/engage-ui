@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { ChoiceList } from '../../../../src/components/';
+import * as styles from '../../styles/components-page.scss';
 
 export interface IProps{
 }
@@ -23,7 +24,7 @@ class ChoiceListExample extends React.Component<IProps, IState> {
 
   render() {
     return (
-      <div>
+      <div className={styles.example}>
         <ChoiceList
           title="Company name"
           choices={[
