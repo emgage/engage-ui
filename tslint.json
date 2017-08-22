@@ -16,6 +16,7 @@
       true,
       "spaces",
       2
-    ]
+    ],
+    "no-increment-decrement": false
   }
 }

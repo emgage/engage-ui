@@ -21,7 +21,7 @@ import defer from './defer';
 import * as baseTheme from './MaskTextField.scss';
 
 export interface State extends TextFieldState {
-  value?: string,
+  value?: string;
 }
 export interface Props extends TextFieldProps {
   [key: string]: any;
