@@ -26,20 +26,23 @@ time, mark, audio, video {
 }
 
 body {
-  font: 14px Helvetica, Arial, sans-serif;
-	font-weight: 400;
-  line-height: 1.4em;
-  color: $black;
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+	font-weight: 300;
+  line-height: 22px;
+  color: $darker-gray;
 	background-color: $light-gray;
 }
 
 h1 {
+  color: $darker-gray;
+  font-size: 23px;
+  font-weight: 300;
   color: $red;
-  font-size: 4em;
-  font-weight: 800;
   margin: 1em 0;
   line-height: 1;
-  text-align: center;
+  text-align: left;
+  font-family: 'Roboto', sans-serif;
 }
 
 button:focus { outline:0; }
@@ -47,13 +50,43 @@ button:focus { outline:0; }
 a { text-decoration: none; }
 
 .app_container {
-  display: flex;
+  margin: 0 auto;
+  width: 95%; 
 }
 
 .component_container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-flow: column;
-  flex-grow: 1;
+   overflow: hidden;
+   box-shadow: 0 1.2rem 3.6rem rgba(0,0,0,.2);
+   padding: 0 23px 0 23px;
+   min-height: 100vh;
 }
+
+.homepage {
+  text-align: center;
+  padding-top: 25vh;
+
+  h1{
+    text-align: center;
+    font-size: 50px;
+  }
+}
+
+p {
+  margin: 0;
+}
+
+h3 {   
+  color: $black;
+  font-size: 23px;
+  font-weight: 300;
+  margin: 1em 0 0.7em 0;
+  line-height: 1;
+  text-align: left;
+  font-family: 'Roboto', sans-serif;
+}
+
+pre{
+  width: 100%;
+}
+
+

@@ -4,11 +4,12 @@
 .default-heading {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: left;
   text-align: center;
   width: 415px;
   margin-bottom: 15px;
   line-height: 1.2;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 400;
+  font-family: 'Roboto', sans-serif;
 }

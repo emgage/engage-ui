@@ -46,14 +46,17 @@ class Properties extends React.Component<IProps, any> {
     const headings = this.createHeadings();
     const contents = this.createRows();
     return (
-      <table className={styles.border + ' ' + styles.table}>
-        <thead className={styles.heading}>
-          <tr>{headings}</tr>
-        </thead>
-        <tbody>
-          {contents}
-        </tbody>
-      </table>
+      <div>
+        <h3>Properties</h3>
+        <table className={styles.border + ' ' + styles.table}>
+          <thead className={styles.heading}>
+            <tr>{headings}</tr>
+          </thead>
+          <tbody>
+            {contents}
+          </tbody>
+        </table>
+      </div>
     );
   }
 }
