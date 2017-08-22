@@ -2,6 +2,7 @@ import * as React from 'react';
 import { themr, ThemedComponentClass } from 'react-css-themr';
 import { Props as TextFieldProps } from '../TextField';
 import { State as TextFieldState } from '../TextField/TextField';
+// tslint:disable-next-line
 import TextField from '../TextField';
 import { MASK_TEXT_FIELD } from '../ThemeIdentifiers';
 import { IMaskOption, IBackSpace } from './IMaskInterface';
@@ -364,8 +365,9 @@ class MaskTextField extends React.PureComponent<Props, State> {
       this.setInputValue('');
     }
   }
-  pasteText = (value: any, text: any, selection: any, event: any) => {
+  pasteText = (incValue: any, text: any, selection: any, event: any) => {
     let cursorPos = selection.start;
+    let value = incValue;
     if (selection.length) {
       value = clearRange(this.maskOptions, value, cursorPos, selection.length);
     }
@@ -393,16 +395,18 @@ class MaskTextField extends React.PureComponent<Props, State> {
     if (this.maskOptions.mask) {
       if (!props.disabled && !props.readOnly) {
         const handlersKeys = ['onFocus', 'onBlur', 'onChange', 'onKeyDown', 'onPaste'];
-        copyProps = handlersKeys.reduce((currObj, key) => {
-          return {
-            ...currObj,
-            [key]: this[key],
-          };
-        }, {...props});
+        copyProps = handlersKeys.reduce(
+          (currObj, key) => {
+            return {
+              ...currObj,
+              [key]: this[key],
+            };
+          }, 
+          { ...props });
       }
     }
     const passProps = copyProps ? copyProps : props;
-    return <TextField value={this.state.value} ref={(ref) => this.input = ref} {...passProps} />;
+    return <TextField value={this.state.value} ref={ref => this.input = ref} {...passProps} />;
   }
 }
 export default themr(MASK_TEXT_FIELD, baseTheme)(MaskTextField) as ThemedComponentClass<Props, State>;
