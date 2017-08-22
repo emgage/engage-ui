@@ -17,13 +17,6 @@ function renderSuggestion(suggestion:any, { isHighlighted }:any) {
   );
 }
 
-function suggestion() {
-}
-
-export interface Props {
-  // array: { key: number, image: string, name: string, email: string, grey: boolean }[];
-}
-
 export interface State {
   chipListState: { key: any, image?: string, text: string, email?: string, grey?: boolean }[];
   value: string;
@@ -31,7 +24,7 @@ export interface State {
   languages: { key: any, image?: string, email?: string, grey?: boolean, name: any }[];
 }
 
-class AutoSuggestTest extends React.Component<Props, State> {
+class AutoSuggestTest extends React.Component<{}, State> {
   constructor() {
     super();
 
@@ -139,7 +132,7 @@ class AutoSuggestTest extends React.Component<Props, State> {
 
     return (
       <div className={style.inputOutline}>
-        { chipListState.map((input: any) => <Chip removable={true} onRemove={() => this.chipRemove(input)} key={input.key}>{input.text}</Chip>) }
+        { chipListState.map((input: any) => <Chip image={{ url: input.image }} removable={true} onRemove={() => this.chipRemove(input)} key={input.key}>{input.text}</Chip>) }
         <Autosuggest 
           className={style.suggestionsContainer}
           suggestions={suggestions}
@@ -149,7 +142,6 @@ class AutoSuggestTest extends React.Component<Props, State> {
           onSuggestionSelected={this.onSuggestionSelected}
           renderSuggestion={renderSuggestion}
           inputProps={inputProps} 
-          onSuggestionHighlighted={suggestion}
           highlightFirstSuggestion={true}
           theme={{ 
             container: style.container,

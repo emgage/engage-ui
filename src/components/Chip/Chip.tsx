@@ -10,7 +10,7 @@ export interface Props {
   removable?: boolean;
   image?: {
     url: string,
-    alt: string,
+    alt?: string,
   };
   transparent?: boolean;
   moreInfoComponent?: React.ReactNode;
