@@ -237,4 +237,7 @@ export {
   default as VisuallyHidden,
   Props as VisuallyHiddenProps,
 } from './VisuallyHidden';
-
+export {
+  default as MaskTextField,
+  Props as MaskTextFieldProps,
+} from './MaskTextField';
