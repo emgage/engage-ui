@@ -10,13 +10,21 @@ function escapeRegexCharacters(str:any) {
   return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
-function renderSuggestion(suggestion:any, { isHighlighted }:any) {
-  if (isHighlighted) return <Card isHighlighted={true} image={suggestion.image} name={suggestion.name} email={suggestion.email}/>;
+function renderSuggestion(suggestion:any, { isHighlighted, query }:any) {
+  const index = suggestion.name.toLowerCase().indexOf(query.toLowerCase());
+  const nameBefore = suggestion.name.slice(0, index);
+  const queryData = suggestion.name.slice(index, index + query.length);
+  const nameAfter = suggestion.name.slice(index + query.length);
+  // console.log('nameBefore"' + nameBefore + '"');
+  // console.log('query:"' + query + '"');
+  // console.log('nameAfter:"' + nameAfter + '"');
+  // const parts = AutosuggestHighlightParse(suggestion.name, matches);
+  console.log(query);
+  if (isHighlighted) return <Card isHighlighted={true} image={suggestion.image} nameBefore={nameBefore} bold={queryData} nameAfter={nameAfter} email={suggestion.email}/>;
   else return (
-    <Card image={suggestion.image} name={suggestion.name} email={suggestion.email}/>
+    <Card image={suggestion.image} nameBefore={nameBefore} bold={queryData} nameAfter={nameAfter} email={suggestion.email}/>
   );
 }
-
 export interface State {
   chipListState: { key: any, image?: string, text: string, email?: string, grey?: boolean }[];
   value: string;
@@ -55,7 +63,7 @@ class AutoSuggestTest extends React.Component<{}, State> {
       return [];
     }
 
-    const regex = new RegExp('^' + escapedValue, 'i');
+    const regex = new RegExp('' + escapedValue, 'i');
 
     return this.state.languages.filter(language => regex.test(language.name));
   }
