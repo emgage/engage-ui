@@ -243,3 +243,8 @@ export {
   Props as ModalProps,
 } from './Modal';
 
+export {
+  default as MaskTextField,
+  Props as MaskTextFieldProps,
+} from './MaskTextField';
+
