@@ -11,6 +11,12 @@
     ],
     "variable-name": [
       "allow-pascal-case"
-    ]
+    ],
+    "indent": [
+      true,
+      "spaces",
+      2
+    ],
+    "no-increment-decrement": false
   }
 }
