@@ -25,7 +25,7 @@ export interface Props {
   placeholder?: string;
   value?: string;
   helpText?: React.ReactNode;
-  enableTextCouter?: boolean;  
+  enableTextCouter?: boolean;
   label: string;
   labelAction?: Action;
   labelHidden?: boolean;
@@ -80,7 +80,7 @@ class TextField extends React.PureComponent<Props, State> {
       labelAction,
       labelHidden,
       helpText,
-      enableTextCouter,      
+      enableTextCouter,
       maxLength,
       prefix,
       suffix,
@@ -128,7 +128,7 @@ class TextField extends React.PureComponent<Props, State> {
         />
       )
       : null;
-    
+
     let counterTextMarkup;
     if (enableTextCouter) {
       const maxLengthString = maxLength ? '/' + maxLength : '';

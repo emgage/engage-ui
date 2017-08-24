@@ -20,13 +20,13 @@
   "types": "lib/@types/src/index.d.ts",
   "scripts": {
     "lint": "node node_modules/tslint/bin/tslint 'src/**/*.{ts,tsx}' --config tslint.json --exclude \"src/**/*.{js,jsx}\" --project tsconfig.json",
-    "lintwithfix": "node node_modules/tslint/bin/tslint 'src/**/*.{ts,tsx}' --config tslint.json --exclude \"src/**/*.{js,jsx}\" --project tsconfig.json --fix",
+    "lint-fix": "node node_modules/tslint/bin/tslint --fix 'src/**/*.{ts,tsx}' --config tslint.json --exclude \"src/**/*.{js,jsx}\" --project tsconfig.json",
     "test": "node node_modules/jest/bin/jest.js --config ./config/jest/config.json",
     "check": "npm-run-all lint build-dev test",
     "build-dev": "node node_modules/webpack/bin/webpack.js",
     "build-release": "node node_modules/webpack/bin/webpack.js -p",
     "example": "webpack-dev-server --config webpack.dev.config",
-    "precommit-msg": "echo 'Pre-commit checks...' && exit 0"
+    "precommit-msg": "echo 'Running linting and testing checks...' && exit 0"
   },
   "pre-commit": ["precommit-msg", "lint"],
   "devDependencies": {

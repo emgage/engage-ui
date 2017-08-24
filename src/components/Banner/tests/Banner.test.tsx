@@ -220,7 +220,7 @@ describe('<Banner />', () => {
         expect(bannerWrapper.prop('status')).toBeUndefined();
       });
     });
-    
+
     describe('when set', () => {
       it('should verify banner when action property is set', () => {
         const spy = jest.fn();
@@ -233,7 +233,7 @@ describe('<Banner />', () => {
                                     action={mainAction} theme={theme} >
                                       <p>
                                           This order was archived.
-                                      </p> 
+                                      </p>
                                     </Banner>,
                                     );
         expect(bannerWrapper.find('div')).toHaveLength(8);
@@ -269,7 +269,7 @@ describe('<Banner />', () => {
         expect(bannerWrapper.prop('status')).toBeUndefined();
       });
     });
-  
+
     describe('when set', () => {
       it('should verify banner when secondary action property is set', () => {
         const spy1 = jest.fn();
@@ -288,7 +288,7 @@ describe('<Banner />', () => {
                                     secondaryAction={secondaryAction} theme={theme} >
                                         <p>
                                             This order was archived.
-                                        </p> 
+                                        </p>
                                     </Banner>,
                             );
         expect(bannerWrapper.find('div')).toHaveLength(9);
@@ -322,7 +322,7 @@ describe('<Banner />', () => {
       const bannerWrapper = mount(
                                  <Banner title="DismissCheck" onDismiss={() => spy()} theme={theme} >
                                     <p>
-                                      Use your finance report. Dismissed.                                            
+                                      Use your finance report. Dismissed.
                                     </p>
                                  </Banner>,
                                  );
