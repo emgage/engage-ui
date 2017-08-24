@@ -35,9 +35,8 @@ class OffCanvas extends React.PureComponent<Props, State> {
       activator,
       theme,
     } = this.props;
-
-    let offCanvasMode = mode;    
-    offCanvasMode = mode === undefined ? OffCanvasMode.push : mode;
+        
+    const offCanvasMode = mode === undefined ? OffCanvasMode.push : mode;
 
     const leftClose = flip ? 'auto' : (-1 * width) + 'px';
     const rightClose = flip ? (-1 * width) + 'px' : 'auto';

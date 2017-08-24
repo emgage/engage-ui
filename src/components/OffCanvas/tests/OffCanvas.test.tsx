@@ -14,13 +14,13 @@ describe('<OffCanvas />', () => {
   });  
   describe('width', () => {
     it('sets the width on the offcanvasmenu', () => {
-      const offcanvasmenu = mount(<OffCanvas width={270}/>);
+      const offcanvasmenu = mount(<OffCanvas width={270} />);
       expect(offcanvasmenu.prop('width')).toBe(270);
     });
   });
   describe('transitionDuration', () => {
     it('sets the transitionDuration on the offcanvasbody', () => {
-      const offcanvasmenu = mount(<OffCanvas transitionDuration={270}/>);
+      const offcanvasmenu = mount(<OffCanvas transitionDuration={270} />);
       expect(offcanvasmenu.prop('transitionDuration')).toBe(270);
     });
   });
@@ -30,7 +30,7 @@ describe('<OffCanvas />', () => {
       expect(offcanvasmenu.prop('overlay')).toBeUndefined();
     }); 
     it('sets true the overlay on the offcanvasmenu', () => {
-      const offcanvasmenu = mount(<OffCanvas overlay/>);
+      const offcanvasmenu = mount(<OffCanvas overlay />);
       expect(offcanvasmenu.prop('overlay')).toBe(true);
     });    
   });
@@ -40,7 +40,7 @@ describe('<OffCanvas />', () => {
       expect(offcanvasmenu.prop('flip')).toBeUndefined();
     }); 
     it('sets true the flip on the offcanvasmenu', () => {
-      const offcanvasmenu = mount(<OffCanvas flip/>);
+      const offcanvasmenu = mount(<OffCanvas flip />);
       expect(offcanvasmenu.prop('flip')).toBe(true);
     });    
   });
@@ -55,7 +55,7 @@ describe('<OffCanvas />', () => {
     let currStyle = Object.assign({}, closedStyle);
     it('set closestyle', () => {      
 
-      const offcanvasstyle = mount(<div style={currStyle}/>);
+      const offcanvasstyle = mount(<div style={currStyle} />);
       expect(offcanvasstyle.prop('style')).toBe(currStyle);
     });
     it('set openstyle', () => {      
@@ -65,25 +65,25 @@ describe('<OffCanvas />', () => {
         right: 'auto',      
       };
       currStyle = Object.assign({}, currStyle, openStyle);
-      const offcanvasstyle = mount(<div style={currStyle}/>);
+      const offcanvasstyle = mount(<div style={currStyle} />);
       expect(offcanvasstyle.prop('style')).toBe(currStyle);
     });
   });
   describe('mode', () => {
     it('sets mode to "slide" on the offcanvas', () => {
-      const offcanvas = mount(<OffCanvas mode={OffCanvasMode.slide}/>);
+      const offcanvas = mount(<OffCanvas mode={OffCanvasMode.slide} />);
       expect(offcanvas.prop('mode')).toBe(0);
     });
     it('sets mode to "push" on the offcanvas', () => {
-      const offcanvas = mount(<OffCanvas mode={OffCanvasMode.push}/>);
+      const offcanvas = mount(<OffCanvas mode={OffCanvasMode.push} />);
       expect(offcanvas.prop('mode')).toBe(2);
     });    
     it('sets mode to "none" on the offcanvas', () => {
-      const offcanvas = mount(<OffCanvas mode={OffCanvasMode.none}/>);
+      const offcanvas = mount(<OffCanvas mode={OffCanvasMode.none} />);
       expect(offcanvas.prop('mode')).toBe(3);
     });
     it('sets mode to "reveal" on the offcanvas', () => {
-      const offcanvas = mount(<OffCanvas mode={OffCanvasMode.reveal}/>);
+      const offcanvas = mount(<OffCanvas mode={OffCanvasMode.reveal} />);
       expect(offcanvas.prop('mode')).toBe(1);
     });    
   });  
