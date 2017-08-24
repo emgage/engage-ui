@@ -96,8 +96,8 @@ export {
 export {
   default as FlexBox,
   Props as FlexBoxProps,
-  FlexAlign, 
-  FlexDirection, 
+  FlexAlign,
+  FlexDirection,
   FlexJustify,
 } from './FlexBox';
 

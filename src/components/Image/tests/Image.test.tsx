@@ -6,7 +6,7 @@ import Image from '../Image';
 describe('<Image />', () => {
   const url = 'https://www.w3schools.com/css/trolltunga.jpg';
   const alt = 'No Image.. Thanks!!';
-  const title = 'Text tooltip';  
+  const title = 'Text tooltip';
   describe('when default props are provided', () => {
     it('basic image should have rendered 1 div elements', () => {
       const imageWrapper = mount(

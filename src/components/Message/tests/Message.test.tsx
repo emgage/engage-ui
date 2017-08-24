@@ -55,7 +55,7 @@ describe('<Message />', () => {
       it('basic message should have rendered 1 noscript element', () => {
         const messageWrapper = mount(
                                       <Message id="10101" theme={theme} >
-                                          Click Here        
+                                          Click Here
                                       </Message>,
                                );
         expect(messageWrapper.find('noscript')).toHaveLength(1);
@@ -64,7 +64,7 @@ describe('<Message />', () => {
       it('should verify children when is set', () => {
         const messageWrapper = mount(
                                       <Message id="10101" theme={theme} >
-                                          Click Here        
+                                          Click Here
                                       </Message>,
                                );
         expect(messageWrapper.prop('children')).toBe('Click Here');
@@ -88,7 +88,7 @@ describe('<Message />', () => {
       it('basic message should have rendered 1 div element', () => {
         const messageWrapper = mount(
                                       <Message id="10101" isVisible={true} theme={theme} >
-                                          Click Here        
+                                          Click Here
                                       </Message>,
                                );
         expect(messageWrapper.find('div')).toHaveLength(1);
@@ -96,7 +96,7 @@ describe('<Message />', () => {
       it('basic message should have rendered 1 span element', () => {
         const messageWrapper = mount(
                                       <Message id="10101" isVisible={true} theme={theme} >
-                                        Click Here        
+                                        Click Here
                                       </Message>,
                                );
         expect(messageWrapper.find('span')).toHaveLength(1);
@@ -104,7 +104,7 @@ describe('<Message />', () => {
       it('basic message should have messageBlock css class on div', () => {
         const messageWrapper = mount(
                                       <Message id="10101" isVisible={true} theme={theme} >
-                                          Click Here        
+                                          Click Here
                                       </Message>,
                                );
         expect(messageWrapper.find('div').hasClass('messageBlock')).toBe(true);
@@ -112,7 +112,7 @@ describe('<Message />', () => {
       it('basic message should have messagePrompt css class on span', () => {
         const messageWrapper = mount(
                                       <Message id="10101" isVisible={true} theme={theme} >
-                                          Click Here        
+                                          Click Here
                                       </Message>,
                                );
         expect(messageWrapper.find('span').hasClass('messagePrompt')).toBe(true);
@@ -159,7 +159,7 @@ describe('<Message />', () => {
     it('basic message should have rendered 1 div and 1 span element', () => {
       const messageWrapper = mount(
                                     <Message id="10101" isVisible={true} theme={theme} >
-                                        Click Here        
+                                        Click Here
                                     </Message>,
                              );
       expect(messageWrapper.find('div')).toHaveLength(1);
@@ -168,7 +168,7 @@ describe('<Message />', () => {
     it('basic message should have messageBlock css class on div', () => {
       const messageWrapper = mount(
                                     <Message id="10101" isVisible={true} theme={theme} >
-                                        Click Here        
+                                        Click Here
                                     </Message>,
                              );
       expect(messageWrapper.find('div').hasClass('messageBlock')).toBe(true);
@@ -176,7 +176,7 @@ describe('<Message />', () => {
     it('basic message should have messagePrompt css class on span', () => {
       const messageWrapper = mount(
                                     <Message id="10101" isVisible={true} theme={theme} >
-                                    Click Here        
+                                    Click Here
                                     </Message>,
                              );
       expect(messageWrapper.find('span').hasClass('messagePrompt')).toBe(true);
