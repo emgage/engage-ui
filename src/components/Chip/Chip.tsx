@@ -21,6 +21,7 @@ export interface Props {
   onClick?(event: any): void;
   handleMoreInfo?(): void;
   key?: any;
+  markedForDelete?: boolean;
 }
 
 class Chip extends React.PureComponent<Props, any> {
@@ -33,10 +34,23 @@ class Chip extends React.PureComponent<Props, any> {
             theme,
         } = this.props;
 
-    const className = classNames(
-            theme.Chip,
-            transparent && theme.transparent,
-        );
+    let className;
+
+    // console.log('props', this.props);
+
+    if (this.props.markedForDelete) {
+      className = classNames(
+        theme.Chip,
+        theme.markedForDelete,
+        transparent && theme.transparent,
+      );
+    } else {
+      className = classNames(
+          theme.Chip,
+          transparent && theme.transparent,
+      );
+    }
+
     const chipContents = [(
             image
                 ?

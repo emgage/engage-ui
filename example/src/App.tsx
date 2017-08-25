@@ -1,3 +1,4 @@
+import { } from '../../src/components/TextField/TextField';
 import * as React from 'react';
 // import { PeoplePickerSearchType } from './PickerEnum';
 // import { PeoplePickerSource } from './PickerSource';
@@ -36,7 +37,7 @@ import {
 //   Panel,
   // Picker,
 //   Select,
-//   TextField,
+   TextField,
 //   ValidatedTextField,
 //   ValidatedForm,
 //   Video,
@@ -151,7 +152,10 @@ class App extends React.Component<{}, State> {
             renderSuggestion={renderSuggestion}
             inputProps={inputProps} />
         </div>   */}
+        <TextField label="My Label" placeholder="Fun Stuff" />
            <AutoSuggestTest />  
+           <AutoSuggestTest />
+           <AutoSuggestTest />
 
         {/* <PickedCard image={this.state.image} name={this.state.name} /> */}
         {/* <OffCanvas width={270} transitionDuration={270} isMenuOpened={this.state.isMenuOpened}>
@@ -182,7 +186,7 @@ class App extends React.Component<{}, State> {
           />
           <Heading>Popover</Heading>
           <TextField id="TestName" label="Text Counter" placeholder="test-placeholder" value={this.state.appTextCounter} helpText="Helper Text" enableTextCouter={true} maxLength={100} onChange={this.valueUpdater('appTextCounter')}/>
-          <ClickableChip chip={<Chip>Batman</Chip>}>
+         <ClickableChip chip={<Chip>Batman</Chip>}>
             <Card title="More about Batman">
               <p>Batman is a fictional superhero who appears in American comic books published by DC Comics. The character was created by artist Bob Kane and writer Bill Finger, and first appeared in Detective Comics #27</p>
             </Card>
