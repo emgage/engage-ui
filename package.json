@@ -28,7 +28,10 @@
     "example": "webpack-dev-server --config webpack.dev.config",
     "precommit-msg": "echo 'Running linting and testing checks...' && exit 0"
   },
-  "pre-commit": ["precommit-msg", "lint"],
+  "pre-commit": [
+    "precommit-msg",
+    "lint"
+  ],
   "devDependencies": {
     "@types/enzyme": "^2.8.5",
     "@types/jest": "^19.2.2",
