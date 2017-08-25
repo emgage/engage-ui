@@ -16,7 +16,7 @@ import {
   // Button,
 //   ButtonGroup,
   // Card,
-  Chip,
+  // Chip,
 //   ChoiceList,
 //   ClickableChip,
 //   Column,
@@ -36,7 +36,7 @@ import {
 //   OffCanvasAnimationType,
 //   Panel,
   // Picker,
-//   Select,
+  Select,
    TextField,
 //   ValidatedTextField,
 //   ValidatedForm,
@@ -47,7 +47,7 @@ import {
 interface State {
 //   appName?: string,
 //   appDescription: string,
-//   appTextCounter: string,
+  appTextCounter: string;
   array: { key: number, image: string, name: string, email: string, grey: boolean }[];
   // image: string;
   // name: string;
@@ -68,6 +68,7 @@ class App extends React.Component<{}, State> {
         { key: 5, image: 'https://d38zhw9ti31loc.cloudfront.net/wp-content/uploads/2013/07/Crystal-headshot-new.jpg', name: 'Laura Person', email: 'yahooldjadslkjgmail@gmail.com', grey: false },
         { key: 6, image: 'https://d38zhw9ti31loc.cloudfront.net/wp-content/uploads/2013/07/Crystal-headshot-new.jpg', name: 'Laura Person', email: 'slkjgmail@gmail.com', grey: false },
       ],
+      appTextCounter: '',
     };    
       // image: 'http://cdn.photographyproject.com.au/wp-content/uploads/2013/04/corporate-headshot.jpg',
       // name: 'Pedro Sanchez',
@@ -182,8 +183,10 @@ class App extends React.Component<{}, State> {
             rowsCount={this.state.rows.length}
             minHeight={2}
           />
-          <Heading>Popover</Heading>
-          <TextField id="TestName" label="Text Counter" placeholder="test-placeholder" value={this.state.appTextCounter} helpText="Helper Text" enableTextCouter={true} maxLength={100} onChange={this.valueUpdater('appTextCounter')}/>
+          <Heading>Popover</Heading> 
+           */
+           /* <TextField id="TestName" label="Text Counter" placeholder="test-placeholder" value={this.state.appTextCounter} helpText="Helper Text" enableTextCouter={true} maxLength={100} onChange={this.valueUpdater('appTextCounter')}/>  */
+          /* 
          <ClickableChip chip={<Chip>Batman</Chip>}>
             <Card title="More about Batman">
               <p>Batman is a fictional superhero who appears in American comic books published by DC Comics. The character was created by artist Bob Kane and writer Bill Finger, and first appeared in Detective Comics #27</p>
@@ -302,6 +305,7 @@ class App extends React.Component<{}, State> {
         </ValidatedForm>
 
         <Heading>Connected Text Field</Heading>
+        */
         <TextField
           label="Connected Text Field"
           type="number"
@@ -312,10 +316,11 @@ class App extends React.Component<{}, State> {
           maxLength={100}
           onChange={this.valueUpdater('appTextCounter')}
           connectedRight={<Select label="Weight unit" labelHidden options={[
-              'kg',
-              'lb',
-            ]} />}
+            'kg',
+            'lb',
+          ]} />}
         />
+        /*
 
         <Heading>Flexbox</Heading>
         <FlexBox>
@@ -343,7 +348,7 @@ class App extends React.Component<{}, State> {
         </FlexBox>
 
         <Heading>Chip</Heading> */}
-        <div>
+        {/* <div>
           <Chip>
             Basic Chip
           </Chip>
@@ -368,7 +373,7 @@ class App extends React.Component<{}, State> {
            <Chip removable={true}>
             just a chip
           </Chip> 
-        </div>
+        </div> */}
 
         {/* <div>
           <h4>Single source video</h4>
@@ -428,9 +433,9 @@ class App extends React.Component<{}, State> {
     );
   }
 
-  // valueUpdater(field: any) {
-  //   return (value: any) => this.setState({ [field]: value });
-  // }
+  valueUpdater(field: any) {
+    return (value: any) => this.setState({ [field]: value });
+  }
 
   // popoverClose(field: any) {
   //   return;

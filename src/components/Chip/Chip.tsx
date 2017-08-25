@@ -27,12 +27,12 @@ export interface Props {
 class Chip extends React.PureComponent<Props, any> {
   render() {
     const {
-            clickable,
-            removable,
-            image,
-            transparent,
-            theme,
-        } = this.props;
+      clickable,
+      removable,
+      image,
+      transparent,
+      theme,
+    } = this.props;
 
     let className;
 
