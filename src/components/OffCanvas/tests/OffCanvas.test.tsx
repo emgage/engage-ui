@@ -11,7 +11,7 @@ describe('<OffCanvas />', () => {
       mount(<Button onClick={spy}>Push Left</Button>).simulate('click');
       expect(spy).toHaveBeenCalled();
     });
-  });  
+  });
   describe('width', () => {
     it('sets the width on the offcanvasmenu', () => {
       const offcanvasmenu = mount(<OffCanvas width={270} />);
@@ -28,41 +28,41 @@ describe('<OffCanvas />', () => {
     it('sets true the overlay on the offcanvasmenu', () => {
       const offcanvasmenu = mount(<OffCanvas />);
       expect(offcanvasmenu.prop('overlay')).toBeUndefined();
-    }); 
+    });
     it('sets true the overlay on the offcanvasmenu', () => {
       const offcanvasmenu = mount(<OffCanvas overlay />);
       expect(offcanvasmenu.prop('overlay')).toBe(true);
-    });    
+    });
   });
   describe('flip', () => {
     it('sets true the flip on the offcanvasmenu', () => {
       const offcanvasmenu = mount(<OffCanvas />);
       expect(offcanvasmenu.prop('flip')).toBeUndefined();
-    }); 
+    });
     it('sets true the flip on the offcanvasmenu', () => {
       const offcanvasmenu = mount(<OffCanvas flip />);
       expect(offcanvasmenu.prop('flip')).toBe(true);
-    });    
+    });
   });
   describe('set style', () => {
     const closedStyle = {
-      width: '270px',      
+      width: '270px',
       top: '0px',
       left: 'auto',
-      right: '-270px',      
-      transitionDuration: '270ms',     
+      right: '-270px',
+      transitionDuration: '270ms',
     };
     let currStyle = Object.assign({}, closedStyle);
-    it('set closestyle', () => {      
+    it('set closestyle', () => {
 
       const offcanvasstyle = mount(<div style={currStyle} />);
       expect(offcanvasstyle.prop('style')).toBe(currStyle);
     });
-    it('set openstyle', () => {      
+    it('set openstyle', () => {
 
       const openStyle = {
         left: '-270px',
-        right: 'auto',      
+        right: 'auto',
       };
       currStyle = Object.assign({}, currStyle, openStyle);
       const offcanvasstyle = mount(<div style={currStyle} />);
@@ -77,7 +77,7 @@ describe('<OffCanvas />', () => {
     it('sets mode to "push" on the offcanvas', () => {
       const offcanvas = mount(<OffCanvas mode={OffCanvasMode.push} />);
       expect(offcanvas.prop('mode')).toBe(2);
-    });    
+    });
     it('sets mode to "none" on the offcanvas', () => {
       const offcanvas = mount(<OffCanvas mode={OffCanvasMode.none} />);
       expect(offcanvas.prop('mode')).toBe(3);
@@ -85,6 +85,6 @@ describe('<OffCanvas />', () => {
     it('sets mode to "reveal" on the offcanvas', () => {
       const offcanvas = mount(<OffCanvas mode={OffCanvasMode.reveal} />);
       expect(offcanvas.prop('mode')).toBe(1);
-    });    
-  });  
+    });
+  });
 });

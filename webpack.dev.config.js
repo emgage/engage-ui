@@ -10,6 +10,11 @@ BaseConfig.entry = [
 BaseConfig.output = {
   path: join(__dirname, 'build'),
   filename: 'bundle.js',
+  publicPath: '/',  
+};
+
+BaseConfig.devServer = {
+  historyApiFallback: true,
 };
 
 BaseConfig.plugins.push(new HtmlWebpackPlugin({

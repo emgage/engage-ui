@@ -25,7 +25,7 @@ export interface Props {
   placeholder?: string;
   value?: string;
   helpText?: React.ReactNode;
-  enableTextCouter?: boolean;  
+  enableTextCouter?: boolean;
   label: string;
   labelAction?: Action;
   labelHidden?: boolean;
@@ -51,7 +51,7 @@ export interface Props {
   style?: React.CSSProperties;
   theme?: any;
   onChange?(value: string): void;
-  onFocus?(): void;
+  onFocus?(e?: any): void;
   onBlur?(e?: any): void;
 }
 
@@ -80,7 +80,7 @@ class TextField extends React.PureComponent<Props, State> {
       labelAction,
       labelHidden,
       helpText,
-      enableTextCouter,      
+      enableTextCouter,
       maxLength,
       prefix,
       suffix,
@@ -128,7 +128,7 @@ class TextField extends React.PureComponent<Props, State> {
         />
       )
       : null;
-    
+
     let counterTextMarkup;
     if (enableTextCouter) {
       const maxLengthString = maxLength ? '/' + maxLength : '';
@@ -231,7 +231,7 @@ class TextField extends React.PureComponent<Props, State> {
   }
 
   @autobind
-  private handleInputOnFocus() {
+  private handleInputOnFocus(e: any) {
     this.setState((prevState: State) => ({
       ...prevState,
       focused: true,
@@ -239,7 +239,7 @@ class TextField extends React.PureComponent<Props, State> {
 
     const { onFocus } = this.props;
     if (onFocus == null) { return; }
-    onFocus();
+    onFocus(e);
   }
 
   @autobind
