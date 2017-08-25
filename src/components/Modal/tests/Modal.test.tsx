@@ -25,8 +25,8 @@ describe('<Modal />', () => {
       const subject = mount(<Modal activator={activatorNode} show={false} trigger={trigger}>{childBody}</Modal>);
       expect(subject.prop('trigger')).toMatchObject(trigger);
       expect(subject.prop('show')).toBe(false);
-      expect(subject.find('div')).toHaveLength(6);
-      expect(subject.find('span')).toHaveLength(4);
+      expect(subject.find('div')).toHaveLength(4);
+      expect(subject.find('span')).toHaveLength(7);
       expect(subject.find('button').exists()).toBe(true);
       subject.find('span').at(0).simulate('click');
       expect(trigger.animate.in).toHaveBeenCalledTimes(1);
@@ -41,8 +41,8 @@ describe('<Modal />', () => {
       const subject = mount(<Modal activator={activatorNode} show={false} trigger={trigger}>{childBody}</Modal>);
       expect(subject.prop('trigger')).toMatchObject(trigger);
       expect(subject.prop('show')).toBe(false);
-      expect(subject.find('div')).toHaveLength(6);
-      expect(subject.find('span')).toHaveLength(4);
+      expect(subject.find('div')).toHaveLength(4);
+      expect(subject.find('span')).toHaveLength(7);
       expect(subject.find('button').exists()).toBe(true);
 
       subject.find('span').at(0).simulate('click');
@@ -57,8 +57,8 @@ describe('<Modal />', () => {
       expect(subject.prop('trigger')).toMatchObject(trigger);
       expect(subject.prop('show')).toBe(false);
       expect(subject.prop('close')).toBe(false);
-      expect(subject.find('div')).toHaveLength(6);
-      expect(subject.find('span')).toHaveLength(4);
+      expect(subject.find('div')).toHaveLength(4);
+      expect(subject.find('span')).toHaveLength(7);
       expect(subject.find('button').exists()).toBe(true);
 
       subject.find('span').at(0).simulate('click');
@@ -73,8 +73,8 @@ describe('<Modal />', () => {
       expect(subject.prop('trigger')).toMatchObject(trigger);
       expect(subject.prop('show')).toBe(false);
       expect(subject.prop('close')).toBe(true);
-      expect(subject.find('div')).toHaveLength(6);
-      expect(subject.find('span')).toHaveLength(4);
+      expect(subject.find('div')).toHaveLength(4);
+      expect(subject.find('span')).toHaveLength(7);
       expect(subject.find('button').exists()).toBe(true);
       subject.find('span').at(0).simulate('click');
       expect(trigger.animate.in).toHaveBeenCalledTimes(1);
@@ -88,8 +88,8 @@ describe('<Modal />', () => {
       const subject = mount(<Modal activator={activatorNode} show={false} trigger={trigger}>{childBody}</Modal>);
       expect(subject.prop('trigger')).toMatchObject(trigger);
       expect(subject.prop('show')).toBe(false);
-      expect(subject.find('div')).toHaveLength(6);
-      expect(subject.find('span')).toHaveLength(4);
+      expect(subject.find('div')).toHaveLength(4);
+      expect(subject.find('span')).toHaveLength(7);
       expect(subject.find('button').exists()).toBe(true);
       subject.find('span').at(0).simulate('click');
       expect(trigger.animate.in).toHaveBeenCalledTimes(1);
@@ -103,8 +103,8 @@ describe('<Modal />', () => {
       expect(subject.prop('trigger')).toMatchObject(trigger);
       expect(subject.prop('show')).toBe(false);
       expect(subject.prop('closeOnBackgroud')).toBe(false);
-      expect(subject.find('div')).toHaveLength(6);
-      expect(subject.find('span')).toHaveLength(4);
+      expect(subject.find('div')).toHaveLength(4);
+      expect(subject.find('span')).toHaveLength(7);
       expect(subject.find('button').exists()).toBe(true);
       subject.find('span').at(0).simulate('click');
       expect(trigger.animate.in).toHaveBeenCalledTimes(1);
@@ -118,8 +118,8 @@ describe('<Modal />', () => {
       expect(subject.prop('trigger')).toMatchObject(trigger);
       expect(subject.prop('show')).toBe(false);
       expect(subject.prop('closeOnBackgroud')).toBe(true);
-      expect(subject.find('div')).toHaveLength(6);
-      expect(subject.find('span')).toHaveLength(4);
+      expect(subject.find('div')).toHaveLength(4);
+      expect(subject.find('span')).toHaveLength(7);
       expect(subject.find('button').exists()).toBe(true);
       subject.find('span').at(0).simulate('click');
       expect(trigger.animate.in).toHaveBeenCalledTimes(1);
@@ -134,8 +134,8 @@ describe('<Modal />', () => {
       const subject = mount(<Modal activator={activatorNode} show={false} trigger={trigger}>{childBody}</Modal>);
       expect(subject.prop('trigger')).toMatchObject(trigger);
       expect(subject.prop('show')).toBe(false);
-      expect(subject.find('div')).toHaveLength(6);
-      expect(subject.find('span')).toHaveLength(4);
+      expect(subject.find('div')).toHaveLength(4);
+      expect(subject.find('span')).toHaveLength(7);
       expect(subject.find('button').exists()).toBe(true);
       subject.find('span').at(0).simulate('click');
       expect(trigger.animate.in).toHaveBeenCalledTimes(1);
@@ -148,8 +148,8 @@ describe('<Modal />', () => {
       expect(subject.prop('trigger')).toMatchObject(trigger);
       expect(subject.prop('show')).toBe(false);
       expect(subject.prop('closeOnEsc')).toBe(false);
-      expect(subject.find('div')).toHaveLength(6);
-      expect(subject.find('span')).toHaveLength(4);
+      expect(subject.find('div')).toHaveLength(4);
+      expect(subject.find('span')).toHaveLength(7);
       expect(subject.find('button').exists()).toBe(true);
       subject.find('span').at(0).simulate('click');
       expect(trigger.animate.in).toHaveBeenCalledTimes(1);
@@ -163,8 +163,8 @@ describe('<Modal />', () => {
       expect(subject.prop('trigger')).toMatchObject(trigger);
       expect(subject.prop('show')).toBe(false);
       expect(subject.prop('closeOnEsc')).toBe(true);
-      expect(subject.find('div')).toHaveLength(6);
-      expect(subject.find('span')).toHaveLength(4);
+      expect(subject.find('div')).toHaveLength(4);
+      expect(subject.find('span')).toHaveLength(7);
       expect(subject.find('button').exists()).toBe(true);
       subject.find('span').at(0).simulate('click');
       expect(trigger.animate.in).toHaveBeenCalledTimes(1);
@@ -179,8 +179,8 @@ describe('<Modal />', () => {
       const subject = mount(<Modal activator={activatorNode} show={false} trigger={trigger}>{childBody}</Modal>);
       expect(subject.prop('trigger')).toMatchObject(trigger);
       expect(subject.prop('show')).toBe(false);
-      expect(subject.find('div')).toHaveLength(6);
-      expect(subject.find('span')).toHaveLength(4);
+      expect(subject.find('div')).toHaveLength(4);
+      expect(subject.find('span')).toHaveLength(7);
       expect(subject.find('button').exists()).toBe(true);
       subject.find('span').at(0).simulate('click');
       expect(trigger.animate.in).toHaveBeenCalledTimes(1);
@@ -193,8 +193,8 @@ describe('<Modal />', () => {
       expect(subject.prop('trigger')).toMatchObject(trigger);
       expect(subject.prop('show')).toBe(false);
       expect(subject.prop('modalOverflow')).toBe(false);
-      expect(subject.find('div')).toHaveLength(6);
-      expect(subject.find('span')).toHaveLength(4);
+      expect(subject.find('div')).toHaveLength(4);
+      expect(subject.find('span')).toHaveLength(7);
       expect(subject.find('button').exists()).toBe(true);
       subject.find('span').at(0).simulate('click');
       expect(trigger.animate.in).toHaveBeenCalledTimes(1);
@@ -207,8 +207,8 @@ describe('<Modal />', () => {
       expect(subject.prop('trigger')).toMatchObject(trigger);
       expect(subject.prop('show')).toBe(false);
       expect(subject.prop('modalOverflow')).toBe(true);
-      expect(subject.find('div')).toHaveLength(6);
-      expect(subject.find('span')).toHaveLength(4);
+      expect(subject.find('div')).toHaveLength(4);
+      expect(subject.find('span')).toHaveLength(7);
       expect(subject.find('button').exists()).toBe(true);
       subject.find('span').at(0).simulate('click');
       expect(trigger.animate.in).toHaveBeenCalledTimes(1);
@@ -223,8 +223,8 @@ describe('<Modal />', () => {
       const subject = mount(<Modal activator={activatorNode} show={false} trigger={trigger}>{childBody}</Modal>);
       expect(subject.prop('trigger')).toMatchObject(trigger);
       expect(subject.prop('show')).toBe(false);
-      expect(subject.find('div')).toHaveLength(6);
-      expect(subject.find('span')).toHaveLength(4);
+      expect(subject.find('div')).toHaveLength(4);
+      expect(subject.find('span')).toHaveLength(7);
       expect(subject.find('button').exists()).toBe(true);
       subject.find('span').at(0).simulate('click');
       expect(trigger.animate.in).toHaveBeenCalledTimes(1);
@@ -238,8 +238,8 @@ describe('<Modal />', () => {
       expect(subject.prop('trigger')).toMatchObject(trigger);
       expect(subject.prop('show')).toBe(false);
       expect(subject.prop('backdropEnabled')).toBe(false);
-      expect(subject.find('div')).toHaveLength(6);
-      expect(subject.find('span')).toHaveLength(4);
+      expect(subject.find('div')).toHaveLength(4);
+      expect(subject.find('span')).toHaveLength(7);
       expect(subject.find('button').exists()).toBe(true);
 
       subject.find('span').at(0).simulate('click');
@@ -254,8 +254,8 @@ describe('<Modal />', () => {
       expect(subject.prop('trigger')).toMatchObject(trigger);
       expect(subject.prop('show')).toBe(false);
       expect(subject.prop('backdropEnabled')).toBe(true);
-      expect(subject.find('div')).toHaveLength(6);
-      expect(subject.find('span')).toHaveLength(4);
+      expect(subject.find('div')).toHaveLength(4);
+      expect(subject.find('span')).toHaveLength(7);
       expect(subject.find('button').exists()).toBe(true);
       subject.find('span').at(0).simulate('click');
       expect(trigger.animate.in).toHaveBeenCalledTimes(1);
@@ -270,8 +270,8 @@ describe('<Modal />', () => {
       const subject = mount(<Modal activator={activatorNode} show={false} trigger={trigger}>{childBody}</Modal>);
       expect(subject.prop('trigger')).toMatchObject(trigger);
       expect(subject.prop('show')).toBe(false);
-      expect(subject.find('div')).toHaveLength(6);
-      expect(subject.find('span')).toHaveLength(4);
+      expect(subject.find('div')).toHaveLength(4);
+      expect(subject.find('span')).toHaveLength(7);
       expect(subject.find('button').exists()).toBe(true);
       subject.find('span').at(0).simulate('click');
       expect(trigger.animate.in).toHaveBeenCalledTimes(1);
@@ -285,8 +285,8 @@ describe('<Modal />', () => {
       expect(subject.prop('trigger')).toMatchObject(trigger);
       expect(subject.prop('show')).toBe(false);
       expect(subject.prop('size')).toBe('Small');
-      expect(subject.find('div')).toHaveLength(6);
-      expect(subject.find('span')).toHaveLength(4);
+      expect(subject.find('div')).toHaveLength(4);
+      expect(subject.find('span')).toHaveLength(7);
       expect(subject.find('button').exists()).toBe(true);
 
       subject.find('span').at(0).simulate('click');
@@ -301,8 +301,8 @@ describe('<Modal />', () => {
       expect(subject.prop('trigger')).toMatchObject(trigger);
       expect(subject.prop('show')).toBe(false);
       expect(subject.prop('size')).toBe('Medium');
-      expect(subject.find('div')).toHaveLength(6);
-      expect(subject.find('span')).toHaveLength(4);
+      expect(subject.find('div')).toHaveLength(4);
+      expect(subject.find('span')).toHaveLength(7);
       expect(subject.find('button').exists()).toBe(true);
       subject.find('span').at(0).simulate('click');
       expect(trigger.animate.in).toHaveBeenCalledTimes(1);
@@ -316,8 +316,8 @@ describe('<Modal />', () => {
       expect(subject.prop('trigger')).toMatchObject(trigger);
       expect(subject.prop('show')).toBe(false);
       expect(subject.prop('size')).toBe('Large');
-      expect(subject.find('div')).toHaveLength(6);
-      expect(subject.find('span')).toHaveLength(4);
+      expect(subject.find('div')).toHaveLength(4);
+      expect(subject.find('span')).toHaveLength(7);
       expect(subject.find('button').exists()).toBe(true);
       subject.find('span').at(0).simulate('click');
       expect(trigger.animate.in).toHaveBeenCalledTimes(1);
@@ -331,8 +331,8 @@ describe('<Modal />', () => {
       expect(subject.prop('trigger')).toMatchObject(trigger);
       expect(subject.prop('show')).toBe(false);
       expect(subject.prop('size')).toBe(500);
-      expect(subject.find('div')).toHaveLength(6);
-      expect(subject.find('span')).toHaveLength(4);
+      expect(subject.find('div')).toHaveLength(4);
+      expect(subject.find('span')).toHaveLength(7);
       expect(subject.find('button').exists()).toBe(true);
       subject.find('span').at(0).simulate('click');
       expect(trigger.animate.in).toHaveBeenCalledTimes(1);
@@ -349,8 +349,8 @@ describe('<Modal />', () => {
       expect(subject.prop('trigger')).toMatchObject(trigger);
       expect(subject.prop('show')).toBe(false);
       expect(subject.prop('header')).toBe('');
-      expect(subject.find('div')).toHaveLength(6);
-      expect(subject.find('span')).toHaveLength(4);
+      expect(subject.find('div')).toHaveLength(4);
+      expect(subject.find('span')).toHaveLength(7);
       expect(subject.find('button').exists()).toBe(true);
       subject.find('span').at(0).simulate('click');
       expect(trigger.animate.in).toHaveBeenCalledTimes(1);
@@ -364,8 +364,8 @@ describe('<Modal />', () => {
       expect(subject.prop('trigger')).toMatchObject(trigger);
       expect(subject.prop('show')).toBe(false);
       expect(subject.prop('header')).toBe('This is my header!!');
-      expect(subject.find('div')).toHaveLength(6);
-      expect(subject.find('span')).toHaveLength(4);
+      expect(subject.find('div')).toHaveLength(5);
+      expect(subject.find('span')).toHaveLength(7);
       expect(subject.find('button').exists()).toBe(true);
       subject.find('span').at(0).simulate('click');
       expect(trigger.animate.in).toHaveBeenCalledTimes(1);
@@ -378,8 +378,8 @@ describe('<Modal />', () => {
       expect(subject.prop('trigger')).toMatchObject(trigger);
       expect(subject.prop('show')).toBe(false);
       expect(subject.prop('header')).toMatchObject(headerNode);
-      expect(subject.find('div')).toHaveLength(6);
-      expect(subject.find('span')).toHaveLength(4);
+      expect(subject.find('div')).toHaveLength(5);
+      expect(subject.find('span')).toHaveLength(7);
       expect(subject.find('button').exists()).toBe(true);
       subject.find('span').at(0).simulate('click');
       expect(trigger.animate.in).toHaveBeenCalledTimes(1);
@@ -396,8 +396,8 @@ describe('<Modal />', () => {
       expect(subject.prop('trigger')).toMatchObject(trigger);
       expect(subject.prop('show')).toBe(false);
       expect(subject.prop('footer')).toMatchObject(footerNode);
-      expect(subject.find('div')).toHaveLength(6);
-      expect(subject.find('span')).toHaveLength(6);
+      expect(subject.find('div')).toHaveLength(5);
+      expect(subject.find('span')).toHaveLength(9);
       expect(subject.find('button').exists()).toBe(true);
       trigger.animate.in.mockClear();
       trigger.animate.out.mockClear();
