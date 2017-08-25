@@ -111,7 +111,7 @@ class App extends React.Component<{}, State> {
         <Loading />
         <Loading>
           <div><span>Ranmal</span></div>
-        </Loading>    
+        </Loading>
 
         <Picker required={true}
           chipComponent={Chip}
