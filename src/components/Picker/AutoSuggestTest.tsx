@@ -21,24 +21,27 @@ function renderSuggestion(suggestion:any, { isHighlighted, query }:any) {
     <Card image={suggestion.image} nameBefore={nameBefore} bold={queryData} nameAfter={nameAfter} email={suggestion.email}/>
   );
 }
+
 export interface State {
   chipListState: { key: any, image?: string, text: string, email?: string, grey?: boolean, markedForDelete?:boolean }[];
   value: string;
   suggestions: object[];
-  languages: { key: any, image?: string, email?: string, grey?: boolean, name?: any, markedForDelete?: boolean }[];
-  autoFocus: boolean;
+  itemsList: { key: any, image?: string, email?: string, grey?: boolean, name?: any, markedForDelete?: boolean }[];
+  input?: any;
 }
-class AutoSuggestTest extends React.Component<{}, State> {
+export interface Props {
+}
+class AutoSuggestTest extends React.Component<Props, State> {
   constructor() {
     super();
 
     this.state = {
       value: '',
+      input: {},
       suggestions: [],
       chipListState: [
       ],
-      autoFocus: false,
-      languages: [
+      itemsList: [
         { key: 1, image: 'http://msaadvertising.com/wp-content/uploads/2014/06/Larry-cartoon-headshot.jpg', name: 'John Doe', email: 'test@gmail.com', markedForDelete: false },
         { key: 2, image: 'http://cdn.photographyproject.com.au/wp-content/uploads/2013/04/corporate-headshot.jpg', name: 'Pedro Sanchez', email: 'pedrosanchez@gmail.com' },
         { key: 3, image: 'https://media.licdn.com/mpr/mpr/p/5/005/08f/04d/02df10d.jpg', name: 'Jane Doe', email: 'jane@gmail.com' },
@@ -46,9 +49,6 @@ class AutoSuggestTest extends React.Component<{}, State> {
         { key: 5, image: 'https://d38zhw9ti31loc.cloudfront.net/wp-content/uploads/2013/07/Crystal-headshot-new.jpg', name: 'Laura Person', email: 'yahooldjadslkjgmail@gmail.com' },
         { key: 6, image: 'https://d38zhw9ti31loc.cloudfront.net/wp-content/uploads/2013/07/Crystal-headshot-new.jpg', name: 'Laura Person', email: 'slkjgmail@gmail.com' },
       ],
-    };
-    this.componentWillMount = () => {
-      console.log('componentWillMount');
     };
   }
   onSuggestionsClearRequested = () => {
@@ -65,17 +65,13 @@ class AutoSuggestTest extends React.Component<{}, State> {
 
     const regex = new RegExp(escapedValue, 'i');
 
-    return this.state.languages.filter(language => regex.test(language.name));
+    return this.state.itemsList.filter(language => regex.test(language.name));
   }
 
   getSuggestionValue = (suggestion:any) => {
-    // this.languages.splice(languages.indexOf(suggestion), 1);
-    // this.setState({ suggestions: [] });
-    // this.state.chipListState.push({ text: suggestion.name });
     return suggestion.name;
   }
   onChange = (event:object, { newValue, method }:any) => {
-    // console.log('onChange');
     this.setState({
       value: newValue,
     });
@@ -91,12 +87,12 @@ class AutoSuggestTest extends React.Component<{}, State> {
         const language = this.state.chipListState.slice(this.state.chipListState.length - 1)[0];
         delete language['text'];
         language['markedForDelete'] = false;
-        const languages = this.state.languages.concat(language);
+        const itemsList = this.state.itemsList.concat(language);
         console.log('language:', language);
-        console.log('this.state.language:', languages);
+        console.log('this.state.language:', itemsList);
         this.setState({
           chipListState,
-          languages,
+          itemsList,
         });
       } else {
         console.log('not yet?');
@@ -105,7 +101,7 @@ class AutoSuggestTest extends React.Component<{}, State> {
           chipListState: this.state.chipListState,
         });
       }
-    } else if (this.state.chipListState.length && !this.state.value.length) {
+    } else if (this.state.chipListState.length && !this.state.value.length && !(e.keyCode === 38) && !(e.keyCode === 40)) {
       if (this.state.chipListState[this.state.chipListState.length - 1]['markedForDelete']) {
         this.state.chipListState[this.state.chipListState.length - 1]['markedForDelete'] = false;
         this.setState({ chipListState: this.state.chipListState });
@@ -116,13 +112,6 @@ class AutoSuggestTest extends React.Component<{}, State> {
   //   e.stopPropagation();
   //   e.preventDefault();
   // }
-
-  makeFocus = () => {
-    // console.log('what is e?',e);
-    console.log('focused?');
-    this.setState({ autoFocus: true });
-    console.log('this.state', this.state);
-  }
   
   onSuggestionsFetchRequested = ({ value }:any) => {
     this.setState({
@@ -131,16 +120,12 @@ class AutoSuggestTest extends React.Component<{}, State> {
     // document.addEventListener('click',this.handler,true);
   }
 
-  // chipClick = () => {
-  //   console.log('chip clicked...');
-  // }
-
   updateList = (input: any) => {
-    const langIndex = this.state.languages.indexOf(input);
-    const languagesLength = this.state.languages;
-    const newLangState = languagesLength.slice(0, langIndex).concat(languagesLength.slice(langIndex + 1, languagesLength.length));
+    const langIndex = this.state.itemsList.indexOf(input);
+    const itemsListLength = this.state.itemsList;
+    const newLangState = itemsListLength.slice(0, langIndex).concat(itemsListLength.slice(langIndex + 1, itemsListLength.length));
 
-    this.setState({ languages: newLangState });
+    this.setState({ itemsList: newLangState });
   }
 
   onSuggestionSelected = (event:any, { suggestion }: any) => {
@@ -163,30 +148,31 @@ class AutoSuggestTest extends React.Component<{}, State> {
 
     this.setState({ chipListState: newChipState });
 
-    const languagesList = this.state.languages.concat(input);
-    console.log('languagesList:', languagesList);
-    this.setState({ languages: languagesList });
+    const itemsListList = this.state.itemsList.concat(input);
+    console.log('itemsListList:', itemsListList);
+    this.setState({ itemsList: itemsListList });
 
-    this.makeFocus();
+    this.state.input.focus();
+  }
+
+  storeInputReference = (autosuggest:any) => {
+    if (autosuggest !== null) {
+      this.setState({ input: autosuggest.input });
+    }
   }
 
   render() {
-    const { value, suggestions, chipListState, autoFocus }:any = this.state;
+    const { value, suggestions, chipListState }:any = this.state;
     const inputProps = {
       value,
-      autoFocus,
       placeholder: '',
       onChange: this.onChange,
       onKeyDown: this.onKeyDown,
     };
 
-    // const autoFocus = () => {
-    //   inputProps.autoFocus = true;
-    // };
-
     return (
       <div className={style.inputOutline}>
-        { chipListState.map((input: any) => <Chip image={{ url: input.image }} removable={true} onRemove={() => this.chipRemove(input)} key={input.key} markedForDelete={input.markedForDelete}>{input.text} </Chip>) }
+        { chipListState.map((input: any) => <Chip image={{ url: input.image }} removable={true} onRemove={() => this.chipRemove(input)} key={input.key} markedForDelete={input.markedForDelete}>{input.text}</Chip>) }
         <Autosuggest 
           className={style.suggestionsContainer}
           suggestions={suggestions}
@@ -197,6 +183,7 @@ class AutoSuggestTest extends React.Component<{}, State> {
           renderSuggestion={renderSuggestion}
           inputProps={inputProps} 
           highlightFirstSuggestion={true}
+          ref={this.storeInputReference}
           theme={{ 
             container: style.container,
             suggestions: style.cardItem,
