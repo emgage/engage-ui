@@ -28,10 +28,10 @@ describe('<ChoiceList />', () => {
                             <ChoiceList selected={[]} choices={choices} theme={theme} />,
                           );
       expect(element.find('fieldset').exists()).toBe(true);
-      expect(element.find('fieldset').hasClass('choiceList')).toBe(true);   
+      expect(element.find('fieldset').hasClass('choiceList')).toBe(true);
     });
   });
-    
+
   describe('title property', () => {
     describe('when not set', () => {
       it('should verify not renders a legend for the fieldset', () => {
@@ -124,7 +124,7 @@ describe('<ChoiceList />', () => {
         } else {
           expect(choiceName).toBe(name);
         }
-        
+
         expect(typeof choiceName).toBe('string');
       });
     });
@@ -173,7 +173,7 @@ describe('<ChoiceList />', () => {
       expect(element.find(Checkbox).length).toBe(choices.length);
     });
   });
-  
+
   describe('titlehidden property', () => {
     describe('when not set', () => {
       it('should verify not renders a titlehidden for the choicelist', () => {
@@ -187,13 +187,13 @@ describe('<ChoiceList />', () => {
     describe('when  set as true', () => {
       it('should verify renders a titlehidden for the choicelist when set as true', () => {
         const element = mount(
-                              <ChoiceList title="My title" titleHidden={true} 
+                              <ChoiceList title="My title" titleHidden={true}
                               selected={[]} choices={choices} theme={theme} />,
                              );
         expect(element.prop('titleHidden')).toBe(true);
         expect(element.find('fieldset').hasClass('titleHidden')).toBe(true);
       });
-    });  
+    });
     describe('when  set as false', () => {
       it('should verify renders a titlehidden for the choicelist when set as false', () => {
         const element = mount(
@@ -202,7 +202,7 @@ describe('<ChoiceList />', () => {
                              );
         expect(element.prop('titleHidden')).toBe(false);
         expect(element.find('fieldset').hasClass('titleHidden')).toBe(false);
-      });  
+      });
     });
   });
 });

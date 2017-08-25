@@ -28,7 +28,7 @@ export interface Props {
   icon?: IconProps['source'];
   style?: React.CSSProperties;
   theme?: any;
-  onClick?(e: any): void,
+  onClick?(e: any): void;
   onFocus?(): void;
   onBlur?(): void;
 }

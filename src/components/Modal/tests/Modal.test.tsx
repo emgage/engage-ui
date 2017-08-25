@@ -150,7 +150,7 @@ describe('<Modal />', () => {
       expect(subject.prop('closeOnEsc')).toBe(false);
       expect(subject.find('div')).toHaveLength(6);
       expect(subject.find('span')).toHaveLength(4);
-      expect(subject.find('button').exists()).toBe(true); 
+      expect(subject.find('button').exists()).toBe(true);
       subject.find('span').at(0).simulate('click');
       expect(trigger.animate.in).toHaveBeenCalledTimes(1);
       expect(trigger.animate.out).toHaveBeenCalledTimes(0);

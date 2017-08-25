@@ -17,7 +17,7 @@ describe('<Choice />', () => {
     const MYCOMPONENT = () => {
       return (
         <div />
-      ); 
+      );
     };
 
     const element = mount(<Choice id="MyChoice" label="Label"><MYCOMPONENT /></Choice>);
