@@ -16,13 +16,13 @@ describe('<TextField />', () => {
         value="Some value"
         min={20}
         max={50}
-        minLength={2}
         maxLength={2}
+        minLength={2}
         spellCheck={false}
         pattern={pattern}
+        enableTextCouter={true}
       />,
     ).find('input');
-
     expect(input.prop('disabled')).toBe(true);
     expect(input.prop('readOnly')).toBe(false);
     expect(input.prop('autoFocus')).toBe(true);
@@ -175,7 +175,7 @@ describe('<TextField />', () => {
       const labels = textField.find('input').prop<string>('aria-labelledby').split(' ');
       expect(labels.length).toBe(2);
       expect(textField.find(`#${labels[0]}`).text()).toBe('TextField');
-      expect(textField.find(`#${labels[1]}`).text()).toBe('$');
+      expect(textField.find('div').at(4).text()).toBe('$');
     });
 
     it('connects the input to the prefix, suffix, and label', () => {
@@ -183,8 +183,8 @@ describe('<TextField />', () => {
       const labels = textField.find('input').prop<string>('aria-labelledby').split(' ');
       expect(labels.length).toBe(3);
       expect(textField.find(`#${labels[0]}`).text()).toBe('TextField');
-      expect(textField.find(`#${labels[1]}`).text()).toBe('$');
-      expect(textField.find(`#${labels[2]}`).text()).toBe('.00');
+      expect(textField.find('div').at(4).text()).toBe('$');
+      expect(textField.find('div').at(5).text()).toBe('.00');
     });
   });
 
@@ -193,8 +193,10 @@ describe('<TextField />', () => {
       const textField = mount(<TextField label="TextField" suffix="kg" />);
       const labels = textField.find('input').prop<string>('aria-labelledby').split(' ');
       expect(labels.length).toBe(2);
+      expect(textField.find('label').at(0).text());
+      expect(textField.find('label').at(1).text());
       expect(textField.find(`#${labels[0]}`).text()).toBe('TextField');
-      expect(textField.find(`#${labels[1]}`).text()).toBe('kg');
+      expect(textField.find('div').at(4).text()).toBe('kg');
     });
   });
 
