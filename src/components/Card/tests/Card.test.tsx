@@ -138,7 +138,7 @@ describe('<Card /> Test Suit', () => {
     expect(cardWrapper.find('div').at(3).text()).toBe('ReportsView a summary of your online store’s performance.');
     expect(cardWrapper.find('div').at(5).text()).toBe('Summary ReportsView a summary of your online store’s performance, including sales, visitors, top products, and referrals.');
     expect(cardWrapper.find('h3').length).toBe(2);
-    expect(cardWrapper.find('p').length).toBe(2);   
+    expect(cardWrapper.find('p').length).toBe(2);
   });
   it('should verify that Card is set with subdued option.', () => {
     const cardWrapper = mount(
