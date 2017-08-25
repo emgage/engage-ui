@@ -73,7 +73,7 @@ describe('<Card /> Test Suit', () => {
     };
     const cardWrapper = mount(
                                 <Card title="Online store dashboard - Card"  actions={[action]}>
-                                    <p>View a summary of your online store’s performance.</p> 
+                                    <p>View a summary of your online store’s performance.</p>
                                 </Card>,
                             );
     cardWrapper.find('button').simulate('click');
@@ -87,7 +87,7 @@ describe('<Card /> Test Suit', () => {
     };
     const cardWrapper = mount(
                                 <Card title="Online store dashboard - Card"  primaryFooterAction={action}>
-                                    <p>View a summary of your online store’s performance.</p> 
+                                    <p>View a summary of your online store’s performance.</p>
                                 </Card>,
                             );
     cardWrapper.find('button').simulate('click');
@@ -101,7 +101,7 @@ describe('<Card /> Test Suit', () => {
     };
     const cardWrapper = mount(
                                 <Card title="Online store dashboard - Card"  secondaryFooterAction={action}>
-                                    <p>View a summary of your online store’s performance.</p> 
+                                    <p>View a summary of your online store’s performance.</p>
                                 </Card>,
                             );
     cardWrapper.find('button').simulate('click');
@@ -110,7 +110,7 @@ describe('<Card /> Test Suit', () => {
   it('should verify that sectioned is boolean type', () => {
     const cardWrapper = mount(
                                 <Card title="Online store dashboard - Card" sectioned>
-                                    <p>View a summary of your online store’s performance.</p> 
+                                    <p>View a summary of your online store’s performance.</p>
                                 </Card>,
                             );
     expect(typeof cardWrapper.prop('sectioned')).toBe('boolean');
@@ -118,7 +118,7 @@ describe('<Card /> Test Suit', () => {
   it('should verify that subdued is boolean type', () => {
     const cardWrapper = mount(
                                 <Card title="Online store dashboard - Card" subdued>
-                                    <p>View a summary of your online store’s performance.</p> 
+                                    <p>View a summary of your online store’s performance.</p>
                                 </Card>,
                             );
     expect(typeof cardWrapper.prop('subdued')).toBe('boolean');
@@ -126,7 +126,7 @@ describe('<Card /> Test Suit', () => {
   it('should verify that Card can have multiple sections with title', () => {
     const cardWrapper = mount(
                                 <Card title="Online store dashboard - Card" sectioned theme={theme}>
-                                    <Section title="Reports" theme={theme}> 
+                                    <Section title="Reports" theme={theme}>
                                         <p>View a summary of your online store’s performance.</p>
                                     </Section>
                                     <Section title="Summary Reports" theme={theme}>
@@ -143,7 +143,7 @@ describe('<Card /> Test Suit', () => {
   it('should verify that Card is set with subdued option.', () => {
     const cardWrapper = mount(
                                 <Card title="Online store dashboard - Card" sectioned>
-                                    <Section title="Reports" subdued> 
+                                    <Section title="Reports" subdued>
                                         <p>View a summary of your online store’s performance.</p>
                                     </Section>
                                     <Section title="Summary Reports" subdued>
@@ -159,7 +159,7 @@ describe('<Card /> Test Suit', () => {
   it('should verify that Card is set with theme.', () => {
     const cardWrapper = mount(
                                 <Card title="Online store dashboard - Card" sectioned>
-                                    <Section title="Reports" subdued> 
+                                    <Section title="Reports" subdued>
                                         <p>View a summary of your online store’s performance.</p>
                                     </Section>
                                     <Section title="Summary Reports" subdued theme={theme}>

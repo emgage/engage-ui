@@ -27,7 +27,7 @@ describe('<Checkbox />', () => {
       expect(checkboxWrapper.prop('label')).toBe('Checkbox');
     });
   });
-   
+
   describe('onChange()', () => {
     it('is called with the new checked value of the input on change', () => {
       const spy = jest.fn();
@@ -165,7 +165,7 @@ describe('<Checkbox />', () => {
       it('should verify checkbox when checked is not set', () => {
         const checkboxWrapper = mount(
                                       <Checkbox label="Checkbox" theme={theme} />,
-                                     );        
+                                     );
         expect(checkboxWrapper.find('label')).toHaveLength(1);
         expect(checkboxWrapper.find('div')).toHaveLength(5);
         expect(checkboxWrapper.find('input')).toHaveLength(1);
@@ -305,7 +305,7 @@ describe('<Checkbox />', () => {
         expect(checkboxWrapper.prop('label')).toBe('Checkbox');
         expect(checkboxWrapper.find('input').prop('id')).toBeTruthy();
       });
-    });  
+    });
     describe('when set', () => {
       it('should verify checkbox when id is set', () => {
         const checkboxWrapper = mount(
@@ -319,12 +319,12 @@ describe('<Checkbox />', () => {
         expect(checkboxWrapper.find('div').at(1).hasClass('checkbox')).toBe(true);
         expect(checkboxWrapper.find('div').at(2).hasClass('backdrop')).toBe(true);
         expect(checkboxWrapper.find('div').at(3).hasClass('icon')).toBe(true);
-        expect(checkboxWrapper.prop('label')).toBe('Checkbox');        
+        expect(checkboxWrapper.prop('label')).toBe('Checkbox');
         expect(checkboxWrapper.find('input').prop('id')).toBe('MyCheckbox');
       });
     });
   });
- 
+
   describe('disabled property', () => {
     describe('when not set', () => {
       it('should verify checkbox when disabled is not set', () => {
@@ -342,13 +342,13 @@ describe('<Checkbox />', () => {
         expect(checkboxWrapper.find('div').at(3).hasClass('icon')).toBe(true);
         expect(checkboxWrapper.prop('label')).toBe('Checkbox');
         expect(checkboxWrapper.find('input').prop('disabled')).toBeUndefined();
-      });  
+      });
     });
     describe('when set as true', () => {
       it('should verify checkbox when disbaled is set as true', () => {
         const checkboxWrapper = mount(
                                       <Checkbox label="Checkbox" disabled theme={theme} />,
-                                     );        
+                                     );
         expect(checkboxWrapper.find('label')).toHaveLength(1);
         expect(checkboxWrapper.find('div')).toHaveLength(5);
         expect(checkboxWrapper.find('input')).toHaveLength(1);
@@ -366,7 +366,7 @@ describe('<Checkbox />', () => {
       it('should verify checkbox when disbaled is set as false', () => {
         const checkboxWrapper = mount(
                                       <Checkbox label="Checkbox" disabled={false} theme={theme} />,
-                                     );        
+                                     );
         expect(checkboxWrapper.find('label')).toHaveLength(1);
         expect(checkboxWrapper.find('div')).toHaveLength(5);
         expect(checkboxWrapper.find('input')).toHaveLength(1);
@@ -375,10 +375,10 @@ describe('<Checkbox />', () => {
         expect(checkboxWrapper.find('div').at(1).hasClass('checkbox')).toBe(true);
         expect(checkboxWrapper.find('div').at(2).hasClass('backdrop')).toBe(true);
         expect(checkboxWrapper.find('div').at(3).hasClass('icon')).toBe(true);
-        expect(checkboxWrapper.prop('label')).toBe('Checkbox'); 
+        expect(checkboxWrapper.prop('label')).toBe('Checkbox');
         expect(checkboxWrapper.find('input').prop('disabled')).toBe(false);
       });
-    });  
+    });
   });
 
   describe('helpText property', () => {
@@ -395,7 +395,7 @@ describe('<Checkbox />', () => {
         expect(checkboxWrapper.find('div').at(1).hasClass('checkbox')).toBe(true);
         expect(checkboxWrapper.find('div').at(2).hasClass('backdrop')).toBe(true);
         expect(checkboxWrapper.find('div').at(3).hasClass('icon')).toBe(true);
-        expect(checkboxWrapper.prop('label')).toBe('Checkbox'); 
+        expect(checkboxWrapper.prop('label')).toBe('Checkbox');
         expect(checkboxWrapper.prop('helpText')).toBeUndefined();
       });
     });
@@ -413,12 +413,12 @@ describe('<Checkbox />', () => {
         expect(checkboxWrapper.find('div').at(2).hasClass('checkbox')).toBe(true);
         expect(checkboxWrapper.find('div').at(3).hasClass('backdrop')).toBe(true);
         expect(checkboxWrapper.find('div').at(4).hasClass('icon')).toBe(true);
-        expect(checkboxWrapper.prop('label')).toBe('Checkbox'); 
+        expect(checkboxWrapper.prop('label')).toBe('Checkbox');
         expect(checkboxWrapper.find(`#${helpTextID}`).text()).toBe('Some help');
       });
-    });  
-  });    
- 
+    });
+  });
+
   describe('error property', () => {
     describe('when set as string', () => {
       describe('when not set', () => {
@@ -434,10 +434,10 @@ describe('<Checkbox />', () => {
           expect(checkboxWrapper.find('div').at(1).hasClass('checkbox')).toBe(true);
           expect(checkboxWrapper.find('div').at(2).hasClass('backdrop')).toBe(true);
           expect(checkboxWrapper.find('div').at(3).hasClass('icon')).toBe(true);
-          expect(checkboxWrapper.prop('label')).toBe('Checkbox'); 
+          expect(checkboxWrapper.prop('label')).toBe('Checkbox');
           expect(checkboxWrapper.prop('helpText')).toBeUndefined();
         });
-      }); 
+      });
       describe('when set', () => {
         it('should verify checkbox when error is set', () => {
           const checkboxWrapper = mount(
@@ -452,7 +452,7 @@ describe('<Checkbox />', () => {
           expect(checkboxWrapper.find('div').at(2).hasClass('checkbox')).toBe(true);
           expect(checkboxWrapper.find('div').at(3).hasClass('backdrop')).toBe(true);
           expect(checkboxWrapper.find('div').at(4).hasClass('icon')).toBe(true);
-          expect(checkboxWrapper.prop('label')).toBe('Checkbox'); 
+          expect(checkboxWrapper.prop('label')).toBe('Checkbox');
           expect(checkboxWrapper.find(`#${errorID}`).text()).toBe('Some error');
         });
 
@@ -469,14 +469,14 @@ describe('<Checkbox />', () => {
           expect(checkboxWrapper.find('div').at(2).hasClass('checkbox')).toBe(true);
           expect(checkboxWrapper.find('div').at(3).hasClass('backdrop')).toBe(true);
           expect(checkboxWrapper.find('div').at(4).hasClass('icon')).toBe(true);
-          expect(checkboxWrapper.prop('label')).toBe('Checkbox'); 
+          expect(checkboxWrapper.prop('label')).toBe('Checkbox');
           expect(descriptions.length).toBe(2);
           expect(checkboxWrapper.find(`#${descriptions[0]}`).text()).toBe('Some error');
           expect(checkboxWrapper.find(`#${descriptions[1]}`).text()).toBe('Some help');
         });
       });
-    });  
-      
+    });
+
     describe('when set as boolean', () => {
       describe('when not set', () => {
         it('should verify checkbox when error is not set', () => {
@@ -491,7 +491,7 @@ describe('<Checkbox />', () => {
           expect(checkboxWrapper.find('div').at(1).hasClass('checkbox')).toBe(true);
           expect(checkboxWrapper.find('div').at(2).hasClass('backdrop')).toBe(true);
           expect(checkboxWrapper.find('div').at(3).hasClass('icon')).toBe(true);
-          expect(checkboxWrapper.prop('label')).toBe('Checkbox'); 
+          expect(checkboxWrapper.prop('label')).toBe('Checkbox');
           expect(checkboxWrapper.prop('error')).toBeUndefined();
         });
       });
@@ -508,8 +508,8 @@ describe('<Checkbox />', () => {
           expect(checkboxWrapper.find('div').at(1).hasClass('checkbox')).toBe(true);
           expect(checkboxWrapper.find('div').at(2).hasClass('backdrop')).toBe(true);
           expect(checkboxWrapper.find('div').at(3).hasClass('icon')).toBe(true);
-          expect(checkboxWrapper.prop('label')).toBe('Checkbox'); 
-          expect(checkboxWrapper.prop('error')).toBe(true); 
+          expect(checkboxWrapper.prop('label')).toBe('Checkbox');
+          expect(checkboxWrapper.prop('error')).toBe(true);
         });
       });
       describe('when set as false', () => {
@@ -525,17 +525,17 @@ describe('<Checkbox />', () => {
           expect(checkboxWrapper.find('div').at(1).hasClass('checkbox')).toBe(true);
           expect(checkboxWrapper.find('div').at(2).hasClass('backdrop')).toBe(true);
           expect(checkboxWrapper.find('div').at(3).hasClass('icon')).toBe(true);
-          expect(checkboxWrapper.prop('label')).toBe('Checkbox'); 
-          expect(checkboxWrapper.prop('error')).toBe(false); 
+          expect(checkboxWrapper.prop('label')).toBe('Checkbox');
+          expect(checkboxWrapper.prop('error')).toBe(false);
         });
-      });  
+      });
     });
-  });        
-  
+  });
+
   describe('verify all property together', () => {
     it('should verify checkbox when all properties are set', () => {
       const checkboxWrapper = mount(
-                                    <Checkbox label="Checkbox" labelHidden checked helpText="Some help" id="MyCheckbox" 
+                                    <Checkbox label="Checkbox" labelHidden checked helpText="Some help" id="MyCheckbox"
                                     name="Checkbox" value="Some value" error="Some error" disabled theme={theme} />,
                                    );
       expect(checkboxWrapper.find('label')).toHaveLength(1);

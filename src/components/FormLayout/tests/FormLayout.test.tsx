@@ -16,7 +16,7 @@ describe('<FormLayout />', () => {
     describe('Default FormLayout', () => {
         it('should verify formlayout without children has 1 div tag', () => {
         const formlayoutWrapper = mount(
-                                        <FormLayout> 
+                                        <FormLayout>
                                         </FormLayout>,
                                     );
         expect(formlayoutWrapper.find('div').length).toBe(1);

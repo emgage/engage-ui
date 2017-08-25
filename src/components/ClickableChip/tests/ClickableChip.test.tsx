@@ -114,6 +114,6 @@ describe('<ClickableChip />', () => {
         expect(clickablechipWrapper.find('span').at(1).hasClass('Batman'));
         expect(clickablechipWrapper.find('a')).toHaveLength(1);
       });
-    }); 
+    });
   });
 });

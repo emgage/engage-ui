@@ -96,8 +96,8 @@ export {
 export {
   default as FlexBox,
   Props as FlexBoxProps,
-  FlexAlign, 
-  FlexDirection, 
+  FlexAlign,
+  FlexDirection,
   FlexJustify,
 } from './FlexBox';
 
@@ -140,10 +140,7 @@ export {
 export {
   default as OffCanvas,
   Props as OffCanvasProps,
-  OffCanvasBody,
-  OffCanvasMenu,
-  OffCanvasAnimationType,
-  OffCanvasPosition,
+  OffCanvasMode,
 } from './OffCanvas';
 
 export {
