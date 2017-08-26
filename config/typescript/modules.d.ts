@@ -6,7 +6,6 @@ declare module 'hoist-non-react-statics' {
   
 }
 
-
 declare module 'react-popper' {
   import {ComponentClass} from 'react';
 
@@ -33,5 +32,9 @@ declare module 'object.values' {
 
   function values(value: any): any;
   export = values;
-  
 }
+
+declare module 'velocity-animate';
+declare module 'react-router-dom';
+declare module 'react-prism';
+declare module 'react-table';

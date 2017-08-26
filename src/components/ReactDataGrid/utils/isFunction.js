@@ -1,4 +1,3 @@
-/* @flow */
 
 const isFunction = function(functionToCheck: any): boolean {
   let getType = {};

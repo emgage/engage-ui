@@ -6,31 +6,29 @@ export const getElement = (dataId: string) => {
   return queryData(`id="${dataId}"`);
 };
 
-export const cleanClasses = (c: any) => {
+export const cleanClasses = (c: string[]) => {
   const str = (c).join(' ').trim().replace(/,/gi, ' ');
-  return str !== '' ? str : null;
+  return str;
 };
 
-export const cleanProps = (ignoreKeys: any) => {
-  const ignore = [
+export const cleanProps = (ignoreKeys: string[]) => {
+  const ignore: string[] = [
     ...ignoreKeys,
   ];
 
-  return (obj: any) => {
-    if (typeof obj !== 'object' || Array.isArray(obj)) {return null; } ;
+  return (
+    (obj: object) => {
 
-    const newObj: any = { ...obj };
+      const objtest = Object.getPrototypeOf(obj);
 
-    for (let i = 0; i < ignore.length; i++) {
-      if (obj[ignore[i]]) {
-        newObj[ignore[i]] = null;
+      for (let i: number = 0; i < ignore.length; i++) {
+        if (objtest[ignore[i]]) {
+          objtest[ignore[i]] = null;
+        }
       }
+      return objtest;
     }
-
-    const Aa = [Object.keys(newObj).forEach((key) =>
-      (newObj[key] == null) && delete newObj[key]), newObj][1];
-    return Aa;
-  };
+  );
 };
 
 export default {

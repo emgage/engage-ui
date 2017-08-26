@@ -5,9 +5,8 @@
     "target": "es2016",
     "module": "commonjs",
     "moduleResolution": "node",
-    "declaration": true,
-    "declarationDir": "./lib/@types",
     "jsx": "react",
+    "checkJs": false,
     "allowJs": true,
     "strictNullChecks": true,
     "noImplicitAny": true,
@@ -34,11 +33,14 @@
   },
   "include": [
     "./config/typescript/**/*",
-    "./src/**/*",
+    "./src/**/*.ts",
+    "./src/**/*.tsx",
     "./typings/*"
   ],
   "exclude": [
     "./@types",
-    "./src/components/ReactDataGrid/"
+    "./src/components/ReactDataGrid/",
+    "**/*.js",
+    "**/*.jsx"
   ]
 }

@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from 'react-css-themr';
 import { MODAL } from '../ThemeIdentifiers';
-import Helpers from './helpers';
+import Heading from '../Heading';
+import Button from '../Button';
+import helpers from './helpers';
 import * as baseTheme from './Modal.scss';
 
 export enum SizeType {
@@ -12,24 +14,23 @@ export enum SizeType {
 
 export type Size = 'Small' | 'Medium' | 'Large' | number;
 
-
 export interface SizeStyle {
-  width: string,
-  marginLeft: string,
-  left: string,
+  width: string;
+  marginLeft: string;
+  left: string;
 }
 
 export interface Props {
-  close?: boolean,
-  children?: React.ReactNode,
-  footer?: React.ReactNode,
-  header?: string | React.ReactNode,
-  id?: string,
-  backdropEnabled?: boolean,
-  size?: Size,
-  theme?: any,
-  onClose?(e: any): void,
-  closeOnBackgroud?(e: any): void,
+  close?: boolean;
+  children?: React.ReactNode;
+  footer?: React.ReactNode;
+  header?: React.ReactNode;
+  id?: string;
+  backdropEnabled?: boolean;
+  size?: Size;
+  theme?: any;
+  onClose?(e: React.SyntheticEvent<HTMLElement>): void;
+  closeOnBackgroud?(e: React.SyntheticEvent<HTMLElement>): void;
 }
 
 const Dialog = (props: Props) => {
@@ -52,24 +53,27 @@ const Dialog = (props: Props) => {
     default:
       dialogWidthSize = props.size as number;
       break;
-  };
+  }
 
-  const cssClassNames = Helpers.cleanClasses([
+  const cssClassNames = helpers.cleanClasses([
     props.backdropEnabled ? props.theme.dialog : props.theme.backDrop,
   ]);
-  const closeCSSClasses = Helpers.cleanClasses([
-    props.theme.close,
-  ]);
+
+  const ButtonStyle = {
+    float: `right`,
+  };
 
   const close = props.onClose
-    ? <a href="#" className={closeCSSClasses} data-id={props.id ? props.id : `close-${props.id}`} onClick={props.onClose} />
+    ? <Button style={ButtonStyle} data-id={props.id ? props.id : `close-${props.id}`} onClick={props.onClose} icon="cancel" />
     : null;
 
   const classHeader = props.theme.header;
 
-  const header = typeof props.header === 'string'
-    ? <div className={classHeader}><h2>{props.header}</h2></div>
-    : <div className={classHeader}>{props.header}</div>;
+  const header = props.header ? (typeof props.header === 'string'
+    ? <div className={classHeader}><Heading>{props.header}</Heading></div>
+    : <div className={classHeader}>{props.header}</div>) : null;
+
+  const footer = props.footer ? <div className={props.theme.footer}>{props.footer}</div> : null;
 
   const propSize: SizeStyle = {
     width: `${dialogWidthSize}px`,
@@ -82,7 +86,7 @@ const Dialog = (props: Props) => {
       {close}
       {header}
       {props.children}
-      <div className={props.theme.footer}>{props.footer}</div>
+      {footer}
     </div>,
   };
 

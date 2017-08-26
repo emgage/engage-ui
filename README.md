@@ -16,3 +16,6 @@ Example application is hosted in `./example/src` and can be run through `npm run
 [Create an issue or feature request](https://github.com/emgage/engage-ui/issues/new).
 
 At this point in time we’re not accepting pull requests. This is something we’ll support in the future. Stay tuned.
+
+# TODO
+1. When [#7546](https://github.com/Microsoft/TypeScript/issues/7546) is resolved, let's add back declaration to tsconfig: { ... , "declaration": true, "declarationDir": "./lib/@types", ... }

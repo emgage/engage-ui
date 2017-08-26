@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from 'react-css-themr';
-import {classNames} from '@shopify/react-utilities/styles';
+import { classNames } from '@shopify/react-utilities/styles';
 
-import {Action} from '../../types';
-import {buttonFrom} from '../Button';
+import { Action } from '../../types';
+import { buttonFrom } from '../Button';
 import ButtonGroup from '../ButtonGroup';
 import { CARD } from '../ThemeIdentifiers';
 
@@ -12,14 +12,14 @@ import Section from './Section';
 import * as baseTheme from './Card.scss';
 
 export interface Props {
-  title?: string,
-  children?: React.ReactNode,
-  subdued?: boolean,
-  sectioned?: boolean,
-  actions?: Action[],
-  primaryFooterAction?: Action,
-  secondaryFooterAction?: Action,
-  theme?: any,
+  title?: string;
+  children?: React.ReactNode;
+  subdued?: boolean;
+  sectioned?: boolean;
+  actions?: Action[];
+  primaryFooterAction?: Action;
+  secondaryFooterAction?: Action;
+  theme?: any;
 }
 
 class Card extends React.PureComponent<Props, never> {
@@ -37,7 +37,7 @@ class Card extends React.PureComponent<Props, never> {
       theme,
     } = this.props;
 
-    const className = classNames(theme.Card, subdued && theme.subdued);
+    const className = classNames(theme.card, subdued && theme.subdued);
 
     const headerMarkup = title
       ? <Header actions={actions}>{title}</Header>
@@ -48,7 +48,7 @@ class Card extends React.PureComponent<Props, never> {
       : children;
 
     const primaryFooterActionMarkup = primaryFooterAction
-      ? buttonFrom(primaryFooterAction, {primary: true})
+      ? buttonFrom(primaryFooterAction, { primary: true })
       : null;
 
     const secondaryFooterActionMarkup = secondaryFooterAction
@@ -57,7 +57,7 @@ class Card extends React.PureComponent<Props, never> {
 
     const footerMarkup = primaryFooterActionMarkup || secondaryFooterActionMarkup
       ? (
-        <div className={theme.Footer}>
+        <div className={theme.footer}>
           <ButtonGroup>
             {primaryFooterActionMarkup}
             {secondaryFooterActionMarkup}
