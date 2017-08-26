@@ -69,7 +69,7 @@ class App extends React.Component<{}, State> {
         { key: 6, image: 'https://d38zhw9ti31loc.cloudfront.net/wp-content/uploads/2013/07/Crystal-headshot-new.jpg', name: 'Laura Person', email: 'slkjgmail@gmail.com', grey: false },
       ],
       appTextCounter: '',
-    };    
+    };
       // image: 'http://cdn.photographyproject.com.au/wp-content/uploads/2013/04/corporate-headshot.jpg',
       // name: 'Pedro Sanchez',
       // columns: [

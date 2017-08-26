@@ -16,7 +16,7 @@ class PickedCard extends React.Component<Props, {}> {
         <div className={style.pickedCardContainer}>
           {/* <div className={style.pickedCard}> */}
             <img className={ style.pickedAvatarImage + ' ' + style.cardElem } src={ this.props.image } alt="not found" />
-            <div className={style.pickedNameStyle }>{ this.props.name }</div> 
+            <div className={style.pickedNameStyle }>{ this.props.name }</div>
           {/* </div> */}
         </div>
       </div>

@@ -15,7 +15,7 @@ function renderSuggestion(suggestion:any, { isHighlighted, query }:any) {
   const nameBefore = suggestion.name.slice(0, index);
   const queryData = suggestion.name.slice(index, index + query.length);
   const nameAfter = suggestion.name.slice(index + query.length);
-  
+
   if (isHighlighted) return <Card isHighlighted={true} image={suggestion.image} nameBefore={nameBefore} bold={queryData} nameAfter={nameAfter} email={suggestion.email}/>;
   else return (
     <Card image={suggestion.image} nameBefore={nameBefore} bold={queryData} nameAfter={nameAfter} email={suggestion.email}/>
@@ -59,7 +59,7 @@ class AutoSuggestTest extends React.Component<Props, State> {
   }
   getSuggestions = (value:any) => {
     const escapedValue = escapeRegexCharacters(value.trim());
-    
+
     if (escapedValue === '') {
       return [];
     }
@@ -108,7 +108,7 @@ class AutoSuggestTest extends React.Component<Props, State> {
   //   e.stopPropagation();
   //   e.preventDefault();
   // }
-  
+
   onSuggestionsFetchRequested = ({ value }:any) => {
     this.setState({
       suggestions: this.getSuggestions(value),
@@ -126,7 +126,7 @@ class AutoSuggestTest extends React.Component<Props, State> {
 
   onSuggestionSelected = (event:any, { suggestion }: any) => {
     suggestion.text = suggestion.name;
-    
+
     this.updateList(suggestion);
     const chipListState = this.state.chipListState.concat(suggestion);
     this.setState({
@@ -167,7 +167,7 @@ class AutoSuggestTest extends React.Component<Props, State> {
     return (
       <div className={style.inputOutline}>
         { chipListState.map((input: any) => <Chip image={{ url: input.image }} onRemove={() => this.chipRemove(input)} key={input.key} markedForDelete={input.markedForDelete} removable={input.removable} transparent={input.transparent}>{input.text}</Chip>) }
-        <Autosuggest 
+        <Autosuggest
           className={style.suggestionsContainer}
           suggestions={suggestions}
           onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
@@ -175,15 +175,15 @@ class AutoSuggestTest extends React.Component<Props, State> {
           getSuggestionValue={this.getSuggestionValue}
           onSuggestionSelected={this.onSuggestionSelected}
           renderSuggestion={renderSuggestion}
-          inputProps={inputProps} 
+          inputProps={inputProps}
           highlightFirstSuggestion={true}
           ref={this.storeInputReference}
-          theme={{ 
+          theme={{
             container: style.container,
             suggestions: style.cardItem,
             suggestionsList: style.suggestionsList,
             input: style.autosuggestInput,
-          }} 
+          }}
           />
       </div>
     );

@@ -22,12 +22,12 @@ class CardList extends React.Component<Props, {}> {
     return (
       <div className={style.cardBorder}>
         {/* { arrayCard.map(input => <Card key={input.key} image={input.image} name={input.name} email={input.email} grey={input.grey} />)} */}
-         <List type="default"> 
-          { this.props.array.map(input => <Item key={input.key} children={ 
-            React.createElement('div', { className: style.flex }, <img className={ style.avatarImage + ' ' + style.cardElem } src={ input.image } />,React.createElement('span', { className: style.cardElem + ' ' + style.nameStyle }, input.name), React.createElement('span', { className: style.cardElem + ' ' + style.emailStyle }, input.email)) 
+         <List type="default">
+          { this.props.array.map(input => <Item key={input.key} children={
+            React.createElement('div', { className: style.flex }, <img className={ style.avatarImage + ' ' + style.cardElem } src={ input.image } />,React.createElement('span', { className: style.cardElem + ' ' + style.nameStyle }, input.name), React.createElement('span', { className: style.cardElem + ' ' + style.emailStyle }, input.email))
             } />)
-          } 
-         </List> 
+          }
+         </List>
       </div>
     );
   }

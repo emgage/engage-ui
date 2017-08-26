@@ -3,7 +3,7 @@ import { themr, ThemedComponentClass } from 'react-css-themr';
 import { PICKER } from '../ThemeIdentifiers';
 // import TextField from '../TextField';
 import { DisplayMoreInfo } from './PickerEnum';
-import * as Autosuggest from 'react-autosuggest';  
+import * as Autosuggest from 'react-autosuggest';
 import * as baseTheme from './Picker.scss';
 
 export interface State {
