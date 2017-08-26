@@ -3,12 +3,12 @@ import { mount } from 'enzyme';
 import Chip from '../Chip';
 
 const theme = {
-  chip: 'chip',
-  chipClickable: 'chipClickable',
-  chipImage: 'chipImage',
+  Chip: 'chip',
+  ChipClickable: 'chipClickable',
+  Image: 'chipImage',
   chipRemovable: 'chipRemovable',
-  chipTransparent: 'chipTransparent',
-  chipRemove: 'chipRemove',
+  transparent: 'chipTransparent',
+  Remove: 'chipRemove',
 };
 
 describe('<Chip />', () => {

@@ -154,7 +154,7 @@ class App extends React.Component<{}, State> {
             inputProps={inputProps} />
         </div>   */}
         <TextField label="My Label" placeholder="Fun Stuff" />
-           <AutoSuggestTest />  
+           <AutoSuggestTest />
 
         {/* <PickedCard image={this.state.image} name={this.state.name} /> */}
         {/* <OffCanvas width={270} transitionDuration={270} isMenuOpened={this.state.isMenuOpened}>

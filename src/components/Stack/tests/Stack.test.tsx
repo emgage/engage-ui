@@ -7,8 +7,8 @@ import Heading from '../../Heading';
 
 
 const theme = {
-  Item: 'Item',
-  Stack: 'Stack',
+  item: 'Item',
+  stack: 'Stack',
   vertical: 'vertical',
   spacingTight: 'spacingTight',
   spacingLoose: 'spacingLoose',
@@ -48,7 +48,7 @@ describe('<Stack />', () => {
                                         <Badge>Fulfilled</Badge>
                                     </Stack>,
                              );
-        expect(stackWrapper.find('div')).toHaveLength(5);
+        expect(stackWrapper.find('div')).toHaveLength(3);
       });
       it('basic stack should have default Stack css clss on div', () => {
         const stackWrapper = mount(
@@ -117,7 +117,7 @@ describe('<Stack />', () => {
                                         <Badge>Fulfilled</Badge>
                                     </Stack>,
                              );
-        expect(stackWrapper.find('div')).toHaveLength(5);
+        expect(stackWrapper.find('div')).toHaveLength(3);
       });
       it('basic stack should have default Stack css clss on div', () => {
         const stackWrapper = mount(
@@ -156,7 +156,7 @@ describe('<Stack />', () => {
                                         <Badge>Fulfilled</Badge>
                                     </Stack>,
                              );
-        expect(stackWrapper.find('div')).toHaveLength(5);
+        expect(stackWrapper.find('div')).toHaveLength(3);
       });
       it('basic stack should have default Stack css clss on div', () => {
         const stackWrapper = mount(
@@ -195,7 +195,7 @@ describe('<Stack />', () => {
                                         <Badge>Fulfilled</Badge>
                                     </Stack>,
                              );
-        expect(stackWrapper.find('div')).toHaveLength(5);
+        expect(stackWrapper.find('div')).toHaveLength(3);
       });
       it('basic stack should have default Stack css clss on div', () => {
         const stackWrapper = mount(
@@ -245,7 +245,7 @@ describe('<Stack />', () => {
                                         <Badge>Fulfilled</Badge>
                                     </Stack>,
                              );
-        expect(stackWrapper.find('div')).toHaveLength(5);
+        expect(stackWrapper.find('div')).toHaveLength(3);
       });
       it('basic stack should have default spacingTight css clss on div when spacing as tight', () => {
         const stackWrapper = mount(
@@ -320,7 +320,7 @@ describe('<Stack />', () => {
                                         <Badge>Fulfilled</Badge>
                                     </Stack>,
                              );
-        expect(stackWrapper.find('div')).toHaveLength(5);
+        expect(stackWrapper.find('div')).toHaveLength(3);
       });
       it('basic stack should have default Stack css clss on div', () => {
         const stackWrapper = mount(
@@ -370,7 +370,7 @@ describe('<Stack />', () => {
                                         <Badge>Fulfilled</Badge>
                                     </Stack>,
                              );
-        expect(stackWrapper.find('div')).toHaveLength(5);
+        expect(stackWrapper.find('div')).toHaveLength(3);
       });
       it('basic stack should have default Stack css clss on div', () => {
         const stackWrapper = mount(
@@ -446,7 +446,7 @@ describe('<Stack />', () => {
                                         <Badge>Fulfilled</Badge>
                                     </Stack>,
                              );
-        expect(stackWrapper.find('div')).toHaveLength(5);
+        expect(stackWrapper.find('div')).toHaveLength(3);
       });
       it('basic stack should have default Stack css clss on div', () => {
         const stackWrapper = mount(
@@ -496,7 +496,7 @@ describe('<Stack />', () => {
                                         <Badge>Fulfilled</Badge>
                                     </Stack>,
                              );
-        expect(stackWrapper.find('div')).toHaveLength(5);
+        expect(stackWrapper.find('div')).toHaveLength(3);
       });
       it('basic stack should have default distributionLeading css clss on div when distribution set as distributionLeading', () => {
         const stackWrapper = mount(
@@ -625,7 +625,7 @@ describe('<Stack />', () => {
                                         <Badge>Fulfilled</Badge>
                                     </Stack>,
                              );
-        expect(stackWrapper.find('div')).toHaveLength(5);
+        expect(stackWrapper.find('div')).toHaveLength(3);
       });
       it('basic stack should have default Stack css class on div', () => {
         const stackWrapper = mount(
