@@ -1,9 +1,7 @@
 import * as React from 'react';
-import { FormLayout } from '../../../../src/components/';
+import { FormLayout , TextField } from '../../../../src/components/';
 import Group from '../../../../src/components/FormLayout/Group';
 
-// tslint:disable-next-line:no-duplicate-imports
-import { TextField } from '../../../../src/components/';
 import * as styles from '../../styles/components-page.scss';
 
 export interface IProps{

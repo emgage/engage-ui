@@ -8,7 +8,7 @@ const FormLayoutExampleSecondCode = require('!raw-loader!../../examples/FormLayo
 const FormLayoutState: IDocument = {
   id: 'FormLayout',
   heading: 'FormLayout Component',
-  subheading: `A FormLayout displays multiple related actions in a row to help with horizontal 
+  subheading: `A FormLayout displays multiple related actions in a row to help with horizontal
               arrangement and the spacing of calls to action.`,
   property: [
     {
@@ -23,7 +23,7 @@ const FormLayoutState: IDocument = {
       name: 'theme',
       type: 'any',
       desc: 'display any type of theme.',
-    }, 
+    },
   ],
   exampleCode: FormLayoutExampleFirstCode,
   exampleComponent: FormLayoutExampleFirst,

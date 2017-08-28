@@ -3,7 +3,6 @@ import { Link, IndexLink } from 'react-router';
 
 import * as styles from '../../styles/nav.scss';
 
-// tslint:disable-next-line:variable-name
 const Nav = () => {
   return (
     <nav className={styles.nav}>
