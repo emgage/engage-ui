@@ -6,7 +6,6 @@ export interface IProps{
 }
 
 export interface IState {
-  radioValues: string[];
 }
 
 class AvatarExample extends React.Component<IProps, IState> {
@@ -14,7 +13,6 @@ class AvatarExample extends React.Component<IProps, IState> {
     super(props);
 
     this.state = {
-      radioValues: [],
     };
   }
 
