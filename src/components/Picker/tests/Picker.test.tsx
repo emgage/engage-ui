@@ -33,13 +33,11 @@ describe('when default props are provided', () => {
             moreInfoComponentShowOn={DisplayMoreInfo.onHover}
             selectedResultsBehavior="mark"
             theme={theme}
-        />);
-    expect(subject.find('label').length).toBe(1);
-    expect(subject.find('label').text()).toBe('lbl');
+    />);
+    expect(subject.find('label').length).toBe(2);
     expect(subject.find('input').length).toBe(1);
-    const input = subject.find('input');
-    expect(input.prop('id')).toBe('TextField1');
-    expect(input.prop('placeholder')).toBe('Search people and group');
+    expect(subject.find('input').prop('id')).toBe('TextField1');
+    expect(subject.find('input').prop('placeholder')).toBe('Search people and group');
   });
   describe('searchBehavior()', () => {
     it('is called with the search', () => {
