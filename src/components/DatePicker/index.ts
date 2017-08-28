@@ -50,4 +50,4 @@ export {
   toLocalizedDateString,
   // toMomentObject: moment(toMomentObject),
   toMomentObject,
-}
+};
