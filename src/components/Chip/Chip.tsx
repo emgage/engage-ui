@@ -34,8 +34,7 @@ class Chip extends React.PureComponent<Props, any> {
 
     const className = classNames(
       theme.Chip,
-      transparent && theme.transparent,
-    );
+      transparent && theme.transparent);
     const chipContents = [(
       image
       ?
