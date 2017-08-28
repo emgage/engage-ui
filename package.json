@@ -71,7 +71,7 @@
     "style-loader": "^0.16.1",
     "svgo": "^0.7.2",
     "tslint": "^4.4.2",
-    "tslint-config-shopify": "^1.1.4",
+    "tslint-config-shopify": "^3.0.0",
     "typescript": "^2.3.2",
     "underscore": "^1.8.3",
     "webpack": "^3.3.0",

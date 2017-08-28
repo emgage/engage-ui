@@ -13,7 +13,7 @@ import LeftArrow from '../svg/arrow-left.svg';
 import CloseButton from '../svg/close.svg';
 import CalendarIcon from '../svg/calendar.svg';
 
-import { START_DATE, END_DATE } from '../constants';
+import { START_DATE, END_DATE } from '../Constants';
 import { DATEPICKER } from './../../ThemeIdentifiers';
 import * as baseTheme from './../style/style.scss';
 

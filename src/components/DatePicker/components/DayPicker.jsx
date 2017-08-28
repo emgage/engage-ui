@@ -34,7 +34,7 @@ import {
   VERTICAL_ORIENTATION,
   VERTICAL_SCROLLABLE,
   DAY_SIZE,
-} from '../constants';
+} from '../Constants';
 
 import { DATEPICKER } from './../../ThemeIdentifiers';
 import * as baseTheme from './../style/style.scss';

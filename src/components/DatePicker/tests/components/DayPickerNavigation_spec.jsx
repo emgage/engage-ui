@@ -8,7 +8,7 @@ import {
   HORIZONTAL_ORIENTATION,
   VERTICAL_ORIENTATION,
   VERTICAL_SCROLLABLE,
-} from '../../constants';
+} from '../../Constants';
 
 describe('DayPickerNavigation', () => {
   describe('#render', () => {
