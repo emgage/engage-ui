@@ -39,6 +39,7 @@
   ],
   "exclude": [
     "./@types",
+    "./src/components/ReactDataGrid/",
     "**/*.js",
     "**/*.jsx"
   ]

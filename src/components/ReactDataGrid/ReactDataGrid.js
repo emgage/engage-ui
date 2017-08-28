@@ -1,4 +1,3 @@
-/* tslint:disable */
 const React                 = require('react');
 const ReactDOM = require('react-dom');
 const BaseGrid              = require('./Grid');
