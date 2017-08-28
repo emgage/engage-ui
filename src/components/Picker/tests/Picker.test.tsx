@@ -34,7 +34,6 @@ describe('when default props are provided', () => {
             selectedResultsBehavior="mark"
             theme={theme}
     />);
-    console.log('find subject', subject.find('label'));
     expect(subject.find('label').length).toBe(2);
     expect(subject.find('input').length).toBe(1);
     expect(subject.find('input').prop('id')).toBe('TextField1');
