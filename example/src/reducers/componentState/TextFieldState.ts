@@ -15,7 +15,7 @@ const TextFieldState: IDocument = {
     }, {
       name: 'suffix',
       type: 'React.ReactNode',
-      desc: '	Text to display after value.',
+      desc: 'Text to display after value.',
     }, {
       name: 'placeholder',
       type: 'string',
@@ -31,7 +31,7 @@ const TextFieldState: IDocument = {
     }, {
       name: 'enableTextCouter',
       type: 'boolean',
-      desc: ' ',
+      desc: 'display the TextCounter.',
     }, {
       name: 'label',
       type: 'string',
@@ -115,7 +115,7 @@ const TextFieldState: IDocument = {
     },{
       name: 'required',
       type: 'boolean',
-      desc: ' ',
+      desc: 'To make it required or not.',
     }, {
       name: 'spellCheck',
       type: 'boolean',
@@ -123,11 +123,11 @@ const TextFieldState: IDocument = {
     }, {
       name: 'style',
       type: 'React.CSSProperties',
-      desc: ' ',
+      desc: 'To provide styling.',
     },{
       name: 'theme',
       type: 'any',
-      desc: ' ',
+      desc: 'Theme to be injected via css-themr.',
     }, {
       name: 'onChange',
       type: '(value: string): void',
