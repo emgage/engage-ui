@@ -4,8 +4,6 @@ import Card from './Card';
 import * as style from './Picker.scss';
 import Chip from '../Chip';
 
-// https://developer.mozilla.org/en/docs/Web/JavaScript/Guide/Regular_Expressions#Using_Special_Characters
-
 function escapeRegexCharacters(str:string) {
   return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
@@ -16,10 +14,7 @@ function renderSuggestion(suggestion:any, { isHighlighted, query }:any) {
   const queryData = suggestion.name.slice(index, index + query.length);
   const nameAfter = suggestion.name.slice(index + query.length);
 
-  if (isHighlighted) return <Card isHighlighted={true} image={suggestion.image} nameBefore={nameBefore} bold={queryData} nameAfter={nameAfter} email={suggestion.email}/>;
-  else return (
-    <Card image={suggestion.image} nameBefore={nameBefore} bold={queryData} nameAfter={nameAfter} email={suggestion.email}/>
-  );
+  <Card isHighlighted={isHighlighted} image={suggestion.image} nameBefore={nameBefore} bold={queryData} nameAfter={nameAfter} email={suggestion.email}/>;
 }
 
 export interface State {
@@ -104,16 +99,11 @@ class AutoSuggestTest extends React.Component<Props, State> {
       }
     }
   }
-  // handler = (e:any) => {
-  //   e.stopPropagation();
-  //   e.preventDefault();
-  // }
 
   onSuggestionsFetchRequested = ({ value }:any) => {
     this.setState({
       suggestions: this.getSuggestions(value),
     });
-    // document.addEventListener('click',this.handler,true);
   }
 
   updateList = (input: any) => {
@@ -190,5 +180,4 @@ class AutoSuggestTest extends React.Component<Props, State> {
   }
 }
 
-// ReactDOM.render(<Test />, document.getElementById('app'));
 export default AutoSuggestTest;

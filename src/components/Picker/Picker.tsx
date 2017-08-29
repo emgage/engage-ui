@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from 'react-css-themr';
 import { PICKER } from '../ThemeIdentifiers';
-// import TextField from '../TextField';
 import { DisplayMoreInfo } from './PickerEnum';
 import * as Autosuggest from 'react-autosuggest';
 import * as baseTheme from './Picker.scss';
@@ -44,7 +43,7 @@ export interface Props {
   onRemove?(item: any): void;
   onMoreInfo?(): void;
 }
-  // test!!
+
 const languages = [
   {
     name: 'C',
@@ -66,7 +65,6 @@ const getSuggestions = (value: any) => {
 };
 const getSuggestionValue = (suggestion:any) => suggestion.name;
 
-// Use your imagination to render suggestions.
 const renderSuggestion = (suggestion:any) => (
   <div>
     {suggestion.name}
@@ -103,26 +101,6 @@ class Picker extends React.Component<Props, State> {
   render() {
     console.log('Autosuggest:', Autosuggest);
     const { value, suggestions } = this.state;
-    const {
-      // required,
-      // filterPlaceHolder,
-      selectedResultsBehavior,
-      // moreInfoComponent,
-      // chipComponent,
-      // searchResultComponent,
-      // searchBehavior = this.handleChange,
-      // moreInfoComponentShowOn = DisplayMoreInfo.onClick,
-      // onSelect = this.handleSelect,
-      // onRemove = this.handleRemove,
-      // onMoreInfo = this.handleMoreInfo,
-      theme,
-    } = this.props;
-    let className = '';
-    if (selectedResultsBehavior === 'hide') {
-      className = theme.pickerResultHide;
-    } else {
-      className = theme.pickerResultShow;
-    }
     const inputProps = {
       value,
       placeholder: 'Type a programming language',
@@ -132,13 +110,6 @@ class Picker extends React.Component<Props, State> {
     return (
             <div>
                 <div>
-                    {/* <div className={className}>
-                        {
-                            this.state.selectedItems.map((i) => {
-                              return React.createElement(chipComponent as React.ComponentClass<{ clickable: boolean, removable: boolean, onRemove(item: any): void }>, { onRemove, key: i.id, clickable: false, removable: true }, [i.name]);
-                            })
-                        }
-                    </div> */}
                     <Autosuggest
                       suggestions={suggestions}
                       onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
@@ -147,73 +118,10 @@ class Picker extends React.Component<Props, State> {
                       renderSuggestion={renderSuggestion}
                       inputProps={inputProps}
                     />
-                     {/* <TextField
-                      label="lbl"
-                      value={this.state.people}
-                      placeholder={filterPlaceHolder}
-                      onChange={searchBehavior}
-                      required={required}
-                    />  */}
                 </div>
-                {/* <div>
-                    {
-                        this.state.searchItems.map((i) => {
-                          return React.createElement(searchResultComponent as React.ComponentClass<{ clickable: boolean, moreInfoComponent: React.ReactNode, moreInfoComponentShowOn: DisplayMoreInfo, onClick(item: any): void, handleMoreInfo(): void }>, { moreInfoComponent, moreInfoComponentShowOn, key: i.id, clickable: true, onClick: onSelect, handleMoreInfo: onMoreInfo }, [i.name]);
-                        })
-                    }
-                </div> */}
             </div>
     );
   }
-  // private handleChange = (value: string) => {
-  //   this.setState({ ['people']: value });
-  //   setTimeout(() => {
-  //     this.props.source.performFilter(value).then(this.onSuccess).catch(this.onError);
-  //   },         this.props.millisecondsToWaitBeforeSearch === undefined ? 0 : this.props.millisecondsToWaitBeforeSearch);
-  // }
-  // private onSuccess = (item: any) => {
-  //   this.setState({ ['searchItems']: item });
-  // }
-  // private onError = (item: any) => {
-  //       // TODO: Error display
-  //   alert(item);
-  // }
-  // private handleRemove = (event: any) => {
-  //   const item = this.state.selectedItems.find(x => x.name === event.currentTarget.previousElementSibling.innerText);
-  //   const items = this.state.selectedItems;
-  //   if (this.props.minSelectedItems !== undefined && this.props.minSelectedItems === items.length) {
-  //     return;
-  //   }
-  //   if (item !== undefined) {
-  //     const index: number = items.indexOf(item);
-  //     if (index !== -1) {
-  //       items.splice(index, 1);
-  //     }
-  //   }
-  //   this.setState({ ['selectedItems']: items });
-  //   return;
-  // }
-
-  // private handleSelect = (event: any) => {
-  //   const item = this.state.searchItems.find(x => x.name === event.currentTarget.text);
-  //   const items = this.state.selectedItems;
-  //   if (this.props.maxSelectedItems !== undefined && this.props.maxSelectedItems === items.length) {
-  //     return;
-  //   }
-  //   if (item !== undefined) {
-  //     if (!items.some(x => x.name === item.name)) {
-  //       items.push(item);
-  //     }
-  //   }
-  //   this.setState({ ['selectedItems']: items });
-  //   this.setState({ ['searchItems']: [] });
-  //   return;
-  // }
-
-  // private handleMoreInfo = () => {
-  //   this.setState({ ['moreInfo']: !this.state.moreInfo });
-  //   return;
-  // }
 }
 
 export { Picker as UnthemedPicker };

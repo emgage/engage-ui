@@ -36,8 +36,6 @@ class Chip extends React.PureComponent<Props, any> {
 
     let className;
 
-    // console.log('props', this.props);
-
     if (this.props.markedForDelete) {
       className = classNames(
         theme.Chip,
