@@ -14,15 +14,15 @@ const DisplayTextState: IDocument = {
     {
       name: 'element',
       type: 'HeadingTagName',
-      desc: 'Name of element to use for text',
+      desc: 'Name of element to use for text from H1 to H6 and p',
     }, {
       name: 'children',
       type: 'React.ReactNode',
-      desc: 'Size of the text',
+      desc: 'The content to display for displaytext' ,
     }, {
       name: 'size',
       type: 'Size',
-      desc: 'Set the status of the DisplayText',
+      desc: 'Size of the text small, medium, large or extralarge',
     },{
       name: 'theme',
       type: 'any',
