@@ -29,7 +29,7 @@ import {
   VERTICAL_ORIENTATION,
   VERTICAL_SCROLLABLE,
   DAY_SIZE,
-} from '../constants';
+} from '../Constants';
 
 const propTypes = forbidExtraProps({
   enableOutsideDays: PropTypes.bool,

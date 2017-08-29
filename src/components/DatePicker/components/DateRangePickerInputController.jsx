@@ -17,7 +17,7 @@ import toISODateString from '../utils/toISODateString';
 import isInclusivelyAfterDay from '../utils/isInclusivelyAfterDay';
 import isBeforeDay from '../utils/isBeforeDay';
 
-import { START_DATE, END_DATE } from '../constants';
+import { START_DATE, END_DATE } from '../Constants';
 
 const propTypes = forbidExtraProps({
   startDate: momentPropTypes.momentObj,

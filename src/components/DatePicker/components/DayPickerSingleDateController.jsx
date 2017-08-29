@@ -25,7 +25,7 @@ import {
   HORIZONTAL_ORIENTATION,
   VERTICAL_SCROLLABLE,
   DAY_SIZE,
-} from '../constants';
+} from '../Constants';
 
 import DayPicker from './DayPicker';
 
