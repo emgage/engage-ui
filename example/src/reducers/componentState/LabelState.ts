@@ -8,7 +8,7 @@ const LabelExampleSecondCode = require('!raw-loader!../../examples/LabelExample/
 const LabelState: IDocument = {
   id: 'label',
   heading: 'Label Component',
-  subheading: `Label component used to provide label to any item or other component.`,
+  subheading: `Label component is used to provide label to any item or other component.`,
   property: [
     {
       name: 'children',
