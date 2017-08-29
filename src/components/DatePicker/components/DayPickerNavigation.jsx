@@ -19,7 +19,7 @@ import * as baseTheme from './../style/style.scss';
 import {
   HORIZONTAL_ORIENTATION,
   VERTICAL_SCROLLABLE,
-} from '../Constants';
+} from '../constants';
 
 const propTypes = forbidExtraProps({
   navPrev: PropTypes.node,

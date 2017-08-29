@@ -1,4 +1,4 @@
-import { ANCHOR_LEFT } from '../Constants';
+import { ANCHOR_LEFT } from '../constants';
 
 export default function getResponsiveContainerStyles(
   anchorDirection,

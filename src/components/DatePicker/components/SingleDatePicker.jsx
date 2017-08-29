@@ -33,7 +33,7 @@ import {
   ANCHOR_LEFT,
   ANCHOR_RIGHT,
   DAY_SIZE,
-} from '../Constants';
+} from '../constants';
 
 const propTypes = forbidExtraProps(SingleDatePickerShape);
 
