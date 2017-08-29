@@ -99,7 +99,6 @@
     "@shopify/images": "^1.0.0",
     "@shopify/javascript-utilities": "^1.1.2",
     "@shopify/react-utilities": "^1.1.4",
-    "@types/classnames": "^2.2.0",
     "@types/lodash": "^4.14.62",
     "@types/moment": "^2.13.0",
     "@types/moment-jalaali": "^0.5.2",
