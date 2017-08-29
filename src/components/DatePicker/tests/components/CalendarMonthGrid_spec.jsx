@@ -6,7 +6,7 @@ import moment from 'moment';
 import CalendarMonth from '../../src/components/CalendarMonth';
 import CalendarMonthGrid from '../../src/components/CalendarMonthGrid';
 
-import { HORIZONTAL_ORIENTATION, VERTICAL_ORIENTATION } from '../../Constants';
+import { HORIZONTAL_ORIENTATION, VERTICAL_ORIENTATION } from '../../constants';
 
 import getTransformStyles from '../../src/utils/getTransformStyles';
 

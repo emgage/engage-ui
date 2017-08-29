@@ -16,7 +16,7 @@ import {
   HORIZONTAL_ORIENTATION,
   VERTICAL_ORIENTATION,
   VERTICAL_SCROLLABLE,
-} from '../../Constants';
+} from '../../constants';
 
 const today = moment();
 const event = { preventDefault() {}, stopPropagation() {} };

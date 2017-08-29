@@ -10,7 +10,7 @@ import {
   VERTICAL_ORIENTATION,
   ANCHOR_LEFT,
   ANCHOR_RIGHT,
-} from '../../Constants';
+} from '../../constants';
 
 import DayPickerSingleDateController from '../../src/components/DayPickerSingleDateController';
 import SingleDatePickerInput from '../../src/components/SingleDatePickerInput';

@@ -16,7 +16,7 @@ import {
   START_DATE,
   ANCHOR_LEFT,
   ANCHOR_RIGHT,
-} from '../../Constants';
+} from '../../constants';
 
 describe('DateRangePicker', () => {
   describe('#render()', () => {

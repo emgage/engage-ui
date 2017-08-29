@@ -4,7 +4,7 @@ import {
   HORIZONTAL_ORIENTATION,
   VERTICAL_ORIENTATION,
   VERTICAL_SCROLLABLE,
-} from '../Constants';
+} from '../constants';
 
 export default PropTypes.oneOf([
   HORIZONTAL_ORIENTATION,

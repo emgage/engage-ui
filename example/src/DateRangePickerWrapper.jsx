@@ -8,7 +8,7 @@ import DateRangePicker from '../../src/components/DatePicker/components/DateRang
 
 import { DateRangePickerPhrases } from '../../src/components/DatePicker/defaultPhrases';
 import DateRangePickerShape from '../../src/components/DatePicker/shapes/DateRangePickerShape';
-import { START_DATE, END_DATE, HORIZONTAL_ORIENTATION, ANCHOR_LEFT } from '../../src/components/DatePicker/Constants';
+import { START_DATE, END_DATE, HORIZONTAL_ORIENTATION, ANCHOR_LEFT } from '../../src/components/DatePicker/constants';
 import isInclusivelyAfterDay from '../../src/components/DatePicker/utils/isInclusivelyAfterDay';
 
 const propTypes = {
