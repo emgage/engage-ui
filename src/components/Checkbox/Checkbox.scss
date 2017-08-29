@@ -6,7 +6,7 @@
 @import 'shared/controls';
 @import 'shared/icons';
 
-.Checkbox {
+.checkbox {
   position: relative;
 }
 
@@ -14,49 +14,49 @@
   // The basic checked styles have more specificity than this, so need to
   // basically duplicate that selector here, too.
   // stylelint-disable-next-line selector-max-specificity
-  .Input:checked + .Backdrop,
-  .Backdrop {
+  .input:checked + .backdrop,
+  .backdrop {
     @include control-backdrop(error);
   }
 
   // We need to know if the input is focusing to change the border color.
   // stylelint-disable-next-line selector-max-specificity
-  .Input:focus + .Backdrop,
-  .Input:active + .Backdrop {
+  .input:focus + .backdrop,
+  .input:active + .backdrop {
     @include control-backdrop(focused-error);
   }
 
-  .Icon {
+  .icon {
     @include recolor-icon(color(red, dark));
   }
 }
 
-.Input {
+.input {
   @include visually-hidden;
 
   &:focus,
   &:active,
   &:checked {
-    + .Backdrop {
+    + .backdrop {
       background: color(indigo);
     }
   }
 
   &:checked {
-    ~ .Icon {
+    ~ .icon {
       transform: translate(-50%, -50%) scale(1);
     }
   }
 
   &:focus,
   &:active {
-    + .Backdrop {
+    + .backdrop {
       @include control-backdrop(focused);
     }
   }
 
   &:disabled {
-    + .Backdrop {
+    + .backdrop {
       @include control-backdrop(disabled);
     }
 
@@ -66,7 +66,7 @@
   }
 }
 
-.Backdrop {
+.backdrop {
   @include control-backdrop;
   position: absolute;
   top: 0;
@@ -75,7 +75,7 @@
   right: 0;
 }
 
-.Icon {
+.icon {
   @include recolor-icon(color(indigo));
   position: absolute;
   top: 50%;

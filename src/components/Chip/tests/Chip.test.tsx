@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { mount } from 'enzyme';
-import Chip from '..';
+import Chip from '../Chip';
 
 const theme = {
-  chip: 'chip',
-  chipClickable: 'chipClickable',
-  chipImage: 'chipImage',
+  Chip: 'chip',
+  ChipClickable: 'chipClickable',
+  Image: 'chipImage',
   chipRemovable: 'chipRemovable',
-  chipTransparent: 'chipTransparent',
-  chipRemove: 'chipRemove',
+  transparent: 'chipTransparent',
+  Remove: 'chipRemove',
 };
 
 describe('<Chip />', () => {
@@ -16,7 +16,7 @@ describe('<Chip />', () => {
   describe('when default props are provided', () => {
     it('basic chip should have rendered 2 span elements', () => {
       const subject = mount(<Chip theme={theme} />);
-        expect(subject.find('span')).toHaveLength(2);
+      expect(subject.find('span')).toHaveLength(2);
     });
     it('basic chip should have default chip css class on span', () => {
       const subject = mount(<Chip theme={theme} />);
@@ -119,10 +119,6 @@ describe('<Chip />', () => {
         const subject = mount(<Chip clickable={true} theme={theme} />);
         expect(subject.find('a')).toHaveLength(1);
       });
-      it('should have clickable chip css class on span', () => {
-        const subject = mount(<Chip clickable={true} theme={theme} />);
-        expect(subject.find('span').at(0).hasClass('chipClickable')).toBe(true);
-      });
       it('simulate chip click event', () => {
         const onChipClick = jest.fn();
         const subject = mount(<Chip clickable={true} onClick={onChipClick} theme={theme} />);
@@ -187,10 +183,6 @@ describe('<Chip />', () => {
       it('should have button remove css style', () => {
         const subject = mount(<Chip removable={true} theme={theme} />);
         expect(subject.find('button').hasClass('chipRemove')).toBe(true);
-      });
-      it('should have removable chip css class on span', () => {
-        const subject = mount(<Chip removable={true} theme={theme} />);
-        expect(subject.find('span').at(0).hasClass('chipRemovable')).toBe(true);
       });
       it('simulate remove button click event', () => {
         const onRemoveClick = jest.fn();
@@ -271,8 +263,8 @@ describe('<Chip />', () => {
     const onChipClick = jest.fn();
     const onRemoveClick = jest.fn();
     const image = {
-        url: 'http://placehold.it/50x50',
-        alt: 'Alternate Text',
+      url: 'http://placehold.it/50x50',
+      alt: 'Alternate Text',
     };
 
     it('should have rendered 3 span elements', () => {
@@ -306,14 +298,6 @@ describe('<Chip />', () => {
     it('should have button remove css style', () => {
       const subject = mount(<Chip theme={theme}  transparent={true} clickable={true} removable={true} image={image} onClick={onChipClick} onRemove={onRemoveClick} />);
       expect(subject.find('button').hasClass('chipRemove')).toBe(true);
-    });
-    it('should have clickable chip css class on span', () => {
-      const subject = mount(<Chip theme={theme}  transparent={true} clickable={true} removable={true} image={image} onClick={onChipClick} onRemove={onRemoveClick} />);
-      expect(subject.find('span').at(0).hasClass('chipClickable')).toBe(true);
-    });
-    it('should have removable chip css class on span', () => {
-      const subject = mount(<Chip theme={theme}  transparent={true} clickable={true} removable={true} image={image} onClick={onChipClick} onRemove={onRemoveClick} />);
-      expect(subject.find('span').at(0).hasClass('chipClickable')).toBe(true);
     });
     it('should have transparent chip css class on span', () => {
       const subject = mount(<Chip theme={theme} transparent={true} clickable={true} removable={true} image={image} onClick={onChipClick} onRemove={onRemoveClick} />);

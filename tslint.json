@@ -1,10 +1,26 @@
 {
   "extends": [
-    "tslint-config-shopify"
+    "tslint-config-airbnb"
   ],
   "rules": {
     "no-for-in-array": false,
     "no-inferred-empty-object-type": false,
-    "restrict-plus-operands": false
+    "restrict-plus-operands": false,
+    "max-line-length": [
+      false
+    ],
+    "variable-name": [
+      "allow-pascal-case"
+    ],
+    "indent": [
+      true,
+      "spaces",
+      2
+    ],
+    "no-increment-decrement": false,
+    "no-trailing-whitespace": [
+      true,
+      "ignore-comments"
+    ]
   }
 }

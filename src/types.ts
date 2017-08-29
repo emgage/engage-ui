@@ -1,49 +1,49 @@
-import {IconProps} from './components';
+import { IconProps } from './components';
 
 export type HeadingTagName = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p';
 
 export interface Action {
-  content?: string,
-  accessibilityLabel?: string,
-  url?: string,
-  onAction?(): void,
+  content?: string;
+  accessibilityLabel?: string;
+  url?: string;
+  onAction?(): void;
 }
 
 export interface LinkAction {
-  content?: string,
-  accessibilityLabel?: string,
-  url: string,
+  content?: string;
+  accessibilityLabel?: string;
+  url: string;
 }
 
 export interface CallbackAction {
-  content?: string,
-  accessibilityLabel?: string,
-  onAction(): void,
+  content?: string;
+  accessibilityLabel?: string;
+  onAction(): void;
 }
 
 export interface DisableableAction extends Action {
-  disabled?: boolean,
+  disabled?: boolean;
 }
 
 export interface DestructableAction extends Action {
-  destructive?: boolean,
+  destructive?: boolean;
 }
 
 export interface IconableAction extends Action {
-  icon?: IconProps['source'],
+  icon?: IconProps['source'];
 }
 
 export interface ComplexAction extends Action, DisableableAction, DestructableAction, IconableAction {
 }
 
 export interface RequiredValidationRule {
-    required: boolean,
-    message: string,
+  required: boolean;
+  message: string;
 }
 
 export interface TypeValidationRule {
-    type: string,
-    message: string,
+  type: string;
+  message: string;
 }
 
 export type ValidationRule = RequiredValidationRule | TypeValidationRule;

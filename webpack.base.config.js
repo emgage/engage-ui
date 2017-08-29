@@ -1,7 +1,5 @@
 const path = require('path');
 const webpack = require('webpack');
-const { CheckerPlugin } = require('awesome-typescript-loader');
-const { TsConfigPathsPlugin } = require('awesome-typescript-loader');
 const TypeScriptConfigFile = require('./tsconfig.json');
 
 module.exports = {
@@ -13,13 +11,13 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.js$/,
-                loader: ['babel-loader'],
+                test: /\.jsx?$/,
+                loaders: ['babel-loader'],
                 exclude: /node_modules/
             }, 
             {
                 test: /\.tsx?$/,
-                loader: 'awesome-typescript-loader',
+                loaders: ['ts-loader'],
                 exclude: /node_modules/
             },
             {
@@ -68,7 +66,7 @@ module.exports = {
                 loader: 'shopify-icons-loader'
             }, 
             {
-                test: /\.(jpe?g|png|gif)$/i,
+                test: /\.(jpe?g|ico|png|gif)$/i,
                 loaders: [
                     'file-loader?hash=sha512&digest=hex&name=[hash].[ext]',
                     'image-webpack-loader?bypassOnDebug=false'
@@ -80,9 +78,6 @@ module.exports = {
         extensions: [
             '.ts', '.tsx', '.js', '.jsx', '.scss'
         ],
-        plugins: [
-             new TsConfigPathsPlugin(TypeScriptConfigFile),
-        ]
     },
 
     plugins: [
@@ -92,7 +87,6 @@ module.exports = {
             },
         }),
         new webpack.NoEmitOnErrorsPlugin(),
-        new CheckerPlugin(),
         new webpack.LoaderOptionsPlugin({
             debug: true
        })

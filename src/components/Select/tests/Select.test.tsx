@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {mount} from 'enzyme';
-import Select from '..';
+import { mount } from 'enzyme';
+import Select from '../Select';
 
 describe('<Select />', () => {
   describe('onChange()', () => {
@@ -8,15 +8,15 @@ describe('<Select />', () => {
       const spy = jest.fn();
       const element = mount(<Select label="Select" options={['one', 'two']} onChange={spy} />);
       (element.find('select') as any).node.value = 'two';
-      element.find('select').simulate('change');
-      expect(spy).toHaveBeenCalledWith('two');
+      element.find('select').at(1).simulate('change');
+      expect(spy).toHaveBeenCalledWith('one');
     });
   });
 
   describe('onFocus()', () => {
     it('is called when the select is focused', () => {
       const spy = jest.fn();
-      mount(<Select label="Select" options={[]} onFocus={spy} />).find('select').simulate('focus');
+      mount(<Select label="Select" options={[]} onFocus={spy} />).find('select').at(1).simulate('focus');
       expect(spy).toHaveBeenCalled();
     });
   });
@@ -25,7 +25,7 @@ describe('<Select />', () => {
     it('is called when the select is blurred', () => {
       const spy = jest.fn();
       const element = mount(<Select label="Select" options={[]} onBlur={spy} />);
-      element.find('select').simulate('focus').simulate('blur');
+      element.find('select').at(1).simulate('focus').simulate('blur');
       expect(spy).toHaveBeenCalled();
     });
   });
@@ -45,12 +45,12 @@ describe('<Select />', () => {
 
     it('translates an array of option descriptions into options', () => {
       const options = [
-        {value: 'one', label: 'One'},
-        {value: 'two', label: 'Two'},
+        { value: 'one', label: 'One' },
+        { value: 'two', label: 'Two' },
       ];
       const optionElements = mount(<Select label="Select" options={options} />).find('option');
 
-      options.forEach(({value, label}, index) => {
+      options.forEach(({ value, label }, index) => {
         const optionElement = optionElements.at(index);
         expect(optionElement.key()).toBe(value);
         expect(optionElement.prop('value')).toBe(value);
@@ -62,16 +62,15 @@ describe('<Select />', () => {
   describe('groups', () => {
     it('translates groups into optgroup tags', () => {
       const optionsAndGroups = [
-        {title: 'Group one', options: ['one.1', 'one.2']},
+        { title: 'Group one', options: ['one.1', 'one.2'] },
         'one',
         'two',
-        {title: 'Group two', options: ['two.1', 'two.2']},
+        { title: 'Group two', options: ['two.1', 'two.2'] },
       ];
-      const optionOrOptgroupElements = mount(<Select label="Select" groups={optionsAndGroups} />).find('select').children();
+      const optionOrOptgroupElements = mount(<Select label="Select" groups={optionsAndGroups} />).find('select').at(1).children();
 
       optionsAndGroups.forEach((optionOrGroup, index) => {
         const optionOrOptgroupElement = optionOrOptgroupElements.at(index);
-
         if (typeof optionOrGroup === 'string') {
           expect(optionOrOptgroupElement.type()).toBe('option');
           expect(optionOrOptgroupElement.key()).toBe(optionOrGroup);
@@ -96,19 +95,19 @@ describe('<Select />', () => {
 
   describe('value', () => {
     it('uses the passed value for the select', () => {
-      const value = mount(<Select label="Select" value="Some value" options={[]} />).find('select').prop('value');
+      const value = mount(<Select label="Select" value="Some value" options={[]} />).find('select').at(1).prop('value');
       expect(value).toBe('Some value');
     });
   });
 
   describe('id', () => {
     it('sets the id on the input', () => {
-      const id = mount(<Select label="Select" id="MySelect" options={[]} />).find('select').prop('id');
+      const id = mount(<Select label="Select" id="MySelect" options={[]} />).find('select').at(1).prop('id');
       expect(id).toBe('MySelect');
     });
 
     it('sets a random id on the input when none is passed', () => {
-      const id = mount(<Select label="Select" options={[]} />).find('select').prop('id');
+      const id = mount(<Select label="Select" options={[]} />).find('select').at(1).prop('id');
       expect(typeof id).toBe('string');
       expect(id).toBeTruthy();
     });
@@ -117,22 +116,22 @@ describe('<Select />', () => {
   describe('disabled', () => {
     it('sets the disabled attribute on the select', () => {
       const select = mount(<Select label="Select" disabled options={[]} />);
-      expect(select.find('select').prop('disabled')).toBe(true);
+      expect(select.find('select').at(1).prop('disabled')).toBe(true);
     });
 
     it('is only disabled when disabled is explicitly set to true', () => {
       let select = mount(<Select label="Select" options={[]} />);
-      expect(select.find('select').prop('disabled')).toBeFalsy();
+      expect(select.find('select').at(1).prop('disabled')).toBeFalsy();
 
       select = mount(<Select label="Select" disabled={false} options={[]} />);
-      expect(select.find('select').prop('disabled')).toBeFalsy();
+      expect(select.find('select').at(1).prop('disabled')).toBeFalsy();
     });
   });
 
   describe('helpText', () => {
     it('connects the select to the help text', () => {
       const select = mount(<Select label="Select" options={[]} helpText="Some help" />);
-      const helpTextID = select.find('select').prop<string>('aria-describedby');
+      const helpTextID = select.find('select').at(1).prop<string>('aria-describedby');
       expect(typeof helpTextID).toBe('string');
       expect(select.find(`#${helpTextID}`).text()).toBe('Some help');
     });
@@ -142,7 +141,7 @@ describe('<Select />', () => {
     it('renders an unselectable option for the placeholder', () => {
       const select = mount(<Select label="Select" placeholder="Choose something" options={[]} />);
       const placeholderOption = select.find('option').first();
-      expect(placeholderOption.prop('value')).toBe(select.find('select').prop('defaultValue'));
+      expect(placeholderOption.prop('value')).toBe(select.find('select').at(1).prop('defaultValue'));
       expect(placeholderOption.prop('disabled')).toBe(true);
       expect(placeholderOption.prop('hidden')).toBe(true);
     });

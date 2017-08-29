@@ -5,9 +5,9 @@
     "target": "es2016",
     "module": "commonjs",
     "moduleResolution": "node",
-    "declaration": true,
-    "declarationDir": "./lib/@types",
     "jsx": "react",
+    "checkJs": false,
+    "allowJs": true,
     "strictNullChecks": true,
     "noImplicitAny": true,
     "experimentalDecorators": true,
@@ -33,10 +33,13 @@
   },
   "include": [
     "./config/typescript/**/*",
-    "./src/**/*",
+    "./src/**/*.ts",
+    "./src/**/*.tsx",
     "./typings/*"
   ],
   "exclude": [
-    "./@types"
+    "./@types",
+    "**/*.js",
+    "**/*.jsx"
   ]
 }

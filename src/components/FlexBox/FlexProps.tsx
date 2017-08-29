@@ -3,7 +3,7 @@ export enum FlexAlign {
   Center,
   End,
   Stretch,
-};
+}
 
 export enum FlexJustify {
   Start,
@@ -11,11 +11,11 @@ export enum FlexJustify {
   End,
   SpaceAround,
   SpaceBetween,
-};
+}
 
 export enum FlexDirection {
   Row,
   RowReverse,
   Column,
   ColumnReverse,
-};
+}

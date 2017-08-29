@@ -7,12 +7,12 @@ import { TEXT_FIELD } from '../ThemeIdentifiers';
 import * as baseTheme from '../TextField/TextField.scss';
 
 export interface Props extends TextFieldProps {
-    id: string,
-    name: string,
-    form?: any,
-    validateTrigger?: ['onBlur' | 'onChange'],
-    validateRules?: [ValidationRule],
-    validator?(rule: object, value: any, callback: (error?: Error) => void): void,
+  id: string;
+  name: string;
+  form?: any;
+  validateTrigger?: ['onBlur' | 'onChange'];
+  validateRules?: [ValidationRule];
+  validator?(rule: object, value: any, callback: (error?: Error) => void): void;
 }
 
 class ValidatedTextFieldComponent extends React.PureComponent<Props, {}> {
@@ -23,7 +23,7 @@ class ValidatedTextFieldComponent extends React.PureComponent<Props, {}> {
 
   render() {
     if (!this.props.name) {
-        throw new Error('Name property is required on ValidatedTextFieldComponent.');
+      throw new Error('Name property is required on ValidatedTextFieldComponent.');
     }
 
     const {
@@ -36,12 +36,12 @@ class ValidatedTextFieldComponent extends React.PureComponent<Props, {}> {
         ...otherProps,
     } = this.props;
     const initialValue = otherProps.value;
-    const {...otherFieldProps} = form.getFieldProps(this.props.name, {
-        validateTrigger,
-        rules: validateRules,
-        initialValue,
-        onChange,
-        onBlur,
+    const { ...otherFieldProps } = form.getFieldProps(this.props.name, {
+      initialValue,
+      onChange,
+      onBlur,
+      validateTrigger,
+      rules: validateRules,
     });
 
     return (
