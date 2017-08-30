@@ -217,13 +217,10 @@ export {
 } from './Video';
 
 export {
-<<<<<<< HEAD
   default as Column,
   Props as ColumnProps,
 } from './Column';
-=======
   default as VisuallyHidden,
   Props as VisuallyHiddenProps,
 } from './VisuallyHidden';
 
->>>>>>> master
