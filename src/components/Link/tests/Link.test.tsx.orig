@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { mount, shallow } from 'enzyme';
 import Link from '../Link';
-<<<<<<< HEAD
 const theme = {
       external: 'external',
       url: 'https://www.google.co.in',
@@ -87,7 +86,6 @@ describe('<Link />', () => {
     });
   });
 });
-=======
 
 describe('onClick()', () => {
   it('is called when the Link is clicked', () => {
@@ -131,4 +129,3 @@ describe('url', () => {
   });
 });
 
->>>>>>> f5062066d9c8804c4fbadf112ff932b85dda3ad7
