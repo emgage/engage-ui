@@ -4,14 +4,14 @@ import Card from '../Card';
 import Section from '../Section';
 import { Action } from '../../../types';
 
-describe('Card - Test Suit', () => {
+describe('<Card /> Test Suit', () => {
   const theme = {
-    Card: 'Card',
+    card: 'Card',
     subdued: 'subdued',
-    Header: 'Header',
-    Section: 'Section',
-    SectionHeader: 'SectionHeader',
-    Footer: 'Footer',
+    header: 'Header',
+    section: 'Section',
+    sectionHeader: 'SectionHeader',
+    footer: 'Footer',
   };
 
   it('should verify that Card has <h2> tag for title', () => {
@@ -73,10 +73,10 @@ describe('Card - Test Suit', () => {
     };
     const cardWrapper = mount(
                                 <Card title="Online store dashboard - Card"  actions={[action]}>
-                                    <p>View a summary of your online store’s performance.</p> 
+                                    <p>View a summary of your online store’s performance.</p>
                                 </Card>,
                             );
-    cardWrapper.find('button').simulate('click');
+    cardWrapper.find('button').at(1).simulate('click');
     expect(spy).toHaveBeenCalled();
   });
   it('should verify that primaryFooterAction is called', () => {
@@ -87,10 +87,10 @@ describe('Card - Test Suit', () => {
     };
     const cardWrapper = mount(
                                 <Card title="Online store dashboard - Card"  primaryFooterAction={action}>
-                                    <p>View a summary of your online store’s performance.</p> 
+                                    <p>View a summary of your online store’s performance.</p>
                                 </Card>,
                             );
-    cardWrapper.find('button').simulate('click');
+    cardWrapper.find('button').at(1).simulate('click');
     expect(spy).toHaveBeenCalled();
   });
   it('should verify that secondaryFooterAction is called', () => {
@@ -101,16 +101,16 @@ describe('Card - Test Suit', () => {
     };
     const cardWrapper = mount(
                                 <Card title="Online store dashboard - Card"  secondaryFooterAction={action}>
-                                    <p>View a summary of your online store’s performance.</p> 
+                                    <p>View a summary of your online store’s performance.</p>
                                 </Card>,
                             );
-    cardWrapper.find('button').simulate('click');
+    cardWrapper.find('button').at(1).simulate('click');
     expect(spy).toHaveBeenCalled();
   });
   it('should verify that sectioned is boolean type', () => {
     const cardWrapper = mount(
                                 <Card title="Online store dashboard - Card" sectioned>
-                                    <p>View a summary of your online store’s performance.</p> 
+                                    <p>View a summary of your online store’s performance.</p>
                                 </Card>,
                             );
     expect(typeof cardWrapper.prop('sectioned')).toBe('boolean');
@@ -118,7 +118,7 @@ describe('Card - Test Suit', () => {
   it('should verify that subdued is boolean type', () => {
     const cardWrapper = mount(
                                 <Card title="Online store dashboard - Card" subdued>
-                                    <p>View a summary of your online store’s performance.</p> 
+                                    <p>View a summary of your online store’s performance.</p>
                                 </Card>,
                             );
     expect(typeof cardWrapper.prop('subdued')).toBe('boolean');
@@ -126,7 +126,7 @@ describe('Card - Test Suit', () => {
   it('should verify that Card can have multiple sections with title', () => {
     const cardWrapper = mount(
                                 <Card title="Online store dashboard - Card" sectioned theme={theme}>
-                                    <Section title="Reports" theme={theme}> 
+                                    <Section title="Reports" theme={theme}>
                                         <p>View a summary of your online store’s performance.</p>
                                     </Section>
                                     <Section title="Summary Reports" theme={theme}>
@@ -135,15 +135,15 @@ describe('Card - Test Suit', () => {
                                 </Card>,
                             );
     expect(cardWrapper.prop('sectioned')).toBe(true);
-    expect(cardWrapper.find('Section').at(1).text()).toBe('ReportsView a summary of your online store’s performance.');
-    expect(cardWrapper.find('Section').at(2).text()).toBe('Summary ReportsView a summary of your online store’s performance, including sales, visitors, top products, and referrals.');
+    expect(cardWrapper.find('div').at(3).text()).toBe('ReportsView a summary of your online store’s performance.');
+    expect(cardWrapper.find('div').at(5).text()).toBe('Summary ReportsView a summary of your online store’s performance, including sales, visitors, top products, and referrals.');
     expect(cardWrapper.find('h3').length).toBe(2);
     expect(cardWrapper.find('p').length).toBe(2);
   });
   it('should verify that Card is set with subdued option.', () => {
     const cardWrapper = mount(
                                 <Card title="Online store dashboard - Card" sectioned>
-                                    <Section title="Reports" subdued> 
+                                    <Section title="Reports" subdued>
                                         <p>View a summary of your online store’s performance.</p>
                                     </Section>
                                     <Section title="Summary Reports" subdued>
@@ -159,7 +159,7 @@ describe('Card - Test Suit', () => {
   it('should verify that Card is set with theme.', () => {
     const cardWrapper = mount(
                                 <Card title="Online store dashboard - Card" sectioned>
-                                    <Section title="Reports" subdued> 
+                                    <Section title="Reports" subdued>
                                         <p>View a summary of your online store’s performance.</p>
                                     </Section>
                                     <Section title="Summary Reports" subdued theme={theme}>

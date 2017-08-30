@@ -3,7 +3,7 @@ import { mount } from 'enzyme';
 import Scrollable from '../Scrollable';
 
 const theme = {
-  Scrollable: 'Scrollable',
+  scrollable: 'Scrollable',
   horizontal: 'horizontal',
   shadow: 'shadow',
   vertical: 'vertical',
@@ -11,14 +11,14 @@ const theme = {
 
 describe('<Scrollable />', () => {
   describe('when default props are provided', () => {
-      it('should have rendered 1 div elements', () => {
-        const subject = mount(<Scrollable theme={theme} />);
-        expect(subject.find('div')).toHaveLength(1);
-      });
-      it('should have default scrollable css class on div', () => {
-        const subject = mount(<Scrollable theme={theme} />);
-        expect(subject.find('div').at(0).hasClass('Scrollable')).toBe(true);
-      });
+    it('should have rendered 1 div elements', () => {
+      const subject = mount(<Scrollable theme={theme} />);
+      expect(subject.find('div')).toHaveLength(1);
+    });
+    it('should have default scrollable css class on div', () => {
+      const subject = mount(<Scrollable theme={theme} />);
+      expect(subject.find('div').at(0).hasClass('Scrollable')).toBe(true);
+    });
   });
 
   describe(' property', () => {
@@ -43,8 +43,8 @@ describe('<Scrollable />', () => {
         expect(subject.find('div').at(0).hasClass('vertical')).toBe(true);
       });
       it('should verify set the vertical is true', () => {
-      const scrollableWrapper = mount(<Scrollable vertical={true} theme={theme} />);
-      expect(scrollableWrapper.prop('vertical')).toBe(true);
+        const scrollableWrapper = mount(<Scrollable vertical={true} theme={theme} />);
+        expect(scrollableWrapper.prop('vertical')).toBe(true);
       });
     });
 
@@ -60,11 +60,11 @@ describe('<Scrollable />', () => {
       it('should not have Vertical element', () => {
         const subject = mount(<Scrollable theme={theme} />);
         expect(subject.find('vertical')).toHaveLength(0);
-       });
-        it('should vertical element is undfine', () => {
+      });
+      it('should vertical element is undfine', () => {
         const subject = mount(<Scrollable theme={theme} />);
         expect(subject.prop('vertical')).toBeUndefined();
-       });
+      });
     });
 
     describe('when set to false for vertical', () => {
@@ -104,8 +104,8 @@ describe('<Scrollable />', () => {
           expect(subject.find('div').at(0).hasClass('horizontal')).toBe(true);
         });
         it('should verify set the horizontal is true', () => {
-        const scrollableWrapper = mount(<Scrollable horizontal theme={theme} />);
-        expect(scrollableWrapper.prop('horizontal')).toBe(true);
+          const scrollableWrapper = mount(<Scrollable horizontal theme={theme} />);
+          expect(scrollableWrapper.prop('horizontal')).toBe(true);
         });
       });
 
@@ -122,7 +122,7 @@ describe('<Scrollable />', () => {
           const subject = mount(<Scrollable theme={theme} />);
           expect(subject.find('horizontal')).toHaveLength(0);
         });
-          it('should horizontal element is undfine', () => {
+        it('should horizontal element is undfine', () => {
           const subject = mount(<Scrollable theme={theme} />);
           expect(subject.prop('horizontal')).toBeUndefined();
         });
@@ -166,8 +166,8 @@ describe('<Scrollable />', () => {
           expect(subject.find('div').at(0).hasClass('Scrollable')).toBe(true);
         });
         it('should verify set the shadow is true', () => {
-        const scrollableWrapper = mount(<Scrollable shadow theme={theme} />);
-        expect(scrollableWrapper.prop('shadow')).toBe(true);
+          const scrollableWrapper = mount(<Scrollable shadow theme={theme} />);
+          expect(scrollableWrapper.prop('shadow')).toBe(true);
         });
       });
 
@@ -184,7 +184,7 @@ describe('<Scrollable />', () => {
           const subject = mount(<Scrollable theme={theme} />);
           expect(subject.find('shadow')).toHaveLength(0);
         });
-          it('should shadow element is undfine', () => {
+        it('should shadow element is undfine', () => {
           const subject = mount(<Scrollable theme={theme} />);
           expect(subject.prop('shadow')).toBeUndefined();
         });

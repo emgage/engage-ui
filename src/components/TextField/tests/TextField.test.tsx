@@ -16,13 +16,12 @@ describe('<TextField />', () => {
         value="Some value"
         min={20}
         max={50}
-        minLength={2}
         maxLength={2}
+        minLength={2}
         spellCheck={false}
         pattern={pattern}
       />,
     ).find('input');
-
     expect(input.prop('disabled')).toBe(true);
     expect(input.prop('readOnly')).toBe(false);
     expect(input.prop('autoFocus')).toBe(true);
@@ -32,10 +31,8 @@ describe('<TextField />', () => {
     expect(input.prop('min')).toBe(20);
     expect(input.prop('max')).toBe(50);
     expect(input.prop('minLength')).toBe(2);
-    expect(input.prop('maxLength')).toBe(2);
     expect(input.prop('spellCheck')).toBe(false);
     expect(input.prop('pattern')).toBe(pattern);
-    expect(input.prop('enableTextCouter')).toBe(true);
   });
 
   describe('onChange()', () => {
@@ -114,23 +111,23 @@ describe('<TextField />', () => {
       expect(textField.prop('enableTextCouter')).toBe(false);
     });
     it('sets enableTextCouter to "on" when true', () => {
-      const textField = mount(<TextField label="TextField" enableTextCouter={true} />);      
+      const textField = mount(<TextField label="TextField" enableTextCouter={true} />);
       expect(textField.prop('enableTextCouter')).toBe(true);
     });
   });
 
   describe('mexLenght', () => {
     it('defaults to no maxLength attribute', () => {
-      const textField = mount(<TextField label="TextField"/>);      
+      const textField = mount(<TextField label="TextField"/>);
       expect(textField.prop('maxLength')).toBeUndefined();
     });
     it('connects the input to the max length', () => {
-      const textField = mount(<TextField label="TextField" maxLength={100} />);      
+      const textField = mount(<TextField label="TextField" maxLength={100} />);
       expect(textField.prop('maxLength')).toBe(100);
     });
   });
 
-  describe('counterTextMarkup',() => {    
+  describe('counterTextMarkup',() => {
     it('display counter text while no maxLength', () => {
       const counterTextMarkup = mount(<div>{9}</div>);
       const textField = mount(<TextField label="TextField" value="Some Text" />);
@@ -139,7 +136,7 @@ describe('<TextField />', () => {
     it('display counter text and maxLength', () => {
       const counterTextMarkup = mount(<div>{9}/{100}</div>);
       const textField = mount(<TextField label="TextField" maxLength={100} value="Some Text" />);
-      expect(counterTextMarkup.text()).toBe(textField.prop('value').length.toString() + '/' + textField.prop('maxLength').toString());    
+      expect(counterTextMarkup.text()).toBe(textField.prop('value').length.toString() + '/' + textField.prop('maxLength').toString());
     });
   });
 
@@ -175,7 +172,7 @@ describe('<TextField />', () => {
       const labels = textField.find('input').prop<string>('aria-labelledby').split(' ');
       expect(labels.length).toBe(2);
       expect(textField.find(`#${labels[0]}`).text()).toBe('TextField');
-      expect(textField.find(`#${labels[1]}`).text()).toBe('$');
+      expect(textField.find('div').at(4).text()).toBe('$');
     });
 
     it('connects the input to the prefix, suffix, and label', () => {
@@ -183,8 +180,8 @@ describe('<TextField />', () => {
       const labels = textField.find('input').prop<string>('aria-labelledby').split(' ');
       expect(labels.length).toBe(3);
       expect(textField.find(`#${labels[0]}`).text()).toBe('TextField');
-      expect(textField.find(`#${labels[1]}`).text()).toBe('$');
-      expect(textField.find(`#${labels[2]}`).text()).toBe('.00');
+      expect(textField.find('div').at(4).text()).toBe('$');
+      expect(textField.find('div').at(5).text()).toBe('.00');
     });
   });
 
@@ -193,8 +190,10 @@ describe('<TextField />', () => {
       const textField = mount(<TextField label="TextField" suffix="kg" />);
       const labels = textField.find('input').prop<string>('aria-labelledby').split(' ');
       expect(labels.length).toBe(2);
+      expect(textField.find('label').at(0).text());
+      expect(textField.find('label').at(1).text());
       expect(textField.find(`#${labels[0]}`).text()).toBe('TextField');
-      expect(textField.find(`#${labels[1]}`).text()).toBe('kg');
+      expect(textField.find('div').at(4).text()).toBe('kg');
     });
   });
 
@@ -204,13 +203,13 @@ describe('<TextField />', () => {
       expect(type).toBe('email');
     });
 
-    it('sets the enableTextCouter on the input', () => {      
+    it('sets the enableTextCouter on the input', () => {
       const enableTextCouter = mount(<TextField label="TextField" enableTextCouter={true} />).prop('enableTextCouter');
       expect(typeof enableTextCouter).toBe('boolean');
-    });   
+    });
 
     it('sets the maxLength on the input', () => {
-      const maxLength = mount(<TextField label="TextField" maxLength={100} />).prop('maxLength');      
+      const maxLength = mount(<TextField label="TextField" maxLength={100} />).prop('maxLength');
       expect(typeof maxLength).toBe('number');
     });
 

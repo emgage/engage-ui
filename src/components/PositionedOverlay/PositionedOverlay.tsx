@@ -93,7 +93,7 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
       <div
         className={theme.positionedOverlay}
         style={{ top, left, zIndex }}
-        ref={(input) => { this.setOverlay(input as HTMLElement); }} 
+        ref={(input) => { this.setOverlay(input as HTMLElement); }}
       >
         {render(this.overlayDetails())}
       </div>
