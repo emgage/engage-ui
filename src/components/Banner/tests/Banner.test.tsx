@@ -220,7 +220,7 @@ describe('<Banner />', () => {
         expect(bannerWrapper.prop('status')).toBeUndefined();
       });
     });
-    
+
     describe('when set', () => {
       it('should verify banner when action property is set', () => {
         const spy = jest.fn();
@@ -233,7 +233,7 @@ describe('<Banner />', () => {
                                     action={mainAction} theme={theme} >
                                       <p>
                                           This order was archived.
-                                      </p> 
+                                      </p>
                                     </Banner>,
                                     );
         expect(bannerWrapper.find('div')).toHaveLength(8);
@@ -269,7 +269,7 @@ describe('<Banner />', () => {
         expect(bannerWrapper.prop('status')).toBeUndefined();
       });
     });
-  
+
     describe('when set', () => {
       it('should verify banner when secondary action property is set', () => {
         const spy1 = jest.fn();
@@ -288,7 +288,7 @@ describe('<Banner />', () => {
                                     secondaryAction={secondaryAction} theme={theme} >
                                         <p>
                                             This order was archived.
-                                        </p> 
+                                        </p>
                                     </Banner>,
                             );
         expect(bannerWrapper.find('div')).toHaveLength(9);
@@ -318,11 +318,13 @@ describe('<Banner />', () => {
 
   describe('onDismiss function', () => {
     it('should verify banner onDismiss function is called', () => {
-      const spy = jest.fn();
+      const spy = jest.fn(() => 'default')
+        .mockImplementationOnce(() => 'first call');
+      spy();
       const bannerWrapper = mount(
                                  <Banner title="DismissCheck" onDismiss={() => spy()} theme={theme} >
                                     <p>
-                                      Use your finance report. Dismissed.                                            
+                                      Use your finance report. Dismissed.
                                     </p>
                                  </Banner>,
                                  );
@@ -337,6 +339,7 @@ describe('<Banner />', () => {
       expect(typeof bannerWrapper.prop('onDismiss')).toBeDefined();
       bannerWrapper.find('button').at(0).simulate('click');
       expect(spy).toBeCalled();
+      expect(spy.mock.calls.length).toBe(1);
     });
   });
 

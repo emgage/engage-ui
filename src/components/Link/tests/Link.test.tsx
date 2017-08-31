@@ -16,7 +16,7 @@ describe('<Link />', () => {
                                 <Link onClick={spy}>
                                     Test
                                 </Link>,
-                                ); 
+                                );
       linkWrapper.simulate('click');
     });
   });

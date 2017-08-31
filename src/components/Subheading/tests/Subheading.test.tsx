@@ -3,7 +3,7 @@ import { mount } from 'enzyme';
 import Subheading from '../Subheading';
 
 const theme = {
-  Subheading: 'Subheading',
+  subheading: 'Subheading',
 };
 
 describe('<Subheading />', () => {

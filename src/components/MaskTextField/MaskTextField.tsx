@@ -401,7 +401,7 @@ class MaskTextField extends React.PureComponent<Props, State> {
               ...currObj,
               [key]: this[key],
             };
-          }, 
+          },
           { ...props });
       }
     }

@@ -6,7 +6,7 @@ import * as styles from '../../styles/components-page.scss';
 export interface IProps{
 }
 
-export interface IState { 
+export interface IState {
 }
 
 const theme = {
@@ -22,9 +22,6 @@ class CardSecondExample extends React.Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
 
-    this.state = {
-  
-    };
   }
 
   valueUpdater(field: any) {

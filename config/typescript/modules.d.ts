@@ -5,6 +5,7 @@ declare module 'hoist-non-react-statics' {
   export = hoistNonReactStatics;
 }
 
+declare module 'velocity-animate';
 declare module 'react-router-dom';
 declare module 'react-prism';
 declare module 'react-table';

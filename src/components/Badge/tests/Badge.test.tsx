@@ -27,7 +27,7 @@ describe('<Badge />', () => {
       const badgeWrapper = mount(
                                  <Badge  theme = {theme} />,
                            );
-      console.log(badgeWrapper.html());             
+      console.log(badgeWrapper.html());
       expect(badgeWrapper.find('span').at(0).hasClass('Badge')).toBe(true);
     });
   });

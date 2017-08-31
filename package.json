@@ -20,13 +20,19 @@
   "types": "lib/@types/src/index.d.ts",
   "scripts": {
     "lint": "node node_modules/tslint/bin/tslint 'src/**/*.{ts,tsx}' --config tslint.json --exclude \"src/**/*.{js,jsx}\" --project tsconfig.json",
-    "lintwithfix": "node node_modules/tslint/bin/tslint 'src/**/*.{ts,tsx}' --config tslint.json --exclude \"src/**/*.{js,jsx}\" --project tsconfig.json --fix",
+    "lint-fix": "node node_modules/tslint/bin/tslint --fix 'src/**/*.{ts,tsx}' --config tslint.json --exclude \"src/**/*.{js,jsx}\" --project tsconfig.json",
     "test": "node node_modules/jest/bin/jest.js --config ./config/jest/config.json",
     "check": "npm-run-all lint build-dev test",
     "build-dev": "node node_modules/webpack/bin/webpack.js",
     "build-release": "node node_modules/webpack/bin/webpack.js -p",
-    "example": "webpack-dev-server --config webpack.dev.config"
+    "example": "webpack-dev-server --config webpack.example.config",
+    "docs": "webpack-dev-server --config webpack.docs.config",
+    "precommit-msg": "echo 'Running linting and testing checks...' && exit 0"
   },
+  "pre-commit": [
+    "precommit-msg",
+    "lint"
+  ],
   "devDependencies": {
     "@types/enzyme": "^2.8.5",
     "@types/jest": "^19.2.2",
@@ -69,7 +75,8 @@
     "tslint-config-shopify": "^3.0.0",
     "typescript": "^2.4.2",
     "underscore": "^1.8.3",
-    "webpack": "3.3.0"
+    "webpack": "3.3.0",
+    "webpack-dev-server": "^2.7.1"
   },
   "peerDependencies": {
     "react": "^15.5.4",
@@ -96,6 +103,7 @@
     "@types/prop-types": "^15.5.1",
     "@types/react": "^15.6.1",
     "@types/react-dom": "^15.5.1",
+    "@types/velocity-animate": "^1.2.30",
     "@types/react-redux": "^4.4.47",
     "@types/react-router": "^3.0.12",
     "@types/react-router-redux": "^4.0.48",
@@ -109,6 +117,7 @@
     "immutable": "^3.8.1",
     "loader-utils": "^1.1.0",
     "lodash": "^4.17.4",
+    "pre-commit": "^1.2.2",
     "prop-types": "^15.5.8",
     "raw-loader": "^0.5.1",
     "rc-form": "^1.4.6",
@@ -120,9 +129,10 @@
     "react-router-redux": "4.0.7",
     "react-syntax-highlighter": "5.6.2",
     "react-text-mask-hoc": "^0.3.0",
+    "tslib": "^1.7.1",
+    "velocity-animate": "^1.5.0",
     "redux": "3.6.0",
     "redux-immutable-state-invariant": "^2.0.0",
-    "redux-thunk": "2.2.0",
-    "tslib": "^1.7.1"
+    "redux-thunk": "2.2.0"
   }
 }
