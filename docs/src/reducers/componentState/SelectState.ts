@@ -1,6 +1,5 @@
 import { IDocument } from '../../Types';
 import SelectExampleFirst from '../../examples/SelectExample/SelectExampleFirst';
-import SelectExampleSecond from '../../examples/SelectExample/SelectExampleSecond';
 
 const SelectExampleFirstCode = require('!raw-loader!../../examples/SelectExample/SelectExampleFirst') as string;
 
@@ -15,7 +14,7 @@ const SelectState: IDocument = {
       desc: 'List of options to choose from',
     }, {
       name: 'groups',
-      type: 'Group or Option)[]',
+      type: '(Group or Option)[]',
       desc: 'List of option groups to choose from',
     }, {
       name: 'label',
