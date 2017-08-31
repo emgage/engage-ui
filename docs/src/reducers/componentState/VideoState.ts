@@ -8,7 +8,7 @@ const VideoExampleSecondCode = require('!raw-loader!../../examples/VideoExample/
 const VideoState: IDocument = {
   id: 'video',
   heading: 'Video Component',
-  subheading: `Video component is used to view videos with different types and with diffrent sources(supports single source as well as multi source).Also supports single source as well as multi source for Video.The video component renders a HTML 5 video tag and applies their attributes`,
+  subheading: `Video component is used to view videos with different types and with diffrent sources(supports single source as well as multi source).The video component renders a HTML 5 video tag and applies their attributes.`,
   property: [
     {
       name: 'poster',

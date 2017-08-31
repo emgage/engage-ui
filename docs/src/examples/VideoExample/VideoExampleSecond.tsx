@@ -11,13 +11,6 @@ export interface IState {
 class VideoExampleSecond extends React.Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
-
-    this.state = {
-    };
-  }
-
-  valueUpdater(field: any) {
-    return (value: any) => this.setState({ [field]: value });
   }
 
   render() {
@@ -38,6 +31,7 @@ class VideoExampleSecond extends React.Component<IProps, IState> {
       <div className={styles.example}>
         <h3>3.Multi Video Source with Controls:</h3>
         <Video poster={posterUrl} src={multiVideoSource} autoplay={false} controls={true} style={{ height: 400, width: 400 }} />
+
         <h3>4.Video with all properties:</h3>
         <Video poster={posterUrl} src={multiVideoSource} autoplay={false} controls={true}
         preload="auto" loop={false} muted style={{ height: 400, width: 400 }} />
