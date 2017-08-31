@@ -50,7 +50,7 @@ const RadioButtonState: IDocument = {
     {
       name: 'onChange',
       type: 'function(newValue: boolean)',
-      desc: 'Callback when the radio button is toggled',
+      desc: 'Callback when the radio button is toggled.',
     },
     {
       name: 'onFocus',
