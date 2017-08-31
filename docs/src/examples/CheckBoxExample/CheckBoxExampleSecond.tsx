@@ -12,9 +12,6 @@ export interface IState {
 class CheckboxExample extends React.Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
-
-    this.state = {
-    };
   }
 
   valueUpdater(field: any) {
