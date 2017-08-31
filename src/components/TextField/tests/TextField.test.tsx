@@ -20,7 +20,6 @@ describe('<TextField />', () => {
         minLength={2}
         spellCheck={false}
         pattern={pattern}
-        enableTextCouter={true}
       />,
     ).find('input');
     expect(input.prop('disabled')).toBe(true);
@@ -32,10 +31,8 @@ describe('<TextField />', () => {
     expect(input.prop('min')).toBe(20);
     expect(input.prop('max')).toBe(50);
     expect(input.prop('minLength')).toBe(2);
-    expect(input.prop('maxLength')).toBe(2);
     expect(input.prop('spellCheck')).toBe(false);
     expect(input.prop('pattern')).toBe(pattern);
-    expect(input.prop('enableTextCouter')).toBe(true);
   });
 
   describe('onChange()', () => {
