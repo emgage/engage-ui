@@ -11,13 +11,6 @@ export interface IState {
 class ChoiceExampleFirst extends React.Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
-
-    this.state = {
-    };
-  }
-
-  valueUpdater(field: any) {
-    return (value: any) => this.setState({ [field]: value });
   }
 
   render() {
@@ -26,7 +19,7 @@ class ChoiceExampleFirst extends React.Component<IProps, IState> {
         <h3>1.Default Choice:</h3>
         <Choice id="MyChoice" label="ChoiceLabel"/>
 
-        <h3>2.Choice with Error:</h3>
+        <h3>2.Choice with Error property:</h3>
         <Choice id="MyChoice" label="ChoiceLabel" error="test"/>
       </div>
     );
