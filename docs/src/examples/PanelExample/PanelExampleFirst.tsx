@@ -11,9 +11,6 @@ export interface IState {
 class PanelExample extends React.Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
-
-    this.state = {
-    };
   }
 
   valueUpdater(field: any) {
