@@ -12,15 +12,15 @@ const ImageState: IDocument = {
     {
       name: 'alt',
       type: 'string',
-      desc: 'Alt text for the image',
+      desc: 'Alt text for the image.',
     }, {
       name: 'source',
       type: 'string',
-      desc: 'URL for the image',
+      desc: 'URL for the image.',
     }, {
       name: 'sourceSet',
       type: 'SourceSet[](source: string, descriptor: string)',
-      desc: 'To display the source url set of the image',
+      desc: 'To display the source url set of the image.',
     },
   ],
 
