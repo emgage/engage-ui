@@ -4,14 +4,14 @@ import ValidatedTextField from '../ValidatedTextField';
 import ValidatedForm from '../../ValidatedForm/ValidatedForm';
 
 describe('<ValidatedTextField / >', () => {
-  
+
   describe('when default props are provided', () => {
   it('basic validatedtextfield should be rendered with default props', () => {
     const validatedTextFieldWrapper = mount(
                                             <ValidatedForm>
                                                 <ValidatedTextField
-                                                id="AppName"                                            
-                                                label="App Name"                                            
+                                                id="AppName"
+                                                label="App Name"
                                                 name="App Name" />
                                             </ValidatedForm>);
   expect(validatedTextFieldWrapper.find('form')).toHaveLength(1);
@@ -33,8 +33,8 @@ describe('<ValidatedTextField / >', () => {
         const validatedTextFieldWrapper = mount(
                                             <ValidatedForm>
                                                 <ValidatedTextField
-                                                id="AppName"                                            
-                                                label="App Name"                                            
+                                                id="AppName"
+                                                label="App Name"
                                                 name="App Name" />
                                             </ValidatedForm>);
         expect(validatedTextFieldWrapper.find('form')).toHaveLength(1);
@@ -57,8 +57,8 @@ describe('<ValidatedTextField / >', () => {
         const validatedTextFieldWrapper = mount(
                                             <ValidatedForm>
                                                 <ValidatedTextField
-                                                id="AppName"                                            
-                                                label="App Name"                                            
+                                                id="AppName"
+                                                label="App Name"
                                                 name="App Name" />
                                             </ValidatedForm>);
         expect(validatedTextFieldWrapper.find('form')).toHaveLength(1);
@@ -82,11 +82,11 @@ describe('<ValidatedTextField / >', () => {
         const validatedTextFieldWrapper = mount(
                                             <ValidatedForm>
                                                 <ValidatedTextField
-                                                id="AppName"                                            
-                                                label="App Name"                                            
+                                                id="AppName"
+                                                label="App Name"
                                                 name="App Name"
                                                 value="Test"
-                                                required={true} 
+                                                required={true}
                                                 onBlur={ () => spy()}
                                                 validateTrigger={['onBlur']}
                                                 validateRules={[{ required: true, message: 'App Name is required.' },
@@ -114,11 +114,11 @@ describe('<ValidatedTextField / >', () => {
         const validatedTextFieldWrapper = mount(
                                             <ValidatedForm>
                                                 <ValidatedTextField
-                                                id="AppName"                                            
-                                                label="App Name"                                            
+                                                id="AppName"
+                                                label="App Name"
                                                 name="App Name"
                                                 value=""
-                                                required={true} 
+                                                required={true}
                                                 onBlur={ () => spy()}
                                                 validateTrigger={['onBlur']}
                                                 validateRules={[{ required: true, message: 'App Name is required.' },
@@ -145,11 +145,11 @@ describe('<ValidatedTextField / >', () => {
         const validatedTextFieldWrapper = mount(
                                             <ValidatedForm>
                                                 <ValidatedTextField
-                                                id="AppName"                                            
-                                                label="App Name"                                            
+                                                id="AppName"
+                                                label="App Name"
                                                 name="App Name"
                                                 value="Test"
-                                                required={true} 
+                                                required={true}
                                                 validateRules={[{ required: true, message: 'App Name is required.' },
                                                 ]} />
                                             </ValidatedForm>);
@@ -175,10 +175,10 @@ describe('<ValidatedTextField / >', () => {
         const validatedTextFieldWrapper = mount(
                                             <ValidatedForm>
                                                 <ValidatedTextField
-                                                id="AppName"                                            
-                                                label="App Name"  
-                                                required={true}      
-                                                onBlur={ () => spy()}                                    
+                                                id="AppName"
+                                                label="App Name"
+                                                required={true}
+                                                onBlur={ () => spy()}
                                                 name="App Name"
                                                 value=""
                                                 validateTrigger={['onBlur']}
@@ -207,10 +207,10 @@ describe('<ValidatedTextField / >', () => {
         const validatedTextFieldWrapper = mount(
                                             <ValidatedForm>
                                                 <ValidatedTextField
-                                                id="AppName"                                            
-                                                label="App Name"  
-                                                required={true}      
-                                                onBlur={ () => spy()}                                    
+                                                id="AppName"
+                                                label="App Name"
+                                                required={true}
+                                                onBlur={ () => spy()}
                                                 name="App Name"
                                                 value=""
                                                 validateTrigger={['onBlur']} />
