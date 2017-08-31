@@ -3,7 +3,7 @@ import { mount } from 'enzyme';
 import DisplayText from '../DisplayText';
 
 const theme = {
-  DisplayText: 'DisplayText',
+  displayText: 'DisplayText',
   sizeSmall: 'sizeSmall',
   sizeMedium: 'sizeMedium',
   sizeLarge: 'sizeLarge',
