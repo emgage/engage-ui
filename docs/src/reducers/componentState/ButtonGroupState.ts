@@ -14,11 +14,11 @@ const ButtonGroupState: IDocument = {
     {
       name: 'segmented',
       type: 'boolean',
-      desc: 'Display true or false value.Join buttons as segmented group',
+      desc: 'Display true or false value.Join buttons as segmented group.',
     }, {
       name: 'children',
       type: 'React.ReactNode',
-      desc: 'Name of button, 	Button components',
+      desc: 'Name of button, 	Button components.',
     }, {
       name: 'theme',
       type: 'any',
