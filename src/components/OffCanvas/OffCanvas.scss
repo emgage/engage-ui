@@ -18,8 +18,22 @@ p {
 .menuClass {
   position: absolute;
   height: 100%;
-  z-index: 12;
+  z-index: 2;
   background-color: #333;
   padding: 15px;
-  color: #777;
+  color: #777;  
 }
+
+.menuClass button {
+  top: 0px;
+  float: right;
+  cursor: pointer;
+}
+
+.menuOverlay {
+  touch-action: none;  
+  opacity: 1;
+  background: rgba(0,0,0,0.1);  
+  z-index: 1;
+}
+

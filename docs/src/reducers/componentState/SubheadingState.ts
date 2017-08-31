@@ -8,7 +8,7 @@ const SubheadingExampleSecondCode = require('!raw-loader!../../examples/Subheadi
 const HeadingState: IDocument = {
   id: 'subheading',
   heading: 'Subheading Component',
-  subheading: `Subheadings are used for the title of any sub-sections in top-level page sections. Generally, sections of a card use subheadings for their titles.`,             
+  subheading: `Subheadings are used for the title of any sub-sections in top-level page sections. Generally, sections of a card use subheadings for their titles.`,
   property: [
     {
       name: 'element',
