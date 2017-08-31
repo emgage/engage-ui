@@ -11,9 +11,6 @@ export interface IState {
 class ListExample extends React.Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
-
-    this.state = {
-    };
   }
 
   valueUpdater(field: any) {
