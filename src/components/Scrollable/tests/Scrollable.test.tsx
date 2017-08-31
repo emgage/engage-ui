@@ -3,7 +3,7 @@ import { mount } from 'enzyme';
 import Scrollable from '../Scrollable';
 
 const theme = {
-  Scrollable: 'Scrollable',
+  scrollable: 'Scrollable',
   horizontal: 'horizontal',
   shadow: 'shadow',
   vertical: 'vertical',

@@ -1,145 +1,90 @@
 import * as React from 'react';
 import { mount } from 'enzyme';
-import { OffCanvasBody, OffCanvasMenu, OffCanvasAnimationType, OffCanvasPosition } from '..';
+import { OffCanvasMode } from '../OffCanvasProps';
 import OffCanvas from '../OffCanvas';
+import Button from '../../Button';
 
-describe('<OffCanvas/>', () => {
-  describe('width', () => {
-    it('sets the width on the offcanvas', () => {
-      const offcanvas = mount(<OffCanvas width={270}/>);
-      expect(offcanvas.prop('width')).toBe(270);
-    });
-  });
-  describe('transitionDuration', () => {
-    it('sets the transitionDuration on the offcanvas', () => {
-      const offcanvas = mount(<OffCanvas transitionDuration={270}/>);
-      expect(offcanvas.prop('transitionDuration')).toBe(270);
-    });
-  });
-  describe('isMenuOpened', () => {
-    it('sets the isMenuOpened on the offcanvas', () => {
-      const offcanvas = mount(<OffCanvas isMenuOpened={false}/>);
-      expect(offcanvas.prop('isMenuOpened')).toBe(false);
-    });
-  });
-});
-
-describe('<OffCanvasBody />', () => {
+describe('<OffCanvas />', () => {
   describe('onClick()', () => {
     it('is called when the link is clicked', () => {
       const spy = jest.fn();
-      mount(<a href="#" onClick={spy}>Slide</a>).simulate('click');
-      expect(spy).toHaveBeenCalled();
-    });
-  });
-  describe('width', () => {
-    it('sets the width on the offcanvasbody', () => {
-      const offcanvasbody = mount(<OffCanvasBody width={270}/>);
-      expect(offcanvasbody.prop('width')).toBe(270);
-    });
-  });
-  describe('transitionDuration', () => {
-    it('sets the transitionDuration on the offcanvasbody', () => {
-      const offcanvasbody = mount(<OffCanvasBody transitionDuration={270}/>);
-      expect(offcanvasbody.prop('transitionDuration')).toBe(270);
-    });
-  });
-  describe('isMenuOpened', () => {
-    const closedStyle = {
-      transitionDuration: '270ms',
-      transform: 'translate(0px, 0px)',
-      backfaceVisibility: 'hidden',
-    };
-    let currStyle = Object.assign({}, closedStyle);
-    it('set closestyle while isMenuOpened is set as false on the offcanvasbody', () => {
-      const offcanvasbody = mount(<OffCanvasBody isMenuOpened={false}/>);
-      expect(offcanvasbody.prop('isMenuOpened')).toBe(false);
-
-      const offcanvasbodystyle = mount(<div style={currStyle}/>);
-      expect(offcanvasbodystyle.prop('style')).toBe(currStyle);
-    });
-    it('set openstyle while isMenuOpened is set as true on the offcanvasbody', () => {
-      const offcanvasbody = mount(<OffCanvasBody isMenuOpened={true}/>);
-      expect(offcanvasbody.prop('isMenuOpened')).toBe(true);
-
-      const openStyle = {
-        transform: 'translate(270px, 0px)',
-      };
-      currStyle = Object.assign({}, currStyle, openStyle);
-      const offcanvasbodystyle = mount(<div style={currStyle}/>);
-      expect(offcanvasbodystyle.prop('style')).toBe(currStyle);
-    });
-  });
-  describe('animation', () => {
-    it('sets animation to "Slide" on the offcanvas', () => {
-      const offcanvasbody = mount(<OffCanvasBody animation={OffCanvasAnimationType.Slide}/>);
-      expect(offcanvasbody.prop('animation')).toBe('Slide');
-    });
-    it('sets animation to "Reveal" on the offcanvas', () => {
-      const offcanvasbody = mount(<OffCanvasBody animation={OffCanvasAnimationType.Reveal}/>);
-      expect(offcanvasbody.prop('animation')).toBe('Reveal');
-    });
-    it('sets animation to "None" on the offcanvas', () => {
-      const offcanvasbody = mount(<OffCanvasBody animation={OffCanvasAnimationType.None}/>);
-      expect(offcanvasbody.prop('animation')).toBe('None');
-    });
-  });
-  describe('position', () => {
-    it('sets the isMenuOpened on the offcanvas', () => {
-      const offcanvasbody = mount(<OffCanvasBody position={OffCanvasPosition.Right}/>);
-      expect(offcanvasbody.prop('position')).toBe('right');
-    });
-  });
-});
-
-describe('<OffCanvasMenu />', () => {
-  describe('onClick()', () => {
-    it('is called when the link is clicked', () => {
-      const spy = jest.fn();
-      mount(<a href="#" onClick={spy}>Toggle Menu</a>).simulate('click');
+      mount(<Button onClick={spy}>Push Left</Button>).simulate('click');
       expect(spy).toHaveBeenCalled();
     });
   });
   describe('width', () => {
     it('sets the width on the offcanvasmenu', () => {
-      const offcanvasmenu = mount(<OffCanvasMenu width={270}/>);
+      const offcanvasmenu = mount(<OffCanvas width={270} />);
       expect(offcanvasmenu.prop('width')).toBe(270);
     });
   });
   describe('transitionDuration', () => {
     it('sets the transitionDuration on the offcanvasbody', () => {
-      const offcanvasmenu = mount(<OffCanvasMenu transitionDuration={270}/>);
+      const offcanvasmenu = mount(<OffCanvas transitionDuration={270} />);
       expect(offcanvasmenu.prop('transitionDuration')).toBe(270);
     });
   });
-  describe('isMenuOpened', () => {
+  describe('overlay', () => {
+    it('sets true the overlay on the offcanvasmenu', () => {
+      const offcanvasmenu = mount(<OffCanvas />);
+      expect(offcanvasmenu.prop('overlay')).toBeUndefined();
+    });
+    it('sets true the overlay on the offcanvasmenu', () => {
+      const offcanvasmenu = mount(<OffCanvas overlay />);
+      expect(offcanvasmenu.prop('overlay')).toBe(true);
+    });
+  });
+  describe('flip', () => {
+    it('sets true the flip on the offcanvasmenu', () => {
+      const offcanvasmenu = mount(<OffCanvas />);
+      expect(offcanvasmenu.prop('flip')).toBeUndefined();
+    });
+    it('sets true the flip on the offcanvasmenu', () => {
+      const offcanvasmenu = mount(<OffCanvas flip />);
+      expect(offcanvasmenu.prop('flip')).toBe(true);
+    });
+  });
+  describe('set style', () => {
     const closedStyle = {
       width: '270px',
-      position: 'fixed' as 'fixed',
       top: '0px',
       left: 'auto',
-      transform: 'translate(-270px, 0px)',
+      right: '-270px',
       transitionDuration: '270ms',
-      backfaceVisibility: 'hidden',
     };
     let currStyle = Object.assign({}, closedStyle);
-    it('set closestyle while isMenuOpened is set as false', () => {
-      const offcanvasmenu = mount(<OffCanvasMenu isMenuOpened={false}/>);
-      expect(offcanvasmenu.prop('isMenuOpened')).toBe(false);
+    it('set closestyle', () => {
 
-      const offcanvasmenustyle = mount(<div style={currStyle}/>);
-      expect(offcanvasmenustyle.prop('style')).toBe(currStyle);
+      const offcanvasstyle = mount(<div style={currStyle} />);
+      expect(offcanvasstyle.prop('style')).toBe(currStyle);
     });
-    it('set openstyle while isMenuOpened is set as true', () => {
-      const offcanvasmenu = mount(<OffCanvasMenu isMenuOpened={true}/>);
-      expect(offcanvasmenu.prop('isMenuOpened')).toBe(true);
+    it('set openstyle', () => {
 
       const openStyle = {
-        transform: 'translate(270px, 0px)',
+        left: '-270px',
+        right: 'auto',
       };
       currStyle = Object.assign({}, currStyle, openStyle);
-      const offcanvasmenustyle = mount(<div style={currStyle}/>);
-      expect(offcanvasmenustyle.prop('style')).toBe(currStyle);
+      const offcanvasstyle = mount(<div style={currStyle} />);
+      expect(offcanvasstyle.prop('style')).toBe(currStyle);
+    });
+  });
+  describe('mode', () => {
+    it('sets mode to "slide" on the offcanvas', () => {
+      const offcanvas = mount(<OffCanvas mode={OffCanvasMode.slide} />);
+      expect(offcanvas.prop('mode')).toBe(0);
+    });
+    it('sets mode to "push" on the offcanvas', () => {
+      const offcanvas = mount(<OffCanvas mode={OffCanvasMode.push} />);
+      expect(offcanvas.prop('mode')).toBe(2);
+    });
+    it('sets mode to "none" on the offcanvas', () => {
+      const offcanvas = mount(<OffCanvas mode={OffCanvasMode.none} />);
+      expect(offcanvas.prop('mode')).toBe(3);
+    });
+    it('sets mode to "reveal" on the offcanvas', () => {
+      const offcanvas = mount(<OffCanvas mode={OffCanvasMode.reveal} />);
+      expect(offcanvas.prop('mode')).toBe(1);
     });
   });
 });
