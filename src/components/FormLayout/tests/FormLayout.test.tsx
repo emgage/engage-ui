@@ -6,12 +6,12 @@ import Group from '../Group';
 
 describe('<FormLayout />', () => {
     const theme = {
-                        FormLayout: 'FormLayout',
+                        formLayout: 'FormLayout',
                         condensed: 'condensed',
-                        Title: 'Title',
-                        Items: 'Items',
-                        HelpText: 'HelpText',
-                        Item: 'Item',
+                        title: 'Title',
+                        items: 'Items',
+                        helpText: 'HelpText',
+                        item: 'Item',
                     };
     describe('Default FormLayout', () => {
         it('should verify formlayout without children has 1 div tag', () => {
