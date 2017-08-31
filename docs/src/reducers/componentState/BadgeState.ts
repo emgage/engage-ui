@@ -20,7 +20,7 @@ const BadgeState: IDocument = {
     }, {
       name: 'progress',
       type: 'Progress',
-      desc: 'Set the status of the badge',
+      desc: 'Show the progress of badge using round indicator',
     },{
       name: 'theme',
       type: 'any',
