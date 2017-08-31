@@ -12,7 +12,7 @@ const ButtonState: IDocument = {
     {
       name: 'url',
       type: 'string',
-      desc: 'URL to link to',
+      desc: 'To display the URL link.',
     }, {
       name: 'children',
       type: 'string',
@@ -28,7 +28,7 @@ const ButtonState: IDocument = {
     }, {
       name: 'primary',
       type: 'boolean',
-      desc: 'Display as primary button',
+      desc: 'Display as primary button.',
     }, {
       name: 'outline',
       type: 'boolean',
@@ -44,27 +44,27 @@ const ButtonState: IDocument = {
     }, {
       name: 'plain',
       type: 'boolean',
-      desc: 'Use plain button style',
+      desc: 'Use plain button style.',
     }, {
       name: 'external',
       type: 'boolean',
-      desc: 'Force url to open in a new tab',
+      desc: 'Force url to open in a new tab.',
     }, {
       name: 'submit',
       type: 'boolean',
-      desc: 'Button will submit a form',
+      desc: 'Button will submit a form.',
     }, {
       name: 'disclosure',
       type: 'boolean',
-      desc: 'Display button with a disclosure icon	',
+      desc: 'Display button with a disclosure icon.',
     }, {
       name: 'accessibilityLabel',
       type: 'string',
-      desc: 'Visually hidden text for screen readers',
+      desc: 'Visually hidden text for screen readers.',
     }, {
       name: 'icon',
       type: 'IconProps',
-      desc: 'Icon to display in the banner',
+      desc: 'Icon to display in the banner.',
     }, {
       name: 'style',
       type: 'React.CSSProperties',
@@ -72,19 +72,19 @@ const ButtonState: IDocument = {
     }, {
       name: 'theme',
       type: 'any',
-      desc: 'Theme to be injected via css-themr',
+      desc: 'Theme to be injected via css-themr.',
     }, {
       name: 'onClick',
       type: 'void',
-      desc: 'Callback when clicked',
+      desc: 'Callback when clicked.',
     }, {
       name: 'onFocus',
       type: 'void',
-      desc: 'Callback when button becomes focussed',
+      desc: 'Callback when button becomes focussed.',
     }, {
       name: 'onBlur',
       type: 'void',
-      desc: 'Callback when focus leaves button',
+      desc: 'Callback when focus leaves button.',
     },
   ],
   exampleCode: ButtonExampleFirstCode,

@@ -57,11 +57,11 @@ class ButtonExampleFirst extends React.Component<IProps> {
               <br/>
               <Button disabled>Disabled Button</Button>
               <br/><br/>
-              10. Button with Submit prop :
+              10. Button with Submit prop:
               <br/>
               <Button submit={true}>Submit Button</Button>
               <br/><br/>
-              11. Button with icon prop :
+              11. Button with icon prop:
               <br/>
               <Button icon="calendar"></Button>
               <br/><br/>
