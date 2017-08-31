@@ -11,11 +11,11 @@ const TagState: IDocument = {
     {
       name: 'children',
       type: 'string',
-      desc: 'Content to display in the tag',
+      desc: 'Content to display in the tag.',
     }, {
       name: 'theme',
       type: 'any',
-      desc: 'Theme to be injected via css-themr',
+      desc: 'Theme to be injected via css-themr.',
     }, {
       name: 'onRemove',
       type: 'void',

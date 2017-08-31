@@ -23,4 +23,5 @@ class TagExampleFirst extends React.Component<IProps, IState> {
     );
   }
 }
+
 export default TagExampleFirst;
