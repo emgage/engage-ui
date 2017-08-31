@@ -4,7 +4,7 @@ import Tooltip from '../Tooltip';
 import Link from '../../Link';
 
 const theme = {
-  Tooltip: 'Tooltip',
+  tooltip: 'Tooltip',
   measuring: 'measuring',
   positionedAbove: 'positionedAbove',
   light: 'light',
@@ -27,13 +27,13 @@ describe('<Tooltip />', () => {
 
   describe('children property', () => {
     describe('when set', () => {
-      it('basic tooltip should have rendered 2 span element', () => {
+      it('basic tooltip should have rendered 1 span element', () => {
         const tooltipWrapper = mount(
                                      <Tooltip content="This order has shipping labels." theme={theme}>
                                           <Link>Order #1001</Link>
                                       </Tooltip>,
                                );
-        expect(tooltipWrapper.find('span')).toHaveLength(2);
+        expect(tooltipWrapper.find('span')).toHaveLength(1);
       });
       it('should verify children property is defined as link', () => {
         const tooltipWrapper = mount(
@@ -68,13 +68,13 @@ describe('<Tooltip />', () => {
   });
   describe('content property', () => {
     describe('when set', () => {
-      it('basic tooltip should have rendered 2 span element', () => {
+      it('basic tooltip should have rendered 1 span element', () => {
         const tooltipWrapper = mount(
                                       <Tooltip content="This order has shipping labels." theme={theme}>
                                           <Link>Order #1001</Link>
                                       </Tooltip>,
                                );
-        expect(tooltipWrapper.find('span')).toHaveLength(2);
+        expect(tooltipWrapper.find('span')).toHaveLength(1);
       });
       it('should verify content property is available', () => {
         const tooltipWrapper = mount(
@@ -88,13 +88,13 @@ describe('<Tooltip />', () => {
   });
   describe('active property', () => {
     describe('when set to true', () => {
-      it('basic tooltip should have rendered 2 span element', () => {
+      it('basic tooltip should have rendered 1 span element', () => {
         const tooltipWrapper = mount(
                                       <Tooltip content="This order has shipping labels." active theme={theme}>
                                           <Link>Order #1001</Link>
                                       </Tooltip>,
                                );
-        expect(tooltipWrapper.find('span')).toHaveLength(2);
+        expect(tooltipWrapper.find('span')).toHaveLength(1);
       });
       it('should verify active property is available', () => {
         const tooltipWrapper = mount(
@@ -107,13 +107,13 @@ describe('<Tooltip />', () => {
     });
 
     describe('when set to false', () => {
-      it('basic tooltip should have rendered 2 span element', () => {
+      it('basic tooltip should have rendered 1 span element', () => {
         const tooltipWrapper = mount(
                                       <Tooltip content="This order has shipping labels." active={false} theme={theme}>
                                           <Link>Order #1001</Link>
                                       </Tooltip>,
                                );
-        expect(tooltipWrapper.find('span')).toHaveLength(2);
+        expect(tooltipWrapper.find('span')).toHaveLength(1);
       });
       it('should verify active property is available and set to false', () => {
         const tooltipWrapper = mount(
@@ -125,13 +125,13 @@ describe('<Tooltip />', () => {
       });
     });
     describe('when not set', () => {
-      it('basic tooltip should have rendered 2 span element', () => {
+      it('basic tooltip should have rendered 1 span element', () => {
         const tooltipWrapper = mount(
                                       <Tooltip content="This order has shipping labels." theme={theme}>
                                           <Link>Order #1001</Link>
                                       </Tooltip>,
                                  );
-        expect(tooltipWrapper.find('span')).toHaveLength(2);
+        expect(tooltipWrapper.find('span')).toHaveLength(1);
       });
       it('should verify active property is not defined', () => {
         const tooltipWrapper = mount(
@@ -154,13 +154,13 @@ describe('<Tooltip />', () => {
 
   describe('light property', () => {
     describe('when set to true', () => {
-      it('basic tooltip should have rendered 2 span element', () => {
+      it('basic tooltip should have rendered 1 span element', () => {
         const tooltipWrapper = mount(
                                       <Tooltip content="This order has shipping labels." light theme={theme}>
                                           <Link>Order #1001</Link>
                                       </Tooltip>,
                                );
-        expect(tooltipWrapper.find('span')).toHaveLength(2);
+        expect(tooltipWrapper.find('span')).toHaveLength(1);
       });
       it('should verify light property is available', () => {
         const tooltipWrapper = mount(
@@ -172,13 +172,13 @@ describe('<Tooltip />', () => {
       });
     });
     describe('when set to false', () => {
-      it('basic tooltip should have rendered 2 span element', () => {
+      it('basic tooltip should have rendered 1 span element', () => {
         const tooltipWrapper = mount(
                                       <Tooltip content="This order has shipping labels." light={false} theme={theme}>
                                           <Link>Order #1001</Link>
                                       </Tooltip>,
                                );
-        expect(tooltipWrapper.find('span')).toHaveLength(2);
+        expect(tooltipWrapper.find('span')).toHaveLength(1);
       });
       it('should verify light property is available and set as false', () => {
         const tooltipWrapper = mount(
@@ -190,13 +190,13 @@ describe('<Tooltip />', () => {
       });
     });
     describe('when not set', () => {
-      it('basic tooltip should have rendered 2 span element', () => {
+      it('basic tooltip should have rendered 1 span element', () => {
         const tooltipWrapper = mount(
                                       <Tooltip content="This order has shipping labels." theme={theme}>
                                           <Link>Order #1001</Link>
                                       </Tooltip>,
                                );
-        expect(tooltipWrapper.find('span')).toHaveLength(2);
+        expect(tooltipWrapper.find('span')).toHaveLength(1);
       });
       it('should verify light property is not defined', () => {
         const tooltipWrapper = mount(
@@ -219,13 +219,13 @@ describe('<Tooltip />', () => {
 
   describe('preferredPosition property', () => {
     describe('when set', () => {
-      it('basic tooltip should have rendered 2 span element', () => {
+      it('basic tooltip should have rendered 1 span element', () => {
         const tooltipWrapper = mount(
                                       <Tooltip content="This order has shipping labels." preferredPosition="below" theme={theme}>
                                           <Link>Order #1001</Link>
                                       </Tooltip>,
                                );
-        expect(tooltipWrapper.find('span')).toHaveLength(2);
+        expect(tooltipWrapper.find('span')).toHaveLength(1);
       });
       it('should verify preferredPosition property when position as below', () => {
         const tooltipWrapper = mount(
@@ -254,13 +254,13 @@ describe('<Tooltip />', () => {
     });
 
     describe('when not set', () => {
-      it('basic tooltip should have rendered 2 span element', () => {
+      it('basic tooltip should have rendered 1 span element', () => {
         const tooltipWrapper = mount(
                                       <Tooltip content="This order has shipping labels." theme={theme}>
                                           <Link>Order #1001</Link>
                                       </Tooltip>,
                                );
-        expect(tooltipWrapper.find('span')).toHaveLength(2);
+        expect(tooltipWrapper.find('span')).toHaveLength(1);
       });
       it('should verify preferredPosition property is not defined', () => {
         const tooltipWrapper = mount(
@@ -283,13 +283,13 @@ describe('<Tooltip />', () => {
 
   describe('activatorWrapper property', () => {
     describe('when set', () => {
-      it('basic tooltip should have rendered one span element', () => {
+      it('basic tooltip should have rendered no span element', () => {
         const tooltipWrapper = mount(
                                       <Tooltip content="This order has shipping labels." activatorWrapper="Test" theme={theme}>
                                           <Link>Order #1001</Link>
                                       </Tooltip>,
                                );
-        expect(tooltipWrapper.find('span')).toHaveLength(1);
+        expect(tooltipWrapper.find('span')).toHaveLength(0);
       });
       it('should have rendered with one activatorWrapper element', () => {
         const tooltipWrapper = mount(
@@ -309,13 +309,13 @@ describe('<Tooltip />', () => {
     });
 
     describe('when not set', () => {
-      it('basic tooltip should have rendered 2 span element', () => {
+      it('basic tooltip should have rendered 1 span element', () => {
         const tooltipWrapper = mount(
                                       <Tooltip content="This order has shipping labels." theme={theme}>
                                         <Link>Order #1001</Link>
                                       </Tooltip>,
                                );
-        expect(tooltipWrapper.find('span')).toHaveLength(2);
+        expect(tooltipWrapper.find('span')).toHaveLength(1);
       });
       it('should verify activatorWrapper property is not defined', () => {
         const tooltipWrapper = mount(

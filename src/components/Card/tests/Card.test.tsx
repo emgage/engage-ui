@@ -6,12 +6,12 @@ import { Action } from '../../../types';
 
 describe('<Card /> Test Suit', () => {
   const theme = {
-    Card: 'Card',
+    card: 'Card',
     subdued: 'subdued',
-    Header: 'Header',
-    Section: 'Section',
-    SectionHeader: 'SectionHeader',
-    Footer: 'Footer',
+    header: 'Header',
+    section: 'Section',
+    sectionHeader: 'SectionHeader',
+    footer: 'Footer',
   };
 
   it('should verify that Card has <h2> tag for title', () => {
@@ -76,7 +76,7 @@ describe('<Card /> Test Suit', () => {
                                     <p>View a summary of your online store’s performance.</p>
                                 </Card>,
                             );
-    cardWrapper.find('button').simulate('click');
+    cardWrapper.find('button').at(1).simulate('click');
     expect(spy).toHaveBeenCalled();
   });
   it('should verify that primaryFooterAction is called', () => {
@@ -90,7 +90,7 @@ describe('<Card /> Test Suit', () => {
                                     <p>View a summary of your online store’s performance.</p>
                                 </Card>,
                             );
-    cardWrapper.find('button').simulate('click');
+    cardWrapper.find('button').at(1).simulate('click');
     expect(spy).toHaveBeenCalled();
   });
   it('should verify that secondaryFooterAction is called', () => {
@@ -104,7 +104,7 @@ describe('<Card /> Test Suit', () => {
                                     <p>View a summary of your online store’s performance.</p>
                                 </Card>,
                             );
-    cardWrapper.find('button').simulate('click');
+    cardWrapper.find('button').at(1).simulate('click');
     expect(spy).toHaveBeenCalled();
   });
   it('should verify that sectioned is boolean type', () => {
@@ -135,8 +135,8 @@ describe('<Card /> Test Suit', () => {
                                 </Card>,
                             );
     expect(cardWrapper.prop('sectioned')).toBe(true);
-    expect(cardWrapper.find('Section').at(1).text()).toBe('ReportsView a summary of your online store’s performance.');
-    expect(cardWrapper.find('Section').at(2).text()).toBe('Summary ReportsView a summary of your online store’s performance, including sales, visitors, top products, and referrals.');
+    expect(cardWrapper.find('div').at(3).text()).toBe('ReportsView a summary of your online store’s performance.');
+    expect(cardWrapper.find('div').at(5).text()).toBe('Summary ReportsView a summary of your online store’s performance, including sales, visitors, top products, and referrals.');
     expect(cardWrapper.find('h3').length).toBe(2);
     expect(cardWrapper.find('p').length).toBe(2);
   });
