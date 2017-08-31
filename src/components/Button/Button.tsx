@@ -28,7 +28,7 @@ export interface Props {
   icon?: IconProps['source'];
   style?: React.CSSProperties;
   theme?: any;
-  onClick?(): void;
+  onClick?(e: any): void;
   onFocus?(): void;
   onBlur?(): void;
 }
@@ -90,37 +90,37 @@ const button = ({
 
   return (
     url
-    ? (
-      <UnstyledLink
-        url={url}
-        external={external}
-        onClick={onClick}
-        onFocus={onFocus}
-        onBlur={onBlur}
-        onMouseUp={handleMouseUp}
-        className={className}
-        disabled={disabled}
-        aria-label={accessibilityLabel}
-        style={style}
-      >
-        {content}
-      </UnstyledLink>
-    )
-    : (
-      <button
-        type={type}
-        onClick={onClick}
-        onFocus={onFocus}
-        onBlur={onBlur}
-        onMouseUp={handleMouseUp}
-        className={className}
-        disabled={disabled}
-        aria-label={accessibilityLabel}
-        style={style}
-      >
-        {content}
-      </button>
-    )
+      ? (
+        <UnstyledLink
+          url={url}
+          external={external}
+          onClick={onClick}
+          onFocus={onFocus}
+          onBlur={onBlur}
+          onMouseUp={handleMouseUp}
+          className={className}
+          disabled={disabled}
+          aria-label={accessibilityLabel}
+          style={style}
+        >
+          {content}
+        </UnstyledLink>
+      )
+      : (
+        <button
+          type={type}
+          onClick={onClick}
+          onFocus={onFocus}
+          onBlur={onBlur}
+          onMouseUp={handleMouseUp}
+          className={className}
+          disabled={disabled}
+          aria-label={accessibilityLabel}
+          style={style}
+        >
+          {content}
+        </button>
+      )
   );
 };
 
