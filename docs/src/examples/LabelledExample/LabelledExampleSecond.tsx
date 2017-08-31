@@ -13,15 +13,9 @@ const action: Action = {
   onAction: () => { alert('Clicked'); },
 };
 
-class LabelledExampleSecond extends React.Component<IProps> {
+class LabelledExampleSecond extends React.Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
-    this.state = {
-    };
-  }
-
-  valueUpdater(field: any) {
-    return (value: any) => this.setState({ [field]: value });
   }
 
   render() {
