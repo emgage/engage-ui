@@ -37,7 +37,7 @@ const ChoiceState: IDocument = {
     }, {
       name: 'theme',
       type: 'any',
-      desc: 'Theme to be injected via css-themr..',
+      desc: 'Theme to be injected via css-themr.',
     },
   ],
   exampleCode: ChoiceExampleFirstCode,
