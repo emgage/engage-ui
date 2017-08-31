@@ -20,11 +20,6 @@ class FormLayoutExampleSecond extends React.Component<IProps, IState> {
       txtValue1: '',
     };
   }
-
-  valueUpdater(fieldname: any) {
-    return (value: any) => this.setState({ [fieldname]: value });
-  }
-
   render() {
     return (
             <div className={styles.example}>

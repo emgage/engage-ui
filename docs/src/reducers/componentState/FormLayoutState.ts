@@ -14,11 +14,11 @@ const FormLayoutState: IDocument = {
     {
       name: 'children',
       type: 'React.ReactNode',
-      desc: 'display true or false value.Join buttons as segmented group',
+      desc: 'display true or false value.Join buttons as segmented group.',
     }, {
       name: 'style',
       type: 'React.CSSProperties',
-      desc: 'name of button,Button components',
+      desc: 'name of button,Button components.',
     }, {
       name: 'theme',
       type: 'any',
