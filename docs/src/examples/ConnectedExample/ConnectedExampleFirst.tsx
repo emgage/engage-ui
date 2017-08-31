@@ -11,9 +11,6 @@ export interface IState {
 class ConnectedExample extends React.Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
-
-    this.state = {
-    };
   }
 
   valueUpdater(field: any) {
