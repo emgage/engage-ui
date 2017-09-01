@@ -8,22 +8,17 @@ export interface IProps{
 export interface IState {
 }
 
-class UnstyliedLinkExampleSecond extends React.Component<IProps> {
+class UnstyliedLinkExampleSecond extends React.Component<IProps , IState> {
   constructor(props: IProps) {
     super(props);
-    this.state = {
-    };
   }
 
-  valueUpdater(field: any) {
-    return (value: any) => this.setState({ [field]: value });
-  }
   render() {
     return (
             <div className={styles.example}>
                 UnstyledLink  with external and key prop:
                 <br/>
-                <UnstyledLink external url="https://shopify.com" key="test" children="child"/>
+                <UnstyledLink external url="https://emgage.com/" key="test" children="child"/>
             </div>
     );
   }

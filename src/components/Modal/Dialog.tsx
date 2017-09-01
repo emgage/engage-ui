@@ -33,7 +33,7 @@ export interface Props {
   closeOnBackgroud?(e: React.SyntheticEvent<HTMLElement>): void;
 }
 
-const Dialog = (props: Props) => {
+const dialog = (props: Props) => {
 
   let dialogWidthSize;
 
@@ -59,12 +59,12 @@ const Dialog = (props: Props) => {
     props.backdropEnabled ? props.theme.dialog : props.theme.backDrop,
   ]);
 
-  const ButtonStyle = {
+  const buttonStyle = {
     float: `right`,
   };
 
   const close = props.onClose
-    ? <Button style={ButtonStyle} data-id={props.id ? props.id : `close-${props.id}`} onClick={props.onClose} icon="cancel" />
+    ? <Button style={buttonStyle} data-id={props.id ? props.id : `close-${props.id}`} onClick={props.onClose} icon="cancel" />
     : null;
 
   const classHeader = props.theme.header;
@@ -93,4 +93,4 @@ const Dialog = (props: Props) => {
   return type['block'];
 };
 
-export default themr(MODAL, baseTheme)((Dialog)) as ThemedComponentClass<Props, {}>;
+export default themr(MODAL, baseTheme)((dialog)) as ThemedComponentClass<Props, {}>;

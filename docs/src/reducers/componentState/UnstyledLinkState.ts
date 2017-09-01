@@ -8,24 +8,24 @@ const UnstyledLinkExampleSecondCode = require('!raw-loader!../../examples/Unstyl
 const UnstyledLinkState: IDocument = {
   id: 'UnstyledLink',
   heading: 'UnstyledLink Component',
-  subheading: ` `,
+  subheading: `UnstyledLink Component is used to open URL.`,
   property: [
     {
       name: 'url',
       type: 'string',
-      desc: 'URL to link to',
+      desc: 'To display the Url Link.',
     }, {
       name: 'external',
       type: 'boolean',
-      desc: 'To display external.',
+      desc: 'To display externally(open in new tab) or not.',
     }, {
       name: 'children',
       type: 'React.ReactNode',
-      desc: 'Content to display in the UnstyledLink',
+      desc: 'Content to display in the UnstyledLink.',
     }, {
       name: 'key: string',
       type: 'any',
-      desc: 'To display inside the key',
+      desc: 'To display inside the key.',
     }, {
       name: 'style',
       type: 'React.CSSProperties',
