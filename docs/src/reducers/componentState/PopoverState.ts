@@ -13,7 +13,7 @@ const PopoverState: IDocument = {
     {
       name: 'children',
       type: 'React.ReactNode',
-      desc: 'The content to display inside the popover',
+      desc: 'The content to display inside the popover.',
     }, {
       name: 'preferredPosition',
       type: 'PreferredPosition(above | below | mostSpace)',
