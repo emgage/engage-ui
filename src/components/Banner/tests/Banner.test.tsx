@@ -318,7 +318,9 @@ describe('<Banner />', () => {
 
   describe('onDismiss function', () => {
     it('should verify banner onDismiss function is called', () => {
-      const spy = jest.fn();
+      const spy = jest.fn(() => 'default')
+        .mockImplementationOnce(() => 'first call');
+      spy();
       const bannerWrapper = mount(
                                  <Banner title="DismissCheck" onDismiss={() => spy()} theme={theme} >
                                     <p>
@@ -337,6 +339,7 @@ describe('<Banner />', () => {
       expect(typeof bannerWrapper.prop('onDismiss')).toBeDefined();
       bannerWrapper.find('button').at(0).simulate('click');
       expect(spy).toBeCalled();
+      expect(spy.mock.calls.length).toBe(1);
     });
   });
 
