@@ -1,19 +1,27 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from 'react-css-themr';
+import { layeredComponent } from '@shopify/react-utilities/components';
+import autobind from '@shopify/javascript-utilities/autobind';
+import { classNames } from '@shopify/react-utilities/styles';
+import { noop, createUniqueIDFactory } from '@shopify/javascript-utilities/other';
+import { findFirstFocusableNode } from '@shopify/javascript-utilities/focus';
+
 import { OFFCANVAS } from '../ThemeIdentifiers';
+
+import OffCanvasOverlay from './OffCanvasOverlay';
 import * as baseTheme from './OffCanvas.scss';
-import { OffCanvasMode } from './OffCanvasProps';
-import Button from '../Button';
+
+export type Mode = 'slide' | 'push' | 'reveal';
 
 export interface Props {
-  width?: number;
-  transitionDuration?: number;
+  children?: any;
+  active?: boolean;
   flip?: boolean;
   overlay?: boolean;
-  children?: any;
-  style?: any;
-  mode?: OffCanvasMode;
+  dark?: boolean;
+  mode?: Mode;
   activator?: React.ReactNode;
+  activatorWrapper?: string;
   theme?: any;
 }
 
@@ -21,67 +29,135 @@ export interface State {
   active: boolean;
 }
 
+const getUniqueID = createUniqueIDFactory('OffCanvasContent');
+
+@layeredComponent({ idPrefix: 'OffCanvas' })
 class OffCanvas extends React.PureComponent<Props, State> {
-  state: State = { active: false };
-  render() {
+  state: State = {
+    active: false,
+  };
+
+  private id = getUniqueID();
+  private activatorNode: HTMLElement | null;
+  private activatorContainer: HTMLElement | null;
+
+  componentDidMount() {
+    this.setAccessibilityAttributes();
+  }
+
+  componentDidUpdate() {
+    this.setAccessibilityAttributes();
+  }
+
+  handleClick = () => {
+    this.setState({ active: !this.state.active });
+  }
+
+  renderLayer() {
+    const { id, activatorNode } = this;
+    if (activatorNode == null) { return null; }
+
     const {
-      width = 270,
-      transitionDuration = 270,
+      active,
+      mode,
       flip,
       overlay,
+      dark,
       children,
-      style,
-      mode,
-      activator,
       theme,
     } = this.props;
 
-    const offCanvasMode = mode === undefined ? OffCanvasMode.push : mode;
+    const containerClassName = classNames(
+      theme.offcanvas,
+      overlay && theme.overlay,
+      flip && theme.flip,
+      this.state.active && theme.open,
+    );
 
-    const leftClose = flip ? 'auto' : (-1 * width) + 'px';
-    const rightClose = flip ? (-1 * width) + 'px' : 'auto';
-    const tranDuration = offCanvasMode === OffCanvasMode.none || offCanvasMode === OffCanvasMode.reveal ? '' : transitionDuration;
-
-    const closedStyle = {
-      left: leftClose,
-      right: rightClose,
-      top: '0px',
-      width: width + 'px',
-      transitionDuration: tranDuration + 'ms',
-    };
-
-    const openStyle = {
-      left: flip ? 'auto' : '0px',
-      right: flip ? '0px' : 'auto',
-    };
-
-    let currStyle = closedStyle;
-    if (this.state.active) {
-      currStyle = { ...currStyle, ...openStyle };
-    }
+    const barClassName = classNames(
+      theme.bar,
+      dark && theme.dark,
+      mode === 'slide' && theme.animation,
+      mode === 'push' && theme.animation,
+    );
 
     const rootElement = document.body;
     if (rootElement !== null) {
-      if (offCanvasMode ===  OffCanvasMode.push || offCanvasMode ===  OffCanvasMode.reveal) {
-        rootElement.style.setProperty('transition-duration', '' + transitionDuration + 'ms');
-        rootElement.style.setProperty('margin-left', this.state.active ? flip ? '' + (-1 * width) + 'px' : '' + width + 'px' : '0px');
+      rootElement.className = this.state.active ? (theme.container) : '';
+      rootElement.className += overlay && this.state.active ? ' ' + (theme.overlay) : '';
+      rootElement.className += flip && this.state.active ? ' ' + (theme.flip) : '';
+      if (mode ===  'push' || mode ===  'reveal') {
+        rootElement.className += this.state.active ? ' ' + (theme.animation) : '';
       }
-      rootElement.className = overlay && this.state.active ? (theme.menuOverlay) : '';
     }
 
+    const bar = [
+      <div className={barClassName}>
+        <OffCanvasOverlay
+          id={id}
+          activator={activatorNode}
+          active={active || this.state.active}
+          onClose={noop}
+          onClick={this.handleClick}
+        >
+          <div className={theme.label}>
+            {children}
+          </div>
+        </OffCanvasOverlay>
+      </div>,
+    ];
+
     return (
-      <div>
-        <div onClick={this.handleClick}>{activator}</div>
-        <div style={{ ...currStyle, ...style }} className={theme.menuClass}>
-          <Button onClick={this.handleClick}>X</Button>
-          {children}
-        </div>
+      <div className={containerClassName}>
+        {
+          mode === 'reveal'
+          ?
+          <div className={theme.reveal}>
+            {bar}
+          </div>
+          :
+          bar
+        }
       </div>
     );
   }
 
-  private handleClick = () => {
-    this.setState({ active: !this.state.active });
+
+  render() {
+    const { activatorWrapper: WRAPPERCOMPONENT = 'span' } = this.props;
+
+    return (
+      <WRAPPERCOMPONENT
+        onClick={this.handleClick}
+        ref={this.setActivator}
+      >
+        {this.props.activator}
+      </WRAPPERCOMPONENT>
+    );
+  }
+
+  @autobind
+  private setActivator(node: HTMLElement | null) {
+    if (node == null) {
+      this.activatorNode = null;
+      this.activatorContainer = null;
+      return;
+    }
+
+    this.activatorNode = node.firstElementChild as HTMLElement;
+    this.activatorContainer = node;
+  }
+
+  private setAccessibilityAttributes() {
+    const { activatorContainer, id } = this;
+    if (activatorContainer == null) { return; }
+
+    const firstFocusable = findFirstFocusableNode(activatorContainer);
+    const accessibilityNode = firstFocusable || activatorContainer;
+
+    accessibilityNode.tabIndex = 0;
+    accessibilityNode.setAttribute('aria-describedby', id);
   }
 }
+
 export default themr(OFFCANVAS, baseTheme)(OffCanvas) as ThemedComponentClass<Props, State>;
