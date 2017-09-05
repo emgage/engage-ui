@@ -6,8 +6,8 @@ import * as styles from '../../styles/nav.scss';
 // tslint:disable-next-line:variable-name
 const Nav = () => {
   return (
-    <nav className={styles.nav}> 
-      <h1>Components</h1>     
+    <nav className={styles.nav}>
+      <h1>Components</h1>
       <ul>
         <li><IndexLink to="/">Home</IndexLink></li>
         <li><Link to="/component/choicelist" className={styles.active}>Choice List Component</Link></li>
