@@ -513,11 +513,11 @@ const Cell = React.createClass({
 
 
     return (
-      <div {...this.getKnownDivProps() } className={className} style={style} {...events}>
+      <td {...this.getKnownDivProps() } className={className} style={style} {...events}>
         {cellContent}
         {dragHandle}
         {tooltip}
-      </div>
+      </td>
     );
   }
 });

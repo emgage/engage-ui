@@ -81,7 +81,8 @@ const HeaderCell = React.createClass({
       height: this.props.height,
       margin: 0,
       textOverflow: 'ellipsis',
-      whiteSpace: 'nowrap'
+      whiteSpace: 'nowrap',
+      'text-align': 'left',
     };
   },
 
@@ -117,10 +118,10 @@ const HeaderCell = React.createClass({
     className = joinClasses(className, this.props.className, this.props.column.cellClass);
     let cell = this.getCell();
     return (
-      <div className={className} style={this.getStyle()}>
+      <th className={className} style={this.getStyle()}>
         {cell}
         {resizeHandle}
-      </div>
+      </th>
     );
   }
 });

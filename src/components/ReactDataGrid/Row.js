@@ -209,12 +209,13 @@ const Row = React.createClass({
 
     let cells = this.getCells();
     return (
-      <div {...this.getKnownDivProps() } className={className} style={style} onDragEnter={this.handleDragEnter} >
+      <tr {...this.getKnownDivProps() } className={className} style={style} onDragEnter={this.handleDragEnter} >
+        <th scope="row"></th>
         {
           React.isValidElement(this.props.row) ?
             this.props.row : cells
         }
-      </div >
+      </tr >
     );
   }
 });

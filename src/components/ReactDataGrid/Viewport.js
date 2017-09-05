@@ -73,11 +73,14 @@ const Viewport = React.createClass({
       position: 'absolute',
       top: this.props.rowOffsetHeight
     };
+      // <div
+      //   className="react-grid-Viewport"
+      //   style={style}>
+      //  </div> 
     return (
-      <div
-        className="react-grid-Viewport"
-        style={style}>
         <Canvas
+          className="react-grid-Viewport"
+          style={style}
           ref={(node) => this.canvas = node}
           rowKey={this.props.rowKey}
           totalWidth={this.props.totalWidth}
@@ -108,7 +111,6 @@ const Viewport = React.createClass({
           rowGroupRenderer={this.props.rowGroupRenderer}
           isScrolling={this.state.isScrolling || false}
         />
-      </div>
     );
   }
 });

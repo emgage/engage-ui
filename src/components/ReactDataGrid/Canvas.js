@@ -305,7 +305,7 @@ const Canvas = React.createClass({
 
     let style = {
       position: 'absolute',
-      top: 0,
+      top: '35px',
       left: 0,
       overflowX: 'auto',
       overflowY: 'scroll',

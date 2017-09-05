@@ -2,7 +2,7 @@ import React, {PropTypes} from 'react';
 
 const SimpleRowsContainer = (props) => {
   return (
-    <div key="rows-container">
+    <div id="look-at-me!" key="rows-container">
       {props.rows}
     </div>
   );

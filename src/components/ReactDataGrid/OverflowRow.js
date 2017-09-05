@@ -4,7 +4,7 @@ import './themes/react-data-grid-row.scss';
 
 class OverflowRow extends React.Component {
   render() {
-    return (<div tabIndex="-1" style={{ border: '1px solid #eee', height: this.props.height + 'px' }} width="100%" className="react-grid-Row"></div>);
+    return (<td tabIndex="-1" style={{ border: '1px solid #eee', height: this.props.height + 'px' }} width="100%" className="react-grid-Row"></td>);
   }
 }
 
