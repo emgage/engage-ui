@@ -72,7 +72,7 @@ const Grid = React.createClass({
 
   getStyle: function(): { overflow: string; outline: number; position: string; minHeight: number } {
     return {
-      overflow: 'hidden',
+      // overflow: 'hidden',
       outline: 0,
       position: 'relative',
       minHeight: this.props.minHeight
@@ -86,7 +86,8 @@ const Grid = React.createClass({
     let EmptyRowsView = this.props.emptyRowsView;
 
     return (
-      <div style={this.getStyle()} className="react-grid-Grid">
+      <table style={this.getStyle()} className="react-grid-Grid" summary="this is a table.">
+        <caption>Example of a Table</caption>
         <Header
           ref={(input) => { this.header = input; } }
           columnMetrics={this.props.columnMetrics}
@@ -133,7 +134,7 @@ const Grid = React.createClass({
             <EmptyRowsView />
         </div>
       }
-      </div>
+      </table>
     );
   }
 });
