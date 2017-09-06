@@ -2,7 +2,7 @@ import React, {PropTypes} from 'react';
 
 const SimpleRowsContainer = (props) => {
   return (
-    <tbody onScroll={props.tonScroll} className={props.tclassName} id="look-at-me!" key="rows-container">
+    <tbody onScroll={props.tonScroll} className={props.tclassName} key="rows-container">
       {props.rows}
     </tbody>
   );

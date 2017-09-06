@@ -72,16 +72,12 @@ const Grid = React.createClass({
 
   getStyle: function(): { overflow: string; outline: number; position: string; minHeight: number } {
     return {
-      // overflow: 'hidden',
       outline: 0,
       position: 'relative',
       minHeight: this.props.minHeight,
       width: '100%'
     };
   },
-
-          // <div ref={(node) => { this.viewPortContainer = node; } } tabIndex="0" onKeyDown={this.props.onViewportKeydown} onKeyUp={this.props.onViewportKeyup} onDoubleClick={this.props.onViewportDoubleClick}   onDragStart={this.props.onViewportDragStart} onDragEnd={this.props.onViewportDragEnd}>
-          //  </div> 
   render(): ?ReactElement {
     let headerRows = this.props.headerRows || [{ref: (node) => this.row = node}];
     let EmptyRowsView = this.props.emptyRowsView;
