@@ -84,9 +84,9 @@ const Row = React.createClass({
     const { key, formatter, locked } = column;
     const baseCellProps = { key: `${key}-${idx}`, idx: i, rowIdx: idx, height: this.getRowHeight(), column, cellMetaData };
 
-    if ((i < colVisibleStart || i > colVisibleEnd) && !locked) {
-      return <OverflowCell ref={(node) => this[key] = node} {...baseCellProps} />;
-    }
+    // if ((i < colVisibleStart || i > colVisibleEnd) && !locked) {
+    //   return <OverflowCell ref={(node) => this[key] = node} {...baseCellProps} />;
+    // }
 
     const { row, isSelected } = this.props;
     const cellProps = {

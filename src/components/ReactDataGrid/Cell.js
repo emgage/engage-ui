@@ -514,7 +514,6 @@ const Cell = React.createClass({
     let events = this.getEvents();
     const tooltip = this.props.tooltip ? (<span className="cell-tooltip-text">{this.props.tooltip}</span>) : null;
 
-
     return (
       <td {...this.getKnownDivProps() } className={className} style={style} {...events}>
         {cellContent}

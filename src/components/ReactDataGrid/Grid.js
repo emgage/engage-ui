@@ -76,6 +76,7 @@ const Grid = React.createClass({
       outline: 0,
       position: 'relative',
       minHeight: this.props.minHeight,
+      width: '100%'
     };
   },
 
@@ -86,8 +87,8 @@ const Grid = React.createClass({
     let EmptyRowsView = this.props.emptyRowsView;
 
     return (
-      <table style={this.getStyle()} className="react-grid-Grid" summary="this is a table.">
-        <caption>Example of a Table</caption>
+      <table style={this.getStyle()} className="react-grid-Grid" summary={this.props.summary}>
+        <caption>{this.props.caption}</caption>
         <Header
           ref={(input) => { this.header = input; } }
           columnMetrics={this.props.columnMetrics}

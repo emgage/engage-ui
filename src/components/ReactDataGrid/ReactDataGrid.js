@@ -965,7 +965,9 @@ const ReactDataGrid = React.createClass({
             onColumnResize={this.onColumnResize}
             rowScrollTimeout={this.props.rowScrollTimeout}
             contextMenu={this.props.contextMenu}
-            overScan={this.props.overScan} />
+            overScan={this.props.overScan} 
+            summary={this.props.summary}
+            caption={this.props.caption} />
       );
   }
 });

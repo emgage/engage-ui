@@ -5,7 +5,7 @@ import './themes/react-data-grid-cell.scss';
 class OverflowCell extends React.Component {
   getStyle() {
     let style = {
-      position: 'absolute',
+      // position: 'absolute',
       width: this.props.column.width,
       height: this.props.height,
       left: this.props.column.left,

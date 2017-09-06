@@ -173,10 +173,9 @@ const HeaderRow = React.createClass({
 
     let cells = this.getCells();
     return (
-      <tr {...this.getKnownDivProps()} className="react-grid-HeaderRow">
-        {/* <div style={cellsStyle}> */}
-          {cells}
-        {/* </div> */}
+      <tr {...this.getKnownDivProps()} className="react-grid-HeaderRow"
+      style={cellsStyle}>
+        {cells}
       </tr>
     );
   }
