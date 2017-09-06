@@ -55,7 +55,8 @@ $offcanvas-overlay-background:                   rgba(0,0,0,0.2) !default;
     background: $offcanvas-bar-background-dark;
   }
 }
-.flip > .bar {
+.flip > .bar,
+.flip > .bar  {
   left: auto;
   right: 0;
   -webkit-transform: translateX(100%);
@@ -97,19 +98,21 @@ $offcanvas-overlay-background:                   rgba(0,0,0,0.2) !default;
   }
 }
 
+.flip > .reveal {
+  right: 0;
+  left: auto;
+}
+
 .open > .reveal {
   width: $offcanvas-bar-width;
 }
 
 @media (min-width: $breakpoint-medium) {
   
-      .open > .reveal { width: $offcanvas-bar-width-m; }
-  
+  .open > .reveal {
+    width: $offcanvas-bar-width-m;
   }
 
-.flip .reveal {
-  right: 0;
-  left: auto;
 }
 
 
@@ -194,3 +197,23 @@ body.overlay {
     }
   }
 }
+
+@media (min-width: $breakpoint-medium) {
+  
+  .container {
+
+    &.animation {
+  
+      :global #root {
+        left: $offcanvas-bar-width-m;
+      }
+  
+      &.flip {
+        :global #root {
+          left: (-$offcanvas-bar-width-m);
+        }
+      }
+    }
+  }
+  
+  }
