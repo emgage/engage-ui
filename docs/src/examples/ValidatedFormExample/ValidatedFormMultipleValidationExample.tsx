@@ -75,7 +75,6 @@ class ValidatedFormMultipleValidationExample extends React.Component<IProps, ISt
               required={true}
               type="password"
               label="App Password"
-              placeholder=""
               helpText="We recommend keeping your app password alpha, numeric and special character."
               onChange={this.valueUpdater('appPassword')}
               value={this.state.appPassword}
@@ -91,7 +90,6 @@ class ValidatedFormMultipleValidationExample extends React.Component<IProps, ISt
               name="App Description"
               value={this.state.appDescription}
               label="App Description"
-              placeholder=""
               helpText="Provide an engaging description that highlights the features and functionality of your app."
               onChange={this.valueUpdater('appDescription')}
             />

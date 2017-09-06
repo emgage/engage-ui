@@ -40,7 +40,6 @@ class ValidatedFormExample extends React.Component<IProps, IState> {
               id="AppName"
               required={true}
               label="App Name"
-              placeholder=""
               helpText="We recommend keeping your app name under 23 characters."
               onChange={this.valueUpdater('appName')}
               value={this.state.appName}
@@ -57,7 +56,6 @@ class ValidatedFormExample extends React.Component<IProps, IState> {
               name="App Description"
               value={this.state.appDescription}
               label="App Description"
-              placeholder=""
               helpText="Provide an engaging description that highlights the features and functionality of your app."
               onChange={this.valueUpdater('appDescription')}
               validateTrigger={['onBlur']}
