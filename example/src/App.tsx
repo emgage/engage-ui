@@ -25,7 +25,6 @@ import {
   Item,
   Loading,
   OffCanvas,
-  // OffCanvasMode,
   Panel,
   Picker,
   Select,
@@ -244,37 +243,6 @@ class App extends React.Component<{}, State> {
             </ul>
         </OffCanvas> trigger</p>
 
-
-        {/* <p>This is some text with a <OffCanvas activator={<Button>OffCanvas Slide</Button>} mode={OffCanvasMode.slide}>
-            <p>Slide Test</p>
-            <ul>
-              <li>Link 1</li>
-              <li>Link 2</li>
-              <li>Link 3</li>
-              <li>Link 4</li>
-              <li>Link 5</li>
-            </ul>
-        </OffCanvas> in it</p>
-        <OffCanvas activator={<Button>OffCanvas Reveal</Button>} overlay mode={OffCanvasMode.reveal}>
-            <p>Reveal Test</p>
-            <ul>
-              <li>Link 1</li>
-              <li>Link 2</li>
-              <li>Link 3</li>
-              <li>Link 4</li>
-              <li>Link 5</li>
-            </ul>
-        </OffCanvas>
-        <OffCanvas activator={<Button>OffCanvas Push</Button>} mode={OffCanvasMode.push}>
-            <p>Push Test</p>
-            <ul>
-              <li>Link 1</li>
-              <li>Link 2</li>
-              <li>Link 3</li>
-              <li>Link 4</li>
-              <li>Link 5</li>
-            </ul>
-        </OffCanvas> */}
         <p> Some text with a <Tooltip
   content="This order has shipping labels."
 >

@@ -7,7 +7,6 @@ $offcanvas-bar-width:                            270px !default;
 $offcanvas-bar-padding-vertical:                 20px !default; //create global var?
 $offcanvas-bar-padding-horizontal:               20px !default; //create global var?
 $offcanvas-bar-background:                       #fff !default; //create global var?
-$offcanvas-bar-background-dark:                  #222 !default; //create global var?
 
 $offcanvas-bar-width-m:                          350px !default;
 $offcanvas-bar-padding-vertical-m:               40px !default;
@@ -23,20 +22,21 @@ $offcanvas-overlay-background:                   rgba(0,0,0,0.2) !default;
 // ========================================================================
 
 .offcanvas {
-  //display: none;
   position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
   z-index: $offcanvas-z-index;
 
+  // Flip modifier
   &.flip {
     right: 0;
     left: auto;
   }
 }
 
-
+// Bar
+// ------------------------------------------------------------------------
 .bar {
   position: absolute;
   top: 0;
@@ -50,11 +50,8 @@ $offcanvas-overlay-background:                   rgba(0,0,0,0.2) !default;
   -webkit-overflow-scrolling: touch;
   -webkit-transform: translateX(-100%);
   transform: translateX(-100%);
-
-  &.dark {
-    background: $offcanvas-bar-background-dark;
-  }
 }
+// Flip modifier
 .flip > .bar,
 .flip > .bar  {
   left: auto;
@@ -62,11 +59,12 @@ $offcanvas-overlay-background:                   rgba(0,0,0,0.2) !default;
   -webkit-transform: translateX(100%);
   transform: translateX(100%);
 }
+// Open
 .open > .bar {
   -webkit-transform: translateX(0);
   transform: translateX(0);
 }
-
+//Medium and larger screens 
 @media (min-width: $breakpoint-medium) {
 
   .bar {
@@ -77,11 +75,14 @@ $offcanvas-overlay-background:                   rgba(0,0,0,0.2) !default;
 }
 
 // Slide and Push mode animation
+// ------------------------------------------------------------------------
 .animation {
   -webkit-transition: -webkit-transform 0.3s ease-out;
   transition: transform 0.3s ease-out;
 }
 
+// Reveal animation
+// ------------------------------------------------------------------------
 .reveal {
   position: absolute;
   top: 0;
@@ -97,16 +98,16 @@ $offcanvas-overlay-background:                   rgba(0,0,0,0.2) !default;
     transform: translateX(0);
   }
 }
-
+// Flip modifier
 .flip > .reveal {
   right: 0;
   left: auto;
 }
-
+// Open
 .open > .reveal {
   width: $offcanvas-bar-width;
 }
-
+//Medium and larger screens 
 @media (min-width: $breakpoint-medium) {
   
   .open > .reveal {
@@ -115,7 +116,8 @@ $offcanvas-overlay-background:                   rgba(0,0,0,0.2) !default;
 
 }
 
-
+// Close
+// ------------------------------------------------------------------------
 .close {
   position: absolute;
   z-index: $offcanvas-z-index;
@@ -124,7 +126,8 @@ $offcanvas-overlay-background:                   rgba(0,0,0,0.2) !default;
   padding: $offcanvas-close-padding;
 }
 
-
+// Overlay
+// ------------------------------------------------------------------------
 .overlay {
 
   &.offcanvas::before {
@@ -164,17 +167,10 @@ body.overlay {
 }
 
 
-
+// Container
+// ------------------------------------------------------------------------
 .container {
   overflow-x: hidden;
-
-  // :global #root {
-  //   position: relative;
-  //   left: 0;
-  //   -webkit-transition: left 0.3s ease-out;
-  //   transition: left 0.3s ease-out;
-  //   -webkit-overflow-scrolling: touch;  
-  // }
 
   &.overlay {
     overflow: hidden;
@@ -197,7 +193,7 @@ body.overlay {
     }
   }
 }
-
+//Medium and larger screens 
 @media (min-width: $breakpoint-medium) {
   
   .container {
@@ -212,8 +208,8 @@ body.overlay {
         :global #root {
           left: (-$offcanvas-bar-width-m);
         }
+
       }
     }
-  }
-  
-  }
+  }  
+}

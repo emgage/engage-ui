@@ -13,14 +13,14 @@ import * as baseTheme from './OffCanvas.scss';
 export interface Props {
   id: string;
   active: boolean;
-  children?: React.ReactNode;
   activator: HTMLElement;
+  children?: React.ReactNode;
   theme?: any;
   onClose(): void;
   onClick(): void;
 }
 
-class OffCanvasOverlay extends React.PureComponent<Props, never> {
+class OffCanvasContent extends React.PureComponent<Props, never> {
   render() {
     const markup = this.props.active
       ? this.renderOffCanvas()
@@ -58,4 +58,4 @@ class OffCanvasOverlay extends React.PureComponent<Props, never> {
 
 }
 
-export default themr(OFFCANVAS, baseTheme)(OffCanvasOverlay) as ThemedComponentClass<Props, {}>;
+export default themr(OFFCANVAS, baseTheme)(OffCanvasContent) as ThemedComponentClass<Props, {}>;

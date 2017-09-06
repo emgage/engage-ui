@@ -8,20 +8,19 @@ import { findFirstFocusableNode } from '@shopify/javascript-utilities/focus';
 
 import { OFFCANVAS } from '../ThemeIdentifiers';
 
-import OffCanvasOverlay from './OffCanvasOverlay';
+import OffCanvasContent from './OffCanvasContent';
 import * as baseTheme from './OffCanvas.scss';
 
 export type Mode = 'slide' | 'push' | 'reveal';
 
 export interface Props {
-  children?: any;
   active?: boolean;
-  flip?: boolean;
-  overlay?: boolean;
-  dark?: boolean;
-  mode?: Mode;
   activator?: React.ReactNode;
   activatorWrapper?: string;
+  children?: any;
+  flip?: boolean;
+  mode?: Mode;
+  overlay?: boolean;
   theme?: any;
 }
 
@@ -59,11 +58,10 @@ class OffCanvas extends React.PureComponent<Props, State> {
 
     const {
       active,
-      mode,
-      flip,
-      overlay,
-      dark,
       children,
+      flip,
+      mode,
+      overlay,
       theme,
     } = this.props;
 
@@ -76,7 +74,6 @@ class OffCanvas extends React.PureComponent<Props, State> {
 
     const barClassName = classNames(
       theme.bar,
-      dark && theme.dark,
       mode === 'slide' && theme.animation,
       mode === 'push' && theme.animation,
     );
@@ -93,7 +90,7 @@ class OffCanvas extends React.PureComponent<Props, State> {
 
     const bar = [
       <div className={barClassName}>
-        <OffCanvasOverlay
+        <OffCanvasContent
           id={id}
           activator={activatorNode}
           active={active || this.state.active}
@@ -103,7 +100,7 @@ class OffCanvas extends React.PureComponent<Props, State> {
           <div className={theme.label}>
             {children}
           </div>
-        </OffCanvasOverlay>
+        </OffCanvasContent>
       </div>,
     ];
 
