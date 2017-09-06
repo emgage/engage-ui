@@ -215,7 +215,7 @@ const Row = React.createClass({
           React.isValidElement(this.props.row) ?
             this.props.row : cells
         }
-      </tr >
+      </tr>
     );
   }
 });

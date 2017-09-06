@@ -82,7 +82,7 @@ const HeaderCell = React.createClass({
       margin: 0,
       textOverflow: 'ellipsis',
       whiteSpace: 'nowrap',
-      'text-align': 'left',
+      textAlign: 'left',
     };
   },
 

@@ -2,15 +2,16 @@ import React, {PropTypes} from 'react';
 
 const SimpleRowsContainer = (props) => {
   return (
-    <div id="look-at-me!" key="rows-container">
+    <tbody onScroll={props.tonScroll} className={props.tclassName} id="look-at-me!" key="rows-container">
       {props.rows}
-    </div>
+    </tbody>
   );
 };
 
 SimpleRowsContainer.propTypes = {
   width: PropTypes.number,
-  rows: PropTypes.array
+  rows: PropTypes.array,
+  tstyle: PropTypes.object,
 };
 
 class RowsContainer extends React.Component {
@@ -53,7 +54,10 @@ RowsContainer.propTypes = {
   contextMenu: PropTypes.element,
   rowIdx: PropTypes.number,
   idx: PropTypes.number,
-  window: PropTypes.object
+  window: PropTypes.object,
+  tstyle: PropTypes.object,
+  tonScroll:PropTypes.func,
+  tclassName: PropTypes.string
 };
 
 export default RowsContainer;

@@ -75,7 +75,7 @@ const Grid = React.createClass({
       // overflow: 'hidden',
       outline: 0,
       position: 'relative',
-      minHeight: this.props.minHeight
+      minHeight: this.props.minHeight,
     };
   },
 

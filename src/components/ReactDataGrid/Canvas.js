@@ -21,7 +21,7 @@ const Canvas = React.createClass({
     height: PropTypes.number.isRequired,
     width: PropTypes.number,
     totalWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    style: PropTypes.string,
+    style: PropTypes.object,
     className: PropTypes.string,
     displayStart: PropTypes.number.isRequired,
     displayEnd: PropTypes.number.isRequired,
@@ -314,17 +314,15 @@ const Canvas = React.createClass({
     };
 
     return (
-      <div
-        style={style}
-        onScroll={this.onScroll}
-        className={joinClasses('react-grid-Canvas', this.props.className, { opaque: this.props.cellMetaData.selected && this.props.cellMetaData.selected.active }) }>
-        <RowsContainer
-          width={this.props.width}
-          rows={rows}
-          contextMenu={this.props.contextMenu}
-          rowIdx={this.props.cellMetaData.selected.rowIdx}
-          idx={this.props.cellMetaData.selected.idx} />
-      </div>
+      <RowsContainer
+        tstyle={style}
+        tonScroll={this.onScroll}
+        tclassName={joinClasses('react-grid-Canvas', this.props.className, { opaque: this.props.cellMetaData.selected && this.props.cellMetaData.selected.active })}
+        width={this.props.width}
+        rows={rows}
+        contextMenu={this.props.contextMenu}
+        rowIdx={this.props.cellMetaData.selected.rowIdx}
+        idx={this.props.cellMetaData.selected.idx} />
     );
   }
 });
