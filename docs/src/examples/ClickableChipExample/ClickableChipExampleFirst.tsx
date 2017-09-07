@@ -19,7 +19,7 @@ class ClickableChipExampleFirst extends React.Component<IProps, IState> {
       <div className={styles.example}>
         <h3>1.Default ClickableChip with Card:</h3>
         <ClickableChip chip={<Chip>Batman</Chip>}>
-        <Card title="More about Batman"/>
+          <Card title="More about Batman"/>
         </ClickableChip>
       </div>
     );
