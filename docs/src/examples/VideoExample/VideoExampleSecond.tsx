@@ -14,8 +14,7 @@ class VideoExampleSecond extends React.Component<IProps, IState> {
   }
 
   render() {
-    const posterUrl = new URL('http://4.bp.blogspot.com/_JSR8IC77Ub4/TKB-XAWXmhI/AAAAAAAABJA/MqOpdFTOaHo/w1200-' +
-      'h630-p-k-no-nu/C:%5Cfakepath%5Cbird1.jpg');
+    const posterUrl = new URL('https://cdn.joomlacontenteditor.net/images/media/big_buck_bunny.jpg');
 
     const multiVideoSource = [
       {
@@ -30,11 +29,23 @@ class VideoExampleSecond extends React.Component<IProps, IState> {
     return (
       <div className={styles.example}>
         <h3>3.Multi Video Source with Controls:</h3>
-        <Video poster={posterUrl} src={multiVideoSource} autoplay={false} controls={true} style={{ height: 400, width: 400 }} />
+        <Video
+          poster={posterUrl}
+          src={multiVideoSource}
+          autoplay={false}
+          controls={true}
+          style={{ height: 400, width: 400 }} />
 
         <h3>4.Video with all properties:</h3>
-        <Video poster={posterUrl} src={multiVideoSource} autoplay={false} controls={true}
-        preload="auto" loop={false} muted style={{ height: 400, width: 400 }} />
+        <Video
+          poster={posterUrl}
+          src={multiVideoSource}
+          autoplay={false}
+          controls={true}
+          preload="auto"
+          loop={false}
+          muted
+          style={{ height: 400, width: 400 }} />
       </div>
     );
   }
