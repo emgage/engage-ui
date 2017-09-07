@@ -2,7 +2,6 @@ import * as React from 'react';
 import { mount } from 'enzyme';
 import Scrollable from '../Scrollable';
 
-<<<<<<< HEAD
 describe('vertical', () => {
   it('should verify the vertical is false', () => {
     const scrollableWrapper = mount(<Scrollable vertical={false}/>);
@@ -61,7 +60,6 @@ describe('children', () => {
                               <p>By signing up for the Shopify service (“Service”)</p>
                               </Scrollable>);
     expect(scrollableWrapper.children().prop('children')).toBe('By signing up for the Shopify service (“Service”)');
-=======
 const theme = {
   Scrollable: 'Scrollable',
   horizontal: 'horizontal',
@@ -278,6 +276,5 @@ describe('<Scrollable />', () => {
                                 );
       expect(scrollableWrapper.children().prop('children')).toBe('By signing up for the Shopify service (“Service”)');
     });
->>>>>>> f5062066d9c8804c4fbadf112ff932b85dda3ad7
   });
 });

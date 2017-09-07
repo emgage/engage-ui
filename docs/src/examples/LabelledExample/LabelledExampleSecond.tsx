@@ -22,14 +22,28 @@ class LabelledExampleSecond extends React.Component<IProps, IState> {
     return (
         <div className={styles.example}>
             2. Labelled with reuired and HelpText prop:
-            <Labelled id="Id" label="Click Here" action ={action} required={false} helpText="HelpText">
-            </Labelled>
+            <Labelled
+              id="Id"
+              label="Click Here"
+              action ={action}
+              required={false}
+              helpText="HelpText"
+            />
             3. Labelled with labelHidden:
-            <Labelled id="Id" label="Click Here" action ={action} labelHidden>
-            </Labelled>
+            <Labelled
+              id="Id"
+              label="Click Here"
+              action ={action}
+              labelHidden
+            />
             4. Labelled with focused and hasValue prop:
-            <Labelled id="Id" label="Click Here" action ={action} focused={false} hasValue={false}>
-            </Labelled>
+            <Labelled
+              id="Id"
+              label="Click Here"
+              action ={action}
+              focused={false}
+              hasValue={false}
+            />
         </div>
     );
   }
