@@ -34,8 +34,7 @@ class PopoverExampleSecond extends React.Component<IProps, IState> {
     return (
       <div className={styles.example}>
         <h3>2.Popover with Content and Actions:</h3>
-        <Popover active={this.state.activeState1} activator=
-          {
+        <Popover active={this.state.activeState1} activator={
           <Button onClick={() => this.valueUpdater1(this.state.activeState1)}>Sales channels</Button>
           }>
           <Pane fixed>
@@ -58,9 +57,10 @@ class PopoverExampleSecond extends React.Component<IProps, IState> {
         <Popover
           active={this.state.activeState2}
           activator={
-              <Button onClick={ () => {this.valueUpdater2(this.state.activeState2);}}>
+              <Button onClick={() => {this.valueUpdater2(this.state.activeState2);}}>
                   April 20–21, 2017
-              </Button>}
+              </Button>
+              }
           sectioned
           preferredPosition="above"
           onClose={() => {alert('Popover is Closed');this.valueUpdater2(this.state.activeState2);}}>

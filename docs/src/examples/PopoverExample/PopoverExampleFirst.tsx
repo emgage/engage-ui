@@ -28,10 +28,12 @@ class PopoverExampleFirst extends React.Component<IProps, IState> {
       <div className={styles.example}>
         <h3>1.Popover with ActionList:</h3>
         <Popover
-          active={this.state.active} preventAutofocus activatorWrapper="Test"
+          active={this.state.active}
+          preventAutofocus
+          activatorWrapper="Test"
           activator={<Button onClick={() => this.valueUpdater(this.state.active)}>More actions</Button>}>
           <List>
-            <Item>Import</Item>
+            <Item>Import</Item>
             <Item>Export </Item>
           </List>
         </Popover>
