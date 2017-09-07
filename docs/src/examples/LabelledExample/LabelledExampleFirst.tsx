@@ -20,14 +20,14 @@ class LabelledExampleFirst extends React.Component<IProps ,IState> {
 
   render() {
     return (
-        <div className={styles.example}>
-            1. Basic Labelled:
-            <Labelled
-              id="Id"
-              label="Click Here"
-              action ={action}
-            />
-        </div>
+      <div className={styles.example}>
+        1. Basic Labelled:
+          <Labelled
+            id="Id"
+            label="Click Here"
+            action ={action}
+          />
+      </div>
     );
   }
 }
