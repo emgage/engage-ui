@@ -25,6 +25,7 @@ class ChoiceListExample extends React.Component<IProps, IState> {
   render() {
     return (
       <div className={styles.example}>
+        <h3>2. Choice list with multiple selection:</h3>
         <ChoiceList
           title="Company name"
           allowMultiple
