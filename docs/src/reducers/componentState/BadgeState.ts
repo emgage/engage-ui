@@ -7,7 +7,6 @@ const BadgeState: IDocument = {
   id: 'badge',
   heading: 'Badge Component',
   subheading: `Badges are used to inform of the status of a piece of information or of an action that’s been taken.`,
-
   property: [
     {
       name: 'children',
