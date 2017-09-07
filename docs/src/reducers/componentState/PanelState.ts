@@ -7,7 +7,6 @@ const PanelState: IDocument = {
   id: 'panel',
   heading: 'Panel Component',
   subheading: `Panel component is used to display video in panel with heading and children.`,
-
   property: [
     {
       name: 'heading',

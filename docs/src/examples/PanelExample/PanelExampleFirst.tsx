@@ -12,11 +12,6 @@ class PanelExample extends React.Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
   }
-
-  valueUpdater(field: any) {
-    return (value: any) => this.setState({ [field]: value });
-  }
-
   render() {
     const posterUrl = new URL('https://wallpaperscraft.com/image/horse_silhouette_shadow_sunset_94999_480x800.jpg');
     const singleVideoSource = [
@@ -36,7 +31,6 @@ class PanelExample extends React.Component<IProps, IState> {
           width: 100,
         }}
       />;
-
     const singleVideoAutoplay =
     <Video
       poster={posterUrl}
@@ -53,35 +47,27 @@ class PanelExample extends React.Component<IProps, IState> {
       <div className={styles.example}>
         <h3>1. Basic panel:</h3>
         <br/>
-          <Panel
-            heading="Basic panel heading"
-          >
-            <div>
-              Basic panel children
-            </div>
-          </Panel>
+        <Panel heading="Basic panel heading">
+          <div>
+            Basic panel children
+          </div>
+        </Panel>
         <br/>
         <h3>2. Panel with single video:</h3>
         <br/>
-          <Panel
-            heading="Basic panel heading"
-            video={singleVideo}
-          >
-            <div>
-              Basic panel children
-            </div>
-          </Panel>
+        <Panel heading="Basic panel heading" video={singleVideo}>
+          <div>
+            Basic panel children
+          </div>
+        </Panel>
         <br/>
         <h3>3. Panel with autoplay video:</h3>
         <br/>
-          <Panel
-            heading="Basic panel heading"
-            video={singleVideoAutoplay}
-          >
-            <div>
+        <Panel heading="Basic panel heading" video={singleVideoAutoplay}>
+          <div>
             Basic panel children
-            </div>
-          </Panel>
+          </div>
+        </Panel>
       </div>
     );
   }
