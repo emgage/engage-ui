@@ -17,7 +17,11 @@ class IconExampleSecond extends React.Component<IProps, IState> {
     return (
       <div className={styles.example}>
         <h3>3.Icon with color,backdrop and accessibilityLabel properties:</h3>
-        <Icon source="notes" color="black" backdrop accessibilityLabel="This is an icon" />
+        <Icon
+          source="notes"
+          color="black"
+          backdrop
+          accessibilityLabel="This is an icon" />
       </div>
     );
   }
