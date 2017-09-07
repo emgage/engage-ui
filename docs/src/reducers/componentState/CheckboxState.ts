@@ -9,7 +9,6 @@ const CheckboxState: IDocument = {
   id: 'checkbox',
   heading: 'Checkbox Component',
   subheading: `Checkboxes are most commonly used to give a way to make a range of selections.`,
-
   property: [
     {
       name: 'label',
