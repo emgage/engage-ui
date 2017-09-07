@@ -9,7 +9,6 @@ const ColumnState: IDocument = {
   id: 'column',
   heading: 'Column Component',
   subheading: `Column responsivewidth size are vary and show information in multiple line based on size selected for column by user.`,
-
   property: [
     {
       name: 'small',
