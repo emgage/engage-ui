@@ -13,7 +13,6 @@ export interface IState {
 class ValidateTextFieldExampleFirst extends React.Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
-
     this.state = {
       txtAppName: '',
       txtAppDesc: '',
