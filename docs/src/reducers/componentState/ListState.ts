@@ -8,7 +8,6 @@ const ListState: IDocument = {
   heading: 'List Component',
   subheading: `Lists display a series of related content.
                Each list item begins with a bullet, a number, or less commonly, with an icon.`,
-
   property: [
     {
       name: 'children',
