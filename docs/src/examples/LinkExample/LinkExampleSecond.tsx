@@ -11,23 +11,18 @@ export interface IState {
 class LinkExampleFirst extends React.Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
-
-  }
-
-  valueUpdater(field: any) {
-    return (value: any) => this.setState({ [field]: value });
   }
 
   render() {
     return (
       <div className={styles.example}>
-      2. Link with url and external prop:
-      <br/>
-       <Link
-            url="http://www.lipsum.com/"
-            external
-            >
-            Link open with another browser
+        2. Link with url and external prop:
+        <br/>
+        <Link
+          url="http://www.lipsum.com/"
+          external
+        >
+        Link open with another browser
         </Link>
       </div>
     );
