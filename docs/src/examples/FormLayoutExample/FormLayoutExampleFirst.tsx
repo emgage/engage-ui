@@ -26,25 +26,25 @@ class FormLayoutExampleFirst extends React.Component<IProps, IState> {
 
   render() {
     return (
-            <div className={styles.example}>
-                <h3>
-                1. Default FormLayout:
-                </h3>
-                <br/>
-                <FormLayout>
-                  <TextField
-                    label="Store name"
-                    value={this.state.txtValue}
-                    onChange={this.valueUpdater('txtValue')}
-                  />
-                  <TextField
-                    type="email"
-                    label="Account email"
-                    value={this.state.txtValue1}
-                    onChange={this.valueUpdater('txtValue1')}
-                  />
-                </FormLayout>
-            </div>
+      <div className={styles.example}>
+        <h3>
+        1. Default FormLayout:
+        </h3>
+        <br/>
+        <FormLayout>
+          <TextField
+            label="Store name"
+            value={this.state.txtValue}
+            onChange={this.valueUpdater('txtValue')}
+          />
+          <TextField
+            type="email"
+            label="Account email"
+            value={this.state.txtValue1}
+            onChange={this.valueUpdater('txtValue1')}
+          />
+        </FormLayout>
+      </div>
     );
   }
 }
