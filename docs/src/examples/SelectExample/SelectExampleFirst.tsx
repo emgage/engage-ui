@@ -15,13 +15,13 @@ class SelectExampleFirst extends React.Component<IProps, IState> {
     super(props);
 
     this.state = {
-      selected:'',
-      helptextvalue:'Please Select City',
+      selected: '',
+      helptextvalue: 'Please Select City',
     };
   }
 
   valueUpdater() {
-    return (value: any) => this.setState({ selected: value, helptextvalue:'Selected City: ' + value });
+    return (value: any) => this.setState({ selected: value, helptextvalue: 'Selected City: ' + value });
   }
 
   render() {
