@@ -13,10 +13,6 @@ class DisplayTextExample extends React.Component<IProps, IState> {
     super(props);
   }
 
-  valueUpdater(field: any) {
-    return (value: any) => this.setState({ [field]: value });
-  }
-
   render() {
     return (
       <div className={styles.example}>

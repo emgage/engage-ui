@@ -9,7 +9,6 @@ const DisplayTextState: IDocument = {
   id: 'displaytext',
   heading: 'Display Text Component',
   subheading: `Display Texts are used to inform the status of a piece of information or of an action that’s been taken.`,
-
   property: [
     {
       name: 'element',
