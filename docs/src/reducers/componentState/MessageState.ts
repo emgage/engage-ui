@@ -7,7 +7,6 @@ const MessageState: IDocument = {
   id: 'message',
   heading: 'Message Component',
   subheading: `Message component is used to highlight messages for related filed, as an example to view error.`,
-
   property: [
     {
       name: 'children',

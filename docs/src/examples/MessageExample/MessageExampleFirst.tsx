@@ -18,10 +18,6 @@ class MessageExample extends React.Component<IProps, IState> {
     };
   }
 
-  valueUpdater(field: any) {
-    return (value: any) => this.setState({ [field]: value });
-  }
-
   render() {
     return (
       <div className={styles.example}>
