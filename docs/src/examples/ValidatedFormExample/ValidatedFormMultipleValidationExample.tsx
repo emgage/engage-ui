@@ -26,7 +26,7 @@ class ValidatedFormMultipleValidationExample extends React.Component<IProps, ISt
     this.state = {
       appID: 1,
       appName: '',
-      appPassword:'',
+      appPassword: '',
       appDescription: '',
     };
   }
