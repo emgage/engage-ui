@@ -18,7 +18,7 @@ class LabelExampleSecond extends React.Component<IProps, IState> {
     const action : Action =
       {
         content: 'Click Here',
-        onAction:() => {alert('You have performed Click Action.');},
+        onAction:() => { alert('You have performed Click Action.'); },
       };
     return (
       <div className={styles.example}>
