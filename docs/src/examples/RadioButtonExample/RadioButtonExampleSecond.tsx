@@ -17,8 +17,14 @@ class RadioButtonExampleSecond extends React.Component<IProps, IState> {
     return (
       <div className={styles.example}>
         <h3>3.Disabled RadioButton and checked by default:</h3>
-        <RadioButton label="Accounts are disabled" helpText="Customers will only be able to check out as guests" checked id="Radioid"
-          name="Radioname" value="Test" disabled labelHidden/>
+        <RadioButton
+          label="Accounts are disabled"
+          helpText="Customers will only be able to check out as guests"
+          checked id="Radioid"
+          name="Radioname"
+          value="Test"
+          disabled
+          labelHidden/>
       </div>
     );
   }

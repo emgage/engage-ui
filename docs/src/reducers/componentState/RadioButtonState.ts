@@ -8,7 +8,7 @@ const RadioButtonExampleSecondCode = require('!raw-loader!../../examples/RadioBu
 const RadioButtonState: IDocument = {
   id: 'radiobutton',
   heading: 'RadioButton Component',
-  subheading: `Radio Buttons to present each item in a list of options where merchants must make a single selection.Radio buttons present multiple items and require merchants to pick only one thing from a list.`,
+  subheading: `Radio Buttons to present each item in a list of options where merchants must make a single selection. Radio buttons present multiple items and require merchants to pick only one thing from a list.`,
   property: [
     {
       name: 'label',
