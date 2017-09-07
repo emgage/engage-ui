@@ -16,27 +16,30 @@ class FlexBoxExampleFirst extends React.Component<IProps> {
     };
   }
 
-  valueUpdater(field: any) {
-    return (value: any) => this.setState({ [field]: value });
-  }
-
   render() {
     return (
-                <div className={styles.example}>
-                1. Basic FlexBox:
-                <FlexBox direction={FlexDirection.Column} align={FlexAlign.Stretch} justify={FlexJustify.Center}>
-                        <div>Demo 1</div>
-                        <div>Demo 2</div>
-                        <div>Demo 3</div>
-                </FlexBox>
-                <br/>
-                2. Inline FlexBox:
-                    <FlexBox inline={true} direction={FlexDirection.Column} align={FlexAlign.Stretch} justify={FlexJustify.Center}>
-                        <div>Demo 1</div>
-                        <div>Demo 2</div>
-                        <div>Demo 3</div>
-                    </FlexBox>
-                </div>
+      <div className={styles.example}>
+        1. Basic FlexBox:
+          <FlexBox
+            direction={FlexDirection.Column}
+            align={FlexAlign.Stretch}
+            justify={FlexJustify.Center}>
+            <div>Demo 1</div>
+            <div>Demo 2</div>
+            <div>Demo 3</div>
+          </FlexBox>
+          <br/>
+        2. Inline FlexBox:
+          <FlexBox
+            inline={true}
+            direction={FlexDirection.Column}
+            align={FlexAlign.Stretch}
+            justify={FlexJustify.Center}>
+            <div>Demo 1</div>
+            <div>Demo 2</div>
+            <div>Demo 3</div>
+          </FlexBox>
+      </div>
     );
   }
 }
