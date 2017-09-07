@@ -7,7 +7,6 @@ const avatarState: IDocument = {
   id: 'avatar',
   heading: 'Avatar Component',
   subheading: `Avatars are used to show a thumbnail representation of an individual or business in the interface.`,
-
   property: [
     {
       name: 'size',

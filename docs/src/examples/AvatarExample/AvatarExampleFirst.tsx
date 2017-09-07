@@ -12,11 +12,6 @@ class AvatarExample extends React.Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
   }
-
-  valueUpdater(field: any) {
-    return (value: any) => this.setState({ [field]: value });
-  }
-
   render() {
     return (
       <div className={styles.example}>
