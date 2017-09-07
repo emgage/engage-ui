@@ -17,8 +17,11 @@ class TooltipExampleSecond extends React.Component<IProps, IState> {
     return (
       <div className={styles.example}>
         <h3>4.Tooltip with preferredPosition and activatorWrapper property:</h3>
-        <Tooltip content="This order has shipping labels." preferredPosition="above" activatorWrapper="Test">
-            <Link>Order #1001</Link>
+        <Tooltip
+          content="This order has shipping labels."
+          preferredPosition="above"
+          activatorWrapper="Test">
+          <Link>Order #1001</Link>
         </Tooltip>
       </div>
     );
