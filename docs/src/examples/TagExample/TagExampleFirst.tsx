@@ -15,11 +15,11 @@ class TagExampleFirst extends React.Component<IProps, IState> {
 
   render() {
     return (
-            <div className={styles.example}>
-                1. Default Tag
-                <br/>
-                <Tag>Tag</Tag>
-            </div>
+        <div className={styles.example}>
+            1. Default Tag
+            <br/>
+            <Tag>Tag</Tag>
+        </div>
     );
   }
 }
