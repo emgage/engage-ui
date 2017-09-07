@@ -7,7 +7,6 @@ export interface IProps{
 }
 
 export interface IState {
-
 }
 
 const theme = {
@@ -23,10 +22,6 @@ const theme = {
 class CardFirstExample extends React.Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
-  }
-
-  valueUpdater(field: any) {
-    return (value: any) => this.setState({ [field]: value });
   }
 
   render() {

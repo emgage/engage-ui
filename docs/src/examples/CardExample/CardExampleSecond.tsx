@@ -21,11 +21,6 @@ const theme = {
 class CardSecondExample extends React.Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
-
-  }
-
-  valueUpdater(field: any) {
-    return (value: any) => this.setState({ [field]: value });
   }
 
   render() {
@@ -40,12 +35,12 @@ class CardSecondExample extends React.Component<IProps, IState> {
             <p>View a summary of your online store’s performance, including sales, visitors, top products, and referrals.</p>
           </Section>
         </Card>
-        <h3> 5. Card with actions in header and primary and secondary actions in footer: </h3>        
-        <Card 
-          title="Staff accounts" 
-          sectioned 
-          subdued 
-          theme={theme} 
+        <h3> 5. Card with actions in header and primary and secondary actions in footer: </h3>
+        <Card
+          title="Staff accounts"
+          sectioned
+          subdued
+          theme={theme}
           actions={[{ content: 'Edit Account', onAction: () => { alert('Edit Staff Accounts');} }]}
           primaryFooterAction ={{ content: 'Save', onAction: () => { alert('Save edited Staff Accounts');} }}
           secondaryFooterAction ={{ content: 'Cancel', onAction: () => { alert('Cancel edit Staff Accounts');} }}
