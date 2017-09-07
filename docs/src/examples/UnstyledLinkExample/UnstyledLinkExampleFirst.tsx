@@ -15,12 +15,12 @@ class UnstyliedLinkExampleFirst extends React.Component<IProps, IState> {
 
   render() {
     return (
-        <div className={styles.example}>
-            UnstyledLink with children prop:
-            <br/>
-            <UnstyledLink url="https://emgage.com/" children="child"/>
-            <br/>
-        </div>
+      <div className={styles.example}>
+          UnstyledLink with children prop:
+          <br/>
+          <UnstyledLink url="https://emgage.com/" children="child"/>
+          <br/>
+      </div>
     );
   }
 }
