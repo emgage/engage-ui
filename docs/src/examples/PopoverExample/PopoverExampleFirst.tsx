@@ -26,8 +26,9 @@ class PopoverExampleFirst extends React.Component<IProps, IState> {
             preventAutofocus
             activatorWrapper="Test"
             activator={
-                <Button onClick={() => this.setState({ activated: (!this.state.activated) }) }>More actions</Button>
-            }>
+              <Button onClick={() => this.setState({ activated: (!this.state.activated) }) }>More actions</Button>
+            }
+         >
             <List>
                 <Item>Import</Item>
                 <Item>Export </Item>
