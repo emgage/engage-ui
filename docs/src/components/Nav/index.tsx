@@ -13,6 +13,8 @@ const Nav = () => {
         <li><Link to="/component/choicelist" className={styles.active}>Choice List Component</Link></li>
         <li><Link to="/component/panel">Panel Component</Link></li>
         <li><Link to="/component/banner">Banner Component</Link></li>
+        <li><Link to="/component/labelled">Labelled Component</Link></li>
+        <li><Link to="/component/positionedoverlay">Positioned Overlay Component</Link></li>
       </ul>
     </nav>
   );

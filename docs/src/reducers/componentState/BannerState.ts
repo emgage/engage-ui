@@ -11,7 +11,6 @@ const BannerState: IDocument = {
   subheading: `Banners are used to inform about important changes or persistent conditions.
                They’re one of the most prominent ways to communicate. Banners show at the top
                of the page or section they apply to.`,
-
   property: [
     {
       name: 'icon',
