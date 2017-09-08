@@ -18,7 +18,6 @@ class IconExampleFirst extends React.Component<IProps, IState> {
       <div className={styles.example}>
         <h3>1.Default Icon(Source as SVG):</h3>
         <Icon source="notes" />
-
         <h3>2.Icon(Source as Placeholder):</h3>
         <Icon source="placeholder" />
       </div>
