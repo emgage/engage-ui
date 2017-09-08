@@ -8,17 +8,11 @@ export interface IProps{
 }
 
 export interface IState {
-  txtValue: string;
-  txtValue1: string;
 }
 
 class FormLayoutExampleSecond extends React.Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
-    this.state = {
-      txtValue: '',
-      txtValue1: '',
-    };
   }
   render() {
     return (
