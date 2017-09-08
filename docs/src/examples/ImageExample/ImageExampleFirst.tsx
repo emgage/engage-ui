@@ -15,12 +15,12 @@ class ImageExampleFirst extends React.Component<IProps, IState> {
   render() {
     return (
       <div className={styles.example}>
-          1. Image:
-          <br/><br/>
-          <Image
-            source={'https://www.w3schools.com/css/trolltunga.jpg'}
-            alt={'No Image.. Thanks!!'}
-          />
+        1. Image:
+        <br/><br/>
+        <Image
+          source={'https://www.w3schools.com/css/trolltunga.jpg'}
+          alt={'No Image.. Thanks!!'}
+        />
       </div>
     );
   }
