@@ -15,5 +15,5 @@ const Heading = ({ value, className }: IProps) => {
       </div>
   );
 };
-  
+
 export default Heading;

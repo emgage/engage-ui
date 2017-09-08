@@ -27,7 +27,7 @@ function configureStoreDev() {
     applyMiddleware(...middlewares),
     ),
   );
-  
+
   if ((module as any).hot) {
     // Enable Webpack hot module replacement for reducers
     (module as any).hot.accept('../reducers', () => {

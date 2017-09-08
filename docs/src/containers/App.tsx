@@ -15,5 +15,5 @@ const App = (props: IProps) => (
       {props.children}
     </div>
 );
-  
+
 export default App;
