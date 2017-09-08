@@ -12,8 +12,6 @@ export interface IState {
 class FlexBoxExampleFirst extends React.Component<IProps> {
   constructor(props: IProps) {
     super(props);
-    this.state = {
-    };
   }
 
   render() {
