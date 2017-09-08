@@ -16,9 +16,13 @@ class UnstyliedLinkExampleSecond extends React.Component<IProps , IState> {
   render() {
     return (
       <div className={styles.example}>
-          UnstyledLink  with external and key prop:
-          <br/>
-          <UnstyledLink external url="https://emgage.com/" key="test" children="child"/>
+        UnstyledLink  with external and key prop:
+        <br/>
+        <UnstyledLink
+          external url="https://emgage.com/"
+          key="test"
+          children="child"
+        />
       </div>
     );
   }
