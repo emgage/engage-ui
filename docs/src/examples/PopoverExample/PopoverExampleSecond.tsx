@@ -16,26 +16,19 @@ export interface IState {
 class PopoverExampleSecond extends React.Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
-
     this.state = {
       activeState1: false,
       activeState2: false,
     };
   }
-
-  valueUpdater1(activeState: any) {
-    this.setState({ activeState1: (!activeState) });
-  }
-  valueUpdater2(activeState: any) {
-    this.setState({ activeState2: (!activeState) });
-  }
-
   render() {
     return (
       <div className={styles.example}>
         <h3>2.Popover with Content and Actions:</h3>
-        <Popover active={this.state.activeState1} activator={
-          <Button onClick={() => this.valueUpdater1(this.state.activeState1)}>Sales channels</Button>
+        <Popover
+          active={this.state.activeState1}
+          activator={
+          <Button onClick={() => this.setState({ activeState1: (!this.state.activeState1) })}>Sales channels</Button>
           }>
           <Pane fixed>
             <Section>
@@ -57,13 +50,18 @@ class PopoverExampleSecond extends React.Component<IProps, IState> {
         <Popover
           active={this.state.activeState2}
           activator={
-              <Button onClick={() => {this.valueUpdater2(this.state.activeState2);}}>
-                  April 20–21, 2017
-              </Button>
-              }
+            <Button onClick={() => this.setState({ activeState2: (!this.state.activeState2) })}>
+                April 20–21, 2017
+            </Button>
+            }
           sectioned
           preferredPosition="above"
-          onClose={() => {alert('Popover is Closed');this.valueUpdater2(this.state.activeState2);}}>
+          onClose={
+            () => {
+              alert('Popover is Closed');
+              this.setState({ activeState2: false });
+            }
+          }>
           <FormLayout>
             <Select
               label="Date range"
