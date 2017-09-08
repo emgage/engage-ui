@@ -16,7 +16,7 @@ class UnstyliedLinkExampleFirst extends React.Component<IProps, IState> {
   render() {
     return (
       <div className={styles.example}>
-        UnstyledLink with children prop:
+        UnstyledLink with children props:
         <br/>
         <UnstyledLink
           url="https://emgage.com/"
