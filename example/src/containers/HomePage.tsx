@@ -9,7 +9,7 @@ import * as styles from '../styles/global-styles.scss';
 const HomePage = () => {
   return (
       <div className={styles.component_container}>
-        <div className={styles.homepage}> 
+        <div className={styles.homepage}>
           <Heading value="Engage-UI" />
           <p>This is the home or root page for the engage-ui docs</p>
           <p>Just some text about how amazing the engage-ui library truely is</p>
@@ -17,5 +17,5 @@ const HomePage = () => {
       </div>
   );
 };
-  
+
 export default HomePage;
