@@ -11,8 +11,6 @@ export interface IState {
 class ButtonExampleFirst extends React.Component<IProps> {
   constructor(props: IProps) {
     super(props);
-    this.state = {
-    };
   }
 
   render() {
