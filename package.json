@@ -140,22 +140,14 @@
     "redux-immutable-state-invariant": "^2.0.0",
     "redux-thunk": "2.2.0",
     "@types/moment": "^2.13.0",
-    "@types/moment-jalaali": "^0.5.2",
     "@types/react-addons-shallow-compare": "^0.14.20",
-    "@types/react-onclickoutside": "^6.0.1",
     "@types/react-portal": "^3.0.2",
     "airbnb-prop-types": "^2.7.1",
     "babel-loader": "^7.1.1",
-    "chai": "^4.1.0",
     "consolidated-events": "^1.1.0",
     "is-touch-device": "^1.0.1",
-    "mocha": "^3.4.2",
-    "mocha-wrap": "^2.1.1",
     "react-addons-shallow-compare": "^15.6.0",
     "react-moment-proptypes": "^1.5.0",
-    "react-onclickoutside": "^6.1.1",
-    "react-popper": "^0.7.0",
-    "react-portal": "^3.1.0",
-    "sinon-sandbox": "^1.0.2"
+    "react-portal": "^3.1.0"
   }
 }
