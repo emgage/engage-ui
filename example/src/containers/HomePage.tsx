@@ -6,7 +6,6 @@ import '../styles/home-page.scss';
 // tslint:disable-next-line:import-name
 import * as styles from '../styles/global-styles.scss';
 
-
 const HomePage = () => {
   return (
       <div className={styles.component_container}>
