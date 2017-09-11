@@ -20,7 +20,7 @@ describe('<TextField />', () => {
         minLength={2}
         spellCheck={false}
         pattern={pattern}
-      />,
+      />
     ).find('input');
     expect(input.prop('disabled')).toBe(true);
     expect(input.prop('readOnly')).toBe(false);

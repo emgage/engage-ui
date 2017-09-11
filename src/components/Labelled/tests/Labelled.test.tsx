@@ -24,7 +24,7 @@ describe('<Labelled /> - Test Suit', () => {
       const labelledWrapper = mount(
         <Labelled id="Id" label="Click Here" action={action}>
           Hello World
-        </Labelled>,
+        </Labelled>
       );
       expect(labelledWrapper.find('div').length).toBe(3);
     });
@@ -32,7 +32,7 @@ describe('<Labelled /> - Test Suit', () => {
       const labelledWrapper = mount(
         <Labelled id="Id" label="Click Here" action={action}>
           Hello World
-        </Labelled>,
+        </Labelled>
       );
       expect(labelledWrapper.find('span').length).toBe(2);
     });
@@ -40,7 +40,7 @@ describe('<Labelled /> - Test Suit', () => {
       const labelledWrapper = mount(
         <Labelled id="Id" label="Click Here" action={action}>
           Hello World
-        </Labelled>,
+        </Labelled>
       );
       expect(labelledWrapper.prop('id')).toBe('Id');
     });
@@ -48,7 +48,7 @@ describe('<Labelled /> - Test Suit', () => {
       const labelledWrapper = mount(
         <Labelled id="Id" label="Click Here" action={action}>
           Hello World
-        </Labelled>,
+        </Labelled>
       );
       expect(labelledWrapper.prop('label')).toBe('Click Here');
     });
@@ -56,7 +56,7 @@ describe('<Labelled /> - Test Suit', () => {
       const labelledWrapper = mount(
         <Labelled id="Id" label="Click Here" action={action}>
           Hello World
-        </Labelled>,
+        </Labelled>
       );
       expect(labelledWrapper.prop('children')).toBe('Hello World');
     });
@@ -66,7 +66,7 @@ describe('<Labelled /> - Test Suit', () => {
       const labelledWrapper = mount(
         <Labelled id="Id" label="Click Here" action={action} required>
           Hello World
-        </Labelled>,
+        </Labelled>
       );
       expect(labelledWrapper.prop('required')).toBe(true);
     });
@@ -74,7 +74,7 @@ describe('<Labelled /> - Test Suit', () => {
       const labelledWrapper = mount(
         <Labelled id="Id" label="Click Here" action={action}>
           Hello World
-        </Labelled>,
+        </Labelled>
       );
       expect(labelledWrapper.prop('required')).toBe(undefined);
     });
@@ -82,7 +82,7 @@ describe('<Labelled /> - Test Suit', () => {
       const labelledWrapper = mount(
         <Labelled id="Id" label="Click Here" action={action} required={false}>
           Hello World
-        </Labelled>,
+        </Labelled>
       );
       expect(labelledWrapper.prop('required')).toBe(false);
     });
@@ -90,7 +90,7 @@ describe('<Labelled /> - Test Suit', () => {
       const labelledWrapper = mount(
         <Labelled id="Id" label="Click Here" action={action} required>
           Hello World
-        </Labelled>,
+        </Labelled>
       );
       expect(labelledWrapper.find('div').length).toBe(3);
       expect(labelledWrapper.find('span').length).toBe(2);
@@ -104,7 +104,7 @@ describe('<Labelled /> - Test Suit', () => {
       const labelledWrapper = mount(
         <Labelled id="Id" label="Click Here" action={action} helpText="HelpText">
           Hello World
-        </Labelled>,
+        </Labelled>
       );
       expect(labelledWrapper.prop('helpText')).toBe('HelpText');
     });
@@ -112,7 +112,7 @@ describe('<Labelled /> - Test Suit', () => {
       const labelledWrapper = mount(
         <Labelled id="Id" label="Click Here" action={action} helpText="HelpText">
           Hello World
-        </Labelled>,
+        </Labelled>
       );
       expect(labelledWrapper.find('div').length).toBe(4);
       expect(labelledWrapper.find('span').length).toBe(2);
@@ -126,7 +126,7 @@ describe('<Labelled /> - Test Suit', () => {
       const labelledWrapper = mount(
         <Labelled id="Id" label="Click Here" action={action} labelHidden>
           Hello World
-        </Labelled>,
+        </Labelled>
       );
       expect(labelledWrapper.prop('labelHidden')).toBe(true);
     });
@@ -134,7 +134,7 @@ describe('<Labelled /> - Test Suit', () => {
       const labelledWrapper = mount(
         <Labelled id="Id" label="Click Here" action={action} labelHidden={false}>
           Hello World
-        </Labelled>,
+        </Labelled>
       );
       expect(labelledWrapper.prop('labelHidden')).toBe(false);
     });
@@ -142,7 +142,7 @@ describe('<Labelled /> - Test Suit', () => {
       const labelledWrapper = mount(
         <Labelled id="Id" label="Click Here" action={action}>
           Hello World
-        </Labelled>,
+        </Labelled>
       );
       expect(labelledWrapper.prop('labelHidden')).toBeFalsy();
     });
@@ -150,7 +150,7 @@ describe('<Labelled /> - Test Suit', () => {
       const labelledWrapper = mount(
         <Labelled id="Id" label="Click Here" action={action} labelHidden>
           Hello World
-        </Labelled>,
+        </Labelled>
       );
       expect(labelledWrapper.find('div').length).toBe(3);
       expect(labelledWrapper.find('span').length).toBe(2);
@@ -164,7 +164,7 @@ describe('<Labelled /> - Test Suit', () => {
       const labelledWrapper = mount(
         <Labelled id="Id" label="Click Here" action={action} focused>
           Hello World
-        </Labelled>,
+        </Labelled>
       );
       expect(labelledWrapper.prop('focused')).toBe(true);
     });
@@ -172,7 +172,7 @@ describe('<Labelled /> - Test Suit', () => {
       const labelledWrapper = mount(
         <Labelled id="Id" label="Click Here" action={action} focused={false}>
           Hello World
-        </Labelled>,
+        </Labelled>
       );
       expect(labelledWrapper.prop('focused')).toBe(false);
     });
@@ -180,7 +180,7 @@ describe('<Labelled /> - Test Suit', () => {
       const labelledWrapper = mount(
         <Labelled id="Id" label="Click Here" action={action}>
           Hello World
-        </Labelled>,
+        </Labelled>
       );
       expect(labelledWrapper.prop('focused')).toBeFalsy();
     });
@@ -188,7 +188,7 @@ describe('<Labelled /> - Test Suit', () => {
       const labelledWrapper = mount(
         <Labelled id="Id" label="Click Here" action={action} focused>
           Hello World
-        </Labelled>,
+        </Labelled>
       );
       expect(labelledWrapper.find('div').length).toBe(3);
       expect(labelledWrapper.find('span').length).toBe(2);
@@ -202,7 +202,7 @@ describe('<Labelled /> - Test Suit', () => {
       const labelledWrapper = mount(
         <Labelled id="Id" label="Click Here" action={action} hasValue>
           Hello World
-        </Labelled>,
+        </Labelled>
       );
       expect(labelledWrapper.prop('hasValue')).toBe(true);
     });
@@ -210,7 +210,7 @@ describe('<Labelled /> - Test Suit', () => {
       const labelledWrapper = mount(
         <Labelled id="Id" label="Click Here" action={action} hasValue={false}>
           Hello World
-        </Labelled>,
+        </Labelled>
       );
       expect(labelledWrapper.prop('hasValue')).toBe(false);
     });
@@ -218,7 +218,7 @@ describe('<Labelled /> - Test Suit', () => {
       const labelledWrapper = mount(
         <Labelled id="Id" label="Click Here" action={action}>
           Hello World
-        </Labelled>,
+        </Labelled>
       );
       expect(labelledWrapper.prop('hasValue')).toBeFalsy();
     });
@@ -226,7 +226,7 @@ describe('<Labelled /> - Test Suit', () => {
       const labelledWrapper = mount(
         <Labelled id="Id" label="Click Here" action={action} hasValue>
           Hello World
-        </Labelled>,
+        </Labelled>
       );
       expect(labelledWrapper.find('div').length).toBe(3);
       expect(labelledWrapper.find('span').length).toBe(2);
@@ -240,7 +240,7 @@ describe('<Labelled /> - Test Suit', () => {
       const labelledWrapper = mount(
         <Labelled id="Id" label="Click Here" action={action} theme={theme} required helpText="HelpText" labelHidden focused hasValue>
           Hello World
-        </Labelled>,
+        </Labelled>
       );
       expect(labelledWrapper.prop('required')).toBe(true);
       expect(labelledWrapper.prop('helpText')).toBe('HelpText');
