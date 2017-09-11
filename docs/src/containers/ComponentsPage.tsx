@@ -53,5 +53,5 @@ function mapDispatchToProps(dispatch: Redux.Dispatch<{}>) {
 
 export default Redux.connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(ComponentsPage);

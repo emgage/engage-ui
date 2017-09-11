@@ -23,7 +23,7 @@ class ContentList extends React.PureComponent<Props, never> {
     const background = type === 'divider' ? baseTheme['list-divider'] : type === 'striped' ? baseTheme['list-striped'] : type === 'default' ? baseTheme['naked'] : '';
     const className = classNames(
       theme.list,
-      type && theme[variationName('type', type)],
+      type && theme[variationName('type', type)]
     );
 
     const LISTELEMENT = type === 'number' ? 'ol' : 'ul';
