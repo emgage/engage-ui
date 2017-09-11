@@ -49,11 +49,11 @@ export interface Props {
 const languages = [
   {
     name: 'C',
-  year: 1972,
+    year: 1972,
   },
   {
     name: 'Elm',
-  year: 2012,
+    year: 2012,
   },
 ];
 const getSuggestions = (value: any) => {
@@ -138,7 +138,7 @@ class Picker extends React.Component<Props, State> {
               getSuggestionValue={getSuggestionValue}
               renderSuggestion={renderSuggestion}
               inputProps={inputProps}
-            /> 
+            />
            <div className={className}>
               {
                   this.state.selectedItems.map((i) => {
@@ -159,7 +159,7 @@ class Picker extends React.Component<Props, State> {
             this.state.searchItems.map((i) => {
               return React.createElement(searchResultComponent as React.ComponentClass<{ clickable: boolean, moreInfoComponent: React.ReactNode, moreInfoComponentShowOn: DisplayMoreInfo, onClick(item: any): void, handleMoreInfo(): void }>, { moreInfoComponent, moreInfoComponentShowOn, key: i.id, clickable: true, onClick: onSelect, handleMoreInfo: onMoreInfo }, [i.name]);
             })
-          } 
+          }
         </div>
       </div>
     );
