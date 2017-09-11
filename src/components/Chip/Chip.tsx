@@ -40,12 +40,12 @@ class Chip extends React.PureComponent<Props, any> {
       className = classNames(
         theme.Chip,
         theme.markedForDelete,
-        transparent && theme.transparent,
+        transparent && theme.transparent
       );
     } else {
       className = classNames(
           theme.Chip,
-          transparent && theme.transparent,
+          transparent && theme.transparent
       );
     }
 
