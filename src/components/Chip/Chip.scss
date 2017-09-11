@@ -9,7 +9,6 @@ $horizontal-padding: (3 * $height / 8);
     padding: 0 $horizontal-padding;
     border-radius: $height / 2;
     background-color: color(sky);//#e4e4e4;
-    margin-bottom: 5px;
     margin-right: 5px;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -43,4 +42,8 @@ $horizontal-padding: (3 * $height / 8);
 
 .transparent{
     background-color: transparent;
+}
+
+.markedForDelete {
+  background-color: yellow;
 }

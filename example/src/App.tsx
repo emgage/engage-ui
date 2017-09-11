@@ -339,7 +339,6 @@ class App extends React.Component<{}, State> {
             <p>Small 1-1!</p>
           </Column>
         </div>
-
        <Heading>Grid</Heading>
         <FlexBox>
           <Column small="1-2" medium="1-4" large="3-5">
@@ -355,10 +354,6 @@ class App extends React.Component<{}, State> {
 
   valueUpdater(field: any) {
     return (value: any) => this.setState({ [field]: value });
-  }
-
-  popoverClose(field: any) {
-    return;
   }
 }
 
