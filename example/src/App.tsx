@@ -1,41 +1,41 @@
 import * as React from 'react';
-// import { PeoplePickerSearchType } from './PickerEnum';
-// import { PeoplePickerSource } from './PickerSource';
+import { PeoplePickerSearchType } from './PickerEnum';
+import { PeoplePickerSource } from './PickerSource';
 
-// import ReactDataExample from './ReactDataExample';
-// import SingleDatePickerWrapper from './SingleDatePickerWrapper';
-// import DateRangePickerWrapper from './DateRangePickerWrapper';
+import ReactDataExample from './ReactDataExample';
+import SingleDatePickerWrapper from './SingleDatePickerWrapper';
+import DateRangePickerWrapper from './DateRangePickerWrapper';
 
-import AutoSuggestTest from '../../src/components/Picker/AutoSuggestTest';
+import AutoSuggestText from '../../src/components/Picker/AutoSuggestText';
 
 import {
-  // Button,
-  // ButtonGroup,
-  // Card,
-  // Chip,
-  // ChoiceList,
-  // ClickableChip,
-  // Column,
-  // DisplayText,
-  // FlexBox,
-  // FlexAlign,
-  // FlexDirection,
-  // FlexJustify,
-  // FormLayout,
-  // Heading,
-  // List,
-  // Item,
-  // Loading,
-  // OffCanvas,
-  // OffCanvasMode,
-  // Panel,
-  // Picker,
-  // Select,
-  // TextField,
-  // ValidatedTextField,
-  // ValidatedForm,
-  // Video,
-  // VideoType,
+  Button,
+  ButtonGroup,
+  Card,
+  Chip,
+  ChoiceList,
+  ClickableChip,
+  Column,
+  DisplayText,
+  FlexBox,
+  FlexAlign,
+  FlexDirection,
+  FlexJustify,
+  FormLayout,
+  Heading,
+  List,
+  Item,
+  Loading,
+  OffCanvas,
+  OffCanvasMode,
+  Panel,
+  Picker,
+  Select,
+  TextField,
+  ValidatedTextField,
+  ValidatedForm,
+  Video,
+  VideoType,
 } from '../../src/components';
 
 interface State {
@@ -68,48 +68,48 @@ class App extends React.Component<{}, State> {
     };
   }
 
-  // rowGetter = (index: number) => this.state.rows[index];
+  rowGetter = (index: number) => this.state.rows[index];
 
-  // chipClick = () => {
-  //   console.log('chip clicked...');
-  // }
+  chipClick = () => {
+    console.log('chip clicked...');
+  }
 
-  // chipRemove = () => {
-  //   console.log('chip removed...');
-  // }
+  chipRemove = () => {
+    console.log('chip removed...');
+  }
 
   render() {
-    // const posterUrl = new URL('http://4.bp.blogspot.com/_JSR8IC77Ub4/TKB-XAWXmhI/AAAAAAAABJA/MqOpdFTOaHo/w1200-' +
-    //   'h630-p-k-no-nu/C:%5Cfakepath%5Cbird1.jpg');
-    // const singleVideoSource = [
-    //   {
-    //     src: 'http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_1mb.mp4',
-    //     type: VideoType.MP4,
-    //   }];
-    // const multiVideoSource = [
-    //   {
-    //     src: 'http://www.sample-videos.com/video/mp4/480/big_buck_bunny_480p_30mb.mp4',
-    //     type: VideoType.MP4,
-    //   },
-    //   {
-    //     src: 'http://www.sample-videos.com/video/mp4/240/big_buck_bunny_240p_30mb.mp4',
-    //     type: VideoType.MP4,
-    //   }];
+    const posterUrl = new URL('http://4.bp.blogspot.com/_JSR8IC77Ub4/TKB-XAWXmhI/AAAAAAAABJA/MqOpdFTOaHo/w1200-' +
+      'h630-p-k-no-nu/C:%5Cfakepath%5Cbird1.jpg');
+    const singleVideoSource = [
+      {
+        src: 'http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_1mb.mp4',
+        type: VideoType.MP4,
+      }];
+    const multiVideoSource = [
+      {
+        src: 'http://www.sample-videos.com/video/mp4/480/big_buck_bunny_480p_30mb.mp4',
+        type: VideoType.MP4,
+      },
+      {
+        src: 'http://www.sample-videos.com/video/mp4/240/big_buck_bunny_240p_30mb.mp4',
+        type: VideoType.MP4,
+      }];
 
-    // const sampleVideoCmp = <Video
-    //   poster={posterUrl}
-    //   src={singleVideoSource}
-    //   autoplay={false}
-    //   controls={false}
-    //   style={{
-    //     height: 100,
-    //     width: 100,
-    //   }} />;
+    const sampleVideoCmp = <Video
+      poster={posterUrl}
+      src={singleVideoSource}
+      autoplay={false}
+      controls={false}
+      style={{
+        height: 100,
+        width: 100,
+      }} />;
 
     return (
       <div>
-        <AutoSuggestTest />
-        {/* <SingleDatePickerWrapper />
+        <AutoSuggestText />
+         <SingleDatePickerWrapper />
         <DateRangePickerWrapper />
         <OffCanvas activator={<Button>OffCanvas Test</Button>} mode={OffCanvasMode.slide}>
               <p>Placeholder content.</p>
@@ -351,7 +351,7 @@ class App extends React.Component<{}, State> {
           <Column small="1-2" medium="3-4" large="4-10">
             <span>Hello small=1-2 medium=3-4 large=4-10</span>
           </Column>
-        </FlexBox> */}
+        </FlexBox> 
       </div>
     );
   }

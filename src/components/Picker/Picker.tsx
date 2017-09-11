@@ -3,7 +3,6 @@ import { themr, ThemedComponentClass } from 'react-css-themr';
 import { PICKER } from '../ThemeIdentifiers';
 import TextField from '../TextField';
 import { DisplayMoreInfo } from './PickerEnum';
-import * as Autosuggest from 'react-autosuggest';
 
 import * as baseTheme from './Picker.scss';
 
@@ -12,15 +11,13 @@ export interface State {
   searchItems: IPickerInfo[];
   selectedItems: IPickerInfo[];
   moreInfo: boolean;
-  value?: any;
-  suggestions?: any;
 }
 export interface IPickerInfo {
   id?: number;
   name: string;
   description: string;
   imageUrl?: string;
-  url?: any;
+  url?: string;
 }
 export interface IPickerSource<T> {
   performFilter(filterString: string): Promise<T[]>;
@@ -46,30 +43,6 @@ export interface Props {
   onMoreInfo?(): void;
 
 }
-const languages = [
-  {
-    name: 'C',
-    year: 1972,
-  },
-  {
-    name: 'Elm',
-    year: 2012,
-  },
-];
-const getSuggestions = (value: any) => {
-  const inputValue = value.trim().toLowerCase();
-  const inputLength = inputValue.length;
-  return inputLength === 0 ? [] : languages.filter(lang =>
-    lang.name.toLowerCase().slice(0, inputLength) === inputValue,
-  );
-};
-const getSuggestionValue = (suggestion:any) => suggestion.name;
-const renderSuggestion = (suggestion:any) => (
-  <div>
-    {suggestion.name}
-  </div>
-);
-
 
 class Picker extends React.Component<Props, State> {
   constructor(props: any) {
@@ -79,34 +52,9 @@ class Picker extends React.Component<Props, State> {
       searchItems: [],
       selectedItems: [],
       moreInfo: false,
-      value: '',
-      suggestions: [],
     };
-  }
-  onChange = (event:any, newValue:any) => {
-    this.setState({
-      value: newValue,
-    });
-  }
-  onSuggestionsFetchRequested = (value:any) => {
-    this.setState({
-      suggestions: getSuggestions(value),
-    });
-  }
-  onSuggestionsClearRequested = () => {
-    this.setState({
-      suggestions: [],
-    });
   }
   render() {
-    console.log('Autosuggest:', Autosuggest);
-    const { value, suggestions } = this.state;
-    const inputProps = {
-      value,
-      placeholder: 'Type a programming language',
-      onChange: this.onChange,
-    };
-
     const {
       required,
       filterPlaceHolder,
@@ -128,40 +76,31 @@ class Picker extends React.Component<Props, State> {
       className = theme.pickerResultShow;
     }
     return (
-      <div>
-        <div>
-
-             <Autosuggest
-              suggestions={suggestions}
-              onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-              onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-              getSuggestionValue={getSuggestionValue}
-              renderSuggestion={renderSuggestion}
-              inputProps={inputProps}
-            />
-           <div className={className}>
-              {
-                  this.state.selectedItems.map((i) => {
-                    return React.createElement(chipComponent as React.ComponentClass<{ clickable: boolean, removable: boolean, onRemove(item: any): void }>, { onRemove, key: i.id, clickable: false, removable: true }, [i.name]);
-                  })
-              }
-          </div>
-          <TextField
-            label="lbl"
-            value={this.state.people}
-            placeholder={filterPlaceHolder}
-            onChange={searchBehavior}
-            required={required}
-          />
-        </div>
-        <div>
-          {
-            this.state.searchItems.map((i) => {
-              return React.createElement(searchResultComponent as React.ComponentClass<{ clickable: boolean, moreInfoComponent: React.ReactNode, moreInfoComponentShowOn: DisplayMoreInfo, onClick(item: any): void, handleMoreInfo(): void }>, { moreInfoComponent, moreInfoComponentShowOn, key: i.id, clickable: true, onClick: onSelect, handleMoreInfo: onMoreInfo }, [i.name]);
-            })
-          }
-        </div>
-      </div>
+            <div>
+                <div>
+                    <div className={className}>
+                        {
+                            this.state.selectedItems.map((i) => {
+                              return React.createElement(chipComponent as React.ComponentClass<{ clickable: boolean, removable: boolean, onRemove(item: any): void }>, { onRemove, key: i.id, clickable: false, removable: true }, [i.name]);
+                            })
+                        }
+                    </div>
+                    <TextField
+                      label="lbl"
+                      value={this.state.people}
+                      placeholder={filterPlaceHolder}
+                      onChange={searchBehavior}
+                      required={required}
+                    />
+                </div>
+                <div>
+                    {
+                        this.state.searchItems.map((i) => {
+                          return React.createElement(searchResultComponent as React.ComponentClass<{ clickable: boolean, moreInfoComponent: React.ReactNode, moreInfoComponentShowOn: DisplayMoreInfo, onClick(item: any): void, handleMoreInfo(): void }>, { moreInfoComponent, moreInfoComponentShowOn, key: i.id, clickable: true, onClick: onSelect, handleMoreInfo: onMoreInfo }, [i.name]);
+                        })
+                    }
+                </div>
+            </div>
     );
   }
   private handleChange = (value: string) => {
@@ -217,4 +156,3 @@ class Picker extends React.Component<Props, State> {
 
 export { Picker as UnthemedPicker };
 export default themr(PICKER, baseTheme)(Picker) as ThemedComponentClass<Props, State>;
-
