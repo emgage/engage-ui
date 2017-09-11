@@ -14,7 +14,7 @@ const ReactDataExample = React.createClass({
 
   createRows() {
     let rows = [];
-    for (let i = 1; i < 1000; i++) {
+    for (let i = 1; i < 10; i++) {
       rows.push({
         id: i,
         title: 'Title ' + i,
