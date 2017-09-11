@@ -55,7 +55,7 @@ const checkbox = ({
 
   const className = classNames(
     theme.checkbox,
-    error && theme.error,
+    error && theme.error
   );
 
   return (
