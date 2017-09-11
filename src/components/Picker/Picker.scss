@@ -1,2 +1,87 @@
 .pickerResultShow{display:block;}
 .pickerResultHide{display:none;}
+
+// Card Component
+.avatarImage {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+.cardBorder {
+  width: 400px;
+  background-color: white;
+  margin: 0;
+  padding: 0;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.check {
+  width: 100px;
+}
+.cardElem {
+  display: flex;
+  align-items: center; 
+  margin: 5px 5px 5px 5px;
+  white-space: pre;
+}
+.cardItem {
+  display: flex;
+  flex-direction: row;
+}
+
+.suggestionsList {
+  position: fixed;
+  list-style-type: none;
+  background-color: white; 
+  padding: 0;
+  margin: 0 0 0 10px;
+}
+
+.autosuggestInput {
+  border: none;
+  background-color: transparent;
+  display: inline-block;
+  font-size: 1.3rem;
+  color: #212b36;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 200px;
+  padding-left: 7px;
+}
+
+.container {
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.autosuggestInput:focus {
+  outline: none;
+}
+
+.bold {
+  font-weight: bold;
+  white-space: pre;
+}
+
+.inputOutline {
+  border: .5px solid #d9d9d9;
+  border-radius: 5px;
+  cursor: text;
+  min-width: 100px;
+  min-height: 25px;
+  max-width: 500px;
+}
+
+.flex {
+  display: flex;
+}
+.nameStyle {
+  width: 100px;
+}
+.emailStyle {
+  width: 240px; 
+  color: grey;
+}
+.grey {
+  background-color: #E8E8E8;
+}
