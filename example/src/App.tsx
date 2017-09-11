@@ -3,6 +3,8 @@ import { PeoplePickerSearchType } from './PickerEnum';
 import { PeoplePickerSource } from './PickerSource';
 
 import ReactDataExample from './ReactDataExample';
+import SingleDatePickerWrapper from './SingleDatePickerWrapper';
+import DateRangePickerWrapper from './DateRangePickerWrapper';
 
 import {
   Button,
@@ -104,6 +106,8 @@ class App extends React.Component<{}, State> {
 
     return (
       <div>
+        <SingleDatePickerWrapper />
+        <DateRangePickerWrapper />
         <OffCanvas activator={<Button>OffCanvas Test</Button>} mode={OffCanvasMode.slide}>
               <p>Placeholder content.</p>
               <ul>

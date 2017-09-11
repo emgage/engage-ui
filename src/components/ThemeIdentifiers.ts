@@ -11,6 +11,7 @@ export const CHOICE = 'PChoice';
 export const CHOICE_LIST = 'PChoiceList';
 export const COLUMN = 'PColumn';
 export const CONNECTED = 'PConnected';
+export const DATEPICKER = 'PDatePicker';
 export const DISPLAY_TEXT = 'PDisplayText';
 export const FLEXBOX = 'PFlexBox';
 export const FORM_LAYOUT = 'PFormLayout';
