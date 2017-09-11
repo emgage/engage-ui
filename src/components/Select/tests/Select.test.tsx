@@ -9,7 +9,6 @@ describe('<Select />', () => {
       const element = mount(<Select label="Select" options={['one', 'two']} onChange={spy} />);
       (element.find('select') as any).node.value = 'two';
       element.find('select').at(1).simulate('change');
-      console.log(element.find('select').at(1).html());
       expect(spy).toHaveBeenCalledWith('one');
     });
   });
@@ -68,7 +67,7 @@ describe('<Select />', () => {
         'two',
         { title: 'Group two', options: ['two.1', 'two.2'] },
       ];
-      const optionOrOptgroupElements = mount(<Select label="Select" groups={optionsAndGroups} />).find('select').children();
+      const optionOrOptgroupElements = mount(<Select label="Select" groups={optionsAndGroups} />).find('select').at(1).children();
 
       optionsAndGroups.forEach((optionOrGroup, index) => {
         const optionOrOptgroupElement = optionOrOptgroupElements.at(index);

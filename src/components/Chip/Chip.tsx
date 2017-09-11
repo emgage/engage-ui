@@ -50,14 +50,14 @@ class Chip extends React.PureComponent<Props, any> {
     }
 
     const chipContents = [(
-            image
-                ?
-                <img className={theme.Image} src={image.url} alt={image.alt} key="1" />
-                : ''
-        ),
+      image
+      ?
+      <img className={theme.Image} src={image.url} alt={image.alt} key="1" />
+      : ''
+    ),
       <span key="2">
-            {this.props.children}
-        </span>,
+        {this.props.children}
+      </span>,
     ];
 
     return (

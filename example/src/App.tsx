@@ -1,93 +1,72 @@
-import { } from '../../src/components/TextField/TextField';
 import * as React from 'react';
-// import { PeoplePickerSearchType } from './PickerEnum';
-// import { PeoplePickerSource } from './PickerSource';
+import { PeoplePickerSearchType } from './PickerEnum';
+import { PeoplePickerSource } from './PickerSource';
 
-// import ReactDataExample from './ReactDataExample';
-
-import CardList from '../../src/components/Picker/CardList';
-import AutoSuggestTest from '../../src/components/Picker/AutoSuggestTest';
-// import PickedCard from '../../src/components/Picker/PickedCard';
-// import Card from '../../src/components/Picker/Card';
-// import * as Autosuggest from 'react-autosuggest';
-// import autosuggestTheme from '../../src/components/Picker/Picker.scss';
+import ReactDataExample from './ReactDataExample';
+import SingleDatePickerWrapper from './SingleDatePickerWrapper';
+import DateRangePickerWrapper from './DateRangePickerWrapper';
 
 import {
-  // Button,
-//   ButtonGroup,
-  // Card,
-  // Chip,
-//   ChoiceList,
-//   ClickableChip,
-//   Column,
-//   DisplayText,
-//   FlexBox,
-//   FlexAlign, 
-//   FlexDirection, 
-//   FlexJustify,
-//   FormLayout,
-//   Heading,
-  // List,
-  // Item,
-//   Loading,
-//   OffCanvas,
-//   OffCanvasMenu,
-//   OffCanvasBody,
-//   OffCanvasAnimationType,
-//   Panel,
-  // Picker,
+  Button,
+  ButtonGroup,
+  Card,
+  Chip,
+  ChoiceList,
+  ClickableChip,
+  Column,
+  DisplayText,
+  FlexBox,
+  FlexAlign,
+  FlexDirection,
+  FlexJustify,
+  FormLayout,
+  Heading,
+  List,
+  Item,
+  Loading,
+  OffCanvas,
+  OffCanvasMode,
+  Panel,
+  Picker,
   Select,
-   TextField,
-//   ValidatedTextField,
-//   ValidatedForm,
-//   Video,
-//   VideoType,
+  TextField,
+  ValidatedTextField,
+  ValidatedForm,
+  Video,
+  VideoType,
 } from '../../src/components';
 
 interface State {
-//   appName?: string,
-//   appDescription: string,
+  appName?: string;
+  appDescription: string;
   appTextCounter: string;
-  array: { key: number, image: string, name: string, email: string, grey: boolean }[];
-  // image: string;
-  // name: string;
-//   columns: object[],
-//   rows: object[],
-//   isMenuOpened: boolean,
-//   animation?: OffCanvasAnimationType,
+  columns: object[];
+  rows: object[];
+  isMenuOpened: boolean;
 }
+
 class App extends React.Component<{}, State> {
   constructor(props: any) {
     super(props);
     this.state = {
-      array: [
-        { key: 1, image: 'http://msaadvertising.com/wp-content/uploads/2014/06/Larry-cartoon-headshot.jpg', name: 'John Doe', email: 'test@gmail.com', grey: false },
-        { key: 2, image: 'http://cdn.photographyproject.com.au/wp-content/uploads/2013/04/corporate-headshot.jpg', name: 'Pedro Sanchez', email: 'pedrosanchez@gmail.com', grey: false },
-        { key: 3, image: 'https://media.licdn.com/mpr/mpr/p/5/005/08f/04d/02df10d.jpg', name: 'Jane Doe', email: 'jane@gmail.com', grey: true },
-        { key: 4, image: 'http://www.roanokecreditrepair.com/wp-content/uploads/2016/06/Headshot-1.png', name: 'Person McPerson', email: 'yahoogmail@gmail.com', grey: false },
-        { key: 5, image: 'https://d38zhw9ti31loc.cloudfront.net/wp-content/uploads/2013/07/Crystal-headshot-new.jpg', name: 'Laura Person', email: 'yahooldjadslkjgmail@gmail.com', grey: false },
-        { key: 6, image: 'https://d38zhw9ti31loc.cloudfront.net/wp-content/uploads/2013/07/Crystal-headshot-new.jpg', name: 'Laura Person', email: 'slkjgmail@gmail.com', grey: false },
-      ],
+      appName: '',
+      appDescription: '',
       appTextCounter: '',
+      columns: [
+        { key: 'id', name: 'ID' },
+        { key: 'title', name: 'Title' },
+        { key: 'count', name: 'Count' },
+      ],
+      rows: [
+        { id: 1, title: 'Title 1', count: 1 },
+        { id: 2, title: 'Title 2', count: 2 },
+        { id: 3, title: 'Title 3', count: 3 },
+      ],
+      isMenuOpened: false,
     };
-      // image: 'http://cdn.photographyproject.com.au/wp-content/uploads/2013/04/corporate-headshot.jpg',
-      // name: 'Pedro Sanchez',
-      // columns: [
-      //   { key: 'id', name: 'ID' },
-      //   { key: 'title', name: 'Title' },
-      //   { key: 'count', name: 'Count' }
-      // ],
-      // rows: [
-      //   { id: 1, title: 'Title 1', count: 1 },
-      //   { id: 2, title: 'Title 2', count: 2 },
-      //   { id: 3, title: 'Title 3', count: 3 }
-      // ],
-      // isMenuOpened: false,
-    // };
-
   }
 
-  // rowGetter = (index: number) => this.state.rows[index];
+  rowGetter = (index: number) => this.state.rows[index];
 
   chipClick = () => {
     console.log('chip clicked...');
@@ -97,74 +76,39 @@ class App extends React.Component<{}, State> {
     console.log('chip removed...');
   }
 
-  // handleClick = () => {
-  //   this.setState({ isMenuOpened: !this.state.isMenuOpened });
-  // }
-
-  // handleClickSlide = () => {
-  //   this.setState({ isMenuOpened: !this.state.isMenuOpened, animation: OffCanvasAnimationType.Slide });
-  // }
-
-  // handleClickReveal = () => {
-  //   this.setState({ isMenuOpened: !this.state.isMenuOpened, animation: OffCanvasAnimationType.Reveal });
-  // }
-
-  // handleClickNone = () => {
-  //   this.setState({ isMenuOpened: !this.state.isMenuOpened, animation: OffCanvasAnimationType.None });
-  // }
-
   render() {
-  //   const posterUrl = new URL('http://4.bp.blogspot.com/_JSR8IC77Ub4/TKB-XAWXmhI/AAAAAAAABJA/MqOpdFTOaHo/w1200-' +
-  //     'h630-p-k-no-nu/C:%5Cfakepath%5Cbird1.jpg');
-  //   const singleVideoSource = [
-  //     {
-  //       src: 'http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_1mb.mp4',
-  //       type: VideoType.MP4,
-  //     }];
-  //   const multiVideoSource = [
-  //     {
-  //       src: 'http://www.sample-videos.com/video/mp4/480/big_buck_bunny_480p_30mb.mp4',
-  //       type: VideoType.MP4,
-  //     },
-  //     {
-  //       src: 'http://www.sample-videos.com/video/mp4/240/big_buck_bunny_240p_30mb.mp4',
-  //       type: VideoType.MP4,
-  //     }];
+    const posterUrl = new URL('http://4.bp.blogspot.com/_JSR8IC77Ub4/TKB-XAWXmhI/AAAAAAAABJA/MqOpdFTOaHo/w1200-' +
+      'h630-p-k-no-nu/C:%5Cfakepath%5Cbird1.jpg');
+    const singleVideoSource = [
+      {
+        src: 'http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_1mb.mp4',
+        type: VideoType.MP4,
+      }];
+    const multiVideoSource = [
+      {
+        src: 'http://www.sample-videos.com/video/mp4/480/big_buck_bunny_480p_30mb.mp4',
+        type: VideoType.MP4,
+      },
+      {
+        src: 'http://www.sample-videos.com/video/mp4/240/big_buck_bunny_240p_30mb.mp4',
+        type: VideoType.MP4,
+      }];
 
-  //   const sampleVideoCmp = <Video
-  //     poster={posterUrl}
-  //     src={singleVideoSource}
-  //     autoplay={false}
-  //     controls={false}
-  //     style={{
-  //       height: 100,
-  //       width: 100,
-  //     }} />;
+    const sampleVideoCmp = <Video
+      poster={posterUrl}
+      src={singleVideoSource}
+      autoplay={false}
+      controls={false}
+      style={{
+        height: 100,
+        width: 100,
+      }} />;
+
     return (
-      <div> 
-         {/* <Card array={this.state.array}/>   */}
-             <CardList array={this.state.array}/>       
-          {/* <div>
-           <Autosuggest 
-            suggestions={suggestions}
-            onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-            onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-            getSuggestionValue={getSuggestionValue}
-            renderSuggestion={renderSuggestion}
-            inputProps={inputProps} />
-        </div>   */}
-        <TextField label="My Label" placeholder="Fun Stuff" />
-           <AutoSuggestTest />
-
-        {/* <PickedCard image={this.state.image} name={this.state.name} /> */}
-        {/* <OffCanvas width={270} transitionDuration={270} isMenuOpened={this.state.isMenuOpened}>
-            <OffCanvasBody animation={this.state.animation}>
-              <p>This is the main body container.</p>
-              <p><a href="#" onClick={this.handleClickSlide}>Slide</a> to toggle the menu.</p>
-              <p><a href="#" onClick={this.handleClickReveal}>Reveal</a> to toggle the menu.</p>
-              <p><a href="#" onClick={this.handleClickNone}>None</a> to toggle the menu.</p>
-            </OffCanvasBody>
-            <OffCanvasMenu animation={this.state.animation}>
+      <div>
+        <SingleDatePickerWrapper />
+        <DateRangePickerWrapper />
+        <OffCanvas activator={<Button>OffCanvas Test</Button>} mode={OffCanvasMode.slide}>
               <p>Placeholder content.</p>
               <ul>
                 <li>Link 1</li>
@@ -172,10 +116,8 @@ class App extends React.Component<{}, State> {
                 <li>Link 3</li>
                 <li>Link 4</li>
                 <li>Link 5</li>
-                <li><a href="#" onClick={this.handleClick}>Toggle Menu</a></li>
               </ul>
-            </OffCanvasMenu>
-          </OffCanvas>       
+          </OffCanvas>
         <div>
           <ReactDataExample
             columns={this.state.columns}
@@ -183,22 +125,20 @@ class App extends React.Component<{}, State> {
             rowsCount={this.state.rows.length}
             minHeight={2}
           />
-          <Heading>Popover</Heading> 
-           */
-           /* <TextField id="TestName" label="Text Counter" placeholder="test-placeholder" value={this.state.appTextCounter} helpText="Helper Text" enableTextCouter={true} maxLength={100} onChange={this.valueUpdater('appTextCounter')}/>  */
-          /* 
-         <ClickableChip chip={<Chip>Batman</Chip>}>
+          <Heading>Popover</Heading>
+          <TextField id="TestName" label="Text Counter" placeholder="test-placeholder" value={this.state.appTextCounter} helpText="Helper Text" enableTextCouter={true} maxLength={100} onChange={this.valueUpdater('appTextCounter')}/>
+          <ClickableChip chip={<Chip>Batman</Chip>}>
             <Card title="More about Batman">
               <p>Batman is a fictional superhero who appears in American comic books published by DC Comics. The character was created by artist Bob Kane and writer Bill Finger, and first appeared in Detective Comics #27</p>
             </Card>
           </ClickableChip>
         </div>
         <Heading>List</Heading>
-        <List type="bullet"> 
+        <List type="bullet">
           <Item>Yellow shirt</Item>
           <Item>Red shirt</Item>
           <List type="bullet">
-             <Item>Yellow shirt</Item>
+            <Item>Yellow shirt</Item>
             <Item>Red shirt</Item>
             <Item>Green shirt</Item>
             <List type="bullet">
@@ -216,21 +156,6 @@ class App extends React.Component<{}, State> {
           <Item>Second item</Item>
           <Item>Third Item</Item>
         </List>
-        <List type="striped">
-          <Item>First item</Item>
-          <Item>Second item</Item>
-          <Item>Third Item</Item>
-        </List>
-        <List type="default">
-          <Item>First item</Item>
-          <Item>Second item</Item>
-          <Item>Third Item</Item>
-        </List>
-        <List type="divider">
-          <Item>First item</Item>
-          <Item>Second item</Item>
-          <Item>Third Item</Item>
-        </List> 
         <ChoiceList
   title="Company name"
   choices={[
@@ -249,8 +174,8 @@ class App extends React.Component<{}, State> {
   ]}
   selected={['hidden']}
 />
-        <Loading /> */}
-         {/* <Picker
+        <Loading />
+        <Picker
           required
           chipComponent={Chip}
           filterPlaceHolder="People"
@@ -259,9 +184,9 @@ class App extends React.Component<{}, State> {
           maxSelectedItems={5}
           minSelectedItems={2}
           millisecondsToWaitBeforeSearch={20}
-            ={<Button children="ranmal" />}
-        />  */}
-        {/* <ValidatedForm>
+          moreInfoComponent={<Button children="ranmal" />}
+        />
+        <ValidatedForm>
 
           <Heading>App Basics</Heading>
 
@@ -305,7 +230,6 @@ class App extends React.Component<{}, State> {
         </ValidatedForm>
 
         <Heading>Connected Text Field</Heading>
-        */
         <TextField
           label="Connected Text Field"
           type="number"
@@ -316,11 +240,10 @@ class App extends React.Component<{}, State> {
           maxLength={100}
           onChange={this.valueUpdater('appTextCounter')}
           connectedRight={<Select label="Weight unit" labelHidden options={[
-            'kg',
-            'lb',
-          ]} />}
+              'kg',
+              'lb',
+            ]} />}
         />
-        /*
 
         <Heading>Flexbox</Heading>
         <FlexBox>
@@ -347,8 +270,8 @@ class App extends React.Component<{}, State> {
           <div style={{backgroundColor: 'lime'}}>Demo 3</div>
         </FlexBox>
 
-        <Heading>Chip</Heading> */}
-        {/* <div>
+        <Heading>Chip</Heading>
+        <div>
           <Chip>
             Basic Chip
           </Chip>
@@ -370,12 +293,9 @@ class App extends React.Component<{}, State> {
           <Chip transparent>
             Transparent Chip
           </Chip>
-           <Chip removable={true}>
-            just a chip
-          </Chip> 
-        </div> */}
+        </div>
 
-        {/* <div>
+        <div>
           <h4>Single source video</h4>
           <Video
             poster={posterUrl}
@@ -419,7 +339,6 @@ class App extends React.Component<{}, State> {
             <p>Small 1-1!</p>
           </Column>
         </div>
-       
        <Heading>Grid</Heading>
         <FlexBox>
           <Column small="1-2" medium="1-4" large="3-5">
@@ -428,7 +347,7 @@ class App extends React.Component<{}, State> {
           <Column small="1-2" medium="3-4" large="4-10">
             <span>Hello small=1-2 medium=3-4 large=4-10</span>
           </Column>
-        </FlexBox> */}
+        </FlexBox>
       </div>
     );
   }
@@ -436,10 +355,6 @@ class App extends React.Component<{}, State> {
   valueUpdater(field: any) {
     return (value: any) => this.setState({ [field]: value });
   }
-
-  // popoverClose(field: any) {
-  //   return;
-  // }
 }
 
 export default App;
