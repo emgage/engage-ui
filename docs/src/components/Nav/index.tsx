@@ -15,7 +15,6 @@ const Nav = () => {
         <li><Link to="/component/message">Message Component</Link></li>
         <li><Link to="/component/column">Column Component</Link></li>
         <li><Link to="/component/badge">Badge Component</Link></li>
-        <li><Link to="/component/column">Column Component</Link></li>
         <li><Link to="/component/loading">Loading Component</Link></li>
         <li><Link to="/component/select">Select Component</Link></li>
         <li><Link to="/component/connected">Connected Component</Link></li>
