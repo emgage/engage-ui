@@ -118,7 +118,6 @@ class App extends React.Component<{}, State> {
                 <li>Link 5</li>
               </ul>
           </OffCanvas>
-        <div>
           <ReactDataExample
             columns={this.state.columns}
             rowGetter={this.rowGetter}
@@ -132,7 +131,6 @@ class App extends React.Component<{}, State> {
               <p>Batman is a fictional superhero who appears in American comic books published by DC Comics. The character was created by artist Bob Kane and writer Bill Finger, and first appeared in Detective Comics #27</p>
             </Card>
           </ClickableChip>
-        </div>
         <Heading>List</Heading>
         <List type="bullet">
           <Item>Yellow shirt</Item>
