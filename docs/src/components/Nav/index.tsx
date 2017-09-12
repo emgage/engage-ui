@@ -12,7 +12,9 @@ const Nav = () => {
         <li><IndexLink to="/">Home</IndexLink></li>
         <li><Link to="/component/choicelist" className={styles.active}>Choice List Component</Link></li>
         <li><Link to="/component/panel">Panel Component</Link></li>
+        <li><Link to="/component/column">Column Component</Link></li>
         <li><Link to="/component/badge">Badge Component</Link></li>
+        <li><Link to="/component/column">Column Component</Link></li>
         <li><Link to="/component/loading">Loading Component</Link></li>
         <li><Link to="/component/select">Select Component</Link></li>
         <li><Link to="/component/connected">Connected Component</Link></li>
