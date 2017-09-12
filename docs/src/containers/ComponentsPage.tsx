@@ -34,9 +34,6 @@ class ComponentsPage extends React.Component<IProps, any> {
         {currentState.exampleCode && <CodeExample codeString={currentState.exampleCode} />}
         {currentState.exampleComponentExtra && <currentState.exampleComponentExtra /> }
         {currentState.exampleCodeExtra && <CodeExample codeString={currentState.exampleCodeExtra} />}
-
-        {/* <div style={{ marginTop: 50 }}>{'<Best Practices Component />'}</div>
-        <div>{'<GuideLines Component />'}</div> */}
       </div>
     );
   }
@@ -56,5 +53,5 @@ function mapDispatchToProps(dispatch: Redux.Dispatch<{}>) {
 
 export default Redux.connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(ComponentsPage);

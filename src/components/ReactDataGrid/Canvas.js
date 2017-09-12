@@ -256,13 +256,13 @@ const Canvas = React.createClass({
   renderPlaceholder(key: string, height: number): ?ReactElement {
     // just renders empty cells
     // if we wanted to show gridlines, we'd need classes and position as with renderScrollingPlaceholder
-    return (<div key={ key } style={{ height: height }}>
+    return (<span key={ key } style={{ height: height }}>
       {
         this.props.columns.map(
           (column, idx) => <div style={{ width: column.width }} key={idx} />
         )
       }
-    </div >
+    </span >
     );
   },
 
@@ -293,15 +293,6 @@ const Canvas = React.createClass({
       }));
 
     this._currentRowsLength = rows.length;
-
-    if (displayStart > 0) {
-      rows.unshift(this.renderPlaceholder('top', displayStart * rowHeight));
-    }
-
-    if (rowsCount - displayEnd > 0) {
-      rows.push(
-        this.renderPlaceholder('bottom', (rowsCount - displayEnd) * rowHeight));
-    }
 
     let style = {
       position: 'absolute',

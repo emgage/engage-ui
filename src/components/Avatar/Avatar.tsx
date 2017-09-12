@@ -60,7 +60,7 @@ class Avatar extends React.Component<Props, {}> {
       theme.avatar,
       theme[variationName('style', styleClass(nameString))],
       source && theme.hasImage,
-      size && theme[variationName('size', size)],
+      size && theme[variationName('size', size)]
     );
 
     let content = null;

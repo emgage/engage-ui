@@ -13,7 +13,7 @@ const ReactDataExample = React.createClass({
 
   createRows() {
     let rows = [];
-    for (let i = 1; i < 20; i++) {
+    for (let i = 1; i < 100; i++) {
       rows.push({
         id: i,
         title: 'Title ' + i,

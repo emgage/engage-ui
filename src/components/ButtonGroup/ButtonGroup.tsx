@@ -21,7 +21,7 @@ const buttonGroup = ({
 }: Props) => {
   const className = classNames(
     theme.buttonGroup,
-    segmented && theme.segmented,
+    segmented && theme.segmented
   );
 
   const contents = elementChildren(children)
