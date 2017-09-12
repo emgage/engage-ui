@@ -7,6 +7,7 @@ import SingleDatePickerWrapper from './SingleDatePickerWrapper';
 import DateRangePickerWrapper from './DateRangePickerWrapper';
 
 import {
+  Banner,
   Button,
   ButtonGroup,
   Card,
@@ -106,6 +107,16 @@ class App extends React.Component<{}, State> {
 
     return (
       <div>
+        <Banner 
+          onDismiss={() => console.log('hello')}>
+          <p>Use your finance report. On Dismiss Set.</p>
+        </Banner>
+        <Select label="Weight unit" labelHidden options={[
+          'kg',
+          'lb',
+        ]} />
+
+
         <SingleDatePickerWrapper />
         <DateRangePickerWrapper />
         <OffCanvas activator={<Button>OffCanvas Test</Button>} mode={OffCanvasMode.slide}>
