@@ -15,6 +15,7 @@ export interface Props {
   status?: Status;
   progress?: Progress;
   theme?: any;
+  statusText?: boolean;
 }
 
 const PROGRESS_LABELS = {
