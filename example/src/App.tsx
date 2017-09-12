@@ -3,13 +3,14 @@ import { PeoplePickerSearchType } from './PickerEnum';
 import { PeoplePickerSource } from './PickerSource';
 
 import ReactDataExample from './ReactDataExample';
-import SingleDatePickerWrapper from './SingleDatePickerWrapper';
-import DateRangePickerWrapper from './DateRangePickerWrapper';
+// import SingleDatePickerWrapper from './SingleDatePickerWrapper';
+// import DateRangePickerWrapper from './DateRangePickerWrapper';
 
 import {
   Button,
   ButtonGroup,
   Card,
+  Checkbox,
   Chip,
   ChoiceList,
   ClickableChip,
@@ -106,8 +107,9 @@ class App extends React.Component<{}, State> {
 
     return (
       <div>
-        <SingleDatePickerWrapper />
-        <DateRangePickerWrapper />
+        <Checkbox label={'I am a checkbox'} />
+        {/* <SingleDatePickerWrapper />
+        <DateRangePickerWrapper /> */}
         <OffCanvas activator={<Button>OffCanvas Test</Button>} mode={OffCanvasMode.slide}>
               <p>Placeholder content.</p>
               <ul>
