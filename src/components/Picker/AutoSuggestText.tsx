@@ -4,8 +4,6 @@ import Card from './Card';
 import * as style from './Picker.scss';
 import Chip from '../Chip';
 
-// https://developer.mozilla.org/en/docs/Web/JavaScript/Guide/Regular_Expressions#Using_Special_Characters
-
 function escapeRegexCharacters(str:any) {
   return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
@@ -22,39 +20,34 @@ function renderSuggestion(suggestion:any, { isHighlighted, query }:any) {
   );
 }
 
-export interface State {
-  chipListState: { key: any, image?: string, text: string, email?: string, grey?: boolean, markedForDelete?:boolean }[];
-  value: string;
-  suggestions: object[];
-  itemsList: { key: any, image?: string, email?: string, grey?: boolean, name?: any, markedForDelete?: boolean }[];
-  input?: any;
-}
 export interface Props {
+  value: string;
+  input: object;
+  suggestions: object[];
+  chipListState: { key: any, image?: string, text: string, email?: string, grey?: boolean, markedForDelete?:boolean }[];
+  itemsList: { key: any, image?: string, email?: string, grey?: boolean, name?: any, markedForDelete?: boolean }[];
+}
+export interface State {
+  value: string;
+  input: any;
+  suggestions: object[];
+  chipListState: { key: any, image?: string, text: string, email?: string, grey?: boolean, markedForDelete?:boolean }[];
+  itemsList: { key: any, image?: string, email?: string, grey?: boolean, name?: any, markedForDelete?: boolean }[];
 }
 class AutoSuggestText extends React.Component<Props, State> {
-  constructor() {
-    super();
-
+  constructor(props:any) {
+    super(props);
+    console.log('props', props);
     this.state = {
-      value: '',
-      input: {},
-      suggestions: [],
-      chipListState: [
-      ],
-      itemsList: [
-        { key: 1, image: 'http://msaadvertising.com/wp-content/uploads/2014/06/Larry-cartoon-headshot.jpg', name: 'John Doe', email: 'test@gmail.com', markedForDelete: false },
-        { key: 2, image: 'http://cdn.photographyproject.com.au/wp-content/uploads/2013/04/corporate-headshot.jpg', name: 'Pedro Sanchez', email: 'pedrosanchez@gmail.com' },
-        { key: 3, image: 'https://media.licdn.com/mpr/mpr/p/5/005/08f/04d/02df10d.jpg', name: 'Jane Doe', email: 'jane@gmail.com' },
-        { key: 4, image: 'http://www.roanokecreditrepair.com/wp-content/uploads/2016/06/Headshot-1.png', name: 'Person McPerson', email: 'yahoogmail@gmail.com' },
-        { key: 5, image: 'https://d38zhw9ti31loc.cloudfront.net/wp-content/uploads/2013/07/Crystal-headshot-new.jpg', name: 'Laura Person', email: 'yahooldjadslkjgmail@gmail.com' },
-        { key: 6, image: 'https://d38zhw9ti31loc.cloudfront.net/wp-content/uploads/2013/07/Crystal-headshot-new.jpg', name: 'Laura Person', email: 'slkjgmail@gmail.com' },
-      ],
+      value: props.value,
+      input: props.input,
+      suggestions: props.suggestions,
+      chipListState: props.chipListState,
+      itemsList: props.itemsList,
     };
   }
   onSuggestionsClearRequested = () => {
-    this.setState({
-      suggestions: [],
-    });
+    this.setState({ suggestions: [] });
   }
   getSuggestions = (value:any) => {
     const escapedValue = escapeRegexCharacters(value.trim());
@@ -80,23 +73,19 @@ class AutoSuggestText extends React.Component<Props, State> {
   onKeyDown = (e:any) => {
     if ((e.keyCode === 8) && this.state.chipListState.length && !this.state.value.length) {
       const yellowed = this.state.chipListState.slice(this.state.chipListState.length - 1);
-      console.log(yellowed[0]['markedForDelete']);
       if (yellowed[0]['markedForDelete']) {
-        console.log('isyellow');
         const chipListState = this.state.chipListState.slice(0, this.state.chipListState.length - 1);
         const language = this.state.chipListState.slice(this.state.chipListState.length - 1)[0];
         delete language['text'];
         language['markedForDelete'] = false;
         const itemsList = this.state.itemsList.concat(language);
-        console.log('language:', language);
-        console.log('this.state.language:', itemsList);
         this.setState({
           chipListState,
           itemsList,
         });
       } else {
-        console.log('not yet?');
         yellowed[0]['markedForDelete'] = true;
+
         this.setState({
           chipListState: this.state.chipListState,
         });
@@ -108,23 +97,17 @@ class AutoSuggestText extends React.Component<Props, State> {
       }
     }
   }
-  // handler = (e:any) => {
-  //   e.stopPropagation();
-  //   e.preventDefault();
-  // }
 
   onSuggestionsFetchRequested = ({ value }:any) => {
     this.setState({
       suggestions: this.getSuggestions(value),
     });
-    // document.addEventListener('click',this.handler,true);
   }
 
   updateList = (input: any) => {
     const langIndex = this.state.itemsList.indexOf(input);
     const itemsListLength = this.state.itemsList;
     const newLangState = itemsListLength.slice(0, langIndex).concat(itemsListLength.slice(langIndex + 1, itemsListLength.length));
-
     this.setState({ itemsList: newLangState });
   }
 
@@ -140,18 +123,13 @@ class AutoSuggestText extends React.Component<Props, State> {
   }
 
   chipRemove = (input:any) => {
-    console.log('input:', input);
     input['markedForDelete'] = false;
     const index = this.state.chipListState.indexOf(input);
     const chipLength = this.state.chipListState;
     const newChipState = chipLength.slice(0, index).concat(chipLength.slice(index + 1, chipLength.length));
-
     this.setState({ chipListState: newChipState });
-
     const itemsListList = this.state.itemsList.concat(input);
-    console.log('itemsListList:', itemsListList);
     this.setState({ itemsList: itemsListList });
-
     this.state.input.focus();
   }
 
@@ -196,5 +174,4 @@ class AutoSuggestText extends React.Component<Props, State> {
   }
 }
 
-// ReactDOM.render(<Test />, document.getElementById('app'));
 export default AutoSuggestText;
