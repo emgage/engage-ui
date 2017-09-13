@@ -1,4 +1,3 @@
-import { } from '../../src/components/RadioButton/RadioButton';
 import * as React from 'react';
 import { PeoplePickerSearchType } from './PickerEnum';
 import { PeoplePickerSource } from './PickerSource';
@@ -29,7 +28,6 @@ import {
   OffCanvasMode,
   Panel,
   Picker,
-  RadioButton,
   Select,
   TextField,
   ValidatedTextField,
@@ -78,12 +76,6 @@ class App extends React.Component<{}, State> {
     console.log('chip removed...');
   }
 
-  validator(rule: object, value: any, callback: (error?: Error) => void) {
-    console.log('validator!!');
-    // console.log('rule:', rule);
-    // console.log('value:', value);
-  }
-
   render() {
     const posterUrl = new URL('http://4.bp.blogspot.com/_JSR8IC77Ub4/TKB-XAWXmhI/AAAAAAAABJA/MqOpdFTOaHo/w1200-' +
       'h630-p-k-no-nu/C:%5Cfakepath%5Cbird1.jpg');
@@ -114,27 +106,6 @@ class App extends React.Component<{}, State> {
 
     return (
       <div>
-        <form>
-          <RadioButton label={'radiobutton'} />
-          <RadioButton label={'radiobutton'} />
-          <RadioButton label={'radiobutton'} />
-        </form>
-        <ValidatedForm>
-          <ValidatedTextField
-              id="AppDescription"
-              required={true}
-              label="App Description"
-              placeholder=""
-              helpText="We recommend keeping app description less then 256 characters."
-              onChange={this.valueUpdater('txtAppDesc')}
-              name="App Description"
-              /* value={this.state.txtAppDesc} */
-              validateTrigger={['onBlur', 'onChange']}
-              validateRules={[{ required: true, message: 'App Description is required.' }]}
-              multiline
-              validator={this.validator} 
-          />
-      </ValidatedForm>
         <SingleDatePickerWrapper />
         <DateRangePickerWrapper />
         <OffCanvas activator={<Button>OffCanvas Test</Button>} mode={OffCanvasMode.slide}>

@@ -58,28 +58,7 @@ class Chip extends React.PureComponent<Props, any> {
       : '';
     const returnedValue = clickable || removable ? React.createElement('span', { className }, isClickable, isRemovable) : React.createElement('button', { className }, isClickable, isRemovable);
 
-    return (
-      returnedValue
-      // <button className={className}>
-      //   {
-      //     clickable
-      //     ?
-      //     <a onClick={this.props.onClick} aria-disabled={false} tabIndex={0}>
-      //       {chipContents}
-      //     </a>
-      //     :
-      //     chipContents
-      //   }
-      //   {
-      //     removable
-      //     ?
-      //     <button type="button" className={theme.Remove} aria-label={'Remove ' + this.props.children} onClick={this.props.onRemove} aria-hidden={false}>
-      //       <span aria-hidden>×</span>
-      //     </button>
-      //     : ''
-      //   }
-      // </button>
-    );
+    return returnedValue;
   }
 }
 
