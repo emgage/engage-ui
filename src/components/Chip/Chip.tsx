@@ -61,25 +61,25 @@ class Chip extends React.PureComponent<Props, any> {
     ];
 
     return (
-            <div className={className}>
-                {
-                    clickable
-                        ?
-                        <a onClick={this.props.onClick} aria-disabled={false} tabIndex={0}>
-                            {chipContents}
-                        </a>
-                        :
-                        chipContents
-                }
-                {
-                    removable
-                        ?
-                        <button type="button" className={theme.Remove} aria-label="Remove" onClick={this.props.onRemove}>
-                            <span aria-hidden="true">×</span>
-                        </button>
-                        : ''
-                }
-            </div>
+      <div className={className}>
+        {
+          clickable
+            ?
+            <a onClick={this.props.onClick} aria-disabled={false} tabIndex={0}>
+                {chipContents}
+            </a>
+            :
+            chipContents
+        }
+        {
+          removable
+              ?
+              <button type="button" className={theme.Remove} aria-label="Remove" onClick={this.props.onRemove}>
+                  <span aria-hidden="true">×</span>
+              </button>
+              : ''
+        }
+      </div>
     );
   }
 }
