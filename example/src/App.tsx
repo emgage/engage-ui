@@ -269,7 +269,6 @@ class App extends React.Component<{}, State> {
         </FlexBox>
 
         <Heading>Chip</Heading>
-        {/* <div style={{ display:'flex' }}> */}
           <div>
           <Chip>
             Basic Chip
