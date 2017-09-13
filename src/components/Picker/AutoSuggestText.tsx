@@ -21,10 +21,6 @@ function renderSuggestion(suggestion:any, { isHighlighted, query }:any) {
 }
 
 export interface Props {
-  value: string;
-  input: object;
-  suggestions: object[];
-  chipListState: { key: any, image?: string, text: string, email?: string, grey?: boolean, markedForDelete?:boolean }[];
   itemsList: { key: any, image?: string, email?: string, grey?: boolean, name?: any, markedForDelete?: boolean }[];
 }
 export interface State {
@@ -37,12 +33,11 @@ export interface State {
 class AutoSuggestText extends React.Component<Props, State> {
   constructor(props:any) {
     super(props);
-    console.log('props', props);
     this.state = {
-      value: props.value,
-      input: props.input,
-      suggestions: props.suggestions,
-      chipListState: props.chipListState,
+      value: '',
+      input: {},
+      suggestions: [],
+      chipListState: [],
       itemsList: props.itemsList,
     };
   }

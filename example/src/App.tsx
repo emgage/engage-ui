@@ -109,10 +109,6 @@ class App extends React.Component<{}, State> {
     return (
       <div>
         <AutoSuggestText
-          value=""
-          input={{}}
-          suggestions={[]}
-          chipListState={[]}
           itemsList={[
             { key: 1, image: 'http://msaadvertising.com/wp-content/uploads/2014/06/Larry-cartoon-headshot.jpg', name: 'John Doe', email: 'test@gmail.com', markedForDelete: false },
             { key: 2, image: 'http://cdn.photographyproject.com.au/wp-content/uploads/2013/04/corporate-headshot.jpg', name: 'Pedro Sanchez', email: 'pedrosanchez@gmail.com' },
