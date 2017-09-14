@@ -19,7 +19,7 @@ export const getDisplayName = () => (COMPONENT: ReactComponent<any>) => {
 export function wrapWithComponent<P>(
   element: React.ReactNode | null | undefined,
   COMPONENT: ReactComponent<P>,
-  props?: any,
+  props?: any
 ): React.ReactNode {
   if (element == null) { return null; }
   return isElementOfType(element, COMPONENT)
@@ -50,7 +50,7 @@ const isComponent = (aComponent: ReactComponent<any>, anotherComponent: ReactCom
 /// the passed components, if `Component` is an array of React components).
 export function isElementOfType(
   element: React.ReactNode | null | undefined,
-  component: ReactComponent<{}> | ReactComponent<{}>[],
+  component: ReactComponent<{}> | ReactComponent<{}>[]
 ): boolean {
   if (element == null || !isValidElement(element) || typeof element.type === 'string') {
     return false;

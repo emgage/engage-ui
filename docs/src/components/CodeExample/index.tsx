@@ -4,7 +4,7 @@ import SyntaxHighlighter from 'react-syntax-highlighter';
 import { hopscotch } from 'react-syntax-highlighter/dist/styles';
 
 export interface IProps {
-  codeString: string;  
+  codeString: string;
 }
 
 // tslint:disable-next-line:variable-name
