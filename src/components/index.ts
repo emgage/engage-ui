@@ -63,6 +63,8 @@ export {
   Props as ConnectedProps,
 } from './Connected';
 
+export * from './DatePicker';
+
 export {
   default as DisplayText,
   Props as DisplayTextProps,

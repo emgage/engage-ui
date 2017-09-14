@@ -69,13 +69,13 @@ class OffCanvas extends React.PureComponent<Props, State> {
       theme.offcanvas,
       overlay && theme.overlay,
       flip && theme.flip,
-      this.state.active && theme.open,
+      this.state.active && theme.open
     );
 
     const barClassName = classNames(
       theme.bar,
       mode === 'slide' && theme.animation,
-      mode === 'push' && theme.animation,
+      mode === 'push' && theme.animation
     );
 
     const rootElement = document.body;

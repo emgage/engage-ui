@@ -14,7 +14,7 @@ describe('<Checkbox />', () => {
   describe('when default props are provided', () => {
     it('basic checkbox should have rendere label, div, input,span element and class on it', () => {
       const checkboxWrapper = mount(
-                                    <Checkbox label="Checkbox" theme={theme} />,
+                                    <Checkbox label="Checkbox" theme={theme} />
                                    );
       expect(checkboxWrapper.find('label')).toHaveLength(1);
       expect(checkboxWrapper.find('div')).toHaveLength(5);
@@ -32,7 +32,7 @@ describe('<Checkbox />', () => {
     it('is called with the new checked value of the input on change', () => {
       const spy = jest.fn();
       const checkboxWrapper = mount(
-                                    <Checkbox label="Checkbox" onChange={spy} theme={theme} />,
+                                    <Checkbox label="Checkbox" onChange={spy} theme={theme} />
                                    );
       (checkboxWrapper.find('input') as any).node.checked = true;
       checkboxWrapper.find('input').simulate('change');
@@ -53,7 +53,7 @@ describe('<Checkbox />', () => {
     it('is called when the input is focused', () => {
       const spy = jest.fn();
       const checkboxWrapper = mount(
-                                    <Checkbox label="Checkbox" onFocus={spy} theme={theme} />,
+                                    <Checkbox label="Checkbox" onFocus={spy} theme={theme} />
                                    );
       checkboxWrapper.find('input').simulate('focus');
       expect(spy).toHaveBeenCalled();
@@ -73,7 +73,7 @@ describe('<Checkbox />', () => {
     it('is called when the input is focused', () => {
       const spy = jest.fn();
       const checkboxWrapper = mount(
-                                    <Checkbox label="Checkbox" onBlur={spy} theme={theme} />,
+                                    <Checkbox label="Checkbox" onBlur={spy} theme={theme} />
                                    );
       checkboxWrapper.find('input').simulate('blur');
       expect(spy).toHaveBeenCalled();
@@ -92,7 +92,7 @@ describe('<Checkbox />', () => {
   describe('label property', () => {
     it('should verify renderes a label for checkbox', () => {
       const checkboxWrapper = mount(
-                                    <Checkbox label="Checkbox" theme={theme} />,
+                                    <Checkbox label="Checkbox" theme={theme} />
                                    );
       expect(checkboxWrapper.find('label')).toHaveLength(1);
       expect(checkboxWrapper.find('div')).toHaveLength(5);
@@ -110,7 +110,7 @@ describe('<Checkbox />', () => {
     describe('when not set', () => {
       it('should verify checkbox when lableHideen is not set', () => {
         const checkboxWrapper = mount(
-                                      <Checkbox label="Checkbox" theme={theme} />,
+                                      <Checkbox label="Checkbox" theme={theme} />
                                      );
         expect(checkboxWrapper.find('label')).toHaveLength(1);
         expect(checkboxWrapper.find('div')).toHaveLength(5);
@@ -127,7 +127,7 @@ describe('<Checkbox />', () => {
     describe('when set as true', () => {
       it('should verify checkbox when lableHideen is set as true', () => {
         const checkboxWrapper = mount(
-                                      <Checkbox label="Checkbox" labelHidden theme={theme} />,
+                                      <Checkbox label="Checkbox" labelHidden theme={theme} />
                                      );
         expect(checkboxWrapper.find('label')).toHaveLength(1);
         expect(checkboxWrapper.find('div')).toHaveLength(5);
@@ -144,7 +144,7 @@ describe('<Checkbox />', () => {
     describe('when set as false', () => {
       it('should verify checkbox when lableHideen is set as false', () => {
         const checkboxWrapper = mount(
-                                      <Checkbox label="Checkbox" labelHidden={false} theme={theme} />,
+                                      <Checkbox label="Checkbox" labelHidden={false} theme={theme} />
                                      );
         expect(checkboxWrapper.find('label')).toHaveLength(1);
         expect(checkboxWrapper.find('div')).toHaveLength(5);
@@ -164,7 +164,7 @@ describe('<Checkbox />', () => {
     describe('when not set', () => {
       it('should verify checkbox when checked is not set', () => {
         const checkboxWrapper = mount(
-                                      <Checkbox label="Checkbox" theme={theme} />,
+                                      <Checkbox label="Checkbox" theme={theme} />
                                      );
         expect(checkboxWrapper.find('label')).toHaveLength(1);
         expect(checkboxWrapper.find('div')).toHaveLength(5);
@@ -181,7 +181,7 @@ describe('<Checkbox />', () => {
     describe('when set as true', () => {
       it('should verify checkbox when checked is set as true', () => {
         const checkboxWrapper = mount(
-                                      <Checkbox label="Checkbox" checked theme={theme} />,
+                                      <Checkbox label="Checkbox" checked theme={theme} />
                                      );
         expect(checkboxWrapper.find('label')).toHaveLength(1);
         expect(checkboxWrapper.find('div')).toHaveLength(5);
@@ -198,7 +198,7 @@ describe('<Checkbox />', () => {
     describe('when set as false', () => {
       it('should verify checkbox when checked is set as false', () => {
         const checkboxWrapper = mount(
-                                      <Checkbox label="Checkbox" checked={false} theme={theme} />,
+                                      <Checkbox label="Checkbox" checked={false} theme={theme} />
                                      );
         expect(checkboxWrapper.find('label')).toHaveLength(1);
         expect(checkboxWrapper.find('div')).toHaveLength(5);
@@ -218,7 +218,7 @@ describe('<Checkbox />', () => {
     describe('when not set', () => {
       it('should verify checkbox when name is not set', () => {
         const checkboxWrapper = mount(
-                                       <Checkbox label="Checkbox" theme={theme} />,
+                                       <Checkbox label="Checkbox" theme={theme} />
                                      );
         expect(checkboxWrapper.find('label')).toHaveLength(1);
         expect(checkboxWrapper.find('div')).toHaveLength(5);
@@ -235,7 +235,7 @@ describe('<Checkbox />', () => {
     describe('when set', () => {
       it('should verify checkbox when name is set', () => {
         const checkboxWrapper = mount(
-                                      <Checkbox label="Checkbox" name="Soccer" theme={theme} />,
+                                      <Checkbox label="Checkbox" name="Soccer" theme={theme} />
                                      );
         expect(checkboxWrapper.find('label')).toHaveLength(1);
         expect(checkboxWrapper.find('div')).toHaveLength(5);
@@ -255,7 +255,7 @@ describe('<Checkbox />', () => {
     describe('when not set', () => {
       it('should verify checkbox when value is not set', () => {
         const checkboxWrapper = mount(
-                                       <Checkbox label="Checkbox" theme={theme} />,
+                                       <Checkbox label="Checkbox" theme={theme} />
                                      );
         expect(checkboxWrapper.find('label')).toHaveLength(1);
         expect(checkboxWrapper.find('div')).toHaveLength(5);
@@ -272,7 +272,7 @@ describe('<Checkbox />', () => {
     describe('when set', () => {
       it('should verify checkbox when value is set', () => {
         const checkboxWrapper = mount(
-                                      <Checkbox label="Checkbox" value="SomeValue" theme={theme} />,
+                                      <Checkbox label="Checkbox" value="SomeValue" theme={theme} />
                                      );
         expect(checkboxWrapper.find('label')).toHaveLength(1);
         expect(checkboxWrapper.find('div')).toHaveLength(5);
@@ -292,7 +292,7 @@ describe('<Checkbox />', () => {
     describe('when not set', () => {
       it('should verify render a random id for the checkbox when id is not set', () => {
         const checkboxWrapper = mount(
-                                      <Checkbox label="Checkbox" theme={theme}/>,
+                                      <Checkbox label="Checkbox" theme={theme}/>
                                      );
         expect(checkboxWrapper.find('label')).toHaveLength(1);
         expect(checkboxWrapper.find('div')).toHaveLength(5);
@@ -309,7 +309,7 @@ describe('<Checkbox />', () => {
     describe('when set', () => {
       it('should verify checkbox when id is set', () => {
         const checkboxWrapper = mount(
-                                      <Checkbox label="Checkbox" id="MyCheckbox" theme={theme} />,
+                                      <Checkbox label="Checkbox" id="MyCheckbox" theme={theme} />
                                      );
         expect(checkboxWrapper.find('label')).toHaveLength(1);
         expect(checkboxWrapper.find('div')).toHaveLength(5);
@@ -329,7 +329,7 @@ describe('<Checkbox />', () => {
     describe('when not set', () => {
       it('should verify checkbox when disabled is not set', () => {
         const checkboxWrapper = mount(
-                                      <Checkbox label="Checkbox" theme={theme} />,
+                                      <Checkbox label="Checkbox" theme={theme} />
                                      );
         expect(checkboxWrapper.find('input').prop('disabled')).toBeFalsy();
         expect(checkboxWrapper.find('label')).toHaveLength(1);
@@ -347,7 +347,7 @@ describe('<Checkbox />', () => {
     describe('when set as true', () => {
       it('should verify checkbox when disbaled is set as true', () => {
         const checkboxWrapper = mount(
-                                      <Checkbox label="Checkbox" disabled theme={theme} />,
+                                      <Checkbox label="Checkbox" disabled theme={theme} />
                                      );
         expect(checkboxWrapper.find('label')).toHaveLength(1);
         expect(checkboxWrapper.find('div')).toHaveLength(5);
@@ -365,7 +365,7 @@ describe('<Checkbox />', () => {
     describe('when set as false', () => {
       it('should verify checkbox when disbaled is set as false', () => {
         const checkboxWrapper = mount(
-                                      <Checkbox label="Checkbox" disabled={false} theme={theme} />,
+                                      <Checkbox label="Checkbox" disabled={false} theme={theme} />
                                      );
         expect(checkboxWrapper.find('label')).toHaveLength(1);
         expect(checkboxWrapper.find('div')).toHaveLength(5);
@@ -385,7 +385,7 @@ describe('<Checkbox />', () => {
     describe('when not set', () => {
       it('should verify checkbox when helpText is not set', () => {
         const checkboxWrapper = mount(
-                                      <Checkbox label="Checkbox" theme={theme} />,
+                                      <Checkbox label="Checkbox" theme={theme} />
                                      );
         expect(checkboxWrapper.find('label')).toHaveLength(1);
         expect(checkboxWrapper.find('div')).toHaveLength(5);
@@ -402,7 +402,7 @@ describe('<Checkbox />', () => {
     describe('when set', () => {
       it('should verify checkbox when helpText is set', () => {
         const checkboxWrapper = mount(
-                                      <Checkbox label="Checkbox" helpText="Some help" theme={theme} />,
+                                      <Checkbox label="Checkbox" helpText="Some help" theme={theme} />
                                      );
         const helpTextID = checkboxWrapper.find('input').prop<string>('aria-describedby');
         expect(checkboxWrapper.find('label')).toHaveLength(1);
@@ -424,7 +424,7 @@ describe('<Checkbox />', () => {
       describe('when not set', () => {
         it('should verify checkbox when error is not set', () => {
           const checkboxWrapper = mount(
-                                        <Checkbox label="Checkbox" theme={theme} />,
+                                        <Checkbox label="Checkbox" theme={theme} />
                                        );
           expect(checkboxWrapper.find('label')).toHaveLength(1);
           expect(checkboxWrapper.find('div')).toHaveLength(5);
@@ -441,7 +441,7 @@ describe('<Checkbox />', () => {
       describe('when set', () => {
         it('should verify checkbox when error is set', () => {
           const checkboxWrapper = mount(
-                                        <Checkbox label="Checkbox" error="Some error" theme={theme} />,
+                                        <Checkbox label="Checkbox" error="Some error" theme={theme} />
                                        );
           const errorID = checkboxWrapper.find('input').prop<string>('aria-describedby');
           expect(checkboxWrapper.find('label')).toHaveLength(1);
@@ -458,7 +458,7 @@ describe('<Checkbox />', () => {
 
         it('should verify checkbox when error and helpText both are set', () => {
           const checkboxWrapper = mount(
-                                        <Checkbox label="Checkbox" error="Some error" helpText="Some help" theme={theme}/>,
+                                        <Checkbox label="Checkbox" error="Some error" helpText="Some help" theme={theme}/>
                                        );
           const descriptions = checkboxWrapper.find('input').prop<string>('aria-describedby').split(' ');
           expect(checkboxWrapper.find('label')).toHaveLength(1);
@@ -481,7 +481,7 @@ describe('<Checkbox />', () => {
       describe('when not set', () => {
         it('should verify checkbox when error is not set', () => {
           const checkboxWrapper = mount(
-                                        <Checkbox label="Checkbox" theme={theme} />,
+                                        <Checkbox label="Checkbox" theme={theme} />
                                        );
           expect(checkboxWrapper.find('label')).toHaveLength(1);
           expect(checkboxWrapper.find('div')).toHaveLength(5);
@@ -498,7 +498,7 @@ describe('<Checkbox />', () => {
       describe('when set as true', () => {
         it('should verify checkbox when error is set as true', () => {
           const checkboxWrapper = mount(
-                                        <Checkbox error label="Checkbox" theme={theme} />,
+                                        <Checkbox error label="Checkbox" theme={theme} />
                                        );
           expect(checkboxWrapper.find('label')).toHaveLength(1);
           expect(checkboxWrapper.find('div')).toHaveLength(5);
@@ -515,7 +515,7 @@ describe('<Checkbox />', () => {
       describe('when set as false', () => {
         it('should verify checkbox when error is set as false', () => {
           const checkboxWrapper = mount(
-                                        <Checkbox error={false} label="Checkbox" theme={theme} />,
+                                        <Checkbox error={false} label="Checkbox" theme={theme} />
                                        );
           expect(checkboxWrapper.find('label')).toHaveLength(1);
           expect(checkboxWrapper.find('div')).toHaveLength(5);
@@ -536,7 +536,7 @@ describe('<Checkbox />', () => {
     it('should verify checkbox when all properties are set', () => {
       const checkboxWrapper = mount(
                                     <Checkbox label="Checkbox" labelHidden checked helpText="Some help" id="MyCheckbox"
-                                    name="Checkbox" value="Some value" error="Some error" disabled theme={theme} />,
+                                    name="Checkbox" value="Some value" error="Some error" disabled theme={theme} />
                                    );
       expect(checkboxWrapper.find('label')).toHaveLength(1);
       expect(checkboxWrapper.find('div')).toHaveLength(10);

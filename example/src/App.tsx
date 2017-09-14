@@ -3,7 +3,9 @@ import * as React from 'react';
 import { PeoplePickerSearchType } from './PickerEnum';
 import { PeoplePickerSource } from './PickerSource';
 
-// import ReactDataExample from './ReactDataExample';
+import ReactDataExample from './ReactDataExample';
+import SingleDatePickerWrapper from './SingleDatePickerWrapper';
+import DateRangePickerWrapper from './DateRangePickerWrapper';
 
 import {
   Button,
@@ -106,8 +108,6 @@ class App extends React.Component<{}, State> {
 
     return (
       <div>
-
-
         <OffCanvas activator={<Button>OffCanvas</Button>} >
             <p>Reveal Test</p>
             <ul>
@@ -189,8 +189,6 @@ class App extends React.Component<{}, State> {
               <li>Link 5</li>
             </ul>
         </OffCanvas>
-
-
         <OffCanvas overlay flip activator={<Button>OffCanvas Overlay Flip</Button>} >
             <p>Reveal Test</p>
             <ul>
@@ -231,7 +229,6 @@ class App extends React.Component<{}, State> {
               <li>Link 5</li>
             </ul>
         </OffCanvas>
-
         <p>This is an inline <OffCanvas activator={<Link>OffCanvas Default</Link>} >
             <p>Inline Test</p>
             <ul>
@@ -242,24 +239,35 @@ class App extends React.Component<{}, State> {
               <li>Link 5</li>
             </ul>
         </OffCanvas> trigger</p>
-
-        <p> Some text with a <Tooltip
-  content="This order has shipping labels."
->
-  <Link>Tooltip 1</Link>
-</Tooltip> in it</p>
-<Tooltip
-  content="This order has shipping."
->
-  <Link>Tooltip 2</Link>
-</Tooltip>
+        <p> Some text with a
+          <Tooltip content="This order has shipping labels.">
+            <Link>Tooltip 1</Link>
+          </Tooltip> in it
+        </p>
+          <Tooltip
+            content="This order has shipping."
+          >
+            <Link>Tooltip 2</Link>
+          </Tooltip>
         <div>
-          {/* <ReactDataExample
-            columns={this.state.columns}
-            rowGetter={this.rowGetter}
-            rowsCount={this.state.rows.length}
-            minHeight={2}
-          /> */}
+            <SingleDatePickerWrapper />
+            <DateRangePickerWrapper />
+            {/* <OffCanvas activator={<Button>OffCanvas Test</Button>} mode={OffCanvasMode.slide}>
+                  <p>Placeholder content.</p>
+                  <ul>
+                    <li>Link 1</li>
+                    <li>Link 2</li>
+                    <li>Link 3</li>
+                    <li>Link 4</li>
+                    <li>Link 5</li>
+                  </ul>
+              </OffCanvas> */}
+              <ReactDataExample
+                columns={this.state.columns}
+                rowGetter={this.rowGetter}
+                rowsCount={this.state.rows.length}
+                minHeight={2}
+          />
           <Heading>Popover</Heading>
           <TextField id="TestName" label="Text Counter" placeholder="test-placeholder" value={this.state.appTextCounter} helpText="Helper Text" enableTextCouter={true} maxLength={100} onChange={this.valueUpdater('appTextCounter')}/>
           <ClickableChip chip={<Chip>Batman</Chip>}>
@@ -267,7 +275,6 @@ class App extends React.Component<{}, State> {
               <p>Batman is a fictional superhero who appears in American comic books published by DC Comics. The character was created by artist Bob Kane and writer Bill Finger, and first appeared in Detective Comics #27</p>
             </Card>
           </ClickableChip>
-        </div>
         <Heading>List</Heading>
         <List type="bullet">
           <Item>Yellow shirt</Item>
@@ -375,9 +382,9 @@ class App extends React.Component<{}, State> {
           maxLength={100}
           onChange={this.valueUpdater('appTextCounter')}
           connectedRight={<Select label="Weight unit" labelHidden options={[
-              'kg',
-              'lb',
-            ]} />}
+            'kg',
+            'lb',
+          ]} />}
         />
 
         <Heading>Flexbox</Heading>
@@ -485,6 +492,7 @@ class App extends React.Component<{}, State> {
           </Column>
         </FlexBox>
       </div>
+    </div>
     );
   }
 
