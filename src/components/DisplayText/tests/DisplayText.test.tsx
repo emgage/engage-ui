@@ -14,19 +14,19 @@ describe('<DisplayText />', () => {
   describe('when default props are provided', () => {
     it('basic displaytext should have rendered one div element', () => {
       const displaytextWrapper = mount(
-                                       <DisplayText theme={theme} />,
+                                       <DisplayText theme={theme} />
                                  );
       expect(displaytextWrapper.find('p')).toHaveLength(1);
     });
     it('basic displaytext should have default DisplayText css class on div', () => {
       const displaytextWrapper = mount(
-                                      <DisplayText theme={theme} />,
+                                      <DisplayText theme={theme} />
                                  );
       expect(displaytextWrapper.find('p').at(0).hasClass('DisplayText')).toBe(true);
     });
     it('basic displaytext should have default sizeMedium css class on div', () => {
       const displaytextWrapper = mount(
-                                      <DisplayText theme={theme} />,
+                                      <DisplayText theme={theme} />
                                  );
       expect(displaytextWrapper.find('p').at(0).hasClass('sizeMedium')).toBe(true);
     });
@@ -38,7 +38,7 @@ describe('<DisplayText />', () => {
         const displaytextWrapper = mount(
                                          <DisplayText theme={theme} >
                                              Good Morning.
-                                         </DisplayText>,
+                                         </DisplayText>
                                    );
         expect(displaytextWrapper.find('p')).toHaveLength(1);
       });
@@ -46,7 +46,7 @@ describe('<DisplayText />', () => {
         const displaytextWrapper = mount(
                                          <DisplayText theme={theme} >
                                              Good Morning.
-                                         </DisplayText>,
+                                         </DisplayText>
                                    );
         expect(displaytextWrapper.find('p').at(0).hasClass('DisplayText')).toBe(true);
       });
@@ -54,7 +54,7 @@ describe('<DisplayText />', () => {
         const displaytextWrapper = mount(
                                          <DisplayText theme={theme} >
                                              Good Morning.
-                                         </DisplayText>,
+                                         </DisplayText>
                                    );
         expect(displaytextWrapper.find('p').at(0).hasClass('sizeMedium')).toBe(true);
       });
@@ -62,7 +62,7 @@ describe('<DisplayText />', () => {
         const displaytextWrapper = mount(
                                          <DisplayText theme={theme} >
                                              Good Morning.
-                                         </DisplayText>,
+                                         </DisplayText>
                                    );
         expect(displaytextWrapper.prop('element')).toBeUndefined();
         expect(displaytextWrapper.find('element')).toHaveLength(0);
@@ -73,7 +73,7 @@ describe('<DisplayText />', () => {
         const displaytextWrapper = mount(
                                         <DisplayText element={'h1'} theme={theme}>
                                             Good Morning, Hardik.
-                                        </DisplayText>,
+                                        </DisplayText>
                                   );
         expect(displaytextWrapper.prop('element')).toBe('h1');
         expect(displaytextWrapper.find('h1')).toHaveLength(1);
@@ -87,19 +87,19 @@ describe('<DisplayText />', () => {
     describe('when not set', () => {
       it('basic displaytext should have rendered one div element', () => {
         const displaytextWrapper = mount(
-                                         <DisplayText theme={theme} />,
+                                         <DisplayText theme={theme} />
                                    );
         expect(displaytextWrapper.find('p')).toHaveLength(1);
       });
       it('basic displaytext should have default DisplayText css class on div', () => {
         const displaytextWrapper = mount(
-                                         <DisplayText theme={theme} />,
+                                         <DisplayText theme={theme} />
                                    );
         expect(displaytextWrapper.find('p').at(0).hasClass('DisplayText')).toBe(true);
       });
       it('basic displaytext should have default sizeMedium css class on div', () => {
         const displaytextWrapper = mount(
-                                         <DisplayText theme={theme} />,
+                                         <DisplayText theme={theme} />
                                    );
         expect(displaytextWrapper.find('p').at(0).hasClass('sizeMedium')).toBe(true);
       });
@@ -107,7 +107,7 @@ describe('<DisplayText />', () => {
         const displaytextWrapper = mount(
                                          <DisplayText theme={theme} >
                                             Good Morning, Hardik.
-                                         </DisplayText>,
+                                         </DisplayText>
                                    );
         expect(displaytextWrapper.prop('size')).toBeUndefined();
         expect(displaytextWrapper.find('size')).toHaveLength(0);
@@ -118,7 +118,7 @@ describe('<DisplayText />', () => {
         const displaytextWrapper = mount(
                                          <DisplayText size={'extraLarge'} theme={theme} >
                                             Good Morning.
-                                         </DisplayText>,
+                                         </DisplayText>
                                    );
         expect(displaytextWrapper.find('p')).toHaveLength(1);
       });
@@ -126,7 +126,7 @@ describe('<DisplayText />', () => {
         const displaytextWrapper = mount(
                                          <DisplayText size={'extraLarge'} theme={theme} >
                                             Good Morning.
-                                         </DisplayText>,
+                                         </DisplayText>
                                    );
         expect(displaytextWrapper.find('p').at(0).hasClass('DisplayText')).toBe(true);
       });
@@ -134,7 +134,7 @@ describe('<DisplayText />', () => {
         const displaytextWrapper = mount(
                                          <DisplayText size={'extraLarge'} theme={theme} >
                                             Good Morning.
-                                         </DisplayText>,
+                                         </DisplayText>
                                    );
         expect(displaytextWrapper.prop('size')).toBe('extraLarge');
         expect(displaytextWrapper.find('p').at(0).hasClass('sizeExtraLarge')).toBe(true);
@@ -143,7 +143,7 @@ describe('<DisplayText />', () => {
         const displaytextWrapper = mount(
                                          <DisplayText size={'large'} theme={theme} >
                                             Good Morning.
-                                         </DisplayText>,
+                                         </DisplayText>
                                    );
         expect(displaytextWrapper.prop('size')).toBe('large');
         expect(displaytextWrapper.find('p').at(0).hasClass('sizeLarge')).toBe(true);
@@ -152,7 +152,7 @@ describe('<DisplayText />', () => {
         const displaytextWrapper = mount(
                                          <DisplayText size={'medium'} theme={theme} >
                                             Good Morning.
-                                         </DisplayText>,
+                                         </DisplayText>
                                    );
         expect(displaytextWrapper.prop('size')).toBe('medium');
         expect(displaytextWrapper.find('p').at(0).hasClass('sizeMedium')).toBe(true);
@@ -161,7 +161,7 @@ describe('<DisplayText />', () => {
         const displaytextWrapper = mount(
                                          <DisplayText size={'small'} theme={theme} >
                                             Good Morning.
-                                         </DisplayText>,
+                                         </DisplayText>
                                    );
         expect(displaytextWrapper.prop('size')).toBe('small');
         expect(displaytextWrapper.find('p').at(0).hasClass('sizeSmall')).toBe(true);
@@ -173,25 +173,25 @@ describe('<DisplayText />', () => {
     describe('when not set', () => {
       it('basic displaytext should have rendered one div element', () => {
         const displaytextWrapper = mount(
-                                         <DisplayText theme={theme} />,
+                                         <DisplayText theme={theme} />
                                    );
         expect(displaytextWrapper.find('p')).toHaveLength(1);
       });
       it('basic displaytext should have default DisplayText css class on div', () => {
         const displaytextWrapper = mount(
-                                         <DisplayText theme={theme} />,
+                                         <DisplayText theme={theme} />
                                    );
         expect(displaytextWrapper.find('p').at(0).hasClass('DisplayText')).toBe(true);
       });
       it('basic displaytext should have default sizeMedium css class on div', () => {
         const displaytextWrapper = mount(
-                                         <DisplayText theme={theme} />,
+                                         <DisplayText theme={theme} />
                                    );
         expect(displaytextWrapper.find('p').at(0).hasClass('sizeMedium')).toBe(true);
       });
       it('should verify children not defined', () => {
         const displaytextWrapper = mount(
-                                         <DisplayText theme={theme} />,
+                                         <DisplayText theme={theme} />
                                    );
         expect(displaytextWrapper.prop('children')).toBeUndefined();
         expect(displaytextWrapper.find('children')).toHaveLength(0);
@@ -202,7 +202,7 @@ describe('<DisplayText />', () => {
         const displaytextWrapper = mount(
                                          <DisplayText theme={theme} >
                                             Good Morning.
-                                         </DisplayText>,
+                                         </DisplayText>
                                    );
         expect(displaytextWrapper.find('p')).toHaveLength(1);
       });
@@ -210,7 +210,7 @@ describe('<DisplayText />', () => {
         const displaytextWrapper = mount(
                                          <DisplayText theme={theme} >
                                            Good Morning.
-                                         </DisplayText>,
+                                         </DisplayText>
                                    );
         expect(displaytextWrapper.find('p').at(0).hasClass('DisplayText')).toBe(true);
       });
@@ -218,7 +218,7 @@ describe('<DisplayText />', () => {
         const displaytextWrapper = mount(
                                          <DisplayText theme={theme} >
                                             Good Morning.
-                                         </DisplayText>,
+                                         </DisplayText>
                                    );
         expect(displaytextWrapper.find('p').at(0).hasClass('sizeMedium')).toBe(true);
       });
@@ -226,21 +226,21 @@ describe('<DisplayText />', () => {
         const displaytextWrapper = mount(
                                          <DisplayText theme={theme} >
                                             Good Morning
-                                         </DisplayText>,
+                                         </DisplayText>
                                    );
         expect(displaytextWrapper.prop('children')).toBe('Good Morning');
         expect(displaytextWrapper.prop('children')).toBeDefined();
       });
       it('should verify children when set in same tag', () => {
         const displaytextWrapper = mount(
-                                         <DisplayText children="Good Morning" theme={theme} />,
+                                         <DisplayText children="Good Morning" theme={theme} />
                                    );
         expect(displaytextWrapper.prop('children')).toBe('Good Morning');
         expect(displaytextWrapper.prop('children')).toBeDefined();
       });
       it('should verify children when set as blank', () => {
         const displaytextWrapper = mount(
-                                         <DisplayText children="" theme={theme} />,
+                                         <DisplayText children="" theme={theme} />
                                    );
         expect(displaytextWrapper.prop('children')).toBeDefined();
       });
@@ -251,7 +251,7 @@ describe('<DisplayText />', () => {
       const displaytextWrapper = mount(
                                        <DisplayText element="h3" size="small" theme={theme} >
                                           Good evening
-                                       </DisplayText>,
+                                       </DisplayText>
                                  );
       expect(displaytextWrapper.find('h3')).toHaveLength(1);
     });
@@ -259,7 +259,7 @@ describe('<DisplayText />', () => {
       const displaytextWrapper = mount(
                                        <DisplayText element="h3" size="small" theme={theme} >
                                           Good evening
-                                       </DisplayText>,
+                                       </DisplayText>
                                  );
       expect(displaytextWrapper.find('h3').at(0).hasClass('DisplayText')).toBe(true);
     });
@@ -267,7 +267,7 @@ describe('<DisplayText />', () => {
       const displaytextWrapper = mount(
                                        <DisplayText element="h3" size="small" theme={theme} >
                                           Good evening
-                                       </DisplayText>,
+                                       </DisplayText>
                                  );
       expect(displaytextWrapper.find('h3').at(0).hasClass('sizeSmall')).toBe(true);
     });
@@ -275,7 +275,7 @@ describe('<DisplayText />', () => {
       const displaytextWrapper = mount(
                                        <DisplayText element="h3" size="small" theme={theme} >
                                           Good evening
-                                       </DisplayText>,
+                                       </DisplayText>
                                  );
       expect(displaytextWrapper.prop('element')).toBe('h3');
       expect(displaytextWrapper.prop('size')).toBe('small');

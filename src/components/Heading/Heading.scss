@@ -1,4 +1,5 @@
 .heading {
   @include text-style-heading;
   margin: 0;
+  user-select: none;
 }
