@@ -25,6 +25,7 @@ class ChoiceListExample extends React.Component<IProps, IState> {
   render() {
     return (
       <div className={styles.example}>
+        <h1>test</h1>
         <h3>1. Choice list with single selection:</h3>
         <ChoiceList
           title="Company name"
