@@ -15,7 +15,7 @@ describe('<Link />', () => {
       const linkWrapper = shallow(
                                 <Link onClick={spy}>
                                     Test
-                                </Link>,
+                                </Link>
                                 );
       linkWrapper.simulate('click');
     });
@@ -24,13 +24,13 @@ describe('<Link />', () => {
     describe('when not set', () => {
       it('should not have external element', () => {
         const linkWrapper = mount(
-                                <Link />,
+                                <Link />
                             );
         expect(linkWrapper.find('external')).toHaveLength(0);
       });
       it('should external element is undfine', () => {
         const linkWrapper = mount(
-                                <Link />,
+                                <Link />
                             );
         expect(linkWrapper.prop('external')).toBeUndefined();
       });
@@ -38,7 +38,7 @@ describe('<Link />', () => {
     describe('when set to true', () => {
       it('should verify the external is true', () => {
         const linkWrapper = mount(
-                                    <Link external />,
+                                    <Link external />
                                 );
         expect(linkWrapper.prop('external')).toBe(true);
       });
@@ -46,7 +46,7 @@ describe('<Link />', () => {
     describe('when set to false', () => {
       it('should verify the external is false', () => {
         const linkWrapper = mount(
-                                    <Link external={false} />,
+                                    <Link external={false} />
                                 );
         expect(linkWrapper.prop('external')).toBe(false);
       });
@@ -56,7 +56,7 @@ describe('<Link />', () => {
     describe('when set', () => {
       it('should verify the url', () => {
         const linkWrapper = mount(
-                                        <Link url={theme.url}/>,
+                                        <Link url={theme.url}/>
                                      );
         expect(linkWrapper.prop('url')).toBe(theme.url);
       });
@@ -64,13 +64,13 @@ describe('<Link />', () => {
     describe('when not set', () => {
       it('should verify the url', () => {
         const linkWrapper = mount(
-                                        <Link />,
+                                        <Link />
                                      );
         expect(linkWrapper.prop('url')).toBeUndefined();
       });
       it('should not have url element', () => {
         const linkWrapper = mount(
-                                        <Link />,
+                                        <Link />
                                      );
         expect(linkWrapper.find('url')).toHaveLength(0);
       });

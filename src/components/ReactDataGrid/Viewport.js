@@ -74,41 +74,39 @@ const Viewport = React.createClass({
       top: this.props.rowOffsetHeight
     };
     return (
-      <div
+      <Canvas
         className="react-grid-Viewport"
-        style={style}>
-        <Canvas
-          ref={(node) => this.canvas = node}
-          rowKey={this.props.rowKey}
-          totalWidth={this.props.totalWidth}
-          width={this.props.columnMetrics.width}
-          rowGetter={this.props.rowGetter}
-          rowsCount={this.props.rowsCount}
-          selectedRows={this.props.selectedRows}
-          expandedRows={this.props.expandedRows}
-          columns={this.props.columnMetrics.columns}
-          rowRenderer={this.props.rowRenderer}
-          displayStart={this.state.displayStart}
-          displayEnd={this.state.displayEnd}
-          visibleStart={this.state.visibleStart}
-          visibleEnd={this.state.visibleEnd}
-          colVisibleStart={this.state.colVisibleStart}
-          colVisibleEnd={this.state.colVisibleEnd}
-          colDisplayStart={this.state.colDisplayStart}
-          colDisplayEnd={this.state.colDisplayEnd}
-          cellMetaData={this.props.cellMetaData}
-          height={this.state.height}
-          rowHeight={this.props.rowHeight}
-          onScroll={this.onScroll}
-          onRows={this.props.onRows}
-          rowScrollTimeout={this.props.rowScrollTimeout}
-          contextMenu={this.props.contextMenu}
-          rowSelection={this.props.rowSelection}
-          getSubRowDetails={this.props.getSubRowDetails}
-          rowGroupRenderer={this.props.rowGroupRenderer}
-          isScrolling={this.state.isScrolling || false}
-        />
-      </div>
+        style={style}
+        ref={(node) => this.canvas = node}
+        rowKey={this.props.rowKey}
+        totalWidth={this.props.totalWidth}
+        width={this.props.columnMetrics.width}
+        rowGetter={this.props.rowGetter}
+        rowsCount={this.props.rowsCount}
+        selectedRows={this.props.selectedRows}
+        expandedRows={this.props.expandedRows}
+        columns={this.props.columnMetrics.columns}
+        rowRenderer={this.props.rowRenderer}
+        displayStart={this.state.displayStart}
+        displayEnd={this.state.displayEnd}
+        visibleStart={this.state.visibleStart}
+        visibleEnd={this.state.visibleEnd}
+        colVisibleStart={this.state.colVisibleStart}
+        colVisibleEnd={this.state.colVisibleEnd}
+        colDisplayStart={this.state.colDisplayStart}
+        colDisplayEnd={this.state.colDisplayEnd}
+        cellMetaData={this.props.cellMetaData}
+        height={this.state.height}
+        rowHeight={this.props.rowHeight}
+        onScroll={this.onScroll}
+        onRows={this.props.onRows}
+        rowScrollTimeout={this.props.rowScrollTimeout}
+        contextMenu={this.props.contextMenu}
+        rowSelection={this.props.rowSelection}
+        getSubRowDetails={this.props.getSubRowDetails}
+        rowGroupRenderer={this.props.rowGroupRenderer}
+        isScrolling={this.state.isScrolling || false}
+      />
     );
   }
 });

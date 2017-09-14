@@ -11,13 +11,13 @@ describe('<Subheading />', () => {
   describe('when default props are provided', () => {
     it('basic subheading should have rendered one h3 element', () => {
       const subheadingWrapper = mount(
-                                      <Subheading theme={theme} />,
+                                      <Subheading theme={theme} />
                                 );
       expect(subheadingWrapper.find('h3')).toHaveLength(1);
     });
     it('basic subheading should have default Subheading css class on h3', () => {
       const subheadingWrapper = mount(
-                                      <Subheading theme={theme} />,
+                                      <Subheading theme={theme} />
                                 );
       expect(subheadingWrapper.find('h3').hasClass('Subheading')).toBe(true);
     });
@@ -29,7 +29,7 @@ describe('<Subheading />', () => {
         const subheadingWrapper = mount(
                                           <Subheading theme={theme}>
                                               Online store dashboard
-                                          </Subheading>,
+                                          </Subheading>
                                   );
         expect(subheadingWrapper.find('h3')).toHaveLength(1);
       });
@@ -37,7 +37,7 @@ describe('<Subheading />', () => {
         const subheadingWrapper = mount(
                                           <Subheading theme={theme}>
                                               Online store dashboard
-                                          </Subheading>,
+                                          </Subheading>
                                   );
         expect(subheadingWrapper.find('h3').hasClass('Subheading')).toBe(true);
       });
@@ -45,7 +45,7 @@ describe('<Subheading />', () => {
         const subheadingWrapper = mount(
                                           <Subheading theme={theme}>
                                               Online store dashboard
-                                          </Subheading>,
+                                          </Subheading>
                                   );
         expect(subheadingWrapper.prop('children')).toBe('Online store dashboard');
       });
@@ -54,25 +54,25 @@ describe('<Subheading />', () => {
     describe('when not set', () => {
       it('basic subheading should have rendered one h3 element', () => {
         const subheadingWrapper = mount(
-                                          <Subheading theme={theme} />,
+                                          <Subheading theme={theme} />
                                   );
         expect(subheadingWrapper.find('h3')).toHaveLength(1);
       });
       it('basic subheading should have default Subheading css class on h3', () => {
         const subheadingWrapper = mount(
-                                          <Subheading theme={theme} />,
+                                          <Subheading theme={theme} />
                                   );
         expect(subheadingWrapper.find('h3').hasClass('Subheading')).toBe(true);
       });
       it('should verify children property is not defined', () => {
         const subheadingWrapper = mount(
-                                          <Subheading theme={theme} />,
+                                          <Subheading theme={theme} />
                                   );
         expect(subheadingWrapper.prop('children')).toBeUndefined();
       });
       it('should not have children property', () => {
         const subheadingWrapper = mount(
-                                          <Subheading theme={theme} />,
+                                          <Subheading theme={theme} />
                                   );
         expect(subheadingWrapper.find('children')).toHaveLength(0);
       });
@@ -85,7 +85,7 @@ describe('<Subheading />', () => {
         const subheadingWrapper = mount(
                                           <Subheading element="h1" theme={theme}>
                                               Online store dashboard
-                                          </Subheading>,
+                                          </Subheading>
                                   );
         expect(subheadingWrapper.find('h1').hasClass('Subheading')).toBe(true);
       });
@@ -93,7 +93,7 @@ describe('<Subheading />', () => {
         const subheadingWrapper = mount(
                                           <Subheading element="h1" theme={theme}>
                                               Online store dashboard
-                                          </Subheading>,
+                                          </Subheading>
                                   );
         expect(subheadingWrapper.find('h1')).toHaveLength(1);
       });
@@ -101,7 +101,7 @@ describe('<Subheading />', () => {
         const subheadingWrapper = mount(
                                           <Subheading element="h1" theme={theme}>
                                               Online store dashboard
-                                          </Subheading>,
+                                          </Subheading>
                                   );
         expect(subheadingWrapper.prop('element')).toBe('h1');
       });
@@ -109,7 +109,7 @@ describe('<Subheading />', () => {
         const subheadingWrapper = mount(
                                           <Subheading element="h2" theme={theme}>
                                               Online store dashboard
-                                          </Subheading>,
+                                          </Subheading>
                                   );
         expect(subheadingWrapper.find('h2')).toHaveLength(1);
       });
@@ -117,7 +117,7 @@ describe('<Subheading />', () => {
         const subheadingWrapper = mount(
                                           <Subheading element="h2" theme={theme}>
                                               Online store dashboard
-                                          </Subheading>,
+                                          </Subheading>
                                   );
         expect(subheadingWrapper.prop('element')).toBe('h2');
       });
@@ -125,7 +125,7 @@ describe('<Subheading />', () => {
         const subheadingWrapper = mount(
                                           <Subheading element="h3" theme={theme}>
                                               Online store dashboard
-                                          </Subheading>,
+                                          </Subheading>
                                   );
         expect(subheadingWrapper.find('h3')).toHaveLength(1);
       });
@@ -133,7 +133,7 @@ describe('<Subheading />', () => {
         const subheadingWrapper = mount(
                                           <Subheading element="h3" theme={theme}>
                                               Online store dashboard
-                                          </Subheading>,
+                                          </Subheading>
                                   );
         expect(subheadingWrapper.prop('element')).toBe('h3');
       });
@@ -141,7 +141,7 @@ describe('<Subheading />', () => {
         const subheadingWrapper = mount(
                                           <Subheading element="h4" theme={theme}>
                                               Online store dashboard
-                                          </Subheading>,
+                                          </Subheading>
                                   );
         expect(subheadingWrapper.find('h4')).toHaveLength(1);
       });
@@ -149,7 +149,7 @@ describe('<Subheading />', () => {
         const subheadingWrapper = mount(
                                           <Subheading element="h4" theme={theme}>
                                               Online store dashboard
-                                          </Subheading>,
+                                          </Subheading>
                                   );
         expect(subheadingWrapper.prop('element')).toBe('h4');
       });
@@ -157,7 +157,7 @@ describe('<Subheading />', () => {
         const subheadingWrapper = mount(
                                           <Subheading element="h5" theme={theme}>
                                               Online store dashboard
-                                          </Subheading>,
+                                          </Subheading>
                                   );
         expect(subheadingWrapper.find('h5')).toHaveLength(1);
       });
@@ -165,7 +165,7 @@ describe('<Subheading />', () => {
         const subheadingWrapper = mount(
                                           <Subheading element="h5" theme={theme}>
                                               Online store dashboard
-                                          </Subheading>,
+                                          </Subheading>
                                   );
         expect(subheadingWrapper.prop('element')).toBe('h5');
       });
@@ -173,7 +173,7 @@ describe('<Subheading />', () => {
         const subheadingWrapper = mount(
                                           <Subheading element="h6" theme={theme}>
                                               Online store dashboard
-                                          </Subheading>,
+                                          </Subheading>
                                   );
         expect(subheadingWrapper.find('h6')).toHaveLength(1);
       });
@@ -181,7 +181,7 @@ describe('<Subheading />', () => {
         const subheadingWrapper = mount(
                                           <Subheading element="h6" theme={theme}>
                                               Online store dashboard
-                                          </Subheading>,
+                                          </Subheading>
                                   );
         expect(subheadingWrapper.prop('element')).toBe('h6');
       });
@@ -189,7 +189,7 @@ describe('<Subheading />', () => {
         const subheadingWrapper = mount(
                                           <Subheading element="p" theme={theme}>
                                               Online store dashboard
-                                          </Subheading>,
+                                          </Subheading>
                                   );
         expect(subheadingWrapper.find('p')).toHaveLength(1);
       });
@@ -197,7 +197,7 @@ describe('<Subheading />', () => {
         const subheadingWrapper = mount(
                                           <Subheading element="p" theme={theme}>
                                               Online store dashboard
-                                          </Subheading>,
+                                          </Subheading>
                                   );
         expect(subheadingWrapper.prop('element')).toBe('p');
       });
@@ -208,7 +208,7 @@ describe('<Subheading />', () => {
         const subheadingWrapper = mount(
                                           <Subheading theme={theme}>
                                               Online store dashboard
-                                          </Subheading>,
+                                          </Subheading>
                                   );
         expect(subheadingWrapper.find('h3')).toHaveLength(1);
       });
@@ -216,7 +216,7 @@ describe('<Subheading />', () => {
         const subheadingWrapper = mount(
                                           <Subheading theme={theme}>
                                               Online store dashboard
-                                          </Subheading>,
+                                          </Subheading>
                                   );
         expect(subheadingWrapper.find('h3').hasClass('Subheading')).toBe(true);
       });
@@ -224,7 +224,7 @@ describe('<Subheading />', () => {
         const subheadingWrapper = mount(
                                           <Subheading theme={theme}>
                                               Online store dashboard
-                                          </Subheading>,
+                                          </Subheading>
                                   );
         expect(subheadingWrapper.prop('element')).toBeUndefined();
       });
@@ -232,7 +232,7 @@ describe('<Subheading />', () => {
         const subheadingWrapper = mount(
                                         <Subheading theme={theme}>
                                             Online store dashboard
-                                        </Subheading>,
+                                        </Subheading>
                                   );
         expect(subheadingWrapper.find('element')).toHaveLength(0);
       });
