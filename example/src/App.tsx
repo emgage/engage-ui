@@ -269,7 +269,7 @@ class App extends React.Component<{}, State> {
         </FlexBox>
 
         <Heading>Chip</Heading>
-        <div>
+          <div>
           <Chip>
             Basic Chip
           </Chip>
@@ -279,6 +279,7 @@ class App extends React.Component<{}, State> {
               alt: 'Your mom',
             }}
             removable={true}
+            onRemove={this.chipRemove}
           >
             Image Chip
           </Chip>

@@ -35,38 +35,30 @@ class Chip extends React.PureComponent<Props, any> {
     const className = classNames(
       theme.Chip,
       transparent && theme.transparent);
+
     const chipContents = [(
       image
       ?
-      <img className={theme.Image} src={image.url} alt={image.alt} key="1" />
+      <img className={theme.Image} src={image.url} alt={image.alt} key="1" aria-hidden/>
       : ''
     ),
       <span key="2">
         {this.props.children}
       </span>,
     ];
+    const isClickable = clickable ?
+      <a onClick={this.props.onClick} aria-disabled={false} tabIndex={0}>
+        {chipContents}
+      </a>
+      : chipContents;
+    const isRemovable = removable ?
+      <button type="button" className={theme.Remove} aria-label={'Remove ' + this.props.children} onClick={this.props.onRemove}>
+        <span aria-hidden="true">×</span>
+      </button>
+      : '';
+    const returnedValue = clickable || removable ? React.createElement('span', { className }, isClickable, isRemovable) : React.createElement('button', { className }, isClickable, isRemovable);
 
-    return (
-      <span className={className}>
-        {
-          clickable
-          ?
-          <a onClick={this.props.onClick} aria-disabled={false} tabIndex={0}>
-            {chipContents}
-          </a>
-          :
-          chipContents
-        }
-        {
-          removable
-          ?
-          <button type="button" className={theme.Remove} aria-label="Remove" onClick={this.props.onRemove}>
-            <span aria-hidden="true">×</span>
-          </button>
-          : ''
-        }
-      </span>
-    );
+    return returnedValue;
   }
 }
 
