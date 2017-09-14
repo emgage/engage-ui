@@ -33,6 +33,7 @@
           "typeLiterals": "ignore"
         }
       }
-    ]
+    ],
+    "strict-boolean-expressions": false
   }
 }
