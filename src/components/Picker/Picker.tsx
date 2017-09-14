@@ -156,4 +156,3 @@ class Picker extends React.Component<Props, State> {
 
 export { Picker as UnthemedPicker };
 export default themr(PICKER, baseTheme)(Picker) as ThemedComponentClass<Props, State>;
-

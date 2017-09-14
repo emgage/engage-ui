@@ -6,6 +6,8 @@ import ReactDataExample from './ReactDataExample';
 import SingleDatePickerWrapper from './SingleDatePickerWrapper';
 import DateRangePickerWrapper from './DateRangePickerWrapper';
 
+import AutoSuggestText from '../../src/components/Picker/AutoSuggestText';
+
 import {
   Button,
   ButtonGroup,
@@ -106,7 +108,17 @@ class App extends React.Component<{}, State> {
 
     return (
       <div>
-        <SingleDatePickerWrapper />
+        <AutoSuggestText
+          itemsList={[
+            { key: 1, image: 'http://msaadvertising.com/wp-content/uploads/2014/06/Larry-cartoon-headshot.jpg', name: 'John Doe', email: 'test@gmail.com', markedForDelete: false },
+            { key: 2, image: 'http://cdn.photographyproject.com.au/wp-content/uploads/2013/04/corporate-headshot.jpg', name: 'Pedro Sanchez', email: 'pedrosanchez@gmail.com' },
+            { key: 3, image: 'https://media.licdn.com/mpr/mpr/p/5/005/08f/04d/02df10d.jpg', name: 'Jane Doe', email: 'jane@gmail.com' },
+            { key: 4, image: 'http://www.roanokecreditrepair.com/wp-content/uploads/2016/06/Headshot-1.png', name: 'Person McPerson', email: 'yahoogmail@gmail.com' },
+            { key: 5, image: 'https://d38zhw9ti31loc.cloudfront.net/wp-content/uploads/2013/07/Crystal-headshot-new.jpg', name: 'Laura Person', email: 'yahooldjadslkjgmail@gmail.com' },
+            { key: 6, image: 'https://d38zhw9ti31loc.cloudfront.net/wp-content/uploads/2013/07/Crystal-headshot-new.jpg', name: 'Laura Person', email: 'slkjgmail@gmail.com' },
+          ]}
+        />
+         <SingleDatePickerWrapper />
         <DateRangePickerWrapper />
         <OffCanvas activator={<Button>OffCanvas Test</Button>} mode={OffCanvasMode.slide}>
               <p>Placeholder content.</p>
@@ -346,7 +358,7 @@ class App extends React.Component<{}, State> {
           <Column small="1-2" medium="3-4" large="4-10">
             <span>Hello small=1-2 medium=3-4 large=4-10</span>
           </Column>
-        </FlexBox>
+        </FlexBox> 
       </div>
     );
   }
