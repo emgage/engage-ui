@@ -8,7 +8,7 @@ export interface IProps{
 export interface IState {
 }
 
-class CheckboxExample extends React.Component<IProps, IState> {
+class CheckBoxExampleSecond extends React.Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
   }
@@ -48,4 +48,4 @@ class CheckboxExample extends React.Component<IProps, IState> {
   }
 }
 
-export default CheckboxExample;
+export default CheckBoxExampleSecond;

@@ -1,9 +1,9 @@
 import { IDocument } from '../../Types';
-import CheckboxExampleFirst from '../../examples/CheckBoxExample/CheckboxExampleFirst';
-import CheckboxExampleSecond from '../../examples/CheckBoxExample/CheckboxExampleSecond';
+import CheckBoxExampleFirst from '../../examples/CheckBoxExample/CheckBoxExampleFirst';
+import CheckBoxExampleSecond from '../../examples/CheckBoxExample/CheckBoxExampleSecond';
 
-const CheckboxExampleCodeFirst = require('!raw-loader!../../examples/CheckBoxExample/CheckboxExampleFirst') as string;
-const CheckboxExampleCodeSecond = require('!raw-loader!../../examples/CheckBoxExample/CheckboxExampleSecond') as string;
+const CheckboxExampleCodeFirst = require('!raw-loader!../../examples/CheckBoxExample/CheckBoxExampleFirst') as string;
+const CheckboxExampleCodeSecond = require('!raw-loader!../../examples/CheckBoxExample/CheckBoxExampleSecond') as string;
 
 const CheckboxState: IDocument = {
   id: 'checkbox',
@@ -66,9 +66,9 @@ const CheckboxState: IDocument = {
     },
   ],
   exampleCode: CheckboxExampleCodeFirst,
-  exampleComponent: CheckboxExampleFirst,
+  exampleComponent: CheckBoxExampleFirst,
   exampleCodeExtra: CheckboxExampleCodeSecond,
-  exampleComponentExtra: CheckboxExampleSecond,
+  exampleComponentExtra: CheckBoxExampleSecond,
 };
 
 export default CheckboxState;
