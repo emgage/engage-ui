@@ -1,5 +1,4 @@
-import OffCanvas, { Props } from './OffCanvas';
-export { OffCanvasMode } from './OffCanvasProps';
+import OffCanvas from './OffCanvas';
 
-export { Props };
+export { Props } from './OffCanvas';
 export default OffCanvas;
