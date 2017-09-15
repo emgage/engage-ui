@@ -2,6 +2,7 @@ import { IDocumentAppState } from '../Types';
 
 import ChoiceListState from './componentState/ChoiceListState';
 import PanelState from './componentState/PanelState';
+import ButtonState from './componentState/ButtonState';
 import UnstyledLinkState from './componentState/UnstyledLinkState';
 import AvatarState from './componentState/AvatarState';
 import CheckboxState from './componentState/CheckboxState';
@@ -23,6 +24,7 @@ const intialState : IDocumentAppState = {
   components: [
     ChoiceListState,
     PanelState,
+    ButtonState,
     UnstyledLinkState,
     AvatarState,
     CheckboxState,
