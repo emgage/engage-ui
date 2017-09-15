@@ -1,9 +1,7 @@
 import * as React from 'react';
 import { Link, IndexLink } from 'react-router';
-
 import * as styles from '../../styles/nav.scss';
 
-// tslint:disable-next-line:variable-name
 const Nav = () => {
   return (
     <nav className={styles.nav}>
@@ -12,6 +10,7 @@ const Nav = () => {
         <li><IndexLink to="/">Home</IndexLink></li>
         <li><Link to="/component/choicelist" className={styles.active}>Choice List Component</Link></li>
         <li><Link to="/component/panel">Panel Component</Link></li>
+        <li><Link to="/component/UnstyledLink">UnstyledLink Component</Link></li>
         <li><Link to="/component/avatar">Avatar Component</Link></li>
         <li><Link to="/component/checkbox">Checkbox Component</Link></li>
         <li><Link to="/component/displaytext">DisplayText Component</Link></li>
