@@ -63,6 +63,8 @@ export {
   Props as ConnectedProps,
 } from './Connected';
 
+export * from './DatePicker';
+
 export {
   default as DisplayText,
   Props as DisplayTextProps,
@@ -140,7 +142,6 @@ export {
 export {
   default as OffCanvas,
   Props as OffCanvasProps,
-  OffCanvasMode,
 } from './OffCanvas';
 
 export {

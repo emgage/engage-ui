@@ -84,10 +84,6 @@ const Row = React.createClass({
     const { key, formatter, locked } = column;
     const baseCellProps = { key: `${key}-${idx}`, idx: i, rowIdx: idx, height: this.getRowHeight(), column, cellMetaData };
 
-    if ((i < colVisibleStart || i > colVisibleEnd) && !locked) {
-      return <OverflowCell ref={(node) => this[key] = node} {...baseCellProps} />;
-    }
-
     const { row, isSelected } = this.props;
     const cellProps = {
       ref: (node) => this[key] = node,
@@ -209,12 +205,13 @@ const Row = React.createClass({
 
     let cells = this.getCells();
     return (
-      <div {...this.getKnownDivProps() } className={className} style={style} onDragEnter={this.handleDragEnter} >
+      <tr {...this.getKnownDivProps() } className={className} style={style} onDragEnter={this.handleDragEnter} >
+        <th scope="row"></th>
         {
           React.isValidElement(this.props.row) ?
             this.props.row : cells
         }
-      </div >
+      </tr>
     );
   }
 });

@@ -22,7 +22,7 @@ class ContentList extends React.PureComponent<Props, never> {
     const { children, type = 'bullet', theme } = this.props;
     const className = classNames(
       theme.list,
-      type && theme[variationName('type', type)],
+      type && theme[variationName('type', type)]
     );
 
     const LISTELEMENT = type === 'bullet' ? 'ul' : 'ol';

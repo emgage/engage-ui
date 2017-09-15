@@ -17,7 +17,7 @@ describe('<FormLayout />', () => {
         it('should verify formlayout without children has 1 div tag', () => {
         const formlayoutWrapper = mount(
                                         <FormLayout>
-                                        </FormLayout>,
+                                        </FormLayout>
                                     );
         expect(formlayoutWrapper.find('div').length).toBe(1);
         });
@@ -26,7 +26,7 @@ describe('<FormLayout />', () => {
                                         <FormLayout>
                                             <TextField label="Store name" />
                                             <TextField label="Account email"/>
-                                        </FormLayout>,
+                                        </FormLayout>
                                     );
         expect(formlayoutWrapper.find('input').length).toBe(2);
         expect(formlayoutWrapper.children().at(0).key()).toBe('0/.0');
@@ -37,7 +37,7 @@ describe('<FormLayout />', () => {
                                         <FormLayout>
                                             <TextField label="Store name" />
                                             <TextField label="Account email"/>
-                                        </FormLayout>,
+                                        </FormLayout>
                                     );
         expect(formlayoutWrapper.find('TextField').length).toBe(2);
         });
@@ -48,7 +48,7 @@ describe('<FormLayout />', () => {
                                         <FormLayout>
                                             <Group condensed>
                                             </Group>
-                                        </FormLayout>,
+                                        </FormLayout>
                                     );
         expect(formlayoutWrapper.find('div').length).toBe(3);
         });
@@ -65,7 +65,7 @@ describe('<FormLayout />', () => {
                                                 label="Maximum order"
                                             />
                                             </Group>
-                                            </FormLayout>,
+                                            </FormLayout>
                                     );
         expect(formlayoutWrapper.find(Group).length).toBe(1);
         });
@@ -82,7 +82,7 @@ describe('<FormLayout />', () => {
                                                 label="Maximum order"
                                             />
                                             </Group>
-                                            </FormLayout>,
+                                            </FormLayout>
                                     );
         expect(formlayoutWrapper.children().childAt(0).childAt(0).key()).toBe('.0');
         expect(formlayoutWrapper.children().childAt(0).childAt(1).key()).toBe('.1');
@@ -98,7 +98,7 @@ describe('<FormLayout />', () => {
                                             <TextField label="Height" />
                                             <TextField label="Unit" />
                                             </Group>
-                                            </FormLayout>,
+                                            </FormLayout>
                                     );
         expect(formlayoutWrapper.childAt(0).prop('condensed')).toBe(true);
         expect(formlayoutWrapper.children().childAt(0).childAt(0).key()).toBe('.0');
@@ -115,7 +115,7 @@ describe('<FormLayout />', () => {
                                             <TextField label="Height" />
                                             <TextField label="Unit" />
                                             </Group>
-                                        </FormLayout>,
+                                        </FormLayout>
                                     );
         expect(formlayoutWrapper.childAt(0).prop('condensed')).toBeFalsy();
         });
@@ -127,7 +127,7 @@ describe('<FormLayout />', () => {
                                         <TextField label="Height" />
                                         <TextField label="Unit" />
                                         </Group>
-                                    </FormLayout>,
+                                    </FormLayout>
                                     );
         expect(formlayoutWrapper.childAt(0).prop('condensed')).toBe(false);
         });
@@ -140,7 +140,7 @@ describe('<FormLayout />', () => {
                                                     <TextField label="Length" />
                                                     <TextField label="Height" />
                                                 </Group>
-                                            </FormLayout>,
+                                            </FormLayout>
                                         );
             expect(formlayoutWrapper.find('div').at(0).hasClass('FormLayout')).toBe(true);
         });
@@ -151,7 +151,7 @@ describe('<FormLayout />', () => {
                                                     <TextField label="Length" />
                                                     <TextField label="Height" />
                                                 </Group>
-                                            </FormLayout>,
+                                            </FormLayout>
                                         );
             expect(formlayoutWrapper.find('div').at(1).hasClass('condensed')).toBe(true);
         });
@@ -162,7 +162,7 @@ describe('<FormLayout />', () => {
                                                     <TextField label="Length" />
                                                     <TextField label="Height" />
                                                 </Group>
-                                            </FormLayout>,
+                                            </FormLayout>
                                         );
             expect(formlayoutWrapper.find('div').at(2).hasClass('Items')).toBe(true);
         });
