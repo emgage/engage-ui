@@ -10,7 +10,7 @@ console.error = (...args: any[]) => {
   const [firstArgument] = args;
   if (
     typeof firstArgument === 'string' &&
-    IGNORE_ERROR_REGEXES.some((regex) => regex.test(firstArgument))
+    IGNORE_ERROR_REGEXES.some(regex => regex.test(firstArgument))
   ) {
     return;
   }
