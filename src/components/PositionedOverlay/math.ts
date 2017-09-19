@@ -14,7 +14,7 @@ export function calculateVerticalPosition(
   overlayMargins: Margins,
   scrollableContainerRect: Rect,
   containerRect: Rect,
-  preferredPosition: PreferredPosition,
+  preferredPosition: PreferredPosition
 ) {
   const activatorTop = activatorRect.top;
   const activatorBottom = activatorTop + activatorRect.height;
@@ -75,7 +75,7 @@ export function calculateVerticalPosition(
 export function calculateHorizontalPosition(
   activatorRect: Rect,
   overlayRect: Rect,
-  containerRect: Rect,
+  containerRect: Rect
 ) {
   const maximum = containerRect.width - overlayRect.width;
   return Math.min(maximum, Math.max(0, activatorRect.center.x - (overlayRect.width / 2)));
