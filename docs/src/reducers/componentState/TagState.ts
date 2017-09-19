@@ -4,7 +4,7 @@ import TagExampleFirst from '../../examples/TagExample/TagExampleFirst';
 const TagExampleFirstCode = require('!raw-loader!../../examples/TagExample/TagExampleFirst') as string;
 
 const TagState: IDocument = {
-  id: 'Tag',
+  id: 'tag',
   heading: 'Tag Component',
   subheading: `Tags represent a set of interactive, merchant-supplied keywords that help label, organize, and categorize objects. Tags can be added or removed from an object by merchants.`,
   property: [
