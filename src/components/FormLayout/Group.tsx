@@ -24,7 +24,7 @@ class Group extends React.Component<Props, {}> {
   render() {
     const { children, condensed, title, helpText, style, theme } = this.props;
     const className = classNames(
-      condensed && theme.condensed,
+      condensed && theme.condensed
     );
 
     const id = getUniqueID();
