@@ -488,7 +488,9 @@ const Cell = React.createClass({
     if (treeDepth > 0 && isExpandCell) {
       cellDeleter = <ChildRowDeleteButton treeDepth={treeDepth} cellHeight={this.props.height} siblingIndex={this.props.expandableOptions.subRowDetails.siblingIndex} numberSiblings={this.props.expandableOptions.subRowDetails.numberSiblings} onDeleteSubRow={this.onDeleteSubRow} isDeleteSubRowEnabled={isDeleteSubRowEnabled}/>;
     }
-    return (<div className="react-grid-Cell__value">{cellDeleter}<div  style={{ marginLeft: marginLeft }}><span>{CellContent}</span> {this.props.cellControls} {cellExpander}</div></div>);
+    return (<span>
+      {CellContent}
+    </span>)
   },
 
   render() {
@@ -511,13 +513,12 @@ const Cell = React.createClass({
     let events = this.getEvents();
     const tooltip = this.props.tooltip ? (<span className="cell-tooltip-text">{this.props.tooltip}</span>) : null;
 
-
     return (
-      <div {...this.getKnownDivProps() } className={className} style={style} {...events}>
+      <td {...this.getKnownDivProps() } className={className} style={style} {...events}>
         {cellContent}
         {dragHandle}
         {tooltip}
-      </div>
+      </td>
     );
   }
 });

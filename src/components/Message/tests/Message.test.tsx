@@ -11,7 +11,7 @@ describe('<Message />', () => {
   describe('when default props are provided', () => {
     it('basic message should have rendered 1 noscript element', () => {
       const messageWrapper = mount(
-                                    <Message id="10101" theme={theme} />,
+                                    <Message id="10101" theme={theme} />
                                );
       expect(messageWrapper.find('noscript')).toHaveLength(1);
     });
@@ -21,14 +21,14 @@ describe('<Message />', () => {
     describe('when set', () => {
       it('basic message should have rendered 1 noscript element', () => {
         const messageWrapper = mount(
-                                      <Message id="10101" theme={theme} />,
+                                      <Message id="10101" theme={theme} />
                                );
         expect(messageWrapper.find('noscript')).toHaveLength(1);
       });
 
       it('should verify id when set', () => {
         const messageWrapper = mount(
-                                      <Message id="10101" theme={theme} />,
+                                      <Message id="10101" theme={theme} />
                                );
         expect(messageWrapper.prop('id')).toBe('10101');
       });
@@ -39,13 +39,13 @@ describe('<Message />', () => {
     describe('when not set', () => {
       it('basic message should have rendered 1 noscript element', () => {
         const messageWrapper = mount(
-                                      <Message id="10101" theme={theme} />,
+                                      <Message id="10101" theme={theme} />
                                    );
         expect(messageWrapper.find('noscript')).toHaveLength(1);
       });
       it('should verify children when is not set/defined', () => {
         const messageWrapper = mount(
-                                      <Message id="10101" theme={theme} />,
+                                      <Message id="10101" theme={theme} />
                                );
         expect(messageWrapper.prop('children')).toBeUndefined();
         expect(messageWrapper.find('children')).toHaveLength(0);
@@ -56,7 +56,7 @@ describe('<Message />', () => {
         const messageWrapper = mount(
                                       <Message id="10101" theme={theme} >
                                           Click Here
-                                      </Message>,
+                                      </Message>
                                );
         expect(messageWrapper.find('noscript')).toHaveLength(1);
         expect(messageWrapper.prop('children')).toBe('Click Here');
@@ -65,7 +65,7 @@ describe('<Message />', () => {
         const messageWrapper = mount(
                                       <Message id="10101" theme={theme} >
                                           Click Here
-                                      </Message>,
+                                      </Message>
                                );
         expect(messageWrapper.prop('children')).toBe('Click Here');
       });
@@ -78,7 +78,7 @@ describe('<Message />', () => {
         const messageWrapper = mount(
                                       <Message id = "10101" theme={theme}>
                                         Click Here
-                                      </Message>,
+                                      </Message>
                                );
         expect(messageWrapper.find('noscript')).toHaveLength(1);
       });
@@ -89,7 +89,7 @@ describe('<Message />', () => {
         const messageWrapper = mount(
                                       <Message id="10101" isVisible={true} theme={theme} >
                                           Click Here
-                                      </Message>,
+                                      </Message>
                                );
         expect(messageWrapper.find('div')).toHaveLength(1);
       });
@@ -97,7 +97,7 @@ describe('<Message />', () => {
         const messageWrapper = mount(
                                       <Message id="10101" isVisible={true} theme={theme} >
                                         Click Here
-                                      </Message>,
+                                      </Message>
                                );
         expect(messageWrapper.find('span')).toHaveLength(1);
       });
@@ -105,7 +105,7 @@ describe('<Message />', () => {
         const messageWrapper = mount(
                                       <Message id="10101" isVisible={true} theme={theme} >
                                           Click Here
-                                      </Message>,
+                                      </Message>
                                );
         expect(messageWrapper.find('div').hasClass('messageBlock')).toBe(true);
       });
@@ -113,7 +113,7 @@ describe('<Message />', () => {
         const messageWrapper = mount(
                                       <Message id="10101" isVisible={true} theme={theme} >
                                           Click Here
-                                      </Message>,
+                                      </Message>
                                );
         expect(messageWrapper.find('span').hasClass('messagePrompt')).toBe(true);
       });
@@ -121,7 +121,7 @@ describe('<Message />', () => {
         const messageWrapper = mount(
                                       <Message id = "10101" isVisible={true} theme={theme}>
                                           Click Here
-                                      </Message>,
+                                      </Message>
                                );
         expect(messageWrapper.prop('isVisible')).toBe(true);
       });
@@ -129,7 +129,7 @@ describe('<Message />', () => {
         const messageWrapper = mount(
                                       <Message id = "10101" isVisible={true} theme={theme}>
                                         Click Here
-                                      </Message>,
+                                      </Message>
                                );
         expect(messageWrapper.prop('children')).toBe('Click Here');
       });
@@ -140,7 +140,7 @@ describe('<Message />', () => {
         const messageWrapper = mount(
                                       <Message id = "10101" isVisible={false} theme={theme}>
                                         Click Here
-                                      </Message>,
+                                      </Message>
                                );
         expect(messageWrapper.find('noscript')).toHaveLength(1);
       });
@@ -148,7 +148,7 @@ describe('<Message />', () => {
         const messageWrapper = mount(
                                       <Message id = "10101" isVisible={false} theme={theme}>
                                           Click Here
-                                      </Message>,
+                                      </Message>
                                );
         expect(messageWrapper.prop('isVisible')).toBe(false);
       });
@@ -160,7 +160,7 @@ describe('<Message />', () => {
       const messageWrapper = mount(
                                     <Message id="10101" isVisible={true} theme={theme} >
                                         Click Here
-                                    </Message>,
+                                    </Message>
                              );
       expect(messageWrapper.find('div')).toHaveLength(1);
       expect(messageWrapper.find('span')).toHaveLength(1);
@@ -169,7 +169,7 @@ describe('<Message />', () => {
       const messageWrapper = mount(
                                     <Message id="10101" isVisible={true} theme={theme} >
                                         Click Here
-                                    </Message>,
+                                    </Message>
                              );
       expect(messageWrapper.find('div').hasClass('messageBlock')).toBe(true);
     });
@@ -177,7 +177,7 @@ describe('<Message />', () => {
       const messageWrapper = mount(
                                     <Message id="10101" isVisible={true} theme={theme} >
                                     Click Here
-                                    </Message>,
+                                    </Message>
                              );
       expect(messageWrapper.find('span').hasClass('messagePrompt')).toBe(true);
     });
@@ -185,7 +185,7 @@ describe('<Message />', () => {
       const messageWrapper = mount(
                                     <Message id = "10101" isVisible={true} theme={theme}>
                                       Click Here
-                                    </Message>,
+                                    </Message>
                                 );
       expect(messageWrapper.prop('id')).toBe('10101');
       expect(messageWrapper.prop('isVisible')).toBe(true);
