@@ -18,7 +18,7 @@ describe('<Card /> Test Suit', () => {
     const cardWrapper = mount(
                                 <Card title="Online store dashboard - Card" sectioned subdued>
                                     <p>View a summary of your online store’s performance.</p>
-                                </Card>,
+                                </Card>
                             );
     expect(cardWrapper.find('h2').length).toBe(1);
   });
@@ -26,7 +26,7 @@ describe('<Card /> Test Suit', () => {
     const cardWrapper = mount(
                                 <Card title="Online store dashboard - Card" sectioned subdued>
                                     <p>View a summary of your online store’s performance.</p>
-                                </Card>,
+                                </Card>
                             );
     expect(cardWrapper.prop('title')).toBe('Online store dashboard - Card');
   });
@@ -34,7 +34,7 @@ describe('<Card /> Test Suit', () => {
     const cardWrapper = mount(
                                 <Card title="Online store dashboard - Card" sectioned subdued>
                                     <p>View a summary of your online store’s performance.</p>
-                                </Card>,
+                                </Card>
                             );
     expect(cardWrapper.prop('sectioned')).toBe(true);
   });
@@ -42,7 +42,7 @@ describe('<Card /> Test Suit', () => {
     const cardWrapper = mount(
                                 <Card title="Online store dashboard - Card" subdued>
                                     <p>View a summary of your online store’s performance.</p>
-                                </Card>,
+                                </Card>
                             );
     expect(cardWrapper.prop('sectioned')).toBeFalsy();
     cardWrapper.setProps({ sectioned: false });
@@ -52,7 +52,7 @@ describe('<Card /> Test Suit', () => {
     const cardWrapper = mount(
                                 <Card title="Online store dashboard - Card" sectioned subdued>
                                     <p>View a summary of your online store’s performance.</p>
-                                </Card>,
+                                </Card>
                             );
     expect(cardWrapper.prop('subdued')).toBe(true);
   });
@@ -60,7 +60,7 @@ describe('<Card /> Test Suit', () => {
     const cardWrapper = mount(
                                 <Card title="Online store dashboard - Card" sectioned>
                                     <p>View a summary of your online store’s performance.</p>
-                                </Card>,
+                                </Card>
                             );
     expect(cardWrapper.prop('subdued')).toBeFalsy();
   });
@@ -74,7 +74,7 @@ describe('<Card /> Test Suit', () => {
     const cardWrapper = mount(
                                 <Card title="Online store dashboard - Card"  actions={[action]}>
                                     <p>View a summary of your online store’s performance.</p>
-                                </Card>,
+                                </Card>
                             );
     cardWrapper.find('button').at(1).simulate('click');
     expect(spy).toHaveBeenCalled();
@@ -88,7 +88,7 @@ describe('<Card /> Test Suit', () => {
     const cardWrapper = mount(
                                 <Card title="Online store dashboard - Card"  primaryFooterAction={action}>
                                     <p>View a summary of your online store’s performance.</p>
-                                </Card>,
+                                </Card>
                             );
     cardWrapper.find('button').at(1).simulate('click');
     expect(spy).toHaveBeenCalled();
@@ -102,7 +102,7 @@ describe('<Card /> Test Suit', () => {
     const cardWrapper = mount(
                                 <Card title="Online store dashboard - Card"  secondaryFooterAction={action}>
                                     <p>View a summary of your online store’s performance.</p>
-                                </Card>,
+                                </Card>
                             );
     cardWrapper.find('button').at(1).simulate('click');
     expect(spy).toHaveBeenCalled();
@@ -111,7 +111,7 @@ describe('<Card /> Test Suit', () => {
     const cardWrapper = mount(
                                 <Card title="Online store dashboard - Card" sectioned>
                                     <p>View a summary of your online store’s performance.</p>
-                                </Card>,
+                                </Card>
                             );
     expect(typeof cardWrapper.prop('sectioned')).toBe('boolean');
   });
@@ -119,7 +119,7 @@ describe('<Card /> Test Suit', () => {
     const cardWrapper = mount(
                                 <Card title="Online store dashboard - Card" subdued>
                                     <p>View a summary of your online store’s performance.</p>
-                                </Card>,
+                                </Card>
                             );
     expect(typeof cardWrapper.prop('subdued')).toBe('boolean');
   });
@@ -132,7 +132,7 @@ describe('<Card /> Test Suit', () => {
                                     <Section title="Summary Reports" theme={theme}>
                                         <p>View a summary of your online store’s performance, including sales, visitors, top products, and referrals.</p>
                                     </Section>
-                                </Card>,
+                                </Card>
                             );
     expect(cardWrapper.prop('sectioned')).toBe(true);
     expect(cardWrapper.find('div').at(3).text()).toBe('ReportsView a summary of your online store’s performance.');
@@ -149,7 +149,7 @@ describe('<Card /> Test Suit', () => {
                                     <Section title="Summary Reports" subdued>
                                         <p>View a summary of your online store’s performance, including sales, visitors, top products, and referrals.</p>
                                     </Section>
-                                </Card>,
+                                </Card>
                             );
     expect(cardWrapper.find('h3').length).toBe(2);
     expect(cardWrapper.find('p').length).toBe(2);
@@ -165,7 +165,7 @@ describe('<Card /> Test Suit', () => {
                                     <Section title="Summary Reports" subdued theme={theme}>
                                         <p>View a summary of your online store’s performance, including sales, visitors, top products, and referrals.</p>
                                     </Section>
-                                </Card>,
+                                </Card>
                             );
     expect(cardWrapper.find('h3').length).toBe(2);
     expect(cardWrapper.find('p').length).toBe(2);

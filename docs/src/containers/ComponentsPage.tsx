@@ -24,19 +24,16 @@ class ComponentsPage extends React.Component<IProps, any> {
     const currentState = this.props.state.find((document) => { return document.id === currentComponentId; });
     if (!currentState)
       return (null);
-   
+
     return (
       <div className={styles.component_container}>
         <Heading value={currentState.heading} />
-        {currentState.subheading && <Subheading value={currentState.subheading} />}        
+        {currentState.subheading && <Subheading value={currentState.subheading} />}
         {currentState.property && <Properties tableValues={currentState.property} />}
         {currentState.exampleComponent && <currentState.exampleComponent /> }
         {currentState.exampleCode && <CodeExample codeString={currentState.exampleCode} />}
         {currentState.exampleComponentExtra && <currentState.exampleComponentExtra /> }
         {currentState.exampleCodeExtra && <CodeExample codeString={currentState.exampleCodeExtra} />}
-        
-        {/* <div style={{ marginTop: 50 }}>{'<Best Practices Component />'}</div>
-        <div>{'<GuideLines Component />'}</div> */}
       </div>
     );
   }
@@ -56,5 +53,5 @@ function mapDispatchToProps(dispatch: Redux.Dispatch<{}>) {
 
 export default Redux.connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(ComponentsPage);

@@ -25,7 +25,7 @@ describe('<ChoiceList />', () => {
   describe('when default props are provided', () => {
     it('should verify renders a fieldset', () => {
       const element = mount(
-                            <ChoiceList selected={[]} choices={choices} theme={theme} />,
+                            <ChoiceList selected={[]} choices={choices} theme={theme} />
                           );
       expect(element.find('fieldset').exists()).toBe(true);
       expect(element.find('fieldset').hasClass('choiceList')).toBe(true);
@@ -36,7 +36,7 @@ describe('<ChoiceList />', () => {
     describe('when not set', () => {
       it('should verify not renders a legend for the fieldset', () => {
         const element = mount(
-                              <ChoiceList selected={[]} choices={choices} theme={theme} />,
+                              <ChoiceList selected={[]} choices={choices} theme={theme} />
                              );
         expect(element.prop('legend')).toBeUndefined();
       });
@@ -44,7 +44,7 @@ describe('<ChoiceList />', () => {
     describe('when set', () => {
       it('should verify renders a legend for the fieldset', () => {
         const element = mount(
-                              <ChoiceList title="My title" selected={[]} choices={choices} theme={theme} />,
+                              <ChoiceList title="My title" selected={[]} choices={choices} theme={theme} />
                              );
         expect(element.find('legend')).toHaveLength(1);
         expect(element.find('legend').at(0).hasClass('title')).toBe(true);
@@ -56,7 +56,7 @@ describe('<ChoiceList />', () => {
   describe('choices property', () => {
     it('shoild verify renders a choice with the label and value properties', () => {
       const choiceElements = mount(
-                                   <ChoiceList selected={[]} choices={choices} theme={theme} />,
+                                   <ChoiceList selected={[]} choices={choices} theme={theme} />
                                   ).find(RadioButton);
       choiceElements.forEach((choiceElement, index) => {
         expect(choiceElement.prop('label')).toBe(choices[index].label);
@@ -70,7 +70,7 @@ describe('<ChoiceList />', () => {
       const selectedIndexes = [0, 2];
       const selected = selectedIndexes.map(index => choices[index].value);
       const choiceElements = mount(
-                                   <ChoiceList selected={selected} choices={choices} theme={theme} />,
+                                   <ChoiceList selected={selected} choices={choices} theme={theme} />
                                   ).find(RadioButton);
       choiceElements.forEach((choiceElement, index) => {
         expect(choiceElement.prop('checked')).toBe(selectedIndexes.includes(index));
@@ -86,7 +86,7 @@ describe('<ChoiceList />', () => {
       });
       const choiceList = mount(
                                <ChoiceList allowMultiple onChange={spy} selected={selected}
-                               choices={choices} theme={theme} />,
+                               choices={choices} theme={theme} />
                               );
       const choiceElements = choiceList.find(Checkbox);
       changeCheckedForChoice(choiceElements.at(1), true);
@@ -113,7 +113,7 @@ describe('<ChoiceList />', () => {
   describe('name property', () => {
     it('provides a unique name when none is provided', () => {
       const choiceElements = shallow(
-                                     <ChoiceList selected={[]} choices={choices} theme={theme} />,
+                                     <ChoiceList selected={[]} choices={choices} theme={theme} />
                                     ).find(RadioButton);
       let name: string;
 
@@ -132,7 +132,7 @@ describe('<ChoiceList />', () => {
     it('uses the same name for every choice', () => {
       const name = 'MyChoiceList';
       const choiceElements = shallow(
-                                     <ChoiceList name={name} selected={[]} choices={choices} theme={theme} />,
+                                     <ChoiceList name={name} selected={[]} choices={choices} theme={theme} />
                                     ).find(RadioButton);
       choiceElements.forEach((choiceElement) => {
         expect(choiceElement.prop('name')).toBe(name);
@@ -142,7 +142,7 @@ describe('<ChoiceList />', () => {
     it('postpends [] when multiple options are allowed', () => {
       const name = 'MyChoiceList';
       const choiceElements = shallow(
-                                     <ChoiceList allowMultiple name={name} selected={[]} choices={choices} theme={theme} />,
+                                     <ChoiceList allowMultiple name={name} selected={[]} choices={choices} theme={theme} />
                                     ).find(RadioButton);
       choiceElements.forEach((choiceElement) => {
         expect(choiceElement.prop('name')).toBe(`${name}[]`);
@@ -153,13 +153,13 @@ describe('<ChoiceList />', () => {
   describe('allowMultiple property', () => {
     it('renders a radio button for each option when allowMultiple is not true', () => {
       let element = mount(
-                          <ChoiceList selected={[]} choices={choices} theme={theme} />,
+                          <ChoiceList selected={[]} choices={choices} theme={theme} />
                          );
       expect(element.find(RadioButton).length).toBe(choices.length);
       expect(element.find(Checkbox).exists()).toBe(false);
 
       element = mount(
-                      <ChoiceList selected={[]} choices={choices} allowMultiple={false} theme={theme} />,
+                      <ChoiceList selected={[]} choices={choices} allowMultiple={false} theme={theme} />
                      );
       expect(element.find(RadioButton).length).toBe(choices.length);
       expect(element.find(Checkbox).exists()).toBe(false);
@@ -167,7 +167,7 @@ describe('<ChoiceList />', () => {
 
     it('renders a checkbox each option when allowMultiple is true', () => {
       const element = mount(
-                            <ChoiceList allowMultiple selected={[]} choices={choices} theme={theme} />,
+                            <ChoiceList allowMultiple selected={[]} choices={choices} theme={theme} />
                            );
       expect(element.find(RadioButton).exists()).toBe(false);
       expect(element.find(Checkbox).length).toBe(choices.length);
@@ -178,7 +178,7 @@ describe('<ChoiceList />', () => {
     describe('when not set', () => {
       it('should verify not renders a titlehidden for the choicelist', () => {
         const element = mount(
-                              <ChoiceList selected={[]} choices={choices} theme={theme} />,
+                              <ChoiceList selected={[]} choices={choices} theme={theme} />
                              );
         expect(element.prop('titleHidden')).toBeUndefined();
         expect(element.find('fieldset').hasClass('titleHidden')).toBe(false);
@@ -188,7 +188,7 @@ describe('<ChoiceList />', () => {
       it('should verify renders a titlehidden for the choicelist when set as true', () => {
         const element = mount(
                               <ChoiceList title="My title" titleHidden={true}
-                              selected={[]} choices={choices} theme={theme} />,
+                              selected={[]} choices={choices} theme={theme} />
                              );
         expect(element.prop('titleHidden')).toBe(true);
         expect(element.find('fieldset').hasClass('titleHidden')).toBe(true);
@@ -198,7 +198,7 @@ describe('<ChoiceList />', () => {
       it('should verify renders a titlehidden for the choicelist when set as false', () => {
         const element = mount(
                               <ChoiceList title="My title" titleHidden={false}
-                              selected={[]} choices={choices} theme={theme} />,
+                              selected={[]} choices={choices} theme={theme} />
                              );
         expect(element.prop('titleHidden')).toBe(false);
         expect(element.find('fieldset').hasClass('titleHidden')).toBe(false);

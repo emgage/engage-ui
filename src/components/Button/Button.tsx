@@ -63,7 +63,7 @@ const button = ({
     plain && theme.plain,
     size && theme[variationName('size', size)],
     fullWidth && theme.fullWidth,
-    icon && children == null && theme.iconOnly,
+    icon && children == null && theme.iconOnly
   );
 
   const disclosureIconMarkup = disclosure
@@ -143,7 +143,7 @@ export function buttonsFrom(actions: ComplexAction[] | ComplexAction, overrides:
 export function buttonFrom(
   { content, onAction, ...action }: ComplexAction,
   overrides?: Partial<Props>,
-  key?: any,
+  key?: any
 ) {
   return (
     <THEMEDBUTTON
