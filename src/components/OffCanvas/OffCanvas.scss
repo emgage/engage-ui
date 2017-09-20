@@ -1,39 +1,215 @@
-* {
-  box-sizing: border-box;
+// Variables
+// ========================================================================
+
+$offcanvas-z-index:                              1000 !default; //create global var?
+
+$offcanvas-bar-width:                            270px !default;
+$offcanvas-bar-padding-vertical:                 20px !default; //create global var?
+$offcanvas-bar-padding-horizontal:               20px !default; //create global var?
+$offcanvas-bar-background:                       #fff !default; //create global var?
+
+$offcanvas-bar-width-m:                          350px !default;
+$offcanvas-bar-padding-vertical-m:               40px !default;
+$offcanvas-bar-padding-horizontal-m:             40px !default;
+
+$offcanvas-close-position:                       20px !default;
+$offcanvas-close-padding:                        5px !default;
+
+$offcanvas-overlay-background:                   rgba(0,0,0,0.2) !default;
+
+
+// Styles
+// ========================================================================
+
+.offcanvas {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: $offcanvas-z-index;
+
+  // Flip modifier
+  &.flip {
+    right: 0;
+    left: auto;
+  }
 }
 
-body {
-  margin: 0;
-  padding: 0;  
-}
-
-p {
-  margin-top: 2px;
-}
-
-.bodyClass {  
-  padding: 10px;
-}
-
-.menuClass {
+// Bar
+// ------------------------------------------------------------------------
+.bar {
   position: absolute;
-  height: 100%;
-  z-index: 2;
-  background-color: #333;
-  padding: 15px;
-  color: #777;  
+  top: 0;
+  bottom: 0;
+  left: 0;
+  box-sizing: border-box;
+  width: $offcanvas-bar-width;
+  padding: $offcanvas-bar-padding-vertical $offcanvas-bar-padding-horizontal;
+  background: $offcanvas-bar-background;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  -webkit-transform: translateX(-100%);
+  transform: translateX(-100%);
+}
+// Flip modifier
+.flip > .bar,
+.flip > .bar  {
+  left: auto;
+  right: 0;
+  -webkit-transform: translateX(100%);
+  transform: translateX(100%);
+}
+// Open
+.open > .bar {
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+}
+//Medium and larger screens 
+@media (min-width: $breakpoint-medium) {
+
+  .bar {
+    width: $offcanvas-bar-width-m;
+    padding: $offcanvas-bar-padding-vertical-m $offcanvas-bar-padding-horizontal-m;
+  }
+
 }
 
-.menuClass button {
-  top: 0px;
-  float: right;
-  cursor: pointer;
+// Slide and Push mode animation
+// ------------------------------------------------------------------------
+.animation {
+  -webkit-transition: -webkit-transform 0.3s ease-out;
+  transition: transform 0.3s ease-out;
 }
 
-.menuOverlay {
-  touch-action: none;  
-  opacity: 1;
-  background: rgba(0,0,0,0.1);  
-  z-index: 1;
+// Reveal animation
+// ------------------------------------------------------------------------
+.reveal {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  overflow: hidden;
+  -webkit-transition: width 0.3s ease-out;
+  transition: width 0.3s ease-out;
+
+  .bar {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+}
+// Flip modifier
+.flip > .reveal {
+  right: 0;
+  left: auto;
+}
+// Open
+.open > .reveal {
+  width: $offcanvas-bar-width;
+}
+//Medium and larger screens 
+@media (min-width: $breakpoint-medium) {
+  
+  .open > .reveal {
+    width: $offcanvas-bar-width-m;
+  }
+
 }
 
+// Close
+// ------------------------------------------------------------------------
+.close {
+  position: absolute;
+  z-index: $offcanvas-z-index;
+  top: $offcanvas-close-position;
+  right: $offcanvas-close-position;
+  padding: $offcanvas-close-padding;
+}
+
+// Overlay
+// ------------------------------------------------------------------------
+.overlay {
+
+  &.offcanvas::before {
+    content: "";
+    position: absolute;
+    background: $offcanvas-overlay-background;
+    opacity: 0;
+    -webkit-transition: opacity 0.15s linear;
+    transition: opacity 0.5s linear;
+  }
+
+  &.open {
+    width: 100vw;
+    touch-action: none;
+
+    &.offcanvas::before {
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      opacity: 1;      
+    }
+  } 
+}
+
+body.overlay {
+  width: 100vw;
+  touch-action: none;
+}
+
+:global #root {
+  position: relative;
+  left: 0;
+  -webkit-transition: left 0.3s ease-out;
+  transition: left 0.3s ease-out;
+  -webkit-overflow-scrolling: touch;  
+}
+
+
+// Container
+// ------------------------------------------------------------------------
+.container {
+  overflow-x: hidden;
+
+  &.overlay {
+    overflow: hidden;
+
+    :global #root {
+      overflow-y: hidden;
+    }
+  }
+
+  &.animation {
+
+    :global #root {
+      left: $offcanvas-bar-width;
+    }
+
+    &.flip {
+      :global #root {
+        left: (-$offcanvas-bar-width);
+      }
+    }
+  }
+}
+//Medium and larger screens 
+@media (min-width: $breakpoint-medium) {
+  
+  .container {
+
+    &.animation {
+  
+      :global #root {
+        left: $offcanvas-bar-width-m;
+      }
+  
+      &.flip {
+        :global #root {
+          left: (-$offcanvas-bar-width-m);
+        }
+
+      }
+    }
+  }  
+}

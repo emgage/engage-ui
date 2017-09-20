@@ -97,8 +97,6 @@ $input-vertical-adjust: rem(1px);
   padding: control-vertical-padding() ($input-horizontal-padding + $icon-size) control-vertical-padding() $input-horizontal-padding;
   background: transparent;
   border: border(transparent);
-  -webkit-appearance: none;
-  -moz-appearance: none;
   appearance: none;
   line-height: rem(20px);
 
