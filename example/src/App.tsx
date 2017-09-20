@@ -195,8 +195,8 @@ class App extends React.Component<{}, State> {
           source={new PeoplePickerSource(PeoplePickerSearchType.Both)}
           maxSelectedItems={5}
           minSelectedItems={2}
-          millisecondsToWaitBeforeSearch={20}
-          moreInfoComponent={<Button children="ranmal" />}
+          millisecondsToWaitBeforeSearch={20} 
+          moreInfoComponent={<Button children="ranmal" />}  
         />
         <ValidatedForm>
 
@@ -252,9 +252,9 @@ class App extends React.Component<{}, State> {
           maxLength={100}
           onChange={this.valueUpdater('appTextCounter')}
           connectedRight={<Select label="Weight unit" labelHidden options={[
-              'kg',
-              'lb',
-            ]} />}
+            'kg',
+            'lb',
+          ]} />}
         />
 
         <Heading>Flexbox</Heading>

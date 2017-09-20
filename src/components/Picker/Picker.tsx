@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from 'react-css-themr';
 import { PICKER } from '../ThemeIdentifiers';
-import TextField from '../TextField';
+import TextField from './TextField';
 import { DisplayMoreInfo } from './PickerEnum';
 
 import * as baseTheme from './Picker.scss';
@@ -30,8 +30,8 @@ export interface Props {
   maxSelectedItems?: number;
   minSelectedItems?: number;
   millisecondsToWaitBeforeSearch?: number;
-  chipComponent: React.ReactNode;
-  searchResultComponent: React.ReactNode;
+  chipComponent?: React.ReactNode;
+  searchResultComponent?: React.ReactNode;
   moreInfoComponent?: React.ReactNode;
   source: IPickerSource<IPickerInfo>;
   moreInfoComponentShowOn?: DisplayMoreInfo;
@@ -41,7 +41,6 @@ export interface Props {
   onSelect?(item: any): void;
   onRemove?(item: any): void;
   onMoreInfo?(): void;
-
 }
 
 class Picker extends React.Component<Props, State> {
@@ -56,7 +55,7 @@ class Picker extends React.Component<Props, State> {
   }
   render() {
     const {
-      required,
+      // required,
       filterPlaceHolder,
       selectedResultsBehavior,
       moreInfoComponent,
@@ -76,31 +75,31 @@ class Picker extends React.Component<Props, State> {
       className = theme.pickerResultShow;
     }
     return (
+      <div>
+           <div> 
+              <div className={className}>
+                  {
+                      this.state.selectedItems.map((i) => {
+                        return React.createElement(chipComponent as React.ComponentClass<{ clickable: boolean, removable: boolean, onRemove(item: any): void }>, { onRemove, key: i.id, clickable: false, removable: true }, [i.name]);
+                      })
+                  }
+              </div>
+                <TextField
+                label="lbl"
+                value={this.state.people}
+                placeholder={filterPlaceHolder}
+                onChange={searchBehavior}
+                /* required={required} */
+                />
+           </div> 
             <div>
-                <div>
-                    <div className={className}>
-                        {
-                            this.state.selectedItems.map((i) => {
-                              return React.createElement(chipComponent as React.ComponentClass<{ clickable: boolean, removable: boolean, onRemove(item: any): void }>, { onRemove, key: i.id, clickable: false, removable: true }, [i.name]);
-                            })
-                        }
-                    </div>
-                    <TextField
-                      label="lbl"
-                      value={this.state.people}
-                      placeholder={filterPlaceHolder}
-                      onChange={searchBehavior}
-                      required={required}
-                    />
-                </div>
-                <div>
-                    {
-                        this.state.searchItems.map((i) => {
-                          return React.createElement(searchResultComponent as React.ComponentClass<{ clickable: boolean, moreInfoComponent: React.ReactNode, moreInfoComponentShowOn: DisplayMoreInfo, onClick(item: any): void, handleMoreInfo(): void }>, { moreInfoComponent, moreInfoComponentShowOn, key: i.id, clickable: true, onClick: onSelect, handleMoreInfo: onMoreInfo }, [i.name]);
-                        })
-                    }
-                </div>
-            </div>
+              {
+                  this.state.searchItems.map((i) => {
+                    return React.createElement(searchResultComponent as React.ComponentClass<{ clickable: boolean, moreInfoComponent: React.ReactNode, moreInfoComponentShowOn: DisplayMoreInfo, onClick(item: any): void, handleMoreInfo(): void }>, { moreInfoComponent, moreInfoComponentShowOn, key: i.id, clickable: true, onClick: onSelect, handleMoreInfo: onMoreInfo }, [i.name]);
+                  })
+              }
+          </div>
+      </div>
     );
   }
   private handleChange = (value: string) => {

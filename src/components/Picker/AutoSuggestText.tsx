@@ -3,6 +3,10 @@ import * as React from 'react';
 import Card from './Card';
 import * as style from './Picker.scss';
 import Chip from '../Chip';
+import { themr, ThemedComponentClass } from 'react-css-themr';
+import { TEXT_FIELD } from '../ThemeIdentifiers';
+
+import * as baseTheme from '../Textfield/TextField.scss';
 
 function escapeRegexCharacters(str:any) {
   return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -22,6 +26,7 @@ function renderSuggestion(suggestion:any, { isHighlighted, query }:any) {
 
 export interface Props {
   itemsList: { key: any, image?: string, email?: string, grey?: boolean, name?: any, markedForDelete?: boolean }[];
+  theme?: any;
 }
 export interface State {
   value: string;
@@ -93,10 +98,18 @@ class AutoSuggestText extends React.Component<Props, State> {
     }
   }
 
+  // handler = (e:any) => {
+  //   e.stopPropagation();
+  //   e.preventDefault();
+  //   console.log('stop!')
+  // }
+
   onSuggestionsFetchRequested = ({ value }:any) => {
     this.setState({
       suggestions: this.getSuggestions(value),
     });
+    console.log('onSuggestionsFetchRequested')
+    // document.addEventListener('click',this.handler,true);
   }
 
   updateList = (input: any) => {
@@ -136,6 +149,7 @@ class AutoSuggestText extends React.Component<Props, State> {
 
   render() {
     const { value, suggestions, chipListState }:any = this.state;
+    const { theme }:any = this.props;
     const inputProps = {
       value,
       placeholder: '',
@@ -161,12 +175,12 @@ class AutoSuggestText extends React.Component<Props, State> {
             container: style.container,
             suggestions: style.cardItem,
             suggestionsList: style.suggestionsList,
-            input: style.autosuggestInput,
+            input: theme.input,
           }}
-          />
+        />
       </div>
     );
   }
 }
 
-export default AutoSuggestText;
+export default themr(TEXT_FIELD, baseTheme)(AutoSuggestText) as ThemedComponentClass<Props, State>;
