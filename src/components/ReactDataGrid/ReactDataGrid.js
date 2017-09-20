@@ -311,9 +311,7 @@ const ReactDataGrid = React.createClass({
       selected.idx += 1;
     }
     let expandedRows = this.state.expandedRows;
-    // if(commit.changed && commit.changed.expandedHeight){
-    //   expandedRows = this.expandRow(commit.rowIdx, commit.changed.expandedHeight);
-    // }
+
     this.setState({selected: selected, expandedRows: expandedRows});
 
     if (this.props.onRowUpdated) {
@@ -846,7 +844,8 @@ const ReactDataGrid = React.createClass({
     if (this.props.rowActionsCell || (props.enableRowSelect && !this.props.rowSelection) || (props.rowSelection && props.rowSelection.showCheckbox !== false)) {
       let headerRenderer = props.enableRowSelect === 'single' ?
         null :
-          (<div className="react-grid-checkbox-container checkbox-align">
+          (<div 
+          className="react-grid-checkbox-container checkbox-align">
             <input className="react-grid-checkbox" type="checkbox" name="select-all-checkbox" id="select-all-checkbox" ref={grid => this.selectAllCheckbox = grid} onChange={this.handleCheckboxChange} />
             <label htmlFor="select-all-checkbox" className="react-grid-checkbox-label"></label>
           </div>);
@@ -932,9 +931,6 @@ const ReactDataGrid = React.createClass({
       gridWidth = '100%';
     }
     return (
-      <div className="react-grid-Container" style={{width: containerWidth}}>
-        {toolbar}
-        <div className="react-grid-Main">
           <BaseGrid
             ref={(node) => this.base = node}
             {...this.props}
@@ -962,9 +958,9 @@ const ReactDataGrid = React.createClass({
             onColumnResize={this.onColumnResize}
             rowScrollTimeout={this.props.rowScrollTimeout}
             contextMenu={this.props.contextMenu}
-            overScan={this.props.overScan} />
-          </div>
-        </div>
+            overScan={this.props.overScan} 
+            summary={this.props.summary}
+            caption={this.props.caption} />
       );
   }
 });

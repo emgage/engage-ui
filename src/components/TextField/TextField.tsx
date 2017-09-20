@@ -101,7 +101,7 @@ class TextField extends React.PureComponent<Props, State> {
       disabled && theme.disabled,
       readOnly && theme.readOnly,
       errors && theme.error,
-      multiline && theme.multiline,
+      multiline && theme.multiline
     );
 
     const prefixMarkup = prefix
