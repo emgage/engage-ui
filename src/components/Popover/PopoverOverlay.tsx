@@ -113,7 +113,7 @@ class PopoverOverlay extends React.PureComponent<Props, never> {
       theme.popover,
       transitionStatus && animationVariations(transitionStatus, theme),
       positioning === 'above' && theme.positionedAbove,
-      measuring && theme.measuring,
+      measuring && theme.measuring
     );
 
     const tipMarkup = !measuring

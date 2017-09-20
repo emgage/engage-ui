@@ -34,7 +34,7 @@ const badge = ({ children, status, progress, theme }: Props) => {
   const className = classNames(
     theme.badge,
     status && theme[variationName('status', status)],
-    progress && theme[variationName('progress', progress)],
+    progress && theme[variationName('progress', progress)]
   );
 
   const pipMarkup = progress

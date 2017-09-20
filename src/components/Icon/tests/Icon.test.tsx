@@ -14,7 +14,7 @@ describe('<Icon />', () => {
 
   describe('when default props are provided', () => {
     const iconWrapper = mount(
-                                <Icon source="notes" theme={theme} />,
+                                <Icon source="notes" theme={theme} />
                           );
     it('basic icon should have rendered one span element', () => {
       expect(iconWrapper.find('span')).toHaveLength(1);
@@ -27,7 +27,7 @@ describe('<Icon />', () => {
   describe('source property', () => {
     describe('when set as svg source', () => {
       const iconWrapper = mount(
-                                  <Icon source="notes" theme={theme} />,
+                                  <Icon source="notes" theme={theme} />
                             );
       it('basic icon should have rendered one span element', () => {
         expect(iconWrapper.find('span')).toHaveLength(1);
@@ -42,7 +42,7 @@ describe('<Icon />', () => {
 
     describe('when set as placeholder', () => {
       const iconWrapper = mount(
-                                  <Icon source="placeholder" theme={theme} />,
+                                  <Icon source="placeholder" theme={theme} />
                             );
       it('basic icon should have rendered one span element', () => {
         expect(iconWrapper.find('span')).toHaveLength(1);
@@ -66,25 +66,25 @@ describe('<Icon />', () => {
     describe('when set', () => {
       it('basic icon should have rendered one span element', () => {
         const iconWrapper = mount(
-                                  <Icon source="notes" color="white" theme={theme} />,
+                                  <Icon source="notes" color="white" theme={theme} />
                             );
         expect(iconWrapper.find('span')).toHaveLength(1);
       });
       it('basic icon should have rendered with one colorWhite clss on span', () => {
         const iconWrapper = mount(
-                                  <Icon source="placeholder" color="white" theme={theme} />,
+                                  <Icon source="placeholder" color="white" theme={theme} />
                             );
         expect(iconWrapper.find('span').hasClass('colorWhite'));
       });
       it('should verify given color when source as svg ', () => {
         const iconWrapper = mount(
-                                  <Icon source="notes" color="white" theme={theme} />,
+                                  <Icon source="notes" color="white" theme={theme} />
                             );
         expect(iconWrapper.prop('color')).toBe('white');
       });
       it('should verify given color when source as placeholder ', () => {
         const iconWrapper = mount(
-                                  <Icon source="placeholder" color="white" theme={theme} />,
+                                  <Icon source="placeholder" color="white" theme={theme} />
                             );
         expect(iconWrapper.prop('color')).toBe('white');
       });
@@ -92,7 +92,7 @@ describe('<Icon />', () => {
 
     describe('when not set', () => {
       const iconWrapper = mount(
-                                  <Icon source="notes" theme={theme} />,
+                                  <Icon source="notes" theme={theme} />
                             );
       it('basic icon should have rendered one span element', () => {
         expect(iconWrapper.find('span')).toHaveLength(1);
@@ -113,25 +113,25 @@ describe('<Icon />', () => {
     describe('when set to true', () => {
       it('basic icon should have rendered one span element', () => {
         const iconWrapper = mount(
-                                  <Icon source="notes" backdrop theme={theme} />,
+                                  <Icon source="notes" backdrop theme={theme} />
                             );
         expect(iconWrapper.find('span')).toHaveLength(1);
       });
       it('basic icon should have rendered with one hasBackdrop clss on span', () => {
         const iconWrapper = mount(
-                                  <Icon source="notes" backdrop theme={theme} />,
+                                  <Icon source="notes" backdrop theme={theme} />
                             );
         expect(iconWrapper.find('span').hasClass('hasBackdrop'));
       });
       it('should verify backdrop when source as svg ', () => {
         const iconWrapper = mount(
-                                  <Icon source="notes" backdrop theme={theme} />,
+                                  <Icon source="notes" backdrop theme={theme} />
                             );
         expect(iconWrapper.prop('backdrop')).toBe(true);
       });
       it('should verify backdrop when source as placeholder ', () => {
         const iconWrapper = mount(
-                                  <Icon source="placeholder" backdrop theme={theme} />,
+                                  <Icon source="placeholder" backdrop theme={theme} />
                             );
         expect(iconWrapper.prop('backdrop')).toBe(true);
       });
@@ -140,25 +140,25 @@ describe('<Icon />', () => {
     describe('when set to false', () => {
       it('basic icon should have rendered one span element', () => {
         const iconWrapper = mount(
-                                  <Icon source="notes" backdrop={false} theme={theme} />,
+                                  <Icon source="notes" backdrop={false} theme={theme} />
                             );
         expect(iconWrapper.find('span')).toHaveLength(1);
       });
       it('basic icon should have rendered with one hasBackdrop clss on span', () => {
         const iconWrapper = mount(
-                                  <Icon source="notes" backdrop={false} theme={theme} />,
+                                  <Icon source="notes" backdrop={false} theme={theme} />
                             );
         expect(iconWrapper.find('span').hasClass('hasBackdrop'));
       });
       it('should verify backdrop when source as svg ', () => {
         const iconWrapper = mount(
-                                  <Icon source="notes" backdrop={false} theme={theme} />,
+                                  <Icon source="notes" backdrop={false} theme={theme} />
                             );
         expect(iconWrapper.prop('backdrop')).toBe(false);
       });
       it('should verify backdrop when source as placeholder ', () => {
         const iconWrapper = mount(
-                                  <Icon source="placeholder" backdrop={false} theme={theme} />,
+                                  <Icon source="placeholder" backdrop={false} theme={theme} />
                             );
         expect(iconWrapper.prop('backdrop')).toBe(false);
       });
@@ -166,7 +166,7 @@ describe('<Icon />', () => {
 
     describe('when not set', () => {
       const iconWrapper = mount(
-                                  <Icon source="notes" theme={theme} />,
+                                  <Icon source="notes" theme={theme} />
                             );
       it('basic icon should have rendered one span element', () => {
         expect(iconWrapper.find('span')).toHaveLength(1);
@@ -187,25 +187,25 @@ describe('<Icon />', () => {
     describe('when set', () => {
       it('basic icon should have rendered one span element', () => {
         const iconWrapper = mount(
-                                  <Icon source="notes" accessibilityLabel="This is an icon" theme={theme} />,
+                                  <Icon source="notes" accessibilityLabel="This is an icon" theme={theme} />
                             );
         expect(iconWrapper.find('span')).toHaveLength(1);
       });
       it('basic icon should have rendered with one icon clss on span', () => {
         const iconWrapper = mount(
-                                  <Icon source="notes" accessibilityLabel="This is an icon" theme={theme} />,
+                                  <Icon source="notes" accessibilityLabel="This is an icon" theme={theme} />
                             );
         expect(iconWrapper.find('span').hasClass('Icon'));
       });
       it('should verify the label as the aria-label for the svg source', () => {
         const iconWrapper = mount(
-                                  <Icon source="notes" accessibilityLabel="This is an icon" theme={theme} />,
+                                  <Icon source="notes" accessibilityLabel="This is an icon" theme={theme} />
                             );
         expect(iconWrapper.prop('accessibilityLabel')).toBe('This is an icon');
       });
       it('should verify the label as the aria-label for the placeholder source', () => {
         const iconWrapper = mount(
-                                  <Icon source="placeholder" accessibilityLabel="This is an icon" theme={theme} />,
+                                  <Icon source="placeholder" accessibilityLabel="This is an icon" theme={theme} />
                             );
         expect(iconWrapper.prop('accessibilityLabel')).toBe('This is an icon');
       });
@@ -213,7 +213,7 @@ describe('<Icon />', () => {
 
     describe('when not set', () => {
       const iconWrapper = mount(
-                                  <Icon source="notes" theme={theme} />,
+                                  <Icon source="notes" theme={theme} />
                             );
       it('basic icon should have rendered one span element', () => {
         expect(iconWrapper.find('span')).toHaveLength(1);
