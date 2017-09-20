@@ -60,7 +60,6 @@ class TextField extends React.PureComponent<Props, State> {
       'aria-required': required ? true : false,
     });
     console.log('input:', input);
-    console.log('autosuggesttext:', AutoSuggestText);
 
     const hasValue = (!!this.props.value && this.props.value.length > 0);
 

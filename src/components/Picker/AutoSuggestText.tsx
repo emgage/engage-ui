@@ -158,7 +158,7 @@ class AutoSuggestText extends React.Component<Props, State> {
     };
 
     return (
-      <div className={style.inputOutline}>
+      <div className={chipListState.length ? style.inputOutline : style.inputOutlineInit}>
         { chipListState.map((input: any) => <Chip image={{ url: input.image }} removable={true} onRemove={() => this.chipRemove(input)} key={input.key} markedForDelete={input.markedForDelete}>{input.text}</Chip>) }
         <Autosuggest
           className={style.suggestionsContainer}
@@ -172,7 +172,7 @@ class AutoSuggestText extends React.Component<Props, State> {
           highlightFirstSuggestion={true}
           ref={this.storeInputReference}
           theme={{
-            container: style.container,
+            container: chipListState.length ? style.container : style.containerInit,
             suggestions: style.cardItem,
             suggestionsList: style.suggestionsList,
             input: theme.input,
