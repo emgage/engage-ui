@@ -2,6 +2,7 @@ import { IDocumentAppState } from '../Types';
 
 import ChoiceListState from './componentState/ChoiceListState';
 import PanelState from './componentState/PanelState';
+import SubheadingState from './componentState/SubheadingState';
 import StackState from './componentState/StackState';
 import TooltipState from './componentState/TooltipState';
 import ClickableChipState from './componentState/ClickableChipState';
@@ -38,6 +39,7 @@ const intialState : IDocumentAppState = {
   components: [
     ChoiceListState,
     PanelState,
+    SubheadingState,
     StackState,
     TooltipState,
     ClickableChipState,
