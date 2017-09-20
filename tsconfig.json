@@ -35,6 +35,8 @@
     "./config/typescript/**/*",
     "./src/**/*.ts",
     "./src/**/*.tsx",
+    "./docs/**/*.ts",
+    "./docs/**/*.tsx",
     "./typings/*"
   ],
   "exclude": [

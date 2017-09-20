@@ -6,7 +6,7 @@ export interface IProps {
   value: string;
   className?: string;
 }
-  
+
 // tslint:disable-next-line:variable-name
 const Subheading = ({ value, className }: IProps) => {
   return (

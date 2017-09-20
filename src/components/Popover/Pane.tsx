@@ -19,7 +19,7 @@ export interface Props {
 const pane = ({ fixed, sectioned, children, theme }: Props) => {
   const className = classNames(
     theme.pane,
-    fixed && theme['pane-fixed'],
+    fixed && theme['pane-fixed']
   );
 
   const content = sectioned
