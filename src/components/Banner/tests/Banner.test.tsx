@@ -22,7 +22,7 @@ describe('<Banner />', () => {
   describe('when default props are provided', () => {
     it('basic banner should have rendered div, span element and class on it', () => {
       const bannerWrapper = mount(
-                                    <Banner theme={theme} />,
+                                    <Banner theme={theme} />
                                   );
       expect(bannerWrapper.find('div')).toHaveLength(3);
       expect(bannerWrapper.find('span')).toHaveLength(1);
@@ -36,7 +36,7 @@ describe('<Banner />', () => {
     describe('when not set', () => {
       it('should verify banner when title not set', () => {
         const bannerWrapper = mount(
-                                     <Banner theme={theme} />,
+                                     <Banner theme={theme} />
                                    );
         expect(bannerWrapper.find('div')).toHaveLength(3);
         expect(bannerWrapper.find('span')).toHaveLength(1);
@@ -50,7 +50,7 @@ describe('<Banner />', () => {
     describe('when set', () => {
       it('should verify banner when title set', () => {
         const bannerWrapper = mount(
-                                     <Banner title="Order archived" theme={theme} />,
+                                     <Banner title="Order archived" theme={theme} />
                                    );
         expect(bannerWrapper.find('div')).toHaveLength(4);
         expect(bannerWrapper.find('span')).toHaveLength(1);
@@ -68,7 +68,7 @@ describe('<Banner />', () => {
     describe('when not set', () => {
       it('should verify banner when status not set', () => {
         const bannerWrapper = mount(
-                                    <Banner theme={theme} />,
+                                    <Banner theme={theme} />
                                    );
         expect(bannerWrapper.find('div')).toHaveLength(3);
         expect(bannerWrapper.find('span')).toHaveLength(1);
@@ -82,7 +82,7 @@ describe('<Banner />', () => {
     describe('when set', () => {
       it('should verify banner when status set as success', () => {
         const bannerWrapper = mount(
-                                     <Banner status="success" theme={theme} />,
+                                     <Banner status="success" theme={theme} />
                                    );
         expect(bannerWrapper.find('div')).toHaveLength(3);
         expect(bannerWrapper.find('span')).toHaveLength(1);
@@ -93,7 +93,7 @@ describe('<Banner />', () => {
       });
       it('should verify banner when status set as info', () => {
         const bannerWrapper = mount (
-                                     <Banner status="info" theme={theme} />,
+                                     <Banner status="info" theme={theme} />
                                     );
         expect(bannerWrapper.find('div')).toHaveLength(3);
         expect(bannerWrapper.find('span')).toHaveLength(1);
@@ -105,7 +105,7 @@ describe('<Banner />', () => {
 
       it('should verify banner when status set as warning', () => {
         const bannerWrapper = mount(
-                                    <Banner status="warning" theme={theme} />,
+                                    <Banner status="warning" theme={theme} />
                                    );
         expect(bannerWrapper.find('div')).toHaveLength(3);
         expect(bannerWrapper.find('span')).toHaveLength(1);
@@ -117,7 +117,7 @@ describe('<Banner />', () => {
 
       it('should verify banner when status set as critical', () => {
         const bannerWrapper = mount(
-                                    <Banner status="critical" theme={theme} />,
+                                    <Banner status="critical" theme={theme} />
                                 );
         expect(bannerWrapper.find('div')).toHaveLength(3);
         expect(bannerWrapper.find('span')).toHaveLength(1);
@@ -133,7 +133,7 @@ describe('<Banner />', () => {
     describe('when not set', () => {
       it('should verify banner when icon not set', () => {
         const bannerWrapper = mount(
-                                    <Banner theme={theme} />,
+                                    <Banner theme={theme} />
                                    );
         expect(bannerWrapper.find('div')).toHaveLength(3);
         expect(bannerWrapper.find('span')).toHaveLength(1);
@@ -147,7 +147,7 @@ describe('<Banner />', () => {
     describe('when set', () => {
       it('should verify banner when icon when set as placeholder ', () => {
         const bannerWrapper = mount(
-                                     <Banner icon="placeholder" theme={theme} />,
+                                     <Banner icon="placeholder" theme={theme} />
                                    );
         expect(bannerWrapper.find('div')).toHaveLength(4);
         expect(bannerWrapper.find('span')).toHaveLength(1);
@@ -158,7 +158,7 @@ describe('<Banner />', () => {
       });
       it('should verify banner when icon when set from Bundled_Icons', () => {
         const bannerWrapper = mount(
-                                    <Banner icon="arrowDown" theme={theme} />,
+                                    <Banner icon="arrowDown" theme={theme} />
                                 );
         expect(bannerWrapper.find('div')).toHaveLength(3);
         expect(bannerWrapper.find('span')).toHaveLength(1);
@@ -174,7 +174,7 @@ describe('<Banner />', () => {
     describe('when not set', () => {
       it('should verify banner when children not set', () => {
         const bannerWrapper = mount(
-                                     <Banner theme={theme} />,
+                                     <Banner theme={theme} />
                                    );
         expect(bannerWrapper.find('div')).toHaveLength(3);
         expect(bannerWrapper.find('span')).toHaveLength(1);
@@ -192,7 +192,7 @@ describe('<Banner />', () => {
                                       <p>
                                         Add weights to show accurate rates.
                                       </p>
-                                    </Banner>,
+                                    </Banner>
                                    );
         expect(bannerWrapper.find('div')).toHaveLength(4);
         expect(bannerWrapper.find('span')).toHaveLength(1);
@@ -210,7 +210,7 @@ describe('<Banner />', () => {
     describe('when not set', () => {
       it('should verify banner when action property is not set', () => {
         const bannerWrapper = mount(
-                                    <Banner theme={theme} />,
+                                    <Banner theme={theme} />
                                    );
         expect(bannerWrapper.find('div')).toHaveLength(3);
         expect(bannerWrapper.find('span')).toHaveLength(1);
@@ -234,7 +234,7 @@ describe('<Banner />', () => {
                                       <p>
                                           This order was archived.
                                       </p>
-                                    </Banner>,
+                                    </Banner>
                                     );
         expect(bannerWrapper.find('div')).toHaveLength(8);
         expect(bannerWrapper.find('span')).toHaveLength(3);
@@ -259,7 +259,7 @@ describe('<Banner />', () => {
     describe('when not set', () => {
       it('should verify banner when secondary action property is not set', () => {
         const bannerWrapper = mount(
-                                    <Banner theme={theme} />,
+                                    <Banner theme={theme} />
                                 );
         expect(bannerWrapper.find('div')).toHaveLength(3);
         expect(bannerWrapper.find('span')).toHaveLength(1);
@@ -289,7 +289,7 @@ describe('<Banner />', () => {
                                         <p>
                                             This order was archived.
                                         </p>
-                                    </Banner>,
+                                    </Banner>
                             );
         expect(bannerWrapper.find('div')).toHaveLength(9);
         expect(bannerWrapper.find('span')).toHaveLength(4);
@@ -326,7 +326,7 @@ describe('<Banner />', () => {
                                     <p>
                                       Use your finance report. Dismissed.
                                     </p>
-                                 </Banner>,
+                                 </Banner>
                                  );
       expect(bannerWrapper.find('div')).toHaveLength(6);
       expect(bannerWrapper.find('span')).toHaveLength(4);
@@ -361,7 +361,7 @@ describe('<Banner />', () => {
                                      <p>
                                        Add weights to show accurate rates.
                                      </p>
-                                   </Banner>,
+                                   </Banner>
                                   );
       expect(bannerWrapper.find('div')).toHaveLength(9);
       expect(bannerWrapper.find('span')).toHaveLength(4);

@@ -15,7 +15,7 @@ export interface Props {
 const item = ({ children, fill, theme }: Props) => {
   const className = classNames(
     theme.item,
-    fill && theme['item-fill'],
+    fill && theme['item-fill']
   );
 
   return <div className={className}>{children}</div>;
