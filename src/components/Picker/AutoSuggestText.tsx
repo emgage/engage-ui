@@ -108,7 +108,7 @@ class AutoSuggestText extends React.Component<Props, State> {
     this.setState({
       suggestions: this.getSuggestions(value),
     });
-    console.log('onSuggestionsFetchRequested')
+    console.log('onSuggestionsFetchRequested');
     // document.addEventListener('click',this.handler,true);
   }
 

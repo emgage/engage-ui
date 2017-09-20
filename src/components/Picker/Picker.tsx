@@ -76,7 +76,7 @@ class Picker extends React.Component<Props, State> {
     }
     return (
       <div>
-           <div> 
+           <div>
               <div className={className}>
                   {
                       this.state.selectedItems.map((i) => {
@@ -91,7 +91,7 @@ class Picker extends React.Component<Props, State> {
                 onChange={searchBehavior}
                 /* required={required} */
                 />
-           </div> 
+           </div>
             <div>
               {
                   this.state.searchItems.map((i) => {
