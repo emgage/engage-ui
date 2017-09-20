@@ -2,6 +2,7 @@ import { IDocumentAppState } from '../Types';
 
 import ChoiceListState from './componentState/ChoiceListState';
 import PanelState from './componentState/PanelState';
+import LinkState from './componentState/LinkState';
 import TextFieldState from './componentState/TextFieldState';
 import FlexBoxState from './componentState/FlexBoxState';
 import FormLayoutState from './componentState/FormLayoutState';
@@ -51,6 +52,7 @@ const intialState : IDocumentAppState = {
     LabelledState,
     LabelState,
     PositionedOverlayState,
+    LinkState,
   ],
 };
 
