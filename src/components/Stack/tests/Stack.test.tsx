@@ -27,13 +27,13 @@ describe('<Stack />', () => {
   describe('when default props are provided', () => {
     it('basic stack should have rendered one div clss element', () => {
       const stackWrapper = mount(
-                                    <Stack theme={theme} />,
+                                    <Stack theme={theme} />
                            );
       expect(stackWrapper.find('div')).toHaveLength(1);
     });
     it('basic stack should have default Stack css clss on div', () => {
       const stackWrapper = mount(
-                                    <Stack theme={theme} />,
+                                    <Stack theme={theme} />
                            );
       expect(stackWrapper.find('div').hasClass('Stack')).toBe(true);
     });
@@ -46,7 +46,7 @@ describe('<Stack />', () => {
                                     <Stack theme={theme}>
                                         <Badge>Paid</Badge>
                                         <Badge>Fulfilled</Badge>
-                                    </Stack>,
+                                    </Stack>
                              );
         expect(stackWrapper.find('div')).toHaveLength(3);
       });
@@ -55,7 +55,7 @@ describe('<Stack />', () => {
                                     <Stack theme={theme}>
                                         <Badge>Paid</Badge>
                                         <Badge>Fulfilled</Badge>
-                                    </Stack>,
+                                    </Stack>
                              );
         expect(stackWrapper.find('div').at(0).hasClass('Stack')).toBe(true);
       });
@@ -64,7 +64,7 @@ describe('<Stack />', () => {
                                     <Stack theme={theme}>
                                         <Badge>Paid</Badge>
                                         <Badge>Fulfilled</Badge>
-                                    </Stack>,
+                                    </Stack>
                              );
         expect(stackWrapper.childAt(0).prop('children').props.children).toBe('Paid');
         expect(stackWrapper.childAt(1).prop('children').props.children).toBe('Fulfilled');
@@ -74,7 +74,7 @@ describe('<Stack />', () => {
                                     <Stack theme={theme}>
                                         <Badge>Paid</Badge>
                                         <Badge>Fulfilled</Badge>
-                                    </Stack>,
+                                    </Stack>
                              );
         expect(stackWrapper.children()).toHaveLength(2);
       });
@@ -83,25 +83,25 @@ describe('<Stack />', () => {
     describe('when not set', () => {
       it('basic stack should have rendered one div clss element', () => {
         const stackWrapper = mount(
-                                    <Stack theme={theme} />,
+                                    <Stack theme={theme} />
                              );
         expect(stackWrapper.find('div')).toHaveLength(1);
       });
       it('basic stack should have default Stack css clss on div', () => {
         const stackWrapper = mount(
-                                    <Stack theme={theme} />,
+                                    <Stack theme={theme} />
                              );
         expect(stackWrapper.find('div').at(0).hasClass('Stack')).toBe(true);
       });
       it('should verify children property is not defined', () => {
         const stackWrapper = mount(
-                                    <Stack theme={theme} />,
+                                    <Stack theme={theme} />
                              );
         expect(stackWrapper.prop('children')).toBeUndefined();
       });
       it('should not have children property', () => {
         const stackWrapper = mount(
-                                    <Stack theme={theme} />,
+                                    <Stack theme={theme} />
                              );
         expect(stackWrapper.children()).toHaveLength(0);
       });
@@ -115,7 +115,7 @@ describe('<Stack />', () => {
                                     <Stack vertical theme={theme}>
                                         <Badge>Paid</Badge>
                                         <Badge>Fulfilled</Badge>
-                                    </Stack>,
+                                    </Stack>
                              );
         expect(stackWrapper.find('div')).toHaveLength(3);
       });
@@ -124,7 +124,7 @@ describe('<Stack />', () => {
                                     <Stack vertical theme={theme}>
                                         <Badge>Paid</Badge>
                                         <Badge>Fulfilled</Badge>
-                                    </Stack>,
+                                    </Stack>
                              );
         expect(stackWrapper.find('div').at(0).hasClass('vertical')).toBe(true);
       });
@@ -133,7 +133,7 @@ describe('<Stack />', () => {
                                     <Stack vertical theme={theme}>
                                         <Badge>Paid</Badge>
                                         <Badge>Fulfilled</Badge>
-                                    </Stack>,
+                                    </Stack>
                              );
         expect(stackWrapper.prop('vertical')).toBe(true);
       });
@@ -142,7 +142,7 @@ describe('<Stack />', () => {
                                     <Stack vertical theme={theme}>
                                         <Badge>Paid</Badge>
                                         <Badge>Fulfilled</Badge>
-                                    </Stack>,
+                                    </Stack>
                              );
         expect(stackWrapper.children()).toHaveLength(2);
       });
@@ -154,7 +154,7 @@ describe('<Stack />', () => {
                                     <Stack vertical={false} theme={theme}>
                                         <Badge>Paid</Badge>
                                         <Badge>Fulfilled</Badge>
-                                    </Stack>,
+                                    </Stack>
                              );
         expect(stackWrapper.find('div')).toHaveLength(3);
       });
@@ -163,7 +163,7 @@ describe('<Stack />', () => {
                                     <Stack vertical={false} theme={theme}>
                                         <Badge>Paid</Badge>
                                         <Badge>Fulfilled</Badge>
-                                    </Stack>,
+                                    </Stack>
                              );
         expect(stackWrapper.find('div').at(0).hasClass('Stack')).toBe(true);
       });
@@ -172,7 +172,7 @@ describe('<Stack />', () => {
                                     <Stack vertical={false} theme={theme}>
                                         <Badge>Paid</Badge>
                                         <Badge>Fulfilled</Badge>
-                                    </Stack>,
+                                    </Stack>
                              );
         expect(stackWrapper.prop('vertical')).toBe(false);
       });
@@ -181,7 +181,7 @@ describe('<Stack />', () => {
                                 <Stack vertical={false} theme={theme}>
                                     <Badge>Paid</Badge>
                                     <Badge>Fulfilled</Badge>
-                                </Stack>,
+                                </Stack>
                              );
         expect(stackWrapper.children()).toHaveLength(2);
       });
@@ -193,7 +193,7 @@ describe('<Stack />', () => {
                                     <Stack theme={theme}>
                                         <Badge>Paid</Badge>
                                         <Badge>Fulfilled</Badge>
-                                    </Stack>,
+                                    </Stack>
                              );
         expect(stackWrapper.find('div')).toHaveLength(3);
       });
@@ -202,7 +202,7 @@ describe('<Stack />', () => {
                                     <Stack theme={theme}>
                                         <Badge>Paid</Badge>
                                         <Badge>Fulfilled</Badge>
-                                    </Stack>,
+                                    </Stack>
                              );
         expect(stackWrapper.find('div').at(0).hasClass('Stack')).toBe(true);
       });
@@ -211,7 +211,7 @@ describe('<Stack />', () => {
                                     <Stack theme={theme}>
                                         <Badge>Paid</Badge>
                                         <Badge>Fulfilled</Badge>
-                                    </Stack>,
+                                    </Stack>
                              );
         expect(stackWrapper.prop('vertical')).toBeUndefined();
       });
@@ -220,7 +220,7 @@ describe('<Stack />', () => {
                                     <Stack theme={theme}>
                                         <Badge>Paid</Badge>
                                         <Badge>Fulfilled</Badge>
-                                    </Stack>,
+                                    </Stack>
                              );
         expect(stackWrapper.find('vertical')).toHaveLength(0);
       });
@@ -229,7 +229,7 @@ describe('<Stack />', () => {
                                     <Stack theme={theme}>
                                         <Badge>Paid</Badge>
                                         <Badge>Fulfilled</Badge>
-                                    </Stack>,
+                                    </Stack>
                              );
         expect(stackWrapper.children()).toHaveLength(2);
       });
@@ -243,7 +243,7 @@ describe('<Stack />', () => {
                                     <Stack spacing="tight" theme={theme}>
                                         <Badge>Paid</Badge>
                                         <Badge>Fulfilled</Badge>
-                                    </Stack>,
+                                    </Stack>
                              );
         expect(stackWrapper.find('div')).toHaveLength(3);
       });
@@ -252,7 +252,7 @@ describe('<Stack />', () => {
                                     <Stack spacing="tight" theme={theme}>
                                         <Badge>Paid</Badge>
                                         <Badge>Fulfilled</Badge>
-                                    </Stack>,
+                                    </Stack>
                              );
         expect(stackWrapper.find('div').at(0).hasClass('spacingTight')).toBe(true);
       });
@@ -261,7 +261,7 @@ describe('<Stack />', () => {
                                     <Stack spacing="tight" theme={theme}>
                                         <Badge>Paid</Badge>
                                         <Badge>Fulfilled</Badge>
-                                    </Stack>,
+                                    </Stack>
                              );
         expect(stackWrapper.prop('spacing')).toBe('tight');
       });
@@ -270,7 +270,7 @@ describe('<Stack />', () => {
                                     <Stack spacing="loose" theme={theme}>
                                         <Badge>Paid</Badge>
                                         <Badge>Fulfilled</Badge>
-                                    </Stack>,
+                                    </Stack>
                              );
         expect(stackWrapper.find('div').at(0).hasClass('spacingLoose')).toBe(true);
       });
@@ -279,7 +279,7 @@ describe('<Stack />', () => {
                                     <Stack spacing="loose" theme={theme}>
                                         <Badge>Paid</Badge>
                                         <Badge>Fulfilled</Badge>
-                                    </Stack>,
+                                    </Stack>
                              );
         expect(stackWrapper.prop('spacing')).toBe('loose');
       });
@@ -288,7 +288,7 @@ describe('<Stack />', () => {
                                     <Stack spacing="none" theme={theme}>
                                         <Badge>Paid</Badge>
                                         <Badge>Fulfilled</Badge>
-                                    </Stack>,
+                                    </Stack>
                              );
         expect(stackWrapper.find('div').at(0).hasClass('Stack')).toBe(true);
       });
@@ -297,7 +297,7 @@ describe('<Stack />', () => {
                                     <Stack spacing="none" theme={theme}>
                                         <Badge>Paid</Badge>
                                         <Badge>Fulfilled</Badge>
-                                    </Stack>,
+                                    </Stack>
                              );
         expect(stackWrapper.prop('spacing')).toBe('none');
       });
@@ -306,7 +306,7 @@ describe('<Stack />', () => {
                                     <Stack spacing="tight" theme={theme}>
                                         <Badge>Paid</Badge>
                                         <Badge>Fulfilled</Badge>
-                                    </Stack>,
+                                    </Stack>
                              );
         expect(stackWrapper.children()).toHaveLength(2);
       });
@@ -318,7 +318,7 @@ describe('<Stack />', () => {
                                     <Stack theme={theme}>
                                         <Badge>Paid</Badge>
                                         <Badge>Fulfilled</Badge>
-                                    </Stack>,
+                                    </Stack>
                              );
         expect(stackWrapper.find('div')).toHaveLength(3);
       });
@@ -327,7 +327,7 @@ describe('<Stack />', () => {
                                     <Stack theme={theme}>
                                         <Badge>Paid</Badge>
                                         <Badge>Fulfilled</Badge>
-                                    </Stack>,
+                                    </Stack>
                              );
         expect(stackWrapper.find('div').at(0).hasClass('Stack')).toBe(true);
       });
@@ -336,7 +336,7 @@ describe('<Stack />', () => {
                                     <Stack theme={theme}>
                                         <Badge>Paid</Badge>
                                         <Badge>Fulfilled</Badge>
-                                    </Stack>,
+                                    </Stack>
                              );
         expect(stackWrapper.prop('spacing')).toBeUndefined();
       });
@@ -345,7 +345,7 @@ describe('<Stack />', () => {
                                     <Stack theme={theme}>
                                         <Badge>Paid</Badge>
                                         <Badge>Fulfilled</Badge>
-                                    </Stack>,
+                                    </Stack>
                              );
         expect(stackWrapper.find('spacing')).toHaveLength(0);
       });
@@ -354,7 +354,7 @@ describe('<Stack />', () => {
                                     <Stack theme={theme}>
                                         <Badge>Paid</Badge>
                                         <Badge>Fulfilled</Badge>
-                                    </Stack>,
+                                    </Stack>
                              );
         expect(stackWrapper.children()).toHaveLength(2);
       });
@@ -368,7 +368,7 @@ describe('<Stack />', () => {
                                     <Stack alignment="leading"theme={theme}>
                                         <Badge>Paid</Badge>
                                         <Badge>Fulfilled</Badge>
-                                    </Stack>,
+                                    </Stack>
                              );
         expect(stackWrapper.find('div')).toHaveLength(3);
       });
@@ -377,7 +377,7 @@ describe('<Stack />', () => {
                                     <Stack alignment="leading" theme={theme}>
                                         <Badge>Paid</Badge>
                                         <Badge>Fulfilled</Badge>
-                                    </Stack>,
+                                    </Stack>
                              );
         expect(stackWrapper.find('div').at(0).hasClass('Stack')).toBe(true);
       });
@@ -386,7 +386,7 @@ describe('<Stack />', () => {
                                     <Stack alignment="leading" theme={theme}>
                                         <Badge>Paid</Badge>
                                         <Badge>Fulfilled</Badge>
-                                    </Stack>,
+                                    </Stack>
                              );
         expect(stackWrapper.prop('alignment')).toBe('leading');
       });
@@ -396,7 +396,7 @@ describe('<Stack />', () => {
                                     <Stack alignment="trailing" theme={theme}>
                                         <Badge>Paid</Badge>
                                         <Badge>Fulfilled</Badge>
-                                    </Stack>,
+                                    </Stack>
                              );
         expect(stackWrapper.prop('alignment')).toBe('trailing');
       });
@@ -405,7 +405,7 @@ describe('<Stack />', () => {
                                     <Stack alignment="center" theme={theme}>
                                         <Badge>Paid</Badge>
                                         <Badge>Fulfilled</Badge>
-                                    </Stack>,
+                                    </Stack>
                              );
         expect(stackWrapper.prop('alignment')).toBe('center');
       });
@@ -414,7 +414,7 @@ describe('<Stack />', () => {
                                     <Stack alignment="fill" theme={theme}>
                                         <Badge>Paid</Badge>
                                         <Badge>Fulfilled</Badge>
-                                    </Stack>,
+                                    </Stack>
                              );
         expect(stackWrapper.prop('alignment')).toBe('fill');
       });
@@ -423,7 +423,7 @@ describe('<Stack />', () => {
                                     <Stack alignment="baseline" theme={theme}>
                                         <Badge>Paid</Badge>
                                         <Badge>Fulfilled</Badge>
-                                    </Stack>,
+                                    </Stack>
                              );
         expect(stackWrapper.prop('alignment')).toBe('baseline');
       });
@@ -432,7 +432,7 @@ describe('<Stack />', () => {
                                     <Stack alignment="center" theme={theme}>
                                         <Badge>Paid</Badge>
                                         <Badge>Fulfilled</Badge>
-                                    </Stack>,
+                                    </Stack>
                                  );
         expect(stackWrapper.children()).toHaveLength(2);
       });
@@ -444,7 +444,7 @@ describe('<Stack />', () => {
                                     <Stack theme={theme}>
                                         <Badge>Paid</Badge>
                                         <Badge>Fulfilled</Badge>
-                                    </Stack>,
+                                    </Stack>
                              );
         expect(stackWrapper.find('div')).toHaveLength(3);
       });
@@ -453,7 +453,7 @@ describe('<Stack />', () => {
                                     <Stack theme={theme}>
                                         <Badge>Paid</Badge>
                                         <Badge>Fulfilled</Badge>
-                                    </Stack>,
+                                    </Stack>
                              );
         expect(stackWrapper.find('div').at(0).hasClass('Stack')).toBe(true);
       });
@@ -462,7 +462,7 @@ describe('<Stack />', () => {
                                     <Stack theme={theme}>
                                         <Badge>Paid</Badge>
                                         <Badge>Fulfilled</Badge>
-                                    </Stack>,
+                                    </Stack>
                              );
         expect(stackWrapper.prop('alignment')).toBeUndefined();
       });
@@ -471,7 +471,7 @@ describe('<Stack />', () => {
                                     <Stack theme={theme}>
                                         <Badge>Paid</Badge>
                                         <Badge>Fulfilled</Badge>
-                                    </Stack>,
+                                    </Stack>
                              );
         expect(stackWrapper.find('alignment')).toHaveLength(0);
       });
@@ -480,7 +480,7 @@ describe('<Stack />', () => {
                                     <Stack theme={theme}>
                                         <Badge>Paid</Badge>
                                         <Badge>Fulfilled</Badge>
-                                    </Stack>,
+                                    </Stack>
                              );
         expect(stackWrapper.children()).toHaveLength(2);
       });
@@ -494,7 +494,7 @@ describe('<Stack />', () => {
                                     <Stack distribution="leading" theme={theme}>
                                         <Badge>Paid</Badge>
                                         <Badge>Fulfilled</Badge>
-                                    </Stack>,
+                                    </Stack>
                              );
         expect(stackWrapper.find('div')).toHaveLength(3);
       });
@@ -503,7 +503,7 @@ describe('<Stack />', () => {
                                     <Stack distribution="leading" theme={theme}>
                                         <Badge>Paid</Badge>
                                         <Badge>Fulfilled</Badge>
-                                    </Stack>,
+                                    </Stack>
                              );
         expect(stackWrapper.find('div').at(0).hasClass('distributionLeading')).toBe(true);
       });
@@ -512,7 +512,7 @@ describe('<Stack />', () => {
                                     <Stack distribution="leading" theme={theme}>
                                         <Badge>Paid</Badge>
                                         <Badge>Fulfilled</Badge>
-                                    </Stack>,
+                                    </Stack>
                              );
         expect(stackWrapper.prop('distribution')).toBe('leading');
       });
@@ -521,7 +521,7 @@ describe('<Stack />', () => {
                                     <Stack distribution="trailing" theme={theme}>
                                         <Badge>Paid</Badge>
                                         <Badge>Fulfilled</Badge>
-                                    </Stack>,
+                                    </Stack>
                              );
         expect(stackWrapper.find('div').at(0).hasClass('distributionTrailing')).toBe(true);
       });
@@ -530,7 +530,7 @@ describe('<Stack />', () => {
                                     <Stack distribution="trailing" theme={theme}>
                                         <Badge>Paid</Badge>
                                         <Badge>Fulfilled</Badge>
-                                    </Stack>,
+                                    </Stack>
                              );
         expect(stackWrapper.prop('distribution')).toBe('trailing');
       });
@@ -539,7 +539,7 @@ describe('<Stack />', () => {
                                     <Stack distribution="center" theme={theme}>
                                         <Badge>Paid</Badge>
                                         <Badge>Fulfilled</Badge>
-                                    </Stack>,
+                                    </Stack>
                              );
         expect(stackWrapper.find('div').at(0).hasClass('distributionCenter')).toBe(true);
       });
@@ -548,7 +548,7 @@ describe('<Stack />', () => {
                                     <Stack distribution="center" theme={theme}>
                                         <Badge>Paid</Badge>
                                         <Badge>Fulfilled</Badge>
-                                    </Stack>,
+                                    </Stack>
                              );
         expect(stackWrapper.prop('distribution')).toBe('center');
       });
@@ -557,7 +557,7 @@ describe('<Stack />', () => {
                                     <Stack distribution="fill" theme={theme}>
                                         <Badge>Paid</Badge>
                                         <Badge>Fulfilled</Badge>
-                                    </Stack>,
+                                    </Stack>
                              );
         expect(stackWrapper.find('div').at(0).hasClass('distributionFill')).toBe(true);
       });
@@ -566,7 +566,7 @@ describe('<Stack />', () => {
                                     <Stack distribution="fill" theme={theme}>
                                         <Badge>Paid</Badge>
                                         <Badge>Fulfilled</Badge>
-                                    </Stack>,
+                                    </Stack>
                              );
         expect(stackWrapper.prop('distribution')).toBe('fill');
       });
@@ -575,7 +575,7 @@ describe('<Stack />', () => {
                                     <Stack distribution="equalSpacing" theme={theme}>
                                         <Badge>Paid</Badge>
                                         <Badge>Fulfilled</Badge>
-                                    </Stack>,
+                                    </Stack>
                              );
         expect(stackWrapper.find('div').at(0).hasClass('distributionEqualSpacing')).toBe(true);
       });
@@ -584,7 +584,7 @@ describe('<Stack />', () => {
                                     <Stack distribution="equalSpacing" theme={theme}>
                                         <Badge>Paid</Badge>
                                         <Badge>Fulfilled</Badge>
-                                    </Stack>,
+                                    </Stack>
                              );
         expect(stackWrapper.prop('distribution')).toBe('equalSpacing');
       });
@@ -593,7 +593,7 @@ describe('<Stack />', () => {
                                     <Stack distribution="fillEvenly" theme={theme}>
                                         <Badge>Paid</Badge>
                                         <Badge>Fulfilled</Badge>
-                                    </Stack>,
+                                    </Stack>
                              );
         expect(stackWrapper.find('div').at(0).hasClass('distributionFillEvenly')).toBe(true);
       });
@@ -602,7 +602,7 @@ describe('<Stack />', () => {
                                     <Stack distribution="fillEvenly" theme={theme}>
                                         <Badge>Paid</Badge>
                                         <Badge>Fulfilled</Badge>
-                                    </Stack>,
+                                    </Stack>
                              );
         expect(stackWrapper.prop('distribution')).toBe('fillEvenly');
       });
@@ -611,7 +611,7 @@ describe('<Stack />', () => {
                                     <Stack alignment="center" theme={theme}>
                                         <Badge>Paid</Badge>
                                         <Badge>Fulfilled</Badge>
-                                    </Stack>,
+                                    </Stack>
                                 );
         expect(stackWrapper.children()).toHaveLength(2);
       });
@@ -623,7 +623,7 @@ describe('<Stack />', () => {
                                     <Stack theme={theme}>
                                         <Badge>Paid</Badge>
                                         <Badge>Fulfilled</Badge>
-                                    </Stack>,
+                                    </Stack>
                              );
         expect(stackWrapper.find('div')).toHaveLength(3);
       });
@@ -632,7 +632,7 @@ describe('<Stack />', () => {
                                     <Stack theme={theme}>
                                         <Badge>Paid</Badge>
                                         <Badge>Fulfilled</Badge>
-                                    </Stack>,
+                                    </Stack>
                              );
         expect(stackWrapper.find('div').at(0).hasClass('Stack')).toBe(true);
       });
@@ -641,7 +641,7 @@ describe('<Stack />', () => {
                                     <Stack theme={theme}>
                                         <Badge>Paid</Badge>
                                         <Badge>Fulfilled</Badge>
-                                    </Stack>,
+                                    </Stack>
                              );
         expect(stackWrapper.prop('distribution')).toBeUndefined();
       });
@@ -650,7 +650,7 @@ describe('<Stack />', () => {
                                     <Stack theme={theme}>
                                         <Badge>Paid</Badge>
                                         <Badge>Fulfilled</Badge>
-                                    </Stack>,
+                                    </Stack>
                              );
         expect(stackWrapper.find('distribution')).toHaveLength(0);
       });
@@ -659,7 +659,7 @@ describe('<Stack />', () => {
                                     <Stack theme={theme}>
                                         <Badge>Paid</Badge>
                                         <Badge>Fulfilled</Badge>
-                                    </Stack>,
+                                    </Stack>
                              );
         expect(stackWrapper.children()).toHaveLength(2);
       });
@@ -679,7 +679,7 @@ describe('<Stack />', () => {
                                     <Item >
                                         <Badge>Fulfilled</Badge>
                                     </Item>
-                                </Stack>,
+                                </Stack>
                            );
       expect(stackWrapper.childAt(0).prop('fill')).toBe(true);
     });

@@ -128,7 +128,7 @@ const icon = ({
   const className = classNames(
     theme.icon,
     color && theme[variationName('color', color)],
-    backdrop && theme.hasBackdrop,
+    backdrop && theme.hasBackdrop
   );
 
   let contentMarkup: React.ReactNode;

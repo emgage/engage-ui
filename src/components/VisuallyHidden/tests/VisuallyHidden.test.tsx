@@ -10,14 +10,14 @@ describe ('<VisuallyHidden /> - Test Suit', () => {
   it('should verify that it should have one span tag.', () => {
     const visuallyHiddenWrapper = mount(<VisuallyHidden theme={theme}>
                                                 <Heading>Title and description</Heading>
-                                            </VisuallyHidden>,
+                                            </VisuallyHidden>
                                       );
     expect(visuallyHiddenWrapper.find('span').length).toBe(1);
   });
   it('should verify that VisuallyHidden class should be applied to span.', () => {
     const visuallyHiddenWrapper = mount(<VisuallyHidden theme={theme}>
                                                 <Heading>Title and description</Heading>
-                                            </VisuallyHidden>,
+                                            </VisuallyHidden>
                                       );
     expect(visuallyHiddenWrapper.find('span').hasClass('VisuallyHidden'));
   });
