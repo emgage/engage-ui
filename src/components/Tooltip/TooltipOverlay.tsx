@@ -61,7 +61,7 @@ export default class TooltipOverlay extends React.PureComponent<Props, never> {
       styles.tooltip,
       light && styles.light,
       measuring && styles.measuring,
-      positioning === 'above' && styles.positionedAbove,
+      positioning === 'above' && styles.positionedAbove
     );
 
     const contentStyles = measuring

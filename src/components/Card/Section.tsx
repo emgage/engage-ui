@@ -25,7 +25,7 @@ const section = ({ children, title, subdued, theme }: Props) => {
 
   const className = classNames(
     theme.section,
-    subdued && theme['section-subdued'],
+    subdued && theme['section-subdued']
   );
 
   return (
