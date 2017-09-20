@@ -2,6 +2,23 @@ import { IDocumentAppState } from '../Types';
 
 import ChoiceListState from './componentState/ChoiceListState';
 import PanelState from './componentState/PanelState';
+import ValidatedTextFieldState from './componentState/ValidatedTextFieldState';
+
+import ChoiceState from './componentState/ChoiceState';
+import IconState from './componentState/IconState';
+import RadioButtonState from './componentState/RadioButtonState';
+import HeadingState from './componentState/HeadingState';
+import SubheadingState from './componentState/SubheadingState';
+import StackState from './componentState/StackState';
+import TooltipState from './componentState/TooltipState';
+import ClickableChipState from './componentState/ClickableChipState';
+import VideoState from './componentState/VideoState';
+import VisuallyHiddenState from './componentState/VisuallyHiddenState';
+import PopoverState from './componentState/PopoverState';
+import ImageState from './componentState/ImageState';
+import ScrollableState from './componentState/ScrollableState';
+import LinkState from './componentState/LinkState';
+import TextFieldState from './componentState/TextFieldState';
 import FlexBoxState from './componentState/FlexBoxState';
 import FormLayoutState from './componentState/FormLayoutState';
 import ButtonGroupState from './componentState/ButtonGroupState';
@@ -28,6 +45,21 @@ const intialState : IDocumentAppState = {
   components: [
     ChoiceListState,
     PanelState,
+    ValidatedTextFieldState,
+    ChoiceState,
+    IconState,
+    RadioButtonState,
+    HeadingState,
+    SubheadingState,
+    StackState,
+    TooltipState,
+    ClickableChipState,
+    VideoState,
+    VisuallyHiddenState,
+    PopoverState,
+    ImageState,
+    ScrollableState,
+    TextFieldState,
     FlexBoxState,
     FormLayoutState,
     ButtonGroupState,
@@ -49,6 +81,7 @@ const intialState : IDocumentAppState = {
     LabelledState,
     LabelState,
     PositionedOverlayState,
+    LinkState,
   ],
 };
 

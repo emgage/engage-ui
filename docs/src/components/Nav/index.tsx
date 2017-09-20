@@ -10,6 +10,22 @@ const Nav = () => {
         <li><IndexLink to="/">Home</IndexLink></li>
         <li><Link to="/component/choicelist" className={styles.active}>Choice List Component</Link></li>
         <li><Link to="/component/panel">Panel Component</Link></li>
+        <li><Link to="/component/validatedtextfield">Validated TextField Component</Link></li>
+        <li><Link to="/component/choice">Choice Component</Link></li>
+        <li><Link to="/component/icon">Icon Component</Link></li>
+        <li><Link to="/component/ButtonGroup">ButtonGroup Component</Link></li>
+        <li><Link to="/component/heading">Heading Component</Link></li>
+        <li><Link to="/component/subheading">SubHeading Component</Link></li>
+        <li><Link to="/component/stack">Stack Component</Link></li>
+        <li><Link to="/component/tooltip">Tooltip Component</Link></li>
+        <li><Link to="/component/clickablechip">ClickableChip Component</Link></li>
+        <li><Link to="/component/video">Video Component</Link></li>
+        <li><Link to="/component/visuallyhidden">VisuallyHidden Component</Link></li>
+        <li><Link to="/component/popover">Popover Component</Link></li>
+        <li><Link to="/component/Image">Image Component</Link></li>
+        <li><Link to="/component/Scrollable">Scrollable Component</Link></li>
+        <li><Link to="/component/Link">Link Component</Link></li>
+        <li><Link to="/component/TextField">TextField Component</Link></li>
         <li><Link to="/component/FlexBox">FlexBox Component</Link></li>
         <li><Link to="/component/FormLayout">FormLayout Component</Link></li>
         <li><Link to="/component/ButtonGroup">ButtonGroup Component</Link></li>
