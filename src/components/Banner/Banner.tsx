@@ -69,7 +69,7 @@ const banner = ({
   const className = classNames(
     theme.banner,
     status && theme[variationName('status', status)],
-    onDismiss && theme.hasDismiss,
+    onDismiss && theme.hasDismiss
   );
 
   const id = uniqueID();

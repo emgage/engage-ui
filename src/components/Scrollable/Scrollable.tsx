@@ -61,7 +61,7 @@ class Scrollable extends React.Component<Props, State> {
       vertical && theme.vertical,
       horizontal && theme.horizontal,
       topShadow && theme.hasTopShadow,
-      bottomShadow && theme.hasBottomShadow,
+      bottomShadow && theme.hasBottomShadow
     );
 
     return (

@@ -73,7 +73,7 @@ const select = ({
     theme.select,
     error && theme.error,
     disabled && theme.disabled,
-    isPlaceholder && theme.placeholder,
+    isPlaceholder && theme.placeholder
   );
 
   const handleChange = onChange

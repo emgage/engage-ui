@@ -42,7 +42,7 @@ function label({
     hidden && theme.hidden,
     required && theme.required,
     focused && theme.focused,
-    !hasValue && theme.empty,
+    !hasValue && theme.empty
   );
 
   const actionMarkup = action
