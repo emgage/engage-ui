@@ -72,19 +72,19 @@ const Grid = React.createClass({
 
   getStyle: function(): { overflow: string; outline: number; position: string; minHeight: number } {
     return {
-      overflow: 'hidden',
       outline: 0,
       position: 'relative',
-      minHeight: this.props.minHeight
+      minHeight: this.props.minHeight,
+      width: '100%'
     };
   },
-
   render(): ?ReactElement {
     let headerRows = this.props.headerRows || [{ref: (node) => this.row = node}];
     let EmptyRowsView = this.props.emptyRowsView;
 
     return (
-      <div style={this.getStyle()} className="react-grid-Grid">
+      <table style={this.getStyle()} className="react-grid-Grid" summary={this.props.summary}>
+        <caption>{this.props.caption}</caption>
         <Header
           ref={(input) => { this.header = input; } }
           columnMetrics={this.props.columnMetrics}
@@ -100,40 +100,38 @@ const Grid = React.createClass({
           onScroll={this.onHeaderScroll}
           getValidFilterValues={this.props.getValidFilterValues}
           cellMetaData={this.props.cellMetaData}
-          />
-          {this.props.rowsCount >= 1 || (this.props.rowsCount === 0 && !this.props.emptyRowsView) ?
-            <div ref={(node) => { this.viewPortContainer = node; } } tabIndex="0" onKeyDown={this.props.onViewportKeydown} onKeyUp={this.props.onViewportKeyup} onDoubleClick={this.props.onViewportDoubleClick}   onDragStart={this.props.onViewportDragStart} onDragEnd={this.props.onViewportDragEnd}>
-                <Viewport
-                  ref={(node) => { this.viewport = node; } }
-                  rowKey={this.props.rowKey}
-                  width={this.props.columnMetrics.width}
-                  rowHeight={this.props.rowHeight}
-                  rowRenderer={this.props.rowRenderer}
-                  rowGetter={this.props.rowGetter}
-                  rowsCount={this.props.rowsCount}
-                  selectedRows={this.props.selectedRows}
-                  expandedRows={this.props.expandedRows}
-                  columnMetrics={this.props.columnMetrics}
-                  totalWidth={this.props.totalWidth}
-                  onScroll={this.onScroll}
-                  onRows={this.props.onRows}
-                  cellMetaData={this.props.cellMetaData}
-                  rowOffsetHeight={this.props.rowOffsetHeight || this.props.rowHeight * headerRows.length}
-                  minHeight={this.props.minHeight}
-                  rowScrollTimeout={this.props.rowScrollTimeout}
-                  contextMenu={this.props.contextMenu}
-                  rowSelection={this.props.rowSelection}
-                  getSubRowDetails={this.props.getSubRowDetails}
-                  rowGroupRenderer={this.props.rowGroupRenderer}
-                  overScan={this.props.overScan}
-                />
-            </div>
+        />
+        {this.props.rowsCount >= 1 || (this.props.rowsCount === 0 && !this.props.emptyRowsView) ?
+            <Viewport
+              ref={(node) => { this.viewport = node; } }
+              rowKey={this.props.rowKey}
+              width={this.props.columnMetrics.width}
+              rowHeight={this.props.rowHeight}
+              rowRenderer={this.props.rowRenderer}
+              rowGetter={this.props.rowGetter}
+              rowsCount={this.props.rowsCount}
+              selectedRows={this.props.selectedRows}
+              expandedRows={this.props.expandedRows}
+              columnMetrics={this.props.columnMetrics}
+              totalWidth={this.props.totalWidth}
+              onScroll={this.onScroll}
+              onRows={this.props.onRows}
+              cellMetaData={this.props.cellMetaData}
+              rowOffsetHeight={this.props.rowOffsetHeight || this.props.rowHeight * headerRows.length}
+              minHeight={this.props.minHeight}
+              rowScrollTimeout={this.props.rowScrollTimeout}
+              contextMenu={this.props.contextMenu}
+              rowSelection={this.props.rowSelection}
+              getSubRowDetails={this.props.getSubRowDetails}
+              rowGroupRenderer={this.props.rowGroupRenderer}
+              overScan={this.props.overScan}
+            />
         :
-            <div ref={(node) => { this.emptyView = node; } } className="react-grid-Empty">
-                <EmptyRowsView />
-            </div>
-        }
-      </div>
+        <div ref={(node) => { this.emptyView = node; } } className="react-grid-Empty">
+            <EmptyRowsView />
+        </div>
+      }
+      </table>
     );
   }
 });

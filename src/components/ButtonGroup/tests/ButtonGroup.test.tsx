@@ -25,7 +25,7 @@ describe('<ButtonGroup />', () => {
                                        <ButtonGroup segmented theme={theme}>
                                           <button>Button 1</button>
                                           <button>Button 2</button>
-                                        </ButtonGroup>,
+                                        </ButtonGroup>
                                       );
           expect(buttonWrapper.find('div')).toHaveLength(3);
           expect(buttonWrapper.find('div').at(0).hasClass('segmented'));
@@ -44,7 +44,7 @@ describe('<ButtonGroup />', () => {
                                        <ButtonGroup segmented={false} theme={theme}>
                                           <button>Button 1</button>
                                           <button>Button 2</button>
-                                        </ButtonGroup>,
+                                        </ButtonGroup>
                                       );
           expect(buttonWrapper.find('div')).toHaveLength(3);
           expect(buttonWrapper.find('div').at(0).hasClass('segmented'));
@@ -76,7 +76,7 @@ describe('<ButtonGroup />', () => {
                                        <ButtonGroup theme={theme}>
                                           <button>Button 1</button>
                                           <button>Button 2</button>
-                                        </ButtonGroup>,
+                                        </ButtonGroup>
                                       );
         expect(buttonWrapper.find('div')).toHaveLength(3);
         expect(buttonWrapper.find('div').at(0).hasClass('ButtonGroup'));
