@@ -9,7 +9,10 @@ export function requestComponents() {
 }
 
 export function loadComponents(allComponents: any) {
-  return {type: types.LOAD_COMPONENTS, payload: {
-    allComponents,
-  }};
+  return {
+    type: types.LOAD_COMPONENTS,
+    payload: {
+      allComponents,
+    },
+  };
 }
