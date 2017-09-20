@@ -10,6 +10,7 @@ const Nav = () => {
         <li><IndexLink to="/">Home</IndexLink></li>
         <li><Link to="/component/choicelist" className={styles.active}>Choice List Component</Link></li>
         <li><Link to="/component/panel">Panel Component</Link></li>
+        <li><Link to="/component/stack">Stack Component</Link></li>
         <li><Link to="/component/tooltip">Tooltip Component</Link></li>
         <li><Link to="/component/clickablechip">ClickableChip Component</Link></li>
         <li><Link to="/component/video">Video Component</Link></li>
