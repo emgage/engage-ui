@@ -6,7 +6,7 @@ import Chip from '../Chip';
 import { themr, ThemedComponentClass } from 'react-css-themr';
 import { TEXT_FIELD } from '../ThemeIdentifiers';
 
-import * as baseTheme from '../Textfield/TextField.scss';
+import * as baseTheme from './TextField.scss';
 
 function escapeRegexCharacters(str:any) {
   return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
