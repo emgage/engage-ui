@@ -38,7 +38,7 @@ class Stack extends React.PureComponent<Props, never> {
       vertical && theme.vertical,
       spacing && theme[variationName('spacing', spacing)],
       distribution && theme[variationName('distribution', distribution)],
-      alignment && theme[variationName('alignment', alignment)],
+      alignment && theme[variationName('alignment', alignment)]
     );
 
     const itemMarkup = elementChildren(children)

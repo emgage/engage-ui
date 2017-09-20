@@ -15,5 +15,5 @@ ReactDOM.render(
   <Provider store={store}>
     <Router history={history} routes={Routes} />
   </Provider>,
-  document.getElementById('app'),
+  document.getElementById('app')
 );
