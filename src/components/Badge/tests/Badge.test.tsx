@@ -19,13 +19,13 @@ describe('<Badge />', () => {
   describe('when default props are provided', () => {
     it('basic badge should have rendered 1 span clss element', () => {
       const badgeWrapper = mount(
-                                 <Badge  theme = {theme} />,
+                                 <Badge  theme = {theme} />
                            );
       expect(badgeWrapper.find('span')).toHaveLength(1);
     });
     it('basic badge should have default Badge css clss on span', () => {
       const badgeWrapper = mount(
-                                 <Badge  theme = {theme} />,
+                                 <Badge  theme = {theme} />
                            );
       console.log(badgeWrapper.html());
       expect(badgeWrapper.find('span').at(0).hasClass('Badge')).toBe(true);
@@ -38,7 +38,7 @@ describe('<Badge />', () => {
         const badgeWrapper = mount(
                                    <Badge  theme = {theme} >
                                        Not set status of badge.
-                                   </Badge>,
+                                   </Badge>
                              );
         expect(badgeWrapper.find('span')).toHaveLength(1);
       });
@@ -46,7 +46,7 @@ describe('<Badge />', () => {
         const badgeWrapper = mount(
                                    <Badge  theme = {theme} >
                                        Not set status of badge.
-                                   </Badge>,
+                                   </Badge>
                              );
         expect(badgeWrapper.find('span').at(0).hasClass('Badge')).toBe(true);
       });
@@ -54,7 +54,7 @@ describe('<Badge />', () => {
         const badgeWrapper = mount(
                                    <Badge  theme = {theme} >
                                        Not set status of badge.
-                                   </Badge>,
+                                   </Badge>
                              );
         expect(badgeWrapper.prop('status')).toBeFalsy();
       });
@@ -65,7 +65,7 @@ describe('<Badge />', () => {
         const badgeWrapper = mount(
                                    <Badge  status="success" theme = {theme} >
                                        Set status of badge.
-                                   </Badge>,
+                                   </Badge>
                              );
         expect(badgeWrapper.find('span')).toHaveLength(2);
       });
@@ -73,7 +73,7 @@ describe('<Badge />', () => {
         const badgeWrapper = mount(
                                    <Badge  status="success" theme = {theme} >
                                        Set status of badge.
-                                   </Badge>,
+                                   </Badge>
                              );
         expect(badgeWrapper.find('span').at(0).hasClass('Badge')).toBe(true);
       });
@@ -82,7 +82,7 @@ describe('<Badge />', () => {
         const badgeWrapper = mount(
                                    <Badge  status="success" theme = {theme} >
                                        Set status of badge.
-                                   </Badge>,
+                                   </Badge>
                              );
         expect(badgeWrapper.prop('status')).toBe('success');
       });
@@ -90,7 +90,7 @@ describe('<Badge />', () => {
         const badgeWrapper = mount(
                                    <Badge  status="success" theme = {theme} >
                                        Set status of badge.
-                                   </Badge>,
+                                   </Badge>
                              );
         expect(badgeWrapper.find('span').at(0).hasClass('statusSuccess')).toBe(true);
       });
@@ -98,7 +98,7 @@ describe('<Badge />', () => {
         const badgeWrapper = mount(
                                    <Badge  status="success" theme = {theme} >
                                        Set status of badge.
-                                   </Badge>,
+                                   </Badge>
                              );
         expect(badgeWrapper.find('span').at(1).text()).toBe('Success');
       });
@@ -107,7 +107,7 @@ describe('<Badge />', () => {
         const badgeWrapper = mount(
                                    <Badge status="info" theme={theme} >
                                       Set status of badge.
-                                   </Badge>,
+                                   </Badge>
                              );
         expect(badgeWrapper.prop('status')).toBe('info');
       });
@@ -115,7 +115,7 @@ describe('<Badge />', () => {
         const badgeWrapper = mount(
                                    <Badge status="info" theme={theme} >
                                        Set status of badge.
-                                   </Badge>,
+                                   </Badge>
                              );
         expect(badgeWrapper.find('span').at(0).hasClass('statusInfo')).toBe(true);
       });
@@ -123,7 +123,7 @@ describe('<Badge />', () => {
         const badgeWrapper = mount(
                                    <Badge status="info" theme={theme} >
                                        Set status of badge.
-                                   </Badge>,
+                                   </Badge>
                              );
         expect(badgeWrapper.find('span').at(1).text()).toBe('Info');
       });
@@ -132,7 +132,7 @@ describe('<Badge />', () => {
         const badgeWrapper = mount(
                                    <Badge status="attention" theme={theme} >
                                        Set status of badge.
-                                   </Badge>,
+                                   </Badge>
                              );
         expect(badgeWrapper.prop('status')).toBe('attention');
       });
@@ -140,7 +140,7 @@ describe('<Badge />', () => {
         const badgeWrapper = mount(
                                    <Badge status="attention" theme={theme} >
                                       Set status of badge.
-                                   </Badge>,
+                                   </Badge>
                              );
         expect(badgeWrapper.find('span').at(0).hasClass('statusAttention')).toBe(true);
       });
@@ -148,7 +148,7 @@ describe('<Badge />', () => {
         const badgeWrapper = mount(
                                    <Badge status="attention" theme={theme} >
                                       Set status of badge.
-                                   </Badge>,
+                                   </Badge>
                              );
         expect(badgeWrapper.find('span').at(1).text()).toBe('Attention');
       });
@@ -157,7 +157,7 @@ describe('<Badge />', () => {
         const badgeWrapper = mount(
                                    <Badge status="warning" theme={theme} >
                                       Set status of badge.
-                                   </Badge>,
+                                   </Badge>
                              );
         expect(badgeWrapper.prop('status')).toBe('warning');
       });
@@ -165,7 +165,7 @@ describe('<Badge />', () => {
         const badgeWrapper = mount(
                                    <Badge status="warning" theme={theme} >
                                       Set status of badge.
-                                   </Badge>,
+                                   </Badge>
                              );
         expect(badgeWrapper.find('span').at(0).hasClass('statusWarning')).toBe(true);
       });
@@ -173,7 +173,7 @@ describe('<Badge />', () => {
         const badgeWrapper = mount(
                                    <Badge status="warning" theme={theme} >
                                       Set status of badge.
-                                   </Badge>,
+                                   </Badge>
                              );
         expect(badgeWrapper.find('span').at(1).text()).toBe('Warning');
       });
@@ -184,19 +184,19 @@ describe('<Badge />', () => {
     describe('when not set' , () => {
       it('basic badge should have rendered 1 span clss element', () => {
         const badgeWrapper = mount(
-                                  <Badge  theme = {theme} />,
+                                  <Badge  theme = {theme} />
                             );
         expect(badgeWrapper.find('span')).toHaveLength(1);
       });
       it('basic badge should have default Badge css clss on span', () => {
         const badgeWrapper = mount(
-                                  <Badge  theme = {theme} />,
+                                  <Badge  theme = {theme} />
                             );
         expect(badgeWrapper.find('span').at(0).hasClass('Badge')).toBe(true);
       });
       it('should verify the children when not set', () => {
         const badgeWrapper = mount(
-                                   <Badge  theme = {theme} />,
+                                   <Badge  theme = {theme} />
                              );
         expect(badgeWrapper.prop('children')).toBeFalsy();
       });
@@ -207,7 +207,7 @@ describe('<Badge />', () => {
         const badgeWrapper = mount(
                                    <Badge theme={theme} >
                                        Sample Badge
-                                   </Badge>,
+                                   </Badge>
                              );
         expect(badgeWrapper.find('span')).toHaveLength(1);
       });
@@ -215,7 +215,7 @@ describe('<Badge />', () => {
         const badgeWrapper = mount(
                                    <Badge theme={theme} >
                                        Sample Badge
-                                   </Badge>,
+                                   </Badge>
                              );
         expect(badgeWrapper.find('span').at(0).hasClass('Badge')).toBe(true);
       });
@@ -223,21 +223,21 @@ describe('<Badge />', () => {
         const badgeWrapper = mount(
                                    <Badge theme={theme} >
                                        Sample Badge
-                                   </Badge>,
+                                   </Badge>
                              );
         expect(badgeWrapper.prop('children')).toBe('Sample Badge');
         expect(badgeWrapper.prop('children')).toBeDefined();
       });
       it('should verify the children property of badge in same tag', () => {
         const badgeWrapper = mount(
-                                   <Badge children="Sample Badge" theme={theme} />,
+                                   <Badge children="Sample Badge" theme={theme} />
                              );
         expect(badgeWrapper.prop('children')).toBe('Sample Badge');
         expect(badgeWrapper.prop('children')).toBeDefined();
       });
       it('should verify the children property of badge when set as blank', () => {
         const badgeWrapper = mount(
-                                   <Badge children="" theme={theme} />,
+                                   <Badge children="" theme={theme} />
                              );
         expect(badgeWrapper.prop('children')).toBeDefined();
       });
@@ -250,7 +250,7 @@ describe('<Badge />', () => {
         const badgeWrapper = mount(
                                    <Badge  theme = {theme} >,
                                        Not set progress of badge.
-                                   </Badge>,
+                                   </Badge>
                              );
         expect(badgeWrapper.find('span')).toHaveLength(1);
       });
@@ -258,13 +258,13 @@ describe('<Badge />', () => {
         const badgeWrapper = mount(
                                    <Badge  theme = {theme} >,
                                        Not set progress of badge.
-                                   </Badge>,
+                                   </Badge>
                              );
         expect(badgeWrapper.find('span').at(0).hasClass('Badge')).toBe(true);
       });
       it('should verify the progress when not set', () => {
         const badgeWrapper = mount(
-                                   <Badge  theme = {theme} />,
+                                   <Badge  theme = {theme} />
                              );
         expect(badgeWrapper.prop('progress')).toBeFalsy();
       });
@@ -275,7 +275,7 @@ describe('<Badge />', () => {
         const badgeWrapper = mount(
                                    <Badge progress="incomplete" theme={theme} >
                                        Not set progress of badge.
-                                   </Badge>,
+                                   </Badge>
                              );
         expect(badgeWrapper.find('span')).toHaveLength(3);
       });
@@ -283,7 +283,7 @@ describe('<Badge />', () => {
         const badgeWrapper = mount(
                                    <Badge progress="incomplete" theme={theme} >
                                        Not set progress of badge.
-                                   </Badge>,
+                                   </Badge>
                              );
         expect(badgeWrapper.find('span').at(0).hasClass('Badge')).toBe(true);
       });
@@ -291,7 +291,7 @@ describe('<Badge />', () => {
         const badgeWrapper = mount(
                                    <Badge progress="incomplete" theme={theme} >
                                        Not set progress of badge.
-                                   </Badge>,
+                                   </Badge>
                              );
         expect(badgeWrapper.find('span').at(1).hasClass('Pip')).toBe(true);
       });
@@ -300,7 +300,7 @@ describe('<Badge />', () => {
         const badgeWrapper = mount(
                                    <Badge progress="incomplete" theme={theme} >
                                        Set progress of badge.
-                                   </Badge>,
+                                   </Badge>
                              );
         expect(badgeWrapper.prop('progress')).toBe('incomplete');
       });
@@ -308,7 +308,7 @@ describe('<Badge />', () => {
         const badgeWrapper = mount(
                                    <Badge progress="incomplete" theme={theme} >
                                        Set progress of badge.
-                                   </Badge>,
+                                   </Badge>
                              );
         expect(badgeWrapper.find('span').at(0).hasClass('progressIncomplete')).toBe(true);
       });
@@ -316,7 +316,7 @@ describe('<Badge />', () => {
         const badgeWrapper = mount(
                                    <Badge progress="incomplete" theme={theme} >
                                        Set progress of badge.
-                                   </Badge>,
+                                   </Badge>
                              );
         expect(badgeWrapper.find('span').at(1).text()).toBe('Incomplete');
       });
@@ -325,7 +325,7 @@ describe('<Badge />', () => {
         const badgeWrapper = mount(
                                    <Badge progress="partiallyComplete" theme={theme} >
                                        Set progress of badge.
-                                   </Badge>,
+                                   </Badge>
                              );
         expect(badgeWrapper.prop('progress')).toBe('partiallyComplete');
       });
@@ -333,7 +333,7 @@ describe('<Badge />', () => {
         const badgeWrapper = mount(
                                    <Badge progress="partiallyComplete" theme={theme} >
                                        Set progress of badge.
-                                   </Badge>,
+                                   </Badge>
                              );
         expect(badgeWrapper.find('span').at(0).hasClass('progressPartiallyComplete')).toBe(true);
       });
@@ -341,14 +341,14 @@ describe('<Badge />', () => {
         const badgeWrapper = mount(
                                    <Badge progress="partiallyComplete" theme={theme} >
                                        Set progress of badge.
-                                   </Badge>,
+                                   </Badge>
                              );
         expect(badgeWrapper.find('span').at(1).text()).toBe('Partially complete');
       });
 
       it('should verify progress set as complete', () => {
         const badgeWrapper = mount(
-                                  <Badge progress="complete" theme={theme} />,
+                                  <Badge progress="complete" theme={theme} />
                             );
         expect(badgeWrapper.prop('progress')).toBe('complete');
       });
@@ -356,7 +356,7 @@ describe('<Badge />', () => {
         const badgeWrapper = mount(
                                    <Badge progress="complete" theme={theme} >
                                        Set progress of badge.
-                                   </Badge>,
+                                   </Badge>
                              );
         expect(badgeWrapper.find('span').at(0).hasClass('progressComplete')).toBe(true);
       });
@@ -364,7 +364,7 @@ describe('<Badge />', () => {
         const badgeWrapper = mount(
                                    <Badge progress="complete" theme={theme} >
                                        Set progress of badge.
-                                   </Badge>,
+                                   </Badge>
                              );
         expect(badgeWrapper.find('span').at(1).text()).toBe('Complete');
       });
@@ -375,7 +375,7 @@ describe('<Badge />', () => {
       const badgeWrapper = mount(
                                   <Badge progress="complete" status="info" theme={theme}  >
                                       All properties are set for Badge.
-                                  </Badge>,
+                                  </Badge>
                             );
       expect(badgeWrapper.find('span')).toHaveLength(4);
     });
@@ -383,7 +383,7 @@ describe('<Badge />', () => {
       const badgeWrapper = mount(
                                   <Badge progress="complete" status="info" theme={theme}  >
                                       All properties are set for Badge.
-                                  </Badge>,
+                                  </Badge>
                             );
       expect(badgeWrapper.find('span').at(0).hasClass('Badge')).toBe(true);
     });
@@ -391,7 +391,7 @@ describe('<Badge />', () => {
       const badgeWrapper = mount(
                                   <Badge status="info" theme={theme} >
                                       Set status of badge.
-                                  </Badge>,
+                                  </Badge>
                             );
       expect(badgeWrapper.find('span').at(0).hasClass('statusInfo')).toBe(true);
     });
@@ -399,7 +399,7 @@ describe('<Badge />', () => {
       const badgeWrapper = mount(
                                   <Badge progress="complete" theme={theme} >
                                       Set progress of badge.
-                                  </Badge>,
+                                  </Badge>
                             );
       expect(badgeWrapper.find('span').at(0).hasClass('progressComplete')).toBe(true);
     });
@@ -407,7 +407,7 @@ describe('<Badge />', () => {
       const badgeWrapper = mount(
                                   <Badge progress="complete" status="info" theme={theme} >
                                       All properties are set for Badge.
-                                  </Badge>,
+                                  </Badge>
                             );
       expect(badgeWrapper.find('span').at(2).hasClass('Pip')).toBe(true);
     });
@@ -415,7 +415,7 @@ describe('<Badge />', () => {
       const badgeWrapper = mount(
                                   <Badge progress="complete" status="info" theme={theme} >
                                       All properties are set for Badge.
-                                  </Badge>,
+                                  </Badge>
                             );
       expect(badgeWrapper.find('span').at(1).text()).toBe('Info');
     });
@@ -423,7 +423,7 @@ describe('<Badge />', () => {
       const badgeWrapper = mount(
                                   <Badge progress="complete" status="info" theme={theme} >
                                       All properties are set for Badge.
-                                  </Badge>,
+                                  </Badge>
                             );
       expect(badgeWrapper.find('span').at(2).text()).toBe('Complete');
     });
@@ -431,7 +431,7 @@ describe('<Badge />', () => {
       const badgeWrapper = mount(
                                   <Badge progress="complete" status="info" theme={theme} >
                                       All properties are set for Badge.
-                                  </Badge>,
+                                  </Badge>
                             );
       expect(badgeWrapper.prop('status')).toBe('info');
       expect(badgeWrapper.prop('progress')).toBe('complete');

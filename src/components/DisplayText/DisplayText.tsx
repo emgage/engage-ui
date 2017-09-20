@@ -23,7 +23,7 @@ const displayText = ({
 }: Props) => {
   const className = classNames(
   theme.displayText,
-  size && theme[variationName('size', size)],
+  size && theme[variationName('size', size)]
 );
   return <ELEMENT className={className}>{children}</ELEMENT>;
 };

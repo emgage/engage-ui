@@ -19,7 +19,7 @@ describe('<Tooltip />', () => {
   describe('when default props are provided', () => {
     it('basic tooltip should have rendered one span element', () => {
       const tooltipWrapper = mount(
-                                    <Tooltip content="This order has shipping labels." theme={theme} />,
+                                    <Tooltip content="This order has shipping labels." theme={theme} />
                              );
       expect(tooltipWrapper.find('span')).toHaveLength(1);
     });
@@ -31,7 +31,7 @@ describe('<Tooltip />', () => {
         const tooltipWrapper = mount(
                                      <Tooltip content="This order has shipping labels." theme={theme}>
                                           <Link>Order #1001</Link>
-                                      </Tooltip>,
+                                      </Tooltip>
                                );
         expect(tooltipWrapper.find('span')).toHaveLength(1);
       });
@@ -39,7 +39,7 @@ describe('<Tooltip />', () => {
         const tooltipWrapper = mount(
                                       <Tooltip content="This order has shipping labels." theme={theme}>
                                           <Link>Order #1001</Link>
-                                      </Tooltip>,
+                                      </Tooltip>
                                );
         expect(tooltipWrapper.children().prop('children')).toBe('Order #1001');
       });
@@ -48,19 +48,19 @@ describe('<Tooltip />', () => {
     describe('when not set', () => {
       it('basic tooltip should have rendered one span element', () => {
         const tooltipWrapper = mount(
-                                      <Tooltip content="This order has shipping labels." theme={theme} />,
+                                      <Tooltip content="This order has shipping labels." theme={theme} />
                                );
         expect(tooltipWrapper.find('span')).toHaveLength(1);
       });
       it('should not have children property', () => {
         const tooltipWrapper = mount(
-                                      <Tooltip content="This order has shipping labels." theme={theme} />,
+                                      <Tooltip content="This order has shipping labels." theme={theme} />
                                );
         expect(tooltipWrapper.find('children')).toHaveLength(0);
       });
       it('should verify children property is not defined', () => {
         const tooltipWrapper = mount(
-                                      <Tooltip content="This order has shipping labels."/>,
+                                      <Tooltip content="This order has shipping labels."/>
                                );
         expect(tooltipWrapper.prop('children')).toBeUndefined();
       });
@@ -72,7 +72,7 @@ describe('<Tooltip />', () => {
         const tooltipWrapper = mount(
                                       <Tooltip content="This order has shipping labels." theme={theme}>
                                           <Link>Order #1001</Link>
-                                      </Tooltip>,
+                                      </Tooltip>
                                );
         expect(tooltipWrapper.find('span')).toHaveLength(1);
       });
@@ -80,7 +80,7 @@ describe('<Tooltip />', () => {
         const tooltipWrapper = mount(
                                       <Tooltip content="This order has shipping labels." theme={theme}>
                                           <Link>Order #1001</Link>
-                                      </Tooltip>,
+                                      </Tooltip>
                                );
         expect(tooltipWrapper.prop('content')).toBe('This order has shipping labels.');
       });
@@ -92,7 +92,7 @@ describe('<Tooltip />', () => {
         const tooltipWrapper = mount(
                                       <Tooltip content="This order has shipping labels." active theme={theme}>
                                           <Link>Order #1001</Link>
-                                      </Tooltip>,
+                                      </Tooltip>
                                );
         expect(tooltipWrapper.find('span')).toHaveLength(1);
       });
@@ -100,7 +100,7 @@ describe('<Tooltip />', () => {
         const tooltipWrapper = mount(
                                       <Tooltip content="This order has shipping labels." active theme={theme}>
                                           <Link>Order #1001</Link>
-                                      </Tooltip>,
+                                      </Tooltip>
                                );
         expect(tooltipWrapper.prop('active')).toBe(true);
       });
@@ -111,7 +111,7 @@ describe('<Tooltip />', () => {
         const tooltipWrapper = mount(
                                       <Tooltip content="This order has shipping labels." active={false} theme={theme}>
                                           <Link>Order #1001</Link>
-                                      </Tooltip>,
+                                      </Tooltip>
                                );
         expect(tooltipWrapper.find('span')).toHaveLength(1);
       });
@@ -119,7 +119,7 @@ describe('<Tooltip />', () => {
         const tooltipWrapper = mount(
                                       <Tooltip content="This order has shipping labels." active={false} theme={theme}>
                                           <Link>Order #1001</Link>
-                                      </Tooltip>,
+                                      </Tooltip>
                                );
         expect(tooltipWrapper.prop('active')).toBe(false);
       });
@@ -129,7 +129,7 @@ describe('<Tooltip />', () => {
         const tooltipWrapper = mount(
                                       <Tooltip content="This order has shipping labels." theme={theme}>
                                           <Link>Order #1001</Link>
-                                      </Tooltip>,
+                                      </Tooltip>
                                  );
         expect(tooltipWrapper.find('span')).toHaveLength(1);
       });
@@ -137,7 +137,7 @@ describe('<Tooltip />', () => {
         const tooltipWrapper = mount(
                                       <Tooltip content="This order has shipping labels." theme={theme}>
                                           <Link>Order #1001</Link>
-                                      </Tooltip>,
+                                      </Tooltip>
                                );
         expect(tooltipWrapper.prop('active')).toBeUndefined();
       });
@@ -145,7 +145,7 @@ describe('<Tooltip />', () => {
         const tooltipWrapper = mount(
                                       <Tooltip content="This order has shipping labels." theme={theme}>
                                           <Link>Order #1001</Link>
-                                      </Tooltip>,
+                                      </Tooltip>
                                );
         expect(tooltipWrapper.find('active')).toHaveLength(0);
       });
@@ -158,7 +158,7 @@ describe('<Tooltip />', () => {
         const tooltipWrapper = mount(
                                       <Tooltip content="This order has shipping labels." light theme={theme}>
                                           <Link>Order #1001</Link>
-                                      </Tooltip>,
+                                      </Tooltip>
                                );
         expect(tooltipWrapper.find('span')).toHaveLength(1);
       });
@@ -166,7 +166,7 @@ describe('<Tooltip />', () => {
         const tooltipWrapper = mount(
                                       <Tooltip content="This order has shipping labels." light theme={theme}>
                                           <Link>Order #1001</Link>
-                                      </Tooltip>,
+                                      </Tooltip>
                                );
         expect(tooltipWrapper.prop('light')).toBe(true);
       });
@@ -176,7 +176,7 @@ describe('<Tooltip />', () => {
         const tooltipWrapper = mount(
                                       <Tooltip content="This order has shipping labels." light={false} theme={theme}>
                                           <Link>Order #1001</Link>
-                                      </Tooltip>,
+                                      </Tooltip>
                                );
         expect(tooltipWrapper.find('span')).toHaveLength(1);
       });
@@ -184,7 +184,7 @@ describe('<Tooltip />', () => {
         const tooltipWrapper = mount(
                                       <Tooltip content="This order has shipping labels." light={false} theme={theme}>
                                           <Link>Order #1001</Link>
-                                      </Tooltip>,
+                                      </Tooltip>
                                );
         expect(tooltipWrapper.prop('light')).toBe(false);
       });
@@ -194,7 +194,7 @@ describe('<Tooltip />', () => {
         const tooltipWrapper = mount(
                                       <Tooltip content="This order has shipping labels." theme={theme}>
                                           <Link>Order #1001</Link>
-                                      </Tooltip>,
+                                      </Tooltip>
                                );
         expect(tooltipWrapper.find('span')).toHaveLength(1);
       });
@@ -202,7 +202,7 @@ describe('<Tooltip />', () => {
         const tooltipWrapper = mount(
                                       <Tooltip content="This order has shipping labels." theme={theme}>
                                           <Link>Order #1001</Link>
-                                      </Tooltip>,
+                                      </Tooltip>
                                );
         expect(tooltipWrapper.prop('light')).toBeUndefined();
       });
@@ -210,7 +210,7 @@ describe('<Tooltip />', () => {
         const tooltipWrapper = mount(
                                       <Tooltip content="This order has shipping labels." theme={theme}>
                                           <Link>Order #1001</Link>
-                                      </Tooltip>,
+                                      </Tooltip>
                                );
         expect(tooltipWrapper.find('light')).toHaveLength(0);
       });
@@ -223,7 +223,7 @@ describe('<Tooltip />', () => {
         const tooltipWrapper = mount(
                                       <Tooltip content="This order has shipping labels." preferredPosition="below" theme={theme}>
                                           <Link>Order #1001</Link>
-                                      </Tooltip>,
+                                      </Tooltip>
                                );
         expect(tooltipWrapper.find('span')).toHaveLength(1);
       });
@@ -231,7 +231,7 @@ describe('<Tooltip />', () => {
         const tooltipWrapper = mount(
                                       <Tooltip content="This order has shipping labels." preferredPosition="below" theme={theme}>
                                           <Link>Order #1001</Link>
-                                      </Tooltip>,
+                                      </Tooltip>
                                );
         expect(tooltipWrapper.prop('preferredPosition')).toBe('below');
       });
@@ -239,7 +239,7 @@ describe('<Tooltip />', () => {
         const tooltipWrapper = mount(
                                       <Tooltip content="This order has shipping labels." preferredPosition="above" theme={theme}>
                                           <Link>Order #1001</Link>
-                                      </Tooltip>,
+                                      </Tooltip>
                                );
         expect(tooltipWrapper.prop('preferredPosition')).toBe('above');
       });
@@ -247,7 +247,7 @@ describe('<Tooltip />', () => {
         const tooltipWrapper = mount(
                                       <Tooltip content="This order has shipping labels." preferredPosition="mostSpace" theme={theme}>
                                           <Link>Order #1001</Link>
-                                      </Tooltip>,
+                                      </Tooltip>
                                );
         expect(tooltipWrapper.prop('preferredPosition')).toBe('mostSpace');
       });
@@ -258,7 +258,7 @@ describe('<Tooltip />', () => {
         const tooltipWrapper = mount(
                                       <Tooltip content="This order has shipping labels." theme={theme}>
                                           <Link>Order #1001</Link>
-                                      </Tooltip>,
+                                      </Tooltip>
                                );
         expect(tooltipWrapper.find('span')).toHaveLength(1);
       });
@@ -266,7 +266,7 @@ describe('<Tooltip />', () => {
         const tooltipWrapper = mount(
                                       <Tooltip content="This order has shipping labels." theme={theme}>
                                           <Link>Order #1001</Link>
-                                      </Tooltip>,
+                                      </Tooltip>
                                );
         expect(tooltipWrapper.prop('preferredPosition')).toBeUndefined();
       });
@@ -274,7 +274,7 @@ describe('<Tooltip />', () => {
         const tooltipWrapper = mount(
                                       <Tooltip content="This order has shipping labels." theme={theme}>
                                           <Link>Order #1001</Link>
-                                      </Tooltip>,
+                                      </Tooltip>
                                );
         expect(tooltipWrapper.find('preferredPosition')).toHaveLength(0);
       });
@@ -287,7 +287,7 @@ describe('<Tooltip />', () => {
         const tooltipWrapper = mount(
                                       <Tooltip content="This order has shipping labels." activatorWrapper="Test" theme={theme}>
                                           <Link>Order #1001</Link>
-                                      </Tooltip>,
+                                      </Tooltip>
                                );
         expect(tooltipWrapper.find('span')).toHaveLength(0);
       });
@@ -295,14 +295,14 @@ describe('<Tooltip />', () => {
         const tooltipWrapper = mount(
                                       <Tooltip content="This order has shipping labels." activatorWrapper="Test" theme={theme}>
                                           <Link>Order #1001</Link>
-                                      </Tooltip>,
+                                      </Tooltip>
                                );
         expect(tooltipWrapper.find('Test')).toHaveLength(1);
       });
       it('should verify activatorWrapper property is available', () => {
         const tooltipWrapper = mount(<Tooltip content="This order has shipping labels." activatorWrapper="Test" theme={theme}>
                                         <Link>Order #1001</Link>
-                                     </Tooltip>,
+                                     </Tooltip>
                                );
         expect(tooltipWrapper.prop('activatorWrapper')).toBe('Test');
       });
@@ -313,7 +313,7 @@ describe('<Tooltip />', () => {
         const tooltipWrapper = mount(
                                       <Tooltip content="This order has shipping labels." theme={theme}>
                                         <Link>Order #1001</Link>
-                                      </Tooltip>,
+                                      </Tooltip>
                                );
         expect(tooltipWrapper.find('span')).toHaveLength(1);
       });
@@ -321,7 +321,7 @@ describe('<Tooltip />', () => {
         const tooltipWrapper = mount(
                                       <Tooltip content="This order has shipping labels." theme={theme}>
                                         <Link>Order #1001</Link>
-                                      </Tooltip>,
+                                      </Tooltip>
                                );
         expect(tooltipWrapper.prop('activatorWrapper')).toBeUndefined();
       });
@@ -329,7 +329,7 @@ describe('<Tooltip />', () => {
         const tooltipWrapper = mount(
                                       <Tooltip content="This order has shipping labels." theme={theme}>
                                           <Link>Order #1001</Link>
-                                      </Tooltip>,
+                                      </Tooltip>
                                );
         expect(tooltipWrapper.find('activatorWrapper')).toHaveLength(0);
       });
