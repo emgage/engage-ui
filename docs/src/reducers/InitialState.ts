@@ -3,6 +3,7 @@ import { IDocumentAppState } from '../Types';
 import ChoiceListState from './componentState/ChoiceListState';
 import PanelState from './componentState/PanelState';
 import HeadingState from './componentState/HeadingState';
+import SubheadingState from './componentState/SubheadingState';
 import StackState from './componentState/StackState';
 import TooltipState from './componentState/TooltipState';
 import ClickableChipState from './componentState/ClickableChipState';
@@ -40,6 +41,7 @@ const intialState : IDocumentAppState = {
     ChoiceListState,
     PanelState,
     HeadingState,
+    SubheadingState,
     StackState,
     TooltipState,
     ClickableChipState,
