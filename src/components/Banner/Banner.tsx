@@ -69,7 +69,7 @@ const banner = ({
   const className = classNames(
     theme.banner,
     status && theme[variationName('status', status)],
-    onDismiss && theme.hasDismiss,
+    onDismiss && theme.hasDismiss
   );
 
   const id = uniqueID();
@@ -118,7 +118,7 @@ const banner = ({
   const dismissButton = onDismiss
     ? (
       <div className={theme.dismiss}>
-        <Button plain icon="cancelSmall" accessibilityLabel="Dismiss notification" />
+        <Button plain icon="cancelSmall" accessibilityLabel="Dismiss notification" onClick={onDismiss}/>
       </div>
     )
     : null;

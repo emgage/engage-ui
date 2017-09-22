@@ -42,7 +42,7 @@ const labelled = ({
   ...rest,
 }: Props) => {
   const wrapperClassName = classNames(
-    labelHidden && theme.hidden,
+    labelHidden && theme.hidden
   );
 
   const labelWrapperClassName = classNames(
@@ -50,7 +50,7 @@ const labelled = ({
     required && theme.required,
     focused && theme.focused,
     (errors && errors) && theme.invalid,
-    !hasValue && theme.empty,
+    !hasValue && theme.empty
   );
 
   const helpTextMarkup = helpText
