@@ -3,7 +3,7 @@ import { IDocumentAppState } from '../Types';
 import ChoiceListState from './componentState/ChoiceListState';
 import PanelState from './componentState/PanelState';
 import ValidatedTextFieldState from './componentState/ValidatedTextFieldState';
-
+import ValidatedFormState from './componentState/ValidatedFormState';
 import ChoiceState from './componentState/ChoiceState';
 import IconState from './componentState/IconState';
 import RadioButtonState from './componentState/RadioButtonState';
