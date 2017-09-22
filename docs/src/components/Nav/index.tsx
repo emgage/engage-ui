@@ -11,6 +11,7 @@ const Nav = () => {
         <li><Link to="/component/choicelist" className={styles.active}>Choice List Component</Link></li>
         <li><Link to="/component/panel">Panel Component</Link></li>
         <li><Link to="/component/chip">Chip Component</Link></li>
+        <li><Link to="/component/validatedform">ValidatedForm Component</Link></li>
         <li><Link to="/component/validatedtextfield">Validated TextField Component</Link></li>
         <li><Link to="/component/choice">Choice Component</Link></li>
         <li><Link to="/component/icon">Icon Component</Link></li>

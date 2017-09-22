@@ -8,6 +8,7 @@ import SingleDatePickerWrapper from './SingleDatePickerWrapper';
 import DateRangePickerWrapper from './DateRangePickerWrapper';
 
 import {
+  Banner,
   Button,
   ButtonGroup,
   Card,
@@ -389,27 +390,27 @@ class App extends React.Component<{}, State> {
 
         <Heading>Flexbox</Heading>
         <FlexBox>
-          <div style={{backgroundColor: 'aqua'}}>Demo 1</div>
-          <div style={{backgroundColor: 'pink'}}>Demo 2</div>
-          <div style={{backgroundColor: 'lime'}}>Demo 3</div>
+          <div style={{ backgroundColor: 'aqua' }}>Demo 1</div>
+          <div style={{ backgroundColor: 'pink' }}>Demo 2</div>
+          <div style={{ backgroundColor: 'lime' }}>Demo 3</div>
         </FlexBox>
 
         <FlexBox direction={FlexDirection.Column} align={FlexAlign.Stretch} justify={FlexJustify.Center}>
-          <div style={{backgroundColor: 'aqua'}}>Demo 1</div>
-          <div style={{backgroundColor: 'pink'}}>Demo 2</div>
-          <div style={{backgroundColor: 'lime'}}>Demo 3</div>
+          <div style={{ backgroundColor: 'aqua' }}>Demo 1</div>
+          <div style={{ backgroundColor: 'pink' }}>Demo 2</div>
+          <div style={{ backgroundColor: 'lime' }}>Demo 3</div>
         </FlexBox>
 
         <FlexBox direction={FlexDirection.Row} align={FlexAlign.Stretch} justify={FlexJustify.SpaceAround}>
-          <div style={{backgroundColor: 'aqua'}}>Demo 1</div>
-          <div style={{backgroundColor: 'pink'}}>Demo 2</div>
-          <div style={{backgroundColor: 'lime'}}>Demo 3</div>
+          <div style={{ backgroundColor: 'aqua' }}>Demo 1</div>
+          <div style={{ backgroundColor: 'pink' }}>Demo 2</div>
+          <div style={{ backgroundColor: 'lime' }}>Demo 3</div>
         </FlexBox>
 
         <FlexBox inline={true} direction={FlexDirection.Column} align={FlexAlign.Stretch} justify={FlexJustify.Center}>
-          <div style={{backgroundColor: 'aqua'}}>Demo 1</div>
-          <div style={{backgroundColor: 'pink'}}>Demo 2</div>
-          <div style={{backgroundColor: 'lime'}}>Demo 3</div>
+          <div style={{ backgroundColor: 'aqua' }}>Demo 1</div>
+          <div style={{ backgroundColor: 'pink' }}>Demo 2</div>
+          <div style={{ backgroundColor: 'lime' }}>Demo 3</div>
         </FlexBox>
 
         <Heading>Chip</Heading>
