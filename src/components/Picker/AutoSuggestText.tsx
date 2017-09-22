@@ -14,7 +14,6 @@ export interface Props {
   theme?: any;
   placeholder?: string;
   autoSuggestMethods: any;
-  // stateProps: {chipListState: any, suggestions: any, inputProps: object, value?: any};
   stateProps: any;
 }
 
@@ -37,7 +36,6 @@ class AutoSuggestText extends React.Component<Props, {}> {
 
   render() {
     const { theme }:any = this.props;
-    // console.log('stateprops', this.props);
 
 
     return (

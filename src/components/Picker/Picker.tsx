@@ -59,7 +59,6 @@ class Picker extends React.Component<Props, State> {
     };
   }
   render() {
-    // if (this.props.autoSuggest && this.props.autoSuggestMethods) console.log('LOOK AT ME!!', this.props.autoSuggest, this.props.autoSuggestMethods);
     const {
       autoSuggestMethods,
       autoSuggest,

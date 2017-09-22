@@ -45,8 +45,6 @@ function label({
     !hasValue && theme.empty
   );
 
-  // console.log('hasValue', hasValue);
-
   const actionMarkup = action
     ? buttonFrom(action, { plain: true })
     : null;

@@ -82,7 +82,6 @@ const labelled = ({
     )
     : null;
 
-  // setInterval(() => console.log(hasValue), 1000);
   return (
     <div className={wrapperClassName} aria-describedby={errorId} id={'labelled.tsx'} style={style}>
       {errorMarkup}

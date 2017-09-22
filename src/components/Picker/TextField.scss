@@ -124,7 +124,6 @@ $stacking-order: (
 }
 
 .backdrop {
-  // z-index: z-index(backdrop, $stacking-order);
   z-index: 0;
   top: 0;
   bottom: 0;

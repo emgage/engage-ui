@@ -74,13 +74,8 @@ class TextField extends React.PureComponent<Props, State> {
         stateProps={this.props.stateProps}
       />
       : input;
-    // console.log('inputValue:', inputValue);
-    // console.log('AutoSuggestText:', AutoSuggestText);
     const hasValue = (!!this.props.value && this.props.value.length > 0);
 
-
-
-    // console.log('hasInput:', hasInput);
     return (
       <Labelled
         label={label}
@@ -101,7 +96,6 @@ class TextField extends React.PureComponent<Props, State> {
 
   @autobind
   private setInput(input: HTMLElement) {
-    // console.log('set input');
     this.input = input;
   }
   @autobind

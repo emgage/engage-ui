@@ -146,7 +146,7 @@ class PickerAutoSuggestExample extends React.Component<{}, {}> {
       <Picker
         stateProps={stateProps}
         autoSuggestMethods={autoSuggestMethods}
-        autoSuggest 
+        autoSuggest
         chipComponent={Chip}
         filterPlaceHolder={'hello'}
         searchResultComponent={Chip}

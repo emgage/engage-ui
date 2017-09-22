@@ -1,42 +1,42 @@
 import * as React from 'react';
-// import { PeoplePickerSearchType } from './PickerEnum';
-// import { PeoplePickerSource } from './PickerSource';
+import { PeoplePickerSearchType } from './PickerEnum';
+import { PeoplePickerSource } from './PickerSource';
 
 
-// import ReactDataExample from './ReactDataExample';
-// import SingleDatePickerWrapper from './SingleDatePickerWrapper';
-// import DateRangePickerWrapper from './DateRangePickerWrapper';
+import ReactDataExample from './ReactDataExample';
+import SingleDatePickerWrapper from './SingleDatePickerWrapper';
+import DateRangePickerWrapper from './DateRangePickerWrapper';
 import PickerAutoSuggestExample from './PickerAutoSuggestExample';
 
 import {
-  // Button,
-  // ButtonGroup,
-  // Card,
-  // Chip,
-  // ChoiceList,
-  // ClickableChip,
-  // Column,
-  // DisplayText,
-  // FlexBox,
-  // FlexAlign,
-  // FlexDirection,
-  // FlexJustify,
-  // FormLayout,
-  // Heading,
-  // Link,
-  // List,
-  // Item,
-  // Loading,
-  // OffCanvas,
-  // Panel,
-  // Picker,
-  // Select,
-  // TextField,
-  // Tooltip,
-  // ValidatedTextField,
-  // ValidatedForm,
-  // Video,
-  // VideoType,
+  Button,
+  ButtonGroup,
+  Card,
+  Chip,
+  ChoiceList,
+  ClickableChip,
+  Column,
+  DisplayText,
+  FlexBox,
+  FlexAlign,
+  FlexDirection,
+  FlexJustify,
+  FormLayout,
+  Heading,
+  Link,
+  List,
+  Item,
+  Loading,
+  OffCanvas,
+  Panel,
+  Picker,
+  Select,
+  TextField,
+  Tooltip,
+  ValidatedTextField,
+  ValidatedForm,
+  Video,
+  VideoType,
 } from '../../src/components';
 
 interface State {
@@ -80,49 +80,39 @@ class App extends React.Component<{}, State> {
   }
 
   render() {
-    // const posterUrl = new URL('http://4.bp.blogspot.com/_JSR8IC77Ub4/TKB-XAWXmhI/AAAAAAAABJA/MqOpdFTOaHo/w1200-' +
-    //   'h630-p-k-no-nu/C:%5Cfakepath%5Cbird1.jpg');
-    // const singleVideoSource = [
-    //   {
-    //     src: 'http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_1mb.mp4',
-    //     type: VideoType.MP4,
-    //   }];
-    // const multiVideoSource = [
-    //   {
-    //     src: 'http://www.sample-videos.com/video/mp4/480/big_buck_bunny_480p_30mb.mp4',
-    //     type: VideoType.MP4,
-    //   },
-    //   {
-    //     src: 'http://www.sample-videos.com/video/mp4/240/big_buck_bunny_240p_30mb.mp4',
-    //     type: VideoType.MP4,
-    //   }];
+    const posterUrl = new URL('http://4.bp.blogspot.com/_JSR8IC77Ub4/TKB-XAWXmhI/AAAAAAAABJA/MqOpdFTOaHo/w1200-' +
+      'h630-p-k-no-nu/C:%5Cfakepath%5Cbird1.jpg');
+    const singleVideoSource = [
+      {
+        src: 'http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_1mb.mp4',
+        type: VideoType.MP4,
+      }];
+    const multiVideoSource = [
+      {
+        src: 'http://www.sample-videos.com/video/mp4/480/big_buck_bunny_480p_30mb.mp4',
+        type: VideoType.MP4,
+      },
+      {
+        src: 'http://www.sample-videos.com/video/mp4/240/big_buck_bunny_240p_30mb.mp4',
+        type: VideoType.MP4,
+      }];
 
-    // const sampleVideoCmp = <Video
-    //   poster={posterUrl}
-    //   src={singleVideoSource}
-    //   autoplay={false}
-    //   controls={false}
-    //   style={{
-    //     height: 100,
-    //     width: 100,
-    //   }} />;
+    const sampleVideoCmp = <Video
+      poster={posterUrl}
+      src={singleVideoSource}
+      autoplay={false}
+      controls={false}
+      style={{
+        height: 100,
+        width: 100,
+      }} />;
 
     return (
       <div>
         <PickerAutoSuggestExample />
-         {/* <SingleDatePickerWrapper />
-        <DateRangePickerWrapper /> */}
-        {/* <OffCanvas activator={<Button>OffCanvas Test</Button>} mode={OffCanvasMode.slide}>
-              <p>Placeholder content.</p>
-              <ul>
-                <li>Link 1</li>
-                <li>Link 2</li>
-                <li>Link 3</li>
-                <li>Link 4</li>
-                <li>Link 5</li>
-              </ul>
-          </OffCanvas> */}
-        {/* <OffCanvas activator={<Button>OffCanvas</Button>} >
+        <SingleDatePickerWrapper />
+        <DateRangePickerWrapper />
+        <OffCanvas activator={<Button>OffCanvas</Button>} >
             <p>Reveal Test</p>
             <ul>
               <li>Link 1</li>
@@ -263,31 +253,22 @@ class App extends React.Component<{}, State> {
           >
             <Link>Tooltip 2</Link>
           </Tooltip>
-        <div> */}
-            {/* <OffCanvas activator={<Button>OffCanvas Test</Button>} mode={OffCanvasMode.slide}>
-                  <p>Placeholder content.</p>
-                  <ul>
-                    <li>Link 1</li>
-                    <li>Link 2</li>
-                    <li>Link 3</li>
-                    <li>Link 4</li>
-                    <li>Link 5</li>
-                  </ul>
-              </OffCanvas> */}
-              {/* <ReactDataExample
+        <div>
+
+              <ReactDataExample
                 columns={this.state.columns}
                 rowGetter={this.rowGetter}
                 rowsCount={this.state.rows.length}
                 minHeight={2}
-          /> */}
-          {/* <Heading>Popover</Heading>
+          />
+          <Heading>Popover</Heading>
           <TextField id="TestName" label="Text Counter" placeholder="test-placeholder" value={this.state.appTextCounter} helpText="Helper Text" enableTextCouter={true} maxLength={100} onChange={this.valueUpdater('appTextCounter')}/>
           <ClickableChip chip={<Chip>Batman</Chip>}>
             <Card title="More about Batman">
               <p>Batman is a fictional superhero who appears in American comic books published by DC Comics. The character was created by artist Bob Kane and writer Bill Finger, and first appeared in Detective Comics #27</p>
             </Card>
-          </ClickableChip> */}
-        {/* <Heading>List</Heading>
+          </ClickableChip>
+        <Heading>List</Heading>
         <List type="bullet">
           <Item>Yellow shirt</Item>
           <Item>Red shirt</Item>
@@ -309,8 +290,8 @@ class App extends React.Component<{}, State> {
           <Item>First item</Item>
           <Item>Second item</Item>
           <Item>Third Item</Item>
-        </List> */}
-        {/* <ChoiceList
+        </List>
+        <ChoiceList
   title="Company name"
   choices={[
     {
@@ -327,8 +308,8 @@ class App extends React.Component<{}, State> {
     },
   ]}
   selected={['hidden']}
-/> */}
-        {/* <Loading />
+/>
+        <Loading />
         <Picker
           required
           chipComponent={Chip}
@@ -339,8 +320,8 @@ class App extends React.Component<{}, State> {
           minSelectedItems={2}
           millisecondsToWaitBeforeSearch={20} 
           moreInfoComponent={<Button children="ranmal" />}  
-        /> */}
-        {/* <ValidatedForm>
+        />
+        <ValidatedForm>
 
           <Heading>App Basics</Heading>
 
@@ -503,7 +484,7 @@ class App extends React.Component<{}, State> {
             <span>Hello small=1-2 medium=3-4 large=4-10</span>
           </Column>
         </FlexBox> 
-      </div> */}
+      </div>
     </div>
     );
   }
