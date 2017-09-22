@@ -2,6 +2,7 @@ import { IDocumentAppState } from '../Types';
 
 import ChoiceListState from './componentState/ChoiceListState';
 import PanelState from './componentState/PanelState';
+import ChipState from './componentState/ChipState';
 import ValidatedTextFieldState from './componentState/ValidatedTextFieldState';
 import ValidatedFormState from './componentState/ValidatedFormState';
 import ChoiceState from './componentState/ChoiceState';
@@ -45,6 +46,7 @@ const intialState : IDocumentAppState = {
   components: [
     ChoiceListState,
     PanelState,
+    ChipState,
     ValidatedFormState,
     ValidatedTextFieldState,
     ChoiceState,
