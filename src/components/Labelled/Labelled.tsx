@@ -44,7 +44,6 @@ const labelled = ({
   const wrapperClassName = classNames(
     labelHidden && theme.hidden
   );
-
   const labelWrapperClassName = classNames(
     theme.labelWrapper,
     required && theme.required,
@@ -68,7 +67,7 @@ const labelled = ({
 
   const labelMarkup = label
     ? (
-      <div className={labelWrapperClassName}>
+      <div className={labelWrapperClassName} id={'labelMarkup'}>
         <Label
           id={id}
           hidden={false}
@@ -83,8 +82,9 @@ const labelled = ({
     )
     : null;
 
+  // setInterval(() => console.log(hasValue), 1000);
   return (
-    <div className={wrapperClassName} aria-describedby={errorId} style={style}>
+    <div className={wrapperClassName} aria-describedby={errorId} id={'labelled.tsx'} style={style}>
       {errorMarkup}
       {labelMarkup}
       {children}

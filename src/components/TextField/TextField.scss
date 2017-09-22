@@ -4,7 +4,7 @@ $spinner-icon-size: rem(12px);
 
 $stacking-order: (
   contents: 20,
-  backdrop: 10,
+  backdrop: -1,
 );
 
 .textField {
@@ -70,7 +70,7 @@ $stacking-order: (
 .input {
   @include text-style-input;
   position: relative;
-  z-index: z-index(contents, $stacking-order);
+  // z-index: z-index(contents, $stacking-order);
   display: block;
   flex: 1 1 0%;
   width: 100%;

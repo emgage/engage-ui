@@ -10,11 +10,10 @@ $stacking-order: (
   margin-left: $label-horizontal-spacing;
   position: absolute;
   z-index: z-index(label, $stacking-order);
+  // z-index: 2 !important;
   transform: translate3D(0, calc(1.1rem + 3px), 0);
   transition: all .2s ease-out;
   backface-visibility: hidden;
-
-
 //.required {}
 
   &.focused,

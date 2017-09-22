@@ -1,18 +1,18 @@
 import * as React from 'react';
-import { PeoplePickerSearchType } from './PickerEnum';
-import { PeoplePickerSource } from './PickerSource';
+// import { PeoplePickerSearchType } from './PickerEnum';
+// import { PeoplePickerSource } from './PickerSource';
+
 
 // import ReactDataExample from './ReactDataExample';
 // import SingleDatePickerWrapper from './SingleDatePickerWrapper';
 // import DateRangePickerWrapper from './DateRangePickerWrapper';
-
-import AutoSuggestText from '../../src/components/Picker/AutoSuggestText';
+import PickerAutoSuggestExample from './PickerAutoSuggestExample';
 
 import {
-  Button,
+  // Button,
   // ButtonGroup,
   // Card,
-  Chip,
+  // Chip,
   // ChoiceList,
   // ClickableChip,
   // Column,
@@ -26,10 +26,10 @@ import {
   // Link,
   // List,
   // Item,
-  Loading,
+  // Loading,
   // OffCanvas,
   // Panel,
-  Picker,
+  // Picker,
   // Select,
   // TextField,
   // Tooltip,
@@ -109,16 +109,7 @@ class App extends React.Component<{}, State> {
 
     return (
       <div>
-        <AutoSuggestText
-          itemsList={[
-            { key: 1, image: 'http://msaadvertising.com/wp-content/uploads/2014/06/Larry-cartoon-headshot.jpg', name: 'John Doe', email: 'test@gmail.com', markedForDelete: false },
-            { key: 2, image: 'http://cdn.photographyproject.com.au/wp-content/uploads/2013/04/corporate-headshot.jpg', name: 'Pedro Sanchez', email: 'pedrosanchez@gmail.com' },
-            { key: 3, image: 'https://media.licdn.com/mpr/mpr/p/5/005/08f/04d/02df10d.jpg', name: 'Jane Doe', email: 'jane@gmail.com' },
-            { key: 4, image: 'http://www.roanokecreditrepair.com/wp-content/uploads/2016/06/Headshot-1.png', name: 'Person McPerson', email: 'yahoogmail@gmail.com' },
-            { key: 5, image: 'https://d38zhw9ti31loc.cloudfront.net/wp-content/uploads/2013/07/Crystal-headshot-new.jpg', name: 'Laura Person', email: 'yahooldjadslkjgmail@gmail.com' },
-            { key: 6, image: 'https://d38zhw9ti31loc.cloudfront.net/wp-content/uploads/2013/07/Crystal-headshot-new.jpg', name: 'Laura Person', email: 'slkjgmail@gmail.com' },
-          ]}
-        />
+        <PickerAutoSuggestExample />
          {/* <SingleDatePickerWrapper />
         <DateRangePickerWrapper /> */}
         {/* <OffCanvas activator={<Button>OffCanvas Test</Button>} mode={OffCanvasMode.slide}>
@@ -337,18 +328,18 @@ class App extends React.Component<{}, State> {
   ]}
   selected={['hidden']}
 /> */}
-        <Loading />
+        {/* <Loading />
         <Picker
           required
           chipComponent={Chip}
-          filterPlaceHolder="People"
+          filterPlaceHolder="!People!!"
           searchResultComponent={Chip}
           source={new PeoplePickerSource(PeoplePickerSearchType.Both)}
           maxSelectedItems={5}
           minSelectedItems={2}
           millisecondsToWaitBeforeSearch={20} 
           moreInfoComponent={<Button children="ranmal" />}  
-        />
+        /> */}
         {/* <ValidatedForm>
 
           <Heading>App Basics</Heading>

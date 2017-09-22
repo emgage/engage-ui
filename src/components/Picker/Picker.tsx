@@ -1,3 +1,4 @@
+
 import * as React from 'react';
 import { themr, ThemedComponentClass } from 'react-css-themr';
 import { PICKER } from '../ThemeIdentifiers';
@@ -37,6 +38,10 @@ export interface Props {
   moreInfoComponentShowOn?: DisplayMoreInfo;
   style?: React.CSSProperties;
   theme?: any;
+  autoSuggest?: boolean;
+  autoSuggestMethods?: object[];
+  itemsList?: object[];
+  stateProps?: object[];
   searchBehavior?(): void;
   onSelect?(item: any): void;
   onRemove?(item: any): void;
@@ -54,8 +59,10 @@ class Picker extends React.Component<Props, State> {
     };
   }
   render() {
+    if (this.props.autoSuggest && this.props.autoSuggestMethods) console.log('LOOK AT ME!!', this.props.autoSuggest, this.props.autoSuggestMethods);
     const {
-      // required,
+      autoSuggestMethods,
+      autoSuggest,
       filterPlaceHolder,
       selectedResultsBehavior,
       moreInfoComponent,
@@ -67,6 +74,7 @@ class Picker extends React.Component<Props, State> {
       onRemove = this.handleRemove,
       onMoreInfo = this.handleMoreInfo,
       theme,
+      itemsList,
     } = this.props;
     let className = '';
     if (selectedResultsBehavior === 'hide') {
@@ -85,11 +93,14 @@ class Picker extends React.Component<Props, State> {
                   }
               </div>
                 <TextField
-                label="lbl"
-                value={this.state.people}
-                placeholder={filterPlaceHolder}
-                onChange={searchBehavior}
-                /* required={required} */
+                  autoSuggest={autoSuggest}
+                  autoSuggestMethods={autoSuggestMethods}
+                  label="lbl"
+                  value={this.state.people}
+                  placeholder={filterPlaceHolder}
+                  onChange={searchBehavior}
+                  itemsList={itemsList}
+                  stateProps={this.props.stateProps}
                 />
            </div>
             <div>

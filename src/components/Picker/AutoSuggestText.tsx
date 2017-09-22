@@ -8,10 +8,6 @@ import { TEXT_FIELD } from '../ThemeIdentifiers';
 
 import * as baseTheme from './TextField.scss';
 
-function escapeRegexCharacters(str:any) {
-  return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-}
-
 function renderSuggestion(suggestion:any, { isHighlighted, query }:any) {
   const index = suggestion.name.toLowerCase().indexOf(query.toLowerCase());
   const nameBefore = suggestion.name.slice(0, index);
@@ -25,154 +21,36 @@ function renderSuggestion(suggestion:any, { isHighlighted, query }:any) {
 }
 
 export interface Props {
-  itemsList: { key: any, image?: string, email?: string, grey?: boolean, name?: any, markedForDelete?: boolean }[];
+  itemsList?: object[];
   theme?: any;
+  placeholder?: string;
+  autoSuggestMethods: any;
+  stateProps: any;
 }
-export interface State {
-  value: string;
-  input: any;
-  suggestions: object[];
-  chipListState: { key: any, image?: string, text: string, email?: string, grey?: boolean, markedForDelete?:boolean }[];
-  itemsList: { key: any, image?: string, email?: string, grey?: boolean, name?: any, markedForDelete?: boolean }[];
-}
-class AutoSuggestText extends React.Component<Props, State> {
-  constructor(props:any) {
-    super(props);
-    this.state = {
-      value: '',
-      input: {},
-      suggestions: [],
-      chipListState: [],
-      itemsList: props.itemsList,
-    };
-  }
-  onSuggestionsClearRequested = () => {
-    this.setState({ suggestions: [] });
-  }
-  getSuggestions = (value:any) => {
-    const escapedValue = escapeRegexCharacters(value.trim());
 
-    if (escapedValue === '') {
-      return [];
-    }
-
-    const regex = new RegExp(escapedValue, 'i');
-
-    return this.state.itemsList.filter(language => regex.test(language.name));
-  }
-
-  getSuggestionValue = (suggestion:any) => {
-    return suggestion.name;
-  }
-  onChange = (event:object, { newValue, method }:any) => {
-    this.setState({
-      value: newValue,
-    });
-  }
-
-  onKeyDown = (e:any) => {
-    if ((e.keyCode === 8) && this.state.chipListState.length && !this.state.value.length) {
-      const yellowed = this.state.chipListState.slice(this.state.chipListState.length - 1);
-      if (yellowed[0]['markedForDelete']) {
-        const chipListState = this.state.chipListState.slice(0, this.state.chipListState.length - 1);
-        const language = this.state.chipListState.slice(this.state.chipListState.length - 1)[0];
-        delete language['text'];
-        language['markedForDelete'] = false;
-        const itemsList = this.state.itemsList.concat(language);
-        this.setState({
-          chipListState,
-          itemsList,
-        });
-      } else {
-        yellowed[0]['markedForDelete'] = true;
-
-        this.setState({
-          chipListState: this.state.chipListState,
-        });
-      }
-    } else if (this.state.chipListState.length && !this.state.value.length && !(e.keyCode === 38) && !(e.keyCode === 40)) {
-      if (this.state.chipListState[this.state.chipListState.length - 1]['markedForDelete']) {
-        this.state.chipListState[this.state.chipListState.length - 1]['markedForDelete'] = false;
-        this.setState({ chipListState: this.state.chipListState });
-      }
-    }
-  }
-
-  // handler = (e:any) => {
-  //   e.stopPropagation();
-  //   e.preventDefault();
-  //   console.log('stop!')
-  // }
-
-  onSuggestionsFetchRequested = ({ value }:any) => {
-    this.setState({
-      suggestions: this.getSuggestions(value),
-    });
-    console.log('onSuggestionsFetchRequested');
-    // document.addEventListener('click',this.handler,true);
-  }
-
-  updateList = (input: any) => {
-    const langIndex = this.state.itemsList.indexOf(input);
-    const itemsListLength = this.state.itemsList;
-    const newLangState = itemsListLength.slice(0, langIndex).concat(itemsListLength.slice(langIndex + 1, itemsListLength.length));
-    this.setState({ itemsList: newLangState });
-  }
-
-  onSuggestionSelected = (event:any, { suggestion }: any) => {
-    suggestion.text = suggestion.name;
-
-    this.updateList(suggestion);
-    const chipListState = this.state.chipListState.concat(suggestion);
-    this.setState({
-      chipListState,
-      value: '',
-    });
-  }
-
-  chipRemove = (input:any) => {
-    input['markedForDelete'] = false;
-    const index = this.state.chipListState.indexOf(input);
-    const chipLength = this.state.chipListState;
-    const newChipState = chipLength.slice(0, index).concat(chipLength.slice(index + 1, chipLength.length));
-    this.setState({ chipListState: newChipState });
-    const itemsListList = this.state.itemsList.concat(input);
-    this.setState({ itemsList: itemsListList });
-    this.state.input.focus();
-  }
-
-  storeInputReference = (autosuggest:any) => {
-    if (autosuggest !== null) {
-      this.setState({ input: autosuggest.input });
-    }
-  }
+class AutoSuggestText extends React.Component<Props, {}> {
 
   render() {
-    const { value, suggestions, chipListState }:any = this.state;
     const { theme }:any = this.props;
-    const inputProps = {
-      value,
-      placeholder: '',
-      onChange: this.onChange,
-      onKeyDown: this.onKeyDown,
-    };
+    console.log('stateprops', this.props);
+
 
     return (
-      <div className={chipListState.length ? style.inputOutline : style.inputOutlineInit}>
-        { chipListState.map((input: any) => <Chip image={{ url: input.image }} removable={true} onRemove={() => this.chipRemove(input)} key={input.key} markedForDelete={input.markedForDelete}>{input.text}</Chip>) }
+      <div className={this.props.stateProps.chipListState.length ? style.inputOutline : style.inputOutlineInit}>
+        { this.props.stateProps.chipListState.map((input: any) => <Chip image={{ url: input.image }} removable={true} onRemove={() => this.props.autoSuggestMethods.chipRemove(input)} key={input.key} markedForDelete={input.markedForDelete}>{input.text}</Chip>) }
         <Autosuggest
           className={style.suggestionsContainer}
-          suggestions={suggestions}
-          onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-          onSuggestionsClearRequested={this.onSuggestionsClearRequested}
-          getSuggestionValue={this.getSuggestionValue}
-          onSuggestionSelected={this.onSuggestionSelected}
+          suggestions={this.props.stateProps.suggestions}
+          onSuggestionsFetchRequested={this.props.autoSuggestMethods.onSuggestionsFetchRequested}
+          onSuggestionsClearRequested={this.props.autoSuggestMethods.onSuggestionsClearRequested()}
+          getSuggestionValue={this.props.autoSuggestMethods.getSuggestionValue()}
+          onSuggestionSelected={this.props.autoSuggestMethods.onSuggestionSelected()}
           renderSuggestion={renderSuggestion}
-          inputProps={inputProps}
           highlightFirstSuggestion={true}
-          ref={this.storeInputReference}
+          inputProps={this.props.stateProps.inputProps}
+          ref={this.props.autoSuggestMethods.storeInputReference()}
           theme={{
-            container: chipListState.length ? style.container : style.containerInit,
+            container: this.props.stateProps.chipListState.length ? style.container : style.containerInit,
             suggestions: style.cardItem,
             suggestionsList: style.suggestionsList,
             input: theme.input,
@@ -183,4 +61,4 @@ class AutoSuggestText extends React.Component<Props, State> {
   }
 }
 
-export default themr(TEXT_FIELD, baseTheme)(AutoSuggestText) as ThemedComponentClass<Props, State>;
+export default themr(TEXT_FIELD, baseTheme)(AutoSuggestText) as ThemedComponentClass<Props, {}>;
