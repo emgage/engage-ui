@@ -10,10 +10,9 @@ import {
   Picker,
 } from '../../src/components';
 
-function escapeRegexCharacters(str:any) {
+function escapeRegexCharacters(str:string) {
   return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
-
 class PickerAutoSuggestExample extends React.Component<{}, {}> {
   constructor(props:any) {
     super(props);
@@ -22,21 +21,30 @@ class PickerAutoSuggestExample extends React.Component<{}, {}> {
       input: {},
       suggestions: [],
       chipListState: [],
-      itemsList: props.itemsList,
+      itemsList:
+        [
+          { key: 1, image: 'http://msaadvertising.com/wp-content/uploads/2014/06/Larry-cartoon-headshot.jpg', name: 'John Doe', email: 'test@gmail.com', markedForDelete: false },
+          { key: 2, image: 'http://cdn.photographyproject.com.au/wp-content/uploads/2013/04/corporate-headshot.jpg', name: 'Pedro Sanchez', email: 'pedrosanchez@gmail.com' },
+          { key: 3, image: 'https://media.licdn.com/mpr/mpr/p/5/005/08f/04d/02df10d.jpg', name: 'Jane Doe', email: 'jane@gmail.com' },
+          { key: 4, image: 'http://www.roanokecreditrepair.com/wp-content/uploads/2016/06/Headshot-1.png', name: 'Person McPerson', email: 'yahoogmail@gmail.com' },
+          { key: 5, image: 'https://d38zhw9ti31loc.cloudfront.net/wp-content/uploads/2013/07/Crystal-headshot-new.jpg', name: 'Laura Person', email: 'yahooldjadslkjgmail@gmail.com' },
+          { key: 6, image: 'https://d38zhw9ti31loc.cloudfront.net/wp-content/uploads/2013/07/Crystal-headshot-new.jpg', name: 'Laura Person', email: 'slkjgmail@gmail.com' },
+        ],
     };
   }
   render() {
     const autoSuggestMethods = {
       onSuggestionsClearRequested: () => this.setState({ suggestions: [] }),
-      getSuggestions: (value:any) => {
+      getSuggestions: (value:string) => {
         const escapedValue = escapeRegexCharacters(value.trim());
         if (escapedValue === '') {
           return [];
         }
         const regex = new RegExp(escapedValue, 'i');
+        // console.log('itemslist', this.state.itemsList);
         return this.state.itemsList.filter(language => regex.test(language.name));
       },
-      getSuggestionValue: (suggestion:any) => {
+      getSuggestionValue: (suggestion:object) => {
         return suggestion.name;
       },
       onChange: (event:object, { newValue, method }:any) => {
@@ -72,18 +80,11 @@ class PickerAutoSuggestExample extends React.Component<{}, {}> {
         }
       },
 
-      // // handler = (e:any) => {
-      // //   e.stopPropagation();
-      // //   e.preventDefault();
-      // //   console.log('stop!')
-      // // }
-
       onSuggestionsFetchRequested: ({ value }:any) => {
+        console.log('value onSuggestionsFetchRequested', value);
         this.setState({
-          suggestions: this.getSuggestions(value),
+          suggestions: autoSuggestMethods.getSuggestions(value),
         });
-        this.props.hasInput(value);
-        // document.addEventListener('click',this.handler,true);
       },
 
       updateList: (input: any) => {
@@ -96,7 +97,7 @@ class PickerAutoSuggestExample extends React.Component<{}, {}> {
       onSuggestionSelected: (event:any, { suggestion }: any) => {
         suggestion.text = suggestion.name;
 
-        this.updateList(suggestion);
+        autoSuggestMethods.updateList(suggestion);
         const chipListState = this.state.chipListState.concat(suggestion);
         this.setState({
           chipListState,
@@ -117,7 +118,9 @@ class PickerAutoSuggestExample extends React.Component<{}, {}> {
 
       storeInputReference: (autosuggest:any) => {
         if (autosuggest !== null) {
-          this.setState({ input: autosuggest.input });
+          if (this.state.input !== autosuggest.input) {
+            this.setState({ input: autosuggest.input });
+          }
         }
       },
     }

@@ -25,13 +25,12 @@ export interface Props {
   autoSuggest?: boolean;
   autoSuggestMethods?: object[];
   itemsList?: object[];
-  stateProps?: object[];
+  stateProps?: {chipListState: any, suggestions: any, inputProps: object, value?: any};
   onChange?(value: string): void;
 }
 
 class TextField extends React.PureComponent<Props, State> {
   state: State = { height: null };
-
   private input: HTMLElement;
 
   render() {
@@ -75,7 +74,7 @@ class TextField extends React.PureComponent<Props, State> {
         stateProps={this.props.stateProps}
       />
       : input;
-    console.log('input:', input);
+    // console.log('inputValue:', inputValue);
     // console.log('AutoSuggestText:', AutoSuggestText);
     const hasValue = (!!this.props.value && this.props.value.length > 0);
 

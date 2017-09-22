@@ -41,7 +41,7 @@ export interface Props {
   autoSuggest?: boolean;
   autoSuggestMethods?: object[];
   itemsList?: object[];
-  stateProps?: object[];
+  stateProps?: {chipListState: any, suggestions: any, inputProps: object, value?: any};
   searchBehavior?(): void;
   onSelect?(item: any): void;
   onRemove?(item: any): void;
@@ -59,7 +59,7 @@ class Picker extends React.Component<Props, State> {
     };
   }
   render() {
-    if (this.props.autoSuggest && this.props.autoSuggestMethods) console.log('LOOK AT ME!!', this.props.autoSuggest, this.props.autoSuggestMethods);
+    // if (this.props.autoSuggest && this.props.autoSuggestMethods) console.log('LOOK AT ME!!', this.props.autoSuggest, this.props.autoSuggestMethods);
     const {
       autoSuggestMethods,
       autoSuggest,

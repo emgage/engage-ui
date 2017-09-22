@@ -1,3 +1,4 @@
+
 import * as Autosuggest from 'react-autosuggest';
 import * as React from 'react';
 import Card from './Card';
@@ -7,6 +8,15 @@ import { themr, ThemedComponentClass } from 'react-css-themr';
 import { TEXT_FIELD } from '../ThemeIdentifiers';
 
 import * as baseTheme from './TextField.scss';
+
+export interface Props {
+  itemsList?: object[];
+  theme?: any;
+  placeholder?: string;
+  autoSuggestMethods: any;
+  // stateProps: {chipListState: any, suggestions: any, inputProps: object, value?: any};
+  stateProps: any;
+}
 
 function renderSuggestion(suggestion:any, { isHighlighted, query }:any) {
   const index = suggestion.name.toLowerCase().indexOf(query.toLowerCase());
@@ -20,35 +30,30 @@ function renderSuggestion(suggestion:any, { isHighlighted, query }:any) {
   );
 }
 
-export interface Props {
-  itemsList?: object[];
-  theme?: any;
-  placeholder?: string;
-  autoSuggestMethods: any;
-  stateProps: any;
-}
-
 class AutoSuggestText extends React.Component<Props, {}> {
+
+  componentDidMount() {
+  }
 
   render() {
     const { theme }:any = this.props;
-    console.log('stateprops', this.props);
+    // console.log('stateprops', this.props);
 
 
     return (
       <div className={this.props.stateProps.chipListState.length ? style.inputOutline : style.inputOutlineInit}>
-        { this.props.stateProps.chipListState.map((input: any) => <Chip image={{ url: input.image }} removable={true} onRemove={() => this.props.autoSuggestMethods.chipRemove(input)} key={input.key} markedForDelete={input.markedForDelete}>{input.text}</Chip>) }
+         { this.props.stateProps.chipListState.map((input: any) => <Chip image={{ url: input.image }} removable={true} onRemove={() => this.props.autoSuggestMethods.chipRemove(input)} key={input.key} markedForDelete={input.markedForDelete}>{input.text}</Chip>) }
         <Autosuggest
           className={style.suggestionsContainer}
           suggestions={this.props.stateProps.suggestions}
           onSuggestionsFetchRequested={this.props.autoSuggestMethods.onSuggestionsFetchRequested}
-          onSuggestionsClearRequested={this.props.autoSuggestMethods.onSuggestionsClearRequested()}
-          getSuggestionValue={this.props.autoSuggestMethods.getSuggestionValue()}
-          onSuggestionSelected={this.props.autoSuggestMethods.onSuggestionSelected()}
+          onSuggestionsClearRequested={this.props.autoSuggestMethods.onSuggestionsClearRequested}
+          getSuggestionValue={this.props.autoSuggestMethods.getSuggestionValue}
+          onSuggestionSelected={this.props.autoSuggestMethods.onSuggestionSelected}
           renderSuggestion={renderSuggestion}
           highlightFirstSuggestion={true}
           inputProps={this.props.stateProps.inputProps}
-          ref={this.props.autoSuggestMethods.storeInputReference()}
+          ref={this.props.autoSuggestMethods.storeInputReference}
           theme={{
             container: this.props.stateProps.chipListState.length ? style.container : style.containerInit,
             suggestions: style.cardItem,
