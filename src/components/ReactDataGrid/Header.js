@@ -200,9 +200,9 @@ const Header = React.createClass({
     let headerRows = this.getHeaderRows();
 
     return (
-      <div {...this.getKnownDivProps()} style={this.getStyle()} className={className} onClick={this.onHeaderClick}>
+      <thead {...this.getKnownDivProps()} style={this.getStyle()} className={className} onClick={this.onHeaderClick}>
         {headerRows}
-      </div>
+      </thead>
     );
   }
 });

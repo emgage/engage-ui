@@ -55,8 +55,8 @@ const badge = ({ children, status, progress, theme }: Props) => {
   return (
     <span className={className} role={role}>
       {statusLabelMarkup}
-       {pipMarkup} 
-       {children} 
+       {pipMarkup}
+       {children}
     </span>
   );
 };
