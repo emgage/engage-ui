@@ -9,7 +9,6 @@ import DateRangePickerWrapper from './DateRangePickerWrapper';
 
 import {
   Badge,
-  Banner,
   Button,
   ButtonGroup,
   Card,
