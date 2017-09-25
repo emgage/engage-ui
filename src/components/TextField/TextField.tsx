@@ -133,6 +133,7 @@ class TextField extends React.PureComponent<Props, State> {
     if (enableTextCouter) {
       const maxLengthString = maxLength ? '/' + maxLength : '';
       const textCount = this.props.value ? this.props.value.toString().length : 0;
+      console.log('textCount', textCount);
       counterTextMarkup = <div className={theme.counterText} id={`${id}counter`}>{textCount}{maxLengthString}</div>;
     }
 
@@ -227,7 +228,13 @@ class TextField extends React.PureComponent<Props, State> {
   private handleChange(event: React.FormEvent<HTMLInputElement>) {
     const { onChange } = this.props;
     if (onChange == null) { return; }
-    onChange(event.currentTarget.value);
+    console.log('this.props', this.props);
+    // console.log('value handleChange', value);
+    // console.log('currenttarget', event.currentTarget.value);
+    const value = this.props.value ? this.props.value : '';
+    const maxLength = this.props.maxLength ? this.props.maxLength : Number.POSITIVE_INFINITY;
+    console.log(value, maxLength);
+    if (value.length < maxLength) onChange(event.currentTarget.value);
   }
 
   @autobind
