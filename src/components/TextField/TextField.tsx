@@ -229,7 +229,6 @@ class TextField extends React.PureComponent<Props, State> {
     const { onChange } = this.props;
     if (onChange == null) { return; }
     console.log('this.props', this.props);
-    // console.log('value handleChange', value);
     // console.log('currenttarget', event.currentTarget.value);
     const value = this.props.value ? this.props.value : '';
     const maxLength = this.props.maxLength ? this.props.maxLength : Number.POSITIVE_INFINITY;
