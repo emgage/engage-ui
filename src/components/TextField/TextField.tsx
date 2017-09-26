@@ -133,8 +133,14 @@ class TextField extends React.PureComponent<Props, State> {
     if (enableTextCouter) {
       const maxLengthString = maxLength ? '/' + maxLength : '';
       const textCount = this.props.value ? this.props.value.toString().length : 0;
-      console.log('textCount', textCount);
-      counterTextMarkup = <div className={theme.counterText} id={`${id}counter`}>{textCount}{maxLengthString}</div>;
+      // console.log('textCount', textCount);
+      // console.log('minlength', this.props.minLength, textCount);
+      const minLengthRed = this.props.minLength ? this.props.minLength : 0;
+      counterTextMarkup =
+        <div className={theme.counterText} id={`${id}counter`}>
+          <span className={minLengthRed >= textCount ? theme.red : ''}>{textCount}</span>
+          {maxLengthString}
+        </div>;
     }
 
     const describedBy: string[] = [];
@@ -163,6 +169,7 @@ class TextField extends React.PureComponent<Props, State> {
       autoComplete: normalizeAutoComplete(autoComplete),
       className: theme.input,
       onChange: this.handleChange,
+      onKeyDown: this.onKeyDown,
       ref: this.setInput,
       'aria-required': required ? true : false,
       'aria-describedby': describedBy.length ? describedBy.join(' ') : undefined,
@@ -226,14 +233,39 @@ class TextField extends React.PureComponent<Props, State> {
 
   @autobind
   private handleChange(event: React.FormEvent<HTMLInputElement>) {
+    // console.log('event!:', event)
     const { onChange } = this.props;
     if (onChange == null) { return; }
-    console.log('this.props', this.props);
+    // console.log('this.props', this.props);
     // console.log('currenttarget', event.currentTarget.value);
     const value = this.props.value ? this.props.value : '';
     const maxLength = this.props.maxLength ? this.props.maxLength : Number.POSITIVE_INFINITY;
-    console.log(value, maxLength);
-    if (value.length < maxLength) onChange(event.currentTarget.value);
+    // console.log('event:', event.)
+    if (value.length < maxLength) {
+      console.log('yes!');
+      onChange(event.currentTarget.value);
+    }
+  }
+
+  @autobind
+  private onKeyDown(e:any) {
+    // console.log('this.props', this.props);
+    // console.log('currenttarget', event.currentTarget.value);
+    const { onChange } = this.props;
+    if (onChange == null) { return; }
+    // console.log('e.keyCode', e.keyCode);
+    const value = this.props.value ? this.props.value : '';
+    const maxLength = this.props.maxLength ? this.props.maxLength : Number.POSITIVE_INFINITY;
+    // console.log(value.length, maxLength);
+    if (value.length >= maxLength && e.keyCode === 8) {
+      // console.log(e.currentTarget.value.slice(0, e.currentTarget.value.length - 1));
+      onChange(e.currentTarget.value.slice(0, e.currentTarget.value.length - 1));
+      console.log('delete!');
+    }
+    // if (value.length < maxLength) {
+    //   console.log('yes!');
+    //   if (/[a-zA-Z0-9-_ ]/.test(String.fromCharCode(e.keyCode))) onChange(e.currentTarget.value);
+    // }
   }
 
   @autobind
