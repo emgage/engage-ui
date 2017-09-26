@@ -138,7 +138,7 @@ class TextField extends React.PureComponent<Props, State> {
       const minLengthRed = this.props.minLength ? this.props.minLength : 0;
       counterTextMarkup =
         <div className={theme.counterText} id={`${id}counter`}>
-          <span className={minLengthRed >= textCount ? theme.red : ''}>{textCount}</span>
+          <span className={minLengthRed > textCount ? theme.red : ''}>{textCount}</span>
           {maxLengthString}
         </div>;
     }
@@ -168,7 +168,7 @@ class TextField extends React.PureComponent<Props, State> {
       formNoValidate: true,
       autoComplete: normalizeAutoComplete(autoComplete),
       className: theme.input,
-      onChange: this.handleChange,
+      onChange: this.onChange,
       onKeyDown: this.onKeyDown,
       ref: this.setInput,
       'aria-required': required ? true : false,
@@ -232,8 +232,8 @@ class TextField extends React.PureComponent<Props, State> {
   }
 
   @autobind
-  private handleChange(event: React.FormEvent<HTMLInputElement>) {
-    // console.log('event!:', event)
+  private onChange(event: React.FormEvent<HTMLInputElement>) {
+    console.log('event!:', event);
     const { onChange } = this.props;
     if (onChange == null) { return; }
     // console.log('this.props', this.props);
@@ -250,6 +250,7 @@ class TextField extends React.PureComponent<Props, State> {
 
   @autobind
   private onKeyDown(e:any) {
+    // console.log('e.target.value', e.target.value)
     // console.log('this.props', this.props);
     // console.log('currenttarget', event.currentTarget.value);
     const { onChange } = this.props;
@@ -262,6 +263,7 @@ class TextField extends React.PureComponent<Props, State> {
     if (value.length >= maxLength && e.keyCode === 8) {
       // console.log(e.currentTarget.value.slice(0, e.currentTarget.value.length - 1));
       onChange(e.currentTarget.value.slice(0, e.currentTarget.value.length - 1));
+      e.preventDefault();
       // console.log('delete!');
     }
     // if (value.length < maxLength) {
