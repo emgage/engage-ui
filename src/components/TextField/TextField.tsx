@@ -258,7 +258,7 @@ class TextField extends React.PureComponent<Props, State> {
     const value = this.props.value ? this.props.value : '';
     const maxLength = this.props.maxLength ? this.props.maxLength : Number.POSITIVE_INFINITY;
     // console.log(value.length, maxLength);
-      console.log('e.currenttarget.value', e.currentTarget.value);
+    // console.log('e.currenttarget.value', e.currentTarget.value);
     if (value.length >= maxLength && e.keyCode === 8) {
       // console.log(e.currentTarget.value.slice(0, e.currentTarget.value.length - 1));
       onChange(e.currentTarget.value.slice(0, e.currentTarget.value.length - 1));
