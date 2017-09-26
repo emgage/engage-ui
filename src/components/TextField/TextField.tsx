@@ -133,8 +133,6 @@ class TextField extends React.PureComponent<Props, State> {
     if (enableTextCouter) {
       const maxLengthString = maxLength ? '/' + maxLength : '';
       const textCount = this.props.value ? this.props.value.toString().length : 0;
-      // console.log('textCount', textCount);
-      // console.log('minlength', this.props.minLength, textCount);
       const minLengthRed = this.props.minLength ? this.props.minLength : 0;
       counterTextMarkup =
         <div className={theme.counterText} id={`${id}counter`}>
@@ -233,43 +231,25 @@ class TextField extends React.PureComponent<Props, State> {
 
   @autobind
   private onChange(event: React.FormEvent<HTMLInputElement>) {
-    console.log('event!:', event);
     const { onChange } = this.props;
     if (onChange == null) { return; }
-    // console.log('this.props', this.props);
-    // console.log('currenttarget', event.currentTarget.value);
     const value = this.props.value ? this.props.value : '';
     const maxLength = this.props.maxLength ? this.props.maxLength : Number.POSITIVE_INFINITY;
-    // console.log('event:', event.)
     if (value.length < maxLength && event.currentTarget.value.length <= maxLength) {
-      // console.log('yes!');
-      // console.log('currenttarget', event.currentTarget.value);
       onChange(event.currentTarget.value);
     }
   }
 
   @autobind
   private onKeyDown(e:any) {
-    // console.log('e.target.value', e.target.value)
-    // console.log('this.props', this.props);
-    // console.log('currenttarget', event.currentTarget.value);
     const { onChange } = this.props;
     if (onChange == null) { return; }
-    // console.log('e.keyCode', e.keyCode);
     const value = this.props.value ? this.props.value : '';
     const maxLength = this.props.maxLength ? this.props.maxLength : Number.POSITIVE_INFINITY;
-    // console.log(value.length, maxLength);
-    // console.log('e.currenttarget.value', e.currentTarget.value);
     if (value.length >= maxLength && e.keyCode === 8) {
-      // console.log(e.currentTarget.value.slice(0, e.currentTarget.value.length - 1));
       onChange(e.currentTarget.value.slice(0, e.currentTarget.value.length - 1));
       e.preventDefault();
-      // console.log('delete!');
     }
-    // if (value.length < maxLength) {
-    //   console.log('yes!');
-    //   if (/[a-zA-Z0-9-_ ]/.test(String.fromCharCode(e.keyCode))) onChange(e.currentTarget.value);
-    // }
   }
 
   @autobind

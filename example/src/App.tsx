@@ -512,7 +512,7 @@ class App extends React.Component<{}, State> {
     return (value: any) => this.setState({ [field]: value });
   }
 
-  
+
 
   popoverClose(field: any) {
     return;
