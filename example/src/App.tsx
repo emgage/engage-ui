@@ -1,14 +1,13 @@
-import { } from '../../src/components/Modal/Dialog';
 import * as React from 'react';
 import { PeoplePickerSearchType } from './PickerEnum';
 import { PeoplePickerSource } from './PickerSource';
 
-import ReactDataExample from './ReactDataExample';
+// import ReactDataExample from './ReactDataExample';
 import SingleDatePickerWrapper from './SingleDatePickerWrapper';
 import DateRangePickerWrapper from './DateRangePickerWrapper';
 
 import {
-  Banner,
+  // Banner,
   Button,
   ButtonGroup,
   Card,
@@ -27,7 +26,7 @@ import {
   List,
   Item,
   Loading,
-  OffCanvas,
+  // OffCanvas,
   Panel,
   Picker,
   Select,
@@ -109,7 +108,227 @@ class App extends React.Component<{}, State> {
 
     return (
       <div>
-        <OffCanvas activator={<Button>OffCanvas</Button>} >
+        <p> Some text with a
+        <Tooltip content="This order has shipping labels.">
+          <Link>Tooltip 1</Link>
+        </Tooltip> in it
+      </p>
+      <Tooltip
+        content="This order has shipping."
+      >
+        <Link>Tooltip 2</Link>
+      </Tooltip>
+      <br />
+      <p> Some text with a
+        <Tooltip content="This order has shipping labels.">
+          <Link>Tooltip 1</Link>
+        </Tooltip> in it
+      </p>
+      <Tooltip
+        content="This order has shipping."
+      >
+        <Link>Tooltip 2</Link>
+      </Tooltip>
+      <br />
+      <p> Some text with a
+        <Tooltip content="This order has shipping labels.">
+          <Link>Tooltip 1</Link>
+        </Tooltip> in it
+      </p>
+      <Tooltip
+        content="This order has shipping."
+      >
+        <Link>Tooltip 2</Link>
+      </Tooltip>
+      <br />
+      <p> Some text with a
+        <Tooltip content="This order has shipping labels.">
+          <Link>Tooltip 1</Link>
+        </Tooltip> in it
+      </p>
+      <Tooltip
+        content="This order has shipping."
+      >
+        <Link>Tooltip 2</Link>
+      </Tooltip>
+      <br />
+      <p> Some text with a
+        <Tooltip content="This order has shipping labels.">
+          <Link>Tooltip 1</Link>
+        </Tooltip> in it
+      </p>
+      <Tooltip
+        content="This order has shipping."
+      >
+        <Link>Tooltip 2</Link>
+      </Tooltip>
+      <br />
+      <p> Some text with a
+        <Tooltip content="This order has shipping labels.">
+          <Link>Tooltip 1</Link>
+        </Tooltip> in it
+      </p>
+      <Tooltip
+        content="This order has shipping."
+      >
+        <Link>Tooltip 2</Link>
+      </Tooltip>
+      <br />
+      <p> Some text with a
+        <Tooltip content="This order has shipping labels.">
+          <Link>Tooltip 1</Link>
+        </Tooltip> in it
+      </p>
+      <Tooltip
+        content="This order has shipping."
+      >
+        <Link>Tooltip 2</Link>
+      </Tooltip>
+      <br />
+      <p> Some text with a
+        <Tooltip content="This order has shipping labels.">
+          <Link>Tooltip 1</Link>
+        </Tooltip> in it
+      </p>
+      <Tooltip
+        content="This order has shipping."
+      >
+        <Link>Tooltip 2</Link>
+      </Tooltip>
+      <br />
+      <p> Some text with a
+        <Tooltip content="This order has shipping labels.">
+          <Link>Tooltip 1</Link>
+        </Tooltip> in it
+      </p>
+      <Tooltip
+        content="This order has shipping."
+      >
+        <Link>Tooltip 2</Link>
+      </Tooltip>
+      <br />
+      <p> Some text with a
+        <Tooltip content="This order has shipping labels.">
+          <Link>Tooltip 1</Link>
+        </Tooltip> in it
+      </p>
+      <Tooltip
+        content="This order has shipping."
+      >
+        <Link>Tooltip 2</Link>
+      </Tooltip>
+      <br />
+      <p> Some text with a
+        <Tooltip content="This order has shipping labels.">
+          <Link>Tooltip 1</Link>
+        </Tooltip> in it
+      </p>
+      <Tooltip
+        content="This order has shipping."
+      >
+        <Link>Tooltip 2</Link>
+      </Tooltip>
+      <br />
+      <p> Some text with a
+        <Tooltip content="This order has shipping labels.">
+          <Link>Tooltip 1</Link>
+        </Tooltip> in it
+      </p>
+      <Tooltip
+        content="This order has shipping."
+      >
+        <Link>Tooltip 2</Link>
+      </Tooltip>
+      <br />
+      <p> Some text with a
+        <Tooltip content="This order has shipping labels.">
+          <Link>Tooltip 1</Link>
+        </Tooltip> in it
+      </p>
+      <Tooltip
+        content="This order has shipping."
+      >
+        <Link>Tooltip 2</Link>
+      </Tooltip>
+      <br />
+      <p> Some text with a
+        <Tooltip content="This order has shipping labels.">
+          <Link>Tooltip 1</Link>
+        </Tooltip> in it
+      </p>
+      <Tooltip
+        content="This order has shipping."
+      >
+        <Link>Tooltip 2</Link>
+      </Tooltip>
+      <br />
+      <p> Some text with a
+        <Tooltip content="This order has shipping labels.">
+          <Link>Tooltip 1</Link>
+        </Tooltip> in it
+      </p>
+      <Tooltip
+        content="This order has shipping."
+      >
+        <Link>Tooltip 2</Link>
+      </Tooltip>
+      <br />
+      <p> Some text with a
+        <Tooltip content="This order has shipping labels.">
+          <Link>Tooltip 1</Link>
+        </Tooltip> in it
+      </p>
+      <Tooltip
+        content="This order has shipping."
+      >
+        <Link>Tooltip 2</Link>
+      </Tooltip>
+      <br />
+      <p> Some text with a
+        <Tooltip content="This order has shipping labels.">
+          <Link>Tooltip 1</Link>
+        </Tooltip> in it
+      </p>
+      <Tooltip
+        content="This order has shipping."
+      >
+        <Link>Tooltip 2</Link>
+      </Tooltip>
+      <br />
+      <p> Some text with a
+        <Tooltip content="This order has shipping labels.">
+          <Link>Tooltip 1</Link>
+        </Tooltip> in it
+      </p>
+      <Tooltip
+        content="This order has shipping."
+      >
+        <Link>Tooltip 2</Link>
+      </Tooltip>
+      <br />
+      <p> Some text with a
+        <Tooltip content="This order has shipping labels.">
+          <Link>Tooltip 1</Link>
+        </Tooltip> in it
+      </p>
+      <Tooltip
+        content="This order has shipping."
+      >
+        <Link>Tooltip 2</Link>
+      </Tooltip>
+      <br />
+      <p> Some text with a
+        <Tooltip content="This order has shipping labels.">
+          <Link>Tooltip 1</Link>
+        </Tooltip> in it
+      </p>
+      <Tooltip
+        content="This order has shipping."
+      >
+        <Link>Tooltip 2</Link>
+      </Tooltip>
+      <br />
+        {/* <OffCanvas activator={<Button>OffCanvas</Button>} >
             <p>Reveal Test</p>
             <ul>
               <li>Link 1</li>
@@ -239,7 +458,7 @@ class App extends React.Component<{}, State> {
               <li>Link 4</li>
               <li>Link 5</li>
             </ul>
-        </OffCanvas> trigger</p>
+        </OffCanvas> trigger</p> */}
         <p> Some text with a
           <Tooltip content="This order has shipping labels.">
             <Link>Tooltip 1</Link>
@@ -253,6 +472,16 @@ class App extends React.Component<{}, State> {
         <div>
             <SingleDatePickerWrapper />
             <DateRangePickerWrapper />
+        <p> Some text with a
+          <Tooltip content="This order has shipping labels.">
+            <Link>Tooltip 1</Link>
+          </Tooltip> in it
+        </p>
+          <Tooltip
+            content="This order has shipping."
+          >
+            <Link>Tooltip 2</Link>
+          </Tooltip>
             {/* <OffCanvas activator={<Button>OffCanvas Test</Button>} mode={OffCanvasMode.slide}>
                   <p>Placeholder content.</p>
                   <ul>
@@ -263,19 +492,59 @@ class App extends React.Component<{}, State> {
                     <li>Link 5</li>
                   </ul>
               </OffCanvas> */}
-              <ReactDataExample
+              {/* <ReactDataExample
                 columns={this.state.columns}
                 rowGetter={this.rowGetter}
                 rowsCount={this.state.rows.length}
                 minHeight={2}
-          />
+          /> */}
           <Heading>Popover</Heading>
+           <p> Some text with a
+          <Tooltip content="This order has shipping labels.">
+            <Link>Tooltip 1</Link>
+          </Tooltip> in it
+        </p>
+          <Tooltip
+            content="This order has shipping."
+          >
+            <Link>Tooltip 2</Link>
+          </Tooltip>
+           <p> Some text with a
+          <Tooltip content="This order has shipping labels.">
+            <Link>Tooltip 1</Link>
+          </Tooltip> in it
+        </p>
+          <Tooltip
+            content="This order has shipping."
+          >
+            <Link>Tooltip 2</Link>
+          </Tooltip>
           <TextField id="TestName" label="Text Counter" placeholder="test-placeholder" value={this.state.appTextCounter} helpText="Helper Text" enableTextCouter={true} maxLength={100} onChange={this.valueUpdater('appTextCounter')}/>
           <ClickableChip chip={<Chip>Batman</Chip>}>
             <Card title="More about Batman">
               <p>Batman is a fictional superhero who appears in American comic books published by DC Comics. The character was created by artist Bob Kane and writer Bill Finger, and first appeared in Detective Comics #27</p>
             </Card>
           </ClickableChip>
+          <p> Some text with a
+          <Tooltip content="This order has shipping labels.">
+            <Link>Tooltip 1</Link>
+          </Tooltip> in it
+        </p>
+          <Tooltip
+            content="This order has shipping."
+          >
+            <Link>Tooltip 2</Link>
+          </Tooltip>
+          <p> Some text with a
+          <Tooltip content="This order has shipping labels.">
+            <Link>Tooltip 1</Link>
+          </Tooltip> in it
+        </p>
+          <Tooltip
+            content="This order has shipping."
+          >
+            <Link>Tooltip 2</Link>
+          </Tooltip>
         <Heading>List</Heading>
         <List type="bullet">
           <Item>Yellow shirt</Item>
@@ -401,6 +670,17 @@ class App extends React.Component<{}, State> {
           <div style={{ backgroundColor: 'lime' }}>Demo 3</div>
         </FlexBox>
 
+        <p> Some text with a
+          <Tooltip content="This order has shipping labels.">
+            <Link>Tooltip 1</Link>
+          </Tooltip> in it
+        </p>
+          <Tooltip
+            content="This order has shipping."
+          >
+            <Link>Tooltip 2</Link>
+          </Tooltip>
+
         <FlexBox direction={FlexDirection.Row} align={FlexAlign.Stretch} justify={FlexJustify.SpaceAround}>
           <div style={{ backgroundColor: 'aqua' }}>Demo 1</div>
           <div style={{ backgroundColor: 'pink' }}>Demo 2</div>
@@ -482,6 +762,28 @@ class App extends React.Component<{}, State> {
             <p>Small 1-1!</p>
           </Column>
         </div>
+        <p> Some text with a
+          <Tooltip content="This order has shipping labels.">
+            <Link>Tooltip 1</Link>
+          </Tooltip> in it
+        </p>
+          <Tooltip
+            preferredPosition="below"
+            content="This order has shipping."
+          >
+            <Link>Tooltip 2</Link>
+          </Tooltip>
+        <p> Some text with a
+          <Tooltip content="This order has shipping labels.">
+            <Link>Tooltip 1</Link>
+          </Tooltip> in it
+        </p>
+          <Tooltip
+            preferredPosition="below"
+            content="This order has shipping."
+          >
+            <Link>Tooltip 2</Link>
+          </Tooltip>
 
        <Heading>Grid</Heading>
         <FlexBox>
@@ -493,6 +795,116 @@ class App extends React.Component<{}, State> {
           </Column>
         </FlexBox>
       </div>
+      <p> Some text with a
+        <Tooltip content="This order has shipping labels.">
+          <Link>Tooltip 1</Link>
+        </Tooltip> in it
+      </p>
+      <Tooltip
+        content="This order has shipping."
+      >
+        <Link>Tooltip 2</Link>
+      </Tooltip>
+      <br />
+      <p> Some text with a
+        <Tooltip content="This order has shipping labels.">
+          <Link>Tooltip 1</Link>
+        </Tooltip> in it
+      </p>
+      <Tooltip
+        content="This order has shipping."
+      >
+        <Link>Tooltip 2</Link>
+      </Tooltip>
+      <br />
+      <p> Some text with a
+        <Tooltip content="This order has shipping labels.">
+          <Link>Tooltip 1</Link>
+        </Tooltip> in it
+      </p>
+      <Tooltip
+        content="This order has shipping."
+      >
+        <Link>Tooltip 2</Link>
+      </Tooltip>
+      <br />
+      <p> Some text with a
+        <Tooltip content="This order has shipping labels.">
+          <Link>Tooltip 1</Link>
+        </Tooltip> in it
+      </p>
+      <Tooltip
+        content="This order has shipping."
+      >
+        <Link>Tooltip 2</Link>
+      </Tooltip>
+      <br />
+      <p> Some text with a
+        <Tooltip content="This order has shipping labels.">
+          <Link>Tooltip 1</Link>
+        </Tooltip> in it
+      </p>
+      <Tooltip
+        content="This order has shipping."
+      >
+        <Link>Tooltip 2</Link>
+      </Tooltip>
+      <br />
+      <p> Some text with a
+        <Tooltip content="This order has shipping labels.">
+          <Link>Tooltip 1</Link>
+        </Tooltip> in it
+      </p>
+      <Tooltip
+        content="This order has shipping."
+      >
+        <Link>Tooltip 2</Link>
+      </Tooltip>
+      <br />
+      <p> Some text with a
+        <Tooltip content="This order has shipping labels.">
+          <Link>Tooltip 1</Link>
+        </Tooltip> in it
+      </p>
+      <Tooltip
+        content="This order has shipping."
+      >
+        <Link>Tooltip 2</Link>
+      </Tooltip>
+      <br />
+      <p> Some text with a
+        <Tooltip content="This order has shipping labels.">
+          <Link>Tooltip 1</Link>
+        </Tooltip> in it
+      </p>
+      <Tooltip
+        content="This order has shipping."
+      >
+        <Link>Tooltip 2</Link>
+      </Tooltip>
+      <br />
+      <p> Some text with a
+        <Tooltip content="This order has shipping labels.">
+          <Link>Tooltip 1</Link>
+        </Tooltip> in it
+      </p>
+      <Tooltip
+        content="This order has shipping."
+      >
+        <Link>Tooltip 2</Link>
+      </Tooltip>
+      <br />
+      <p> Some text with a
+        <Tooltip content="This order has shipping labels.">
+          <Link>Tooltip 1</Link>
+        </Tooltip> in it
+      </p>
+      <Tooltip
+        content="This order has shipping."
+      >
+        <Link>Tooltip 2</Link>
+      </Tooltip>
+      <br />
     </div>
     );
   }

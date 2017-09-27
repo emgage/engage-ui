@@ -1,5 +1,4 @@
 import { Rect } from '@shopify/javascript-utilities/geometry';
-
 export type PreferredPosition = 'above' | 'below' | 'mostSpace';
 
 export interface Margins {
@@ -20,7 +19,6 @@ export function calculateVerticalPosition(
   const activatorBottom = activatorTop + activatorRect.height;
   const spaceAbove = activatorRect.top;
   const spaceBelow = containerRect.height - activatorRect.top - activatorRect.height;
-
   const desiredHeight = overlayRect.height;
   const verticalMargins = overlayMargins.activator + overlayMargins.container;
   const minimumSpaceToScroll = overlayMargins.container;
@@ -28,6 +26,7 @@ export function calculateVerticalPosition(
   const distanceToBottomScroll = (scrollableContainerRect.top + scrollableContainerRect.height) - (activatorRect.top + activatorRect.height);
   const enoughSpaceFromTopScroll = distanceToTopScroll >= minimumSpaceToScroll;
   const enoughSpaceFromBottomScroll = distanceToBottomScroll >= minimumSpaceToScroll;
+  console.log('enoughSpaceFromBottomScroll', enoughSpaceFromBottomScroll);
   const heightIfBelow = Math.min(spaceBelow, desiredHeight);
   const heightIfAbove = Math.min(spaceAbove, desiredHeight);
 
@@ -43,23 +42,10 @@ export function calculateVerticalPosition(
     positioning: 'below',
   };
 
-  if (preferredPosition === 'above') {
-    return (
-      (enoughSpaceFromTopScroll || (distanceToTopScroll >= distanceToBottomScroll && !enoughSpaceFromBottomScroll)) &&
-      (spaceAbove > desiredHeight || spaceAbove > spaceBelow)
-    )
-      ? positionIfAbove
-      : positionIfBelow;
-  }
+  if (preferredPosition === 'above') return positionIfAbove;
 
-  if (preferredPosition === 'below') {
-    return (
-      (enoughSpaceFromBottomScroll || (distanceToBottomScroll >= distanceToTopScroll && !enoughSpaceFromTopScroll)) &&
-      (spaceBelow > desiredHeight || spaceBelow > spaceAbove)
-    )
-      ? positionIfBelow
-      : positionIfAbove;
-  }
+
+  if (preferredPosition === 'below') return positionIfBelow;
 
   if (enoughSpaceFromTopScroll && enoughSpaceFromBottomScroll) {
     return spaceAbove > spaceBelow

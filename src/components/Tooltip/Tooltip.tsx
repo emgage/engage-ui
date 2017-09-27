@@ -66,9 +66,9 @@ class Tooltip extends React.PureComponent<Props, State> {
         onClose={noop}
         light={light}
       >
-        <div className={theme.label}>
+         <div className={theme.label}>
           {content}
-        </div>
+         </div>
       </TooltipOverlay>
     );
   }
