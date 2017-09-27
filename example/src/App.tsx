@@ -1,11 +1,12 @@
-import { } from '../../src/components/Modal/Dialog';
 import * as React from 'react';
 import { PeoplePickerSearchType } from './PickerEnum';
 import { PeoplePickerSource } from './PickerSource';
 
+
 import ReactDataExample from './ReactDataExample';
 import SingleDatePickerWrapper from './SingleDatePickerWrapper';
 import DateRangePickerWrapper from './DateRangePickerWrapper';
+import PickerAutoSuggestExample from './PickerAutoSuggestExample';
 
 import {
   Button,
@@ -108,6 +109,9 @@ class App extends React.Component<{}, State> {
 
     return (
       <div>
+        <PickerAutoSuggestExample />
+        <SingleDatePickerWrapper />
+        <DateRangePickerWrapper />
         <OffCanvas activator={<Button>OffCanvas</Button>} >
             <p>Reveal Test</p>
             <ul>
@@ -250,18 +254,7 @@ class App extends React.Component<{}, State> {
             <Link>Tooltip 2</Link>
           </Tooltip>
         <div>
-            <SingleDatePickerWrapper />
-            <DateRangePickerWrapper />
-            {/* <OffCanvas activator={<Button>OffCanvas Test</Button>} mode={OffCanvasMode.slide}>
-                  <p>Placeholder content.</p>
-                  <ul>
-                    <li>Link 1</li>
-                    <li>Link 2</li>
-                    <li>Link 3</li>
-                    <li>Link 4</li>
-                    <li>Link 5</li>
-                  </ul>
-              </OffCanvas> */}
+
               <ReactDataExample
                 columns={this.state.columns}
                 rowGetter={this.rowGetter}
@@ -320,13 +313,13 @@ class App extends React.Component<{}, State> {
         <Picker
           required
           chipComponent={Chip}
-          filterPlaceHolder="People"
+          filterPlaceHolder="!People!!"
           searchResultComponent={Chip}
           source={new PeoplePickerSource(PeoplePickerSearchType.Both)}
           maxSelectedItems={5}
           minSelectedItems={2}
-          millisecondsToWaitBeforeSearch={20}
-          moreInfoComponent={<Button children="ranmal" />}
+          millisecondsToWaitBeforeSearch={20} 
+          moreInfoComponent={<Button children="ranmal" />}  
         />
         <ValidatedForm>
 
@@ -490,7 +483,7 @@ class App extends React.Component<{}, State> {
           <Column small="1-2" medium="3-4" large="4-10">
             <span>Hello small=1-2 medium=3-4 large=4-10</span>
           </Column>
-        </FlexBox>
+        </FlexBox> 
       </div>
     </div>
     );
