@@ -390,7 +390,6 @@ class App extends React.Component<{}, State> {
           placeholder=""
           value={this.state.appTextCounter}
           helpText="Helper Text"
-          /* enableTextCouter={true} */
           maxLength={100}
           onChange={this.valueUpdater('appTextCounter')}
           connectedRight={<Select label="Weight unit" labelHidden options={[
