@@ -10,7 +10,7 @@ export interface Props {
   removable?: boolean;
   image?: {
     url: string,
-    alt: string,
+    alt?: string,
   };
   transparent?: boolean;
   moreInfoComponent?: React.ReactNode;
@@ -20,21 +20,35 @@ export interface Props {
   onRemove?(event: any): void;
   onClick?(event: any): void;
   handleMoreInfo?(): void;
+  key?: any;
+  markedForDelete?: boolean;
 }
 
 class Chip extends React.PureComponent<Props, any> {
   render() {
     const {
-        clickable,
-        removable,
-        image,
-        transparent,
-        theme,
+      clickable,
+      removable,
+      image,
+      transparent,
+      theme,
     } = this.props;
 
-    const className = classNames(
-      theme.Chip,
-      transparent && theme.transparent);
+    let className;
+
+    if (this.props.markedForDelete) {
+      className = classNames(
+        theme.Chip,
+        theme.markedForDelete,
+        transparent && theme.transparent
+      );
+    } else {
+      className = classNames(
+          theme.Chip,
+          transparent && theme.transparent
+      );
+    }
+
     const chipContents = [(
       image
       ?
@@ -47,25 +61,25 @@ class Chip extends React.PureComponent<Props, any> {
     ];
 
     return (
-      <span className={className}>
+      <div className={className}>
         {
           clickable
-          ?
-          <a onClick={this.props.onClick} aria-disabled={false} tabIndex={0}>
-            {chipContents}
-          </a>
-          :
-          chipContents
+            ?
+            <a onClick={this.props.onClick} aria-disabled={false} tabIndex={0}>
+                {chipContents}
+            </a>
+            :
+            chipContents
         }
         {
           removable
-          ?
-          <button type="button" className={theme.Remove} aria-label="Remove" onClick={this.props.onRemove}>
-            <span aria-hidden="true">×</span>
-          </button>
-          : ''
+              ?
+              <button type="button" className={theme.Remove} aria-label="Remove" onClick={this.props.onRemove}>
+                  <span aria-hidden="true">×</span>
+              </button>
+              : ''
         }
-      </span>
+      </div>
     );
   }
 }
