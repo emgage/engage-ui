@@ -41,7 +41,6 @@ class PickerAutoSuggestExample extends React.Component<{}, {}> {
           return [];
         }
         const regex = new RegExp(escapedValue, 'i');
-        // console.log('itemslist', this.state.itemsList);
         return this.state.itemsList.filter(language => regex.test(language.name));
       },
       getSuggestionValue: (suggestion:object) => {
