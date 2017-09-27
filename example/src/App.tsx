@@ -8,7 +8,6 @@ import SingleDatePickerWrapper from './SingleDatePickerWrapper';
 import DateRangePickerWrapper from './DateRangePickerWrapper';
 
 import {
-  Banner,
   Button,
   ButtonGroup,
   Card,
