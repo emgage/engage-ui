@@ -21,6 +21,7 @@ import confettiSvg from './icons/confetti.svg';
 export type Status = 'success' | 'info' | 'warning' | 'critical';
 
 export interface Props {
+  ariaLabel?: string;
   icon?: IconProps['source'];
   title?: string;
   status?: Status;
@@ -74,8 +75,6 @@ const banner = ({
 
   const id = uniqueID();
   const iconName = icon || defaultIcon;
-  const definedTitle = title ? title : '';
-  const ariaStatus = status ? definedTitle + ' ' + 'status:' + status : '';
 
   let headingMarkup: React.ReactNode = null;
   let headingID: string | undefined;
@@ -83,7 +82,7 @@ const banner = ({
   if (title) {
     headingID = `${id}Heading`;
     headingMarkup = (
-      <div className={theme.heading} id={headingID} aria-label={ariaStatus}>
+      <div className={theme.heading} id={headingID}>
         <Heading element="p">{title}</Heading>
       </div>
     );
@@ -110,7 +109,7 @@ const banner = ({
   if (children || actionMarkup) {
     contentID = `${id}Content`;
     contentMarkup = (
-      <div className={theme.content} id={contentID}>
+      <div className={theme.content} id={contentID} aria-label={this.props.ariaLabel}>
         {children}
         {actionMarkup}
       </div>
