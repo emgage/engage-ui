@@ -26,7 +26,6 @@ export function calculateVerticalPosition(
   const distanceToBottomScroll = (scrollableContainerRect.top + scrollableContainerRect.height) - (activatorRect.top + activatorRect.height);
   const enoughSpaceFromTopScroll = distanceToTopScroll >= minimumSpaceToScroll;
   const enoughSpaceFromBottomScroll = distanceToBottomScroll >= minimumSpaceToScroll;
-  console.log('enoughSpaceFromBottomScroll', enoughSpaceFromBottomScroll);
   const heightIfBelow = Math.min(spaceBelow, desiredHeight);
   const heightIfAbove = Math.min(spaceAbove, desiredHeight);
 
