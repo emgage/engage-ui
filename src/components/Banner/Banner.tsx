@@ -74,6 +74,8 @@ const banner = ({
 
   const id = uniqueID();
   const iconName = icon || defaultIcon;
+  const definedTitle = title ? title : '';
+  const ariaStatus = status ? definedTitle + ' ' + 'status:' + status : '';
 
   let headingMarkup: React.ReactNode = null;
   let headingID: string | undefined;
@@ -81,7 +83,7 @@ const banner = ({
   if (title) {
     headingID = `${id}Heading`;
     headingMarkup = (
-      <div className={theme.heading} id={headingID}>
+      <div className={theme.heading} id={headingID} aria-label={ariaStatus}>
         <Heading element="p">{title}</Heading>
       </div>
     );

@@ -8,6 +8,7 @@ import SingleDatePickerWrapper from './SingleDatePickerWrapper';
 import DateRangePickerWrapper from './DateRangePickerWrapper';
 
 import {
+  Banner,
   Button,
   ButtonGroup,
   Card,
@@ -108,6 +109,10 @@ class App extends React.Component<{}, State> {
 
     return (
       <div>
+        <Banner title={'banner'} status={'success'}/>
+        <Banner title={'banner'} status={'info'}/>
+        <Banner title={'banner'} status={'warning'}/>
+        <Banner title={'banner'} status={'critical'}/>
         <OffCanvas activator={<Button>OffCanvas</Button>} >
             <p>Reveal Test</p>
             <ul>
