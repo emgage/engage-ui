@@ -110,16 +110,13 @@ class App extends React.Component<{}, State> {
 
     return (
       <div>
-<<<<<<< HEAD
         <Banner title={'banner'} status={'success'}/>
         <Banner title={'banner'} status={'info'}/>
         <Banner title={'banner'} status={'warning'}/>
         <Banner title={'banner'} status={'critical'}/>
-=======
         <PickerAutoSuggestExample />
         <SingleDatePickerWrapper />
         <DateRangePickerWrapper />
->>>>>>> 36f2e164754d65d17c5bdd0f849ddc4f1f31d17b
         <OffCanvas activator={<Button>OffCanvas</Button>} >
             <p>Reveal Test</p>
             <ul>
