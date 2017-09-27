@@ -27,6 +27,7 @@ export interface Props {
   header?: React.ReactNode;
   id?: string;
   backdropEnabled?: boolean;
+  modalOverflow?: boolean;
   size?: Size;
   theme?: any;
   onClose?(e: React.SyntheticEvent<HTMLElement>): void;
@@ -34,7 +35,6 @@ export interface Props {
 }
 
 const dialog = (props: Props) => {
-
   let dialogWidthSize;
 
   switch (props.size) {
@@ -63,7 +63,7 @@ const dialog = (props: Props) => {
     float: `right`,
   };
 
-  const close = props.onClose
+  const close = props.close
     ? <Button style={buttonStyle} data-id={props.id ? props.id : `close-${props.id}`} onClick={props.onClose} icon="cancel" />
     : null;
 
