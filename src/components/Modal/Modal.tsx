@@ -149,7 +149,7 @@ class Modal extends React.Component<Props, {}> {
             backdropEnabled={props.backdropEnabled}
             size={props.size}
           >
-            <div className={props.theme.autoHeight}>  {props.children}</div>
+            <div className={props.modalOverflow ? props.theme.autoHeight : null}>  {props.children}</div>
           </Dialog>
         </div>
       </div>
