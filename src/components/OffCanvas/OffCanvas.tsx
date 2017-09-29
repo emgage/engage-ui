@@ -154,6 +154,7 @@ class OffCanvas extends React.PureComponent<Props, State> {
 
     accessibilityNode.tabIndex = 0;
     accessibilityNode.setAttribute('aria-describedby', id);
+    accessibilityNode.setAttribute('aria-expanded', this.state.active.toString());
   }
 }
 
