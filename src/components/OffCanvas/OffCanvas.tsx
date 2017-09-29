@@ -97,7 +97,7 @@ class OffCanvas extends React.PureComponent<Props, State> {
           onClose={noop}
           onClick={this.handleClick}
         >
-          <div className={theme.label}>
+          <div className={theme.label} aria-live={'assertive'}>
             {children}
           </div>
         </OffCanvasContent>
