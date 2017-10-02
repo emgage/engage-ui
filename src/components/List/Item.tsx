@@ -8,6 +8,10 @@ import * as baseTheme from './List.scss';
 export interface Props {
   children?: React.ReactNode;
   theme?: any;
+  image?: string;
+  name?: string;
+  email?: string;
+  grey?: boolean;
 }
 
 const item = ({ children, theme }: Props) => {
