@@ -110,8 +110,6 @@ class App extends React.Component<{}, State> {
     return (
       <div>
         <PickerAutoSuggestExample />
-        {/* <SingleDatePickerWrapper />
-        <DateRangePickerWrapper /> */}
         <OffCanvas activator={<Button>OffCanvas</Button>} >
             <p>Reveal Test</p>
             <ul>
@@ -242,7 +240,7 @@ class App extends React.Component<{}, State> {
               <li>Link 4</li>
               <li>Link 5</li>
             </ul>
-        </OffCanvas> trigger</p> */}
+        </OffCanvas> trigger</p>
         <p> Some text with a
           <Tooltip content="This order has shipping labels.">
             <Link>Tooltip 1</Link>
@@ -369,13 +367,8 @@ class App extends React.Component<{}, State> {
           source={new PeoplePickerSource(PeoplePickerSearchType.Both)}
           maxSelectedItems={5}
           minSelectedItems={2}
-<<<<<<< HEAD
-          millisecondsToWaitBeforeSearch={20}
-          moreInfoComponent={<Button children="ranmal" />}
-=======
           millisecondsToWaitBeforeSearch={20} 
           moreInfoComponent={<Button children="ranmal" />} 
->>>>>>> 764a2e4f1ddc8299a4c7e0d7cef823e141b938f0
         />
         <ValidatedForm>
 
