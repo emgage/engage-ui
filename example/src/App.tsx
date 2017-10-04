@@ -262,6 +262,17 @@ class App extends React.Component<{}, State> {
                 minHeight={2}
           /> */}
           <Heading>Popover</Heading>
+          <TextField
+            id="TestName"
+            label="Text Counter"
+            placeholder="test-placeholder"
+            value={this.state.appTextCounter}
+            helpText="Helper Text"
+            enableTextCouter={true}
+            maxLength={101}
+            minLength={5}
+            onChange={this.valueUpdater('appTextCounter')}
+          />
            <p> Some text with a
           <Tooltip content="This order has shipping labels.">
             <Link>Tooltip 1</Link>
@@ -405,13 +416,13 @@ class App extends React.Component<{}, State> {
         </ValidatedForm>
 
         <Heading>Connected Text Field</Heading>
+        <Loading />
         <TextField
           label="Connected Text Field"
           type="number"
           placeholder=""
           value={this.state.appTextCounter}
           helpText="Helper Text"
-          enableTextCouter={true}
           maxLength={100}
           onChange={this.valueUpdater('appTextCounter')}
           connectedRight={<Select label="Weight unit" labelHidden options={[
@@ -675,6 +686,8 @@ class App extends React.Component<{}, State> {
   valueUpdater(field: any) {
     return (value: any) => this.setState({ [field]: value });
   }
+
+
 
   popoverClose(field: any) {
     return;
