@@ -24,7 +24,6 @@ export interface Props {
   theme?: any;
   autoSuggest?: boolean;
   autoSuggestMethods?: object[];
-  itemsList?: object[];
   stateProps?: {chipListState: any, suggestions: any, inputProps: object, value?: any};
   onChange?(value: string): void;
 }
@@ -41,9 +40,10 @@ class TextField extends React.PureComponent<Props, State> {
       required,
       theme,
       autoSuggest,
-      itemsList,
       autoSuggestMethods,
     } = this.props;
+
+    const backdrop = autoSuggest ? theme.backdropAutosuggest : theme.backdrop;
 
     const className = classNames(
       theme.textField,
@@ -52,7 +52,7 @@ class TextField extends React.PureComponent<Props, State> {
       theme.readOnly,
       theme.error,
       theme.multiline,
-      theme.backdrop
+      backdrop
     );
     const input = React.createElement('input', {
       name,
@@ -69,7 +69,6 @@ class TextField extends React.PureComponent<Props, State> {
     const inputValue = autoSuggest ?
       <AutoSuggestText
         placeholder={placeholder}
-        itemsList={itemsList}
         autoSuggestMethods={autoSuggestMethods}
         stateProps={this.props.stateProps}
       />
@@ -85,9 +84,7 @@ class TextField extends React.PureComponent<Props, State> {
         hasValue={hasValue}
         required={required}
       >
-        <div id={'lookatme!!'}
-          className={className}
-        >
+        <div className={className}>
         { inputValue }
         </div>
       </Labelled>

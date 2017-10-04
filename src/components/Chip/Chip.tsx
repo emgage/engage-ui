@@ -60,13 +60,17 @@ class Chip extends React.PureComponent<Props, any> {
       </span>,
     ];
 
+
+
+    const ariaLabel = this.props.markedForDelete ? 'label' : '';
+
     return (
-      <div className={className}>
+      <div className={className} role={'alert'}>
         {
           clickable
             ?
-            <a onClick={this.props.onClick} aria-disabled={false} tabIndex={0}>
-                {chipContents}
+            <a onClick={this.props.onClick} aria-disabled={false} role={'alert'} tabIndex={0}>
+              {chipContents}
             </a>
             :
             chipContents
@@ -74,8 +78,9 @@ class Chip extends React.PureComponent<Props, any> {
         {
           removable
               ?
-              <button type="button" className={theme.Remove} aria-label="Remove" onClick={this.props.onRemove}>
-                  <span aria-hidden="true">×</span>
+              <button type="button" className={theme.Remove} aria-label={'Marked ' + this.props.children + ' for removal'} role={'alert'} onClick={this.props.onRemove}>
+                <span hidden>{ariaLabel}</span>
+                <span aria-hidden="true">×</span>
               </button>
               : ''
         }

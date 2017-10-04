@@ -40,7 +40,6 @@ export interface Props {
   theme?: any;
   autoSuggest?: boolean;
   autoSuggestMethods?: object[];
-  itemsList?: object[];
   stateProps?: {chipListState: any, suggestions: any, inputProps: object, value?: any};
   searchBehavior?(): void;
   onSelect?(item: any): void;
@@ -73,7 +72,6 @@ class Picker extends React.Component<Props, State> {
       onRemove = this.handleRemove,
       onMoreInfo = this.handleMoreInfo,
       theme,
-      itemsList,
     } = this.props;
     let className = '';
     if (selectedResultsBehavior === 'hide') {
@@ -98,7 +96,6 @@ class Picker extends React.Component<Props, State> {
                   value={this.state.people}
                   placeholder={filterPlaceHolder}
                   onChange={searchBehavior}
-                  itemsList={itemsList}
                   stateProps={this.props.stateProps}
                 />
            </div>

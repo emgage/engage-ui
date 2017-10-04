@@ -8,8 +8,8 @@ export interface Props {
   nameAfter?: string;
   email?: string;
   isHighlighted?: boolean;
+  alt?: string;
 }
-
 class Card extends React.Component<Props, {}> {
   constructor(props: any) {
     super(props);
@@ -19,7 +19,7 @@ class Card extends React.Component<Props, {}> {
     return (
       <div>
         <div className={ cardBackground }>
-          <span><img className={ style.avatarImage + ' ' + style.cardElem } src={ this.props.image } alt="not found" /></span>
+          <span><img className={ style.avatarImage + ' ' + style.cardElem } src={ this.props.image } alt={this.props.alt} /></span>
           <span className={style.cardElem + ' ' + style.nameStyle }>
             <span>{ this.props.nameBefore }</span>
             <span className={style.bold}>{ this.props.bold }</span>

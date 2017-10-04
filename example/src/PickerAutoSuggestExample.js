@@ -3,6 +3,7 @@ import * as React from 'react';
 import { PeoplePickerSearchType } from './PickerEnum';
 import { PeoplePickerSource } from './PickerSource';
 import AutoSuggestText from '../../src/components/Picker/AutoSuggestText';
+import Card from '../../src/components/Picker/Card';
 
 import {
   Button,
@@ -23,12 +24,12 @@ class PickerAutoSuggestExample extends React.Component<{}, {}> {
       chipListState: [],
       itemsList:
         [
-          { key: 1, image: 'http://msaadvertising.com/wp-content/uploads/2014/06/Larry-cartoon-headshot.jpg', name: 'John Doe', email: 'test@gmail.com', markedForDelete: false },
-          { key: 2, image: 'http://cdn.photographyproject.com.au/wp-content/uploads/2013/04/corporate-headshot.jpg', name: 'Pedro Sanchez', email: 'pedrosanchez@gmail.com' },
-          { key: 3, image: 'https://media.licdn.com/mpr/mpr/p/5/005/08f/04d/02df10d.jpg', name: 'Jane Doe', email: 'jane@gmail.com' },
-          { key: 4, image: 'http://www.roanokecreditrepair.com/wp-content/uploads/2016/06/Headshot-1.png', name: 'Person McPerson', email: 'yahoogmail@gmail.com' },
-          { key: 5, image: 'https://d38zhw9ti31loc.cloudfront.net/wp-content/uploads/2013/07/Crystal-headshot-new.jpg', name: 'Laura Person', email: 'yahooldjadslkjgmail@gmail.com' },
-          { key: 6, image: 'https://d38zhw9ti31loc.cloudfront.net/wp-content/uploads/2013/07/Crystal-headshot-new.jpg', name: 'Laura Person', email: 'slkjgmail@gmail.com' },
+          { key: 1, alt: 'headshot', image: 'http://msaadvertising.com/wp-content/uploads/2014/06/Larry-cartoon-headshot.jpg',  name: 'John Doe', email: 'test@gmail.com', markedForDelete: false },
+          { key: 2, alt: 'headshot', image: 'http://cdn.photographyproject.com.au/wp-content/uploads/2013/04/corporate-headshot.jpg', name: 'Pedro Sanchez', email: 'pedrosanchez@gmail.com' },
+          { key: 3, alt: 'headshot', image: 'https://media.licdn.com/mpr/mpr/p/5/005/08f/04d/02df10d.jpg', name: 'Jane Doe', email: 'jane@gmail.com' },
+          { key: 4, alt: 'headshot', image: 'http://www.roanokecreditrepair.com/wp-content/uploads/2016/06/Headshot-1.png', name: 'Person McPerson', email: 'yahoogmail@gmail.com' },
+          { key: 5, alt: 'headshot', image: 'https://d38zhw9ti31loc.cloudfront.net/wp-content/uploads/2013/07/Crystal-headshot-new.jpg', name: 'Laura Person', email: 'yahooldjadslkjgmail@gmail.com' },
+          { key: 6, alt: 'headshot', image: 'https://d38zhw9ti31loc.cloudfront.net/wp-content/uploads/2013/07/Crystal-headshot-new.jpg', name: 'Laura Person', email: 'slkjgmail@gmail.com' },
         ],
     };
   }
@@ -80,7 +81,6 @@ class PickerAutoSuggestExample extends React.Component<{}, {}> {
       },
 
       onSuggestionsFetchRequested: ({ value }:any) => {
-        console.log('value onSuggestionsFetchRequested', value);
         this.setState({
           suggestions: autoSuggestMethods.getSuggestions(value),
         });
@@ -95,7 +95,6 @@ class PickerAutoSuggestExample extends React.Component<{}, {}> {
 
       onSuggestionSelected: (event:any, { suggestion }: any) => {
         suggestion.text = suggestion.name;
-
         autoSuggestMethods.updateList(suggestion);
         const chipListState = this.state.chipListState.concat(suggestion);
         this.setState({
@@ -113,8 +112,22 @@ class PickerAutoSuggestExample extends React.Component<{}, {}> {
         const itemsListList = this.state.itemsList.concat(input);
         this.setState({ itemsList: itemsListList });
         this.state.input.focus();
-      },
 
+        const ariaDeletedAlert = document.getElementById('deletedNotif');
+        ariaDeletedAlert.focus();
+        // this.state.input.focus();
+      },
+      renderSuggestion: (suggestion:any, { isHighlighted, query }:any) => {
+        const index = suggestion.name.toLowerCase().indexOf(query.toLowerCase());
+        const nameBefore = suggestion.name.slice(0, index);
+        const queryData = suggestion.name.slice(index, index + query.length);
+        const nameAfter = suggestion.name.slice(index + query.length);
+
+        if (isHighlighted) return <Card isHighlighted={true} image={suggestion.image} nameBefore={nameBefore} bold={queryData} nameAfter={nameAfter} email={suggestion.email} alt={suggestion.alt}/>;
+        else return (
+          <Card image={suggestion.image} nameBefore={nameBefore} bold={queryData} nameAfter={nameAfter} email={suggestion.email} alt={suggestion.alt}/>
+        )
+      },
       storeInputReference: (autosuggest:any) => {
         if (autosuggest !== null) {
           if (this.state.input !== autosuggest.input) {
@@ -131,15 +144,6 @@ class PickerAutoSuggestExample extends React.Component<{}, {}> {
       onKeyDown: autoSuggestMethods.onKeyDown,
     };
     const stateProps = {value, suggestions, chipListState, inputProps}
-    const itemsList = 
-      [
-        { key: 1, image: 'http://msaadvertising.com/wp-content/uploads/2014/06/Larry-cartoon-headshot.jpg', name: 'John Doe', email: 'test@gmail.com', markedForDelete: false },
-        { key: 2, image: 'http://cdn.photographyproject.com.au/wp-content/uploads/2013/04/corporate-headshot.jpg', name: 'Pedro Sanchez', email: 'pedrosanchez@gmail.com' },
-        { key: 3, image: 'https://media.licdn.com/mpr/mpr/p/5/005/08f/04d/02df10d.jpg', name: 'Jane Doe', email: 'jane@gmail.com' },
-        { key: 4, image: 'http://www.roanokecreditrepair.com/wp-content/uploads/2016/06/Headshot-1.png', name: 'Person McPerson', email: 'yahoogmail@gmail.com' },
-        { key: 5, image: 'https://d38zhw9ti31loc.cloudfront.net/wp-content/uploads/2013/07/Crystal-headshot-new.jpg', name: 'Laura Person', email: 'yahooldjadslkjgmail@gmail.com' },
-        { key: 6, image: 'https://d38zhw9ti31loc.cloudfront.net/wp-content/uploads/2013/07/Crystal-headshot-new.jpg', name: 'Laura Person', email: 'slkjgmail@gmail.com' },
-      ];
 
     return  (
       <Picker
@@ -151,7 +155,6 @@ class PickerAutoSuggestExample extends React.Component<{}, {}> {
         searchResultComponent={Chip}
         source={new PeoplePickerSource(PeoplePickerSearchType.Both)}
         moreInfoComponent={<Button children="ranmal" />}  
-        itemsList={itemsList}
       />
     );
   }

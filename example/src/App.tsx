@@ -4,8 +4,8 @@ import { PeoplePickerSource } from './PickerSource';
 
 
 import ReactDataExample from './ReactDataExample';
-import SingleDatePickerWrapper from './SingleDatePickerWrapper';
-import DateRangePickerWrapper from './DateRangePickerWrapper';
+// import SingleDatePickerWrapper from './SingleDatePickerWrapper';
+// import DateRangePickerWrapper from './DateRangePickerWrapper';
 import PickerAutoSuggestExample from './PickerAutoSuggestExample';
 
 import {
@@ -110,8 +110,8 @@ class App extends React.Component<{}, State> {
     return (
       <div>
         <PickerAutoSuggestExample />
-        <SingleDatePickerWrapper />
-        <DateRangePickerWrapper />
+        {/* <SingleDatePickerWrapper />
+        <DateRangePickerWrapper /> */}
         <OffCanvas activator={<Button>OffCanvas</Button>} >
             <p>Reveal Test</p>
             <ul>
@@ -318,8 +318,8 @@ class App extends React.Component<{}, State> {
           source={new PeoplePickerSource(PeoplePickerSearchType.Both)}
           maxSelectedItems={5}
           minSelectedItems={2}
-          millisecondsToWaitBeforeSearch={20} 
-          moreInfoComponent={<Button children="ranmal" />}  
+          millisecondsToWaitBeforeSearch={20}
+          moreInfoComponent={<Button children="ranmal" />}
         />
         <ValidatedForm>
 
