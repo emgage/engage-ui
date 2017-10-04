@@ -41,6 +41,7 @@ import BannerState from './componentState/BannerState';
 import LabelledState from './componentState/LabelledState';
 import LabelState from './componentState/LabelState';
 import PositionedOverlayState  from './componentState/PositionedOverlayState';
+import ModalState  from './componentState/ModalState';
 
 const intialState : IDocumentAppState = {
   components: [
@@ -84,6 +85,7 @@ const intialState : IDocumentAppState = {
     LabelledState,
     LabelState,
     PositionedOverlayState,
+    ModalState,
     LinkState,
   ],
 };

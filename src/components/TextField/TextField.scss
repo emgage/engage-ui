@@ -7,6 +7,10 @@ $stacking-order: (
   backdrop: -1,
 );
 
+.red {
+  color: red;
+}
+
 .textField {
   @include text-style-input;
   position: relative;
