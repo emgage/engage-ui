@@ -9,15 +9,14 @@ import * as baseTheme from './Modal.scss';
 export enum SizeType {
   Small = 300,
   Medium = 600,
-  Large = 900,
+  Large = 800,
 }
 
 export type Size = 'Small' | 'Medium' | 'Large' | number;
 
 export interface SizeStyle {
+  maxWidth: string;
   width: string;
-  marginLeft: string;
-  left: string;
 }
 
 export interface Props {
@@ -76,9 +75,8 @@ const dialog = (props: Props) => {
   const footer = props.footer ? <div className={props.theme.footer}>{props.footer}</div> : null;
 
   const propSize: SizeStyle = {
-    width: `${dialogWidthSize}px`,
-    marginLeft: `-${dialogWidthSize as number / 2}px`,
-    left: '50%',
+    maxWidth: `${dialogWidthSize}px`,
+    width: '96%',
   };
 
   const type = {

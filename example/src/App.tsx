@@ -2,14 +2,10 @@ import * as React from 'react';
 import { } from '../../src/components/Modal/Dialog';
 import { PeoplePickerSearchType } from './PickerEnum';
 import { PeoplePickerSource } from './PickerSource';
-
-
 import ReactDataExample from './ReactDataExample';
 import SingleDatePickerWrapper from './SingleDatePickerWrapper';
 import DateRangePickerWrapper from './DateRangePickerWrapper';
 import PickerAutoSuggestExample from './PickerAutoSuggestExample';
-import * as velocity from 'velocity-animate';
-import { ITrigger, IAnimate } from '../../src/components/Modal/Modal';
 
 import {
   Button,
@@ -50,20 +46,9 @@ interface State {
   columns: object[];
   rows: object[];
   isMenuOpened: boolean;
-  show: boolean;
 }
 
 class App extends React.Component<{}, State> {
-
-  animate: IAnimate = {
-    in: (modal, dialog) => this.animateIn(modal, dialog),
-    out: (modal, dialog) => this.animateOut(modal, dialog),
-  };
-
-  triggers: ITrigger = {
-    body: 'Open',
-    animate: this.animate,
-  };
 
   constructor(props: any) {
     super(props);
@@ -82,20 +67,7 @@ class App extends React.Component<{}, State> {
         { id: 3, title: 'Title 3', count: 3 },
       ],
       isMenuOpened: false,
-      show: false,
     };
-  }
-
-  animateIn(modal?: Element, dialog?: Element): void {
-    this.setState({ show: true });
-    velocity(modal, { opacity: 1 }, { display: 'block' }, 300);
-    velocity(dialog, { translateY: 1, opacity: 1 }, { display: 'block' }, 200);
-  }
-
-  animateOut(modal?: Element, dialog?: Element): void {
-    this.setState({ show: false });
-    velocity(modal, { opacity: 0 }, { display: 'none' }, 300);
-    velocity(dialog, { translateY: -100, opacity: 0 }, { display: 'none' }, 200);
   }
 
   rowGetter = (index: number) => this.state.rows[index];
@@ -150,9 +122,74 @@ class App extends React.Component<{}, State> {
             header="This is my modal header"
             footer={<Button>OK</Button>}
             activator={<Button>Modal</Button>}
-            size={500}
-            show={this.state.show}
-            trigger={this.triggers}
+            size="Medium"
+          >
+
+            <h2>Headline test</h2>
+            <p>
+              test Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in
+
+
+            test Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in
+
+            test Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in
+            test Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in
+            test Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in
+
+            test Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in
+
+            test Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in
+
+            test Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in
+
+            test Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in
+
+            test Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in
+              </p>
+
+          </Modal>
+      </div>
+      <div>
+        <h1>This is my Modal Component!!</h1>
+          <Modal
+          id="test2"
+            close
+            modalOverflow = {false}
+            backdropEnabled
+            header="This is my modal header"
+            footer={<Button>OK</Button>}
+            activator={<Button>Modal</Button>}
+            size={800}
           >
 
             <h2>Headline test</h2>
