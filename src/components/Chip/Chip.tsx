@@ -10,7 +10,6 @@ export interface Props {
   removable?: boolean;
   image?: {
     url: string,
-    alt?: string,
   };
   transparent?: boolean;
   moreInfoComponent?: React.ReactNode;
@@ -22,6 +21,7 @@ export interface Props {
   handleMoreInfo?(): void;
   key?: any;
   markedForDelete?: boolean;
+  tabIndex?: number;
 }
 
 class Chip extends React.PureComponent<Props, any> {
@@ -52,7 +52,7 @@ class Chip extends React.PureComponent<Props, any> {
     const chipContents = [(
       image
       ?
-      <img className={theme.Image} src={image.url} alt={image.alt} key="1" />
+      <img className={theme.Image} src={image.url} aria-hidden key="1" />
       : ''
     ),
       <span key="2">
@@ -60,16 +60,14 @@ class Chip extends React.PureComponent<Props, any> {
       </span>,
     ];
 
-
-
     const ariaLabel = this.props.markedForDelete ? 'label' : '';
 
     return (
-      <div className={className} role={'alert'}>
+      <div className={className} tabIndex={!this.props.tabIndex ? this.props.tabIndex : -1}>
         {
           clickable
             ?
-            <a onClick={this.props.onClick} aria-disabled={false} role={'alert'} tabIndex={0}>
+            <a onClick={this.props.onClick} aria-disabled={false} role={'alert'} tabIndex={!this.props.tabIndex ? 0 : -1}>
               {chipContents}
             </a>
             :
@@ -78,7 +76,7 @@ class Chip extends React.PureComponent<Props, any> {
         {
           removable
               ?
-              <button type="button" className={theme.Remove} aria-label={'Marked ' + this.props.children + ' for removal'} role={'alert'} onClick={this.props.onRemove}>
+              <button type="button" className={theme.Remove} aria-label={'Marked ' + this.props.children + ' for removal'} role={'alert'} onClick={this.props.onRemove} tabIndex={-1}>
                 <span hidden>{ariaLabel}</span>
                 <span aria-hidden="true">×</span>
               </button>

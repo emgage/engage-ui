@@ -24,13 +24,14 @@ class PickerAutoSuggestExample extends React.Component<{}, {}> {
       chipListState: [],
       itemsList:
         [
-          { key: 1, alt: 'headshot', image: 'http://msaadvertising.com/wp-content/uploads/2014/06/Larry-cartoon-headshot.jpg',  name: 'John Doe', email: 'test@gmail.com', markedForDelete: false },
-          { key: 2, alt: 'headshot', image: 'http://cdn.photographyproject.com.au/wp-content/uploads/2013/04/corporate-headshot.jpg', name: 'Pedro Sanchez', email: 'pedrosanchez@gmail.com' },
-          { key: 3, alt: 'headshot', image: 'https://media.licdn.com/mpr/mpr/p/5/005/08f/04d/02df10d.jpg', name: 'Jane Doe', email: 'jane@gmail.com' },
-          { key: 4, alt: 'headshot', image: 'http://www.roanokecreditrepair.com/wp-content/uploads/2016/06/Headshot-1.png', name: 'Person McPerson', email: 'yahoogmail@gmail.com' },
-          { key: 5, alt: 'headshot', image: 'https://d38zhw9ti31loc.cloudfront.net/wp-content/uploads/2013/07/Crystal-headshot-new.jpg', name: 'Laura Person', email: 'yahooldjadslkjgmail@gmail.com' },
-          { key: 6, alt: 'headshot', image: 'https://d38zhw9ti31loc.cloudfront.net/wp-content/uploads/2013/07/Crystal-headshot-new.jpg', name: 'Laura Person', email: 'slkjgmail@gmail.com' },
+          { key: 1, image: 'http://msaadvertising.com/wp-content/uploads/2014/06/Larry-cartoon-headshot.jpg',  name: 'John Doe', email: 'test@gmail.com', markedForDelete: false },
+          { key: 2, image: 'http://cdn.photographyproject.com.au/wp-content/uploads/2013/04/corporate-headshot.jpg', name: 'Pedro Sanchez', email: 'pedrosanchez@gmail.com' },
+          { key: 3, image: 'https://media.licdn.com/mpr/mpr/p/5/005/08f/04d/02df10d.jpg', name: 'Jane Doe', email: 'jane@gmail.com' },
+          { key: 4, image: 'http://www.roanokecreditrepair.com/wp-content/uploads/2016/06/Headshot-1.png', name: 'Person McPerson', email: 'yahoogmail@gmail.com' },
+          { key: 5, image: 'https://d38zhw9ti31loc.cloudfront.net/wp-content/uploads/2013/07/Crystal-headshot-new.jpg', name: 'Laura Person', email: 'yahooldjadslkjgmail@gmail.com' },
+          { key: 6, image: 'https://d38zhw9ti31loc.cloudfront.net/wp-content/uploads/2013/07/Crystal-headshot-new.jpg', name: 'Laura Person', email: 'slkjgmail@gmail.com' },
         ],
+      focused: 0,
     };
   }
   render() {
@@ -52,32 +53,59 @@ class PickerAutoSuggestExample extends React.Component<{}, {}> {
           value: newValue,
         });
       },
-      onKeyDown: (e:any) => {
-        if ((e.keyCode === 8) && this.state.chipListState.length && !this.state.value.length) {
-          const yellowed = this.state.chipListState.slice(this.state.chipListState.length - 1);
-          if (yellowed[0]['markedForDelete']) {
-            const chipListState = this.state.chipListState.slice(0, this.state.chipListState.length - 1);
-            const language = this.state.chipListState.slice(this.state.chipListState.length - 1)[0];
-            delete language['text'];
-            language['markedForDelete'] = false;
-            const itemsList = this.state.itemsList.concat(language);
-            this.setState({
-              chipListState,
-              itemsList,
-            });
-          } else {
-            yellowed[0]['markedForDelete'] = true;
-
-            this.setState({
-              chipListState: this.state.chipListState,
-            });
+      markForDelete: (index: number, direction: string) => {
+        const focused = this.state.chipListState.slice();
+        focused[index]['markedForDelete'] = true;
+        if (direction === 'left') {
+          if (focused[index + 1]) focused[index + 1]['markedForDelete'] = false;
+          if (!this.state.focused) {
+            focused[0]['markedForDelete'] = false;
           }
-        } else if (this.state.chipListState.length && !this.state.value.length && !(e.keyCode === 38) && !(e.keyCode === 40)) {
-          if (this.state.chipListState[this.state.chipListState.length - 1]['markedForDelete']) {
-            this.state.chipListState[this.state.chipListState.length - 1]['markedForDelete'] = false;
-            this.setState({ chipListState: this.state.chipListState });
-          }
+          this.setState({focused: !this.state.focused ? this.state.chipListState.length - 1 : this.state.focused - 1});
         }
+        else if (direction === 'right') {
+          focused[this.state.focused]['markedForDelete'] = false;
+          if (this.state.chipListState.length !== this.state.focused + 1) focused[this.state.focused + 1]['markedForDelete'] = true;
+          else focused[0]['markedForDelete'] = true;
+          this.setState({
+            chipListState: focused,
+            focused: this.state.focused + 1 === this.state.chipListState.length ? 0 : this.state.focused + 1,
+          });
+        }
+        this.setState({
+          chipListState: focused,
+        });
+      },
+      delete: () => {
+        const newChipList = this.state.chipListState.slice();
+        newChipList[this.state.focused]['markedForDelete'] = false;
+        const chipListState = newChipList[this.state.focused + 1] ? newChipList.slice(0, this.state.focused).concat(newChipList.slice(this.state.focused + 1)) : newChipList.slice(0, this.state.focused);
+        console.log('chipListState', chipListState);
+        const itemsList = this.state.itemsList.concat(this.state.chipListState[this.state.focused]);
+        this.setState({
+          focused: this.state.chipListState.length - 1,
+          chipListState,
+          itemsList,
+        })
+        // console.log('delete', this.state.focused)
+        // console.log(this.state.chipListState[this.state.focused])
+      },
+      onKeyDown: (e:any) => {
+        // const unFocused = this.state.chipListState.slice();
+        // if (e.keyCode === 37 && this.state.chipListState.length && !this.state.value) {
+        //   autoSuggestMethods.markForDelete(!this.state.focused ? this.state.chipListState.length - 1 : this.state.focused - 1, 'left');
+        // } else if (e.keyCode === 39 && this.state.chipListState.length && !this.state.value) {
+        //   autoSuggestMethods.markForDelete(this.state.focused + 1 === this.state.chipListState.length ? 0 : this.state.focused + 1, 'right')
+        // } else if (e.keyCode === 8 && this.state.chipListState.length && !this.state.value.length) {
+
+          // console.log('backspace');
+          // if (e.keyCode === 8 && this.state.chipListState.length) {
+          //   console.log('not marked for delete')
+          //   autoSuggestMethods.markForDelete(this.state.chipListState.length - 1, 'left');
+          //   // console.log('focused', this.state.focused)
+          //   console.log('chipListState', this.state.chipListState);
+          // } else autoSuggestMethods.delete();
+        // }
       },
 
       onSuggestionsFetchRequested: ({ value }:any) => {
@@ -90,20 +118,38 @@ class PickerAutoSuggestExample extends React.Component<{}, {}> {
         const langIndex = this.state.itemsList.indexOf(input);
         const itemsListLength = this.state.itemsList;
         const newLangState = itemsListLength.slice(0, langIndex).concat(itemsListLength.slice(langIndex + 1, itemsListLength.length));
-        this.setState({ itemsList: newLangState });
+        this.setState(
+          { itemsList: newLangState,
+            // focused: this.state.focused += 1,
+          });
+        // document.getElementById('ariaMessage').innerText = 'hey';
       },
 
       onSuggestionSelected: (event:any, { suggestion }: any) => {
         suggestion.text = suggestion.name;
         autoSuggestMethods.updateList(suggestion);
         const chipListState = this.state.chipListState.concat(suggestion);
+        console.log(this.state.focused)
+        if (this.state.focused === 0) {
+          chipListState[0].tabIndex = 0;
+          console.log('chipListState', chipListState);
+        }
         this.setState({
           chipListState,
           value: '',
         });
+        console.log(chipListState);
       },
 
       chipRemove: (input:any) => {
+        console.log('removed');
+        const unFocused = this.state.chipListState.slice(this.state.focused);
+        unFocused['markedForDelete'] = false;
+        this.setState(
+          {
+            focused: 0,
+            chipListState: unFocused,
+          })
         input['markedForDelete'] = false;
         const index = this.state.chipListState.indexOf(input);
         const chipLength = this.state.chipListState;
@@ -113,8 +159,8 @@ class PickerAutoSuggestExample extends React.Component<{}, {}> {
         this.setState({ itemsList: itemsListList });
         this.state.input.focus();
 
-        const ariaDeletedAlert = document.getElementById('deletedNotif');
-        ariaDeletedAlert.focus();
+        // const ariaDeletedAlert = document.getElementById('deletedNotif');
+        // ariaDeletedAlert.focus();
         // this.state.input.focus();
       },
       renderSuggestion: (suggestion:any, { isHighlighted, query }:any) => {
@@ -139,9 +185,14 @@ class PickerAutoSuggestExample extends React.Component<{}, {}> {
     const { value, suggestions, chipListState }:any = this.state;
     const inputProps = {
       value,
-      placeholder: chipListState.length ? '' : 'hello',
+      placeholder: chipListState.length ? '' : '',
       onChange: autoSuggestMethods.onChange,
       onKeyDown: autoSuggestMethods.onKeyDown,
+      // 'role': 'status',
+      // 'aria-atomic': 'true',
+      // 'aria-live': 'aggressive',
+      'aria-label': 'I am a label',
+      // 'aria-owns': 'hello'
     };
     const stateProps = {value, suggestions, chipListState, inputProps}
 

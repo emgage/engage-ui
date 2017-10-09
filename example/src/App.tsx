@@ -473,7 +473,6 @@ class App extends React.Component<{}, State> {
           <Chip
             image={{
               url: 'example/src/images/netguru-cartoon-characters3.png',
-              alt: 'Your mom',
             }}
             removable={true}
           >
