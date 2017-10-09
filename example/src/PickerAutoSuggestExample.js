@@ -80,24 +80,35 @@ class PickerAutoSuggestExample extends React.Component<{}, {}> {
         const newChipList = this.state.chipListState.slice();
         newChipList[this.state.focused]['markedForDelete'] = false;
         const chipListState = newChipList[this.state.focused + 1] ? newChipList.slice(0, this.state.focused).concat(newChipList.slice(this.state.focused + 1)) : newChipList.slice(0, this.state.focused);
-        console.log('chipListState', chipListState);
         const itemsList = this.state.itemsList.concat(this.state.chipListState[this.state.focused]);
         this.setState({
           focused: this.state.chipListState.length - 1,
           chipListState,
           itemsList,
         })
-        // console.log('delete', this.state.focused)
-        // console.log(this.state.chipListState[this.state.focused])
       },
       onKeyDown: (e:any) => {
+        if (e.keyCode === 37) {
+          console.log('left');
+          // this will be used for the focus thing
+          // const chipListState = this.state.chipListState.slice();
+          // const focused = this.state.focused;
+          // const newFocused = !focused ? this.state.chipListState.length - 1 : focused - 1;
+          // chipListState[focused].tabIndex = -1;
+          // chipListState[newFocused].tabIndex = 0;
+          // this.setState({
+          //   focused: newFocused,
+          //   chipListState
+          // })
+        } else if (e.keyCode === 39) {
+          console.log('right');
+        }
         // const unFocused = this.state.chipListState.slice();
         // if (e.keyCode === 37 && this.state.chipListState.length && !this.state.value) {
         //   autoSuggestMethods.markForDelete(!this.state.focused ? this.state.chipListState.length - 1 : this.state.focused - 1, 'left');
         // } else if (e.keyCode === 39 && this.state.chipListState.length && !this.state.value) {
         //   autoSuggestMethods.markForDelete(this.state.focused + 1 === this.state.chipListState.length ? 0 : this.state.focused + 1, 'right')
         // } else if (e.keyCode === 8 && this.state.chipListState.length && !this.state.value.length) {
-
           // console.log('backspace');
           // if (e.keyCode === 8 && this.state.chipListState.length) {
           //   console.log('not marked for delete')
@@ -120,25 +131,18 @@ class PickerAutoSuggestExample extends React.Component<{}, {}> {
         const newLangState = itemsListLength.slice(0, langIndex).concat(itemsListLength.slice(langIndex + 1, itemsListLength.length));
         this.setState(
           { itemsList: newLangState,
-            // focused: this.state.focused += 1,
           });
-        // document.getElementById('ariaMessage').innerText = 'hey';
       },
 
       onSuggestionSelected: (event:any, { suggestion }: any) => {
         suggestion.text = suggestion.name;
         autoSuggestMethods.updateList(suggestion);
         const chipListState = this.state.chipListState.concat(suggestion);
-        console.log(this.state.focused)
-        if (this.state.focused === 0) {
-          chipListState[0].tabIndex = 0;
-          console.log('chipListState', chipListState);
-        }
+        chipListState[this.state.focused].tabIndex = 0;
         this.setState({
           chipListState,
           value: '',
         });
-        console.log(chipListState);
       },
 
       chipRemove: (input:any) => {
@@ -158,10 +162,6 @@ class PickerAutoSuggestExample extends React.Component<{}, {}> {
         const itemsListList = this.state.itemsList.concat(input);
         this.setState({ itemsList: itemsListList });
         this.state.input.focus();
-
-        // const ariaDeletedAlert = document.getElementById('deletedNotif');
-        // ariaDeletedAlert.focus();
-        // this.state.input.focus();
       },
       renderSuggestion: (suggestion:any, { isHighlighted, query }:any) => {
         const index = suggestion.name.toLowerCase().indexOf(query.toLowerCase());
@@ -187,7 +187,7 @@ class PickerAutoSuggestExample extends React.Component<{}, {}> {
       value,
       placeholder: chipListState.length ? '' : '',
       onChange: autoSuggestMethods.onChange,
-      onKeyDown: autoSuggestMethods.onKeyDown,
+      // onKeyDown: autoSuggestMethods.onKeyDown,
       // 'role': 'status',
       // 'aria-atomic': 'true',
       // 'aria-live': 'aggressive',

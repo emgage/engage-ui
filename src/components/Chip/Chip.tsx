@@ -61,7 +61,6 @@ class Chip extends React.PureComponent<Props, any> {
     ];
 
     const ariaLabel = this.props.markedForDelete ? 'label' : '';
-
     return (
       <div className={className} tabIndex={!this.props.tabIndex ? this.props.tabIndex : -1}>
         {
