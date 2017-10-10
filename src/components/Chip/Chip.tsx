@@ -41,6 +41,8 @@ class Chip extends React.PureComponent<Props, any> {
       transparent && theme.transparent
     );
 
+    const deleteInstruct = this.props.removable ? 'Press delete to remove this chip' : '';
+
     const chipContents = [(
       image
       ?
@@ -49,6 +51,7 @@ class Chip extends React.PureComponent<Props, any> {
     ),
       <span key="2">
         {this.props.children}
+      <span className={theme.hidden}>{deleteInstruct}</span>
       </span>,
     ];
     return (
@@ -58,6 +61,7 @@ class Chip extends React.PureComponent<Props, any> {
         onFocus={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.onfocus : ''}
         onBlur={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.onFocusOut : ''}
         ref={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.storeFocus : ''}
+        role="option"
       >
         {
           clickable

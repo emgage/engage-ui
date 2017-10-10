@@ -15,6 +15,12 @@ $horizontal-padding: (3 * $height / 8);
     text-overflow: ellipsis;
 }
 
+.hidden {
+  overflow: hidden;
+  width: .01px;
+  position: absolute;
+}
+
 .Image {
     float: left;
     margin: 0 ($height / 4) 0 (-1 * $horizontal-padding);
