@@ -62,7 +62,7 @@ class Chip extends React.PureComponent<Props, any> {
         {
           clickable
             ?
-            <a onClick={this.props.onClick} aria-disabled={false} role={'alert'} tabIndex={!this.props.tabIndex ? 0 : -1}>
+            <a onClick={this.props.onClick ? this.props.onClick : this.props.autoSuggestMethods.onClick} aria-disabled={false} role={'alert'} tabIndex={!this.props.tabIndex ? 0 : -1}>
               {chipContents}
             </a>
             :

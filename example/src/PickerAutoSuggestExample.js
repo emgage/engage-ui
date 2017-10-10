@@ -105,7 +105,9 @@ class PickerAutoSuggestExample extends React.Component<{}, {}> {
           this.setState({focused})
         }
       },
-
+      onClick: (e: any) => {
+        console.log('clicked!')
+      },
       onSuggestionsFetchRequested: ({ value }:any) => {
         this.setState({
           suggestions: autoSuggestMethods.getSuggestions(value),
