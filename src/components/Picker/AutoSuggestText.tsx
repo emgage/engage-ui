@@ -19,11 +19,10 @@ class AutoSuggestText extends React.Component<Props, {}> {
 
     // console.log('this.props.stateProps.chipListState', this.props.stateProps.chipListState);
 
-
     return (
       <div className={this.props.stateProps.chipListState.length ? style.inputOutline : style.inputOutlineInit} aria-live="polite" id="ariaMessage">
         <div onKeyDown={this.props.autoSuggestMethods.onKeyDown}>
-         { this.props.stateProps.chipListState.map((input: any) => <Chip image={{ url: input.image }} removable={true} onRemove={() => this.props.autoSuggestMethods.chipRemove(input)} key={input.key} markedForDelete={input.markedForDelete} tabIndex={input.tabIndex}>{input.text}</Chip>) }
+         { this.props.stateProps.chipListState.map((input: any) => <Chip image={{ url: input.image }} removable={true} onRemove={() => this.props.autoSuggestMethods.chipRemove(input)} key={input.key} markedForDelete={input.markedForDelete} tabIndex={input.tabIndex} autoSuggestMethods={this.props.autoSuggestMethods}>{input.text}</Chip>) }
          {/* <div aria-live="polite" id="ariaMessage">
          </div> */}
         </div>

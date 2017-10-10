@@ -22,6 +22,7 @@ class PickerAutoSuggestExample extends React.Component<{}, {}> {
       input: {},
       suggestions: [],
       chipListState: [],
+      focus: [],
       itemsList:
         [
           { key: 1, image: 'http://msaadvertising.com/wp-content/uploads/2014/06/Larry-cartoon-headshot.jpg',  name: 'John Doe', email: 'test@gmail.com', markedForDelete: false },
@@ -31,7 +32,7 @@ class PickerAutoSuggestExample extends React.Component<{}, {}> {
           { key: 5, image: 'https://d38zhw9ti31loc.cloudfront.net/wp-content/uploads/2013/07/Crystal-headshot-new.jpg', name: 'Laura Person', email: 'yahooldjadslkjgmail@gmail.com' },
           { key: 6, image: 'https://d38zhw9ti31loc.cloudfront.net/wp-content/uploads/2013/07/Crystal-headshot-new.jpg', name: 'Laura Person', email: 'slkjgmail@gmail.com' },
         ],
-      focused: 0,
+      focused: -1,
     };
   }
   render() {
@@ -53,29 +54,29 @@ class PickerAutoSuggestExample extends React.Component<{}, {}> {
           value: newValue,
         });
       },
-      markForDelete: (index: number, direction: string) => {
-        const focused = this.state.chipListState.slice();
-        focused[index]['markedForDelete'] = true;
-        if (direction === 'left') {
-          if (focused[index + 1]) focused[index + 1]['markedForDelete'] = false;
-          if (!this.state.focused) {
-            focused[0]['markedForDelete'] = false;
-          }
-          this.setState({focused: !this.state.focused ? this.state.chipListState.length - 1 : this.state.focused - 1});
-        }
-        else if (direction === 'right') {
-          focused[this.state.focused]['markedForDelete'] = false;
-          if (this.state.chipListState.length !== this.state.focused + 1) focused[this.state.focused + 1]['markedForDelete'] = true;
-          else focused[0]['markedForDelete'] = true;
-          this.setState({
-            chipListState: focused,
-            focused: this.state.focused + 1 === this.state.chipListState.length ? 0 : this.state.focused + 1,
-          });
-        }
-        this.setState({
-          chipListState: focused,
-        });
-      },
+      // markForDelete: (index: number, direction: string) => {
+      //   const focused = this.state.chipListState.slice();
+      //   focused[index]['markedForDelete'] = true;
+      //   if (direction === 'left') {
+      //     if (focused[index + 1]) focused[index + 1]['markedForDelete'] = false;
+      //     if (!this.state.focused) {
+      //       focused[0]['markedForDelete'] = false;
+      //     }
+      //     this.setState({focused: !this.state.focused ? this.state.chipListState.length - 1 : this.state.focused - 1});
+      //   }
+      //   else if (direction === 'right') {
+      //     focused[this.state.focused]['markedForDelete'] = false;
+      //     if (this.state.chipListState.length !== this.state.focused + 1) focused[this.state.focused + 1]['markedForDelete'] = true;
+      //     else focused[0]['markedForDelete'] = true;
+      //     this.setState({
+      //       chipListState: focused,
+      //       focused: this.state.focused + 1 === this.state.chipListState.length ? 0 : this.state.focused + 1,
+      //     });
+      //   }
+      //   this.setState({
+      //     chipListState: focused,
+      //   });
+      // },
       delete: () => {
         const newChipList = this.state.chipListState.slice();
         newChipList[this.state.focused]['markedForDelete'] = false;
@@ -87,36 +88,46 @@ class PickerAutoSuggestExample extends React.Component<{}, {}> {
           itemsList,
         })
       },
+      onfocus: (e:any) => {
+        // console.log('onfocus', this.state.focus)
+        // console.log('focused', this.state.focused)
+        const chipListState = this.state.chipListState.slice()
+        // console.log('chipListState', chipListState);
+        chipListState[0].tabIndex = -1;
+        if (this.state.focused === -1) this.setState({chipListState});
+        // console.log('on focus');
+        // console.log('e:', e);
+        this.setState({focused: 0})
+      },
+      onInputFocus: (e:any) => {
+        // console.log('input');
+        const chipListState = this.state.chipListState.slice();
+        if (chipListState.length && this.state.focused !== -1) {
+          chipListState[0].tabIndex = 0;
+          this.setState({chipListState});
+        }
+        this.setState({focused: -1})
+      },
+      storeFocus: (e: any) => {
+        if (!this.state.focus.includes(e) && e !== null) {
+          // console.log(this.state.focus.length);
+          const focus = this.state.focus.length ? this.state.focus.concat([e]) : [e];
+          // console.log('focus:', focus);
+          this.setState({ focus });
+        }
+      },
       onKeyDown: (e:any) => {
         if (e.keyCode === 37) {
           console.log('left');
-          // this will be used for the focus thing
-          // const chipListState = this.state.chipListState.slice();
-          // const focused = this.state.focused;
-          // const newFocused = !focused ? this.state.chipListState.length - 1 : focused - 1;
-          // chipListState[focused].tabIndex = -1;
-          // chipListState[newFocused].tabIndex = 0;
-          // this.setState({
-          //   focused: newFocused,
-          //   chipListState
-          // })
+          const focused = this.state.focused === 0 ? this.state.chipListState.length - 1 : this.state.focused - 1;
+          this.state.focus[focused].focus();
+          this.setState({focused})
         } else if (e.keyCode === 39) {
           console.log('right');
+          const focused = this.state.focused === this.state.chipListState.length - 1 ? 0 : this.state.focused + 1;
+          this.state.focus[focused].focus();
+          this.setState({focused})
         }
-        // const unFocused = this.state.chipListState.slice();
-        // if (e.keyCode === 37 && this.state.chipListState.length && !this.state.value) {
-        //   autoSuggestMethods.markForDelete(!this.state.focused ? this.state.chipListState.length - 1 : this.state.focused - 1, 'left');
-        // } else if (e.keyCode === 39 && this.state.chipListState.length && !this.state.value) {
-        //   autoSuggestMethods.markForDelete(this.state.focused + 1 === this.state.chipListState.length ? 0 : this.state.focused + 1, 'right')
-        // } else if (e.keyCode === 8 && this.state.chipListState.length && !this.state.value.length) {
-          // console.log('backspace');
-          // if (e.keyCode === 8 && this.state.chipListState.length) {
-          //   console.log('not marked for delete')
-          //   autoSuggestMethods.markForDelete(this.state.chipListState.length - 1, 'left');
-          //   // console.log('focused', this.state.focused)
-          //   console.log('chipListState', this.state.chipListState);
-          // } else autoSuggestMethods.delete();
-        // }
       },
 
       onSuggestionsFetchRequested: ({ value }:any) => {
@@ -124,21 +135,20 @@ class PickerAutoSuggestExample extends React.Component<{}, {}> {
           suggestions: autoSuggestMethods.getSuggestions(value),
         });
       },
-
       updateList: (input: any) => {
         const langIndex = this.state.itemsList.indexOf(input);
         const itemsListLength = this.state.itemsList;
         const newLangState = itemsListLength.slice(0, langIndex).concat(itemsListLength.slice(langIndex + 1, itemsListLength.length));
-        this.setState(
-          { itemsList: newLangState,
-          });
+        this.setState({ 
+          itemsList: newLangState,
+        });
       },
 
       onSuggestionSelected: (event:any, { suggestion }: any) => {
         suggestion.text = suggestion.name;
         autoSuggestMethods.updateList(suggestion);
         const chipListState = this.state.chipListState.concat(suggestion);
-        chipListState[this.state.focused].tabIndex = 0;
+        chipListState[0].tabIndex = 0;
         this.setState({
           chipListState,
           value: '',
@@ -151,16 +161,21 @@ class PickerAutoSuggestExample extends React.Component<{}, {}> {
         unFocused['markedForDelete'] = false;
         this.setState(
           {
-            focused: 0,
+            // focused: 0,
             chipListState: unFocused,
           })
         input['markedForDelete'] = false;
         const index = this.state.chipListState.indexOf(input);
         const chipLength = this.state.chipListState;
         const newChipState = chipLength.slice(0, index).concat(chipLength.slice(index + 1, chipLength.length));
-        this.setState({ chipListState: newChipState });
+        const focusLength = this.state.focus;
+        const newFocus = focusLength.slice(0, index).concat(focusLength.slice(index + 1, focusLength.length));
         const itemsListList = this.state.itemsList.concat(input);
-        this.setState({ itemsList: itemsListList });
+        this.setState({ 
+          itemsList: itemsListList,
+          chipListState: newChipState,
+          focus: newFocus,
+        });
         this.state.input.focus();
       },
       renderSuggestion: (suggestion:any, { isHighlighted, query }:any) => {
@@ -175,6 +190,7 @@ class PickerAutoSuggestExample extends React.Component<{}, {}> {
         )
       },
       storeInputReference: (autosuggest:any) => {
+        // console.log('autosuggest:', autosuggest)
         if (autosuggest !== null) {
           if (this.state.input !== autosuggest.input) {
             this.setState({ input: autosuggest.input });
@@ -185,9 +201,9 @@ class PickerAutoSuggestExample extends React.Component<{}, {}> {
     const { value, suggestions, chipListState }:any = this.state;
     const inputProps = {
       value,
-      placeholder: chipListState.length ? '' : '',
+      // placeholder: chipListState.length ? '' : '',
       onChange: autoSuggestMethods.onChange,
-      // onKeyDown: autoSuggestMethods.onKeyDown,
+      onFocus: autoSuggestMethods.onInputFocus,
       // 'role': 'status',
       // 'aria-atomic': 'true',
       // 'aria-live': 'aggressive',

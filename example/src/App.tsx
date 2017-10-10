@@ -109,6 +109,7 @@ class App extends React.Component<{}, State> {
 
     return (
       <div>
+        <button>button</button>
         <PickerAutoSuggestExample />
         <OffCanvas activator={<Button>OffCanvas</Button>} >
             <p>Reveal Test</p>

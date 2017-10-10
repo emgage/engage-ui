@@ -22,6 +22,8 @@ export interface Props {
   key?: any;
   markedForDelete?: boolean;
   tabIndex?: number;
+  autoSuggestMethods?: any;
+  onfocus?(event: any): void;
 }
 
 class Chip extends React.PureComponent<Props, any> {
@@ -61,8 +63,15 @@ class Chip extends React.PureComponent<Props, any> {
     ];
 
     const ariaLabel = this.props.markedForDelete ? 'label' : '';
+    // console.log('tabIndex', this.props.tabIndex);
     return (
-      <div className={className} tabIndex={!this.props.tabIndex ? this.props.tabIndex : -1}>
+      <div
+        className={className}
+        tabIndex={this.props.tabIndex === 0 ? this.props.tabIndex : -1}
+        onFocus={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.onfocus : ''}
+        /* onFocusOut={} */
+        ref={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.storeFocus : ''}
+      >
         {
           clickable
             ?
