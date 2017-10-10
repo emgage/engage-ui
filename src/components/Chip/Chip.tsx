@@ -20,10 +20,10 @@ export interface Props {
   onClick?(event: any): void;
   handleMoreInfo?(): void;
   key?: any;
-  markedForDelete?: boolean;
   tabIndex?: number;
   autoSuggestMethods?: any;
   onfocus?(event: any): void;
+  id?: number;
 }
 
 class Chip extends React.PureComponent<Props, any> {
@@ -36,20 +36,10 @@ class Chip extends React.PureComponent<Props, any> {
       theme,
     } = this.props;
 
-    let className;
-
-    if (this.props.markedForDelete) {
-      className = classNames(
-        theme.Chip,
-        theme.markedForDelete,
-        transparent && theme.transparent
-      );
-    } else {
-      className = classNames(
-          theme.Chip,
-          transparent && theme.transparent
-      );
-    }
+    const className = classNames(
+      theme.Chip,
+      transparent && theme.transparent
+    );
 
     const chipContents = [(
       image
@@ -61,15 +51,13 @@ class Chip extends React.PureComponent<Props, any> {
         {this.props.children}
       </span>,
     ];
-
-    const ariaLabel = this.props.markedForDelete ? 'label' : '';
     // console.log('tabIndex', this.props.tabIndex);
     return (
       <div
         className={className}
         tabIndex={this.props.tabIndex === 0 ? this.props.tabIndex : -1}
         onFocus={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.onfocus : ''}
-        /* onFocusOut={} */
+        onBlur={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.onFocusOut : ''}
         ref={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.storeFocus : ''}
       >
         {
@@ -84,8 +72,8 @@ class Chip extends React.PureComponent<Props, any> {
         {
           removable
               ?
-              <button type="button" className={theme.Remove} aria-label={'Marked ' + this.props.children + ' for removal'} role={'alert'} onClick={this.props.onRemove} tabIndex={-1}>
-                <span hidden>{ariaLabel}</span>
+              <button type="button" className={theme.Remove} role={'alert'} onClick={this.props.onRemove} tabIndex={-1}>
+                {/* <span hidden>{ariaLabel}</span> */}
                 <span aria-hidden="true">×</span>
               </button>
               : ''

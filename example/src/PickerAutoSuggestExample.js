@@ -22,10 +22,10 @@ class PickerAutoSuggestExample extends React.Component<{}, {}> {
       input: {},
       suggestions: [],
       chipListState: [],
-      focus: [],
+      focusArr: [],
       itemsList:
         [
-          { key: 1, image: 'http://msaadvertising.com/wp-content/uploads/2014/06/Larry-cartoon-headshot.jpg',  name: 'John Doe', email: 'test@gmail.com', markedForDelete: false },
+          { key: 1, image: 'http://msaadvertising.com/wp-content/uploads/2014/06/Larry-cartoon-headshot.jpg',  name: 'John Doe', email: 'test@gmail.com' },
           { key: 2, image: 'http://cdn.photographyproject.com.au/wp-content/uploads/2013/04/corporate-headshot.jpg', name: 'Pedro Sanchez', email: 'pedrosanchez@gmail.com' },
           { key: 3, image: 'https://media.licdn.com/mpr/mpr/p/5/005/08f/04d/02df10d.jpg', name: 'Jane Doe', email: 'jane@gmail.com' },
           { key: 4, image: 'http://www.roanokecreditrepair.com/wp-content/uploads/2016/06/Headshot-1.png', name: 'Person McPerson', email: 'yahoogmail@gmail.com' },
@@ -77,18 +77,19 @@ class PickerAutoSuggestExample extends React.Component<{}, {}> {
       //     chipListState: focused,
       //   });
       // },
-      delete: () => {
-        const newChipList = this.state.chipListState.slice();
-        newChipList[this.state.focused]['markedForDelete'] = false;
-        const chipListState = newChipList[this.state.focused + 1] ? newChipList.slice(0, this.state.focused).concat(newChipList.slice(this.state.focused + 1)) : newChipList.slice(0, this.state.focused);
-        const itemsList = this.state.itemsList.concat(this.state.chipListState[this.state.focused]);
-        this.setState({
-          focused: this.state.chipListState.length - 1,
-          chipListState,
-          itemsList,
-        })
-      },
+      // delete: () => {
+      //   const newChipList = this.state.chipListState.slice();
+      //   newChipList[this.state.focused]['markedForDelete'] = false;
+      //   const chipListState = newChipList[this.state.focused + 1] ? newChipList.slice(0, this.state.focused).concat(newChipList.slice(this.state.focused + 1)) : newChipList.slice(0, this.state.focused);
+      //   const itemsList = this.state.itemsList.concat(this.state.chipListState[this.state.focused]);
+      //   this.setState({
+      //     focused: this.state.chipListState.length - 1,
+      //     chipListState,
+      //     itemsList,
+      //   })
+      // },
       onfocus: (e:any) => {
+        // console.log('hi', e)
         // console.log('onfocus', this.state.focus)
         // console.log('focused', this.state.focused)
         const chipListState = this.state.chipListState.slice()
@@ -98,6 +99,13 @@ class PickerAutoSuggestExample extends React.Component<{}, {}> {
         // console.log('on focus');
         // console.log('e:', e);
         this.setState({focused: 0})
+      },
+      onFocusOut: (e: any) => {
+        const chipListState = this.state.chipListState.slice()
+        chipListState[0].tabIndex = 0;
+        
+        if (this.state.focused === 0) this.setState({chipListState});
+        this.setState({focused: -1})
       },
       onInputFocus: (e:any) => {
         // console.log('input');
@@ -109,23 +117,39 @@ class PickerAutoSuggestExample extends React.Component<{}, {}> {
         this.setState({focused: -1})
       },
       storeFocus: (e: any) => {
-        if (!this.state.focus.includes(e) && e !== null) {
-          // console.log(this.state.focus.length);
-          const focus = this.state.focus.length ? this.state.focus.concat([e]) : [e];
-          // console.log('focus:', focus);
-          this.setState({ focus });
+        if (!this.state.focusArr.includes(e) && e !== null) {
+          // console.log(this.state.focusArr.length);
+          const focusArr = this.state.focusArr.length ? this.state.focusArr.concat([e]) : [e];
+          // console.log('focusArr:', focusArr);
+          this.setState({ focusArr });
         }
       },
-      onKeyDown: (e:any) => {
+      onKeyDown: (e:any, focusArr, chipListState) => {
         if (e.keyCode === 37) {
-          console.log('left');
           const focused = this.state.focused === 0 ? this.state.chipListState.length - 1 : this.state.focused - 1;
-          this.state.focus[focused].focus();
+          this.state.focusArr[focused].focus();
           this.setState({focused})
         } else if (e.keyCode === 39) {
-          console.log('right');
           const focused = this.state.focused === this.state.chipListState.length - 1 ? 0 : this.state.focused + 1;
-          this.state.focus[focused].focus();
+          this.state.focusArr[focused].focus();
+          this.setState({focused})
+        } else if (e.keyCode === 8) {
+          autoSuggestMethods.chipRemove(this.state.focused);
+        } else if (typeof e.chipRemove === 'number') {
+          console.log('on key down chip remove')
+          let focused;
+          const number = e.chipRemove;
+          if (number === chipListState.length) focused = number - 1;
+          else if (number > 0) focused = number;
+          else focused = 0;
+          // console.log(number, focused)
+          // console.log('focus onkeydown', this.state.focusArr, focusArr);
+          console.log('number', number);
+          console.log('focusArr', focusArr);
+          console.log('focused', focused);
+          console.log('focusArr', focusArr[focused]);
+          if (focusArr.length) focusArr[focused].focus();
+          else this.state.input.focus();
           this.setState({focused})
         }
       },
@@ -147,6 +171,7 @@ class PickerAutoSuggestExample extends React.Component<{}, {}> {
       onSuggestionSelected: (event:any, { suggestion }: any) => {
         suggestion.text = suggestion.name;
         autoSuggestMethods.updateList(suggestion);
+        // suggestion['id'] = this.state.chipListState.length;
         const chipListState = this.state.chipListState.concat(suggestion);
         chipListState[0].tabIndex = 0;
         this.setState({
@@ -155,28 +180,37 @@ class PickerAutoSuggestExample extends React.Component<{}, {}> {
         });
       },
 
-      chipRemove: (input:any) => {
-        console.log('removed');
-        const unFocused = this.state.chipListState.slice(this.state.focused);
-        unFocused['markedForDelete'] = false;
-        this.setState(
-          {
-            // focused: 0,
-            chipListState: unFocused,
-          })
-        input['markedForDelete'] = false;
-        const index = this.state.chipListState.indexOf(input);
-        const chipLength = this.state.chipListState;
-        const newChipState = chipLength.slice(0, index).concat(chipLength.slice(index + 1, chipLength.length));
-        const focusLength = this.state.focus;
-        const newFocus = focusLength.slice(0, index).concat(focusLength.slice(index + 1, focusLength.length));
-        const itemsListList = this.state.itemsList.concat(input);
+      chipRemove: (item: any) => {
+        // console.log('item?', this.state.chipListState.indexOf(item))
+        const number = typeof item === 'number' ? item : this.state.chipListState.indexOf(item)
+        // const index = item !== undefined ? item : this.state.focused;
+        // console.log(index);
+        const existingChipList = this.state.chipListState;
+        const chipListState = existingChipList.slice(0, number).concat(existingChipList.slice(number + 1));
+        const itemsList = this.state.itemsList.concat(this.state.chipListState.slice(number, number + 1));
+        const focusArr = this.state.focusArr.slice(0, number).concat(this.state.focusArr.slice(number + 1));
+        if (chipListState.length) chipListState[0].tabIndex = 0;
+        // console.log(chipListState, number)
+        let focused;
+        if (number === chipListState.length) focused = number - 1;
+        else if (number === chipListState.length && number > 0) focused = number;
+        else focused = 0;
+        // console.log('focused', focused);
+        // console.log('this.state.focused', this.state.focused);
+        // console.log(this.state.focusArr[focused]);
+        // console.log('chipremove focusarr', this.state.focusArr, focusArr)
         this.setState({ 
-          itemsList: itemsListList,
-          chipListState: newChipState,
-          focus: newFocus,
-        });
-        this.state.input.focus();
+          itemsList,
+          chipListState,
+          focusArr,
+          // focused,
+        }, autoSuggestMethods.onKeyDown({chipRemove: number}, focusArr, chipListState));
+        // autoSuggestMethods.onfocus(this.state.focusArr[focused])
+        // this.state.focusArr[focused].focus();
+        // this.state.focusArr[focused].focus();
+        // index > this.state.focus
+        // this.state.input.focus()
+        // console.log(this.state.focus)
       },
       renderSuggestion: (suggestion:any, { isHighlighted, query }:any) => {
         const index = suggestion.name.toLowerCase().indexOf(query.toLowerCase());
