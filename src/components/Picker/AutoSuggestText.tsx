@@ -17,14 +17,10 @@ class AutoSuggestText extends React.Component<Props, {}> {
   render() {
     const { theme }:any = this.props;
 
-    // console.log('this.props.stateProps.chipListState', this.props.stateProps.chipListState);
-
     return (
       <div className={this.props.stateProps.chipListState.length ? style.inputOutline : style.inputOutlineInit} aria-live="polite" id="ariaMessage">
         <div onKeyDown={this.props.autoSuggestMethods.onKeyDown}>
          { this.props.stateProps.chipListState.map((input: any) => <Chip image={{ url: input.image }} removable={true} onRemove={() => this.props.autoSuggestMethods.chipRemove(input)} key={input.key} tabIndex={input.tabIndex} autoSuggestMethods={this.props.autoSuggestMethods}>{input.text}</Chip>) }
-         {/* <div aria-live="polite" id="ariaMessage">
-         </div> */}
         </div>
         <Autosuggest
           className={style.suggestionsContainer}

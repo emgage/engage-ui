@@ -95,7 +95,6 @@ class PickerAutoSuggestExample extends React.Component<{}, {}> {
         } else if (e.keyCode === 8) {
           autoSuggestMethods.chipRemove(this.state.focused);
         } else if (typeof e.chipRemove === 'number') {
-          console.log('on key down chip remove')
           let focused;
           const number = e.chipRemove;
           if (number === chipListState.length) focused = number - 1;
@@ -134,14 +133,10 @@ class PickerAutoSuggestExample extends React.Component<{}, {}> {
       },
 
       chipRemove: (item: any) => {
-        console.log('chipListState', this.state.chipListState);
-        console.log('itemsList', this.state.itemsList);
         const number = typeof item === 'number' ? item : this.state.chipListState.indexOf(item)
         const existingChipList = this.state.chipListState;
         const addedItem = this.state.chipListState.slice(number, number + 1);
-        console.log('addedItem', addedItem);
         const addedItemObj = Object.assign({}, addedItem[0], {tabIndex: -1});
-        console.log('addedItemObj', addedItemObj);
         const chipListState = existingChipList.slice(0, number).concat(existingChipList.slice(number + 1));
         const itemsList = this.state.itemsList.concat([addedItemObj]);
         const focusArr = this.state.focusArr.slice(0, number).concat(this.state.focusArr.slice(number + 1));
@@ -150,7 +145,6 @@ class PickerAutoSuggestExample extends React.Component<{}, {}> {
         if (number === chipListState.length) focused = number - 1;
         else if (number === chipListState.length && number > 0) focused = number;
         else focused = 0;
-        // if (item.tabIndex === 0) 
         this.setState({ 
           itemsList,
           chipListState,

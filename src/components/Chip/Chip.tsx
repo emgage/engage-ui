@@ -51,7 +51,6 @@ class Chip extends React.PureComponent<Props, any> {
         {this.props.children}
       </span>,
     ];
-    // console.log('tabIndex', this.props.tabIndex);
     return (
       <div
         className={className}
@@ -73,7 +72,6 @@ class Chip extends React.PureComponent<Props, any> {
           removable
               ?
               <button type="button" className={theme.Remove} role={'alert'} onClick={this.props.onRemove} tabIndex={-1}>
-                {/* <span hidden>{ariaLabel}</span> */}
                 <span aria-hidden="true">×</span>
               </button>
               : ''
