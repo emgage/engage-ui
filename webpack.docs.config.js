@@ -5,6 +5,10 @@ BaseDevConfig.entry = [
   './docs/src/index.tsx',
 ];
 
+BaseDevConfig.devServer = {
+  port: 8081
+};
+
 BaseDevConfig.plugins.push(new HtmlWebpackPlugin({
   filename: 'index.html',
   template: './docs/src/index.html',
