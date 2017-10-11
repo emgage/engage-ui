@@ -9,6 +9,7 @@ import ReactDataExample from './ReactDataExample';
 import PickerAutoSuggestExample from './PickerAutoSuggestExample';
 
 import {
+  Banner,
   Button,
   ButtonGroup,
   Card,
@@ -109,7 +110,10 @@ class App extends React.Component<{}, State> {
 
     return (
       <div>
-        <button>button</button>
+        <Banner title={'banner'} status={'success'}/>
+        <Banner title={'banner'} status={'info'}/>
+        <Banner title={'banner'} status={'warning'}/>
+        <Banner title={'banner'} status={'critical'}/>
         <PickerAutoSuggestExample />
         <OffCanvas activator={<Button>OffCanvas</Button>} >
             <p>Reveal Test</p>
