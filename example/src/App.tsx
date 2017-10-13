@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { PeoplePickerSearchType } from './PickerEnum';
-import { PeoplePickerSource } from './PickerSource';
+// import { PeoplePickerSearchType } from './PickerEnum';
+// import { PeoplePickerSource } from './PickerSource'; 
 
 
 import ReactDataExample from './ReactDataExample';
@@ -369,11 +369,11 @@ class App extends React.Component<{}, State> {
           chipComponent={Chip}
           filterPlaceHolder="!People!!"
           searchResultComponent={Chip}
-          source={new PeoplePickerSource(PeoplePickerSearchType.Both)}
+          /* source={new PeoplePickerSource(PeoplePickerSearchType.Both)} */
           maxSelectedItems={5}
           minSelectedItems={2}
-          millisecondsToWaitBeforeSearch={20} 
-          moreInfoComponent={<Button children="ranmal" />} 
+          millisecondsToWaitBeforeSearch={20}
+          moreInfoComponent={<Button children="ranmal" />}
         />
         <ValidatedForm>
 

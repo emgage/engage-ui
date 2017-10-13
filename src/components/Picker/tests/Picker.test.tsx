@@ -3,7 +3,6 @@ import { mount } from 'enzyme';
 import Button from '../../Button/Button';
 import Chip from '../../Chip/Chip';
 import { DisplayMoreInfo } from '../PickerEnum';
-import { MockPickerSource } from './MockPickerSource';
 import Picker from '../Picker';
 
 const theme = {
@@ -22,7 +21,6 @@ describe('when default props are provided', () => {
   it('div should have default picker elements', () => {
     const subject = mount(<Picker
             required={true}
-            source={new MockPickerSource()}
             chipComponent={Chip}
             searchResultComponent={Chip}
             filterPlaceHolder="Search people and group"
@@ -43,7 +41,6 @@ describe('when default props are provided', () => {
     it('is called with the search', () => {
       const spy = jest.fn();
       const subject = mount(<Picker
-                source={new MockPickerSource()}
                 chipComponent={<Chip theme={chipTheme} />}
                 searchResultComponent={<Chip theme={chipTheme} />}
                 searchBehavior={spy}

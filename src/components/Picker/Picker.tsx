@@ -33,7 +33,6 @@ export interface Props {
   chipComponent?: React.ReactNode;
   searchResultComponent?: React.ReactNode;
   moreInfoComponent?: React.ReactNode;
-  source: IPickerSource<IPickerInfo>;
   moreInfoComponentShowOn?: DisplayMoreInfo;
   style?: React.CSSProperties;
   theme?: any;
@@ -62,14 +61,8 @@ class Picker extends React.Component<Props, State> {
       autoSuggest,
       filterPlaceHolder,
       selectedResultsBehavior,
-      moreInfoComponent,
       chipComponent,
-      searchResultComponent,
-      searchBehavior = this.handleChange,
-      moreInfoComponentShowOn = DisplayMoreInfo.onClick,
-      onSelect = this.handleSelect,
       onRemove = this.handleRemove,
-      onMoreInfo = this.handleMoreInfo,
       theme,
     } = this.props;
     let className = '';
@@ -94,32 +87,11 @@ class Picker extends React.Component<Props, State> {
                   label="lbl"
                   value={this.state.people}
                   placeholder={filterPlaceHolder}
-                  onChange={searchBehavior}
                   stateProps={this.props.stateProps}
                 />
            </div>
-            <div>
-              {
-                  this.state.searchItems.map((i) => {
-                    return React.createElement(searchResultComponent as React.ComponentClass<{ clickable: boolean, moreInfoComponent: React.ReactNode, moreInfoComponentShowOn: DisplayMoreInfo, onClick(item: any): void, handleMoreInfo(): void }>, { moreInfoComponent, moreInfoComponentShowOn, key: i.id, clickable: true, onClick: onSelect, handleMoreInfo: onMoreInfo }, [i.name]);
-                  })
-              }
-          </div>
       </div>
     );
-  }
-  private handleChange = (value: string) => {
-    this.setState({ ['people']: value });
-    setTimeout(() => {
-      this.props.source.performFilter(value).then(this.onSuccess).catch(this.onError);
-    },         this.props.millisecondsToWaitBeforeSearch === undefined ? 0 : this.props.millisecondsToWaitBeforeSearch);
-  }
-  private onSuccess = (item: any) => {
-    this.setState({ ['searchItems']: item });
-  }
-  private onError = (item: any) => {
-        // TODO: Error display
-    alert(item);
   }
   private handleRemove = (event: any) => {
     const item = this.state.selectedItems.find(x => x.name === event.currentTarget.previousElementSibling.innerText);
@@ -134,27 +106,6 @@ class Picker extends React.Component<Props, State> {
       }
     }
     this.setState({ ['selectedItems']: items });
-    return;
-  }
-
-  private handleSelect = (event: any) => {
-    const item = this.state.searchItems.find(x => x.name === event.currentTarget.text);
-    const items = this.state.selectedItems;
-    if (this.props.maxSelectedItems !== undefined && this.props.maxSelectedItems === items.length) {
-      return;
-    }
-    if (item !== undefined) {
-      if (!items.some(x => x.name === item.name)) {
-        items.push(item);
-      }
-    }
-    this.setState({ ['selectedItems']: items });
-    this.setState({ ['searchItems']: [] });
-    return;
-  }
-
-  private handleMoreInfo = () => {
-    this.setState({ ['moreInfo']: !this.state.moreInfo });
     return;
   }
 }

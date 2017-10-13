@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { mount } from 'enzyme';
 import Chip from '../../Chip/Chip';
-import { MockPickerSource } from './MockPickerSource';
 import { UnthemedPicker } from '..';
 
 const theme = {
@@ -30,7 +29,6 @@ describe('when default props are provided', () => {
       const spySearch = jest.fn();
       const spyClick = jest.fn();
       const subject = mount(<UnthemedPicker
-                source={new MockPickerSource()}
                 chipComponent={Chip}
                 searchResultComponent={Chip}
                 searchBehavior={spySearch}
@@ -51,7 +49,6 @@ describe('when default props are provided', () => {
       const spyClick = jest.fn();
       const spyRemove = jest.fn();
       const subject = mount(<UnthemedPicker
-                source={new MockPickerSource()}
                 chipComponent={Chip}
                 searchResultComponent={Chip}
                 searchBehavior={spySearch}
