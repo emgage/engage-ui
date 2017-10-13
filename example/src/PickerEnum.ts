@@ -1,5 +1,5 @@
-export enum PeoplePickerSearchType {
-    Users,
-    Groups,
-    Both,
-}
+// export enum PeoplePickerSearchType {
+//     Users,
+//     Groups,
+//     Both,
+// }

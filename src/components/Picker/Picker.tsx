@@ -44,7 +44,6 @@ export interface Props {
   onRemove?(item: any): void;
   onMoreInfo?(): void;
 }
-
 class Picker extends React.Component<Props, State> {
   constructor(props: any) {
     super(props);
@@ -60,53 +59,19 @@ class Picker extends React.Component<Props, State> {
       autoSuggestMethods,
       autoSuggest,
       filterPlaceHolder,
-      selectedResultsBehavior,
-      chipComponent,
-      onRemove = this.handleRemove,
-      theme,
     } = this.props;
-    let className = '';
-    if (selectedResultsBehavior === 'hide') {
-      className = theme.pickerResultHide;
-    } else {
-      className = theme.pickerResultShow;
-    }
     return (
       <div>
-           <div>
-              <div className={className}>
-                  {
-                      this.state.selectedItems.map((i) => {
-                        return React.createElement(chipComponent as React.ComponentClass<{ clickable: boolean, removable: boolean, onRemove(item: any): void }>, { onRemove, key: i.id, clickable: false, removable: true }, [i.name]);
-                      })
-                  }
-              </div>
-                <TextField
-                  autoSuggest={autoSuggest}
-                  autoSuggestMethods={autoSuggestMethods}
-                  label="lbl"
-                  value={this.state.people}
-                  placeholder={filterPlaceHolder}
-                  stateProps={this.props.stateProps}
-                />
-           </div>
+        <TextField
+          autoSuggest={autoSuggest}
+          autoSuggestMethods={autoSuggestMethods}
+          label="lbl"
+          value={this.state.people}
+          placeholder={filterPlaceHolder}
+          stateProps={this.props.stateProps}
+        />
       </div>
     );
-  }
-  private handleRemove = (event: any) => {
-    const item = this.state.selectedItems.find(x => x.name === event.currentTarget.previousElementSibling.innerText);
-    const items = this.state.selectedItems;
-    if (this.props.minSelectedItems !== undefined && this.props.minSelectedItems === items.length) {
-      return;
-    }
-    if (item !== undefined) {
-      const index: number = items.indexOf(item);
-      if (index !== -1) {
-        items.splice(index, 1);
-      }
-    }
-    this.setState({ ['selectedItems']: items });
-    return;
   }
 }
 

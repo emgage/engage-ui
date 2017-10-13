@@ -1,7 +1,5 @@
 import * as React from 'react';
 
-// import { PeoplePickerSearchType } from './PickerEnum';
-// import { PeoplePickerSource } from './PickerSource';
 import AutoSuggestText from '../../src/components/Picker/AutoSuggestText';
 import Card from '../../src/components/Picker/Card';
 
@@ -179,7 +177,7 @@ class PickerAutoSuggestExample extends React.Component<{}, {}> {
       value,
       onChange: autoSuggestMethods.onChange,
       onFocus: autoSuggestMethods.onInputFocus,
-      'aria-label': 'I am a label',
+      'aria-label': 'Picker input',
     };
     const stateProps = {value, suggestions, chipListState, inputProps}
 
@@ -191,8 +189,6 @@ class PickerAutoSuggestExample extends React.Component<{}, {}> {
         chipComponent={Chip}
         filterPlaceHolder={'hello'}
         searchResultComponent={Chip}
-        /* source={new PeoplePickerSource(PeoplePickerSearchType.Both)} */
-        /* moreInfoComponent={<Button children="ranmal" />}   */
       />
     );
   }
