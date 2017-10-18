@@ -20,6 +20,7 @@ export interface Props {
   children?: any;
   flip?: boolean;
   mode?: Mode;
+  accessibilityLabel?: string;
   overlay?: boolean;
   theme?: any;
 }
@@ -97,7 +98,7 @@ class OffCanvas extends React.PureComponent<Props, State> {
           onClose={noop}
           onClick={this.handleClick}
         >
-          <div className={theme.label}>
+          <div className={theme.label} aria-live={'assertive'} >
             {children}
           </div>
         </OffCanvasContent>
@@ -154,6 +155,8 @@ class OffCanvas extends React.PureComponent<Props, State> {
 
     accessibilityNode.tabIndex = 0;
     accessibilityNode.setAttribute('aria-describedby', id);
+    accessibilityNode.setAttribute('aria-expanded', this.state.active.toString());
+    accessibilityNode.setAttribute('aria-label', this.props.accessibilityLabel ? this.props.accessibilityLabel : '');
   }
 }
 
