@@ -13,6 +13,7 @@ import {
   Button,
   ButtonGroup,
   Card,
+  Checkbox,
   Chip,
   ChoiceList,
   ClickableChip,
@@ -110,6 +111,7 @@ class App extends React.Component<{}, State> {
 
     return (
       <div>
+        <Checkbox label={'I am a checkbox'} />
         <Banner title={'banner'} status={'success'}/>
         <Banner title={'banner'} status={'info'}/>
         <Banner title={'banner'} status={'warning'}/>
