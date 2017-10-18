@@ -133,7 +133,12 @@ class TextField extends React.PureComponent<Props, State> {
     if (enableTextCouter) {
       const maxLengthString = maxLength ? '/' + maxLength : '';
       const textCount = this.props.value ? this.props.value.toString().length : 0;
-      counterTextMarkup = <div className={theme.counterText} id={`${id}counter`}>{textCount}{maxLengthString}</div>;
+      const minLengthRed = this.props.minLength ? this.props.minLength : 0;
+      counterTextMarkup =
+        <div className={theme.counterText} id={`${id}counter`}>
+          <span className={minLengthRed > textCount ? theme.red : ''}>{textCount}</span>
+          {maxLengthString}
+        </div>;
     }
 
     const describedBy: string[] = [];
@@ -161,7 +166,8 @@ class TextField extends React.PureComponent<Props, State> {
       formNoValidate: true,
       autoComplete: normalizeAutoComplete(autoComplete),
       className: theme.input,
-      onChange: this.handleChange,
+      onChange: this.onChange,
+      onKeyDown: this.onKeyDown,
       ref: this.setInput,
       'aria-required': required ? true : false,
       'aria-describedby': describedBy.length ? describedBy.join(' ') : undefined,
@@ -224,10 +230,26 @@ class TextField extends React.PureComponent<Props, State> {
   }
 
   @autobind
-  private handleChange(event: React.FormEvent<HTMLInputElement>) {
+  private onChange(event: React.FormEvent<HTMLInputElement>) {
     const { onChange } = this.props;
     if (onChange == null) { return; }
-    onChange(event.currentTarget.value);
+    const value = this.props.value ? this.props.value : '';
+    const maxLength = this.props.maxLength ? this.props.maxLength : Number.POSITIVE_INFINITY;
+    if (value.length < maxLength && event.currentTarget.value.length <= maxLength) {
+      onChange(event.currentTarget.value);
+    }
+  }
+
+  @autobind
+  private onKeyDown(e:any) {
+    const { onChange } = this.props;
+    if (onChange == null) { return; }
+    const value = this.props.value ? this.props.value : '';
+    const maxLength = this.props.maxLength ? this.props.maxLength : Number.POSITIVE_INFINITY;
+    if (value.length >= maxLength && e.keyCode === 8) {
+      onChange(e.currentTarget.value.slice(0, e.currentTarget.value.length - 1));
+      e.preventDefault();
+    }
   }
 
   @autobind

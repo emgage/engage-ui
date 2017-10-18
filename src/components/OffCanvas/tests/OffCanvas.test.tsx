@@ -1,90 +1,108 @@
 import * as React from 'react';
 import { mount } from 'enzyme';
-import { OffCanvasMode } from '../OffCanvasProps';
-import OffCanvas from '../OffCanvas';
 import Button from '../../Button';
+import OffCanvas from '../../OffCanvas';
 
 describe('<OffCanvas />', () => {
-  describe('onClick()', () => {
-    it('is called when the link is clicked', () => {
-      const spy = jest.fn();
-      mount(<Button onClick={spy}>Push Left</Button>).simulate('click');
-      expect(spy).toHaveBeenCalled();
-    });
-  });
-  describe('width', () => {
-    it('sets the width on the offcanvasmenu', () => {
-      const offcanvasmenu = mount(<OffCanvas width={270} />);
-      expect(offcanvasmenu.prop('width')).toBe(270);
-    });
-  });
-  describe('transitionDuration', () => {
-    it('sets the transitionDuration on the offcanvasbody', () => {
-      const offcanvasmenu = mount(<OffCanvas transitionDuration={270} />);
-      expect(offcanvasmenu.prop('transitionDuration')).toBe(270);
-    });
-  });
-  describe('overlay', () => {
-    it('sets true the overlay on the offcanvasmenu', () => {
-      const offcanvasmenu = mount(<OffCanvas />);
-      expect(offcanvasmenu.prop('overlay')).toBeUndefined();
-    });
-    it('sets true the overlay on the offcanvasmenu', () => {
-      const offcanvasmenu = mount(<OffCanvas overlay />);
-      expect(offcanvasmenu.prop('overlay')).toBe(true);
-    });
-  });
-  describe('flip', () => {
-    it('sets true the flip on the offcanvasmenu', () => {
-      const offcanvasmenu = mount(<OffCanvas />);
-      expect(offcanvasmenu.prop('flip')).toBeUndefined();
-    });
-    it('sets true the flip on the offcanvasmenu', () => {
-      const offcanvasmenu = mount(<OffCanvas flip />);
-      expect(offcanvasmenu.prop('flip')).toBe(true);
-    });
-  });
-  describe('set style', () => {
-    const closedStyle = {
-      width: '270px',
-      top: '0px',
-      left: 'auto',
-      right: '-270px',
-      transitionDuration: '270ms',
-    };
-    let currStyle = Object.assign({}, closedStyle);
-    it('set closestyle', () => {
 
-      const offcanvasstyle = mount(<div style={currStyle} />);
-      expect(offcanvasstyle.prop('style')).toBe(currStyle);
-    });
-    it('set openstyle', () => {
+  const children = <div><p>Test</p><ul><li>Link 1</li><li>Link 2</li><li>Link 3</li></ul></div>;
+  const activatorNode = <Button > OffCanvas </Button>;
 
-      const openStyle = {
-        left: '-270px',
-        right: 'auto',
-      };
-      currStyle = Object.assign({}, currStyle, openStyle);
-      const offcanvasstyle = mount(<div style={currStyle} />);
-      expect(offcanvasstyle.prop('style')).toBe(currStyle);
+  describe('when default props are provided', () => {
+    it('default OffCanvas with default props', () => {
+      const canvasMenu = mount(<OffCanvas activator={activatorNode} >{children}</OffCanvas>);
+      expect(canvasMenu.prop('mode')).toBeUndefined;
+      expect(canvasMenu.prop('overlay')).toBeUndefined;
+      expect(canvasMenu.prop('flip')).toBeUndefined;
+      expect(canvasMenu.find('button').exists()).toBe(true);
     });
   });
-  describe('mode', () => {
-    it('sets mode to "slide" on the offcanvas', () => {
-      const offcanvas = mount(<OffCanvas mode={OffCanvasMode.slide} />);
-      expect(offcanvas.prop('mode')).toBe(0);
+  describe('Mode', () => {
+    it('when set to slide', () => {
+      const canvasMenu = mount(<OffCanvas mode="slide" activator={activatorNode}>{children}</OffCanvas>);
+      expect(canvasMenu.prop('mode')).toBe('slide');
+      expect(canvasMenu.prop('overlay')).toBeUndefined;
+      expect(canvasMenu.prop('flip')).toBeUndefined;
+      expect(canvasMenu.find('button').exists()).toBe(true);
     });
-    it('sets mode to "push" on the offcanvas', () => {
-      const offcanvas = mount(<OffCanvas mode={OffCanvasMode.push} />);
-      expect(offcanvas.prop('mode')).toBe(2);
+    it('when set to reveal', () => {
+      const canvasMenu = mount(<OffCanvas mode="reveal" activator={activatorNode}>{children}</OffCanvas>);
+      expect(canvasMenu.prop('mode')).toBe('reveal');
+      expect(canvasMenu.prop('overlay')).toBeUndefined;
+      expect(canvasMenu.prop('flip')).toBeUndefined;
+      expect(canvasMenu.find('button').exists()).toBe(true);
     });
-    it('sets mode to "none" on the offcanvas', () => {
-      const offcanvas = mount(<OffCanvas mode={OffCanvasMode.none} />);
-      expect(offcanvas.prop('mode')).toBe(3);
+  });
+  describe('Active', () => {
+    it('when not set', () => {
+      const canvasMenu = mount(<OffCanvas mode="slide" activator={activatorNode}>{children}</OffCanvas>);
+      expect(canvasMenu.prop('mode')).toBe('slide');
+      expect(canvasMenu.prop('overlay')).toBeUndefined;
+      expect(canvasMenu.prop('flip')).toBeUndefined;
+      expect(canvasMenu.prop('active')).toBeUndefined;
+      expect(canvasMenu.find('button').exists()).toBe(true);
     });
-    it('sets mode to "reveal" on the offcanvas', () => {
-      const offcanvas = mount(<OffCanvas mode={OffCanvasMode.reveal} />);
-      expect(offcanvas.prop('mode')).toBe(1);
+    it('when set to true', () => {
+      const canvasMenu = mount(<OffCanvas mode="slide" activator={activatorNode} active>{children}</OffCanvas>);
+      expect(canvasMenu.prop('mode')).toBe('slide');
+      expect(canvasMenu.prop('overlay')).toBeUndefined;
+      expect(canvasMenu.prop('flip')).toBeUndefined;
+      expect(canvasMenu.prop('active')).toBe(true);
+      expect(canvasMenu.find('button').exists()).toBe(true);
+    });
+    it('when set to false', () => {
+      const canvasMenu = mount(<OffCanvas mode="slide" activator={activatorNode} active={false}>{children}</OffCanvas>);
+      expect(canvasMenu.prop('mode')).toBe('slide');
+      expect(canvasMenu.prop('overlay')).toBeUndefined;
+      expect(canvasMenu.prop('flip')).toBeUndefined;
+      expect(canvasMenu.prop('active')).toBe(false);
+      expect(canvasMenu.find('button').exists()).toBe(true);
+    });
+  });
+  describe('Flip', () => {
+    it('when not set', () => {
+      const canvasMenu = mount(<OffCanvas mode="slide" activator={activatorNode}>{children}</OffCanvas>);
+      expect(canvasMenu.prop('mode')).toBe('slide');
+      expect(canvasMenu.prop('overlay')).toBeUndefined;
+      expect(canvasMenu.prop('flip')).toBeUndefined;
+      expect(canvasMenu.find('button').exists()).toBe(true);
+    });
+    it('when set to true', () => {
+      const canvasMenu = mount(<OffCanvas mode="slide" activator={activatorNode} flip>{children}</OffCanvas>);
+      expect(canvasMenu.prop('mode')).toBe('slide');
+      expect(canvasMenu.prop('overlay')).toBeUndefined;
+      expect(canvasMenu.prop('flip')).toBe(true);
+      expect(canvasMenu.find('button').exists()).toBe(true);
+    });
+    it('when set to false', () => {
+      const canvasMenu = mount(<OffCanvas mode="slide" activator={activatorNode} flip={false}>{children}</OffCanvas>);
+      expect(canvasMenu.prop('mode')).toBe('slide');
+      expect(canvasMenu.prop('overlay')).toBeUndefined;
+      expect(canvasMenu.prop('flip')).toBe(false);
+      expect(canvasMenu.find('button').exists()).toBe(true);
+    });
+  });
+  describe('Overlay', () => {
+    it('when not set', () => {
+      const canvasMenu = mount(<OffCanvas mode="slide" activator={activatorNode}>{children}</OffCanvas>);
+      expect(canvasMenu.prop('mode')).toBe('slide');
+      expect(canvasMenu.prop('overlay')).toBeUndefined;
+      expect(canvasMenu.prop('flip')).toBeUndefined;
+      expect(canvasMenu.find('button').exists()).toBe(true);
+    });
+    it('when set to true', () => {
+      const canvasMenu = mount(<OffCanvas mode="slide" activator={activatorNode} overlay>{children}</OffCanvas>);
+      expect(canvasMenu.prop('mode')).toBe('slide');
+      expect(canvasMenu.prop('overlay')).toBe(true);
+      expect(canvasMenu.prop('flip')).toBeUndefined;
+      expect(canvasMenu.find('button').exists()).toBe(true);
+    });
+    it('when set to false', () => {
+      const canvasMenu = mount(<OffCanvas mode="slide" activator={activatorNode} overlay={false}>{children}</OffCanvas>);
+      expect(canvasMenu.prop('mode')).toBe('slide');
+      expect(canvasMenu.prop('overlay')).toBe(false);
+      expect(canvasMenu.prop('flip')).toBeUndefined;
+      expect(canvasMenu.find('button').exists()).toBe(true);
     });
   });
 });

@@ -31,9 +31,9 @@ class ClickableChip extends React.PureComponent<Props, State> {
         } = this.props;
     const updatedChip = React.cloneElement(chip, { onClick, clickable: true });
     return (
-            <Popover active={this.state.active} activator={updatedChip} onClose={this.onClose}>
-                {this.props.children}
-            </Popover>
+      <Popover active={this.state.active} activator={updatedChip} onClose={this.onClose}>
+        {this.props.children}
+      </Popover>
     );
   }
   private handleClick = () => {

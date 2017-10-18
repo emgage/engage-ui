@@ -21,6 +21,7 @@ import confettiSvg from './icons/confetti.svg';
 export type Status = 'success' | 'info' | 'warning' | 'critical';
 
 export interface Props {
+  ariaLabel?: string;
   icon?: IconProps['source'];
   title?: string;
   status?: Status;
@@ -108,7 +109,7 @@ const banner = ({
   if (children || actionMarkup) {
     contentID = `${id}Content`;
     contentMarkup = (
-      <div className={theme.content} id={contentID}>
+      <div className={theme.content} id={contentID} aria-label={this.props.ariaLabel}>
         {children}
         {actionMarkup}
       </div>
@@ -118,7 +119,7 @@ const banner = ({
   const dismissButton = onDismiss
     ? (
       <div className={theme.dismiss}>
-        <Button plain icon="cancelSmall" accessibilityLabel="Dismiss notification" />
+        <Button plain icon="cancelSmall" accessibilityLabel="Dismiss notification" onClick={onDismiss}/>
       </div>
     )
     : null;
