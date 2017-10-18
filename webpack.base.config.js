@@ -12,12 +12,12 @@ module.exports = {
         rules: [
             {
                 test: /\.jsx?$/,
-                loaders: ['babel-loader'],
-                exclude: /node_modules/
+                loader: 'babel-loader',
+                exclude: /node_modules/,
             }, 
             {
                 test: /\.tsx?$/,
-                loaders: ['ts-loader'],
+                loader: 'babel-loader!ts-loader',
                 exclude: /node_modules/
             },
             {
@@ -53,7 +53,6 @@ module.exports = {
                         loader: 'sass-resources-loader',
                         options: {
                             resources: [
-                                //'./src/styles/global.scss',
                                 './src/styles/calendar.scss',
                                 './src/styles/foundation.scss',
                                 './themes/Delicious/foundation.scss',
@@ -72,12 +71,9 @@ module.exports = {
             }, 
             {
               test: /DatePicker.*\.svg/,
-              loaders: [
+              loader: [
                 {
                   loader: 'babel-loader',
-                  query: {
-                    presets: ['es2015', 'react'],
-                  }
                 },
                 {
                   loader: 'react-svg-loader',
@@ -89,7 +85,7 @@ module.exports = {
             }, 
             {
                 test: /\.(jpe?g|ico|png|gif)$/i,
-                loaders: [
+                loader: [
                     'file-loader?hash=sha512&digest=hex&name=[hash].[ext]',
                     'image-webpack-loader?bypassOnDebug=false'
                 ]

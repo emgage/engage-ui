@@ -8,7 +8,7 @@ import { AVATAR } from '../ThemeIdentifiers';
 import * as baseTheme from './Avatar.scss';
 import * as avatars from './images';
 
-export type Size = 'small' | 'medium' | 'large' ;
+export type Size = 'small' | 'medium' | 'large';
 
 const STYLE_CLASSES = ['one', 'two', 'three', 'four', 'five', 'six'];
 const AVATAR_IMAGES = Object.keys(avatars).map((key: keyof typeof avatars) => avatars[key]);

@@ -8,9 +8,11 @@ import DateRangePickerWrapper from './DateRangePickerWrapper';
 import PickerAutoSuggestExample from './PickerAutoSuggestExample';
 
 import {
+  Banner,
   Button,
   ButtonGroup,
   Card,
+  Checkbox,
   Chip,
   ChoiceList,
   ClickableChip,
@@ -176,7 +178,6 @@ class App extends React.Component<{}, State> {
             veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
             ea commodo consequat. Duis aute irure dolor in reprehenderit in
               </p>
-
           </Modal>
       </div>
       <div>
@@ -243,9 +244,13 @@ class App extends React.Component<{}, State> {
             veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
             ea commodo consequat. Duis aute irure dolor in reprehenderit in
               </p>
-
           </Modal>
       </div>
+        <Checkbox label={'I am a checkbox'} />
+        <Banner title={'banner'} status={'success'}/>
+        <Banner title={'banner'} status={'info'}/>
+        <Banner title={'banner'} status={'warning'}/>
+        <Banner title={'banner'} status={'critical'}/>
         <PickerAutoSuggestExample />
         <SingleDatePickerWrapper />
         <DateRangePickerWrapper />
