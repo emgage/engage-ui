@@ -80,6 +80,7 @@ const checkbox = ({
           onBlur={onBlur}
           aria-invalid={error != null}
           aria-describedby={describedBy.length ? describedBy.join(' ') : undefined}
+          aria-checked={checked}
         />
 
         <div className={theme.backdrop} />

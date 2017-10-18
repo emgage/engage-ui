@@ -4,12 +4,8 @@ $spinner-icon-size: rem(12px);
 
 $stacking-order: (
   contents: 20,
-  backdrop: -1,
+  backdrop: 10,
 );
-
-.red {
-  color: red;
-}
 
 .textField {
   @include text-style-input;
@@ -74,7 +70,7 @@ $stacking-order: (
 .input {
   @include text-style-input;
   position: relative;
-  // z-index: z-index(contents, $stacking-order);
+  z-index: z-index(contents, $stacking-order);
   display: block;
   flex: 1 1 0%;
   width: 100%;
@@ -86,6 +82,8 @@ $stacking-order: (
   font-family: inherit;
   font-size: inherit;
   font-weight: inherit;
+  -webkit-appearance: none;
+  -moz-appearance: none;
   appearance: none;
 
   &:disabled {
@@ -111,10 +109,14 @@ $stacking-order: (
   // These properties are used to remove the default "spinner" controls
   // for number fields, since we add our own, custom versions instead.
   &[type='number'] {
+    -webkit-appearance: textfield;
+    -moz-appearance: textfield;
     appearance: textfield;
 
     &::-webkit-outer-spin-button,
     &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      -moz-appearance: none;
       appearance: none;
       margin: 0;
     }
@@ -122,8 +124,7 @@ $stacking-order: (
 }
 
 .backdrop {
-  position: absolute;
-  z-index: z-index(backdrop, $stacking-order);
+  z-index: 0;
   top: 0;
   bottom: 0;
   left: 0;
@@ -136,21 +137,9 @@ $stacking-order: (
   transition: box-shadow duration() easing();
 }
 
-.prefix {
-  position: relative;
-  z-index: z-index(contents, $stacking-order);
-  flex: 0 0 auto;
-  margin-right: $addon-horizontal-spacing;
-  color: currentColor;
-}
 
-.suffix {
-  position: relative;
-  z-index: z-index(contents, $stacking-order);
-  flex: 0 0 auto;
-  margin-left: $addon-horizontal-spacing;
-  color: currentColor;
-}
+
+
 
 .spinner {
   z-index: z-index(contents, $stacking-order);
@@ -192,6 +181,8 @@ $stacking-order: (
   flex: 1 1 0%;
   justify-content: center;
   align-items: center;
+  -webkit-appearance: none;
+  -moz-appearance: none;
   appearance: none;
   background: linear-gradient(to bottom, color(white), color(sky, lighter));
   border: none;

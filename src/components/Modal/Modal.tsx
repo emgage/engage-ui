@@ -146,6 +146,8 @@ class Modal extends React.Component<Props, {}> {
             id={props.id}
             onClose={this.handleCloseClick}
             closeOnBackgroud={props.closeOnBackgroud ? this.handleToggleClick : undefined}
+            close={props.close}
+            modalOverflow={props.modalOverflow}
             backdropEnabled={props.backdropEnabled}
             size={props.size}
           >
@@ -154,7 +156,6 @@ class Modal extends React.Component<Props, {}> {
         </div>
       </div>
     );
-
   }
 }
 
