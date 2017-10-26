@@ -7,12 +7,14 @@ $horizontal-padding: (3 * $height / 8);
     color: color(ink);//rgba(0,0,0,0.6);
     line-height: $height;
     padding: 0 $horizontal-padding;
+    border: none;
     border-radius: $height / 2;
     background-color: color(sky);//#e4e4e4;
     margin-bottom: 5px;
     margin-right: 5px;
     overflow: hidden;
     text-overflow: ellipsis;
+    vertical-align: top;
 }
 
 .Image {
