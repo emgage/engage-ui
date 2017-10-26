@@ -8,7 +8,7 @@ import DateRangePickerWrapper from './DateRangePickerWrapper';
 import PickerAutoSuggestExample from './PickerAutoSuggestExample';
 
 import {
-  Banner,
+  Badge,
   Button,
   ButtonGroup,
   Card,
@@ -112,6 +112,14 @@ class App extends React.Component<{}, State> {
 
     return (
       <div>
+        <Badge children={'Badge'}/>
+        <Badge children={'Badge'} status={'success'} />
+        <Badge children={'Badge'} status={'info'} />
+        <Badge children={'Badge'} status={'attention'} />
+        <Badge children={'Badge'} status={'warning'} />
+        <Badge children={'Badge'} progress={'incomplete'} />
+        <Badge children={'Badge'} progress={'partiallyComplete'} />
+        <Badge children={'Badge'} progress={'complete'} />
         <div>
         <h1>This is my Modal Component!!</h1>
           <Modal
