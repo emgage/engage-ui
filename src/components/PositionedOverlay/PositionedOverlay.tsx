@@ -4,7 +4,6 @@ import autobind from '@shopify/javascript-utilities/autobind';
 import { addEventListener, removeEventListener } from '@shopify/javascript-utilities/events';
 import { getRectForNode, Rect } from '@shopify/javascript-utilities/geometry';
 import { closest } from '@shopify/javascript-utilities/dom';
-
 import { forNode as ScrollableForNode } from '../Scrollable';
 import { layer } from '../shared';
 import { POSITIONED_OVERLAY } from '../ThemeIdentifiers';
@@ -93,7 +92,9 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
       <div
         className={theme.positionedOverlay}
         style={{ top, left, zIndex }}
-        ref={(input) => { this.setOverlay(input as HTMLElement); }}
+        ref={(input) => {
+          this.setOverlay(input as HTMLElement);
+        }}
       >
         {render(this.overlayDetails())}
       </div>
@@ -103,7 +104,6 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
   @autobind
   private overlayDetails(): OverlayDetails {
     const { measuring, left, positioning, height, activatorRect } = this.state;
-
     return {
       measuring,
       left,
@@ -148,8 +148,8 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
         zIndex,
         measuring: false,
         activatorRect: getRectForNode(activator),
-        left: horizontalPosition,
-        top: verticalPosition.top,
+        left: window.scrollX + horizontalPosition,
+        top: window.scrollY + verticalPosition.top,
         height: verticalPosition.height,
         positioning: verticalPosition.positioning as Positioning,
         outsideScrollableContainer: onScrollOut != null && rectIsOutsideOfRect(activatorRect, scrollableContainerRect),

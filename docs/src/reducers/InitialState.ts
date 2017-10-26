@@ -2,6 +2,32 @@ import { IDocumentAppState } from '../Types';
 
 import ChoiceListState from './componentState/ChoiceListState';
 import PanelState from './componentState/PanelState';
+import ChipState from './componentState/ChipState';
+import ValidatedTextFieldState from './componentState/ValidatedTextFieldState';
+import ValidatedFormState from './componentState/ValidatedFormState';
+import ChoiceState from './componentState/ChoiceState';
+import IconState from './componentState/IconState';
+import RadioButtonState from './componentState/RadioButtonState';
+import HeadingState from './componentState/HeadingState';
+import SubheadingState from './componentState/SubheadingState';
+import StackState from './componentState/StackState';
+import TooltipState from './componentState/TooltipState';
+import ClickableChipState from './componentState/ClickableChipState';
+import VideoState from './componentState/VideoState';
+import VisuallyHiddenState from './componentState/VisuallyHiddenState';
+import PopoverState from './componentState/PopoverState';
+import ImageState from './componentState/ImageState';
+import ScrollableState from './componentState/ScrollableState';
+import LinkState from './componentState/LinkState';
+import TextFieldState from './componentState/TextFieldState';
+import FlexBoxState from './componentState/FlexBoxState';
+import FormLayoutState from './componentState/FormLayoutState';
+import ButtonGroupState from './componentState/ButtonGroupState';
+import TagState from './componentState/TagState';
+import ButtonState from './componentState/ButtonState';
+import UnstyledLinkState from './componentState/UnstyledLinkState';
+import AvatarState from './componentState/AvatarState';
+import CheckboxState from './componentState/CheckboxState';
 import DisplayTextState from './componentState/DisplayTextState';
 import ListState from './componentState/ListState';
 import MessageState from './componentState/MessageState';
@@ -15,11 +41,37 @@ import BannerState from './componentState/BannerState';
 import LabelledState from './componentState/LabelledState';
 import LabelState from './componentState/LabelState';
 import PositionedOverlayState  from './componentState/PositionedOverlayState';
+import ModalState  from './componentState/ModalState';
 
 const intialState : IDocumentAppState = {
   components: [
     ChoiceListState,
     PanelState,
+    ChipState,
+    ValidatedFormState,
+    ValidatedTextFieldState,
+    ChoiceState,
+    IconState,
+    RadioButtonState,
+    HeadingState,
+    SubheadingState,
+    StackState,
+    TooltipState,
+    ClickableChipState,
+    VideoState,
+    VisuallyHiddenState,
+    PopoverState,
+    ImageState,
+    ScrollableState,
+    TextFieldState,
+    FlexBoxState,
+    FormLayoutState,
+    ButtonGroupState,
+    TagState,
+    ButtonState,
+    UnstyledLinkState,
+    AvatarState,
+    CheckboxState,
     DisplayTextState,
     ListState,
     MessageState,
@@ -33,6 +85,8 @@ const intialState : IDocumentAppState = {
     LabelledState,
     LabelState,
     PositionedOverlayState,
+    ModalState,
+    LinkState,
   ],
 };
 

@@ -10,7 +10,7 @@ export interface Props {
   removable?: boolean;
   image?: {
     url: string,
-    alt: string,
+    alt?: string,
   };
   transparent?: boolean;
   moreInfoComponent?: React.ReactNode;
@@ -20,16 +20,18 @@ export interface Props {
   onRemove?(event: any): void;
   onClick?(event: any): void;
   handleMoreInfo?(): void;
+  key?: any;
+  markedForDelete?: boolean;
 }
 
 class Chip extends React.PureComponent<Props, any> {
   render() {
     const {
-        clickable,
-        removable,
-        image,
-        transparent,
-        theme,
+      clickable,
+      removable,
+      image,
+      transparent,
+      theme,
     } = this.props;
 
     const className = classNames(

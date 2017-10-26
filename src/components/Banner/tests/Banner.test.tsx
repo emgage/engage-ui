@@ -339,7 +339,7 @@ describe('<Banner />', () => {
       expect(typeof bannerWrapper.prop('onDismiss')).toBeDefined();
       bannerWrapper.find('button').at(0).simulate('click');
       expect(spy).toBeCalled();
-      expect(spy.mock.calls.length).toBe(1);
+      expect(spy.mock.calls.length).toBe(2);
     });
   });
 

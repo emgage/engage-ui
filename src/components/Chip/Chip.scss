@@ -46,3 +46,7 @@ $horizontal-padding: (3 * $height / 8);
 .transparent{
     background-color: transparent;
 }
+
+.markedForDelete {
+  background-color: yellow;
+}

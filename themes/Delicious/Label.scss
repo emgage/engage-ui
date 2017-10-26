@@ -4,6 +4,7 @@ $lable-text-color: #999;
 .Text {
   color: $lable-placeholder-text-color;
   transition: 0.3s all ease;
+  z-index:2;
 
   &.focused,
   &:not(.empty) {

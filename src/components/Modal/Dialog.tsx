@@ -9,15 +9,14 @@ import * as baseTheme from './Modal.scss';
 export enum SizeType {
   Small = 300,
   Medium = 600,
-  Large = 900,
+  Large = 800,
 }
 
 export type Size = 'Small' | 'Medium' | 'Large' | number;
 
 export interface SizeStyle {
+  maxWidth: string;
   width: string;
-  marginLeft: string;
-  left: string;
 }
 
 export interface Props {
@@ -27,6 +26,7 @@ export interface Props {
   header?: React.ReactNode;
   id?: string;
   backdropEnabled?: boolean;
+  modalOverflow?: boolean;
   size?: Size;
   theme?: any;
   onClose?(e: React.SyntheticEvent<HTMLElement>): void;
@@ -34,7 +34,6 @@ export interface Props {
 }
 
 const dialog = (props: Props) => {
-
   let dialogWidthSize;
 
   switch (props.size) {
@@ -63,7 +62,7 @@ const dialog = (props: Props) => {
     float: `right`,
   };
 
-  const close = props.onClose
+  const close = props.close
     ? <Button style={buttonStyle} data-id={props.id ? props.id : `close-${props.id}`} onClick={props.onClose} icon="cancel" />
     : null;
 
@@ -76,9 +75,8 @@ const dialog = (props: Props) => {
   const footer = props.footer ? <div className={props.theme.footer}>{props.footer}</div> : null;
 
   const propSize: SizeStyle = {
-    width: `${dialogWidthSize}px`,
-    marginLeft: `-${dialogWidthSize as number / 2}px`,
-    left: '50%',
+    maxWidth: `${dialogWidthSize}px`,
+    width: '96%',
   };
 
   const type = {

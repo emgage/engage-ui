@@ -100,7 +100,7 @@ const select = ({
       <div className={className}>
         <select
           id={id}
-          name={name}
+          name={name ? name : 'select'}
           value={value}
           defaultValue={PLACEHOLDER_VALUE}
           className={theme.input}
