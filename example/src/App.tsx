@@ -20,9 +20,6 @@ import {
   Column,
   DisplayText,
   FlexBox,
-  FlexAlign,
-  FlexDirection,
-  FlexJustify,
   FormLayout,
   Heading,
   Link,
@@ -601,7 +598,7 @@ class App extends React.Component<{}, State> {
           <div style={{ backgroundColor: 'lime' }}>Demo 3</div>
         </FlexBox>
 
-        <FlexBox direction={FlexDirection.Column} align={FlexAlign.Stretch} justify={FlexJustify.Center}>
+        <FlexBox direction="Column" align="Stretch" justify="Center">
           <div style={{ backgroundColor: 'aqua' }}>Demo 1</div>
           <div style={{ backgroundColor: 'pink' }}>Demo 2</div>
           <div style={{ backgroundColor: 'lime' }}>Demo 3</div>
@@ -618,13 +615,13 @@ class App extends React.Component<{}, State> {
             <Link>Tooltip 2</Link>
           </Tooltip>
 
-        <FlexBox direction={FlexDirection.Row} align={FlexAlign.Stretch} justify={FlexJustify.SpaceAround}>
+        <FlexBox direction="Row" align="Stretch" justify="SpaceAround">
           <div style={{ backgroundColor: 'aqua' }}>Demo 1</div>
           <div style={{ backgroundColor: 'pink' }}>Demo 2</div>
           <div style={{ backgroundColor: 'lime' }}>Demo 3</div>
         </FlexBox>
 
-        <FlexBox inline={true} direction={FlexDirection.Column} align={FlexAlign.Stretch} justify={FlexJustify.Center}>
+        <FlexBox inline={true} direction="Column" align="Stretch" justify="Center">
           <div style={{ backgroundColor: 'aqua' }}>Demo 1</div>
           <div style={{ backgroundColor: 'pink' }}>Demo 2</div>
           <div style={{ backgroundColor: 'lime' }}>Demo 3</div>
@@ -843,6 +840,18 @@ class App extends React.Component<{}, State> {
         <Link>Tooltip 2</Link>
       </Tooltip>
       <br />
+      <Button icon="add" primary>
+        Create Role
+      </Button>
+      <br />
+      <br />
+      <br />
+      
+
+      <ButtonGroup segmented>
+          <Button primary>Save Draft</Button>
+          <Button primary>Publish</Button>
+      </ButtonGroup>
     </div>
     );
   }

@@ -78,13 +78,13 @@ const button = ({
 
   const content = iconMarkup || disclosureIconMarkup
     ? (
-      <span className={theme.Content}>
+      <span className={theme.content}>
         {iconMarkup}
         {childMarkup}
         {disclosureIconMarkup}
       </span>
     )
-    : <span className={theme.Content}>{childMarkup}</span>;
+    : <span className={theme.content}>{childMarkup}</span>;
 
   const type = submit ? 'submit' : 'button';
 

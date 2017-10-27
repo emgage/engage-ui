@@ -14,16 +14,16 @@ const FlexBoxState: IDocument = {
       desc: 'Set display of flex container.',
     }, {
       name: 'direction',
-      type: 'FlexDirection(row, row-reverse, column, column-reverse)',
-      desc: 'Sets the direction of flex items in a flex container.',
+      type: 'FlexDirection',
+      desc: 'Sets the direction of flex items in a flex container. Value of direction can be one from this list : "Row", "RowReverse", "Column", "ColumnReverse"',
     }, {
       name: 'justify',
-      type: 'FlexJustify(start, center, end, space-around, space-between)',
-      desc: 'Sets the alignment of flex items on the main axis.',
+      type: 'FlexJustify',
+      desc: 'Sets the alignment of flex items on the main axis. Value of justify can be one from this list : "Start", "Center", "End", "SpaceAround", "SpaceBetween"',
     }, {
       name: 'align',
-      type: 'FlexAlign(alignStart , alignEnd , alignCenter, alignStretch)',
-      desc: 'Sets the alignment of flex items on the cross axis.',
+      type: 'FlexAlign',
+      desc: 'Sets the alignment of flex items on the cross axis. Value of align can be one from this list : "Row", "RowReverse", "Column", "ColumnReverse"',
     }, {
       name: 'style',
       type: 'React.CSSProperties',
