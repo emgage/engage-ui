@@ -25,7 +25,7 @@ export interface Props {
   placeholder?: string;
   value?: string;
   helpText?: React.ReactNode;
-  enableTextCouter?: boolean;
+  enableTextCounter?: boolean;
   label: string;
   labelAction?: Action;
   labelHidden?: boolean;
@@ -48,6 +48,7 @@ export interface Props {
   pattern?: string;
   required?: boolean;
   spellCheck?: boolean;
+  resizable?: boolean;
   style?: React.CSSProperties;
   theme?: any;
   onChange?(value: string): void;
@@ -80,7 +81,7 @@ class TextField extends React.PureComponent<Props, State> {
       labelAction,
       labelHidden,
       helpText,
-      enableTextCouter,
+      enableTextCounter,
       maxLength,
       prefix,
       suffix,
@@ -90,6 +91,7 @@ class TextField extends React.PureComponent<Props, State> {
       onBlur,
       autoComplete,
       style,
+      resizable,
       ...rest,
     } = this.props;
 
@@ -101,7 +103,8 @@ class TextField extends React.PureComponent<Props, State> {
       disabled && theme.disabled,
       readOnly && theme.readOnly,
       errors && theme.error,
-      multiline && theme.multiline
+      multiline && theme.multiline,
+      resizable && theme.resizable
     );
 
     const prefixMarkup = prefix
@@ -118,19 +121,18 @@ class TextField extends React.PureComponent<Props, State> {
 
     const componentStyle = (multiline && height) ? { height, ...style } : style;
 
-    const resizer = multiline != null
-      ? (
-        <Resizer
+    const resizer = multiline === null
+      ? null
+      :(<Resizer
           contents={value || placeholder}
           currentHeight={height}
-          minimumLines={typeof multiline === 'number' ? multiline : 1}
+          minimumLines={typeof multiline === 'number' ? multiline : 3}
           onHeightChange={this.handleExpandingResize}
         />
-      )
-      : null;
+      );
 
     let counterTextMarkup;
-    if (enableTextCouter) {
+    if (enableTextCounter) {
       const maxLengthString = maxLength ? '/' + maxLength : '';
       const textCount = this.props.value ? this.props.value.toString().length : 0;
       const minLengthRed = this.props.minLength ? this.props.minLength : 0;
