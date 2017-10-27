@@ -8,7 +8,6 @@ export interface IProps {
   exampleComponent?: any;
 }
 
-// tslint:disable-next-line:variable-name
 class Example extends React.Component<IProps, any> {
   render() {
     return (

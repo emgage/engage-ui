@@ -9,8 +9,8 @@ export interface IDocument {
   heading: string;
   subheading?: string;
   property?:IProperty[];
-  exampleCodeExtra?: string; // SD - Needs to remove
-  exampleComponentExtra?: any; // SD - Needs to remove
+  exampleCodeExtra?: string;
+  exampleComponentExtra?: any;
   exampleCodeHeader?: string;
   exampleCodeDescription?: string;
   exampleCode?: string;
