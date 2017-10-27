@@ -23,7 +23,6 @@ export interface IPickerInfo {
 
 export type Type = 'hide' | 'mark';
 export interface Props {
-  required?: boolean;
   selectedResultsBehavior?: Type;
   filterPlaceHolder?: string;
   maxSelectedItems?: number;
@@ -91,7 +90,7 @@ class Picker extends React.Component<Props, State> {
           <TextField
             autoSuggest={autoSuggest}
             autoSuggestMethods={autoSuggestMethods}
-            label="lbl"
+            label="People"
             value={this.state.people}
             placeholder={filterPlaceHolder}
             onChange={searchBehavior}

@@ -6,15 +6,11 @@ export interface IProps{
 }
 
 export interface IState {
-  showModalState: boolean;
 }
 
 class PickerExample extends React.Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
-    this.state = {
-      showModalState: false,
-    };
   }
 
   render() {
@@ -34,10 +30,20 @@ class PickerExample extends React.Component<IProps, IState> {
 
     return (
       <div className={styles.example}>
-        <h3>1. Picker with all property:</h3>
+        <h3>1. Normal Picker:</h3>
         <br/>
          <Picker
-            required
+            chipComponent={Chip}
+            filterPlaceHolder="!People!!"
+            searchResultComponent={Chip}
+            source={pickerdata}
+            moreInfoComponent={<Button children="ranmal" />}
+          />
+        <br/>
+        <h3>2. Picker with limited selection:</h3>
+        <h4>User must select minimum number of items upto maximum limit. In below example, user must select minimum Two items and can select upto Five items.</h4>
+        <br/>
+         <Picker
             chipComponent={Chip}
             filterPlaceHolder="!People!!"
             searchResultComponent={Chip}

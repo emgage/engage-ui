@@ -379,7 +379,6 @@ class App extends React.Component<{}, State> {
           />
           <Loading />
           <Picker
-            required
             chipComponent={Chip}
             filterPlaceHolder="!People!!"
             searchResultComponent={Chip}

@@ -37,10 +37,10 @@ describe('when default props are provided', () => {
         theme={theme}
       />).setState({ ['searchItems']: searchData });
       (subject.find('input') as any).node.value = 'ran';
-      subject.find('input').simulate('change');
+      subject.find('input').first().simulate('change');
       expect(spySearch).toHaveBeenCalledWith('ran');
-      expect(subject.find('span').length).toBeGreaterThan(searchData.length);
-      subject.find('span').first().find('a').simulate('click');
+      expect(subject.find('span').length).toEqual(searchData.length);
+      subject.find('div').first().find('a').first().simulate('click');
       expect(spyClick).toHaveBeenCalled();
     });
   });
@@ -62,10 +62,10 @@ describe('when default props are provided', () => {
       subject.find('input').simulate('change');
       expect(spySearch).toHaveBeenCalledWith('ran');
       expect(subject.find('span').length).toBeGreaterThan(searchData.length);
-      subject.find('span').find('a').first().simulate('click');
+      subject.find('div').find('a').first().simulate('click');
       expect(spyClick).toHaveBeenCalled();
       expect(subject.find('span').length).toBeGreaterThan(selectedData.length);
-      subject.find('span').first().find('button').simulate('click');
+      subject.find('div').first().find('button').first().simulate('click');
       expect(spyRemove).toHaveBeenCalled();
     });
   });

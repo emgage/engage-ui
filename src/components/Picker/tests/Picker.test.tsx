@@ -21,7 +21,6 @@ const data: IPickerInfo[] = [];
 describe('when default props are provided', () => {
   it('div should have default picker elements', () => {
     const subject = mount(<UnthemedPicker
-      required={true}
       source={data}
       chipComponent={Chip}
       searchResultComponent={Chip}
@@ -32,10 +31,9 @@ describe('when default props are provided', () => {
       moreInfoComponentShowOn={DisplayMoreInfo.onHover}
       selectedResultsBehavior="mark"
       theme={theme}
-    />);
+/>);
     expect(subject.find('label').length).toBe(2);
     expect(subject.find('input').length).toBe(1);
-    expect(subject.find('input').prop('id')).toBe('TextField1');
     expect(subject.find('input').prop('placeholder')).toBe('Search people and group');
   });
   describe('searchBehavior()', () => {
