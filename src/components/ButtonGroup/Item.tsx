@@ -24,7 +24,7 @@ class Item extends React.PureComponent<Props, State> {
     const { focused } = this.state;
 
     const className = classNames(
-      theme.Item,
+      theme.item,
       focused && theme['Item-focused'],
       button.props.plain && theme['Item-plain']
     );
