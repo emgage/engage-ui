@@ -1,9 +1,9 @@
 import { IDocument } from '../../Types';
 import ChoiceListExample from '../../examples/ChoiceListExample/ChoiceListExample';
-import ChoiceListExampleMultiple from '../../examples/ChoiceListExample/ChoiceListExampleMultiple';
+import ChoiceListExample1 from '../../examples/ChoiceListExample/ChoiceListExample1';
 
 const ChoiceListExampleCode = require('!raw-loader!../../examples/ChoiceListExample/ChoiceListExample') as string;
-const ChoiceListExampleMultipleCode = require('!raw-loader!../../examples/ChoiceListExample/ChoiceListExampleMultiple') as string;
+const ChoiceListExample1Code = require('!raw-loader!../../examples/ChoiceListExample/ChoiceListExample1') as string;
 
 const choiceListState: IDocument = {
   id: 'choicelist',
@@ -45,10 +45,14 @@ const choiceListState: IDocument = {
       desc: 'Function to handle on change of choice list.',
     },
   ],
+  exampleCodeHeader: 'Example 1: Radio Buttons',
+  exampleCodeDescription: 'Choice list with single selection.',
   exampleCode: ChoiceListExampleCode,
   exampleComponent: ChoiceListExample,
-  exampleCodeExtra: ChoiceListExampleMultipleCode,
-  exampleComponentExtra: ChoiceListExampleMultiple,
+  exampleCodeHeader1: 'Example 2: Checkboxes',
+  exampleCodeDescription1: 'Choice list with multiple selection.',
+  exampleCode1: ChoiceListExample1Code,
+  exampleComponent1: ChoiceListExample1,
 };
 
 export default choiceListState;
