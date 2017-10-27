@@ -121,6 +121,10 @@ const TextFieldState: IDocument = {
       type: 'boolean',
       desc: 'Indicate whether value should have spelling checked.',
     }, {
+      name: 'resizable',
+      type: 'boolean',
+      desc: 'To make it resizable or not.',
+    }, {
       name: 'style',
       type: 'React.CSSProperties',
       desc: 'To provide styling.',

@@ -27,7 +27,12 @@ $stacking-order: (
     overflow: auto;
     padding-left: $backdrop-horizontal-spacing;
     padding-right: $backdrop-horizontal-spacing;
-    resize: none;
+  }
+}
+
+.multiline:not(.resizable) {
+  > .input {
+      resize: none;
   }
 }
 
