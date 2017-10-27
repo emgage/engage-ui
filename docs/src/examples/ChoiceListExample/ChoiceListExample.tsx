@@ -2,30 +2,10 @@ import * as React from 'react';
 import { ChoiceList } from '../../../../src/components/';
 import * as styles from '../../styles/components-page.scss';
 
-export interface IProps{
-}
-
-export interface IState {
-  radioValues: string[];
-}
-
-class ChoiceListExample extends React.Component<IProps, IState> {
-  constructor(props: IProps) {
-    super(props);
-
-    this.state = {
-      radioValues: [],
-    };
-  }
-
-  valueUpdater(field: any) {
-    return (value: any) => this.setState({ [field]: value });
-  }
-
+class ChoiceListExample extends React.Component {
   render() {
     return (
       <div className={styles.example}>
-        <h3>1. Choice list with single selection:</h3>
         <ChoiceList
           title="Company name"
           choices={[
@@ -40,8 +20,7 @@ class ChoiceListExample extends React.Component<IProps, IState> {
               value: 'required',
             },
           ]}
-          selected={this.state.radioValues}
-          onChange={this.valueUpdater('radioValues')}/>
+          selected={['hidden']}/>
       </div>
     );
   }
