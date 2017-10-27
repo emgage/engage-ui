@@ -50,6 +50,7 @@ const Nav = () => {
         <li><Link to="/component/label">Label Component</Link></li>
         <li><Link to="/component/positionedoverlay">Positioned Overlay Component</Link></li>
         <li><Link to="/component/modal">Modal Component</Link></li>
+        <li><Link to="/component/picker">Picker</Link></li>
       </ul>
     </nav>
   );

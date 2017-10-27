@@ -1,7 +1,4 @@
 import * as React from 'react';
-
-import { PeoplePickerSearchType } from './PickerEnum';
-import { PeoplePickerSource } from './PickerSource';
 import AutoSuggestText from '../../src/components/Picker/AutoSuggestText';
 
 import {
@@ -149,7 +146,7 @@ class PickerAutoSuggestExample extends React.Component<{}, {}> {
         chipComponent={Chip}
         filterPlaceHolder={'hello'}
         searchResultComponent={Chip}
-        source={new PeoplePickerSource(PeoplePickerSearchType.Both)}
+        source={itemsList}
         moreInfoComponent={<Button children="ranmal" />}  
         itemsList={itemsList}
       />

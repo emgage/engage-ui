@@ -42,6 +42,7 @@ import LabelledState from './componentState/LabelledState';
 import LabelState from './componentState/LabelState';
 import PositionedOverlayState  from './componentState/PositionedOverlayState';
 import ModalState  from './componentState/ModalState';
+import PickerState  from './componentState/PickerState';
 
 const intialState : IDocumentAppState = {
   components: [
@@ -87,6 +88,7 @@ const intialState : IDocumentAppState = {
     PositionedOverlayState,
     ModalState,
     LinkState,
+    PickerState,
   ],
 };
 

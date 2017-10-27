@@ -20,28 +20,24 @@ export interface IPickerInfo {
   imageUrl?: string;
   url?: string;
 }
-export interface IPickerSource<T> {
-  performFilter(filterString: string): Promise<T[]>;
-}
+
 export type Type = 'hide' | 'mark';
 export interface Props {
-  required?: boolean;
   selectedResultsBehavior?: Type;
   filterPlaceHolder?: string;
   maxSelectedItems?: number;
   minSelectedItems?: number;
-  millisecondsToWaitBeforeSearch?: number;
   chipComponent?: React.ReactNode;
   searchResultComponent?: React.ReactNode;
   moreInfoComponent?: React.ReactNode;
-  source: IPickerSource<IPickerInfo>;
+  source: IPickerInfo[];
   moreInfoComponentShowOn?: DisplayMoreInfo;
   style?: React.CSSProperties;
   theme?: any;
   autoSuggest?: boolean;
   autoSuggestMethods?: object[];
   itemsList?: object[];
-  stateProps?: {chipListState: any, suggestions: any, inputProps: object, value?: any};
+  stateProps?: { chipListState: any, suggestions: any, inputProps: object, value?: any };
   searchBehavior?(): void;
   onSelect?(item: any): void;
   onRemove?(item: any): void;
@@ -83,48 +79,41 @@ class Picker extends React.Component<Props, State> {
     }
     return (
       <div>
-           <div>
-              <div className={className}>
-                  {
-                      this.state.selectedItems.map((i) => {
-                        return React.createElement(chipComponent as React.ComponentClass<{ clickable: boolean, removable: boolean, onRemove(item: any): void }>, { onRemove, key: i.id, clickable: false, removable: true }, [i.name]);
-                      })
-                  }
-              </div>
-                <TextField
-                  autoSuggest={autoSuggest}
-                  autoSuggestMethods={autoSuggestMethods}
-                  label="lbl"
-                  value={this.state.people}
-                  placeholder={filterPlaceHolder}
-                  onChange={searchBehavior}
-                  itemsList={itemsList}
-                  stateProps={this.props.stateProps}
-                />
-           </div>
-            <div>
-              {
-                  this.state.searchItems.map((i) => {
-                    return React.createElement(searchResultComponent as React.ComponentClass<{ clickable: boolean, moreInfoComponent: React.ReactNode, moreInfoComponentShowOn: DisplayMoreInfo, onClick(item: any): void, handleMoreInfo(): void }>, { moreInfoComponent, moreInfoComponentShowOn, key: i.id, clickable: true, onClick: onSelect, handleMoreInfo: onMoreInfo }, [i.name]);
-                  })
-              }
+        <div>
+          <div className={className}>
+            {
+              this.state.selectedItems.map((i) => {
+                return React.createElement(chipComponent as React.ComponentClass<{ clickable: boolean, removable: boolean, onRemove(item: any): void }>, { onRemove, key: i.id, clickable: false, removable: true }, [i.name]);
+              })
+            }
           </div>
+          <TextField
+            autoSuggest={autoSuggest}
+            autoSuggestMethods={autoSuggestMethods}
+            label="People"
+            value={this.state.people}
+            placeholder={filterPlaceHolder}
+            onChange={searchBehavior}
+            itemsList={itemsList}
+            stateProps={this.props.stateProps}
+          />
+        </div>
+        <div>
+          {
+            this.state.searchItems.map((i) => {
+              return React.createElement(searchResultComponent as React.ComponentClass<{ clickable: boolean, moreInfoComponent: React.ReactNode, moreInfoComponentShowOn: DisplayMoreInfo, onClick(item: any): void, handleMoreInfo(): void }>, { moreInfoComponent, moreInfoComponentShowOn, key: i.id, clickable: true, onClick: onSelect, handleMoreInfo: onMoreInfo }, [i.name]);
+            })
+          }
+        </div>
       </div>
     );
   }
+
   private handleChange = (value: string) => {
     this.setState({ ['people']: value });
-    setTimeout(() => {
-      this.props.source.performFilter(value).then(this.onSuccess).catch(this.onError);
-    },         this.props.millisecondsToWaitBeforeSearch === undefined ? 0 : this.props.millisecondsToWaitBeforeSearch);
+    this.setState({ ['searchItems']: value ? this.props.source.filter(x => x.name.startsWith(value)) : [] });
   }
-  private onSuccess = (item: any) => {
-    this.setState({ ['searchItems']: item });
-  }
-  private onError = (item: any) => {
-        // TODO: Error display
-    alert(item);
-  }
+
   private handleRemove = (event: any) => {
     const item = this.state.selectedItems.find(x => x.name === event.currentTarget.previousElementSibling.innerText);
     const items = this.state.selectedItems;
