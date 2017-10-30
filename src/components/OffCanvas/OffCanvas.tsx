@@ -12,6 +12,13 @@ import OffCanvasContent from './OffCanvasContent';
 import * as baseTheme from './OffCanvas.scss';
 
 export type Mode = 'slide' | 'push' | 'reveal';
+export type WidthType = 'Small' | 'Medium' | 'Large' | string;
+
+export enum Width {
+  Small = '200px',
+  Medium = '270px',
+  Large = '340px',
+}
 
 export interface Props {
   active?: boolean;
@@ -23,6 +30,8 @@ export interface Props {
   accessibilityLabel?: string;
   overlay?: boolean;
   theme?: any;
+  width?: WidthType;
+  closeButton?: boolean;
 }
 
 export interface State {
@@ -37,7 +46,7 @@ class OffCanvas extends React.PureComponent<Props, State> {
     active: false,
   };
 
-  private id = getUniqueID();
+  public id = getUniqueID();
   private activatorNode: HTMLElement | null;
   private activatorContainer: HTMLElement | null;
 
@@ -84,19 +93,44 @@ class OffCanvas extends React.PureComponent<Props, State> {
       rootElement.className = this.state.active ? (theme.container) : '';
       rootElement.className += overlay && this.state.active ? ' ' + (theme.overlay) : '';
       rootElement.className += flip && this.state.active ? ' ' + (theme.flip) : '';
-      if (mode ===  'push' || mode ===  'reveal') {
+      if (mode === 'push' || mode === 'reveal') {
         rootElement.className += this.state.active ? ' ' + (theme.animation) : '';
       }
     }
 
+    let offCanvasWidth;
+
+    switch (this.props.width) {
+      case 'Small':
+        offCanvasWidth = Width.Small;
+        break;
+
+      case 'Medium':
+        offCanvasWidth = Width.Medium;
+        break;
+
+      case 'Large':
+        offCanvasWidth = Width.Large;
+        break;
+
+      default:
+        offCanvasWidth = this.props.width;
+        break;
+    }
+
+    const barWidth = {
+      width: `${offCanvasWidth}`,
+    };
+
     const bar = [
-      <div className={barClassName}>
+      <div className={barClassName} style={barWidth} key={id}>
         <OffCanvasContent
           id={id}
           activator={activatorNode}
           active={active || this.state.active}
           onClose={noop}
-          onClick={this.handleClick}
+          onCancel={this.handleClick}
+          closeButton={this.props.closeButton}
         >
           <div className={theme.label} aria-live={'assertive'} >
             {children}
@@ -109,17 +143,16 @@ class OffCanvas extends React.PureComponent<Props, State> {
       <div className={containerClassName}>
         {
           mode === 'reveal'
-          ?
-          <div className={theme.reveal}>
-            {bar}
-          </div>
-          :
-          bar
+            ?
+            <div className={theme.reveal} style={barWidth}>
+              {bar}
+            </div>
+            :
+            bar
         }
       </div>
     );
   }
-
 
   render() {
     const { activatorWrapper: WRAPPERCOMPONENT = 'span' } = this.props;
