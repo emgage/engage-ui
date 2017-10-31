@@ -10,6 +10,7 @@ export interface Props {
   removable?: boolean;
   image?: {
     url: string,
+    alt?: string,
   };
   transparent?: boolean;
   moreInfoComponent?: React.ReactNode;
@@ -27,6 +28,15 @@ export interface Props {
 }
 
 class Chip extends React.PureComponent<Props, any> {
+
+  onFocus = () => {
+    return this.props.autoSuggestMethods ? this.props.autoSuggestMethods.onfocus : '';
+  }
+
+  onBlur = () => {
+    return this.props.autoSuggestMethods ? this.props.autoSuggestMethods.onFocusOut : '';
+  }
+
   render() {
     const {
       clickable,
@@ -45,21 +55,22 @@ class Chip extends React.PureComponent<Props, any> {
 
     const chipContents = [(
       image
-      ?
-      <img className={theme.Image} src={image.url} aria-hidden key="1" />
-      : ''
+        ?
+        <img className={theme.Image} src={image.url} alt={image.alt} aria-hidden key="1" />
+        : ''
     ),
       <span key="2">
-        {this.props.children}
+      {this.props.children}
       <span className={theme.hidden}>{deleteInstruct}</span>
-      </span>,
+    </span>,
     ];
+
     return (
       <div
         className={className}
         tabIndex={this.props.tabIndex === 0 ? this.props.tabIndex : -1}
-        onFocus={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.onfocus : ''}
-        onBlur={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.onFocusOut : ''}
+        onFocus={this.onFocus}
+        onBlur={this.onBlur}
         ref={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.storeFocus : ''}
         role="option"
       >
@@ -74,11 +85,11 @@ class Chip extends React.PureComponent<Props, any> {
         }
         {
           removable
-              ?
-              <button type="button" className={theme.Remove} role={'alert'} onClick={this.props.onRemove} tabIndex={-1}>
-                <span aria-hidden="true">×</span>
-              </button>
-              : ''
+            ?
+            <button type="button" className={theme.Remove} role={'alert'} onClick={this.props.onRemove} tabIndex={-1}>
+              <span aria-hidden="true">×</span>
+            </button>
+            : ''
         }
       </div>
     );
