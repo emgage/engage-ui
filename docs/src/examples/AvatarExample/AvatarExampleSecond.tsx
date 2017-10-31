@@ -5,7 +5,11 @@ import * as styles from '../../styles/components-page.scss';
 const AvatarExample = () => (
   <div className={styles.example}>
     <Avatar
-      size="medium"
+      size="small"
+      name="John Doe"
+      initials="JD"
+      customer={false}
+      accessibilityLabel="hello"
     />
   </div>
 );
