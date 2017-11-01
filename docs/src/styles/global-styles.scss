@@ -16,13 +16,15 @@ time, mark, audio, video {
 	margin: 0;
 	padding: 0;
 	border: 0;
-	font: inherit;
-	vertical-align: baseline;
 }
 
 /* Global Styles */
 * {
   box-sizing:  border-box;
+}
+
+html {
+  font-size: 62.5%; /* default same as polaris, All rem size depend on this */
 }
 
 body {
@@ -44,10 +46,6 @@ h1 {
   text-align: left;
   font-family: 'Roboto', sans-serif;
 }
-
-button:focus { outline:0; }
-
-a { text-decoration: none; }
 
 .app_container {
   margin: 0 auto;
