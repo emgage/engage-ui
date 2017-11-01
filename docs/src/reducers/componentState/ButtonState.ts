@@ -1,7 +1,25 @@
 import { IDocument } from '../../Types';
 import ButtonExampleFirst from '../../examples/ButtonExample/ButtonExampleFirst';
+import ButtonExampleSecond from '../../examples/ButtonExample/ButtonExampleSecond';
+import ButtonExampleThird from '../../examples/ButtonExample/ButtonExampleThird';
+import ButtonExampleFourth from '../../examples/ButtonExample/ButtonExampleFourth';
+import ButtonExampleFifth from '../../examples/ButtonExample/ButtonExampleFifth';
+import ButtonExampleSixth from '../../examples/ButtonExample/ButtonExampleSixth';
+import ButtonExampleSeventh from '../../examples/ButtonExample/ButtonExampleSeventh';
+import ButtonExampleEighth from '../../examples/ButtonExample/ButtonExampleEighth';
+import ButtonExampleNinth from '../../examples/ButtonExample/ButtonExampleNinth';
+import ButtonExampleTenth from '../../examples/ButtonExample/ButtonExampleTenth';
 
 const ButtonExampleFirstCode = require('!raw-loader!../../examples/ButtonExample/ButtonExampleFirst') as string;
+const ButtonExampleSecondCode = require('!raw-loader!../../examples/ButtonExample/ButtonExampleSecond') as string;
+const ButtonExampleThirdCode = require('!raw-loader!../../examples/ButtonExample/ButtonExampleThird') as string;
+const ButtonExampleFourthCode = require('!raw-loader!../../examples/ButtonExample/ButtonExampleFourth') as string;
+const ButtonExampleFifthCode = require('!raw-loader!../../examples/ButtonExample/ButtonExampleFifth') as string;
+const ButtonExampleSixthCode = require('!raw-loader!../../examples/ButtonExample/ButtonExampleSixth') as string;
+const ButtonExampleSeventhCode = require('!raw-loader!../../examples/ButtonExample/ButtonExampleSeventh') as string;
+const ButtonExampleEighthCode = require('!raw-loader!../../examples/ButtonExample/ButtonExampleEighth') as string;
+const ButtonExampleNinthCode = require('!raw-loader!../../examples/ButtonExample/ButtonExampleNinth') as string;
+const ButtonExampleTenthCode = require('!raw-loader!../../examples/ButtonExample/ButtonExampleTenth') as string;
 
 const ButtonState: IDocument = {
   id: 'Button',
@@ -20,11 +38,11 @@ const ButtonState: IDocument = {
     }, {
       name: 'size',
       type: 'Size',
-      desc: 'Change the size of the button.',
+      desc: 'Change the size of the button. It can be slim or large',
     }, {
       name: 'fullWidth',
       type: 'boolean',
-      desc: 'display true or false value.Display full width button.',
+      desc: 'Allows the button to grow to the width of its container',
     }, {
       name: 'primary',
       type: 'boolean',
@@ -89,6 +107,44 @@ const ButtonState: IDocument = {
   ],
   exampleCode: ButtonExampleFirstCode,
   exampleComponent: ButtonExampleFirst,
+  exampleCodeHeader: '1. Basic Button:',
+  exampleCodeDescription: 'Used most in the interface. It is without any properties.',
+  exampleCode1: ButtonExampleSecondCode,
+  exampleComponent1: ButtonExampleSecond,
+  exampleCodeHeader1: '2.Plain Button:',
+  exampleCodeDescription1: 'Use for less important or less commonly used actions.',
+  exampleCode2: ButtonExampleThirdCode,
+  exampleComponent2: ButtonExampleThird,
+  exampleCodeHeader2: '3. Primary Button:',
+  exampleCodeDescription2: 'Use to highlight the most important actions.',
+  exampleCode3: ButtonExampleFourthCode,
+  exampleComponent3: ButtonExampleFourth,
+  exampleCodeHeader3: '4. Destructive Button:',
+  exampleCodeDescription3: 'Used when action is to delete the data.',
+  exampleCode4: ButtonExampleFifthCode,
+  exampleComponent4: ButtonExampleFifth,
+  exampleCodeHeader4: '5. Slim Button:',
+  exampleCodeDescription4: 'Use to make small size button.',
+  exampleCode5: ButtonExampleSixthCode,
+  exampleComponent5: ButtonExampleSixth,
+  exampleCodeHeader5: '6. Large Button:',
+  exampleCodeDescription5: 'Use to make large size button.',
+  exampleCode6: ButtonExampleSeventhCode,
+  exampleComponent6: ButtonExampleSeventh,
+  exampleCodeHeader6: '7. FullWidth Button:',
+  exampleCodeDescription6: 'Use for buttons placed in a narrow column or for creating a set of buttons of equal width.',
+  exampleCode7: ButtonExampleEighthCode,
+  exampleComponent7: ButtonExampleEighth,
+  exampleCodeHeader7: '8. Disabled Button:',
+  exampleCodeDescription7: 'Use for actions that aren’t currently available. The surrounding interface should make it clear why the button is disabled and what needs to be done to enable it.',
+  exampleCode8: ButtonExampleNinthCode,
+  exampleComponent8: ButtonExampleNinth,
+  exampleCodeHeader8: '9. Submit Button:',
+  exampleCodeDescription8: 'Use as Form submit button.',
+  exampleCode9: ButtonExampleTenthCode,
+  exampleComponent9: ButtonExampleTenth,
+  exampleCodeHeader9: '10. Icon Button:',
+  exampleCodeDescription9: 'Use to show button with only icon.',
 };
 
 export default ButtonState;
