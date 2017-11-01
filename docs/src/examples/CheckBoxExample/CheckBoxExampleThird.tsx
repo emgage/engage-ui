@@ -5,7 +5,10 @@ import * as styles from '../../styles/components-page.scss';
 const CheckBoxExample = () => (
   <div className={styles.example}>
     <Checkbox
-      label="Default"
+      label="Disabled"
+      disabled
+      name="checkbox"
+      value="Some value"
     />
   </div>
 );

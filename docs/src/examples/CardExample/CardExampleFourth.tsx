@@ -5,15 +5,12 @@ import * as styles from '../../styles/components-page.scss';
 
 const CardExample = () => (
   <div className={styles.example}>
-    <Card
-      title="Online store dashboard"
-      primaryFooterAction = {{
-        content: 'View Dashboard',
-        onAction: () => { alert('View Dashboard Content of Online Store.'); },
-      }}
-    >
-      <Section>
+    <Card title="Online store dashboard">
+      <Section title="Reports">
         <p>View a summary of your online store’s performance.</p>
+      </Section>
+      <Section title="Summary">
+        <p>View a summary of your online store’s performance, including sales, visitors, top products, and referrals.</p>
       </Section>
     </Card>
   </div>

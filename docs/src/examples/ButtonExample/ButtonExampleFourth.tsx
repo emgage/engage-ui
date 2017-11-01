@@ -4,7 +4,7 @@ import * as styles from '../../styles/components-page.scss';
 
 const ButtonExample = () => (
   <div className={styles.example}>
-    <Button>Basic Button</Button>
+    <Button destructive accessibilityLabel="No Label">Destructive Button</Button>
   </div>
 );
 

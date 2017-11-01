@@ -7,14 +7,14 @@ const ButtonGroupExampleSecondCode = require('!raw-loader!../../examples/ButtonG
 
 const ButtonGroupState: IDocument = {
   id: 'ButtonGroup',
-  heading: 'ButtonGroup Component',
+  heading: 'ButtonGroup',
   subheading: `A Button Group displays multiple related actions in a row to help with horizontal
               arrangement and the spacing of calls to action.`,
   property: [
     {
       name: 'segmented',
       type: 'boolean',
-      desc: 'Display true or false value.Join buttons as segmented group.',
+      desc: 'Display true or false value. Join buttons as segmented group.',
     }, {
       name: 'children',
       type: 'React.ReactNode',
@@ -27,8 +27,12 @@ const ButtonGroupState: IDocument = {
   ],
   exampleCode: ButtonGroupExampleFirstCode,
   exampleComponent: ButtonGroupExampleFirst,
-  exampleCodeExtra: ButtonGroupExampleSecondCode,
-  exampleComponentExtra: ButtonGroupExampleSecond,
+  exampleCodeHeader: '1. Default Button Group:',
+  exampleCodeDescription: 'Use when you have multiple buttons to space them out evenly.',
+  exampleCode1: ButtonGroupExampleSecondCode,
+  exampleComponent1: ButtonGroupExampleSecond,
+  exampleCodeHeader1: '2. Segmented Button Group:',
+  exampleCodeDescription1: 'Use to emphasize several buttons as a thematically-related set among other controls.',
 };
 
 export default ButtonGroupState;
