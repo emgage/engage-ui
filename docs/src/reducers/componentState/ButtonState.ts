@@ -23,7 +23,7 @@ const ButtonExampleTenthCode = require('!raw-loader!../../examples/ButtonExample
 
 const ButtonState: IDocument = {
   id: 'Button',
-  heading: 'Button Component',
+  heading: 'Button',
   subheading: `A Button displays multiple related actions in a row to help with horizontal
               arrangement and the spacing of calls to action.`,
   property: [
@@ -131,7 +131,7 @@ const ButtonState: IDocument = {
   exampleCodeDescription5: 'Use to make large size button.',
   exampleCode6: ButtonExampleSeventhCode,
   exampleComponent6: ButtonExampleSeventh,
-  exampleCodeHeader6: '7. FullWidth Button:',
+  exampleCodeHeader6: '7. Fullwidth Button:',
   exampleCodeDescription6: 'Use for buttons placed in a narrow column or for creating a set of buttons of equal width.',
   exampleCode7: ButtonExampleEighthCode,
   exampleComponent7: ButtonExampleEighth,

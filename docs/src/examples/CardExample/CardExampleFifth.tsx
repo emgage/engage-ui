@@ -4,8 +4,15 @@ import * as styles from '../../styles/components-page.scss';
 
 const CardExample = () => (
   <div className={styles.example}>
-    <Card title="Online store dashboard - Card" sectioned>
-        <p>View a summary of your online store’s performance.</p>
+    <Card
+      title="Staff accounts"
+      sectioned
+      subdued
+    >
+      <ul>
+        <li>Stephen Hawking</li>
+        <li>Jane Auston</li>
+      </ul>
     </Card>
   </div>
 );

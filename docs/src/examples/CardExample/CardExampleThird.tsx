@@ -7,10 +7,10 @@ const CardExample = () => (
   <div className={styles.example}>
     <Card
       title="Online store dashboard"
-      primaryFooterAction = {{
-        content: 'View Dashboard',
-        onAction: () => { alert('View Dashboard Content of Online Store.'); },
-      }}
+      actions = {[{
+        content: 'Edit Dashboard',
+        onAction: () => { alert('Edit Content of Online Store Dashboard');},
+      }]}
     >
       <Section>
         <p>View a summary of your online store’s performance.</p>
