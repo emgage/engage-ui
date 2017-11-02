@@ -4,7 +4,12 @@ import * as styles from '../../styles/components-page.scss';
 
 const ChipExample = () => (
   <div className={styles.example}>
-    <Chip>Trevor Hansen</Chip>
+    <Chip
+      clickable
+      onClick={() => {alert('You clicked on Chip');}}
+    >
+      Trevor Hansen
+    </Chip>
   </div>
 );
 

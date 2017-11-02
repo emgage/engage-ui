@@ -4,7 +4,12 @@ import * as styles from '../../styles/components-page.scss';
 
 const ChipExample = () => (
   <div className={styles.example}>
-    <Chip>Trevor Hansen</Chip>
+    <Chip
+      removable
+      onRemove={() => {alert('You clicked to remove Chip');}}
+    >
+      Trevor Hansen
+    </Chip>
   </div>
 );
 
