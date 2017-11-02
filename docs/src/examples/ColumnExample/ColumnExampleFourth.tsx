@@ -4,19 +4,19 @@ import * as styles from '../../styles/components-page.scss';
 
 const ColumnExample = () => (
   <div className={styles.example}>
-    <Column medium="3-6">
-      Size 3-6:
+    <Column extraLarge="8-9">
+      Size 8-9:
       <br/>
         <span>
-        Column responsivewidth size are vary and show information in multiple line based on it.
+          Column responsivewidth size are vary and show information in multiple line based on size selected for column by user.
         </span>
     </Column>
     <br/>
-    <Column medium="4-5">
-      Size 4-5:
+    <Column extraLarge="9-10">
+      Size 9-10:
       <br/>
         <span>
-            Column responsivewidth size are vary and show information in multiple line based on it.
+        Column responsivewidth size are vary and show information in multiple line based on size selected for column by user.
         </span>
     </Column>
   </div>

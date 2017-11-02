@@ -5,8 +5,11 @@ import * as styles from '../../styles/components-page.scss';
 const ConnectedExample = () => (
   <div className={styles.example}>
     <Connected
-      left = {
+      left= {
         <TextField label="TextField Left" value="Some value" />
+      }
+      right= {
+        <TextField label="TextField Right" value="Some value" />
       }
     >
     </Connected>
