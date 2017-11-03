@@ -4,8 +4,10 @@ import * as styles from '../../styles/components-page.scss';
 
 const DisplayTextExample = () => (
   <div className={styles.example}>
-    <DisplayText>
-      Default DisplayText
+    <DisplayText
+      size="extraLarge"
+    >
+      ExtraLarge DisplayText
     </DisplayText>
   </div>
 );
