@@ -1,9 +1,11 @@
 import { IDocument } from '../../Types';
 import IconExampleFirst from '../../examples/IconExample/IconExampleFirst';
 import IconExampleSecond from '../../examples/IconExample/IconExampleSecond';
+import IconExampleThird from '../../examples/IconExample/IconExampleThird';
 
 const IconExampleFirstCode = require('!raw-loader!../../examples/IconExample/IconExampleFirst') as string;
 const IconExampleSecondCode = require('!raw-loader!../../examples/IconExample/IconExampleSecond') as string;
+const IconExampleThirdCode = require('!raw-loader!../../examples/IconExample/IconExampleThird') as string;
 
 const IconState: IDocument = {
   id: 'icon',
@@ -39,8 +41,16 @@ const IconState: IDocument = {
   ],
   exampleCode: IconExampleFirstCode,
   exampleComponent: IconExampleFirst,
-  exampleCodeExtra: IconExampleSecondCode,
-  exampleComponentExtra: IconExampleSecond,
+  exampleCodeHeader: '1. Default Icon:',
+  exampleCodeDescription: 'Use for the default icon with source as SVG.',
+  exampleCode1: IconExampleSecondCode,
+  exampleComponent1: IconExampleSecond,
+  exampleCodeHeader1: '2. Icon:',
+  exampleCodeDescription1: 'Use for the icon with source as placeholder.',
+  exampleCode2: IconExampleThirdCode,
+  exampleComponent2: IconExampleThird,
+  exampleCodeHeader2: '3. Icon with all props:',
+  exampleCodeDescription2: 'Use for the icon with source, color, backdrop and accessibilityLabel properties.',
 };
 
 export default IconState;

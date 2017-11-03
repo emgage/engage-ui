@@ -26,8 +26,12 @@ const HeadingState: IDocument = {
   ],
   exampleCode: HeadingExampleFirstCode,
   exampleComponent: HeadingExampleFirst,
-  exampleCodeExtra: HeadingExampleSecondCode,
-  exampleComponentExtra: HeadingExampleSecond,
+  exampleCodeHeader: '1. Default Heading(Without any element):',
+  exampleCodeDescription: 'Use for the title of each top-level page section.',
+  exampleCode1: HeadingExampleSecondCode,
+  exampleComponent1: HeadingExampleSecond,
+  exampleCodeHeader1: '2. Heading with h1 element:',
+  exampleCodeDescription1: 'Use for the title of each top-level page section with an element.',
 };
 
 export default HeadingState;

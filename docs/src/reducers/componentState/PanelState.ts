@@ -1,7 +1,11 @@
 import { IDocument } from '../../Types';
 import PanelExampleFirst from '../../examples/PanelExample/PanelExampleFirst';
+import PanelExampleSecond from '../../examples/PanelExample/PanelExampleSecond';
+import PanelExampleThird from '../../examples/PanelExample/PanelExampleThird';
 
 const PanelExampleCodeFirst = require('!raw-loader!../../examples/PanelExample/PanelExampleFirst') as string;
+const PanelExampleCodeSecond = require('!raw-loader!../../examples/PanelExample/PanelExampleSecond') as string;
+const PanelExampleCodeThird = require('!raw-loader!../../examples/PanelExample/PanelExampleThird') as string;
 
 const PanelState: IDocument = {
   id: 'panel',
@@ -32,6 +36,16 @@ const PanelState: IDocument = {
   ],
   exampleCode: PanelExampleCodeFirst,
   exampleComponent: PanelExampleFirst,
+  exampleCodeHeader: '1. Basic panel:',
+  exampleCodeDescription: 'Use for the display panel with heading and childern.',
+  exampleCode1: PanelExampleCodeSecond,
+  exampleComponent1: PanelExampleSecond,
+  exampleCodeHeader1: '2. Panel with single video:',
+  exampleCodeDescription1: 'Use for the display panel with single video.',
+  exampleCode2: PanelExampleCodeThird,
+  exampleComponent2: PanelExampleThird,
+  exampleCodeHeader2: '3. Panel with autoplay video:',
+  exampleCodeDescription2: 'Use for the display panel with autoplay video.',
 };
 
 export default PanelState;

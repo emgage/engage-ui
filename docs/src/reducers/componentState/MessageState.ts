@@ -1,7 +1,9 @@
 import { IDocument } from '../../Types';
 import MessageExampleFirst from '../../examples/MessageExample/MessageExampleFirst';
+import MessageExampleSecond from '../../examples/MessageExample/MessageExampleSecond';
 
 const MessageExampleCodeFirst = require('!raw-loader!../../examples/MessageExample/MessageExampleFirst') as string;
+const MessageExampleCodeSecond = require('!raw-loader!../../examples/MessageExample/MessageExampleSecond') as string;
 
 const MessageState: IDocument = {
   id: 'message',
@@ -32,6 +34,12 @@ const MessageState: IDocument = {
   ],
   exampleCode: MessageExampleCodeFirst,
   exampleComponent: MessageExampleFirst,
+  exampleCodeHeader: '1. Show message:',
+  exampleCodeDescription: 'Use for the show message when isVisible is true.',
+  exampleCode1: MessageExampleCodeSecond,
+  exampleComponent1: MessageExampleSecond,
+  exampleCodeHeader1: '2. Show/Hide message on click of button:',
+  exampleCodeDescription1: 'Use for the show/hide message when click on button.',
 };
 
 export default MessageState;

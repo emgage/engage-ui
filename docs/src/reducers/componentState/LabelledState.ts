@@ -1,10 +1,11 @@
 import { IDocument } from '../../Types';
 import LabelledExampleFirst from '../../examples/LabelledExample/LabelledExampleFirst';
-
 import LabelledExampleSecond from '../../examples/LabelledExample/LabelledExampleSecond';
+import LabelledExampleThird from '../../examples/LabelledExample/LabelledExampleThird';
 
 const  LabelledExampleCode = require('!raw-loader!../../examples/LabelledExample/LabelledExampleFirst') as string;
 const  LabelledExampleSecondCode = require('!raw-loader!../../examples/LabelledExample/LabelledExampleSecond') as string;
+const  LabelledExampleThirdCode = require('!raw-loader!../../examples/LabelledExample/LabelledExampleThird') as string;
 
 const  LabelledState: IDocument = {
   id: 'labelled',
@@ -63,8 +64,16 @@ const  LabelledState: IDocument = {
   ],
   exampleCode: LabelledExampleCode,
   exampleComponent: LabelledExampleFirst,
-  exampleCodeExtra: LabelledExampleSecondCode,
-  exampleComponentExtra: LabelledExampleSecond,
+  exampleCodeHeader: '1. Basic Labelled:',
+  exampleCodeDescription: 'Use for the display label to any item.',
+  exampleCode1: LabelledExampleSecondCode,
+  exampleComponent1: LabelledExampleSecond,
+  exampleCodeHeader1: '2. Labelled with required and helptext props:',
+  exampleCodeDescription1: 'Use for the display label to any item with required and HelpText prop.',
+  exampleCode2: LabelledExampleThirdCode,
+  exampleComponent2: LabelledExampleThird,
+  exampleCodeHeader2: '3. Hidden labelled:',
+  exampleCodeDescription2: 'Use for the display label to any item with labelHidden.',
 };
 
 export default LabelledState;

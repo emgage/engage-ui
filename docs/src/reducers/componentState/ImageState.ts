@@ -7,7 +7,7 @@ const ImageExampleFirstCode = require('!raw-loader!../../examples/ImageExample/I
 const ImageState: IDocument = {
   id: 'Image',
   heading: 'Image Component',
-  subheading: `display the Image.`,
+  subheading: `Display the Image.`,
   property: [
     {
       name: 'alt',
@@ -26,6 +26,8 @@ const ImageState: IDocument = {
 
   exampleCode: ImageExampleFirstCode,
   exampleComponent: ImageExampleFirst,
+  exampleCodeHeader: '1. Image:',
+  exampleCodeDescription: 'Use for the display image.',
 };
 
 export default ImageState;

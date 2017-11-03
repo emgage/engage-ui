@@ -34,8 +34,12 @@ const LinkState: IDocument = {
   ],
   exampleCode: LinkExampleFirstCode,
   exampleComponent: LinkExampleFirst,
-  exampleCodeExtra: LinkExampleSecondCode,
-  exampleComponentExtra: LinkExampleSecond,
+  exampleCodeHeader: '1. Link with url prop:',
+  exampleCodeDescription: 'Use for text links in larger spans of text.',
+  exampleCode1: LinkExampleSecondCode,
+  exampleComponent1: LinkExampleSecond,
+  exampleCodeHeader1: '2. Link with url and external prop:',
+  exampleCodeDescription1: 'Use for text links in larger spans of text in new tab.',
 };
 
 export default LinkState;

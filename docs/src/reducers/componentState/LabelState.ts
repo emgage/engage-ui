@@ -50,8 +50,12 @@ const LabelState: IDocument = {
   ],
   exampleCode: LabelExampleFirstCode,
   exampleComponent: LabelExampleFirst,
-  exampleCodeExtra: LabelExampleSecondCode,
-  exampleComponentExtra: LabelExampleSecond,
+  exampleCodeHeader: '1. Default Label:',
+  exampleCodeDescription: 'Use for the display label to any item.',
+  exampleCode1: LabelExampleSecondCode,
+  exampleComponent1: LabelExampleSecond,
+  exampleCodeHeader1: '2. Label with action property:',
+  exampleCodeDescription1: 'Use for the display label to any item with action.',
 };
 
 export default LabelState;

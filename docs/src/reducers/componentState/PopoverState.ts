@@ -1,9 +1,11 @@
 import { IDocument } from '../../Types';
 import PopoverExampleFirst from '../../examples/PopoverExample/PopoverExampleFirst';
 import PopoverExampleSecond from '../../examples/PopoverExample/PopoverExampleSecond';
+import PopoverExampleThird from '../../examples/PopoverExample/PopoverExampleThird';
 
 const PopoverExampleFirstCode = require('!raw-loader!../../examples/PopoverExample/PopoverExampleFirst') as string;
 const PopoverExampleSecondCode = require('!raw-loader!../../examples/PopoverExample/PopoverExampleSecond') as string;
+const PopoverExampleThirdCode = require('!raw-loader!../../examples/PopoverExample/PopoverExampleThird') as string;
 
 const PopoverState: IDocument = {
   id: 'popover',
@@ -46,8 +48,16 @@ const PopoverState: IDocument = {
   ],
   exampleCode: PopoverExampleFirstCode,
   exampleComponent: PopoverExampleFirst,
-  exampleCodeExtra: PopoverExampleSecondCode,
-  exampleComponentExtra: PopoverExampleSecond,
+  exampleCodeHeader: '1. Popover with ActionList:',
+  exampleCodeDescription: 'Use when presenting a set of actions in a disclosable menu.',
+  exampleCode1: PopoverExampleSecondCode,
+  exampleComponent1: PopoverExampleSecond,
+  exampleCodeHeader1: '2. Popover with Content and Actions:',
+  exampleCodeDescription1: 'Use to present a combination of content, instructions, and actions is a panel for tasks that are of low or secondary importance to the current page. When used this way, popovers provide useful entry points to related features without overwhelming merchants.',
+  exampleCode2: PopoverExampleThirdCode,
+  exampleComponent2: PopoverExampleThird,
+  exampleCodeHeader2: '2. Popover with Form Components:',
+  exampleCodeDescription2: 'Use to present secondary input tasks on demand.',
 };
 
 export default PopoverState;
