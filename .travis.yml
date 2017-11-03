@@ -8,7 +8,8 @@ cache:
     - node_modules
     - $HOME/.yarn-cache
 install: 
-  npm install
+  - npm install
+  - npm rebuild node-sass
 script:
   - npm run lint
   - npm run build-dev
