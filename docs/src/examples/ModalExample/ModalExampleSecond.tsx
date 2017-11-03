@@ -24,25 +24,19 @@ const childBody =
 const ModalExample = () => (
   <div className={styles.example}>
     <Modal
-      activator={<Button>Click Here-1</Button>}
-      header="This is modal header-1"
-      close
+      activator={<Button>Click Here-2</Button>}
       closeOnBackgroud
       closeOnEsc
-      modalOverflow
       backdropEnabled
-      footer={<Button> OK </Button>}
-      id="111"
-      size="Large"
+      id="222"
+      size="Medium"
     >
-      header="This is modal header"<br/>
-      close<br/>
+      Hello, Medium Modal without header and footer...2<br/>
       closeOnBackgroud<br/>
       closeOnEsc<br/>
-      modalOverflow<br/>
       backdropEnabled<br/>
-      id="111"<br/>
-      size="Large"<br/>
+      id="222"<br/>
+      size="Medium"
       {childBody}
     </Modal>
   </div>
