@@ -1,13 +1,13 @@
 import { IDocument } from '../../Types';
-import ChoiceListExample from '../../examples/ChoiceListExample/ChoiceListExample';
-import ChoiceListExampleMultiple from '../../examples/ChoiceListExample/ChoiceListExampleMultiple';
+import ChoiceListExampleFirst from '../../examples/ChoiceListExample/ChoiceListExampleFirst';
+import ChoiceListExampleSecond from '../../examples/ChoiceListExample/ChoiceListExampleSecond';
 
-const ChoiceListExampleCode = require('!raw-loader!../../examples/ChoiceListExample/ChoiceListExample') as string;
-const ChoiceListExampleMultipleCode = require('!raw-loader!../../examples/ChoiceListExample/ChoiceListExampleMultiple') as string;
+const ChoiceListExampleCodeFirst = require('!raw-loader!../../examples/ChoiceListExample/ChoiceListExampleFirst') as string;
+const ChoiceListExampleCodeSecond = require('!raw-loader!../../examples/ChoiceListExample/ChoiceListExampleSecond') as string;
 
 const choiceListState: IDocument = {
   id: 'choicelist',
-  heading: 'Choice List Component',
+  heading: 'Choice List',
   subheading: `A choice list lets you create a list of grouped radio buttons or checkboxes.
                Use this component if you need to group together a related list of interactive choices.`,
   property: [
@@ -30,7 +30,7 @@ const choiceListState: IDocument = {
     }, {
       name: 'name',
       type: 'string',
-      desc: '',
+      desc: 'Name of the chicelist',
     }, {
       name: 'allowMultiple',
       type: 'boolean',
@@ -45,10 +45,14 @@ const choiceListState: IDocument = {
       desc: 'Function to handle on change of choice list.',
     },
   ],
-  exampleCode: ChoiceListExampleCode,
-  exampleComponent: ChoiceListExample,
-  exampleCodeExtra: ChoiceListExampleMultipleCode,
-  exampleComponentExtra: ChoiceListExampleMultiple,
+  exampleCodeHeader: '1: Radio Buttons:',
+  exampleCodeDescription: 'Use when you need user to make a single selection from a list of choices.',
+  exampleCode: ChoiceListExampleCodeFirst,
+  exampleComponent: ChoiceListExampleFirst,
+  exampleCodeHeader1: '2: Checkboxes:',
+  exampleCodeDescription1: 'Use when to let user make multiple sections from a list of choices.',
+  exampleCode1: ChoiceListExampleCodeSecond,
+  exampleComponent1: ChoiceListExampleSecond,
 };
 
 export default choiceListState;

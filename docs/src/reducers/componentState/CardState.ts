@@ -1,16 +1,20 @@
 import { IDocument } from '../../Types';
 import CardExampleFirst from '../../examples/CardExample/CardExampleFirst';
 import CardExampleSecond from '../../examples/CardExample/CardExampleSecond';
+import CardExampleThird from '../../examples/CardExample/CardExampleThird';
+import CardExampleFourth from '../../examples/CardExample/CardExampleFourth';
+import CardExampleFifth from '../../examples/CardExample/CardExampleFifth';
 
 const CardExampleFirstCode = require('!raw-loader!../../examples/CardExample/CardExampleFirst') as string;
 const CardExampleSecondCode = require('!raw-loader!../../examples/CardExample/CardExampleSecond') as string;
+const CardExampleThirdCode = require('!raw-loader!../../examples/CardExample/CardExampleThird') as string;
+const CardExampleFourthCode = require('!raw-loader!../../examples/CardExample/CardExampleFourth') as string;
+const CardExampleFifthCode = require('!raw-loader!../../examples/CardExample/CardExampleFifth') as string;
 
 const cardState: IDocument = {
   id: 'card',
-  heading: 'Card Component',
-  subheading: `A card is a piece of paper with unique related data that serves as an entry point to more detailed information. For example, a card could contain a photo, text, and a link about a single subject.
-  Cards have a constant width and variable height. The maximum height is limited to the height of the available space on a platform, but it can temporarily expand (for example, to display a comment field). Cards do not flip over to reveal information on the back.
-  Card expansion can be controlled (use expanded and onExpandChange properties) or uncontrolled (use initiallyExpanded property). Use the expandable property to control whether an element will react to expansion or not. Use actAsExpander on CardTitle or CardHeader to let them have an expander button.`,
+  heading: 'Card',
+  subheading: 'Cards are used to group similar concepts and tasks together to make easier for user to scan, read, and get things done.',
   property: [
     {
       name: 'title',
@@ -36,16 +40,36 @@ const cardState: IDocument = {
       name: 'primaryFooterAction',
       type: 'Action',
       desc: 'Primary action in the card footer',
-    },{
+    }, {
       name: 'secondaryFooterAction',
       type: 'Action',
       desc: 'Secondary action in the card footer',
+    }, {
+      name: 'theme',
+      type: 'any',
+      desc: 'Theme to be injected via css-themr.',
     },
   ],
   exampleCode: CardExampleFirstCode,
   exampleComponent: CardExampleFirst,
-  exampleCodeExtra: CardExampleSecondCode,
-  exampleComponentExtra: CardExampleSecond,
+  exampleCodeHeader: '1. Default Card:',
+  exampleCodeDescription: 'Use when you have a simple message to communicate to user that doesn’t require any secondary steps.',
+  exampleCode1: CardExampleSecondCode,
+  exampleComponent1: CardExampleSecond,
+  exampleCodeHeader1: '2. Card with call to action in footer:',
+  exampleCodeDescription1: 'Use when you have a simple message to communicate to user that requires them to take an action.',
+  exampleCode2: CardExampleThirdCode,
+  exampleComponent2: CardExampleThird,
+  exampleCodeHeader2: '3. Card with call to action in header:',
+  exampleCodeDescription2: 'Use when there’s a persistent action available to user.',
+  exampleCode3: CardExampleFourthCode,
+  exampleComponent3: CardExampleFourth,
+  exampleCodeHeader3: '4. Card with multiple sections:',
+  exampleCodeDescription3: 'Use when you have two related but distinct pieces of information to communicate to user.',
+  exampleCode4: CardExampleFifthCode,
+  exampleComponent4: CardExampleFifth,
+  exampleCodeHeader4: '5. Subdued Card:',
+  exampleCodeDescription4: 'Use for content that you want to deprioritize.',
 };
 
 export default cardState;

@@ -101,18 +101,18 @@ describe('<TextField />', () => {
     });
   });
 
-  describe('enableTextCouter', () => {
-    it('defaults to no enableTextCouter attribute', () => {
+  describe('enableTextCounter', () => {
+    it('defaults to no enableTextCounter attribute', () => {
       const textField = mount(<TextField label="TextField" />);
-      expect(textField.prop('enableTextCouter')).toBeUndefined();
+      expect(textField.prop('enableTextCounter')).toBeUndefined();
     });
-    it('sets enableTextCouter to "off" when false', () => {
-      const textField = mount(<TextField label="TextField" enableTextCouter={false} />);
-      expect(textField.prop('enableTextCouter')).toBe(false);
+    it('sets enableTextCounter to "off" when false', () => {
+      const textField = mount(<TextField label="TextField" enableTextCounter={false} />);
+      expect(textField.prop('enableTextCounter')).toBe(false);
     });
-    it('sets enableTextCouter to "on" when true', () => {
-      const textField = mount(<TextField label="TextField" enableTextCouter={true} />);
-      expect(textField.prop('enableTextCouter')).toBe(true);
+    it('sets enableTextCounter to "on" when true', () => {
+      const textField = mount(<TextField label="TextField" enableTextCounter={true} />);
+      expect(textField.prop('enableTextCounter')).toBe(true);
     });
   });
 
@@ -203,9 +203,9 @@ describe('<TextField />', () => {
       expect(type).toBe('email');
     });
 
-    it('sets the enableTextCouter on the input', () => {
-      const enableTextCouter = mount(<TextField label="TextField" enableTextCouter={true} />).prop('enableTextCouter');
-      expect(typeof enableTextCouter).toBe('boolean');
+    it('sets the enableTextCounter on the input', () => {
+      const enableTextCounter = mount(<TextField label="TextField" enableTextCounter={true} />).prop('enableTextCounter');
+      expect(typeof enableTextCounter).toBe('boolean');
     });
 
     it('sets the maxLength on the input', () => {
@@ -284,6 +284,26 @@ describe('<TextField />', () => {
 
         element.find('[role="button"]').last().simulate('click');
         expect(spy).toHaveBeenLastCalledWith('2');
+      });
+
+      describe('resizable', () => {
+        it('defaults to no resizable attribute', () => {
+          const textField = mount(<TextField label="TextField" />);
+          expect(textField.prop('resizable')).toBeUndefined();
+        });
+        it('sets resizable to "off" when false', () => {
+          const textField = mount(<TextField label="TextField" resizable={false} />);
+          expect(textField.prop('resizable')).toBe(false);
+        });
+        it('sets resizable to "on" when true', () => {
+          const textField = mount(<TextField label="TextField" resizable={true} />);
+          expect(textField.prop('resizable')).toBe(true);
+        });
+      });
+
+      it('sets the resizable on the input', () => {
+        const resizable = mount(<TextField label="TextField" resizable={true} />).prop('resizable');
+        expect(typeof resizable).toBe('boolean');
       });
     });
   });

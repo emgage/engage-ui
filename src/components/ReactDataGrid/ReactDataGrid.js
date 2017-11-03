@@ -105,6 +105,7 @@ const ReactDataGrid = React.createClass({
       ]).isRequired
     }),
     onRowClick: React.PropTypes.func,
+    OnCellClick: React.PropTypes.func,    
     onGridKeyUp: React.PropTypes.func,
     onGridKeyDown: React.PropTypes.func,
     rowGroupRenderer: React.PropTypes.func,
@@ -206,6 +207,10 @@ const ReactDataGrid = React.createClass({
     if (this.props.onRowClick && typeof this.props.onRowClick === 'function') {
       this.props.onRowClick(cell.rowIdx, this.props.rowGetter(cell.rowIdx));
     }
+    if(this.props.onCellClick && typeof this.props.onCellClick === 'function') {
+      this.props.onCellClick(cell.idx , cell.rowIdx); 
+    }
+
   },
 
   onCellContextMenu: function(cell: SelectedType) {

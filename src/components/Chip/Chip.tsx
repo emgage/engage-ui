@@ -22,6 +22,7 @@ export interface Props {
   handleMoreInfo?(): void;
   key?: any;
   markedForDelete?: boolean;
+  children?: string;
 }
 
 class Chip extends React.PureComponent<Props, any> {
@@ -32,6 +33,9 @@ class Chip extends React.PureComponent<Props, any> {
       image,
       transparent,
       theme,
+      onRemove,
+      onClick,
+      children,
     } = this.props;
 
     const className = classNames(
@@ -45,16 +49,16 @@ class Chip extends React.PureComponent<Props, any> {
       : ''
     ),
       <span key="2">
-        {this.props.children}
+        {children}
       </span>,
     ];
     const isClickable = clickable ?
-      <a onClick={this.props.onClick} aria-disabled={false} tabIndex={0}>
+      <a onClick={onClick} aria-disabled={false} tabIndex={0}>
         {chipContents}
       </a>
       : chipContents;
     const isRemovable = removable ?
-      <button type="button" className={theme.Remove} aria-label={'Remove ' + this.props.children} onClick={this.props.onRemove}>
+      <button type="button" className={theme.Remove} aria-label={'Remove ' + children} onClick={onRemove}>
         <span aria-hidden="true">×</span>
       </button>
       : '';
