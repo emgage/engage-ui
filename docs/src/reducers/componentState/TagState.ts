@@ -1,12 +1,12 @@
 import { IDocument } from '../../Types';
-import TagExampleFirst from '../../examples/TagExample/TagExampleFirst';
+import TagExample from '../../examples/TagExample/TagExample';
 
-const TagExampleFirstCode = require('!raw-loader!../../examples/TagExample/TagExampleFirst') as string;
+const TagExampleCode = require('!raw-loader!../../examples/TagExample/TagExample') as string;
 
 const TagState: IDocument = {
   id: 'tag',
-  heading: 'Tag Component',
-  subheading: `Tags represent a set of interactive, merchant-supplied keywords that help label, organize, and categorize objects. Tags can be added or removed from an object by merchants.`,
+  heading: 'Tag',
+  subheading: `Tags represent a set of interactive, merchant-supplied keywords that help label, organize, and categorize objects. Tags can be added or removed from an object by users.`,
   property: [
     {
       name: 'children',
@@ -22,8 +22,10 @@ const TagState: IDocument = {
       desc: 'Callback when tag is removed.',
     },
   ],
-  exampleCode: TagExampleFirstCode,
-  exampleComponent: TagExampleFirst,
+  exampleCodeHeader: 'Example 1: Default Tag',
+  exampleCodeDescription: 'Use to represent a list of attributes on an object that can be added or removed.',
+  exampleCode: TagExampleCode,
+  exampleComponent: TagExample,
 };
 
 export default TagState;

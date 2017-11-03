@@ -1,12 +1,14 @@
 import { IDocument } from '../../Types';
-import SelectExampleFirst from '../../examples/SelectExample/SelectExampleFirst';
+import SelectExample from '../../examples/SelectExample/SelectExample';
+import SelectExample1 from '../../examples/SelectExample/SelectExample1';
 
-const SelectExampleFirstCode = require('!raw-loader!../../examples/SelectExample/SelectExampleFirst') as string;
+const SelectExampleCode = require('!raw-loader!../../examples/SelectExample/SelectExample') as string;
+const SelectExample1Code = require('!raw-loader!../../examples/SelectExample/SelectExample1') as string;
 
 const SelectState: IDocument = {
   id: 'select',
-  heading: 'Select Component',
-  subheading: `Form control for selecting a value from a set of options.`,
+  heading: 'Select',
+  subheading: `Select lets users choose one option from a list in a dropdown menu. It works well for lists of more than four choices when displaying them could clutter up the interface.`,
   property: [
     {
       name: 'options',
@@ -70,8 +72,14 @@ const SelectState: IDocument = {
       desc: 'Callback when focus is removed',
     },
   ],
-  exampleCode: SelectExampleFirstCode,
-  exampleComponent: SelectExampleFirst,
+  exampleCodeHeader: 'Example 1: Default Select',
+  exampleCodeDescription: 'Use when a user needs to choose one option from a list of four or more.',
+  exampleCode: SelectExampleCode,
+  exampleComponent: SelectExample,
+  exampleCodeHeader1: 'Example 2: Disabled Select',
+  exampleCodeDescription1: 'Use for selections that aren’t currently available. The surrounding interface should make it clear why the select box is disabled and how to activate it.',
+  exampleCode1: SelectExample1Code,
+  exampleComponent1: SelectExample1,
 };
 
 export default SelectState;

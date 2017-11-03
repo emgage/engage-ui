@@ -1,13 +1,13 @@
 import { IDocument } from '../../Types';
-import UnstyledLinkExampleFirst from '../../examples/UnstyledLinkExample/UnstyledLinkExampleFirst';
-import UnstyledLinkExampleSecond from '../../examples/UnstyledLinkExample/UnstyledLinkExampleSecond';
+import UnstyledLinkExample from '../../examples/UnstyledLinkExample/UnstyledLinkExample';
+import UnstyledLinkExample1 from '../../examples/UnstyledLinkExample/UnstyledLinkExample1';
 
-const UnstyledLinkExampleFirstCode = require('!raw-loader!../../examples/UnstyledLinkExample/UnstyledLinkExampleFirst') as string;
-const UnstyledLinkExampleSecondCode = require('!raw-loader!../../examples/UnstyledLinkExample/UnstyledLinkExampleSecond') as string;
+const UnstyledLinkExampleCode = require('!raw-loader!../../examples/UnstyledLinkExample/UnstyledLinkExample') as string;
+const UnstyledLinkExample1Code = require('!raw-loader!../../examples/UnstyledLinkExample/UnstyledLinkExample1') as string;
 
 const UnstyledLinkState: IDocument = {
   id: 'UnstyledLink',
-  heading: 'UnstyledLink Component',
+  heading: 'UnstyledLink',
   subheading: `UnstyledLink Component is used to open URL.`,
   property: [
     {
@@ -32,10 +32,14 @@ const UnstyledLinkState: IDocument = {
       desc: 'To display the styling.',
     },
   ],
-  exampleCode: UnstyledLinkExampleFirstCode,
-  exampleComponent: UnstyledLinkExampleFirst,
-  exampleCodeExtra: UnstyledLinkExampleSecondCode,
-  exampleComponentExtra: UnstyledLinkExampleSecond,
+  exampleCodeHeader: 'Example 1: UnstyledLink with children props.',
+  exampleCodeDescription: 'Use when user needs to pass children with link clicked.',
+  exampleCode: UnstyledLinkExampleCode,
+  exampleComponent: UnstyledLinkExample,
+  exampleCodeHeader1: 'Example 2: UnstyledLink  with external and key prop',
+  exampleCodeDescription1: 'Use when user needs to call external page.',
+  exampleCode1: UnstyledLinkExample1Code,
+  exampleComponent1: UnstyledLinkExample1,
 };
 
 export default UnstyledLinkState;
