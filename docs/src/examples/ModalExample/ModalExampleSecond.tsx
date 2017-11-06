@@ -25,15 +25,11 @@ const ModalExample = () => (
   <div className={styles.example}>
     <Modal
       activator={<Button>Click Here</Button>}
-      header="Modal Header"
-      close
       closeOnBackgroud
       closeOnEsc
-      modalOverflow
       backdropEnabled
-      footer="Modal Footer"
-      id="111"
-      size="Large"
+      id="222"
+      size="Medium"
     >
       {childBody}
     </Modal>
