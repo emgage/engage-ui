@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { FormLayout , TextField } from '../../../../src/components/';
+import { Type, FormLayout, TextField } from '../../../../src/components/';
 
 import * as styles from '../../styles/components-page.scss';
 
-export interface IProps{
+export interface IProps {
 }
 
 export interface IState {
@@ -28,9 +28,9 @@ class FormLayoutExampleFirst extends React.Component<IProps, IState> {
     return (
       <div className={styles.example}>
         <h3>
-        1. Default FormLayout:
+          1. Default FormLayout:
         </h3>
-        <br/>
+        <br />
         <FormLayout>
           <TextField
             label="Store name"
@@ -38,7 +38,7 @@ class FormLayoutExampleFirst extends React.Component<IProps, IState> {
             onChange={this.valueUpdater('txtValue')}
           />
           <TextField
-            type="email"
+            type={Type.Email}
             label="Account email"
             value={this.state.txtValue1}
             onChange={this.valueUpdater('txtValue1')}

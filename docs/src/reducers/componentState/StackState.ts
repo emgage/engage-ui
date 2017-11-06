@@ -29,15 +29,15 @@ const StackState: IDocument = {
       desc: 'Stack the elements vertically.',
     }, {
       name: 'spacing',
-      type: 'Spacing (tight | loose | none)',
+      type: 'Spacing ( tight | loose | none )',
       desc: 'Adjust spacing between elements.',
     }, {
       name: 'alignment',
-      type: 'Alignment(leading | trailing | center | fill | baseline)',
+      type: 'Alignment( leading | trailing | center | fill | baseline )',
       desc: 'Adjust vertical alignment of elements.',
     }, {
       name: 'distribution',
-      type: 'Distribution(equalSpacing | eading | trailing | center | fill | fillEvenly)',
+      type: 'Distribution( equalSpacing | eading | trailing | center | fill | fillEvenly )',
       desc: 'Adjust horizontal alignment of elements.',
     }, {
       name: 'theme',

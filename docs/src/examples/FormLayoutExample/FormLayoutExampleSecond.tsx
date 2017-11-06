@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { FormLayout , TextField } from '../../../../src/components/';
+import { Type, FormLayout, TextField } from '../../../../src/components/';
 import Group from '../../../../src/components/FormLayout/Group';
 
 import * as styles from '../../styles/components-page.scss';
 
-export interface IProps{
+export interface IProps {
 }
 
 export interface IState {
@@ -18,20 +18,20 @@ class FormLayoutExampleSecond extends React.Component<IProps, IState> {
     return (
       <div className={styles.example}>
         <h3>
-        2. FormLayout with Field Group:
+          2. FormLayout with Field Group:
         </h3>
-        <br/>
+        <br />
         <FormLayout>
           <Group>
-            <TextField type="number" label="Minimum order" />
-            <TextField type="number" label="Maximum order" />
+            <TextField type={Type.Number} label="Minimum order" />
+            <TextField type={Type.Number} label="Maximum order" />
           </Group>
         </FormLayout>
-        <br/>
+        <br />
         <h3>
-        3.Condensed Field Group:
+          3.Condensed Field Group:
         </h3>
-        <br/>
+        <br />
         <FormLayout>
           <Group condensed>
             <TextField label="Length" />

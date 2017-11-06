@@ -12,11 +12,11 @@ const SelectState: IDocument = {
   property: [
     {
       name: 'options',
-      type: 'Option[]',
+      type: 'Option[ ]',
       desc: 'List of options to choose from',
     }, {
       name: 'groups',
-      type: '(Group or Option)[]',
+      type: '(Group or Option)[ ]',
       desc: 'List of option groups to choose from',
     }, {
       name: 'label',

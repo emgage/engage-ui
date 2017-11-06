@@ -185,22 +185,6 @@ describe('<Subheading />', () => {
                                   );
         expect(subheadingWrapper.prop('element')).toBe('h6');
       });
-      it('subheading should have rendered one p element when set as p', () => {
-        const subheadingWrapper = mount(
-                                          <Subheading element="p" theme={theme}>
-                                              Online store dashboard
-                                          </Subheading>
-                                  );
-        expect(subheadingWrapper.find('p')).toHaveLength(1);
-      });
-      it('should verify element property when set as p', () => {
-        const subheadingWrapper = mount(
-                                          <Subheading element="p" theme={theme}>
-                                              Online store dashboard
-                                          </Subheading>
-                                  );
-        expect(subheadingWrapper.prop('element')).toBe('p');
-      });
     });
 
     describe('when not set', () => {
