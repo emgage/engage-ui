@@ -1,9 +1,11 @@
 import { IDocument } from '../../Types';
 import LinkExampleFirst from '../../examples/LinkExample/LinkExampleFirst';
 import LinkExampleSecond from '../../examples/LinkExample/LinkExampleSecond';
+import LinkExampleThird from '../../examples/LinkExample/LinkExampleThird';
 
 const LinkExampleFirstCode = require('!raw-loader!../../examples/LinkExample/LinkExampleFirst') as string;
 const LinkExampleSecondCode = require('!raw-loader!../../examples/LinkExample/LinkExampleSecond') as string;
+const LinkExampleThirdCode = require('!raw-loader!../../examples/LinkExample/LinkExampleThird') as string;
 
 const LinkState: IDocument = {
   id: 'Link',
@@ -40,6 +42,10 @@ const LinkState: IDocument = {
   exampleComponent1: LinkExampleSecond,
   exampleCodeHeader1: '2. Link with url and external prop:',
   exampleCodeDescription1: 'Use for text links in larger spans of text in new tab.',
+  exampleCode2: LinkExampleThirdCode,
+  exampleComponent2: LinkExampleThird,
+  exampleCodeHeader2: '3. Link with onclick prop:',
+  exampleCodeDescription2: 'Use for text links in larger spans of text with onclick prop.',
 };
 
 export default LinkState;

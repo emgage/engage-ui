@@ -16,15 +16,15 @@ const FormLayoutState: IDocument = {
     {
       name: 'children',
       type: 'React.ReactNode',
-      desc: 'display true or false value.Join buttons as segmented group.',
+      desc: 'The content to display inside the formlayout',
     }, {
       name: 'style',
       type: 'React.CSSProperties',
-      desc: 'name of button,Button components.',
+      desc: 'Set the style via css',
     }, {
       name: 'theme',
       type: 'any',
-      desc: 'display any type of theme.',
+      desc: 'Theme to be injected via css-themr',
     },
   ],
   exampleCode: FormLayoutExampleFirstCode,

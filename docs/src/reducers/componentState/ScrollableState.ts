@@ -8,7 +8,7 @@ const ScrollableExampleSecondCode = require('!raw-loader!../../examples/Scrollab
 const ScrollableState: IDocument = {
   id: 'Scrollable',
   heading: 'Scrollable Component',
-  subheading: `The scrollable component is a container for long form content, such as terms of service, that allows for scrolling so merchants can expose more text as they read.`,
+  subheading: `The scrollable component is a container for long form content, such as terms of service, that allows for scrolling so users can expose more text as they read.`,
   property: [
     {
       name: 'children',

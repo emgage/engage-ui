@@ -5,13 +5,25 @@ import * as styles from '../../styles/components-page.scss';
 const RadioButtonExampleThird = () => (
     <div className={styles.example}>
         <RadioButton
-          label="Accounts are disabled"
-          helpText="Customers will only be able to check out as guests"
-          checked id="Radioid"
-          name="Radioname"
-          value="Test"
-          disabled
-          labelHidden/>
+            name="size"
+            label="Large"
+            checked id="Radioid"
+            value="Large"
+            disabled
+            labelHidden
+        />
+        <RadioButton
+            name="size"
+            label="Medium"
+            disabled
+            labelHidden
+        />
+        <RadioButton
+            name="size"
+            label="Small"
+            disabled
+            labelHidden
+        />
     </div>
 );
 

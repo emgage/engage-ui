@@ -185,22 +185,6 @@ describe('<Heading />', () => {
                                         );
         expect(headingWrapper.prop('element')).toBe('h6');
       });
-      it('heading should have rendered one p element when set as p', () => {
-        const headingWrapper = mount(
-                                            <Heading element="p" theme={theme}>
-                                                Online store dashboard
-                                            </Heading>
-                                        );
-        expect(headingWrapper.find('p')).toHaveLength(1);
-      });
-      it('should verify element property when set as p', () => {
-        const headingWrapper = mount(
-                                            <Heading element="p" theme={theme}>
-                                                Online store dashboard
-                                            </Heading>
-                                        );
-        expect(headingWrapper.prop('element')).toBe('p');
-      });
     });
 
     describe('when not set', () => {

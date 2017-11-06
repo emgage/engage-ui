@@ -4,7 +4,9 @@ import * as styles from '../../styles/components-page.scss';
 
 const RadioButtonExampleFirst = () => (
   <div className={styles.example}>
-      <RadioButton label="Accounts are disabled" checked/>
+      <RadioButton name="companyname" label="Hidden" checked/>
+      <RadioButton name="companyname" label="Optional" />
+      <RadioButton name="companyname" label="Required" />
   </div>
 );
 

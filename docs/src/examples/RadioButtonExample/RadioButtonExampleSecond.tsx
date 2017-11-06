@@ -4,7 +4,8 @@ import * as styles from '../../styles/components-page.scss';
 
 const RadioButtonExampleSecond = () => (
   <div className={styles.example}>
-      <RadioButton label="Accounts are disabled"/>
+      <RadioButton name="gender" label="Male" />
+      <RadioButton name="gender" label="Female" />
   </div>
 );
 

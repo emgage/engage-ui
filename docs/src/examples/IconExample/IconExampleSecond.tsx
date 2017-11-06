@@ -4,7 +4,12 @@ import * as styles from '../../styles/components-page.scss';
 
 const IconExampleSecond = () => (
   <div className={styles.example}>
-      <Icon source="placeholder" />
+      <Icon
+          source="notes"
+          color="black"
+          backdrop
+          accessibilityLabel="This is an icon"
+        />
   </div>
 );
 

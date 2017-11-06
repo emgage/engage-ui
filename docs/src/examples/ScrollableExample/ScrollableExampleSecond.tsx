@@ -8,7 +8,7 @@ const ScrollableExampleSecond = () => (
             shadow
             vertical
             horizontal
-            style={{ height: '100px' }}>
+            style={{ height: '100px', width: '400px' }}>
                 <p>
                     By signing up for the Shopify service (“Service”) or
                     any of the services of Shopify Inc. (“Shopify”) you are agreeing to be bound by

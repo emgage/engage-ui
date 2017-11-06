@@ -6,11 +6,14 @@ import VisuallyHidden from '../VisuallyHidden';
 import { LOADING } from '../ThemeIdentifiers';
 
 import * as baseTheme from './Loading.scss';
+import * as loading from './images';
 
 export interface Props {
   style?: React.CSSProperties;
   theme?: any;
 }
+
+const LOADING_IMAGES = Object.keys(loading).map((key: keyof typeof loading) => loading[key]);
 
 class Loading extends React.PureComponent<Props, {}> {
   render() {
@@ -21,7 +24,7 @@ class Loading extends React.PureComponent<Props, {}> {
 
     return (
             <div style={style}>
-                <span className={theme.loading}><Icon source="horizontalDots" backdrop /></span>
+                <span className={theme.loading}><Icon source={LOADING_IMAGES[0]} backdrop /></span>
                 <VisuallyHidden>Loading...</VisuallyHidden>
             </div>
     );
