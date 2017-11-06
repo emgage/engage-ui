@@ -6,8 +6,8 @@ const FlexBoxExample = () => (
   <div className={styles.example}>
     <FlexBox
       direction="Row"
-      align="End"
-      justify="Center"
+      align="Center"
+      justify="End"
     >
       <div>Demo 1</div>
       <div>Demo 2</div>
