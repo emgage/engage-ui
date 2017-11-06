@@ -6,9 +6,10 @@ const FlexBoxExample = () => (
   <div className={styles.example}>
     <FlexBox
       inline={true}
-      direction="Column"
-      align="Stretch"
-      justify="Center">
+      direction="Row"
+      align="Start"
+      justify="Start"
+    >
       <div>Demo 1</div>
       <div>Demo 2</div>
       <div>Demo 3</div>
