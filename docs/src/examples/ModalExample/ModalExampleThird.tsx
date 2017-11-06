@@ -24,23 +24,15 @@ const childBody =
 const ModalExample = () => (
   <div className={styles.example}>
     <Modal
-      activator={<Button>Click Here-3</Button>}
-      header="This is my header-3"
+      activator={<Button>Click Here</Button>}
+      header="Modal Header"
       close
       modalOverflow
       backdropEnabled
-      footer="This is modal footer"
+      footer="Modal Footer"
       id="333"
       size="Small"
     >
-      Small modal which close using only close property<br/>
-      header="This is modal header"<br/>
-      close<br/>
-      modalOverflow<br/>
-      backdropEnabled<br/>
-      footer="This is modal footer"<br/>
-      id="333"<br/>
-      size="Small"
       {childBody}
     </Modal>
   </div>
