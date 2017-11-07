@@ -17,8 +17,8 @@ const ListState: IDocument = {
       desc: 'Display list item elements',
     }, {
       name: 'type',
-      type: 'Type',
-      desc: 'Type of list to display either default, bullet or number',
+      type: 'enum',
+      desc: 'Type of list to display. Available options: bullet | number | default | striped | divider',
     }, {
       name: 'theme',
       type: 'any',

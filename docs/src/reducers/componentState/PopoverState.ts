@@ -18,15 +18,15 @@ const PopoverState: IDocument = {
       desc: 'The content to display inside the popover.',
     }, {
       name: 'preferredPosition',
-      type: 'PreferredPosition (above | below | mostSpace)',
-      desc: 'The preferred direction to open the popover.',
+      type: 'enum',
+      desc: 'The preferred direction to open the popover. Availablee options: above | below | mostSpace',
     }, {
       name: 'active',
       type: 'boolean',
       desc: 'Show or hide the Popover.',
     }, {
       name: 'activator',
-      type: 'React.ReactElement<any>',
+      type: 'React.ReactElement',
       desc: 'The element to activate the Popover.',
     }, {
       name: 'activatorWrapper',

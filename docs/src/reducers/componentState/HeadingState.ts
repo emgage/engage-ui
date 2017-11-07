@@ -12,8 +12,8 @@ const HeadingState: IDocument = {
   property: [
     {
       name: 'element',
-      type: 'HeadingTagName ( h1 | h2 | h3 | h4 | h5 | h6 )',
-      desc: 'The element name to use for the heading.',
+      type: 'enum',
+      desc: 'The element name to use for the heading. Available options: h1 | h2 | h3 | h4 | h5 | h6 ',
     }, {
       name: 'children',
       type: 'React.ReactNode',
