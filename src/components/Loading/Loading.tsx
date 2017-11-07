@@ -6,7 +6,7 @@ import VisuallyHidden from '../VisuallyHidden';
 import { LOADING } from '../ThemeIdentifiers';
 
 import * as baseTheme from './Loading.scss';
-import * as loading from './images';
+import * as loading from '../Icon/images';
 
 export interface Props {
   style?: React.CSSProperties;
