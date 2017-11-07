@@ -29,16 +29,16 @@ const StackState: IDocument = {
       desc: 'Stack the elements vertically.',
     }, {
       name: 'spacing',
-      type: 'Spacing ( tight | loose | none )',
-      desc: 'Adjust spacing between elements.',
+      type: 'enum',
+      desc: 'Adjust spacing between elements. Available options: extraTight | tight | loose | extraLoose | none',
     }, {
       name: 'alignment',
-      type: 'Alignment ( leading | trailing | center | fill | baseline )',
-      desc: 'Adjust vertical alignment of elements.',
+      type: 'enum',
+      desc: 'Adjust vertical alignment of elements.Available options: leading | trailing | center | fill | baseline',
     }, {
       name: 'distribution',
-      type: 'Distribution ( equalSpacing | eading | trailing | center | fill | fillEvenly )',
-      desc: 'Adjust horizontal alignment of elements.',
+      type: 'enum',
+      desc: 'Adjust horizontal alignment of elements. Available options: equalSpacing | eading | trailing | center | fill | fillEvenly',
     }, {
       name: 'theme',
       type: 'any',

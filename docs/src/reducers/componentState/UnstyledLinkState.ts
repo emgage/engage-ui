@@ -8,7 +8,7 @@ import { IDocument } from '../../Types';
 const UnstyledLinkState: IDocument = {
   id: 'UnstyledLink',
   heading: 'UnstyledLink',
-  subheading: `UnstyledLink is a helper component. It is used in Banner, Button and Link components.`,
+  subheading: `This is a helper component, which is used by the following component(s): Banner, Button, Link.`,
   // subheading: `UnstyledLink Component is used to open URL.`,
   // property: [
   //   {

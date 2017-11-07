@@ -31,7 +31,7 @@ export interface Props {
 
 class TextField extends React.PureComponent<Props, State> {
   state: State = { height: null };
-  // private input: HTMLElement;
+  private input: HTMLElement;
 
   render() {
     const {
@@ -96,7 +96,7 @@ class TextField extends React.PureComponent<Props, State> {
 
   @autobind
   private setInput(input: HTMLElement) {
-    // this.input = input;
+    this.input = input;
   }
   @autobind
   private handleChange(event: React.FormEvent<HTMLInputElement>) {

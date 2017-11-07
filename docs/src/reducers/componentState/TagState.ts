@@ -6,7 +6,7 @@ const TagExampleCode = require('!raw-loader!../../examples/TagExample/TagExample
 const TagState: IDocument = {
   id: 'tag',
   heading: 'Tag',
-  subheading: `Tags represent a set of interactive, merchant-supplied keywords that help label, organize, and categorize objects. Tags can be added or removed from an object by users.`,
+  subheading: `Tags represent a set of interactive, user-supplied keywords that help label, organize, and categorize objects. Tags can be added or removed from an object by users.`,
   property: [
     {
       name: 'children',

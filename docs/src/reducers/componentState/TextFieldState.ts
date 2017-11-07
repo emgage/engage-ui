@@ -24,7 +24,7 @@ const TextFieldExample9Code = require('!raw-loader!../../examples/TextFieldExamp
 const TextFieldState: IDocument = {
   id: 'TextField',
   heading: 'TextField',
-  subheading: `A text field is an input field that a merchant can type into. It has a range of options and supports several text formats including numbers.`,
+  subheading: `A text field is an input field that a user can type into. It has a range of options and supports several text formats including numbers.`,
   property: [
     {
       name: 'prefix',
@@ -92,8 +92,8 @@ const TextFieldState: IDocument = {
       desc: 'An element connected to the left of the input',
     }, {
       name: 'type',
-      type: 'Type ( text | email | number | password | search | tel | url | date | datetime-local | month | time | week )',
-      desc: 'Determine type of input',
+      type: 'enum',
+      desc: 'Determine type of input. Available options: text | email | number | password | search | tel | url | date | datetime-local | month | time | week',
     }, {
       name: 'name',
       type: 'string',
@@ -152,15 +152,15 @@ const TextFieldState: IDocument = {
       desc: 'Theme to be injected via css-themr.',
     }, {
       name: 'onChange',
-      type: '(value: string): void',
+      type: 'function(value: string)',
       desc: 'Callback when value is changed.',
     }, {
       name: 'onFocus',
-      type: 'void',
+      type: 'function(e?: any)',
       desc: 'Callback when input is focused.',
     }, {
       name: 'onBlur',
-      type: '(e?: any): void',
+      type: 'function(e?: any)',
       desc: 'Callback when focus is removed	.',
     },
   ],

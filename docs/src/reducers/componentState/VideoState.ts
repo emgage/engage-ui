@@ -32,8 +32,8 @@ const VideoState: IDocument = {
       desc: 'See controls i.e.Play/Pause,Volume etc.',
     }, {
       name: 'crossorigin',
-      type: 'CrossOrigin ( anonymous | use-credentials )',
-      desc: 'Give cross origine to video.',
+      type: 'enum',
+      desc: 'Give cross origine to video. Availabel options: anonymous | use-credentials ',
     }, {
       name: 'loop',
       type: 'boolean',
@@ -44,8 +44,8 @@ const VideoState: IDocument = {
       desc: 'To mute video or not.',
     }, {
       name: 'preload',
-      type: 'Preload ( none | metadata | auto )',
-      desc: 'Provide preload.',
+      type: 'enum',
+      desc: 'Provide preload. Available options: none | metadata | auto',
     }, {
       name: 'theme',
       type: 'any',
