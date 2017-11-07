@@ -4,8 +4,11 @@ import * as styles from '../../styles/components-page.scss';
 
 const DisplayTextExample = () => (
   <div className={styles.example}>
-    <DisplayText>
-      Default DisplayText
+    <DisplayText
+      element="h3"
+      size="small"
+    >
+      DisplayText with element and size
     </DisplayText>
   </div>
 );
