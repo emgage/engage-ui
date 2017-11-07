@@ -8,7 +8,7 @@ import { IDocument } from '../../Types';
 const LabelState: IDocument = {
   id: 'label',
   heading: 'Label Component',
-  subheading: `Label is helper component. It is used in TextField component.`,
+  subheading: `Label is a helper component. It is used in TextField component.`,
   // property: [
   //   {
   //     name: 'children',

@@ -8,7 +8,7 @@ import { IDocument } from '../../Types';
 const MessageState: IDocument = {
   id: 'message',
   heading: 'Message Component',
-  subheading: `Message is helper component. It is used in ValidatedForm component.`,
+  subheading: `Message is a helper component. It is used in ValidatedForm component.`,
   // property: [
   //   {
   //     name: 'children',

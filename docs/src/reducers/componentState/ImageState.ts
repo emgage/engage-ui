@@ -7,7 +7,7 @@ import { IDocument } from '../../Types';
 const ImageState: IDocument = {
   id: 'Image',
   heading: 'Image Component',
-  subheading: `Image is helper component. It is used in Avatar component.`,
+  subheading: `Image is a helper component. It is used in Avatar component.`,
   // property: [
   //   {
   //     name: 'alt',
