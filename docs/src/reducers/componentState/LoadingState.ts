@@ -10,6 +10,8 @@ const LoadingState: IDocument = {
 
   exampleCode: LoadingExampleFirstCode,
   exampleComponent: LoadingExampleFirst,
+  exampleCodeHeader: '1. Loading Icon:',
+  exampleCodeDescription: 'Use for the display loading icon.',
 };
 
 export default LoadingState;

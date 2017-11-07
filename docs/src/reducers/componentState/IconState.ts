@@ -8,7 +8,7 @@ const IconExampleSecondCode = require('!raw-loader!../../examples/IconExample/Ic
 const IconState: IDocument = {
   id: 'icon',
   heading: 'Icon Component',
-  subheading: `Icons are used to visually communicate core parts of the product and available actions. They can act as wayfinding tools to help merchants more easily understand where they are in the product, and common interaction patterns that are available.
+  subheading: `Icons are used to visually communicate core parts of the product and available actions. They can act as wayfinding tools to help users more easily understand where they are in the product, and common interaction patterns that are available.
   It is used as different sources i.e.svg or placeholder with different colors.`,
   property: [
     {
@@ -39,8 +39,12 @@ const IconState: IDocument = {
   ],
   exampleCode: IconExampleFirstCode,
   exampleComponent: IconExampleFirst,
-  exampleCodeExtra: IconExampleSecondCode,
-  exampleComponentExtra: IconExampleSecond,
+  exampleCodeHeader: '1. Icons:',
+  exampleCodeDescription: 'Use for the default icon with source as SVG and placeholder.',
+  exampleCode1: IconExampleSecondCode,
+  exampleComponent1: IconExampleSecond,
+  exampleCodeHeader1: '2. Icon with all props:',
+  exampleCodeDescription1: 'Use for the icon with source, color, backdrop and accessibilityLabel properties.',
 };
 
 export default IconState;

@@ -15,24 +15,23 @@ class PopoverExampleFirst extends React.Component<IProps, IState> {
   super(props);
   this.state = {
     activated: false,
-    };
-  }
+  };
+}
   render() {
     return (
       <div className={styles.example}>
-        <h3>1.Popover with ActionList:</h3>
         <Popover
-            active={this.state.activated}
-            preventAutofocus
-            activatorWrapper="Test"
-            activator={
-              <Button onClick={() => this.setState({ activated: (!this.state.activated) }) }>More actions</Button>
-            }
-         >
-            <List>
-                <Item>Import</Item>
-                <Item>Export </Item>
-            </List>
+          active={this.state.activated}
+          preventAutofocus
+          activatorWrapper="Test"
+          activator={
+            <Button onClick={() => this.setState({ activated: (!this.state.activated) }) }>More actions</Button>
+          }
+        >
+          <List type="striped">
+            <Item>Import</Item>
+            <Item>Export </Item>
+          </List>
         </Popover>
       </div>
     );
