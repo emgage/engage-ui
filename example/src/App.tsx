@@ -290,7 +290,7 @@ class App extends React.Component<{}, State> {
               <li>Link 5</li>
             </ul>
         </OffCanvas>
-        <OffCanvas mode="reveal" activator={<Button>OffCanvas Reveal</Button>} >
+        <OffCanvas mode="reveal" width="Large" activator={<Button>OffCanvas Reveal</Button>} >
             <p>Reveal Test</p>
             <ul>
               <li>Link 1</li>
@@ -351,7 +351,7 @@ class App extends React.Component<{}, State> {
               <li>Link 5</li>
             </ul>
         </OffCanvas>
-        <OffCanvas overlay flip mode="slide" activator={<Button>OffCanvas Slide Overlay Flip</Button>} >
+        <OffCanvas overlay flip mode="slide" width="Medium" activator={<Button>OffCanvas Slide Overlay Flip</Button>} >
             <p>Reveal Test</p>
             <ul>
               <li>Link 1</li>
@@ -529,8 +529,8 @@ class App extends React.Component<{}, State> {
           source={new PeoplePickerSource(PeoplePickerSearchType.Both)}
           maxSelectedItems={5}
           minSelectedItems={2}
-          millisecondsToWaitBeforeSearch={20} 
-          moreInfoComponent={<Button children="ranmal" />} 
+          millisecondsToWaitBeforeSearch={20}
+          moreInfoComponent={<Button children="ranmal" />}
         />
         <ValidatedForm>
 
@@ -728,7 +728,7 @@ class App extends React.Component<{}, State> {
           <Column small="1-2" medium="3-4" large="4-10">
             <span>Hello small=1-2 medium=3-4 large=4-10</span>
           </Column>
-        </FlexBox> 
+        </FlexBox>
       </div>
       <p> Some text with a
         <Tooltip content="This order has shipping labels.">
@@ -846,7 +846,6 @@ class App extends React.Component<{}, State> {
       <br />
       <br />
       <br />
-      
 
       <ButtonGroup segmented>
           <Button primary>Save Draft</Button>

@@ -12,13 +12,8 @@ import OffCanvasContent from './OffCanvasContent';
 import * as baseTheme from './OffCanvas.scss';
 
 export type Mode = 'slide' | 'push' | 'reveal';
-export type WidthType = 'Small' | 'Medium' | 'Large' | string;
 
-export enum Width {
-  Small = '200px',
-  Medium = '270px',
-  Large = '340px',
-}
+export type WidthType = 'Small' | 'Medium' | 'Large' | string;
 
 export interface Props {
   active?: boolean;
@@ -82,8 +77,30 @@ class OffCanvas extends React.PureComponent<Props, State> {
       this.state.active && theme.open
     );
 
+    let offCanvasBarClass;
+    let offCanvasWidth;
+
+    switch (this.props.width) {
+      case 'Small':
+        offCanvasBarClass = theme.small;
+        break;
+
+      case 'Medium':
+        offCanvasBarClass = theme.medium;
+        break;
+
+      case 'Large':
+        offCanvasBarClass = theme.large;
+        break;
+
+      default:
+        offCanvasWidth = this.props.width;
+        break;
+    }
+
     const barClassName = classNames(
       theme.bar,
+      offCanvasBarClass,
       mode === 'slide' && theme.animation,
       mode === 'push' && theme.animation
     );
@@ -98,32 +115,12 @@ class OffCanvas extends React.PureComponent<Props, State> {
       }
     }
 
-    let offCanvasWidth;
-
-    switch (this.props.width) {
-      case 'Small':
-        offCanvasWidth = Width.Small;
-        break;
-
-      case 'Medium':
-        offCanvasWidth = Width.Medium;
-        break;
-
-      case 'Large':
-        offCanvasWidth = Width.Large;
-        break;
-
-      default:
-        offCanvasWidth = this.props.width;
-        break;
-    }
-
-    const barWidth = {
+    const canvasWidth = {
       width: `${offCanvasWidth}`,
     };
 
     const bar = [
-      <div className={barClassName} style={barWidth} key={id}>
+      <div className={barClassName} style={offCanvasWidth === this.props.width ? canvasWidth : undefined} key={id}>
         <OffCanvasContent
           id={id}
           activator={activatorNode}
@@ -144,7 +141,7 @@ class OffCanvas extends React.PureComponent<Props, State> {
         {
           mode === 'reveal'
             ?
-            <div className={theme.reveal} style={barWidth}>
+            <div className={theme.reveal}>
               {bar}
             </div>
             :

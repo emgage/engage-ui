@@ -4,6 +4,9 @@
 $offcanvas-z-index:                              1000 !default; //create global var?
 
 $offcanvas-bar-width:                            270px !default;
+$offcanvas-bar-width-small:                      200px !default;
+$offcanvas-bar-width-medium:                     500px !default;
+$offcanvas-bar-width-large:                      840px !default;
 $offcanvas-bar-padding-vertical:                 20px !default; //create global var?
 $offcanvas-bar-padding-horizontal:               20px !default; //create global var?
 $offcanvas-bar-background:                       #fff !default; //create global var?
@@ -51,6 +54,52 @@ $offcanvas-overlay-background:                   rgba(0,0,0,0.2) !default;
   -webkit-transform: translateX(-100%);
   transform: translateX(-100%);
 }
+
+.small{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  box-sizing: border-box;
+  padding: $offcanvas-bar-padding-vertical $offcanvas-bar-padding-horizontal;
+  background: $offcanvas-bar-background;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  -webkit-transform: translateX(-100%);
+  transform: translateX(-100%);
+  width: $offcanvas-bar-width-small;
+}
+
+.medium{
+   position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  box-sizing: border-box;
+  padding: $offcanvas-bar-padding-vertical $offcanvas-bar-padding-horizontal;
+  background: $offcanvas-bar-background;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  -webkit-transform: translateX(-100%);
+  transform: translateX(-100%);
+  width: $offcanvas-bar-width-medium;
+}
+
+.large {
+   position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  box-sizing: border-box;
+  padding: $offcanvas-bar-padding-vertical $offcanvas-bar-padding-horizontal;
+  background: $offcanvas-bar-background;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  -webkit-transform: translateX(-100%);
+  transform: translateX(-100%);
+  width: $offcanvas-bar-width-large;
+}
+
 // Flip modifier
 .flip > .bar,
 .flip > .bar  {
@@ -64,6 +113,7 @@ $offcanvas-overlay-background:                   rgba(0,0,0,0.2) !default;
   -webkit-transform: translateX(0);
   transform: translateX(0);
 }
+
 //Medium and larger screens 
 @media (min-width: $breakpoint-medium) {
 
@@ -98,16 +148,19 @@ $offcanvas-overlay-background:                   rgba(0,0,0,0.2) !default;
     transform: translateX(0);
   }
 }
+
 // Flip modifier
 .flip > .reveal {
   right: 0;
   left: auto;
 }
+
 // Open
 .open > .reveal {
   width: $offcanvas-bar-width;
 }
-//Medium and larger screens 
+
+// //Medium and larger screens 
 @media (min-width: $breakpoint-medium) {
   
   .open > .reveal {
