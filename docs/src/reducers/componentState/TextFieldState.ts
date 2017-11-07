@@ -92,7 +92,7 @@ const TextFieldState: IDocument = {
       desc: 'An element connected to the left of the input',
     }, {
       name: 'type',
-      type: 'Type',
+      type: 'Type ( text | email | number | password | search | tel | url | date | datetime-local | month | time | week )',
       desc: 'Determine type of input',
     }, {
       name: 'name',

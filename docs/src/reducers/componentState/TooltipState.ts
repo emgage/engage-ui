@@ -32,7 +32,7 @@ const TooltipState: IDocument = {
       desc: 'Display tooltip with a light background.',
     }, {
       name: 'preferredPosition',
-      type: 'PreferredPosition(above | below | mostSpace)',
+      type: 'PreferredPosition ( above | below | mostSpace )',
       desc: 'The direction the tooltip tries to display.',
     }, {
       name: 'activatorWrapper',

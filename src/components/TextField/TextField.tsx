@@ -12,8 +12,6 @@ import * as baseTheme from './TextField.scss';
 import Resizer from './Resizer';
 import Spinner from './Spinner';
 
-//  export type Type = 'text' | 'email' | 'number' | 'password' | 'search' | 'tel' | 'url' | 'date' | 'datetime-local' | 'month' | 'time' | 'week';
-
 export enum Type {
   Text = 'text',
   Email = 'email',
