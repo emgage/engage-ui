@@ -34,9 +34,10 @@ const Nav = () => {
         <li><Link to="/component/loading">Loading</Link></li>
         <li><Link to="/component/message">Message</Link></li>
         <li><Link to="/component/modal">Modal</Link></li>
-        <li><Link to="/component/panel">Panel</Link></li>
+        {/* <li><Link to="/component/panel">Panel</Link></li> */}
         <li><Link to="/component/popover">Popover</Link></li>
         <li><Link to="/component/positionedoverlay">Positioned Overlay</Link></li>
+        <li><Link to="/component/radiobutton">RadioButton</Link></li>
         <li><Link to="/component/Scrollable">Scrollable</Link></li>
         <li><Link to="/component/select">Select</Link></li>
         <li><Link to="/component/stack">Stack</Link></li>
