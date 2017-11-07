@@ -34,4 +34,5 @@ export { default as print } from './print.svg';
 export { default as refresh } from './refresh.svg';
 export { default as risk } from './risk.svg';
 export { default as search } from './search.svg';
+export { default as spinner } from './spinner.svg';
 export { default as view } from './view.svg';

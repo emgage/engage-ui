@@ -1,14 +1,16 @@
 import { IDocument } from '../../Types';
 import RadioButtonExampleFirst from '../../examples/RadioButtonExample/RadioButtonExampleFirst';
 import RadioButtonExampleSecond from '../../examples/RadioButtonExample/RadioButtonExampleSecond';
+import RadioButtonExampleThird from '../../examples/RadioButtonExample/RadioButtonExampleThird';
 
 const RadioButtonExampleFirstCode = require('!raw-loader!../../examples/RadioButtonExample/RadioButtonExampleFirst') as string;
 const RadioButtonExampleSecondCode = require('!raw-loader!../../examples/RadioButtonExample/RadioButtonExampleSecond') as string;
+const RadioButtonExampleThirdCode = require('!raw-loader!../../examples/RadioButtonExample/RadioButtonExampleThird') as string;
 
 const RadioButtonState: IDocument = {
   id: 'radiobutton',
   heading: 'RadioButton Component',
-  subheading: `Radio Buttons to present each item in a list of options where merchants must make a single selection. Radio buttons present multiple items and require merchants to pick only one thing from a list.`,
+  subheading: `Use Radio Buttons to present each item in a list of options where users must make a single selection. Radio buttons present multiple items and require users to pick only one thing from a list.`,
   property: [
     {
       name: 'label',
@@ -65,8 +67,16 @@ const RadioButtonState: IDocument = {
   ],
   exampleCode: RadioButtonExampleFirstCode,
   exampleComponent: RadioButtonExampleFirst,
-  exampleCodeExtra: RadioButtonExampleSecondCode,
-  exampleComponentExtra: RadioButtonExampleSecond,
+  exampleCodeHeader: '1. Default RadioButton:',
+  exampleCodeDescription: 'Use for the display by default checked RadioButton.',
+  exampleCode1: RadioButtonExampleSecondCode,
+  exampleComponent1: RadioButtonExampleSecond,
+  exampleCodeHeader1: '2. RadioButton:',
+  exampleCodeDescription1: 'Use for the display RadioButton.',
+  exampleCode2: RadioButtonExampleThirdCode,
+  exampleComponent2: RadioButtonExampleThird,
+  exampleCodeHeader2: '3. Disabled RadioButton:',
+  exampleCodeDescription2: 'Use for the display by default checked disabled RadioButton.',
 };
 
 export default RadioButtonState;
