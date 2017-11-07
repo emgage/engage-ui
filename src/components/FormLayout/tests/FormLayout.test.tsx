@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { mount } from 'enzyme';
-import TextField, { Type } from '../../TextField/TextField';
+import TextField from '../../TextField/TextField';
 import FormLayout from '../FormLayout';
 import Group from '../Group';
 
@@ -57,11 +57,11 @@ describe('<FormLayout />', () => {
                                             <FormLayout>
                                             <Group>
                                             <TextField
-                                                type={Type.Number}
+                                                type="number"
                                                 label="Minimum order"
                                             />
                                             <TextField
-                                                type={Type.Number}
+                                                type="number"
                                                 label="Maximum order"
                                             />
                                             </Group>
@@ -74,11 +74,11 @@ describe('<FormLayout />', () => {
                                             <FormLayout>
                                             <Group>
                                             <TextField
-                                                type={Type.Number}
+                                                type="number"
                                                 label="Minimum order"
                                             />
                                             <TextField
-                                                type={Type.Number}
+                                                type="number"
                                                 label="Maximum order"
                                             />
                                             </Group>

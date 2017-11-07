@@ -202,7 +202,6 @@ export {
 export {
   default as TextField,
   Props as TextFieldProps,
-  Type,
 } from './TextField';
 
 export {
@@ -230,7 +229,6 @@ export {
   default as Video,
   Props as VideoProps,
   VideoType,
-  Preload,
 } from './Video';
 
 export {

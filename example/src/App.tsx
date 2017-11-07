@@ -31,7 +31,6 @@ import {
   Picker,
   Select,
   TextField,
-  Type,
   Tooltip,
   ValidatedTextField,
   ValidatedForm,
@@ -580,7 +579,7 @@ class App extends React.Component<{}, State> {
           <Loading />
           <TextField
             label="Connected Text Field"
-            type={Type.Text}
+            type="text"
             placeholder=""
             value={this.state.appTextCounter}
             helpText="Helper Text"

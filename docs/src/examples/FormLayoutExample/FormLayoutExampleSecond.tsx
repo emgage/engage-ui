@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Type, FormLayout, TextField } from '../../../../src/components/';
+import { FormLayout, TextField } from '../../../../src/components/';
 import Group from '../../../../src/components/FormLayout/Group';
 
 import * as styles from '../../styles/components-page.scss';
@@ -23,8 +23,8 @@ class FormLayoutExampleSecond extends React.Component<IProps, IState> {
         <br />
         <FormLayout>
           <Group>
-            <TextField type={Type.Number} label="Minimum order" />
-            <TextField type={Type.Number} label="Maximum order" />
+            <TextField type="number" label="Minimum order" />
+            <TextField type="number" label="Maximum order" />
           </Group>
         </FormLayout>
         <br />

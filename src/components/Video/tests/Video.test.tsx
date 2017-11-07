@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { mount } from 'enzyme';
-import Video, { Preload, VideoType } from '../Video';
+import Video, { VideoType } from '../Video';
 
 describe('<Video />', () => {
 
@@ -207,7 +207,7 @@ describe('<Video />', () => {
     });
     describe('when set to auto', () => {
       it('video should have preload property auto', () => {
-        const subject = mount(<Video poster={poster} src={singleVideoSource} preload={Preload.Auto} />);
+        const subject = mount(<Video poster={poster} src={singleVideoSource} preload="auto" />);
         expect(subject.find('video')).toHaveLength(1);
         expect(subject.find('video').childAt(0).prop('src')).toBe(singleVideoSource[0].src);
         expect(subject.find('video').prop('preload')).toBe('auto');
@@ -215,7 +215,7 @@ describe('<Video />', () => {
     });
     describe('when set to none', () => {
       it('video should have preload property none', () => {
-        const subject = mount(<Video poster={poster} src={singleVideoSource} preload={Preload.None} />);
+        const subject = mount(<Video poster={poster} src={singleVideoSource} preload="none" />);
         expect(subject.find('video')).toHaveLength(1);
         expect(subject.find('video').childAt(0).prop('src')).toBe(singleVideoSource[0].src);
         expect(subject.find('video').prop('preload')).toBe('none');

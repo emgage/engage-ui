@@ -5,7 +5,7 @@ import * as baseTheme from './Video.scss';
 
 export type CrossOrigin = 'anonymous' | 'use-credentials';
 
-export enum Preload {None = 'none', MetaData =  'metadata', Auto = 'auto',}
+export type Preload = 'none' | 'metadata' | 'auto';
 
 export enum VideoType {
     WebM,

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Type, FormLayout, TextField } from '../../../../src/components/';
+import { FormLayout, TextField } from '../../../../src/components/';
 
 import * as styles from '../../styles/components-page.scss';
 
@@ -38,7 +38,7 @@ class FormLayoutExampleFirst extends React.Component<IProps, IState> {
             onChange={this.valueUpdater('txtValue')}
           />
           <TextField
-            type={Type.Email}
+            type="email"
             label="Account email"
             value={this.state.txtValue1}
             onChange={this.valueUpdater('txtValue1')}

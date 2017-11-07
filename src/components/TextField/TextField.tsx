@@ -12,20 +12,7 @@ import * as baseTheme from './TextField.scss';
 import Resizer from './Resizer';
 import Spinner from './Spinner';
 
-export enum Type {
-  Text = 'text',
-  Email = 'email',
-  Number = 'number',
-  Password = 'password',
-  Search = 'search',
-  Tel = 'tel',
-  Url = 'url',
-  Date = 'date',
-  Datetime_Local = 'datetime-local',
-  Month = 'month',
-  Time = 'time',
-  Week = 'week',
-}
+export type Type = 'text' | 'email' | 'number' | 'password' | 'search' | 'tel' | 'url' | 'date' | 'datetime-local' | 'month' | 'time' | 'week';
 
 export interface State {
   height?: number | null;
@@ -128,7 +115,7 @@ class TextField extends React.PureComponent<Props, State> {
       ? <div onClick={this.handleInputFocus} className={theme.suffix} id={`${id}suffix`}>{suffix}</div>
       : null;
 
-    const spinnerMarkup = type === Type.Number
+    const spinnerMarkup = type === 'number'
       ? <Spinner onClick={this.handleInputFocus} onChange={this.handleNumberChange} />
       : null;
 
@@ -136,12 +123,12 @@ class TextField extends React.PureComponent<Props, State> {
 
     const resizer = multiline === null
       ? null
-      : (<Resizer
-        contents={value || placeholder}
-        currentHeight={height}
-        minimumLines={typeof multiline === 'number' ? multiline : 3}
-        onHeightChange={this.handleExpandingResize}
-      />
+      :(<Resizer
+          contents={value || placeholder}
+          currentHeight={height}
+          minimumLines={typeof multiline === 'number' ? multiline : 3}
+          onHeightChange={this.handleExpandingResize}
+        />
       );
 
     let counterTextMarkup;
@@ -256,7 +243,7 @@ class TextField extends React.PureComponent<Props, State> {
   }
 
   @autobind
-  private onKeyDown(e: any) {
+  private onKeyDown(e:any) {
     const { onChange } = this.props;
     if (onChange == null) { return; }
     const value = this.props.value ? this.props.value : '';

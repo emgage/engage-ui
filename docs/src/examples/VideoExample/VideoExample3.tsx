@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Preload, Video, VideoType } from '../../../../src/components/';
+import { Video, VideoType } from '../../../../src/components/';
 import * as styles from '../../styles/components-page.scss';
 
 const posterUrl = new URL('https://cdn.joomlacontenteditor.net/images/media/big_buck_bunny.jpg');
@@ -21,7 +21,7 @@ const VideoExample3 = () => (
       src={multiVideoSource}
       autoplay={false}
       controls={true}
-      preload={Preload.Auto}
+      preload="auto"
       loop={false}
       muted
       style={{ height: 400, width: 400 }} />
