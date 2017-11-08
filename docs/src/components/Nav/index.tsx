@@ -39,6 +39,7 @@ const Nav = () => {
         <li><Link to="/component/positionedoverlay">Positioned Overlay</Link></li>
         <li><Link to="/component/Scrollable">Scrollable</Link></li>
         <li><Link to="/component/select">Select</Link></li>
+        <li><Link to="/component/spinner">Spinner</Link></li>
         <li><Link to="/component/stack">Stack</Link></li>
         <li><Link to="/component/subheading">SubHeading</Link></li>
         <li><Link to="/component/tag">Tag</Link></li>

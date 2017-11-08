@@ -37,6 +37,7 @@ import {
   Video,
   VideoType,
   Modal,
+  Spinner,
 } from '../../src/components';
 
 interface State {
@@ -844,10 +845,13 @@ class App extends React.Component<{}, State> {
         Create Role
       </Button>
       <br />
+
+      <Spinner color="inkLightest" size="small" />
       <br />
+      <Spinner style={{height:'100px'}} />
       <br />
       
-
+          
       <ButtonGroup segmented>
           <Button primary>Save Draft</Button>
           <Button primary>Publish</Button>
