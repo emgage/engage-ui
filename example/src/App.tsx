@@ -330,15 +330,15 @@ class App extends React.Component<{}, State> {
             <li>Link 5</li>
           </ul>
         </OffCanvas>
-        <OffCanvas mode="reveal" width="large" activator={<Button>OffCanvas Reveal</Button>} >
-            <p>Reveal Test</p>
-            <ul>
-              <li>Link 1</li>
-              <li>Link 2</li>
-              <li>Link 3</li>
-              <li>Link 4</li>
-              <li>Link 5</li>
-            </ul>
+        <OffCanvas mode="reveal" activator={<Button>OffCanvas Reveal</Button>} >
+          <p>Reveal Test</p>
+          <ul>
+            <li>Link 1</li>
+            <li>Link 2</li>
+            <li>Link 3</li>
+            <li>Link 4</li>
+            <li>Link 5</li>
+          </ul>
         </OffCanvas>
 
         <OffCanvas overlay activator={<Button>OffCanvas Overlay</Button>} >
@@ -392,14 +392,14 @@ class App extends React.Component<{}, State> {
           </ul>
         </OffCanvas>
         <OffCanvas overlay flip mode="slide" activator={<Button>OffCanvas Slide Overlay Flip</Button>} >
-            <p>Reveal Test</p>
-            <ul>
-              <li>Link 1</li>
-              <li>Link 2</li>
-              <li>Link 3</li>
-              <li>Link 4</li>
-              <li>Link 5</li>
-            </ul>
+          <p>Reveal Test</p>
+          <ul>
+            <li>Link 1</li>
+            <li>Link 2</li>
+            <li>Link 3</li>
+            <li>Link 4</li>
+            <li>Link 5</li>
+          </ul>
         </OffCanvas>
         <OffCanvas overlay flip mode="push" activator={<Button>OffCanvas Push Overlay Flip</Button>} >
           <p>Reveal Test</p>
@@ -630,7 +630,6 @@ class App extends React.Component<{}, State> {
               'lb',
             ]} />}
           />
-
           <Heading>Flexbox</Heading>
           <FlexBox>
             <div style={{ backgroundColor: 'aqua' }}>Demo 1</div>
@@ -759,7 +758,6 @@ class App extends React.Component<{}, State> {
           >
             <Link>Tooltip 2</Link>
           </Tooltip>
-
           <Heading>Grid</Heading>
           <FlexBox>
             <Column small="1-2" medium="1-4" large="3-5">
@@ -886,8 +884,6 @@ class App extends React.Component<{}, State> {
         <br />
         <br />
         <br />
-
-
         <ButtonGroup segmented>
           <Button primary>Save Draft</Button>
           <Button primary>Publish</Button>
