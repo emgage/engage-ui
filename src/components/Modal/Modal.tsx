@@ -35,7 +35,6 @@ export interface ITrigger {
 
 export interface Props {
   className?: string;
-  classes?: string;
   close?: boolean;
   footer?: React.ReactNode;
   header?: React.ReactNode;
@@ -124,14 +123,12 @@ class Modal extends React.Component<Props, State> {
     const cssClassNames = helpers.cleanClasses([
       props.theme.overflow,
       props.backdropEnabled ? props.theme.modal : null,
-      props.classes,
       props.className,
     ]);
 
     const ignoreProps = [
       'blank',
       'className',
-      'classes',
       'close',
       'footer',
       'header',
