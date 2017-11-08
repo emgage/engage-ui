@@ -260,6 +260,46 @@ class App extends React.Component<{}, State> {
         <PickerAutoSuggestExample />
         <SingleDatePickerWrapper />
         <DateRangePickerWrapper />
+        <OffCanvas mode="push" width="small" activator={<Button>OffCanvas Push Small</Button>} >
+          <p>Reveal Test</p>
+          <ul>
+            <li>Link 1</li>
+            <li>Link 2</li>
+            <li>Link 3</li>
+            <li>Link 4</li>
+            <li>Link 5</li>
+          </ul>
+        </OffCanvas>
+        <OffCanvas mode="push" width="medium" activator={<Button>OffCanvas Push Medium</Button>} >
+          <p>Reveal Test</p>
+          <ul>
+            <li>Link 1</li>
+            <li>Link 2</li>
+            <li>Link 3</li>
+            <li>Link 4</li>
+            <li>Link 5</li>
+          </ul>
+        </OffCanvas>
+        <OffCanvas mode="push" width="large" activator={<Button>OffCanvas Push Large</Button>} >
+          <p>Reveal Test</p>
+          <ul>
+            <li>Link 1</li>
+            <li>Link 2</li>
+            <li>Link 3</li>
+            <li>Link 4</li>
+            <li>Link 5</li>
+          </ul>
+        </OffCanvas>
+        <OffCanvas mode="push" width="800px" activator={<Button>OffCanvas Push 800px</Button>} >
+          <p>Reveal Test</p>
+          <ul>
+            <li>Link 1</li>
+            <li>Link 2</li>
+            <li>Link 3</li>
+            <li>Link 4</li>
+            <li>Link 5</li>
+          </ul>
+        </OffCanvas>
         <OffCanvas activator={<Button>OffCanvas</Button>} >
           <p>Reveal Test</p>
           <ul>
@@ -290,7 +330,7 @@ class App extends React.Component<{}, State> {
             <li>Link 5</li>
           </ul>
         </OffCanvas>
-        <OffCanvas mode="reveal" width="Large" activator={<Button>OffCanvas Reveal</Button>} >
+        <OffCanvas mode="reveal" width="large" activator={<Button>OffCanvas Reveal</Button>} >
             <p>Reveal Test</p>
             <ul>
               <li>Link 1</li>
@@ -351,7 +391,7 @@ class App extends React.Component<{}, State> {
             <li>Link 5</li>
           </ul>
         </OffCanvas>
-        <OffCanvas overlay flip mode="slide" width="Medium" activator={<Button>OffCanvas Slide Overlay Flip</Button>} >
+        <OffCanvas overlay flip mode="slide" activator={<Button>OffCanvas Slide Overlay Flip</Button>} >
             <p>Reveal Test</p>
             <ul>
               <li>Link 1</li>

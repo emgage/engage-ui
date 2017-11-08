@@ -12,8 +12,7 @@ import OffCanvasContent from './OffCanvasContent';
 import * as baseTheme from './OffCanvas.scss';
 
 export type Mode = 'slide' | 'push' | 'reveal';
-
-export type WidthType = 'Small' | 'Medium' | 'Large' | string;
+export type WidthType = 'small' | 'medium' | 'large' | string;
 
 export interface Props {
   active?: boolean;
@@ -67,6 +66,7 @@ class OffCanvas extends React.PureComponent<Props, State> {
       flip,
       mode,
       overlay,
+      width,
       theme,
     } = this.props;
 
@@ -77,22 +77,9 @@ class OffCanvas extends React.PureComponent<Props, State> {
       this.state.active && theme.open
     );
 
-    let offCanvasBarClass;
     let offCanvasWidth;
 
     switch (this.props.width) {
-      case 'Small':
-        offCanvasBarClass = theme.small;
-        break;
-
-      case 'Medium':
-        offCanvasBarClass = theme.medium;
-        break;
-
-      case 'Large':
-        offCanvasBarClass = theme.large;
-        break;
-
       default:
         offCanvasWidth = this.props.width;
         break;
@@ -100,7 +87,9 @@ class OffCanvas extends React.PureComponent<Props, State> {
 
     const barClassName = classNames(
       theme.bar,
-      offCanvasBarClass,
+      width === 'small' && theme.small,
+      width === 'medium' && theme.medium,
+      width === 'large' && theme.large,
       mode === 'slide' && theme.animation,
       mode === 'push' && theme.animation
     );
@@ -110,6 +99,15 @@ class OffCanvas extends React.PureComponent<Props, State> {
       rootElement.className = this.state.active ? (theme.container) : '';
       rootElement.className += overlay && this.state.active ? ' ' + (theme.overlay) : '';
       rootElement.className += flip && this.state.active ? ' ' + (theme.flip) : '';
+      if (width === 'small') {
+        rootElement.className += this.state.active ? ' ' + (theme.small) : '';
+      }
+      if (width === 'medium') {
+        rootElement.className += this.state.active ? ' ' + (theme.medium) : '';
+      }
+      if (width === 'large') {
+        rootElement.className += this.state.active ? ' ' + (theme.large) : '';
+      }
       if (mode === 'push' || mode === 'reveal') {
         rootElement.className += this.state.active ? ' ' + (theme.animation) : '';
       }

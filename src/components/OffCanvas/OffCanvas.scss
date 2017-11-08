@@ -2,18 +2,27 @@
 // ========================================================================
 
 $offcanvas-z-index:                              1000 !default; //create global var?
+$offcanvas-bar-background:                       #fff !default; //create global var?
 
 $offcanvas-bar-width:                            270px !default;
-$offcanvas-bar-width-small:                      200px !default;
-$offcanvas-bar-width-medium:                     500px !default;
-$offcanvas-bar-width-large:                      840px !default;
 $offcanvas-bar-padding-vertical:                 20px !default; //create global var?
 $offcanvas-bar-padding-horizontal:               20px !default; //create global var?
-$offcanvas-bar-background:                       #fff !default; //create global var?
 
 $offcanvas-bar-width-m:                          350px !default;
 $offcanvas-bar-padding-vertical-m:               40px !default;
 $offcanvas-bar-padding-horizontal-m:             40px !default;
+
+$offcanvas-bar-width-small:                      270px !default;
+$offcanvas-bar-padding-vertical-small:           30px !default;
+$offcanvas-bar-padding-horizontal-small:         30px !default;
+
+$offcanvas-bar-width-medium:                     350px !default;
+$offcanvas-bar-padding-vertical-medium:          40px !default;
+$offcanvas-bar-padding-horizontal-medium:        40px !default;
+
+$offcanvas-bar-width-large:                      600px !default;
+$offcanvas-bar-padding-vertical-large:           40px !default;
+$offcanvas-bar-padding-horizontal-large:         40px !default;
 
 $offcanvas-close-position:                       20px !default;
 $offcanvas-close-padding:                        5px !default;
@@ -53,51 +62,19 @@ $offcanvas-overlay-background:                   rgba(0,0,0,0.2) !default;
   -webkit-overflow-scrolling: touch;
   -webkit-transform: translateX(-100%);
   transform: translateX(-100%);
-}
 
-.small{
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  box-sizing: border-box;
-  padding: $offcanvas-bar-padding-vertical $offcanvas-bar-padding-horizontal;
-  background: $offcanvas-bar-background;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  -webkit-transform: translateX(-100%);
-  transform: translateX(-100%);
-  width: $offcanvas-bar-width-small;
-}
+  &.small{
+    width: $offcanvas-bar-width-small;
+  }
+  
+  &.medium{
+    width: $offcanvas-bar-width-medium;
+  }
+  
+  &.large {
+    width: $offcanvas-bar-width-large;
+  }
 
-.medium{
-   position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  box-sizing: border-box;
-  padding: $offcanvas-bar-padding-vertical $offcanvas-bar-padding-horizontal;
-  background: $offcanvas-bar-background;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  -webkit-transform: translateX(-100%);
-  transform: translateX(-100%);
-  width: $offcanvas-bar-width-medium;
-}
-
-.large {
-   position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  box-sizing: border-box;
-  padding: $offcanvas-bar-padding-vertical $offcanvas-bar-padding-horizontal;
-  background: $offcanvas-bar-background;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  -webkit-transform: translateX(-100%);
-  transform: translateX(-100%);
-  width: $offcanvas-bar-width-large;
 }
 
 // Flip modifier
@@ -120,6 +97,19 @@ $offcanvas-overlay-background:                   rgba(0,0,0,0.2) !default;
   .bar {
     width: $offcanvas-bar-width-m;
     padding: $offcanvas-bar-padding-vertical-m $offcanvas-bar-padding-horizontal-m;
+
+    &.small{
+      width: $offcanvas-bar-width-small;
+    }
+    
+    &.medium{
+      width: $offcanvas-bar-width-medium;
+    }
+    
+    &.large {
+      width: $offcanvas-bar-width-large;
+    }
+
   }
 
 }
@@ -239,9 +229,46 @@ body.overlay {
       left: $offcanvas-bar-width;
     }
 
+    &.small {
+      :global #root {
+        left: $offcanvas-bar-width-small;
+      }
+    }
+
+    &.medium {
+      :global #root {
+        left: $offcanvas-bar-width-medium;
+      }
+    }
+
+    &.large {
+      :global #root {
+        left: $offcanvas-bar-width-large;
+      }
+    }
+
     &.flip {
+
       :global #root {
         left: (-$offcanvas-bar-width);
+      }
+
+      &.small {
+        :global #root {
+          left: $offcanvas-bar-width-small;
+        }
+      }
+
+      &.medium {
+        :global #root {
+          left: $offcanvas-bar-width-medium;
+        }
+      }
+
+      &.large {
+        :global #root {
+          left: $offcanvas-bar-width-large;
+        }  
       }
     }
   }
@@ -256,12 +283,48 @@ body.overlay {
       :global #root {
         left: $offcanvas-bar-width-m;
       }
+
+      &.small {
+        :global #root {
+          left: $offcanvas-bar-width-small;
+        }
+      }
+      
+      &.medium {
+        :global #root {
+          left: $offcanvas-bar-width-medium;
+        }
+      }
+      
+      &.large {
+        :global #root {
+          left: $offcanvas-bar-width-large;
+        }
+      }
   
       &.flip {
+
         :global #root {
           left: (-$offcanvas-bar-width-m);
         }
 
+        &.small {
+          :global #root {
+            left: $offcanvas-bar-width-small;
+          }
+        }
+        
+        &.medium {
+          :global #root {
+            left: $offcanvas-bar-width-medium;
+          }
+        }
+        
+        &.large {
+          :global #root {
+            left: $offcanvas-bar-width-large;
+          }
+        }
       }
     }
   }  
