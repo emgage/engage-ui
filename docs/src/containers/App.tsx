@@ -3,7 +3,6 @@ import Nav from '../components/Nav';
 
 // tslint:disable-next-line:import-name
 import * as styles from '../styles/global-styles.scss';
-
 export interface IProps {
   children?: React.ReactNode;
 }

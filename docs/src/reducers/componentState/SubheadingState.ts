@@ -1,19 +1,19 @@
 import { IDocument } from '../../Types';
-import SubheadingExampleFirst from '../../examples/SubheadingExample/SubheadingExampleFirst';
-import SubheadingExampleSecond from '../../examples/SubheadingExample/SubheadingExampleSecond';
+import SubheadingExample from '../../examples/SubheadingExample/SubheadingExample';
+import SubheadingExample1 from '../../examples/SubheadingExample/SubheadingExample1';
 
-const SubheadingExampleFirstCode = require('!raw-loader!../../examples/SubheadingExample/SubheadingExampleFirst') as string;
-const SubheadingExampleSecondCode = require('!raw-loader!../../examples/SubheadingExample/SubheadingExampleSecond') as string;
+const SubheadingExampleCode = require('!raw-loader!../../examples/SubheadingExample/SubheadingExample') as string;
+const SubheadingExample1Code = require('!raw-loader!../../examples/SubheadingExample/SubheadingExample1') as string;
 
 const HeadingState: IDocument = {
   id: 'subheading',
-  heading: 'Subheading Component',
+  heading: 'Subheading',
   subheading: `Subheadings are used for the title of any sub-sections in top-level page sections. Generally, sections of a card use subheadings for their titles.`,
   property: [
     {
       name: 'element',
-      type: 'HeadingTagName(h1, h2, h3, h4, h5, h6, p)',
-      desc: 'The element name to use for the subheading.',
+      type: 'enum',
+      desc: 'The element name to use for the subheading. Available options: h1, h2, h3, h4, h5, h6',
     }, {
       name: 'children',
       type: 'React.ReactNode',
@@ -24,10 +24,14 @@ const HeadingState: IDocument = {
       desc: 'Theme to be injected via css-themr.',
     },
   ],
-  exampleCode: SubheadingExampleFirstCode,
-  exampleComponent: SubheadingExampleFirst,
-  exampleCodeExtra: SubheadingExampleSecondCode,
-  exampleComponentExtra: SubheadingExampleSecond,
+  exampleCodeHeader: 'Example 1: Default Subheading',
+  exampleCodeDescription: 'Use to structure content in a card.',
+  exampleCode: SubheadingExampleCode,
+  exampleComponent: SubheadingExample,
+  exampleCodeHeader1: 'Example 2: Subheading with h1 element',
+  exampleCodeDescription1: 'Use to structure content with size in a card.',
+  exampleCode1: SubheadingExample1Code,
+  exampleComponent1: SubheadingExample1,
 };
 
 export default HeadingState;

@@ -1,12 +1,12 @@
 import { IDocument } from '../../Types';
-import ValidatedTextFieldExampleFirst from '../../examples/ValidateTextFieldExample/ValidatedTextFieldExampleFirst';
+import ValidatedTextFieldExample from '../../examples/ValidateTextFieldExample/ValidatedTextFieldExample';
 
-const ValidatedTextFieldExampleFirstCode = require('!raw-loader!../../examples/ValidateTextFieldExample/ValidatedTextFieldExampleFirst') as string;
+const ValidatedTextFieldExampleCode = require('!raw-loader!../../examples/ValidateTextFieldExample/ValidatedTextFieldExample') as string;
 
 const ValidatedTextFieldState: IDocument = {
   id: 'validatedtextfield',
-  heading: 'Validated Text Field Component',
-  subheading: ``,
+  heading: 'Validated Text Field',
+  subheading: `Use to let user know if their input is valid or if there’s an error.`,
   property: [
     {
       name: 'id',
@@ -26,8 +26,10 @@ const ValidatedTextFieldState: IDocument = {
       desc: ' Validation rules for textfield. Validation Rule : { required: boolean; message: string; } or { type: string; message: string; }.',
     },
   ],
-  exampleCode: ValidatedTextFieldExampleFirstCode,
-  exampleComponent: ValidatedTextFieldExampleFirst,
+  exampleCodeHeader: 'Example 1: Validate TextField',
+  exampleCodeDescription: 'Validate input as soon as user has finished interacting with a field (but not before)',
+  exampleCode: ValidatedTextFieldExampleCode,
+  exampleComponent: ValidatedTextFieldExample,
 };
 
 export default ValidatedTextFieldState;
