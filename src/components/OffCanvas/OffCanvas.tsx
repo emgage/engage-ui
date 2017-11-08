@@ -12,7 +12,7 @@ import OffCanvasContent from './OffCanvasContent';
 import * as baseTheme from './OffCanvas.scss';
 
 export type Mode = 'slide' | 'push' | 'reveal';
-export type WidthType = 'small' | 'medium' | 'large' | string;
+export type Width = 'small' | 'medium' | 'large' | string;
 
 export interface Props {
   active?: boolean;
@@ -24,7 +24,7 @@ export interface Props {
   accessibilityLabel?: string;
   overlay?: boolean;
   theme?: any;
-  width?: WidthType;
+  width?: Width;
   closeButton?: boolean;
 }
 
@@ -66,7 +66,7 @@ class OffCanvas extends React.PureComponent<Props, State> {
       flip,
       mode,
       overlay,
-      width,
+      width = 'medium',
       theme,
     } = this.props;
 
@@ -74,51 +74,47 @@ class OffCanvas extends React.PureComponent<Props, State> {
       theme.offcanvas,
       overlay && theme.overlay,
       flip && theme.flip,
-      this.state.active && theme.open
-    );
-
-    let offCanvasWidth;
-
-    switch (this.props.width) {
-      default:
-        offCanvasWidth = this.props.width;
-        break;
-    }
-
-    const barClassName = classNames(
-      theme.bar,
       width === 'small' && theme.small,
       width === 'medium' && theme.medium,
       width === 'large' && theme.large,
+      this.state.active && theme.open
+    );
+
+    const barClassName = classNames(
+      theme.bar,
       mode === 'slide' && theme.animation,
       mode === 'push' && theme.animation
     );
 
-    const rootElement = document.body;
-    if (rootElement !== null) {
-      rootElement.className = this.state.active ? (theme.container) : '';
-      rootElement.className += overlay && this.state.active ? ' ' + (theme.overlay) : '';
-      rootElement.className += flip && this.state.active ? ' ' + (theme.flip) : '';
+    const bodyElement = document.body;
+    const rootElement = document.getElementById('root');
+    if (bodyElement !== null) {
+      bodyElement.className = this.state.active ? (theme.container) : '';
+      bodyElement.className += overlay && this.state.active ? ' ' + (theme.overlay) : '';
+      bodyElement.className += flip && this.state.active ? ' ' + (theme.flip) : '';
       if (width === 'small') {
-        rootElement.className += this.state.active ? ' ' + (theme.small) : '';
+        bodyElement.className += this.state.active ? ' ' + (theme.small) : '';
       }
       if (width === 'medium') {
-        rootElement.className += this.state.active ? ' ' + (theme.medium) : '';
+        bodyElement.className += this.state.active ? ' ' + (theme.medium) : '';
       }
       if (width === 'large') {
-        rootElement.className += this.state.active ? ' ' + (theme.large) : '';
+        bodyElement.className += this.state.active ? ' ' + (theme.large) : '';
       }
       if (mode === 'push' || mode === 'reveal') {
-        rootElement.className += this.state.active ? ' ' + (theme.animation) : '';
+        bodyElement.className += this.state.active ? ' ' + (theme.animation) : '';
+        if (rootElement !== null) {
+          if (flip) {
+            rootElement.style.left = width && this.state.active ? `-${width}` : '';
+          } else {
+            rootElement.style.left = width && this.state.active ? `${width}` : '';
+          }
+        }
       }
     }
 
-    const canvasWidth = {
-      width: `${offCanvasWidth}`,
-    };
-
     const bar = [
-      <div className={barClassName} style={offCanvasWidth === this.props.width ? canvasWidth : undefined} key={id}>
+      <div className={barClassName} style={width ? { width: `${width}` }  : undefined} key={id}>
         <OffCanvasContent
           id={id}
           activator={activatorNode}
@@ -139,7 +135,7 @@ class OffCanvas extends React.PureComponent<Props, State> {
         {
           mode === 'reveal'
             ?
-            <div className={theme.reveal}>
+            <div className={theme.reveal} style={width && this.state.active ? { width: `${width}` }  : undefined}>
               {bar}
             </div>
             :

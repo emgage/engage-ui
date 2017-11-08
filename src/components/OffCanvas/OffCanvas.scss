@@ -4,14 +4,6 @@
 $offcanvas-z-index:                              1000 !default; //create global var?
 $offcanvas-bar-background:                       #fff !default; //create global var?
 
-$offcanvas-bar-width:                            270px !default;
-$offcanvas-bar-padding-vertical:                 20px !default; //create global var?
-$offcanvas-bar-padding-horizontal:               20px !default; //create global var?
-
-$offcanvas-bar-width-m:                          350px !default;
-$offcanvas-bar-padding-vertical-m:               40px !default;
-$offcanvas-bar-padding-horizontal-m:             40px !default;
-
 $offcanvas-bar-width-small:                      270px !default;
 $offcanvas-bar-padding-vertical-small:           30px !default;
 $offcanvas-bar-padding-horizontal-small:         30px !default;
@@ -55,36 +47,39 @@ $offcanvas-overlay-background:                   rgba(0,0,0,0.2) !default;
   bottom: 0;
   left: 0;
   box-sizing: border-box;
-  width: $offcanvas-bar-width;
-  padding: $offcanvas-bar-padding-vertical $offcanvas-bar-padding-horizontal;
   background: $offcanvas-bar-background;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   -webkit-transform: translateX(-100%);
   transform: translateX(-100%);
+}
 
-  &.small{
+.offcanvas {
+  
+  &.small .bar {
     width: $offcanvas-bar-width-small;
-  }
-  
-  &.medium{
-    width: $offcanvas-bar-width-medium;
-  }
-  
-  &.large {
-    width: $offcanvas-bar-width-large;
+    padding: $offcanvas-bar-padding-vertical-small $offcanvas-bar-padding-horizontal-small;
   }
 
+  &.medium .bar {
+    width: $offcanvas-bar-width-medium;
+    padding: $offcanvas-bar-padding-vertical-medium $offcanvas-bar-padding-horizontal-medium;
+  }
+
+  &.large .bar {
+    width: $offcanvas-bar-width-large;
+    padding: $offcanvas-bar-padding-vertical-large $offcanvas-bar-padding-horizontal-large;
+  }
 }
 
 // Flip modifier
-.flip > .bar,
 .flip > .bar  {
   left: auto;
   right: 0;
   -webkit-transform: translateX(100%);
   transform: translateX(100%);
 }
+
 // Open
 .open > .bar {
   -webkit-transform: translateX(0);
@@ -95,21 +90,25 @@ $offcanvas-overlay-background:                   rgba(0,0,0,0.2) !default;
 @media (min-width: $breakpoint-medium) {
 
   .bar {
-    width: $offcanvas-bar-width-m;
-    padding: $offcanvas-bar-padding-vertical-m $offcanvas-bar-padding-horizontal-m;
+    padding: $offcanvas-bar-padding-vertical-medium $offcanvas-bar-padding-horizontal-medium;
+  }
 
-    &.small{
+  .offcanvas {
+
+    &.small .bar {
       width: $offcanvas-bar-width-small;
-    }
-    
-    &.medium{
-      width: $offcanvas-bar-width-medium;
-    }
-    
-    &.large {
-      width: $offcanvas-bar-width-large;
+      padding: $offcanvas-bar-padding-vertical-small $offcanvas-bar-padding-horizontal-small;
     }
 
+    &.medium .bar {
+      width: $offcanvas-bar-width-medium;
+      padding: $offcanvas-bar-padding-vertical-medium $offcanvas-bar-padding-horizontal-medium;
+    }
+
+    &.large .bar {
+      width: $offcanvas-bar-width-large;
+      padding: $offcanvas-bar-padding-vertical-large $offcanvas-bar-padding-horizontal-large;
+    }
   }
 
 }
@@ -143,18 +142,39 @@ $offcanvas-overlay-background:                   rgba(0,0,0,0.2) !default;
 .flip > .reveal {
   right: 0;
   left: auto;
+
+  .bar {
+    left: auto;
+    right: 0;
+  }
 }
 
 // Open
-.open > .reveal {
-  width: $offcanvas-bar-width;
+.small.open > .reveal {
+  width: $offcanvas-bar-width-small;
+}
+
+.medium.open > .reveal {
+  width: $offcanvas-bar-width-medium;
+}
+
+.large.open > .reveal {
+  width: $offcanvas-bar-width-large;
 }
 
 // //Medium and larger screens 
 @media (min-width: $breakpoint-medium) {
   
-  .open > .reveal {
-    width: $offcanvas-bar-width-m;
+  .small.open > .reveal {
+    width: $offcanvas-bar-width-small;
+  }
+
+  .medium.open > .reveal {
+    width: $offcanvas-bar-width-medium;
+  }
+
+  .large.open > .reveal {
+    width: $offcanvas-bar-width-large;
   }
 
 }
@@ -225,10 +245,6 @@ body.overlay {
 
   &.animation {
 
-    :global #root {
-      left: $offcanvas-bar-width;
-    }
-
     &.small {
       :global #root {
         left: $offcanvas-bar-width-small;
@@ -249,25 +265,21 @@ body.overlay {
 
     &.flip {
 
-      :global #root {
-        left: (-$offcanvas-bar-width);
-      }
-
       &.small {
         :global #root {
-          left: $offcanvas-bar-width-small;
+          left: (-$offcanvas-bar-width-small);
         }
       }
 
       &.medium {
         :global #root {
-          left: $offcanvas-bar-width-medium;
+          left: (-$offcanvas-bar-width-medium);
         }
       }
 
       &.large {
         :global #root {
-          left: $offcanvas-bar-width-large;
+          left: (-$offcanvas-bar-width-large);
         }  
       }
     }
@@ -280,22 +292,18 @@ body.overlay {
 
     &.animation {
   
-      :global #root {
-        left: $offcanvas-bar-width-m;
-      }
-
       &.small {
         :global #root {
           left: $offcanvas-bar-width-small;
         }
       }
-      
+
       &.medium {
         :global #root {
           left: $offcanvas-bar-width-medium;
         }
       }
-      
+
       &.large {
         :global #root {
           left: $offcanvas-bar-width-large;
@@ -304,25 +312,21 @@ body.overlay {
   
       &.flip {
 
-        :global #root {
-          left: (-$offcanvas-bar-width-m);
-        }
-
         &.small {
           :global #root {
-            left: $offcanvas-bar-width-small;
+            left: (-$offcanvas-bar-width-small);
           }
         }
-        
+
         &.medium {
           :global #root {
-            left: $offcanvas-bar-width-medium;
+            left: (-$offcanvas-bar-width-medium);
           }
         }
-        
+
         &.large {
           :global #root {
-            left: $offcanvas-bar-width-large;
+            left: (-$offcanvas-bar-width-large);
           }
         }
       }

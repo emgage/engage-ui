@@ -260,7 +260,8 @@ class App extends React.Component<{}, State> {
         <PickerAutoSuggestExample />
         <SingleDatePickerWrapper />
         <DateRangePickerWrapper />
-        <OffCanvas mode="push" width="small" activator={<Button>OffCanvas Push Small</Button>} >
+        <div>
+        <OffCanvas width="small" closeButton activator={<Button>OffCanvas Small</Button>} >
           <p>Reveal Test</p>
           <ul>
             <li>Link 1</li>
@@ -270,7 +271,7 @@ class App extends React.Component<{}, State> {
             <li>Link 5</li>
           </ul>
         </OffCanvas>
-        <OffCanvas mode="push" width="medium" activator={<Button>OffCanvas Push Medium</Button>} >
+        <OffCanvas overlay width="medium" closeButton activator={<Button>OffCanvas Medium Overlay</Button>} >
           <p>Reveal Test</p>
           <ul>
             <li>Link 1</li>
@@ -280,7 +281,7 @@ class App extends React.Component<{}, State> {
             <li>Link 5</li>
           </ul>
         </OffCanvas>
-        <OffCanvas mode="push" width="large" activator={<Button>OffCanvas Push Large</Button>} >
+        <OffCanvas width="large" overlay flip closeButton activator={<Button>OffCanvas Large Overlay Flip</Button>} >
           <p>Reveal Test</p>
           <ul>
             <li>Link 1</li>
@@ -290,7 +291,7 @@ class App extends React.Component<{}, State> {
             <li>Link 5</li>
           </ul>
         </OffCanvas>
-        <OffCanvas mode="push" width="800px" activator={<Button>OffCanvas Push 800px</Button>} >
+        <OffCanvas width="800px" closeButton activator={<Button>OffCanvas 800px</Button>} >
           <p>Reveal Test</p>
           <ul>
             <li>Link 1</li>
@@ -300,7 +301,7 @@ class App extends React.Component<{}, State> {
             <li>Link 5</li>
           </ul>
         </OffCanvas>
-        <OffCanvas activator={<Button>OffCanvas</Button>} >
+        <OffCanvas width="800px" closeButton flip activator={<Button>OffCanvas Flip 800px</Button>} >
           <p>Reveal Test</p>
           <ul>
             <li>Link 1</li>
@@ -310,7 +311,9 @@ class App extends React.Component<{}, State> {
             <li>Link 5</li>
           </ul>
         </OffCanvas>
-        <OffCanvas mode="slide" activator={<Button>OffCanvas Slide</Button>} >
+        </div>
+        <div>
+        <OffCanvas mode="slide" width="small" closeButton activator={<Button>OffCanvas Slide Small</Button>} >
           <p>Reveal Test</p>
           <ul>
             <li>Link 1</li>
@@ -320,7 +323,7 @@ class App extends React.Component<{}, State> {
             <li>Link 5</li>
           </ul>
         </OffCanvas>
-        <OffCanvas mode="push" activator={<Button>OffCanvas Push</Button>} >
+        <OffCanvas mode="slide" overlay width="medium" closeButton activator={<Button>OffCanvas Slide Medium Overlay</Button>} >
           <p>Reveal Test</p>
           <ul>
             <li>Link 1</li>
@@ -330,7 +333,172 @@ class App extends React.Component<{}, State> {
             <li>Link 5</li>
           </ul>
         </OffCanvas>
-        <OffCanvas mode="reveal" activator={<Button>OffCanvas Reveal</Button>} >
+        <OffCanvas mode="slide" width="large" overlay flip closeButton activator={<Button>OffCanvas Slide Large Overlay Flip</Button>} >
+          <p>Reveal Test</p>
+          <ul>
+            <li>Link 1</li>
+            <li>Link 2</li>
+            <li>Link 3</li>
+            <li>Link 4</li>
+            <li>Link 5</li>
+          </ul>
+        </OffCanvas>
+        <OffCanvas mode="slide" width="800px" closeButton activator={<Button>OffCanvas Slide 800px</Button>} >
+          <p>Reveal Test</p>
+          <ul>
+            <li>Link 1</li>
+            <li>Link 2</li>
+            <li>Link 3</li>
+            <li>Link 4</li>
+            <li>Link 5</li>
+          </ul>
+        </OffCanvas>
+        <OffCanvas mode="slide" width="800px" closeButton flip activator={<Button>OffCanvas Slide Flip 800px</Button>} >
+          <p>Reveal Test</p>
+          <ul>
+            <li>Link 1</li>
+            <li>Link 2</li>
+            <li>Link 3</li>
+            <li>Link 4</li>
+            <li>Link 5</li>
+          </ul>
+        </OffCanvas>
+        </div>
+        <div>
+        <OffCanvas mode="push" width="small" closeButton activator={<Button>OffCanvas Push Small</Button>} >
+          <p>Reveal Test</p>
+          <ul>
+            <li>Link 1</li>
+            <li>Link 2</li>
+            <li>Link 3</li>
+            <li>Link 4</li>
+            <li>Link 5</li>
+          </ul>
+        </OffCanvas>
+        <OffCanvas mode="push" overlay width="medium" closeButton activator={<Button>OffCanvas Push Medium Overlay</Button>} >
+          <p>Reveal Test</p>
+          <ul>
+            <li>Link 1</li>
+            <li>Link 2</li>
+            <li>Link 3</li>
+            <li>Link 4</li>
+            <li>Link 5</li>
+          </ul>
+        </OffCanvas>
+        <OffCanvas mode="push" width="large" overlay flip closeButton activator={<Button>OffCanvas Push Large Overlay Flip</Button>} >
+          <p>Reveal Test</p>
+          <ul>
+            <li>Link 1</li>
+            <li>Link 2</li>
+            <li>Link 3</li>
+            <li>Link 4</li>
+            <li>Link 5</li>
+          </ul>
+        </OffCanvas>
+        <OffCanvas mode="push" width="800px" closeButton activator={<Button>OffCanvas Push 800px</Button>} >
+          <p>Reveal Test</p>
+          <ul>
+            <li>Link 1</li>
+            <li>Link 2</li>
+            <li>Link 3</li>
+            <li>Link 4</li>
+            <li>Link 5</li>
+          </ul>
+        </OffCanvas>
+        <OffCanvas mode="push" width="800px" closeButton flip activator={<Button>OffCanvas Push Flip 800px</Button>} >
+          <p>Reveal Test</p>
+          <ul>
+            <li>Link 1</li>
+            <li>Link 2</li>
+            <li>Link 3</li>
+            <li>Link 4</li>
+            <li>Link 5</li>
+          </ul>
+        </OffCanvas>
+        </div>
+        <div>
+        <OffCanvas mode="reveal" width="small" closeButton activator={<Button>OffCanvas Reveal Small</Button>} >
+          <p>Reveal Test</p>
+          <ul>
+            <li>Link 1</li>
+            <li>Link 2</li>
+            <li>Link 3</li>
+            <li>Link 4</li>
+            <li>Link 5</li>
+          </ul>
+        </OffCanvas>
+        <OffCanvas mode="reveal" overlay width="medium" closeButton activator={<Button>OffCanvas Reveal Medium Overlay</Button>} >
+          <p>Reveal Test</p>
+          <ul>
+            <li>Link 1</li>
+            <li>Link 2</li>
+            <li>Link 3</li>
+            <li>Link 4</li>
+            <li>Link 5</li>
+          </ul>
+        </OffCanvas>
+        <OffCanvas mode="reveal" width="large" overlay flip closeButton activator={<Button>OffCanvas Reveal Large Overlay Flip</Button>} >
+          <p>Reveal Test</p>
+          <ul>
+            <li>Link 1</li>
+            <li>Link 2</li>
+            <li>Link 3</li>
+            <li>Link 4</li>
+            <li>Link 5</li>
+          </ul>
+        </OffCanvas>
+        <OffCanvas mode="reveal" width="800px" closeButton activator={<Button>OffCanvas Reveal 800px</Button>} >
+          <p>Reveal Test</p>
+          <ul>
+            <li>Link 1</li>
+            <li>Link 2</li>
+            <li>Link 3</li>
+            <li>Link 4</li>
+            <li>Link 5</li>
+          </ul>
+        </OffCanvas>
+        <OffCanvas mode="reveal" width="800px" closeButton flip activator={<Button>OffCanvas Reveal Flip 800px</Button>} >
+          <p>Reveal Test</p>
+          <ul>
+            <li>Link 1</li>
+            <li>Link 2</li>
+            <li>Link 3</li>
+            <li>Link 4</li>
+            <li>Link 5</li>
+          </ul>
+        </OffCanvas>
+        </div>
+        <OffCanvas closeButton activator={<Button>OffCanvas</Button>} >
+          <p>Reveal Test</p>
+          <ul>
+            <li>Link 1</li>
+            <li>Link 2</li>
+            <li>Link 3</li>
+            <li>Link 4</li>
+            <li>Link 5</li>
+          </ul>
+        </OffCanvas>
+        <OffCanvas mode="slide" closeButton activator={<Button>OffCanvas Slide</Button>} >
+          <p>Reveal Test</p>
+          <ul>
+            <li>Link 1</li>
+            <li>Link 2</li>
+            <li>Link 3</li>
+            <li>Link 4</li>
+            <li>Link 5</li>
+          </ul>
+        </OffCanvas>
+        <OffCanvas mode="push" closeButton activator={<Button>OffCanvas Push</Button>} >
+          <p>Reveal Test</p>
+          <ul>
+            <li>Link 1</li>
+            <li>Link 2</li>
+            <li>Link 3</li>
+            <li>Link 4</li>
+            <li>Link 5</li>
+          </ul>
+        </OffCanvas>
+        <OffCanvas mode="reveal" closeButton activator={<Button>OffCanvas Reveal</Button>} >
           <p>Reveal Test</p>
           <ul>
             <li>Link 1</li>
@@ -341,7 +509,7 @@ class App extends React.Component<{}, State> {
           </ul>
         </OffCanvas>
 
-        <OffCanvas overlay activator={<Button>OffCanvas Overlay</Button>} >
+        <OffCanvas overlay closeButton activator={<Button>OffCanvas Overlay</Button>} >
           <p>Reveal Test</p>
           <ul>
             <li>Link 1</li>
@@ -351,7 +519,7 @@ class App extends React.Component<{}, State> {
             <li>Link 5</li>
           </ul>
         </OffCanvas>
-        <OffCanvas overlay mode="slide" activator={<Button>OffCanvas Slide Overlay</Button>} >
+        <OffCanvas overlay mode="slide" closeButton activator={<Button>OffCanvas Slide Overlay</Button>} >
           <p>Reveal Test</p>
           <ul>
             <li>Link 1</li>
@@ -361,7 +529,7 @@ class App extends React.Component<{}, State> {
             <li>Link 5</li>
           </ul>
         </OffCanvas>
-        <OffCanvas overlay mode="push" activator={<Button>OffCanvas Push Overlay</Button>} >
+        <OffCanvas overlay mode="push" closeButton activator={<Button>OffCanvas Push Overlay</Button>} >
           <p>Reveal Test</p>
           <ul>
             <li>Link 1</li>
@@ -371,7 +539,7 @@ class App extends React.Component<{}, State> {
             <li>Link 5</li>
           </ul>
         </OffCanvas>
-        <OffCanvas overlay mode="reveal" activator={<Button>OffCanvas Reveal Overlay</Button>} >
+        <OffCanvas overlay mode="reveal" closeButton activator={<Button>OffCanvas Reveal Overlay</Button>} >
           <p>Reveal Test</p>
           <ul>
             <li>Link 1</li>
@@ -381,7 +549,7 @@ class App extends React.Component<{}, State> {
             <li>Link 5</li>
           </ul>
         </OffCanvas>
-        <OffCanvas overlay flip activator={<Button>OffCanvas Overlay Flip</Button>} >
+        <OffCanvas overlay flip closeButton activator={<Button>OffCanvas Overlay Flip</Button>} >
           <p>Reveal Test</p>
           <ul>
             <li>Link 1</li>
@@ -391,7 +559,7 @@ class App extends React.Component<{}, State> {
             <li>Link 5</li>
           </ul>
         </OffCanvas>
-        <OffCanvas overlay flip mode="slide" activator={<Button>OffCanvas Slide Overlay Flip</Button>} >
+        <OffCanvas overlay flip mode="slide" closeButton activator={<Button>OffCanvas Slide Overlay Flip</Button>} >
           <p>Reveal Test</p>
           <ul>
             <li>Link 1</li>
@@ -401,7 +569,7 @@ class App extends React.Component<{}, State> {
             <li>Link 5</li>
           </ul>
         </OffCanvas>
-        <OffCanvas overlay flip mode="push" activator={<Button>OffCanvas Push Overlay Flip</Button>} >
+        <OffCanvas overlay flip mode="push" closeButton activator={<Button>OffCanvas Push Overlay Flip</Button>} >
           <p>Reveal Test</p>
           <ul>
             <li>Link 1</li>
@@ -411,7 +579,7 @@ class App extends React.Component<{}, State> {
             <li>Link 5</li>
           </ul>
         </OffCanvas>
-        <OffCanvas overlay flip mode="reveal" activator={<Button>OffCanvas Reveal Overlay Flip</Button>} >
+        <OffCanvas overlay flip mode="reveal" closeButton activator={<Button>OffCanvas Reveal Overlay Flip</Button>} >
           <p>Reveal Test</p>
           <ul>
             <li>Link 1</li>
@@ -421,7 +589,7 @@ class App extends React.Component<{}, State> {
             <li>Link 5</li>
           </ul>
         </OffCanvas>
-        <p>This is an inline <OffCanvas activator={<Link>OffCanvas Default</Link>} >
+        <p>This is an inline <OffCanvas closeButton activator={<Link>OffCanvas Default</Link>} >
           <p>Inline Test</p>
           <ul>
             <li>Link 1</li>
