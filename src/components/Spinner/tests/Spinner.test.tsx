@@ -57,7 +57,7 @@ describe('<Spinner />', () => {
         expect(spinnerWrapper.find('span')).toHaveLength(1);
       });
       it('Varify color property when it is not set', () => {
-        expect(spinnerWrapper.prop('size')).toBeFalsy();
+        expect(spinnerWrapper.prop('color')).toBeFalsy();
       });
     });
     describe('when set to white', () => {
@@ -84,7 +84,7 @@ describe('<Spinner />', () => {
       it('Varify accessibilityLabel property when it is not set', () => {
         expect(spinnerWrapper.prop('accessibilityLabel')).toBeFalsy();
       });
-      it('Varify aria-label property when accessibilityLabel prop is not set', () => {
+      it('Varify aria-label property of span when accessibilityLabel prop is not set', () => {
         expect(spinnerWrapper.find('span').prop('aria-label')).toBeFalsy();
       });
     });
@@ -98,7 +98,7 @@ describe('<Spinner />', () => {
       it('Varify accessibilityLabel property when it is set', () => {
         expect(spinnerWrapper.prop('accessibilityLabel')).toBe('loading');
       });
-      it('Varify aria-label property when accessibilityLabel prop is not set', () => {
+      it('Varify aria-label property of span when accessibilityLabel prop is set', () => {
         expect(spinnerWrapper.find('span').prop('aria-label')).toBe('loading');
       });
     });
@@ -120,7 +120,7 @@ describe('<Spinner />', () => {
     it('Varify accessibilityLabel property when it is set', () => {
       expect(spinnerWrapper.prop('accessibilityLabel')).toBe('loading');
     });
-    it('Varify aria-label property when accessibilityLabel prop is not set', () => {
+    it('Varify aria-label property of span when accessibilityLabel prop is not set', () => {
       expect(spinnerWrapper.find('span').prop('aria-label')).toBe('loading');
     });
   });
