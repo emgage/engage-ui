@@ -37,6 +37,7 @@ import {
   Video,
   VideoType,
   Modal,
+  Caption,
 } from '../../src/components';
 
 interface State {
@@ -252,6 +253,9 @@ class App extends React.Component<{}, State> {
               </p>
           </Modal>
         </div>
+        <br />
+        <Caption style={{ color:'red'  }}>This is Caption</Caption>
+        <br />
         <Checkbox label={'I am a checkbox'} />
         <Banner title={'banner'} status={'success'} />
         <Banner title={'banner'} status={'info'} />

@@ -246,3 +246,7 @@ export {
   Props as MaskTextFieldProps,
 } from './MaskTextField';
 
+export {
+  default as Caption,
+  Props as CaptionProps,
+} from './Caption';
