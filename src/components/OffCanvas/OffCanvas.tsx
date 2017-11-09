@@ -12,6 +12,7 @@ import OffCanvasContent from './OffCanvasContent';
 import * as baseTheme from './OffCanvas.scss';
 
 export type Mode = 'slide' | 'push' | 'reveal';
+export type Width = 'small' | 'medium' | 'large' | string;
 
 export interface Props {
   active?: boolean;
@@ -20,8 +21,11 @@ export interface Props {
   children?: any;
   flip?: boolean;
   mode?: Mode;
+  accessibilityLabel?: string;
   overlay?: boolean;
   theme?: any;
+  width?: Width;
+  closeButton?: boolean;
 }
 
 export interface State {
@@ -36,7 +40,7 @@ class OffCanvas extends React.PureComponent<Props, State> {
     active: false,
   };
 
-  private id = getUniqueID();
+  public id = getUniqueID();
   private activatorNode: HTMLElement | null;
   private activatorContainer: HTMLElement | null;
 
@@ -62,6 +66,7 @@ class OffCanvas extends React.PureComponent<Props, State> {
       flip,
       mode,
       overlay,
+      width = 'medium',
       theme,
     } = this.props;
 
@@ -69,6 +74,9 @@ class OffCanvas extends React.PureComponent<Props, State> {
       theme.offcanvas,
       overlay && theme.overlay,
       flip && theme.flip,
+      width === 'small' && theme.small,
+      width === 'medium' && theme.medium,
+      width === 'large' && theme.large,
       this.state.active && theme.open
     );
 
@@ -78,26 +86,44 @@ class OffCanvas extends React.PureComponent<Props, State> {
       mode === 'push' && theme.animation
     );
 
-    const rootElement = document.body;
-    if (rootElement !== null) {
-      rootElement.className = this.state.active ? (theme.container) : '';
-      rootElement.className += overlay && this.state.active ? ' ' + (theme.overlay) : '';
-      rootElement.className += flip && this.state.active ? ' ' + (theme.flip) : '';
-      if (mode ===  'push' || mode ===  'reveal') {
-        rootElement.className += this.state.active ? ' ' + (theme.animation) : '';
+    const bodyElement = document.body;
+    const rootElement = document.getElementById('root');
+    if (bodyElement !== null) {
+      bodyElement.className = this.state.active ? (theme.container) : '';
+      bodyElement.className += overlay && this.state.active ? ' ' + (theme.overlay) : '';
+      bodyElement.className += flip && this.state.active ? ' ' + (theme.flip) : '';
+      if (width === 'small') {
+        bodyElement.className += this.state.active ? ' ' + (theme.small) : '';
+      }
+      if (width === 'medium') {
+        bodyElement.className += this.state.active ? ' ' + (theme.medium) : '';
+      }
+      if (width === 'large') {
+        bodyElement.className += this.state.active ? ' ' + (theme.large) : '';
+      }
+      if (mode === 'push' || mode === 'reveal') {
+        bodyElement.className += this.state.active ? ' ' + (theme.animation) : '';
+        if (rootElement !== null) {
+          if (flip) {
+            rootElement.style.left = width && this.state.active ? `-${width}` : '';
+          } else {
+            rootElement.style.left = width && this.state.active ? `${width}` : '';
+          }
+        }
       }
     }
 
     const bar = [
-      <div className={barClassName}>
+      <div className={barClassName} style={width ? { width: `${width}` }  : undefined} key={id}>
         <OffCanvasContent
           id={id}
           activator={activatorNode}
           active={active || this.state.active}
           onClose={noop}
-          onClick={this.handleClick}
+          onCancel={this.handleClick}
+          closeButton={this.props.closeButton}
         >
-          <div className={theme.label}>
+          <div className={theme.label} aria-live={'assertive'} >
             {children}
           </div>
         </OffCanvasContent>
@@ -108,17 +134,16 @@ class OffCanvas extends React.PureComponent<Props, State> {
       <div className={containerClassName}>
         {
           mode === 'reveal'
-          ?
-          <div className={theme.reveal}>
-            {bar}
-          </div>
-          :
-          bar
+            ?
+            <div className={theme.reveal} style={width && this.state.active ? { width: `${width}` }  : undefined}>
+              {bar}
+            </div>
+            :
+            bar
         }
       </div>
     );
   }
-
 
   render() {
     const { activatorWrapper: WRAPPERCOMPONENT = 'span' } = this.props;
@@ -154,6 +179,8 @@ class OffCanvas extends React.PureComponent<Props, State> {
 
     accessibilityNode.tabIndex = 0;
     accessibilityNode.setAttribute('aria-describedby', id);
+    accessibilityNode.setAttribute('aria-expanded', this.state.active.toString());
+    accessibilityNode.setAttribute('aria-label', this.props.accessibilityLabel ? this.props.accessibilityLabel : '');
   }
 }
 

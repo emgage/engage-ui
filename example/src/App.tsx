@@ -1,21 +1,22 @@
 import * as React from 'react';
 import ReactDataExample from './ReactDataExample';
+import SingleDatePickerWrapper from './SingleDatePickerWrapper';
+import DateRangePickerWrapper from './DateRangePickerWrapper';
 import PickerAutoSuggestExample from './PickerAutoSuggestExample';
 
 import {
   Banner,
+  Badge,
   Button,
   ButtonGroup,
   Card,
+  Checkbox,
   Chip,
   ChoiceList,
   ClickableChip,
   Column,
   DisplayText,
   FlexBox,
-  FlexAlign,
-  FlexDirection,
-  FlexJustify,
   FormLayout,
   Heading,
   Link,
@@ -32,6 +33,7 @@ import {
   ValidatedForm,
   Video,
   VideoType,
+  Modal,
 } from '../../src/components';
 
 interface State {
@@ -44,6 +46,7 @@ interface State {
 }
 
 class App extends React.Component<{}, State> {
+
   constructor(props: any) {
     super(props);
     this.state = {
@@ -117,12 +120,365 @@ class App extends React.Component<{}, State> {
 
     return (
       <div>
+        <Badge children={'Badge'} />
+        <Badge children={'Badge'} status={'success'} />
+        <Badge children={'Badge'} status={'info'} />
+        <Badge children={'Badge'} status={'attention'} />
+        <Badge children={'Badge'} status={'warning'} />
+        <Badge children={'Badge'} progress={'incomplete'} />
+        <Badge children={'Badge'} progress={'partiallyComplete'} />
+        <Badge children={'Badge'} progress={'complete'} />
+        <div>
+          <h1>This is my Modal Component!!</h1>
+          <Modal
+            id="test1"
+            close
+            closeOnBackgroud={true}
+            closeOnEsc
+            modalOverflow={true}
+            backdropEnabled
+            header="This is my modal header"
+            footer={<Button>OK</Button>}
+            activator={<Button>Modal</Button>}
+            size="Medium"
+          >
+
+            <h2>Headline test</h2>
+            <p>
+              test Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in
+
+
+            test Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in
+
+            test Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in
+            test Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in
+            test Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in
+
+            test Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in
+
+            test Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in
+
+            test Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in
+
+            test Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in
+
+            test Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in
+              </p>
+          </Modal>
+        </div>
+        <div>
+          <h1>This is my Modal Component!!</h1>
+          <Modal
+            id="test2"
+            close
+            modalOverflow={false}
+            backdropEnabled
+            header="This is my modal header"
+            footer={<Button>OK</Button>}
+            activator={<Button>Modal</Button>}
+            size={800}
+          >
+
+            <h2>Headline test</h2>
+            <p>
+              test Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in
+
+
+            test Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in
+
+            test Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in
+            test Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in
+            test Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in
+
+            test Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in
+
+            test Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in
+
+            test Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in
+
+            test Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in
+
+            test Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in
+              </p>
+          </Modal>
+        </div>
+        <Checkbox label={'I am a checkbox'} />
         <Banner title={'banner'} status={'success'} />
         <Banner title={'banner'} status={'info'} />
         <Banner title={'banner'} status={'warning'} />
         <Banner title={'banner'} status={'critical'} />
         <PickerAutoSuggestExample />
-        <OffCanvas activator={<Button>OffCanvas</Button>} >
+        <SingleDatePickerWrapper />
+        <DateRangePickerWrapper />
+        <div>
+          <OffCanvas width="small" closeButton activator={<Button>OffCanvas Small</Button>} >
+            <p>Reveal Test</p>
+            <ul>
+              <li>Link 1</li>
+              <li>Link 2</li>
+              <li>Link 3</li>
+              <li>Link 4</li>
+              <li>Link 5</li>
+            </ul>
+          </OffCanvas>
+          <OffCanvas overlay width="medium" closeButton activator={<Button>OffCanvas Medium Overlay</Button>} >
+            <p>Reveal Test</p>
+            <ul>
+              <li>Link 1</li>
+              <li>Link 2</li>
+              <li>Link 3</li>
+              <li>Link 4</li>
+              <li>Link 5</li>
+            </ul>
+          </OffCanvas>
+          <OffCanvas width="large" overlay flip closeButton activator={<Button>OffCanvas Large Overlay Flip</Button>} >
+            <p>Reveal Test</p>
+            <ul>
+              <li>Link 1</li>
+              <li>Link 2</li>
+              <li>Link 3</li>
+              <li>Link 4</li>
+              <li>Link 5</li>
+            </ul>
+          </OffCanvas>
+          <OffCanvas width="800px" closeButton activator={<Button>OffCanvas 800px</Button>} >
+            <p>Reveal Test</p>
+            <ul>
+              <li>Link 1</li>
+              <li>Link 2</li>
+              <li>Link 3</li>
+              <li>Link 4</li>
+              <li>Link 5</li>
+            </ul>
+          </OffCanvas>
+          <OffCanvas width="800px" closeButton flip activator={<Button>OffCanvas Flip 800px</Button>} >
+            <p>Reveal Test</p>
+            <ul>
+              <li>Link 1</li>
+              <li>Link 2</li>
+              <li>Link 3</li>
+              <li>Link 4</li>
+              <li>Link 5</li>
+            </ul>
+          </OffCanvas>
+        </div>
+        <div>
+          <OffCanvas mode="slide" width="small" closeButton activator={<Button>OffCanvas Slide Small</Button>} >
+            <p>Reveal Test</p>
+            <ul>
+              <li>Link 1</li>
+              <li>Link 2</li>
+              <li>Link 3</li>
+              <li>Link 4</li>
+              <li>Link 5</li>
+            </ul>
+          </OffCanvas>
+          <OffCanvas mode="slide" overlay width="medium" closeButton activator={<Button>OffCanvas Slide Medium Overlay</Button>} >
+            <p>Reveal Test</p>
+            <ul>
+              <li>Link 1</li>
+              <li>Link 2</li>
+              <li>Link 3</li>
+              <li>Link 4</li>
+              <li>Link 5</li>
+            </ul>
+          </OffCanvas>
+          <OffCanvas mode="slide" width="large" overlay flip closeButton activator={<Button>OffCanvas Slide Large Overlay Flip</Button>} >
+            <p>Reveal Test</p>
+            <ul>
+              <li>Link 1</li>
+              <li>Link 2</li>
+              <li>Link 3</li>
+              <li>Link 4</li>
+              <li>Link 5</li>
+            </ul>
+          </OffCanvas>
+          <OffCanvas mode="slide" width="800px" closeButton activator={<Button>OffCanvas Slide 800px</Button>} >
+            <p>Reveal Test</p>
+            <ul>
+              <li>Link 1</li>
+              <li>Link 2</li>
+              <li>Link 3</li>
+              <li>Link 4</li>
+              <li>Link 5</li>
+            </ul>
+          </OffCanvas>
+          <OffCanvas mode="slide" width="800px" closeButton flip activator={<Button>OffCanvas Slide Flip 800px</Button>} >
+            <p>Reveal Test</p>
+            <ul>
+              <li>Link 1</li>
+              <li>Link 2</li>
+              <li>Link 3</li>
+              <li>Link 4</li>
+              <li>Link 5</li>
+            </ul>
+          </OffCanvas>
+        </div>
+        <div>
+          <OffCanvas mode="push" width="small" closeButton activator={<Button>OffCanvas Push Small</Button>} >
+            <p>Reveal Test</p>
+            <ul>
+              <li>Link 1</li>
+              <li>Link 2</li>
+              <li>Link 3</li>
+              <li>Link 4</li>
+              <li>Link 5</li>
+            </ul>
+          </OffCanvas>
+          <OffCanvas mode="push" overlay width="medium" closeButton activator={<Button>OffCanvas Push Medium Overlay</Button>} >
+            <p>Reveal Test</p>
+            <ul>
+              <li>Link 1</li>
+              <li>Link 2</li>
+              <li>Link 3</li>
+              <li>Link 4</li>
+              <li>Link 5</li>
+            </ul>
+          </OffCanvas>
+          <OffCanvas mode="push" width="large" overlay flip closeButton activator={<Button>OffCanvas Push Large Overlay Flip</Button>} >
+            <p>Reveal Test</p>
+            <ul>
+              <li>Link 1</li>
+              <li>Link 2</li>
+              <li>Link 3</li>
+              <li>Link 4</li>
+              <li>Link 5</li>
+            </ul>
+          </OffCanvas>
+          <OffCanvas mode="push" width="800px" closeButton activator={<Button>OffCanvas Push 800px</Button>} >
+            <p>Reveal Test</p>
+            <ul>
+              <li>Link 1</li>
+              <li>Link 2</li>
+              <li>Link 3</li>
+              <li>Link 4</li>
+              <li>Link 5</li>
+            </ul>
+          </OffCanvas>
+          <OffCanvas mode="push" width="800px" closeButton flip activator={<Button>OffCanvas Push Flip 800px</Button>} >
+            <p>Reveal Test</p>
+            <ul>
+              <li>Link 1</li>
+              <li>Link 2</li>
+              <li>Link 3</li>
+              <li>Link 4</li>
+              <li>Link 5</li>
+            </ul>
+          </OffCanvas>
+        </div>
+        <div>
+          <OffCanvas mode="reveal" width="small" closeButton activator={<Button>OffCanvas Reveal Small</Button>} >
+            <p>Reveal Test</p>
+            <ul>
+              <li>Link 1</li>
+              <li>Link 2</li>
+              <li>Link 3</li>
+              <li>Link 4</li>
+              <li>Link 5</li>
+            </ul>
+          </OffCanvas>
+          <OffCanvas mode="reveal" overlay width="medium" closeButton activator={<Button>OffCanvas Reveal Medium Overlay</Button>} >
+            <p>Reveal Test</p>
+            <ul>
+              <li>Link 1</li>
+              <li>Link 2</li>
+              <li>Link 3</li>
+              <li>Link 4</li>
+              <li>Link 5</li>
+            </ul>
+          </OffCanvas>
+          <OffCanvas mode="reveal" width="large" overlay flip closeButton activator={<Button>OffCanvas Reveal Large Overlay Flip</Button>} >
+            <p>Reveal Test</p>
+            <ul>
+              <li>Link 1</li>
+              <li>Link 2</li>
+              <li>Link 3</li>
+              <li>Link 4</li>
+              <li>Link 5</li>
+            </ul>
+          </OffCanvas>
+          <OffCanvas mode="reveal" width="800px" closeButton activator={<Button>OffCanvas Reveal 800px</Button>} >
+            <p>Reveal Test</p>
+            <ul>
+              <li>Link 1</li>
+              <li>Link 2</li>
+              <li>Link 3</li>
+              <li>Link 4</li>
+              <li>Link 5</li>
+            </ul>
+          </OffCanvas>
+          <OffCanvas mode="reveal" width="800px" closeButton flip activator={<Button>OffCanvas Reveal Flip 800px</Button>} >
+            <p>Reveal Test</p>
+            <ul>
+              <li>Link 1</li>
+              <li>Link 2</li>
+              <li>Link 3</li>
+              <li>Link 4</li>
+              <li>Link 5</li>
+            </ul>
+          </OffCanvas>
+        </div>
+        <OffCanvas closeButton activator={<Button>OffCanvas</Button>} >
           <p>Reveal Test</p>
           <ul>
             <li>Link 1</li>
@@ -132,7 +488,7 @@ class App extends React.Component<{}, State> {
             <li>Link 5</li>
           </ul>
         </OffCanvas>
-        <OffCanvas mode="slide" activator={<Button>OffCanvas Slide</Button>} >
+        <OffCanvas mode="slide" closeButton activator={<Button>OffCanvas Slide</Button>} >
           <p>Reveal Test</p>
           <ul>
             <li>Link 1</li>
@@ -142,7 +498,7 @@ class App extends React.Component<{}, State> {
             <li>Link 5</li>
           </ul>
         </OffCanvas>
-        <OffCanvas mode="push" activator={<Button>OffCanvas Push</Button>} >
+        <OffCanvas mode="push" closeButton activator={<Button>OffCanvas Push</Button>} >
           <p>Reveal Test</p>
           <ul>
             <li>Link 1</li>
@@ -152,7 +508,7 @@ class App extends React.Component<{}, State> {
             <li>Link 5</li>
           </ul>
         </OffCanvas>
-        <OffCanvas mode="reveal" activator={<Button>OffCanvas Reveal</Button>} >
+        <OffCanvas mode="reveal" closeButton activator={<Button>OffCanvas Reveal</Button>} >
           <p>Reveal Test</p>
           <ul>
             <li>Link 1</li>
@@ -163,7 +519,7 @@ class App extends React.Component<{}, State> {
           </ul>
         </OffCanvas>
 
-        <OffCanvas overlay activator={<Button>OffCanvas Overlay</Button>} >
+        <OffCanvas overlay closeButton activator={<Button>OffCanvas Overlay</Button>} >
           <p>Reveal Test</p>
           <ul>
             <li>Link 1</li>
@@ -173,7 +529,7 @@ class App extends React.Component<{}, State> {
             <li>Link 5</li>
           </ul>
         </OffCanvas>
-        <OffCanvas overlay mode="slide" activator={<Button>OffCanvas Slide Overlay</Button>} >
+        <OffCanvas overlay mode="slide" closeButton activator={<Button>OffCanvas Slide Overlay</Button>} >
           <p>Reveal Test</p>
           <ul>
             <li>Link 1</li>
@@ -183,7 +539,7 @@ class App extends React.Component<{}, State> {
             <li>Link 5</li>
           </ul>
         </OffCanvas>
-        <OffCanvas overlay mode="push" activator={<Button>OffCanvas Push Overlay</Button>} >
+        <OffCanvas overlay mode="push" closeButton activator={<Button>OffCanvas Push Overlay</Button>} >
           <p>Reveal Test</p>
           <ul>
             <li>Link 1</li>
@@ -193,7 +549,7 @@ class App extends React.Component<{}, State> {
             <li>Link 5</li>
           </ul>
         </OffCanvas>
-        <OffCanvas overlay mode="reveal" activator={<Button>OffCanvas Reveal Overlay</Button>} >
+        <OffCanvas overlay mode="reveal" closeButton activator={<Button>OffCanvas Reveal Overlay</Button>} >
           <p>Reveal Test</p>
           <ul>
             <li>Link 1</li>
@@ -203,7 +559,7 @@ class App extends React.Component<{}, State> {
             <li>Link 5</li>
           </ul>
         </OffCanvas>
-        <OffCanvas overlay flip activator={<Button>OffCanvas Overlay Flip</Button>} >
+        <OffCanvas overlay flip closeButton activator={<Button>OffCanvas Overlay Flip</Button>} >
           <p>Reveal Test</p>
           <ul>
             <li>Link 1</li>
@@ -213,7 +569,7 @@ class App extends React.Component<{}, State> {
             <li>Link 5</li>
           </ul>
         </OffCanvas>
-        <OffCanvas overlay flip mode="slide" activator={<Button>OffCanvas Slide Overlay Flip</Button>} >
+        <OffCanvas overlay flip mode="slide" closeButton activator={<Button>OffCanvas Slide Overlay Flip</Button>} >
           <p>Reveal Test</p>
           <ul>
             <li>Link 1</li>
@@ -223,7 +579,7 @@ class App extends React.Component<{}, State> {
             <li>Link 5</li>
           </ul>
         </OffCanvas>
-        <OffCanvas overlay flip mode="push" activator={<Button>OffCanvas Push Overlay Flip</Button>} >
+        <OffCanvas overlay flip mode="push" closeButton activator={<Button>OffCanvas Push Overlay Flip</Button>} >
           <p>Reveal Test</p>
           <ul>
             <li>Link 1</li>
@@ -233,7 +589,7 @@ class App extends React.Component<{}, State> {
             <li>Link 5</li>
           </ul>
         </OffCanvas>
-        <OffCanvas overlay flip mode="reveal" activator={<Button>OffCanvas Reveal Overlay Flip</Button>} >
+        <OffCanvas overlay flip mode="reveal" closeButton activator={<Button>OffCanvas Reveal Overlay Flip</Button>} >
           <p>Reveal Test</p>
           <ul>
             <li>Link 1</li>
@@ -243,7 +599,7 @@ class App extends React.Component<{}, State> {
             <li>Link 5</li>
           </ul>
         </OffCanvas>
-        <p>This is an inline <OffCanvas activator={<Link>OffCanvas Default</Link>} >
+        <p>This is an inline <OffCanvas closeButton activator={<Link>OffCanvas Default</Link>} >
           <p>Inline Test</p>
           <ul>
             <li>Link 1</li>
@@ -252,7 +608,7 @@ class App extends React.Component<{}, State> {
             <li>Link 4</li>
             <li>Link 5</li>
           </ul>
-        </OffCanvas> trigger</p>
+        </OffCanvas> trigger</p> */}
         <p> Some text with a
           <Tooltip content="This order has shipping labels.">
             <Link>Tooltip 1</Link>
@@ -278,9 +634,21 @@ class App extends React.Component<{}, State> {
             placeholder="test-placeholder"
             value={this.state.appTextCounter}
             helpText="Helper Text"
-            enableTextCouter={true}
+            enableTextCounter
             maxLength={101}
             minLength={5}
+            onChange={this.valueUpdater('appTextCounter')}
+          />
+          <TextField
+            id="TestName1"
+            label="Text Counter"
+            placeholder="test-placeholder"
+            value={this.state.appTextCounter}
+            helpText="Helper Text"
+            maxLength={101}
+            minLength={5}
+            multiline
+            resizable
             onChange={this.valueUpdater('appTextCounter')}
           />
           <p> Some text with a
@@ -303,7 +671,7 @@ class App extends React.Component<{}, State> {
           >
             <Link>Tooltip 2</Link>
           </Tooltip>
-          <TextField id="TestName" label="Text Counter" placeholder="test-placeholder" value={this.state.appTextCounter} helpText="Helper Text" enableTextCouter={true} maxLength={100} onChange={this.valueUpdater('appTextCounter')} />
+          <TextField id="TestName" label="Text Counter" placeholder="test-placeholder" value={this.state.appTextCounter} helpText="Helper Text" enableTextCounter={true} maxLength={100} onChange={this.valueUpdater('appTextCounter')} />
           <ClickableChip chip={<Chip>Batman</Chip>}>
             <Card title="More about Batman">
               <p>Batman is a fictional superhero who appears in American comic books published by DC Comics. The character was created by artist Bob Kane and writer Bill Finger, and first appeared in Detective Comics #27</p>
@@ -427,7 +795,7 @@ class App extends React.Component<{}, State> {
           <Loading />
           <TextField
             label="Connected Text Field"
-            type="number"
+            type="text"
             placeholder=""
             value={this.state.appTextCounter}
             helpText="Helper Text"
@@ -438,7 +806,6 @@ class App extends React.Component<{}, State> {
               'lb',
             ]} />}
           />
-
           <Heading>Flexbox</Heading>
           <FlexBox>
             <div style={{ backgroundColor: 'aqua' }}>Demo 1</div>
@@ -446,7 +813,7 @@ class App extends React.Component<{}, State> {
             <div style={{ backgroundColor: 'lime' }}>Demo 3</div>
           </FlexBox>
 
-          <FlexBox direction={FlexDirection.Column} align={FlexAlign.Stretch} justify={FlexJustify.Center}>
+          <FlexBox direction="Column" align="Stretch" justify="Center">
             <div style={{ backgroundColor: 'aqua' }}>Demo 1</div>
             <div style={{ backgroundColor: 'pink' }}>Demo 2</div>
             <div style={{ backgroundColor: 'lime' }}>Demo 3</div>
@@ -463,13 +830,13 @@ class App extends React.Component<{}, State> {
             <Link>Tooltip 2</Link>
           </Tooltip>
 
-          <FlexBox direction={FlexDirection.Row} align={FlexAlign.Stretch} justify={FlexJustify.SpaceAround}>
+          <FlexBox direction="Row" align="Stretch" justify="SpaceAround">
             <div style={{ backgroundColor: 'aqua' }}>Demo 1</div>
             <div style={{ backgroundColor: 'pink' }}>Demo 2</div>
             <div style={{ backgroundColor: 'lime' }}>Demo 3</div>
           </FlexBox>
 
-          <FlexBox inline={true} direction={FlexDirection.Column} align={FlexAlign.Stretch} justify={FlexJustify.Center}>
+          <FlexBox inline={true} direction="Column" align="Stretch" justify="Center">
             <div style={{ backgroundColor: 'aqua' }}>Demo 1</div>
             <div style={{ backgroundColor: 'pink' }}>Demo 2</div>
             <div style={{ backgroundColor: 'lime' }}>Demo 3</div>
@@ -483,8 +850,10 @@ class App extends React.Component<{}, State> {
             <Chip
               image={{
                 url: 'example/src/images/netguru-cartoon-characters3.png',
+                alt: 'Your mom',
               }}
               removable={true}
+              onRemove={this.chipRemove}
             >
               Image Chip
           </Chip>
@@ -565,7 +934,6 @@ class App extends React.Component<{}, State> {
           >
             <Link>Tooltip 2</Link>
           </Tooltip>
-
           <Heading>Grid</Heading>
           <FlexBox>
             <Column small="1-2" medium="1-4" large="3-5">
@@ -686,6 +1054,16 @@ class App extends React.Component<{}, State> {
           <Link>Tooltip 2</Link>
         </Tooltip>
         <br />
+        <Button icon="add" primary>
+          Create Role
+      </Button>
+        <br />
+        <br />
+        <br />
+        <ButtonGroup segmented>
+          <Button primary>Save Draft</Button>
+          <Button primary>Publish</Button>
+        </ButtonGroup>
       </div>
     );
   }

@@ -47,15 +47,15 @@ $pip-spacing: ($height - $pip-size) / 2;
   background-color: color(orange, light);
 }
 
-.progressIncomplete .Pip {
+.progressIncomplete .pip {
   background: transparent;
 }
 
-.progressPartiallyComplete .Pip {
+.progressPartiallyComplete .pip {
   background: linear-gradient(to top, currentColor, currentColor 50%, transparent 50%, transparent);
 }
 
-.progressComplete .Pip {
+.progressComplete .pip {
   background: currentColor;
 }
 

@@ -15,6 +15,7 @@ export interface Props {
   status?: Status;
   progress?: Progress;
   theme?: any;
+  statusText?: boolean;
 }
 
 const PROGRESS_LABELS = {
@@ -37,23 +38,25 @@ const badge = ({ children, status, progress, theme }: Props) => {
     progress && theme[variationName('progress', progress)]
   );
 
+  const role = progress ? PROGRESS_LABELS[progress] : 'badge';
+  const statusLabelMarkup = status
+    ? <VisuallyHidden>{STATUS_LABELS[status]} {children}</VisuallyHidden>
+    : null;
+
   const pipMarkup = progress
     ? (
       <span className={theme.pip}>
-        <VisuallyHidden>{PROGRESS_LABELS[progress]}</VisuallyHidden>
+        <VisuallyHidden>{PROGRESS_LABELS[progress]} {children}</VisuallyHidden>
       </span>
     )
     : null;
 
-  const statusLabelMarkup = status
-    ? <VisuallyHidden>{STATUS_LABELS[status]}</VisuallyHidden>
-    : null;
 
   return (
-    <span className={className}>
+    <span className={className} role={role}>
       {statusLabelMarkup}
-      {pipMarkup}
-      {children}
+       {pipMarkup}
+       {children}
     </span>
   );
 };

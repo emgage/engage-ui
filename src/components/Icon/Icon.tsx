@@ -40,6 +40,7 @@ import {
   refresh,
   risk,
   search,
+  spinner,
   view,
 } from '../../icons';
 
@@ -95,6 +96,7 @@ export const BUNDLED_ICONS = {
   refresh,
   risk,
   search,
+  spinner,
   view,
   delete: deleteIcon,
   export: exportIcon,

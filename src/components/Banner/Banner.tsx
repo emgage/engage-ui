@@ -33,6 +33,7 @@ export interface Props {
 }
 
 const banner = ({
+  ariaLabel,
   icon,
   action,
   secondaryAction,
@@ -83,7 +84,7 @@ const banner = ({
     headingID = `${id}Heading`;
     headingMarkup = (
       <div className={theme.heading} id={headingID}>
-        <Heading element="p">{title}</Heading>
+        <Heading element="h6">{title}</Heading>
       </div>
     );
   }
@@ -94,7 +95,7 @@ const banner = ({
 
   const actionMarkup = action
     ? (
-      <div className={theme.Actions}>
+      <div className={theme.actions}>
         <ButtonGroup>
           {buttonFrom(action, { outline: true })}
           {secondaryActionMarkup}
@@ -109,7 +110,7 @@ const banner = ({
   if (children || actionMarkup) {
     contentID = `${id}Content`;
     contentMarkup = (
-      <div className={theme.content} id={contentID} aria-label={this.props.ariaLabel}>
+      <div className={theme.content} id={contentID} aria-label={ariaLabel}>
         {children}
         {actionMarkup}
       </div>

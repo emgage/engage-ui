@@ -6,6 +6,7 @@ import KeypressListener from '../KeypressListener';
 import helpers from './helpers';
 import Dialog from './Dialog';
 import * as baseTheme from './Modal.scss';
+import * as velocity from 'velocity-animate';
 
 const bodyStyle = (pading: string, overflow: string): void => {
   const body = document.getElementsByTagName('body');
@@ -34,14 +35,13 @@ export interface ITrigger {
 
 export interface Props {
   className?: string;
-  classes?: string;
   close?: boolean;
   footer?: React.ReactNode;
   header?: React.ReactNode;
   activator: React.ReactNode;
   id?: string;
-  show: boolean;
-  trigger: ITrigger;
+  show?: boolean;
+  trigger?: ITrigger;
   closeOnEsc?: boolean;
   closeOnBackgroud?: boolean;
   modalOverflow?: boolean;
@@ -50,9 +50,38 @@ export interface Props {
   theme?: any;
 }
 
-class Modal extends React.Component<Props, {}> {
+interface State {
+  show: boolean;
+}
+
+class Modal extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
+    this.state = {
+      show: false,
+    };
+  }
+
+  animate: IAnimate = {
+    in: (modal, dialog) => this.animateIn(modal, dialog),
+    out: (modal, dialog) => this.animateOut(modal, dialog),
+  };
+
+  trigger: ITrigger = {
+    body: 'Open',
+    animate: this.animate,
+  };
+
+  animateIn(modal?: Element, dialog?: Element): void {
+    this.setState({ show: true });
+    velocity(modal, { opacity: 1 }, { display: 'block' }, 300);
+    velocity(dialog, { translateY: 1, opacity: 1 }, { display: 'block' }, 200);
+  }
+
+  animateOut(modal?: Element, dialog?: Element): void {
+    this.setState({ show: false });
+    velocity(modal, { opacity: 0 }, { display: 'none' }, 300);
+    velocity(dialog, { translateY: -100, opacity: 0 }, { display: 'none' }, 200);
   }
 
   handleCloseClick = (event: React.SyntheticEvent<HTMLElement> | KeyboardEvent): void => {
@@ -61,7 +90,7 @@ class Modal extends React.Component<Props, {}> {
     const props = this.props;
     const { modal, dialog } = getModalElement(props.id as string);
 
-    props.trigger.animate.out(modal as Element, dialog as Element);
+    this.trigger.animate.out(modal as Element, dialog as Element);
     setTimeout(() => bodyStyle('', ''), 200);
   }
 
@@ -70,9 +99,9 @@ class Modal extends React.Component<Props, {}> {
     const props = this.props;
     const { modal, dialog } = getModalElement(props.id as string);
 
-    if (!this.props.show) {
+    if (!this.state.show) {
       bodyStyle('16px', 'hidden');
-      props.trigger.animate.in(modal as Element, dialog as Element);
+      this.trigger.animate.in(modal as Element, dialog as Element);
     } else {
       const target = e.target as HTMLInputElement;
       const id = (target ? target.dataset.id : undefined);
@@ -94,14 +123,12 @@ class Modal extends React.Component<Props, {}> {
     const cssClassNames = helpers.cleanClasses([
       props.theme.overflow,
       props.backdropEnabled ? props.theme.modal : null,
-      props.classes,
       props.className,
     ]);
 
     const ignoreProps = [
       'blank',
       'className',
-      'classes',
       'close',
       'footer',
       'header',
@@ -151,7 +178,7 @@ class Modal extends React.Component<Props, {}> {
             backdropEnabled={props.backdropEnabled}
             size={props.size}
           >
-            <div className={props.theme.autoHeight}>  {props.children}</div>
+            <div className={props.modalOverflow ? props.theme.autoHeight : null}>  {props.children}</div>
           </Dialog>
         </div>
       </div>

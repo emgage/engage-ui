@@ -1,44 +1,19 @@
 import * as React from 'react';
 import { FlexBox } from '../../../../src/components/';
 import * as styles from '../../styles/components-page.scss';
-import { FlexAlign, FlexDirection, FlexJustify } from '../../../../src/components/FlexBox/FlexProps';
 
-export interface IProps{
-}
+const FlexBoxExample = () => (
+  <div className={styles.example}>
+    <FlexBox
+      direction="Row"
+      align="End"
+      justify="Center"
+    >
+      <div>Demo 1</div>
+      <div>Demo 2</div>
+      <div>Demo 3</div>
+    </FlexBox>
+  </div>
+);
 
-export interface IState {
-}
-
-class FlexBoxExampleFirst extends React.Component<IProps> {
-  constructor(props: IProps) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <div className={styles.example}>
-        1. Basic FlexBox:
-          <FlexBox
-            direction={FlexDirection.Column}
-            align={FlexAlign.Stretch}
-            justify={FlexJustify.Center}>
-            <div>Demo 1</div>
-            <div>Demo 2</div>
-            <div>Demo 3</div>
-          </FlexBox>
-          <br/>
-        2. Inline FlexBox:
-          <FlexBox
-            inline={true}
-            direction={FlexDirection.Column}
-            align={FlexAlign.Stretch}
-            justify={FlexJustify.Center}>
-            <div>Demo 1</div>
-            <div>Demo 2</div>
-            <div>Demo 3</div>
-          </FlexBox>
-      </div>
-    );
-  }
-}
-export default FlexBoxExampleFirst;
+export default FlexBoxExample;
