@@ -1,18 +1,11 @@
-
 import * as React from 'react';
 import { themr, ThemedComponentClass } from 'react-css-themr';
 import { PICKER } from '../ThemeIdentifiers';
 import TextField from './TextField';
 import { DisplayMoreInfo } from './PickerEnum';
-
+import * as Autosuggest from 'react-autosuggest';
 import * as baseTheme from './Picker.scss';
 
-export interface State {
-  people: string;
-  searchItems: IPickerInfo[];
-  selectedItems: IPickerInfo[];
-  moreInfo: boolean;
-}
 export interface IPickerInfo {
   id?: number;
   name: string;
@@ -21,7 +14,40 @@ export interface IPickerInfo {
   url?: string;
 }
 
+export interface IStateProps {
+  chipListState: object[];
+  suggestions: Autosuggest;
+  inputProps: Autosuggest.InputProps;
+  value?: string;
+}
+
+export interface IAutoSuggestMethods {
+  onSuggestionsClearRequested(item: object): void;
+  getSuggestions(value: string): void;
+  getSuggestionValue(suggestion: object): void;
+  onChange(event: Event, { newValue, method }: Autosuggest.ChangeEvent): void;
+  onfocus(e: Event): void;
+  onFocusOut(e: Event): void;
+  onInputFocus(e: Event): void;
+  storeFocus(e: Event): void;
+  onKeyDown(e: React.FormEvent<Element>): void;
+  onClick(e: React.FormEvent<Element>): void;
+  onSuggestionsFetchRequested({ value }: Autosuggest.SuggestionsFetchRequest): void;
+  onSuggestionSelected(event: React.FormEvent<Element>, { suggestion }: Autosuggest.SuggestionSelectedEventData<Element>): void;
+  chipRemove(item: number | string): void;
+  renderSuggestion(suggestion: object, { value, valueBeforeUpDown }: Autosuggest.InputValues): JSX.Element;
+  storeInputReference(autosuggest: Autosuggest): void;
+}
+
 export type Type = 'hide' | 'mark';
+
+export interface State {
+  people: string;
+  searchItems: IPickerInfo[];
+  selectedItems: IPickerInfo[];
+  moreInfo: boolean;
+}
+
 export interface Props {
   selectedResultsBehavior?: Type;
   filterPlaceHolder?: string;
@@ -35,16 +61,16 @@ export interface Props {
   style?: React.CSSProperties;
   theme?: any;
   autoSuggest?: boolean;
-  autoSuggestMethods?: object[];
-  stateProps?: { chipListState: any, suggestions: any, inputProps: object, value?: any };
+  autoSuggestMethods?: IAutoSuggestMethods;
+  stateProps?: IStateProps;
   searchBehavior?(): void;
-  onSelect?(item: any): void;
-  onRemove?(item: any): void;
+  onSelect?(item: React.FormEvent<HTMLElement>): void;
+  onRemove?(item: React.FormEvent<HTMLElement>): void;
   onMoreInfo?(): void;
 }
 
 class Picker extends React.Component<Props, State> {
-  constructor(props: any) {
+  constructor(props: Props) {
     super(props);
     this.state = {
       people: '',
@@ -81,7 +107,7 @@ class Picker extends React.Component<Props, State> {
           <div className={className}>
             {
               this.state.selectedItems.map((i) => {
-                return React.createElement(chipComponent as React.ComponentClass<{ clickable: boolean, removable: boolean, onRemove(item: any): void }>, { onRemove, key: i.id, clickable: false, removable: true }, [i.name]);
+                return React.createElement(chipComponent as React.ComponentClass<{ clickable: boolean, removable: boolean, onRemove(item: React.FormEvent<HTMLElement>): void }>, { onRemove, key: i.id, clickable: false, removable: true }, [i.name]);
               })
             }
           </div>
@@ -98,7 +124,7 @@ class Picker extends React.Component<Props, State> {
         <div>
           {
             this.state.searchItems.map((i) => {
-              return React.createElement(searchResultComponent as React.ComponentClass<{ clickable: boolean, moreInfoComponent: React.ReactNode, moreInfoComponentShowOn: DisplayMoreInfo, onClick(item: any): void, handleMoreInfo(): void }>, { moreInfoComponent, moreInfoComponentShowOn, key: i.id, clickable: true, onClick: onSelect, handleMoreInfo: onMoreInfo }, [i.name]);
+              return React.createElement(searchResultComponent as React.ComponentClass<{ clickable: boolean, moreInfoComponent: React.ReactNode, moreInfoComponentShowOn: DisplayMoreInfo, onClick(item: React.FormEvent<HTMLFormElement>): void, handleMoreInfo(): void }>, { moreInfoComponent, moreInfoComponentShowOn, key: i.id, clickable: true, onClick: onSelect, handleMoreInfo: onMoreInfo }, [i.name]);
             })
           }
         </div>
@@ -111,7 +137,7 @@ class Picker extends React.Component<Props, State> {
     this.setState({ ['searchItems']: value ? this.props.source.filter(x => x.name.startsWith(value)) : [] });
   }
 
-  private handleRemove = (event: any) => {
+  private handleRemove = (event: React.SyntheticEvent<any>) => {
     const item = this.state.selectedItems.find(x => x.name === event.currentTarget.previousElementSibling.innerText);
     const items = this.state.selectedItems;
     if (this.props.minSelectedItems !== undefined && this.props.minSelectedItems === items.length) {
@@ -127,7 +153,7 @@ class Picker extends React.Component<Props, State> {
     return;
   }
 
-  private handleSelect = (event: any) => {
+  private handleSelect = (event: React.FormEvent<HTMLFormElement>) => {
     const item = this.state.searchItems.find(x => x.name === event.currentTarget.text);
     const items = this.state.selectedItems;
     if (this.props.maxSelectedItems !== undefined && this.props.maxSelectedItems === items.length) {

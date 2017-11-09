@@ -4,6 +4,7 @@ import { classNames } from '@shopify/react-utilities/styles';
 import { DisplayMoreInfo } from '../Picker/PickerEnum';
 import { CHIP } from '../ThemeIdentifiers';
 import * as baseTheme from './Chip.scss';
+import { IAutoSuggestMethods } from '../Picker/Picker';
 
 export interface Props {
   clickable?: boolean;
@@ -17,17 +18,17 @@ export interface Props {
   moreInfoComponentShowOn?: DisplayMoreInfo;
   style?: React.CSSProperties;
   theme?: any;
-  onRemove?(event: any): void;
-  onClick?(event: any): void;
+  onRemove?(event: React.FormEvent<HTMLElement>): void;
+  onClick?(event: React.FormEvent<HTMLElement>): void;
   handleMoreInfo?(): void;
-  key?: any;
+  key?: number;
   tabIndex?: number;
-  autoSuggestMethods?: any;
-  onfocus?(event: any): void;
+  autoSuggestMethods?: IAutoSuggestMethods;
+  onfocus?(event: Event): void;
   id?: number;
 }
 
-class Chip extends React.PureComponent<Props, any> {
+class Chip extends React.PureComponent<Props, {}> {
 
   onFocus = () => {
     return this.props.autoSuggestMethods ? this.props.autoSuggestMethods.onfocus : '';
@@ -35,6 +36,10 @@ class Chip extends React.PureComponent<Props, any> {
 
   onBlur = () => {
     return this.props.autoSuggestMethods ? this.props.autoSuggestMethods.onFocusOut : '';
+  }
+
+  onClick = (item: React.FormEvent<HTMLElement>) => {
+    return this.props.onClick ? this.props.onClick(item) : this.props.autoSuggestMethods ? this.props.autoSuggestMethods.onClick(item) : '';
   }
 
   render() {
@@ -71,13 +76,12 @@ class Chip extends React.PureComponent<Props, any> {
         tabIndex={this.props.tabIndex === 0 ? this.props.tabIndex : -1}
         onFocus={this.onFocus}
         onBlur={this.onBlur}
-        ref={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.storeFocus : ''}
         role="option"
       >
         {
           clickable
             ?
-            <a onClick={this.props.onClick ? this.props.onClick : this.props.autoSuggestMethods.onClick} aria-disabled={false} role={'alert'} tabIndex={!this.props.tabIndex ? 0 : -1}>
+            <a onClick={this.onClick.bind(this)} aria-disabled={false} role={'alert'} tabIndex={!this.props.tabIndex ? 0 : -1}>
               {chipContents}
             </a>
             :
