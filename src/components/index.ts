@@ -246,3 +246,8 @@ export {
   Props as MaskTextFieldProps,
 } from './MaskTextField';
 
+export {
+  default as Spinner,
+  Props as SpinnerProps,
+} from './Spinner';
+
