@@ -40,4 +40,5 @@ export const TOOLTIP = 'PTooltip';
 export const VIDEO = 'PVideo';
 export const VISUALLY_HIDDEN = 'PVisuallyHidden';
 export const MODAL = 'PModal';
+export const CAPTION = 'PCaption';
 export const SPINNER = 'PSpinner';

@@ -13,6 +13,7 @@ const Nav = () => {
         <li><Link to="/component/banner">Banner</Link></li>
         <li><Link to="/component/Button">Button</Link></li>
         <li><Link to="/component/ButtonGroup">ButtonGroup</Link></li>
+        <li><Link to="/component/caption">Caption</Link></li>
         <li><Link to="/component/card">Card</Link></li>
         <li><Link to="/component/checkbox">Checkbox</Link></li>
         <li><Link to="/component/chip">Chip</Link></li>
