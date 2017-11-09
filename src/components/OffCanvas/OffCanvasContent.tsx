@@ -16,8 +16,9 @@ export interface Props {
   activator: HTMLElement;
   children?: React.ReactNode;
   theme?: any;
+  closeButton?: boolean;
   onClose(): void;
-  onClick(): void;
+  onCancel(): void;
 }
 
 class OffCanvasContent extends React.PureComponent<Props, never> {
@@ -45,7 +46,7 @@ class OffCanvasContent extends React.PureComponent<Props, never> {
         {...layer.props}
       >
         <KeypressListener keyCode={Keys.ESCAPE} handler={this.handleEscape} />
-        <span className={theme.close}><Button onClick={this.props.onClick} icon="cancel" plain /></span>
+        {this.props.closeButton ? <span className={theme.close}><Button onClick={this.props.onCancel} icon="cancel" plain /></span> : null }
         {children}
       </div>
     );
@@ -53,7 +54,7 @@ class OffCanvasContent extends React.PureComponent<Props, never> {
 
   @autobind
   private handleEscape() {
-    this.props.onClick();
+    this.props.onCancel();
   }
 
 }
