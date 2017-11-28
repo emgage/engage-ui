@@ -34,158 +34,157 @@ class PickerAutoSuggestExample extends React.Component<{}, {}> {
     };
   }
   render() {
-    const autoSuggestMethods = {
-      onSuggestionsClearRequested: () => this.setState({ suggestions: [] }),
-      getSuggestions: (value:string) => {
-        const escapedValue = escapeRegexCharacters(value.trim());
-        if (escapedValue === '') {
-          return [];
-        }
-        const regex = new RegExp(escapedValue, 'i');
-        return this.state.itemsList.filter(language => regex.test(language.name));
-      },
-      getSuggestionValue: (suggestion:object) => {
-        return suggestion.name;
-      },
-      onChange: (event:object, { newValue, method }:any) => {
-        this.setState({
-          value: newValue,
-        });
-      },
-      onfocus: (e:any) => {
-        const chipListState = this.state.chipListState.slice()
-        const item = Object.assign({}, chipListState[0], {tabIndex: -1});
-        chipListState[0] = item;
-        if (this.state.focused === -1) this.setState({chipListState});
-        this.setState({focused: 0})
-      },
-      onFocusOut: (e: any) => {
-        const chipListState = this.state.chipListState.slice()
-        const item = Object.assign({}, chipListState[0], {tabIndex: 0});
-        chipListState[0] = item;
-        if (this.state.focused === 0) this.setState({chipListState});
-        this.setState({focused: -1})
-      },
-      onInputFocus: (e:any) => {
-        const chipListState = this.state.chipListState.slice();
-        if (chipListState.length && this.state.focused !== -1) {
-          const item = Object.assign({}, chipListState[0], {tabIndex: 0});
-          chipListState[0] = item;
-          this.setState({chipListState});
-        }
-        this.setState({focused: -1})
-      },
-      storeFocus: (e: any) => {
-        if (!this.state.focusArr.includes(e) && e !== null) {
-          const focusArr = this.state.focusArr.length ? this.state.focusArr.concat([e]) : [e];
-          this.setState({ focusArr });
-        }
-      },
-      onKeyDown: (e:any, focusArr, chipListState) => {
-        if (e.keyCode === 37) {
-          const focused = this.state.focused === 0 ? this.state.chipListState.length - 1 : this.state.focused - 1;
-          this.state.focusArr[focused].focus();
-          this.setState({focused})
-        } else if (e.keyCode === 39) {
-          const focused = this.state.focused === this.state.chipListState.length - 1 ? 0 : this.state.focused + 1;
-          this.state.focusArr[focused].focus();
-          this.setState({focused})
-        } else if (e.keyCode === 8) {
-          autoSuggestMethods.chipRemove(this.state.focused);
-        } else if (typeof e.chipRemove === 'number') {
-          let focused;
-          const number = e.chipRemove;
-          if (number === chipListState.length) focused = number - 1;
-          else if (number > 0) focused = number;
-          else focused = 0;
-          if (focusArr.length) focusArr[focused].focus();
-          else this.state.input.focus();
-          this.setState({focused})
-        }
-      },
-      onClick: (e: any) => {
-        console.log('clicked!')
-      },
-      onSuggestionsFetchRequested: ({ value }:any) => {
-        this.setState({
-          suggestions: autoSuggestMethods.getSuggestions(value),
-        });
-      },
-      updateList: (input: any) => {
-        const langIndex = this.state.itemsList.indexOf(input);
-        const itemsListLength = this.state.itemsList;
-        const newLangState = itemsListLength.slice(0, langIndex).concat(itemsListLength.slice(langIndex + 1, itemsListLength.length));
-        this.setState({ 
-          itemsList: newLangState,
-        });
-      },
+    // const autoSuggestMethods = {
+    //   onSuggestionsClearRequested: () => this.setState({ suggestions: [] }),
+    //   getSuggestions: (value:string) => {
+    //     const escapedValue = escapeRegexCharacters(value.trim());
+    //     if (escapedValue === '') {
+    //       return [];
+    //     }
+    //     const regex = new RegExp(escapedValue, 'i');
+    //     return this.state.itemsList.filter(language => regex.test(language.name));
+    //   },
+    //   getSuggestionValue: (suggestion:object) => {
+    //     return suggestion.name;
+    //   },
+    //   onChange: (event:object, { newValue, method }:any) => {
+    //     this.setState({
+    //       value: newValue,
+    //     });
+    //   },
+    //   onfocus: (e:any) => {
+    //     const chipListState = this.state.chipListState.slice()
+    //     const item = Object.assign({}, chipListState[0], {tabIndex: -1});
+    //     chipListState[0] = item;
+    //     if (this.state.focused === -1) this.setState({chipListState});
+    //     this.setState({focused: 0})
+    //   },
+    //   onFocusOut: (e: any) => {
+    //     const chipListState = this.state.chipListState.slice()
+    //     const item = Object.assign({}, chipListState[0], {tabIndex: 0});
+    //     chipListState[0] = item;
+    //     if (this.state.focused === 0) this.setState({chipListState});
+    //     this.setState({focused: -1})
+    //   },
+    //   onInputFocus: (e:any) => {
+    //     const chipListState = this.state.chipListState.slice();
+    //     if (chipListState.length && this.state.focused !== -1) {
+    //       const item = Object.assign({}, chipListState[0], {tabIndex: 0});
+    //       chipListState[0] = item;
+    //       this.setState({chipListState});
+    //     }
+    //     this.setState({focused: -1})
+    //   },
+    //   storeFocus: (e: any) => {
+    //     if (!this.state.focusArr.includes(e) && e !== null) {
+    //       const focusArr = this.state.focusArr.length ? this.state.focusArr.concat([e]) : [e];
+    //       this.setState({ focusArr });
+    //     }
+    //   },
+    //   onKeyDown: (e:any, focusArr, chipListState) => {
+    //     if (e.keyCode === 37) {
+    //       const focused = this.state.focused === 0 ? this.state.chipListState.length - 1 : this.state.focused - 1;
+    //       this.state.focusArr[focused].focus();
+    //       this.setState({focused})
+    //     } else if (e.keyCode === 39) {
+    //       const focused = this.state.focused === this.state.chipListState.length - 1 ? 0 : this.state.focused + 1;
+    //       this.state.focusArr[focused].focus();
+    //       this.setState({focused})
+    //     } else if (e.keyCode === 8) {
+    //       autoSuggestMethods.chipRemove(this.state.focused);
+    //     } else if (typeof e.chipRemove === 'number') {
+    //       let focused;
+    //       const number = e.chipRemove;
+    //       if (number === chipListState.length) focused = number - 1;
+    //       else if (number > 0) focused = number;
+    //       else focused = 0;
+    //       if (focusArr.length) focusArr[focused].focus();
+    //       else this.state.input.focus();
+    //       this.setState({focused})
+    //     }
+    //   },
+    //   onClick: (e: any) => {
+    //     console.log('clicked!')
+    //   },
+    //   onSuggestionsFetchRequested: ({ value }:any) => {
+    //     this.setState({
+    //       suggestions: autoSuggestMethods.getSuggestions(value),
+    //     });
+    //   },
+    //   updateList: (input: any) => {
+    //     const langIndex = this.state.itemsList.indexOf(input);
+    //     const itemsListLength = this.state.itemsList;
+    //     const newLangState = itemsListLength.slice(0, langIndex).concat(itemsListLength.slice(langIndex + 1, itemsListLength.length));
+    //     this.setState({ 
+    //       itemsList: newLangState,
+    //     });
+    //   },
 
-      onSuggestionSelected: (event:any, { suggestion }: any) => {
-        suggestion.text = suggestion.name;
-        autoSuggestMethods.updateList(suggestion);
-        const chipListState = this.state.chipListState.concat(suggestion);
-        const item = Object.assign({}, chipListState[0], {tabIndex: 0});
-        chipListState[0] = item;
-        this.setState({
-          chipListState,
-          value: '',
-        });
-      },
+    //   onSuggestionSelected: (event:any, { suggestion }: any) => {
+    //     suggestion.text = suggestion.name;
+    //     autoSuggestMethods.updateList(suggestion);
+    //     const chipListState = this.state.chipListState.concat(suggestion);
+    //     const item = Object.assign({}, chipListState[0], {tabIndex: 0});
+    //     chipListState[0] = item;
+    //     this.setState({
+    //       chipListState,
+    //       value: '',
+    //     });
+    //   },
 
-      chipRemove: (item: any) => {
-        const number = typeof item === 'number' ? item : this.state.chipListState.indexOf(item)
-        const existingChipList = this.state.chipListState;
-        const addedItem = this.state.chipListState.slice(number, number + 1);
-        const addedItemObj = Object.assign({}, addedItem[0], {tabIndex: -1});
-        const chipListState = existingChipList.slice(0, number).concat(existingChipList.slice(number + 1));
-        const itemsList = this.state.itemsList.concat([addedItemObj]);
-        const focusArr = this.state.focusArr.slice(0, number).concat(this.state.focusArr.slice(number + 1));
-        if (chipListState.length) chipListState[0].tabIndex = 0;
-        let focused;
-        if (number === chipListState.length) focused = number - 1;
-        else if (number === chipListState.length && number > 0) focused = number;
-        else focused = 0;
-        this.setState({ 
-          itemsList,
-          chipListState,
-          focusArr,
-        }, autoSuggestMethods.onKeyDown({chipRemove: number}, focusArr, chipListState));
+    //   chipRemove: (item: any) => {
+    //     const number = typeof item === 'number' ? item : this.state.chipListState.indexOf(item)
+    //     const existingChipList = this.state.chipListState;
+    //     const addedItem = this.state.chipListState.slice(number, number + 1);
+    //     const addedItemObj = Object.assign({}, addedItem[0], {tabIndex: -1});
+    //     const chipListState = existingChipList.slice(0, number).concat(existingChipList.slice(number + 1));
+    //     const itemsList = this.state.itemsList.concat([addedItemObj]);
+    //     const focusArr = this.state.focusArr.slice(0, number).concat(this.state.focusArr.slice(number + 1));
+    //     if (chipListState.length) chipListState[0].tabIndex = 0;
+    //     let focused;
+    //     if (number === chipListState.length) focused = number - 1;
+    //     else if (number === chipListState.length && number > 0) focused = number;
+    //     else focused = 0;
+    //     this.setState({ 
+    //       itemsList,
+    //       chipListState,
+    //       focusArr,
+    //     }, autoSuggestMethods.onKeyDown({chipRemove: number}, focusArr, chipListState));
 
-      },
-      renderSuggestion: (suggestion:any, { isHighlighted, query }:any) => {
-        const index = suggestion.name.toLowerCase().indexOf(query.toLowerCase());
-        const nameBefore = suggestion.name.slice(0, index);
-        const queryData = suggestion.name.slice(index, index + query.length);
-        const nameAfter = suggestion.name.slice(index + query.length);
+    //   },
+    //   renderSuggestion: (suggestion:any, { isHighlighted, query }:any) => {
+    //     const index = suggestion.name.toLowerCase().indexOf(query.toLowerCase());
+    //     const nameBefore = suggestion.name.slice(0, index);
+    //     const queryData = suggestion.name.slice(index, index + query.length);
+    //     const nameAfter = suggestion.name.slice(index + query.length);
 
-        if (isHighlighted) return <Card isHighlighted={true} image={suggestion.image} nameBefore={nameBefore} bold={queryData} nameAfter={nameAfter} email={suggestion.email} alt={suggestion.alt}/>;
-        else return (
-          <Card image={suggestion.image} nameBefore={nameBefore} bold={queryData} nameAfter={nameAfter} email={suggestion.email} alt={suggestion.alt}/>
-        )
-      },
-      storeInputReference: (autosuggest:any) => {
+    //     if (isHighlighted) return <Card isHighlighted={true} image={suggestion.image} nameBefore={nameBefore} bold={queryData} nameAfter={nameAfter} email={suggestion.email} alt={suggestion.alt}/>;
+    //     else return (
+    //       <Card image={suggestion.image} nameBefore={nameBefore} bold={queryData} nameAfter={nameAfter} email={suggestion.email} alt={suggestion.alt}/>
+    //     )
+    //   },
+    //   storeInputReference: (autosuggest:any) => {
 
-        if (autosuggest !== null) {
-          if (this.state.input !== autosuggest.input) {
-            this.setState({ input: autosuggest.input });
-          }
-        }
-      },
-    }
-    const { value, suggestions, chipListState }:any = this.state;
-    const inputProps = {
-      value,
-      onChange: autoSuggestMethods.onChange,
-      onFocus: autoSuggestMethods.onInputFocus,
-      'aria-label': 'Picker input',
-    };
-    const stateProps = {value, suggestions, chipListState, inputProps}
+    //     if (autosuggest !== null) {
+    //       if (this.state.input !== autosuggest.input) {
+    //         this.setState({ input: autosuggest.input });
+    //       }
+    //     }
+    //   },
+    // }
+    // const { value, suggestions, chipListState }:any = this.state;
+    // const inputProps = {
+    //   value,
+    //   onChange: autoSuggestMethods.onChange,
+    //   onFocus: autoSuggestMethods.onInputFocus,
+    //   'aria-label': 'Picker input',
+    // };
+    // const stateProps = {value, suggestions, chipListState, inputProps}          {/* stateProps={stateProps}
+    //   autoSuggest
+    //    autoSuggestMethods={autoSuggestMethods} */} 
 
     return  (
       <Picker
-        stateProps={stateProps}
-        autoSuggestMethods={autoSuggestMethods}
-        autoSuggest
         chipComponent={Chip}
         filterPlaceHolder={'hello'}
         searchResultComponent={Chip}

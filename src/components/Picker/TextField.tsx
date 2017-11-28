@@ -3,7 +3,7 @@ import { themr, ThemedComponentClass } from 'react-css-themr';
 import autobind from '@shopify/javascript-utilities/autobind';
 import { classNames } from '@shopify/react-utilities/styles';
 import AutoSuggestText from './AutoSuggestText';
-import { IAutoSuggestMethods } from './Picker';
+import { IAutoSuggestMethods, IItemList } from './Picker';
 import * as Autosuggest from 'react-autosuggest';
 import Labelled from '../Labelled';
 import { TEXT_FIELD } from '../ThemeIdentifiers';
@@ -12,7 +12,7 @@ import * as baseTheme from './TextField.scss';
 export type Type = 'text' | 'email' | 'number' | 'password' | 'search' | 'tel' | 'url' | 'date' | 'datetime-local' | 'month' | 'time' | 'week';
 
 export interface IStateProps {
-  chipListState: object[];
+  chipListState: IItemList[];
   suggestions: Autosuggest;
   inputProps: Autosuggest.InputProps;
   value?: string;
@@ -31,7 +31,7 @@ export interface Props {
   theme?: any;
   autoSuggest?: boolean;
   autoSuggestMethods?: IAutoSuggestMethods;
-  stateProps?: { chipListState: object[], suggestions: Autosuggest, inputProps: Autosuggest.InputProps, value?: string };
+  stateProps?: { chipListState: IItemList[], suggestions: Autosuggest, inputProps: Autosuggest.InputProps, value?: string };
   onChange?(value: string): void;
 }
 
