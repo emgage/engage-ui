@@ -246,3 +246,12 @@ export {
   Props as MaskTextFieldProps,
 } from './MaskTextField';
 
+export {
+  default as Caption,
+  Props as CaptionProps,
+} from './Caption';
+
+export {
+  default as Spinner,
+  Props as SpinnerProps,
+} from './Spinner';

@@ -34,6 +34,8 @@ import {
   Video,
   VideoType,
   Modal,
+  Caption,
+  Spinner,
 } from '../../src/components';
 
 interface State {
@@ -262,6 +264,9 @@ class App extends React.Component<{}, State> {
               </p>
           </Modal>
         </div>
+        <br />
+        <Caption style={{ color:'red'  }}>This is Caption</Caption>
+        <br />
         <Checkbox label={'I am a checkbox'} />
         <Banner title={'banner'} status={'success'} />
         <Banner title={'banner'} status={'info'} />
@@ -1057,9 +1062,11 @@ class App extends React.Component<{}, State> {
         <Button icon="add" primary>
           Create Role
       </Button>
-        <br />
-        <br />
-        <br />
+      <br />
+      <Spinner color="inkLightest" size="small" />
+      <br />
+      <Spinner style={{height:'100px'}} />
+      <br />
         <ButtonGroup segmented>
           <Button primary>Save Draft</Button>
           <Button primary>Publish</Button>
