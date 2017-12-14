@@ -41,7 +41,6 @@ export interface Props {
   activator: React.ReactNode;
   id?: string;
   show?: boolean;
-  trigger?: ITrigger;
   closeOnEsc?: boolean;
   closeOnBackgroud?: boolean;
   modalOverflow?: boolean;

@@ -15,7 +15,7 @@ describe('<ValidatedTextField / >', () => {
                                                 name="App Name" />
                                             </ValidatedForm>);
   expect(validatedTextFieldWrapper.find('form')).toHaveLength(1);
-  expect(validatedTextFieldWrapper.find('div')).toHaveLength(5);
+  expect(validatedTextFieldWrapper.find('div')).toHaveLength(8);
   expect(validatedTextFieldWrapper.find('input')).toHaveLength(1);
   expect(validatedTextFieldWrapper.find('label')).toHaveLength(2);
   expect(validatedTextFieldWrapper.find('input').prop('name')).toBe('App Name');
@@ -38,7 +38,7 @@ describe('<ValidatedTextField / >', () => {
                                                 name="App Name" />
                                             </ValidatedForm>);
         expect(validatedTextFieldWrapper.find('form')).toHaveLength(1);
-        expect(validatedTextFieldWrapper.find('div')).toHaveLength(5);
+        expect(validatedTextFieldWrapper.find('div')).toHaveLength(8);
         expect(validatedTextFieldWrapper.find('input')).toHaveLength(1);
         expect(validatedTextFieldWrapper.find('label')).toHaveLength(2);
         expect(validatedTextFieldWrapper.find('input').prop('name')).toBe('App Name');
@@ -62,7 +62,7 @@ describe('<ValidatedTextField / >', () => {
                                                 name="App Name" />
                                             </ValidatedForm>);
         expect(validatedTextFieldWrapper.find('form')).toHaveLength(1);
-        expect(validatedTextFieldWrapper.find('div')).toHaveLength(5);
+        expect(validatedTextFieldWrapper.find('div')).toHaveLength(8);
         expect(validatedTextFieldWrapper.find('input')).toHaveLength(1);
         expect(validatedTextFieldWrapper.find('label')).toHaveLength(2);
         expect(validatedTextFieldWrapper.find('input').prop('name')).toBe('App Name');
@@ -93,7 +93,7 @@ describe('<ValidatedTextField / >', () => {
                                                 ]} />
                                             </ValidatedForm>);
         expect(validatedTextFieldWrapper.find('form')).toHaveLength(1);
-        expect(validatedTextFieldWrapper.find('div')).toHaveLength(5);
+        expect(validatedTextFieldWrapper.find('div')).toHaveLength(8);
         expect(validatedTextFieldWrapper.find('input')).toHaveLength(1);
         expect(validatedTextFieldWrapper.find('label')).toHaveLength(2);
         expect(validatedTextFieldWrapper.find('input').prop('name')).toBe('App Name');
@@ -125,7 +125,7 @@ describe('<ValidatedTextField / >', () => {
                                                 ]} />
                                             </ValidatedForm>);
         expect(validatedTextFieldWrapper.find('form')).toHaveLength(1);
-        expect(validatedTextFieldWrapper.find('div')).toHaveLength(5);
+        expect(validatedTextFieldWrapper.find('div')).toHaveLength(8);
         expect(validatedTextFieldWrapper.find('input')).toHaveLength(1);
         expect(validatedTextFieldWrapper.find('label')).toHaveLength(2);
         expect(validatedTextFieldWrapper.find('input').prop('name')).toBe('App Name');
@@ -154,7 +154,7 @@ describe('<ValidatedTextField / >', () => {
                                                 ]} />
                                             </ValidatedForm>);
         expect(validatedTextFieldWrapper.find('form')).toHaveLength(1);
-        expect(validatedTextFieldWrapper.find('div')).toHaveLength(5);
+        expect(validatedTextFieldWrapper.find('div')).toHaveLength(8);
         expect(validatedTextFieldWrapper.find('input')).toHaveLength(1);
         expect(validatedTextFieldWrapper.find('label')).toHaveLength(2);
         expect(validatedTextFieldWrapper.find('input').prop('name')).toBe('App Name');
@@ -186,7 +186,7 @@ describe('<ValidatedTextField / >', () => {
                                                 ]} />
                                             </ValidatedForm>);
         expect(validatedTextFieldWrapper.find('form')).toHaveLength(1);
-        expect(validatedTextFieldWrapper.find('div')).toHaveLength(5);
+        expect(validatedTextFieldWrapper.find('div')).toHaveLength(8);
         expect(validatedTextFieldWrapper.find('input')).toHaveLength(1);
         expect(validatedTextFieldWrapper.find('label')).toHaveLength(2);
         expect(validatedTextFieldWrapper.find('input').prop('name')).toBe('App Name');
@@ -216,7 +216,7 @@ describe('<ValidatedTextField / >', () => {
                                                 validateTrigger={['onBlur']} />
                                             </ValidatedForm>);
         expect(validatedTextFieldWrapper.find('form')).toHaveLength(1);
-        expect(validatedTextFieldWrapper.find('div')).toHaveLength(5);
+        expect(validatedTextFieldWrapper.find('div')).toHaveLength(8);
         expect(validatedTextFieldWrapper.find('input')).toHaveLength(1);
         expect(validatedTextFieldWrapper.find('label')).toHaveLength(2);
         expect(validatedTextFieldWrapper.find('input').prop('name')).toBe('App Name');
@@ -251,7 +251,7 @@ describe('<ValidatedTextField / >', () => {
                                                 ]} />
                                             </ValidatedForm>);
         expect(validatedTextFieldWrapper.find('form')).toHaveLength(1);
-        expect(validatedTextFieldWrapper.find('div')).toHaveLength(6);
+        expect(validatedTextFieldWrapper.find('div')).toHaveLength(9);
         expect(validatedTextFieldWrapper.find('input')).toHaveLength(1);
         expect(validatedTextFieldWrapper.find('label')).toHaveLength(2);
         expect(validatedTextFieldWrapper.find('input').prop('name')).toBe('App Name');
@@ -261,8 +261,8 @@ describe('<ValidatedTextField / >', () => {
         expect(validatedTextFieldWrapper.find('input').prop('name')).toBe('App Name');
         expect(validatedTextFieldWrapper.find('input').prop('value')).toBe('Text Value');
         expect(validatedTextFieldWrapper.find('input').prop('required')).toBe(true);
-        expect(validatedTextFieldWrapper.find('div').at(5).prop('id')).toBe('AppNameHelpText');
-        expect(validatedTextFieldWrapper.find('div').at(5).text()).toBe('We recommend keeping your app name under 23 characters.');
+        expect(validatedTextFieldWrapper.find('div').at(8).prop('id')).toBe('AppNameHelpText');
+        expect(validatedTextFieldWrapper.find('div').at(8).text()).toBe('We recommend keeping your app name under 23 characters.');
       });
     });
   });

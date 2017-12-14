@@ -13,7 +13,7 @@ describe('<Banner />', () => {
     statusCritical: 'statusCritical',
     ribbon: 'Ribbon',
     heading: 'Heading',
-    Actions: 'Actions',
+    actions: 'Actions',
     content: 'Content',
     secondaryAction: 'SecondaryAction',
     text: 'Text',
@@ -54,7 +54,7 @@ describe('<Banner />', () => {
                                    );
         expect(bannerWrapper.find('div')).toHaveLength(4);
         expect(bannerWrapper.find('span')).toHaveLength(1);
-        expect(bannerWrapper.find('p')).toHaveLength(1);
+        expect(bannerWrapper.find('h6')).toHaveLength(1);
         expect(bannerWrapper.find('div').at(0).hasClass('Banner')).toBe(true);
         expect(bannerWrapper.find('div').at(0).prop('role')).toBe('banner undefined');
         expect(bannerWrapper.find('div').at(1).hasClass('Ribbon')).toBe(true);
@@ -239,7 +239,8 @@ describe('<Banner />', () => {
         expect(bannerWrapper.find('div')).toHaveLength(8);
         expect(bannerWrapper.find('span')).toHaveLength(3);
         expect(bannerWrapper.find('button')).toHaveLength(2);
-        expect(bannerWrapper.find('p')).toHaveLength(2);
+        expect(bannerWrapper.find('h6')).toHaveLength(1);
+        expect(bannerWrapper.find('p')).toHaveLength(1);
         expect(bannerWrapper.find('div').at(0).hasClass('statusSuccess')).toBe(true);
         expect(bannerWrapper.find('div').at(0).prop('role')).toBe('banner success');
         expect(bannerWrapper.find('div').at(1).hasClass('Ribbon')).toBe(true);
@@ -294,7 +295,8 @@ describe('<Banner />', () => {
         expect(bannerWrapper.find('div')).toHaveLength(9);
         expect(bannerWrapper.find('span')).toHaveLength(4);
         expect(bannerWrapper.find('button')).toHaveLength(3);
-        expect(bannerWrapper.find('p')).toHaveLength(2);
+        expect(bannerWrapper.find('h6')).toHaveLength(1);
+        expect(bannerWrapper.find('p')).toHaveLength(1);
         expect(bannerWrapper.find('div').at(0).hasClass('statusSuccess')).toBe(true);
         expect(bannerWrapper.find('div').at(0).prop('role')).toBe('banner success');
         expect(bannerWrapper.find('div').at(1).hasClass('Ribbon')).toBe(true);
@@ -330,7 +332,8 @@ describe('<Banner />', () => {
                                  );
       expect(bannerWrapper.find('div')).toHaveLength(6);
       expect(bannerWrapper.find('span')).toHaveLength(4);
-      expect(bannerWrapper.find('p')).toHaveLength(2);
+      expect(bannerWrapper.find('h6')).toHaveLength(1);
+      expect(bannerWrapper.find('p')).toHaveLength(1);
       expect(bannerWrapper.find('button')).toHaveLength(2);
       expect(bannerWrapper.find('div').at(0).hasClass('hasDismiss')).toBe(true);
       expect(bannerWrapper.find('div').at(0).prop('role')).toBe('banner undefined');
@@ -366,7 +369,8 @@ describe('<Banner />', () => {
       expect(bannerWrapper.find('div')).toHaveLength(9);
       expect(bannerWrapper.find('span')).toHaveLength(4);
       expect(bannerWrapper.find('button')).toHaveLength(3);
-      expect(bannerWrapper.find('p')).toHaveLength(2);
+      expect(bannerWrapper.find('h6')).toHaveLength(1);
+      expect(bannerWrapper.find('p')).toHaveLength(1);
       expect(bannerWrapper.find('div').at(0).hasClass('statusSuccess')).toBe(true);
       expect(bannerWrapper.find('div').at(0).prop('role')).toBe('banner success');
       expect(bannerWrapper.find('div').at(1).hasClass('Ribbon')).toBe(true);

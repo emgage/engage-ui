@@ -24,7 +24,7 @@ describe('<ValidatedForm / >', () => {
                                             </ValidatedForm>);
         expect(validatedFormWrapper.find('form')).toHaveLength(1);
         expect(validatedFormWrapper.prop('children')).toBeDefined();
-        expect(validatedFormWrapper.find('div')).toHaveLength(5);
+        expect(validatedFormWrapper.find('div')).toHaveLength(8);
         expect(validatedFormWrapper.find('input')).toHaveLength(1);
         expect(validatedFormWrapper.find('label')).toHaveLength(2);
         expect(validatedFormWrapper.find('label').at(1).prop('id')).toBe('AppNameLabel');
@@ -136,7 +136,7 @@ describe('<ValidatedForm / >', () => {
                                             </ValidatedForm>);
         expect(validatedFormWrapper.find('form')).toHaveLength(1);
         expect(validatedFormWrapper.prop('children')).toBeDefined();
-        expect(validatedFormWrapper.find('div')).toHaveLength(5);
+        expect(validatedFormWrapper.find('div')).toHaveLength(8);
         expect(validatedFormWrapper.find('input')).toHaveLength(1);
         expect(validatedFormWrapper.find('label')).toHaveLength(2);
         expect(validatedFormWrapper.find('label').at(1).prop('id')).toBe('AppNameLabel');

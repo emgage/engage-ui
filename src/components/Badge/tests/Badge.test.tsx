@@ -95,12 +95,13 @@ describe('<Badge />', () => {
         expect(badgeWrapper.find('span').at(0).hasClass('statusSuccess')).toBe(true);
       });
       it('should verify text on span as per status', () => {
+        const text = 'Set status of badge.';
         const badgeWrapper = mount(
                                    <Badge  status="success" theme = {theme} >
-                                       Set status of badge.
+                                       {text}
                                    </Badge>
                              );
-        expect(badgeWrapper.find('span').at(1).text()).toBe('Success');
+        expect(badgeWrapper.find('span').at(1).text()).toBe('Success ' + text);
       });
 
       it('should verify status set as info', () => {
@@ -120,12 +121,13 @@ describe('<Badge />', () => {
         expect(badgeWrapper.find('span').at(0).hasClass('statusInfo')).toBe(true);
       });
       it('should verify text on span as per status', () => {
+        const text = 'Set status of badge.';
         const badgeWrapper = mount(
                                    <Badge status="info" theme={theme} >
-                                       Set status of badge.
+                                       {text}
                                    </Badge>
                              );
-        expect(badgeWrapper.find('span').at(1).text()).toBe('Info');
+        expect(badgeWrapper.find('span').at(1).text()).toBe('Info ' + text);
       });
 
       it('should verify stauts set as attention', () => {
@@ -145,12 +147,13 @@ describe('<Badge />', () => {
         expect(badgeWrapper.find('span').at(0).hasClass('statusAttention')).toBe(true);
       });
       it('should verify text on span as per status', () => {
+        const text = 'Set status of badge.';
         const badgeWrapper = mount(
                                    <Badge status="attention" theme={theme} >
-                                      Set status of badge.
+                                      {text}
                                    </Badge>
                              );
-        expect(badgeWrapper.find('span').at(1).text()).toBe('Attention');
+        expect(badgeWrapper.find('span').at(1).text()).toBe('Attention ' + text);
       });
 
       it('should verify stauts set as warning', () => {
@@ -170,12 +173,13 @@ describe('<Badge />', () => {
         expect(badgeWrapper.find('span').at(0).hasClass('statusWarning')).toBe(true);
       });
       it('should verify text on span as per status', () => {
+        const text = 'Set status of badge.';
         const badgeWrapper = mount(
                                    <Badge status="warning" theme={theme} >
-                                      Set status of badge.
+                                      {text}
                                    </Badge>
                              );
-        expect(badgeWrapper.find('span').at(1).text()).toBe('Warning');
+        expect(badgeWrapper.find('span').at(1).text()).toBe('Warning ' + text);
       });
     });
   });
@@ -313,12 +317,13 @@ describe('<Badge />', () => {
         expect(badgeWrapper.find('span').at(0).hasClass('progressIncomplete')).toBe(true);
       });
       it('should verify text on span as per progress', () => {
+        const text = 'Set progress of badge.';
         const badgeWrapper = mount(
                                    <Badge progress="incomplete" theme={theme} >
-                                       Set progress of badge.
+                                       {text}
                                    </Badge>
                              );
-        expect(badgeWrapper.find('span').at(1).text()).toBe('Incomplete');
+        expect(badgeWrapper.find('span').at(1).text()).toBe('Incomplete ' + text);
       });
 
       it('should verify progress set as partiallyComplete', () => {
@@ -338,12 +343,13 @@ describe('<Badge />', () => {
         expect(badgeWrapper.find('span').at(0).hasClass('progressPartiallyComplete')).toBe(true);
       });
       it('should verify text on span as per progress', () => {
+        const text = 'Set progress of badge.';
         const badgeWrapper = mount(
                                    <Badge progress="partiallyComplete" theme={theme} >
-                                       Set progress of badge.
+                                       {text}
                                    </Badge>
                              );
-        expect(badgeWrapper.find('span').at(1).text()).toBe('Partially complete');
+        expect(badgeWrapper.find('span').at(1).text()).toBe('Partially complete ' + text);
       });
 
       it('should verify progress set as complete', () => {
@@ -361,12 +367,13 @@ describe('<Badge />', () => {
         expect(badgeWrapper.find('span').at(0).hasClass('progressComplete')).toBe(true);
       });
       it('should verify text on span as per progress', () => {
+        const text = 'Set progress of badge.';
         const badgeWrapper = mount(
                                    <Badge progress="complete" theme={theme} >
-                                       Set progress of badge.
+                                       {text}
                                    </Badge>
                              );
-        expect(badgeWrapper.find('span').at(1).text()).toBe('Complete');
+        expect(badgeWrapper.find('span').at(1).text()).toBe('Complete ' + text);
       });
     });
   });
@@ -412,20 +419,22 @@ describe('<Badge />', () => {
       expect(badgeWrapper.find('span').at(2).hasClass('Pip')).toBe(true);
     });
     it('should verify text on span as per status', () => {
+      const text = 'All properties are set for Badge.';
       const badgeWrapper = mount(
                                   <Badge progress="complete" status="info" theme={theme} >
-                                      All properties are set for Badge.
+                                      {text}
                                   </Badge>
                             );
-      expect(badgeWrapper.find('span').at(1).text()).toBe('Info');
+      expect(badgeWrapper.find('span').at(1).text()).toBe('Info ' + text);
     });
     it('should verify text on span as per progress', () => {
+      const text = 'All properties are set for Badge.';
       const badgeWrapper = mount(
                                   <Badge progress="complete" status="info" theme={theme} >
-                                      All properties are set for Badge.
+                                      {text}
                                   </Badge>
                             );
-      expect(badgeWrapper.find('span').at(2).text()).toBe('Complete');
+      expect(badgeWrapper.find('span').at(2).text()).toBe('Complete ' + text);
     });
     it('should verify all properties are set', () => {
       const badgeWrapper = mount(
