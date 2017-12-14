@@ -36,7 +36,6 @@ describe('when default props are provided', () => {
     />);
     expect(subject.find('label').length).toBe(2);
     expect(subject.find('input').length).toBe(1);
-    expect(subject.find('input').prop('id')).toBe('TextField1');
     expect(subject.find('input').prop('placeholder')).toBe('Search people and group');
   });
   describe('searchBehavior()', () => {
