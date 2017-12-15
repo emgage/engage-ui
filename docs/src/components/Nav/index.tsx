@@ -35,7 +35,7 @@ const Nav = () => {
         <li><Link to="/component/loading" activeClassName={styles.active}>Loading</Link></li>
         <li><Link to="/component/message" activeClassName={styles.active}>Message</Link></li>
         <li><Link to="/component/modal" activeClassName={styles.active}>Modal</Link></li>
-        {/* <li><Link to="/component/panel">Panel</Link></li> */}
+        {/* <li><Link to="/component/panel" activeClassName={styles.active}>Panel</Link></li> */}
         <li><Link to="/component/popover" activeClassName={styles.active}>Popover</Link></li>
         <li><Link to="/component/positionedoverlay" activeClassName={styles.active}>Positioned Overlay</Link></li>
         <li><Link to="/component/radiobutton" activeClassName={styles.active}>RadioButton</Link></li>
