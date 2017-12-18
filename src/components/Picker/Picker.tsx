@@ -40,13 +40,13 @@ export interface IAutoSuggestMethods {
   onSuggestionsClearRequested(item: object): void;
   getSuggestions(value: string): any[];
   getSuggestionValue(suggestion: object): void;
-  onChange(event: Event, { newValue, method }: Autosuggest.ChangeEvent): void;
+  onChange(event: React.FormEvent<any>, { newValue, method }: Autosuggest.ChangeEvent): void;
   onfocus(e: Event): void;
   onFocusOut(e: Event): void;
-  onInputFocus(e: Event): void;
+  onInputFocus(e: React.FormEvent<any>): void;
   storeFocus(e: HTMLElement): void;
   onKeyDown(e: React.FormEvent<Element> | KeyboardEvent): void;
-  onClick(e: React.FormEvent<Element>): void;
+  // onClick(e: React.FormEvent<Element>): void;
   onSuggestionsFetchRequested({ value }: Autosuggest.SuggestionsFetchRequest): void;
   onSuggestionSelected(event: React.FormEvent<Element>, { suggestion }: Autosuggest.SuggestionSelectedEventData<Autosuggest>): void;
   chipRemove(item: IItemList | number): void;
@@ -103,15 +103,7 @@ class Picker extends React.Component<Props, State> {
       suggestions: [],
       chipListState: [],
       focusArr: [],
-      itemsList:
-      [
-        { key: 1, image: 'http://msaadvertising.com/wp-content/uploads/2014/06/Larry-cartoon-headshot.jpg', name: 'John Doe', email: 'test@gmail.com' },
-        { key: 2, image: 'http://cdn.photographyproject.com.au/wp-content/uploads/2013/04/corporate-headshot.jpg', name: 'Pedro Sanchez', email: 'pedrosanchez@gmail.com' },
-        { key: 3, image: 'https://media.licdn.com/mpr/mpr/p/5/005/08f/04d/02df10d.jpg', name: 'Jane Doe', email: 'jane@gmail.com' },
-        { key: 4, image: 'http://www.roanokecreditrepair.com/wp-content/uploads/2016/06/Headshot-1.png', name: 'Person McPerson', email: 'yahoogmail@gmail.com' },
-        { key: 5, image: 'https://d38zhw9ti31loc.cloudfront.net/wp-content/uploads/2013/07/Crystal-headshot-new.jpg', name: 'Laura Person', email: 'yahooldjadslkjgmail@gmail.com' },
-        { key: 6, image: 'https://d38zhw9ti31loc.cloudfront.net/wp-content/uploads/2013/07/Crystal-headshot-new.jpg', name: 'Laura Person', email: 'slkjgmail@gmail.com' },
-      ],
+      itemsList: this.props.source,
       focused: -1,
       number: 0,
     };
@@ -138,7 +130,7 @@ class Picker extends React.Component<Props, State> {
         return suggestion.name;
       },
 
-      onChange: (event: Event, { newValue, method }: Autosuggest.ChangeEvent) => {
+      onChange: (event: React.FormEvent<any>, { newValue, method }: Autosuggest.ChangeEvent) => {
         this.setState({
           value: newValue,
         });
@@ -160,7 +152,7 @@ class Picker extends React.Component<Props, State> {
         this.setState({ focused: -1 });
       },
 
-      onInputFocus: (e: Event) => {
+      onInputFocus: (e: React.FormEvent<any>) => {
         const chipListState = this.state.chipListState.slice();
         if (chipListState.length && this.state.focused !== -1) {
           const item = Object.assign({}, chipListState[0], { tabIndex: 0 });
@@ -200,9 +192,9 @@ class Picker extends React.Component<Props, State> {
         }
       },
 
-      onClick: (e: React.FormEvent<Element>) => {
-        console.log('clicked!');
-      },
+      // onClick: (e: React.FormEvent<Element>) => {
+      //   console.log('clicked!');
+      // },
 
       onSuggestionsFetchRequested: ({ value }: Autosuggest.SuggestionsFetchRequest) => {
         if (value) {
@@ -276,13 +268,12 @@ class Picker extends React.Component<Props, State> {
     };
 
     const { value, suggestions, chipListState } = this.state;
-    const inputProps = {
+    const inputProps: Autosuggest.InputProps = {
       value,
       onChange: autoSuggestMethods.onChange,
       onFocus: autoSuggestMethods.onInputFocus,
-      'aria-label': 'Picker input',
     };
-    const stateProps: any = { value, suggestions, chipListState, inputProps };
+    const stateProps: IStateProps = { value, suggestions, chipListState, inputProps };
 
     const {
       filterPlaceHolder,

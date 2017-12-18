@@ -13,7 +13,7 @@ export type Type = 'text' | 'email' | 'number' | 'password' | 'search' | 'tel' |
 
 export interface IStateProps {
   chipListState: IItemList[];
-  suggestions: Autosuggest;
+  suggestions: Autosuggest[];
   inputProps: Autosuggest.InputProps;
   value?: string;
 }
@@ -31,7 +31,7 @@ export interface Props {
   theme?: any;
   autoSuggest?: boolean;
   autoSuggestMethods?: IAutoSuggestMethods;
-  stateProps?: { chipListState: IItemList[], suggestions: Autosuggest, inputProps: Autosuggest.InputProps, value?: string };
+  stateProps?: IStateProps;
   onChange?(value: string): void;
 }
 

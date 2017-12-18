@@ -6,11 +6,11 @@ import Chip from '../Chip';
 import { themr, ThemedComponentClass } from 'react-css-themr';
 import { TEXT_FIELD } from '../ThemeIdentifiers';
 import * as baseTheme from './TextField.scss';
-import { IAutoSuggestMethods } from './Picker';
+import { IAutoSuggestMethods, IItemList } from './Picker';
 
 export interface IStateProps {
-  chipListState: object[];
-  suggestions: Autosuggest;
+  chipListState: IItemList[];
+  suggestions: Autosuggest[];
   inputProps: Autosuggest.InputProps;
   value?: string;
 }

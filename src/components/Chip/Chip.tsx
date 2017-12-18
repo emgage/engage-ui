@@ -39,7 +39,7 @@ class Chip extends React.PureComponent<Props, {}> {
   }
 
   onClick = (item: React.FormEvent<HTMLElement>) => {
-    return this.props.onClick ? this.props.onClick(item) : this.props.autoSuggestMethods ? this.props.autoSuggestMethods.onClick(item) : '';
+    return this.props.onClick ? this.props.onClick(item) : '';
   }
 
   render() {
