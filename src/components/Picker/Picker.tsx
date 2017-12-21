@@ -41,18 +41,15 @@ export interface IAutoSuggestMethods {
   getSuggestions(value: string): any[];
   getSuggestionValue(suggestion: object): void;
   onChange(event: React.FormEvent<any>, { newValue, method }: Autosuggest.ChangeEvent): void;
-  onfocus(e: Event): void;
-  onFocusOut(e: Event): void;
-  onInputFocus(e: React.FormEvent<any>): void;
-  storeFocus(e: HTMLElement): void;
   onKeyDown(e: React.FormEvent<Element> | KeyboardEvent): void;
-  // onClick(e: React.FormEvent<Element>): void;
   onSuggestionsFetchRequested({ value }: Autosuggest.SuggestionsFetchRequest): void;
   onSuggestionSelected(event: React.FormEvent<Element>, { suggestion }: Autosuggest.SuggestionSelectedEventData<Autosuggest>): void;
   chipRemove(item: IItemList | number): void;
   renderSuggestion(suggestion: IItemList, { isHighlighted, query }: IRenderSuggestionProp): JSX.Element;
   storeInputReference(autosuggest: Autosuggest): void;
   updateList(input: HTMLElement): void;
+  storeFocus(e: HTMLElement): void;
+  onClick(e: React.FormEvent<Element>): void;
 }
 
 export type Type = 'hide' | 'mark';
@@ -104,7 +101,7 @@ class Picker extends React.Component<Props, State> {
       chipListState: [],
       focusArr: [],
       itemsList: this.props.source,
-      focused: -1,
+      focused: 0,
       number: 0,
     };
   }
@@ -136,65 +133,17 @@ class Picker extends React.Component<Props, State> {
         });
       },
 
-      onfocus: (e: Event) => {
-        const chipListState = this.state.chipListState.slice();
-        const item = Object.assign({}, chipListState[0], { tabIndex: -1 });
-        chipListState[0] = item;
-        if (this.state.focused === -1) this.setState({ chipListState });
-        this.setState({ focused: 0 });
-      },
-
-      onFocusOut: (e: Event) => {
-        const chipListState = this.state.chipListState.slice();
-        const item = Object.assign({}, chipListState[0], { tabIndex: 0 });
-        chipListState[0] = item;
-        if (this.state.focused === 0) this.setState({ chipListState });
-        this.setState({ focused: -1 });
-      },
-
-      onInputFocus: (e: React.FormEvent<any>) => {
-        const chipListState = this.state.chipListState.slice();
-        if (chipListState.length && this.state.focused !== -1) {
-          const item = Object.assign({}, chipListState[0], { tabIndex: 0 });
-          chipListState[0] = item;
-          this.setState({ chipListState });
-        }
-        this.setState({ focused: -1 });
-      },
-
-      storeFocus: (e: HTMLElement) => {
-        if (!this.state.focusArr.includes(e) && e !== null) {
-          const focusArr = this.state.focusArr.length ? this.state.focusArr.concat([e]) : [e];
-          this.setState({ focusArr });
+      onKeyDown: (e: KeyboardEvent, focusArr?: any, chipListState?: IItemList[]) => {
+        if (e.keyCode === 8 && this.state.chipListState.length && !this.state.value.length) {
+          const chipListState = this.state.chipListState.slice(0, this.state.chipListState.length - 1);
+          const selectedChip = this.state.chipListState.slice(this.state.chipListState.length - 1)[0];
+          const itemsList = this.state.itemsList.concat(selectedChip);
+          this.setState({
+            chipListState,
+            itemsList,
+          });
         }
       },
-
-      onKeyDown: (e: KeyboardEvent, focusArr?: HTMLElement[], chipListState?: IItemList[]) => {
-        if (e.keyCode === 37) {
-          const focused = this.state.focused === 0 ? this.state.chipListState.length - 1 : this.state.focused - 1;
-          this.state.focusArr[focused].focus();
-          this.setState({ focused });
-        } else if (e.keyCode === 39) {
-          const focused = this.state.focused === this.state.chipListState.length - 1 ? 0 : this.state.focused + 1;
-          this.state.focusArr[focused].focus();
-          this.setState({ focused });
-        } else if (e.keyCode === 8) {
-          autoSuggestMethods.chipRemove(this.state.focused);
-        } else if (typeof this.state.number === 'number') {
-          let focused;
-          const number = this.state.number;
-          if (number === (chipListState ? chipListState.length : '')) focused = number - 1;
-          else if (number > 0) focused = number;
-          else focused = 0;
-          if (focusArr ? focusArr.length : '') focusArr ? focusArr[focused].focus() : '';
-          else this.state.input[focused].focus();
-          this.setState({ focused });
-        }
-      },
-
-      // onClick: (e: React.FormEvent<Element>) => {
-      //   console.log('clicked!');
-      // },
 
       onSuggestionsFetchRequested: ({ value }: Autosuggest.SuggestionsFetchRequest) => {
         if (value) {
@@ -225,7 +174,7 @@ class Picker extends React.Component<Props, State> {
         });
       },
 
-      chipRemove: (item: IItemList) => {
+      chipRemove: (item: any) => {
         const number = typeof item === 'number' ? item : this.state.chipListState.indexOf(item);
         const existingChipList = this.state.chipListState;
         const addedItem = this.state.chipListState.slice(number, number + 1);
@@ -246,6 +195,26 @@ class Picker extends React.Component<Props, State> {
         });
       },
 
+      storeInputReference: (autosuggest: Autosuggest) => {
+        if (autosuggest !== null) {
+          if (this.state.input !== autosuggest.props.inputProps.value) {
+            this.setState({ input: autosuggest.props.inputProps.value });
+          }
+        }
+      },
+
+      storeFocus: (e: HTMLElement) => {
+        if (!this.state.focusArr.includes(e) && e !== null) {
+          const focusArr = this.state.focusArr.length ? this.state.focusArr.concat([e]) : [e];
+          this.setState({ focusArr });
+        }
+      },
+
+      onClick: (e: React.FormEvent<Element>) => {
+        // TODO can write a code accoring to requirements
+        console.log('clicked!');
+      },
+
       renderSuggestion: (suggestion: IItemList, { isHighlighted, query }: IRenderSuggestionProp) => {
         const index = (suggestion.name ? suggestion.name.toLowerCase().indexOf(query.toLowerCase()) : 0);
         const nameBefore = (suggestion.name ? suggestion.name.slice(0, index) : '');
@@ -257,21 +226,13 @@ class Picker extends React.Component<Props, State> {
           <Card image={suggestion.image} nameBefore={nameBefore} bold={queryData} nameAfter={nameAfter} email={suggestion.email} alt={suggestion.alt} />
         );
       },
-
-      storeInputReference: (autosuggest: Autosuggest) => {
-        if (autosuggest !== null) {
-          if (this.state.input !== autosuggest.props.input) {
-            this.setState({ input: autosuggest.props.input });
-          }
-        }
-      },
     };
 
     const { value, suggestions, chipListState } = this.state;
     const inputProps: Autosuggest.InputProps = {
       value,
       onChange: autoSuggestMethods.onChange,
-      onFocus: autoSuggestMethods.onInputFocus,
+      onKeyDown: autoSuggestMethods.onKeyDown,
     };
     const stateProps: IStateProps = { value, suggestions, chipListState, inputProps };
 

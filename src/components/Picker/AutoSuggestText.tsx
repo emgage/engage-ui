@@ -5,8 +5,9 @@ import * as style from './Picker.scss';
 import Chip from '../Chip';
 import { themr, ThemedComponentClass } from 'react-css-themr';
 import { TEXT_FIELD } from '../ThemeIdentifiers';
-import * as baseTheme from './TextField.scss';
 import { IAutoSuggestMethods, IItemList } from './Picker';
+
+import * as baseTheme from './TextField.scss';
 
 export interface IStateProps {
   chipListState: IItemList[];
@@ -24,13 +25,11 @@ export interface Props {
 
 class AutoSuggestText extends React.Component<Props, {}> {
   render() {
-    const { theme }: any = this.props;
+    const { theme }:any = this.props;
 
     return (
-      <div className={this.props.stateProps ? this.props.stateProps.chipListState.length ? style.inputOutline : style.inputOutlineInit : null} aria-live="polite" id="ariaMessage">
-        <div onKeyDown={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.onKeyDown : () => { }} role="listbox">
-          {this.props.stateProps ? this.props.stateProps.chipListState.map((input: any) => <Chip image={{ url: input.image }} removable={true} onRemove={() => this.props.autoSuggestMethods ? this.props.autoSuggestMethods.chipRemove(input) : null} key={input.key} tabIndex={input.tabIndex} autoSuggestMethods={this.props.autoSuggestMethods}>{input.text}</Chip>) : null}
-        </div>
+      <div className={this.props.stateProps ? this.props.stateProps.chipListState.length ? style.inputOutline : style.inputOutlineInit : null}>
+         {this.props.stateProps ? this.props.stateProps.chipListState.map((input: any) => <Chip image={{ url: input.image }} removable={true} onClick={() => this.props.autoSuggestMethods ? this.props.autoSuggestMethods.onClick(input) : null} onRemove={() => this.props.autoSuggestMethods ? this.props.autoSuggestMethods.chipRemove(input) : null} key={input.key}>{input.text}</Chip>) : null }
         <Autosuggest
           className={style.suggestionsContainer}
           suggestions={this.props.stateProps ? this.props.stateProps.suggestions : null}
@@ -46,7 +45,6 @@ class AutoSuggestText extends React.Component<Props, {}> {
             container: this.props.stateProps ? (this.props.stateProps.chipListState.length ? style.container : style.containerInit) : null,
             suggestion: style.cardItem,
             suggestionsList: style.suggestionsList,
-            suggestionsContainer: style.suggestionsContainer,
             input: theme.input,
           }}
         />

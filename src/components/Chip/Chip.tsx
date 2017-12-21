@@ -4,7 +4,6 @@ import { classNames } from '@shopify/react-utilities/styles';
 import { DisplayMoreInfo } from '../Picker/PickerEnum';
 import { CHIP } from '../ThemeIdentifiers';
 import * as baseTheme from './Chip.scss';
-import { IAutoSuggestMethods } from '../Picker/Picker';
 
 export interface Props {
   clickable?: boolean;
@@ -18,30 +17,15 @@ export interface Props {
   moreInfoComponentShowOn?: DisplayMoreInfo;
   style?: React.CSSProperties;
   theme?: any;
-  onRemove?(event: React.FormEvent<HTMLElement>): void;
-  onClick?(event: React.FormEvent<HTMLElement>): void;
+  onRemove?(event: any): void;
+  onClick?(event: any): void;
   handleMoreInfo?(): void;
-  key?: number;
-  tabIndex?: number;
-  autoSuggestMethods?: IAutoSuggestMethods;
-  onfocus?(event: Event): void;
-  id?: number;
+  key?: any;
+  markedForDelete?: boolean;
+  children?: string;
 }
 
-class Chip extends React.PureComponent<Props, {}> {
-
-  onFocus = () => {
-    return this.props.autoSuggestMethods ? this.props.autoSuggestMethods.onfocus : '';
-  }
-
-  onBlur = () => {
-    return this.props.autoSuggestMethods ? this.props.autoSuggestMethods.onFocusOut : '';
-  }
-
-  onClick = (item: React.FormEvent<HTMLElement>) => {
-    return this.props.onClick ? this.props.onClick(item) : '';
-  }
-
+class Chip extends React.PureComponent<Props, any> {
   render() {
     const {
       clickable,
@@ -49,54 +33,38 @@ class Chip extends React.PureComponent<Props, {}> {
       image,
       transparent,
       theme,
+      onRemove,
+      onClick,
+      children,
     } = this.props;
 
     const className = classNames(
       theme.Chip,
-      transparent && theme.transparent
-    );
-
-    const deleteInstruct = this.props.removable ? 'Press delete to remove this chip' : '';
+      transparent && theme.transparent);
 
     const chipContents = [(
       image
         ?
-        <img className={theme.Image} src={image.url} alt={image.alt} aria-hidden key="1" />
+        <img className={theme.Image} src={image.url} alt={image.alt} key="1" aria-hidden />
         : ''
     ),
       <span key="2">
-      {this.props.children}
-      <span className={theme.hidden}>{deleteInstruct}</span>
-    </span>,
+        {children}
+      </span>,
     ];
+    const isClickable = clickable ?
+      <a onClick={onClick} aria-disabled={false} tabIndex={0}>
+        {chipContents}
+      </a>
+      : chipContents;
+    const isRemovable = removable ?
+      <button type="button" className={theme.Remove} aria-label={'Remove ' + children} onClick={onRemove}>
+        <span aria-hidden="true">×</span>
+      </button>
+      : '';
+    const returnedValue = clickable || removable ? React.createElement('span', { className }, isClickable, isRemovable) : React.createElement('button', { className }, isClickable, isRemovable);
 
-    return (
-      <div
-        className={className}
-        tabIndex={this.props.tabIndex === 0 ? this.props.tabIndex : -1}
-        onFocus={this.onFocus}
-        onBlur={this.onBlur}
-        role="option"
-      >
-        {
-          clickable
-            ?
-            <a onClick={this.onClick.bind(this)} aria-disabled={false} role={'alert'} tabIndex={!this.props.tabIndex ? 0 : -1}>
-              {chipContents}
-            </a>
-            :
-            chipContents
-        }
-        {
-          removable
-            ?
-            <button type="button" className={theme.Remove} role={'alert'} onClick={this.props.onRemove} tabIndex={-1}>
-              <span aria-hidden="true">×</span>
-            </button>
-            : ''
-        }
-      </div>
-    );
+    return returnedValue;
   }
 }
 
