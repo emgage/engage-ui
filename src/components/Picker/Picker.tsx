@@ -9,10 +9,10 @@ import Card from './Card';
 
 export interface IPickerInfo {
   id?: number;
+  image?: string;
   name: string;
   description: string;
-  imageUrl?: string;
-  url?: string;
+  email?: string;
 }
 
 export interface IStateProps {
@@ -77,6 +77,7 @@ export interface Props {
   chipComponent?: React.ReactNode;
   searchResultComponent?: React.ReactNode;
   moreInfoComponent?: React.ReactNode;
+  autoSuggest?: boolean;
   source: IPickerInfo[];
   moreInfoComponentShowOn?: DisplayMoreInfo;
   style?: React.CSSProperties;
@@ -237,6 +238,7 @@ class Picker extends React.Component<Props, State> {
     const stateProps: IStateProps = { value, suggestions, chipListState, inputProps };
 
     const {
+      autoSuggest,
       filterPlaceHolder,
       selectedResultsBehavior,
       moreInfoComponent,
@@ -266,7 +268,7 @@ class Picker extends React.Component<Props, State> {
             }
           </div>
           <TextField
-            autoSuggest={true}
+            autoSuggest={autoSuggest}
             autoSuggestMethods={autoSuggestMethods}
             label="People"
             value={this.state.people}

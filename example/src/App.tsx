@@ -112,9 +112,22 @@ class App extends React.Component<{}, State> {
       { key: 2, image: 'http://cdn.photographyproject.com.au/wp-content/uploads/2013/04/corporate-headshot.jpg', name: 'Pedro Sanchez', description: 'Pedro Sanchez', email: 'pedrosanchez@gmail.com' },
       { key: 3, image: 'https://media.licdn.com/mpr/mpr/p/5/005/08f/04d/02df10d.jpg', name: 'Jane Doe', description: 'Jane Doe', email: 'jane@gmail.com' },
       { key: 4, image: 'http://www.roanokecreditrepair.com/wp-content/uploads/2016/06/Headshot-1.png', name: 'Person McPerson', description: 'Person McPerson', email: 'yahoogmail@gmail.com' },
-      { key: 5, image: 'https://d38zhw9ti31loc.cloudfront.net/wp-content/uploads/2013/07/Crystal-headshot-new.jpg', name: 'Laura Person', description: 'Laura Person',  email: 'yahooldjadslkjgmail@gmail.com' },
-      { key: 6, image: 'https://d38zhw9ti31loc.cloudfront.net/wp-content/uploads/2013/07/Crystal-headshot-new.jpg', name: 'Laura Person', description: 'Laura Person',  email: 'slkjgmail@gmail.com' },
+      { key: 5, image: 'https://d38zhw9ti31loc.cloudfront.net/wp-content/uploads/2013/07/Crystal-headshot-new.jpg', name: 'Laura Person', description: 'Laura Person', email: 'yahooldjadslkjgmail@gmail.com' },
+      { key: 6, image: 'https://d38zhw9ti31loc.cloudfront.net/wp-content/uploads/2013/07/Crystal-headshot-new.jpg', name: 'LauraPerson', description: 'Laura Person', email: 'slkjgmail@gmail.com' },
     ];
+
+    // const pickerdata = [
+    //   { id: 0, name: 'ranmal0', description: 'r', imageUrl: 'https://media.licdn.com/mpr/mpr/p/5/005/08f/04d/02df10d.jpg', url: '' },
+    //   { id: 1, name: 'ranmal1', description: 'r', imageUrl: 'https://media.licdn.com/mpr/mpr/p/5/005/08f/04d/02df10d.jpg', url: '' },
+    //   { id: 2, name: 'ranmal2', description: 'r', imageUrl: 'https://media.licdn.com/mpr/mpr/p/5/005/08f/04d/02df10d.jpg', url: '' },
+    //   { id: 3, name: 'ranmal3', description: 'r', imageUrl: 'https://media.licdn.com/mpr/mpr/p/5/005/08f/04d/02df10d.jpg', url: '' },
+    //   { id: 4, name: 'ranmal4', description: 'r', imageUrl: 'https://media.licdn.com/mpr/mpr/p/5/005/08f/04d/02df10d.jpg', url: '' },
+    //   { id: 5, name: 'ranmal5', description: 'r', imageUrl: 'https://media.licdn.com/mpr/mpr/p/5/005/08f/04d/02df10d.jpg', url: '' },
+    //   { id: 6, name: 'ranmal6', description: 'r', imageUrl: 'https://media.licdn.com/mpr/mpr/p/5/005/08f/04d/02df10d.jpg', url: '' },
+    //   { id: 7, name: 'ranmal7', description: 'r', imageUrl: 'https://media.licdn.com/mpr/mpr/p/5/005/08f/04d/02df10d.jpg', url: '' },
+    //   { id: 8, name: 'ranmal8', description: 'r', imageUrl: 'https://media.licdn.com/mpr/mpr/p/5/005/08f/04d/02df10d.jpg', url: '' },
+    //   { id: 9, name: 'ranmal9', description: 'r', imageUrl: 'https://media.licdn.com/mpr/mpr/p/5/005/08f/04d/02df10d.jpg', url: '' },
+    // ];
 
     return (
       <div>
@@ -261,7 +274,7 @@ class App extends React.Component<{}, State> {
           </Modal>
         </div>
         <br />
-        <Caption style={{ color:'red'  }}>This is Caption</Caption>
+        <Caption style={{ color: 'red' }}>This is Caption</Caption>
         <br />
         <Checkbox label={'I am a checkbox'} />
         <Banner title={'banner'} status={'success'} />
@@ -744,10 +757,12 @@ class App extends React.Component<{}, State> {
             chipComponent={Chip}
             filterPlaceHolder="!People!!"
             searchResultComponent={Chip}
+            autoSuggest
             source={pickerdata}
             maxSelectedItems={5}
             minSelectedItems={2}
             moreInfoComponent={<Button children="ranmal" />}
+            onSelect={this.handleChange('John')}
           />
           <ValidatedForm>
 
@@ -1058,11 +1073,11 @@ class App extends React.Component<{}, State> {
         <Button icon="add" primary>
           Create Role
       </Button>
-      <br />
-      <Spinner color="inkLightest" size="small" />
-      <br />
-      <Spinner style={{height:'100px'}} />
-      <br />
+        <br />
+        <Spinner color="inkLightest" size="small" />
+        <br />
+        <Spinner style={{ height: '100px' }} />
+        <br />
         <ButtonGroup segmented>
           <Button primary>Save Draft</Button>
           <Button primary>Publish</Button>
@@ -1075,7 +1090,9 @@ class App extends React.Component<{}, State> {
     return (value: any) => this.setState({ [field]: value });
   }
 
-
+  handleChange(value: string) {
+    return (value: any) => this.setState({ [value]: value });
+  }
 
   popoverClose(field: any) {
     return;

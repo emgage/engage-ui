@@ -7,21 +7,32 @@ const theme = {
   pickerResultHide: 'pickerResultHide',
   pickerResultShow: 'pickerResultShow',
 };
+const Data = [
+  { key: 1, image: 'http://msaadvertising.com/wp-content/uploads/2014/06/Larry-cartoon-headshot.jpg', name: 'John Doe', description: 'John Doe', email: 'test@gmail.com' },
+  { key: 2, image: 'http://cdn.photographyproject.com.au/wp-content/uploads/2013/04/corporate-headshot.jpg', name: 'Pedro Sanchez', description: 'Pedro Sanchez', email: 'pedrosanchez@gmail.com' },
+  { key: 3, image: 'https://media.licdn.com/mpr/mpr/p/5/005/08f/04d/02df10d.jpg', name: 'Jane Doe', description: 'Jane Doe', email: 'jane@gmail.com' },
+  { key: 4, image: 'http://www.roanokecreditrepair.com/wp-content/uploads/2016/06/Headshot-1.png', name: 'Person McPerson', description: 'Person McPerson', email: 'yahoogmail@gmail.com' },
+  { key: 5, image: 'https://d38zhw9ti31loc.cloudfront.net/wp-content/uploads/2013/07/Crystal-headshot-new.jpg', name: 'Laura Person', description: 'Laura Person', email: 'yahooldjadslkjgmail@gmail.com' },
+  { key: 6, image: 'https://d38zhw9ti31loc.cloudfront.net/wp-content/uploads/2013/07/Crystal-headshot-new.jpg', name: 'Laura Person', description: 'Laura Person', email: 'slkjgmail@gmail.com' },
+
+];
 const searchData = [
-  { id: 0, name: 'ranmal0', description: 'r', imageUrl: '', url: '' },
-  { id: 1, name: 'ranmal1', description: 'r', imageUrl: '', url: '' },
-  { id: 2, name: 'ranmal2', description: 'r', imageUrl: '', url: '' },
-  { id: 3, name: 'ranmal3', description: 'r', imageUrl: '', url: '' },
-  { id: 4, name: 'ranmal4', description: 'r', imageUrl: '', url: '' },
-  { id: 5, name: 'ranmal5', description: 'r', imageUrl: '', url: '' },
-  { id: 6, name: 'ranmal6', description: 'r', imageUrl: '', url: '' },
-  { id: 7, name: 'ranmal7', description: 'r', imageUrl: '', url: '' },
-  { id: 8, name: 'ranmal8', description: 'r', imageUrl: '', url: '' },
-  { id: 9, name: 'ranmal9', description: 'r', imageUrl: '', url: '' },
+  { key: 1, image: 'http://msaadvertising.com/wp-content/uploads/2014/06/Larry-cartoon-headshot.jpg', name: 'John Doe', description: 'John Doe', email: 'test@gmail.com' },
+  { key: 2, image: 'http://cdn.photographyproject.com.au/wp-content/uploads/2013/04/corporate-headshot.jpg', name: 'Pedro Sanchez', description: 'Pedro Sanchez', email: 'pedrosanchez@gmail.com' },
+  { key: 3, image: 'https://media.licdn.com/mpr/mpr/p/5/005/08f/04d/02df10d.jpg', name: 'Jane Doe', description: 'Jane Doe', email: 'jane@gmail.com' },
+  { key: 4, image: 'http://www.roanokecreditrepair.com/wp-content/uploads/2016/06/Headshot-1.png', name: 'Person McPerson', description: 'Person McPerson', email: 'yahoogmail@gmail.com' },
+  { key: 5, image: 'https://d38zhw9ti31loc.cloudfront.net/wp-content/uploads/2013/07/Crystal-headshot-new.jpg', name: 'Laura Person', description: 'Laura Person', email: 'yahooldjadslkjgmail@gmail.com' },
+  { key: 6, image: 'https://d38zhw9ti31loc.cloudfront.net/wp-content/uploads/2013/07/Crystal-headshot-new.jpg', name: 'Laura Person', description: 'Laura Person', email: 'slkjgmail@gmail.com' },
+
 ];
 const selectedData = [
-  { id: 0, name: 'ranmal0', description: 'r', imageUrl: '', url: '' },
-  { id: 1, name: 'ranmal1', description: 'r', imageUrl: '', url: '' },
+  { key: 1, image: 'http://msaadvertising.com/wp-content/uploads/2014/06/Larry-cartoon-headshot.jpg', name: 'John Doe', description: 'John Doe', email: 'test@gmail.com' },
+  { key: 2, image: 'http://cdn.photographyproject.com.au/wp-content/uploads/2013/04/corporate-headshot.jpg', name: 'Pedro Sanchez', description: 'Pedro Sanchez', email: 'pedrosanchez@gmail.com' },
+  { key: 3, image: 'https://media.licdn.com/mpr/mpr/p/5/005/08f/04d/02df10d.jpg', name: 'Jane Doe', description: 'Jane Doe', email: 'jane@gmail.com' },
+  { key: 4, image: 'http://www.roanokecreditrepair.com/wp-content/uploads/2016/06/Headshot-1.png', name: 'Person McPerson', description: 'Person McPerson', email: 'yahoogmail@gmail.com' },
+  { key: 5, image: 'https://d38zhw9ti31loc.cloudfront.net/wp-content/uploads/2013/07/Crystal-headshot-new.jpg', name: 'Laura Person', description: 'Laura Person', email: 'yahooldjadslkjgmail@gmail.com' },
+  { key: 6, image: 'https://d38zhw9ti31loc.cloudfront.net/wp-content/uploads/2013/07/Crystal-headshot-new.jpg', name: 'Laura Person', description: 'Laura Person', email: 'slkjgmail@gmail.com' },
+
 ];
 describe('when default props are provided', () => {
   describe('onSelect()', () => {
@@ -29,18 +40,27 @@ describe('when default props are provided', () => {
       const spySearch = jest.fn();
       const spyClick = jest.fn();
       const subject = mount(<UnthemedPicker
-        source={searchData}
+        source={Data}
+        autoSuggest
         chipComponent={Chip}
         searchResultComponent={Chip}
-        searchBehavior={spySearch}
-        onSelect={spyClick}
+        searchBehavior={spySearch()}
+        onSelect={spyClick()}
         theme={theme}
       />).setState({ ['searchItems']: searchData });
-      (subject.find('input') as any).node.value = 'ran';
-      subject.find('input').first().simulate('change');
-      expect(spySearch).toHaveBeenCalledWith('ran');
+
+      const event = {
+            target: {
+                value: 'Pedro',
+            },
+        };
+
+      expect(subject.find('input').length).toBe(1);
+      (subject.find('input') as any).node.value = 'Pedro';
+      subject.find('input').at(0).simulate('change', event);
+      expect(spySearch).toBeCalled();
       expect(subject.find('span').length).toBeGreaterThan(searchData.length);
-      subject.find('div').first().find('a').first().simulate('click');
+      subject.find('span').first().find('a').simulate('click');
       expect(spyClick).toHaveBeenCalled();
     });
   });
@@ -50,22 +70,28 @@ describe('when default props are provided', () => {
       const spyClick = jest.fn();
       const spyRemove = jest.fn();
       const subject = mount(<UnthemedPicker
-        source={searchData}
+        source={Data}
+        autoSuggest
         chipComponent={Chip}
         searchResultComponent={Chip}
-        searchBehavior={spySearch}
-        onSelect={spyClick}
-        onRemove={spyRemove}
+        searchBehavior={spySearch()}
+        onSelect={spyClick()}
+        onRemove={spyRemove()}
         theme={theme}
       />).setState({ ['searchItems']: searchData, ['selectedItems']: selectedData });
-      (subject.find('input') as any).node.value = 'ran';
-      subject.find('input').simulate('change');
-      expect(spySearch).toHaveBeenCalledWith('ran');
+      const event = {
+        target: {
+          value: 'Joh',
+        },
+      };
+      (subject.find('input') as any).node.value = 'Joh';
+      subject.find('input').at(0).simulate('change', event);
+      expect(spySearch).toBeCalled();
       expect(subject.find('span').length).toBeGreaterThan(searchData.length);
-      subject.find('div').find('a').first().simulate('click');
+      subject.find('span').find('a').first().simulate('click');
       expect(spyClick).toHaveBeenCalled();
       expect(subject.find('span').length).toBeGreaterThan(selectedData.length);
-      subject.find('div').first().find('button').first().simulate('click');
+      subject.find('span').first().find('button').simulate('click');
       expect(spyRemove).toHaveBeenCalled();
     });
   });
