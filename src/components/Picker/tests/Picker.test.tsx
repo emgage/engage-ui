@@ -55,13 +55,8 @@ describe('when default props are provided', () => {
         theme={theme}
       />);
 
-      const event = {
-        target: {
-          value: 'Pedro',
-        },
-      };
       (subject.find('input') as any).node.value = 'Pedro';
-      subject.find('input').at(0).simulate('change', event);
+      subject.find('input').at(0).simulate('change');
       expect(spy).toBeCalled();
     });
   });

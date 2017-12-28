@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from 'react-css-themr';
 import { classNames } from '@shopify/react-utilities/styles';
-import { DisplayMoreInfo } from '../Picker/PickerEnum';
 import { CHIP } from '../ThemeIdentifiers';
 import * as baseTheme from './Chip.scss';
 
@@ -13,19 +12,22 @@ export interface Props {
     alt?: string,
   };
   transparent?: boolean;
-  moreInfoComponent?: React.ReactNode;
-  moreInfoComponentShowOn?: DisplayMoreInfo;
   style?: React.CSSProperties;
   theme?: any;
   onRemove?(event: any): void;
   onClick?(event: any): void;
-  handleMoreInfo?(): void;
   key?: any;
-  markedForDelete?: boolean;
   children?: string;
 }
 
 class Chip extends React.PureComponent<Props, any> {
+
+  onKeyDown = (item: any, e: KeyboardEvent) => {
+    if (e.keyCode === 8 || e.keyCode === 46) {
+      return this.props.onRemove ? this.props.onRemove(item) : null;
+    }
+  }
+
   render() {
     const {
       clickable,
@@ -49,22 +51,28 @@ class Chip extends React.PureComponent<Props, any> {
         : ''
     ),
       <span key="2">
-        {children}
-      </span>,
+      {children}
+    </span>,
     ];
     const isClickable = clickable ?
-      <a onClick={onClick} aria-disabled={false} tabIndex={0}>
+      <a onClick={onClick} aria-disabled={false}>
         {chipContents}
       </a>
       : chipContents;
     const isRemovable = removable ?
-      <button type="button" className={theme.Remove} aria-label={'Remove ' + children} onClick={onRemove}>
+      <a className={theme.Remove} aria-label={'Remove ' + children} onClick={onRemove} tabIndex={-1}>
         <span aria-hidden="true">×</span>
-      </button>
+      </a>
       : '';
-    const returnedValue = clickable || removable ? React.createElement('span', { className }, isClickable, isRemovable) : React.createElement('button', { className }, isClickable, isRemovable);
+    const returnedValue = clickable || removable ? React.createElement('button', { className }, isClickable, isRemovable) : React.createElement('button', { className }, isClickable, isRemovable);
 
-    return returnedValue;
+    return (
+      <span
+        onKeyDown={removable ? this.onKeyDown.bind(this, Event) : null}
+      >
+        {returnedValue}
+      </span>
+    );
   }
 }
 

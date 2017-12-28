@@ -116,19 +116,6 @@ class App extends React.Component<{}, State> {
       { key: 6, image: 'https://d38zhw9ti31loc.cloudfront.net/wp-content/uploads/2013/07/Crystal-headshot-new.jpg', name: 'LauraPerson', description: 'Laura Person', email: 'slkjgmail@gmail.com' },
     ];
 
-    // const pickerdata = [
-    //   { id: 0, name: 'ranmal0', description: 'r', imageUrl: 'https://media.licdn.com/mpr/mpr/p/5/005/08f/04d/02df10d.jpg', url: '' },
-    //   { id: 1, name: 'ranmal1', description: 'r', imageUrl: 'https://media.licdn.com/mpr/mpr/p/5/005/08f/04d/02df10d.jpg', url: '' },
-    //   { id: 2, name: 'ranmal2', description: 'r', imageUrl: 'https://media.licdn.com/mpr/mpr/p/5/005/08f/04d/02df10d.jpg', url: '' },
-    //   { id: 3, name: 'ranmal3', description: 'r', imageUrl: 'https://media.licdn.com/mpr/mpr/p/5/005/08f/04d/02df10d.jpg', url: '' },
-    //   { id: 4, name: 'ranmal4', description: 'r', imageUrl: 'https://media.licdn.com/mpr/mpr/p/5/005/08f/04d/02df10d.jpg', url: '' },
-    //   { id: 5, name: 'ranmal5', description: 'r', imageUrl: 'https://media.licdn.com/mpr/mpr/p/5/005/08f/04d/02df10d.jpg', url: '' },
-    //   { id: 6, name: 'ranmal6', description: 'r', imageUrl: 'https://media.licdn.com/mpr/mpr/p/5/005/08f/04d/02df10d.jpg', url: '' },
-    //   { id: 7, name: 'ranmal7', description: 'r', imageUrl: 'https://media.licdn.com/mpr/mpr/p/5/005/08f/04d/02df10d.jpg', url: '' },
-    //   { id: 8, name: 'ranmal8', description: 'r', imageUrl: 'https://media.licdn.com/mpr/mpr/p/5/005/08f/04d/02df10d.jpg', url: '' },
-    //   { id: 9, name: 'ranmal9', description: 'r', imageUrl: 'https://media.licdn.com/mpr/mpr/p/5/005/08f/04d/02df10d.jpg', url: '' },
-    // ];
-
     return (
       <div>
         <Badge children={'Badge'} />
@@ -757,12 +744,11 @@ class App extends React.Component<{}, State> {
             chipComponent={Chip}
             filterPlaceHolder="!People!!"
             searchResultComponent={Chip}
-            autoSuggest
             source={pickerdata}
             maxSelectedItems={5}
             minSelectedItems={2}
+            autoSuggest
             moreInfoComponent={<Button children="ranmal" />}
-            onSelect={this.handleChange('John')}
           />
           <ValidatedForm>
 

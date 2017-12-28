@@ -36,8 +36,8 @@ const selectedData = [
 ];
 describe('when default props are provided', () => {
   describe('onSelect()', () => {
-    it('is called with the select', () => {
-      const spySearch = jest.fn();
+    it('is called with the select', (event) => {
+      const spySearch = jest.fn(event);
       const spyClick = jest.fn();
       const subject = mount(<UnthemedPicker
         source={Data}
@@ -49,26 +49,21 @@ describe('when default props are provided', () => {
         theme={theme}
       />).setState({ ['searchItems']: searchData });
 
-      const event = {
-            target: {
-                value: 'Pedro',
-            },
-        };
-
       expect(subject.find('input').length).toBe(1);
       (subject.find('input') as any).node.value = 'Pedro';
-      subject.find('input').at(0).simulate('change', event);
+      subject.find('input').at(0).simulate('change');
       expect(spySearch).toBeCalled();
+      expect(spySearch).toHaveBeenCalledWith('Pedro');
       expect(subject.find('span').length).toBeGreaterThan(searchData.length);
       subject.find('span').first().find('a').simulate('click');
       expect(spyClick).toHaveBeenCalled();
     });
   });
   describe('onRemove()', () => {
-    it('is called with the remove', () => {
+    it('is called with the remove', (event: any) => {
       const spySearch = jest.fn();
       const spyClick = jest.fn();
-      const spyRemove = jest.fn();
+      const spyRemove = jest.fn(event);
       const subject = mount(<UnthemedPicker
         source={Data}
         autoSuggest
@@ -79,17 +74,14 @@ describe('when default props are provided', () => {
         onRemove={spyRemove()}
         theme={theme}
       />).setState({ ['searchItems']: searchData, ['selectedItems']: selectedData });
-      const event = {
-        target: {
-          value: 'Joh',
-        },
-      };
+
       (subject.find('input') as any).node.value = 'Joh';
-      subject.find('input').at(0).simulate('change', event);
+      subject.find('input').at(0).simulate('change');
       expect(spySearch).toBeCalled();
       expect(subject.find('span').length).toBeGreaterThan(searchData.length);
       subject.find('span').find('a').first().simulate('click');
-      expect(spyClick).toHaveBeenCalled();
+      expect(spyClick).toBeCalled();
+      expect(spyClick).toHaveBeenCalledWith('Joh');
       expect(subject.find('span').length).toBeGreaterThan(selectedData.length);
       subject.find('span').first().find('button').simulate('click');
       expect(spyRemove).toHaveBeenCalled();

@@ -135,7 +135,7 @@ class Picker extends React.Component<Props, State> {
       },
 
       onKeyDown: (e: KeyboardEvent, focusArr?: any, chipListState?: IItemList[]) => {
-        if (e.keyCode === 8 && this.state.chipListState.length && !this.state.value.length) {
+        if ((e.keyCode === 8) && this.state.chipListState.length && !this.state.value.length) {
           const chipListState = this.state.chipListState.slice(0, this.state.chipListState.length - 1);
           const selectedChip = this.state.chipListState.slice(this.state.chipListState.length - 1)[0];
           const itemsList = this.state.itemsList.concat(selectedChip);

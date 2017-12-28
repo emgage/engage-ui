@@ -2,7 +2,7 @@
     "setupFiles": [
         "<rootDir>/tests/setup.ts"
     ],
-    "testRegex": "Picker.test.tsx",
+    "testRegex": ".test.(tsx?|js)$",
     "rootDir": "../..",
     "roots": [
         "<rootDir>/src",
