@@ -25,11 +25,11 @@ export interface Props {
 
 class AutoSuggestText extends React.Component<Props, {}> {
   render() {
-    const { theme }:any = this.props;
+    const { theme }: any = this.props;
 
     return (
       <div className={this.props.stateProps ? this.props.stateProps.chipListState.length ? style.inputOutline : style.inputOutlineInit : null}>
-         {this.props.stateProps ? this.props.stateProps.chipListState.map((input: any) => <Chip image={{ url: input.image }} removable={true} onClick={() => this.props.autoSuggestMethods ? this.props.autoSuggestMethods.onClick(input) : null} onRemove={() => this.props.autoSuggestMethods ? this.props.autoSuggestMethods.chipRemove(input) : null} key={input.key}>{input.text}</Chip>) : null }
+        {this.props.stateProps ? this.props.stateProps.chipListState.map((input: any) => <Chip image={{ url: input.image }} removable={true} onRemove={() => this.props.autoSuggestMethods ? this.props.autoSuggestMethods.chipRemove(input) : null} key={input.key}>{input.text}</Chip>) : null}
         <Autosuggest
           className={style.suggestionsContainer}
           suggestions={this.props.stateProps ? this.props.stateProps.suggestions : null}

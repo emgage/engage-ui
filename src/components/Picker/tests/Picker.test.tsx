@@ -19,14 +19,6 @@ export interface IPickerInfo {
 }
 
 const data: IPickerInfo[] = [];
-const chipTheme = {
-  chip: 'chip',
-  chipClickable: 'chipClickable',
-  chipImage: 'chipImage',
-  chipRemovable: 'chipRemovable',
-  chipTransparent: 'chipTransparent',
-  chipRemove: 'chipRemove',
-};
 describe('when default props are provided', () => {
   it('div should have default picker elements', () => {
     const subject = mount(<Picker
@@ -42,22 +34,5 @@ describe('when default props are provided', () => {
     />);
     expect(subject.find('label').length).toBe(2);
     expect(subject.find('input').length).toBe(1);
-  });
-  describe('searchBehavior()', () => {
-    it('is called with the search', () => {
-      const spy = jest.fn();
-      const subject = mount(<Picker
-        source={data}
-        autoSuggest
-        chipComponent={<Chip theme={chipTheme} />}
-        searchResultComponent={<Chip theme={chipTheme} />}
-        searchBehavior={spy()}
-        theme={theme}
-      />);
-
-      (subject.find('input') as any).node.value = 'Pedro';
-      subject.find('input').at(0).simulate('change');
-      expect(spy).toBeCalled();
-    });
   });
 });

@@ -49,7 +49,6 @@ export interface IAutoSuggestMethods {
   storeInputReference(autosuggest: Autosuggest): void;
   updateList(input: HTMLElement): void;
   storeFocus(e: HTMLElement): void;
-  onClick(e: React.FormEvent<Element>): void;
 }
 
 export type Type = 'hide' | 'mark';
@@ -209,11 +208,6 @@ class Picker extends React.Component<Props, State> {
           const focusArr = this.state.focusArr.length ? this.state.focusArr.concat([e]) : [e];
           this.setState({ focusArr });
         }
-      },
-
-      onClick: (e: React.FormEvent<Element>) => {
-        // TODO can write a code accoring to requirements
-        console.log('clicked!');
       },
 
       renderSuggestion: (suggestion: IItemList, { isHighlighted, query }: IRenderSuggestionProp) => {

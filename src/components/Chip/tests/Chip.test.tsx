@@ -93,7 +93,7 @@ describe('<Chip />', () => {
       });
       it('simulate chip click event', (event) => {
         const onChipClick = jest.fn(event);
-        const subject = mount(<Chip clickable={true} onClick={onChipClick()} theme={theme} />);
+        const subject = mount(<Chip clickable={true} onClick={onChipClick} theme={theme} />);
         subject.find('a').simulate('click');
         expect(onChipClick).toHaveBeenCalledTimes(1);
       });
@@ -137,30 +137,30 @@ describe('<Chip />', () => {
     });
 
     describe('when set to true', () => {
-      it('should have rendered 3 span elements', (event) => {
-  const onRemoveClick = jest.fn(event);
-        const subject = mount(<Chip removable={true} theme={theme} onRemove={onRemoveClick()}/>);
+      it('should have rendered 3 span elements', () => {
+  const onRemoveClick = jest.fn();
+        const subject = mount(<Chip removable={true} theme={theme} onRemove={onRemoveClick}/>);
         expect(subject.find('span')).toHaveLength(3);
       });
-      it('should have default chip css class on span', (event) => {
-  const onRemoveClick = jest.fn(event);
-        const subject = mount(<Chip removable={true} theme={theme} onRemove={onRemoveClick()}/>);
-        expect(subject.find('span').at(0).hasClass('chip')).toBe(true);
+      it('should have default chip css class on span', () => {
+  const onRemoveClick = jest.fn();
+        const subject = mount(<Chip removable={true} theme={theme} onRemove={onRemoveClick}/>);
+        expect(subject.find('button').hasClass('chip')).toBe(true);
       });
-      it('should have <button> element', (event) => {
-  const onRemoveClick = jest.fn(event);
-        const subject = mount(<Chip removable={true} theme={theme} onRemove={onRemoveClick()}/>);
+      it('should have <button> element', () => {
+  const onRemoveClick = jest.fn();
+        const subject = mount(<Chip removable={true} theme={theme} onRemove={onRemoveClick}/>);
         expect(subject.find('button')).toHaveLength(1);
       });
-      it('should have button remove css style', (event) => {
-  const onRemoveClick = jest.fn(event);
-        const subject = mount(<Chip removable={true} theme={theme} onRemove={onRemoveClick()}/>);
-        expect(subject.find('button').hasClass('chipRemove')).toBe(true);
+      it('should have button remove css style', () => {
+  const onRemoveClick = jest.fn();
+        const subject = mount(<Chip removable={true} theme={theme} onRemove={onRemoveClick}/>);
+        expect(subject.find('a').hasClass('chipRemove')).toBe(true);
       });
       it('simulate remove button click event', (event) => {
         const onRemoveClick = jest.fn(event);
-        const subject = mount(<Chip removable={true} onRemove={onRemoveClick()} theme={theme} />);
-        subject.find('button').simulate('click');
+        const subject = mount(<Chip removable={true} onRemove={onRemoveClick} theme={theme} />);
+        subject.find('a').simulate('click');
         expect(onRemoveClick).toHaveBeenCalledTimes(1);
       });
     });
@@ -228,72 +228,72 @@ describe('<Chip />', () => {
       url: 'http://placehold.it/50x50',
       alt: 'Alternate Text',
     };
-    it('should have rendered 3 span elements', (event) => {
-  const onChipClick = jest.fn(event);
-      const onRemoveClick = jest.fn(event);
-      const subject = mount(<Chip theme={theme}  transparent={true} clickable={true} removable={true} image={image} onClick={onChipClick()} onRemove={onRemoveClick()} />);
+    it('should have rendered 3 span elements', () => {
+  const onChipClick = jest.fn();
+      const onRemoveClick = jest.fn();
+      const subject = mount(<Chip theme={theme}  transparent={true} clickable={true} removable={true} image={image} onClick={onChipClick} onRemove={onRemoveClick} />);
       expect(subject.find('span')).toHaveLength(3);
     });
-    it('should have default chip css class on span', (event) => {
-  const onChipClick = jest.fn(event);
-      const onRemoveClick = jest.fn(event);
-      const subject = mount(<Chip theme={theme}  transparent={true} clickable={true} removable={true} image={image} onClick={onChipClick()} onRemove={onRemoveClick()} />);
-      expect(subject.find('span').at(0).hasClass('chip')).toBe(true);
+    it('should have default chip css class on span', () => {
+  const onChipClick = jest.fn();
+      const onRemoveClick = jest.fn();
+      const subject = mount(<Chip theme={theme}  transparent={true} clickable={true} removable={true} image={image} onClick={onChipClick} onRemove={onRemoveClick} />);
+      expect(subject.find('button').hasClass('chip')).toBe(true);
     });
-    it('should have <a> element', (event) => {
-  const onChipClick = jest.fn(event);
-  const onRemoveClick = jest.fn(event);
-      const subject = mount(<Chip theme={theme}  transparent={true} clickable={true} removable={true} image={image} onClick={onChipClick()} onRemove={onRemoveClick()} />);
-      expect(subject.find('a')).toHaveLength(1);
+    it('should have <a> element', () => {
+  const onChipClick = jest.fn();
+  const onRemoveClick = jest.fn();
+      const subject = mount(<Chip theme={theme}  transparent={true} clickable={true} removable={true} image={image} onClick={onChipClick} onRemove={onRemoveClick} />);
+      expect(subject.find('a')).toHaveLength(2);
     });
-    it('should have image element', (event) => {
-  const onChipClick = jest.fn(event);
-      const onRemoveClick = jest.fn(event);
-      const subject = mount(<Chip theme={theme}  transparent={true} clickable={true} removable={true} image={image} onClick={onChipClick()} onRemove={onRemoveClick()} />);
+    it('should have image element', () => {
+  const onChipClick = jest.fn();
+      const onRemoveClick = jest.fn();
+      const subject = mount(<Chip theme={theme}  transparent={true} clickable={true} removable={true} image={image} onClick={onChipClick} onRemove={onRemoveClick} />);
       expect(subject.find('img')).toHaveLength(1);
     });
-    it('should have image element with given image url', (event) => {
-  const onChipClick = jest.fn(event);
-      const onRemoveClick = jest.fn(event);
-      const subject = mount(<Chip theme={theme}  transparent={true} clickable={true} removable={true} image={image} onClick={onChipClick()} onRemove={onRemoveClick()} />);
+    it('should have image element with given image url', () => {
+  const onChipClick = jest.fn();
+      const onRemoveClick = jest.fn();
+      const subject = mount(<Chip theme={theme}  transparent={true} clickable={true} removable={true} image={image} onClick={onChipClick} onRemove={onRemoveClick} />);
       expect(subject.find('img').prop('src')).toBe(image.url);
     });
-    it('should have image element with given alternate text', (event) => {
-  const onChipClick = jest.fn(event);
-      const onRemoveClick = jest.fn(event);
-      const subject = mount(<Chip theme={theme}  transparent={true} clickable={true} removable={true} image={image} onClick={onChipClick()} onRemove={onRemoveClick()} />);
+    it('should have image element with given alternate text', () => {
+  const onChipClick = jest.fn();
+      const onRemoveClick = jest.fn();
+      const subject = mount(<Chip theme={theme}  transparent={true} clickable={true} removable={true} image={image} onClick={onChipClick} onRemove={onRemoveClick} />);
       expect(subject.find('img').prop('alt')).toBe(image.alt);
     });
-    it('should have <button> element', (event) => {
-  const onChipClick = jest.fn(event);
-      const onRemoveClick = jest.fn(event);
-      const subject = mount(<Chip theme={theme}  transparent={true} clickable={true} removable={true} image={image} onClick={onChipClick()} onRemove={onRemoveClick()} />);
+    it('should have <button> element', () => {
+  const onChipClick = jest.fn();
+      const onRemoveClick = jest.fn();
+      const subject = mount(<Chip theme={theme}  transparent={true} clickable={true} removable={true} image={image} onClick={onChipClick} onRemove={onRemoveClick} />);
       expect(subject.find('button')).toHaveLength(1);
     });
-    it('should have button remove css style', (event) => {
-  const onChipClick = jest.fn(event);
-      const onRemoveClick = jest.fn(event);
-      const subject = mount(<Chip theme={theme}  transparent={true} clickable={true} removable={true} image={image} onClick={onChipClick()} onRemove={onRemoveClick()} />);
-      expect(subject.find('button').hasClass('chipRemove')).toBe(true);
+    it('should have button remove css style', () => {
+  const onChipClick = jest.fn();
+      const onRemoveClick = jest.fn();
+      const subject = mount(<Chip theme={theme}  transparent={true} clickable={true} removable={true} image={image} onClick={onChipClick} onRemove={onRemoveClick} />);
+      expect(subject.find('a').at(1).hasClass('chipRemove')).toBe(true);
     });
-    it('should have transparent chip css class on span', (event) => {
-  const onChipClick = jest.fn(event);
-      const onRemoveClick = jest.fn(event);
-      const subject = mount(<Chip theme={theme} transparent={true} clickable={true} removable={true} image={image} onClick={onChipClick()} onRemove={onRemoveClick()} />);
-      expect(subject.find('span').at(0).hasClass('chipTransparent')).toBe(true);
+    it('should have transparent chip css class on span', () => {
+  const onChipClick = jest.fn();
+      const onRemoveClick = jest.fn();
+      const subject = mount(<Chip theme={theme} transparent={true} clickable={true} removable={true} image={image} onClick={onChipClick} onRemove={onRemoveClick} />);
+      expect(subject.find('button').at(0).hasClass('chipTransparent')).toBe(true);
     });
     it('simulate chip click event', (event) => {
   const onChipClick = jest.fn(event);
       const onRemoveClick = jest.fn(event);
-      const subject = mount(<Chip theme={theme} transparent={true} clickable={true} removable={true} image={image} onClick={onChipClick()} onRemove={onRemoveClick()} />);
-      subject.find('a').simulate('click');
+      const subject = mount(<Chip theme={theme} transparent={true} clickable={true} removable={true} image={image} onClick={onChipClick} onRemove={onRemoveClick} />);
+      subject.find('a').at(1).simulate('click');
       expect(onChipClick).toHaveBeenCalledTimes(1);
     });
     it('simulate remove button click event', (event) => {
   const onChipClick = jest.fn(event);
   const onRemoveClick = jest.fn(event);
-      const subject = mount(<Chip theme={theme} transparent={true} clickable={true} removable={true} image={image} onClick={onChipClick()} onRemove={onRemoveClick()} />);
-      subject.find('button').simulate('click');
+      const subject = mount(<Chip theme={theme} transparent={true} clickable={true} removable={true} image={image} onClick={onChipClick} onRemove={onRemoveClick} />);
+      subject.find('a').at(1).simulate('click');
       expect(onRemoveClick).toHaveBeenCalledTimes(1);
     });
   });

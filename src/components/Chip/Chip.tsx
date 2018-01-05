@@ -12,11 +12,9 @@ export interface Props {
     alt?: string,
   };
   transparent?: boolean;
-  style?: React.CSSProperties;
   theme?: any;
-  onRemove?(event: any): void;
-  onClick?(event: any): void;
-  key?: any;
+  onRemove?(event: React.FormEvent<HTMLElement>): void;
+  onClick?(event: React.FormEvent<HTMLElement>): void;
   children?: string;
 }
 
@@ -64,13 +62,12 @@ class Chip extends React.PureComponent<Props, any> {
         <span aria-hidden="true">×</span>
       </a>
       : '';
-    const returnedValue = clickable || removable ? React.createElement('button', { className }, isClickable, isRemovable) : React.createElement('button', { className }, isClickable, isRemovable);
 
     return (
       <span
         onKeyDown={removable ? this.onKeyDown.bind(this, Event) : null}
       >
-        {returnedValue}
+        {React.createElement('button', { className }, isClickable, isRemovable)}
       </span>
     );
   }

@@ -36,24 +36,18 @@ const selectedData = [
 ];
 describe('when default props are provided', () => {
   describe('onSelect()', () => {
-    it('is called with the select', (event) => {
-      const spySearch = jest.fn(event);
+    it('is called with the select', () => {
       const spyClick = jest.fn();
       const subject = mount(<UnthemedPicker
         source={Data}
         autoSuggest
         chipComponent={Chip}
         searchResultComponent={Chip}
-        searchBehavior={spySearch()}
-        onSelect={spyClick()}
+        onSelect={spyClick}
         theme={theme}
       />).setState({ ['searchItems']: searchData });
 
       expect(subject.find('input').length).toBe(1);
-      (subject.find('input') as any).node.value = 'Pedro';
-      subject.find('input').at(0).simulate('change');
-      expect(spySearch).toBeCalled();
-      expect(spySearch).toHaveBeenCalledWith('Pedro');
       expect(subject.find('span').length).toBeGreaterThan(searchData.length);
       subject.find('span').first().find('a').simulate('click');
       expect(spyClick).toHaveBeenCalled();
@@ -61,7 +55,6 @@ describe('when default props are provided', () => {
   });
   describe('onRemove()', () => {
     it('is called with the remove', (event: any) => {
-      const spySearch = jest.fn();
       const spyClick = jest.fn();
       const spyRemove = jest.fn(event);
       const subject = mount(<UnthemedPicker
@@ -69,15 +62,10 @@ describe('when default props are provided', () => {
         autoSuggest
         chipComponent={Chip}
         searchResultComponent={Chip}
-        searchBehavior={spySearch()}
-        onSelect={spyClick()}
-        onRemove={spyRemove()}
+        onSelect={spyClick}
+        onRemove={spyRemove}
         theme={theme}
       />).setState({ ['searchItems']: searchData, ['selectedItems']: selectedData });
-
-      (subject.find('input') as any).node.value = 'Joh';
-      subject.find('input').at(0).simulate('change');
-      expect(spySearch).toBeCalled();
       expect(subject.find('span').length).toBeGreaterThan(searchData.length);
       subject.find('span').find('a').first().simulate('click');
       expect(spyClick).toBeCalled();
