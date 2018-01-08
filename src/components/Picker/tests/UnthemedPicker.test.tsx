@@ -1,70 +1,75 @@
 import * as React from 'react';
 import { mount } from 'enzyme';
 import Chip from '../../Chip/Chip';
-import { MockPickerSource } from './MockPickerSource';
 import { UnthemedPicker } from '..';
 
 const theme = {
   pickerResultHide: 'pickerResultHide',
   pickerResultShow: 'pickerResultShow',
 };
+const Data = [
+  { key: 1, image: 'http://msaadvertising.com/wp-content/uploads/2014/06/Larry-cartoon-headshot.jpg', name: 'John Doe', description: 'John Doe', email: 'test@gmail.com' },
+  { key: 2, image: 'http://cdn.photographyproject.com.au/wp-content/uploads/2013/04/corporate-headshot.jpg', name: 'Pedro Sanchez', description: 'Pedro Sanchez', email: 'pedrosanchez@gmail.com' },
+  { key: 3, image: 'https://media.licdn.com/mpr/mpr/p/5/005/08f/04d/02df10d.jpg', name: 'Jane Doe', description: 'Jane Doe', email: 'jane@gmail.com' },
+  { key: 4, image: 'http://www.roanokecreditrepair.com/wp-content/uploads/2016/06/Headshot-1.png', name: 'Person McPerson', description: 'Person McPerson', email: 'yahoogmail@gmail.com' },
+  { key: 5, image: 'https://d38zhw9ti31loc.cloudfront.net/wp-content/uploads/2013/07/Crystal-headshot-new.jpg', name: 'Laura Person', description: 'Laura Person', email: 'yahooldjadslkjgmail@gmail.com' },
+  { key: 6, image: 'https://d38zhw9ti31loc.cloudfront.net/wp-content/uploads/2013/07/Crystal-headshot-new.jpg', name: 'Laura Person', description: 'Laura Person', email: 'slkjgmail@gmail.com' },
+
+];
 const searchData = [
-    { Id: 0, Name: 'ranmal0', Description: 'r', ImageUrl: '', Url: '' },
-    { Id: 1, Name: 'ranmal1', Description: 'r', ImageUrl: '', Url: '' },
-    { Id: 2, Name: 'ranmal2', Description: 'r', ImageUrl: '', Url: '' },
-    { Id: 3, Name: 'ranmal3', Description: 'r', ImageUrl: '', Url: '' },
-    { Id: 4, Name: 'ranmal4', Description: 'r', ImageUrl: '', Url: '' },
-    { Id: 5, Name: 'ranmal5', Description: 'r', ImageUrl: '', Url: '' },
-    { Id: 6, Name: 'ranmal6', Description: 'r', ImageUrl: '', Url: '' },
-    { Id: 7, Name: 'ranmal7', Description: 'r', ImageUrl: '', Url: '' },
-    { Id: 8, Name: 'ranmal8', Description: 'r', ImageUrl: '', Url: '' },
-    { Id: 9, Name: 'ranmal9', Description: 'r', ImageUrl: '', Url: '' },
+  { key: 1, image: 'http://msaadvertising.com/wp-content/uploads/2014/06/Larry-cartoon-headshot.jpg', name: 'John Doe', description: 'John Doe', email: 'test@gmail.com' },
+  { key: 2, image: 'http://cdn.photographyproject.com.au/wp-content/uploads/2013/04/corporate-headshot.jpg', name: 'Pedro Sanchez', description: 'Pedro Sanchez', email: 'pedrosanchez@gmail.com' },
+  { key: 3, image: 'https://media.licdn.com/mpr/mpr/p/5/005/08f/04d/02df10d.jpg', name: 'Jane Doe', description: 'Jane Doe', email: 'jane@gmail.com' },
+  { key: 4, image: 'http://www.roanokecreditrepair.com/wp-content/uploads/2016/06/Headshot-1.png', name: 'Person McPerson', description: 'Person McPerson', email: 'yahoogmail@gmail.com' },
+  { key: 5, image: 'https://d38zhw9ti31loc.cloudfront.net/wp-content/uploads/2013/07/Crystal-headshot-new.jpg', name: 'Laura Person', description: 'Laura Person', email: 'yahooldjadslkjgmail@gmail.com' },
+  { key: 6, image: 'https://d38zhw9ti31loc.cloudfront.net/wp-content/uploads/2013/07/Crystal-headshot-new.jpg', name: 'Laura Person', description: 'Laura Person', email: 'slkjgmail@gmail.com' },
+
 ];
 const selectedData = [
-    { Id: 0, Name: 'ranmal0', Description: 'r', ImageUrl: '', Url: '' },
-    { Id: 1, Name: 'ranmal1', Description: 'r', ImageUrl: '', Url: '' },
+  { key: 1, image: 'http://msaadvertising.com/wp-content/uploads/2014/06/Larry-cartoon-headshot.jpg', name: 'John Doe', description: 'John Doe', email: 'test@gmail.com' },
+  { key: 2, image: 'http://cdn.photographyproject.com.au/wp-content/uploads/2013/04/corporate-headshot.jpg', name: 'Pedro Sanchez', description: 'Pedro Sanchez', email: 'pedrosanchez@gmail.com' },
+  { key: 3, image: 'https://media.licdn.com/mpr/mpr/p/5/005/08f/04d/02df10d.jpg', name: 'Jane Doe', description: 'Jane Doe', email: 'jane@gmail.com' },
+  { key: 4, image: 'http://www.roanokecreditrepair.com/wp-content/uploads/2016/06/Headshot-1.png', name: 'Person McPerson', description: 'Person McPerson', email: 'yahoogmail@gmail.com' },
+  { key: 5, image: 'https://d38zhw9ti31loc.cloudfront.net/wp-content/uploads/2013/07/Crystal-headshot-new.jpg', name: 'Laura Person', description: 'Laura Person', email: 'yahooldjadslkjgmail@gmail.com' },
+  { key: 6, image: 'https://d38zhw9ti31loc.cloudfront.net/wp-content/uploads/2013/07/Crystal-headshot-new.jpg', name: 'Laura Person', description: 'Laura Person', email: 'slkjgmail@gmail.com' },
+
 ];
 describe('when default props are provided', () => {
   describe('onSelect()', () => {
     it('is called with the select', () => {
-      const spySearch = jest.fn();
       const spyClick = jest.fn();
       const subject = mount(<UnthemedPicker
-                source={new MockPickerSource()}
-                chipComponent={Chip}
-                searchResultComponent={Chip}
-                searchBehavior={spySearch}
-                onSelect={spyClick}
-                theme={theme}
-            />).setState({ ['searchItems']: searchData });
-      (subject.find('input') as any).node.value = 'ran';
-      subject.find('input').simulate('change');
-      expect(spySearch).toHaveBeenCalledWith('ran');
+        source={Data}
+        autoSuggest
+        chipComponent={Chip}
+        searchResultComponent={Chip}
+        onSelect={spyClick}
+        theme={theme}
+      />).setState({ ['searchItems']: searchData });
+
+      expect(subject.find('input').length).toBe(1);
       expect(subject.find('span').length).toBeGreaterThan(searchData.length);
       subject.find('span').first().find('a').simulate('click');
       expect(spyClick).toHaveBeenCalled();
     });
   });
   describe('onRemove()', () => {
-    it('is called with the remove', () => {
-      const spySearch = jest.fn();
+    it('is called with the remove', (event: any) => {
       const spyClick = jest.fn();
-      const spyRemove = jest.fn();
+      const spyRemove = jest.fn(event);
       const subject = mount(<UnthemedPicker
-                source={new MockPickerSource()}
-                chipComponent={Chip}
-                searchResultComponent={Chip}
-                searchBehavior={spySearch}
-                onSelect={spyClick}
-                onRemove={spyRemove}
-                theme={theme}
-            />).setState({ ['searchItems']: searchData, ['selectedItems']: selectedData });
-      (subject.find('input') as any).node.value = 'ran';
-      subject.find('input').simulate('change');
-      expect(spySearch).toHaveBeenCalledWith('ran');
+        source={Data}
+        autoSuggest
+        chipComponent={Chip}
+        searchResultComponent={Chip}
+        onSelect={spyClick}
+        onRemove={spyRemove}
+        theme={theme}
+      />).setState({ ['searchItems']: searchData, ['selectedItems']: selectedData });
       expect(subject.find('span').length).toBeGreaterThan(searchData.length);
       subject.find('span').find('a').first().simulate('click');
-      expect(spyClick).toHaveBeenCalled();
+      expect(spyClick).toBeCalled();
+      expect(spyClick).toHaveBeenCalledWith('Joh');
       expect(subject.find('span').length).toBeGreaterThan(selectedData.length);
       subject.find('span').first().find('button').simulate('click');
       expect(spyRemove).toHaveBeenCalled();

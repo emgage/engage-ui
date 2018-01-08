@@ -40,12 +40,13 @@ import CardState from './componentState/CardState';
 import BannerState from './componentState/BannerState';
 import LabelledState from './componentState/LabelledState';
 import LabelState from './componentState/LabelState';
-import PositionedOverlayState  from './componentState/PositionedOverlayState';
-import ModalState  from './componentState/ModalState';
+import PositionedOverlayState from './componentState/PositionedOverlayState';
+import ModalState from './componentState/ModalState';
+import PickerState from './componentState/PickerState';
 import CaptionState from './componentState/CaptionState';
 import SpinnerState from './componentState/SpinnerState';
 
-const intialState : IDocumentAppState = {
+const intialState: IDocumentAppState = {
   components: [
     ChoiceListState,
     PanelState,
@@ -89,6 +90,7 @@ const intialState : IDocumentAppState = {
     PositionedOverlayState,
     ModalState,
     LinkState,
+    PickerState,
     CaptionState,
     SpinnerState,
   ],

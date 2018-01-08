@@ -70,6 +70,7 @@
     "react-addons-perf": "^15.4.2",
     "react-addons-test-utils": "^15.4.2",
     "react-perf-tool": "^0.2.0",
+    "react-svg-loader": "^1.1.1",
     "react-test-renderer": "^15.6.1",
     "sass-loader": "^6.0.3",
     "sass-resources-loader": "1.2.1",
@@ -82,8 +83,7 @@
     "typescript": "^2.4.2",
     "underscore": "^1.8.3",
     "webpack": "3.3.0",
-    "webpack-dev-server": "^2.7.1",
-    "react-svg-loader": "^1.1.1"
+    "webpack-dev-server": "^2.7.1"
   },
   "peerDependencies": {
     "react": "^15.5.4",

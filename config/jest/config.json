@@ -3,6 +3,7 @@
         "<rootDir>/tests/setup.ts"
     ],
     "testRegex": ".test.(tsx?|js)$",
+
     "rootDir": "../..",
     "roots": [
         "<rootDir>/src",

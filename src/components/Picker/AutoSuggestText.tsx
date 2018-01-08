@@ -1,60 +1,49 @@
 
 import * as Autosuggest from 'react-autosuggest';
 import * as React from 'react';
-import Card from './Card';
 import * as style from './Picker.scss';
 import Chip from '../Chip';
 import { themr, ThemedComponentClass } from 'react-css-themr';
 import { TEXT_FIELD } from '../ThemeIdentifiers';
+import { IAutoSuggestMethods, IItemList } from './Picker';
 
 import * as baseTheme from './TextField.scss';
 
-export interface Props {
-  itemsList?: object[];
-  theme?: any;
-  placeholder?: string;
-  autoSuggestMethods: any;
-  stateProps: any;
+export interface IStateProps {
+  chipListState: IItemList[];
+  suggestions: Autosuggest[];
+  inputProps: Autosuggest.InputProps;
+  value?: string;
 }
 
-function renderSuggestion(suggestion:any, { isHighlighted, query }:any) {
-  const index = suggestion.name.toLowerCase().indexOf(query.toLowerCase());
-  const nameBefore = suggestion.name.slice(0, index);
-  const queryData = suggestion.name.slice(index, index + query.length);
-  const nameAfter = suggestion.name.slice(index + query.length);
-
-  if (isHighlighted) return <Card isHighlighted={true} image={suggestion.image} nameBefore={nameBefore} bold={queryData} nameAfter={nameAfter} email={suggestion.email}/>;
-  else return (
-    <Card image={suggestion.image} nameBefore={nameBefore} bold={queryData} nameAfter={nameAfter} email={suggestion.email}/>
-  );
+export interface Props {
+  theme?: any;
+  placeholder?: string;
+  autoSuggestMethods?: IAutoSuggestMethods;
+  stateProps?: IStateProps;
 }
 
 class AutoSuggestText extends React.Component<Props, {}> {
-
-  componentDidMount() {
-  }
-
   render() {
-    const { theme }:any = this.props;
-
+    const { theme }: any = this.props;
 
     return (
-      <div className={this.props.stateProps.chipListState.length ? style.inputOutline : style.inputOutlineInit}>
-         { this.props.stateProps.chipListState.map((input: any) => <Chip image={{ url: input.image }} removable={true} onRemove={() => this.props.autoSuggestMethods.chipRemove(input)} key={input.key} markedForDelete={input.markedForDelete}>{input.text}</Chip>) }
+      <div className={this.props.stateProps ? this.props.stateProps.chipListState.length ? style.inputOutline : style.inputOutlineInit : null}>
+        {this.props.stateProps ? this.props.stateProps.chipListState.map((input: any) => <Chip image={{ url: input.image }} removable={true} onRemove={() => this.props.autoSuggestMethods ? this.props.autoSuggestMethods.chipRemove(input) : null} key={input.key}>{input.text}</Chip>) : null}
         <Autosuggest
           className={style.suggestionsContainer}
-          suggestions={this.props.stateProps.suggestions}
-          onSuggestionsFetchRequested={this.props.autoSuggestMethods.onSuggestionsFetchRequested}
-          onSuggestionsClearRequested={this.props.autoSuggestMethods.onSuggestionsClearRequested}
-          getSuggestionValue={this.props.autoSuggestMethods.getSuggestionValue}
-          onSuggestionSelected={this.props.autoSuggestMethods.onSuggestionSelected}
-          renderSuggestion={renderSuggestion}
+          suggestions={this.props.stateProps ? this.props.stateProps.suggestions : null}
+          onSuggestionsFetchRequested={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.onSuggestionsFetchRequested : null}
+          onSuggestionsClearRequested={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.onSuggestionsClearRequested : null}
+          getSuggestionValue={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.getSuggestionValue : null}
+          onSuggestionSelected={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.onSuggestionSelected : null}
+          renderSuggestion={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.renderSuggestion : null}
           highlightFirstSuggestion={true}
-          inputProps={this.props.stateProps.inputProps}
-          ref={this.props.autoSuggestMethods.storeInputReference}
+          inputProps={this.props.stateProps ? this.props.stateProps.inputProps : null}
+          ref={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.storeInputReference : null}
           theme={{
-            container: this.props.stateProps.chipListState.length ? style.container : style.containerInit,
-            suggestions: style.cardItem,
+            container: this.props.stateProps ? (this.props.stateProps.chipListState.length ? style.container : style.containerInit) : null,
+            suggestion: style.cardItem,
             suggestionsList: style.suggestionsList,
             input: theme.input,
           }}

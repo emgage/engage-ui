@@ -3,13 +3,20 @@ import { themr, ThemedComponentClass } from 'react-css-themr';
 import autobind from '@shopify/javascript-utilities/autobind';
 import { classNames } from '@shopify/react-utilities/styles';
 import AutoSuggestText from './AutoSuggestText';
-
+import { IAutoSuggestMethods, IItemList } from './Picker';
+import * as Autosuggest from 'react-autosuggest';
 import Labelled from '../Labelled';
 import { TEXT_FIELD } from '../ThemeIdentifiers';
-
 import * as baseTheme from './TextField.scss';
 
 export type Type = 'text' | 'email' | 'number' | 'password' | 'search' | 'tel' | 'url' | 'date' | 'datetime-local' | 'month' | 'time' | 'week';
+
+export interface IStateProps {
+  chipListState: IItemList[];
+  suggestions: Autosuggest[];
+  inputProps: Autosuggest.InputProps;
+  value?: string;
+}
 
 export interface State {
   height?: number | null;
@@ -23,9 +30,8 @@ export interface Props {
   required?: boolean;
   theme?: any;
   autoSuggest?: boolean;
-  autoSuggestMethods?: object[];
-  itemsList?: object[];
-  stateProps?: {chipListState: any, suggestions: any, inputProps: object, value?: any};
+  autoSuggestMethods?: IAutoSuggestMethods;
+  stateProps?: IStateProps;
   onChange?(value: string): void;
 }
 
@@ -41,9 +47,10 @@ class TextField extends React.PureComponent<Props, State> {
       required,
       theme,
       autoSuggest,
-      itemsList,
       autoSuggestMethods,
     } = this.props;
+
+    const backdrop = autoSuggest ? theme.backdropAutosuggest : theme.backdrop;
 
     const className = classNames(
       theme.textField,
@@ -52,7 +59,7 @@ class TextField extends React.PureComponent<Props, State> {
       theme.readOnly,
       theme.error,
       theme.multiline,
-      theme.backdrop
+      backdrop
     );
     const input = React.createElement('input', {
       name,
@@ -69,7 +76,6 @@ class TextField extends React.PureComponent<Props, State> {
     const inputValue = autoSuggest ?
       <AutoSuggestText
         placeholder={placeholder}
-        itemsList={itemsList}
         autoSuggestMethods={autoSuggestMethods}
         stateProps={this.props.stateProps}
       />
@@ -79,16 +85,14 @@ class TextField extends React.PureComponent<Props, State> {
     return (
       <Labelled
         label={label}
-        id={'textfield!!!'}
+        id={'textfield!!!' + label}
         action={undefined}
         focused={this.state.focused}
         hasValue={hasValue}
         required={required}
       >
-        <div id={'lookatme!!'}
-          className={className}
-        >
-        { inputValue }
+        <div className={className}>
+          {inputValue}
         </div>
       </Labelled>
     );
