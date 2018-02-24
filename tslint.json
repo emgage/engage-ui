@@ -34,6 +34,7 @@
         }
       }
     ],
-    "strict-boolean-expressions": false
+    "strict-boolean-expressions": false,
+    "no-this-assignment": [true, {"allow-destructuring": true}]
   }
 }

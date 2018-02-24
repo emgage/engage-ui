@@ -102,6 +102,7 @@ class TextField extends React.PureComponent<Props, State> {
   private setInput(input: HTMLElement) {
     this.input = input;
   }
+  
   @autobind
   private handleChange(event: React.FormEvent<HTMLInputElement>) {
     const { onChange } = this.props;

@@ -5,7 +5,7 @@ export interface SourceSet {
   descriptor?: string;
 }
 
-export interface Props extends React.HTMLProps<HTMLImageElement> {
+export interface Props extends React.DetailedHTMLProps<React.ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement> {
   alt: string;
   source: string;
   sourceSet?: SourceSet[];

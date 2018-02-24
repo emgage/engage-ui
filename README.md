@@ -3,10 +3,21 @@
 #### Engage-UI is a React component library designed to help developers and designers creater the delightful web experiences.
 
 ### Installation:
-NPM Package support needs to be added.
+*Note: Yarn is not supported to @types/react conflicts among packages*
+1. `npm install typescript tslint -g`
+2. `npm i`
 
-## Examples
-Example application is hosted in `./example/src` and can be run through `npm run dev`.
+## Building and Running
+`npm run build-dev`: This will build the source code in development mode.
+`npm run build-release`: This will build the source code in production mode.
+`npm run test`: This will run all unit tests
+`npm run check`: This will run all the checks, including lint, build, unit tests.
+`npm run example`: This will the example application in ./example/src for testing purposes.
+
+Additional commands can be found in package.json.
+
+## Documentation
+`npm run docs`: This will run the documentation application which documents all the components.
 
 ## Licenses
 * Source code is licensed under [MIT](https://opensource.org/licenses/MIT)
@@ -14,8 +25,3 @@ Example application is hosted in `./example/src` and can be run through `npm run
 
 ## Feedback
 [Create an issue or feature request](https://github.com/emgage/engage-ui/issues/new).
-
-At this point in time we’re not accepting pull requests. This is something we’ll support in the future. Stay tuned.
-
-# TODO
-1. When [#7546](https://github.com/Microsoft/TypeScript/issues/7546) is resolved, let's add back declaration to tsconfig: { ... , "declaration": true, "declarationDir": "./lib/@types", ... }

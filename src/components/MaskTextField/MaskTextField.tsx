@@ -20,6 +20,7 @@ import {
 } from './string';
 import defer from './defer';
 import * as baseTheme from './MaskTextField.scss';
+import { Component } from 'react';
 
 export interface State extends TextFieldState {
   value?: string;
@@ -406,7 +407,7 @@ class MaskTextField extends React.PureComponent<Props, State> {
       }
     }
     const passProps = copyProps ? copyProps : props;
-    return <TextField value={this.state.value} ref={ref => this.input = ref} {...passProps} />;
+    return <TextField value={this.state.value} ref={(ref: Component<TextFieldProps>) => this.input = ref} {...passProps} />;
   }
 }
 export default themr(MASK_TEXT_FIELD, baseTheme)(MaskTextField) as ThemedComponentClass<Props, State>;

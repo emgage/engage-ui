@@ -13,7 +13,7 @@ const ValidateTextFieldExample = () => (
         helpText="We recommend keeping app name less then 25 characters."
         name="App Name"
         value=""
-        validateTrigger={['onBlur', 'onChange']}
+        validateTrigger={['onBlur']}
         validateRules={[{ required: true, message: 'App Name is required.' },
         ]}
       />
@@ -25,7 +25,7 @@ const ValidateTextFieldExample = () => (
         helpText="We recommend keeping app description less then 256 characters."
         name="App Description"
         value=""
-        validateTrigger={['onBlur', 'onChange']}
+        validateTrigger={['onBlur']}
         validateRules={[{ required: true, message: 'App Description is required.' }]}
         multiline
       />

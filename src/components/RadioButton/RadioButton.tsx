@@ -47,22 +47,40 @@ const radioButton = ({
     ? helpTextID(id)
     : null;
 
+  const input = describedBy === null ?
+    (
+      <input
+        id={id}
+        name={name}
+        value={value}
+        type="radio"
+        checked={checked}
+        disabled={disabled}
+        className={theme.input}
+        onChange={handleChange}
+        onFocus={onFocus}
+        onBlur={onBlur}
+      />
+    ) : (
+      <input
+        id={id}
+        name={name}
+        value={value}
+        type="radio"
+        checked={checked}
+        disabled={disabled}
+        className={theme.input}
+        onChange={handleChange}
+        onFocus={onFocus}
+        onBlur={onBlur}
+        aria-describedby={describedBy}
+      />
+    );
+
   return (
     <Choice label={label} labelHidden={labelHidden} id={id} helpText={helpText}>
       <div className={theme.radioButton}>
-        <input
-          id={id}
-          name={name}
-          value={value}
-          type="radio"
-          checked={checked}
-          disabled={disabled}
-          className={theme.input}
-          onChange={handleChange}
-          onFocus={onFocus}
-          onBlur={onBlur}
-          aria-describedby={describedBy}
-        />
+        {input}
         <div className={theme.backdrop} />
         <div className={theme.icon} />
       </div>

@@ -18,6 +18,10 @@ const subheading = ({
   theme,
 }: Props) => {
   const ariaLabel = typeof children === 'string' ? children : null;
+  
+  if (ariaLabel === null) {
+    return <ELEMENT className={theme.subheading}>{children}</ELEMENT>;  
+  }
   return <ELEMENT aria-label={ariaLabel} className={theme.subheading}>{children}</ELEMENT>;
 };
 

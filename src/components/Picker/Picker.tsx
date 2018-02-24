@@ -183,7 +183,7 @@ class Picker extends React.Component<Props, State> {
         const itemsList = this.state.itemsList.concat([addedItemObj]);
         const focusArr = this.state.focusArr.slice(0, number).concat(this.state.focusArr.slice(number + 1));
         if (chipListState.length) chipListState[0].tabIndex = 0;
-        let focused;
+        let focused = 0;
         if (number === chipListState.length) focused = number - 1;
         else if (number === chipListState.length && number > 0) focused = number;
         else focused = 0;
@@ -192,6 +192,7 @@ class Picker extends React.Component<Props, State> {
           chipListState,
           focusArr,
           number,
+          focused,
         });
       },
 
@@ -216,8 +217,11 @@ class Picker extends React.Component<Props, State> {
         const queryData = (suggestion.name ? suggestion.name.slice(index, index + query.length) : '');
         const nameAfter = (suggestion.name ? suggestion.name.slice(index + query.length) : '');
 
-        if (isHighlighted) return <Card isHighlighted={true} image={suggestion.image} nameBefore={nameBefore} bold={queryData} nameAfter={nameAfter} email={suggestion.email} alt={suggestion.alt} />;
-        else return (
+        if (isHighlighted) {
+          return <Card isHighlighted={true} image={suggestion.image} nameBefore={nameBefore} bold={queryData} nameAfter={nameAfter} email={suggestion.email} alt={suggestion.alt} />;
+        }
+
+        return (
           <Card image={suggestion.image} nameBefore={nameBefore} bold={queryData} nameAfter={nameAfter} email={suggestion.email} alt={suggestion.alt} />
         );
       },

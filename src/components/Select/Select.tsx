@@ -127,9 +127,9 @@ const select = ({
 function renderOption(option: Option) {
   if (typeof option === 'string') {
     return <option key={option} value={option}>{option}</option>;
-  } else {
-    return <option key={option.value} value={option.value}>{option.label}</option>;
   }
+
+  return <option key={option.value} value={option.value}>{option.label}</option>;
 }
 
 function renderGroup(groupOrOption: Group | Option) {
