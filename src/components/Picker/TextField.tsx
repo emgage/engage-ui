@@ -37,7 +37,7 @@ export interface Props {
 
 class TextField extends React.PureComponent<Props, State> {
   state: State = { height: null };
-  private input: HTMLElement;
+  // private input: HTMLElement;
 
   render() {
     const {
@@ -69,7 +69,7 @@ class TextField extends React.PureComponent<Props, State> {
       formNoValidate: true,
       className: theme.input,
       onChange: this.handleChange,
-      ref: this.setInput,
+      // ref: this.setInput,
       'aria-required': required ? true : false,
     });
 
@@ -98,11 +98,11 @@ class TextField extends React.PureComponent<Props, State> {
     );
   }
 
-  @autobind
-  private setInput(input: HTMLElement) {
-    this.input = input;
-  }
-  
+  // @autobind
+  // private setInput(input: HTMLElement) {
+  //   this.input = input;
+  // }
+
   @autobind
   private handleChange(event: React.FormEvent<HTMLInputElement>) {
     const { onChange } = this.props;

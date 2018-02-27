@@ -24,6 +24,7 @@ export interface Props {
 }
 
 class AutoSuggestText extends React.Component<Props, {}> {
+  private refHolder: any;
   render() {
     const { theme }: any = this.props;
 
@@ -40,7 +41,7 @@ class AutoSuggestText extends React.Component<Props, {}> {
           renderSuggestion={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.renderSuggestion : null}
           highlightFirstSuggestion={true}
           inputProps={this.props.stateProps ? this.props.stateProps.inputProps : null}
-          ref={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.storeInputReference : null}
+          ref={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.storeInputReference : this.refHolder}
           theme={{
             container: this.props.stateProps ? (this.props.stateProps.chipListState.length ? style.container : style.containerInit) : null,
             suggestion: style.cardItem,

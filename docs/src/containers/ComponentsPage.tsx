@@ -22,8 +22,9 @@ class ComponentsPage extends React.Component<IProps, any> {
   render() {
     const currentComponentId = this.props.routeParams.component;
     const currentState = this.props.state.find((document) => { return document.id === currentComponentId; });
-    if (!currentState)
+    if (!currentState) {
       return (null);
+    }
 
     return (
       <div className={styles.component_container}>
