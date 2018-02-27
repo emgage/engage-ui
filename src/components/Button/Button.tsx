@@ -135,9 +135,9 @@ export function buttonsFrom(actions: ComplexAction[], overrides?: Partial<Props>
 export function buttonsFrom(actions: ComplexAction[] | ComplexAction, overrides: Partial<Props> = {}) {
   if ((actions as ComplexAction[]).length != null) {
     return (actions as ComplexAction[]).map((action, index) => buttonFrom(action, overrides, index));
-  } else {
-    return buttonFrom(actions as ComplexAction, overrides);
   }
+
+  return buttonFrom(actions as ComplexAction, overrides);
 }
 
 export function buttonFrom(

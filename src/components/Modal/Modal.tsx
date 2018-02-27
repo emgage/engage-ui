@@ -6,7 +6,9 @@ import KeypressListener from '../KeypressListener';
 import helpers from './helpers';
 import Dialog from './Dialog';
 import * as baseTheme from './Modal.scss';
-import * as velocity from 'velocity-animate';
+// import * as velocity from 'velocity-animate';
+
+const velocity = require('velocity-animate');
 
 const bodyStyle = (pading: string, overflow: string): void => {
   const body = document.getElementsByTagName('body');

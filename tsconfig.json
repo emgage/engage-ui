@@ -26,8 +26,8 @@
       "scripthost"
     ],
     "typeRoots": [
-      "./@types",
-      "./node_modules/@types"
+      "./node_modules/@types",
+      "./@types"
     ],
     "outDir": "./lib"
   },
