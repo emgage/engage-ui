@@ -134,16 +134,16 @@ class App extends React.Component<{}, State> {
             closeOnBackgroud={true}
             closeOnEsc
             modalOverflow={true}
-            backdropEnabled
+            overlay
             header="This is my modal header"
             footer={<Button>OK</Button>}
             activator={<Button>Modal</Button>}
-            size="Medium"
+            width="medium"
           >
 
             <h2>Headline test</h2>
             <p>
-              test Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            Modal test Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
             tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
             veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
             ea commodo consequat. Duis aute irure dolor in reprehenderit in
@@ -200,11 +200,10 @@ class App extends React.Component<{}, State> {
             id="test2"
             close
             modalOverflow={false}
-            backdropEnabled
             header="This is my modal header"
             footer={<Button>OK</Button>}
             activator={<Button>Modal</Button>}
-            size={800}
+            width="small"
           >
 
             <h2>Headline test</h2>

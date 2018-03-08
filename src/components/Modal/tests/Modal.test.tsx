@@ -13,8 +13,8 @@ describe('<Modal />', () => {
 
   describe('when default props are provided', () => {
     it('basic Modal should have rendered 5 div elements with default props', () => {
-      const subject = mount(<Modal activator={activatorNode} show={false}>{childBody}</Modal>);
-      expect(subject.prop('show')).toBe(false);
+      const subject = mount(<Modal activator={activatorNode} active={false}>{childBody}</Modal>);
+      expect(subject.prop('active')).toBe(false);
       expect(subject.find('div')).toHaveLength(4);
       expect(subject.find('span')).toHaveLength(4);
       expect(subject.find('button').exists()).toBe(true);
@@ -23,16 +23,16 @@ describe('<Modal />', () => {
 
   describe('Close Prop', () => {
     it('When not set', () => {
-      const subject = mount(<Modal activator={activatorNode} show={false}>{childBody}</Modal>);
-      expect(subject.prop('show')).toBe(false);
+      const subject = mount(<Modal activator={activatorNode} active={false}>{childBody}</Modal>);
+      expect(subject.prop('active')).toBe(false);
       expect(subject.find('div')).toHaveLength(4);
       expect(subject.find('span')).toHaveLength(4);
       expect(subject.find('button').exists()).toBe(true);
     });
 
     it('When set to false', () => {
-      const subject = mount(<Modal activator={activatorNode} close={false} show={false}>{childBody}</Modal>);
-      expect(subject.prop('show')).toBe(false);
+      const subject = mount(<Modal activator={activatorNode} close={false} active={false}>{childBody}</Modal>);
+      expect(subject.prop('active')).toBe(false);
       expect(subject.prop('close')).toBe(false);
       expect(subject.find('div')).toHaveLength(4);
       expect(subject.find('span')).toHaveLength(4);
@@ -40,8 +40,8 @@ describe('<Modal />', () => {
     });
 
     it('When set to true', () => {
-      const subject = mount(<Modal activator={activatorNode} close={true} show={false}>{childBody}</Modal>);
-      expect(subject.prop('show')).toBe(false);
+      const subject = mount(<Modal activator={activatorNode} close={true} active={false}>{childBody}</Modal>);
+      expect(subject.prop('active')).toBe(false);
       expect(subject.prop('close')).toBe(true);
       expect(subject.find('div')).toHaveLength(4);
       expect(subject.find('span')).toHaveLength(7);
@@ -50,16 +50,16 @@ describe('<Modal />', () => {
   });
   describe('closeOnBackgroud Prop', () => {
     it('When not set', () => {
-      const subject = mount(<Modal activator={activatorNode} show={false}>{childBody}</Modal>);
-      expect(subject.prop('show')).toBe(false);
+      const subject = mount(<Modal activator={activatorNode} active={false}>{childBody}</Modal>);
+      expect(subject.prop('active')).toBe(false);
       expect(subject.find('div')).toHaveLength(4);
       expect(subject.find('span')).toHaveLength(4);
       expect(subject.find('button').exists()).toBe(true);
     });
 
     it('When set to false', () => {
-      const subject = mount(<Modal activator={activatorNode} closeOnBackgroud={false} show={false}>{childBody}</Modal>);
-      expect(subject.prop('show')).toBe(false);
+      const subject = mount(<Modal activator={activatorNode} closeOnBackgroud={false} active={false}>{childBody}</Modal>);
+      expect(subject.prop('active')).toBe(false);
       expect(subject.prop('closeOnBackgroud')).toBe(false);
       expect(subject.find('div')).toHaveLength(4);
       expect(subject.find('span')).toHaveLength(4);
@@ -67,8 +67,8 @@ describe('<Modal />', () => {
     });
 
     it('When set to true', () => {
-      const subject = mount(<Modal activator={activatorNode} closeOnBackgroud={true} show={false}>{childBody}</Modal>);
-      expect(subject.prop('show')).toBe(false);
+      const subject = mount(<Modal activator={activatorNode} closeOnBackgroud={true} active={false}>{childBody}</Modal>);
+      expect(subject.prop('active')).toBe(false);
       expect(subject.prop('closeOnBackgroud')).toBe(true);
       expect(subject.find('div')).toHaveLength(4);
       expect(subject.find('span')).toHaveLength(4);
@@ -78,15 +78,15 @@ describe('<Modal />', () => {
 
   describe('closeOnEsc Prop', () => {
     it('When not set', () => {
-      const subject = mount(<Modal activator={activatorNode} show={false}>{childBody}</Modal>);
-      expect(subject.prop('show')).toBe(false);
+      const subject = mount(<Modal activator={activatorNode} active={false}>{childBody}</Modal>);
+      expect(subject.prop('active')).toBe(false);
       expect(subject.find('div')).toHaveLength(4);
       expect(subject.find('span')).toHaveLength(4);
       expect(subject.find('button').exists()).toBe(true);
     });
     it('When set to false', () => {
-      const subject = mount(<Modal activator={activatorNode} closeOnEsc={false} show={false}>{childBody}</Modal>);
-      expect(subject.prop('show')).toBe(false);
+      const subject = mount(<Modal activator={activatorNode} closeOnEsc={false} active={false}>{childBody}</Modal>);
+      expect(subject.prop('active')).toBe(false);
       expect(subject.prop('closeOnEsc')).toBe(false);
       expect(subject.find('div')).toHaveLength(4);
       expect(subject.find('span')).toHaveLength(4);
@@ -94,8 +94,8 @@ describe('<Modal />', () => {
     });
 
     it('When set to true', () => {
-      const subject = mount(<Modal activator={activatorNode} closeOnEsc={true} show={false}>{childBody}</Modal>);
-      expect(subject.prop('show')).toBe(false);
+      const subject = mount(<Modal activator={activatorNode} closeOnEsc={true} active={false}>{childBody}</Modal>);
+      expect(subject.prop('active')).toBe(false);
       expect(subject.prop('closeOnEsc')).toBe(true);
       expect(subject.find('div')).toHaveLength(4);
       expect(subject.find('span')).toHaveLength(4);
@@ -105,23 +105,23 @@ describe('<Modal />', () => {
 
   describe('modalOverflow Prop', () => {
     it('When not set', () => {
-      const subject = mount(<Modal activator={activatorNode} show={false}>{childBody}</Modal>);
-      expect(subject.prop('show')).toBe(false);
+      const subject = mount(<Modal activator={activatorNode} active={false}>{childBody}</Modal>);
+      expect(subject.prop('active')).toBe(false);
       expect(subject.find('div')).toHaveLength(4);
       expect(subject.find('span')).toHaveLength(4);
       expect(subject.find('button').exists()).toBe(true);
     });
     it('When set to false', () => {
-      const subject = mount(<Modal activator={activatorNode} modalOverflow={false} show={false}>{childBody}</Modal>);
-      expect(subject.prop('show')).toBe(false);
+      const subject = mount(<Modal activator={activatorNode} modalOverflow={false} active={false}>{childBody}</Modal>);
+      expect(subject.prop('active')).toBe(false);
       expect(subject.prop('modalOverflow')).toBe(false);
       expect(subject.find('div')).toHaveLength(4);
       expect(subject.find('span')).toHaveLength(4);
       expect(subject.find('button').exists()).toBe(true);
     });
     it('When set to true', () => {
-      const subject = mount(<Modal activator={activatorNode} modalOverflow={true} show={false}>{childBody}</Modal>);
-      expect(subject.prop('show')).toBe(false);
+      const subject = mount(<Modal activator={activatorNode} modalOverflow={true} active={false}>{childBody}</Modal>);
+      expect(subject.prop('active')).toBe(false);
       expect(subject.prop('modalOverflow')).toBe(true);
       expect(subject.find('div')).toHaveLength(4);
       expect(subject.find('span')).toHaveLength(4);
@@ -129,71 +129,71 @@ describe('<Modal />', () => {
     });
   });
 
-  describe('backdropEnabled Prop', () => {
+  describe('overlay Prop', () => {
     it('When not set', () => {
-      const subject = mount(<Modal activator={activatorNode} show={false}>{childBody}</Modal>);
-      expect(subject.prop('show')).toBe(false);
+      const subject = mount(<Modal activator={activatorNode} active={false}>{childBody}</Modal>);
+      expect(subject.prop('active')).toBe(false);
       expect(subject.find('div')).toHaveLength(4);
       expect(subject.find('span')).toHaveLength(4);
       expect(subject.find('button').exists()).toBe(true);
     });
 
     it('When set to false', () => {
-      const subject = mount(<Modal activator={activatorNode} backdropEnabled={false} show={false}>{childBody}</Modal>);
-      expect(subject.prop('show')).toBe(false);
-      expect(subject.prop('backdropEnabled')).toBe(false);
+      const subject = mount(<Modal activator={activatorNode} overlay={false} active={false}>{childBody}</Modal>);
+      expect(subject.prop('active')).toBe(false);
+      expect(subject.prop('overlay')).toBe(false);
       expect(subject.find('div')).toHaveLength(4);
       expect(subject.find('span')).toHaveLength(4);
       expect(subject.find('button').exists()).toBe(true);
     });
 
     it('When set to true', () => {
-      const subject = mount(<Modal activator={activatorNode} backdropEnabled={true} show={false}>{childBody}</Modal>);
-      expect(subject.prop('show')).toBe(false);
-      expect(subject.prop('backdropEnabled')).toBe(true);
+      const subject = mount(<Modal activator={activatorNode} overlay={true} active={false}>{childBody}</Modal>);
+      expect(subject.prop('active')).toBe(false);
+      expect(subject.prop('overlay')).toBe(true);
       expect(subject.find('div')).toHaveLength(4);
       expect(subject.find('span')).toHaveLength(4);
       expect(subject.find('button').exists()).toBe(true);
     });
   });
 
-  describe('Size Prop', () => {
-    it('When Size type is string with undefined', () => {
-      const subject = mount(<Modal activator={activatorNode} show={false}>{childBody}</Modal>);
-      expect(subject.prop('show')).toBe(false);
+  describe('Width Prop', () => {
+    it('When Width type is string with undefined', () => {
+      const subject = mount(<Modal activator={activatorNode} active={false}>{childBody}</Modal>);
+      expect(subject.prop('active')).toBe(false);
       expect(subject.find('div')).toHaveLength(4);
       expect(subject.find('span')).toHaveLength(4);
       expect(subject.find('button').exists()).toBe(true);
     });
 
-    it('When Size type is string with Small', () => {
-      const subject = mount(<Modal activator={activatorNode} size="Small" show={false}>{childBody}</Modal>);
-      expect(subject.prop('show')).toBe(false);
-      expect(subject.prop('size')).toBe('Small');
+    it('When Width type is string with Small', () => {
+      const subject = mount(<Modal activator={activatorNode} width="small" active={false}>{childBody}</Modal>);
+      expect(subject.prop('active')).toBe(false);
+      expect(subject.prop('width')).toBe('Small');
       expect(subject.find('div')).toHaveLength(4);
       expect(subject.find('span')).toHaveLength(4);
     });
 
-    it('When Size type is string with Medium', () => {
-      const subject = mount(<Modal activator={activatorNode} size="Medium" show={false}>{childBody}</Modal>);
-      expect(subject.prop('show')).toBe(false);
-      expect(subject.prop('size')).toBe('Medium');
+    it('When Width type is string with Medium', () => {
+      const subject = mount(<Modal activator={activatorNode} width="medium" active={false}>{childBody}</Modal>);
+      expect(subject.prop('active')).toBe(false);
+      expect(subject.prop('width')).toBe('Medium');
       expect(subject.find('div')).toHaveLength(4);
       expect(subject.find('span')).toHaveLength(4);
     });
 
-    it('When Size type is string with Large', () => {
-      const subject = mount(<Modal activator={activatorNode} size="Large" show={false}>{childBody}</Modal>);
-      expect(subject.prop('show')).toBe(false);
-      expect(subject.prop('size')).toBe('Large');
+    it('When Width type is string with Large', () => {
+      const subject = mount(<Modal activator={activatorNode} width="large" active={false}>{childBody}</Modal>);
+      expect(subject.prop('active')).toBe(false);
+      expect(subject.prop('width')).toBe('Large');
       expect(subject.find('div')).toHaveLength(4);
       expect(subject.find('span')).toHaveLength(4);
     });
 
-    it('When Size type is Number', () => {
-      const subject = mount(<Modal activator={activatorNode} size={ 500 } show={false}>{childBody}</Modal>);
-      expect(subject.prop('show')).toBe(false);
-      expect(subject.prop('size')).toBe(500);
+    it('When Width type is Number', () => {
+      const subject = mount(<Modal activator={activatorNode} width={ '500px' } active={false}>{childBody}</Modal>);
+      expect(subject.prop('active')).toBe(false);
+      expect(subject.prop('width')).toBe('500px');
       expect(subject.find('div')).toHaveLength(4);
       expect(subject.find('span')).toHaveLength(4);
       expect(subject.find('button').exists()).toBe(true);
@@ -203,8 +203,8 @@ describe('<Modal />', () => {
 
   describe('header Prop', () => {
     it('When header type is string with undefined', () => {
-      const subject = mount(<Modal activator={activatorNode} header="" show={false}>{childBody}</Modal>);
-      expect(subject.prop('show')).toBe(false);
+      const subject = mount(<Modal activator={activatorNode} header="" active={false}>{childBody}</Modal>);
+      expect(subject.prop('active')).toBe(false);
       expect(subject.prop('header')).toBe('');
       expect(subject.find('div')).toHaveLength(4);
       expect(subject.find('span')).toHaveLength(4);
@@ -212,16 +212,16 @@ describe('<Modal />', () => {
     });
 
     it('When header type is string with any value', () => {
-      const subject = mount(<Modal activator={activatorNode} header="This is my header!!" show={false}>{childBody}</Modal>);
-      expect(subject.prop('show')).toBe(false);
+      const subject = mount(<Modal activator={activatorNode} header="This is my header!!" active={false}>{childBody}</Modal>);
+      expect(subject.prop('active')).toBe(false);
       expect(subject.prop('header')).toBe('This is my header!!');
       expect(subject.find('div')).toHaveLength(5);
       expect(subject.find('span')).toHaveLength(4);
       expect(subject.find('button').exists()).toBe(true);
     });
     it('When header type is any React Node', () => {
-      const subject = mount(<Modal activator={activatorNode} header={headerNode} show={false}>{childBody}</Modal>);
-      expect(subject.prop('show')).toBe(false);
+      const subject = mount(<Modal activator={activatorNode} header={headerNode} active={false}>{childBody}</Modal>);
+      expect(subject.prop('active')).toBe(false);
       expect(subject.prop('header')).toMatchObject(headerNode);
       expect(subject.find('div')).toHaveLength(5);
       expect(subject.find('span')).toHaveLength(4);
@@ -232,8 +232,8 @@ describe('<Modal />', () => {
 
   describe('footer Prop', () => {
     it('When footer type is React Node', () => {
-      const subject = mount(<Modal activator={activatorNode} footer={footerNode} show={false}>{childBody}</Modal>);
-      expect(subject.prop('show')).toBe(false);
+      const subject = mount(<Modal activator={activatorNode} footer={footerNode} active={false}>{childBody}</Modal>);
+      expect(subject.prop('active')).toBe(false);
       expect(subject.prop('footer')).toMatchObject(footerNode);
       expect(subject.find('div')).toHaveLength(5);
       expect(subject.find('span')).toHaveLength(6);

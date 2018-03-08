@@ -27,9 +27,9 @@ const ModalExample = () => (
       activator={<Button>Click Here</Button>}
       closeOnBackgroud
       closeOnEsc
-      backdropEnabled
+      overlay
       id="222"
-      size="Medium"
+      width="medium"
     >
       {childBody}
     </Modal>

@@ -1,94 +1,72 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from 'react-css-themr';
+import { classNames } from '@shopify/react-utilities/styles';
+
 import { MODAL } from '../ThemeIdentifiers';
 import Heading from '../Heading';
 import Button from '../Button';
-import helpers from './helpers';
+
 import * as baseTheme from './Modal.scss';
 
-export enum SizeType {
-  Small = 300,
-  Medium = 600,
-  Large = 800,
-}
-
-export type Size = 'Small' | 'Medium' | 'Large' | number;
-
-export interface SizeStyle {
-  maxWidth: string;
-  width: string;
-}
+export type Width = 'small' | 'medium' | 'large' | string;
 
 export interface Props {
-  close?: boolean;
   children?: React.ReactNode;
+  close?: boolean;
   footer?: React.ReactNode;
   header?: React.ReactNode;
   id?: string;
-  backdropEnabled?: boolean;
   modalOverflow?: boolean;
-  size?: Size;
+  overlay?: boolean;
+  width?: Width;
   theme?: any;
   onClose?(e: React.SyntheticEvent<HTMLElement>): void;
   closeOnBackgroud?(e: React.SyntheticEvent<HTMLElement>): void;
 }
 
-const dialog = (props: Props) => {
-  let dialogWidthSize;
+class Dialog extends React.PureComponent<Props, never> {
 
-  switch (props.size) {
-    case 'Small':
-      dialogWidthSize = SizeType.Small;
-      break;
+  render() {
 
-    case 'Medium':
-      dialogWidthSize = SizeType.Medium;
-      break;
+    const {
+      children,
+      close,
+      footer,
+      header,
+      id,
+      onClose,
+      theme,
+      width = 'medium',
+    } = this.props;
 
-    case 'Large':
-      dialogWidthSize = SizeType.Large;
-      break;
+    const dialogClassNames = classNames(
+      theme.dialog,
+      width === 'small' && theme.small,
+      width === 'medium' && theme.medium,
+      width === 'large' && theme.large
+    );
 
-    default:
-      dialogWidthSize = props.size as number;
-      break;
+    const modalclose = close
+      ? <div className={theme.close}><Button data-id={id ? id : `close-${id}`} onClick={onClose} icon="cancel" /></div>
+      : null;
+
+    const classHeader = theme.header;
+
+    const modalheader = header ? (typeof header === 'string'
+      ? <div className={classHeader}><Heading>{header}</Heading></div>
+      : <div className={classHeader}>{header}</div>) : null;
+
+    const modalfooter = footer ? <div className={theme.footer}>{footer}</div> : null;
+
+    return (
+      <div className={dialogClassNames} style={width ? { width: `${width}` }  : undefined} data-id={`dialog-${id}`} >
+        {modalclose}
+        {modalheader}
+        {children}
+        {modalfooter}
+      </div>
+    );
   }
+}
 
-  const cssClassNames = helpers.cleanClasses([
-    props.backdropEnabled ? props.theme.dialog : props.theme.backDrop,
-  ]);
-
-  const buttonStyle = {
-    float: `right`,
-  };
-
-  const close = props.close
-    ? <Button style={buttonStyle} data-id={props.id ? props.id : `close-${props.id}`} onClick={props.onClose} icon="cancel" />
-    : null;
-
-  const classHeader = props.theme.header;
-
-  const header = props.header ? (typeof props.header === 'string'
-    ? <div className={classHeader}><Heading>{props.header}</Heading></div>
-    : <div className={classHeader}>{props.header}</div>) : null;
-
-  const footer = props.footer ? <div className={props.theme.footer}>{props.footer}</div> : null;
-
-  const propSize: SizeStyle = {
-    maxWidth: `${dialogWidthSize}px`,
-    width: '96%',
-  };
-
-  const type = {
-    block: <div className={cssClassNames} style={propSize} data-id={`dialog-${props.id}`} >
-      {close}
-      {header}
-      {props.children}
-      {footer}
-    </div>,
-  };
-
-  return type['block'];
-};
-
-export default themr(MODAL, baseTheme)((dialog)) as ThemedComponentClass<Props, {}>;
+export default themr(MODAL, baseTheme)((Dialog)) as ThemedComponentClass<Props, {}>;
