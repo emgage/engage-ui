@@ -17,7 +17,7 @@ export interface Props {
   header?: React.ReactNode;
   id?: string;
   modalOverflow?: boolean;
-  overlay?: boolean; // is there a use case for not displaying the overlay?
+  overlay?: boolean;
   width?: Width;
   theme?: any;
   onClose?(e: React.SyntheticEvent<HTMLElement>): void;
