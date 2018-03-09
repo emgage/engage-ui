@@ -169,7 +169,7 @@ describe('<Modal />', () => {
     it('When Width type is string with Small', () => {
       const subject = mount(<Modal activator={activatorNode} width="small" active={false}>{childBody}</Modal>);
       expect(subject.prop('active')).toBe(false);
-      expect(subject.prop('width')).toBe('Small');
+      expect(subject.prop('width')).toBe('small');
       expect(subject.find('div')).toHaveLength(4);
       expect(subject.find('span')).toHaveLength(4);
     });
@@ -177,7 +177,7 @@ describe('<Modal />', () => {
     it('When Width type is string with Medium', () => {
       const subject = mount(<Modal activator={activatorNode} width="medium" active={false}>{childBody}</Modal>);
       expect(subject.prop('active')).toBe(false);
-      expect(subject.prop('width')).toBe('Medium');
+      expect(subject.prop('width')).toBe('medium');
       expect(subject.find('div')).toHaveLength(4);
       expect(subject.find('span')).toHaveLength(4);
     });
@@ -185,7 +185,7 @@ describe('<Modal />', () => {
     it('When Width type is string with Large', () => {
       const subject = mount(<Modal activator={activatorNode} width="large" active={false}>{childBody}</Modal>);
       expect(subject.prop('active')).toBe(false);
-      expect(subject.prop('width')).toBe('Large');
+      expect(subject.prop('width')).toBe('large');
       expect(subject.find('div')).toHaveLength(4);
       expect(subject.find('span')).toHaveLength(4);
     });
