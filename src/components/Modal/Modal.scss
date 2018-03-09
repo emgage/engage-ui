@@ -5,38 +5,45 @@ $modal-z-index:                                 1010 !default;
 $modal-overlay-background:                      rgba(0,0,0,0.6) !default;
 
 $modal-dialog-margin-vertical:                  50px !default;
-$modal-dialog-padding:                          20px !default;
 $modal-dialog-width-small:                      300px !default;
 $modal-dialog-width-medium:                     600px !default;
 $modal-dialog-width-large:                      800px !default;
-$modal-dialog-background:                       #fff !default;
+$modal-dialog-background:                       #fff !default; //add $global-backgrouind
 
+$modal-body-padding-horizontal:                  30px !default; //add $global-gutter
+$modal-body-padding-vertical:                    $modal-body-padding-horizontal !default;
+
+$modal-header-padding-horizontal:                30px !default; //add $global-gutter
+$modal-header-padding-vertical:                  ($modal-header-padding-horizontal / 2) !default;
+$modal-header-background:                        #fff !default; //add $global-backgrouind
+
+$modal-footer-padding-horizontal:                30px !default; //add $global-gutter
+$modal-footer-padding-vertical:                  ($modal-footer-padding-horizontal / 2) !default;
+$modal-footer-background:                        #fff !default; //add $global-backgrouind
 
 // Styles
 // ========================================================================
 
-
 .overlay {
-  display: none;
+  // display: none;
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
   z-index: $modal-z-index;
-  overflow: hidden;
+  overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   background: $modal-overlay-background;
   opacity: 0;
-  -webkit-transition: opacity 0.15s linear;
-  transition: opacity 0.15s linear;
-  touch-action: cross-slide-y pinch-zoom double-tap-zoom;
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
+  visibility: hidden;
+  transition: visibility 0s linear 0.15s, opacity 0.15s linear;
+  // touch-action: cross-slide-y pinch-zoom double-tap-zoom;
 
   &.open {
     opacity: 1;
-    display: block;
+    visibility: visible;
+    transition: visibility 0s, opacity 0.15s linear;
   }
 }
 
@@ -48,15 +55,11 @@ $modal-dialog-background:                       #fff !default;
   position: relative;
   box-sizing: border-box;
   margin: $modal-dialog-margin-vertical auto;
-  padding: $modal-dialog-padding;
   max-width: 100%;
   max-width: calc(100% - 20px);
   background: $modal-dialog-background;
-  opacity: 0;
-  -webkit-transform: translateY(-100px);
   transform: translateY(-100px);
-  -webkit-transition: opacity 0.3s linear, -webkit-transform 0.3s ease-out;
-  transition: opacity 0.3s linear, transform 0.3s ease-out;
+  transition: transform 0.3s ease-out;
   
   &.small {
     width: $modal-dialog-width-small;
@@ -71,10 +74,8 @@ $modal-dialog-background:                       #fff !default;
 }
 
 .open > .dialog {
-  opacity: 1;
   transform: translateY(0);
 }
-
 
 .close {
   position: absolute;
@@ -83,38 +84,25 @@ $modal-dialog-background:                       #fff !default;
 }
 
 .header {
-    margin-bottom: 15px;
-    margin: -20px -20px 15px -20px;
-    padding: 20px;
-    border-bottom: 1px solid #E5E5E5;
-    border-radius: 4px 4px 0 0;
-    background: #fafafa;
+  padding: $modal-header-padding-vertical $modal-header-padding-horizontal;
+  border-bottom: 1px solid #E5E5E5;
+  // border-radius: 4px 4px 0 0;
+  background: $modal-header-background;
 }
+
+.body {
+  padding: $modal-body-padding-vertical $modal-body-padding-horizontal;
+}
+
 .footer {
-    margin-top: 15px;
-    margin: 15px -20px -20px -20px;
-    padding: 20px;
-    border-top: 1px solid #E5E5E5;
-    border-radius: 0 0 4px 4px;
-    background: #fafafa;
-
+  padding: $modal-footer-padding-vertical $modal-footer-padding-horizontal;
+  border-top: 1px solid #E5E5E5;
+  // border-radius: 0 0 4px 4px;
+  background: $modal-footer-background;
 }
 
-.dialog > .close:first-child {
-  margin: -10px -10px 0 0;
-  float: right;
-}
-
-.backDrop > .close:first-child {
-  margin: -10px -10px 0 0;
-  float: right;
-}
-
-.autoHeight{
+.autoHeight {
   height: calc(100vh - 400px);
   overflow: auto;
 }
 
-.overflow{
-  overflow: auto;
-}

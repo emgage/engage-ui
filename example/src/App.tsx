@@ -130,18 +130,17 @@ class App extends React.Component<{}, State> {
           <h1>This is my Modal Component!!</h1>
           <Modal
             id="test1"
-            close
+            // close
             closeOnBackgroud={true}
             closeOnEsc
-            modalOverflow={true}
+            modalOverflow
             overlay
             header="This is my modal header"
             footer={<Button>OK</Button>}
             activator={<Button>Modal</Button>}
             width="medium"
           >
-
-            <h2>Headline test</h2>
+            <Heading>Heading test</Heading>
             <p>
             Modal test Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
             tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
@@ -191,7 +190,7 @@ class App extends React.Component<{}, State> {
             tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
             veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
             ea commodo consequat. Duis aute irure dolor in reprehenderit in
-              </p>
+            </p>
           </Modal>
         </div>
         <div>
@@ -199,14 +198,13 @@ class App extends React.Component<{}, State> {
           <Modal
             id="test2"
             close
-            modalOverflow={false}
-            header="This is my modal header"
-            footer={<Button>OK</Button>}
+            // modalOverflow
+            // header="This is my modal header"
+            // footer={<Button>OK</Button>}
             activator={<Button>Modal</Button>}
-            width="small"
+            width="400px"
           >
-
-            <h2>Headline test</h2>
+            <Heading>Heading test</Heading>
             <p>
               test Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
             tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim

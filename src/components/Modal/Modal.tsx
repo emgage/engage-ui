@@ -78,11 +78,15 @@ class Modal extends React.Component<Props, State> {
       theme,
     } = this.props;
 
-    const cssClassNames = classNames(
-      theme.overflow,
+    const modalClassNames = classNames(
       overlay && theme.overlay,
       this.state.active && theme.open,
       className
+    );
+
+    const bodyClassNames = classNames(
+      theme.body,
+      modalOverflow && theme.autoHeight
     );
 
     const bodyElement = document.body;
@@ -97,7 +101,8 @@ class Modal extends React.Component<Props, State> {
         <span onClick={this.handleToggleClick}>{activator}</span>
         {closeonEscProp}
         <div
-          className={cssClassNames}
+          // style={this.state.active ? { display: 'block' } : { display: 'none' }}
+          className={modalClassNames}
           data-id={`modal-${id}`}
           onClick={(close || closeOnBackgroud || closeOnEsc) ? this.handleToggleClick : undefined }
         >
@@ -112,7 +117,7 @@ class Modal extends React.Component<Props, State> {
             overlay={overlay}
             width={width}
           >
-            <div className={modalOverflow ? theme.autoHeight : null}>
+            <div className={bodyClassNames}>
               {children}
             </div>
           </Dialog>

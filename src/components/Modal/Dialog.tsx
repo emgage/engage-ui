@@ -17,7 +17,7 @@ export interface Props {
   header?: React.ReactNode;
   id?: string;
   modalOverflow?: boolean;
-  overlay?: boolean;
+  overlay?: boolean; // is there a use case for not displaying the overlay?
   width?: Width;
   theme?: any;
   onClose?(e: React.SyntheticEvent<HTMLElement>): void;
@@ -47,7 +47,7 @@ class Dialog extends React.PureComponent<Props, never> {
     );
 
     const modalclose = close
-      ? <div className={theme.close}><Button data-id={id ? id : `close-${id}`} onClick={onClose} icon="cancel" /></div>
+      ? <div className={theme.close}><Button plain data-id={id ? id : `close-${id}`} onClick={onClose} icon="cancel" /></div>
       : null;
 
     const classHeader = theme.header;
