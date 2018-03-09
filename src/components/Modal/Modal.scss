@@ -1,146 +1,108 @@
-.modal {
-  /* 1 */
-  display: none;
-  /* 2 */
+// Variables
+// ========================================================================
+
+$modal-z-index:                                 1010 !default;
+$modal-overlay-background:                      rgba(0,0,0,0.6) !default;
+
+$modal-dialog-margin-vertical:                  50px !default;
+$modal-dialog-width-small:                      300px !default;
+$modal-dialog-width-medium:                     600px !default;
+$modal-dialog-width-large:                      800px !default;
+$modal-dialog-background:                       #fff !default; //add $global-backgrouind
+
+$modal-body-padding-horizontal:                  30px !default; //add $global-gutter
+$modal-body-padding-vertical:                    $modal-body-padding-horizontal !default;
+
+$modal-header-padding-horizontal:                30px !default; //add $global-gutter
+$modal-header-padding-vertical:                  ($modal-header-padding-horizontal / 2) !default;
+$modal-header-background:                        #fff !default; //add $global-backgrouind
+
+$modal-footer-padding-horizontal:                30px !default; //add $global-gutter
+$modal-footer-padding-vertical:                  ($modal-footer-padding-horizontal / 2) !default;
+$modal-footer-background:                        #fff !default; //add $global-backgrouind
+
+// Styles
+// ========================================================================
+
+.overlay {
+  // display: none;
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 1010;
-  overflow: hidden;
-  /* 3 */
+  z-index: $modal-z-index;
+  overflow-y: auto;
   -webkit-overflow-scrolling: touch;
-  /* 4 */
-  background: rgba(0, 0, 0, 0.6);
-  /* 5 */
+  background: $modal-overlay-background;
   opacity: 0;
-  -webkit-transition: opacity 0.15s linear;
-  transition: opacity 0.15s linear;
-  /* 6 */
-  touch-action: cross-slide-y pinch-zoom double-tap-zoom;
-  /* 7 */
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
+  visibility: hidden;
+  transition: visibility 0s linear 0.15s, opacity 0.15s linear;
+  // touch-action: cross-slide-y pinch-zoom double-tap-zoom;
+
+  &.open {
+    opacity: 1;
+    visibility: visible;
+    transition: visibility 0s, opacity 0.15s linear;
+  }
 }
 
+.page {
+  overflow: hidden;
+}
 
 .dialog {
-  /* 1 */
   position: relative;
-
-  /* 2 */
-  border: solid 1px;
   box-sizing: border-box;
-  margin: 50px auto;
-  padding: 20px;
-  width: 600px;
-  //height: 400px;
+  margin: $modal-dialog-margin-vertical auto;
   max-width: 100%;
   max-width: calc(100% - 20px);
-  /* 3 */
-  background: #fff;
-  /* 4 */
-  opacity: 0;
-  -webkit-transform: translateY(-100px);
+  background: $modal-dialog-background;
   transform: translateY(-100px);
-  -webkit-transition: opacity 0.3s linear, -webkit-transform 0.3s ease-out;
-  transition: opacity 0.3s linear, transform 0.3s ease-out;
+  transition: transform 0.3s ease-out;
   
+  &.small {
+    width: $modal-dialog-width-small;
+  }
+  &.medium {
+    width: $modal-dialog-width-medium;
+  }
+  &.large {
+    width: $modal-dialog-width-large;
+  }
+
 }
 
-.backDrop {
-  /* 1 */
-  position: fixed;
-
-  /* 2 */
-  border: solid 1px;
-  box-sizing: border-box;
-  margin: 50px auto;
-  padding: 20px;
-  width: 600px;
-  //height: 400px;
-  max-width: 100%;
-  max-width: calc(100% - 20px);
-
-
-  //////for adding modal at backdrop
-  left: 50%;
-  margin-left: -300px;//500
-  z-index: 1010;
-  top: 0;
-
-  /* 3 */
-  background: #fff;
-  /* 4 */
-  opacity: 0;
-  -webkit-transform: translateY(-100px);
-  transform: translateY(-100px);
-  -webkit-transition: opacity 0.3s linear, -webkit-transform 0.3s ease-out;
-  transition: opacity 0.3s linear, transform 0.3s ease-out;
+.open > .dialog {
+  transform: translateY(0);
 }
-
 
 .close {
-  /* 1 */
-  -webkit-appearance: none;
-  /* 2 */
-  margin: 0;
-  /* 3 */
-  border: none;
-  /* 4 */
-  overflow: visible;
-  /* 5 */
-  font: inherit;
-  color: inherit;
-  /* 6 */
-  text-transform: none;
-  /* 7. */
-  padding: 0;
-  background: transparent;
-  /* 8 */
-  display: inline-block;
-  box-sizing: content-box;
-  width: 20px;
-  line-height: 20px;
-  text-align: center;
-  vertical-align: middle;
-  opacity: 0.3;
+  position: absolute;
+  top: 10px;
+  right: 10px;
 }
 
 .header {
-    margin-bottom: 15px;
-    margin: -20px -20px 15px -20px;
-    padding: 20px;
-    border-bottom: 1px solid #E5E5E5;
-    border-radius: 4px 4px 0 0;
-    background: #fafafa;
+  padding: $modal-header-padding-vertical $modal-header-padding-horizontal;
+  border-bottom: 1px solid #E5E5E5;
+  // border-radius: 4px 4px 0 0;
+  background: $modal-header-background;
 }
+
+.body {
+  padding: $modal-body-padding-vertical $modal-body-padding-horizontal;
+}
+
 .footer {
-    margin-top: 15px;
-    margin: 15px -20px -20px -20px;
-    padding: 20px;
-    border-top: 1px solid #E5E5E5;
-    border-radius: 0 0 4px 4px;
-    background: #fafafa;
-
+  padding: $modal-footer-padding-vertical $modal-footer-padding-horizontal;
+  border-top: 1px solid #E5E5E5;
+  // border-radius: 0 0 4px 4px;
+  background: $modal-footer-background;
 }
 
-.dialog > .close:first-child {
-  margin: -10px -10px 0 0;
-  float: right;
-}
-
-.backDrop > .close:first-child {
-  margin: -10px -10px 0 0;
-  float: right;
-}
-
-.autoHeight{
+.autoHeight {
   height: calc(100vh - 400px);
   overflow: auto;
 }
 
-.overflow{
-  overflow: auto;
-}

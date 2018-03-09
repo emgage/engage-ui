@@ -1,115 +1,58 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from 'react-css-themr';
+import { classNames } from '@shopify/react-utilities/styles';
+
 import { Keys } from '../../types';
 import { MODAL } from '../ThemeIdentifiers';
 import KeypressListener from '../KeypressListener';
-import helpers from './helpers';
 import Dialog from './Dialog';
+
 import * as baseTheme from './Modal.scss';
-// import * as velocity from 'velocity-animate';
 
-const velocity = require('velocity-animate');
-
-const bodyStyle = (pading: string, overflow: string): void => {
-  const body = document.getElementsByTagName('body');
-  body[0].style.paddingRight = pading;
-  body[0].style.overflow = overflow;
-};
-
-const getModalElement = (id: string) => {
-  return {
-    modal: helpers.getElement(`modal-${id}`),
-    dialog: helpers.getElement(`dialog-${id}`),
-  };
-};
-
-export type Size = 'Small' | 'Medium' | 'Large' | number;
-
-export interface IAnimate {
-  in(modal?: Element, dialog?: Element): void;
-  out(modal?: Element, dialog?: Element): void;
-}
-
-export interface ITrigger {
-  body: string;
-  animate: IAnimate;
-}
+export type Width = 'small' | 'medium' | 'large' | string;
 
 export interface Props {
+  active?: boolean;
+  activator: React.ReactNode;
+  children?: any;
   className?: string;
   close?: boolean;
+  closeOnBackgroud?: boolean;
+  closeOnEsc?: boolean;
   footer?: React.ReactNode;
   header?: React.ReactNode;
-  activator: React.ReactNode;
   id?: string;
-  show?: boolean;
-  closeOnEsc?: boolean;
-  closeOnBackgroud?: boolean;
   modalOverflow?: boolean;
-  backdropEnabled?: boolean;
-  size?: Size;
+  overlay?: boolean; // is there a use case for not displaying the overlay?
+  width?: Width;
   theme?: any;
 }
 
 interface State {
-  show: boolean;
+  active: boolean;
 }
 
 class Modal extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      show: false,
+      active: false,
     };
   }
 
-  animate: IAnimate = {
-    in: (modal, dialog) => this.animateIn(modal, dialog),
-    out: (modal, dialog) => this.animateOut(modal, dialog),
-  };
-
-  trigger: ITrigger = {
-    body: 'Open',
-    animate: this.animate,
-  };
-
-  animateIn(modal?: Element, dialog?: Element): void {
-    this.setState({ show: true });
-    velocity(modal, { opacity: 1 }, { display: 'block' }, 300);
-    velocity(dialog, { translateY: 1, opacity: 1 }, { display: 'block' }, 200);
-  }
-
-  animateOut(modal?: Element, dialog?: Element): void {
-    this.setState({ show: false });
-    velocity(modal, { opacity: 0 }, { display: 'none' }, 300);
-    velocity(dialog, { translateY: -100, opacity: 0 }, { display: 'none' }, 200);
-  }
-
   handleCloseClick = (event: React.SyntheticEvent<HTMLElement> | KeyboardEvent): void => {
-
     event.preventDefault();
-    const props = this.props;
-    const { modal, dialog } = getModalElement(props.id as string);
-
-    this.trigger.animate.out(modal as Element, dialog as Element);
-    setTimeout(() => bodyStyle('', ''), 200);
+    this.setState({ active: false });
   }
 
   handleToggleClick = (e: React.SyntheticEvent<HTMLElement>): void => {
-
-    const props = this.props;
-    const { modal, dialog } = getModalElement(props.id as string);
-
-    if (!this.state.show) {
-      bodyStyle('16px', 'hidden');
-      this.trigger.animate.in(modal as Element, dialog as Element);
+    if (!this.state.active) {
+      this.setState({ active: true });
     } else {
       const target = e.target as HTMLInputElement;
       const id = (target ? target.dataset.id : undefined);
-
       if (typeof id !== 'undefined') {
         const prefix = id.substr(0, id.indexOf('-'));
-
         if (prefix === 'modal' && this.props.closeOnBackgroud) {
           this.handleCloseClick(e);
         }
@@ -119,67 +62,64 @@ class Modal extends React.Component<Props, State> {
 
   render() {
 
-    const props = this.props;
+    const {
+      activator,
+      children,
+      className,
+      close,
+      closeOnBackgroud,
+      closeOnEsc,
+      footer,
+      header,
+      id,
+      modalOverflow,
+      overlay = true,
+      width,
+      theme,
+    } = this.props;
 
-    const cssClassNames = helpers.cleanClasses([
-      props.theme.overflow,
-      props.backdropEnabled ? props.theme.modal : null,
-      props.className,
-    ]);
+    const modalClassNames = classNames(
+      overlay && theme.overlay,
+      this.state.active && theme.open,
+      className
+    );
 
-    const ignoreProps = [
-      'blank',
-      'className',
-      'close',
-      'footer',
-      'header',
-      'activator',
-      'id',
-      'show',
-      'trigger',
-      'closeOnBackgroud',
-      'modalOverflow',
-      'backdropEnabled',
-      'closeOnEsc',
-      'size',
-      'theme',
-    ];
+    const bodyClassNames = classNames(
+      theme.body,
+      modalOverflow && theme.autoHeight
+    );
 
-    const closeonEscProp = this.props.closeOnEsc ? (<KeypressListener keyCode={Keys.ESCAPE} handler={this.handleCloseClick} />) : null;
-    const cleanProps = helpers.cleanProps(ignoreProps)({
-      ...props,
-      ok: null,
-      show: null,
-      trigger: null,
-      close: null,
-      closeOnBackgroud: null,
-      modalOverflow: null,
-      closeOnEsc: null,
-      backdropEnabled: null,
-      header: null,
-    });
+    const bodyElement = document.body;
+    if (bodyElement !== null) {
+      bodyElement.className = this.state.active ? (theme.page) : '';
+    }
+
+    const closeonEscProp = closeOnEsc ? (<KeypressListener keyCode={Keys.ESCAPE} handler={this.handleCloseClick} />) : null;
 
     return (
       <div>
-        <span onClick={this.handleToggleClick}>{this.props.activator}</span>
+        <span onClick={this.handleToggleClick}>{activator}</span>
         {closeonEscProp}
-        <div {...cleanProps}
-          className={cssClassNames}
-          data-id={`modal-${props.id}`}
-          onClick={(this.props.close || this.props.closeOnBackgroud || this.props.closeOnEsc) ? this.handleToggleClick : null}
+        <div
+          // style={this.state.active ? { display: 'block' } : { display: 'none' }}
+          className={modalClassNames}
+          data-id={`modal-${id}`}
+          onClick={(close || closeOnBackgroud || closeOnEsc) ? this.handleToggleClick : undefined }
         >
           <Dialog
-            footer={props.footer}
-            header={props.header}
-            id={props.id}
+            close={close}
+            closeOnBackgroud={closeOnBackgroud ? this.handleToggleClick : undefined}
+            footer={footer}
+            header={header}
+            id={id}
+            modalOverflow={modalOverflow}
             onClose={this.handleCloseClick}
-            closeOnBackgroud={props.closeOnBackgroud ? this.handleToggleClick : undefined}
-            close={props.close}
-            modalOverflow={props.modalOverflow}
-            backdropEnabled={props.backdropEnabled}
-            size={props.size}
+            overlay={overlay}
+            width={width}
           >
-            <div className={props.modalOverflow ? props.theme.autoHeight : null}>  {props.children}</div>
+            <div className={bodyClassNames}>
+              {children}
+            </div>
           </Dialog>
         </div>
       </div>
