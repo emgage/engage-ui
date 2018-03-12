@@ -71,6 +71,12 @@ export {
 } from './DisplayText';
 
 export {
+  Drawer,
+  DrawerContent,
+  DrawerProps
+} from './Drawer';
+
+export {
   default as FormLayout,
   Props as FormLayoutProps,
 } from './FormLayout';

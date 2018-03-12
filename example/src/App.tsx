@@ -16,6 +16,8 @@ import {
   ClickableChip,
   Column,
   DisplayText,
+  Drawer,
+  DrawerContent,
   FlexBox,
   FormLayout,
   Heading,
@@ -45,6 +47,8 @@ interface State {
   columns: object[];
   rows: object[];
   isMenuOpened: boolean;
+  drawer: boolean;
+  drawerContent: any;
 }
 
 class App extends React.Component<{}, State> {
@@ -66,6 +70,11 @@ class App extends React.Component<{}, State> {
         { id: 3, title: 'Title 3', count: 3 },
       ],
       isMenuOpened: false,
+      drawer: false,
+      drawerContent: {
+        content1: false,
+        content2: true,
+      },
     };
   }
 
@@ -272,6 +281,29 @@ class App extends React.Component<{}, State> {
         <SingleDatePickerWrapper />
         <DateRangePickerWrapper />
         <div>
+          <Button onClick={() => this.setState({ drawer: true })}>Drawer open</Button>
+          <Drawer active={ this.state.drawer } mode="slide" width="large" overlay>
+            <DrawerContent active={ this.state.drawerContent.content1 } mode="slide">
+              <p>Reveal Test</p>
+              <ul>
+                <li>Link 1</li>
+                <li>Link 2</li>
+                <li>Link 3</li>
+                <li>Link 4</li>
+                <li>Link 5</li>
+              </ul>
+
+              <Button onClick={ () => this.setState({ drawerContent: { ...this.state.drawerContent, content1: false, content2: true } }) }>Content2 open</Button>
+            </DrawerContent>
+
+            <DrawerContent active={ this.state.drawerContent.content2 } mode="slide" flip>
+              I am inside drawer content 2
+
+              <Button onClick={ () => this.setState({ drawerContent: { ...this.state.drawerContent, content1: true, content2: false } }) }>Content1 open</Button>
+              <Button onClick={ () => this.setState({ drawer: false }) }>Close</Button>
+            </DrawerContent>
+          </Drawer>
+
           <OffCanvas width="small" closeButton activator={<Button>OffCanvas Small</Button>} >
             <p>Reveal Test</p>
             <ul>
