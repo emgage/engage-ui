@@ -17,8 +17,8 @@ export type Mode = 'slide' | 'push' | 'reveal';
 // All prototypes type
 export interface Props {
   active?: boolean;
-  children?: any;
   flip?: boolean;
+  id?: string;
   mode?: Mode;
   theme?: any;
 }

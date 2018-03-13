@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from 'react-css-themr';
 import { layeredComponent } from '@shopify/react-utilities/components';
+import autobind from '@shopify/javascript-utilities/autobind';
 import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
 import { classNames } from '@shopify/react-utilities/styles';
 
@@ -23,12 +24,24 @@ export type Width = 'small' | 'medium' | 'large' | string;
 
 // All prototypes type
 export interface Props {
+  // Defines the drawer open or close state
   active?: boolean;
-  children?: any;
+  accessibilityLabel?: string;
+  // Store the id of active drawer content
+  activeContentId?: string;
+  // Open drawer in flip direction (i.e. right)
   flip?: boolean;
+  // Open drawer in slide, push or reveal mode
   mode?: Mode;
+  // onClose callback function to be called when drawer gets closed
+  onClose?(): void;
+  // onOpen callback function to be called when drawer gets opened
+  onOpen?(): void;
+  // Show overlay / backdrop
   overlay?: boolean;
+  // Define width of drawer
   width?: Width;
+  // Set theme for drawer
   theme?: any;
 }
 
@@ -38,7 +51,29 @@ const getUniqueID = createUniqueIDFactory('DrawerWrapper');
 // Main Drawer component, its a wrapper for its content
 class Drawer extends React.Component<Props, never> {
   public id = getUniqueID();
+  private activatorContainer: HTMLElement | null;
 
+  componentWillReceiveProps(newProps: any) {
+    // Call the callback function if available
+    // onOpen: when drawer open
+    // onClose: when drawer close
+    if (!this.props.active && newProps.active && typeof newProps.onOpen !== 'undefined') {
+      newProps.onOpen();
+    } else if (this.props.active && !newProps.active && typeof newProps.onClose !== 'undefined') {
+      newProps.onClose();
+    }
+  }
+
+  componentDidMount() {
+    // Set accessibility attributes for drawer
+    this.setAccessibilityAttributes();
+  }
+
+  componentDidUpdate() {
+    this.setAccessibilityAttributes();
+  }
+
+  // Function to get the drawer container class names
   getContainerClassName() {
     const {
       flip,
@@ -59,6 +94,7 @@ class Drawer extends React.Component<Props, never> {
     );
   }
 
+  // Function to get bar class names
   getBarClassName() {
     const {
       mode,
@@ -72,6 +108,7 @@ class Drawer extends React.Component<Props, never> {
     );
   }
 
+  // Set body styles to render drawer properly in root layer
   setBodyStyle() {
     const {
       flip,
@@ -110,18 +147,35 @@ class Drawer extends React.Component<Props, never> {
     }
   }
 
+  // Function to get the current active drawer content from props.children & set that as active & render that component only
+  renderActivechildren() {
+    const { activeContentId, children } = this.props;
+
+    // Iterate through all the children content component & find active component
+    // Match activeContentId with children's id & mark that as active: true
+    return React.Children.map(children, (child: React.ReactElement<any>) => {
+      const { id } = child.props;
+
+      // Clone active component & return it
+      if (activeContentId === id) {
+        return React.cloneElement(child, { active: true });
+      }
+    });
+  }
+
   renderLayer() {
     const containerClassName = this.getContainerClassName();
     const barClassName = this.getBarClassName();
 
     this.setBodyStyle();
+    const activeContent = this.renderActivechildren();
 
     return (
       <div className={containerClassName}>
         <div className={barClassName} style={this.props.width ? { width: `${this.props.width}` }  : undefined} key={this.id}>
           {
             this.props.active ?
-            this.props.children :
+            activeContent :
             ''
           }
         </div>
@@ -129,11 +183,33 @@ class Drawer extends React.Component<Props, never> {
     );
   }
 
-  render() {
-    // const { children, active } = this.props;
+  // Get activator node i.e. trigger which opened up drawer
+  // This node will be used to set accessibility attributes
+  @autobind
+  private setActivator(node: HTMLElement | null) {
+    if (node == null) {
+      this.activatorContainer = null;
+      return;
+    }
 
+    this.activatorContainer = node.previousSibling as HTMLElement;
+  }
+
+  private setAccessibilityAttributes() {
+    const { activatorContainer, id } = this;
+    if (activatorContainer == null) { return; }
+
+    const accessibilityNode = activatorContainer;
+
+    accessibilityNode.tabIndex = 0;
+    accessibilityNode.setAttribute('aria-describedby', id);
+    accessibilityNode.setAttribute('aria-expanded', (this.props.active || false).toString());
+    accessibilityNode.setAttribute('aria-label', this.props.accessibilityLabel ? this.props.accessibilityLabel : '');
+  }
+
+  render() {
     return (
-      <div></div>
+      <div ref={this.setActivator}></div>
     );
   }
 }

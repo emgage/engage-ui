@@ -6,7 +6,7 @@ export interface Props {}
 
 export interface State {
   drawer: boolean;
-  drawerContent: any;
+  activeDrawerId: string;
 }
 
 class DrawerExample extends React.Component<Props, State> {
@@ -15,10 +15,7 @@ class DrawerExample extends React.Component<Props, State> {
 
     this.state = {
       drawer: false,
-      drawerContent: {
-        content1: true,
-        content2: false,
-      },
+      activeDrawerId: 'content1',
     };
   }
 
@@ -28,12 +25,13 @@ class DrawerExample extends React.Component<Props, State> {
         <Button onClick={() => this.setState({ drawer: true })}>Drawer open</Button>
         <Drawer
           active={ this.state.drawer }
+          activeContentId={this.state.activeDrawerId}
           mode="slide"
           width="large"
           overlay
         >
           <DrawerContent
-            active={ this.state.drawerContent.content1 }
+            id="content1"
             mode="slide">
             <FormLayout>
               <TextField
@@ -45,14 +43,14 @@ class DrawerExample extends React.Component<Props, State> {
               />
 
               <ButtonGroup>
-                <Button primary onClick={ () => this.setState({ drawerContent: { ...this.state.drawerContent, content1: false, content2: true } }) }>Next</Button>
+                <Button primary onClick={ () => this.setState({ activeDrawerId: 'content2' }) }>Next</Button>
                 <Button onClick={ () => this.setState({ drawer: false }) }>Close</Button>
               </ButtonGroup>
             </FormLayout>
           </DrawerContent>
 
           <DrawerContent
-            active={ this.state.drawerContent.content2 }
+            id="content2"
             mode="slide"
             flip>
             <FormLayout>
@@ -64,7 +62,7 @@ class DrawerExample extends React.Component<Props, State> {
               />
 
               <ButtonGroup>
-                <Button icon="chevronLeft" onClick={ () => this.setState({ drawerContent: { ...this.state.drawerContent, content1: true, content2: false } }) }></Button>
+                <Button onClick={ () => this.setState({ activeDrawerId: 'content1' }) }>Back</Button>
                 <Button primary>Save</Button>
                 <Button onClick={ () => this.setState({ drawer: false }) }>Close</Button>
               </ButtonGroup>

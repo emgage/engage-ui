@@ -9,10 +9,10 @@ describe('<Drawer />', () => {
   describe('when default props are provided', () => {
     it('default OffCanvas with default props', () => {
       const drawerMenu = mount(<Drawer>{children}</Drawer>);
+
       expect(drawerMenu.prop('mode')).toBeUndefined;
       expect(drawerMenu.prop('overlay')).toBeUndefined;
       expect(drawerMenu.prop('flip')).toBeUndefined;
-      expect(drawerMenu.find('button').exists()).toBe(true);
     });
   });
 });

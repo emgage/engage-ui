@@ -13,6 +13,14 @@ const DrawerState: IDocument = {
       type: 'boolean',
       desc: 'To show or hide drawer.',
     }, {
+      name: 'accessibilityLabel',
+      type: 'string',
+      desc: 'Set accessibility label aria-label.',
+    }, {
+      name: 'activeContentId',
+      type: 'string',
+      desc: 'Store current active drawer contents id to make specific content active',
+    }, {
       name: 'children',
       type: 'string',
       desc: 'The content to display inside the drawer.',

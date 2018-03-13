@@ -49,6 +49,7 @@ interface State {
   isMenuOpened: boolean;
   drawer: boolean;
   drawerContent: any;
+  activeDrawerId: string;
 }
 
 class App extends React.Component<{}, State> {
@@ -75,6 +76,7 @@ class App extends React.Component<{}, State> {
         content1: false,
         content2: true,
       },
+      activeDrawerId: 'content1',
     };
   }
 
@@ -86,6 +88,14 @@ class App extends React.Component<{}, State> {
 
   chipRemove = () => {
     console.log('chip removed...');
+  }
+
+  onDrawerOpen = () => {
+    console.log('drawer open');
+  }
+
+  onDrawerClose = () => {
+    console.log('drawer close');
   }
 
   render() {
@@ -282,8 +292,8 @@ class App extends React.Component<{}, State> {
         <DateRangePickerWrapper />
         <div>
           <Button onClick={() => this.setState({ drawer: true })}>Drawer open</Button>
-          <Drawer active={ this.state.drawer } mode="slide" width="large" overlay>
-            <DrawerContent active={ this.state.drawerContent.content1 } mode="slide">
+          <Drawer active={ this.state.drawer } activeContentId={this.state.activeDrawerId} onOpen={this.onDrawerOpen} onClose={this.onDrawerClose} mode="slide" width="large" overlay>
+            <DrawerContent id="content1" mode="slide">
               <p>Reveal Test</p>
               <ul>
                 <li>Link 1</li>
@@ -293,13 +303,13 @@ class App extends React.Component<{}, State> {
                 <li>Link 5</li>
               </ul>
 
-              <Button onClick={ () => this.setState({ drawerContent: { ...this.state.drawerContent, content1: false, content2: true } }) }>Content2 open</Button>
+              <Button onClick={ () => this.setState({ activeDrawerId: 'content2' }) }>Content2 open</Button>
             </DrawerContent>
 
-            <DrawerContent active={ this.state.drawerContent.content2 } mode="slide" flip>
+            <DrawerContent id="content2" mode="slide" flip>
               I am inside drawer content 2
 
-              <Button onClick={ () => this.setState({ drawerContent: { ...this.state.drawerContent, content1: true, content2: false } }) }>Content1 open</Button>
+              <Button onClick={ () => this.setState({ activeDrawerId: 'content1' }) }>Content1 open</Button>
               <Button onClick={ () => this.setState({ drawer: false }) }>Close</Button>
             </DrawerContent>
           </Drawer>
