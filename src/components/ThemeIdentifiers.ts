@@ -44,3 +44,4 @@ export const CAPTION = 'PCaption';
 export const SPINNER = 'PSpinner';
 export const DRAWER = 'PDrawer';
 export const DRAWERCONTENT = 'PDrawerContent';
+export const TABLE = 'PTable';

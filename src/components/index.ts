@@ -201,6 +201,17 @@ export {
 } from './Subheading';
 
 export {
+  Table,
+  TableBody,
+  TableData,
+  TableFooter,
+  TableHead,
+  TableHeader,
+  TableRow,
+  Props as TableProps,
+} from './Table';
+
+export {
   default as Tag,
   Props as TagProps,
 } from './Tag';
