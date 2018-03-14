@@ -36,6 +36,12 @@ import {
   Modal,
   Caption,
   Spinner,
+  Table,
+  TableBody,
+  TableData,
+  TableHead,
+  TableHeader,
+  TableRow,
 } from '../../src/components';
 
 interface State {
@@ -268,6 +274,34 @@ class App extends React.Component<{}, State> {
         <PickerAutoSuggestExample />
         <SingleDatePickerWrapper />
         <DateRangePickerWrapper />
+
+        <Caption style={{ color: 'red' }}>This is Table field</Caption>
+        <Table bordered highlight>
+          <TableHeader>
+            <TableRow>
+              <TableHead>Name</TableHead>
+              <TableHead>Email</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            <TableRow>
+              <TableData>1. </TableData>
+              <TableData>Dheeraj Agrawal</TableData>
+              <TableData>dheeraja@emgage.com</TableData>
+            </TableRow>
+            <TableRow>
+              <TableData>2. </TableData>
+              <TableData>Dheeraj Agrawal</TableData>
+              <TableData>dheeraja@emgage.com</TableData>
+            </TableRow>
+            <TableRow>
+              <TableData>3. </TableData>
+              <TableData>Dheeraj Agrawal</TableData>
+              <TableData>dheeraja@emgage.com</TableData>
+            </TableRow>
+          </TableBody>
+        </Table>
+
         <div>
           <OffCanvas width="small" closeButton activator={<Button>OffCanvas Small</Button>} >
             <p>Reveal Test</p>

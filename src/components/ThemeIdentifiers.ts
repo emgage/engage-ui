@@ -42,3 +42,4 @@ export const VISUALLY_HIDDEN = 'PVisuallyHidden';
 export const MODAL = 'PModal';
 export const CAPTION = 'PCaption';
 export const SPINNER = 'PSpinner';
+export const TABLE = 'PTable';
