@@ -29,6 +29,8 @@ export interface Props {
   accessibilityLabel?: string;
   // Store the id of active drawer content
   activeContentId?: string;
+  // Show or hide close button (X) to close drawer
+  closeButton?: boolean;
   // Open drawer in flip direction (i.e. right)
   flip?: boolean;
   // Open drawer in slide, push or reveal mode
@@ -43,6 +45,8 @@ export interface Props {
   width?: Width;
   // Set theme for drawer
   theme?: any;
+  // Callback function to close or open the drawer
+  toggleDrawer?(): void;
 }
 
 const getUniqueID = createUniqueIDFactory('DrawerWrapper');
@@ -149,7 +153,7 @@ class Drawer extends React.Component<Props, never> {
 
   // Function to get the current active drawer content from props.children & set that as active & render that component only
   renderActivechildren() {
-    const { activeContentId, children } = this.props;
+    const { activeContentId, children, closeButton, toggleDrawer } = this.props;
 
     // Iterate through all the children content component & find active component
     // Match activeContentId with children's id & mark that as active: true
@@ -158,27 +162,43 @@ class Drawer extends React.Component<Props, never> {
 
       // Clone active component & return it
       if (activeContentId === id) {
-        return React.cloneElement(child, { active: true });
+        return React.cloneElement(child, { closeButton, toggleDrawer, active: true, });
       }
     });
   }
 
   renderLayer() {
+    const { active, mode, width, theme } = this.props;
     const containerClassName = this.getContainerClassName();
     const barClassName = this.getBarClassName();
 
     this.setBodyStyle();
-    const activeContent = this.renderActivechildren();
+    // const activeContent = this.renderActivechildren();
+
+    const bar = [
+      <div className={barClassName} style={width ? { width: `${width}` }  : undefined} key={this.id}>
+        {
+          active ?
+          <div className={theme.label} aria-live={'assertive'} >
+            {this.props.children}
+          </div>
+           :
+          null
+        }
+      </div>,
+    ];
 
     return (
       <div className={containerClassName}>
-        <div className={barClassName} style={this.props.width ? { width: `${this.props.width}` }  : undefined} key={this.id}>
-          {
-            this.props.active ?
-            activeContent :
-            ''
-          }
-        </div>
+        {
+          mode === 'reveal'
+            ?
+            <div className={theme.reveal} style={width && active ? { width: `${width}` }  : undefined}>
+              {bar}
+            </div>
+            :
+            bar
+        }
       </div>
     );
   }

@@ -1,26 +1,25 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from 'react-css-themr';
 import { classNames } from '@shopify/react-utilities/styles';
+import { Mode } from './Drawer';
 
 import { DRAWER } from '../ThemeIdentifiers';
 
+import Button from '../Button';
+
 import * as baseTheme from './Drawer.scss';
-
-/* Type for mode of drawer
-  // Slide helps to make the drawer slide from left or right, over the content
-  // With push, the menu is stuck to the left (or right) side of the canvas. The canvas and the menu move.
-  // With reveal the menu is sitting behind the canvas. When the canvas moves it reveals the menu. The menu never moves.
-*/
-export type Mode = 'slide' | 'push' | 'reveal';
-
 
 // All prototypes type
 export interface Props {
   active?: boolean;
+  // Show or hide close button (X) to close drawer
+  closeButton?: boolean;
   flip?: boolean;
   id?: string;
   mode?: Mode;
   theme?: any;
+  // Callback function to close or open the drawer
+  toggleDrawer?(): void;
 }
 
 // Drawer Content component, in here wrap all other required components or DOM for the Drawer
@@ -33,6 +32,7 @@ class DrawerContent extends React.Component<Props, never> {
     } = this.props;
 
     return classNames(
+      theme.drawerContent,
       theme.drawer,
       flip && this.props.theme.flip,
       active && theme.open
@@ -46,6 +46,7 @@ class DrawerContent extends React.Component<Props, never> {
     } = this.props;
 
     return classNames(
+      theme.drawerContent,
       theme.bar,
       mode === 'slide' && theme.animation,
       mode === 'push' && theme.animation
@@ -55,11 +56,19 @@ class DrawerContent extends React.Component<Props, never> {
   render() {
     const containerClassName = this.getContainerClassName();
     const barClassName = this.getBarClassName();
-    const { children, active } = this.props;
+    const { active, children, closeButton, theme, toggleDrawer } = this.props;
 
     return (
       <div className={containerClassName}>
         <div className={barClassName}>
+        {
+            closeButton ?
+            <span className={theme.close}>
+              <Button onClick={toggleDrawer} icon="cancel" plain />
+            </span> :
+            null
+          }
+
           {
             active ?
             children :

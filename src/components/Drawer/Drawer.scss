@@ -39,6 +39,10 @@ $drawer-overlay-background:                   rgba(0,0,0,0.2) !default;
   }
 }
 
+.drawerContent {
+  right: 0;
+  left: 0;
+}
 // Bar
 // ------------------------------------------------------------------------
 .bar {
