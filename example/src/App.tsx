@@ -302,7 +302,7 @@ class App extends React.Component<{}, State> {
             activeContentId={this.state.activeDrawerId}
             onOpen={this.onDrawerOpen}
             onClose={this.onDrawerClose}
-            mode="reveal"
+            mode="push"
             width="large"
             overlay
             closeButton>
