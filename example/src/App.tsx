@@ -34,6 +34,9 @@ import {
   Video,
   VideoType,
   Modal,
+  ModalBody,
+  ModalFooter,
+  ModalHeader,
   Caption,
   Spinner,
 } from '../../src/components';
@@ -45,6 +48,7 @@ interface State {
   columns: object[];
   rows: object[];
   isMenuOpened: boolean;
+  modalOpen: boolean;
 }
 
 class App extends React.Component<{}, State> {
@@ -52,6 +56,7 @@ class App extends React.Component<{}, State> {
   constructor(props: any) {
     super(props);
     this.state = {
+      modalOpen: false,
       appName: '',
       appDescription: '',
       appTextCounter: '',
@@ -126,7 +131,24 @@ class App extends React.Component<{}, State> {
         <Badge children={'Badge'} progress={'incomplete'} />
         <Badge children={'Badge'} progress={'partiallyComplete'} />
         <Badge children={'Badge'} progress={'complete'} />
+
         <div>
+          <Caption style={{ color: 'red' }}>This is modal</Caption>
+          <Button onClick={() => this.setState({ modalOpen: true })}>Medium button</Button>
+          <Modal active={this.state.modalOpen} width="medium">
+            <ModalHeader>Modal title</ModalHeader>
+            <ModalBody>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae ex pellentesque, pretium lorem vel, tempor ipsum. Phasellus suscipit lacus in velit malesuada, at bibendum mi gravida. Sed cursus nisi sem, non pellentesque ligula euismod eget. Sed quis fringilla nibh, at vestibulum turpis. Donec sed sagittis sapien. Nam quis ex quis nulla porta molestie. Vestibulum eu lorem porta, facilisis orci a, tempor quam. Suspendisse et sollicitudin nulla. Aenean consectetur imperdiet leo nec condimentum. Aliquam scelerisque magna ut tortor accumsan condimentum.
+
+              Nulla quis ante sit amet leo lobortis rhoncus. Cras mollis quis leo nec tincidunt. Aliquam blandit est vitae leo ultrices, ut egestas sapien pharetra. Suspendisse nec aliquet orci. Suspendisse rutrum odio sed neque scelerisque, ut consectetur erat tincidunt. Duis ultrices metus eget ante posuere eleifend. Ut luctus felis neque, sit amet efficitur neque maximus id. Aliquam porta, tellus ut pellentesque facilisis, odio neque maximus erat, venenatis semper nisi metus id augue. Cras vel sem eu elit blandit laoreet id vitae tortor. Morbi sit amet mi rutrum, sagittis enim lacinia, dictum turpis.
+            </ModalBody>
+            <ModalFooter>
+              <Button onClick={() => this.setState({ modalOpen: false })}>Close</Button>
+            </ModalFooter>
+          </Modal>
+        </div>
+
+        {/* <div>
           <h1>This is my Modal Component!!</h1>
           <Modal
             id="test1"
@@ -256,7 +278,7 @@ class App extends React.Component<{}, State> {
             ea commodo consequat. Duis aute irure dolor in reprehenderit in
               </p>
           </Modal>
-        </div>
+        </div> */}
         <br />
         <Caption style={{ color: 'red' }}>This is Caption</Caption>
         <br />
