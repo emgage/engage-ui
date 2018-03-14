@@ -7,16 +7,18 @@ import { TABLE } from '../ThemeIdentifiers';
 import * as baseTheme from './Table.scss';
 
 export interface Props {
+  // To make table bordered
   bordered?: boolean;
+  // Highlight rows on hover
   highlight?: boolean;
+  // Make table responsive
   responsive?: boolean;
+  // Set greyed background for odd rows
   striped?: boolean;
   theme?: any;
 }
 
-export interface State {}
-
-class Table extends React.Component<Props, State> {
+class Table extends React.Component<Props, never> {
   constructor(props: Props) {
     super(props);
   }
@@ -48,4 +50,4 @@ class Table extends React.Component<Props, State> {
   }
 }
 
-export default themr(TABLE, baseTheme)(Table) as ThemedComponentClass<Props, State>;
+export default themr(TABLE, baseTheme)(Table) as ThemedComponentClass<Props, {}>;

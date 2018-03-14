@@ -7,7 +7,8 @@ import * as baseTheme from './Table.scss';
 
 // All props start with `acc` are accessibility props
 export interface Props {
-  accheaders?: string;
+  // Used for accessibility, match this with id set in <th>
+  accHeaders?: string;
   colSpan?: number;
   rowSpan?: number;
 }
@@ -18,11 +19,11 @@ class TableData extends React.Component<Props, never> {
   }
 
   render () {
-    const { accheaders, colSpan, rowSpan } = this.props;
+    const { accHeaders, colSpan, rowSpan } = this.props;
 
     return (
       <td
-        headers={accheaders}
+        headers={accHeaders}
         colSpan={colSpan}
         rowSpan={rowSpan}>
         { this.props.children }
