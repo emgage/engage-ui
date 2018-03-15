@@ -1,5 +1,7 @@
 import * as React from 'react';
 import {
+  Badge,
+  Checkbox,
   Table,
   TableBody,
   TableData,
@@ -15,33 +17,55 @@ const TableExample = () => (
     <Table bordered highlight>
       <TableHeader>
         <TableRow>
-          <TableHead accScopeAttr="col">S.No.</TableHead>
-          <TableHead accScopeAttr="col">Name</TableHead>
-          <TableHead accScopeAttr="col">Email</TableHead>
+          <TableHead accScopeAttr="col"><Checkbox label="" /></TableHead>
+          <TableHead accScopeAttr="col">NAME</TableHead>
+          <TableHead accScopeAttr="col">DESCRIPTION</TableHead>
+          <TableHead accScopeAttr="col">STATUS</TableHead>
+          <TableHead accScopeAttr="col">TYPE</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
         <TableRow>
-          <TableData>1. </TableData>
-          <TableData>Dheeraj Agrawal</TableData>
-          <TableData>dheeraja@emgage.com</TableData>
+          <TableData><Checkbox label="" /></TableData>
+          <TableData>App members</TableData>
+          <TableData>Use this group to grant users contribute permissions</TableData>
+          <TableData>
+            <Badge status="success">
+              Published
+            </Badge>
+          </TableData>
+          <TableData>Internal, External or Anonymous</TableData>
         </TableRow>
         <TableRow>
-          <TableData>2. </TableData>
-          <TableData>Dheeraj Agrawal</TableData>
-          <TableData>dheeraja@emgage.com</TableData>
+          <TableData><Checkbox label="" /></TableData>
+          <TableData>App members</TableData>
+          <TableData>Use this group to grant users contribute permissions</TableData>
+          <TableData>
+            <Badge status="success">
+              Published
+            </Badge>
+          </TableData>
+          <TableData>Internal, External or Anonymous</TableData>
         </TableRow>
         <TableRow>
-          <TableData>3. </TableData>
-          <TableData>Dheeraj Agrawal</TableData>
-          <TableData>dheeraja@emgage.com</TableData>
+          <TableData><Checkbox label="" /></TableData>
+          <TableData>App members</TableData>
+          <TableData>Use this group to grant users contribute permissions</TableData>
+          <TableData>
+            <Badge status="success">
+              Published
+            </Badge>
+          </TableData>
+          <TableData>Internal, External or Anonymous</TableData>
         </TableRow>
       </TableBody>
       <TableFooter>
         <TableRow>
-          <TableHead>S.No.</TableHead>
-          <TableHead>Name</TableHead>
-          <TableHead>Email</TableHead>
+          <TableHead accScopeAttr="col"><Checkbox label="" /></TableHead>
+          <TableHead accScopeAttr="col">NAME</TableHead>
+          <TableHead accScopeAttr="col">DESCRIPTION</TableHead>
+          <TableHead accScopeAttr="col">STATUS</TableHead>
+          <TableHead accScopeAttr="col">TYPE</TableHead>
         </TableRow>
       </TableFooter>
     </Table>
