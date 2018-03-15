@@ -17,9 +17,9 @@ const ModalState: IDocument = {
       type: 'boolean',
       desc: 'Flag to help set the open or close state of modal',
     }, {
-      name: 'modalOverflow',
+      name: 'closeButton',
       type: 'boolean',
-      desc: 'Set the value to display scrollbar as per content of the Modal',
+      desc: 'Set the close button to close the modal',
     }, {
       name: 'closeOnEsc',
       type: 'boolean',
@@ -29,17 +29,29 @@ const ModalState: IDocument = {
       type: 'boolean',
       desc: 'Set the value to close modal on click of background',
     }, {
-      name: 'close',
-      type: 'boolean',
-      desc: 'Set the value to close modal by clicking on cross icon of modal',
-    }, {
       name: 'className',
       type: 'css class name',
       desc: 'Set the css-class for the modal',
     }, {
+      name: 'modalOverflow',
+      type: 'boolean',
+      desc: 'Set the value to display scrollbar as per content of the Modal',
+    }, {
+      name: 'onClose',
+      type: 'function',
+      desc: 'Callback function get called when modal get closed',
+    }, {
+      name: 'onOpen',
+      type: 'function',
+      desc: 'Callback function get called when modal get open',
+    }, {
       name: 'theme',
       type: 'any',
       desc: 'Theme to be injected via css-themr',
+    },  {
+      name: 'toggle',
+      type: 'function',
+      desc: 'Callback function get called when we need to close or open the modal',
     }, {
       name: 'width',
       type: 'string',
