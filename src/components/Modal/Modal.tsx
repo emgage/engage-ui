@@ -134,7 +134,7 @@ class Modal extends React.Component<Props, never> {
     const { active, theme } = this.props;
 
     if (bodyElement !== null) {
-      bodyElement.className += active ? (theme.page) : '';
+      bodyElement.className = active ? (theme.page) : '';
     }
   }
 
