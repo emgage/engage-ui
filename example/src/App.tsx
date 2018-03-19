@@ -42,7 +42,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-  TableFooter,
+  // TableFooter,
 } from '../../src/components';
 
 interface State {
@@ -121,6 +121,25 @@ class App extends React.Component<{}, State> {
       { key: 4, image: 'http://www.roanokecreditrepair.com/wp-content/uploads/2016/06/Headshot-1.png', name: 'Person McPerson', description: 'Person McPerson', email: 'yahoogmail@gmail.com' },
       { key: 5, image: 'https://d38zhw9ti31loc.cloudfront.net/wp-content/uploads/2013/07/Crystal-headshot-new.jpg', name: 'Laura Person', description: 'Laura Person', email: 'yahooldjadslkjgmail@gmail.com' },
       { key: 6, image: 'https://d38zhw9ti31loc.cloudfront.net/wp-content/uploads/2013/07/Crystal-headshot-new.jpg', name: 'LauraPerson', description: 'Laura Person', email: 'slkjgmail@gmail.com' },
+    ];
+
+    const tableData = [
+      {
+        name: 'Dheeraj',
+        description: 'Test description',
+        status: 'Published',
+        type: 'admin',
+      }, {
+        name: 'Dheeraj2',
+        description: 'Test description2',
+        status: 'Published',
+        type: 'admin',
+      }, {
+        name: 'Dheeraj3',
+        description: 'Test description3',
+        status: 'Published',
+        type: 'admin',
+      },
     ];
 
     return (
@@ -277,60 +296,27 @@ class App extends React.Component<{}, State> {
         <DateRangePickerWrapper />
 
         <Caption style={{ color: 'red' }}>This is Table field</Caption>
-        <Table bordered highlight>
+        <Table data={tableData} bordered highlight sorting defaultSortField="name" defaultSortOrder="asc">
           <TableHeader>
             <TableRow>
               <TableHead accScopeAttr="col"><Checkbox label="" /></TableHead>
-              <TableHead accScopeAttr="col">NAME</TableHead>
+              <TableHead accScopeAttr="col" sort="name">NAME</TableHead>
               <TableHead accScopeAttr="col">DESCRIPTION</TableHead>
-              <TableHead accScopeAttr="col">STATUS</TableHead>
+              <TableHead accScopeAttr="col" sort="status">STATUS</TableHead>
               <TableHead accScopeAttr="col">TYPE</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             <TableRow>
-              <TableData><Checkbox label="" /></TableData>
-              <TableData>App members</TableData>
-              <TableData>Use this group to grant users contribute permissions</TableData>
               <TableData>
-                <Badge status="success">
-                  Published
-                </Badge>
+                <Checkbox label="" />
               </TableData>
-              <TableData>Internal, External or Anonymous</TableData>
-            </TableRow>
-            <TableRow>
-              <TableData><Checkbox label="" /></TableData>
-              <TableData>App members</TableData>
-              <TableData>Use this group to grant users contribute permissions</TableData>
-              <TableData>
-                <Badge status="success">
-                  Published
-                </Badge>
-              </TableData>
-              <TableData>Internal, External or Anonymous</TableData>
-            </TableRow>
-            <TableRow>
-              <TableData><Checkbox label="" /></TableData>
-              <TableData>App members</TableData>
-              <TableData>Use this group to grant users contribute permissions</TableData>
-              <TableData>
-                <Badge status="success">
-                  Published
-                </Badge>
-              </TableData>
-              <TableData>Internal, External or Anonymous</TableData>
+              <TableData dataKey="name" />
+              <TableData dataKey="description" />
+              <TableData dataKey="status" />
+              <TableData dataKey="type" />
             </TableRow>
           </TableBody>
-          <TableFooter>
-            <TableRow>
-              <TableHead accScopeAttr="col"><Checkbox label="" /></TableHead>
-              <TableHead accScopeAttr="col">NAME</TableHead>
-              <TableHead accScopeAttr="col">DESCRIPTION</TableHead>
-              <TableHead accScopeAttr="col">STATUS</TableHead>
-              <TableHead accScopeAttr="col">TYPE</TableHead>
-            </TableRow>
-          </TableFooter>
         </Table>
 
         <div>

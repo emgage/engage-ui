@@ -16,6 +16,7 @@ export interface Props {
   accScopeAttr?: Scope;
   colSpan?: number;
   rowSpan?: number;
+  sort?: string;
 }
 
 class TableHead extends React.Component<Props, never> {
@@ -24,14 +25,18 @@ class TableHead extends React.Component<Props, never> {
   }
 
   render () {
-    const { accId, accScopeAttr, colSpan, rowSpan } = this.props;
+    const { accId, accScopeAttr, children, colSpan, rowSpan, sort } = this.props;
+
     return (
       <th
         scope={accScopeAttr}
         id={accId}
         colSpan={colSpan}
         rowSpan={rowSpan}>
-        { this.props.children }
+        { children }
+        {
+          sort ? <small> asc | desc</small> : ''
+        }
       </th>
     );
   }

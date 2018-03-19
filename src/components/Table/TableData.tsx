@@ -10,6 +10,8 @@ export interface Props {
   // Used for accessibility, match this with id set in <th>
   accHeaders?: string;
   colSpan?: number;
+  // This stores the key of specific json value, which needs to be rendered for this td
+  dataKey?: string;
   rowSpan?: number;
 }
 
@@ -19,14 +21,14 @@ class TableData extends React.Component<Props, never> {
   }
 
   render () {
-    const { accHeaders, colSpan, rowSpan } = this.props;
+    const { accHeaders, children, colSpan, dataKey, rowSpan } = this.props;
 
     return (
       <td
         headers={accHeaders}
         colSpan={colSpan}
         rowSpan={rowSpan}>
-        { this.props.children }
+        { dataKey ? dataKey : children }
       </td>
     );
   }
