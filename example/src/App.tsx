@@ -37,12 +37,6 @@ import {
   Caption,
   Spinner,
   Table,
-  TableBody,
-  TableData,
-  TableHead,
-  TableHeader,
-  TableRow,
-  // TableFooter,
 } from '../../src/components';
 
 interface State {
@@ -129,16 +123,48 @@ class App extends React.Component<{}, State> {
         description: 'Test description',
         status: 'Published',
         type: 'admin',
+        checked: false,
       }, {
-        name: 'Dheeraj2',
+        name: 'Dheeraj4',
         description: 'Test description2',
         status: 'Published',
         type: 'admin',
+        checked: false,
       }, {
         name: 'Dheeraj3',
         description: 'Test description3',
-        status: 'Published',
+        status: 'Deleted',
         type: 'admin',
+        checked: false,
+      }, {
+        name: 'Dheeraj3',
+        description: 'Test description3',
+        status: 'Deleted',
+        type: 'admin',
+        checked: false,
+      },
+    ];
+
+    const tableColumn = [
+      {
+        label: '',
+        key: 'checked',
+        headerValue: false,
+        injectBody: (value: any) => <Checkbox label={''} checked={value} />,
+        injectHeader: (value: any) => <Checkbox label={''} checked={value} />,
+      }, {
+        label: 'Name',
+        key: 'name',
+      }, {
+        label: 'Description',
+        key: 'description',
+      }, {
+        label: 'Status',
+        key: 'status',
+        injectBody: (value: string) => <Badge status={value === 'Published' ? 'success' : 'warning'}>{value}</Badge>,
+      }, {
+        label: 'Type',
+        key: 'type',
       },
     ];
 
@@ -296,28 +322,7 @@ class App extends React.Component<{}, State> {
         <DateRangePickerWrapper />
 
         <Caption style={{ color: 'red' }}>This is Table field</Caption>
-        <Table data={tableData} bordered highlight sorting defaultSortField="name" defaultSortOrder="asc">
-          <TableHeader>
-            <TableRow>
-              <TableHead accScopeAttr="col"><Checkbox label="" /></TableHead>
-              <TableHead accScopeAttr="col" sort="name">NAME</TableHead>
-              <TableHead accScopeAttr="col">DESCRIPTION</TableHead>
-              <TableHead accScopeAttr="col" sort="status">STATUS</TableHead>
-              <TableHead accScopeAttr="col">TYPE</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            <TableRow>
-              <TableData>
-                <Checkbox label="" />
-              </TableData>
-              <TableData dataKey="name" />
-              <TableData dataKey="description" />
-              <TableData dataKey="status" />
-              <TableData dataKey="type" />
-            </TableRow>
-          </TableBody>
-        </Table>
+        <Table data={tableData} column={tableColumn} bordered highlight sorting defaultSortField="name" defaultSortOrder="asc" />
 
         <div>
           <OffCanvas width="small" closeButton activator={<Button>OffCanvas Small</Button>} >
