@@ -137,34 +137,55 @@ class App extends React.Component<{}, State> {
         type: 'admin',
         checked: false,
       }, {
-        name: 'Dheeraj3',
-        description: 'Test description3',
+        name: 'Dheeraj2',
+        description: 'Test description2',
         status: 'Deleted',
         type: 'admin',
         checked: false,
       },
     ];
 
-    const tableColumn = [
+    /*
+      label: Table header lable which will be visible
+      key: Match it with json data, this will help to get specific value from the data
+      headerValue: In case of custom component, if any value is required, here it can be stored
+      classname: any custom classname, this can be used to set width or any other style
+      style: same like class but for inline styling
+      noSort: if sorting="all" & we want to disable sorting of specifc column
+      sort: Enable sorting for specific column
+      injectBody: To inject custom component in td
+      injectHeader: To inject custom component in th
+    */
+    const columnConfig = [
       {
         label: '',
         key: 'checked',
         headerValue: false,
+        className: 'test',
+        style: { width: '80px' },
+        noSort: true,
         injectBody: (value: any) => <Checkbox label={''} checked={value} />,
         injectHeader: (value: any) => <Checkbox label={''} checked={value} />,
       }, {
         label: 'Name',
         key: 'name',
+        className: '',
+        style: { width: '200px' },
+        sort: true,
       }, {
         label: 'Description',
         key: 'description',
+        style: { width: 'auto' },
       }, {
         label: 'Status',
         key: 'status',
+        sort: true,
+        style: { width: '150px' },
         injectBody: (value: string) => <Badge status={value === 'Published' ? 'success' : 'warning'}>{value}</Badge>,
       }, {
         label: 'Type',
         key: 'type',
+        style: { width: '100px' },
       },
     ];
 
@@ -322,7 +343,7 @@ class App extends React.Component<{}, State> {
         <DateRangePickerWrapper />
 
         <Caption style={{ color: 'red' }}>This is Table field</Caption>
-        <Table data={tableData} column={tableColumn} bordered highlight sorting defaultSortField="name" defaultSortOrder="asc" />
+        <Table data={tableData} column={columnConfig} bordered highlight sorting="all" />
 
         <div>
           <OffCanvas width="small" closeButton activator={<Button>OffCanvas Small</Button>} >

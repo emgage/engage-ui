@@ -27,31 +27,49 @@ export interface Props {
   highlight?: boolean;
   // Make table responsive
   responsive?: boolean;
-  // Flag to indentify if table is sortable
-  sorting?: boolean;
+  // Flag to indentify if table is sortable, if passed "all" then add sorting to all the columns
+  sorting?: boolean | string;
   // Set greyed background for odd rows
   striped?: boolean;
   theme?: any;
 }
 
 export interface State {
-  sortOrder?: string;
-  sortField?: string;
+  data?: any;
+  sort?: any;
 }
 
 class Table extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
+    const { data, sorting, defaultSortField, defaultSortOrder } = this.props;
 
     // If sorting is enabled then check for default sort order or field & set that in state
-    if (this.props.sorting) {
+    if (sorting) {
       this.state = {
-        sortOrder: this.props.defaultSortOrder || 'asc',
-        sortField: this.props.defaultSortField || '',
+        data,
+        sort: {
+          // Current sorting filed should be saved here, which can be used to show specific icons on specifc th
+          field: defaultSortField || '',
+          order: {
+            // New order is for sorting the table with that order
+            new: defaultSortOrder || 'asc',
+            // Current order is store the current sorted order
+            current: defaultSortOrder || 'asc',
+          },
+        },
       };
     }
   }
 
+  componentWillMount() {
+    // If user asked to sort the data by default then call the sortdata before rendering
+    if (this.props.defaultSortField) {
+      this.sortData(this.props.defaultSortField);
+    }
+  }
+
+  // Get class names for table
   getTableClassName() {
     const {
       bordered,
@@ -114,31 +132,64 @@ class Table extends React.Component<Props, State> {
     }
  */
 
+ // Render the thead with th & contain specific header label
+ // Used certain flags which will help to add sorting for any specific fields
   renderHeader() {
-    const { column } = this.props;
+    const { column, sorting } = this.props;
+    const { field, order } = this.state.sort;
 
     return (
       <TableHeader>
         <TableRow>
           {
-            column.map((item: any) => <TableHead key={item.key}>{item.injectHeader ? item.injectHeader(item.headerValue) : item.label}</TableHead>)
+            column.map((item: any) => {
+              const thisSort: string = (sorting === 'all' || item.sort) && !item.noSort ? item.key : '';
+
+              return (
+                <TableHead
+                  key={item.key}
+                  sort={thisSort}
+                  style={item.style}
+                  className={item.className}
+                  order={field === item.key ? order.current : ''}
+                  clickHandler={this.sortData.bind(this)}>
+                  {/* 
+                    Here injectheader helps to inject any custom component,
+                    Header value can be sent & then used in custom component
+                  */}
+                  {item.injectHeader ? item.injectHeader(item.headerValue) : item.label}
+                </TableHead>
+              );
+            })
           }
         </TableRow>
       </TableHeader>
     );
   }
 
+  // Function to render tbody & td with specifc data & if user passed any custom component that can also get rendered
   renderBody() {
-    const { column, data } = this.props;
+    const { column } = this.props;
+    const { data } = this.state;
 
     return (
       <TableBody>
         {
-          data.map((item: any) => {
+          data.map((item: any, index: number) => {
             return (
-              <TableRow>
+              <TableRow key={index}>
                 {
-                  column.map((colItem: any) => <TableData key={colItem.key}>{colItem.injectBody ? colItem.injectBody(item[colItem.key]) : item[colItem.key]}</TableData>)
+                  column.map((colItem: any) => {
+                    return (
+                      <TableData key={colItem.key}>
+                        {/* 
+                          Here injectBody helps to inject any custom component to td,
+                          we also return the specifc value, which then can be used in injected component
+                        */}
+                        {colItem.injectBody ? colItem.injectBody(item[colItem.key]) : item[colItem.key]}
+                      </TableData>
+                    );
+                  })
                 }
               </TableRow>
             );
@@ -163,8 +214,43 @@ class Table extends React.Component<Props, State> {
   }
 
   // Function to sort the data
-  sortData(primer: any) {
-    // const { data } = this.props;
+  sortData(field: string) {
+    const { data } = this.props;
+    const { order } = this.state.sort;
+
+    const sortedData = data.sort((item1: any, item2: any) => {
+      // Converting strings to uppercase so for comparisions there will be no issue
+      const value1 = item1[field].toUpperCase();
+      const value2 = item2[field].toUpperCase();
+
+      if (value1 < value2) {
+        return -1;
+      }
+      if (value1 > value2) {
+        return 1;
+      }
+
+      // if both values are same
+      return 0;
+    });
+
+    // If desending is required then reverse the data
+    if (order.new === 'desc') {
+      sortedData.reverse();
+    }
+
+    // Set the sorted data to the state
+    // Setting sorting field & order to the state
+    this.setState({
+      data: sortedData,
+      sort: {
+        field,
+        order: {
+          new: order.new === 'asc' ? 'desc' : 'asc',
+          current: order.new,
+        },
+      },
+    });
   }
 }
 
