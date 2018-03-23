@@ -26,6 +26,7 @@ import {
   OffCanvas,
   Panel,
   Picker,
+  // Popover,
   Select,
   TextField,
   Tooltip,
@@ -46,6 +47,8 @@ interface State {
   columns: object[];
   rows: object[];
   isMenuOpened: boolean;
+  popoverActive: boolean;
+  bulkAction: any;
 }
 
 class App extends React.Component<{}, State> {
@@ -67,6 +70,10 @@ class App extends React.Component<{}, State> {
         { id: 3, title: 'Title 3', count: 3 },
       ],
       isMenuOpened: false,
+      popoverActive: false,
+      bulkAction: {
+        selectedRow: [],
+      },
     };
   }
 
@@ -119,24 +126,28 @@ class App extends React.Component<{}, State> {
 
     const tableData = [
       {
+        id: 1,
         name: 'Dheeraj',
         description: 'Test description',
         status: 'Published',
         type: 'admin',
         checked: false,
       }, {
+        id: 2,
         name: 'Dheeraj4',
         description: 'Test description2',
         status: 'Published',
         type: 'admin',
         checked: false,
       }, {
+        id: 3,
         name: 'Dheeraj3',
         description: 'Test description3',
         status: 'Deleted',
         type: 'admin',
         checked: false,
       }, {
+        id: 4,
         name: 'Dheeraj2',
         description: 'Test description2',
         status: 'Deleted',
@@ -158,15 +169,6 @@ class App extends React.Component<{}, State> {
     */
     const columnConfig = [
       {
-        label: '',
-        key: 'checked',
-        headerValue: false,
-        className: 'test',
-        style: { width: '80px' },
-        noSort: true,
-        injectBody: (value: any) => <Checkbox label={''} checked={value} />,
-        injectHeader: (value: any) => <Checkbox label={''} checked={value} />,
-      }, {
         label: 'Name',
         key: 'name',
         className: '',
@@ -181,13 +183,32 @@ class App extends React.Component<{}, State> {
         key: 'status',
         sort: true,
         style: { width: '150px' },
-        injectBody: (value: string) => <Badge status={value === 'Published' ? 'success' : 'warning'}>{value}</Badge>,
+        injectBody: (value: any) => <Badge status={value.status === 'Published' ? 'success' : 'warning'}>{value.status}</Badge>,
       }, {
         label: 'Type',
         key: 'type',
         style: { width: '100px' },
       },
     ];
+
+    /* 
+      Filtering table data
+      mode: Mode of filteration, right now we have only one which is search
+      search: If mode is search then it holds search config
+        event: When the search should fire, on click or on input
+        field: Name of field by which search should happen
+        placeholder: Filed placeholder
+        title: Title of field
+    */
+    const filterConfig = {
+      mode: 'search',
+      search: {
+        event: 'click',
+        field: 'name',
+        placeholder: 'Find a Role Member',
+        title: '',
+      },
+    };
 
     return (
       <div>
@@ -342,9 +363,21 @@ class App extends React.Component<{}, State> {
         <SingleDatePickerWrapper />
         <DateRangePickerWrapper />
 
-        <Caption style={{ color: 'red' }}>This is Table field</Caption>
-        <Table data={tableData} column={columnConfig} bordered highlight sorting="all" />
-
+        <div style={{ marginTop: '20px', marginBottom: '20px' }}>
+          <Caption style={{ color: 'red' }}>This is Table field</Caption>
+          <Button>
+            { `Delete ${this.state.bulkAction.selectedRow.length ? `(${this.state.bulkAction.selectedRow.length})` : ''}` }
+          </Button>
+          <Table
+            data={tableData}
+            column={columnConfig}
+            filterData={filterConfig}
+            defaultSortField="name"
+            defaultSortOrder="asc"
+            selectRow="checkbox"
+            selectRowCallback={(val: any) => this.setState({ bulkAction: { selectedRow: val } })}
+            bordered highlight sorting />
+        </div>
         <div>
           <OffCanvas width="small" closeButton activator={<Button>OffCanvas Small</Button>} >
             <p>Reveal Test</p>

@@ -4,6 +4,8 @@ import { classNames } from '@shopify/react-utilities/styles';
 
 import { TABLE } from '../ThemeIdentifiers';
 
+import Button from '../Button';
+import Checkbox from '../Checkbox';
 import TableHeader from './TableHeader';
 import TableHead from './TableHead';
 import TableBody from './TableBody';
@@ -11,6 +13,8 @@ import TableRow from './TableRow';
 import TableData from './TableData';
 
 import * as baseTheme from './Table.scss';
+
+export type RowSelection = 'checkbox' | 'radio';
 
 export interface Props {
   // To make table bordered
@@ -23,10 +27,16 @@ export interface Props {
   defaultSortField?: string;
   // Value could be 'asc' || 'desc'
   defaultSortOrder?: string;
+  // Filter config, if data needs to be filtered by any mode like search
+  filterData?: any;
   // Highlight rows on hover
   highlight?: boolean;
   // Make table responsive
   responsive?: boolean;
+  // This helps to add checkbox or radio to select the row & do bulk actions
+  selectRow?: RowSelection;
+  // Function to get called when row got selected
+  selectRowCallback?(rows: any): void;
   // Flag to indentify if table is sortable, if passed "all" then add sorting to all the columns
   sorting?: boolean | string;
   // Set greyed background for odd rows
@@ -35,31 +45,18 @@ export interface Props {
 }
 
 export interface State {
-  data?: any;
+  allRowChecked?: boolean;
+  data: any;
   sort?: any;
+  selectedRows: any[];
+  searchKey: string;
 }
 
 class Table extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
-    const { data, sorting, defaultSortField, defaultSortOrder } = this.props;
 
-    // If sorting is enabled then check for default sort order or field & set that in state
-    if (sorting) {
-      this.state = {
-        data,
-        sort: {
-          // Current sorting filed should be saved here, which can be used to show specific icons on specifc th
-          field: defaultSortField || '',
-          order: {
-            // New order is for sorting the table with that order
-            new: defaultSortOrder || 'asc',
-            // Current order is store the current sorted order
-            current: defaultSortOrder || 'asc',
-          },
-        },
-      };
-    }
+    this.state = this.getInitialState();
   }
 
   componentWillMount() {
@@ -69,6 +66,26 @@ class Table extends React.Component<Props, State> {
     }
   }
 
+  getInitialState() {
+    const { data, defaultSortField, defaultSortOrder } = this.props;
+
+    return {
+      data,
+      allRowChecked: false,
+      selectedRows: [],
+      sort: {
+        // Current sorting filed should be saved here, which can be used to show specific icons on specifc th
+        field: defaultSortField || '',
+        order: {
+          // New order is for sorting the table with that order
+          new: defaultSortOrder || 'asc',
+          // Current order is store the current sorted order
+          current: defaultSortOrder || 'asc',
+        },
+      },
+      searchKey: '',
+    };
+  }
   // Get class names for table
   getTableClassName() {
     const {
@@ -86,54 +103,13 @@ class Table extends React.Component<Props, State> {
     );
   }
 
-  /*** 
-    // Function to take childrens of this component & render it with actual values
-    renderChildren() {
-      return React.Children.map(this.props.children, (child: React.ReactElement<any>) => {
-        // Get the name of component, this could be either ThemedTableHeader, ThemedTableBody, ThemedTableFooter
-        const componentName = typeof child.type === 'function' ? child.type.displayName : '';
+  // Function to handle search, this saves the searching text to state
+  handleSearch(event: any) {
+    this.setState({ searchKey: event.target.value });
+  }
 
-        // Get table body & iterate through data received in props
-        // This data then should be initialized in specific td's by checking there dataKey
-        if (componentName === 'ThemedTableBody') {
-          // Last argument is the children return after going through the process of creating rows with actual data
-          return React.cloneElement(child, {}, this.renderTableBody(child));
-        }
-
-        // Returning thead as it is
-        return child;
-      });
-    }
-
-    // Function to take tbody & get its children which most probably always will be tr
-    // Here iterate through the data received by Table component & create / clone tr with those data
-    renderTableBody(tableBody: React.ReactElement<any>): any {
-      const { data } = this.props;
-
-      return React.Children.map(tableBody.props.children, (child: React.ReactElement<any>) => {
-        return data.map((item: any) => {
-          // Data here will be like {name: '', email: '', ...}
-          // This will match with the dataKey passed through TableData & replace its value with data.name, data.emai, ...
-          return React.cloneElement(child, {}, this.renderTableRow(item, child));
-        });
-      });
-    }
-
-    // Get the children row & replace the values with actual data
-    // Match data.key with dataKey sent in TableData
-    renderTableRow(jsonRow:any, tableRow: React.ReactElement<any>): any {
-      return React.Children.map(tableRow.props.children, (child: React.ReactElement<any>) => {
-        if (jsonRow[child.props.dataKey]) {
-          return React.cloneElement(child, { dataKey: jsonRow[child.props.dataKey] });
-        }
-
-        return React.cloneElement(child);
-      });
-    }
- */
-
- // Render the thead with th & contain specific header label
- // Used certain flags which will help to add sorting for any specific fields
+  // Render the thead with th & contain specific header label
+  // Used certain flags which will help to add sorting for any specific fields
   renderHeader() {
     const { column, sorting } = this.props;
     const { field, order } = this.state.sort;
@@ -141,6 +117,7 @@ class Table extends React.Component<Props, State> {
     return (
       <TableHeader>
         <TableRow>
+          { this.renderRowSelection(null, 'head') }
           {
             column.map((item: any) => {
               const thisSort: string = (sorting === 'all' || item.sort) && !item.noSort ? item.key : '';
@@ -169,7 +146,7 @@ class Table extends React.Component<Props, State> {
 
   // Function to render tbody & td with specifc data & if user passed any custom component that can also get rendered
   renderBody() {
-    const { column } = this.props;
+    const { column, selectRow } = this.props;
     const { data } = this.state;
 
     return (
@@ -178,6 +155,7 @@ class Table extends React.Component<Props, State> {
           data.map((item: any, index: number) => {
             return (
               <TableRow key={index}>
+                { this.renderRowSelection(item, 'body') }
                 {
                   column.map((colItem: any) => {
                     return (
@@ -186,7 +164,7 @@ class Table extends React.Component<Props, State> {
                           Here injectBody helps to inject any custom component to td,
                           we also return the specifc value, which then can be used in injected component
                         */}
-                        {colItem.injectBody ? colItem.injectBody(item[colItem.key]) : item[colItem.key]}
+                        {colItem.injectBody ? colItem.injectBody(item) : item[colItem.key]}
                       </TableData>
                     );
                   })
@@ -195,8 +173,113 @@ class Table extends React.Component<Props, State> {
             );
           })
         }
+
+        { !data.length ? <TableRow><TableData colSpan={column.length + (selectRow ? 1 : 0)}>No record found</TableData></TableRow> : null }
       </TableBody>
     );
+  }
+
+  // Function to add filter box for filtering table data
+  renderFilterField() {
+    const { filterData } = this.props;
+
+    switch (filterData.mode) {
+      case 'search': {
+        return this.renderSearchField();
+      }
+      default:
+        return null;
+    }
+  }
+
+  // Function to render search field
+  renderSearchField() {
+    const { theme } = this.props;
+    const { event, placeholder, title } = this.props.filterData.search;
+
+    const searchFieldContainer = classNames(
+      theme.searchField
+    );
+
+    const searchField = classNames(
+      theme.fieldGroup
+    );
+
+    const searcAction = classNames(
+      theme.fieldGroupAddon
+    );
+
+    return (
+      <div className={searchFieldContainer}>
+        { title ? <label></label> : null }
+        <div className={searchField}>
+          <input type="text" placeholder={placeholder} value={this.state.searchKey} onChange={this.handleSearch.bind(this)} />
+          {
+            event ?
+            (<div className={searcAction}>
+              <Button onClick={(val: any) => this.triggerSearch()}>Search</Button>
+            </div>) : ''
+          }
+        </div>
+      </div>
+    );
+  }
+
+  // Function to call the callback function on row selection
+  rowSelectionCallback() {
+    const { selectRowCallback } = this.props;
+
+    if (selectRowCallback) {
+      selectRowCallback(this.state.selectedRows);
+    }
+  }
+
+  // Add checkbox or radio component to select the row, depending on `selectrow` flag
+  renderRowSelection(rowData: any, rowType: string) {
+    const { selectRow } = this.props;
+
+    if (selectRow) {
+      if (rowType === 'body') {
+        if (selectRow === 'checkbox') {
+          return this.renderCheckbox(rowData);
+        }
+
+        return this.renderRadio(rowData);
+      }
+
+      if (selectRow === 'checkbox') {
+        return this.addHeaderCheckbox();
+      }
+    }
+
+    return null;
+  }
+
+  // Function to add checkbox in header as well
+  addHeaderCheckbox(): React.ReactElement<any> {
+    return <TableHead style={{ width: 'auto' }}><Checkbox label="" checked={this.state.allRowChecked} onChange={this.toggleAllRowSelection.bind(this)} /></TableHead>;
+  }
+
+  // Function to add checkbox for the row selection
+  renderCheckbox(rowData: any): React.ReactElement<any> {
+    const { selectedRows } = this.state;
+
+    return (
+      <TableData>
+        <Checkbox
+          label=""
+          value={rowData.id}
+          checked={selectedRows.indexOf(rowData.id) !== -1 ? true : false}
+          onChange={(checkedStatus: boolean) => {
+            this.toggleSingleRowSelection(rowData.id, checkedStatus);
+          }} />
+      </TableData>
+    );
+  }
+
+  // Function to add checkbox for the row selection
+  renderRadio(rowData: any): React.ReactElement<any> {
+    return <TableData><Checkbox label="" value={rowData.id} checked={rowData.checked ? true : false} /></TableData>;
   }
 
   render () {
@@ -206,10 +289,13 @@ class Table extends React.Component<Props, State> {
     const renderedBody = this.renderBody();
 
     return (
-      <table className={tableClass}>
-        { renderedHeader }
-        { renderedBody }
-      </table>
+      <div>
+        { this.renderFilterField() }
+        <table className={tableClass}>
+          { renderedHeader }
+          { renderedBody }
+        </table>
+      </div>
     );
   }
 
@@ -251,6 +337,59 @@ class Table extends React.Component<Props, State> {
         },
       },
     });
+  }
+
+  // Function to toggle single row selection
+  toggleSingleRowSelection(dataId: string | number, checkedStatus: boolean) {
+    const selectedRows = [...this.state.selectedRows];
+
+    if (!checkedStatus) {
+      selectedRows.splice(selectedRows.indexOf(dataId), 1);
+      this.setState({ selectedRows, allRowChecked: false }, () => {
+        this.rowSelectionCallback();
+      });
+    } else {
+      this.setState({ selectedRows: this.state.selectedRows.concat([dataId]) }, () => {
+        this.rowSelectionCallback();
+      });
+    }
+  }
+
+  // Function to select all the rows on click of header  checkbox
+  toggleAllRowSelection(checkedStatus: boolean) {
+    const allRowId = this.state.data.map((item: any) => {
+      return item.id;
+    });
+
+    if (checkedStatus) {
+      this.setState({ allRowChecked: true, selectedRows: allRowId }, () => {
+        this.rowSelectionCallback();
+      });
+    } else {
+      this.setState({ allRowChecked: false, selectedRows: [] }, () => {
+        this.rowSelectionCallback();
+      });
+    }
+  }
+
+  // Function to make search in data
+  triggerSearch() {
+    const { searchKey } = this.state;
+    const { field } = this.props.filterData.search;
+    const trimmedSearchKey = searchKey.trim().toLowerCase();
+    const { data } = this.getInitialState();
+
+    if (trimmedSearchKey) {
+      const result = data.filter((item: any) => {
+        const thisVal = item[field].toLowerCase();
+
+        if (thisVal.indexOf(trimmedSearchKey) !== -1) {
+          return true;
+        }
+      });
+
+      this.setState({ data: result });
+    }
   }
 }
 

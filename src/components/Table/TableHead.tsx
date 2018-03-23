@@ -19,7 +19,7 @@ export interface Props {
   // Any custom class that user wants to add which could be for setting width or any custom styling
   className?: string;
   // If sorting is enabled, then clickhndler will get triggered on click
-  clickHandler(field: string): any;
+  clickHandler?(field: string): any;
   // To set colspan value
   colSpan?: number;
   // Current sort order, it will be only filled if the current sorting field will be this
@@ -42,7 +42,7 @@ class TableHead extends React.Component<Props, never> {
   triggerClick = () => {
     const { clickHandler, sort } = this.props;
 
-    if (sort) {
+    if (sort && clickHandler) {
       clickHandler(sort);
     }
   }
