@@ -6,6 +6,7 @@ import { TABLE } from '../ThemeIdentifiers';
 
 import Button from '../Button';
 import Checkbox from '../Checkbox';
+import RowAction from './RowAction';
 import TableHeader from './TableHeader';
 import TableHead from './TableHead';
 import TableBody from './TableBody';
@@ -33,6 +34,8 @@ export interface Props {
   highlight?: boolean;
   // Make table responsive
   responsive?: boolean;
+  // Individual row action, if available add it in last of the column
+  rowAction?: any;
   // This helps to add checkbox or radio to select the row & do bulk actions
   selectRow?: RowSelection;
   // Function to get called when row got selected
@@ -111,7 +114,7 @@ class Table extends React.Component<Props, State> {
   // Render the thead with th & contain specific header label
   // Used certain flags which will help to add sorting for any specific fields
   renderHeader() {
-    const { column, sorting } = this.props;
+    const { column, sorting, rowAction } = this.props;
     const { field, order } = this.state.sort;
 
     return (
@@ -139,6 +142,7 @@ class Table extends React.Component<Props, State> {
               );
             })
           }
+          { rowAction ? <TableHead key="headRowAction" /> : '' }
         </TableRow>
       </TableHeader>
     );
@@ -146,7 +150,7 @@ class Table extends React.Component<Props, State> {
 
   // Function to render tbody & td with specifc data & if user passed any custom component that can also get rendered
   renderBody() {
-    const { column, selectRow } = this.props;
+    const { column, rowAction, selectRow } = this.props;
     const { data } = this.state;
 
     return (
@@ -169,6 +173,8 @@ class Table extends React.Component<Props, State> {
                     );
                   })
                 }
+
+                { rowAction ? <RowAction actionConfig={rowAction} dataId={item.id} /> : '' }
               </TableRow>
             );
           })

@@ -131,28 +131,24 @@ class App extends React.Component<{}, State> {
         description: 'Test description',
         status: 'Published',
         type: 'admin',
-        checked: false,
       }, {
         id: 2,
         name: 'Dheeraj4',
         description: 'Test description2',
         status: 'Published',
         type: 'admin',
-        checked: false,
       }, {
         id: 3,
         name: 'Dheeraj3',
         description: 'Test description3',
         status: 'Deleted',
         type: 'admin',
-        checked: false,
       }, {
         id: 4,
         name: 'Dheeraj2',
         description: 'Test description2',
         status: 'Deleted',
         type: 'admin',
-        checked: false,
       },
     ];
 
@@ -209,6 +205,22 @@ class App extends React.Component<{}, State> {
         title: '',
       },
     };
+
+    const rowActionConfig = [
+      {
+        label: 'View',
+        action: (value: any) => { console.log('View:', value); },
+      }, {
+        label: 'Delete',
+        action: (value: any) => { console.log('Delete:', value); },
+      }, {
+        label: 'Archive',
+        action: (value: any) => { console.log('Archive:', value); },
+      }, {
+        label: 'Version History',
+        action: (value: any) => { console.log('Version:', value); },
+      },
+    ];
 
     return (
       <div>
@@ -375,6 +387,7 @@ class App extends React.Component<{}, State> {
             defaultSortField="name"
             defaultSortOrder="asc"
             selectRow="checkbox"
+            rowAction={rowActionConfig}
             selectRowCallback={(val: any) => this.setState({ bulkAction: { selectedRow: val } })}
             bordered highlight sorting />
         </div>
