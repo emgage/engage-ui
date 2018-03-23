@@ -28,10 +28,10 @@ const ModalExample = () => (
       header="Modal Header"
       close
       modalOverflow
-      backdropEnabled
+      overlay
       footer="Modal Footer"
       id="333"
-      size="Small"
+      width="small"
     >
       {childBody}
     </Modal>

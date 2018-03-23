@@ -1,0 +1,39 @@
+// Variables
+// ========================================================================
+
+$modal-overlay-background:                      rgba(0,0,0,0.2) !default;
+
+$modal-border-radius:                            8px;
+
+
+// Styles
+// ========================================================================
+
+.overlay {
+  background: $modal-overlay-background;
+}
+
+.dialog {
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.3);
+  max-width: calc(100% - 50px);
+}
+
+.header {
+  border-radius: 8px 8px 0 0;
+}
+
+.footer {
+  border-radius: 0 0 8px 8px;
+}
+
+//Medium and larger screens
+@media (min-width: $breakpoint-medium) {
+
+  .close {
+    top: -23px;
+    right: -23px;
+  }
+  
+}

@@ -30,10 +30,10 @@ const ModalExample = () => (
       closeOnBackgroud
       closeOnEsc
       modalOverflow
-      backdropEnabled
+      overlay
       footer="Modal Footer"
       id="111"
-      size="Large"
+      width="large"
     >
       {childBody}
     </Modal>

@@ -10,14 +10,15 @@ const contextTheme = {
   PLabel: require('./Label.scss'),
   PLabelled: require('./Labelled.scss'),
   PMessage: require('./Message.scss'),
+  PModal: require('./Modal.scss'),
   PSelect: require('./Select.scss'),
   PTextField: require('./TextField.scss'),
 };
 
 export default (props: any) => {
-    return (
-        <ThemeProvider theme={contextTheme}>
-            {props.children}
-        </ThemeProvider>
-    )
-}
+  return (
+    <ThemeProvider theme={contextTheme}>
+      {props.children}
+    </ThemeProvider>
+  );
+};
