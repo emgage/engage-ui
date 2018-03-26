@@ -49,6 +49,7 @@ interface State {
   isMenuOpened: boolean;
   popoverActive: boolean;
   bulkAction: any;
+  filterConfig: any;
 }
 
 class App extends React.Component<{}, State> {
@@ -73,6 +74,11 @@ class App extends React.Component<{}, State> {
       popoverActive: false,
       bulkAction: {
         selectedRow: [],
+      },
+      filterConfig: {
+        searchKey: '',
+        search: false,
+        field: 'name',
       },
     };
   }
@@ -196,15 +202,6 @@ class App extends React.Component<{}, State> {
         placeholder: Filed placeholder
         title: Title of field
     */
-    const filterConfig = {
-      mode: 'search',
-      search: {
-        event: 'click',
-        field: 'name',
-        placeholder: 'Find a Role Member',
-        title: '',
-      },
-    };
 
     const rowActionConfig = [
       {
@@ -377,13 +374,20 @@ class App extends React.Component<{}, State> {
 
         <div style={{ marginTop: '20px', marginBottom: '20px' }}>
           <Caption style={{ color: 'red' }}>This is Table field</Caption>
-          <Button>
-            { `Delete ${this.state.bulkAction.selectedRow.length ? `(${this.state.bulkAction.selectedRow.length})` : ''}` }
-          </Button>
+            <Button>
+              { `Delete ${this.state.bulkAction.selectedRow.length ? `(${this.state.bulkAction.selectedRow.length})` : ''}` }
+            </Button>
+
+            <div className="fieldGroup">
+              <input type="text" value={this.state.filterConfig.searchKey} onChange={(event: any) => this.setState({ filterConfig: { ...this.state.filterConfig, searchKey: event.target.value, search: false } })} />
+              <div className="fieldGroupAddon">
+                  <Button onClick={(val: any) => this.setState({ filterConfig: { ...this.state.filterConfig, search: true } })}>Search</Button>
+              </div>
+            </div>
           <Table
             data={tableData}
             column={columnConfig}
-            filterData={filterConfig}
+            filterData={this.state.filterConfig}
             defaultSortField="name"
             defaultSortOrder="asc"
             selectRow="checkbox"

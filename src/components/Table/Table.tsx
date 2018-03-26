@@ -4,7 +4,6 @@ import { classNames } from '@shopify/react-utilities/styles';
 
 import { TABLE } from '../ThemeIdentifiers';
 
-import Button from '../Button';
 import Checkbox from '../Checkbox';
 import RowAction from './RowAction';
 import TableHeader from './TableHeader';
@@ -69,6 +68,14 @@ class Table extends React.Component<Props, State> {
     }
   }
 
+  componentWillReceiveProps(newProps: any) {
+    const { field, searchKey, search } = newProps.filterData;
+
+    if (search && !this.props.filterData.search) {
+      this.triggerSearch(searchKey, field);
+    }
+  }
+
   getInitialState() {
     const { data, defaultSortField, defaultSortOrder } = this.props;
 
@@ -89,6 +96,7 @@ class Table extends React.Component<Props, State> {
       searchKey: '',
     };
   }
+
   // Get class names for table
   getTableClassName() {
     const {
@@ -104,11 +112,6 @@ class Table extends React.Component<Props, State> {
       highlight && theme.highlight,
       striped && theme.striped
     );
-  }
-
-  // Function to handle search, this saves the searching text to state
-  handleSearch(event: any) {
-    this.setState({ searchKey: event.target.value });
   }
 
   // Render the thead with th & contain specific header label
@@ -185,52 +188,6 @@ class Table extends React.Component<Props, State> {
     );
   }
 
-  // Function to add filter box for filtering table data
-  renderFilterField() {
-    const { filterData } = this.props;
-
-    switch (filterData.mode) {
-      case 'search': {
-        return this.renderSearchField();
-      }
-      default:
-        return null;
-    }
-  }
-
-  // Function to render search field
-  renderSearchField() {
-    const { theme } = this.props;
-    const { event, placeholder, title } = this.props.filterData.search;
-
-    const searchFieldContainer = classNames(
-      theme.searchField
-    );
-
-    const searchField = classNames(
-      theme.fieldGroup
-    );
-
-    const searcAction = classNames(
-      theme.fieldGroupAddon
-    );
-
-    return (
-      <div className={searchFieldContainer}>
-        { title ? <label></label> : null }
-        <div className={searchField}>
-          <input type="text" placeholder={placeholder} value={this.state.searchKey} onChange={this.handleSearch.bind(this)} />
-          {
-            event ?
-            (<div className={searcAction}>
-              <Button onClick={(val: any) => this.triggerSearch()}>Search</Button>
-            </div>) : ''
-          }
-        </div>
-      </div>
-    );
-  }
-
   // Function to call the callback function on row selection
   rowSelectionCallback() {
     const { selectRowCallback } = this.props;
@@ -296,7 +253,6 @@ class Table extends React.Component<Props, State> {
 
     return (
       <div>
-        { this.renderFilterField() }
         <table className={tableClass}>
           { renderedHeader }
           { renderedBody }
@@ -379,9 +335,8 @@ class Table extends React.Component<Props, State> {
   }
 
   // Function to make search in data
-  triggerSearch() {
-    const { searchKey } = this.state;
-    const { field } = this.props.filterData.search;
+  triggerSearch(searchKey: string, field: string) {
+    console.log('Search:', searchKey.trim());
     const trimmedSearchKey = searchKey.trim().toLowerCase();
     const { data } = this.getInitialState();
 
