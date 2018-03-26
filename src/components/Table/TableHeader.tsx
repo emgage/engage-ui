@@ -8,6 +8,8 @@ import * as baseTheme from './Table.scss';
 export interface Props {}
 
 class TableHeader extends React.Component<Props, never> {
+  static displayName = 'TableHeader';
+
   constructor(props: Props) {
     super(props);
   }
