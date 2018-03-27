@@ -5,8 +5,6 @@ import { MODAL } from '../ThemeIdentifiers';
 
 import * as baseTheme from './Modal.scss';
 
-export type Width = 'small' | 'medium' | 'large' | string;
-
 export interface Props {
   active?: boolean;
   theme?: any;
