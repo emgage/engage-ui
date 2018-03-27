@@ -48,7 +48,7 @@ class TableHead extends React.Component<Props, never> {
   }
 
   // Get custom classname if user have sent any
-  getClassName() {
+  getClassName = () => {
     const { className, theme } = this.props;
 
     if (className) {

@@ -98,7 +98,7 @@ class Table extends React.Component<Props, State> {
   }
 
   // Get class names for table
-  getTableClassName() {
+  getTableClassName = () => {
     const {
       bordered,
       highlight,
@@ -116,7 +116,7 @@ class Table extends React.Component<Props, State> {
 
   // Render the thead with th & contain specific header label
   // Used certain flags which will help to add sorting for any specific fields
-  renderHeader() {
+  renderHeader = () => {
     const { column, sorting, rowAction } = this.props;
     const { field, order } = this.state.sort;
 
@@ -135,7 +135,7 @@ class Table extends React.Component<Props, State> {
                   style={item.style}
                   className={item.className}
                   order={field === item.key ? order.current : ''}
-                  clickHandler={this.sortData.bind(this)}>
+                  clickHandler={this.sortData}>
                   {/* 
                     Here injectheader helps to inject any custom component,
                     Header value can be sent & then used in custom component
@@ -152,7 +152,7 @@ class Table extends React.Component<Props, State> {
   }
 
   // Function to render tbody & td with specifc data & if user passed any custom component that can also get rendered
-  renderBody() {
+  renderBody = () => {
     const { column, rowAction, selectRow } = this.props;
     const { data } = this.state;
 
@@ -189,7 +189,7 @@ class Table extends React.Component<Props, State> {
   }
 
   // Function to call the callback function on row selection
-  rowSelectionCallback() {
+  rowSelectionCallback = () => {
     const { selectRowCallback } = this.props;
 
     if (selectRowCallback) {
@@ -198,7 +198,7 @@ class Table extends React.Component<Props, State> {
   }
 
   // Add checkbox or radio component to select the row, depending on `selectrow` flag
-  renderRowSelection(rowData: any, rowType: string) {
+  renderRowSelection = (rowData: any, rowType: string) => {
     const { selectRow } = this.props;
 
     if (selectRow) {
@@ -219,8 +219,8 @@ class Table extends React.Component<Props, State> {
   }
 
   // Function to add checkbox in header as well
-  addHeaderCheckbox(): React.ReactElement<any> {
-    return <TableHead style={{ width: 'auto' }}><Checkbox label="" checked={this.state.allRowChecked} onChange={this.toggleAllRowSelection.bind(this)} /></TableHead>;
+  addHeaderCheckbox = (): React.ReactElement<any> => {
+    return <TableHead style={{ width: 'auto' }}><Checkbox label="" checked={this.state.allRowChecked} onChange={this.toggleAllRowSelection} /></TableHead>;
   }
 
   // Function to add checkbox for the row selection
@@ -241,7 +241,7 @@ class Table extends React.Component<Props, State> {
   }
 
   // Function to add checkbox for the row selection
-  renderRadio(rowData: any): React.ReactElement<any> {
+  renderRadio = (rowData: any): React.ReactElement<any> => {
     return <TableData><Checkbox label="" value={rowData.id} checked={rowData.checked ? true : false} /></TableData>;
   }
 
@@ -262,7 +262,7 @@ class Table extends React.Component<Props, State> {
   }
 
   // Function to sort the data
-  sortData(field: string) {
+  sortData = (field: string) => {
     const { data } = this.props;
     const { order } = this.state.sort;
 
@@ -302,7 +302,7 @@ class Table extends React.Component<Props, State> {
   }
 
   // Function to toggle single row selection
-  toggleSingleRowSelection(dataId: string | number, checkedStatus: boolean) {
+  toggleSingleRowSelection = (dataId: string | number, checkedStatus: boolean) => {
     const selectedRows = [...this.state.selectedRows];
 
     if (!checkedStatus) {
@@ -318,7 +318,7 @@ class Table extends React.Component<Props, State> {
   }
 
   // Function to select all the rows on click of header  checkbox
-  toggleAllRowSelection(checkedStatus: boolean) {
+  toggleAllRowSelection = (checkedStatus: boolean) => {
     const allRowId = this.state.data.map((item: any) => {
       return item.id;
     });
@@ -335,7 +335,7 @@ class Table extends React.Component<Props, State> {
   }
 
   // Function to make search in data
-  triggerSearch(searchKey: string, field: string) {
+  triggerSearch = (searchKey: string, field: string) => {
     console.log('Search:', searchKey.trim());
     const trimmedSearchKey = searchKey.trim().toLowerCase();
     const { data } = this.getInitialState();
