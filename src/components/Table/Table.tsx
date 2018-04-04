@@ -73,6 +73,8 @@ class Table extends React.Component<Props, State> {
 
     if (search && !this.props.filterData.search) {
       this.triggerSearch(searchKey, field);
+    } else if (newProps.data.length !== this.props.data.length) {
+      this.setState({ data: newProps.data });
     }
   }
 
