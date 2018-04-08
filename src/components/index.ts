@@ -243,7 +243,10 @@ export {
 } from './VisuallyHidden';
 
 export {
-  default as Modal,
+  Modal,
+  ModalBody,
+  ModalFooter,
+  ModalHeader,
   Props as ModalProps,
 } from './Modal';
 
