@@ -1,0 +1,339 @@
+// Variables
+// ========================================================================
+
+$drawer-z-index:                              1000 !default; //create global var?
+$drawer-bar-background:                       #fff !default; //create global var?
+
+$drawer-bar-width-small:                      270px !default;
+$drawer-bar-padding-vertical-small:           30px !default;
+$drawer-bar-padding-horizontal-small:         30px !default;
+
+$drawer-bar-width-medium:                     350px !default;
+$drawer-bar-padding-vertical-medium:          40px !default;
+$drawer-bar-padding-horizontal-medium:        40px !default;
+
+$drawer-bar-width-large:                      600px !default;
+$drawer-bar-padding-vertical-large:           40px !default;
+$drawer-bar-padding-horizontal-large:         40px !default;
+
+$drawer-close-position:                       20px !default;
+$drawer-close-padding:                        5px !default;
+
+$drawer-overlay-background:                   rgba(0,0,0,0.2) !default;
+
+
+// Styles
+// ========================================================================
+
+.drawer {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: $drawer-z-index;
+
+  // Flip modifier
+  &.flip {
+    right: 0;
+    left: auto;
+  }
+}
+
+.drawerContent {
+  right: 0;
+  left: 0;
+}
+// Bar
+// ------------------------------------------------------------------------
+.bar {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  box-sizing: border-box;
+  background: $drawer-bar-background;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  -webkit-transform: translateX(-100%);
+  transform: translateX(-100%);
+}
+
+.drawer {
+  
+  &.small .bar {
+    width: $drawer-bar-width-small;
+    padding: $drawer-bar-padding-vertical-small $drawer-bar-padding-horizontal-small;
+  }
+
+  &.medium .bar {
+    width: $drawer-bar-width-medium;
+    padding: $drawer-bar-padding-vertical-medium $drawer-bar-padding-horizontal-medium;
+  }
+
+  &.large .bar {
+    width: $drawer-bar-width-large;
+    padding: $drawer-bar-padding-vertical-large $drawer-bar-padding-horizontal-large;
+  }
+}
+
+// Flip modifier
+.flip > .bar  {
+  left: auto;
+  right: 0;
+  -webkit-transform: translateX(100%);
+  transform: translateX(100%);
+}
+
+// Open
+.open > .bar {
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+}
+
+//Medium and larger screens 
+@media (min-width: $breakpoint-medium) {
+
+  .bar {
+    padding: $drawer-bar-padding-vertical-medium $drawer-bar-padding-horizontal-medium;
+  }
+
+  .drawer {
+
+    &.small .bar {
+      width: $drawer-bar-width-small;
+      padding: $drawer-bar-padding-vertical-small $drawer-bar-padding-horizontal-small;
+    }
+
+    &.medium .bar {
+      width: $drawer-bar-width-medium;
+      padding: $drawer-bar-padding-vertical-medium $drawer-bar-padding-horizontal-medium;
+    }
+
+    &.large .bar {
+      width: $drawer-bar-width-large;
+      padding: $drawer-bar-padding-vertical-large $drawer-bar-padding-horizontal-large;
+    }
+  }
+
+}
+
+// Slide and Push mode animation
+// ------------------------------------------------------------------------
+.animation {
+  -webkit-transition: -webkit-transform 0.3s ease-out;
+  transition: transform 0.3s ease-out;
+}
+
+// Reveal animation
+// ------------------------------------------------------------------------
+.reveal {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  overflow: hidden;
+  -webkit-transition: width 0.3s ease-out;
+  transition: width 0.3s ease-out;
+
+  .bar {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+}
+
+// Flip modifier
+.flip > .reveal {
+  right: 0;
+  left: auto;
+
+  .bar {
+    left: auto;
+    right: 0;
+  }
+}
+
+// Open
+.small.open > .reveal {
+  width: $drawer-bar-width-small;
+}
+
+.medium.open > .reveal {
+  width: $drawer-bar-width-medium;
+}
+
+.large.open > .reveal {
+  width: $drawer-bar-width-large;
+}
+
+// //Medium and larger screens 
+@media (min-width: $breakpoint-medium) {
+  
+  .small.open > .reveal {
+    width: $drawer-bar-width-small;
+  }
+
+  .medium.open > .reveal {
+    width: $drawer-bar-width-medium;
+  }
+
+  .large.open > .reveal {
+    width: $drawer-bar-width-large;
+  }
+
+}
+
+// Close
+// ------------------------------------------------------------------------
+.close {
+  position: absolute;
+  z-index: $drawer-z-index;
+  top: $drawer-close-position;
+  right: $drawer-close-position;
+  padding: $drawer-close-padding;
+}
+
+// Overlay
+// ------------------------------------------------------------------------
+.overlay {
+
+  &.drawer::before {
+    content: "";
+    position: absolute;
+    background: $drawer-overlay-background;
+    opacity: 0;
+    -webkit-transition: opacity 0.15s linear;
+    transition: opacity 0.5s linear;
+  }
+
+  &.open {
+    width: 100vw;
+    touch-action: none;
+
+    &.drawer::before {
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      opacity: 1;      
+    }
+  } 
+}
+
+body.overlay {
+  width: 100vw;
+  touch-action: none;
+}
+
+:global #root {
+  position: relative;
+  left: 0;
+  -webkit-transition: left 0.3s ease-out;
+  transition: left 0.3s ease-out;
+  -webkit-overflow-scrolling: touch;  
+}
+
+
+// Container
+// ------------------------------------------------------------------------
+.container {
+  overflow-x: hidden;
+
+  &.overlay {
+    overflow: hidden;
+
+    :global #root {
+      overflow-y: hidden;
+    }
+  }
+
+  &.animation {
+
+    &.small {
+      :global #root {
+        left: $drawer-bar-width-small;
+      }
+    }
+
+    &.medium {
+      :global #root {
+        left: $drawer-bar-width-medium;
+      }
+    }
+
+    &.large {
+      :global #root {
+        left: $drawer-bar-width-large;
+      }
+    }
+
+    &.flip {
+
+      &.small {
+        :global #root {
+          left: (-$drawer-bar-width-small);
+        }
+      }
+
+      &.medium {
+        :global #root {
+          left: (-$drawer-bar-width-medium);
+        }
+      }
+
+      &.large {
+        :global #root {
+          left: (-$drawer-bar-width-large);
+        }  
+      }
+    }
+  }
+}
+//Medium and larger screens 
+@media (min-width: $breakpoint-medium) {
+  
+  .container {
+
+    &.animation {
+  
+      &.small {
+        :global #root {
+          left: $drawer-bar-width-small;
+        }
+      }
+
+      &.medium {
+        :global #root {
+          left: $drawer-bar-width-medium;
+        }
+      }
+
+      &.large {
+        :global #root {
+          left: $drawer-bar-width-large;
+        }
+      }
+  
+      &.flip {
+
+        &.small {
+          :global #root {
+            left: (-$drawer-bar-width-small);
+          }
+        }
+
+        &.medium {
+          :global #root {
+            left: (-$drawer-bar-width-medium);
+          }
+        }
+
+        &.large {
+          :global #root {
+            left: (-$drawer-bar-width-large);
+          }
+        }
+      }
+    }
+  }  
+}

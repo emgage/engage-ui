@@ -45,6 +45,7 @@ import ModalState from './componentState/ModalState';
 import PickerState from './componentState/PickerState';
 import CaptionState from './componentState/CaptionState';
 import SpinnerState from './componentState/SpinnerState';
+import DrawerState from './componentState/DrawerState';
 
 const intialState: IDocumentAppState = {
   components: [
@@ -93,6 +94,7 @@ const intialState: IDocumentAppState = {
     PickerState,
     CaptionState,
     SpinnerState,
+    DrawerState,
   ],
 };
 
