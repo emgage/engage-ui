@@ -428,11 +428,13 @@ class App extends React.Component<{}, State> {
           <Table
             data={tableData}
             column={columnConfig}
+            hideRow={{ status: 'Deleted' }}
             filterData={this.state.filterConfig}
             defaultSortField="name"
             defaultSortOrder="asc"
             selectRow="checkbox"
             rowAction={rowActionConfig}
+            selectCallbackValue="id"
             selectRowCallback={(val: any) => this.setState({ bulkAction: { selectedRow: val } })}
             bordered highlight sorting />
         </div>
