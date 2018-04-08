@@ -3,7 +3,6 @@ declare module 'react-page-layout';
 declare module 'react-perf-tool';
 declare module 'react-prism';
 declare module 'react-router-dom';
-declare module 'velocity-animate';
 
 declare module 'hoist-non-react-statics' {
   import {ComponentClass} from 'react';

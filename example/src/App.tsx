@@ -1,5 +1,4 @@
 import * as React from 'react';
-import ReactDataExample from './ReactDataExample';
 import SingleDatePickerWrapper from './SingleDatePickerWrapper';
 import DateRangePickerWrapper from './DateRangePickerWrapper';
 import PickerAutoSuggestExample from './PickerAutoSuggestExample';
@@ -618,13 +617,7 @@ class App extends React.Component<{}, State> {
           <Link>Tooltip 2</Link>
         </Tooltip>
         <div>
-
-          <ReactDataExample
-            columns={this.state.columns}
-            rowGetter={this.rowGetter}
-            rowsCount={this.state.rows.length}
-            minHeight={2}
-          /> */}
+*/}
           <Heading>Popover</Heading>
           <TextField
             id="TestName"
