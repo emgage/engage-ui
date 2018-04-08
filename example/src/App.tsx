@@ -28,6 +28,7 @@ import {
   // OffCanvas,
   Panel,
   Picker,
+  // Popover,
   Select,
   TextField,
   Tooltip,
@@ -41,6 +42,8 @@ import {
   ModalHeader,
   Caption,
   Spinner,
+  Table,
+  TableColumnConfig,
 } from '../../src/components';
 
 interface State {
@@ -50,6 +53,9 @@ interface State {
   columns: object[];
   rows: object[];
   isMenuOpened: boolean;
+  popoverActive: boolean;
+  bulkAction: any;
+  filterConfig: any;
   modalOpen: boolean;
   drawer: boolean;
   drawerContent: any;
@@ -76,6 +82,15 @@ class App extends React.Component<{}, State> {
         { id: 3, title: 'Title 3', count: 3 },
       ],
       isMenuOpened: false,
+      popoverActive: false,
+      bulkAction: {
+        selectedRow: [],
+      },
+      filterConfig: {
+        searchKey: '',
+        search: false,
+        field: 'name',
+      },
       drawer: false,
       drawerContent: {
         content1: false,
@@ -94,7 +109,7 @@ class App extends React.Component<{}, State> {
   chipRemove = () => {
     console.log('chip removed...');
   }
-  
+
   toggleModal = () => {
     this.setState({ modalOpen: !this.state.modalOpen });
   }
@@ -106,7 +121,7 @@ class App extends React.Component<{}, State> {
   onModalClose = () => {
     console.log('Modal close');
   }
-  
+
   onDrawerOpen = () => {
     console.log('drawer open');
   }
@@ -154,6 +169,95 @@ class App extends React.Component<{}, State> {
       { key: 4, image: 'http://www.roanokecreditrepair.com/wp-content/uploads/2016/06/Headshot-1.png', name: 'Person McPerson', description: 'Person McPerson', email: 'yahoogmail@gmail.com' },
       { key: 5, image: 'https://d38zhw9ti31loc.cloudfront.net/wp-content/uploads/2013/07/Crystal-headshot-new.jpg', name: 'Laura Person', description: 'Laura Person', email: 'yahooldjadslkjgmail@gmail.com' },
       { key: 6, image: 'https://d38zhw9ti31loc.cloudfront.net/wp-content/uploads/2013/07/Crystal-headshot-new.jpg', name: 'LauraPerson', description: 'Laura Person', email: 'slkjgmail@gmail.com' },
+    ];
+
+    const tableData = [
+      {
+        id: 1,
+        name: 'Dheeraj',
+        description: 'Test description',
+        status: 'Published',
+        type: 'admin',
+      }, {
+        id: 2,
+        name: 'Dheeraj4',
+        description: 'Test description2',
+        status: 'Published',
+        type: 'admin',
+      }, {
+        id: 3,
+        name: 'Dheeraj3',
+        description: 'Test description3',
+        status: 'Deleted',
+        type: 'admin',
+      }, {
+        id: 4,
+        name: 'Dheeraj2',
+        description: 'Test description2',
+        status: 'Deleted',
+        type: 'admin',
+      },
+    ];
+
+    /*
+      label: Table header lable which will be visible
+      key: Match it with json data, this will help to get specific value from the data
+      headerValue: In case of custom component, if any value is required, here it can be stored
+      classname: any custom classname, this can be used to set width or any other style
+      style: same like class but for inline styling
+      noSort: if sorting="all" & we want to disable sorting of specifc column
+      sort: Enable sorting for specific column
+      injectBody: To inject custom component in td
+      injectHeader: To inject custom component in th
+    */
+    const columnConfig: TableColumnConfig[] = [
+      {
+        label: 'Name',
+        key: 'name',
+        className: '',
+        style: { width: '200px' },
+        sort: true,
+      }, {
+        label: 'Description',
+        key: 'description',
+        style: { width: 'auto' },
+      }, {
+        label: 'Status',
+        key: 'status',
+        sort: true,
+        style: { width: '150px' },
+        injectBody: (value: any) => <Badge status={value.status === 'Published' ? 'success' : 'warning'}>{value.status}</Badge>,
+      }, {
+        label: 'Type',
+        key: 'type',
+        style: { width: '100px' },
+      },
+    ];
+
+    /* 
+      Filtering table data
+      mode: Mode of filteration, right now we have only one which is search
+      search: If mode is search then it holds search config
+        event: When the search should fire, on click or on input
+        field: Name of field by which search should happen
+        placeholder: Filed placeholder
+        title: Title of field
+    */
+
+    const rowActionConfig = [
+      {
+        label: 'View',
+        action: (value: any) => { console.log('View:', value); },
+      }, {
+        label: 'Delete',
+        action: (value: any) => { console.log('Delete:', value); },
+      }, {
+        label: 'Archive',
+        action: (value: any) => { console.log('Archive:', value); },
+      }, {
+        label: 'Version History',
+        action: (value: any) => { console.log('Version:', value); },
+      },
     ];
 
     return (
@@ -333,6 +437,30 @@ class App extends React.Component<{}, State> {
         <PickerAutoSuggestExample />
         <SingleDatePickerWrapper />
         <DateRangePickerWrapper />
+
+        <div style={{ marginTop: '20px', marginBottom: '20px' }}>
+          <Caption style={{ color: 'red' }}>This is Table field</Caption>
+            <Button>
+              { `Delete ${this.state.bulkAction.selectedRow.length ? `(${this.state.bulkAction.selectedRow.length})` : ''}` }
+            </Button>
+
+            <div className="fieldGroup">
+              <input type="text" value={this.state.filterConfig.searchKey} onChange={(event: any) => this.setState({ filterConfig: { ...this.state.filterConfig, searchKey: event.target.value, search: false } })} />
+              <div className="fieldGroupAddon">
+                  <Button onClick={(val: any) => this.setState({ filterConfig: { ...this.state.filterConfig, search: true } })}>Search</Button>
+              </div>
+            </div>
+          <Table
+            data={tableData}
+            column={columnConfig}
+            filterData={this.state.filterConfig}
+            defaultSortField="name"
+            defaultSortOrder="asc"
+            selectRow="checkbox"
+            rowAction={rowActionConfig}
+            selectRowCallback={(val: any) => this.setState({ bulkAction: { selectedRow: val } })}
+            bordered highlight sorting />
+        </div>
         <div>
           <Button onClick={this.toggleDrawer}>Drawer open</Button>
           <Drawer
