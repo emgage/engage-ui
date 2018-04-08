@@ -43,3 +43,5 @@ export const MODAL = 'PModal';
 export const CAPTION = 'PCaption';
 export const SPINNER = 'PSpinner';
 export const TABLE = 'PTable';
+export const DRAWER = 'PDrawer';
+export const DRAWERCONTENT = 'PDrawerContent';

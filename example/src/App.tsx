@@ -16,6 +16,8 @@ import {
   ClickableChip,
   Column,
   DisplayText,
+  Drawer,
+  DrawerContent,
   FlexBox,
   FormLayout,
   Heading,
@@ -23,7 +25,7 @@ import {
   List,
   Item,
   Loading,
-  OffCanvas,
+  // OffCanvas,
   Panel,
   Picker,
   // Popover,
@@ -35,6 +37,9 @@ import {
   Video,
   VideoType,
   Modal,
+  ModalBody,
+  ModalFooter,
+  ModalHeader,
   Caption,
   Spinner,
   Table,
@@ -51,6 +56,10 @@ interface State {
   popoverActive: boolean;
   bulkAction: any;
   filterConfig: any;
+  modalOpen: boolean;
+  drawer: boolean;
+  drawerContent: any;
+  activeDrawerId: string;
 }
 
 class App extends React.Component<{}, State> {
@@ -58,6 +67,7 @@ class App extends React.Component<{}, State> {
   constructor(props: any) {
     super(props);
     this.state = {
+      modalOpen: false,
       appName: '',
       appDescription: '',
       appTextCounter: '',
@@ -81,6 +91,12 @@ class App extends React.Component<{}, State> {
         search: false,
         field: 'name',
       },
+      drawer: false,
+      drawerContent: {
+        content1: false,
+        content2: true,
+      },
+      activeDrawerId: 'content1',
     };
   }
 
@@ -92,6 +108,30 @@ class App extends React.Component<{}, State> {
 
   chipRemove = () => {
     console.log('chip removed...');
+  }
+
+  toggleModal = () => {
+    this.setState({ modalOpen: !this.state.modalOpen });
+  }
+
+  onModalOpen = () => {
+    console.log('Modal open');
+  }
+
+  onModalClose = () => {
+    console.log('Modal close');
+  }
+
+  onDrawerOpen = () => {
+    console.log('drawer open');
+  }
+
+  onDrawerClose = () => {
+    console.log('drawer close');
+  }
+
+  toggleDrawer = () => {
+    this.setState({ drawer: !this.state.drawer });
   }
 
   render() {
@@ -230,7 +270,32 @@ class App extends React.Component<{}, State> {
         <Badge children={'Badge'} progress={'incomplete'} />
         <Badge children={'Badge'} progress={'partiallyComplete'} />
         <Badge children={'Badge'} progress={'complete'} />
+
         <div>
+          <Caption style={{ color: 'red' }}>This is modal</Caption>
+          <Button onClick={this.toggleModal}>Medium button</Button>
+          <Modal
+            active={this.state.modalOpen}
+            toggle={this.toggleModal}
+            onOpen={this.onModalOpen}
+            onClose={this.onModalClose}
+            width="medium"
+            closeOnBackgroud
+            closeOnEsc
+            closeButton>
+            <ModalHeader>Modal title</ModalHeader>
+            <ModalBody modalOverflow>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae ex pellentesque, pretium lorem vel, tempor ipsum. Phasellus suscipit lacus in velit malesuada, at bibendum mi gravida. Sed cursus nisi sem, non pellentesque ligula euismod eget. Sed quis fringilla nibh, at vestibulum turpis. Donec sed sagittis sapien. Nam quis ex quis nulla porta molestie. Vestibulum eu lorem porta, facilisis orci a, tempor quam. Suspendisse et sollicitudin nulla. Aenean consectetur imperdiet leo nec condimentum. Aliquam scelerisque magna ut tortor accumsan condimentum.
+
+              Nulla quis ante sit amet leo lobortis rhoncus. Cras mollis quis leo nec tincidunt. Aliquam blandit est vitae leo ultrices, ut egestas sapien pharetra. Suspendisse nec aliquet orci. Suspendisse rutrum odio sed neque scelerisque, ut consectetur erat tincidunt. Duis ultrices metus eget ante posuere eleifend. Ut luctus felis neque, sit amet efficitur neque maximus id. Aliquam porta, tellus ut pellentesque facilisis, odio neque maximus erat, venenatis semper nisi metus id augue. Cras vel sem eu elit blandit laoreet id vitae tortor. Morbi sit amet mi rutrum, sagittis enim lacinia, dictum turpis.
+            </ModalBody>
+            <ModalFooter>
+              <Button onClick={this.toggleModal}>Close</Button>
+            </ModalFooter>
+          </Modal>
+        </div>
+
+        {/* <div>
           <h1>This is my Modal Component!!</h1>
           <Modal
             id="test1"
@@ -360,7 +425,7 @@ class App extends React.Component<{}, State> {
             ea commodo consequat. Duis aute irure dolor in reprehenderit in
               </p>
           </Modal>
-        </div>
+        </div> */}
         <br />
         <Caption style={{ color: 'red' }}>This is Caption</Caption>
         <br />
@@ -397,344 +462,40 @@ class App extends React.Component<{}, State> {
             bordered highlight sorting />
         </div>
         <div>
-          <OffCanvas width="small" closeButton activator={<Button>OffCanvas Small</Button>} >
-            <p>Reveal Test</p>
-            <ul>
-              <li>Link 1</li>
-              <li>Link 2</li>
-              <li>Link 3</li>
-              <li>Link 4</li>
-              <li>Link 5</li>
-            </ul>
-          </OffCanvas>
-          <OffCanvas overlay width="medium" closeButton activator={<Button>OffCanvas Medium Overlay</Button>} >
-            <p>Reveal Test</p>
-            <ul>
-              <li>Link 1</li>
-              <li>Link 2</li>
-              <li>Link 3</li>
-              <li>Link 4</li>
-              <li>Link 5</li>
-            </ul>
-          </OffCanvas>
-          <OffCanvas width="large" overlay flip closeButton activator={<Button>OffCanvas Large Overlay Flip</Button>} >
-            <p>Reveal Test</p>
-            <ul>
-              <li>Link 1</li>
-              <li>Link 2</li>
-              <li>Link 3</li>
-              <li>Link 4</li>
-              <li>Link 5</li>
-            </ul>
-          </OffCanvas>
-          <OffCanvas width="800px" closeButton activator={<Button>OffCanvas 800px</Button>} >
-            <p>Reveal Test</p>
-            <ul>
-              <li>Link 1</li>
-              <li>Link 2</li>
-              <li>Link 3</li>
-              <li>Link 4</li>
-              <li>Link 5</li>
-            </ul>
-          </OffCanvas>
-          <OffCanvas width="800px" closeButton flip activator={<Button>OffCanvas Flip 800px</Button>} >
-            <p>Reveal Test</p>
-            <ul>
-              <li>Link 1</li>
-              <li>Link 2</li>
-              <li>Link 3</li>
-              <li>Link 4</li>
-              <li>Link 5</li>
-            </ul>
-          </OffCanvas>
-        </div>
-        <div>
-          <OffCanvas mode="slide" width="small" closeButton activator={<Button>OffCanvas Slide Small</Button>} >
-            <p>Reveal Test</p>
-            <ul>
-              <li>Link 1</li>
-              <li>Link 2</li>
-              <li>Link 3</li>
-              <li>Link 4</li>
-              <li>Link 5</li>
-            </ul>
-          </OffCanvas>
-          <OffCanvas mode="slide" overlay width="medium" closeButton activator={<Button>OffCanvas Slide Medium Overlay</Button>} >
-            <p>Reveal Test</p>
-            <ul>
-              <li>Link 1</li>
-              <li>Link 2</li>
-              <li>Link 3</li>
-              <li>Link 4</li>
-              <li>Link 5</li>
-            </ul>
-          </OffCanvas>
-          <OffCanvas mode="slide" width="large" overlay flip closeButton activator={<Button>OffCanvas Slide Large Overlay Flip</Button>} >
-            <p>Reveal Test</p>
-            <ul>
-              <li>Link 1</li>
-              <li>Link 2</li>
-              <li>Link 3</li>
-              <li>Link 4</li>
-              <li>Link 5</li>
-            </ul>
-          </OffCanvas>
-          <OffCanvas mode="slide" width="800px" closeButton activator={<Button>OffCanvas Slide 800px</Button>} >
-            <p>Reveal Test</p>
-            <ul>
-              <li>Link 1</li>
-              <li>Link 2</li>
-              <li>Link 3</li>
-              <li>Link 4</li>
-              <li>Link 5</li>
-            </ul>
-          </OffCanvas>
-          <OffCanvas mode="slide" width="800px" closeButton flip activator={<Button>OffCanvas Slide Flip 800px</Button>} >
-            <p>Reveal Test</p>
-            <ul>
-              <li>Link 1</li>
-              <li>Link 2</li>
-              <li>Link 3</li>
-              <li>Link 4</li>
-              <li>Link 5</li>
-            </ul>
-          </OffCanvas>
-        </div>
-        <div>
-          <OffCanvas mode="push" width="small" closeButton activator={<Button>OffCanvas Push Small</Button>} >
-            <p>Reveal Test</p>
-            <ul>
-              <li>Link 1</li>
-              <li>Link 2</li>
-              <li>Link 3</li>
-              <li>Link 4</li>
-              <li>Link 5</li>
-            </ul>
-          </OffCanvas>
-          <OffCanvas mode="push" overlay width="medium" closeButton activator={<Button>OffCanvas Push Medium Overlay</Button>} >
-            <p>Reveal Test</p>
-            <ul>
-              <li>Link 1</li>
-              <li>Link 2</li>
-              <li>Link 3</li>
-              <li>Link 4</li>
-              <li>Link 5</li>
-            </ul>
-          </OffCanvas>
-          <OffCanvas mode="push" width="large" overlay flip closeButton activator={<Button>OffCanvas Push Large Overlay Flip</Button>} >
-            <p>Reveal Test</p>
-            <ul>
-              <li>Link 1</li>
-              <li>Link 2</li>
-              <li>Link 3</li>
-              <li>Link 4</li>
-              <li>Link 5</li>
-            </ul>
-          </OffCanvas>
-          <OffCanvas mode="push" width="800px" closeButton activator={<Button>OffCanvas Push 800px</Button>} >
-            <p>Reveal Test</p>
-            <ul>
-              <li>Link 1</li>
-              <li>Link 2</li>
-              <li>Link 3</li>
-              <li>Link 4</li>
-              <li>Link 5</li>
-            </ul>
-          </OffCanvas>
-          <OffCanvas mode="push" width="800px" closeButton flip activator={<Button>OffCanvas Push Flip 800px</Button>} >
-            <p>Reveal Test</p>
-            <ul>
-              <li>Link 1</li>
-              <li>Link 2</li>
-              <li>Link 3</li>
-              <li>Link 4</li>
-              <li>Link 5</li>
-            </ul>
-          </OffCanvas>
-        </div>
-        <div>
-          <OffCanvas mode="reveal" width="small" closeButton activator={<Button>OffCanvas Reveal Small</Button>} >
-            <p>Reveal Test</p>
-            <ul>
-              <li>Link 1</li>
-              <li>Link 2</li>
-              <li>Link 3</li>
-              <li>Link 4</li>
-              <li>Link 5</li>
-            </ul>
-          </OffCanvas>
-          <OffCanvas mode="reveal" overlay width="medium" closeButton activator={<Button>OffCanvas Reveal Medium Overlay</Button>} >
-            <p>Reveal Test</p>
-            <ul>
-              <li>Link 1</li>
-              <li>Link 2</li>
-              <li>Link 3</li>
-              <li>Link 4</li>
-              <li>Link 5</li>
-            </ul>
-          </OffCanvas>
-          <OffCanvas mode="reveal" width="large" overlay flip closeButton activator={<Button>OffCanvas Reveal Large Overlay Flip</Button>} >
-            <p>Reveal Test</p>
-            <ul>
-              <li>Link 1</li>
-              <li>Link 2</li>
-              <li>Link 3</li>
-              <li>Link 4</li>
-              <li>Link 5</li>
-            </ul>
-          </OffCanvas>
-          <OffCanvas mode="reveal" width="800px" closeButton activator={<Button>OffCanvas Reveal 800px</Button>} >
-            <p>Reveal Test</p>
-            <ul>
-              <li>Link 1</li>
-              <li>Link 2</li>
-              <li>Link 3</li>
-              <li>Link 4</li>
-              <li>Link 5</li>
-            </ul>
-          </OffCanvas>
-          <OffCanvas mode="reveal" width="800px" closeButton flip activator={<Button>OffCanvas Reveal Flip 800px</Button>} >
-            <p>Reveal Test</p>
-            <ul>
-              <li>Link 1</li>
-              <li>Link 2</li>
-              <li>Link 3</li>
-              <li>Link 4</li>
-              <li>Link 5</li>
-            </ul>
-          </OffCanvas>
-        </div>
-        <OffCanvas closeButton activator={<Button>OffCanvas</Button>} >
-          <p>Reveal Test</p>
-          <ul>
-            <li>Link 1</li>
-            <li>Link 2</li>
-            <li>Link 3</li>
-            <li>Link 4</li>
-            <li>Link 5</li>
-          </ul>
-        </OffCanvas>
-        <OffCanvas mode="slide" closeButton activator={<Button>OffCanvas Slide</Button>} >
-          <p>Reveal Test</p>
-          <ul>
-            <li>Link 1</li>
-            <li>Link 2</li>
-            <li>Link 3</li>
-            <li>Link 4</li>
-            <li>Link 5</li>
-          </ul>
-        </OffCanvas>
-        <OffCanvas mode="push" closeButton activator={<Button>OffCanvas Push</Button>} >
-          <p>Reveal Test</p>
-          <ul>
-            <li>Link 1</li>
-            <li>Link 2</li>
-            <li>Link 3</li>
-            <li>Link 4</li>
-            <li>Link 5</li>
-          </ul>
-        </OffCanvas>
-        <OffCanvas mode="reveal" closeButton activator={<Button>OffCanvas Reveal</Button>} >
-          <p>Reveal Test</p>
-          <ul>
-            <li>Link 1</li>
-            <li>Link 2</li>
-            <li>Link 3</li>
-            <li>Link 4</li>
-            <li>Link 5</li>
-          </ul>
-        </OffCanvas>
+          <Button onClick={this.toggleDrawer}>Drawer open</Button>
+          <Drawer
+            toggleDrawer={this.toggleDrawer}
+            active={ this.state.drawer }
+            activeContentId={this.state.activeDrawerId}
+            onOpen={this.onDrawerOpen}
+            onClose={this.onDrawerClose}
+            mode="push"
+            width="large"
+            overlay
+            closeButton>
+            <DrawerContent id="content1" mode="slide">
+              <p>Reveal Test</p>
+              <ul>
+                <li>Link 1</li>
+                <li>Link 2</li>
+                <li>Link 3</li>
+                <li>Link 4</li>
+                <li>Link 5</li>
+              </ul>
 
-        <OffCanvas overlay closeButton activator={<Button>OffCanvas Overlay</Button>} >
-          <p>Reveal Test</p>
-          <ul>
-            <li>Link 1</li>
-            <li>Link 2</li>
-            <li>Link 3</li>
-            <li>Link 4</li>
-            <li>Link 5</li>
-          </ul>
-        </OffCanvas>
-        <OffCanvas overlay mode="slide" closeButton activator={<Button>OffCanvas Slide Overlay</Button>} >
-          <p>Reveal Test</p>
-          <ul>
-            <li>Link 1</li>
-            <li>Link 2</li>
-            <li>Link 3</li>
-            <li>Link 4</li>
-            <li>Link 5</li>
-          </ul>
-        </OffCanvas>
-        <OffCanvas overlay mode="push" closeButton activator={<Button>OffCanvas Push Overlay</Button>} >
-          <p>Reveal Test</p>
-          <ul>
-            <li>Link 1</li>
-            <li>Link 2</li>
-            <li>Link 3</li>
-            <li>Link 4</li>
-            <li>Link 5</li>
-          </ul>
-        </OffCanvas>
-        <OffCanvas overlay mode="reveal" closeButton activator={<Button>OffCanvas Reveal Overlay</Button>} >
-          <p>Reveal Test</p>
-          <ul>
-            <li>Link 1</li>
-            <li>Link 2</li>
-            <li>Link 3</li>
-            <li>Link 4</li>
-            <li>Link 5</li>
-          </ul>
-        </OffCanvas>
-        <OffCanvas overlay flip closeButton activator={<Button>OffCanvas Overlay Flip</Button>} >
-          <p>Reveal Test</p>
-          <ul>
-            <li>Link 1</li>
-            <li>Link 2</li>
-            <li>Link 3</li>
-            <li>Link 4</li>
-            <li>Link 5</li>
-          </ul>
-        </OffCanvas>
-        <OffCanvas overlay flip mode="slide" closeButton activator={<Button>OffCanvas Slide Overlay Flip</Button>} >
-          <p>Reveal Test</p>
-          <ul>
-            <li>Link 1</li>
-            <li>Link 2</li>
-            <li>Link 3</li>
-            <li>Link 4</li>
-            <li>Link 5</li>
-          </ul>
-        </OffCanvas>
-        <OffCanvas overlay flip mode="push" closeButton activator={<Button>OffCanvas Push Overlay Flip</Button>} >
-          <p>Reveal Test</p>
-          <ul>
-            <li>Link 1</li>
-            <li>Link 2</li>
-            <li>Link 3</li>
-            <li>Link 4</li>
-            <li>Link 5</li>
-          </ul>
-        </OffCanvas>
-        <OffCanvas overlay flip mode="reveal" closeButton activator={<Button>OffCanvas Reveal Overlay Flip</Button>} >
-          <p>Reveal Test</p>
-          <ul>
-            <li>Link 1</li>
-            <li>Link 2</li>
-            <li>Link 3</li>
-            <li>Link 4</li>
-            <li>Link 5</li>
-          </ul>
-        </OffCanvas>
-        <p>This is an inline <OffCanvas closeButton activator={<Link>OffCanvas Default</Link>} >
-          <p>Inline Test</p>
-          <ul>
-            <li>Link 1</li>
-            <li>Link 2</li>
-            <li>Link 3</li>
-            <li>Link 4</li>
-            <li>Link 5</li>
-          </ul>
-        </OffCanvas> trigger</p> */}
+              <Button onClick={ () => this.setState({ activeDrawerId: 'content2' }) }>Content2 open</Button>
+            </DrawerContent>
+
+            <DrawerContent id="content2" mode="slide">
+              I am inside drawer content 2
+
+              <Button onClick={ () => this.setState({ activeDrawerId: 'content1' }) }>Content1 open</Button>
+              <Button onClick={ () => this.setState({ drawer: false }) }>Close</Button>
+            </DrawerContent>
+          </Drawer>
+
+        </div>
+
         <p> Some text with a
           <Tooltip content="This order has shipping labels.">
             <Link>Tooltip 1</Link>

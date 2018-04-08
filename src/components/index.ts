@@ -71,6 +71,12 @@ export {
 } from './DisplayText';
 
 export {
+  Drawer,
+  DrawerContent,
+  DrawerProps
+} from './Drawer';
+
+export {
   default as FormLayout,
   Props as FormLayoutProps,
 } from './FormLayout';
@@ -249,7 +255,10 @@ export {
 } from './VisuallyHidden';
 
 export {
-  default as Modal,
+  Modal,
+  ModalBody,
+  ModalFooter,
+  ModalHeader,
   Props as ModalProps,
 } from './Modal';
 
