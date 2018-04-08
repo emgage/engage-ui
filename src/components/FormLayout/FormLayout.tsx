@@ -22,7 +22,7 @@ class FormLayout extends React.PureComponent<Props, never> {
       children,
       style,
       theme,
-      ...otherProps,
+      ...otherProps
     } = this.props;
 
     return (

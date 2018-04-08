@@ -14,7 +14,7 @@ const item = (props: Props)  => {
   const {
     children,
     theme,
-    ...otherProps,
+    ...otherProps
   } = props;
 
   return (

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from 'react-css-themr';
-import autobind from '@shopify/javascript-utilities/autobind';
+import { autobind } from '@shopify/javascript-utilities/decorators';
 import { addEventListener, removeEventListener } from '@shopify/javascript-utilities/events';
 import { getRectForNode, Rect } from '@shopify/javascript-utilities/geometry';
 import { closest } from '@shopify/javascript-utilities/dom';
