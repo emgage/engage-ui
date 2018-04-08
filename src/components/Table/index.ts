@@ -7,6 +7,7 @@ import TableHeader from './TableHeader';
 import TableRow from './TableRow';
 
 export { Props } from './Table';
+export { ColumnConfig } from './interface';
 export {
     Table,
     TableBody,

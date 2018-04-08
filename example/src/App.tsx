@@ -38,6 +38,7 @@ import {
   Caption,
   Spinner,
   Table,
+  TableColumnConfig,
 } from '../../src/components';
 
 interface State {
@@ -169,7 +170,7 @@ class App extends React.Component<{}, State> {
       injectBody: To inject custom component in td
       injectHeader: To inject custom component in th
     */
-    const columnConfig = [
+    const columnConfig: TableColumnConfig[] = [
       {
         label: 'Name',
         key: 'name',

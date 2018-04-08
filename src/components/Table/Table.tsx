@@ -12,21 +12,23 @@ import TableBody from './TableBody';
 import TableRow from './TableRow';
 import TableData from './TableData';
 
+import { ColumnConfig } from './interface';
 import * as baseTheme from './Table.scss';
 
 export type RowSelection = 'checkbox' | 'radio';
+export type SortOrder = 'asc' | 'desc';
 
 export interface Props {
   // To make table bordered
   bordered?: boolean;
   // Column config, which renders the header
-  column?: any;
+  column: ColumnConfig[];
   // Get the data & use it to populate tds
   data?: any;
   // On load by default it will be sorted by this field
   defaultSortField?: string;
   // Value could be 'asc' || 'desc'
-  defaultSortOrder?: string;
+  defaultSortOrder?: SortOrder;
   // Filter config, if data needs to be filtered by any mode like search
   filterData?: any;
   // Highlight rows on hover

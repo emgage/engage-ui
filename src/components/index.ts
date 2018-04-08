@@ -203,6 +203,7 @@ export {
   TableHeader,
   TableRow,
   Props as TableProps,
+  ColumnConfig as TableColumnConfig,
 } from './Table';
 
 export {
