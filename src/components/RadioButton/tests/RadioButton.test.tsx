@@ -36,7 +36,7 @@ describe('<RadioButton />', () => {
         const radiobuttonWrapper = mount(
                                         <RadioButton label="RadioButton" onChange={spy} theme={theme} />
                                     );
-        (radiobuttonWrapper.find('input') as any).node.checked = true;
+        (radiobuttonWrapper.find('input') as any).instance().checked = true;
         radiobuttonWrapper.find('input').simulate('change');
         expect(spy).toHaveBeenCalledWith(true);
         expect(radiobuttonWrapper.find('label')).toHaveLength(1);
@@ -531,7 +531,7 @@ describe('<RadioButton />', () => {
                                         <RadioButton label="RadioButton" id="Radioid" name="Radioname" value="Radiovalue" labelHidden helpText="Some Help" checked disabled onFocus={spy} onChange={spy} onBlur={spy} theme={theme} />
                                      );
         const helpTextID = radiobuttonWrapper.find('input').prop<string>('aria-describedby');
-        (radiobuttonWrapper.find('input') as any).node.checked = true;
+        (radiobuttonWrapper.find('input') as any).instance().checked = true;
         radiobuttonWrapper.find('input').simulate('change');
         radiobuttonWrapper.find('input').simulate('focus');
         radiobuttonWrapper.find('input').simulate('blur');

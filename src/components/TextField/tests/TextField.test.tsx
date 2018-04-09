@@ -39,7 +39,7 @@ describe('<TextField />', () => {
     it('is called with the new value', () => {
       const spy = jest.fn();
       const element = mount(<TextField label="TextField" onChange={spy} />);
-      (element.find('input') as any).node.value = 'two';
+      (element.find('input') as any).instance().value = 'two';
       element.find('input').simulate('change');
       expect(spy).toHaveBeenCalledWith('two');
     });
