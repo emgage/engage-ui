@@ -41,6 +41,10 @@ describe('<Tooltip />', () => {
                                           <Link>Order #1001</Link>
                                       </Tooltip>
                                );
+
+        console.log('typeof tooltipWrapper = ' + typeof tooltipWrapper);
+        console.log('typeof tooltipWrapper.children() = ' + typeof tooltipWrapper.children());
+        console.log('tooltipWrapper.children().prop("children") = ' + typeof tooltipWrapper.children().prop('children'));
         expect(tooltipWrapper.children().prop('children')).toBe('Order #1001');
       });
     });

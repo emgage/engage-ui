@@ -1,8 +1,9 @@
 {
     "setupFiles": [
+        "<rootDir>/config/jest/shim.js",
         "<rootDir>/tests/setup.ts"
     ],
-    "testRegex": ".test.(tsx?|js)$",
+    "testRegex": "Chip.test.(tsx?|js)$",
 
     "rootDir": "../..",
     "roots": [
@@ -21,5 +22,6 @@
     },
     "moduleNameMapper": {
         "\\.(s?css)$": "identity-obj-proxy"
-    }
+    },
+    "verbose": true
 }

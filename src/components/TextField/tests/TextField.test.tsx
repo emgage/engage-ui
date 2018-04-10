@@ -154,15 +154,16 @@ describe('<TextField />', () => {
       const errorID = textField.find('input').prop<string>('aria-describedby');
 
       expect(typeof errorID).toBe('string');
-      expect(textField.find(`#${errorID}`).text()).toBe('Some error');
+      debugger;
+      expect(textField.find(`#${errorID}`).at(0).text()).toBe('Some error');
     });
 
     it('connects the input to both an error and help text', () => {
       const textField = mount(<TextField label="TextField" errors={['Some error']} helpText="Some help" />);
       const descriptions = textField.find('input').prop<string>('aria-describedby').split(' ');
       expect(descriptions.length).toBe(2);
-      expect(textField.find(`#${descriptions[0]}`).text()).toBe('Some error');
-      expect(textField.find(`#${descriptions[1]}`).text()).toBe('Some help');
+      expect(textField.find(`#${descriptions[0]}`).at(0).text()).toBe('Some error');
+      expect(textField.find(`#${descriptions[1]}`).at(0).text()).toBe('Some help');
     });
   });
 
