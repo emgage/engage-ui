@@ -154,7 +154,6 @@ describe('<TextField />', () => {
       const errorID = textField.find('input').prop<string>('aria-describedby');
 
       expect(typeof errorID).toBe('string');
-      debugger;
       expect(textField.find(`#${errorID}`).at(0).text()).toBe('Some error');
     });
 

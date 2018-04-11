@@ -7,7 +7,7 @@ describe('<Select />', () => {
     it('is called with the value of the newly-selected option', () => {
       const spy = jest.fn();
       const element = mount(<Select label="Select" options={['one', 'two']} onChange={spy} />);
-      (element.find('select') as any).instance().value = 'two';
+      (element.find('select') as any).at(1).instance().value = 'two';
       element.find('select').at(1).simulate('change');
       expect(spy).toHaveBeenCalledWith('one');
     });

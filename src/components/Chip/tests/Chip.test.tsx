@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import Chip from '../Chip';
 
 const theme = {
@@ -285,16 +285,16 @@ describe('<Chip />', () => {
     it('simulate chip click event', (event) => {
   const onChipClick = jest.fn(event);
       const onRemoveClick = jest.fn(event);
-      const subject = mount(<Chip theme={theme} transparent={true} clickable={true} removable={true} image={image} onClick={onChipClick} onRemove={onRemoveClick} />);
+      const subject = shallow(<Chip theme={theme} transparent={true} clickable={true} removable={true} image={image} onClick={onChipClick} onRemove={onRemoveClick} />);
       subject.find('a').at(1).simulate('click');
-      expect(onChipClick).toHaveBeenCalledTimes(1);
+      expect(onChipClick).toHaveBeenCalled();
     });
     it('simulate remove button click event', (event) => {
-  const onChipClick = jest.fn(event);
-  const onRemoveClick = jest.fn(event);
+      const onChipClick = jest.fn(event);
+      const onRemoveClick = jest.fn(event);
       const subject = mount(<Chip theme={theme} transparent={true} clickable={true} removable={true} image={image} onClick={onChipClick} onRemove={onRemoveClick} />);
       subject.find('a').at(1).simulate('click');
-      expect(onRemoveClick).toHaveBeenCalledTimes(1);
+      expect(onRemoveClick).toHaveBeenCalled();
     });
   });
 });

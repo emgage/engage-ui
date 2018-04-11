@@ -42,10 +42,7 @@ describe('<Tooltip />', () => {
                                       </Tooltip>
                                );
 
-        console.log('typeof tooltipWrapper = ' + typeof tooltipWrapper);
-        console.log('typeof tooltipWrapper.children() = ' + typeof tooltipWrapper.children());
-        console.log('tooltipWrapper.children().prop("children") = ' + typeof tooltipWrapper.children().prop('children'));
-        expect(tooltipWrapper.children().prop('children')).toBe('Order #1001');
+        expect(tooltipWrapper.childAt(0).children().childAt(0).prop('children')).toBe('Order #1001');
       });
     });
 
