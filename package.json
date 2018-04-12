@@ -24,7 +24,7 @@
     "lint:docs": "node node_modules/tslint/bin/tslint 'docs/**/*.{ts,tsx}' --config tslint.json --exclude \"docs/**/*.{js,jsx}\" --project tsconfig.json",
     "lint-fix:docs": "node node_modules/tslint/bin/tslint --fix 'docs/**/*.{ts,tsx}' --config tslint.json --exclude \"docs/**/*.{js,jsx}\" --project tsconfig.json",
     "test": "node node_modules/jest/bin/jest.js --config ./config/jest/config.json",
-    "test-debug": "node --debug-brk --inspect ./node_modules/.bin/jest -i --config ./config/jest/config.json",
+    "test-debug": "node --inspect-brk ./node_modules/.bin/jest -i --config ./config/jest/config.json",
     "check": "npm-run-all lint build-dev test",
     "build-dev": "node node_modules/webpack/bin/webpack.js",
     "build-release": "node node_modules/webpack/bin/webpack.js -p",

@@ -217,7 +217,7 @@ describe('<Scrollable />', () => {
                                   </Scrollable>
                                 );
 
-      expect(scrollableWrapper.children().prop('children').props.children).toBe('<p>By signing up for the Shopify service (“Service”)</p>');
+      expect(scrollableWrapper.children().prop('children').props.children).toBe('By signing up for the Shopify service (“Service”)');
     });
   });
 });
