@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from 'react-css-themr';
-import autobind from '@shopify/javascript-utilities/autobind';
+import { autobind } from '@shopify/javascript-utilities/decorators';
 import { addEventListener, removeEventListener } from '@shopify/javascript-utilities/events';
 import { closest } from '@shopify/javascript-utilities/dom';
 import { classNames } from '@shopify/react-utilities/styles';
@@ -52,7 +52,7 @@ class Scrollable extends React.Component<Props, State> {
       vertical = true,
       shadow,
       theme,
-      ...rest,
+      ...rest
     } = this.props;
 
     const finalClassName = classNames(

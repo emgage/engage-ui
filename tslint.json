@@ -27,8 +27,8 @@
       true,
       {
         "multiline": {
-          "objects": "always",
-          "arrays": "always",
+          "objects": "ignore",
+          "arrays": "ignore",
           "functions": "never",
           "typeLiterals": "ignore"
         }

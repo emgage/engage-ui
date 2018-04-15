@@ -34,7 +34,7 @@ describe('<Checkbox />', () => {
       const checkboxWrapper = mount(
                                     <Checkbox label="Checkbox" onChange={spy} theme={theme} />
                                    );
-      (checkboxWrapper.find('input') as any).node.checked = true;
+      (checkboxWrapper.find('input') as any).instance().checked = true;
       checkboxWrapper.find('input').simulate('change');
       expect(spy).toHaveBeenCalledWith(true);
       expect(checkboxWrapper.find('label')).toHaveLength(1);

@@ -28,9 +28,10 @@ describe('<FormLayout />', () => {
                                             <TextField label="Account email"/>
                                         </FormLayout>
                                     );
+
         expect(formlayoutWrapper.find('input').length).toBe(2);
-        expect(formlayoutWrapper.children().at(0).key()).toBe('0/.0');
-        expect(formlayoutWrapper.children().at(1).key()).toBe('1/.1');
+        expect(formlayoutWrapper.childAt(0).childAt(0).childAt(0).key()).toBe('0/.0');
+        expect(formlayoutWrapper.childAt(0).childAt(0).childAt(1).key()).toBe('1/.1');
         });
         it('should verify that it has 2 Textfields as children', () => {
         const formlayoutWrapper = mount(
@@ -84,8 +85,9 @@ describe('<FormLayout />', () => {
                                             </Group>
                                             </FormLayout>
                                     );
-        expect(formlayoutWrapper.children().childAt(0).childAt(0).key()).toBe('.0');
-        expect(formlayoutWrapper.children().childAt(0).childAt(1).key()).toBe('.1');
+
+        expect(formlayoutWrapper.childAt(0).children().childAt(0).childAt(0).childAt(0).childAt(0).childAt(0).key()).toBe('.0');
+        expect(formlayoutWrapper.childAt(0).children().childAt(0).childAt(0).childAt(0).childAt(0).childAt(1).key()).toBe('.1');
         });
     });
     describe('Formlayout with condensed option', () => {
@@ -98,13 +100,14 @@ describe('<FormLayout />', () => {
                                             <TextField label="Height" />
                                             <TextField label="Unit" />
                                             </Group>
-                                            </FormLayout>
+                                        </FormLayout>
                                     );
-        expect(formlayoutWrapper.childAt(0).prop('condensed')).toBe(true);
-        expect(formlayoutWrapper.children().childAt(0).childAt(0).key()).toBe('.0');
-        expect(formlayoutWrapper.children().childAt(0).childAt(1).key()).toBe('.1');
-        expect(formlayoutWrapper.children().childAt(0).childAt(2).key()).toBe('.2');
-        expect(formlayoutWrapper.children().childAt(0).childAt(3).key()).toBe('.3');
+
+        expect(formlayoutWrapper.childAt(0).childAt(0).childAt(0).prop('condensed')).toBe(true);
+        expect(formlayoutWrapper.childAt(0).children().childAt(0).childAt(0).childAt(0).childAt(0).childAt(0).key()).toBe('.0');
+        expect(formlayoutWrapper.childAt(0).children().childAt(0).childAt(0).childAt(0).childAt(0).childAt(1).key()).toBe('.1');
+        expect(formlayoutWrapper.childAt(0).children().childAt(0).childAt(0).childAt(0).childAt(0).childAt(2).key()).toBe('.2');
+        expect(formlayoutWrapper.childAt(0).children().childAt(0).childAt(0).childAt(0).childAt(0).childAt(3).key()).toBe('.3');
         });
         it('should verify form layout when condensed is undefined', () => {
         const formlayoutWrapper = mount(
@@ -117,7 +120,7 @@ describe('<FormLayout />', () => {
                                             </Group>
                                         </FormLayout>
                                     );
-        expect(formlayoutWrapper.childAt(0).prop('condensed')).toBeFalsy();
+        expect(formlayoutWrapper.childAt(0).childAt(0).childAt(0).prop('condensed')).toBeFalsy();
         });
         it('should verify form layout when condensed is false', () => {
         const formlayoutWrapper = mount(<FormLayout>
@@ -129,7 +132,8 @@ describe('<FormLayout />', () => {
                                         </Group>
                                     </FormLayout>
                                     );
-        expect(formlayoutWrapper.childAt(0).prop('condensed')).toBe(false);
+
+        expect(formlayoutWrapper.childAt(0).childAt(0).childAt(0).prop('condensed')).toBe(false);
         });
     });
     describe('Formlayout with Theme applied', () => {
