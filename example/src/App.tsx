@@ -32,6 +32,7 @@ import {
   TextField,
   Tooltip,
   ValidatedTextField,
+  ValidatedSelectField,
   ValidatedForm,
   Video,
   VideoType,
@@ -48,6 +49,7 @@ import {
 interface State {
   appName?: string;
   appDescription: string;
+  appCity: string;
   appTextCounter: string;
   columns: object[];
   rows: object[];
@@ -69,6 +71,7 @@ class App extends React.Component<{}, State> {
       modalOpen: false,
       appName: '',
       appDescription: '',
+      appCity: '',
       appTextCounter: '',
       columns: [
         { key: 'id', name: 'ID' },
@@ -632,7 +635,10 @@ class App extends React.Component<{}, State> {
             autoSuggest
             moreInfoComponent={<Button children="ranmal" />}
           />
-          <ValidatedForm>
+          <ValidatedForm
+            onSubmitError={(value: [any], error: Error) => console.log('value:', value, 'error:', error)}
+            onSubmit={(value: [any]) => console.log('Submit Value:', value)}
+          >
 
             <Heading>App Basics</Heading>
 
@@ -642,7 +648,6 @@ class App extends React.Component<{}, State> {
             <FormLayout>
               <ValidatedTextField
                 id="AppName"
-                required={true}
                 label="App Name"
                 placeholder=""
                 helpText="We recommend keeping your app name under 23 characters."
@@ -668,9 +673,23 @@ class App extends React.Component<{}, State> {
                   { required: true, message: 'App Description is required.' },
                 ]}
               />
+
+              <ValidatedSelectField
+                id="appCity"
+                required={true}
+                name="Select city"
+                label="Select city"
+                options={[{ value: 'xyz', label: 'xyz' }, { value: 'abc', label: 'abc' }]}
+                value={this.state.appCity}
+                onChange={this.valueUpdater('appCity')}
+                validateTrigger={['onBlur']}
+                validateRules={[
+                  { required: true, message: 'City is required.' },
+                ]}
+              />
               <ButtonGroup>
                 <Button>Cancel</Button>
-                <Button primary>Next</Button>
+                <Button primary submit>Next</Button>
               </ButtonGroup>
             </FormLayout>
           </ValidatedForm>

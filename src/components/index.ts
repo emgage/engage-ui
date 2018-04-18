@@ -240,6 +240,11 @@ export {
 } from './ValidatedTextField';
 
 export {
+  default as ValidatedSelectField,
+  Props as ValidatedSelectFieldProps,
+} from './ValidatedSelectField';
+
+export {
   default as Video,
   Props as VideoProps,
   VideoType,
