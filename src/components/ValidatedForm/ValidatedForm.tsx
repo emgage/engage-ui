@@ -11,12 +11,13 @@ export interface Props {
 class ValidatedForm extends React.Component<Props, {}> {
   onSubmit = (event: any) => {
     event.preventDefault();
+    const { form, onSubmit, onSubmitError } = this.props;
 
-    this.props.form.validateFields((error: Error, values: [any]) => {
-      if (!error) {
-        this.props.onSubmit(values);
-      } else {
-        this.props.onSubmitError(values, error);
+    form.validateFields((error: Error, values: [any]) => {
+      if (!error && onSubmit) {
+        onSubmit(values);
+      } else if (onSubmitError) {
+        onSubmitError(values, error);
       }
     });
   }
