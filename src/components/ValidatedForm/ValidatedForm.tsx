@@ -5,7 +5,7 @@ export interface Props {
   form: {
     getFieldProps: any,
     getFieldError: any,
-    validateFieldsAndScroll: any,
+    validateFields: any,
   };
   style?: React.CSSProperties;
   onSubmit: (values: [any]) => void;
@@ -15,7 +15,7 @@ export interface Props {
 class ValidatedForm extends React.Component<Props, {}> {
 
   onSubmit = () => {
-    this.props.form.validateFieldsAndScroll((error: Error, values: [any]) => {
+    this.props.form.validateFields((error: Error, values: [any]) => {
       if (!error) {
         this.props.onSubmit(values);
       } else {

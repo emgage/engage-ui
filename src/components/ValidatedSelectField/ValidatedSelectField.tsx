@@ -44,8 +44,6 @@ class ValidatedSelectFieldComponent extends React.PureComponent<Props, {}> {
       rules: validateRules,
     });
 
-    console.log(otherFieldProps);
-    console.dir(form.getFieldError);
     return (
         <Select
             {...otherProps}

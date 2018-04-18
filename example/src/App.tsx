@@ -632,7 +632,9 @@ class App extends React.Component<{}, State> {
             autoSuggest
             moreInfoComponent={<Button children="ranmal" />}
           />
-          <ValidatedForm>
+          <ValidatedForm
+            onSubmitError={(value: [any], error: Error) => console.log('value:', value, 'error:', error)}
+          >
 
             <Heading>App Basics</Heading>
 
@@ -684,7 +686,7 @@ class App extends React.Component<{}, State> {
               />
               <ButtonGroup>
                 <Button>Cancel</Button>
-                <Button primary>Next</Button>
+                <Button primary submit>Next</Button>
               </ButtonGroup>
             </FormLayout>
           </ValidatedForm>
