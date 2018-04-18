@@ -32,6 +32,7 @@ import {
   TextField,
   Tooltip,
   ValidatedTextField,
+  ValidatedSelectField,
   ValidatedForm,
   Video,
   VideoType,
@@ -48,6 +49,7 @@ import {
 interface State {
   appName?: string;
   appDescription: string;
+  appCity: string;
   appTextCounter: string;
   columns: object[];
   rows: object[];
@@ -69,6 +71,7 @@ class App extends React.Component<{}, State> {
       modalOpen: false,
       appName: '',
       appDescription: '',
+      appCity: '',
       appTextCounter: '',
       columns: [
         { key: 'id', name: 'ID' },
@@ -663,6 +666,20 @@ class App extends React.Component<{}, State> {
                 validateTrigger={['onBlur']}
                 validateRules={[
                   { required: true, message: 'App Description is required.' },
+                ]}
+              />
+
+              <ValidatedSelectField
+                id="appCity"
+                required={true}
+                name="Select city"
+                label="Select city"
+                options={[{ value: 'xyz', label: 'xyz' }, { value: 'abc', label: 'abc' }]}
+                value={this.state.appCity}
+                onChange={this.valueUpdater('appCity')}
+                validateTrigger={['onBlur']}
+                validateRules={[
+                  { required: true, message: 'City is required.' },
                 ]}
               />
               <ButtonGroup>
