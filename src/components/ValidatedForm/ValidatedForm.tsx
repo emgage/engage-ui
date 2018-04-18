@@ -2,19 +2,16 @@ import * as React from 'react';
 import { createForm } from 'rc-form';
 
 export interface Props {
-  form: {
-    getFieldProps: any,
-    getFieldError: any,
-    validateFields: any,
-  };
+  form: any;
   style?: React.CSSProperties;
   onSubmit: (values: [any]) => void;
   onSubmitError: (values: [any], error: Error) => void;
 }
 
 class ValidatedForm extends React.Component<Props, {}> {
+  onSubmit = (event: any) => {
+    event.preventDefault();
 
-  onSubmit = () => {
     this.props.form.validateFields((error: Error, values: [any]) => {
       if (!error) {
         this.props.onSubmit(values);

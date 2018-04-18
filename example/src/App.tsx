@@ -634,6 +634,7 @@ class App extends React.Component<{}, State> {
           />
           <ValidatedForm
             onSubmitError={(value: [any], error: Error) => console.log('value:', value, 'error:', error)}
+            onSubmit={(value: [any]) => console.log('Submit Value:', value)}
           >
 
             <Heading>App Basics</Heading>
@@ -644,7 +645,6 @@ class App extends React.Component<{}, State> {
             <FormLayout>
               <ValidatedTextField
                 id="AppName"
-                required={true}
                 label="App Name"
                 placeholder=""
                 helpText="We recommend keeping your app name under 23 characters."
