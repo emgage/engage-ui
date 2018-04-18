@@ -9,7 +9,7 @@ import * as baseTheme from './Table.scss';
 // Accessibility values for scope will be col or row
 // If its for thead > th then use 'col'
 // If its for tbody > th then use 'col'
-export type Scope = 'col' | 'row' | string;
+export type Scope = 'col' | 'row';
 
 export interface Props {
   // Accessibility id attribute, this will match with header attribute added in td

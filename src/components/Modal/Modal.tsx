@@ -66,7 +66,7 @@ class Modal extends React.Component<Props, never> {
     }
   }
 
-  getModalContainerClassName() {
+  getModalContainerClassName = () => {
     const { theme, width } = this.props;
 
     return classNames(
@@ -77,7 +77,7 @@ class Modal extends React.Component<Props, never> {
     );
   }
 
-  getModalWrapperClassName() {
+  getModalWrapperClassName = () => {
     const { active, className, theme } = this.props;
 
     return classNames(
@@ -92,18 +92,18 @@ class Modal extends React.Component<Props, never> {
   }
 
   // Render close button if its set true
-  renderCloseButton() {
+  renderCloseButton = () => {
     const { closeButton, theme } = this.props;
 
-    return closeButton ? (<div className={theme.close}><Button plain onClick={this.closeModal.bind(this)} icon="cancel" /></div>) : null;
+    return closeButton ? (<div className={theme.close}><Button plain onClick={this.closeModal} icon="cancel" /></div>) : null;
   }
 
   // Import keylistener if modal needs to be closed on pressing escape key
-  renderKeyListener() {
-    return this.props.closeOnEsc ? (<KeypressListener keyCode={Keys.ESCAPE} handler={this.triggerCloseEvent.bind(this)} />) : null;
+  renderKeyListener = () => {
+    return this.props.closeOnEsc ? (<KeypressListener keyCode={Keys.ESCAPE} handler={this.triggerCloseEvent} />) : null;
   }
 
-  renderLayer() {
+  renderLayer = () => {
     const { children, closeOnBackgroud } = this.props;
     const modalWrapperClassName = this.getModalWrapperClassName();
     const modalContainerClass = this.getModalContainerClassName();
@@ -116,7 +116,7 @@ class Modal extends React.Component<Props, never> {
       <div
         id={this.id}
         className={modalWrapperClassName}
-        onClick={(closeOnBackgroud) ? this.triggerCloseEvent.bind(this) : undefined}>
+        onClick={(closeOnBackgroud) ? this.triggerCloseEvent : undefined}>
         {escapeKeyListener}
         <div className={modalContainerClass}>
           {closeButton}
@@ -129,7 +129,7 @@ class Modal extends React.Component<Props, never> {
   setAccessibilityAttributes() {}
 
   // This just set overflow: hidden style to body tag, so there will be no scrollbar
-  setBodyTagStyle() {
+  setBodyTagStyle = () => {
     const bodyElement = document.body;
     const { active, theme } = this.props;
 
@@ -143,7 +143,7 @@ class Modal extends React.Component<Props, never> {
     Here we will check for all 3 possible triggers which can close the modal
     If any of them gets true will fire modal close trigger
   */
-  triggerCloseEvent(event: React.SyntheticEvent<HTMLElement> | KeyboardEvent) {
+  triggerCloseEvent = (event: React.SyntheticEvent<HTMLElement> | KeyboardEvent) => {
     const target = event.target as HTMLInputElement;
     const { closeOnBackgroud } = this.props;
 
@@ -161,7 +161,7 @@ class Modal extends React.Component<Props, never> {
     }
   }
 
-  closeModal() {
+  closeModal = () => {
     this.props.toggle ? this.props.toggle() : undefined;
   }
 }

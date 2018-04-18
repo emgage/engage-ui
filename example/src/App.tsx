@@ -1,5 +1,4 @@
 import * as React from 'react';
-import ReactDataExample from './ReactDataExample';
 import SingleDatePickerWrapper from './SingleDatePickerWrapper';
 import DateRangePickerWrapper from './DateRangePickerWrapper';
 import PickerAutoSuggestExample from './PickerAutoSuggestExample';
@@ -43,6 +42,7 @@ import {
   Caption,
   Spinner,
   Table,
+  TableColumnConfig,
 } from '../../src/components';
 
 interface State {
@@ -52,13 +52,13 @@ interface State {
   columns: object[];
   rows: object[];
   isMenuOpened: boolean;
+  popoverActive: boolean;
+  bulkAction: any;
+  filterConfig: any;
   modalOpen: boolean;
   drawer: boolean;
   drawerContent: any;
   activeDrawerId: string;
-  popoverActive: boolean;
-  bulkAction: any;
-  filterConfig: any;
 }
 
 class App extends React.Component<{}, State> {
@@ -81,12 +81,6 @@ class App extends React.Component<{}, State> {
         { id: 3, title: 'Title 3', count: 3 },
       ],
       isMenuOpened: false,
-      drawer: false,
-      drawerContent: {
-        content1: false,
-        content2: true,
-      },
-      activeDrawerId: 'content1',
       popoverActive: false,
       bulkAction: {
         selectedRow: [],
@@ -96,6 +90,12 @@ class App extends React.Component<{}, State> {
         search: false,
         field: 'name',
       },
+      drawer: false,
+      drawerContent: {
+        content1: false,
+        content2: true,
+      },
+      activeDrawerId: 'content1',
     };
   }
 
@@ -109,18 +109,6 @@ class App extends React.Component<{}, State> {
     console.log('chip removed...');
   }
 
-  onDrawerOpen = () => {
-    console.log('drawer open');
-  }
-
-  onDrawerClose = () => {
-    console.log('drawer close');
-  }
-
-  toggleDrawer = () => {
-    this.setState({ drawer: !this.state.drawer });
-  }
-
   toggleModal = () => {
     this.setState({ modalOpen: !this.state.modalOpen });
   }
@@ -131,6 +119,18 @@ class App extends React.Component<{}, State> {
 
   onModalClose = () => {
     console.log('Modal close');
+  }
+
+  onDrawerOpen = () => {
+    console.log('drawer open');
+  }
+
+  onDrawerClose = () => {
+    console.log('drawer close');
+  }
+
+  toggleDrawer = () => {
+    this.setState({ drawer: !this.state.drawer });
   }
 
   render() {
@@ -209,7 +209,7 @@ class App extends React.Component<{}, State> {
       injectBody: To inject custom component in td
       injectHeader: To inject custom component in th
     */
-    const columnConfig = [
+    const columnConfig: TableColumnConfig[] = [
       {
         label: 'Name',
         key: 'name',
@@ -269,6 +269,30 @@ class App extends React.Component<{}, State> {
         <Badge children={'Badge'} progress={'incomplete'} />
         <Badge children={'Badge'} progress={'partiallyComplete'} />
         <Badge children={'Badge'} progress={'complete'} />
+
+        <div>
+          <Caption style={{ color: 'red' }}>This is modal</Caption>
+          <Button onClick={this.toggleModal}>Medium button</Button>
+          <Modal
+            active={this.state.modalOpen}
+            toggle={this.toggleModal}
+            onOpen={this.onModalOpen}
+            onClose={this.onModalClose}
+            width="medium"
+            closeOnBackgroud
+            closeOnEsc
+            closeButton>
+            <ModalHeader>Modal title</ModalHeader>
+            <ModalBody modalOverflow>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae ex pellentesque, pretium lorem vel, tempor ipsum. Phasellus suscipit lacus in velit malesuada, at bibendum mi gravida. Sed cursus nisi sem, non pellentesque ligula euismod eget. Sed quis fringilla nibh, at vestibulum turpis. Donec sed sagittis sapien. Nam quis ex quis nulla porta molestie. Vestibulum eu lorem porta, facilisis orci a, tempor quam. Suspendisse et sollicitudin nulla. Aenean consectetur imperdiet leo nec condimentum. Aliquam scelerisque magna ut tortor accumsan condimentum.
+
+              Nulla quis ante sit amet leo lobortis rhoncus. Cras mollis quis leo nec tincidunt. Aliquam blandit est vitae leo ultrices, ut egestas sapien pharetra. Suspendisse nec aliquet orci. Suspendisse rutrum odio sed neque scelerisque, ut consectetur erat tincidunt. Duis ultrices metus eget ante posuere eleifend. Ut luctus felis neque, sit amet efficitur neque maximus id. Aliquam porta, tellus ut pellentesque facilisis, odio neque maximus erat, venenatis semper nisi metus id augue. Cras vel sem eu elit blandit laoreet id vitae tortor. Morbi sit amet mi rutrum, sagittis enim lacinia, dictum turpis.
+            </ModalBody>
+            <ModalFooter>
+              <Button onClick={this.toggleModal}>Close</Button>
+            </ModalFooter>
+          </Modal>
+        </div>
 
         {/* <div>
           <h1>This is my Modal Component!!</h1>
@@ -438,29 +462,6 @@ class App extends React.Component<{}, State> {
             selectRowCallback={(val: any) => this.setState({ bulkAction: { selectedRow: val } })}
             bordered highlight sorting />
         </div>
-        <div>
-          <Caption style={{ color: 'red' }}>This is modal</Caption>
-          <Button onClick={this.toggleModal}>Medium button</Button>
-          <Modal
-            active={this.state.modalOpen}
-            toggle={this.toggleModal}
-            onOpen={this.onModalOpen}
-            onClose={this.onModalClose}
-            width="medium"
-            closeOnBackgroud
-            closeOnEsc
-            closeButton>
-            <ModalHeader>Modal title</ModalHeader>
-            <ModalBody modalOverflow>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae ex pellentesque, pretium lorem vel, tempor ipsum. Phasellus suscipit lacus in velit malesuada, at bibendum mi gravida. Sed cursus nisi sem, non pellentesque ligula euismod eget. Sed quis fringilla nibh, at vestibulum turpis. Donec sed sagittis sapien. Nam quis ex quis nulla porta molestie. Vestibulum eu lorem porta, facilisis orci a, tempor quam. Suspendisse et sollicitudin nulla. Aenean consectetur imperdiet leo nec condimentum. Aliquam scelerisque magna ut tortor accumsan condimentum.
-
-              Nulla quis ante sit amet leo lobortis rhoncus. Cras mollis quis leo nec tincidunt. Aliquam blandit est vitae leo ultrices, ut egestas sapien pharetra. Suspendisse nec aliquet orci. Suspendisse rutrum odio sed neque scelerisque, ut consectetur erat tincidunt. Duis ultrices metus eget ante posuere eleifend. Ut luctus felis neque, sit amet efficitur neque maximus id. Aliquam porta, tellus ut pellentesque facilisis, odio neque maximus erat, venenatis semper nisi metus id augue. Cras vel sem eu elit blandit laoreet id vitae tortor. Morbi sit amet mi rutrum, sagittis enim lacinia, dictum turpis.
-            </ModalBody>
-            <ModalFooter>
-              <Button onClick={this.toggleModal}>Close</Button>
-            </ModalFooter>
-          </Modal>
-        </div>
 
         <div>
           <Button onClick={this.toggleDrawer}>Drawer open</Button>
@@ -508,13 +509,7 @@ class App extends React.Component<{}, State> {
           <Link>Tooltip 2</Link>
         </Tooltip>
         <div>
-
-          <ReactDataExample
-            columns={this.state.columns}
-            rowGetter={this.rowGetter}
-            rowsCount={this.state.rows.length}
-            minHeight={2}
-          /> */}
+*/}
           <Heading>Popover</Heading>
           <TextField
             id="TestName"

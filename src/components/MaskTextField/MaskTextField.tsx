@@ -389,7 +389,7 @@ class MaskTextField extends React.PureComponent<Props, State> {
       alwaysShowMask,
       maskChar,
       formatChars,
-      ...props,
+      ...props
     } = this.props;
     let copyProps;
     if (this.maskOptions.mask) {

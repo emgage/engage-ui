@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from 'react-css-themr';
-import autobind from '@shopify/javascript-utilities/autobind';
+import { Transition } from 'react-transition-group';
+import { autobind } from '@shopify/javascript-utilities/decorators';
 import { nodeContainsDescendant } from '@shopify/javascript-utilities/dom';
 import { write } from '@shopify/javascript-utilities/fastdom';
 import { findFirstFocusableNode } from '@shopify/javascript-utilities/focus';
 import { classNames } from '@shopify/react-utilities/styles';
 import { isElementOfType, wrapWithComponent } from '@shopify/react-utilities/components';
-import { TransitionGroup, TransitionStatus } from '@shopify/react-utilities/animation';
 
 import { Keys } from '../../types';
 import { overlay } from '../shared';
@@ -17,6 +17,8 @@ import { POPOVER } from '../ThemeIdentifiers';
 
 import Pane, { Props as PaneProps } from './Pane';
 import * as baseTheme from './Popover.scss';
+
+type TransitionStatus = 'entering' | 'entered' | 'exiting' | 'exited';
 
 export enum CloseSource {
   Click,
@@ -53,23 +55,11 @@ class PopoverOverlay extends React.PureComponent<Props, never> {
   }
 
   render() {
-    const { active, theme } = this.props;
-    const selector = `.${theme.popover}`;
-    const markup = active
-      ? (
-        <TransitionGroup.TransitionChild
-          render={this.renderOverlay}
-          selector={selector}
-          skipAppearing
-          skipEntering
-        />
-      )
-      : null;
-
+    const { active } = this.props;
     return (
-      <TransitionGroup>
-        {markup}
-      </TransitionGroup>
+      <Transition in={active} timeout={500} mountOnEnter unmountOnExit>
+        {this.renderOverlay}
+      </Transition>
     );
   }
 
@@ -201,7 +191,7 @@ function renderPopoverContent(children: React.ReactNode, props?: Partial<PanePro
 
 function animationVariations(status: TransitionStatus, theme: any) {
   switch (status) {
-    case TransitionStatus.Leaving:
+    case 'exiting':
       return theme.leaving;
     default:
       return null;

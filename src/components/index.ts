@@ -177,10 +177,6 @@ export {
 } from './RadioButton';
 
 export {
-  default as ReactDataGrid,
-} from './ReactDataGrid';
-
-export {
   default as Scrollable,
   Props as ScrollableProps,
 } from './Scrollable';
@@ -209,6 +205,7 @@ export {
   TableHeader,
   TableRow,
   Props as TableProps,
+  ColumnConfig as TableColumnConfig,
 } from './Table';
 
 export {
