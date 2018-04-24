@@ -13,24 +13,16 @@ export interface Props {
   active: boolean;
   content?: string;
   activatorWrapper?: string;
-  preventAutofocus?: boolean;
-  sectioned?: boolean;
   onClose?(source: CloseSource): void;
-  closeOnBackgroud?: boolean;
 }
 
 export interface State {
-  activatorFocused: boolean;
 }
 
 const getUniqueID = createUniqueIDFactory('Dropdown');
 
 @layeredComponent({ idPrefix: 'Dropdown' })
 export default class Dropdown extends React.PureComponent<Props, State> {
-
-  state: State = {
-    activatorFocused: false,
-  };
 
   private activatorContainer: HTMLElement | null;
   private id = getUniqueID();

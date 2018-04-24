@@ -22,7 +22,6 @@ class DropdownExampleFirst extends React.Component<IProps, IState> {
       <div className={styles.example}>
         <Dropdown
           active={this.state.activated}
-          preventAutofocus
           activatorWrapper="Test"
         >
           <List type="striped">

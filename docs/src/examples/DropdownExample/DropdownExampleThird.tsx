@@ -22,7 +22,6 @@ class DropdownExampleSecond extends React.Component<IProps, IState> {
       <div className={styles.example}>
         <Dropdown
             active={this.state.active}
-            sectioned
             preferredPosition="above"
             onClose={() => { alert('Popover is Closed'); this.setState({ active: false }); }
         }>
