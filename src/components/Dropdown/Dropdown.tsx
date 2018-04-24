@@ -5,33 +5,33 @@ import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
 import { focusFirstFocusableNode, findFirstFocusableNode } from '@shopify/javascript-utilities/focus';
 
 import { PreferredPosition } from '../PositionedOverlay';
-import PopoverOverlay, { CloseSource } from './PopoverOverlay';
+import DropdownOverlay, { CloseSource } from './DropdownOverlay';
 
 export interface Props {
   children?: React.ReactNode;
   preferredPosition?: PreferredPosition;
   active: boolean;
-  activator: React.ReactElement<any>;
+  content?: string;
   activatorWrapper?: string;
   preventAutofocus?: boolean;
   sectioned?: boolean;
   onClose?(source: CloseSource): void;
+  closeOnBackgroud?: boolean;
 }
 
 export interface State {
   activatorFocused: boolean;
 }
 
-const getUniqueID = createUniqueIDFactory('Popover');
+const getUniqueID = createUniqueIDFactory('Dropdown');
 
-@layeredComponent({ idPrefix: 'Popover' })
-export default class Popover extends React.PureComponent<Props, State> {
+@layeredComponent({ idPrefix: 'Dropdown' })
+export default class Dropdown extends React.PureComponent<Props, State> {
 
   state: State = {
     activatorFocused: false,
   };
 
-  private activatorNode: HTMLElement | null;
   private activatorContainer: HTMLElement | null;
   private id = getUniqueID();
 
@@ -45,26 +45,29 @@ export default class Popover extends React.PureComponent<Props, State> {
 
   renderLayer() {
     const {
+      content,
       children,
       onClose,
-      activator,
       activatorWrapper,
       ...rest
     } = this.props;
 
-    if (this.activatorNode == null) {
+    const { activatorContainer } = this;
+
+    if (activatorContainer == null) {
       return null;
     }
 
     return (
-      <PopoverOverlay
+      <DropdownOverlay
         id={this.id}
-        activator={this.activatorNode}
         onClose={this.handleClose}
+        content={content}
+        ActivatorContainer={activatorContainer as HTMLElement}
         {...rest}
       >
         {children}
-      </PopoverOverlay>
+      </DropdownOverlay>
     );
   }
 
@@ -73,7 +76,7 @@ export default class Popover extends React.PureComponent<Props, State> {
 
     return (
       <WRAPPERCOMPONENT ref={this.setActivator}>
-        {React.Children.only(this.props.activator)}
+        {React.Children.only(this.props.children)}
       </WRAPPERCOMPONENT>
     );
   }
@@ -110,12 +113,10 @@ export default class Popover extends React.PureComponent<Props, State> {
   @autobind
   private setActivator(node: HTMLElement | null) {
     if (node == null) {
-      this.activatorNode = null;
       this.activatorContainer = null;
       return;
     }
 
-    this.activatorNode = node.firstElementChild as HTMLElement;
     this.activatorContainer = node;
   }
 }

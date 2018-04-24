@@ -2,7 +2,6 @@ import * as React from 'react';
 import { themr, ThemedComponentClass } from 'react-css-themr';
 import { Transition } from 'react-transition-group';
 import { autobind } from '@shopify/javascript-utilities/decorators';
-import { nodeContainsDescendant } from '@shopify/javascript-utilities/dom';
 import { write } from '@shopify/javascript-utilities/fastdom';
 import { findFirstFocusableNode } from '@shopify/javascript-utilities/focus';
 import { classNames } from '@shopify/react-utilities/styles';
@@ -10,13 +9,12 @@ import { isElementOfType, wrapWithComponent } from '@shopify/react-utilities/com
 
 import { Keys } from '../../types';
 import { overlay } from '../shared';
-import EventListener from '../EventListener';
 import KeypressListener from '../KeypressListener';
 import PositionedOverlay, { OverlayDetails, PreferredPosition } from '../PositionedOverlay';
-import { POPOVER } from '../ThemeIdentifiers';
+import { DROPDOWN } from '../ThemeIdentifiers';
 
 import Pane, { Props as PaneProps } from './Pane';
-import * as baseTheme from './Popover.scss';
+import * as baseTheme from './Dropdown.scss';
 
 type TransitionStatus = 'entering' | 'entered' | 'exiting' | 'exited';
 
@@ -33,13 +31,14 @@ export interface Props {
   preventAutofocus?: boolean;
   sectioned?: boolean;
   preferredPosition?: PreferredPosition;
+  ActivatorContainer?: HTMLElement;
   children?: React.ReactNode;
-  activator: HTMLElement;
+  content?: string,
   theme?: any;
   onClose(source: CloseSource): void;
 }
 
-class PopoverOverlay extends React.PureComponent<Props, never> {
+class DropdownOverlay extends React.PureComponent<Props, never> {
   private contentNode: HTMLElement | null;
 
   componentDidUpdate({ active: wasActive }: Props) {
@@ -67,14 +66,14 @@ class PopoverOverlay extends React.PureComponent<Props, never> {
   private renderOverlay(transitionStatus: TransitionStatus) {
     const {
       active,
-      activator,
+      ActivatorContainer,
       preferredPosition = 'below',
     } = this.props;
 
     return (
       <PositionedOverlay
         active={active}
-        activator={activator}
+        activator={ActivatorContainer as HTMLElement}
         preferredPosition={preferredPosition}
         render={this.renderPopover.bind(this, transitionStatus)}
         onScrollOut={this.handleScrollOut}
@@ -94,13 +93,13 @@ class PopoverOverlay extends React.PureComponent<Props, never> {
 
     const {
       id,
-      children,
+      content,
       sectioned,
       theme,
     } = this.props;
 
     const className = classNames(
-      theme.popover,
+      theme.dropdown,
       transitionStatus && animationVariations(transitionStatus, theme),
       positioning === 'above' && theme.positionedAbove,
       measuring && theme.measuring
@@ -119,7 +118,7 @@ class PopoverOverlay extends React.PureComponent<Props, never> {
       ? undefined
       : { height: desiredHeight };
 
-    const content = (
+    const htmlContent = (
       <div
         id={id}
         tabIndex={-1}
@@ -127,19 +126,17 @@ class PopoverOverlay extends React.PureComponent<Props, never> {
         style={contentStyles}
         ref={this.setContentNode}
       >
-        {renderPopoverContent(children, { sectioned })}
+        {renderPopoverContent(content, { sectioned })}
       </div>
     );
 
     return (
       <div className={className} {...overlay.props}>
-        <EventListener event="click" handler={this.handleClick} />
-        <EventListener event="touchstart" handler={this.handleClick} />
         <KeypressListener keyCode={Keys.ESCAPE} handler={this.handleEscape} />
         {tipMarkup}
         <div className={theme.focusTracker} tabIndex={0} onFocus={this.handleFocusFirstItem} />
         <div className={theme.wrapper}>
-          {content}
+          {htmlContent}
         </div>
         <div className={theme.focusTracker} tabIndex={0} onFocus={this.handleFocusLastItem} />
       </div>
@@ -149,17 +146,6 @@ class PopoverOverlay extends React.PureComponent<Props, never> {
   @autobind
   private setContentNode(node: HTMLElement | null) {
     this.contentNode = node;
-  }
-
-  @autobind
-  private handleClick(event: Event) {
-    const target = event.target as HTMLElement;
-    const { contentNode, props: { activator, onClose } } = this;
-    if (
-      (contentNode != null && nodeContainsDescendant(contentNode, target)) ||
-      nodeContainsDescendant(activator, target)
-    ) { return; }
-    onClose(CloseSource.Click);
   }
 
   @autobind
@@ -198,4 +184,4 @@ function animationVariations(status: TransitionStatus, theme: any) {
   }
 }
 
-export default themr(POPOVER, baseTheme)(PopoverOverlay) as ThemedComponentClass<Props, {}>;
+export default themr(DROPDOWN, baseTheme)(DropdownOverlay) as ThemedComponentClass<Props, {}>;

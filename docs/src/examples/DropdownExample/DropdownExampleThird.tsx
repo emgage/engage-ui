@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Popover,Button,Select,TextField,FormLayout } from '../../../../src/components/';
+import { Dropdown, Select, TextField, FormLayout } from '../../../../src/components/';
 import Group from '../../../../src/components/FormLayout/Group';
 import * as styles from '../../styles/components-page.scss';
 
@@ -10,7 +10,7 @@ export interface IState {
   active: boolean;
 }
 
-class PopoverExampleSecond extends React.Component<IProps, IState> {
+class DropdownExampleSecond extends React.Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
     this.state = {
@@ -20,13 +20,8 @@ class PopoverExampleSecond extends React.Component<IProps, IState> {
   render() {
     return (
       <div className={styles.example}>
-        <Popover
+        <Dropdown
             active={this.state.active}
-            activator={
-                <Button onClick={() => this.setState({ active: (!this.state.active) })}>
-                    April 20–21, 2017
-                </Button>
-            }
             sectioned
             preferredPosition="above"
             onClose={() => { alert('Popover is Closed'); this.setState({ active: false }); }
@@ -47,10 +42,10 @@ class PopoverExampleSecond extends React.Component<IProps, IState> {
                     />
                 </Group>
             </FormLayout>
-        </Popover>
+        </Dropdown>
       </div>
     );
   }
 }
 
-export default PopoverExampleSecond;
+export default DropdownExampleSecond;

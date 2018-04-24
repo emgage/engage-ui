@@ -13,7 +13,7 @@ $visible-portion-of-arrow: rem(5px);
 $content-max-height: rem(295px);
 $content-max-width: rem(400px);
 
-.popover {
+.dropdown {
   max-width: calc(100vw - #{2 * spacing()});
   margin: $visible-portion-of-arrow spacing() spacing();
   opacity: 1;

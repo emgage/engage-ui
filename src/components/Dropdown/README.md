@@ -1,5 +1,5 @@
 ---
-name: Popover
+name: Dropdown
 tags:
   - interactive
   - container
@@ -7,9 +7,9 @@ tags:
 category: Overlays
 ---
 
-# Popover
+# Dropdown
 
-Popovers are small overlays that open on demand, usually when the merchant clicks a button. They let merchants access supplementary content and actions without cluttering the page.
+Dropdowns are small overlays that open on demand, usually when the merchant clicks a button. They let merchants access supplementary content and actions without cluttering the page.
 
 **Problem**
 
@@ -20,7 +20,7 @@ There are lots of different paths a merchant can take and listing them all out i
 Popovers allow merchants to expose and hide additional information and actions when they’re ready to explore them. Popovers show next to the button that triggers them, so they demand minimal shift in merchant attention.
 
 > **Not what you’re looking for?**
->* To put a list of actions in a popover, [use the action list component](/components/actions/action-list).
+>* To put a list of actions in a Dropdown, [use the action list component](/components/actions/action-list).
 >* To group similar concepts and tasks together to make Shopify easier for merchants to scan, read, and take action on, [use the card component](/components/structure/card).
 
 
@@ -28,7 +28,7 @@ Popovers allow merchants to expose and hide additional information and actions w
 
 ## Best practices
 
-Popovers should:
+Dropdown should:
 
 - Always show next to the button or other interface element that triggers them
 - Be used for secondary or less important information and actions since they’re hidden until the merchant hits the trigger
@@ -39,7 +39,7 @@ Popovers should:
 
 ## Content guidelines
 
-### Popover content
+### Dropdown content
 
 If the menu items in a popover menu include a series of actions, each item should:
 

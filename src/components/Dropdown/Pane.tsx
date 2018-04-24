@@ -4,10 +4,10 @@ import { classNames } from '@shopify/react-utilities/styles';
 import { wrapWithComponent } from '@shopify/react-utilities/components';
 
 import Scrollable from '../Scrollable';
-import { POPOVER } from '../ThemeIdentifiers';
+import { DROPDOWN } from '../ThemeIdentifiers';
 
 import Section from './Section';
-import * as baseTheme from './Popover.scss';
+import * as baseTheme from './Dropdown.scss';
 
 export interface Props {
   fixed?: boolean;
@@ -39,4 +39,4 @@ const pane = ({ fixed, sectioned, children, theme }: Props) => {
     );
 };
 
-export default themr(POPOVER, baseTheme)(pane) as ThemedComponentClass<Props, {}>;
+export default themr(DROPDOWN, baseTheme)(pane) as ThemedComponentClass<Props, {}>;

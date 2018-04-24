@@ -1,16 +1,16 @@
 import { IDocument } from '../../Types';
-import PopoverExampleFirst from '../../examples/PopoverExample/PopoverExampleFirst';
-import PopoverExampleSecond from '../../examples/PopoverExample/PopoverExampleSecond';
-import PopoverExampleThird from '../../examples/PopoverExample/PopoverExampleThird';
+import PopoverExampleFirst from '../../examples/DropdownExample/DropdownExampleFirst';
+import PopoverExampleSecond from '../../examples/DropdownExample/DropdownExampleSecond';
+import PopoverExampleThird from '../../examples/DropdownExample/DropdownExampleThird';
 
-const PopoverExampleFirstCode = require('!raw-loader!../../examples/PopoverExample/PopoverExampleFirst') as string;
-const PopoverExampleSecondCode = require('!raw-loader!../../examples/PopoverExample/PopoverExampleSecond') as string;
-const PopoverExampleThirdCode = require('!raw-loader!../../examples/PopoverExample/PopoverExampleThird') as string;
+const PopoverExampleFirstCode = require('!raw-loader!../../examples/DropdownExample/DropdownExampleFirst') as string;
+const PopoverExampleSecondCode = require('!raw-loader!../../examples/DropdownExample/DropdownExampleSecond') as string;
+const PopoverExampleThirdCode = require('!raw-loader!../../examples/DropdownExample/DropdownExampleThird') as string;
 
 const PopoverState: IDocument = {
-  id: 'popover',
-  heading: 'Popover Component',
-  subheading: `Popovers are small overlays that open on demand, usually when the merchant clicks a button. They let users access supplementary content and actions without cluttering the page.`,
+  id: 'Dropdown',
+  heading: 'Dropdown Component',
+  subheading: `Dropdown are small overlays that open on demand, usually when the merchant clicks a button. They let users access supplementary content and actions without cluttering the page.`,
   property: [
     {
       name: 'children',

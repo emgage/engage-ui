@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Popover, Button, List } from '../../../../src/components/';
+import { Dropdown, List } from '../../../../src/components/';
 import Item from '../../../../src/components/List/Item';
 import * as styles from '../../styles/components-page.scss';
 
@@ -10,7 +10,7 @@ export interface IState {
   activated: boolean;
 }
 
-class PopoverExampleFirst extends React.Component<IProps, IState> {
+class DropdownExampleFirst extends React.Component<IProps, IState> {
   constructor(props: IProps) {
   super(props);
   this.state = {
@@ -20,22 +20,19 @@ class PopoverExampleFirst extends React.Component<IProps, IState> {
   render() {
     return (
       <div className={styles.example}>
-        <Popover
+        <Dropdown
           active={this.state.activated}
           preventAutofocus
           activatorWrapper="Test"
-          activator={
-            <Button onClick={() => this.setState({ activated: (!this.state.activated) }) }>More actions</Button>
-          }
         >
           <List type="striped">
             <Item>Import</Item>
             <Item>Export </Item>
           </List>
-        </Popover>
+        </Dropdown>
       </div>
     );
   }
 }
 
-export default PopoverExampleFirst;
+export default DropdownExampleFirst;

@@ -162,9 +162,9 @@ export {
 } from './Picker';
 
 export {
-  default as Popover,
-  Props as PopoverProps,
-} from './Popover';
+  default as Dropdown,
+  Props as DropdownProps,
+} from './Dropdown';
 
 export {
   default as PositionedOverlay,
