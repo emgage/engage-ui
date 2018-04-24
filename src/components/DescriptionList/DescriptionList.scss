@@ -1,0 +1,46 @@
+@import 'foundation/spacing';
+@import 'shared/typography';
+
+.list {
+  list-style: none;
+  margin-top: 0;
+  padding-left: 0;
+
+  + .list {
+    margin-top: spacing();
+  }
+
+  ul {
+    padding-left: spacing(loose);
+  }
+}
+
+.list-divider > li:nth-child(n+2) {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #e5e5e5;
+}
+
+.item {
+  position: relative;
+  padding-left: spacing();
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+  }
+
+  .naked {
+    list-style-type: none;
+  }
+
+  .list:first-child {
+    margin-top: spacing(tight);
+  }
+}
