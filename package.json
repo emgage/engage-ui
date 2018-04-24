@@ -28,8 +28,8 @@
     "check": "npm-run-all lint build-dev test",
     "build-dev": "node node_modules/webpack/bin/webpack.js",
     "build-release": "node node_modules/webpack/bin/webpack.js -p",
-    "example": "node_modules/webpack/webpack-dev-server --config webpack.example.config",
-    "docs": "node_modules/webpack/webpack-dev-server --config webpack.docs.config",
+    "example": "webpack-dev-server --config webpack.example.config",
+    "docs": "webpack-dev-server --config webpack.docs.config",
     "precommit-msg": "echo 'Running linting and testing checks...' && exit 0"
   },
   "pre-commit": [
