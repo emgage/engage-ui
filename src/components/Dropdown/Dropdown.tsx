@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { themr, ThemedComponentClass } from 'react-css-themr';
 import { layeredComponent } from '@shopify/react-utilities/components';
 import { autobind } from '@shopify/javascript-utilities/decorators';
 import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
@@ -6,13 +7,19 @@ import { focusFirstFocusableNode, findFirstFocusableNode } from '@shopify/javasc
 
 import { PreferredPosition } from '../PositionedOverlay';
 import DropdownOverlay, { CloseSource } from './DropdownOverlay';
+import DropdownItem, { DropdownItemProps } from './DropdownItem';
+import { classNames } from '@shopify/react-utilities/styles';
+import { DROPDOWN } from '../ThemeIdentifiers';
+import * as baseTheme from './Dropdown.scss';
 
 export interface Props {
+  disabled?: boolean;
   children?: React.ReactNode;
   preferredPosition?: PreferredPosition;
   active: boolean;
   content?: string;
   activatorWrapper?: string;
+  DropdownItems: DropdownItemProps[];
   onClose?(source: CloseSource): void;
 }
 
@@ -22,7 +29,7 @@ export interface State {
 const getUniqueID = createUniqueIDFactory('Dropdown');
 
 @layeredComponent({ idPrefix: 'Dropdown' })
-export default class Dropdown extends React.PureComponent<Props, State> {
+export class Dropdown extends React.PureComponent<Props, State> {
 
   private activatorContainer: HTMLElement | null;
   private id = getUniqueID();
@@ -64,11 +71,41 @@ export default class Dropdown extends React.PureComponent<Props, State> {
   }
 
   render() {
-    const { activatorWrapper: WRAPPERCOMPONENT = 'div' } = this.props;
+    const { 
+      activatorWrapper: WRAPPERCOMPONENT = 'div',
+      active,
+      children,
+      DropdownItems
+    } = this.props;
+
+    const className = classNames (
+      baseTheme.dropdown,
+      active && baseTheme.active
+    );
+
+    const className1 = classNames (
+      baseTheme.dropdownMenu,
+      active && baseTheme.active,
+    );
+
+    const DropdownItemComponents = DropdownItems.map((item,index) => 
+            <DropdownItem 
+              key={index}
+              active={item.active}
+              disabled={item.disabled}
+              divider={item.divider}
+              children={item.children}
+            ></DropdownItem>
+        );
 
     return (
       <WRAPPERCOMPONENT ref={this.setActivator}>
-        {React.Children.only(this.props.children)}
+        <div className={className} key={this.id}>
+          <label>{children}</label>
+          <div className={className1}>
+            {DropdownItemComponents}
+          </div>
+        </div>
       </WRAPPERCOMPONENT>
     );
   }
@@ -112,3 +149,6 @@ export default class Dropdown extends React.PureComponent<Props, State> {
     this.activatorContainer = node;
   }
 }
+
+export { Dropdown as UnthemedSelect };
+export default themr(DROPDOWN, baseTheme)(Dropdown) as ThemedComponentClass<Props, {}>;

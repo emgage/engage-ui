@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Dropdown, List } from '../../../../src/components/';
-import Item from '../../../../src/components/List/Item';
+//import { Dropdown, List } from '../../../../src/components/';
+//import Item from '../../../../src/components/List/Item';
 import * as styles from '../../styles/components-page.scss';
 
 export interface IProps{
@@ -20,15 +20,16 @@ class DropdownExampleFirst extends React.Component<IProps, IState> {
   render() {
     return (
       <div className={styles.example}>
-        <Dropdown
+        {/* <Dropdown
           active={this.state.activated}
           activatorWrapper="Test"
+
         >
           <List type="striped">
             <Item>Import</Item>
             <Item>Export </Item>
           </List>
-        </Dropdown>
+        </Dropdown> */}
       </div>
     );
   }

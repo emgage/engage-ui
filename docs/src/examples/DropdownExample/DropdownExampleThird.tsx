@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Dropdown, Select, TextField, FormLayout } from '../../../../src/components/';
-import Group from '../../../../src/components/FormLayout/Group';
+// import { Dropdown, Select, TextField, FormLayout } from '../../../../src/components/';
+// import Group from '../../../../src/components/FormLayout/Group';
 import * as styles from '../../styles/components-page.scss';
 
 export interface IProps{
@@ -20,7 +20,7 @@ class DropdownExampleSecond extends React.Component<IProps, IState> {
   render() {
     return (
       <div className={styles.example}>
-        <Dropdown
+        {/* <Dropdown
             active={this.state.active}
             preferredPosition="above"
             onClose={() => { alert('Popover is Closed'); this.setState({ active: false }); }
@@ -41,7 +41,7 @@ class DropdownExampleSecond extends React.Component<IProps, IState> {
                     />
                 </Group>
             </FormLayout>
-        </Dropdown>
+        </Dropdown> */}
       </div>
     );
   }

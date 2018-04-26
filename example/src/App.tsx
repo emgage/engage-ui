@@ -27,7 +27,7 @@ import {
   // OffCanvas,
   Panel,
   Picker,
-  // Popover,
+  Dropdown,
   Select,
   TextField,
   Tooltip,
@@ -43,6 +43,7 @@ import {
   Spinner,
   Table,
   TableColumnConfig,
+  DropdownItemProps
 } from '../../src/components';
 
 interface State {
@@ -97,6 +98,7 @@ class App extends React.Component<{}, State> {
       },
       activeDrawerId: 'content1',
     };
+    this.popoverUpdate = this.popoverUpdate.bind(this);
   }
 
   rowGetter = (index: number) => this.state.rows[index];
@@ -134,6 +136,17 @@ class App extends React.Component<{}, State> {
   }
 
   render() {
+    let items : DropdownItemProps[] = [
+      {
+        active: false,
+        children: "Item 1"
+      },
+      {
+        active: false,
+        children: "Item 2"
+      }
+    ]
+
     const posterUrl = new URL('http://4.bp.blogspot.com/_JSR8IC77Ub4/TKB-XAWXmhI/AAAAAAAABJA/MqOpdFTOaHo/w1200-' +
       'h630-p-k-no-nu/C:%5Cfakepath%5Cbird1.jpg');
     const singleVideoSource = [
@@ -496,7 +509,7 @@ class App extends React.Component<{}, State> {
         </div>
 
         <p> Some text with a
-          <Tooltip content="This order has shipping labels.">
+          <Tooltip content="This order has shipping labels.sdfsdfg">
             <Link>Tooltip 1</Link>
           </Tooltip> in it
         </p>
@@ -506,8 +519,13 @@ class App extends React.Component<{}, State> {
           <Link>Tooltip 2</Link>
         </Tooltip>
         <div>
-*/}
+
           <Heading>Popover</Heading>
+
+          
+          <Button onClick={this.popoverUpdate} >Click to active and deactive dropdown</Button>
+          <Dropdown active={this.state.popoverActive} content="Shyam Kanojia" DropdownItems={items} ><Button>sk</Button></Dropdown>
+
           <TextField
             id="TestName"
             label="Text Counter"
@@ -959,8 +977,10 @@ class App extends React.Component<{}, State> {
     return (value: any) => this.setState({ [value]: value });
   }
 
-  popoverClose(field: any) {
-    return;
+  popoverUpdate(field: any) {
+    this.setState({
+        popoverActive : !this.state.popoverActive
+    });
   }
 }
 

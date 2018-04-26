@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from 'react-css-themr';
-import Popover from '../Popover/Popover';
+// import Popover from '../Dropdown/Dropdown';
 import { CLICKABLECHIP } from '../ThemeIdentifiers';
 import * as baseTheme from './ClickableChip.scss';
 
@@ -30,10 +30,12 @@ class ClickableChip extends React.PureComponent<Props, State> {
             onClick = this.handleClick,
         } = this.props;
     const updatedChip = React.cloneElement(chip, { onClick, clickable: true });
-    return (
-      <Popover active={this.state.active} activator={updatedChip} onClose={this.onClose}>
-        {this.props.children}
-      </Popover>
+    return ([
+      updatedChip,
+      // <Popover active={this.state.active} onClose={this.onClose} >
+      //   {this.props.children}
+      // </Popover>
+      ]
     );
   }
   private handleClick = () => {

@@ -5,7 +5,8 @@ import { autobind } from '@shopify/javascript-utilities/decorators';
 import { write } from '@shopify/javascript-utilities/fastdom';
 import { findFirstFocusableNode } from '@shopify/javascript-utilities/focus';
 import { classNames } from '@shopify/react-utilities/styles';
-import { isElementOfType, wrapWithComponent } from '@shopify/react-utilities/components';
+import { isElementOfType, /* wrapWithComponent */ } from '@shopify/react-utilities/components';
+import { Item } from '../List';
 
 import { Keys } from '../../types';
 import { overlay } from '../shared';
@@ -172,7 +173,7 @@ class DropdownOverlay extends React.PureComponent<Props, never> {
 function renderPopoverContent(children: React.ReactNode, props?: Partial<PaneProps>) {
   const childrenArray = React.Children.toArray(children);
   if (isElementOfType(childrenArray[0], Pane)) { return childrenArray; }
-  return wrapWithComponent(childrenArray, Pane, props);
+  return <Item key="sdgsdg">Item1</Item> //wrapWithComponent(childrenArray, Pane, props);
 }
 
 function animationVariations(status: TransitionStatus, theme: any) {

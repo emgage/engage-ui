@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { Dropdown,List,Item } from '../../../../src/components/';
-import Pane from '../../../../src/components/Dropdown/Pane';
-import Section from '../../../../src/components/Dropdown/Section';
+// import { Dropdown,List,Item } from '../../../../src/components/';
+// import Pane from '../../../../src/components/Dropdown/Pane';
+// import Section from '../../../../src/components/Dropdown/Section';
 import * as styles from '../../styles/components-page.scss';
 
 export interface IProps{
@@ -21,7 +21,7 @@ class DropdownExampleSecond extends React.Component<IProps, IState> {
   render() {
     return (
       <div className={styles.example}>
-        <Dropdown
+        {/* <Dropdown
           active={this.state.active}
           >
           <Pane fixed>
@@ -36,7 +36,7 @@ class DropdownExampleSecond extends React.Component<IProps, IState> {
               <Item>Shopify POS</Item>
             </List>
           </Pane>
-        </Dropdown>
+        </Dropdown> */}
       </div>
     );
   }

@@ -4,10 +4,12 @@ import { themr, ThemedComponentClass } from 'react-css-themr';
 import { TABLE } from '../ThemeIdentifiers';
 
 // import Button from '../Button';
-import Item from '../List/Item';
-import List from '../List';
-import Popover from '../Dropdown';
-import Pane from '../Dropdown/Pane';
+
+// import Item from '../List/Item';
+// import List from '../List';
+// import Popover from '../Dropdown';
+// import Pane from '../Dropdown/Pane';
+
 import TableData from './TableData';
 
 import * as baseTheme from './Table.scss';
@@ -33,11 +35,11 @@ class RowAction extends React.Component<Props, State> {
   }
 
   render () {
-    const { actionConfig } = this.props;
+    // const { actionConfig } = this.props;
 
     return (
       <TableData>
-        <Popover
+        {/* <Popover
           active={this.state.active}
           >
           <Pane>
@@ -51,7 +53,7 @@ class RowAction extends React.Component<Props, State> {
               }
             </List>
           </Pane>
-        </Popover>
+        </Popover> */}
       </TableData>
     );
   }

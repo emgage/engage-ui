@@ -28,6 +28,7 @@ export const OFFCANVAS = 'POffCanvas';
 export const PANEL = 'PPanel';
 export const PICKER = 'PPicker';
 export const DROPDOWN = 'PDropdown';
+export const DROPDOWNITEM = 'PDropdownItem';
 export const POSITIONED_OVERLAY = 'PPositionedOverlay';
 export const RADIO_BUTTON = 'PRadioButton';
 export const SCROLLABLE = 'PScrollable';

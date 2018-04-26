@@ -164,6 +164,7 @@ export {
 export {
   default as Dropdown,
   Props as DropdownProps,
+  DropdownItemProps
 } from './Dropdown';
 
 export {
