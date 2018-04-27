@@ -27,7 +27,8 @@ class DropdownItem extends React.Component<Props, never> {
       disabled,
       divider,
       header,
-      children
+      children,
+      onClick
     } = this.props;
 
     let className = null;
@@ -46,7 +47,7 @@ class DropdownItem extends React.Component<Props, never> {
     }
 
     return (
-      <a id={this.id} className={className}>{children}</a>
+      <a id={this.id} className={className} onClick={onClick}>{children}</a>
     );
   }
 }

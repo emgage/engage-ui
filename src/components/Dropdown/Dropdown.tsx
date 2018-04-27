@@ -1,13 +1,11 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from 'react-css-themr';
-import { layeredComponent } from '@shopify/react-utilities/components';
 import { autobind } from '@shopify/javascript-utilities/decorators';
 import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
-import { focusFirstFocusableNode, findFirstFocusableNode } from '@shopify/javascript-utilities/focus';
+import { findFirstFocusableNode } from '@shopify/javascript-utilities/focus';
 import { addEventListener, removeEventListener } from '@shopify/javascript-utilities/events';
 
 import { PreferredPosition } from '../PositionedOverlay';
-import DropdownOverlay, { CloseSource } from './DropdownOverlay';
 import DropdownItem, { DropdownItemProps } from './DropdownItem';
 import { classNames } from '@shopify/react-utilities/styles';
 import { DROPDOWN } from '../ThemeIdentifiers';
@@ -22,7 +20,7 @@ export interface Props {
   content?: string;
   activatorWrapper?: string;
   DropdownItems: DropdownItemProps[];
-  onClose?(source: CloseSource): void;
+  onClose?(): void;
   toggle?() : void;
 }
 
@@ -32,7 +30,6 @@ export interface State {
 
 const getUniqueID = createUniqueIDFactory('Dropdown');
 
-@layeredComponent({ idPrefix: 'Dropdown' })
 export class Dropdown extends React.PureComponent<Props, State> {
   constructor(props: Props) {
     super(props);
@@ -41,7 +38,6 @@ export class Dropdown extends React.PureComponent<Props, State> {
     };
   }
 
-  private activatorNode: HTMLElement | null;
   private activatorContainer: HTMLElement | null;
 
   private id = getUniqueID();
@@ -65,34 +61,6 @@ export class Dropdown extends React.PureComponent<Props, State> {
 
   componentWillUnmount() {
     removeEventListener(document, 'keyup', this.handleKeyEvent);
-  }
-
-  renderLayer() {
-    const {
-      content,
-      children,
-      onClose,
-      activatorWrapper,
-      ...rest
-    } = this.props;
-
-    const { activatorContainer } = this;
-
-    if (activatorContainer == null) {
-      return null;
-    }
-
-    return (
-      <DropdownOverlay
-        id={this.id}
-        onClose={this.handleClose}
-        content={content}
-        ActivatorContainer={activatorContainer as HTMLElement}
-        {...rest}
-      >
-        {children}
-      </DropdownOverlay>
-    );
   }
 
   render() {
@@ -128,7 +96,6 @@ export class Dropdown extends React.PureComponent<Props, State> {
             ></DropdownItem>
         );
 
-    console.log(this.activatorNode)
     return (
       <WRAPPERCOMPONENT ref={this.setActivator}>
         <div className={className} key={this.id}>
@@ -156,28 +123,11 @@ export class Dropdown extends React.PureComponent<Props, State> {
   }
 
   @autobind
-  private handleClose(source: CloseSource) {
-    if (!!this.props.onClose) {
-      this.props.onClose(source);
-    }
-
-    if (this.activatorContainer == null) { return; }
-    if (
-      source === CloseSource.FocusOut ||
-      source === CloseSource.EscapeKeypress
-    ) {
-      focusFirstFocusableNode(this.activatorContainer, false);
-    }
-  }
-
-  @autobind
   private setActivator(node: HTMLElement | null) {
     if (node == null) {
-      this.activatorNode = null;
       this.activatorContainer = null;
       return;
     }
-    this.activatorNode = node.firstElementChild as HTMLElement;
     this.activatorContainer = node;
   }
 
