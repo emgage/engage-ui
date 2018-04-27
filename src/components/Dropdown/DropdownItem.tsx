@@ -53,5 +53,4 @@ class DropdownItem extends React.Component<Props, never> {
 }
 
 export { DropdownItem as UnthemedSelect };
-export { Props as DropdownItemProps };
 export default themr(DROPDOWNITEM, baseTheme)(DropdownItem) as ThemedComponentClass<Props, {}>;

@@ -1,5 +1,4 @@
 import Dropdown from './Dropdown';
 
-export { Props } from './Dropdown';
-export { DropdownItemProps } from './DropdownItem';
+export { Props, DropdownItemProps } from './Dropdown';
 export default Dropdown;

@@ -83,11 +83,6 @@ $font-weight-normal: 400 !default;
   border: $dropdown-border-width solid $dropdown-border-color;
 }
 
-.dropdownMenu-right {
-  right: 0;
-  left: auto;
-}
-
 .dropup {
   .dropdownMenu {
     top: auto;
@@ -100,8 +95,8 @@ $font-weight-normal: 400 !default;
 .dropright {
   .dropdownMenu {
     top: 0;
-    right: auto;
-    left: 100%;
+    right: 0;
+    left: auto;
     margin-top: 0;
     margin-left: $dropdown-spacer;
   }

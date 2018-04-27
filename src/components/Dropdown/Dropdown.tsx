@@ -5,19 +5,28 @@ import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
 import { findFirstFocusableNode } from '@shopify/javascript-utilities/focus';
 import { addEventListener, removeEventListener } from '@shopify/javascript-utilities/events';
 
-import { PreferredPosition } from '../PositionedOverlay';
-import DropdownItem, { DropdownItemProps } from './DropdownItem';
+import DropdownItem from './DropdownItem';
 import { classNames } from '@shopify/react-utilities/styles';
 import { DROPDOWN } from '../ThemeIdentifiers';
 import * as baseTheme from './Dropdown.scss';
 import { Keys } from '../../types';
+import Button from '../Button';
+
+export type Direction = 'up' | 'down' | 'left' | 'right';
+
+export interface DropdownItemProps {
+  children?: React.ReactNode;
+  disabled?: boolean;
+  divider?: boolean;
+  header?: boolean;
+  onClick?(): void;
+}
 
 export interface Props {
   disabled?: boolean;
-  children?: React.ReactNode;
-  preferredPosition?: PreferredPosition;
+  children?: string;
+  direction?: Direction;
   active: boolean;
-  content?: string;
   activatorWrapper?: string;
   DropdownItems: DropdownItemProps[];
   onClose?(): void;
@@ -69,19 +78,24 @@ export class Dropdown extends React.PureComponent<Props, State> {
       active,
       children,
       DropdownItems,
-      toggle
+      toggle,
+      direction
     } = this.props;
     
     const {
       selectedIndex
     } = this.state;
 
-    const className = classNames (
-      baseTheme.dropdown,
+    
+    const dropdownClassName = classNames (
+      typeof direction == 'undefined' || direction === "down" ? baseTheme.dropdown 
+        : direction === "up" ? baseTheme.dropup
+        : direction === "left" ? baseTheme.dropleft
+        : baseTheme.dropright,
       active && baseTheme.active
     );
 
-    const className1 = classNames (
+    const dropdownMenuClassName = classNames (
       baseTheme.dropdownMenu,
       active && baseTheme.active,
     );
@@ -89,7 +103,7 @@ export class Dropdown extends React.PureComponent<Props, State> {
     const DropdownItemComponents = DropdownItems.map((item,index) => 
             <DropdownItem 
               key={index}
-              active= {selectedIndex === index ? true : false} 
+              active={selectedIndex === index} 
               disabled={item.disabled}
               divider={item.divider}
               children={item.children}
@@ -98,9 +112,9 @@ export class Dropdown extends React.PureComponent<Props, State> {
 
     return (
       <WRAPPERCOMPONENT ref={this.setActivator}>
-        <div className={className} key={this.id}>
-          <a onClick={toggle}>{children}</a>
-          <div className={className1}>
+        <div className={dropdownClassName} key={this.id}>
+          <Button onClick={toggle}>{children}</Button>
+          <div className={dropdownMenuClassName}>
             {DropdownItemComponents}
           </div>
         </div>
