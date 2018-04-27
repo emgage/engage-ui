@@ -138,7 +138,6 @@ export {
 export {
   default as DescriptionList,
   Props as DescriptionListProps,
-  ListItem,
 } from './DescriptionList';
 
 export {
