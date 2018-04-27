@@ -109,7 +109,7 @@ export class Dropdown extends React.PureComponent<Props, State> {
               children={item.children}
             ></DropdownItem>
         );
-
+      
     return (
       <WRAPPERCOMPONENT ref={this.setActivator}>
         <div className={dropdownClassName} key={this.id}>
@@ -152,44 +152,71 @@ export class Dropdown extends React.PureComponent<Props, State> {
       toggle
     } = this.props;
 
+    const {
+      selectedIndex
+    } = this.state;
+
     if (!active) {
       return;
     }
     
     // Change Items on key up, down and tab
     if (event.keyCode === Keys.UP_ARROW) {
-      this.changeItem(-1);
+      this.changeItem(selectedIndex, -1);
     } else if (event.keyCode === Keys.DOWN_ARROW || event.keyCode === Keys.TAB) {
-          this.changeItem(1);
+          this.changeItem(selectedIndex, 1);
     } else if (event.keyCode === Keys.ESCAPE && typeof toggle !== 'undefined') {
       toggle(); // Close the dropdown on ESC
     }
   }
 
   @autobind
-  private changeItem(direction : number) {
-    const itemCount = this.props.DropdownItems.length - 1;
-
+  private changeItem(selectedIndex: number, direction : number) {
     const {
-      selectedIndex
-    } = this.state;
+      DropdownItems
+    } = this.props;
 
     if (direction === 1) {
-      if (selectedIndex === itemCount) {
+      if (selectedIndex === DropdownItems.length - 1) {
+        // if next selected item is disabled or devider find next one
+        if (DropdownItems[0].disabled || DropdownItems[0].divider) {
+          this.changeItem(0, 1)
+          return
+        }
+
         this.setState({
           selectedIndex: 0
         });
+
       } else {
+        // if next selected item is disabled or devider find next one
+        if (DropdownItems[selectedIndex + 1].disabled || DropdownItems[selectedIndex + 1].divider) {
+          this.changeItem(selectedIndex + 1, 1)
+          return
+        }
+
         this.setState({
           selectedIndex: selectedIndex + 1
         });
       }
     } else if (direction === -1) {
       if (selectedIndex === 0) {
+        // if next selected item is disabled or devider find next one
+        if (DropdownItems[DropdownItem.length - 1].disabled || DropdownItems[DropdownItem.length - 1].divider) {
+          this.changeItem(DropdownItem.length - 1, 1)
+          return
+        }
+
         this.setState({
-          selectedIndex: itemCount
+          selectedIndex: DropdownItem.length - 1
         });
       } else {
+        // if next selected item is disabled or devider find next one
+        if (DropdownItems[selectedIndex - 1].disabled || DropdownItems[selectedIndex - 1].divider) {
+          this.changeItem(selectedIndex - 1, 1)
+          return
+        }
+
         this.setState({
           selectedIndex: selectedIndex - 1
         });
