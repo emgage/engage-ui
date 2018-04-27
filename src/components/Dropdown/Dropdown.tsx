@@ -4,6 +4,7 @@ import { layeredComponent } from '@shopify/react-utilities/components';
 import { autobind } from '@shopify/javascript-utilities/decorators';
 import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
 import { focusFirstFocusableNode, findFirstFocusableNode } from '@shopify/javascript-utilities/focus';
+import { addEventListener, removeEventListener } from '@shopify/javascript-utilities/events';
 
 import { PreferredPosition } from '../PositionedOverlay';
 import DropdownOverlay, { CloseSource } from './DropdownOverlay';
@@ -11,6 +12,7 @@ import DropdownItem, { DropdownItemProps } from './DropdownItem';
 import { classNames } from '@shopify/react-utilities/styles';
 import { DROPDOWN } from '../ThemeIdentifiers';
 import * as baseTheme from './Dropdown.scss';
+import { Keys } from '../../types';
 
 export interface Props {
   disabled?: boolean;
@@ -21,25 +23,48 @@ export interface Props {
   activatorWrapper?: string;
   DropdownItems: DropdownItemProps[];
   onClose?(source: CloseSource): void;
+  toggle?() : void;
 }
 
 export interface State {
+  selectedIndex: number
 }
 
 const getUniqueID = createUniqueIDFactory('Dropdown');
 
 @layeredComponent({ idPrefix: 'Dropdown' })
 export class Dropdown extends React.PureComponent<Props, State> {
+  constructor(props: Props) {
+    super(props);
+    this.state = { 
+      selectedIndex: 0 
+    };
+  }
 
+  private activatorNode: HTMLElement | null;
   private activatorContainer: HTMLElement | null;
+
   private id = getUniqueID();
+
+  componentWillReceiveProps(newProps: any) {
+    const { active } = this.props;
+
+    if (active && !newProps.active && typeof newProps.onClose !== 'undefined') {
+      newProps.onClose();
+    }
+  }
 
   componentDidMount() {
     this.setAccessibilityAttributes();
+    addEventListener(document, 'keyup', this.handleKeyEvent);
   }
 
   componentDidUpdate() {
     this.setAccessibilityAttributes();
+  }
+
+  componentWillUnmount() {
+    removeEventListener(document, 'keyup', this.handleKeyEvent);
   }
 
   renderLayer() {
@@ -75,8 +100,13 @@ export class Dropdown extends React.PureComponent<Props, State> {
       activatorWrapper: WRAPPERCOMPONENT = 'div',
       active,
       children,
-      DropdownItems
+      DropdownItems,
+      toggle
     } = this.props;
+    
+    const {
+      selectedIndex
+    } = this.state;
 
     const className = classNames (
       baseTheme.dropdown,
@@ -91,17 +121,18 @@ export class Dropdown extends React.PureComponent<Props, State> {
     const DropdownItemComponents = DropdownItems.map((item,index) => 
             <DropdownItem 
               key={index}
-              active={item.active}
+              active= {selectedIndex === index ? true : false} 
               disabled={item.disabled}
               divider={item.divider}
               children={item.children}
             ></DropdownItem>
         );
 
+    console.log(this.activatorNode)
     return (
       <WRAPPERCOMPONENT ref={this.setActivator}>
         <div className={className} key={this.id}>
-          <label>{children}</label>
+          <a onClick={toggle}>{children}</a>
           <div className={className1}>
             {DropdownItemComponents}
           </div>
@@ -142,11 +173,64 @@ export class Dropdown extends React.PureComponent<Props, State> {
   @autobind
   private setActivator(node: HTMLElement | null) {
     if (node == null) {
+      this.activatorNode = null;
       this.activatorContainer = null;
       return;
     }
-
+    this.activatorNode = node.firstElementChild as HTMLElement;
     this.activatorContainer = node;
+  }
+
+  @autobind
+  private handleKeyEvent(event: KeyboardEvent) {
+    const {
+      active,
+      toggle
+    } = this.props;
+
+    if (!active) {
+      return;
+    }
+    
+    // Change Items on key up, down and tab
+    if (event.keyCode === Keys.UP_ARROW) {
+      this.changeItem(-1);
+    } else if (event.keyCode === Keys.DOWN_ARROW || event.keyCode === Keys.TAB) {
+          this.changeItem(1);
+    } else if (event.keyCode === Keys.ESCAPE && typeof toggle !== 'undefined') {
+      toggle(); // Close the dropdown on ESC
+    }
+  }
+
+  @autobind
+  private changeItem(direction : number) {
+    const itemCount = this.props.DropdownItems.length - 1;
+
+    const {
+      selectedIndex
+    } = this.state;
+
+    if (direction === 1) {
+      if (selectedIndex === itemCount) {
+        this.setState({
+          selectedIndex: 0
+        });
+      } else {
+        this.setState({
+          selectedIndex: selectedIndex + 1
+        });
+      }
+    } else if (direction === -1) {
+      if (selectedIndex === 0) {
+        this.setState({
+          selectedIndex: itemCount
+        });
+      } else {
+        this.setState({
+          selectedIndex: selectedIndex - 1
+        });
+      }
+    }
   }
 }
 
