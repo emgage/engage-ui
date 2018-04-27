@@ -1,6 +1,6 @@
 import DescriptionList from './DescriptionList';
-import Item from './Item';
+import ListItem from './ListItem';
 
 export { Props } from './DescriptionList';
-export { Item };
+export { ListItem };
 export default DescriptionList;
