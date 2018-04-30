@@ -63,6 +63,7 @@ interface State {
   drawer: boolean;
   drawerContent: any;
   activeDrawerId: string;
+  activeTabId: string;
 }
 
 class App extends React.Component<{}, State> {
@@ -101,6 +102,7 @@ class App extends React.Component<{}, State> {
         content2: true,
       },
       activeDrawerId: 'content1',
+      activeTabId: 'tab3'
     };
   }
 
@@ -275,16 +277,26 @@ class App extends React.Component<{}, State> {
         <Badge children={'Badge'} progress={'partiallyComplete'} />
         <Badge children={'Badge'} progress={'complete'} />
         <div>
-          <TabPanel position={'top'} alignment={'center'}>
-            <Tab tabcontent={<Badge children={'Home'} status={'success'} />} >
+          <TabPanel position={'top'} alignment={'center'} defaulttabid={this.state.activeTabId} >
+            <Tab tabDescription={<Badge children={'Home'} status={'success'} />} tabId={'tab1'}>
               <p>content 0</p>
             </Tab>
-            <Tab tabcontent="User" >
+            <Tab tabDescription="User" tabId={'tab2'}>
               <div>
                 <Button onClick={this.toggleModal}>Medium buttonas</Button>
               </div>
             </Tab>
+            <Tab tabDescription="User1" tabId={'tab3'}>
+              <p>content user1</p>
+            </Tab>
+            <Tab tabDescription="User2" tabId={'tab4'}>
+              <p>content user2</p>
+            </Tab>
+            <Tab tabDescription="User3" tabId={'tab5'}>
+              <p>content user3</p>
+            </Tab>
           </TabPanel>
+          <Button onClick={() => this.setState({ activeTabId: 'tab2' })}>Trigger User from here</Button>
         </div>
         <div>
           <Caption style={{ color: 'red' }}>This is modal</Caption>
