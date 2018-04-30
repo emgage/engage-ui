@@ -1,61 +1,56 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from 'react-css-themr';
 import { classNames, variationName } from '@shopify/react-utilities/styles';
-import { LIST } from '../ThemeIdentifiers';
+import { DESCRIPTIONLIST } from '../ThemeIdentifiers';
 import * as baseTheme from './DescriptionList.scss';
-//import ListItem from './ListItem';
-import Select from '../Select';
 
 export type Type = 'default' | 'divider';
 
-export type Item = {
+export interface ItemArray {
   term: string,
   description: string,
-};
+}
+
+export type Item = ItemArray;
 
 export interface Props {
-    items?: Item[];
+    items: Item[];
     type?: Type;
     theme?: any;
+    style?:string;
 }
-//class DescriptionList extends React.Component<Props, never> {
-  
- const descriptionList = ({
+
+const descriptionList = ({
    items,
    type,
+   style,
    theme,
  }: Props)=> {
-      let itemsMarkup : React.ReactNode;
-      itemsMarkup = this.props.items.map(renderItem);
- //itemsMarkup = this.props.items.map((item:Item) => {
- //       const term = item.term;
- //       const description = item.description;
-  //    });
-      const background = this.props.type === 'divider' ? baseTheme['list-divider'] : this.props.type === 'default' ? baseTheme['naked'] : '';
-      const className = classNames(
-        this.props.theme.list,
-        this.props.type && this.props.theme[variationName('type', this.props.type)]
-      );
+      const itemMarkup = items.map((item:Item) => {
+        const term = item.term;
+        const description = item.description;
+        const classNameTerm = style ===  "Inline" ?  classNames(theme.term) : '' ;
+        const classNameDescription = classNames(theme.description);
+        return (
+            <React.Fragment>
+            <dt className={classNameTerm}>{term}</dt>
+            <dd className={classNameDescription}>{description}</dd>
+            </React.Fragment>
+        );
+      });
       
-      return (
-        <div>
-          <Select label="Items Display:" labelHidden options={[
-              'Stacked',
-              'Inline',
-          ]} />
-          <dl className={className + ' ' + background}>
-          {itemsMarkup}
-          </dl>
-        </div>);
-    }
-
-    function renderItem(item:Item) {
-      return (
-        <div>
-          <dt>{item.term}</dt>
-          <dd>{item.description}</dd>
-      </div>
+      const background = type === 'divider' ? baseTheme['description-list-divider'] : type === 'default' ? baseTheme['naked'] : '';
+      const className = classNames(
+        style ===  "Inline" ?  theme.descriptionList : '',
+        type && theme[variationName('type', type)]
       );
-    }
-  export default themr(LIST, baseTheme)(descriptionList) as ThemedComponentClass<Props, {}>;
+    return (
+         <div>
+          <dl className={className + ' ' + background}>
+            {itemMarkup}
+          </dl>
+        </div>
+    );
+  };
+  export default themr(DESCRIPTIONLIST, baseTheme)(descriptionList) as ThemedComponentClass<Props, {}>;
   

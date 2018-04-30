@@ -23,7 +23,7 @@ import {
   Link,
   List,
   Item,
-  //DescriptionList,
+  DescriptionList,
   // ListItem,
   Loading,
   // OffCanvas,
@@ -608,6 +608,55 @@ class App extends React.Component<{}, State> {
             <Item>Second item</Item>
             <Item>Third Item</Item>
           </List>
+          <Heading>Description List</Heading> 
+          <DescriptionList type="default" style="Inline"           
+            items={[
+            {
+              term: 'Logistics',
+              description: 'The management of products or other resources as they travel between a point of origin and a destination.',
+            },
+            {
+              term: 'Sole proprietorship',
+              description: 'A business structure where a single individual both owns and runs the company.',
+            },
+            {
+              term: 'Discount code',
+              description: 'A series of numbers and/or letters that an online shopper may enter at checkout to get a discount or special offer.',
+            },
+          ]}
+          />
+          <DescriptionList type="default" style="Stacked"           
+            items={[
+            {
+              term: 'Logistics',
+              description: 'The management of products or other resources as they travel between a point of origin and a destination.',
+            },
+            {
+              term: 'Sole proprietorship',
+              description: 'A business structure where a single individual both owns and runs the company.',
+            },
+            {
+              term: 'Discount code',
+              description: 'A series of numbers and/or letters that an online shopper may enter at checkout to get a discount or special offer.',
+            },
+          ]}
+          />
+          <DescriptionList type="divider" style="Stacked"           
+            items={[
+            {
+              term: 'Logistics',
+              description: 'The management of products or other resources as they travel between a point of origin and a destination.',
+            },
+            {
+              term: 'Sole proprietorship',
+              description: 'A business structure where a single individual both owns and runs the company.',
+            },
+            {
+              term: 'Discount code',
+              description: 'A series of numbers and/or letters that an online shopper may enter at checkout to get a discount or special offer.',
+            },
+          ]}
+          />
           <ChoiceList
             title="Company name"
             choices={[

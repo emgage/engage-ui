@@ -1,4 +1,4 @@
 import DescriptionList from './DescriptionList';
 
-export { Props } from './DescriptionList';
+export * from './DescriptionList';
 export default DescriptionList;
