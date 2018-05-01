@@ -1,6 +1,5 @@
 import * as React from 'react';
-// import { Dropdown, Select, TextField, FormLayout } from '../../../../src/components/';
-// import Group from '../../../../src/components/FormLayout/Group';
+import { Dropdown, DropdownItemProps } from '../../../../src/components/';
 import * as styles from '../../styles/components-page.scss';
 
 export interface IProps{
@@ -10,41 +9,59 @@ export interface IState {
   active: boolean;
 }
 
-class DropdownExampleSecond extends React.Component<IProps, IState> {
+class DropdownExampleThird extends React.Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
     this.state = {
       active: false,
     };
+    this.toggle = this.toggle.bind(this);
   }
+
+  private toggle() {
+    this.setState({
+      active: !this.state.active
+    });
+  }
+
   render() {
-    return (
-      <div className={styles.example}>
-        {/* <Dropdown
-            active={this.state.active}
-            preferredPosition="above"
-            onClose={() => { alert('Popover is Closed'); this.setState({ active: false }); }
-        }>
-            <FormLayout>
-                <Select
-                label="Date range"
-                options={['Custom']}
-                />
-                <Group condensed>
-                    <TextField
-                        label="Starting"
-                        value="2017-04-20"
-                    />
-                    <TextField
-                        label="Ending"
-                        value="2017-04-21"
-                    />
-                </Group>
-            </FormLayout>
-        </Dropdown> */}
-      </div>
-    );
+    const items : DropdownItemProps[] = [
+      {
+        children: "Item 1",
+        header: false,
+        divider: false,
+        disabled: false
+      }, {
+        children: "Item 2",
+        divider: true,
+        header: false,
+        disabled: true
+      }, {
+        children: "Item 3",
+        disabled: false,
+        header: false,
+        divider: false
+      }, {
+        children: "Item 4",
+        header: true,
+        divider: false,
+        disabled: false
+      }
+    ]
+
+    return (
+      <div className={styles.example}>
+         <Dropdown
+          active={this.state.active}
+          DropdownItems={items}
+          toggle={this.toggle}
+          direction="left"
+        >
+          Actions
+        </Dropdown>
+      </div>
+    );
   }
 }
 
-export default DropdownExampleSecond;
+export default DropdownExampleThird;

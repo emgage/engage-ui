@@ -1,9 +1,5 @@
 ---
 name: Dropdown
-tags:
-  - interactive
-  - container
-
 category: Overlays
 ---
 
@@ -41,7 +37,7 @@ Dropdown should:
 
 ### Dropdown content
 
-If the menu items in a popover menu include a series of actions, each item should:
+If the menu items in a dropdown include a series of actions, each item should:
 
 - Be clear and predictable: merchants should be able to anticipate what will happen when they click on an action item. Never deceive a merchant by mislabeling an action.
 
@@ -79,7 +75,7 @@ Add menu item
 Add a menu item
 <!-- end -->
 
-If the menu items in a popover menu include a series of navigational links, each item should:
+If the items in a dropdown include a series of navigational links, each item should:
 
 - Be concise but still give the merchant enough information so they can easily find and accurately navigate to the path they want.
 
@@ -96,85 +92,32 @@ If the menu items in a popover menu include a series of navigational links, each
 
 | Properties | Type | Description |
 | ---------- | ---- | ----------- |
-| children | React.ReactNode | The content to display inside the popover |
-| preferredPosition | enum['above', 'below'] | The preferred direction to open the popover |
-| active | boolean | Show or hide the Popover |
-| activator | React.ReactElement | The element to activate the Popover |
-| activatorWrapper | string | The element type to wrap the activator with |
-| preventAutofocus | boolean | Prevent automatic focus of the first field on activation |
-| sectioned | boolean | Automatically add wrap content in a section |
-| onClose | function(source: React.ReactElement) | Callback when popover is closed |
+| children | string | The content to display inside the dropdown |
+| direction | enum['up', 'down', 'left', 'right'] | The preferred direction to open the dropdown |
+| active | boolean | Show or hide the Dropdown |
+| disable | boolean | Disable the dropdown |
+| activatorWrapper | string | The element type to wrap the dropdown with |
+| dropdownItems | DropdownItemProps | items of the dropdown |
+| toggle | function() | Callback when dropdown changes active state |
+| onClose | function() | Callback when dropdown is closed |
 
 ## Examples
 
-###  Popover with action list
+###  Dropdown with action list
 
 Use when presenting a set of actions in a disclosable menu.
 
 ```jsx
 <div style={{minHeight: '250px'}}>
-  <Popover
-    active
-    activator={<Button>Actions</Button>}
+  <Dropdown
+    dropdownItems = [ {
+        children: "Item 1",
+      }, {
+        children: "Item 2",
+      }]
   >
-    <ActionList
-      items={[
-        {content: 'Import'},
-        {content: 'Export'},
-      ]}
-    />
-  </Popover>
-</div>
-```
-
-
-###  Popover with content and actions
-
-Use to present a combination of content, instructions, and actions is a panel for tasks that are of low or secondary importance to the current page. When used this way, popovers provide useful entry points to related features without overwhelming merchants.
-
-```jsx
-<div style={{height: '250px'}}>
-  <Popover
-    active
-    activator={<Button>Sales channels</Button>}
-  >
-    <Popover.Pane>
-      <Popover.Section>
-        <p>Available sales channels</p>
-      </Popover.Section>
-    </Popover.Pane>
-    <Popover.Pane>
-      <ActionList
-        items={[
-          {content: 'Online store'},
-          {content: 'Facebook'},
-          {content: 'Shopify POS'},
-        ]}
-      />
-    </Popover.Pane>
-  </Popover>
-</div>
-```
-
-###  Popover with form components
-
-Use to present secondary input tasks on demand.
-
-```jsx
-<div style={{height: '400px'}}>
-  <Popover
-    active
-    activator={<Button>April 20–21, 2017</Button>}
-    sectioned
-  >
-    <FormLayout>
-      <Select label="Date range" options={['Custom']} />
-
-      <FormLayout.Group condensed>
-        <TextField label="Starting" value="2017-04-20" />
-        <TextField label="Ending" value="2017-04-21" />
-      </FormLayout.Group>
-    </FormLayout>
-  </Popover>
+  Actions
+  />
+  </Dropdown>
 </div>
 ```

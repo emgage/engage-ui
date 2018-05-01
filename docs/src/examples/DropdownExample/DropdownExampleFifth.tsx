@@ -6,21 +6,21 @@ export interface IProps{
 }
 
 export interface IState {
-  activated: boolean;
+  active: boolean;
 }
 
-class DropdownExampleFirst extends React.Component<IProps, IState> {
-  constructor(props: IProps) {
+class DropdownExampleFifth extends React.Component<IProps, IState> {
+  constructor(props: IProps) {
     super(props);
     this.state = {
-      activated: false,
-    };
+      active: true,
+    };
     this.toggle = this.toggle.bind(this);
   }
-  
+
   private toggle() {
     this.setState({
-      activated: !this.state.activated
+      active: !this.state.active
     });
   }
 
@@ -30,7 +30,7 @@ class DropdownExampleFirst extends React.Component<IProps, IState> {
         children: "Item 1",
         header: false,
         divider: false,
-        disabled: true
+        disabled: false
       }, {
         children: "Item 2",
         divider: true,
@@ -52,15 +52,17 @@ class DropdownExampleFirst extends React.Component<IProps, IState> {
     return (
       <div className={styles.example}>
          <Dropdown
-          active={this.state.activated}
+          active={this.state.active}
           DropdownItems={items}
           toggle={this.toggle}
+          direction="down"
+          disabled
         >
           Actions
         </Dropdown>
       </div>
     );
-  }
+  }
 }
 
-export default DropdownExampleFirst;
+export default DropdownExampleFifth;

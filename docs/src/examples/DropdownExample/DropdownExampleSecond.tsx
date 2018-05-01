@@ -1,7 +1,5 @@
 import * as React from 'react';
-// import { Dropdown,List,Item } from '../../../../src/components/';
-// import Pane from '../../../../src/components/Dropdown/Pane';
-// import Section from '../../../../src/components/Dropdown/Section';
+import { Dropdown, DropdownItemProps } from '../../../../src/components/';
 import * as styles from '../../styles/components-page.scss';
 
 export interface IProps{
@@ -17,28 +15,52 @@ class DropdownExampleSecond extends React.Component<IProps, IState> {
     this.state = {
       active: false,
     };
+    this.toggle = this.toggle.bind(this);
   }
+
+  private toggle() {
+    this.setState({
+      active: !this.state.active
+    });
+  }
+
   render() {
-    return (
-      <div className={styles.example}>
-        {/* <Dropdown
+    const items : DropdownItemProps[] = [
+      {
+        children: "Item 1",
+        header: false,
+        divider: false,
+        disabled: false
+      }, {
+        children: "Item 2",
+        divider: true,
+        header: false,
+        disabled: true
+      }, {
+        children: "Item 3",
+        disabled: false,
+        header: false,
+        divider: false
+      }, {
+        children: "Item 4",
+        header: true,
+        divider: false,
+        disabled: false
+      }
+    ]
+
+    return (
+      <div className={styles.example}>
+         <Dropdown
           active={this.state.active}
-          >
-          <Pane fixed>
-            <Section>
-              <p>Available sales channels</p>
-            </Section>
-          </Pane>
-          <Pane>
-            <List type="striped">
-              <Item>Online store</Item>
-              <Item>Facebook</Item>
-              <Item>Shopify POS</Item>
-            </List>
-          </Pane>
-        </Dropdown> */}
-      </div>
-    );
+          DropdownItems={items}
+          toggle={this.toggle}
+          direction="up"
+        >
+          Actions
+        </Dropdown>
+      </div>
+    );
   }
 }
 

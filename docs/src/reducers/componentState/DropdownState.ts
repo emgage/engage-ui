@@ -1,63 +1,75 @@
 import { IDocument } from '../../Types';
-import PopoverExampleFirst from '../../examples/DropdownExample/DropdownExampleFirst';
-import PopoverExampleSecond from '../../examples/DropdownExample/DropdownExampleSecond';
-import PopoverExampleThird from '../../examples/DropdownExample/DropdownExampleThird';
+import DropdownExampleFirst from '../../examples/DropdownExample/DropdownExampleFirst';
+import DropdownExampleSecond from '../../examples/DropdownExample/DropdownExampleSecond';
+import DropdownExampleThird from '../../examples/DropdownExample/DropdownExampleThird';
+import DropdownExampleFourth from '../../examples/DropdownExample/DropdownExampleFourth';
+import DropdownExampleFifth from '../../examples/DropdownExample/DropdownExampleFifth';
 
-const PopoverExampleFirstCode = require('!raw-loader!../../examples/DropdownExample/DropdownExampleFirst') as string;
-const PopoverExampleSecondCode = require('!raw-loader!../../examples/DropdownExample/DropdownExampleSecond') as string;
-const PopoverExampleThirdCode = require('!raw-loader!../../examples/DropdownExample/DropdownExampleThird') as string;
+const DropdownExampleFirstCode = require('!raw-loader!../../examples/DropdownExample/DropdownExampleFirst') as string;
+const DropdownExampleSecondCode = require('!raw-loader!../../examples/DropdownExample/DropdownExampleSecond') as string;
+const DropdownExampleThirdCode = require('!raw-loader!../../examples/DropdownExample/DropdownExampleThird') as string;
+const DropdownExampleFourthCode = require('!raw-loader!../../examples/DropdownExample/DropdownExampleFourth') as string;
+const DropdownExampleFifthCode = require('!raw-loader!../../examples/DropdownExample/DropdownExampleFifth') as string;
 
-const PopoverState: IDocument = {
-  id: 'Dropdown',
+const DropdownState: IDocument = {
+  id: 'dropdown',
   heading: 'Dropdown Component',
-  subheading: `Dropdown are small overlays that open on demand, usually when the merchant clicks a button. They let users access supplementary content and actions without cluttering the page.`,
+  subheading: `Dropdown are small overlays that open on demand, usually when the merchant clicks a button. They let users access supplementary actions without cluttering the page.`,
   property: [
     {
       name: 'children',
-      type: 'React.ReactNode',
-      desc: 'The content to display inside the popover.',
+      type: 'string',
+      desc: 'The content to display inside the dropdown.',
     }, {
-      name: 'preferredPosition',
+      name: 'direction',
       type: 'enum',
-      desc: 'The preferred direction to open the popover. Availablee options: above | below | mostSpace',
+      desc: 'The direction to open the dropdown. Availablee options: up | down | left | right',
     }, {
       name: 'active',
       type: 'boolean',
-      desc: 'Show or hide the Popover.',
+      desc: 'Show or hide the Dropdown.',
     }, {
-      name: 'activator',
-      type: 'React.ReactElement',
-      desc: 'The element to activate the Popover.',
+      name: 'disable',
+      type: 'boolean',
+      desc: 'Disable the dropdown',
     }, {
       name: 'activatorWrapper',
       type: 'string',
       desc: 'The element type to wrap the activator with.',
     }, {
-      name: 'preventAutofocus',
-      type: 'boolean',
-      desc: 'Prevent automatic focus of the first field on activation.',
+      name: 'dropdownItems',
+      type: 'DropdownItemProps',
+      desc: 'items of the dropdown.',
     }, {
-      name: 'sectioned',
-      type: 'boolean',
-      desc: 'Automatically add wrap content in a section.',
+      name: 'toggle',
+      type: 'function ()',
+      desc: 'Callback when dropdown\'s active props changes.',
     }, {
       name: 'onClose',
-      type: 'function (source: CloseSource [ Click, EscapeKeypress, FocusOut, ScrollOut ] )',
-      desc: 'Callback when popover is closed.',
+      type: 'function ()',
+      desc: 'Callback when dropdown is closed.',
     },
   ],
-  exampleCode: PopoverExampleFirstCode,
-  exampleComponent: PopoverExampleFirst,
-  exampleCodeHeader: '1. Popover with ActionList:',
+  exampleCode: DropdownExampleFirstCode,
+  exampleComponent: DropdownExampleFirst,
+  exampleCodeHeader: '1. Dropdown:',
   exampleCodeDescription: 'Use when presenting a set of actions in a disclosable menu.',
-  exampleCode1: PopoverExampleSecondCode,
-  exampleComponent1: PopoverExampleSecond,
-  exampleCodeHeader1: '2. Popover with Content and Actions:',
-  exampleCodeDescription1: 'Use to present a combination of content, instructions, and actions is a panel for tasks that are of low or secondary importance to the current page. When used this way, popovers provide useful entry points to related features without overwhelming users.',
-  exampleCode2: PopoverExampleThirdCode,
-  exampleComponent2: PopoverExampleThird,
-  exampleCodeHeader2: '2. Popover with Form Components:',
-  exampleCodeDescription2: 'Use to present secondary input tasks on demand.',
+  exampleCode1: DropdownExampleSecondCode,
+  exampleComponent1: DropdownExampleSecond,
+  exampleCodeHeader1: '2. Up Dropdown:',
+  exampleCodeDescription1: 'Dropdown that opens in up direction.',
+  exampleCode2: DropdownExampleThirdCode,
+  exampleComponent2: DropdownExampleThird,
+  exampleCodeHeader2: '3. Left Dropdown:',
+  exampleCodeDescription2: 'Dropdown that opens in left direction.',
+  exampleCode3: DropdownExampleFourthCode,
+  exampleComponent3: DropdownExampleFourth,
+  exampleCodeHeader3: '4. Right Dropdown:',
+  exampleCodeDescription3: 'Dropdown that opens in right direction.',
+  exampleCode4: DropdownExampleFifthCode,
+  exampleComponent4: DropdownExampleFifth,
+  exampleCodeHeader4: '3. Disable Dropdown:',
+  exampleCodeDescription4: 'A disabled dropdown does not allow user interaction.',
 };
 
-export default PopoverState;
+export default DropdownState;

@@ -79,7 +79,8 @@ export class Dropdown extends React.PureComponent<Props, State> {
       children,
       DropdownItems,
       toggle,
-      direction
+      direction,
+      disabled
     } = this.props;
     
     const {
@@ -92,12 +93,12 @@ export class Dropdown extends React.PureComponent<Props, State> {
         : direction === "up" ? baseTheme.dropup
         : direction === "left" ? baseTheme.dropleft
         : baseTheme.dropright,
-      active && baseTheme.active
+       !disabled && active && baseTheme.active
     );
 
     const dropdownMenuClassName = classNames (
       baseTheme.dropdownMenu,
-      active && baseTheme.active,
+      !disabled && active && baseTheme.active,
     );
 
     const DropdownItemComponents = DropdownItems.map((item,index) => 
@@ -150,14 +151,15 @@ export class Dropdown extends React.PureComponent<Props, State> {
   private handleKeyEvent(event: KeyboardEvent) {
     const {
       active,
-      toggle
+      toggle,
+      disabled
     } = this.props;
 
     const {
       selectedIndex
     } = this.state;
 
-    if (!active) {
+    if (!active && !disabled) {
       return;
     }
     

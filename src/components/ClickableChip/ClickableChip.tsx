@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from 'react-css-themr';
-// import Popover from '../Dropdown/Dropdown';
+import Dropdown, { DropdownItemProps } from '../Dropdown/Dropdown';
+import { Props as ChipStates } from '../Chip';
 import { CLICKABLECHIP } from '../ThemeIdentifiers';
 import * as baseTheme from './ClickableChip.scss';
 
@@ -8,7 +9,7 @@ export interface State {
   active: boolean;
 }
 export interface Props {
-  chip: React.ReactElement<any>;
+  chip: React.ReactElement<ChipStates>;
   style?: React.CSSProperties;
   theme?: any;
   onClick?(): void;
@@ -20,24 +21,25 @@ class ClickableChip extends React.PureComponent<Props, State> {
     this.state = {
       active: false,
     };
+    this.handleClick = this.handleClick.bind(this);
   }
 
   onClose = () => { };
 
   render() {
-    const {
-            chip,
-            onClick = this.handleClick,
-        } = this.props;
-    const updatedChip = React.cloneElement(chip, { onClick, clickable: true });
-    return ([
-      updatedChip,
-      // <Popover active={this.state.active} onClose={this.onClose} >
-      //   {this.props.children}
-      // </Popover>
-      ]
+    const chip = this.props.chip.props.children;
+
+    let Items: DropdownItemProps[] = [{
+      children: this.props.children
+    }]
+
+    return (
+      <Dropdown active={this.state.active} onClose={this.onClose} toggle={this.handleClick} DropdownItems={Items} >
+        {chip}
+      </Dropdown>
     );
   }
+
   private handleClick = () => {
     this.setState({ ['active']: !this.state.active });
   }
