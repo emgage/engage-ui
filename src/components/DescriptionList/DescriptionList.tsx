@@ -39,7 +39,7 @@ const descriptionList = ({
         );
       });
       
-      const background = type === 'divider' ? baseTheme['description-list-divider'] : type === 'default' ? baseTheme['naked'] : '';
+      const background = type === 'divider' && style ===  "Stacked" ? baseTheme['description-list-divider'] : type === 'default' && style ===  "Stacked" ? baseTheme['naked'] : '';
       const className = classNames(
         style ===  "Inline" ?  theme.descriptionList : '',
         type && theme[variationName('type', type)]
