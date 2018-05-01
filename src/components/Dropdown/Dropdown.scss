@@ -19,10 +19,10 @@ $gray-100: #f8f9fa !default;
 $gray-200: #e9ecef !default;
 $gray-600: #6c757d !default;
 $gray-900: #212529 !default;
-$dropdown-link-hover-color: lightblue !default;
+$dropdown-link-hover-color: #2eb5e2 !default;
 $border-radius: .25rem !default;
 $border-width: 1px !default;
-$component-active-color: $gray-600 !default;
+$component-active-color: #add8e6 !default;
 $enable-gradients: false !default;
 $component-active-bg: theme-color("primary") !default;
 $dropdown-min-width: 10rem !default;
@@ -139,10 +139,12 @@ $font-weight-normal: 400 !default;
   }
 }
 
-// Dividers (basically an `<hr>`) within the dropdown
-// .dropdownDivider {
-//   @include nav-divider($dropdown-divider-bg); sk
-// }
+.dropdownDivider {
+  height: 0;
+  margin: 0 0;
+  overflow: hidden;
+  border-top: 1px solid $dropdown-divider-bg;
+}
 
 .dropdownItem {
   display: block;
@@ -173,4 +175,13 @@ $font-weight-normal: 400 !default;
     color: $dropdown-link-disabled-color;
     background-color: transparent;
   }
+}
+
+.dropdownHeader {
+  display: block;
+  padding: $dropdown-padding-y $dropdown-item-padding-x;
+  margin-bottom: 0;
+  font-size: $font-size-sm;
+  color: $dropdown-header-color;
+  white-space: nowrap; 
 }

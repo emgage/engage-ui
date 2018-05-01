@@ -35,11 +35,16 @@ class DropdownItem extends React.Component<Props, never> {
     
     if (divider) {
       className = baseTheme.dropdownDivider;
+      return (
+        <div id={this.id} className={className}></div>
+      );
     } else if(header) {
-      className = baseTheme.dropdownDivider;
+      className = baseTheme.dropdownHeader;
+      return (
+        <div id={this.id} className={className}>{children}</div>
+      );
     } else {
       className = classNames(
-        divider && baseTheme.dropdownDivider,
         baseTheme.dropdownItem,
         active && baseTheme.active,
         disabled && baseTheme.disabled

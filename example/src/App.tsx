@@ -138,10 +138,19 @@ class App extends React.Component<{}, State> {
   render() {
     let items : DropdownItemProps[] = [
       {
-        children: <h1>Item 1</h1> 
+        children: "Item 1",
       },
       {
-        children: "Item 2"
+        children: "Item 2",
+        divider: true
+      },
+      {
+        children: "Item 3",
+        disabled: false
+      },
+      {
+        children: "Item 4",
+        header: true
       }
     ]
 
@@ -522,7 +531,7 @@ class App extends React.Component<{}, State> {
 
           
           <Button onClick={this.popoverUpdate} >Click to active and deactive dropdown</Button>
-          <Dropdown active={this.state.popoverActive} DropdownItems={items} toggle={this.popoverUpdate} direction="right">sk</Dropdown>
+          <Dropdown active={this.state.popoverActive} DropdownItems={items} toggle={this.popoverUpdate} direction="down">sk</Dropdown>
 
           <TextField
             id="TestName"

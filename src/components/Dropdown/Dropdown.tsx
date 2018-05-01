@@ -106,6 +106,7 @@ export class Dropdown extends React.PureComponent<Props, State> {
               active={selectedIndex === index} 
               disabled={item.disabled}
               divider={item.divider}
+              header={item.header}
               children={item.children}
             ></DropdownItem>
         );
@@ -172,56 +173,38 @@ export class Dropdown extends React.PureComponent<Props, State> {
 
   @autobind
   private changeItem(selectedIndex: number, direction : number) {
+    const DropdownCount = this.props.DropdownItems.length - 1;
+
+    if (direction === 1) {
+      if (selectedIndex === DropdownCount) {
+        this.changeItemState(0, 1);
+      } else {
+        this.changeItemState(selectedIndex + 1, 1);
+      }
+    } else if (direction === -1) {
+      if (selectedIndex === 0) {
+        this.changeItemState(DropdownCount, -1);
+      } else {
+        this.changeItemState(selectedIndex - 1, -1);
+      }
+    }
+  }
+
+  @autobind
+  private changeItemState(selectedIndex: number, direction : number) {
     const {
       DropdownItems
     } = this.props;
 
-    if (direction === 1) {
-      if (selectedIndex === DropdownItems.length - 1) {
-        // if next selected item is disabled or devider find next one
-        if (DropdownItems[0].disabled || DropdownItems[0].divider) {
-          this.changeItem(0, 1)
-          return
-        }
-
-        this.setState({
-          selectedIndex: 0
-        });
-
-      } else {
-        // if next selected item is disabled or devider find next one
-        if (DropdownItems[selectedIndex + 1].disabled || DropdownItems[selectedIndex + 1].divider) {
-          this.changeItem(selectedIndex + 1, 1)
-          return
-        }
-
-        this.setState({
-          selectedIndex: selectedIndex + 1
-        });
-      }
-    } else if (direction === -1) {
-      if (selectedIndex === 0) {
-        // if next selected item is disabled or devider find next one
-        if (DropdownItems[DropdownItem.length - 1].disabled || DropdownItems[DropdownItem.length - 1].divider) {
-          this.changeItem(DropdownItem.length - 1, 1)
-          return
-        }
-
-        this.setState({
-          selectedIndex: DropdownItem.length - 1
-        });
-      } else {
-        // if next selected item is disabled or devider find next one
-        if (DropdownItems[selectedIndex - 1].disabled || DropdownItems[selectedIndex - 1].divider) {
-          this.changeItem(selectedIndex - 1, 1)
-          return
-        }
-
-        this.setState({
-          selectedIndex: selectedIndex - 1
-        });
-      }
+    // if next selected item is disabled or devider find next one
+    if (DropdownItems[selectedIndex].disabled || DropdownItems[selectedIndex].divider || DropdownItems[selectedIndex].header) {
+      this.changeItem(selectedIndex, direction)
+      return
     }
+
+    this.setState({
+      selectedIndex: selectedIndex
+    });
   }
 }
 
