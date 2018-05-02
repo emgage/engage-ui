@@ -10,8 +10,8 @@ export interface State {
 }
 
 class DrawerExample extends React.Component<Props, State> {
-  constructor() {
-    super();
+  constructor(props: Props) {
+    super(props);
 
     this.state = {
       drawer: false,

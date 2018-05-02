@@ -1,3 +1,4 @@
+export const ACCORDION = 'PAccordtion';
 export const AVATAR = 'PAvatar';
 export const BADGE = 'PBadge';
 export const BANNER = 'PBanner';

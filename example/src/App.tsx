@@ -43,6 +43,8 @@ import {
   Spinner,
   Table,
   TableColumnConfig,
+  Accordion,
+  AccordionItemProps
 } from '../../src/components';
 
 interface State {
@@ -97,6 +99,7 @@ class App extends React.Component<{}, State> {
       },
       activeDrawerId: 'content1',
     };
+    this.popovertoggle = this.popovertoggle.bind(this);
   }
 
   rowGetter = (index: number) => this.state.rows[index];
@@ -134,6 +137,18 @@ class App extends React.Component<{}, State> {
   }
 
   render() {
+    const items : AccordionItemProps[] = [{
+      active: this.state.popoverActive,
+      children: <Banner title={'banner'} status={'success'} />,
+      toggle: this.popovertoggle,
+      header: <Button>sk</Button>
+    },{
+      active: this.state.popoverActive,
+      children: <Banner title={'banner11'} status={'warning'} />,
+      toggle: this.popovertoggle,
+      header: <Button>sk1</Button>
+    }];
+
     const posterUrl = new URL('http://4.bp.blogspot.com/_JSR8IC77Ub4/TKB-XAWXmhI/AAAAAAAABJA/MqOpdFTOaHo/w1200-' +
       'h630-p-k-no-nu/C:%5Cfakepath%5Cbird1.jpg');
     const singleVideoSource = [
@@ -508,6 +523,10 @@ class App extends React.Component<{}, State> {
         <div>
 */}
           <Heading>Popover</Heading>
+          <Accordion Items={items} >
+            <Heading>According</Heading>
+          </Accordion>
+
           <TextField
             id="TestName"
             label="Text Counter"
@@ -959,8 +978,10 @@ class App extends React.Component<{}, State> {
     return (value: any) => this.setState({ [value]: value });
   }
 
-  popoverClose(field: any) {
-    return;
+  popovertoggle() {
+    this.setState({
+      popoverActive: !this.state.popoverActive
+    });
   }
 }
 
