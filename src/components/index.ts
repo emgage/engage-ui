@@ -4,6 +4,11 @@ export {
 } from './Avatar';
 
 export {
+  default as Alert,
+  Props as AlertProps,
+} from './Alert';
+
+export {
   default as Badge,
   Props as BadgeProps,
 } from './Badge';

@@ -4,6 +4,7 @@ import DateRangePickerWrapper from './DateRangePickerWrapper';
 import PickerAutoSuggestExample from './PickerAutoSuggestExample';
 
 import {
+  Alert,
   Banner,
   Badge,
   Button,
@@ -431,6 +432,22 @@ class App extends React.Component<{}, State> {
         <br />
         <Caption style={{ color: 'red' }}>This is Caption</Caption>
         <br />
+        <Heading>Alert</Heading>
+        <Alert>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
+        </Alert>
+        <Alert type="primary" >
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
+        </Alert>
+        <Alert type="success"> 
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
+        </Alert>
+        <Alert type="warning">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
+        </Alert>
+        <Alert type="danger">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
+        </Alert>
         <Checkbox label={'I am a checkbox'} />
         <Banner title={'banner'} status={'success'} />
         <Banner title={'banner'} status={'info'} />
