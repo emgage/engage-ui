@@ -1,11 +1,13 @@
 import * as React from 'react';
 import * as baseTheme from './Accordion.scss';
+import { autobind } from '@shopify/javascript-utilities/decorators';
 
 export interface Props {
+  index: number,
   header: React.ReactElement<any>;
   children: React.ReactElement<any>;
   active?: boolean;
-  toggle?(): void;
+  toggle?(index: number): void;
 }
 
 export default class Accordion extends React.PureComponent<Props, never> {
@@ -14,13 +16,12 @@ export default class Accordion extends React.PureComponent<Props, never> {
     const {
       header,
       children,
-      active,
-      toggle
+      active
     } = this.props;
 
     return (
       <div className={baseTheme.accordionItem}>
-        <div className={active ? baseTheme.header : baseTheme.headerCollapsed} onClick={toggle}>
+        <div className={active ? baseTheme.header : baseTheme.headerCollapsed} onClick={this.clickHandler}>
           {header}
         </div>
         <div className={active ? baseTheme.body : baseTheme.bodyCollapsed}>
@@ -28,5 +29,12 @@ export default class Accordion extends React.PureComponent<Props, never> {
         </div>
       </div>
     );
+  }
+
+  @autobind
+  private clickHandler() {
+    if (typeof this.props.toggle !== 'undefined') {
+      this.props.toggle(this.props.index)
+    }
   }
 }

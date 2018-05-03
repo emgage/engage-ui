@@ -54,7 +54,7 @@ interface State {
   columns: object[];
   rows: object[];
   isMenuOpened: boolean;
-  popoverActive: boolean;
+  popoverActive: boolean[];
   bulkAction: any;
   filterConfig: any;
   modalOpen: boolean;
@@ -83,7 +83,7 @@ class App extends React.Component<{}, State> {
         { id: 3, title: 'Title 3', count: 3 },
       ],
       isMenuOpened: false,
-      popoverActive: false,
+      popoverActive: [false, false],
       bulkAction: {
         selectedRow: [],
       },
@@ -138,14 +138,10 @@ class App extends React.Component<{}, State> {
 
   render() {
     const items : AccordionItemProps[] = [{
-      active: this.state.popoverActive,
       children: <Banner title={'banner'} status={'success'} />,
-      toggle: this.popovertoggle,
       header: <Button>sk</Button>
     },{
-      active: this.state.popoverActive,
       children: <Banner title={'banner11'} status={'warning'} />,
-      toggle: this.popovertoggle,
       header: <Button>sk1</Button>
     }];
 
@@ -521,9 +517,11 @@ class App extends React.Component<{}, State> {
           <Link>Tooltip 2</Link>
         </Tooltip>
         <div>
-*/}
+
+          <Button onClick={() => this.popovertoggle(0)}>item1 toggle</Button>
+          <Button onClick={() => this.popovertoggle(1)}>item1 toggle</Button>
           <Heading>Popover</Heading>
-          <Accordion Items={items} >
+          <Accordion items={items}>
             <Heading>According</Heading>
           </Accordion>
 
@@ -978,9 +976,12 @@ class App extends React.Component<{}, State> {
     return (value: any) => this.setState({ [value]: value });
   }
 
-  popovertoggle() {
+  popovertoggle(index: number) {
+    let updatedPopoverActive = this.state.popoverActive;
+    updatedPopoverActive[index] = !updatedPopoverActive[index];
+
     this.setState({
-      popoverActive: !this.state.popoverActive
+      popoverActive: updatedPopoverActive
     });
   }
 }
