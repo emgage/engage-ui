@@ -277,7 +277,7 @@ class App extends React.Component<{}, State> {
         <Badge children={'Badge'} progress={'partiallyComplete'} />
         <Badge children={'Badge'} progress={'complete'} />
         <div>
-          <TabPanel position={'top'} alignment={'center'} defaulttabid={this.state.activeTabId} >
+          <TabPanel position={'top'} alignment={'center'} defaultTabId={this.state.activeTabId} >
             <Tab tabDescription={<Badge children={'Home'} status={'success'} />} tabId={'tab1'}>
               <p>content 0</p>
             </Tab>

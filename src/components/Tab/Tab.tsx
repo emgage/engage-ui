@@ -12,21 +12,22 @@ export interface Props {
   tabId: string;
   // Identity of selected/currently active tab
   activeTabId?: string;
-  // Set theme for tab
-  theme?: any;
-  children?: any;
   // Callback function to be called when tab is clicked/selected
   onClick?(): void;
+  // User can Set style for Tab component
+  style?: React.CSSProperties;
+  // Set theme for tab
+  theme?: any;
 }
 
 // return a Single tab component to be render into tabpanel
-const tab = ({ tabId, tabDescription, activeTabId, onClick, theme, children }: Props) => {
+const tab = ({ tabId, tabDescription, activeTabId, onClick, theme, style }: Props) => {
   const tabClassName = classNames(
     theme.tab,
     tabId === activeTabId ? theme.active : ''
   );
   return (
-    <div className={tabClassName} onClick={onClick}>
+    <div className={tabClassName} style={style} onClick={onClick}>
       {tabDescription}
     </div>
   );

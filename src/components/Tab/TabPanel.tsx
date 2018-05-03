@@ -3,6 +3,7 @@ import { themr, ThemedComponentClass } from 'react-css-themr';
 import { classNames } from '@shopify/react-utilities/styles';
 import { TAB } from '../ThemeIdentifiers';
 import * as baseTheme from './Tab.scss';
+import { Props as tabProps } from './Tab';
 
 /* Position of Tabs in panel
   // top - tab panel will be shown at a top of content
@@ -21,14 +22,14 @@ export type Alignment = 'left' | 'center' | 'right';
 
 // All prototypes type
 export interface Props {
-  // Children are the tabs and it's content
-  children?: any;
   // Position prop defines the tab's location with reference to it's content
   position: Position;
   // Alignment prop defines the tab's Alignment in tab panel
   alignment: Alignment;
   // For Default active tab
-  defaulttabid?: string;
+  defaultTabId?: string;
+  // User can Set style for TabPanel component
+  style?: React.CSSProperties;
   // Set theme for TabPanel
   theme?: any;
 }
@@ -45,15 +46,17 @@ class TabPanel extends React.Component<Props, State> {
     // Call the callback function if available
     // Maintain state while trigger active tab, calling from outside's component (like triggered from external button click)
     this.setState({
-      activeTabId: newProps.defaulttabid
+      activeTabId: newProps.defaultTabId
     });
   }
 
   constructor(props: Props) {
     super(props);
+    this.onTabClick = this.onTabClick.bind(this);
+    const { children }: any = this.props.children;
     this.state = {
       // Maintain Active status of Tab
-      activeTabId: props.defaulttabid ? props.defaulttabid : props.children[0].props.tabId,
+      activeTabId: props.defaultTabId ? props.defaultTabId : children[0].tabId,
     };
 
   }
@@ -65,21 +68,21 @@ class TabPanel extends React.Component<Props, State> {
     return React.Children.map(this.props.children, (child: React.ReactElement<any>, index) => {
       return React.cloneElement(child, {
         activeTabId,
-        onClick: this.onTabClick.bind(this, this.props.children[index].props.tabId),
+        onClick: () => this.onTabClick(child.props.tabId)
       });
     });
   }
 
   // Render content for the selected tab
   renderActivetabContent() {
-    const { children } = this.props;
-    const activeContent = children.filter((item: any) => item.props.tabId === this.state.activeTabId);
+    const { children }: any = this.props;
+    const activeContent = children.filter((item: React.ReactElement<tabProps>) => item.props.tabId === this.state.activeTabId);
     return activeContent[0].props.children;
   }
 
   // Render Tab and TabContent togeather in TabPanel
   render() {
-    const { theme, position, alignment } = this.props;
+    const { theme, position, alignment, style } = this.props;
 
     // Combination of classes required to bind for location prop
     const locationClassName = classNames(
@@ -99,7 +102,7 @@ class TabPanel extends React.Component<Props, State> {
     );
 
     return (
-      <div {...this.props} className={locationClassName}>
+      <div {...this.props} className={locationClassName} style={style}>
         <div className={alignmentClassName}>
           {this.renderTabs()}
         </div>
@@ -111,7 +114,7 @@ class TabPanel extends React.Component<Props, State> {
   }
 
   // Handle OnClick event whenever Tab is cliked/selected 
-  onTabClick(activeTabId: string) {
+  onTabClick = (activeTabId: string) => {
     this.setState({
       activeTabId
     });
