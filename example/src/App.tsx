@@ -271,20 +271,16 @@ class App extends React.Component<{}, State> {
     const breadCrumbData = [
       {
         name: 'Home',
-        style: { color: 'red' },
-        type: 'active'
+        type: 'default',
       }, {
         name: 'Home1',
-        style: { color: 'green' },
         type: 'active'
       }, {
         name: 'Home2',
-        style: { color: 'blue' },
-        type: 'active'
+        type: 'disabled'
       }, {
         name: 'Home3',
-        style: { color: 'black' },
-        type: 'disable'
+        type: 'active'
       },
     ];
 
@@ -329,7 +325,7 @@ class App extends React.Component<{}, State> {
             <BreadCrumbItem>Home2</BreadCrumbItem>
             <BreadCrumbItem>Home3</BreadCrumbItem>
           </BreadCrumb> */}
-          <BreadCrumb onBreadCrumbClick={this.BreadCrumbClick} alignment={'right'} source={breadCrumbData}/>
+          <BreadCrumb onBreadCrumbClick={this.BreadCrumbClick} alignment={'left'} source={breadCrumbData}/>
         </div>
         {/* <div>
           <h1>This is my Modal Component!!</h1>
