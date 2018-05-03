@@ -277,3 +277,8 @@ export {
   default as Spinner,
   Props as SpinnerProps,
 } from './Spinner';
+
+export {
+  BreadCrumb,
+  Props as BreadCrumbProps,
+} from './BreadCrumb';
