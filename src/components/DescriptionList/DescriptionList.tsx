@@ -3,54 +3,48 @@ import { themr, ThemedComponentClass } from 'react-css-themr';
 import { classNames, variationName } from '@shopify/react-utilities/styles';
 import { DESCRIPTIONLIST } from '../ThemeIdentifiers';
 import * as baseTheme from './DescriptionList.scss';
+import Term from './Term';
+import Description from './Description';
 
 export type Type = 'default' | 'divider';
 
-export interface ItemArray {
-  term: string,
-  description: string,
-}
+//export interface ItemArray {
+ // term: string,
+//  description: string,
+//}
 
-export type Item = ItemArray;
+//export type Item = ItemArray;
 
 export interface Props {
-    items: Item[];
+    children?:React.ReactNode;
     type?: Type;
     theme?: any;
     style?:string;
 }
 
-const descriptionList = ({
-   items,
-   type,
-   style,
-   theme,
- }: Props)=> {
-      const itemMarkup = items.map((item:Item) => {
-        const term = item.term;
-        const description = item.description;
-        const classNameTerm = style ===  "Inline" ?  classNames(theme.term) : '' ;
-        const classNameDescription = classNames(theme.description);
-        return (
-            <React.Fragment>
-            <dt className={classNameTerm}>{term}</dt>
-            <dd className={classNameDescription}>{description}</dd>
-            </React.Fragment>
-        );
-      });
-      
+class DescriptionList extends React.PureComponent<Props, never> {
+      static Term = Term;
+      static Description = Description;
+
+      render(){     
+        const { children, type, theme, style } = this.props;
       const background = type === 'divider' && style ===  "Stacked" ? baseTheme['description-list-divider'] : type === 'default' && style ===  "Stacked" ? baseTheme['naked'] : '';
       const className = classNames(
         style ===  "Inline" ?  theme.descriptionList : '',
         type && theme[variationName('type', type)]
       );
+      const classNameTerm = style ===  "Inline" ?  classNames(theme.term) : '' ;
+      
+    const childrenWithProps = React.Children.map(children, child  => 
+                React.cloneElement(child as React.ReactElement<any>, { style: classNameTerm }));
     return (
-         <div>
+        <div>
           <dl className={className + ' ' + background}>
-            {itemMarkup}
+            {childrenWithProps}
           </dl>
         </div>
-    );
-  };
-  export default themr(DESCRIPTIONLIST, baseTheme)(descriptionList) as ThemedComponentClass<Props, {}>;
+    )
+  }
+}
+export default themr(DESCRIPTIONLIST, baseTheme)(DescriptionList) as ThemedComponentClass<Props, {}>;
   

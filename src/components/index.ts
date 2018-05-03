@@ -138,6 +138,8 @@ export {
 export {
   default as DescriptionList,
   Props as DescriptionListProps,
+  Term,
+  Description,
 } from './DescriptionList';
 
 export {
