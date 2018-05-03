@@ -8,13 +8,6 @@ import Description from './Description';
 
 export type Type = 'default' | 'divider';
 
-//export interface ItemArray {
- // term: string,
-//  description: string,
-//}
-
-//export type Item = ItemArray;
-
 export interface Props {
     children?:React.ReactNode;
     type?: Type;

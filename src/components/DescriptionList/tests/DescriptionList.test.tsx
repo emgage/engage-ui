@@ -8,12 +8,8 @@ describe('<DescriptionList />', () => {
     let term: string; let description: string;
 
   beforeEach(() => {
-    
-     term = 'First term'; description = 'One description.';
-      //{ term: 'Second term', description: 'Second description.' },
-      //{ term: 'Third term', description: 'Third description.' },
-   // ];
-  });
+         term = 'First term'; description = 'One description.';
+        });
   it('sets the description list style to inline when type is default and style is inline', () => {
     const descriptionList = mount(<DescriptionList type="default" style="Inline"><Term>{term}</Term><Description>{description}</Description></DescriptionList>);
     expect(descriptionList.find('dl').hasClass('')).toEqual(true);
