@@ -31,6 +31,8 @@ export interface Props {
   defaultSortOrder?: string;
   // Filter config, if data needs to be filtered by any mode like search
   filterData?: any;
+  // Hide header: Its mainly used for nested table, but user can also hide it for main table
+  hideHeader?: boolean;
   // Hide specific row & show them when its being asked to show
   hideRow?: any;
   // Highlight rows on hover
@@ -55,6 +57,7 @@ export interface Props {
 export interface State {
   allRowChecked?: boolean;
   data: any;
+  expandedRow: any[];
   sort?: any;
   selectedRows: any[];
   searchKey: string;
@@ -90,6 +93,7 @@ class Table extends React.Component<Props, State> {
     return {
       data,
       allRowChecked: false,
+      expandedRow: [],
       selectedRows: [],
       sort: {
         // Current sorting filed should be saved here, which can be used to show specific icons on specifc th
@@ -174,40 +178,93 @@ class Table extends React.Component<Props, State> {
 
   // Function to render tbody & td with specifc data & if user passed any custom component that can also get rendered
   renderBody = () => {
-    const { column, rowAction, selectRow } = this.props;
-    const { data } = this.state;
+    const { children, column, hideRow, selectRow } = this.props;
+    const { data, expandedRow } = this.state;
+
+    if (!children) {
+      return (
+        <TableBody>
+          {
+            data.map((item: any, index: number) => {
+              if (!this.props.hideRow || !this.hideRow(item)) {
+                return this.renderTbodyRows(item, index);
+              }
+            })
+          }
+
+          { !data.length ? <TableRow><TableData colSpan={column.length + (selectRow ? 1 : 0)}>No record found</TableData></TableRow> : null }
+        </TableBody>
+      );
+    }
+
+    // If there is no children for the table component (which is being used to open when the row gets expanded)
+    return data.map((item: any, index: number) => {
+      if (!hideRow || !this.hideRow(item)) {
+        return (
+          <TableBody key={index}>
+            { this.renderTbodyRows(item, index + '_nested') }
+
+            { expandedRow.indexOf(item.id) > -1 ? this.renderNestedChildren(index + 'nest', item.id) : null }
+          </TableBody>
+        );
+      }
+    });
+  }
+
+  // Function to toggle between the expanded row
+  openNestedRow = (currentId: number | string) => {
+    let expandedRow: any[] = Object.assign([], this.state.expandedRow);
+    const rowIndex = expandedRow.indexOf(currentId);
+
+    if (rowIndex === -1) {
+      expandedRow = expandedRow.concat(currentId);
+    } else {
+      expandedRow.splice(rowIndex, 1);
+    }
+
+    this.setState({ expandedRow });
+  }
+
+  // Render the main table row
+  renderTbodyRows = (item: any, index: number | string) => {
+    const { children, column, rowAction } = this.props;
 
     return (
-      <TableBody>
+      <TableRow key={index}
+        onClick={children ? this.openNestedRow : undefined}
+        callbackValue={item.id}
+      >
+        { this.renderRowSelection(item, 'body') }
         {
-          data.map((item: any, index: number) => {
-            if (!this.props.hideRow || !this.hideRow(item)) {
-              return (
-                <TableRow key={index}>
-                  { this.renderRowSelection(item, 'body') }
-                  {
-                    column.map((colItem: any) => {
-                      return (
-                        <TableData key={colItem.key}>
-                          {/* 
-                            Here injectBody helps to inject any custom component to td,
-                            we also return the specifc value, which then can be used in injected component
-                          */}
-                          {colItem.injectBody ? colItem.injectBody(item) : item[colItem.key]}
-                        </TableData>
-                      );
-                    })
-                  }
-
-                  { rowAction ? <RowAction actionConfig={rowAction} dataId={item.id} /> : '' }
-                </TableRow>
-              );
-            }
+          column.map((colItem: any) => {
+            return (
+              <TableData
+                key={colItem.key}
+                style={colItem.style}
+              >
+                {/* 
+                  Here injectBody helps to inject any custom component to td,
+                  we also return the specifc value, which then can be used in injected component
+                */}
+                {colItem.injectBody ? colItem.injectBody(item) : item[colItem.key]}
+              </TableData>
+            );
           })
         }
 
-        { !data.length ? <TableRow><TableData colSpan={column.length + (selectRow ? 1 : 0)}>No record found</TableData></TableRow> : null }
-      </TableBody>
+        { rowAction ? <RowAction actionConfig={rowAction} dataId={item.id} /> : '' }
+      </TableRow>
+    );
+  }
+
+  // Function to render nested children for each row, this could be nested table or any other component
+  renderNestedChildren = (key: string, id: number) => {
+    return (
+      <TableRow key={key}>
+        <TableData colSpan={6}>
+          {this.props.children}
+        </TableData>
+      </TableRow>
     );
   }
 
@@ -273,7 +330,7 @@ class Table extends React.Component<Props, State> {
   render () {
     const tableClass = this.getTableClassName();
     // const renderedTable = this.renderChildren();
-    const renderedHeader = this.renderHeader();
+    const renderedHeader = !this.props.hideHeader ? this.renderHeader() : null;
     const renderedBody = this.renderBody();
 
     return (
