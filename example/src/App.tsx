@@ -99,6 +99,7 @@ class App extends React.Component<{}, State> {
       activeDrawerId: 'content1',
     };
     this.popoverUpdate = this.popoverUpdate.bind(this);
+    this.closed1 = this.closed1.bind(this);
   }
 
   rowGetter = (index: number) => this.state.rows[index];
@@ -138,18 +139,19 @@ class App extends React.Component<{}, State> {
   render() {
     let items : DropdownItemProps[] = [
       {
-        children: "Item 1",
+        content: "Item 1",
+        onClick: this.closed1,
       },
       {
-        children: "Item 2",
+        content: "Item 2",
         divider: true
       },
       {
-        children: "Item 3",
+        content: "Item 3",
         disabled: false
       },
       {
-        children: "Item 4",
+        content: "Item 4",
         header: true
       }
     ]
@@ -531,7 +533,7 @@ class App extends React.Component<{}, State> {
 
           
           <Button onClick={this.popoverUpdate} >Click to active and deactive dropdown</Button>
-          <Dropdown active={this.state.popoverActive} DropdownItems={items} toggle={this.popoverUpdate} direction="down">sk</Dropdown>
+          <Dropdown onClose={this.closed1} active={this.state.popoverActive} dropdownItems={items} toggle={this.popoverUpdate} direction="down">sk</Dropdown>
 
           <TextField
             id="TestName"
@@ -988,6 +990,10 @@ class App extends React.Component<{}, State> {
     this.setState({
         popoverActive : !this.state.popoverActive
     });
+  }
+
+  closed1() {
+    console.log("called");
   }
 }
 

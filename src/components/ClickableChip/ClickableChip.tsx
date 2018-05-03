@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from 'react-css-themr';
-import Dropdown, { DropdownItemProps } from '../Dropdown/Dropdown';
+import Dropdown, { DropdownItemProps } from '../Dropdown';
 import { Props as ChipStates } from '../Chip';
 import { CLICKABLECHIP } from '../ThemeIdentifiers';
 import * as baseTheme from './ClickableChip.scss';
@@ -30,13 +30,11 @@ class ClickableChip extends React.PureComponent<Props, State> {
     const chip = this.props.chip.props.children;
 
     let Items: DropdownItemProps[] = [{
-      children: this.props.children
+      content: this.props.children
     }]
 
     return (
-      <Dropdown active={this.state.active} onClose={this.onClose} toggle={this.handleClick} DropdownItems={Items} >
-        {chip}
-      </Dropdown>
+      <Dropdown trigger={chip} active={this.state.active} onClose={this.onClose} toggle={this.handleClick} dropdownItems={Items}></Dropdown>
     );
   }
 

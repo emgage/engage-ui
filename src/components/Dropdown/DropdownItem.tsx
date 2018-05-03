@@ -7,7 +7,7 @@ import { DROPDOWNITEM } from '../ThemeIdentifiers';
 import * as baseTheme from './Dropdown.scss';
 
 export interface Props {
-  children?: React.ReactNode;
+  content?: React.ReactNode;
   active?: boolean;
   disabled?: boolean;
   divider?: boolean;
@@ -27,7 +27,7 @@ class DropdownItem extends React.Component<Props, never> {
       disabled,
       divider,
       header,
-      children,
+      content,
       onClick
     } = this.props;
 
@@ -41,7 +41,7 @@ class DropdownItem extends React.Component<Props, never> {
     } else if(header) {
       className = baseTheme.dropdownHeader;
       return (
-        <div id={this.id} className={className}>{children}</div>
+        <div id={this.id} className={className}>{content}</div>
       );
     } else {
       className = classNames(
@@ -52,7 +52,14 @@ class DropdownItem extends React.Component<Props, never> {
     }
 
     return (
-      <a id={this.id} className={className} onClick={onClick}>{children}</a>
+      <div
+        tabIndex={active ? 0 : -1}
+        id={this.id}
+        className={className}
+        onClick={onClick}
+      >
+        {content}
+      </div>
     );
   }
 }

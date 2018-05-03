@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Dropdown, DropdownItemProps } from '../../../../src/components/';
+import { Dropdown, DropdownItemProps } from '../../../../src/components';
 import * as styles from '../../styles/components-page.scss';
 
 export interface IProps{
@@ -27,25 +27,16 @@ class DropdownExampleThird extends React.Component<IProps, IState> {
   render() {
     const items : DropdownItemProps[] = [
       {
-        children: "Item 1",
-        header: false,
-        divider: false,
-        disabled: false
+        content: "Item 1",
       }, {
-        children: "Item 2",
+        content: "Item 2",
         divider: true,
-        header: false,
-        disabled: true
+        disabled: true,
       }, {
-        children: "Item 3",
-        disabled: false,
-        header: false,
-        divider: false
+        content: "Item 3",
       }, {
-        children: "Item 4",
+        content: "Item 4",
         header: true,
-        divider: false,
-        disabled: false
       }
     ]
 
@@ -53,7 +44,7 @@ class DropdownExampleThird extends React.Component<IProps, IState> {
       <div className={styles.example}>
          <Dropdown
           active={this.state.active}
-          DropdownItems={items}
+          dropdownItems={items}
           toggle={this.toggle}
           direction="left"
         >

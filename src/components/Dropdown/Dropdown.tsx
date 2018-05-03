@@ -5,30 +5,22 @@ import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
 import { findFirstFocusableNode } from '@shopify/javascript-utilities/focus';
 import { addEventListener, removeEventListener } from '@shopify/javascript-utilities/events';
 
-import DropdownItem from './DropdownItem';
+import DropdownItem, { Props as DropdownItemProps } from './DropdownItem';
 import { classNames } from '@shopify/react-utilities/styles';
 import { DROPDOWN } from '../ThemeIdentifiers';
 import * as baseTheme from './Dropdown.scss';
 import { Keys } from '../../types';
-import Button from '../Button';
+import { findDOMNode } from 'react-dom';
 
 export type Direction = 'up' | 'down' | 'left' | 'right';
 
-export interface DropdownItemProps {
-  children?: React.ReactNode;
-  disabled?: boolean;
-  divider?: boolean;
-  header?: boolean;
-  onClick?(): void;
-}
-
 export interface Props {
   disabled?: boolean;
-  children?: string;
+  trigger?: React.ReactNode;
   direction?: Direction;
   active: boolean;
   activatorWrapper?: string;
-  DropdownItems: DropdownItemProps[];
+  dropdownItems: DropdownItemProps[];
   onClose?(): void;
   toggle?() : void;
 }
@@ -37,9 +29,10 @@ export interface State {
   selectedIndex: number
 }
 
-const getUniqueID = createUniqueIDFactory('Dropdown');
-
 export class Dropdown extends React.PureComponent<Props, State> {
+  
+  private getUniqueID = createUniqueIDFactory('Dropdown');
+
   constructor(props: Props) {
     super(props);
     this.state = { 
@@ -48,8 +41,7 @@ export class Dropdown extends React.PureComponent<Props, State> {
   }
 
   private activatorContainer: HTMLElement | null;
-
-  private id = getUniqueID();
+  private id = this.getUniqueID();
 
   componentWillReceiveProps(newProps: any) {
     const { active } = this.props;
@@ -61,7 +53,11 @@ export class Dropdown extends React.PureComponent<Props, State> {
 
   componentDidMount() {
     this.setAccessibilityAttributes();
-    addEventListener(document, 'keyup', this.handleKeyEvent);
+    const element = findDOMNode(this);
+    if (element != null) {
+      addEventListener(element, 'keyup', this.handleKeyEvent);
+    }
+    addEventListener(document, 'mousedown', this.handleMouseEvent);
   }
 
   componentDidUpdate() {
@@ -69,15 +65,19 @@ export class Dropdown extends React.PureComponent<Props, State> {
   }
 
   componentWillUnmount() {
-    removeEventListener(document, 'keyup', this.handleKeyEvent);
+    const element = findDOMNode(this);
+    if (element != null) {
+      removeEventListener(element, 'keyup', this.handleKeyEvent);
+    }
+    removeEventListener(document, 'mousedown', this.handleMouseEvent);
   }
 
   render() {
     const { 
       activatorWrapper: WRAPPERCOMPONENT = 'div',
       active,
-      children,
-      DropdownItems,
+      trigger,
+      dropdownItems,
       toggle,
       direction,
       disabled
@@ -101,21 +101,24 @@ export class Dropdown extends React.PureComponent<Props, State> {
       !disabled && active && baseTheme.active,
     );
 
-    const DropdownItemComponents = DropdownItems.map((item,index) => 
+    const DropdownItemComponents = dropdownItems.map((item,index) => 
             <DropdownItem 
               key={index}
               active={selectedIndex === index} 
               disabled={item.disabled}
               divider={item.divider}
               header={item.header}
-              children={item.children}
-            ></DropdownItem>
+              content={item.content}
+              onClick={item.onClick}
+            />
         );
       
     return (
       <WRAPPERCOMPONENT ref={this.setActivator}>
         <div className={dropdownClassName} key={this.id}>
-          <Button onClick={toggle}>{children}</Button>
+          <div onClick={toggle}>
+            {trigger}
+          </div>
           <div className={dropdownMenuClassName}>
             {DropdownItemComponents}
           </div>
@@ -149,6 +152,8 @@ export class Dropdown extends React.PureComponent<Props, State> {
 
   @autobind
   private handleKeyEvent(event: KeyboardEvent) {
+    event.preventDefault();
+
     const {
       active,
       toggle,
@@ -175,7 +180,7 @@ export class Dropdown extends React.PureComponent<Props, State> {
 
   @autobind
   private changeItem(selectedIndex: number, direction : number) {
-    const DropdownCount = this.props.DropdownItems.length - 1;
+    const DropdownCount = this.props.dropdownItems.length - 1;
 
     if (direction === 1) {
       if (selectedIndex === DropdownCount) {
@@ -195,11 +200,11 @@ export class Dropdown extends React.PureComponent<Props, State> {
   @autobind
   private changeItemState(selectedIndex: number, direction : number) {
     const {
-      DropdownItems
+      dropdownItems
     } = this.props;
 
     // if next selected item is disabled or devider find next one
-    if (DropdownItems[selectedIndex].disabled || DropdownItems[selectedIndex].divider || DropdownItems[selectedIndex].header) {
+    if (dropdownItems[selectedIndex].disabled || dropdownItems[selectedIndex].divider || dropdownItems[selectedIndex].header) {
       this.changeItem(selectedIndex, direction)
       return
     }
@@ -208,6 +213,28 @@ export class Dropdown extends React.PureComponent<Props, State> {
       selectedIndex: selectedIndex
     });
   }
+
+  @autobind
+  private handleMouseEvent(event: MouseEvent) {
+    event.preventDefault();
+    
+    const {
+      active,
+      toggle,
+      disabled
+    } = this.props;
+    
+    const element = findDOMNode(this);
+
+    if (!active && !disabled) {
+      return;
+    }
+
+    if (element != null && event.target !== element && typeof toggle !== 'undefined') {
+      toggle(); // Close the dropdown on ESC
+    }
+  }
+
 }
 
 export { Dropdown as UnthemedSelect };
