@@ -8,6 +8,7 @@ const Nav = () => {
       <h1>Components</h1>
       <ul>
         <li><IndexLink to="/" activeClassName={styles.active}>Home</IndexLink></li>
+        <li><Link to="/component/alert" activeClassName={styles.active} >Alert</Link></li>
         <li><Link to="/component/avatar" activeClassName={styles.active} >Avatar</Link></li>
         <li><Link to="/component/badge" activeClassName={styles.active}>Badge</Link></li>
         <li><Link to="/component/banner" activeClassName={styles.active}>Banner</Link></li>

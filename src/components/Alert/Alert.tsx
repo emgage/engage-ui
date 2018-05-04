@@ -15,8 +15,8 @@ export interface Props {
 const IconClose = (props:any) => {
     return (
       <svg width="12" height="12" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
-        <line stroke={props.color} stroke-width="1.1" x1="1" y1="1" x2="13" y2="13"></line>
-        <line stroke={props.color} stroke-width="1.1" x1="13" y1="1" x2="1" y2="13"></line>
+        <line stroke={props.color} strokeWidth="1.1" x1="1" y1="1" x2="13" y2="13"></line>
+        <line stroke={props.color} strokeWidth="1.1" x1="13" y1="1" x2="1" y2="13"></line>
       </svg>
     )
  };
