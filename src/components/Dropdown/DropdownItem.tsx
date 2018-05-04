@@ -38,6 +38,7 @@ class DropdownItem extends React.Component<Props, never> {
       return (
         <div id={this.id} className={className}></div>
       );
+    // tslint:disable-next-line:no-else-after-return
     } else if (header) {
       className = baseTheme.dropdownHeader;
       return (
