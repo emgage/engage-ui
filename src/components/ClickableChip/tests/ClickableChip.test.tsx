@@ -15,11 +15,10 @@ describe('<ClickableChip />', () => {
       const clickablechipWrapper = mount(
                                         <ClickableChip chip={<Chip>Batman</Chip>} onClick={onChipClick} theme={theme} />
                                     );
-      expect(clickablechipWrapper.find('div')).toHaveLength(1);
+      expect(clickablechipWrapper.find('div')).toHaveLength(5);
       expect(clickablechipWrapper.find('span')).toHaveLength(2);
       expect(clickablechipWrapper.find('span').at(0).hasClass(''));
       expect(clickablechipWrapper.find('span').at(1).hasClass('Batman'));
-      expect(clickablechipWrapper.find('a')).toHaveLength(1);
     });
   });
 
@@ -30,45 +29,10 @@ describe('<ClickableChip />', () => {
         const clickablechipWrapper = mount(
                                         <ClickableChip chip={<Chip>Batman</Chip>} onClick={onChipClick} theme={theme} />
                                     );
-        expect(clickablechipWrapper.find('div')).toHaveLength(1);
+        expect(clickablechipWrapper.find('div')).toHaveLength(5);
         expect(clickablechipWrapper.find('span')).toHaveLength(2);
         expect(clickablechipWrapper.find('span').at(0).hasClass(''));
         expect(clickablechipWrapper.find('span').at(1).hasClass('Batman'));
-        expect(clickablechipWrapper.find('a')).toHaveLength(1);
-      });
-    });
-  });
-
-  describe('onClick() property', () => {
-    describe('when set', () => {
-      it('should verify clickablechip when onClick() is set', () => {
-        const onChipClick = jest.fn();
-        const clickablechipWrapper = mount(
-                                        <ClickableChip chip={<Chip>Batman</Chip>} onClick={onChipClick} theme={theme} />
-                                    );
-        clickablechipWrapper.find('a').simulate('click');
-        expect(onChipClick).toHaveBeenCalledTimes(1);
-        expect(onChipClick).toHaveBeenCalled();
-        expect(clickablechipWrapper.find('div')).toHaveLength(1);
-        expect(clickablechipWrapper.find('span')).toHaveLength(2);
-        expect(clickablechipWrapper.find('span').at(0).hasClass(''));
-        expect(clickablechipWrapper.find('span').at(1).hasClass('Batman'));
-        expect(clickablechipWrapper.find('a')).toHaveLength(1);
-      });
-    });
-
-    describe('when not set', () => {
-      it('should verify clickablechip when onClick() is not set', () => {
-        const onChipfocus = jest.fn();
-        const clickablechipWrapper = mount(
-                                        <ClickableChip chip={<Chip>Batman</Chip>} onClick={onChipfocus} theme={theme} />
-                                    );
-
-        expect(clickablechipWrapper.find('div')).toHaveLength(1);
-        expect(clickablechipWrapper.find('span')).toHaveLength(2);
-        expect(clickablechipWrapper.find('span').at(0).hasClass(''));
-        expect(clickablechipWrapper.find('span').at(1).hasClass('Batman'));
-        expect(clickablechipWrapper.find('a')).toHaveLength(1);
       });
     });
   });
@@ -80,14 +44,10 @@ describe('<ClickableChip />', () => {
         const clickablechipWrapper = mount(
                                         <ClickableChip chip={<Chip>Batman</Chip>} onClick={onChipClick} theme={theme} />
                                     );
-        clickablechipWrapper.find('a').simulate('click');
-        expect(onChipClick).toHaveBeenCalledTimes(1);
-        expect(onChipClick).toHaveBeenCalled();
-        expect(clickablechipWrapper.find('div')).toHaveLength(1);
+        expect(clickablechipWrapper.find('div')).toHaveLength(5);
         expect(clickablechipWrapper.find('span')).toHaveLength(2);
         expect(clickablechipWrapper.find('span').at(0).hasClass(''));
         expect(clickablechipWrapper.find('span').at(1).hasClass('Batman'));
-        expect(clickablechipWrapper.find('a')).toHaveLength(1);
       });
     });
   });
@@ -99,11 +59,10 @@ describe('<ClickableChip />', () => {
         const clickablechipWrapper = mount(
                                         <ClickableChip chip={<Chip>Batman</Chip>} onClick={onChipClick} />
                                     );
-        expect(clickablechipWrapper.find('div')).toHaveLength(1);
+        expect(clickablechipWrapper.find('div')).toHaveLength(5);
         expect(clickablechipWrapper.find('span')).toHaveLength(2);
         expect(clickablechipWrapper.find('span').at(0).hasClass(''));
         expect(clickablechipWrapper.find('span').at(1).hasClass('Batman'));
-        expect(clickablechipWrapper.find('a')).toHaveLength(1);
       });
     });
 
@@ -113,11 +72,10 @@ describe('<ClickableChip />', () => {
         const clickablechipWrapper = mount(
                                         <ClickableChip chip={<Chip>Batman</Chip>} onClick={onChipClick} theme={theme} />
                                     );
-        expect(clickablechipWrapper.find('div')).toHaveLength(1);
+        expect(clickablechipWrapper.find('div')).toHaveLength(5);
         expect(clickablechipWrapper.find('span')).toHaveLength(2);
         expect(clickablechipWrapper.find('span').at(0).hasClass(''));
         expect(clickablechipWrapper.find('span').at(1).hasClass('Batman'));
-        expect(clickablechipWrapper.find('a')).toHaveLength(1);
       });
     });
   });

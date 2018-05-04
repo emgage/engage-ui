@@ -533,7 +533,14 @@ class App extends React.Component<{}, State> {
 
           
           <Button onClick={this.popoverUpdate} >Click to active and deactive dropdown</Button>
-          <Dropdown onClose={this.closed1} active={this.state.popoverActive} dropdownItems={items} toggle={this.popoverUpdate} direction="down">sk</Dropdown>
+          <Dropdown 
+            active={this.state.popoverActive}
+            dropdownItems={items}
+            toggle={this.popoverUpdate}
+            direction="down"
+            trigger={<Button>SK</Button>}
+            closeOnClickOutside
+          />
 
           <TextField
             id="TestName"

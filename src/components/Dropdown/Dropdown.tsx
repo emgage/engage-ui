@@ -21,6 +21,7 @@ export interface Props {
   active: boolean;
   activatorWrapper?: string;
   dropdownItems: DropdownItemProps[];
+  closeOnClickOutside?: boolean;
   onClose?(): void;
   toggle?() : void;
 }
@@ -30,23 +31,21 @@ export interface State {
 }
 
 export class Dropdown extends React.PureComponent<Props, State> {
-  
-  private getUniqueID = createUniqueIDFactory('Dropdown');
+  private getUniqueID = createUniqueIDFactory('Dropdown')
+  private activatorContainer: HTMLElement | null;
+  private id = this.getUniqueID();
 
   constructor(props: Props) {
     super(props);
-    this.state = { 
+    this.state = {
       selectedIndex: 0 
     };
   }
 
-  private activatorContainer: HTMLElement | null;
-  private id = this.getUniqueID();
-
   componentWillReceiveProps(newProps: any) {
     const { active } = this.props;
 
-    if (active && !newProps.active && typeof newProps.onClose !== 'undefined') {
+    if (active && !newProps.active && newProps.onClose) {
       newProps.onClose();
     }
   }
@@ -57,7 +56,10 @@ export class Dropdown extends React.PureComponent<Props, State> {
     if (element != null) {
       addEventListener(element, 'keyup', this.handleKeyEvent);
     }
-    addEventListener(document, 'mousedown', this.handleMouseEvent);
+
+    if (this.props.closeOnClickOutside) {
+      addEventListener(document, 'click', this.handleMouseEvent);
+    }  
   }
 
   componentDidUpdate() {
@@ -69,7 +71,10 @@ export class Dropdown extends React.PureComponent<Props, State> {
     if (element != null) {
       removeEventListener(element, 'keyup', this.handleKeyEvent);
     }
-    removeEventListener(document, 'mousedown', this.handleMouseEvent);
+
+    if (this.props.closeOnClickOutside) {
+      removeEventListener(document, 'click', this.handleMouseEvent);
+    }
   }
 
   render() {
@@ -173,7 +178,7 @@ export class Dropdown extends React.PureComponent<Props, State> {
       this.changeItem(selectedIndex, -1);
     } else if (event.keyCode === Keys.DOWN_ARROW || event.keyCode === Keys.TAB) {
           this.changeItem(selectedIndex, 1);
-    } else if (event.keyCode === Keys.ESCAPE && typeof toggle !== 'undefined') {
+    } else if (event.keyCode === Keys.ESCAPE && toggle) {
       toggle(); // Close the dropdown on ESC
     }
   }
@@ -225,17 +230,37 @@ export class Dropdown extends React.PureComponent<Props, State> {
     } = this.props;
     
     const element = findDOMNode(this);
-
+    
     if (!active && !disabled) {
       return;
     }
-
-    if (element != null && event.target !== element && typeof toggle !== 'undefined') {
-      toggle(); // Close the dropdown on ESC
+    
+    if (element !== null && event.target != null && element !== event.target && toggle) {
+      /* 
+        checkClild is use to check current componet's child 
+        or child's child and so is not the target
+      */
+      if (!this.checkClild(element, event.target)) {
+        toggle(); // Close the click out side
+      }
     }
   }
 
+  @autobind
+  private checkClild(element : Element | Text, target : EventTarget): boolean {
+    let isCurrent = false;
+    if(element !== null) {
+      element.childNodes.forEach((item) => {
+        if (target === item) {
+          isCurrent = true;
+        } else if (!isCurrent) {
+          isCurrent = this.checkClild(item as Element, target);
+        }
+      });
+    }
+    return isCurrent;
+  }
 }
 
-export { Dropdown as UnthemedSelect };
+export { Dropdown as UnthemedDropdown };
 export default themr(DROPDOWN, baseTheme)(Dropdown) as ThemedComponentClass<Props, {}>;

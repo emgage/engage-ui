@@ -17,9 +17,9 @@ const DropdownState: IDocument = {
   subheading: `Dropdown are small overlays that open on demand, usually when the merchant clicks a button. They let users access supplementary actions without cluttering the page.`,
   property: [
     {
-      name: 'children',
-      type: 'string',
-      desc: 'The content to display inside the dropdown.',
+      name: 'trigger',
+      type: 'React.ReactNode',
+      desc: 'React component that triggers the dropdown.',
     }, {
       name: 'direction',
       type: 'enum',
@@ -48,6 +48,10 @@ const DropdownState: IDocument = {
       name: 'onClose',
       type: 'function ()',
       desc: 'Callback when dropdown is closed.',
+    }, {
+      name: 'closeOnClickOutside',
+      type: 'boolean',
+      desc: 'Close the dropdown when mouse click outside of the dropdown',
     },
   ],
   exampleCode: DropdownExampleFirstCode,
@@ -68,7 +72,7 @@ const DropdownState: IDocument = {
   exampleCodeDescription3: 'Dropdown that opens in right direction.',
   exampleCode4: DropdownExampleFifthCode,
   exampleComponent4: DropdownExampleFifth,
-  exampleCodeHeader4: '3. Disable Dropdown:',
+  exampleCodeHeader4: '5. Disable Dropdown:',
   exampleCodeDescription4: 'A disabled dropdown does not allow user interaction.',
 };
 

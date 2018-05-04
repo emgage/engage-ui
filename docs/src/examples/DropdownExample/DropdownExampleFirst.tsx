@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Dropdown, DropdownItemProps } from '../../../../src/components';
+import { Dropdown, DropdownItemProps, Button } from '../../../../src/components';
 import * as styles from '../../styles/components-page.scss';
 
 export interface IProps{
@@ -47,9 +47,8 @@ class DropdownExampleFirst extends React.Component<IProps, IState> {
           active={this.state.activated}
           dropdownItems={items}
           toggle={this.toggle}
-        >
-          Actions
-        </Dropdown>
+          trigger={<Button>Dropdown1</Button>}
+        />
       </div>
     );
   }
