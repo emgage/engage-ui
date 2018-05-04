@@ -43,8 +43,8 @@ import {
   Spinner,
   Table,
   TableColumnConfig,
-  Accordion,
-  AccordionItemProps
+  AccordionItemProps,
+  Accordion
 } from '../../src/components';
 
 interface State {
@@ -64,6 +64,7 @@ interface State {
 }
 
 class App extends React.Component<{}, State> {
+  private accordionRef : any = React.createRef<any>();
 
   constructor(props: any) {
     super(props);
@@ -144,7 +145,8 @@ class App extends React.Component<{}, State> {
       children: <Banner title={'banner11'} status={'warning'} />,
       header: <Button>sk1</Button>
     }];
-
+    console.log(this.accordionRef);
+    console.log(this.accordionRef.current);
     const posterUrl = new URL('http://4.bp.blogspot.com/_JSR8IC77Ub4/TKB-XAWXmhI/AAAAAAAABJA/MqOpdFTOaHo/w1200-' +
       'h630-p-k-no-nu/C:%5Cfakepath%5Cbird1.jpg');
     const singleVideoSource = [
@@ -517,14 +519,13 @@ class App extends React.Component<{}, State> {
           <Link>Tooltip 2</Link>
         </Tooltip>
         <div>
-
-          <Button onClick={() => this.popovertoggle(0)}>item1 toggle</Button>
-          <Button onClick={() => this.popovertoggle(1)}>item1 toggle</Button>
-          <Heading>Popover</Heading>
-          <Accordion items={items}>
+        <Accordion items={items} ref={this.accordionRef}>
             <Heading>According</Heading>
           </Accordion>
 
+          <Button onClick={() => this.accordionRef.toggleItem(0)}>item1 toggle</Button>
+          <Button onClick={() => this.accordionRef.toggleItem(1)}>item1 toggle</Button>
+          <Heading>Popover</Heading>
           <TextField
             id="TestName"
             label="Text Counter"
@@ -534,7 +535,7 @@ class App extends React.Component<{}, State> {
             enableTextCounter
             maxLength={101}
             minLength={5}
-            onChange={this.valueUpdater('appTextCounter')}
+            // onChange={this.valueUpdater('appTextCounter')}
           />
           <TextField
             id="TestName1"
@@ -546,7 +547,7 @@ class App extends React.Component<{}, State> {
             minLength={5}
             multiline
             resizable
-            onChange={this.valueUpdater('appTextCounter')}
+            // onChange={this.valueUpdater('appTextCounter')}
           />
           <p> Some text with a
           <Tooltip content="This order has shipping labels.">
@@ -568,7 +569,7 @@ class App extends React.Component<{}, State> {
           >
             <Link>Tooltip 2</Link>
           </Tooltip>
-          <TextField id="TestName" label="Text Counter" placeholder="test-placeholder" value={this.state.appTextCounter} helpText="Helper Text" enableTextCounter={true} maxLength={100} onChange={this.valueUpdater('appTextCounter')} />
+          <TextField id="TestName" label="Text Counter" placeholder="test-placeholder" value={this.state.appTextCounter} helpText="Helper Text" enableTextCounter={true} maxLength={100} /* onChange={this.valueUpdater('appTextCounter')} */ />
           <ClickableChip chip={<Chip>Batman</Chip>}>
             <Card title="More about Batman">
               <p>Batman is a fictional superhero who appears in American comic books published by DC Comics. The character was created by artist Bob Kane and writer Bill Finger, and first appeared in Detective Comics #27</p>
@@ -660,7 +661,7 @@ class App extends React.Component<{}, State> {
                 label="App Name"
                 placeholder=""
                 helpText="We recommend keeping your app name under 23 characters."
-                onChange={this.valueUpdater('appName')}
+                // onChange={this.valueUpdater('appName')}
                 value={this.state.appName}
                 name="App Name"
                 validateTrigger={['onBlur']}
@@ -676,7 +677,7 @@ class App extends React.Component<{}, State> {
                 label="App Description"
                 placeholder=""
                 helpText="Provide an engaging description that highlights the features and functionality of your app. Let potential users know what makes your app unique and why they will love it."
-                onChange={this.valueUpdater('appDescription')}
+                // onChange={this.valueUpdater('appDescription')}
                 validateTrigger={['onBlur']}
                 validateRules={[
                   { required: true, message: 'App Description is required.' },
@@ -698,7 +699,7 @@ class App extends React.Component<{}, State> {
             value={this.state.appTextCounter}
             helpText="Helper Text"
             maxLength={100}
-            onChange={this.valueUpdater('appTextCounter')}
+            // onChange={this.valueUpdater('appTextCounter')}
             connectedRight={<Select label="Weight unit" labelHidden options={[
               'kg',
               'lb',
@@ -968,16 +969,16 @@ class App extends React.Component<{}, State> {
     );
   }
 
-  valueUpdater(field: any) {
-    return (value: any) => this.setState({ [field]: value });
-  }
+  // valueUpdater(field: any) {
+  //   return (value: any) => this.setState({ [field]: value });
+  // }
 
-  handleChange(value: string) {
-    return (value: any) => this.setState({ [value]: value });
-  }
+  // handleChange(value1: any) {
+  //   return (value: any) => this.setState({ [value1]: value });
+  // }
 
   popovertoggle(index: number) {
-    let updatedPopoverActive = this.state.popoverActive;
+    const updatedPopoverActive = this.state.popoverActive;
     updatedPopoverActive[index] = !updatedPopoverActive[index];
 
     this.setState({

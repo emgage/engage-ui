@@ -3,7 +3,7 @@ import * as baseTheme from './Accordion.scss';
 import { autobind } from '@shopify/javascript-utilities/decorators';
 
 export interface Props {
-  index: number,
+  index: number;
   header: React.ReactElement<any>;
   children: React.ReactElement<any>;
   active?: boolean;
@@ -11,7 +11,7 @@ export interface Props {
 }
 
 export default class Accordion extends React.PureComponent<Props, never> {
-  
+
   render() {
     const {
       header,
@@ -34,7 +34,7 @@ export default class Accordion extends React.PureComponent<Props, never> {
   @autobind
   private clickHandler() {
     if (typeof this.props.toggle !== 'undefined') {
-      this.props.toggle(this.props.index)
+      this.props.toggle(this.props.index);
     }
   }
 }

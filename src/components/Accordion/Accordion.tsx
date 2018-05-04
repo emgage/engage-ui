@@ -14,12 +14,12 @@ export interface AccordionItemProps {
 }
 
 export interface Props {
-  items: AccordionItemProps[],
-  mode?: Mode
+  items: AccordionItemProps[];
+  mode?: Mode;
 }
 
 interface State {
-  active: boolean[]
+  active: boolean[];
 }
 
 const getUniqueID = createUniqueIDFactory('Accordion');
@@ -29,18 +29,18 @@ class Accordion extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
-    let initialState: boolean[] = [];
-    props.items.forEach(element => {
-      initialState.push(false)
+    const initialState: boolean[] = [];
+    props.items.forEach((element) => {
+      initialState.push(false);
     });
 
     this.state = {
       active: initialState
     };
   }
-  
+
   public id = getUniqueID();
-  
+
   render() {
     const {
       items
@@ -50,7 +50,7 @@ class Accordion extends React.Component<Props, State> {
       active
     } = this.state;
 
-    const itemsComponent = items.map((item, index) => 
+    const itemsComponent = items.map((item, index) =>
         <AccordionItem
           index= {index}
           key= {getItemUniqueID()}
@@ -70,8 +70,8 @@ class Accordion extends React.Component<Props, State> {
   }
 
   @autobind
-  private toggleItem(index: number) {
-    let updatedPopoverActive = this.state.active;
+  public toggleItem(index: number) {
+    const updatedPopoverActive = this.state.active;
     updatedPopoverActive[index] = !updatedPopoverActive[index];
 
     this.setState({
@@ -80,4 +80,5 @@ class Accordion extends React.Component<Props, State> {
   }
 }
 
+export { Accordion as UnthemedAccordion };
 export default themr(ACCORDION, baseTheme)(Accordion) as ThemedComponentClass<Props, {}>;
