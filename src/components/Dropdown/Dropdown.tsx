@@ -147,7 +147,7 @@ export class Dropdown extends React.PureComponent<Props, State> {
 
   @autobind
   private setActivator(node: HTMLElement | null) {
-    if (node == null) {
+    if (node === null) {
       this.activatorContainer = null;
       return;
     }
