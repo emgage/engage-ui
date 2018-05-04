@@ -27,18 +27,18 @@ export interface Props {
 }
 
 export interface State {
-  selectedIndex: number
+  selectedIndex: number;
 }
 
 export class Dropdown extends React.PureComponent<Props, State> {
-  private getUniqueID = createUniqueIDFactory('Dropdown')
+  private getUniqueID = createUniqueIDFactory('Dropdown');
   private activatorContainer: HTMLElement | null;
   private id = this.getUniqueID();
 
   constructor(props: Props) {
     super(props);
     this.state = {
-      selectedIndex: 0 
+      selectedIndex: 0
     };
   }
 
@@ -53,13 +53,13 @@ export class Dropdown extends React.PureComponent<Props, State> {
   componentDidMount() {
     this.setAccessibilityAttributes();
     const element = findDOMNode(this);
-    if (element != null) {
+    if (element !== null) {
       addEventListener(element, 'keyup', this.handleKeyEvent);
     }
 
     if (this.props.closeOnClickOutside) {
       addEventListener(document, 'click', this.handleMouseEvent);
-    }  
+    }
   }
 
   componentDidUpdate() {
@@ -78,7 +78,7 @@ export class Dropdown extends React.PureComponent<Props, State> {
   }
 
   render() {
-    const { 
+    const {
       activatorWrapper: WRAPPERCOMPONENT = 'div',
       active,
       trigger,
@@ -87,29 +87,28 @@ export class Dropdown extends React.PureComponent<Props, State> {
       direction,
       disabled
     } = this.props;
-    
+
     const {
       selectedIndex
     } = this.state;
 
-    
     const dropdownClassName = classNames (
-      typeof direction == 'undefined' || direction === "down" ? baseTheme.dropdown 
-        : direction === "up" ? baseTheme.dropup
-        : direction === "left" ? baseTheme.dropleft
+      typeof direction === 'undefined' || direction === 'down' ? baseTheme.dropdown
+        : direction === 'up' ? baseTheme.dropup
+        : direction === 'left' ? baseTheme.dropleft
         : baseTheme.dropright,
-       !disabled && active && baseTheme.active
+      !disabled && active && baseTheme.active
     );
 
     const dropdownMenuClassName = classNames (
       baseTheme.dropdownMenu,
-      !disabled && active && baseTheme.active,
+      !disabled && active && baseTheme.active
     );
 
-    const DropdownItemComponents = dropdownItems.map((item,index) => 
-            <DropdownItem 
+    const DropdownItemComponents = dropdownItems.map((item,index) =>
+            <DropdownItem
               key={index}
-              active={selectedIndex === index} 
+              active={selectedIndex === index}
               disabled={item.disabled}
               divider={item.divider}
               header={item.header}
@@ -117,7 +116,7 @@ export class Dropdown extends React.PureComponent<Props, State> {
               onClick={item.onClick}
             />
         );
-      
+
     return (
       <WRAPPERCOMPONENT ref={this.setActivator}>
         <div className={dropdownClassName} key={this.id}>
@@ -172,12 +171,12 @@ export class Dropdown extends React.PureComponent<Props, State> {
     if (!active && !disabled) {
       return;
     }
-    
+
     // Change Items on key up, down and tab
     if (event.keyCode === Keys.UP_ARROW) {
       this.changeItem(selectedIndex, -1);
     } else if (event.keyCode === Keys.DOWN_ARROW || event.keyCode === Keys.TAB) {
-          this.changeItem(selectedIndex, 1);
+      this.changeItem(selectedIndex, 1);
     } else if (event.keyCode === Keys.ESCAPE && toggle) {
       toggle(); // Close the dropdown on ESC
     }
@@ -203,38 +202,38 @@ export class Dropdown extends React.PureComponent<Props, State> {
   }
 
   @autobind
-  private changeItemState(selectedIndex: number, direction : number) {
+  private changeItemState(oldSelectedIndex: number, direction : number) {
     const {
       dropdownItems
     } = this.props;
 
     // if next selected item is disabled or devider find next one
-    if (dropdownItems[selectedIndex].disabled || dropdownItems[selectedIndex].divider || dropdownItems[selectedIndex].header) {
-      this.changeItem(selectedIndex, direction)
-      return
+    if (dropdownItems[oldSelectedIndex].disabled || dropdownItems[oldSelectedIndex].divider || dropdownItems[oldSelectedIndex].header) {
+      this.changeItem(oldSelectedIndex, direction);
+      return;
     }
 
     this.setState({
-      selectedIndex: selectedIndex
+      selectedIndex: oldSelectedIndex
     });
   }
 
   @autobind
   private handleMouseEvent(event: MouseEvent) {
     event.preventDefault();
-    
+
     const {
       active,
       toggle,
       disabled
     } = this.props;
-    
+
     const element = findDOMNode(this);
-    
+
     if (!active && !disabled) {
       return;
     }
-    
+
     if (element !== null && event.target != null && element !== event.target && toggle) {
       /* 
         checkClild is use to check current componet's child 
@@ -249,7 +248,7 @@ export class Dropdown extends React.PureComponent<Props, State> {
   @autobind
   private checkClild(element : Element | Text, target : EventTarget): boolean {
     let isCurrent = false;
-    if(element !== null) {
+    if (element !== null) {
       element.childNodes.forEach((item) => {
         if (target === item) {
           isCurrent = true;

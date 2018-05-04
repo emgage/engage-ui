@@ -18,9 +18,9 @@ export interface Props {
 const getUniqueID = createUniqueIDFactory('DropdownItem');
 
 class DropdownItem extends React.Component<Props, never> {
-  
+
   public id = getUniqueID();
-  
+
   render() {
     const {
       active,
@@ -32,13 +32,13 @@ class DropdownItem extends React.Component<Props, never> {
     } = this.props;
 
     let className = null;
-    
+
     if (divider) {
       className = baseTheme.dropdownDivider;
       return (
         <div id={this.id} className={className}></div>
       );
-    } else if(header) {
+    } else if (header) {
       className = baseTheme.dropdownHeader;
       return (
         <div id={this.id} className={className}>{content}</div>

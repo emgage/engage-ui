@@ -10,14 +10,14 @@ export interface IState {
 }
 
 class DropdownExampleFirst extends React.Component<IProps, IState> {
-  constructor(props: IProps) {
+  constructor(props: IProps) {
     super(props);
     this.state = {
       activated: false,
     };
     this.toggle = this.toggle.bind(this);
   }
-  
+
   private toggle() {
     this.setState({
       activated: !this.state.activated
@@ -27,19 +27,19 @@ class DropdownExampleFirst extends React.Component<IProps, IState> {
   render() {
     const items : DropdownItemProps[] = [
       {
-        content: "Item 1",
+        content: 'Item 1',
         disabled: true,
       }, {
-        content: "Item 2",
+        content: 'Item 2',
         divider: true,
         disabled: true,
       }, {
-        content: "Item 3",
+        content: 'Item 3',
       }, {
-        content: "Item 4",
+        content: 'Item 4',
         header: true,
       },
-    ]
+    ];
 
     return (
       <div className={styles.example}>

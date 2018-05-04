@@ -27,17 +27,17 @@ class DropdownExampleFifth extends React.Component<IProps, IState> {
   render() {
     const items : DropdownItemProps[] = [
       {
-        content: "Item 1",
+        content: 'Item 1',
       }, {
-        content: "Item 2",
+        content: 'Item 2',
         divider: true,
       }, {
-        content: "Item 3",
+        content: 'Item 3',
       }, {
-        content: "Item 4",
+        content: 'Item 4',
         header: true,
       },
-    ]
+    ];
 
     return (
       <div className={styles.example}>

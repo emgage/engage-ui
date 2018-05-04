@@ -29,9 +29,9 @@ class ClickableChip extends React.PureComponent<Props, State> {
   render() {
     const chip = this.props.chip;
 
-    let Items: DropdownItemProps[] = [{
+    const Items: DropdownItemProps[] = [{
       content: this.props.children
-    }]
+    }];
 
     return (
       <Dropdown trigger={chip} active={this.state.active} onClose={this.onClose} toggle={this.handleClick} dropdownItems={Items}></Dropdown>
