@@ -279,6 +279,6 @@ export {
 } from './Spinner';
 
 export {
-  BreadCrumb,
-  Props as BreadCrumbProps,
-} from './BreadCrumb';
+  Breadcrumb,
+  Props as BreadcrumbProps,
+} from './Breadcrumb';

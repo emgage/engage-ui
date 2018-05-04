@@ -2,77 +2,77 @@ import * as React from 'react';
 import { themr, ThemedComponentClass } from 'react-css-themr';
 import { classNames } from '@shopify/react-utilities/styles';
 import { BREADCRUMB } from '../ThemeIdentifiers';
-import * as baseTheme from './BreadCrumb.scss';
+import * as baseTheme from './Breadcrumb.scss';
 
-export type Alignment = 'left' | 'right';
-export type Style = 'default' | 'disabled' | 'active';
+export type Direction = 'left' | 'right';
+export type Type = 'default' | 'disabled' | 'active';
 
 export interface ISourceData {
-  name: any;
-  style?: any;
-  type: any;
+  name: React.ReactNode;
+  style?: React.CSSProperties;
+  type: Type;
 }
 
 // All prototypes type
 export interface Props {
-  className?: any;
-  // Alignment prop defines the direction in which breadcrumb start
-  alignment?: Alignment;
-  // Set theme for breadcrumb
-  theme?: any;
+  style?: React.CSSProperties;
+  // Direction prop defines the direction in which breadcrumb start
+  direction?: Direction;
   // Array of items render in breadcrumb
   source: ISourceData[];
   // Callback function whenever user click on breadcrumb
-  onBreadCrumbClick?(): void;
+  onBreadcrumbClick?(): void;
+  // Set theme for breadcrumb
+  theme?: any;
 }
 
-// BreadCrumb component bind items from sourcedata.
-class BreadCrumb extends React.Component<Props, {}> {
+// Breadcrumb component bind items from sourcedata.
+class Breadcrumb extends React.Component<Props, {}> {
 
-  renderBreadCrumbItems() {
+  renderBreadcrumbItems() {
+    const { direction, theme } = this.props;
+
+    // Classes for Active Breadcrumb 
     const itemClassesActive = classNames(
-      baseTheme['breadcrumbItem'],
-      this.props.alignment === 'left' && this.props.theme.left,
-      this.props.alignment === 'right' && this.props.theme.right
+      direction === 'left' && theme.left,
+      direction === 'right' && theme.right
     );
 
+    // Classes for Default Breadcrumb
     const itemClassesdefault = classNames(
-      baseTheme['breadcrumbItem'],
-      this.props.alignment === 'left' && this.props.theme.left,
-      this.props.alignment === 'right' && this.props.theme.right,
-      this.props.theme.default
+      direction === 'left' && theme.left,
+      direction === 'right' && theme.right,
+      theme.default
     );
 
+    // Classes for Disabled Breadcrumb
     const itemClassesDisable = classNames(
-      this.props.alignment === 'left' && this.props.theme.left,
-      this.props.alignment === 'right' && this.props.theme.right,
-      this.props.theme.disabled
+      direction === 'left' && theme.left,
+      direction === 'right' && theme.right,
+      theme.disabled
     );
-
-    // const disabledStyle: any = { background: 'grey', pointer: 'normal' };
 
     return this.props.source.map((child, index) => {
-      return <li key={index} className={child.type === 'disabled' ? itemClassesDisable : child.type === 'default' ? itemClassesdefault : itemClassesActive} onClick={child.type === 'disabled' ? undefined : this.props.onBreadCrumbClick} style={child.style}>{child.name}</li>;
+      return <li key={index} className={child.type === 'disabled' ? itemClassesDisable : child.type === 'default' ? itemClassesdefault : itemClassesActive} onClick={child.type === 'disabled' ? undefined : this.props.onBreadcrumbClick} style={child.style}>{child.name}</li>;
     });
   }
   // Render Breadcrumb and it's items
   render() {
-    const { className, theme, alignment } = this.props;
+    const { theme, direction, style } = this.props;
 
     // Combination of classes required for breadcrumb component
     const classes = classNames(
       theme.breadcrumb,
-      alignment === 'left' && theme.left,
-      alignment === 'right' && theme.right,
-      className
+      direction === 'left' && theme.left,
+      direction === 'right' && theme.right
     );
 
     return (
-      <ul className={classes}>
-        {this.renderBreadCrumbItems()}
+      <ul className={classes} style={style}>
+        {this.renderBreadcrumbItems()}
       </ul>
     );
   }
 }
 
-export default themr(BREADCRUMB, baseTheme)(BreadCrumb) as ThemedComponentClass<Props, {}>;
+export default themr(BREADCRUMB, baseTheme)(Breadcrumb) as ThemedComponentClass<Props, {}>;

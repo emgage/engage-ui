@@ -1,8 +1,8 @@
-import BreadCrumb from './BreadCrumb';
+import Breadcrumb from './Breadcrumb';
 
-export { Props } from './BreadCrumb';
-export default BreadCrumb;
+export { Props } from './Breadcrumb';
+export default Breadcrumb;
 
 export {
-    BreadCrumb
+    Breadcrumb
 };

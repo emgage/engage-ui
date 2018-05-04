@@ -45,4 +45,4 @@ export const SPINNER = 'PSpinner';
 export const TABLE = 'PTable';
 export const DRAWER = 'PDrawer';
 export const DRAWERCONTENT = 'PDrawerContent';
-export const BREADCRUMB = 'PBreadCrumb';
+export const BREADCRUMB = 'PBreadcrumb';
