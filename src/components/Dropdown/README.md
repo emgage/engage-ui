@@ -92,12 +92,13 @@ If the items in a dropdown include a series of navigational links, each item sho
 
 | Properties | Type | Description |
 | ---------- | ---- | ----------- |
-| children | string | The content to display inside the dropdown |
+| trigger | React.ReactNode | React component that triggers the dropdown |
 | direction | enum['up', 'down', 'left', 'right'] | The preferred direction to open the dropdown |
 | active | boolean | Show or hide the Dropdown |
 | disable | boolean | Disable the dropdown |
 | activatorWrapper | string | The element type to wrap the dropdown with |
 | dropdownItems | DropdownItemProps | items of the dropdown |
+| closeOnClickOutside | boolean | Close the dropdown when mouse click outside of the dropdown |
 | toggle | function() | Callback when dropdown changes active state |
 | onClose | function() | Callback when dropdown is closed |
 
@@ -115,9 +116,7 @@ Use when presenting a set of actions in a disclosable menu.
       }, {
         children: "Item 2",
       }]
-  >
-  Actions
+    trigger = {<Button>Dropdown1</Button>}
   />
-  </Dropdown>
 </div>
 ```

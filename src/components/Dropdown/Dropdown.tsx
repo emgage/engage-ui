@@ -133,7 +133,7 @@ export class Dropdown extends React.PureComponent<Props, State> {
 
   private setAccessibilityAttributes() {
     const { id, activatorContainer } = this;
-    if (activatorContainer == null) { return; }
+    if (activatorContainer === null) { return; }
 
     const firstFocusable = findFirstFocusableNode(activatorContainer);
     const focusableActivator = firstFocusable || activatorContainer;
