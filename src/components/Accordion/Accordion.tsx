@@ -73,7 +73,7 @@ class Accordion extends React.Component<Props, State> {
     if (this.props.mode === 'collapsible') {
       this.setState({
         active: this.state.active.map((value: boolean, index: number) =>
-          index === toggleIndex ? !value : value
+          index === toggleIndex ? !value : false
         )
       });
     } else {
