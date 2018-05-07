@@ -1,9 +1,11 @@
 import { IDocument } from '../../Types';
 import BreadcrumbExampleFirst from '../../examples/BreadcrumbExample/BreadcrumbExampleFirst';
 import BreadcrumbExampleSecond from '../../examples/BreadcrumbExample/BreadcrumbExampleSecond';
+import BreadcrumbExampleThird from '../../examples/BreadcrumbExample/BreadcrumbExampleThird';
 
 const BreadcrumbExampleFirstCode = require('!raw-loader!../../examples/BreadcrumbExample/BreadcrumbExampleFirst') as string;
 const BreadcrumbExampleSecondCode = require('!raw-loader!../../examples/BreadcrumbExample/BreadcrumbExampleSecond') as string;
+const BreadcrumbExampleThirdCode = require('!raw-loader!../../examples/BreadcrumbExample/BreadcrumbExampleThird') as string;
 
 const BreadcrumbState: IDocument = {
   id: 'Breadcrumb',
@@ -23,6 +25,10 @@ const BreadcrumbState: IDocument = {
       type: 'React.CSSProperties',
       desc: 'To display the styling.',
     }, {
+      name: 'displayStyle',
+      type: 'DisplayStyle',
+      desc: 'DisplayStyle prop allow user to choose display colored theme for Breadcrumb component.',
+    }, {
       name: 'theme',
       type: 'any',
       desc: 'Theme to be injected via css-themr.',
@@ -35,11 +41,16 @@ const BreadcrumbState: IDocument = {
   exampleCode: BreadcrumbExampleFirstCode,
   exampleComponent: BreadcrumbExampleFirst,
   exampleCodeHeader: '1. Basic Breadcrumb:',
-  exampleCodeDescription: 'Used most in the interface. It is with ltr direction property.',
+  exampleCodeDescription: 'Used most in the interface. It is with primary display style, no colored theme applied.',
   exampleCode1: BreadcrumbExampleSecondCode,
   exampleComponent1: BreadcrumbExampleSecond,
   exampleCodeHeader1: '2. Breadcrumb with Active/Disable item:',
   exampleCodeDescription1: 'Used when need to display disabled or currently active or default item in breadcrumbs.',
+  exampleCode2: BreadcrumbExampleThirdCode,
+  exampleComponent2: BreadcrumbExampleThird,
+  exampleCodeHeader2: '3. Breadcrumb with green colored Display style:',
+  exampleCodeDescription2: 'Used most in the interface. It is with ltr(left to right) direction property.',
+
 };
 
 export default BreadcrumbState;

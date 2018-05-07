@@ -1,3 +1,12 @@
+$coloryellow: #f4e55d;
+$hovercoloryellow: #fff496;
+
+$colorgreen: #00cc00;
+$hovercolorgreen: #80ff80;
+
+$colorblue: #0080ff;
+$hovercolorblue: #99ccff;
+
 ul {
 margin: 10px;
 }
@@ -5,17 +14,15 @@ margin: 10px;
 ul.breadcrumb.left li {
   display: inline-block;
   position: relative;
-  background: #f4e55d;
   padding-left: 40px;
   padding-right: 40px;
   line-height: 40px;
   text-align: center;
   height: 40px;
-  justify-content: left;
+  cursor: pointer;
 }
 
 ul.breadcrumb.left li:hover {
-  background: #fff496;
   cursor: pointer
 }
 
@@ -33,13 +40,11 @@ ul.breadcrumb.left li:before {
 }
 ul.breadcrumb.left li:after {
   border-color: rgba(136, 183, 213, 0);
-  border-left-color: #f4e55d;
   border-width: 20px;
   margin-top: -20px;
 }
 
 ul.breadcrumb.left li:hover:after {
-  border-left-color: #fff496;
   cursor: pointer;
 }
 ul.breadcrumb.left li:before {
@@ -49,6 +54,290 @@ ul.breadcrumb.left li:before {
   border-width: 22px;
   margin-top: -22px;
 }
+
+ul.breadcrumb.left li.default:after {
+  cursor: default;
+}
+
+ul.breadcrumb.left li.default:hover{
+  cursor: default;
+}
+
+
+ul.breadcrumb.left li.default:hover:after {
+  cursor: pointer;
+}
+
+ul.breadcrumb.right li {
+  display: inline-block;
+  position: relative;
+  padding-left: 40px;
+  padding-right: 40px;
+  line-height: 40px;
+  text-align: center;
+  height: 40px;
+  margin-left: -1px;
+  justify-content: right;
+}
+
+
+ul.breadcrumb.right li:after,
+ul.breadcrumb.right li:before {
+  right: 100%;
+  top: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  z-index: 2;
+}
+ul.breadcrumb.right li:after {
+  border-color: rgba(136, 183, 213, 0);
+  border-width: 20px;
+  margin-top: -20px;
+}
+
+ul.breadcrumb.right li:hover {
+  cursor: pointer;
+}
+
+ul.breadcrumb.right li.default:after {
+  cursor: pointer;
+}
+
+ul.breadcrumb.right li.default:hover{
+  cursor: pointer;
+}
+
+ul.breadcrumb.right li.default:hover:after {
+  cursor: pointer;
+}
+
+ul.breadcrumb.right li:hover:after {
+  cursor: pointer;
+}
+
+ul.breadcrumb.right li:before {
+ 
+  border-color: rgba(194, 225, 245, 0);
+  border-right-color: #FFF;
+  border-width: 22px;
+  margin-top: -22px;
+}
+
+// Classes for Yellow colored theme
+
+ul.breadcrumb.left.yellow li {
+  background: $coloryellow;
+}
+
+ul.breadcrumb.left.yellow li:hover {
+  background: $hovercoloryellow;
+}
+
+ul.breadcrumb.left.yellow li:after {
+  border-left-color: $coloryellow;
+}
+
+ul.breadcrumb.left.yellow li:hover:after {
+  border-left-color: $hovercoloryellow;
+}
+
+ul.breadcrumb.left.yellow li.default {
+  background: $hovercoloryellow;
+}
+
+ul.breadcrumb.left.yellow li.default:after {
+  border-left-color: $hovercoloryellow;
+}
+
+ul.breadcrumb.left.yellow li.default:hover{
+  background: $hovercoloryellow;
+}
+
+ul.breadcrumb.left.yellow li.default:hover{
+  background: $hovercoloryellow;
+}
+
+ul.breadcrumb.left.yellow li.default:hover:after {
+  border-left-color: $hovercoloryellow;
+}
+
+ul.breadcrumb.right.yellow li {
+  background: $coloryellow;
+}
+
+ul.breadcrumb.right.yellow li:after {
+  border-right-color: $coloryellow;
+}
+
+ul.breadcrumb.right.yellow li:hover {
+  background: $hovercoloryellow;
+}
+
+ul.breadcrumb.right.yellow li.default {
+  background: $hovercoloryellow;
+}
+
+ul.breadcrumb.right.yellow li.default:after {
+  border-right-color: $hovercoloryellow;
+}
+
+ul.breadcrumb.right.yellow li.default:hover{
+  background: $hovercoloryellow;
+}
+
+ul.breadcrumb.right.yellow li.default:hover:after {
+  border-right-color: $hovercoloryellow;
+}
+
+ul.breadcrumb.right.yellow li:hover:after {
+  border-right-color: $hovercoloryellow;
+}
+
+// Classes for Green colored theme
+
+ul.breadcrumb.left.green li {
+  background: $colorgreen;
+}
+
+ul.breadcrumb.left.green li:hover {
+  background: $hovercolorgreen;
+}
+
+ul.breadcrumb.left.green li:after {
+  border-left-color: $colorgreen;
+}
+
+ul.breadcrumb.left.green li:hover:after {
+  border-left-color: $hovercolorgreen;
+}
+
+ul.breadcrumb.left.green li.default {
+  background: $hovercolorgreen;
+}
+
+ul.breadcrumb.left.green li.default:after {
+  border-left-color: $hovercolorgreen;
+}
+
+ul.breadcrumb.left.green li.default:hover{
+  background: $hovercolorgreen;
+}
+
+ul.breadcrumb.left.green li.default:hover{
+  background: $hovercolorgreen;
+}
+
+ul.breadcrumb.left.green li.default:hover:after {
+  border-left-color: $hovercolorgreen;
+}
+
+ul.breadcrumb.right.green li {
+  background: $colorgreen;
+}
+
+ul.breadcrumb.right.green li:after {
+  border-right-color: $colorgreen;
+}
+
+ul.breadcrumb.right.green li:hover {
+  background: $hovercolorgreen;
+}
+
+ul.breadcrumb.right.green li.default {
+  background: $hovercolorgreen;
+}
+
+ul.breadcrumb.right.green li.default:after {
+  border-right-color: $hovercolorgreen;
+}
+
+ul.breadcrumb.right.green li.default:hover{
+  background: $hovercolorgreen;
+}
+
+ul.breadcrumb.right.green li.default:hover:after {
+  border-right-color: $hovercolorgreen;
+}
+
+ul.breadcrumb.right.green li:hover:after {
+  border-right-color: $hovercolorgreen;
+}
+
+// Classes for Blue colored theme
+
+ul.breadcrumb.left.blue li {
+  background: $colorblue;
+}
+
+ul.breadcrumb.left.blue li:hover {
+  background: $hovercolorblue;
+}
+
+ul.breadcrumb.left.blue li:after {
+  border-left-color: $colorblue;
+}
+
+ul.breadcrumb.left.blue li:hover:after {
+  border-left-color: $hovercolorblue;
+}
+
+ul.breadcrumb.left.blue li.default {
+  background: $hovercolorblue;
+}
+
+ul.breadcrumb.left.blue li.default:after {
+  border-left-color: $hovercolorblue;
+}
+
+ul.breadcrumb.left.blue li.default:hover{
+  background: $hovercolorblue;
+}
+
+ul.breadcrumb.left.blue li.default:hover{
+  background: $hovercolorblue;
+}
+
+ul.breadcrumb.left.blue li.default:hover:after {
+  border-left-color: $hovercolorblue;
+}
+
+ul.breadcrumb.right.blue li {
+  background: $colorblue;
+}
+
+ul.breadcrumb.right.blue li:after {
+  border-right-color: $colorblue;
+}
+
+ul.breadcrumb.right.blue li:hover {
+  background: $hovercolorblue;
+}
+
+ul.breadcrumb.right.blue li.default {
+  background: $hovercolorblue;
+}
+
+ul.breadcrumb.right.blue li.default:after {
+  border-right-color: $hovercolorblue;
+}
+
+ul.breadcrumb.right.blue li.default:hover{
+  background: $hovercolorblue;
+}
+
+ul.breadcrumb.right.blue li.default:hover:after {
+  border-right-color: $hovercolorblue;
+}
+
+ul.breadcrumb.right.blue li:hover:after {
+  border-right-color: $hovercolorblue;
+}
+
+// Classes for disabled style type
 
 ul.breadcrumb.left li.disabled {
   background: #a3a196;
@@ -67,62 +356,6 @@ ul.breadcrumb.left li.disabled:hover{
 ul.breadcrumb.left li.disabled:hover:after {
   border-left-color: #a3a196;
   cursor: default;
-}
-
-ul.breadcrumb.left li.default {
-  background: #fff496;
-}
-
-ul.breadcrumb.left li.default:after {
-  border-left-color: #fff496;
-  cursor: normal;
-}
-
-ul.breadcrumb.left li.default:hover{
-  background: #fff496;
-  cursor: default;
-}
-
-ul.breadcrumb.left li.default:hover:after {
-  border-left-color: #fff496;
-  cursor: pointer;
-}
-
-ul.breadcrumb.right li {
-  display: inline-block;
-  position: relative;
-  background: #f4e55d;
-  padding-left: 40px;
-  padding-right: 40px;
-  line-height: 40px;
-  text-align: center;
-  height: 40px;
-  margin-left: -1px;
-  justify-content: right;
-}
-
-ul.breadcrumb.right li:after,
-ul.breadcrumb.right li:before {
-  right: 100%;
-  top: 50%;
-  border: solid transparent;
-  content: " ";
-  height: 0;
-  width: 0;
-  position: absolute;
-  pointer-events: none;
-  z-index: 2;
-}
-ul.breadcrumb.right li:after {
-  border-color: rgba(136, 183, 213, 0);
-  border-right-color: #f4e55d;
-  border-width: 20px;
-  margin-top: -20px;
-}
-
-ul.breadcrumb.right li:hover {
-  background: #fff496;
-  cursor: pointer;
 }
 
 ul.breadcrumb.right li.disabled {
@@ -144,35 +377,41 @@ ul.breadcrumb.right li.disabled:hover:after {
   cursor: default;
 }
 
-ul.breadcrumb.right li.default {
-  background: #fff496;
-}
+// Classes for primary/basic theme
 
-ul.breadcrumb.right li.default:after {
-  border-right-color: #fff496;
+.breadcrumbPrimary li{
+  display: inline-block;
+  position: relative;
+  padding-left: 03px;
+  padding-right: 03px;
+  line-height: 40px;
+  text-align: center;
+  height: 40px;
+  justify-content: left;
   cursor: pointer;
+  }
+
+  .breadcrumbPrimary li.disabled {
+        color: grey;
+        cursor: default;
 }
 
-ul.breadcrumb.right li.default:hover{
-  background: #fff496;
-  cursor: pointer;
-}
+  .breadcrumbPrimary.left li:nth-child(n+2) {
+    &::before {
+        color: grey;
+        font-weight: bolder;
+        font-size: 20px;
+        content: ">";
+        padding-right: 05px;
+     }
+    }
 
-ul.breadcrumb.right li.default:hover:after {
-  border-right-color: #fff496;
-  cursor: pointer;
-}
-
-
-ul.breadcrumb.right li:hover:after {
-  border-right-color: #fff496;
-  cursor: pointer;
-}
-
-ul.breadcrumb.right li:before {
- 
-  border-color: rgba(194, 225, 245, 0);
-  border-right-color: #FFF;
-  border-width: 22px;
-  margin-top: -22px;
-}
+  .breadcrumbPrimary.right li:nth-child(n+2) {
+    &::before {
+        color: grey;
+        font-weight: bolder;
+        font-size: 20px;
+        content: "<";
+        padding-right: 05px;
+     }
+    }

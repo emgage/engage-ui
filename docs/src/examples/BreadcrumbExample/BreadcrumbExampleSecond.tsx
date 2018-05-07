@@ -28,7 +28,7 @@ class BreadcrumbExample extends React.Component {
   render() {
     return (
         <div className={styles.example}>
-          <Breadcrumb onBreadcrumbClick={this.BreadcrumbClick} direction={'right'} source={breadcrumbData} />
+          <Breadcrumb onBreadcrumbClick={this.BreadcrumbClick} direction={'left'} source={breadcrumbData} displayStyle={'yellow'} />
         </div>
     );
   }

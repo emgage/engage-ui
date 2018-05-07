@@ -6,7 +6,7 @@ import * as styles from '../../styles/components-page.scss';
 const breadcrumbData: ISourceData[] = [
   {
     name: 'Home',
-    type: 'active',
+    type: 'default',
   }, {
     name: 'Home1',
     type: 'active'
@@ -27,11 +27,12 @@ class BreadcrumbExample extends React.Component {
 
   render() {
     return (
-      <div className={styles.example}>
-        <Breadcrumb onBreadcrumbClick={this.BreadcrumbClick} direction={'left'} source={breadcrumbData} displayStyle={'primary'}/>
-      </div>
+        <div className={styles.example}>
+          <Breadcrumb onBreadcrumbClick={this.BreadcrumbClick} direction={'right'} source={breadcrumbData} displayStyle={'green'} />
+        </div>
     );
   }
 }
 
 export default BreadcrumbExample;
+

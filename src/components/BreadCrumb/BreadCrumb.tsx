@@ -6,6 +6,7 @@ import * as baseTheme from './Breadcrumb.scss';
 
 export type Direction = 'left' | 'right';
 export type Type = 'default' | 'disabled' | 'active';
+export type DisplayStyle = 'yellow' | 'green' | 'blue' | 'primary';
 
 export interface ISourceData {
   name: React.ReactNode;
@@ -22,6 +23,8 @@ export interface Props {
   source: ISourceData[];
   // Callback function whenever user click on breadcrumb
   onBreadcrumbClick?(): void;
+  // User can choose display color theme for Breadcrumb component
+  displayStyle?: DisplayStyle;
   // Set theme for breadcrumb
   theme?: any;
 }
@@ -32,39 +35,24 @@ class Breadcrumb extends React.Component<Props, {}> {
   renderBreadcrumbItems() {
     const { direction, theme } = this.props;
 
-    // Classes for Active Breadcrumb 
-    const itemClassesActive = classNames(
-      direction === 'left' && theme.left,
-      direction === 'right' && theme.right
-    );
-
-    // Classes for Default Breadcrumb
-    const itemClassesdefault = classNames(
-      direction === 'left' && theme.left,
-      direction === 'right' && theme.right,
-      theme.default
-    );
-
-    // Classes for Disabled Breadcrumb
-    const itemClassesDisable = classNames(
-      direction === 'left' && theme.left,
-      direction === 'right' && theme.right,
-      theme.disabled
-    );
-
     return this.props.source.map((child, index) => {
-      return <li key={index} className={child.type === 'disabled' ? itemClassesDisable : child.type === 'default' ? itemClassesdefault : itemClassesActive} onClick={child.type === 'disabled' ? undefined : this.props.onBreadcrumbClick} style={child.style}>{child.name}</li>;
+      debugger;
+      const classnames = classNames(
+        theme[direction ? direction : 'left'],
+        theme[child.type]
+      );
+      return <li key={index} className={classnames} onClick={child.type === 'disabled' ? undefined : this.props.onBreadcrumbClick} style={child.style}>{child.name}</li>;
     });
   }
   // Render Breadcrumb and it's items
   render() {
-    const { theme, direction, style } = this.props;
+    const { theme, direction, style, displayStyle } = this.props;
 
     // Combination of classes required for breadcrumb component
     const classes = classNames(
-      theme.breadcrumb,
-      direction === 'left' && theme.left,
-      direction === 'right' && theme.right
+      displayStyle === 'primary' ? theme.breadcrumbPrimary : theme.breadcrumb,
+      theme[displayStyle ? displayStyle : ''],
+      theme[direction ? direction : 'left']
     );
 
     return (

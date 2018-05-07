@@ -321,7 +321,7 @@ class App extends React.Component<{}, State> {
         </div>
         <div>
           <p>This is my Breadcrumbs!!</p>
-          <Breadcrumb onBreadcrumbClick={this.BreadcrumbClick} direction={'left'} source={breadcrumbData} />
+          <Breadcrumb onBreadcrumbClick={this.BreadcrumbClick} direction={'left'} source={breadcrumbData} displayStyle={'blue'} />
         </div>
         <br />
         <Caption style={{ color: 'red' }}>This is Caption</Caption>
