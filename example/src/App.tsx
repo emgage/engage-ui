@@ -64,7 +64,7 @@ interface State {
 }
 
 class App extends React.Component<{}, State> {
-  private accordionRef : any = React.createRef<any>();
+  private accordionRef : any = React.createRef();
 
   constructor(props: any) {
     super(props);
@@ -144,6 +144,9 @@ class App extends React.Component<{}, State> {
     },{
       children: <Banner title={'banner11'} status={'warning'} />,
       header: <Button>sk1</Button>
+    },{
+      children: <Banner title={'banner13'} status={'warning'} />,
+      header: <Button>sk3</Button>
     }];
     console.log(this.accordionRef);
     console.log(this.accordionRef.current);

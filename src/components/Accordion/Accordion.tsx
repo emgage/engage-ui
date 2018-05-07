@@ -22,10 +22,11 @@ interface State {
   active: boolean[];
 }
 
-const getUniqueID = createUniqueIDFactory('Accordion');
-const getItemUniqueID = createUniqueIDFactory('AccordionItems');
-
 class Accordion extends React.Component<Props, State> {
+  private getUniqueID = createUniqueIDFactory('Accordion');
+  private getItemUniqueID = createUniqueIDFactory('AccordionItems');
+  private id = this.getUniqueID();
+
   constructor(props: Props) {
     super(props);
 
@@ -39,8 +40,6 @@ class Accordion extends React.Component<Props, State> {
     };
   }
 
-  public id = getUniqueID();
-
   render() {
     const {
       items
@@ -53,7 +52,7 @@ class Accordion extends React.Component<Props, State> {
     const itemsComponent = items.map((item, index) =>
         <AccordionItem
           index= {index}
-          key= {getItemUniqueID()}
+          key= {this.getItemUniqueID()}
           toggle = {this.toggleItem}
           active = {active[index] ? true : false}
           header = {item.header}
@@ -70,13 +69,20 @@ class Accordion extends React.Component<Props, State> {
   }
 
   @autobind
-  public toggleItem(index: number) {
-    const updatedPopoverActive = this.state.active;
-    updatedPopoverActive[index] = !updatedPopoverActive[index];
-
-    this.setState({
-      active: updatedPopoverActive
-    });
+  public toggleItem(toggleIndex: number) {
+    if (this.props.mode === 'collapsible') {
+      this.setState({
+        active: this.state.active.map((value: boolean, index: number) =>
+          index === toggleIndex ? !value : value
+        )
+      });
+    } else {
+      this.setState({
+        active: this.state.active.map((value: boolean, index: number) =>
+          index === toggleIndex ? !value : value
+        )
+      });
+    }
   }
 }
 
