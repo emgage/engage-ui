@@ -62,6 +62,7 @@ $font-weight-normal: 400 !default;
 .dropdown,
 .dropleft {
   position: relative;
+  @include text-style-body;
 }
 
 .dropdownMenu {
@@ -76,11 +77,25 @@ $font-weight-normal: 400 !default;
   margin: $dropdown-spacer 0 0; 
   font-size: $font-size-base; 
   color: $body-color;
+  width: 100px;
   text-align: left; 
   list-style: none;
   background-color: $dropdown-bg;
   background-clip: padding-box;
   border: $dropdown-border-width solid $dropdown-border-color;
+
+  .box {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    height: 1.4rem;
+    width: 1.4rem;
+    background: $dropdown-bg;
+    border-top-left-radius: 3px;
+    box-shadow: 0 0 0 1px rgba(6,44,82,.1), 0 2px 16px rgba(33,43,54,.08);
+    z-index: $zindex-dropdown - 10;
+  }
 }
 
 .dropup {
@@ -131,6 +146,7 @@ $font-weight-normal: 400 !default;
   &[x-placement^="left"] {
     right: auto;
     bottom: auto;
+    margin-top: 10px;
   }
 
   &.active,

@@ -137,24 +137,24 @@ class App extends React.Component<{}, State> {
   }
 
   render() {
-    let items : DropdownItemProps[] = [
+    const items : DropdownItemProps[] = [
       {
-        content: "Item 1",
+        content: 'Item 1',
         onClick: this.closed1,
       },
       {
-        content: "Item 2",
-        divider: true
+        content: 'Item 2',
+        divider: false
       },
       {
-        content: "Item 3",
+        content: 'Item 3',
         disabled: false
       },
       {
-        content: "Item 4",
-        header: true
+        content: 'Item 4',
+        header: false
       }
-    ]
+    ];
 
     const posterUrl = new URL('http://4.bp.blogspot.com/_JSR8IC77Ub4/TKB-XAWXmhI/AAAAAAAABJA/MqOpdFTOaHo/w1200-' +
       'h630-p-k-no-nu/C:%5Cfakepath%5Cbird1.jpg');
@@ -531,15 +531,13 @@ class App extends React.Component<{}, State> {
 
           <Heading>Popover</Heading>
 
-          
           <Button onClick={this.popoverUpdate} >Click to active and deactive dropdown</Button>
-          <Dropdown 
+          <Dropdown
             active={this.state.popoverActive}
             dropdownItems={items}
             toggle={this.popoverUpdate}
-            direction="down"
-            trigger={<Button>SK</Button>}
-            closeOnClickOutside
+            direction="right"
+            trigger={<Button style={{ left: 150 }} >SK</Button>}
           />
 
           <TextField
@@ -995,12 +993,12 @@ class App extends React.Component<{}, State> {
 
   popoverUpdate() {
     this.setState({
-        popoverActive : !this.state.popoverActive
+      popoverActive : !this.state.popoverActive
     });
   }
 
   closed1() {
-    console.log("called");
+    console.log('called');
   }
 }
 

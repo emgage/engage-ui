@@ -16,7 +16,7 @@ export type Direction = 'up' | 'down' | 'left' | 'right';
 
 export interface Props {
   disabled?: boolean;
-  trigger?: React.ReactNode;
+  trigger: React.ReactNode;
   direction?: Direction;
   active: boolean;
   activatorWrapper?: string;
@@ -84,7 +84,7 @@ export class Dropdown extends React.PureComponent<Props, State> {
       trigger,
       dropdownItems,
       toggle,
-      direction,
+      direction = 'down',
       disabled
     } = this.props;
 
@@ -93,10 +93,10 @@ export class Dropdown extends React.PureComponent<Props, State> {
     } = this.state;
 
     const dropdownClassName = classNames (
-      typeof direction === 'undefined' || direction === 'down' ? baseTheme.dropdown
-        : direction === 'up' ? baseTheme.dropup
-        : direction === 'left' ? baseTheme.dropleft
-        : baseTheme.dropright,
+      direction === 'down' ? baseTheme.dropdown
+      : direction === 'up' ? baseTheme.dropup
+      : direction === 'left' ? baseTheme.dropleft
+      : baseTheme.dropright,
       !disabled && active && baseTheme.active
     );
 
@@ -104,6 +104,21 @@ export class Dropdown extends React.PureComponent<Props, State> {
       baseTheme.dropdownMenu,
       !disabled && active && baseTheme.active
     );
+
+    const activatorComp = document.getElementById(`${this.id}Header`);
+    let activatorRect: ClientRect | DOMRect;
+    let leftCord : number = 0;
+    if (activatorComp != null && activatorComp.childNodes.item(0) != null) {
+      const comp: HTMLElement = activatorComp.childNodes.item(0) as HTMLElement;
+      activatorRect = comp.getBoundingClientRect();
+      if (direction === 'up' || direction === 'down') {
+        leftCord = activatorRect.left + (activatorRect.width / 2) - 50 /* Menu Width / 2 */;
+      } else if (direction === 'left') {
+        leftCord = activatorRect.left - 100 /* Menu Width */;
+      } else {
+        leftCord = activatorRect.left + activatorRect.width;
+      }
+    }
 
     const DropdownItemComponents = dropdownItems.map((item,index) =>
             <DropdownItem
@@ -120,10 +135,11 @@ export class Dropdown extends React.PureComponent<Props, State> {
     return (
       <WRAPPERCOMPONENT ref={this.setActivator}>
         <div className={dropdownClassName} key={this.id}>
-          <div onClick={toggle}>
+          <div onClick={toggle} id={`${this.id}Header`} >
             {trigger}
           </div>
-          <div className={dropdownMenuClassName}>
+          <div className={dropdownMenuClassName} style= {{ left: leftCord }}>
+            <div className={baseTheme.box} />
             {DropdownItemComponents}
           </div>
         </div>
