@@ -3,7 +3,7 @@
         "<rootDir>/config/jest/shim.js",
         "<rootDir>/tests/setup.ts"
     ],
-   "testRegex": "Tab.test.tsx", 
+    "testRegex": ".test.(tsx?|js)$",
 
     "rootDir": "../..",
     "roots": [
