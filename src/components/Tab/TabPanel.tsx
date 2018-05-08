@@ -53,12 +53,12 @@ class TabPanel extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.onTabClick = this.onTabClick.bind(this);
-    const { children }: any = this.props.children;
+    const children: any = this.props.children;
+    const defaultTabId = children.filter((item: React.ReactElement<tabProps>, index: number) => index === 0);
     this.state = {
       // Maintain Active status of Tab
-      activeTabId: props.defaultTabId ? props.defaultTabId : children[0].tabId,
+      activeTabId: props.defaultTabId ? props.defaultTabId : defaultTabId[0].props.tabId,
     };
-
   }
 
   // This will render single/multiple tabs into panel with props
@@ -113,7 +113,7 @@ class TabPanel extends React.Component<Props, State> {
     );
   }
 
-  // Handle OnClick event whenever Tab is cliked/selected 
+  // Handle OnClick event whenever Tab is cliked/selected
   onTabClick = (activeTabId: string) => {
     this.setState({
       activeTabId
