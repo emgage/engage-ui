@@ -31,6 +31,7 @@ import {
   Select,
   TextField,
   Tooltip,
+  ValidatedCheckboxField,
   ValidatedTextField,
   ValidatedSelectField,
   ValidatedForm,
@@ -50,6 +51,7 @@ interface State {
   appName?: string;
   appDescription: string;
   appCity: string;
+  appCheck:string;
   appTextCounter: string;
   columns: object[];
   rows: object[];
@@ -72,6 +74,7 @@ class App extends React.Component<{}, State> {
       appName: '',
       appDescription: '',
       appCity: '',
+      appCheck:'',
       appTextCounter: '',
       columns: [
         { key: 'id', name: 'ID' },
@@ -431,7 +434,7 @@ class App extends React.Component<{}, State> {
         <br />
         <Caption style={{ color: 'red' }}>This is Caption</Caption>
         <br />
-        <Checkbox label={'I am a checkbox'} />
+        <Checkbox required={true} label={'I am a checkbox'} />
         <Banner title={'banner'} status={'success'} />
         <Banner title={'banner'} status={'info'} />
         <Banner title={'banner'} status={'warning'} />
@@ -687,6 +690,19 @@ class App extends React.Component<{}, State> {
                   { required: true, message: 'City is required.' },
                 ]}
               />
+              <ValidatedCheckboxField
+                id="appCheck"
+                required={true}
+                name="I agree to terms and conditions"
+                value={this.state.appCheck}
+                label="I agree to terms and conditions"
+                onChange={this.valueUpdater('appCheck')}
+                validateTrigger={['onBlur']}
+                validateRules={[
+                  { required: true, message: 'Please indicate that you have read and agree to the Terms and Conditions and Privacy Policy.' },
+                ]}
+              />
+              
               <ButtonGroup>
                 <Button>Cancel</Button>
                 <Button primary submit>Next</Button>

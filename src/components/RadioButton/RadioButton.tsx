@@ -2,7 +2,7 @@ import * as React from 'react';
 import { themr, ThemedComponentClass } from 'react-css-themr';
 import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
 
-import Choice, { helpTextID } from '../Choice';
+import Choice, { helpTextIDChoice } from '../Choice';
 import { RADIO_BUTTON } from '../ThemeIdentifiers';
 
 import * as baseTheme from './RadioButton.scss';
@@ -44,7 +44,7 @@ const radioButton = ({
   }
 
   const describedBy = helpText
-    ? helpTextID(id)
+    ? helpTextIDChoice(id)
     : null;
 
   const input = describedBy === null ?

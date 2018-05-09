@@ -7,12 +7,12 @@ import { CHOICE } from '../ThemeIdentifiers';
 
 import * as baseTheme from './Choice.scss';
 
-export type Error = boolean | string;
+export type ErrorChoice = boolean | string;
 
 export interface Props {
   id: string;
   label: string;
-  error?: Error;
+  error?: ErrorChoice;
   labelHidden?: boolean;
   children?: React.ReactNode;
   helpText?: React.ReactNode;
@@ -37,12 +37,12 @@ const choice = ({
   );
 
   const helpTextMarkup = helpText
-    ? <div className={theme.helpText} id={helpTextID(id)}>{helpText}</div>
+    ? <div className={theme.helpText} id={helpTextIDChoice(id)}>{helpText}</div>
     : null;
 
   const errorMarkup = typeof error === 'string'
     ? (
-      <div className={theme.error} id={errorID(id)}>
+      <div className={theme.error} id={errorIDChoice(id)}>
         <div className={theme.errorIcon}><Icon source="alert" /></div>
         {error}
       </div>
@@ -68,11 +68,11 @@ const choice = ({
     : labelMarkup;
 };
 
-export function helpTextID(id: string) {
+export function helpTextIDChoice(id: string) {
   return `${id}HelpText`;
 }
 
-export function errorID(id: string) {
+export function errorIDChoice(id: string) {
   return `${id}Error`;
 }
 

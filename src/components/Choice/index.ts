@@ -1,4 +1,4 @@
 import Choice from './Choice';
 
-export { Props, Error, errorID, helpTextID } from './Choice';
+export { Props, ErrorChoice, errorIDChoice, helpTextIDChoice } from './Choice';
 export default Choice;
