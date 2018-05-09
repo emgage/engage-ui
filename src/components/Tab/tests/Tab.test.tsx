@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { mount } from 'enzyme';
 import Badge from '../../Badge/Badge';
-// import Button from '../../Button/Button';
+import Button from '../../Button/Button';
 import Tab from '../Tab';
 import TabPanel from '../TabPanel';
 
@@ -242,12 +242,35 @@ describe('<Tab />', () => {
             </div>
           </Tab>
         </TabPanel>);
-      console.log(subject.html());
       expect(subject.find('div').exists()).toBeTruthy();
       expect(subject.find('div').length).toBe(5);
       expect(subject.find('div').at(0).prop('defaultTabId')).toBe('tab1');
       expect(subject.find('div').at(3).children).toHaveLength(1);
       expect(subject.find('p').length).toBe(1);
+    });
+  });
+
+  describe('triggered from button click', () => {
+    it('should have value of first tab as alignment prop', () => {
+      const spy = jest.fn();
+      const subject = mount(
+        <TabPanel position={'top'} alignment={'right'} defaultTabId={'tab2'} theme={theme} >
+          <Tab tabDescription={<Badge children={'Home'} status={'success'} />} tabId={'tab1'}>
+            <p>content 0</p>
+          </Tab>
+          <Tab tabDescription="User" tabId={'tab2'}>
+              <div>
+                <Button onClick={spy}>Medium Button</Button>
+              </div>
+          </Tab>
+        </TabPanel>);
+      expect(subject.find('div').exists()).toBeTruthy();
+      expect(subject.find('div').length).toBe(6);
+      expect(subject.find('div').at(0).prop('defaultTabId')).toBe('tab2');
+      expect(subject.find('div').at(4).children).toHaveLength(1);
+      expect(subject.find('button')).toHaveLength(2);
+      subject.find('button').at(1).simulate('click');
+      expect(spy).toHaveBeenCalled();
     });
   });
 });
