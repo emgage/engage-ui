@@ -61,11 +61,11 @@ interface State {
   drawer: boolean;
   drawerContent: any;
   activeDrawerId: string;
+  AccordionItemOpen?: number;
+  AccordionItemClose?: number;
 }
 
 class App extends React.Component<{}, State> {
-  private accordionRef : any = React.createRef();
-
   constructor(props: any) {
     super(props);
     this.state = {
@@ -99,8 +99,12 @@ class App extends React.Component<{}, State> {
         content2: true,
       },
       activeDrawerId: 'content1',
+      AccordionItemOpen: undefined,
+      AccordionItemClose: undefined,
     };
     this.popovertoggle = this.popovertoggle.bind(this);
+    this.toggleAccordionOpen = this.toggleAccordionOpen.bind(this);
+    this.toggleAccordionClose = this.toggleAccordionClose.bind(this);
   }
 
   rowGetter = (index: number) => this.state.rows[index];
@@ -148,8 +152,7 @@ class App extends React.Component<{}, State> {
       children: <Banner title={'banner13'} status={'warning'} />,
       header: <Button>sk3</Button>
     }];
-    console.log(this.accordionRef);
-    console.log(this.accordionRef.current);
+
     const posterUrl = new URL('http://4.bp.blogspot.com/_JSR8IC77Ub4/TKB-XAWXmhI/AAAAAAAABJA/MqOpdFTOaHo/w1200-' +
       'h630-p-k-no-nu/C:%5Cfakepath%5Cbird1.jpg');
     const singleVideoSource = [
@@ -522,12 +525,19 @@ class App extends React.Component<{}, State> {
           <Link>Tooltip 2</Link>
         </Tooltip>
         <div>
-        <Accordion items={items} ref={this.accordionRef}>
-            <Heading>According</Heading>
-          </Accordion>
+          <h1>{this.state.AccordionItemClose}</h1>
+          <h1>{this.state.AccordionItemOpen}</h1>
+        <Accordion items={items} closeIndex={this.state.AccordionItemClose} openIndex={this.state.AccordionItemOpen} />
 
-          <Button onClick={() => this.accordionRef.toggleItem(0)}>item1 toggle</Button>
-          <Button onClick={() => this.accordionRef.toggleItem(1)}>item1 toggle</Button>
+          <Button onClick={() => this.toggleAccordionOpen(0)}>item1 toggle open</Button>
+          <Button onClick={() => this.toggleAccordionOpen(1)}>item2 toggle open</Button>
+          <Button onClick={() => this.toggleAccordionOpen(2)}>item3 toggle open</Button>
+          <Button onClick={() => this.toggleAccordionOpen(undefined)}>undefined toggle open</Button>
+
+          <Button onClick={() => this.toggleAccordionClose(0)}>item1 toggle close</Button>
+          <Button onClick={() => this.toggleAccordionClose(1)}>item2 toggle close</Button>
+          <Button onClick={() => this.toggleAccordionClose(2)}>item3 toggle close</Button>
+          <Button onClick={() => this.toggleAccordionClose(undefined)}>undefined toggle close</Button>
           <Heading>Popover</Heading>
           <TextField
             id="TestName"
@@ -986,6 +996,18 @@ class App extends React.Component<{}, State> {
 
     this.setState({
       popoverActive: updatedPopoverActive
+    });
+  }
+
+  toggleAccordionOpen(index?: number) {
+    this.setState({
+      AccordionItemOpen: index
+    });
+  }
+
+  toggleAccordionClose(index?: number) {
+    this.setState({
+      AccordionItemClose: index
     });
   }
 }

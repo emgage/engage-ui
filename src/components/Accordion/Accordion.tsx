@@ -16,6 +16,8 @@ export interface AccordionItemProps {
 export interface Props {
   items: AccordionItemProps[];
   mode?: Mode;
+  openIndex?: number;
+  closeIndex?: number;
 }
 
 interface State {
@@ -35,9 +37,61 @@ class Accordion extends React.Component<Props, State> {
       initialState.push(false);
     });
 
+    if (props.openIndex !== undefined) {
+      initialState[props.openIndex] = true;
+    }
+
     this.state = {
       active: initialState
     };
+  }
+
+  // tslint:disable-next-line:function-name
+  UNSAFE_componentWillReceiveProps(nextProps : Props) {
+    // if both not present don't change the state
+    if (nextProps.openIndex === undefined && nextProps.closeIndex === undefined) {
+      return null;
+    }
+
+    if (nextProps.openIndex !== undefined && nextProps.closeIndex !== undefined) {
+      if (nextProps.closeIndex < this.state.active.length && nextProps.openIndex < this.state.active.length ||
+          (this.state.active[nextProps.closeIndex] || !this.state.active[nextProps.openIndex])) {
+        if (this.props.mode === 'collapsible') {
+          this.setState({
+            active: this.state.active.map((value: boolean, index: number) =>
+              index === nextProps.openIndex ? true : false
+            )
+          });
+        } else {
+          const newActive = this.state.active;
+          newActive[nextProps.closeIndex] = false;
+          newActive[nextProps.openIndex] = true;
+          this.setState({
+            active: newActive
+          });
+        }
+      }
+    } else if (nextProps.closeIndex !== undefined && nextProps.closeIndex < this.state.active.length && this.state.active[nextProps.closeIndex]) {
+      const newActive = this.state.active;
+      newActive[nextProps.closeIndex] = false;
+      this.setState({
+        active: newActive
+      });
+    } else if (nextProps.openIndex !== undefined && nextProps.openIndex < this.state.active.length && !this.state.active[nextProps.openIndex]) {
+      if (this.props.mode === 'collapsible') {
+        this.setState({
+          active: this.state.active.map((value: boolean, index: number) =>
+            index === nextProps.openIndex ? true : false
+          )
+        });
+      } else {
+        const newActive = this.state.active;
+        newActive[nextProps.openIndex] = true;
+        this.setState({
+          active: newActive
+        });
+      }
+    }
   }
 
   render() {
@@ -69,7 +123,7 @@ class Accordion extends React.Component<Props, State> {
   }
 
   @autobind
-  public toggleItem(toggleIndex: number) {
+  private toggleItem(toggleIndex: number) {
     if (this.props.mode === 'collapsible') {
       this.setState({
         active: this.state.active.map((value: boolean, index: number) =>

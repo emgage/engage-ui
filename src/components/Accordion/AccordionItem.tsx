@@ -10,7 +10,7 @@ export interface Props {
   toggle?(index: number): void;
 }
 
-export default class Accordion extends React.PureComponent<Props, never> {
+export default class AccordionItem extends React.PureComponent<Props, never> {
 
   render() {
     const {

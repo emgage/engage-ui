@@ -1,14 +1,10 @@
 .accordionItem {
-  border: 1px solid rgb(104, 194, 224);
-  border-top-right-radius: 5px;
-  border-top-left-radius: 5px;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   width: 100%;
   overflow: hidden;
 }
 
 .accordionItem > .header {
-  background: rgb(104, 194, 224);
   position: relative;
   height: 40px;
   display: flex;
@@ -50,6 +46,6 @@
 .accordionItem> .bodyCollapsed {
   height: 0;
   opacity: 0;
-  padding: 0 70px;
+  padding: 0 10px;
   transition: all 0.2s;
 }
