@@ -48,6 +48,7 @@ import CaptionState from './componentState/CaptionState';
 import SpinnerState from './componentState/SpinnerState';
 import TableState from './componentState/TableState';
 import DrawerState from './componentState/DrawerState';
+import TabState from './componentState/TabState';
 
 const intialState: IDocumentAppState = {
   components: [
@@ -99,6 +100,7 @@ const intialState: IDocumentAppState = {
     SpinnerState,
     DrawerState,
     TableState,
+    TabState,
   ],
 };
 
