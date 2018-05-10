@@ -32,6 +32,7 @@ import {
   TextField,
   Tooltip,
   ValidatedCheckboxField,
+  ValidatedRadioField,
   ValidatedTextField,
   ValidatedSelectField,
   ValidatedForm,
@@ -51,7 +52,8 @@ interface State {
   appName?: string;
   appDescription: string;
   appCity: string;
-  appCheck:string;
+  appTerms:string;
+  appStatus:string;
   appTextCounter: string;
   columns: object[];
   rows: object[];
@@ -74,7 +76,8 @@ class App extends React.Component<{}, State> {
       appName: '',
       appDescription: '',
       appCity: '',
-      appCheck:'',
+      appTerms:'',
+      appStatus:'',
       appTextCounter: '',
       columns: [
         { key: 'id', name: 'ID' },
@@ -679,7 +682,7 @@ class App extends React.Component<{}, State> {
 
               <ValidatedSelectField
                 id="appCity"
-                required={true}
+                required
                 name="Select city"
                 label="Select city"
                 options={[{ value: 'xyz', label: 'xyz' }, { value: 'abc', label: 'abc' }]}
@@ -691,15 +694,27 @@ class App extends React.Component<{}, State> {
                 ]}
               />
               <ValidatedCheckboxField
-                id="appCheck"
-                required={true}
+                id="appTerms"
+                required
                 name="I agree to terms and conditions"
-                value={this.state.appCheck}
+                value={this.state.appTerms}
                 label="I agree to terms and conditions"
-                onChange={this.valueUpdater('appCheck')}
+                onChange={this.valueUpdater('appTerms')}
                 validateTrigger={['onBlur']}
                 validateRules={[
                   { required: true, message: 'Please indicate that you have read and agree to the Terms and Conditions and Privacy Policy.' },
+                ]}
+              />
+              <ValidatedRadioField
+                id="appStatus"
+                required
+                name="Publish App"
+                value={this.state.appStatus}
+                label="Publish App"
+                onChange={this.valueUpdater('appStatus')}
+                validateTrigger={['onBlur']}
+                validateRules={[
+                  { required: true, message: 'Publish App is required.' },
                 ]}
               />
               

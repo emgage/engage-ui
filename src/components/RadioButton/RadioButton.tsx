@@ -2,6 +2,7 @@ import * as React from 'react';
 import { themr, ThemedComponentClass } from 'react-css-themr';
 import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
 
+import Labelled, { Action, Error, errorID } from '../Labelled';
 import Choice, { helpTextIDChoice } from '../Choice';
 import { RADIO_BUTTON } from '../ThemeIdentifiers';
 
@@ -10,13 +11,16 @@ import * as baseTheme from './RadioButton.scss';
 export interface Props {
   label: string;
   labelHidden?: boolean;
+  labelAction?: Action;
   helpText?: React.ReactNode;
   checked?: boolean;
   id?: string;
   name?: string;
   value?: string;
+  errors?: [string] | Error;
   disabled?: boolean;
   theme?: any;
+  required?: boolean;
   onChange?(newValue: boolean): void;
   onFocus?(): void;
   onBlur?(): void;
@@ -27,9 +31,12 @@ const getUniqueID = createUniqueIDFactory('RadioButton');
 const radioButton = ({
   label,
   labelHidden,
+  labelAction,
   helpText,
   checked,
+  errors,
   disabled,
+  required,
   onChange,
   onFocus,
   onBlur,
@@ -43,9 +50,9 @@ const radioButton = ({
     onChange(currentTarget.checked);
   }
 
-  const describedBy = helpText
-    ? helpTextIDChoice(id)
-    : null;
+  const describedBy : string[] = [];
+  if (helpText) { describedBy.push(helpTextIDChoice(id)); }
+  if (errors) { describedBy.push(errorID(id)); }
 
   const input = describedBy === null ?
     (
@@ -73,11 +80,20 @@ const radioButton = ({
         onChange={handleChange}
         onFocus={onFocus}
         onBlur={onBlur}
-        aria-describedby={describedBy}
+        aria-describedby={describedBy.length ? describedBy.join(' ') : undefined}
       />
     );
 
   return (
+    <Labelled
+      id={id}
+      label={''}
+      errors={errors}
+      action={labelAction}
+      labelHidden={labelHidden}
+      helpText={helpText}
+      required={required}
+    >
     <Choice label={label} labelHidden={labelHidden} id={id} helpText={helpText}>
       <div className={theme.radioButton}>
         {input}
@@ -85,6 +101,7 @@ const radioButton = ({
         <div className={theme.icon} />
       </div>
     </Choice>
+    </Labelled>
   );
 };
 

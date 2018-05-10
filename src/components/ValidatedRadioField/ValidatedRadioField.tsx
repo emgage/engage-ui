@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from 'react-css-themr';
-import Checkbox, { Props as CheckboxProps } from '../Checkbox';
+import RadioButton, { Props as RadioButtonProps } from '../RadioButton';
 import { ValidationRule } from '../../types';
 
-import { CHECKBOX } from '../ThemeIdentifiers';
-import * as baseTheme from '../Checkbox/Checkbox.scss';
+import { RADIO_BUTTON } from '../ThemeIdentifiers';
+import * as baseTheme from '../RadioButton/RadioButton.scss';
 
-export interface Props extends CheckboxProps {
+export interface Props extends RadioButtonProps {
   id: string;
   name: string;
   form?: any;
@@ -15,7 +15,7 @@ export interface Props extends CheckboxProps {
   validator?(rule: object, value: any, callback: (error?: Error) => void): void;
 }
 
-class ValidatedCheckboxFieldComponent extends React.PureComponent<Props, {}> {
+class ValidatedRadioFieldComponent extends React.PureComponent<Props, {}> {
 
   constructor(props: Props) {
     super(props);
@@ -23,7 +23,7 @@ class ValidatedCheckboxFieldComponent extends React.PureComponent<Props, {}> {
 
   render() {
     if (!this.props.name) {
-      throw new Error('Name property is required on ValidatedCheckboxFieldComponent.');
+      throw new Error('Name property is required on ValidatedRadioFieldComponent.');
     }
 
     const {
@@ -45,7 +45,7 @@ class ValidatedCheckboxFieldComponent extends React.PureComponent<Props, {}> {
     });
 
     return (
-        <Checkbox
+        <RadioButton
             {...otherProps}
             {...otherFieldProps}
             value={initialValue}
@@ -55,4 +55,4 @@ class ValidatedCheckboxFieldComponent extends React.PureComponent<Props, {}> {
   }
 }
 
-export default themr(CHECKBOX, baseTheme)(ValidatedCheckboxFieldComponent) as ThemedComponentClass<Props, {}>;
+export default themr(RADIO_BUTTON, baseTheme)(ValidatedRadioFieldComponent) as ThemedComponentClass<Props, {}>;

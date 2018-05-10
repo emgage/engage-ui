@@ -240,6 +240,11 @@ export {
 } from './ValidatedCheckboxField';
 
 export {
+  default as ValidatedRadioField,
+  Props as ValidatedRadioFieldProps,
+} from './ValidatedRadioField';
+
+export {
   default as ValidatedTextField,
   Props as ValidatedTextFieldProps,
 } from './ValidatedTextField';

@@ -3,7 +3,7 @@ import { themr, ThemedComponentClass } from 'react-css-themr';
 import { classNames } from '@shopify/react-utilities/styles';
 import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
 
-import Labelled, { Action, Error } from '../Labelled';
+import Labelled, { Action, Error, errorID } from '../Labelled';
 import Choice, { ErrorChoice, errorIDChoice, helpTextIDChoice } from '../Choice';
 import Icon from '../Icon';
 import { CHECKBOX } from '../ThemeIdentifiers';
@@ -50,15 +50,15 @@ const checkbox = ({
   value,
   theme,
 }: Props) => {
-  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+  function handleChange({ currentTarget }: React.ChangeEvent<HTMLInputElement>) {
     if (onChange == null) { return; }
-    const { currentTarget } = event;
     onChange(currentTarget.checked);
   }
 
   const describedBy: string[] = [];
   if (typeof error === 'string') { describedBy.push(errorIDChoice(id)); }
   if (helpText) { describedBy.push(helpTextIDChoice(id)); }
+  if (errors) { describedBy.push(errorID(id)); }
 
   const className = classNames(
     theme.checkbox,
