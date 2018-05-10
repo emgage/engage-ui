@@ -4,8 +4,12 @@
 
 ### Installation:
 *Note: Yarn is not supported to @types/react conflicts among packages*
-1. `npm install typescript tslint -g`
-2. `npm i`
+1. Install latest version of node & npm: https://nodejs.org/en/download/
+2. `npm install typescript tslint -g`
+3. If there is previously installed packages follow below procedures else jump on 5th point:
+    a. `rd /s /q node_modules`
+    b. `npm cache clear --force`
+4. `npm i`
 
 ## Building and Running
 `npm run build-dev`: This will build the source code in development mode.

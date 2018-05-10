@@ -71,6 +71,7 @@ export interface State {
 export interface Props {
   selectedResultsBehavior?: Type;
   filterPlaceHolder?: string;
+  filterLabel?: string;
   maxSelectedItems?: number;
   minSelectedItems?: number;
   chipComponent?: React.ReactNode;
@@ -82,8 +83,8 @@ export interface Props {
   style?: React.CSSProperties;
   theme?: any;
   searchBehavior?(): void;
-  onSelect?(item: React.FormEvent<HTMLElement>): void;
-  onRemove?(item: React.FormEvent<HTMLElement>): void;
+  onSelect?(item: any): void;
+  onRemove?(item: any): void;
   onMoreInfo?(): void;
 }
 
@@ -104,6 +105,12 @@ class Picker extends React.Component<Props, State> {
       focused: 0,
       number: 0,
     };
+  }
+
+  componentWillReceiveProps(newProps: Props) {
+    if (newProps.source.length !== this.props.source.length) {
+      this.setState({ itemsList: newProps.source });
+    }
   }
   render() {
 
@@ -172,6 +179,10 @@ class Picker extends React.Component<Props, State> {
           chipListState,
           value: '',
         });
+
+        if (this.props.onSelect) {
+          this.props.onSelect(suggestion);
+        }
       },
 
       chipRemove: (item: any) => {
@@ -194,6 +205,10 @@ class Picker extends React.Component<Props, State> {
           number,
           focused,
         });
+
+        if (this.props.onRemove) {
+          this.props.onRemove(item);
+        }
       },
 
       storeInputReference: (autosuggest: Autosuggest) => {
@@ -238,6 +253,7 @@ class Picker extends React.Component<Props, State> {
     const {
       autoSuggest,
       filterPlaceHolder,
+      filterLabel,
       selectedResultsBehavior,
       moreInfoComponent,
       chipComponent,
@@ -268,7 +284,7 @@ class Picker extends React.Component<Props, State> {
           <TextField
             autoSuggest={autoSuggest}
             autoSuggestMethods={autoSuggestMethods}
-            label="People"
+            label={filterLabel ? filterLabel : ''}
             value={this.state.people}
             placeholder={filterPlaceHolder}
             onChange={searchBehavior}
