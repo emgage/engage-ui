@@ -13,6 +13,7 @@ export interface Props {
   // This stores the key of specific json value, which needs to be rendered for this td
   dataKey?: string;
   rowSpan?: number;
+  dataLabel?: string;
 }
 
 class TableData extends React.Component<Props, never> {
@@ -21,10 +22,9 @@ class TableData extends React.Component<Props, never> {
   }
 
   render () {
-    const { accessibilityHeaders, children, colSpan, dataKey, rowSpan } = this.props;
-
+    const { accessibilityHeaders, children, colSpan, dataKey, rowSpan, dataLabel } = this.props;
     return (
-      <td
+      <td data-label={dataLabel}
         headers={accessibilityHeaders}
         colSpan={colSpan}
         rowSpan={rowSpan}>
