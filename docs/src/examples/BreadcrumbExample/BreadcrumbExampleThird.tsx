@@ -7,28 +7,28 @@ const breadcrumbData: ISourceData[] = [
   {
     name: 'Home',
     type: 'default',
+    onBreadcrumbClick: () => { console.log('Home is clicked');}
   }, {
     name: 'Home1',
-    type: 'active'
+    type: 'active',
+    onBreadcrumbClick: () => { console.log('Home1 is clicked');}
   }, {
     name: 'Home2',
-    type: 'active'
+    type: 'active',
+    onBreadcrumbClick: () => { console.log('Home2 is clicked');}
   }, {
     name: 'Home3',
-    type: 'active'
+    type: 'active',
+    onBreadcrumbClick: () => { console.log('Home3 is clicked');}
   },
 ];
 
 class BreadcrumbExample extends React.Component {
 
-  BreadcrumbClick = () => {
-    console.log('Breadcrumb clicked...');
-  }
-
   render() {
     return (
         <div className={styles.example}>
-          <Breadcrumb onBreadcrumbClick={this.BreadcrumbClick} direction={'right'} source={breadcrumbData} displayStyle={'green'} />
+          <Breadcrumb direction="right" source={breadcrumbData} displayStyle="green" />
         </div>
     );
   }

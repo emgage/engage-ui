@@ -9,6 +9,7 @@ export interface ISourceData {
   name: React.ReactNode;
   style?: React.CSSProperties;
   type: Type;
+  onBreadcrumbClick?(): void;
 }
 
 const theme = {
@@ -25,15 +26,18 @@ const breadcrumbData: ISourceData[] = [
   {
     name: 'Home',
     type: 'default',
+    onBreadcrumbClick: () => { console.log('Home is clicked');}
   }, {
     name: <Badge children={'Home1'} status={'success'} />,
-    type: 'active'
+    type: 'active',
+    onBreadcrumbClick: () => { console.log('Badge is clicked');}
   }, {
     name: 'Home2',
     type: 'disabled'
   }, {
     name: 'Home3',
-    type: 'active'
+    type: 'active',
+    onBreadcrumbClick: () => { console.log('Home3 is clicked');}
   },
 ];
 describe('<Breadcrumb />', () => {
@@ -103,39 +107,6 @@ describe('<Breadcrumb />', () => {
       expect(subject.find('li').length).toBe(4);
       expect(subject.find('ul').hasClass('breadcrumbPrimary')).toBe(true);
       expect(subject.find('badge').length).toBe(1);
-    });
-  });
-
-  describe('onClick()', () => {
-    it('is called when the active breadcrumb is clicked', () => {
-      const spy = jest.fn();
-      const subject = mount(
-        <Breadcrumb
-          theme={theme}
-          onBreadcrumbClick={spy}
-          direction={'left'}
-          source={breadcrumbData}
-          displayStyle={'blue'}
-        />);
-      expect(subject.find('li').length).toBe(4);
-      subject.find('li').at(1).simulate('click');
-      expect(spy).toHaveBeenCalled();
-    });
-  });
-
-  describe('onClick()', () => {
-    it('is called when the disabled breadcrumb is clicked', () => {
-      const spy = jest.fn();
-      const subject = mount(
-        <Breadcrumb
-          theme={theme}
-          onBreadcrumbClick={spy}
-          direction={'left'}
-          source={breadcrumbData}
-          displayStyle={'blue'}
-        />);
-      subject.find('li').at(2).simulate('click');
-      expect(spy).not.toHaveBeenCalled();
     });
   });
 });

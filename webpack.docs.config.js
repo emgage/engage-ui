@@ -6,7 +6,7 @@ BaseDevConfig.entry = [
 ];
 
 BaseDevConfig.devServer = {
-  port: 8084
+  port: 8081
 };
 
 BaseDevConfig.plugins.push(new HtmlWebpackPlugin({

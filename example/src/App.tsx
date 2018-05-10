@@ -215,15 +215,18 @@ class App extends React.Component<{}, State> {
       {
         name: 'Home',
         type: 'default',
+        onBreadcrumbClick: () => { console.log('Home is clicked');}
       }, {
         name: <Badge children={'Home1'} status={'success'} />,
-        type: 'active'
+        type: 'active',
+        onBreadcrumbClick: () => { console.log('Badge is clicked');}
       }, {
         name: 'Home2',
         type: 'disabled'
       }, {
         name: 'Home3',
-        type: 'active'
+        type: 'active',
+        onBreadcrumbClick: () => { console.log('Home3 is clicked');}
       },
     ];
 
@@ -346,7 +349,7 @@ class App extends React.Component<{}, State> {
         <br />
         <div>
           <p>This is my Breadcrumbs!!</p>
-          <Breadcrumb onBreadcrumbClick={this.BreadcrumbClick} direction={'left'} source={breadcrumbData} displayStyle={'yellow'} />
+          <Breadcrumb direction={'left'} source={breadcrumbData} displayStyle={'yellow'} />
         </div>
         {/* <div>
           <h1>This is my Modal Component!!</h1>

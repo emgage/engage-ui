@@ -12,6 +12,7 @@ export interface ISourceData {
   name: React.ReactNode;
   style?: React.CSSProperties;
   type: Type;
+  onBreadcrumbClick?(): void;
 }
 
 // All prototypes type
@@ -21,8 +22,6 @@ export interface Props {
   direction?: Direction;
   // Array of items render in breadcrumb
   source: ISourceData[];
-  // Callback function whenever user click on breadcrumb
-  onBreadcrumbClick?(): void;
   // User can choose display color theme for Breadcrumb component
   displayStyle?: DisplayStyle;
   // Set theme for breadcrumb
@@ -33,26 +32,25 @@ export interface Props {
 class Breadcrumb extends React.Component<Props, {}> {
 
   renderBreadcrumbItems() {
-    const { direction, theme } = this.props;
+    const { direction = 'left', theme, source } = this.props;
 
-    return this.props.source.map((child, index) => {
-      debugger;
+    return source.map((child, index) => {
       const classnames = classNames(
-        theme[direction ? direction : 'left'],
+        theme[direction],
         theme[child.type]
       );
-      return <li key={index} className={classnames} onClick={child.type === 'disabled' ? undefined : this.props.onBreadcrumbClick} style={child.style}>{child.name}</li>;
+      return <li key={index} className={classnames} onClick={child.type === 'disabled' ? undefined : child.onBreadcrumbClick} style={child.style}>{child.name}</li>;
     });
   }
   // Render Breadcrumb and it's items
   render() {
-    const { theme, direction, style, displayStyle } = this.props;
+    const { theme, style, direction = 'left', displayStyle = '' } = this.props;
 
     // Combination of classes required for breadcrumb component
     const classes = classNames(
       displayStyle === 'primary' ? theme.breadcrumbPrimary : theme.breadcrumb,
-      theme[displayStyle ? displayStyle : ''],
-      theme[direction ? direction : 'left']
+      theme[displayStyle],
+      theme[direction]
     );
 
     return (
