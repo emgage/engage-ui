@@ -22,6 +22,7 @@ export interface Props {
   activatorWrapper?: string;
   dropdownItems: DropdownItemProps[];
   closeOnClickOutside?: boolean;
+  anchorEl?: HTMLElement | null;
   onClose?(): void;
   toggle?() : void;
 }
@@ -81,11 +82,10 @@ export class Dropdown extends React.PureComponent<Props, State> {
     const {
       activatorWrapper: WRAPPERCOMPONENT = 'div',
       active,
-      trigger,
       dropdownItems,
-      toggle,
       direction = 'down',
-      disabled
+      disabled,
+      anchorEl
     } = this.props;
 
     const {
@@ -105,12 +105,11 @@ export class Dropdown extends React.PureComponent<Props, State> {
       !disabled && active && baseTheme.active
     );
 
-    const activatorComp = document.getElementById(`${this.id}Header`);
+    const activatorComp = anchorEl;
     let activatorRect: ClientRect | DOMRect;
     let leftCord : number = 0;
-    if (activatorComp != null && activatorComp.childNodes.item(0) != null) {
-      const comp: HTMLElement = activatorComp.childNodes.item(0) as HTMLElement;
-      activatorRect = comp.getBoundingClientRect();
+    if (activatorComp != null) {
+      activatorRect = activatorComp.getBoundingClientRect();
       if (direction === 'up' || direction === 'down') {
         leftCord = activatorRect.left + (activatorRect.width / 2) - 50 /* Menu Width / 2 */;
       } else if (direction === 'left') {
@@ -135,9 +134,6 @@ export class Dropdown extends React.PureComponent<Props, State> {
     return (
       <WRAPPERCOMPONENT ref={this.setActivator}>
         <div className={dropdownClassName} key={this.id}>
-          <div onClick={toggle} id={`${this.id}Header`} >
-            {trigger}
-          </div>
           <div className={dropdownMenuClassName} style= {{ left: leftCord }}>
             <div className={baseTheme.box} />
             {DropdownItemComponents}

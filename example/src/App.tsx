@@ -530,13 +530,14 @@ class App extends React.Component<{}, State> {
         <div>
 
           <Heading>Popover</Heading>
-
+          <button style={{ left: 150 }} id="dropdownactivator1" > SK New1 </button>
           <Button onClick={this.popoverUpdate} >Click to active and deactive dropdown</Button>
           <Dropdown
             active={this.state.popoverActive}
             dropdownItems={items}
             toggle={this.popoverUpdate}
-            direction="right"
+            direction="down"
+            anchorEl = {document.getElementById('dropdownactivator1')}
             trigger={<Button style={{ left: 150 }} >SK</Button>}
           />
 
@@ -984,11 +985,11 @@ class App extends React.Component<{}, State> {
   }
 
   valueUpdater(field: any) {
-    return (value: any) => this.setState({ [field]: value });
+    return (value: any) => 'this.setState({ [field]: value })';
   }
 
   handleChange(value: string) {
-    return (value: any) => this.setState({ [value]: value });
+    return (value: any) => 'this.setState({ [value]: value })';
   }
 
   popoverUpdate() {
