@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Accordion, AccordionItemProps, DisplayText, Label } from '../../../../src/components/';
 import * as styles from '../../styles/components-page.scss';
 
-class AccordionExampleFirst extends React.Component<never, never> {
+class AccordionExampleSecond extends React.Component<never, never> {
   render() {
     const items : AccordionItemProps[] = [{
         children: <DisplayText children='This is item 1'/>,
@@ -19,11 +19,12 @@ class AccordionExampleFirst extends React.Component<never, never> {
     return (
       <div className={styles.example}>
         <Accordion
-          items = {items} 
+          items = {items}
+          mode="collapsible"
         />
       </div>
     );
   }
 };
 
-export default AccordionExampleFirst;
+export default AccordionExampleSecond;
