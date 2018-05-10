@@ -45,8 +45,9 @@ import {
   Spinner,
   Table,
   TableColumnConfig,
+  TabPanel,
+  Tab,
   Breadcrumb,
-  // BreadcrumbItem
 } from '../../src/components';
 
 interface State {
@@ -64,6 +65,7 @@ interface State {
   drawer: boolean;
   drawerContent: any;
   activeDrawerId: string;
+  activeTabId: string;
 }
 
 class App extends React.Component<{}, State> {
@@ -102,6 +104,7 @@ class App extends React.Component<{}, State> {
         content2: true,
       },
       activeDrawerId: 'content1',
+      activeTabId: 'tab3'
     };
   }
 
@@ -208,6 +211,22 @@ class App extends React.Component<{}, State> {
       },
     ];
 
+    const breadcrumbData: ISourceData[] = [
+      {
+        name: 'Home',
+        type: 'default',
+      }, {
+        name: <Badge children={'Home1'} status={'success'} />,
+        type: 'active'
+      }, {
+        name: 'Home2',
+        type: 'disabled'
+      }, {
+        name: 'Home3',
+        type: 'active'
+      },
+    ];
+
     /*
       label: Table header lable which will be visible
       key: Match it with json data, this will help to get specific value from the data
@@ -269,22 +288,6 @@ class App extends React.Component<{}, State> {
       },
     ];
 
-    const breadcrumbData: ISourceData[] = [
-      {
-        name: 'Home',
-        type: 'default',
-      }, {
-        name: <Badge children={'Home1'} status={'success'} />,
-        type: 'active'
-      }, {
-        name: 'Home2',
-        type: 'disabled'
-      }, {
-        name: 'Home3',
-        type: 'active'
-      },
-    ];
-
     return (
       <div>
         <Badge children={'Badge'} />
@@ -295,7 +298,28 @@ class App extends React.Component<{}, State> {
         <Badge children={'Badge'} progress={'incomplete'} />
         <Badge children={'Badge'} progress={'partiallyComplete'} />
         <Badge children={'Badge'} progress={'complete'} />
-
+        <div>
+          <TabPanel position={'top'} alignment={'center'}>
+            <Tab tabDescription={<Badge children={'Home'} status={'success'} />} tabId={'tab1'}>
+              <p>content 0</p>
+            </Tab>
+            <Tab tabDescription="User" tabId={'tab2'}>
+              <div>
+                <Button onClick={this.toggleModal}>Medium buttonas</Button>
+              </div>
+            </Tab>
+            <Tab tabDescription="User1" tabId={'tab3'}>
+              <p>content user1</p>
+            </Tab>
+            <Tab tabDescription="User2" tabId={'tab4'}>
+              <p>content user2</p>
+            </Tab>
+            <Tab tabDescription="User3" tabId={'tab5'}>
+              <p>content user3</p>
+            </Tab>
+          </TabPanel>
+          <Button onClick={() => this.setState({ activeTabId: 'tab2' })}>Trigger User from here</Button>
+        </div>
         <div>
           <Caption style={{ color: 'red' }}>This is modal</Caption>
           <Button onClick={this.toggleModal}>Medium button</Button>
@@ -319,10 +343,142 @@ class App extends React.Component<{}, State> {
             </ModalFooter>
           </Modal>
         </div>
+        <br />
         <div>
           <p>This is my Breadcrumbs!!</p>
-          <Breadcrumb onBreadcrumbClick={this.BreadcrumbClick} direction={'left'} source={breadcrumbData} displayStyle={'blue'} />
+          <Breadcrumb onBreadcrumbClick={this.BreadcrumbClick} direction={'left'} source={breadcrumbData} displayStyle={'yellow'} />
         </div>
+        {/* <div>
+          <h1>This is my Modal Component!!</h1>
+          <Modal
+            id="test1"
+            // close
+            closeOnBackgroud={true}
+            closeOnEsc
+            modalOverflow
+            overlay
+            header="This is my modal header"
+            footer={<Button>OK</Button>}
+            activator={<Button>Modal</Button>}
+            width="medium"
+          >
+            <Heading>Heading test</Heading>
+            <p>
+            Modal test Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in
+
+
+            test Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in
+
+            test Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in
+            test Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in
+            test Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in
+
+            test Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in
+
+            test Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in
+
+            test Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in
+
+            test Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in
+
+            test Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in
+            </p>
+          </Modal>
+        </div>
+        <div>
+          <h1>This is my Modal Component!!</h1>
+          <Modal
+            id="test2"
+            close
+            // modalOverflow
+            // header="This is my modal header"
+            // footer={<Button>OK</Button>}
+            activator={<Button>Modal</Button>}
+            width="400px"
+          >
+            <Heading>Heading test</Heading>
+            <p>
+              test Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in
+
+
+            test Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in
+
+            test Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in
+            test Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in
+            test Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in
+
+            test Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in
+
+            test Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in
+
+            test Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in
+
+            test Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in
+
+            test Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in
+              </p>
+          </Modal>
+        </div> */}
         <br />
         <Caption style={{ color: 'red' }}>This is Caption</Caption>
         <br />

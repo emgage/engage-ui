@@ -279,6 +279,12 @@ export {
 } from './Spinner';
 
 export {
+  Tab,
+  TabPanel,
+  Props as TabProps,
+} from './Tab';
+
+export {
   Breadcrumb,
   Props as BreadcrumbProps,
 } from './Breadcrumb';
