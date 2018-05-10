@@ -46,3 +46,4 @@ export const TABLE = 'PTable';
 export const DRAWER = 'PDrawer';
 export const DRAWERCONTENT = 'PDrawerContent';
 export const BREADCRUMB = 'PBreadcrumb';
+export const TAB = 'PTab';

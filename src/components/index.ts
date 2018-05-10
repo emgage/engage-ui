@@ -282,3 +282,9 @@ export {
   Breadcrumb,
   Props as BreadcrumbProps,
 } from './Breadcrumb';
+
+export {
+  Tab,
+  TabPanel,
+  Props as TabProps,
+} from './Tab';

@@ -1,0 +1,108 @@
+@import 'foundation/colors';
+@import 'foundation/duration';
+@import 'foundation/easing';
+@import 'foundation/spacing';
+@import 'foundation/border-radius';
+@import 'shared/buttons';
+@import 'shared/icons';
+
+.tab {
+  text-align: center;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+.tab:hover {
+  background-color: #d8d8d8;
+}
+.tab.active:hover {
+  background-color: transparent;
+}
+.tab.svg-inline--fa {
+  margin-right: 8px;
+}
+
+.tabpanel {
+  display: flex;
+}
+
+.tabpanel{
+  &.top {
+  flex-direction: column;
+  }
+}
+
+.tabpanel {
+  &.top {
+  flex-direction: column;
+  }
+}
+.tabpanel.bottom {
+  flex-direction: column-reverse;
+}
+.tabpanel.left {
+  flex-direction: row;
+}
+.tabpanel.right {
+  flex-direction: row-reverse;
+}
+ 
+.tabstrip {
+  background-color: #e8e8e8;
+  display: flex;
+}
+
+.tabstrip.start {
+  justify-content: flex-start;
+}
+.tabstrip.center {
+  justify-content: center;
+}
+.tabstrip.end {
+  justify-content: flex-end;
+}
+.tabstrip.indicator {
+  justify-content: center;
+}
+.tabpanel.top .tabstrip,
+.tabpanel.bottom .tabstrip {
+  flex-direction: row;
+}
+.tabpanel.left .tabstrip,
+.tabpanel.right .tabstrip {
+  flex-direction: column;
+}
+
+.tabpanel.top .tab,
+.tabpanel.bottom .tab {
+  padding: 12px 6px;
+}
+.tabpanel.left .tab,
+.tabpanel.right .tab {
+  padding: 6px 12px;
+}
+.tabpanel.top .tab.active {
+  border-bottom-color: #1e8bfb;
+}
+.tabpanel.left .tab.active {
+  border-right-color: #1e8bfb;
+}
+.tabpanel.bottom .tab.active {
+  border-top-color: #1e8bfb;
+}
+.tabpanel.right .tab.active {
+  border-left-color: #1e8bfb;
+}
+ 
+.cardct {
+  flex: 1;
+  display: flex;
+} 
+.card {
+  padding: 12px;
+  flex: 1 0 auto;
+  display: none;
+}
+.card.active {
+  display: block !important;
+}
+

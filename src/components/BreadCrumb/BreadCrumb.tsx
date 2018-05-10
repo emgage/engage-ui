@@ -36,7 +36,6 @@ class Breadcrumb extends React.Component<Props, {}> {
     const { direction, theme } = this.props;
 
     return this.props.source.map((child, index) => {
-      debugger;
       const classnames = classNames(
         theme[direction ? direction : 'left'],
         theme[child.type]
