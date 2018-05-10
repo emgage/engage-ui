@@ -27,6 +27,11 @@ const IconClose = (props:any) => {
         isActive:true,
       };
     }
+    closeAlert = () => {
+      this.setState({
+        isActive: false,
+      });
+    }
     render() {
       const { children, type, theme } = this.props;
       let classes : string, style : string, color : string;
@@ -59,11 +64,6 @@ const IconClose = (props:any) => {
         </div>}
         </React.Fragment>
       );
-    }
-    closeAlert = () => {
-      this.setState({
-        isActive: false,
-      });
     }
   }
 export default themr(ALERT, baseTheme)(Alert) as ThemedComponentClass<Props, {}>;
