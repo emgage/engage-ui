@@ -43,7 +43,7 @@ class Chip extends React.PureComponent<Props, any> {
       transparent && theme.transparent);
 
     const chipContents = [(
-      image
+      image && image.url
         ?
         <img className={theme.Image} src={image.url} alt={image.alt} key="1" aria-hidden />
         : ''

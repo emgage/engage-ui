@@ -20,7 +20,11 @@ class Card extends React.Component<Props, {}> {
     return (
       <div>
         <div className={cardBackground}>
-          <span><img className={style.avatarImage + ' ' + style.cardElem} src={this.props.image} alt={this.props.alt} aria-hidden={!this.props.nameAfter || !this.props.nameBefore} /></span>
+          {
+            this.props.image ?
+              <span><img className={style.avatarImage + ' ' + style.cardElem} src={this.props.image} alt={this.props.alt} aria-hidden={!this.props.nameAfter || !this.props.nameBefore} /></span>
+              : null
+          }
           <span className={style.cardElem + ' ' + style.nameStyle}>
             <span>{this.props.nameBefore}</span>
             <span className={style.bold}>{this.props.bold}</span>

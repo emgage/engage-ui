@@ -34,6 +34,10 @@ class RowAction extends React.Component<Props, State> {
     };
   }
 
+  triggerAction = (item: any) => {
+    return () =>  item.action(this.props.dataId);
+  }
+
   render () {
     // const { actionConfig } = this.props;
 
@@ -45,9 +49,9 @@ class RowAction extends React.Component<Props, State> {
           <Pane>
             <List type="striped">
               {
-                actionConfig.map((action: any, index: number) => {
+                actionConfig.map((item: any, index: number) => {
                   return (
-                    <Item key={index}>{ action.label }</Item>
+                    <Item key={index} onClick={this.triggerAction(item)}>{ item.label }</Item>
                   );
                 })
               }

@@ -32,6 +32,7 @@ import {
   TextField,
   Tooltip,
   ValidatedTextField,
+  ValidatedSelectField,
   ValidatedForm,
   Video,
   VideoType,
@@ -44,11 +45,14 @@ import {
   Table,
   TableColumnConfig,
   DropdownItemProps
+  TabPanel,
+  Tab,
 } from '../../src/components';
 
 interface State {
   appName?: string;
   appDescription: string;
+  appCity: string;
   appTextCounter: string;
   columns: object[];
   rows: object[];
@@ -61,6 +65,7 @@ interface State {
   drawerContent: any;
   activeDrawerId: string;
   anchorEl?: HTMLElement;
+  activeTabId: string;
 }
 
 class App extends React.Component<{}, State> {
@@ -71,6 +76,7 @@ class App extends React.Component<{}, State> {
       modalOpen: false,
       appName: '',
       appDescription: '',
+      appCity: '',
       appTextCounter: '',
       columns: [
         { key: 'id', name: 'ID' },
@@ -98,6 +104,7 @@ class App extends React.Component<{}, State> {
         content2: true,
       },
       activeDrawerId: 'content1',
+      activeTabId: 'tab3'
     };
     this.popoverUpdate = this.popoverUpdate.bind(this);
     this.closed1 = this.closed1.bind(this);
@@ -292,7 +299,28 @@ class App extends React.Component<{}, State> {
         <Badge children={'Badge'} progress={'incomplete'} />
         <Badge children={'Badge'} progress={'partiallyComplete'} />
         <Badge children={'Badge'} progress={'complete'} />
-
+        <div>
+          <TabPanel position={'top'} alignment={'center'}>
+            <Tab tabDescription={<Badge children={'Home'} status={'success'} />} tabId={'tab1'}>
+              <p>content 0</p>
+            </Tab>
+            <Tab tabDescription="User" tabId={'tab2'}>
+              <div>
+                <Button onClick={this.toggleModal}>Medium buttonas</Button>
+              </div>
+            </Tab>
+            <Tab tabDescription="User1" tabId={'tab3'}>
+              <p>content user1</p>
+            </Tab>
+            <Tab tabDescription="User2" tabId={'tab4'}>
+              <p>content user2</p>
+            </Tab>
+            <Tab tabDescription="User3" tabId={'tab5'}>
+              <p>content user3</p>
+            </Tab>
+          </TabPanel>
+          <Button onClick={() => this.setState({ activeTabId: 'tab2' })}>Trigger User from here</Button>
+        </div>
         <div>
           <Caption style={{ color: 'red' }}>This is modal</Caption>
           <Button onClick={this.toggleModal}>Medium button</Button>
@@ -462,32 +490,35 @@ class App extends React.Component<{}, State> {
 
         <div style={{ marginTop: '20px', marginBottom: '20px' }}>
           <Caption style={{ color: 'red' }}>This is Table field</Caption>
-            <Button>
-              { `Delete ${this.state.bulkAction.selectedRow.length ? `(${this.state.bulkAction.selectedRow.length})` : ''}` }
-            </Button>
+          <Button>
+            {`Delete ${this.state.bulkAction.selectedRow.length ? `(${this.state.bulkAction.selectedRow.length})` : ''}`}
+          </Button>
 
-            <div className="fieldGroup">
-              <input type="text" value={this.state.filterConfig.searchKey} onChange={(event: any) => this.setState({ filterConfig: { ...this.state.filterConfig, searchKey: event.target.value, search: false } })} />
-              <div className="fieldGroupAddon">
-                  <Button onClick={(val: any) => this.setState({ filterConfig: { ...this.state.filterConfig, search: true } })}>Search</Button>
-              </div>
+          <div className="fieldGroup">
+            <input type="text" value={this.state.filterConfig.searchKey} onChange={(event: any) => this.setState({ filterConfig: { ...this.state.filterConfig, searchKey: event.target.value, search: false } })} />
+            <div className="fieldGroupAddon">
+              <Button onClick={(val: any) => this.setState({ filterConfig: { ...this.state.filterConfig, search: true } })}>Search</Button>
             </div>
+          </div>
           <Table
             data={tableData}
             column={columnConfig}
+            hideRow={{ status: 'Deleted' }}
             filterData={this.state.filterConfig}
             defaultSortField="name"
             defaultSortOrder="asc"
             selectRow="checkbox"
             rowAction={rowActionConfig}
+            selectCallbackValue="id"
             selectRowCallback={(val: any) => this.setState({ bulkAction: { selectedRow: val } })}
             bordered highlight sorting />
         </div>
+
         <div>
           <Button onClick={this.toggleDrawer}>Drawer open</Button>
           <Drawer
             toggleDrawer={this.toggleDrawer}
-            active={ this.state.drawer }
+            active={this.state.drawer}
             activeContentId={this.state.activeDrawerId}
             onOpen={this.onDrawerOpen}
             onClose={this.onDrawerClose}
@@ -505,14 +536,14 @@ class App extends React.Component<{}, State> {
                 <li>Link 5</li>
               </ul>
 
-              <Button onClick={ () => this.setState({ activeDrawerId: 'content2' }) }>Content2 open</Button>
+              <Button onClick={() => this.setState({ activeDrawerId: 'content2' })}>Content2 open</Button>
             </DrawerContent>
 
             <DrawerContent id="content2" mode="slide">
               I am inside drawer content 2
 
-              <Button onClick={ () => this.setState({ activeDrawerId: 'content1' }) }>Content1 open</Button>
-              <Button onClick={ () => this.setState({ drawer: false }) }>Close</Button>
+              <Button onClick={() => this.setState({ activeDrawerId: 'content1' })}>Content1 open</Button>
+              <Button onClick={() => this.setState({ drawer: false })}>Close</Button>
             </DrawerContent>
           </Drawer>
 
@@ -529,7 +560,6 @@ class App extends React.Component<{}, State> {
           <Link>Tooltip 2</Link>
         </Tooltip>
         <div>
-
           <Heading>Popover</Heading>
           <Button style={{ left: 200 }}  onClick={(e) => this.popoverUpdate(e)} >Click to active and deactive dropdown</Button>
           <Dropdown
@@ -661,7 +691,10 @@ class App extends React.Component<{}, State> {
             autoSuggest
             moreInfoComponent={<Button children="ranmal" />}
           />
-          <ValidatedForm>
+          <ValidatedForm
+            onSubmitError={(value: [any], error: Error) => console.log('value:', value, 'error:', error)}
+            onSubmit={(value: [any]) => console.log('Submit Value:', value)}
+          >
 
             <Heading>App Basics</Heading>
 
@@ -671,7 +704,6 @@ class App extends React.Component<{}, State> {
             <FormLayout>
               <ValidatedTextField
                 id="AppName"
-                required={true}
                 label="App Name"
                 placeholder=""
                 helpText="We recommend keeping your app name under 23 characters."
@@ -697,9 +729,23 @@ class App extends React.Component<{}, State> {
                   { required: true, message: 'App Description is required.' },
                 ]}
               />
+
+              <ValidatedSelectField
+                id="appCity"
+                required={true}
+                name="Select city"
+                label="Select city"
+                options={[{ value: 'xyz', label: 'xyz' }, { value: 'abc', label: 'abc' }]}
+                value={this.state.appCity}
+                onChange={this.valueUpdater('appCity')}
+                validateTrigger={['onBlur']}
+                validateRules={[
+                  { required: true, message: 'City is required.' },
+                ]}
+              />
               <ButtonGroup>
                 <Button>Cancel</Button>
-                <Button primary>Next</Button>
+                <Button primary submit>Next</Button>
               </ButtonGroup>
             </FormLayout>
           </ValidatedForm>
