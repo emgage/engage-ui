@@ -47,6 +47,7 @@ const Nav = () => {
         <li><Link to="/component/stack" activeClassName={styles.active}>Stack</Link></li>
         <li><Link to="/component/subheading" activeClassName={styles.active}>SubHeading</Link></li>
         <li><Link to="/component/Table" activeClassName={styles.active}>Table</Link></li>
+        <li><Link to="/component/Tab" activeClassName={styles.active}>Tab</Link></li>
         <li><Link to="/component/tag" activeClassName={styles.active}>Tag</Link></li>
         <li><Link to="/component/TextField" activeClassName={styles.active}>TextField</Link></li>
         <li><Link to="/component/tooltip" activeClassName={styles.active}>Tooltip</Link></li>
