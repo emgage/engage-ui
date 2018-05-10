@@ -29,8 +29,9 @@ export interface Props {
   helpText?: React.ReactNode;
   id?: string;
   name?: string;
-  error?: Error;
+  errors?: [Error];
   disabled?: boolean;
+  required?: boolean;
   value?: string;
   placeholder?: string;
   theme?: any;
@@ -51,10 +52,11 @@ const select = ({
   labelAction,
   helpText,
   label,
-  error,
+  errors,
   value,
   placeholder,
   disabled,
+  required,
   onChange,
   onFocus,
   onBlur,
@@ -71,7 +73,7 @@ const select = ({
   const isPlaceholder = value == null && placeholder != null;
   const className = classNames(
     theme.select,
-    error && theme.error,
+    errors && theme.error,
     disabled && theme.disabled,
     isPlaceholder && theme.placeholder
   );
@@ -82,7 +84,7 @@ const select = ({
 
   const describedBy: string[] = [];
   if (helpText) { describedBy.push(helpTextID(id)); }
-  if (error && typeof error === 'string') { describedBy.push(errorID(id)); }
+  if (errors) { describedBy.push(errorID(id)); }
 
   const placeholderOption = isPlaceholder
     ? <option label={placeholder} value={PLACEHOLDER_VALUE} disabled hidden />
@@ -92,23 +94,24 @@ const select = ({
     <Labelled
       id={id}
       label={label}
-      errors={error}
+      errors={errors}
       action={labelAction}
       labelHidden={labelHidden}
       helpText={helpText}
+      required={required}
     >
       <div className={className}>
         <select
           id={id}
           name={name ? name : 'select'}
           value={value}
-          defaultValue={PLACEHOLDER_VALUE}
           className={theme.input}
           disabled={disabled}
+          required={required}
           onFocus={onFocus}
           onBlur={onBlur}
           onChange={handleChange}
-          aria-invalid={Boolean(error)}
+          aria-invalid={Boolean(errors)}
           aria-describedby={describedBy.length ? describedBy.join(' ') : undefined}
         >
           {placeholderOption}

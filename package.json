@@ -5,7 +5,7 @@
   "license": "MIT",
   "author": "Emgage <work@emgage.com>",
   "homepage": "https://github.com/emgage/engage-ui#readme",
-  "repository": "https://github.com/emgage/engage-ui",
+  "repository": "https://github.com/emgage/engage-ui#all-merged",
   "bugs": {
     "url": "https://github.com/emgage/engage-ui/issues"
   },
@@ -28,8 +28,8 @@
     "check": "npm-run-all lint build-dev test",
     "build-dev": "node node_modules/webpack/bin/webpack.js",
     "build-release": "node node_modules/webpack/bin/webpack.js -p",
-    "example": "node_modules/webpack/webpack-dev-server --config webpack.example.config",
-    "docs": "node_modules/webpack/webpack-dev-server --config webpack.docs.config",
+    "example": "webpack-dev-server --config webpack.example.config",
+    "docs": "webpack-dev-server --config webpack.docs.config",
     "precommit-msg": "echo 'Running linting and testing checks...' && exit 0"
   },
   "pre-commit": [
@@ -146,7 +146,7 @@
     "react-moment-proptypes": "^1.5.0",
     "react-portal": "^3.1.0",
     "react-redux": "^5.0.7",
-    "react-router": "3.0.0",
+    "react-router": "3.2.0",
     "react-router-redux": "4.0.7",
     "react-syntax-highlighter": "5.6.2",
     "react-table": "^6.7.6",

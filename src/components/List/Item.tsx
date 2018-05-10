@@ -12,9 +12,14 @@ export interface Props {
   name?: string;
   email?: string;
   grey?: boolean;
+  onClick?(val?: any): boolean;
 }
 
-const item = ({ children, theme }: Props) => {
+const item = ({ children, onClick, theme }: Props) => {
+  if (onClick) {
+    return <li className={theme.item} onClick={() => onClick()}>{children}</li>;
+  }
+
   return <li className={theme.item}>{children}</li>;
 };
 
