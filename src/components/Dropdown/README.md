@@ -92,7 +92,7 @@ If the items in a dropdown include a series of navigational links, each item sho
 
 | Properties | Type | Description |
 | ---------- | ---- | ----------- |
-| trigger | React.ReactNode | React component that triggers the dropdown |
+| anchorEl | HtmlElement | This is the DOM element that will be used to set the position of the dropdown |
 | direction | enum['up', 'down', 'left', 'right'] | The preferred direction to open the dropdown |
 | active | boolean | Show or hide the Dropdown |
 | disable | boolean | Disable the dropdown |

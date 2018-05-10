@@ -60,6 +60,7 @@ interface State {
   drawer: boolean;
   drawerContent: any;
   activeDrawerId: string;
+  anchorEl?: HTMLElement;
 }
 
 class App extends React.Component<{}, State> {
@@ -530,15 +531,13 @@ class App extends React.Component<{}, State> {
         <div>
 
           <Heading>Popover</Heading>
-          <button style={{ left: 150 }} id="dropdownactivator1" > SK New1 </button>
-          <Button onClick={this.popoverUpdate} >Click to active and deactive dropdown</Button>
+          <Button style={{ left: 200 }}  onClick={(e) => this.popoverUpdate(e)} >Click to active and deactive dropdown</Button>
           <Dropdown
             active={this.state.popoverActive}
             dropdownItems={items}
-            toggle={this.popoverUpdate}
-            direction="down"
-            anchorEl = {document.getElementById('dropdownactivator1')}
-            trigger={<Button style={{ left: 150 }} >SK</Button>}
+            toggle={() => this.popoverUpdate}
+            direction="right"
+            anchorEl = {this.state.anchorEl}
           />
 
           <TextField
@@ -992,9 +991,10 @@ class App extends React.Component<{}, State> {
     return (value: any) => 'this.setState({ [value]: value })';
   }
 
-  popoverUpdate() {
+  popoverUpdate(e : React.FormEvent<HTMLElement>) {
     this.setState({
-      popoverActive : !this.state.popoverActive
+      popoverActive : !this.state.popoverActive,
+      anchorEl: e.target as HTMLElement
     });
   }
 

@@ -16,7 +16,6 @@ export type Direction = 'up' | 'down' | 'left' | 'right';
 
 export interface Props {
   disabled?: boolean;
-  trigger: React.ReactNode;
   direction?: Direction;
   active: boolean;
   activatorWrapper?: string;

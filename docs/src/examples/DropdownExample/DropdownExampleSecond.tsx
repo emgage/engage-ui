@@ -7,20 +7,22 @@ export interface IProps{
 
 export interface IState {
   active: boolean;
+  anchorEl?: HTMLElement | null;
 }
 
 class DropdownExampleSecond extends React.Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
     this.state = {
-      active: false,
+      active: false
     };
     this.toggle = this.toggle.bind(this);
   }
 
-  private toggle() {
+  private toggle(e : React.FormEvent<HTMLElement>) {
     this.setState({
-      active: !this.state.active
+      active: !this.state.active,
+      anchorEl: e.target as HTMLElement
     });
   }
 
@@ -42,12 +44,12 @@ class DropdownExampleSecond extends React.Component<IProps, IState> {
 
     return (
       <div className={styles.example}>
-         <Dropdown
+        <Button onClick={(e) => this.toggle(e)}>Dropdown2</Button>
+        <Dropdown
           active={this.state.active}
           dropdownItems={items}
-          toggle={this.toggle}
           direction="up"
-          trigger={<Button>Dropdown2</Button>}
+          anchorEl={this.state.anchorEl}
         />
       </div>
     );

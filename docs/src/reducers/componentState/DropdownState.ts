@@ -17,9 +17,9 @@ const DropdownState: IDocument = {
   subheading: `Dropdown are small overlays that open on demand, usually when the merchant clicks a button. They let users access supplementary actions without cluttering the page.`,
   property: [
     {
-      name: 'trigger',
-      type: 'React.ReactNode',
-      desc: 'React component that triggers the dropdown.',
+      name: 'anchorEl',
+      type: 'HtmlElement',
+      desc: 'This is the DOM element that will be used to set the position of the dropdown.',
     }, {
       name: 'direction',
       type: 'enum',
