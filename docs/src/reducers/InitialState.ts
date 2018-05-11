@@ -4,6 +4,8 @@ import ChoiceListState from './componentState/ChoiceListState';
 import PanelState from './componentState/PanelState';
 import ChipState from './componentState/ChipState';
 import ValidatedTextFieldState from './componentState/ValidatedTextFieldState';
+import ValidatedCheckboxFieldState from './componentState/ValidatedCheckboxFieldState';
+import ValidatedRadioFieldState from './componentState/ValidatedRadioFieldState';
 import ValidatedFormState from './componentState/ValidatedFormState';
 import ChoiceState from './componentState/ChoiceState';
 import IconState from './componentState/IconState';
@@ -55,6 +57,8 @@ const intialState: IDocumentAppState = {
     ChipState,
     ValidatedFormState,
     ValidatedTextFieldState,
+    ValidatedCheckboxFieldState,
+    ValidatedRadioFieldState,
     ChoiceState,
     IconState,
     RadioButtonState,

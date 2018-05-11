@@ -50,7 +50,9 @@ const Nav = () => {
         <li><Link to="/component/TextField" activeClassName={styles.active}>TextField</Link></li>
         <li><Link to="/component/tooltip" activeClassName={styles.active}>Tooltip</Link></li>
         <li><Link to="/component/UnstyledLink" activeClassName={styles.active}>UnstyledLink</Link></li>
+        <li><Link to="/component/validatedcheckboxfield" activeClassName={styles.active}>Validated CheckboxField</Link></li>
         <li><Link to="/component/validatedform" activeClassName={styles.active}>ValidatedForm</Link></li>
+        <li><Link to="/component/validatedradiofield" activeClassName={styles.active}>Validated RadioField</Link></li>
         <li><Link to="/component/validatedtextfield" activeClassName={styles.active}>Validated TextField</Link></li>
         <li><Link to="/component/video" activeClassName={styles.active}>Video</Link></li>
         <li><Link to="/component/visuallyhidden" activeClassName={styles.active}>VisuallyHidden</Link></li>

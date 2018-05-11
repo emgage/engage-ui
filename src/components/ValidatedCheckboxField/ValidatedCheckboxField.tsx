@@ -6,6 +6,7 @@ import { ValidationRule } from '../../types';
 import { CHECKBOX } from '../ThemeIdentifiers';
 import * as baseTheme from '../Checkbox/Checkbox.scss';
 
+
 export interface Props extends CheckboxProps {
   id: string;
   name: string;
