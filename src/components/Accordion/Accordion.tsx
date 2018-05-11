@@ -54,7 +54,7 @@ class Accordion extends React.Component<Props, State> {
     }
 
     if (nextProps.openIndex !== undefined && nextProps.closeIndex !== undefined) {
-      if (nextProps.closeIndex < this.state.active.length && nextProps.openIndex < this.state.active.length ||
+      if (nextProps.closeIndex < this.state.active.length && nextProps.openIndex < this.state.active.length &&
           (this.state.active[nextProps.closeIndex] || !this.state.active[nextProps.openIndex])) {
         if (this.props.mode === 'collapsible') {
           this.setState({
