@@ -277,3 +277,9 @@ export {
   default as Spinner,
   Props as SpinnerProps,
 } from './Spinner';
+
+export {
+  Tab,
+  TabPanel,
+  Props as TabProps,
+} from './Tab';
