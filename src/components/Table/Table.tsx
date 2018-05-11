@@ -259,9 +259,13 @@ class Table extends React.Component<Props, State> {
 
   // Function to render nested children for each row, this could be nested table or any other component
   renderNestedChildren = (key: string, id: number) => {
+    const { column, selectRow, rowAction } = this.props;
+
+    const colSpanVal = column.length + (selectRow ? 1 : 0) + (rowAction ? 1 : 0);
+
     return (
       <TableRow key={key}>
-        <TableData colSpan={6}>
+        <TableData colSpan={colSpanVal}>
           {this.props.children}
         </TableData>
       </TableRow>
