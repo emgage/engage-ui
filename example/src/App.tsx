@@ -44,7 +44,7 @@ import {
   Spinner,
   Table,
   TableColumnConfig,
-  DropdownItemProps
+  DropdownItemProps,
   TabPanel,
   Tab,
 } from '../../src/components';
@@ -300,7 +300,7 @@ class App extends React.Component<{}, State> {
         <Badge children={'Badge'} progress={'partiallyComplete'} />
         <Badge children={'Badge'} progress={'complete'} />
         <div>
-          <TabPanel position={'top'} alignment={'center'}>
+          <TabPanel defaultTabId="tab1" position={'top'} alignment={'center'}>
             <Tab tabDescription={<Badge children={'Home'} status={'success'} />} tabId={'tab1'}>
               <p>content 0</p>
             </Tab>

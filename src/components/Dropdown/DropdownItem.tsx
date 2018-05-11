@@ -54,7 +54,6 @@ class DropdownItem extends React.Component<Props, never> {
 
     return (
       <div
-        tabIndex={active ? 0 : -1}
         id={this.id}
         className={className}
         onClick={onClick}
