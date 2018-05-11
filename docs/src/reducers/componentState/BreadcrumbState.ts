@@ -32,10 +32,6 @@ const BreadcrumbState: IDocument = {
       name: 'theme',
       type: 'any',
       desc: 'Theme to be injected via css-themr.',
-    }, {
-      name: 'onBreadcrumbClick',
-      type: 'void',
-      desc: 'Callback when clicked.',
     },
   ],
   exampleCode: BreadcrumbExampleFirstCode,
