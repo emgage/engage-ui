@@ -283,3 +283,9 @@ export {
   TabPanel,
   Props as TabProps,
 } from './Tab';
+
+export {
+  TreeView,
+  Props as TreeProps,
+  SourceData as TreeSource,
+} from './TreeView';
