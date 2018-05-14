@@ -2,6 +2,7 @@ import * as React from 'react';
 import SingleDatePickerWrapper from './SingleDatePickerWrapper';
 import DateRangePickerWrapper from './DateRangePickerWrapper';
 import PickerAutoSuggestExample from './PickerAutoSuggestExample';
+import { ISourceData } from '../../src/components/Breadcrumb/Breadcrumb';
 
 import {
   Banner,
@@ -50,6 +51,7 @@ import {
   TableColumnConfig,
   TabPanel,
   Tab,
+  Breadcrumb,
 } from '../../src/components';
 
 interface State {
@@ -144,6 +146,10 @@ class App extends React.Component<{}, State> {
     this.setState({ drawer: !this.state.drawer });
   }
 
+  BreadcrumbClick = () => {
+    console.log('Breadcrumb clicked...');
+  }
+
   render() {
     const posterUrl = new URL('http://4.bp.blogspot.com/_JSR8IC77Ub4/TKB-XAWXmhI/AAAAAAAABJA/MqOpdFTOaHo/w1200-' +
       'h630-p-k-no-nu/C:%5Cfakepath%5Cbird1.jpg');
@@ -206,6 +212,25 @@ class App extends React.Component<{}, State> {
         description: 'Test description2',
         status: 'Deleted',
         type: 'admin',
+      },
+    ];
+
+    const breadcrumbData: ISourceData[] = [
+      {
+        name: 'Home',
+        type: 'default',
+        onBreadcrumbClick: () => { console.log('Home is clicked');}
+      }, {
+        name: <Badge children={'Home1'} status={'success'} />,
+        type: 'active',
+        onBreadcrumbClick: () => { console.log('Badge is clicked');}
+      }, {
+        name: 'Home2',
+        type: 'disabled'
+      }, {
+        name: 'Home3',
+        type: 'active',
+        onBreadcrumbClick: () => { console.log('Home3 is clicked');}
       },
     ];
 
@@ -325,7 +350,11 @@ class App extends React.Component<{}, State> {
             </ModalFooter>
           </Modal>
         </div>
-
+        <br />
+        <div>
+          <p>This is my Breadcrumbs!!</p>
+          <Breadcrumb direction={'left'} source={breadcrumbData} displayStyle={'yellow'} />
+        </div>
         {/* <div>
           <h1>This is my Modal Component!!</h1>
           <Modal
