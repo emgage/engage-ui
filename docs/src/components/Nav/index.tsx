@@ -12,6 +12,7 @@ const Nav = () => {
         <li><Link to="/component/avatar" activeClassName={styles.active} >Avatar</Link></li>
         <li><Link to="/component/badge" activeClassName={styles.active}>Badge</Link></li>
         <li><Link to="/component/banner" activeClassName={styles.active}>Banner</Link></li>
+        <li><Link to="/component/Breadcrumb" activeClassName={styles.active}>Breadcrumb</Link></li>
         <li><Link to="/component/Button" activeClassName={styles.active}>Button</Link></li>
         <li><Link to="/component/ButtonGroup" activeClassName={styles.active}>ButtonGroup</Link></li>
         <li><Link to="/component/caption" activeClassName={styles.active}>Caption</Link></li>
