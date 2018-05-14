@@ -11,6 +11,7 @@ const Nav = () => {
         <li><Link to="/component/avatar" activeClassName={styles.active} >Avatar</Link></li>
         <li><Link to="/component/badge" activeClassName={styles.active}>Badge</Link></li>
         <li><Link to="/component/banner" activeClassName={styles.active}>Banner</Link></li>
+        <li><Link to="/component/Breadcrumb" activeClassName={styles.active}>Breadcrumb</Link></li>
         <li><Link to="/component/Button" activeClassName={styles.active}>Button</Link></li>
         <li><Link to="/component/ButtonGroup" activeClassName={styles.active}>ButtonGroup</Link></li>
         <li><Link to="/component/caption" activeClassName={styles.active}>Caption</Link></li>
@@ -46,6 +47,7 @@ const Nav = () => {
         <li><Link to="/component/stack" activeClassName={styles.active}>Stack</Link></li>
         <li><Link to="/component/subheading" activeClassName={styles.active}>SubHeading</Link></li>
         <li><Link to="/component/Table" activeClassName={styles.active}>Table</Link></li>
+        <li><Link to="/component/Tab" activeClassName={styles.active}>Tab</Link></li>
         <li><Link to="/component/tag" activeClassName={styles.active}>Tag</Link></li>
         <li><Link to="/component/TextField" activeClassName={styles.active}>TextField</Link></li>
         <li><Link to="/component/tooltip" activeClassName={styles.active}>Tooltip</Link></li>

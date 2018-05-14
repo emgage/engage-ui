@@ -2,6 +2,7 @@ import * as React from 'react';
 import SingleDatePickerWrapper from './SingleDatePickerWrapper';
 import DateRangePickerWrapper from './DateRangePickerWrapper';
 import PickerAutoSuggestExample from './PickerAutoSuggestExample';
+import { ISourceData } from '../../src/components/Breadcrumb/Breadcrumb';
 
 import {
   Banner,
@@ -46,6 +47,9 @@ import {
   Spinner,
   Table,
   TableColumnConfig,
+  TabPanel,
+  Tab,
+  Breadcrumb,
 } from '../../src/components';
 
 interface State {
@@ -65,6 +69,7 @@ interface State {
   drawer: boolean;
   drawerContent: any;
   activeDrawerId: string;
+  activeTabId: string;
 }
 
 class App extends React.Component<{}, State> {
@@ -105,6 +110,7 @@ class App extends React.Component<{}, State> {
         content2: true,
       },
       activeDrawerId: 'content1',
+      activeTabId: 'tab3'
     };
   }
 
@@ -140,6 +146,10 @@ class App extends React.Component<{}, State> {
 
   toggleDrawer = () => {
     this.setState({ drawer: !this.state.drawer });
+  }
+
+  BreadcrumbClick = () => {
+    console.log('Breadcrumb clicked...');
   }
 
   render() {
@@ -204,6 +214,25 @@ class App extends React.Component<{}, State> {
         description: 'Test description2',
         status: 'Deleted',
         type: 'admin',
+      },
+    ];
+
+    const breadcrumbData: ISourceData[] = [
+      {
+        name: 'Home',
+        type: 'default',
+        onBreadcrumbClick: () => { console.log('Home is clicked');}
+      }, {
+        name: <Badge children={'Home1'} status={'success'} />,
+        type: 'active',
+        onBreadcrumbClick: () => { console.log('Badge is clicked');}
+      }, {
+        name: 'Home2',
+        type: 'disabled'
+      }, {
+        name: 'Home3',
+        type: 'active',
+        onBreadcrumbClick: () => { console.log('Home3 is clicked');}
       },
     ];
 
@@ -278,7 +307,28 @@ class App extends React.Component<{}, State> {
         <Badge children={'Badge'} progress={'incomplete'} />
         <Badge children={'Badge'} progress={'partiallyComplete'} />
         <Badge children={'Badge'} progress={'complete'} />
-
+        <div>
+          <TabPanel position={'top'} alignment={'center'}>
+            <Tab tabDescription={<Badge children={'Home'} status={'success'} />} tabId={'tab1'}>
+              <p>content 0</p>
+            </Tab>
+            <Tab tabDescription="User" tabId={'tab2'}>
+              <div>
+                <Button onClick={this.toggleModal}>Medium buttonas</Button>
+              </div>
+            </Tab>
+            <Tab tabDescription="User1" tabId={'tab3'}>
+              <p>content user1</p>
+            </Tab>
+            <Tab tabDescription="User2" tabId={'tab4'}>
+              <p>content user2</p>
+            </Tab>
+            <Tab tabDescription="User3" tabId={'tab5'}>
+              <p>content user3</p>
+            </Tab>
+          </TabPanel>
+          <Button onClick={() => this.setState({ activeTabId: 'tab2' })}>Trigger User from here</Button>
+        </div>
         <div>
           <Caption style={{ color: 'red' }}>This is modal</Caption>
           <Button onClick={this.toggleModal}>Medium button</Button>
@@ -302,7 +352,11 @@ class App extends React.Component<{}, State> {
             </ModalFooter>
           </Modal>
         </div>
-
+        <br />
+        <div>
+          <p>This is my Breadcrumbs!!</p>
+          <Breadcrumb direction={'left'} source={breadcrumbData} displayStyle={'yellow'} />
+        </div>
         {/* <div>
           <h1>This is my Modal Component!!</h1>
           <Modal
@@ -448,16 +502,16 @@ class App extends React.Component<{}, State> {
 
         <div style={{ marginTop: '20px', marginBottom: '20px' }}>
           <Caption style={{ color: 'red' }}>This is Table field</Caption>
-            <Button>
-              { `Delete ${this.state.bulkAction.selectedRow.length ? `(${this.state.bulkAction.selectedRow.length})` : ''}` }
-            </Button>
+          <Button>
+            {`Delete ${this.state.bulkAction.selectedRow.length ? `(${this.state.bulkAction.selectedRow.length})` : ''}`}
+          </Button>
 
-            <div className="fieldGroup">
-              <input type="text" value={this.state.filterConfig.searchKey} onChange={(event: any) => this.setState({ filterConfig: { ...this.state.filterConfig, searchKey: event.target.value, search: false } })} />
-              <div className="fieldGroupAddon">
-                  <Button onClick={(val: any) => this.setState({ filterConfig: { ...this.state.filterConfig, search: true } })}>Search</Button>
-              </div>
+          <div className="fieldGroup">
+            <input type="text" value={this.state.filterConfig.searchKey} onChange={(event: any) => this.setState({ filterConfig: { ...this.state.filterConfig, searchKey: event.target.value, search: false } })} />
+            <div className="fieldGroupAddon">
+              <Button onClick={(val: any) => this.setState({ filterConfig: { ...this.state.filterConfig, search: true } })}>Search</Button>
             </div>
+          </div>
           <Table
             data={tableData}
             column={columnConfig}
@@ -476,7 +530,7 @@ class App extends React.Component<{}, State> {
           <Button onClick={this.toggleDrawer}>Drawer open</Button>
           <Drawer
             toggleDrawer={this.toggleDrawer}
-            active={ this.state.drawer }
+            active={this.state.drawer}
             activeContentId={this.state.activeDrawerId}
             onOpen={this.onDrawerOpen}
             onClose={this.onDrawerClose}
@@ -494,14 +548,14 @@ class App extends React.Component<{}, State> {
                 <li>Link 5</li>
               </ul>
 
-              <Button onClick={ () => this.setState({ activeDrawerId: 'content2' }) }>Content2 open</Button>
+              <Button onClick={() => this.setState({ activeDrawerId: 'content2' })}>Content2 open</Button>
             </DrawerContent>
 
             <DrawerContent id="content2" mode="slide">
               I am inside drawer content 2
 
-              <Button onClick={ () => this.setState({ activeDrawerId: 'content1' }) }>Content1 open</Button>
-              <Button onClick={ () => this.setState({ drawer: false }) }>Close</Button>
+              <Button onClick={() => this.setState({ activeDrawerId: 'content1' })}>Content1 open</Button>
+              <Button onClick={() => this.setState({ drawer: false })}>Close</Button>
             </DrawerContent>
           </Drawer>
 
@@ -518,7 +572,7 @@ class App extends React.Component<{}, State> {
           <Link>Tooltip 2</Link>
         </Tooltip>
         <div>
-*/}
+          */}
           <Heading>Popover</Heading>
           <TextField
             id="TestName"
