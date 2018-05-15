@@ -1,5 +1,6 @@
 import { IDocumentAppState } from '../Types';
 
+import AlertState from './componentState/AlertState';
 import ChoiceListState from './componentState/ChoiceListState';
 import PanelState from './componentState/PanelState';
 import ChipState from './componentState/ChipState';
@@ -53,6 +54,7 @@ import BreadcrumbState from './componentState/BreadcrumbState';
 
 const intialState: IDocumentAppState = {
   components: [
+    AlertState,
     ChoiceListState,
     PanelState,
     ChipState,
