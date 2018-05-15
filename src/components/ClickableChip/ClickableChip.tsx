@@ -1,43 +1,60 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from 'react-css-themr';
-import Popover from '../Popover/Popover';
+import Dropdown, { DropdownItemProps } from '../Dropdown';
+import { Props as ChipStates } from '../Chip';
 import { CLICKABLECHIP } from '../ThemeIdentifiers';
 import * as baseTheme from './ClickableChip.scss';
+import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
 
 export interface State {
   active: boolean;
+  anchorEl?: HTMLElement | null;
 }
+
 export interface Props {
-  chip: React.ReactElement<any>;
+  chip: React.ReactElement<ChipStates>;
   style?: React.CSSProperties;
   theme?: any;
   onClick?(): void;
 }
 
+const getUniqueID = createUniqueIDFactory('DropdownItem');
+
 class ClickableChip extends React.PureComponent<Props, State> {
+  public id = getUniqueID();
+
   constructor(props: any) {
     super(props);
     this.state = {
-      active: false,
+      active: false
     };
+    this.handleClick = this.handleClick.bind(this);
   }
 
   onClose = () => { };
 
   render() {
-    const {
-            chip,
-            onClick = this.handleClick,
-        } = this.props;
-    const updatedChip = React.cloneElement(chip, { onClick, clickable: true });
+    const chip = this.props.chip;
+
+    const Items: DropdownItemProps[] = [{
+      content: this.props.children
+    }];
+
     return (
-      <Popover active={this.state.active} activator={updatedChip} onClose={this.onClose}>
-        {this.props.children}
-      </Popover>
+      <div>
+        <div onClick={this.handleClick} id={this.id}>
+          {chip}
+        </div>
+        <Dropdown anchorEl={this.state.anchorEl} active={this.state.active} onClose={this.onClose} toggle={this.handleClick} dropdownItems={Items} ></Dropdown>
+      </div> 
     );
   }
+
   private handleClick = () => {
-    this.setState({ ['active']: !this.state.active });
+    this.setState({
+      active: !this.state.active,
+      anchorEl: document.getElementById(this.id)
+    });
   }
 }
 
