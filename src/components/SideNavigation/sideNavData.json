@@ -1,6 +1,7 @@
 [
     {
-        "label": "Item1", 
+        "label": "Basics", 
+        "icon": "notes",
         "children": [
             {
                 "label": "childitem", 

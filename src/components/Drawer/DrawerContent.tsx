@@ -61,7 +61,7 @@ class DrawerContent extends React.Component<Props, never> {
     return (
       <div className={containerClassName}>
         <div className={barClassName}>
-        {
+          {
             closeButton ?
             <span className={theme.close}>
               <Button onClick={toggleDrawer} icon="cancel" plain />

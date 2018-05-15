@@ -1,0 +1,34 @@
+.drawer {
+    background: black;
+    color: white;
+}
+
+.expand {
+    position: absolute;
+    z-index: 1000;
+    top: 5px;
+    right: 5px;
+    padding: 5px;
+}
+
+.collapse {
+    position: absolute;
+    z-index: 1000;
+    top: 5px;
+    right: 5px;
+    padding: 5px;
+}
+
+.list {
+    list-style: none;
+    margin-top: 0;
+    padding-left: 0;
+  
+    + .list {
+      margin-top: spacing();
+    }
+  
+    ul {
+      padding-left: spacing(loose);
+    }
+}
