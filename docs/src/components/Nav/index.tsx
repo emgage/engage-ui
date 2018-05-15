@@ -26,6 +26,7 @@ const Nav = () => {
         <li><Link to="/component/displaytext" activeClassName={styles.active}>DisplayText</Link></li>
         <li><Link to="/component/Drawer" activeClassName={styles.active}>Drawer</Link></li>
         <li><Link to="/component/dropdown" activeClassName={styles.active}>Dropdown</Link></li>
+        <li><Link to="/component/descriptionlist" activeClassName={styles.active}>Description List</Link></li>
         <li><Link to="/component/FlexBox" activeClassName={styles.active}>FlexBox</Link></li>
         <li><Link to="/component/FormLayout" activeClassName={styles.active}>FormLayout</Link></li>
         <li><Link to="/component/heading" activeClassName={styles.active}>Heading</Link></li>

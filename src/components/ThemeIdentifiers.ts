@@ -21,6 +21,7 @@ export const LABEL = 'PLabel';
 export const LABELLED = 'PLabelled';
 export const LINK = 'PLink';
 export const LIST = 'PList';
+export const DESCRIPTIONLIST = 'PDESCRIPTIONLIST';
 export const LOADING = 'PLoading';
 export const MASK_TEXT_FIELD = 'PMaskTextField';
 export const MESSAGE = 'PMessage';
