@@ -136,6 +136,13 @@ export {
 } from './List';
 
 export {
+  default as DescriptionList,
+  Props as DescriptionListProps,
+  Term,
+  Description,
+} from './DescriptionList';
+
+export {
   default as Loading,
   Props as LoadingProps,
 } from './Loading';

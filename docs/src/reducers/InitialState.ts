@@ -30,6 +30,7 @@ import AvatarState from './componentState/AvatarState';
 import CheckboxState from './componentState/CheckboxState';
 import DisplayTextState from './componentState/DisplayTextState';
 import ListState from './componentState/ListState';
+import DescriptionListState from './componentState/DescriptionListState';
 import MessageState from './componentState/MessageState';
 import ColumnState from './componentState/ColumnState';
 import ConnectedState from './componentState/ConnectedState';
@@ -81,6 +82,7 @@ const intialState: IDocumentAppState = {
     CheckboxState,
     DisplayTextState,
     ListState,
+    DescriptionListState,
     MessageState,
     ColumnState,
     ConnectedState,
