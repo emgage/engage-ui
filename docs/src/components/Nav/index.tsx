@@ -25,6 +25,7 @@ const Nav = () => {
         <li><Link to="/component/connected" activeClassName={styles.active}>Connected</Link></li>
         <li><Link to="/component/displaytext" activeClassName={styles.active}>DisplayText</Link></li>
         <li><Link to="/component/Drawer" activeClassName={styles.active}>Drawer</Link></li>
+        <li><Link to="/component/dropdown" activeClassName={styles.active}>Dropdown</Link></li>
         <li><Link to="/component/descriptionlist" activeClassName={styles.active}>Description List</Link></li>
         <li><Link to="/component/FlexBox" activeClassName={styles.active}>FlexBox</Link></li>
         <li><Link to="/component/FormLayout" activeClassName={styles.active}>FormLayout</Link></li>
@@ -39,7 +40,6 @@ const Nav = () => {
         <li><Link to="/component/message" activeClassName={styles.active}>Message</Link></li>
         <li><Link to="/component/modal" activeClassName={styles.active}>Modal</Link></li>
         {/*<li><Link to="/component/panel" activeClassName={styles.active}>Panel</Link></li>*/}
-        <li><Link to="/component/popover" activeClassName={styles.active}>Popover</Link></li>
         <li><Link to="/component/positionedoverlay" activeClassName={styles.active}>Positioned Overlay</Link></li>
         <li><Link to="/component/radiobutton" activeClassName={styles.active}>RadioButton</Link></li>
         <li><Link to="/component/Scrollable" activeClassName={styles.active}>Scrollable</Link></li>
