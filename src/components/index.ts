@@ -10,6 +10,11 @@ export {
 } from './Avatar';
 
 export {
+  default as Alert,
+  Props as AlertProps,
+} from './Alert';
+
+export {
   default as Badge,
   Props as BadgeProps,
 } from './Badge';
@@ -142,6 +147,13 @@ export {
 } from './List';
 
 export {
+  default as DescriptionList,
+  Props as DescriptionListProps,
+  Term,
+  Description,
+} from './DescriptionList';
+
+export {
   default as Loading,
   Props as LoadingProps,
 } from './Loading';
@@ -168,9 +180,10 @@ export {
 } from './Picker';
 
 export {
-  default as Popover,
-  Props as PopoverProps,
-} from './Popover';
+  default as Dropdown,
+  Props as DropdownProps,
+  DropdownItemProps
+} from './Dropdown';
 
 export {
   default as PositionedOverlay,

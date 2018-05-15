@@ -5,6 +5,7 @@ import PickerAutoSuggestExample from './PickerAutoSuggestExample';
 import { ISourceData } from '../../src/components/Breadcrumb/Breadcrumb';
 
 import {
+  Alert,
   Banner,
   Badge,
   Button,
@@ -24,11 +25,15 @@ import {
   Link,
   List,
   Item,
+  DescriptionList,
+  Term,
+  Description,
+  // ListItem,
   Loading,
   // OffCanvas,
   Panel,
   Picker,
-  // Popover,
+  Dropdown,
   Select,
   TextField,
   Tooltip,
@@ -46,7 +51,8 @@ import {
   Table,
   TableColumnConfig,
   AccordionItemProps,
-  Accordion
+  Accordion,
+  DropdownItemProps,
   TabPanel,
   Tab,
   Breadcrumb,
@@ -60,7 +66,7 @@ interface State {
   columns: object[];
   rows: object[];
   isMenuOpened: boolean;
-  popoverActive: boolean[];
+  popoverActive: boolean;
   bulkAction: any;
   filterConfig: any;
   modalOpen: boolean;
@@ -69,6 +75,7 @@ interface State {
   activeDrawerId: string;
   AccordionItemOpen?: number;
   AccordionItemClose?: number;
+  anchorEl?: HTMLElement;
   activeTabId: string;
 }
 
@@ -92,7 +99,7 @@ class App extends React.Component<{}, State> {
         { id: 3, title: 'Title 3', count: 3 },
       ],
       isMenuOpened: false,
-      popoverActive: [false, false],
+      popoverActive: false,
       bulkAction: {
         selectedRow: [],
       },
@@ -114,6 +121,8 @@ class App extends React.Component<{}, State> {
     this.popovertoggle = this.popovertoggle.bind(this);
     this.toggleAccordionOpen = this.toggleAccordionOpen.bind(this);
     this.toggleAccordionClose = this.toggleAccordionClose.bind(this);
+    this.popoverUpdate = this.popoverUpdate.bind(this);
+    this.closed1 = this.closed1.bind(this);
   }
 
   rowGetter = (index: number) => this.state.rows[index];
@@ -155,7 +164,7 @@ class App extends React.Component<{}, State> {
   }
 
   render() {
-    const items : AccordionItemProps[] = [{
+    const Accordionitems : AccordionItemProps[] = [{
       children: <Banner title={'banner'} status={'success'} />,
       header: <Button>sk</Button>
     },{
@@ -165,6 +174,24 @@ class App extends React.Component<{}, State> {
       children: <Banner title={'banner13'} status={'warning'} />,
       header: <Button>sk3</Button>
     }];
+    const items : DropdownItemProps[] = [
+      {
+        content: 'Item 1',
+        onClick: this.closed1,
+      },
+      {
+        content: 'Item 2',
+        divider: false
+      },
+      {
+        content: 'Item 3',
+        disabled: false
+      },
+      {
+        content: 'Item 4',
+        header: false
+      }
+    ];
 
     const posterUrl = new URL('http://4.bp.blogspot.com/_JSR8IC77Ub4/TKB-XAWXmhI/AAAAAAAABJA/MqOpdFTOaHo/w1200-' +
       'h630-p-k-no-nu/C:%5Cfakepath%5Cbird1.jpg');
@@ -321,7 +348,7 @@ class App extends React.Component<{}, State> {
         <Badge children={'Badge'} progress={'partiallyComplete'} />
         <Badge children={'Badge'} progress={'complete'} />
         <div>
-          <TabPanel position={'top'} alignment={'center'}>
+          <TabPanel defaultTabId="tab1" position={'top'} alignment={'center'}>
             <Tab tabDescription={<Badge children={'Home'} status={'success'} />} tabId={'tab1'}>
               <p>content 0</p>
             </Tab>
@@ -504,6 +531,22 @@ class App extends React.Component<{}, State> {
         <br />
         <Caption style={{ color: 'red' }}>This is Caption</Caption>
         <br />
+        <Heading>Alert</Heading>
+        <Alert>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
+        </Alert>
+        <Alert type="primary" >
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
+        </Alert>
+        <Alert type="success"> 
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
+        </Alert>
+        <Alert type="warning">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
+        </Alert>
+        <Alert type="danger">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
+        </Alert>
         <Checkbox label={'I am a checkbox'} />
         <Banner title={'banner'} status={'success'} />
         <Banner title={'banner'} status={'info'} />
@@ -575,7 +618,7 @@ class App extends React.Component<{}, State> {
         </div>
 
         <p> Some text with a
-          <Tooltip content="This order has shipping labels.">
+          <Tooltip content="This order has shipping labels.sdfsdfg">
             <Link>Tooltip 1</Link>
           </Tooltip> in it
         </p>
@@ -587,7 +630,7 @@ class App extends React.Component<{}, State> {
         <div>
           <h1>{this.state.AccordionItemClose}</h1>
           <h1>{this.state.AccordionItemOpen}</h1>
-        <Accordion items={items} closeIndex={this.state.AccordionItemClose} openIndex={this.state.AccordionItemOpen} />
+        <Accordion items={Accordionitems} closeIndex={this.state.AccordionItemClose} openIndex={this.state.AccordionItemOpen} />
 
           <Button onClick={() => this.toggleAccordionOpen(0)}>item1 toggle open</Button>
           <Button onClick={() => this.toggleAccordionOpen(1)}>item2 toggle open</Button>
@@ -600,6 +643,15 @@ class App extends React.Component<{}, State> {
           <Button onClick={() => this.toggleAccordionClose(undefined)}>undefined toggle close</Button>
 
           <Heading>Popover</Heading>
+          <Button style={{ left: 200 }}  onClick={(e) => this.popoverUpdate(e)} >Click to active and deactive dropdown</Button>
+          <Dropdown
+            active={this.state.popoverActive}
+            dropdownItems={items}
+            toggle={() => this.popoverUpdate}
+            direction="right"
+            anchorEl = {this.state.anchorEl}
+          />
+
           <TextField
             id="TestName"
             label="Text Counter"
@@ -692,6 +744,31 @@ class App extends React.Component<{}, State> {
             <Item>Second item</Item>
             <Item>Third Item</Item>
           </List>
+          <Heading>Description List</Heading> 
+          <DescriptionList type="default" style="Inline"> 
+              <Term>Logistics</Term>
+              <Description>The management of products or other resources as they travel between a point of origin and a destination.</Description>
+              <Term>Sole proprietorship</Term>
+              <Description>A business structure where a single individual both owns and runs the company.</Description>
+              <Term>Discount code</Term>
+              <Description>A series of numbers and/or letters that an online shopper may enter at checkout to get a discount or special offer.</Description>
+          </DescriptionList>
+          <DescriptionList type="default" style="Stacked">          
+            <Term>Logistics</Term>
+            <Description>The management of products or other resources as they travel between a point of origin and a destination.</Description>
+            <Term>Sole proprietorship</Term>
+            <Description>A business structure where a single individual both owns and runs the company.</Description>
+            <Term>Discount code</Term>
+            <Description>A series of numbers and/or letters that an online shopper may enter at checkout to get a discount or special offer.</Description>
+        </DescriptionList>
+          <DescriptionList type="divider" style="Stacked">          
+           <Term>Logistics</Term>
+           <Description>The management of products or other resources as they travel between a point of origin and a destination.</Description>
+           <Term>Sole proprietorship</Term>
+           <Description>A business structure where a single individual both owns and runs the company.</Description>
+           <Term>Discount code</Term>
+           <Description>A series of numbers and/or letters that an online shopper may enter at checkout to get a discount or special offer.</Description>
+       </DescriptionList>
           <ChoiceList
             title="Company name"
             choices={[
@@ -1086,6 +1163,24 @@ class App extends React.Component<{}, State> {
     this.setState({
       AccordionItemClose: index
     });
+  }
+  valueUpdater(field: any) {
+    return (value: any) => 'this.setState({ [field]: value })';
+  }
+
+  handleChange(value: string) {
+    return (value: any) => 'this.setState({ [value]: value })';
+  }
+
+  popoverUpdate(e : React.FormEvent<HTMLElement>) {
+    this.setState({
+      popoverActive : !this.state.popoverActive,
+      anchorEl: e.target as HTMLElement
+    });
+  }
+
+  closed1() {
+    console.log('called');
   }
 }
 
