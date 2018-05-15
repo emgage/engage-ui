@@ -1,4 +1,10 @@
 export {
+  default as Accordion,
+  Props as AccordionProps,
+  AccordionItemProps
+} from './Accordion';
+
+export {
   default as Avatar,
   Props as AvatarProps,
 } from './Avatar';
