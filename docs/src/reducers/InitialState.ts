@@ -1,5 +1,6 @@
 import { IDocumentAppState } from '../Types';
 
+import AlertState from './componentState/AlertState';
 import ChoiceListState from './componentState/ChoiceListState';
 import PanelState from './componentState/PanelState';
 import ChipState from './componentState/ChipState';
@@ -15,7 +16,7 @@ import TooltipState from './componentState/TooltipState';
 import ClickableChipState from './componentState/ClickableChipState';
 import VideoState from './componentState/VideoState';
 import VisuallyHiddenState from './componentState/VisuallyHiddenState';
-import PopoverState from './componentState/PopoverState';
+import DropdownState from './componentState/DropdownState';
 import ImageState from './componentState/ImageState';
 import ScrollableState from './componentState/ScrollableState';
 import LinkState from './componentState/LinkState';
@@ -30,6 +31,7 @@ import AvatarState from './componentState/AvatarState';
 import CheckboxState from './componentState/CheckboxState';
 import DisplayTextState from './componentState/DisplayTextState';
 import ListState from './componentState/ListState';
+import DescriptionListState from './componentState/DescriptionListState';
 import MessageState from './componentState/MessageState';
 import ColumnState from './componentState/ColumnState';
 import ConnectedState from './componentState/ConnectedState';
@@ -52,6 +54,7 @@ import BreadcrumbState from './componentState/BreadcrumbState';
 
 const intialState: IDocumentAppState = {
   components: [
+    AlertState,
     ChoiceListState,
     PanelState,
     ChipState,
@@ -67,7 +70,7 @@ const intialState: IDocumentAppState = {
     ClickableChipState,
     VideoState,
     VisuallyHiddenState,
-    PopoverState,
+    DropdownState,
     ImageState,
     ScrollableState,
     TextFieldState,
@@ -81,6 +84,7 @@ const intialState: IDocumentAppState = {
     CheckboxState,
     DisplayTextState,
     ListState,
+    DescriptionListState,
     MessageState,
     ColumnState,
     ConnectedState,
