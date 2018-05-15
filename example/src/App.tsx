@@ -18,6 +18,7 @@ import {
   DisplayText,
   Drawer,
   DrawerContent,
+  SideNavigation,
   FlexBox,
   FormLayout,
   Heading,
@@ -637,6 +638,7 @@ class App extends React.Component<{}, State> {
           >
             <Link>Tooltip 2</Link>
           </Tooltip>
+          <SideNavigation />
           <Heading>List</Heading>
           <List type="bullet">
             <Item>Yellow shirt</Item>

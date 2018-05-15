@@ -123,6 +123,7 @@
     "@types/redux-immutable-state-invariant": "^2.0.0",
     "@types/redux-thunk": "^2.1.0",
     "airbnb-prop-types": "^2.7.1",
+    "axios": "^0.18.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-1": "^6.24.1",

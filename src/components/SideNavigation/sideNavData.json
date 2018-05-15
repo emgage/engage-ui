@@ -1,0 +1,12 @@
+[
+    {
+        "label": "Item1", 
+        "children": [
+            {
+                "label": "childitem", 
+                "action": "() => console.log('Child Item is clicked!)"
+            }
+        ], 
+        "action": "() => console.log('Item1 is clicked!')"
+    }
+]

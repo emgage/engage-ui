@@ -77,6 +77,11 @@ export {
 } from './Drawer';
 
 export {
+  default as SideNavigation,
+  Props
+} from './SideNavigation';
+
+export {
   default as FormLayout,
   Props as FormLayoutProps,
 } from './FormLayout';
