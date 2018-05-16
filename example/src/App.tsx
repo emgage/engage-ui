@@ -43,6 +43,7 @@ import {
   Video,
   VideoType,
   Modal,
+  ModalContent,
   ModalBody,
   ModalFooter,
   ModalHeader,
@@ -70,9 +71,12 @@ interface State {
   bulkAction: any;
   filterConfig: any;
   modalOpen: boolean;
+  modalOpen2: boolean;
+  modalOpen3: boolean;
   drawer: boolean;
   drawerContent: any;
   activeDrawerId: string;
+  activeModalId: string;
   AccordionItemOpen?: number;
   AccordionItemClose?: number;
   anchorEl?: HTMLElement;
@@ -84,6 +88,8 @@ class App extends React.Component<{}, State> {
     super(props);
     this.state = {
       modalOpen: false,
+      modalOpen2: false,
+      modalOpen3: false,
       appName: '',
       appDescription: '',
       appCity: '',
@@ -114,6 +120,7 @@ class App extends React.Component<{}, State> {
         content2: true,
       },
       activeDrawerId: 'content1',
+      activeModalId: 'modalcontent1',
       AccordionItemOpen: undefined,
       AccordionItemClose: undefined,
       activeTabId: 'tab3'
@@ -137,6 +144,14 @@ class App extends React.Component<{}, State> {
 
   toggleModal = () => {
     this.setState({ modalOpen: !this.state.modalOpen });
+  }
+
+  toggleModal2 = () => {
+    this.setState({ modalOpen2: !this.state.modalOpen2 });
+  }
+
+  toggleModal3 = () => {
+    this.setState({ modalOpen3: !this.state.modalOpen3 });
   }
 
   onModalOpen = () => {
@@ -371,25 +386,77 @@ class App extends React.Component<{}, State> {
         </div>
         <div>
           <Caption style={{ color: 'red' }}>This is modal</Caption>
-          <Button onClick={this.toggleModal}>Medium button</Button>
+          <Button onClick={this.toggleModal}>Nested modal</Button>
           <Modal
             active={this.state.modalOpen}
+            activeContentId={this.state.activeModalId}
             toggle={this.toggleModal}
             onOpen={this.onModalOpen}
             onClose={this.onModalClose}
+            width="large"
+            closeOnBackgroud
+            closeOnEsc
+            closeButton>
+            <ModalContent id="modalcontent1">
+              <ModalHeader>Modal content 1</ModalHeader>
+              <ModalBody modalOverflow>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae ex pellentesque, pretium lorem vel, tempor ipsum. Phasellus suscipit lacus in velit malesuada, at bibendum mi gravida. Sed cursus nisi sem, non pellentesque ligula euismod eget. Sed quis fringilla nibh, at vestibulum turpis. Donec sed sagittis sapien. Nam quis ex quis nulla porta molestie. Vestibulum eu lorem porta, facilisis orci a, tempor quam. Suspendisse et sollicitudin nulla. Aenean consectetur imperdiet leo nec condimentum. Aliquam scelerisque magna ut tortor accumsan condimentum.
+
+                Nulla quis ante sit amet leo lobortis rhoncus. Cras mollis quis leo nec tincidunt. Aliquam blandit est vitae leo ultrices, ut egestas sapien pharetra. Suspendisse nec aliquet orci. Suspendisse rutrum odio sed neque scelerisque, ut consectetur erat tincidunt. Duis ultrices metus eget ante posuere eleifend. Ut luctus felis neque, sit amet efficitur neque maximus id. Aliquam porta, tellus ut pellentesque facilisis, odio neque maximus erat, venenatis semper nisi metus id augue. Cras vel sem eu elit blandit laoreet id vitae tortor. Morbi sit amet mi rutrum, sagittis enim lacinia, dictum turpis.
+              </ModalBody>
+              <ModalFooter>
+                <Button onClick={this.toggleModal}>Close</Button>
+                <Button onClick={() => this.setState({ activeModalId: 'modalcontent2' })}>Next</Button>
+              </ModalFooter>
+            </ModalContent>
+            <ModalContent id="modalcontent2">
+              <ModalHeader>Modal content 2</ModalHeader>
+              <ModalBody>
+                I am content two, open next modal from here
+              </ModalBody>
+              <ModalFooter>
+                <Button onClick={this.toggleModal}>Close</Button>
+                <Button onClick={() => this.setState({ activeModalId: 'modalcontent1' })}>Back</Button>
+                <Button onClick={this.toggleModal2}>Open modal 2</Button>
+              </ModalFooter>
+            </ModalContent>
+          </Modal>
+
+          <Modal
+            active={this.state.modalOpen2}
+            toggle={this.toggleModal2}
             width="medium"
             closeOnBackgroud
             closeOnEsc
             closeButton>
-            <ModalHeader>Modal title</ModalHeader>
-            <ModalBody modalOverflow>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae ex pellentesque, pretium lorem vel, tempor ipsum. Phasellus suscipit lacus in velit malesuada, at bibendum mi gravida. Sed cursus nisi sem, non pellentesque ligula euismod eget. Sed quis fringilla nibh, at vestibulum turpis. Donec sed sagittis sapien. Nam quis ex quis nulla porta molestie. Vestibulum eu lorem porta, facilisis orci a, tempor quam. Suspendisse et sollicitudin nulla. Aenean consectetur imperdiet leo nec condimentum. Aliquam scelerisque magna ut tortor accumsan condimentum.
+            <ModalContent>
+              <ModalHeader>Modal title2</ModalHeader>
+              <ModalBody>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae ex pellentesque, pretium lorem vel, tempor ipsum. Phasellus suscipit lacus in velit malesuada, at bibendum mi gravida. Sed cursus nisi sem, non pellentesque ligula euismod eget. Sed quis fringilla nibh, at vestibulum turpis. Donec sed sagittis sapien. Nam quis ex quis nulla porta molestie. Vestibulum eu lorem porta, facilisis orci a, tempor quam. Suspendisse et sollicitudin nulla. Aenean consectetur imperdiet leo nec condimentum. Aliquam scelerisque magna ut tortor accumsan condimentum.
+              </ModalBody>
+              <ModalFooter>
+                <Button onClick={this.toggleModal2}>Close</Button>
+                <Button onClick={this.toggleModal3}>Open modal 3</Button>
+              </ModalFooter>
+            </ModalContent>
+          </Modal>
 
-              Nulla quis ante sit amet leo lobortis rhoncus. Cras mollis quis leo nec tincidunt. Aliquam blandit est vitae leo ultrices, ut egestas sapien pharetra. Suspendisse nec aliquet orci. Suspendisse rutrum odio sed neque scelerisque, ut consectetur erat tincidunt. Duis ultrices metus eget ante posuere eleifend. Ut luctus felis neque, sit amet efficitur neque maximus id. Aliquam porta, tellus ut pellentesque facilisis, odio neque maximus erat, venenatis semper nisi metus id augue. Cras vel sem eu elit blandit laoreet id vitae tortor. Morbi sit amet mi rutrum, sagittis enim lacinia, dictum turpis.
-            </ModalBody>
-            <ModalFooter>
-              <Button onClick={this.toggleModal}>Close</Button>
-            </ModalFooter>
+          <Modal
+            active={this.state.modalOpen3}
+            toggle={this.toggleModal3}
+            width="small"
+            closeOnBackgroud
+            closeOnEsc
+            closeButton>
+            <ModalContent>
+              <ModalHeader>Modal title3</ModalHeader>
+              <ModalBody>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae ex pellentesque, que ligula euismod eget. Sed quis fringilla nibh, at vestibulum turpis.
+              </ModalBody>
+              <ModalFooter>
+                <Button onClick={this.toggleModal3}>Close</Button>
+              </ModalFooter>
+            </ModalContent>
           </Modal>
         </div>
         <br />
