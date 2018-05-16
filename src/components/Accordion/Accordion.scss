@@ -1,0 +1,51 @@
+.accordionItem {
+  margin-bottom: 10px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.accordionItem > .header {
+  position: relative;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+  width: 100%;
+  color: #fff;
+  border: none;
+  font-family: font-bold, sans-serif;
+
+  &:after {
+    content: '';
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    position: absolute;
+    right: 30px;
+    background: url('data:image/svg+xml;utf8, <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M11 17V5.414l3.293 3.293a.999.999 0 1 0 1.414-1.414l-5-5a.999.999 0 0 0-1.414 0l-5 5a.997.997 0 0 0 0 1.414.999.999 0 0 0 1.414 0L9 5.414V17a1 1 0 1 0 2 0" fill="#31373D" fill-rule="evenodd"/></svg>') no-repeat;
+    transform: rotate(180deg);
+    transition: transform 0.3s;
+  }
+}
+
+.accordionItem > .headerCollapsed {
+  &:after {
+    transform: rotate(0deg);
+  }
+}
+
+.accordionItem > .body {
+  height: auto;
+  opacity: 1;
+  overflow-y: hidden;
+  overflow-x: auto;
+  transition: all 0.2s;
+  padding: 15px 15px;
+}
+
+.accordionItem> .bodyCollapsed {
+  height: 0;
+  opacity: 0;
+  padding: 0 10px;
+  transition: all 0.2s;
+}
