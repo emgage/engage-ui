@@ -4,11 +4,12 @@ import { themr, ThemedComponentClass } from 'react-css-themr';
 import { TABLE } from '../ThemeIdentifiers';
 
 // import Button from '../Button';
-import Icon from '../Icon';
-import Item from '../List/Item';
-import List from '../List';
-import Popover from '../Popover';
-import Pane from '../Popover/Pane';
+
+// import Item from '../List/Item';
+// import List from '../List';
+// import Popover from '../Dropdown';
+// import Pane from '../Dropdown/Pane';
+
 import TableData from './TableData';
 
 import * as baseTheme from './Table.scss';
@@ -33,33 +34,30 @@ class RowAction extends React.Component<Props, State> {
     };
   }
 
+  triggerAction = (item: any) => {
+    return () =>  item.action(this.props.dataId);
+  }
+
   render () {
-    const { actionConfig } = this.props;
+    // const { actionConfig } = this.props;
 
     return (
       <TableData>
-        <Popover
+        {/* <Popover
           active={this.state.active}
-          activator={
-            <span
-              style={{ display: 'inline-block', padding: '5px', border: '1px solid #cccccc', borderRadius: '2px', cursor: 'pointer' }}
-              onClick={() => this.setState({ active: (!this.state.active) })}>
-              { /* This style is just temperory */ }
-              <Icon source="horizontalDots" />
-            </span>
-          }>
+          >
           <Pane>
             <List type="striped">
               {
-                actionConfig.map((action: any, index: number) => {
+                actionConfig.map((item: any, index: number) => {
                   return (
-                    <Item key={index}>{ action.label }</Item>
+                    <Item key={index} onClick={this.triggerAction(item)}>{ item.label }</Item>
                   );
                 })
               }
             </List>
           </Pane>
-        </Popover>
+        </Popover> */}
       </TableData>
     );
   }

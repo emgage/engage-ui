@@ -28,9 +28,11 @@ export interface Props {
   // On load by default it will be sorted by this field
   defaultSortField?: string;
   // Value could be 'asc' || 'desc'
-  defaultSortOrder?: SortOrder;
+  defaultSortOrder?: string;
   // Filter config, if data needs to be filtered by any mode like search
   filterData?: any;
+  // Hide specific row & show them when its being asked to show
+  hideRow?: any;
   // Highlight rows on hover
   highlight?: boolean;
   // Make table responsive
@@ -39,6 +41,8 @@ export interface Props {
   rowAction?: any;
   // This helps to add checkbox or radio to select the row & do bulk actions
   selectRow?: RowSelection;
+  // Use this key to fetch the unique id from data & send it back to selectedrow
+  selectCallbackValue?: string;
   // Function to get called when row got selected
   selectRowCallback?(rows: any): void;
   // Flag to indentify if table is sortable, if passed "all" then add sorting to all the columns
@@ -75,6 +79,8 @@ class Table extends React.Component<Props, State> {
 
     if (search && !this.props.filterData.search) {
       this.triggerSearch(searchKey, field);
+    } else if (newProps.data.length !== this.props.data.length) {
+      this.setState({ data: newProps.data });
     }
   }
 
@@ -114,6 +120,19 @@ class Table extends React.Component<Props, State> {
       highlight && theme.highlight,
       striped && theme.striped
     );
+  }
+
+  hideRow = (item: any) => {
+    const { hideRow } = this.props;
+    let hideStatus: boolean = false;
+
+    Object.keys(hideRow).forEach((key, index) => {
+      if (item[key] && item[key] === hideRow[key]) {
+        hideStatus = true;
+      }
+    });
+
+    return hideStatus;
   }
 
   // Render the thead with th & contain specific header label
@@ -162,26 +181,28 @@ class Table extends React.Component<Props, State> {
       <TableBody>
         {
           data.map((item: any, index: number) => {
-            return (
-              <TableRow key={index}>
-                { this.renderRowSelection(item, 'body') }
-                {
-                  column.map((colItem: any) => {
-                    return (
-                      <TableData key={colItem.key}>
-                        {/* 
-                          Here injectBody helps to inject any custom component to td,
-                          we also return the specifc value, which then can be used in injected component
-                        */}
-                        {colItem.injectBody ? colItem.injectBody(item) : item[colItem.key]}
-                      </TableData>
-                    );
-                  })
-                }
+            if (!this.props.hideRow || !this.hideRow(item)) {
+              return (
+                <TableRow key={index}>
+                  { this.renderRowSelection(item, 'body') }
+                  {
+                    column.map((colItem: any) => {
+                      return (
+                        <TableData key={colItem.key}>
+                          {/* 
+                            Here injectBody helps to inject any custom component to td,
+                            we also return the specifc value, which then can be used in injected component
+                          */}
+                          {colItem.injectBody ? colItem.injectBody(item) : item[colItem.key]}
+                        </TableData>
+                      );
+                    })
+                  }
 
-                { rowAction ? <RowAction actionConfig={rowAction} dataId={item.id} /> : '' }
-              </TableRow>
-            );
+                  { rowAction ? <RowAction actionConfig={rowAction} dataId={item.id} /> : '' }
+                </TableRow>
+              );
+            }
           })
         }
 
@@ -228,15 +249,17 @@ class Table extends React.Component<Props, State> {
   // Function to add checkbox for the row selection
   renderCheckbox(rowData: any): React.ReactElement<any> {
     const { selectedRows } = this.state;
+    const { selectCallbackValue } = this.props;
+    const uniqueId = selectCallbackValue ? rowData[selectCallbackValue] : rowData.id;
 
     return (
       <TableData>
         <Checkbox
           label=""
-          value={rowData.id}
-          checked={selectedRows.indexOf(rowData.id) !== -1 ? true : false}
+          value={uniqueId}
+          checked={selectedRows.indexOf(uniqueId) !== -1 ? true : false}
           onChange={(checkedStatus: boolean) => {
-            this.toggleSingleRowSelection(rowData.id, checkedStatus);
+            this.toggleSingleRowSelection(uniqueId, checkedStatus);
           }} />
       </TableData>
     );

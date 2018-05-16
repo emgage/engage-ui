@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from 'react-css-themr';
 import { layeredComponent } from '@shopify/react-utilities/components';
-import autobind from '@shopify/javascript-utilities/autobind';
+import { autobind } from '@shopify/javascript-utilities/decorators';
 import { classNames } from '@shopify/react-utilities/styles';
 import { noop, createUniqueIDFactory } from '@shopify/javascript-utilities/other';
 import { findFirstFocusableNode } from '@shopify/javascript-utilities/focus';

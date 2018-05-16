@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from 'react-css-themr';
-import autobind from '@shopify/javascript-utilities/autobind';
+import { autobind } from '@shopify/javascript-utilities/decorators';
 import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
 import { classNames } from '@shopify/react-utilities/styles';
 
@@ -92,7 +92,7 @@ class TextField extends React.PureComponent<Props, State> {
       autoComplete,
       style,
       resizable,
-      ...rest,
+      ...rest
     } = this.props;
 
     const { height } = this.state;

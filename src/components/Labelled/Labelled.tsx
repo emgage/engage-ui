@@ -39,7 +39,7 @@ const labelled = ({
   hasValue,
   style,
   theme,
-  ...rest,
+  ...rest
 }: Props) => {
   const wrapperClassName = classNames(
     labelHidden && theme.hidden

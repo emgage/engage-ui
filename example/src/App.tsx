@@ -1,10 +1,11 @@
 import * as React from 'react';
-import ReactDataExample from './ReactDataExample';
 import SingleDatePickerWrapper from './SingleDatePickerWrapper';
 import DateRangePickerWrapper from './DateRangePickerWrapper';
 import PickerAutoSuggestExample from './PickerAutoSuggestExample';
+import { ISourceData } from '../../src/components/Breadcrumb/Breadcrumb';
 
 import {
+  Alert,
   Banner,
   Badge,
   Button,
@@ -24,15 +25,20 @@ import {
   Link,
   List,
   Item,
+  DescriptionList,
+  Term,
+  Description,
+  // ListItem,
   Loading,
   // OffCanvas,
   Panel,
   Picker,
-  // Popover,
+  Dropdown,
   Select,
   TextField,
   Tooltip,
   ValidatedTextField,
+  ValidatedSelectField,
   ValidatedForm,
   Video,
   VideoType,
@@ -45,11 +51,18 @@ import {
   Spinner,
   Table,
   TableColumnConfig,
+  AccordionItemProps,
+  Accordion,
+  DropdownItemProps,
+  TabPanel,
+  Tab,
+  Breadcrumb,
 } from '../../src/components';
 
 interface State {
   appName?: string;
   appDescription: string;
+  appCity: string;
   appTextCounter: string;
   columns: object[];
   rows: object[];
@@ -64,10 +77,13 @@ interface State {
   drawerContent: any;
   activeDrawerId: string;
   activeModalId: string;
+  AccordionItemOpen?: number;
+  AccordionItemClose?: number;
+  anchorEl?: HTMLElement;
+  activeTabId: string;
 }
 
 class App extends React.Component<{}, State> {
-
   constructor(props: any) {
     super(props);
     this.state = {
@@ -76,6 +92,7 @@ class App extends React.Component<{}, State> {
       modalOpen3: false,
       appName: '',
       appDescription: '',
+      appCity: '',
       appTextCounter: '',
       columns: [
         { key: 'id', name: 'ID' },
@@ -104,7 +121,15 @@ class App extends React.Component<{}, State> {
       },
       activeDrawerId: 'content1',
       activeModalId: 'modalcontent1',
+      AccordionItemOpen: undefined,
+      AccordionItemClose: undefined,
+      activeTabId: 'tab3'
     };
+    this.popovertoggle = this.popovertoggle.bind(this);
+    this.toggleAccordionOpen = this.toggleAccordionOpen.bind(this);
+    this.toggleAccordionClose = this.toggleAccordionClose.bind(this);
+    this.popoverUpdate = this.popoverUpdate.bind(this);
+    this.closed1 = this.closed1.bind(this);
   }
 
   rowGetter = (index: number) => this.state.rows[index];
@@ -149,7 +174,40 @@ class App extends React.Component<{}, State> {
     this.setState({ drawer: !this.state.drawer });
   }
 
+  BreadcrumbClick = () => {
+    console.log('Breadcrumb clicked...');
+  }
+
   render() {
+    const Accordionitems : AccordionItemProps[] = [{
+      children: <Banner title={'banner'} status={'success'} />,
+      header: <Button>sk</Button>
+    },{
+      children: <Banner title={'banner11'} status={'warning'} />,
+      header: <Button>sk1</Button>
+    },{
+      children: <Banner title={'banner13'} status={'warning'} />,
+      header: <Button>sk3</Button>
+    }];
+    const items : DropdownItemProps[] = [
+      {
+        content: 'Item 1',
+        onClick: this.closed1,
+      },
+      {
+        content: 'Item 2',
+        divider: false
+      },
+      {
+        content: 'Item 3',
+        disabled: false
+      },
+      {
+        content: 'Item 4',
+        header: false
+      }
+    ];
+
     const posterUrl = new URL('http://4.bp.blogspot.com/_JSR8IC77Ub4/TKB-XAWXmhI/AAAAAAAABJA/MqOpdFTOaHo/w1200-' +
       'h630-p-k-no-nu/C:%5Cfakepath%5Cbird1.jpg');
     const singleVideoSource = [
@@ -211,6 +269,25 @@ class App extends React.Component<{}, State> {
         description: 'Test description2',
         status: 'Deleted',
         type: 'admin',
+      },
+    ];
+
+    const breadcrumbData: ISourceData[] = [
+      {
+        name: 'Home',
+        type: 'default',
+        onBreadcrumbClick: () => { console.log('Home is clicked');}
+      }, {
+        name: <Badge children={'Home1'} status={'success'} />,
+        type: 'active',
+        onBreadcrumbClick: () => { console.log('Badge is clicked');}
+      }, {
+        name: 'Home2',
+        type: 'disabled'
+      }, {
+        name: 'Home3',
+        type: 'active',
+        onBreadcrumbClick: () => { console.log('Home3 is clicked');}
       },
     ];
 
@@ -285,7 +362,28 @@ class App extends React.Component<{}, State> {
         <Badge children={'Badge'} progress={'incomplete'} />
         <Badge children={'Badge'} progress={'partiallyComplete'} />
         <Badge children={'Badge'} progress={'complete'} />
-
+        <div>
+          <TabPanel defaultTabId="tab1" position={'top'} alignment={'center'}>
+            <Tab tabDescription={<Badge children={'Home'} status={'success'} />} tabId={'tab1'}>
+              <p>content 0</p>
+            </Tab>
+            <Tab tabDescription="User" tabId={'tab2'}>
+              <div>
+                <Button onClick={this.toggleModal}>Medium buttonas</Button>
+              </div>
+            </Tab>
+            <Tab tabDescription="User1" tabId={'tab3'}>
+              <p>content user1</p>
+            </Tab>
+            <Tab tabDescription="User2" tabId={'tab4'}>
+              <p>content user2</p>
+            </Tab>
+            <Tab tabDescription="User3" tabId={'tab5'}>
+              <p>content user3</p>
+            </Tab>
+          </TabPanel>
+          <Button onClick={() => this.setState({ activeTabId: 'tab2' })}>Trigger User from here</Button>
+        </div>
         <div>
           <Caption style={{ color: 'red' }}>This is modal</Caption>
           <Button onClick={this.toggleModal}>Nested modal</Button>
@@ -361,7 +459,11 @@ class App extends React.Component<{}, State> {
             </ModalContent>
           </Modal>
         </div>
-
+        <br />
+        <div>
+          <p>This is my Breadcrumbs!!</p>
+          <Breadcrumb direction={'left'} source={breadcrumbData} displayStyle={'yellow'} />
+        </div>
         {/* <div>
           <h1>This is my Modal Component!!</h1>
           <Modal
@@ -496,6 +598,22 @@ class App extends React.Component<{}, State> {
         <br />
         <Caption style={{ color: 'red' }}>This is Caption</Caption>
         <br />
+        <Heading>Alert</Heading>
+        <Alert>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
+        </Alert>
+        <Alert type="primary" >
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
+        </Alert>
+        <Alert type="success"> 
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
+        </Alert>
+        <Alert type="warning">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
+        </Alert>
+        <Alert type="danger">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
+        </Alert>
         <Checkbox label={'I am a checkbox'} />
         <Banner title={'banner'} status={'success'} />
         <Banner title={'banner'} status={'info'} />
@@ -507,32 +625,35 @@ class App extends React.Component<{}, State> {
 
         <div style={{ marginTop: '20px', marginBottom: '20px' }}>
           <Caption style={{ color: 'red' }}>This is Table field</Caption>
-            <Button>
-              { `Delete ${this.state.bulkAction.selectedRow.length ? `(${this.state.bulkAction.selectedRow.length})` : ''}` }
-            </Button>
+          <Button>
+            {`Delete ${this.state.bulkAction.selectedRow.length ? `(${this.state.bulkAction.selectedRow.length})` : ''}`}
+          </Button>
 
-            <div className="fieldGroup">
-              <input type="text" value={this.state.filterConfig.searchKey} onChange={(event: any) => this.setState({ filterConfig: { ...this.state.filterConfig, searchKey: event.target.value, search: false } })} />
-              <div className="fieldGroupAddon">
-                  <Button onClick={(val: any) => this.setState({ filterConfig: { ...this.state.filterConfig, search: true } })}>Search</Button>
-              </div>
+          <div className="fieldGroup">
+            <input type="text" value={this.state.filterConfig.searchKey} onChange={(event: any) => this.setState({ filterConfig: { ...this.state.filterConfig, searchKey: event.target.value, search: false } })} />
+            <div className="fieldGroupAddon">
+              <Button onClick={(val: any) => this.setState({ filterConfig: { ...this.state.filterConfig, search: true } })}>Search</Button>
             </div>
+          </div>
           <Table
             data={tableData}
             column={columnConfig}
+            hideRow={{ status: 'Deleted' }}
             filterData={this.state.filterConfig}
             defaultSortField="name"
             defaultSortOrder="asc"
             selectRow="checkbox"
             rowAction={rowActionConfig}
+            selectCallbackValue="id"
             selectRowCallback={(val: any) => this.setState({ bulkAction: { selectedRow: val } })}
             bordered highlight sorting />
         </div>
+
         <div>
           <Button onClick={this.toggleDrawer}>Drawer open</Button>
           <Drawer
             toggleDrawer={this.toggleDrawer}
-            active={ this.state.drawer }
+            active={this.state.drawer}
             activeContentId={this.state.activeDrawerId}
             onOpen={this.onDrawerOpen}
             onClose={this.onDrawerClose}
@@ -550,21 +671,21 @@ class App extends React.Component<{}, State> {
                 <li>Link 5</li>
               </ul>
 
-              <Button onClick={ () => this.setState({ activeDrawerId: 'content2' }) }>Content2 open</Button>
+              <Button onClick={() => this.setState({ activeDrawerId: 'content2' })}>Content2 open</Button>
             </DrawerContent>
 
             <DrawerContent id="content2" mode="slide">
               I am inside drawer content 2
 
-              <Button onClick={ () => this.setState({ activeDrawerId: 'content1' }) }>Content1 open</Button>
-              <Button onClick={ () => this.setState({ drawer: false }) }>Close</Button>
+              <Button onClick={() => this.setState({ activeDrawerId: 'content1' })}>Content1 open</Button>
+              <Button onClick={() => this.setState({ drawer: false })}>Close</Button>
             </DrawerContent>
           </Drawer>
 
         </div>
 
         <p> Some text with a
-          <Tooltip content="This order has shipping labels.">
+          <Tooltip content="This order has shipping labels.sdfsdfg">
             <Link>Tooltip 1</Link>
           </Tooltip> in it
         </p>
@@ -574,14 +695,30 @@ class App extends React.Component<{}, State> {
           <Link>Tooltip 2</Link>
         </Tooltip>
         <div>
+          <h1>{this.state.AccordionItemClose}</h1>
+          <h1>{this.state.AccordionItemOpen}</h1>
+        <Accordion items={Accordionitems} closeIndex={this.state.AccordionItemClose} openIndex={this.state.AccordionItemOpen} />
 
-          <ReactDataExample
-            columns={this.state.columns}
-            rowGetter={this.rowGetter}
-            rowsCount={this.state.rows.length}
-            minHeight={2}
-          /> */}
+          <Button onClick={() => this.toggleAccordionOpen(0)}>item1 toggle open</Button>
+          <Button onClick={() => this.toggleAccordionOpen(1)}>item2 toggle open</Button>
+          <Button onClick={() => this.toggleAccordionOpen(2)}>item3 toggle open</Button>
+          <Button onClick={() => this.toggleAccordionOpen(undefined)}>undefined toggle open</Button>
+
+          <Button onClick={() => this.toggleAccordionClose(0)}>item1 toggle close</Button>
+          <Button onClick={() => this.toggleAccordionClose(1)}>item2 toggle close</Button>
+          <Button onClick={() => this.toggleAccordionClose(2)}>item3 toggle close</Button>
+          <Button onClick={() => this.toggleAccordionClose(undefined)}>undefined toggle close</Button>
+
           <Heading>Popover</Heading>
+          <Button style={{ left: 200 }}  onClick={(e) => this.popoverUpdate(e)} >Click to active and deactive dropdown</Button>
+          <Dropdown
+            active={this.state.popoverActive}
+            dropdownItems={items}
+            toggle={() => this.popoverUpdate}
+            direction="right"
+            anchorEl = {this.state.anchorEl}
+          />
+
           <TextField
             id="TestName"
             label="Text Counter"
@@ -591,7 +728,7 @@ class App extends React.Component<{}, State> {
             enableTextCounter
             maxLength={101}
             minLength={5}
-            onChange={this.valueUpdater('appTextCounter')}
+            // onChange={this.valueUpdater('appTextCounter')}
           />
           <TextField
             id="TestName1"
@@ -603,7 +740,7 @@ class App extends React.Component<{}, State> {
             minLength={5}
             multiline
             resizable
-            onChange={this.valueUpdater('appTextCounter')}
+            // onChange={this.valueUpdater('appTextCounter')}
           />
           <p> Some text with a
           <Tooltip content="This order has shipping labels.">
@@ -625,7 +762,7 @@ class App extends React.Component<{}, State> {
           >
             <Link>Tooltip 2</Link>
           </Tooltip>
-          <TextField id="TestName" label="Text Counter" placeholder="test-placeholder" value={this.state.appTextCounter} helpText="Helper Text" enableTextCounter={true} maxLength={100} onChange={this.valueUpdater('appTextCounter')} />
+          <TextField id="TestName" label="Text Counter" placeholder="test-placeholder" value={this.state.appTextCounter} helpText="Helper Text" enableTextCounter={true} maxLength={100} /* onChange={this.valueUpdater('appTextCounter')} */ />
           <ClickableChip chip={<Chip>Batman</Chip>}>
             <Card title="More about Batman">
               <p>Batman is a fictional superhero who appears in American comic books published by DC Comics. The character was created by artist Bob Kane and writer Bill Finger, and first appeared in Detective Comics #27</p>
@@ -674,6 +811,31 @@ class App extends React.Component<{}, State> {
             <Item>Second item</Item>
             <Item>Third Item</Item>
           </List>
+          <Heading>Description List</Heading> 
+          <DescriptionList type="default" style="Inline"> 
+              <Term>Logistics</Term>
+              <Description>The management of products or other resources as they travel between a point of origin and a destination.</Description>
+              <Term>Sole proprietorship</Term>
+              <Description>A business structure where a single individual both owns and runs the company.</Description>
+              <Term>Discount code</Term>
+              <Description>A series of numbers and/or letters that an online shopper may enter at checkout to get a discount or special offer.</Description>
+          </DescriptionList>
+          <DescriptionList type="default" style="Stacked">          
+            <Term>Logistics</Term>
+            <Description>The management of products or other resources as they travel between a point of origin and a destination.</Description>
+            <Term>Sole proprietorship</Term>
+            <Description>A business structure where a single individual both owns and runs the company.</Description>
+            <Term>Discount code</Term>
+            <Description>A series of numbers and/or letters that an online shopper may enter at checkout to get a discount or special offer.</Description>
+        </DescriptionList>
+          <DescriptionList type="divider" style="Stacked">          
+           <Term>Logistics</Term>
+           <Description>The management of products or other resources as they travel between a point of origin and a destination.</Description>
+           <Term>Sole proprietorship</Term>
+           <Description>A business structure where a single individual both owns and runs the company.</Description>
+           <Term>Discount code</Term>
+           <Description>A series of numbers and/or letters that an online shopper may enter at checkout to get a discount or special offer.</Description>
+       </DescriptionList>
           <ChoiceList
             title="Company name"
             choices={[
@@ -703,7 +865,10 @@ class App extends React.Component<{}, State> {
             autoSuggest
             moreInfoComponent={<Button children="ranmal" />}
           />
-          <ValidatedForm>
+          <ValidatedForm
+            onSubmitError={(value: [any], error: Error) => console.log('value:', value, 'error:', error)}
+            onSubmit={(value: [any]) => console.log('Submit Value:', value)}
+          >
 
             <Heading>App Basics</Heading>
 
@@ -713,11 +878,10 @@ class App extends React.Component<{}, State> {
             <FormLayout>
               <ValidatedTextField
                 id="AppName"
-                required={true}
                 label="App Name"
                 placeholder=""
                 helpText="We recommend keeping your app name under 23 characters."
-                onChange={this.valueUpdater('appName')}
+                // onChange={this.valueUpdater('appName')}
                 value={this.state.appName}
                 name="App Name"
                 validateTrigger={['onBlur']}
@@ -733,15 +897,29 @@ class App extends React.Component<{}, State> {
                 label="App Description"
                 placeholder=""
                 helpText="Provide an engaging description that highlights the features and functionality of your app. Let potential users know what makes your app unique and why they will love it."
-                onChange={this.valueUpdater('appDescription')}
+                // onChange={this.valueUpdater('appDescription')}
                 validateTrigger={['onBlur']}
                 validateRules={[
                   { required: true, message: 'App Description is required.' },
                 ]}
               />
+
+              <ValidatedSelectField
+                id="appCity"
+                required={true}
+                name="Select city"
+                label="Select city"
+                options={[{ value: 'xyz', label: 'xyz' }, { value: 'abc', label: 'abc' }]}
+                value={this.state.appCity}
+                onChange={this.valueUpdater('appCity')}
+                validateTrigger={['onBlur']}
+                validateRules={[
+                  { required: true, message: 'City is required.' },
+                ]}
+              />
               <ButtonGroup>
                 <Button>Cancel</Button>
-                <Button primary>Next</Button>
+                <Button primary submit>Next</Button>
               </ButtonGroup>
             </FormLayout>
           </ValidatedForm>
@@ -755,7 +933,7 @@ class App extends React.Component<{}, State> {
             value={this.state.appTextCounter}
             helpText="Helper Text"
             maxLength={100}
-            onChange={this.valueUpdater('appTextCounter')}
+            // onChange={this.valueUpdater('appTextCounter')}
             connectedRight={<Select label="Weight unit" labelHidden options={[
               'kg',
               'lb',
@@ -1025,16 +1203,51 @@ class App extends React.Component<{}, State> {
     );
   }
 
+  // valueUpdater(field: any) {
+  //   return (value: any) => this.setState({ [field]: value });
+  // }
+
+  // handleChange(value1: any) {
+  //   return (value: any) => this.setState({ [value1]: value });
+  // }
+
+  popovertoggle(index: number) {
+    const updatedPopoverActive = this.state.popoverActive;
+    updatedPopoverActive[index] = !updatedPopoverActive[index];
+
+    this.setState({
+      popoverActive: updatedPopoverActive
+    });
+  }
+
+  toggleAccordionOpen(index?: number) {
+    this.setState({
+      AccordionItemOpen: index
+    });
+  }
+
+  toggleAccordionClose(index?: number) {
+    this.setState({
+      AccordionItemClose: index
+    });
+  }
   valueUpdater(field: any) {
-    return (value: any) => this.setState({ [field]: value });
+    return (value: any) => 'this.setState({ [field]: value })';
   }
 
   handleChange(value: string) {
-    return (value: any) => this.setState({ [value]: value });
+    return (value: any) => 'this.setState({ [value]: value })';
   }
 
-  popoverClose(field: any) {
-    return;
+  popoverUpdate(e : React.FormEvent<HTMLElement>) {
+    this.setState({
+      popoverActive : !this.state.popoverActive,
+      anchorEl: e.target as HTMLElement
+    });
+  }
+
+  closed1() {
+    console.log('called');
   }
 }
 

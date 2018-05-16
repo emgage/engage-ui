@@ -1,7 +1,18 @@
 export {
+  default as Accordion,
+  Props as AccordionProps,
+  AccordionItemProps
+} from './Accordion';
+
+export {
   default as Avatar,
   Props as AvatarProps,
 } from './Avatar';
+
+export {
+  default as Alert,
+  Props as AlertProps,
+} from './Alert';
 
 export {
   default as Badge,
@@ -136,6 +147,13 @@ export {
 } from './List';
 
 export {
+  default as DescriptionList,
+  Props as DescriptionListProps,
+  Term,
+  Description,
+} from './DescriptionList';
+
+export {
   default as Loading,
   Props as LoadingProps,
 } from './Loading';
@@ -162,9 +180,10 @@ export {
 } from './Picker';
 
 export {
-  default as Popover,
-  Props as PopoverProps,
-} from './Popover';
+  default as Dropdown,
+  Props as DropdownProps,
+  DropdownItemProps
+} from './Dropdown';
 
 export {
   default as PositionedOverlay,
@@ -175,10 +194,6 @@ export {
   default as RadioButton,
   Props as RadioButtonProps,
 } from './RadioButton';
-
-export {
-  default as ReactDataGrid,
-} from './ReactDataGrid';
 
 export {
   default as Scrollable,
@@ -244,6 +259,11 @@ export {
 } from './ValidatedTextField';
 
 export {
+  default as ValidatedSelectField,
+  Props as ValidatedSelectFieldProps,
+} from './ValidatedSelectField';
+
+export {
   default as Video,
   Props as VideoProps,
   VideoType,
@@ -277,3 +297,14 @@ export {
   default as Spinner,
   Props as SpinnerProps,
 } from './Spinner';
+
+export {
+  Tab,
+  TabPanel,
+  Props as TabProps,
+} from './Tab';
+
+export {
+  Breadcrumb,
+  Props as BreadcrumbProps,
+} from './Breadcrumb';

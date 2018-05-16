@@ -66,8 +66,8 @@ describe('<Stack />', () => {
                                         <Badge>Fulfilled</Badge>
                                     </Stack>
                              );
-        expect(stackWrapper.childAt(0).prop('children').props.children).toBe('Paid');
-        expect(stackWrapper.childAt(1).prop('children').props.children).toBe('Fulfilled');
+        expect(stackWrapper.childAt(0).childAt(0).childAt(0).prop('children').props.children).toBe('Paid');
+        expect(stackWrapper.childAt(0).childAt(0).childAt(1).prop('children').props.children).toBe('Fulfilled');
       });
       it('should have 2 children', () => {
         const stackWrapper = mount(
@@ -76,7 +76,7 @@ describe('<Stack />', () => {
                                         <Badge>Fulfilled</Badge>
                                     </Stack>
                              );
-        expect(stackWrapper.children()).toHaveLength(2);
+        expect(stackWrapper.childAt(0).childAt(0).children()).toHaveLength(2);
       });
     });
 
@@ -103,7 +103,7 @@ describe('<Stack />', () => {
         const stackWrapper = mount(
                                     <Stack theme={theme} />
                              );
-        expect(stackWrapper.children()).toHaveLength(0);
+        expect(stackWrapper.childAt(0).childAt(0).children()).toHaveLength(0);
       });
     });
   });
@@ -144,7 +144,7 @@ describe('<Stack />', () => {
                                         <Badge>Fulfilled</Badge>
                                     </Stack>
                              );
-        expect(stackWrapper.children()).toHaveLength(2);
+        expect(stackWrapper.childAt(0).childAt(0).children()).toHaveLength(2);
       });
     });
 
@@ -183,7 +183,7 @@ describe('<Stack />', () => {
                                     <Badge>Fulfilled</Badge>
                                 </Stack>
                              );
-        expect(stackWrapper.children()).toHaveLength(2);
+        expect(stackWrapper.childAt(0).childAt(0).children()).toHaveLength(2);
       });
     });
 
@@ -231,7 +231,7 @@ describe('<Stack />', () => {
                                         <Badge>Fulfilled</Badge>
                                     </Stack>
                              );
-        expect(stackWrapper.children()).toHaveLength(2);
+        expect(stackWrapper.childAt(0).childAt(0).children()).toHaveLength(2);
       });
     });
   });
@@ -308,7 +308,7 @@ describe('<Stack />', () => {
                                         <Badge>Fulfilled</Badge>
                                     </Stack>
                              );
-        expect(stackWrapper.children()).toHaveLength(2);
+        expect(stackWrapper.childAt(0).childAt(0).children()).toHaveLength(2);
       });
     });
 
@@ -356,7 +356,7 @@ describe('<Stack />', () => {
                                         <Badge>Fulfilled</Badge>
                                     </Stack>
                              );
-        expect(stackWrapper.children()).toHaveLength(2);
+        expect(stackWrapper.childAt(0).childAt(0).children()).toHaveLength(2);
       });
     });
   });
@@ -434,7 +434,7 @@ describe('<Stack />', () => {
                                         <Badge>Fulfilled</Badge>
                                     </Stack>
                                  );
-        expect(stackWrapper.children()).toHaveLength(2);
+        expect(stackWrapper.childAt(0).childAt(0).children()).toHaveLength(2);
       });
     });
 
@@ -482,7 +482,7 @@ describe('<Stack />', () => {
                                         <Badge>Fulfilled</Badge>
                                     </Stack>
                              );
-        expect(stackWrapper.children()).toHaveLength(2);
+        expect(stackWrapper.childAt(0).childAt(0).children()).toHaveLength(2);
       });
     });
   });
@@ -613,7 +613,7 @@ describe('<Stack />', () => {
                                         <Badge>Fulfilled</Badge>
                                     </Stack>
                                 );
-        expect(stackWrapper.children()).toHaveLength(2);
+        expect(stackWrapper.childAt(0).childAt(0).children()).toHaveLength(2);
       });
     });
 
@@ -661,7 +661,7 @@ describe('<Stack />', () => {
                                         <Badge>Fulfilled</Badge>
                                     </Stack>
                              );
-        expect(stackWrapper.children()).toHaveLength(2);
+        expect(stackWrapper.childAt(0).childAt(0).children()).toHaveLength(2);
       });
     });
   });
@@ -681,7 +681,9 @@ describe('<Stack />', () => {
                                     </Item>
                                 </Stack>
                            );
-      expect(stackWrapper.childAt(0).prop('fill')).toBe(true);
+
+      expect(stackWrapper.childAt(0).childAt(0).childAt(0).prop('fill')).toBe(true);
     });
   });
 });
+// TODO Debug Jest 
