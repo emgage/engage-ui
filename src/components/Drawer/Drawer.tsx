@@ -47,6 +47,7 @@ export interface Props {
   theme?: any;
   // Callback function to close or open the drawer
   toggleDrawer?(): void;
+  style?: any;
 }
 
 const getUniqueID = createUniqueIDFactory('DrawerWrapper');
@@ -174,9 +175,13 @@ class Drawer extends React.Component<Props, never> {
 
     this.setBodyStyle();
     const activeContent = this.renderActivechildren();
-
+    let dStyle = Object.assign(
+      {},                              
+      { width: width ? { width: `${width}` } : undefined },  
+      this.props.style          
+    );
     const bar = [
-      <div className={barClassName} style={width ? { width: `${width}` }  : undefined} key={this.id}>
+      <div className={barClassName} style={dStyle} key={this.id}>
         {
           active ?
           <div className={theme.label} aria-live={'assertive'} >

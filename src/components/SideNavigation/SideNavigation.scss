@@ -19,6 +19,19 @@
     padding: 5px;
 }
 
+.icon {
+    position: absolute;
+    display: inline-block;
+    height: 2rem;
+    width: 2rem;
+    max-height: 100%;
+    max-width: 100%;
+    margin: auto;
+}
+.li{
+    display: inline-flex;
+}
+
 .list {
     list-style: none;
     margin-top: 0;
@@ -31,4 +44,39 @@
     ul {
       padding-left: spacing(loose);
     }
+}
+
+.collapseList {
+    list-style: none;
+    margin-top: 25px;
+    padding-left: 0;
+    position: absolute;
+    /* z-index: 1; */
+    /* top: 5px; */
+    right: 5px;
+    padding: 10px;
+}
+
+.container {
+    overflow: visible;
+}
+
+.drawerCollapse {
+    width: 10px;
+    padding: 20px;
+    position: absolute;
+    top: 46px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 102;
+    transform: translateZ(0);
+    background-color: #3d424d;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+.rootCollapse {
+    left: 30px!important;
 }
