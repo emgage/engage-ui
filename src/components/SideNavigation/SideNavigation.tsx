@@ -8,7 +8,6 @@ import { Drawer, DrawerContent } from '../Drawer';
 import Button from '../Button';
 import Tooltip from '../Tooltip';
 import * as baseTheme from './SideNavigation.scss';
-//import data from './sideNavData.json';
 import axios from 'axios';
 
 export interface Props {
@@ -55,15 +54,15 @@ class SideNavigation extends React.Component<Props, State> {
         const fullContentMarkup = this.state.navData.map(function(full:any){
             return (
                 <div className={iconClass}>
-                    <li key={full.label} className={liClass}><Icon source={full.icon} color="black" />{full.label}</li>
+                    <li key={full.label} className={liClass}><Icon source={full.icon} color="white" />{full.label}</li>
                 </div>
             );
         });
         const collapsedContentMarkup = this.state.navData.map(function(col:any){
             return (
                 <p className={iconClass}>
-                    <Tooltip content={col.label}>
-                        <Icon source={col.icon} color="black" />
+                    <Tooltip content={col.label} >
+                        <Icon source={col.icon} color="white" />
                     </Tooltip>
                 </p>
             );
@@ -76,18 +75,18 @@ class SideNavigation extends React.Component<Props, State> {
                     activeContentId={this.state.activeDrawerId}
                     mode="push"
                     width="small"
-                    overlay style={actDrawerId == "collapsedContent" ? { width: "10px", padding: "15px"} : { width:"270px"}} >
-                    <DrawerContent id="fullContent" mode="slide">
+                    overlay style={actDrawerId == "collapsedContent" ? { width: "10px", padding: "15px", overflow:"visible"} : { width:"270px", overflow:"visible"}} >
+                    <DrawerContent id="fullContent" mode="slide" style={{background: "black", color: "white"}}>
                         <span className={this.props.theme.expand}>
-                            <Button onClick={() => this.setState({ activeDrawerId: 'collapsedContent' })} icon="chevronLeft" plain />
+                            <button type="button" className={this.props.theme.navButton} onClick={() => this.setState({ activeDrawerId: 'collapsedContent' })}><Icon source="chevronLeft" color="white" /></button>
                         </span>
                         <ul className={this.props.theme.list}>
                             {fullContentMarkup}
                         </ul>
                     </DrawerContent>
-                    <DrawerContent id="collapsedContent" mode="slide" style={{width: "10px", padding: "15px"}}>
+                    <DrawerContent id="collapsedContent" mode="slide" style={{width: "10px", padding: "15px", background: "black", color: "white"}}>
                         <span className={this.props.theme.collapse}>
-                            <Button onClick={() => this.setState({ activeDrawerId: 'fullContent' })} icon="chevronRight" plain />
+                            <button type="button" className={this.props.theme.navButton} onClick={() => this.setState({ activeDrawerId: 'fullContent' })}><Icon source="chevronRight" color="white" /></button>
                         </span>
                         <ul className={this.props.theme.collapseList} >
                             {collapsedContentMarkup}
