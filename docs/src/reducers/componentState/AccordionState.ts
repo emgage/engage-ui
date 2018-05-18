@@ -1,9 +1,9 @@
 import { IDocument } from '../../Types';
 import AccordionExampleFirst from '../../examples/AccordionExample/AccordionExampleFirst';
-import AccordionExampleSecond from '../../examples/AccordionExample/AccordionExampleSecond';
+//import AccordionExampleSecond from '../../examples/AccordionExample/AccordionExampleSecond';
 
 const AccordionExampleCodeFirst = require('!raw-loader!../../examples/AccordionExample/AccordionExampleFirst') as string;
-const AccordionExampleCodeSecond = require('!raw-loader!../../examples/AccordionExample/AccordionExampleSecond') as string;
+//const AccordionExampleCodeSecond = require('!raw-loader!../../examples/AccordionExample/AccordionExampleSecond') as string;
 
 const AccordionState: IDocument = {
   id: 'accordion',

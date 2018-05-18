@@ -789,7 +789,7 @@ class App extends React.Component<{}, State> {
           >
             <Link>Tooltip 2</Link>
           </Tooltip>
-          <SideNavigation />
+          <SideNavigation accordian={true} />
           <Heading>List</Heading>
           <List type="bullet">
             <Item>Yellow shirt</Item>
@@ -1213,9 +1213,9 @@ class App extends React.Component<{}, State> {
   //   return (value: any) => this.setState({ [value1]: value });
   // }
 
-  popovertoggle(index: number) {
-    const updatedPopoverActive = this.state.popoverActive;
-    updatedPopoverActive[index] = !updatedPopoverActive[index];
+  popovertoggle(index: number|object) {
+    let updatedPopoverActive = this.state.popoverActive;
+    updatedPopoverActive = !updatedPopoverActive;
 
     this.setState({
       popoverActive: updatedPopoverActive

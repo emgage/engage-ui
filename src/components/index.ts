@@ -89,7 +89,7 @@ export {
 
 export {
   default as SideNavigation,
-  Props
+  Props as SideNavigationProps
 } from './SideNavigation';
 
 export {

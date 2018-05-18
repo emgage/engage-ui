@@ -2,12 +2,12 @@
     {
         "label": "Basics", 
         "icon": "notes",
-        "action": "console.log('Basics is clicked!')"
+        "action": "() => console.log('Basics is clicked!')"
     },
     {
         "label": "Content", 
         "icon": "print",
-        "action": "console.log('Content is clicked!')"
+        "action": "() => console.log('Content is clicked!')"
     },
     {
         "label": "Permissions", 
@@ -29,6 +29,43 @@
                 "action": "() => console.log('Roles Item is clicked!)"
             }
         ], 
-        "action": "console.log('Permissions is clicked!')"
+        "action": "() => console.log('Permissions is clicked!')"
+    },
+    {
+        "label": "Pages", 
+        "icon": "view",
+        "children": [
+            {
+                "label": "Forms", 
+                "icon": "view",
+                "action": "() => console.log('Forms Item is clicked!)"
+            },
+            {
+                "label": "Workflow", 
+                "icon": "view",
+                "action": "() => console.log('Workflow Item is clicked!)"
+            },
+            {
+                "label": "Themes", 
+                "icon": "view",
+                "action": "() => console.log('Themes Item is clicked!)"
+            }
+        ], 
+        "action": "() => console.log('Pages is clicked!')"
+    },
+    {
+        "label": "Publishing", 
+        "icon": "export",
+        "action": "() => console.log('Publishing is clicked!')"
+    },
+    {
+        "label": "App Analytics", 
+        "icon": "embed",
+        "action": "() => console.log('App Analytics is clicked!')"
+    },
+    {
+        "label": "Sherpa", 
+        "icon": "alert",
+        "action": "() => console.log('Sherpa is clicked!')"
     }
 ]
