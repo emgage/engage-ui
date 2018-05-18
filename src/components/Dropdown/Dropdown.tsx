@@ -34,6 +34,8 @@ export class Dropdown extends React.PureComponent<Props, State> {
   private getUniqueID = createUniqueIDFactory('Dropdown');
   private activatorContainer: HTMLElement | null;
   private id = this.getUniqueID();
+  private dropdownEle: any = null;
+  private dropdownOffset: any = { height: 0, width: 0 };
 
   constructor(props: Props) {
     super(props);
@@ -53,6 +55,13 @@ export class Dropdown extends React.PureComponent<Props, State> {
   componentDidMount() {
     this.setAccessibilityAttributes();
     const element = findDOMNode(this);
+    // const dropdownCopy = this.dropdownEle.cloneNode(true);
+    this.dropdownEle.style.display = 'block';
+    // this.dropdownPostion
+    this.dropdownOffset.height = this.dropdownEle.offsetHeight;
+    this.dropdownOffset.width = this.dropdownEle.offsetWidth;
+    this.dropdownEle.style.display = '';
+
     if (element !== null) {
       addEventListener(element, 'keyup', this.handleKeyEvent);
     }
@@ -106,35 +115,41 @@ export class Dropdown extends React.PureComponent<Props, State> {
 
     const activatorComp = anchorEl;
     let activatorRect: ClientRect | DOMRect;
-    let leftCord : number = 0;
+    let dropdownPostion: any = {};
+    // let leftCord : number = 0;
+    // const dropdownPosition: any = {};
     if (activatorComp != null) {
       activatorRect = activatorComp.getBoundingClientRect();
-      if (direction === 'up' || direction === 'down') {
-        leftCord = activatorRect.left + (activatorRect.width / 2) - 50 /* Menu Width / 2 */;
+      if (direction === 'up') {
+        dropdownPostion = { top: - this.dropdownOffset.height - activatorRect.height };
       } else if (direction === 'left') {
-        leftCord = activatorRect.left - 100 /* Menu Width */;
-      } else {
-        leftCord = activatorRect.left + activatorRect.width;
+        dropdownPostion = { left: - this.dropdownOffset.width, top: - activatorRect.height };
+      } else if (direction === 'right') {
+        dropdownPostion = { left: activatorRect.width, top: - activatorRect.height };
       }
     }
 
     const DropdownItemComponents = dropdownItems.map((item,index) =>
-            <DropdownItem
-              key={index}
-              active={selectedIndex === index}
-              disabled={item.disabled}
-              divider={item.divider}
-              header={item.header}
-              content={item.content}
-              onClick={item.onClick}
-            />
-        );
+      <DropdownItem
+        key={index}
+        active={selectedIndex === index}
+        disabled={item.disabled}
+        divider={item.divider}
+        header={item.header}
+        content={item.content}
+        onClick={item.onClick}
+      />
+    );
 
     return (
       <WRAPPERCOMPONENT ref={this.setActivator}>
         <div className={dropdownClassName} key={this.id}>
-          <div className={dropdownMenuClassName} style= {{ left: leftCord }}>
-            <div className={baseTheme.box} />
+          <div
+            style={dropdownPostion}
+            className={dropdownMenuClassName}
+            ref={node => this.dropdownEle = node}
+          >
+            {/* <div className={baseTheme.box} /> */}
             {DropdownItemComponents}
           </div>
         </div>
