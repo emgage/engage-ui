@@ -176,7 +176,6 @@ class Table extends React.Component<Props, State> {
   renderBody = () => {
     const { column, rowAction, selectRow } = this.props;
     const { data } = this.state;
-
     return (
       <TableBody>
         {
@@ -188,7 +187,7 @@ class Table extends React.Component<Props, State> {
                   {
                     column.map((colItem: any) => {
                       return (
-                        <TableData key={colItem.key}>
+                        <TableData key={colItem.key} dataLabel = {colItem.label}>
                           {/* 
                             Here injectBody helps to inject any custom component to td,
                             we also return the specifc value, which then can be used in injected component
