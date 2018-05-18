@@ -19,6 +19,7 @@ class TreeNode extends React.Component<Props, never> {
   }
 
   render() {
+    // If component prop is not present then check for label & render that
     const { component = this.renderNode } = this.props;
     return component();
   }

@@ -8,6 +8,7 @@ import { TREEVIEW } from '../ThemeIdentifiers';
 
 import * as baseTheme from './TreeView.scss';
 
+// There could be multiple themes, but right now lets take only a basic theme
 type Themes = 'basic';
 
 export interface Props {
@@ -30,6 +31,7 @@ class TreeView extends React.Component<Props, State> {
   }
 
   componentWillReceiveProps(newProps: Props) {
+    // If treenodes are changed or deleted or added new then it should render again
     if (!Object.is(newProps.source, this.props.source)) {
       this.setState({ source: newProps.source });
     }
@@ -123,32 +125,10 @@ class TreeView extends React.Component<Props, State> {
 
     return (
       <ul>
-        {
-          source.map(item => this.renderNode(item))
-        }
+        { source.map(item => this.renderNode(item)) }
       </ul>
     );
   }
 }
 
 export default themr(TREEVIEW, baseTheme)((TreeView)) as ThemedComponentClass<Props, State>;
-
-
-/*
-const treeConfig = [
-  {
-    id: 123,
-    label?: 'XYZ',
-    component?: () => {},
-    active: false,
-    disable?: false,
-    onToggle?: () => {},
-    children?: [{ ...same like above }]
-  }
-]
-<Treeview
-source={treeConfig}
-type={'text' | 'component' | 'all'}
-selectedTheme={'basic'}
-/>
-*/
