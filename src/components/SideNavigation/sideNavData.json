@@ -1,29 +1,35 @@
 [
     {
+        "id":"1",
         "label": "Basics", 
         "icon": "notes",
         "action": "() => console.log('Basics is clicked!')"
     },
     {
+        "id":"2",
         "label": "Content", 
         "icon": "print",
         "action": "() => console.log('Content is clicked!')"
     },
     {
+        "id":"3",
         "label": "Permissions", 
         "icon": "conversation",
         "children": [
             {
+                "id":"3.1",
                 "label": "User", 
                 "icon": "conversation",
                 "action": "() => console.log('User Item is clicked!)"
             },
             {
+                "id":"3.2",
                 "label": "Groups", 
                 "icon": "conversation",
                 "action": "() => console.log('Groups Item is clicked!)"
             },
             {
+                "id":"3.3",
                 "label": "Roles", 
                 "icon": "conversation",
                 "action": "() => console.log('Roles Item is clicked!)"
@@ -32,20 +38,24 @@
         "action": "() => console.log('Permissions is clicked!')"
     },
     {
+        "id":"4",
         "label": "Pages", 
         "icon": "view",
         "children": [
             {
+                "id":"4.1",
                 "label": "Forms", 
                 "icon": "view",
                 "action": "() => console.log('Forms Item is clicked!)"
             },
             {
+                "id":"4.2",
                 "label": "Workflow", 
                 "icon": "view",
                 "action": "() => console.log('Workflow Item is clicked!)"
             },
             {
+                "id":"4.3",
                 "label": "Themes", 
                 "icon": "view",
                 "action": "() => console.log('Themes Item is clicked!)"
@@ -54,16 +64,19 @@
         "action": "() => console.log('Pages is clicked!')"
     },
     {
+        "id":"5",
         "label": "Publishing", 
         "icon": "export",
         "action": "() => console.log('Publishing is clicked!')"
     },
     {
+        "id":"6",
         "label": "App Analytics", 
         "icon": "embed",
         "action": "() => console.log('App Analytics is clicked!')"
     },
     {
+        "id":"7",
         "label": "Sherpa", 
         "icon": "alert",
         "action": "() => console.log('Sherpa is clicked!')"
