@@ -10,8 +10,7 @@
     position: absolute;
     z-index: 1000;
     top: 5px;
-    right: 5px;
-    padding: 5px;
+    right: 1px;
 }
 
 .icon {
@@ -23,8 +22,22 @@
     max-width: 100%;
     margin: auto;
 }
-.li{
+.collapseIcon {
+    display: inline-block;
+    height: 2rem;
+    width: 2rem;
+    max-height: 100%;
+    max-width: 100%;
+    margin-top: 20px
+}
+.li {
     display: inline-flex;
+}
+
+.childLi {
+    display: inline-flex;
+    margin-left: 10px; 
+    margin-top: 10px;
 }
 
 .list {
@@ -46,8 +59,8 @@
     margin-top: 25px;
     padding-left: 0;
     position: absolute;
-    right: 5px;
-    padding: 10px;
+    right: 1px;
+    padding: 1px;
 }
 
 .container {
@@ -83,4 +96,10 @@
     background-color: transparent;
     display: inline-block;
     fill: currentcolor;
+}
+.navDivider {
+    margin-top:10px;
+    padding-bottom:30px;
+    border-bottom:1px solid #e5e5e5;  
+    width: 200px;
 }

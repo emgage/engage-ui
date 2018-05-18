@@ -2,12 +2,33 @@
     {
         "label": "Basics", 
         "icon": "notes",
+        "action": "console.log('Basics is clicked!')"
+    },
+    {
+        "label": "Content", 
+        "icon": "print",
+        "action": "console.log('Content is clicked!')"
+    },
+    {
+        "label": "Permissions", 
+        "icon": "conversation",
         "children": [
             {
-                "label": "childitem", 
-                "action": "() => console.log('Child Item is clicked!)"
+                "label": "User", 
+                "icon": "conversation",
+                "action": "() => console.log('User Item is clicked!)"
+            },
+            {
+                "label": "Groups", 
+                "icon": "conversation",
+                "action": "() => console.log('Groups Item is clicked!)"
+            },
+            {
+                "label": "Roles", 
+                "icon": "conversation",
+                "action": "() => console.log('Roles Item is clicked!)"
             }
         ], 
-        "action": "() => console.log('Item1 is clicked!')"
+        "action": "console.log('Permissions is clicked!')"
     }
 ]

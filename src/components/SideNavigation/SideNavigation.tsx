@@ -46,21 +46,33 @@ class SideNavigation extends React.Component<Props, State> {
         let actDrawerId = this.state.activeDrawerId;
         const rootElement = document.getElementById('root');
         const iconClass = this.props.theme.icon;
+        const iconCollClass = this.props.theme.collapseIcon;
+        const divClass = this.props.theme.navDivider;
         const liClass = this.props.theme.li;
+        const childLiClass = this.props.theme.childLi;
         if (rootElement !== null) {
             rootElement.className = this.state.drawer ? (this.props.theme.container) : '';
             rootElement.className = rootElement.className + ' ' + (actDrawerId == "collapsedContent" ? this.props.theme.rootCollapse : '')
         }
         const fullContentMarkup = this.state.navData.map(function(full:any){
+            const childrenMarkup = full.children !== undefined ? (full.children.map(function(child:any){
+                return (
+                    <li key={child.label}><a className={childLiClass} onClick={()=>full.action} aria-disabled={false}><Icon source={child.icon} color="white" />{child.label}</a></li>                         
+                );
+            })) : null;
             return (
-                <div className={iconClass}>
-                    <li key={full.label} className={liClass}><Icon source={full.icon} color="white" />{full.label}</li>
+                <div>
+                    <div className={iconClass}>
+                        <li key={full.label} className={liClass} ><a className={liClass} onClick={()=>full.action} aria-disabled={false}><Icon source={full.icon} color="white" />{full.label}</a></li>
+                            {childrenMarkup}
+                    </div>
+                    <div className={divClass}/>
                 </div>
             );
         });
         const collapsedContentMarkup = this.state.navData.map(function(col:any){
             return (
-                <p className={iconClass}>
+                <p className={iconCollClass}>
                     <Tooltip content={col.label} >
                         <Icon source={col.icon} color="white" />
                     </Tooltip>
