@@ -276,6 +276,7 @@ export {
 
 export {
   Modal,
+  ModalContent,
   ModalBody,
   ModalFooter,
   ModalHeader,
