@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from 'react-css-themr';
+import autobind from '@shopify/javascript-utilities/autobind';
 import { classNames } from '@shopify/react-utilities/styles';
 import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
 import { layeredComponent } from '@shopify/react-utilities/components';
@@ -17,6 +18,9 @@ export type Width = 'small' | 'medium' | 'large' | string;
 export interface Props {
   // Define the open or close state of modal
   active?: boolean;
+  accessibilityLabel?: string;
+  // Store the id of active drawer content
+  activeContentId?: string;
   // Show or hide close button for modal
   closeButton?: boolean;
   // Can define any extra class for modal to style it if needed
@@ -45,6 +49,7 @@ class Modal extends React.Component<Props, never> {
   }
 
   public id = getUniqueID();
+  private activatorContainer: HTMLElement | null;
 
   componentDidMount() {
     this.setAccessibilityAttributes();
@@ -64,6 +69,10 @@ class Modal extends React.Component<Props, never> {
     } else if (active && !newProps.active && typeof newProps.onClose !== 'undefined') {
       newProps.onClose();
     }
+  }
+
+  closeModal = () => {
+    this.props.toggle ? this.props.toggle() : undefined;
   }
 
   getModalContainerClassName = () => {
@@ -88,7 +97,23 @@ class Modal extends React.Component<Props, never> {
   }
 
   render() {
-    return null;
+    return <div ref={this.setActivator}></div>;
+  }
+
+    // Function to get the current active modal content from props.children & set that as active & render that component only
+  renderActivechildren() {
+    const { activeContentId, children, closeButton, toggle } = this.props;
+
+    // Iterate through all the children content component & find active component
+    // Match activeContentId with children's id & mark that as active: true
+    return React.Children.map(children, (child: React.ReactElement<any>) => {
+      const { id } = child.props;
+
+      // Clone active component & return it
+      if (activeContentId === id) {
+        return React.cloneElement(child, { closeButton, toggle, active: true, });
+      }
+    });
   }
 
   // Render close button if its set true
@@ -104,11 +129,12 @@ class Modal extends React.Component<Props, never> {
   }
 
   renderLayer = () => {
-    const { children, closeOnBackgroud } = this.props;
+    const { closeOnBackgroud } = this.props;
     const modalWrapperClassName = this.getModalWrapperClassName();
     const modalContainerClass = this.getModalContainerClassName();
     const escapeKeyListener = this.renderKeyListener();
     const closeButton = this.renderCloseButton();
+    const activeContent = this.renderActivechildren();
 
     this.setBodyTagStyle();
 
@@ -120,13 +146,11 @@ class Modal extends React.Component<Props, never> {
         {escapeKeyListener}
         <div className={modalContainerClass}>
           {closeButton}
-          {children}
+          {activeContent}
         </div>
       </div>
     );
   }
-
-  setAccessibilityAttributes() {}
 
   // This just set overflow: hidden style to body tag, so there will be no scrollbar
   setBodyTagStyle = () => {
@@ -161,8 +185,28 @@ class Modal extends React.Component<Props, never> {
     }
   }
 
-  closeModal = () => {
-    this.props.toggle ? this.props.toggle() : undefined;
+  // Get activator node i.e. trigger which opened up drawer
+  // This node will be used to set accessibility attributes
+  @autobind
+  private setActivator(node: HTMLElement | null) {
+    if (node == null) {
+      this.activatorContainer = null;
+      return;
+    }
+
+    this.activatorContainer = node.previousSibling as HTMLElement;
+  }
+
+  private setAccessibilityAttributes() {
+    const { activatorContainer, id } = this;
+    if (activatorContainer == null) { return; }
+
+    const accessibilityNode = activatorContainer;
+
+    accessibilityNode.tabIndex = 0;
+    accessibilityNode.setAttribute('aria-describedby', id);
+    accessibilityNode.setAttribute('aria-expanded', (this.props.active || false).toString());
+    accessibilityNode.setAttribute('aria-label', this.props.accessibilityLabel ? this.props.accessibilityLabel : '');
   }
 }
 
