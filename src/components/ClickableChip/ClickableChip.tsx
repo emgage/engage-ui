@@ -46,7 +46,7 @@ class ClickableChip extends React.PureComponent<Props, State> {
           {chip}
         </div>
         <Dropdown anchorEl={this.state.anchorEl} active={this.state.active} onClose={this.onClose} toggle={this.handleClick} dropdownItems={Items} ></Dropdown>
-      </div> 
+      </div>
     );
   }
 

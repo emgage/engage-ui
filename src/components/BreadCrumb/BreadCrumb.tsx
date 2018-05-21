@@ -29,7 +29,7 @@ export interface Props {
 }
 
 // Breadcrumb component bind items from sourcedata.
-class Breadcrumb extends React.Component<Props, {}> {
+class BreadCrumb extends React.Component<Props, {}> {
 
   renderBreadcrumbItems() {
     const { direction = 'left', theme, source } = this.props;
@@ -61,4 +61,4 @@ class Breadcrumb extends React.Component<Props, {}> {
   }
 }
 
-export default themr(BREADCRUMB, baseTheme)(Breadcrumb) as ThemedComponentClass<Props, {}>;
+export default themr(BREADCRUMB, baseTheme)(BreadCrumb) as ThemedComponentClass<Props, {}>;

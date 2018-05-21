@@ -2,7 +2,12 @@ import * as React from 'react';
 import { createForm } from 'rc-form';
 
 export interface Props {
-  form: any;
+  form: {
+    getFieldProps: any,
+    getFieldError: any,
+    validateFieldsAndScroll: any,
+    validateFields(error?: any, values?: [any]): any;
+  };
   style?: React.CSSProperties;
   onSubmit: (values: [any]) => void;
   onSubmitError: (values: [any], error: Error) => void;
