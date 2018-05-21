@@ -34,8 +34,8 @@ export class Dropdown extends React.PureComponent<Props, State> {
   private getUniqueID = createUniqueIDFactory('Dropdown');
   private activatorContainer: HTMLElement | null;
   private id = this.getUniqueID();
-  private dropdownEle: any = null;
-  private dropdownOffset: any = { height: 0, width: 0 };
+  private dropdownEle: HTMLElement;
+  private dropdownOffset = { height: 0, width: 0 };
 
   constructor(props: Props) {
     super(props);
@@ -44,7 +44,7 @@ export class Dropdown extends React.PureComponent<Props, State> {
     };
   }
 
-  componentWillReceiveProps(newProps: any) {
+  componentWillReceiveProps(newProps: Props) {
     const { active } = this.props;
 
     if (active && !newProps.active && newProps.onClose) {
@@ -55,9 +55,7 @@ export class Dropdown extends React.PureComponent<Props, State> {
   componentDidMount() {
     this.setAccessibilityAttributes();
     const element = findDOMNode(this);
-    // const dropdownCopy = this.dropdownEle.cloneNode(true);
     this.dropdownEle.style.display = 'block';
-    // this.dropdownPostion
     this.dropdownOffset.height = this.dropdownEle.offsetHeight;
     this.dropdownOffset.width = this.dropdownEle.offsetWidth;
     this.dropdownEle.style.display = '';
@@ -115,9 +113,8 @@ export class Dropdown extends React.PureComponent<Props, State> {
 
     const activatorComp = anchorEl;
     let activatorRect: ClientRect | DOMRect;
-    let dropdownPostion: any = {};
-    // let leftCord : number = 0;
-    // const dropdownPosition: any = {};
+    let dropdownPostion = {};
+
     if (activatorComp != null) {
       activatorRect = activatorComp.getBoundingClientRect();
       if (direction === 'up') {
@@ -147,7 +144,7 @@ export class Dropdown extends React.PureComponent<Props, State> {
           <div
             style={dropdownPostion}
             className={dropdownMenuClassName}
-            ref={node => this.dropdownEle = node}
+            ref={node => this.dropdownEle = node as HTMLElement}
           >
             {/* <div className={baseTheme.box} /> */}
             {DropdownItemComponents}
