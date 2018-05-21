@@ -39,6 +39,7 @@ class SideNavigation extends React.Component<Props, State> {
 
     componentDidMount() {
         axios.get('./src/components/SideNavigation/sideNavData.json').then((response:any) => {
+            
             this.setState({
                 navData: response.data
             });
@@ -59,30 +60,35 @@ class SideNavigation extends React.Component<Props, State> {
             rootElement.className = rootElement.className + ' ' + (actDrawerId == "collapsedContent" ? this.props.theme.rootCollapse : '')
         }
         const fullContentMarkup = this.state.navData.map(function(full:any){
-            const childrenMarkup = full.children !== undefined ? (full.children.map(function(child:any){
-                return (
-                    <li key={child.id}><a className={childLiClass} onClick={()=>full.action} aria-disabled={false}><Icon source={child.icon} color="white" />{child.label}</a></li>                         
-                );
-            })) : null;
+            let func = JSON.parse('{"action":"' + full.action + '"}', function (key, value) {
+                if (value && (typeof value === 'string') && value.indexOf("()") === 0) {
+                    var jsFunc = new Function('return ' + value)();
+                    return jsFunc;
+                }  
+                return value;
+            });
+            const childrenMarkup = full.children !== undefined ? full.children.map(function(child:any){
+                return <li key={child.id}><a className={childLiClass} onClick={func.action} aria-disabled={false}><Icon source={child.icon} color="white" />{child.label}</a></li>;
+            }) : null;
             const items : AccordionItemProps[] = [{
                 children: childrenMarkup,
-                header: <li key={full.id} className={liClass} ><a className={liClass} onClick={()=>full.action} aria-disabled={false}><Icon source={full.icon} color="white" />{full.label}</a></li>
+                header: <li key={full.id} className={liClass} ><a className={liClass} onClick={func.action} aria-disabled={false}><Icon source={full.icon} color="white" />{full.label}</a></li>
               }
             ];
             const markup = accState ? ( 
                     childrenMarkup ==  null ? (
                         <div>
-                            <li key={full.id} className={liClass} ><a className={liClass} onClick={()=>full.action} aria-disabled={false}><Icon source={full.icon} color="white" />{full.label}</a></li>
+                            <li key={full.id} className={liClass} ><a className={liClass} onClick={func.action} aria-disabled={false}><Icon source={full.icon} color="white" />{full.label}</a></li>
                             {childrenMarkup}
                         </div>
                     ) : (
                     <Accordion style={{padding:"0px"}} mode="collapsible" items={items} />)
-                ) : (
+                    ) : (
                         <div>
-                            <li key={full.id} className={liClass} ><a className={liClass} onClick={()=>full.action} aria-disabled={false}><Icon source={full.icon} color="white" />{full.label}</a></li>
+                            <li key={full.id} className={liClass}><a className={liClass} onClick={func.action} aria-disabled={false}><Icon source={full.icon} color="white" />{full.label}</a></li>
                             {childrenMarkup}
                         </div>
-                );
+                    );
             let h = childrenMarkup ==  null ? 0  : (childrenMarkup.length * 40);
             const hstyle = {marginBottom: h + 'px'}
             return (
