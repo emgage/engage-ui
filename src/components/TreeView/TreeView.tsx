@@ -41,7 +41,7 @@ class TreeView extends React.Component<Props, State> {
   toggleNode = (id: number) => {
     const { source } = this.props;
 
-    source.some((item: SourceData): any => {
+    source.some((item: SourceData): boolean => {
       if (item.id === id) {
         item.active = !item.active;
         // Call the toggle callback if available
@@ -60,12 +60,14 @@ class TreeView extends React.Component<Props, State> {
           return true;
         }
       }
+
+      return false;
     });
   }
 
   // Set child nodes active or inactive status
   toggleChildNode = (source: SourceData[], id: number) => {
-    return source.some((item: SourceData): any => {
+    return source.some((item: SourceData): boolean => {
       if (item.id === id) {
         item.active = !item.active;
         // Call the toggle callback if available
@@ -80,11 +82,13 @@ class TreeView extends React.Component<Props, State> {
       if (item.children) {
         this.toggleChildNode(item.children, id);
       }
+
+      return false;
     });
   }
 
   // Render single node, also iterate through its children & render those as well if its parent active status is true
-  renderNode = (item: SourceData): any => {
+  renderNode = (item: SourceData): React.ReactNode => {
     // Current node aka parent node
     const node = (
       <li key={item.id}>
