@@ -2,7 +2,7 @@ import * as React from 'react';
 import { themr, ThemedComponentClass } from 'react-css-themr';
 import { classNames } from '@shopify/react-utilities/styles';
 import { BREADCRUMB } from '../ThemeIdentifiers';
-import * as baseTheme from './Breadcrumb.scss';
+import * as baseTheme from './BreadCrumb.scss';
 
 export type Direction = 'left' | 'right';
 export type Type = 'default' | 'disabled' | 'active';
