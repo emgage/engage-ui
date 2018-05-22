@@ -88,28 +88,28 @@ class SideNavigation extends React.Component<Props, State> {
                             {childrenMarkup}
                         </div>
                     ) : (
-                    <Accordion style={{padding:"0px"}} mode="collapsible" items={items} />)
+                    <Accordion style={{padding:"0px", height:"20px"}} mode="collapsible" items={items} />)
                     ) : (
                         <div>
                             <li key={full.id} className={liClass}><a className={liClass} onClick={func.action} aria-disabled={false}><Icon source={full.icon} color="white" />{full.label}</a></li>
                             {childrenMarkup}
                         </div>
                     );
-            let h = childrenMarkup ==  null ? 0  : (childrenMarkup.length * 40);
-            const hstyle = {marginBottom: h + 'px'}
+            let p = childrenMarkup ==  null ? 30  : ((childrenMarkup.length + 1) * 30) + 20;
+            const pstyle = {paddingBottom: p + 'px'};
             return (
-                <div style={hstyle}>
+                <div> 
                     <div className={iconClass}>
                         {markup}
                     </div>
-                    <div className={divClass}/>
+                    <div className={divClass} style={pstyle} />
                 </div>
             );
         });
         const collapsedContentMarkup = this.state.navData.map(function(col:any){
             return (
                 <p className={iconCollClass}>
-                    <Tooltip content={col.label} >
+                    <Tooltip content={col.label}>
                         <Icon source={col.icon} color="white" />
                     </Tooltip>
                 </p>
@@ -124,7 +124,7 @@ class SideNavigation extends React.Component<Props, State> {
                     mode="push"
                     width="small"
                     overlay style={actDrawerId == "collapsedContent" ? { width: "10px", padding: "15px", overflow:"visible"} : { width:"270px", overflow:"visible"}} >
-                    <DrawerContent id="fullContent" mode="slide" style={{background: "black", color: "white"}}>
+                    <DrawerContent id="fullContent" mode="slide" style={{background: "black", color: "white", padding: "0px"}}>
                         <span className={this.props.theme.expand}>
                             <button type="button" className={this.props.theme.navButton} onClick={() => this.setState({ activeDrawerId: 'collapsedContent' })}><Icon source="chevronLeft" color="white" /></button>
                         </span>

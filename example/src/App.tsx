@@ -789,7 +789,7 @@ class App extends React.Component<{}, State> {
           >
             <Link>Tooltip 2</Link>
           </Tooltip>
-          <SideNavigation accordian={false} />
+          <SideNavigation accordian={true} />
           <Heading>List</Heading>
           <List type="bullet">
             <Item>Yellow shirt</Item>
