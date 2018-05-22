@@ -67,7 +67,7 @@ describe('<ValidatedForm / >', () => {
         const form = {
           getFieldProps: jest.fn(),
           getFieldError: jest.fn(),
-          validateFieldsAndScroll: jest.fn((callback: any) => { callback(); }),
+          validateFields: jest.fn((callback: any) => { callback(); }),
         };
         const submit = jest.fn();
         const validatedFormWrapper = mount(<ValidatedForm onSubmit={submit} form={form} />);
@@ -75,7 +75,7 @@ describe('<ValidatedForm / >', () => {
         expect(validatedFormWrapper.prop('onSubmit')).toBeDefined();
         validatedFormWrapper.find('form').simulate('submit');
         expect(submit).toHaveBeenCalledTimes(1);
-        expect(form.validateFieldsAndScroll).toHaveBeenCalledTimes(1);
+        expect(form.validateFields).toHaveBeenCalledTimes(1);
       });
     });
 
@@ -94,7 +94,7 @@ describe('<ValidatedForm / >', () => {
         const form = {
           getFieldProps: jest.fn(),
           getFieldError: jest.fn(),
-          validateFieldsAndScroll: jest.fn((callback: any) => { callback(new Error()); }),
+          validateFields: jest.fn((callback: any) => { callback(new Error()); }),
         };
         const submitError = jest.fn();
         const validatedFormWrapper = mount(<ValidatedForm onSubmitError={submitError} form={form} />);
@@ -102,7 +102,7 @@ describe('<ValidatedForm / >', () => {
         expect(validatedFormWrapper.prop('onSubmitError')).toBeDefined();
         validatedFormWrapper.find('form').simulate('submit');
         expect(submitError).toHaveBeenCalledTimes(1);
-        expect(form.validateFieldsAndScroll).toHaveBeenCalledTimes(1);
+        expect(form.validateFields).toHaveBeenCalledTimes(1);
       });
     });
 
@@ -122,7 +122,7 @@ describe('<ValidatedForm / >', () => {
         const form = {
           getFieldProps: jest.fn(),
           getFieldError: jest.fn(),
-          validateFieldsAndScroll: jest.fn((callback: any) => { callback(); }),
+          validateFields: jest.fn((callback: any) => { callback(); }),
         };
         const submit = jest.fn();
         const submitError = jest.fn();
@@ -148,7 +148,7 @@ describe('<ValidatedForm / >', () => {
         validatedFormWrapper.find('form').simulate('submit');
         expect(submit).toHaveBeenCalledTimes(1);
         expect(submitError).toHaveBeenCalledTimes(0);
-        expect(form.validateFieldsAndScroll).toHaveBeenCalledTimes(1);
+        expect(form.validateFields).toHaveBeenCalledTimes(1);
       });
     });
   });

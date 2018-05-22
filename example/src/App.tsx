@@ -56,7 +56,7 @@ import {
   DropdownItemProps,
   TabPanel,
   Tab,
-  Breadcrumb,
+  BreadCrumb,
 } from '../../src/components';
 
 interface State {
@@ -462,7 +462,7 @@ class App extends React.Component<{}, State> {
         <br />
         <div>
           <p>This is my Breadcrumbs!!</p>
-          <Breadcrumb direction={'left'} source={breadcrumbData} displayStyle={'yellow'} />
+          <BreadCrumb direction={'left'} source={breadcrumbData} displayStyle={'yellow'} />
         </div>
         {/* <div>
           <h1>This is my Modal Component!!</h1>
@@ -605,7 +605,7 @@ class App extends React.Component<{}, State> {
         <Alert type="primary" >
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
         </Alert>
-        <Alert type="success"> 
+        <Alert type="success">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
         </Alert>
         <Alert type="warning">
@@ -710,7 +710,7 @@ class App extends React.Component<{}, State> {
           <Button onClick={() => this.toggleAccordionClose(undefined)}>undefined toggle close</Button>
 
           <Heading>Popover</Heading>
-          <Button style={{ left: 200 }}  onClick={(e) => this.popoverUpdate(e)} >Click to active and deactive dropdown</Button>
+          <Button style={{ left: 200 }}  onClick={e => this.popoverUpdate(e)} >Click to active and deactive dropdown</Button>
           <Dropdown
             active={this.state.popoverActive}
             dropdownItems={items}
@@ -811,8 +811,8 @@ class App extends React.Component<{}, State> {
             <Item>Second item</Item>
             <Item>Third Item</Item>
           </List>
-          <Heading>Description List</Heading> 
-          <DescriptionList type="default" style="Inline"> 
+          <Heading>Description List</Heading>
+          <DescriptionList type="default" style="Inline">
               <Term>Logistics</Term>
               <Description>The management of products or other resources as they travel between a point of origin and a destination.</Description>
               <Term>Sole proprietorship</Term>
@@ -820,7 +820,7 @@ class App extends React.Component<{}, State> {
               <Term>Discount code</Term>
               <Description>A series of numbers and/or letters that an online shopper may enter at checkout to get a discount or special offer.</Description>
           </DescriptionList>
-          <DescriptionList type="default" style="Stacked">          
+          <DescriptionList type="default" style="Stacked">
             <Term>Logistics</Term>
             <Description>The management of products or other resources as they travel between a point of origin and a destination.</Description>
             <Term>Sole proprietorship</Term>
@@ -828,7 +828,7 @@ class App extends React.Component<{}, State> {
             <Term>Discount code</Term>
             <Description>A series of numbers and/or letters that an online shopper may enter at checkout to get a discount or special offer.</Description>
         </DescriptionList>
-          <DescriptionList type="divider" style="Stacked">          
+          <DescriptionList type="divider" style="Stacked">
            <Term>Logistics</Term>
            <Description>The management of products or other resources as they travel between a point of origin and a destination.</Description>
            <Term>Sole proprietorship</Term>
@@ -1212,7 +1212,7 @@ class App extends React.Component<{}, State> {
   // }
 
   popovertoggle(index: number) {
-    const updatedPopoverActive = this.state.popoverActive;
+    const updatedPopoverActive: any = this.state.popoverActive;
     updatedPopoverActive[index] = !updatedPopoverActive[index];
 
     this.setState({

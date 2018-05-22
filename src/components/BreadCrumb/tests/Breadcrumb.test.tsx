@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { mount } from 'enzyme';
 import Badge from '../../Badge/Badge';
-import Breadcrumb from '../Breadcrumb';
+import { BreadCrumb } from '../';
 
 export type Type = 'default' | 'disabled' | 'active';
 
@@ -44,7 +44,7 @@ describe('<Breadcrumb />', () => {
   describe('when default props are provided', () => {
     it('should have default breadcrumb elements', () => {
       const subject = mount(
-        <Breadcrumb
+        <BreadCrumb
           theme={theme}
           direction={'left'}
           source={breadcrumbData}
@@ -60,7 +60,7 @@ describe('<Breadcrumb />', () => {
   describe('when direction prop is provided', () => {
     it('ul should have left class as direction', () => {
       const subject = mount(
-        <Breadcrumb
+        <BreadCrumb
           theme={theme}
           direction={'left'}
           source={breadcrumbData}
@@ -79,7 +79,7 @@ describe('<Breadcrumb />', () => {
   describe('when displayStyle prop is provided', () => {
     it('ul should have blue color theme as displayStyle', () => {
       const subject = mount(
-        <Breadcrumb
+        <BreadCrumb
           theme={theme}
           direction={'left'}
           source={breadcrumbData}
@@ -96,7 +96,7 @@ describe('<Breadcrumb />', () => {
   describe('when displayStyle prop is provided', () => {
     it('ul should have basic/primary theme provided for Breadcrumb component', () => {
       const subject = mount(
-        <Breadcrumb
+        <BreadCrumb
           theme={theme}
           direction={'left'}
           source={breadcrumbData}
