@@ -58,7 +58,7 @@ import {
   Tab,
   TreeView,
   TreeSource,
-  Breadcrumb,
+  BreadCrumb,
 } from '../../src/components';
 
 interface State {
@@ -508,7 +508,7 @@ class App extends React.Component<{}, State> {
         <br />
         <div>
           <p>This is my Breadcrumbs!!</p>
-          <Breadcrumb direction={'left'} source={breadcrumbData} displayStyle={'yellow'} />
+          <BreadCrumb direction={'left'} source={breadcrumbData} displayStyle={'yellow'} />
         </div>
         <br />
         <Caption style={{ color: 'red' }}>This is Caption</Caption>
@@ -625,7 +625,7 @@ class App extends React.Component<{}, State> {
           <Button onClick={() => this.toggleAccordionClose(undefined)}>undefined toggle close</Button>
 
           <Heading>Popover</Heading>
-          <Button style={{ left: 200 }}  onClick={(e) => this.popoverUpdate(e)} >Click to active and deactive dropdown</Button>
+          <Button style={{ left: 200 }}  onClick={e => this.popoverUpdate(e)} >Click to active and deactive dropdown</Button>
           <Dropdown
             active={this.state.popoverActive}
             dropdownItems={items}

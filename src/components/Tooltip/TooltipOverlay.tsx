@@ -66,7 +66,7 @@ export default class TooltipOverlay extends React.PureComponent<Props, never> {
 
     const contentStyles = measuring
       ? undefined
-      : { maxHeight: desiredHeight };
+      : { maxHeight: isNaN(desiredHeight) ? 0 : desiredHeight };
     const tipMarkup = !measuring
       ? <div style={tipStyle} className={styles.tip} />
       : null;

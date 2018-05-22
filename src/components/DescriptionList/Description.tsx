@@ -5,18 +5,18 @@ import { DESCRIPTIONLIST } from '../ThemeIdentifiers';
 import * as baseTheme from './DescriptionList.scss';
 
 export interface Props {
-    children?:React.ReactNode;
-    theme?: any;
+  children?:React.ReactNode;
+  theme?: any;
 }
 
 const description = ({
-   children,
-   theme,
- }: Props)=> {            
-    const classNameDescription = classNames(theme.description);      
-    return (
-        <dd className={classNameDescription}>{children}</dd>
-    );
-  };
+  children,
+  theme,
+}: Props) => {
+  const classNameDescription = classNames(theme.description);
+  return (
+    <dd className={classNameDescription}>{children}</dd>
+  );
+};
+
 export default themr(DESCRIPTIONLIST, baseTheme)(description) as ThemedComponentClass<Props, {}>;
-  

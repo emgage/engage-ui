@@ -311,6 +311,7 @@ export {
 } from './TreeView';
 
 export {
-  Breadcrumb,
+  BreadCrumb,
   Props as BreadcrumbProps,
-} from './Breadcrumb';
+  ISourceData as BreadcrumbSourceData,
+} from './BreadCrumb';
