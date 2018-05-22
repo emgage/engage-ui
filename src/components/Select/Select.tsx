@@ -40,7 +40,6 @@ export interface Props {
   onBlur?(): void;
 }
 
-const PLACEHOLDER_VALUE = '__placeholder__';
 const getUniqueID = createUniqueIDFactory('Select');
 
 const select = ({
@@ -87,7 +86,7 @@ const select = ({
   if (errors) { describedBy.push(errorID(id)); }
 
   const placeholderOption = isPlaceholder
-    ? <option label={placeholder} value={PLACEHOLDER_VALUE} disabled hidden />
+    ? <option label={placeholder} disabled hidden />
     : null;
 
   return (

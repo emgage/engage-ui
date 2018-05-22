@@ -56,7 +56,7 @@ import {
   DropdownItemProps,
   TabPanel,
   Tab,
-  Breadcrumb,
+  BreadCrumb,
 } from '../../src/components';
 
 interface State {
@@ -462,7 +462,7 @@ class App extends React.Component<{}, State> {
         <br />
         <div>
           <p>This is my Breadcrumbs!!</p>
-          <Breadcrumb direction={'left'} source={breadcrumbData} displayStyle={'yellow'} />
+          <BreadCrumb direction={'left'} source={breadcrumbData} displayStyle={'yellow'} />
         </div>
         {/* <div>
           <h1>This is my Modal Component!!</h1>
@@ -721,6 +721,15 @@ class App extends React.Component<{}, State> {
               anchorEl = {this.state.anchorEl}
             />
           </div>
+          <Button style={{ left: 200 }}  onClick={e => this.popoverUpdate(e)} >Click to active and deactive dropdown</Button>
+          <Dropdown
+            active={this.state.popoverActive}
+            dropdownItems={items}
+            toggle={() => this.popoverUpdate}
+            direction="right"
+            anchorEl = {this.state.anchorEl}
+          />
+
 
           <TextField
             id="TestName"
