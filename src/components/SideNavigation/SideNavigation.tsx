@@ -1,7 +1,6 @@
 
 import * as React from 'react';
 import { themr, ThemedComponentClass } from 'react-css-themr';
-//import { classNames } from '@shopify/react-utilities/styles';
 import Icon from '../Icon';
 import { SIDENAVIGATION } from '../ThemeIdentifiers';
 import { Drawer, DrawerContent } from '../Drawer';
@@ -45,6 +44,12 @@ class SideNavigation extends React.Component<Props, State> {
             });
         })
     };
+    componentDidUpdate(){
+        const bodyElement = document.body;
+        if (bodyElement !== null) {
+            bodyElement.className +=  this.state.drawer ? ' ' + this.props.theme.container : '';
+        }
+    }
 
     render() {
         let actDrawerId = this.state.activeDrawerId;
@@ -59,6 +64,7 @@ class SideNavigation extends React.Component<Props, State> {
             rootElement.className = this.state.drawer ? (this.props.theme.container) : '';
             rootElement.className = rootElement.className + ' ' + (actDrawerId == "collapsedContent" ? this.props.theme.rootCollapse : '')
         }
+        
         const fullContentMarkup = this.state.navData.map(function(full:any){
             let func = JSON.parse('{"action":"' + full.action + '"}', function (key, value) {
                 if (value && (typeof value === 'string') && value.indexOf("()") === 0) {

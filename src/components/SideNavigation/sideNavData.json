@@ -13,29 +13,29 @@
     },
     {
         "id":"3",
-        "label": "Permissions", 
+        "label": "User", 
         "icon": "conversation",
         "children": [
             {
                 "id":"3.1",
-                "label": "User", 
-                "icon": "conversation",
-                "action": "() => console.log('User Item is clicked!)"
-            },
-            {
-                "id":"3.2",
                 "label": "Groups", 
                 "icon": "conversation",
                 "action": "() => console.log('Groups Item is clicked!)"
             },
             {
-                "id":"3.3",
+                "id":"3.2",
                 "label": "Roles", 
                 "icon": "conversation",
                 "action": "() => console.log('Roles Item is clicked!)"
+            },
+            {
+                "id":"3.3",
+                "label": "Permissions", 
+                "icon": "conversation",
+                "action": "() => console.log('Permissions Item is clicked!)"
             }
         ], 
-        "action": "() => console.log('Permissions is clicked!')"
+        "action": "() => console.log('User is clicked!')"
     },
     {
         "id":"4",
