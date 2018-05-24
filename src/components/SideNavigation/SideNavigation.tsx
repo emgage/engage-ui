@@ -13,6 +13,7 @@ import axios from 'axios';
 
 export interface Props {
     theme?: any;
+    url?: any;
     accordian?: boolean,
 }
 
@@ -37,8 +38,7 @@ class SideNavigation extends React.Component<Props, State> {
     }
 
     componentDidMount() {
-        axios.get('./src/components/SideNavigation/sideNavData.json').then((response:any) => {
-            
+        axios.get(this.props.url).then((response:any) => {
             this.setState({
                 navData: response.data
             });
@@ -64,7 +64,7 @@ class SideNavigation extends React.Component<Props, State> {
             rootElement.className = this.state.drawer ? (this.props.theme.container) : '';
             rootElement.className = rootElement.className + ' ' + (actDrawerId == "collapsedContent" ? this.props.theme.rootCollapse : '')
         }
-        
+
         const fullContentMarkup = this.state.navData.map(function(full:any){
             let func = JSON.parse('{"action":"' + full.action + '"}', function (key, value) {
                 if (value && (typeof value === 'string') && value.indexOf("()") === 0) {
