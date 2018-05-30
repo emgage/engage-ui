@@ -310,6 +310,13 @@ export {
 } from './Tab';
 
 export {
-  Breadcrumb,
+  TreeView,
+  Props as TreeProps,
+  SourceData as TreeSource,
+} from './TreeView';
+
+export {
+  BreadCrumb,
   Props as BreadcrumbProps,
-} from './Breadcrumb';
+  ISourceData as BreadcrumbSourceData,
+} from './BreadCrumb';
