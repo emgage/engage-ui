@@ -12,10 +12,10 @@ const SideNavigationState: IDocument = {
       name: 'accordian',
       type: 'boolean',
       desc: 'To show or hide accordian.',
-    },{
-      name: 'url',
-      type: 'string',
-      desc: 'To dispay the url to fetch the json file data.',
+    }, {
+      name: 'source',
+      type: 'INavigationData[]',
+      desc: 'The content as Array of items to render in side navigation.',
     }, {
       name: 'theme',
       type: 'any',

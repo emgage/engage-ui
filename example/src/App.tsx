@@ -3,6 +3,7 @@ import SingleDatePickerWrapper from './SingleDatePickerWrapper';
 import DateRangePickerWrapper from './DateRangePickerWrapper';
 import PickerAutoSuggestExample from './PickerAutoSuggestExample';
 import { ISourceData } from '../../src/components/Breadcrumb/Breadcrumb';
+import { INavigationData } from '../../src/components/SideNavigation/SideNavigation';
 
 import {
   Alert,
@@ -19,6 +20,7 @@ import {
   DisplayText,
   Drawer,
   DrawerContent,
+  SideNavigation,
   FlexBox,
   FormLayout,
   Heading,
@@ -292,7 +294,90 @@ class App extends React.Component<{}, State> {
         onBreadcrumbClick: () => { console.log('Home3 is clicked');}
       },
     ];
-
+    const sideNavigationData: INavigationData[] = [
+      {
+          id: 1,
+          label: 'Basics', 
+          icon: 'notes',
+          action: () => console.log('Basics is clicked!')
+      },
+      {
+          id:2,
+          label: 'Content', 
+          icon: 'print',
+          action: () => console.log('Content is clicked!')
+      },
+      {
+          id:3,
+          label: 'User', 
+          icon: 'conversation',
+          children: [
+              {
+                  id:3.1,
+                  label: 'Groups', 
+                  icon: 'conversation',
+                  action: () => console.log('Groups Item is clicked!')
+              },
+              {
+                  id:3.2,
+                  label: 'Roles', 
+                  icon: 'conversation',
+                  action: () => console.log('Roles Item is clicked!')
+              },
+              {
+                  id:3.3,
+                  label: 'Permissions', 
+                  icon: 'conversation',
+                  action: () => console.log('Permissions Item is clicked!')
+              }
+          ], 
+          action: () => console.log('User is clicked!')
+      },
+      {
+          id:4,
+          label: 'Pages', 
+          icon: 'view',
+          children: [
+              {
+                  id:4.1,
+                  label: 'Forms', 
+                  icon: 'view',
+                  action: () => console.log('Forms Item is clicked!')
+              },
+              {
+                  id:4.2,
+                  label: 'Workflow', 
+                  icon: 'view',
+                  action: () => console.log('Workflow Item is clicked!')
+              },
+              {
+                  id:4.3,
+                  label: 'Themes', 
+                  icon: 'view',
+                  action: () => console.log('Themes Item is clicked!')
+              }
+          ], 
+          action: () => console.log('Pages is clicked!')
+      },
+      {
+          id:5,
+          label: 'Publishing', 
+          icon: 'export',
+          action: () => console.log('Publishing is clicked!')
+      },
+      {
+          id:6,
+          label: 'App Analytics', 
+          icon: 'embed',
+          action: () => console.log('App Analytics is clicked!')
+      },
+      {
+          id:7,
+          label: 'Sherpa', 
+          icon: 'alert',
+          action: () => console.log('Sherpa is clicked!')
+      }
+  ]
     /*
       label: Table header lable which will be visible
       key: Match it with json data, this will help to get specific value from the data
@@ -703,6 +788,7 @@ class App extends React.Component<{}, State> {
           >
             <Link>Tooltip 2</Link>
           </Tooltip>
+          <SideNavigation accordian={false} source={sideNavigationData} />
           <Heading>List</Heading>
           <List type="bullet">
             <Item>Yellow shirt</Item>

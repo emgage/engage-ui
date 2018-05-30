@@ -9,18 +9,24 @@ import Tooltip from '../Tooltip';
 import Accordion from '../Accordion';
 import {AccordionItemProps} from '../Accordion';
 import * as baseTheme from './SideNavigation.scss';
-import axios from 'axios';
+
+export interface INavigationData {
+    id?:number;
+    label?: React.ReactNode;
+    icon?: React.ReactNode;
+    children?: React.ReactNode;
+    action?(): void;
+}
 
 export interface Props {
     theme?: any;
-    url?: any;
     accordian?: boolean,
+    source: INavigationData[],
 }
 
 export interface State {
     drawer: boolean;
     activeDrawerId: string;
-    navData: Array<string>;
 }
 
 class SideNavigation extends React.Component<Props, State> {
@@ -29,21 +35,12 @@ class SideNavigation extends React.Component<Props, State> {
       this.state = {
         drawer: false,
         activeDrawerId: 'fullContent',
-        navData: []
       };
     }
 
     toggleDrawer = () => {
         this.setState({ drawer: !this.state.drawer });
     }
-
-    componentDidMount() {
-        axios.get(this.props.url).then((response:any) => {
-            this.setState({
-                navData: response.data
-            });
-        })
-    };
     componentDidUpdate(){
         const bodyElement = document.body;
         if (bodyElement !== null) {
@@ -52,46 +49,41 @@ class SideNavigation extends React.Component<Props, State> {
     }
 
     render() {
+        const { source, theme, accordian } = this.props;
         let actDrawerId = this.state.activeDrawerId;
         const rootElement = document.getElementById('root');
-        const iconClass = this.props.theme.icon;
-        const iconCollClass = this.props.theme.collapseIcon;
-        const divClass = this.props.theme.navDivider;
-        const liClass = this.props.theme.li;
-        const childLiClass = this.props.theme.childLi;
-        let accState = this.props.accordian;
+        const iconClass = theme.icon;
+        const iconCollClass = theme.collapseIcon;
+        const divClass = theme.navDivider;
+        const liClass = theme.li;
+        const childLiClass = theme.childLi;
+        let accState = accordian;
         if (rootElement !== null) {
-            rootElement.className = this.state.drawer ? (this.props.theme.container) : '';
+            rootElement.className = this.state.drawer ? (theme.container) : '';
             rootElement.className = rootElement.className + ' ' + (actDrawerId == "collapsedContent" ? this.props.theme.rootCollapse : '')
         }
 
-        const fullContentMarkup = this.state.navData.map(function(full:any){
-            let func = JSON.parse('{"action":"' + full.action + '"}', function (key, value) {
-                if (value && (typeof value === 'string') && value.indexOf("()") === 0) {
-                    var jsFunc = new Function('return ' + value)();
-                    return jsFunc;
-                }  
-                return value;
-            });
+        const fullContentMarkup = source.map(function(full:any){
+            
             const childrenMarkup = full.children !== undefined ? full.children.map(function(child:any){
-                return <li key={child.id}><a className={childLiClass} onClick={func.action} aria-disabled={false}><Icon source={child.icon} color="white" />{child.label}</a></li>;
+                return <li key={child.id}><a className={childLiClass} onClick={child.action} aria-disabled={false}><Icon source={child.icon} color="white" />{child.label}</a></li>;
             }) : null;
             const items : AccordionItemProps[] = [{
                 children: childrenMarkup,
-                header: <li key={full.id} className={liClass} ><a className={liClass} onClick={func.action} aria-disabled={false}><Icon source={full.icon} color="white" />{full.label}</a></li>
+                header: <li key={full.id} className={liClass} ><a className={liClass} onClick={full.action} aria-disabled={false}><Icon source={full.icon} color="white" />{full.label}</a></li>
               }
             ];
             const markup = accState ? ( 
                     childrenMarkup ==  null ? (
                         <div>
-                            <li key={full.id} className={liClass} ><a className={liClass} onClick={func.action} aria-disabled={false}><Icon source={full.icon} color="white" />{full.label}</a></li>
+                            <li key={full.id} className={liClass} ><a className={liClass} onClick={full.action} aria-disabled={false}><Icon source={full.icon} color="white" />{full.label}</a></li>
                             {childrenMarkup}
                         </div>
                     ) : (
                     <Accordion style={{padding:"0px", height:"20px"}} mode="collapsible" items={items} />)
                     ) : (
                         <div>
-                            <li key={full.id} className={liClass}><a className={liClass} onClick={func.action} aria-disabled={false}><Icon source={full.icon} color="white" />{full.label}</a></li>
+                            <li key={full.id} className={liClass}><a className={liClass} onClick={full.action} aria-disabled={false}><Icon source={full.icon} color="white" />{full.label}</a></li>
                             {childrenMarkup}
                         </div>
                     );
@@ -106,7 +98,7 @@ class SideNavigation extends React.Component<Props, State> {
                 </div>
             );
         });
-        const collapsedContentMarkup = this.state.navData.map(function(col:any){
+        const collapsedContentMarkup = source.map(function(col:any){
             return (
                 <p className={iconCollClass}>
                     <Tooltip content={col.label}>
