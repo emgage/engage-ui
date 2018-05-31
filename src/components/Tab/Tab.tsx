@@ -15,19 +15,19 @@ export interface Props {
   // Callback function to be called when tab is clicked/selected
   onClick?(): void;
   // User can Set style for Tab component
-  style?: React.CSSProperties;
+  customStyle?: React.CSSProperties;
   // Set theme for tab
   theme?: any;
 }
 
 // return a Single tab component to be render into tabpanel
-const tab = ({ tabId, tabDescription, activeTabId, onClick, theme, style }: Props) => {
+const tab = ({ tabId, tabDescription, activeTabId, onClick, theme, customStyle }: Props) => {
   const tabClassName = classNames(
     theme.tab,
     tabId === activeTabId ? theme.active : ''
   );
   return (
-    <div className={tabClassName} style={style} onClick={onClick}>
+    <div className={tabClassName} style={customStyle} onClick={onClick}>
       {tabDescription}
     </div>
   );

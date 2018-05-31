@@ -33,7 +33,7 @@ const ColumnState: IDocument = {
       type: 'ResponsiveWidth',
       desc: 'Column set with extraLarge width size',
     }, {
-      name: 'style',
+      name: 'customStyle',
       type: 'React.CSSProperties',
       desc: 'Set the style via css',
     }, {

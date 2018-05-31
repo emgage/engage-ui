@@ -18,13 +18,21 @@ export interface ChoiceDescriptor {
 export type Choice = ChoiceDescriptor;
 
 export interface Props {
-  title?: string;
+  // Title of choice list.
+  customTitle?: string;
+  // Display title or not
   titleHidden?: boolean;
+  // Array of choices to be displayed. Choice is object of { value: string, label: string }.
   choices: Choice[];
+  // Selected values
   selected: string[];
-  name?: string;
+  // Name of the chicelist
+  customName?: string;
+  // Allow multiple selection
   allowMultiple?: boolean;
+  // Theme to be injected via css-themr
   theme?: any;
+  // Function to handle on change of choice list.
   onChange?(selected: string[]): void;
 }
 
@@ -39,20 +47,20 @@ type ChooseableComponent = ReactComponent<{
 const getUniqueID = createUniqueIDFactory('ChoiceList');
 
 const choiceList = ({
-  title,
+  customTitle,
   titleHidden,
   allowMultiple,
   choices,
   selected,
   onChange = noop,
   theme,
-  name = getUniqueID(),
+  customName = getUniqueID(),
 }: Props) => {
   const CONTROLCOMPONENT: ChooseableComponent = allowMultiple ? Checkbox : RadioButton;
-  const finalName = allowMultiple ? `${name}[]` : name;
+  const finalName = allowMultiple ? `${customName}[]` : customName;
   const className = classNames(theme.choiceList, titleHidden && theme.titleHidden);
-  const titleMarkup = title
-    ? <legend className={theme.title}>{title}</legend>
+  const titleMarkup = customTitle
+    ? <legend className={theme.title}>{customTitle}</legend>
     : null;
 
   const choicesMarkup = choices.map((choice) => {

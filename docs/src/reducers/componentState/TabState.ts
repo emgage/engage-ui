@@ -25,7 +25,7 @@ const TabState: IDocument = {
       type: 'string',
       desc: 'Can assign default tab from multiple available tabs in TabPanel',
     }, {
-      name: 'style',
+      name: 'customStyle',
       type: 'React.CSSProperties',
       desc: 'Set the style for TabPanel component',
     }, {

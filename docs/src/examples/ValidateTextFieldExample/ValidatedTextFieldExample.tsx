@@ -6,25 +6,25 @@ const ValidateTextFieldExample = () => (
   <div className={styles.example}>
     <ValidatedForm>
       <ValidatedTextField
-        id="AppName"
+        customId="AppName"
         required={true}
         label="App Name"
         placeholder=""
         helpText="We recommend keeping app name less then 25 characters."
-        name="App Name"
-        value=""
+        customName="App Name"
+        customValue=""
         validateTrigger={['onBlur']}
         validateRules={[{ required: true, message: 'App Name is required.' },
         ]}
       />
       <ValidatedTextField
-        id="AppDescription"
+        customId="AppDescription"
         required={true}
         label="App Description"
         placeholder=""
         helpText="We recommend keeping app description less then 256 characters."
-        name="App Description"
-        value=""
+        customName="App Description"
+        customValue=""
         validateTrigger={['onBlur']}
         validateRules={[{ required: true, message: 'App Description is required.' }]}
         multiline

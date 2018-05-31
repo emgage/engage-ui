@@ -12,17 +12,17 @@ describe('<DescriptionList />', () => {
   });
 
   it('sets the description list style to inline when type is default and style is inline', () => {
-    const descriptionList = mount(<DescriptionList type="default" style="Inline"><Term>{term}</Term><Description>{description}</Description></DescriptionList>);
+    const descriptionList = mount(<DescriptionList customType="default" customStyle="Inline"><Term>{term}</Term><Description>{description}</Description></DescriptionList>);
     expect(descriptionList.find('dl').hasClass('')).toEqual(true);
   });
 
   it('sets the description list style to stacked when type is default and style is stacked', () => {
-    const descriptionList = mount(<DescriptionList type="default" style="Stacked"><Term>{term}</Term><Description>{description}</Description></DescriptionList>);
+    const descriptionList = mount(<DescriptionList customType="default" customStyle="Stacked"><Term>{term}</Term><Description>{description}</Description></DescriptionList>);
     expect(descriptionList.find('dl').hasClass('naked')).toEqual(true);
   });
 
   it('sets the description list type to divider when type is divider and style is stacked', () => {
-    const descriptionList = mount(<DescriptionList type="divider" style="Stacked"><Term>{term}</Term><Description>{description}</Description></DescriptionList>);
+    const descriptionList = mount(<DescriptionList customType="divider" customStyle="Stacked"><Term>{term}</Term><Description>{description}</Description></DescriptionList>);
     expect(descriptionList.find('dl').hasClass('description-list-divider')).toEqual(true);
   });
 });

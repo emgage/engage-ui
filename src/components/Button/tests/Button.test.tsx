@@ -41,13 +41,13 @@ describe('<Button />', () => {
 
   describe('style', () => {
     it('sets the style attribute on the button to color: red ', () => {
-      const button = shallow(<Button style={{ color: 'red' }}>Disabled test</Button>);
-      expect(button.prop('style')).toMatchObject({ color: 'red' });
+      const button = shallow(<Button customStyle={{ color: 'red' }}>Disabled test</Button>);
+      expect(button.prop('customStyle')).toMatchObject({ color: 'red' });
     });
 
     it('sets the style attribute on the button to undefined', () => {
       const button = shallow(<Button>Disabled test</Button>);
-      expect(button.prop('style')).toBeUndefined();
+      expect(button.prop('customStyle')).toBeUndefined();
     });
   });
 

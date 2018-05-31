@@ -8,17 +8,21 @@ import { CARD } from '../ThemeIdentifiers';
 import * as baseTheme from './Card.scss';
 
 export interface Props {
-  title?: string;
+  // Title content for the card section.
+  customTitle?: string;
+  // Card section related components to render inside this card section.
   children?: React.ReactNode;
+  // A less prominent card section
   subdued?: boolean;
+  // Theme to be injected via css-themr.
   theme?: any;
 }
 
-const section = ({ children, title, subdued, theme }: Props) => {
-  const headerContent = title
+const section = ({ children, customTitle, subdued, theme }: Props) => {
+  const headerContent = customTitle
     ? (
       <div className={theme.sectionHeader}>
-        <Subheading>{title}</Subheading>
+        <Subheading>{customTitle}</Subheading>
       </div>
     )
     : null;

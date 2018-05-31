@@ -234,7 +234,7 @@ describe('<Video />', () => {
     });
     describe('when height set', () => {
       it('video should have style property and height', () => {
-        const subject = mount(<Video poster={poster} src={singleVideoSource} style={{ height: 300 }} />);
+        const subject = mount(<Video poster={poster} src={singleVideoSource} customStyle={{ height: 300 }} />);
         expect(subject.find('video')).toHaveLength(1);
         expect(subject.find('video').childAt(0).prop('src')).toBe(singleVideoSource[0].src);
         expect(subject.find('video').props().style).toMatchObject({ height: 300 });

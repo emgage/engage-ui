@@ -13,7 +13,7 @@ const CaptionState : IDocument = {
       type: 'React.ReactNode',
       desc: 'The content to display',
     }, {
-      name: 'style',
+      name: 'customStyle',
       type: 'React.CSSProperties',
       desc: 'Set the style via css',
     }, {

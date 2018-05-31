@@ -12,8 +12,11 @@ import * as baseTheme from './TreeView.scss';
 type Themes = 'basic';
 
 export interface Props {
+  // To set defult theme for Treeview.
   selectedTheme?: Themes;
+  // Datasource to bind into treeview component
   source: SourceData[];
+  // Theme to be injected via css-themr.
   theme?: any;
 }
 

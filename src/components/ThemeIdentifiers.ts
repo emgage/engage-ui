@@ -27,7 +27,6 @@ export const DESCRIPTIONLIST = 'PDESCRIPTIONLIST';
 export const LOADING = 'PLoading';
 export const MASK_TEXT_FIELD = 'PMaskTextField';
 export const MESSAGE = 'PMessage';
-export const OFFCANVAS = 'POffCanvas';
 export const PANEL = 'PPanel';
 export const PICKER = 'PPicker';
 export const DROPDOWN = 'PDropdown';

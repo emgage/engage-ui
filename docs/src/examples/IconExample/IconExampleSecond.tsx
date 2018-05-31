@@ -6,7 +6,7 @@ const IconExampleSecond = () => (
   <div className={styles.example}>
       <Icon
           source="notes"
-          color="black"
+          customColor="black"
           backdrop
           accessibilityLabel="This is an icon"
         />

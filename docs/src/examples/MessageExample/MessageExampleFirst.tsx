@@ -5,7 +5,7 @@ import * as styles from '../../styles/components-page.scss';
 const MessageExampleFirst = () => (
   <div className={styles.example}>
     <Message
-      id = "1010101010"
+      customId = "1010101010"
       isVisible
     >
       Test message

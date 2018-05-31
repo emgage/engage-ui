@@ -24,11 +24,11 @@ const DescriptionListState: IDocument = {
       name: 'theme',
       type: 'any',
       desc: 'Theme to be injected via css-themr',
-    },{
-        name: 'style',
-        type: 'string',
-        desc: 'Style to be applied. Available options: Inline | Stacked',
-      },
+    }, {
+      name: 'customStyle',
+      type: 'string',
+      desc: 'Style to be applied. Available options: Inline | Stacked',
+    },
   ],
   exampleCode: DescriptionListExampleFirstCode,
   exampleComponent: DescriptionListExampleFirst,

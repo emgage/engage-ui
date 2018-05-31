@@ -12,7 +12,7 @@ const singleVideo =
         src={singleVideoSource}
         autoplay={false}
         controls={true}
-        style={{
+        customStyle={{
           height: 100,
           width: 100,
         }}

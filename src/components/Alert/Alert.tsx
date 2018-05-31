@@ -8,8 +8,11 @@ export interface State {
 }
 
 export interface Props {
+  // The content to display inside the alert
   children?: React.ReactNode;
-  type?: string;
+  // Define the type of alert, It can be primary, success, warning or danger.
+  customType?: string;
+  // Theme to be injected via css-themr
   theme?: any;
 }
 const IconClose = (props:any) => {
@@ -34,12 +37,12 @@ class Alert extends React.Component<Props, State> {
     });
   }
   render() {
-    const { children, type, theme } = this.props;
+    const { children, customType, theme } = this.props;
     let classes: string;
     let style: string;
     let color: string;
 
-    switch (type) {
+    switch (customType) {
       case 'primary':
         style = theme.alertPrimary;
         color = '#1e87f0';

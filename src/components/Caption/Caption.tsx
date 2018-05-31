@@ -5,23 +5,25 @@ import { classNames } from '@shopify/react-utilities/styles';
 import { CAPTION } from '../ThemeIdentifiers';
 import * as baseTheme from './Caption.scss';
 
-
 export interface Props {
+  // The content to display
   children?: React.ReactNode;
-  style?: React.CSSProperties;
+  // Set the style via css
+  customStyle?: React.CSSProperties;
+  // Theme to be injected via css-themr
   theme?: any;
 }
 
 const caption = ({
   children,
-  style,
+  customStyle,
   theme,
 }: Props) => {
   const className = classNames (
     theme.caption
   );
 
-  return <p className={className} style={style}>{children}</p>;
+  return <p className={className} style={customStyle}>{children}</p>;
 };
 
 export { caption as UnthemedCaption };

@@ -8,34 +8,42 @@ import { AVATAR } from '../ThemeIdentifiers';
 import * as baseTheme from './Avatar.scss';
 import * as avatars from './images';
 
+// Enum of size, used to define size of Avtar component
 export type Size = 'small' | 'medium' | 'large';
 
 const STYLE_CLASSES = ['one', 'two', 'three', 'four', 'five', 'six'];
 const AVATAR_IMAGES = Object.keys(avatars).map((key: keyof typeof avatars) => avatars[key]);
 
 export interface Props {
-  size?: Size;
-  name?: string;
+  // Size of avatar. It can be small, medium or large
+  customSize?: Size;
+  // Name of the person for avatar
+  customName?: string;
+  // Initials of person to display
   initials?: string;
+  // Weather avatar is for customer
   customer?: boolean;
+  // URL of the avatar image
   source?: string;
+  // Accessible label for the avatar image
   accessibilityLabel?: string;
+  // Theme to be injected via css-themr
   theme?: any;
 }
 
 class Avatar extends React.Component<Props, {}> {
   render() {
     const {
-      name,
+      customName,
       source,
       initials,
       customer,
-      size = 'medium',
+      customSize = 'medium',
       accessibilityLabel,
       theme,
     } = this.props;
 
-    const nameString = name || initials;
+    const nameString = customName || initials;
 
     let finalSource: string | undefined;
     let label: string | undefined;
@@ -60,7 +68,7 @@ class Avatar extends React.Component<Props, {}> {
       theme.avatar,
       theme[variationName('style', styleClass(nameString))],
       source && theme.hasImage,
-      size && theme[variationName('size', size)]
+      customSize && theme[variationName('size', customSize)]
     );
 
     let content = null;

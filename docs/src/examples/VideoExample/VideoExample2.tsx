@@ -21,7 +21,7 @@ const VideoExample2 = () => (
       src={multiVideoSource}
       autoplay={false}
       controls={true}
-      style={{ height: 400, width: 400 }} />
+      customStyle={{ height: 400, width: 400 }} />
   </div>
 );
 

@@ -6,7 +6,7 @@ import * as styles from '../../styles/components-page.scss';
 const CardExample = () => (
   <div className={styles.example}>
     <Card
-      title="Online store dashboard"
+      customTitle="Online store dashboard"
       primaryFooterAction = {{
         content: 'View Dashboard',
         onAction: () => { alert('View Dashboard Content of Online Store.'); },

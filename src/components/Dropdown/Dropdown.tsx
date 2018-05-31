@@ -15,14 +15,23 @@ import { findDOMNode } from 'react-dom';
 export type Direction = 'up' | 'down' | 'left' | 'right';
 
 export interface Props {
+  // Disable the dropdown
   disabled?: boolean;
+  // The direction to open the dropdown. Availablee options: up | down | left | right
   direction?: Direction;
+  // Show or hide the Dropdown.
   active: boolean;
+  // The element type to wrap the activator with.
   activatorWrapper?: string;
+  // items of the dropdown.
   dropdownItems: DropdownItemProps[];
+  // Close the dropdown when mouse click outside of the dropdown
   closeOnClickOutside?: boolean;
+  // This is the DOM element that will be used to set the position of the dropdown.
   anchorEl?: HTMLElement | null;
+  // Callback when dropdown is closed.
   onClose?(): void;
+  // Callback when dropdown's active props changes.
   toggle?() : void;
 }
 

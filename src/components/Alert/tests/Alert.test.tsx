@@ -68,14 +68,14 @@ describe('<Alert />', () => {
           Not set type of alert.
           </Alert>
         );
-        expect(alertWrapper.prop('type')).toBeFalsy();
+        expect(alertWrapper.prop('customType')).toBeFalsy();
       });
     });
 
     describe('when set', () => {
       it('basic alert should have rendered one div class element', () => {
         const alertWrapper = mount(
-          <Alert type="primary" theme = {theme} >
+          <Alert customType="primary" theme = {theme} >
           Set type of alert.
           </Alert>
         );
@@ -84,7 +84,7 @@ describe('<Alert />', () => {
 
       it('basic alert should have default Alert css class on div', () => {
         const alertWrapper = mount(
-          <Alert  type="primary" theme = {theme} >
+          <Alert  customType="primary" theme = {theme} >
           Set type of alert.
           </Alert>
         );
@@ -93,16 +93,16 @@ describe('<Alert />', () => {
 
       it('should verify type set as primary', () => {
         const alertWrapper = mount(
-          <Alert  type="primary" theme = {theme} >
+          <Alert  customType="primary" theme = {theme} >
           Set type of alert.
           </Alert>
         );
-        expect(alertWrapper.prop('type')).toBe('primary');
+        expect(alertWrapper.prop('customType')).toBe('primary');
       });
 
       it('should verify alertPrimary css class on div as per type', () => {
         const alertWrapper = mount(
-          <Alert  type="primary" theme = {theme} >
+          <Alert  customType="primary" theme = {theme} >
           Set type of alert.
           </Alert>
         );
@@ -111,16 +111,16 @@ describe('<Alert />', () => {
 
       it('should verify type set as success', () => {
         const alertWrapper = mount(
-          <Alert type="success" theme={theme} >
+          <Alert customType="success" theme={theme} >
           Set type of alert.
           </Alert>
         );
-        expect(alertWrapper.prop('type')).toBe('success');
+        expect(alertWrapper.prop('customType')).toBe('success');
       });
 
       it('should verify alertSuccess css class on div as per type', () => {
         const alertWrapper = mount(
-          <Alert type="success" theme={theme} >
+          <Alert customType="success" theme={theme} >
           Set type of alert.
           </Alert>
         );
@@ -129,15 +129,15 @@ describe('<Alert />', () => {
 
       it('should verify type set as danger', () => {
         const alertWrapper = mount(
-          <Alert type="danger" theme={theme} >
+          <Alert customType="danger" theme={theme} >
           Set type of alert.
           </Alert>
         );
-        expect(alertWrapper.prop('type')).toBe('danger');
+        expect(alertWrapper.prop('customType')).toBe('danger');
       });
       it('should verify alertDanger css class on div as per type', () => {
         const alertWrapper = mount(
-          <Alert type="danger" theme={theme} >
+          <Alert customType="danger" theme={theme} >
           Set type of alert.
           </Alert>
         );
@@ -146,16 +146,16 @@ describe('<Alert />', () => {
 
       it('should verify type set as warning', () => {
         const alertWrapper = mount(
-          <Alert type="warning" theme={theme} >
+          <Alert customType="warning" theme={theme} >
           Set type of alert.
           </Alert>
         );
-        expect(alertWrapper.prop('type')).toBe('warning');
+        expect(alertWrapper.prop('customType')).toBe('warning');
       });
 
       it('should verify alertWarning css class on div as per type', () => {
         const alertWrapper = mount(
-          <Alert type="warning" theme={theme} >
+          <Alert customType="warning" theme={theme} >
           Set type of alert.
           </Alert>
         );
@@ -207,7 +207,7 @@ describe('<Alert />', () => {
       expect(alertWrapper.find('div')).toHaveLength(1);
       expect(alertWrapper.find('button')).toHaveLength(1);
       expect(alertWrapper.find('p')).toHaveLength(2);
-      expect(alertWrapper.prop('type')).toBeFalsy();
+      expect(alertWrapper.prop('customType')).toBeFalsy();
       expect(alertWrapper.prop('children').props.children).toBe('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.');
     });
   });

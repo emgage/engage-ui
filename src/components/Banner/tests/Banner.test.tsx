@@ -43,14 +43,14 @@ describe('<Banner />', () => {
         expect(bannerWrapper.find('div').at(0).hasClass('Banner')).toBe(true);
         expect(bannerWrapper.find('div').at(1).hasClass('Ribbon')).toBe(true);
         expect(bannerWrapper.find('div').at(0).prop('role')).toBe('banner undefined');
-        expect(bannerWrapper.prop('title')).toBeUndefined();
+        expect(bannerWrapper.prop('customTitle')).toBeUndefined();
       });
     });
 
     describe('when set', () => {
       it('should verify banner when title set', () => {
         const bannerWrapper = mount(
-                                     <Banner title="Order archived" theme={theme} />
+                                     <Banner customTitle="Order archived" theme={theme} />
                                    );
         expect(bannerWrapper.find('div')).toHaveLength(4);
         expect(bannerWrapper.find('span')).toHaveLength(1);
@@ -59,7 +59,7 @@ describe('<Banner />', () => {
         expect(bannerWrapper.find('div').at(0).prop('role')).toBe('banner undefined');
         expect(bannerWrapper.find('div').at(1).hasClass('Ribbon')).toBe(true);
         expect(bannerWrapper.find('div').at(3).hasClass('Heading')).toBe(true);
-        expect(bannerWrapper.prop('title')).toBe('Order archived');
+        expect(bannerWrapper.prop('customTitle')).toBe('Order archived');
       });
     });
   });
@@ -229,7 +229,7 @@ describe('<Banner />', () => {
           onAction: () => { spy(); },
         };
         const bannerWrapper = mount(
-                                    <Banner title="Order archived" status="success"
+                                    <Banner customTitle="Order archived" status="success"
                                     action={mainAction} theme={theme} >
                                       <p>
                                           This order was archived.
@@ -246,7 +246,7 @@ describe('<Banner />', () => {
         expect(bannerWrapper.find('div').at(1).hasClass('Ribbon')).toBe(true);
         expect(bannerWrapper.find('div').at(3).hasClass('Heading')).toBe(true);
         expect(bannerWrapper.find('div').at(4).hasClass('Content')).toBe(true);
-        expect(bannerWrapper.prop('title')).toBe('Order archived');
+        expect(bannerWrapper.prop('customTitle')).toBe('Order archived');
         expect(bannerWrapper.prop('status')).toBe('success');
         expect(bannerWrapper.prop('children').props.children).toBe('This order was archived.');
         expect(bannerWrapper.find('button').at(0).text()).toBe('mainAction Content');
@@ -285,7 +285,7 @@ describe('<Banner />', () => {
         };
 
         const bannerWrapper = mount(
-                                    <Banner title="Order archived" status="success" action={mainAction}
+                                    <Banner customTitle="Order archived" status="success" action={mainAction}
                                     secondaryAction={secondaryAction} theme={theme} >
                                         <p>
                                             This order was archived.
@@ -305,7 +305,7 @@ describe('<Banner />', () => {
         expect(bannerWrapper.find('div').at(5).hasClass('Actions')).toBe(true);
         expect(bannerWrapper.find('span').at(3).hasClass('Text')).toBe(true);
         expect(bannerWrapper.find('button').at(2).hasClass('SecondaryAction')).toBe(true);
-        expect(bannerWrapper.prop('title')).toBe('Order archived');
+        expect(bannerWrapper.prop('customTitle')).toBe('Order archived');
         expect(bannerWrapper.prop('status')).toBe('success');
         expect(bannerWrapper.prop('children').props.children).toBe('This order was archived.');
         expect(bannerWrapper.find('button').at(0).text()).toBe('mainAction Content');
@@ -324,7 +324,7 @@ describe('<Banner />', () => {
         .mockImplementationOnce(() => 'first call');
       spy();
       const bannerWrapper = mount(
-                                 <Banner title="DismissCheck" onDismiss={() => spy()} theme={theme} >
+                                 <Banner customTitle="DismissCheck" onDismiss={() => spy()} theme={theme} >
                                     <p>
                                       Use your finance report. Dismissed.
                                     </p>
@@ -359,7 +359,7 @@ describe('<Banner />', () => {
     };
     it('should verify banner when all properties are set', () => {
       const bannerWrapper = mount(
-                                  <Banner icon="arrowDown" title="Order archived" status="success"
+                                  <Banner icon="arrowDown" customTitle="Order archived" status="success"
                                    action={mainAction} secondaryAction={secondaryAction} theme={theme} >
                                      <p>
                                        Add weights to show accurate rates.
@@ -380,7 +380,7 @@ describe('<Banner />', () => {
       expect(bannerWrapper.find('span').at(3).hasClass('Text')).toBe(true);
       expect(bannerWrapper.find('button').at(2).hasClass('SecondaryAction')).toBe(true);
       expect(bannerWrapper.prop('icon')).toBe('arrowDown');
-      expect(bannerWrapper.prop('title')).toBe('Order archived');
+      expect(bannerWrapper.prop('customTitle')).toBe('Order archived');
       expect(bannerWrapper.prop('status')).toBe('success');
       expect(bannerWrapper.prop('children').props.children).toBe('Add weights to show accurate rates.');
       expect(bannerWrapper.find('button').at(0).text()).toBe('mainAction Content');

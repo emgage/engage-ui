@@ -4,7 +4,7 @@ import * as styles from '../../styles/components-page.scss';
 
 const BannerExample = () => (
   <div className={styles.example}>
-    <Banner title="Order archived" ariaLabel="Order archived">
+    <Banner customTitle="Order archived" ariaLabel="Order archived">
       <p>
         This order was archived.
       </p>

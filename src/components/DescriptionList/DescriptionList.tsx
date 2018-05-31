@@ -9,10 +9,14 @@ import Description from './Description';
 export type Type = 'default' | 'divider';
 
 export interface Props {
+  // Display description list with term and description elements
   children?:React.ReactNode;
-  type?: Type;
+  // Type of description list to display. Available options: default | divider
+  customType?: Type;
+  // Theme to be injected via css-themr
   theme?: any;
-  style?:string;
+  // Style to be applied. Available options: Inline | Stacked
+  customStyle?:string;
 }
 
 class DescriptionList extends React.PureComponent<Props, never> {
@@ -20,17 +24,17 @@ class DescriptionList extends React.PureComponent<Props, never> {
   static Description = Description;
 
   render() {
-    const { children, type, theme, style } = this.props;
-    const background = type === 'divider' && style ===  'Stacked' ? baseTheme['description-list-divider'] : type === 'default' && style ===  'Stacked' ? baseTheme['naked'] : '';
+    const { children, customType, theme, customStyle } = this.props;
+    const background = customType === 'divider' && customStyle ===  'Stacked' ? baseTheme['description-list-divider'] : customType === 'default' && customStyle ===  'Stacked' ? baseTheme['naked'] : '';
     const className = classNames(
-      style ===  'Inline' ?  theme.descriptionList : '',
-      type && theme[variationName('type', type)]
+      customStyle ===  'Inline' ?  theme.descriptionList : '',
+      customType && theme[variationName('type', customType)]
     );
 
-    const classNameTerm = style ===  'Inline' ?  classNames(theme.term) : '' ;
+    const classNameTerm = customStyle ===  'Inline' ?  classNames(theme.term) : '' ;
 
     const childrenWithProps = React.Children.map(children, child  =>
-      React.cloneElement(child as React.ReactElement<any>, { style: classNameTerm }));
+      React.cloneElement(child as React.ReactElement<any>, { customStyle: classNameTerm }));
 
     return (
       <div>
