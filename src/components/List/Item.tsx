@@ -6,12 +6,17 @@ import { LIST } from '../ThemeIdentifiers';
 import * as baseTheme from './List.scss';
 
 export interface Props {
+  // To render item inside ListItem.
   children?: React.ReactNode;
+  // Theme to be injected via css-themr
   theme?: any;
+  // To display image for ListItem.
   image?: string;
-  name?: string;
+  // To display name of ListItem.
+  customName?: string;
+  // To display email for ListItem.
   email?: string;
-  grey?: boolean;
+  // Callback function whenever listitem is clicked.
   onClick?(val?: any): boolean;
 }
 

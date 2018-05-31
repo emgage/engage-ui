@@ -7,8 +7,8 @@ const CheckBoxExample = () => (
     <Checkbox
       label="With helpText "
       helpText="Some help"
-      name="checkbox"
-      value="Some value"
+      customName="checkbox"
+      customValue="Some value"
     />
   </div>
 );

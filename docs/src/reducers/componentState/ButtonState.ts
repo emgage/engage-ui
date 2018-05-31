@@ -36,7 +36,7 @@ const ButtonState: IDocument = {
       type: 'string',
       desc: 'The content to display inside the button.',
     }, {
-      name: 'size',
+      name: 'customSize',
       type: 'Size',
       desc: 'Change the size of the button. It can be slim or large',
     }, {
@@ -84,7 +84,7 @@ const ButtonState: IDocument = {
       type: 'IconProps',
       desc: 'Icon to display in the banner.',
     }, {
-      name: 'style',
+      name: 'customStyle',
       type: 'React.CSSProperties',
       desc: 'To display the styling.',
     }, {

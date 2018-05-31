@@ -9,7 +9,7 @@ const FormLayoutExampleFirst = () => (
         label="Store name"
       />
       <TextField
-        type="email"
+        customType ="email"
         label="Account email"
       />
     </FormLayout>

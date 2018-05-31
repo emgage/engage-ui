@@ -13,7 +13,7 @@ const ChoiceState: IDocument = {
   subheading: `Choice component is used to provide selection for RadioButton, Checkbox and Choicelist components.`,
   property: [
     {
-      name: 'id',
+      name: 'customId',
       type: 'string',
       desc: 'Set id of Choice component.',
     }, {

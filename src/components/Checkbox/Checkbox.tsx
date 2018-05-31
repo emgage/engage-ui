@@ -11,25 +11,38 @@ import checkmarkSvg from './icons/checkmark.svg';
 import * as baseTheme from './Checkbox.scss';
 
 export interface Props {
+  // Label for the checkbox
   label: string;
+  // Visually hide the label
   labelHidden?: boolean;
+  // Checkbox is selected or not
   checked?: boolean;
+  // Additional text to aide in use
   helpText?: React.ReactNode;
-  id?: string;
-  name?: string;
-  value?: string;
+  // ID for form input
+  customId?: string;
+  // Name for form input
+  customName?: string;
+  // Value for form input
+  customValue?: string;
+  // Display an error state
   error?: Error;
+  // Disabled checkbox name
   disabled?: boolean;
+  // Theme to be injected via css-themr
   theme?: any;
+  // Callback when checkbox is toggled
   onChange?(newValue: boolean): void;
+  // Callback when checkbox is focussed
   onFocus?(): void;
+  // Callback when focus is removed
   onBlur?(): void;
 }
 
 const getUniqueID = createUniqueIDFactory('Checkbox');
 
 const checkbox = ({
-  id = getUniqueID(),
+  customId = getUniqueID(),
   label,
   labelHidden,
   helpText,
@@ -39,8 +52,8 @@ const checkbox = ({
   onChange,
   onFocus,
   onBlur,
-  name,
-  value,
+  customName,
+  customValue,
   theme,
 }: Props) => {
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -50,8 +63,8 @@ const checkbox = ({
   }
 
   const describedBy: string[] = [];
-  if (typeof error === 'string') { describedBy.push(errorID(id)); }
-  if (helpText) { describedBy.push(helpTextID(id)); }
+  if (typeof error === 'string') { describedBy.push(errorID(customId)); }
+  if (helpText) { describedBy.push(helpTextID(customId)); }
 
   const className = classNames(
     theme.checkbox,
@@ -60,7 +73,7 @@ const checkbox = ({
 
   return (
     <Choice
-      id={id}
+      customId={customId}
       label={label}
       labelHidden={labelHidden}
       helpText={helpText}
@@ -68,9 +81,9 @@ const checkbox = ({
     >
       <div className={className}>
         <input
-          id={id}
-          name={name}
-          value={value}
+          id={customId}
+          name={customName}
+          value={customValue}
           type="checkbox"
           checked={checked}
           disabled={disabled}

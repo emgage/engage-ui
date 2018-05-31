@@ -21,30 +21,46 @@ export interface Group {
 }
 
 export interface Props {
+  // List of options to choose from 
   options?: Option[];
+  // List of option groups to choose from
   groups?: (Group | Option)[];
+  // Label for the Select
   label: string;
+  // Adds an action to the label
   labelAction?: Action;
+  // Visually hide the label
   labelHidden?: boolean;
+  // Additional text to aide in use
   helpText?: React.ReactNode;
-  id?: string;
-  name?: string;
+  // ID for form input
+  customId?: string;
+  // Name for form input
+  customName?: string;
+  // Display an error state
   errors?: [Error];
+  // Disable input
   disabled?: boolean;
   required?: boolean;
-  value?: string;
+  // Value for form input
+  customValue?: string;
+  // Content to display when component render.
   placeholder?: string;
+  // Theme to be injected via css-themr.
   theme?: any;
+  // Callback when selection is changed
   onChange?(selected: string): void;
+  // Callback when Select is focussed
   onFocus?(): void;
+  // Callback when focus is removed
   onBlur?(): void;
 }
 
 const getUniqueID = createUniqueIDFactory('Select');
 
 const select = ({
-  id = getUniqueID(),
-  name,
+  customId = getUniqueID(),
+  customName,
   groups,
   options,
   labelHidden,
@@ -52,7 +68,7 @@ const select = ({
   helpText,
   label,
   errors,
-  value,
+  customValue,
   placeholder,
   disabled,
   required,
@@ -69,7 +85,7 @@ const select = ({
     optionsMarkup = groups.map(renderGroup);
   }
 
-  const isPlaceholder = value == null && placeholder != null;
+  const isPlaceholder = customValue == null && placeholder != null;
   const className = classNames(
     theme.select,
     errors && theme.error,
@@ -82,8 +98,8 @@ const select = ({
     : undefined;
 
   const describedBy: string[] = [];
-  if (helpText) { describedBy.push(helpTextID(id)); }
-  if (errors) { describedBy.push(errorID(id)); }
+  if (helpText) { describedBy.push(helpTextID(customId)); }
+  if (errors) { describedBy.push(errorID(customId)); }
 
   const placeholderOption = isPlaceholder
     ? <option label={placeholder} disabled hidden />
@@ -91,7 +107,7 @@ const select = ({
 
   return (
     <Labelled
-      id={id}
+      customId={customId}
       label={label}
       errors={errors}
       action={labelAction}
@@ -101,9 +117,9 @@ const select = ({
     >
       <div className={className}>
         <select
-          id={id}
-          name={name ? name : 'select'}
-          value={value}
+          id={customId}
+          name={customName ? customName : 'select'}
+          value={customValue}
           className={theme.input}
           disabled={disabled}
           required={required}

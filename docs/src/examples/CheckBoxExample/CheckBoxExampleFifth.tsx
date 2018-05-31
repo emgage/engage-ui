@@ -6,8 +6,8 @@ const CheckBoxExample = () => (
   <div className={styles.example}>
     <Checkbox
       label="With error"
-      name="checkbox"
-      value="Some value"
+      customName="checkbox"
+      customValue="Some value"
       error="Some error"
     />
   </div>

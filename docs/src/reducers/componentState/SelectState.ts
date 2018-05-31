@@ -43,15 +43,15 @@ const SelectState: IDocument = {
       type: 'string',
       desc: 'Example text to display as placeholder',
     }, {
-      name: 'id',
+      name: 'customId',
       type: 'string',
       desc: 'ID for form input',
     }, {
-      name: 'name',
+      name: 'customName',
       type: 'string',
       desc: 'Name for form input',
     }, {
-      name: 'value',
+      name: 'customValue',
       type: 'string',
       desc: 'Value for form input',
     }, {

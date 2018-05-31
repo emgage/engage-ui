@@ -29,7 +29,7 @@ export interface Props {
   // This have the key of current heading, this helps in sorting
   sort?: string;
   // Custom style, if user wants to add in th
-  style?: any;
+  customStyle?: any;
   theme?: any;
 }
 
@@ -61,7 +61,7 @@ class TableHead extends React.Component<Props, never> {
   }
 
   render () {
-    const { accessibilityId, accessibilityScope, children, colSpan, order, rowSpan, sort, style } = this.props;
+    const { accessibilityId, accessibilityScope, children, colSpan, order, rowSpan, sort, customStyle } = this.props;
     const customClassName = this.getClassName();
 
     return (
@@ -71,7 +71,7 @@ class TableHead extends React.Component<Props, never> {
         id={accessibilityId}
         colSpan={colSpan}
         rowSpan={rowSpan}
-        style={style}
+        style={customStyle}
         onClick={this.triggerClick}>
         { children }
         {

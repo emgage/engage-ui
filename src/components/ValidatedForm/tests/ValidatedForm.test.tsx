@@ -18,9 +18,9 @@ describe('<ValidatedForm / >', () => {
         const validatedFormWrapper = mount(
                                             <ValidatedForm>
                                                 <ValidatedTextField
-                                                id="AppName"
+                                                customId="AppName"
                                                 label="App Name"
-                                                name="App Name" />
+                                                customName ="App Name" />
                                             </ValidatedForm>);
         expect(validatedFormWrapper.find('form')).toHaveLength(1);
         expect(validatedFormWrapper.prop('children')).toBeDefined();
@@ -45,9 +45,9 @@ describe('<ValidatedForm / >', () => {
     describe('when set', () => {
       it('should verify ValidatedForm when style prop is set', () => {
         const style = { color: 'red' };
-        const validatedFormWrapper = mount(<ValidatedForm style={style} />);
+        const validatedFormWrapper = mount(<ValidatedForm customStyle={style} />);
         expect(validatedFormWrapper.find('form')).toHaveLength(1);
-        expect(validatedFormWrapper.prop('style')).toBe(style);
+        expect(validatedFormWrapper.prop('customStyle')).toBe(style);
         expect(validatedFormWrapper.html()).toBe('<form style="color: red;"></form>');
       });
     });
@@ -56,7 +56,7 @@ describe('<ValidatedForm / >', () => {
       it('should verify ValidatedForm when style prop is not set', () => {
         const validatedFormWrapper = mount(<ValidatedForm />);
         expect(validatedFormWrapper.find('form')).toHaveLength(1);
-        expect(validatedFormWrapper.prop('style')).toBeUndefined();
+        expect(validatedFormWrapper.prop('customStyle')).toBeUndefined();
       });
     });
   });
@@ -128,11 +128,11 @@ describe('<ValidatedForm / >', () => {
         const submitError = jest.fn();
         const validatedFormWrapper = mount(
                                             <ValidatedForm
-                                                style={style} onSubmit={submit} onSubmitError={submitError} form={form}>
+                                                customStyle={style} onSubmit={submit} onSubmitError={submitError} form={form}>
                                                 <ValidatedTextField
-                                                id="AppName"
+                                                customId="AppName"
                                                 label="App Name"
-                                                name="App Name" />
+                                                customName="App Name" />
                                             </ValidatedForm>);
         expect(validatedFormWrapper.find('form')).toHaveLength(1);
         expect(validatedFormWrapper.prop('children')).toBeDefined();
@@ -141,7 +141,7 @@ describe('<ValidatedForm / >', () => {
         expect(validatedFormWrapper.find('label')).toHaveLength(2);
         expect(validatedFormWrapper.find('label').at(1).prop('id')).toBe('AppNameLabel');
         expect(validatedFormWrapper.find('label').at(1).text()).toBe('App Name');
-        expect(validatedFormWrapper.prop('style')).toBe(style);
+        expect(validatedFormWrapper.prop('customStyle')).toBe(style);
         expect(validatedFormWrapper.html().indexOf('<form style="color: red;">')).toBe(0);
         expect(validatedFormWrapper.prop('onSubmit')).toBeDefined();
         expect(validatedFormWrapper.prop('onSubmitError')).toBeDefined();

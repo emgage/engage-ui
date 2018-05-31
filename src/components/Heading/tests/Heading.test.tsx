@@ -13,7 +13,6 @@ describe('<Heading />', () => {
                                         <Heading theme={theme} />
                                     );
       expect(headingWrapper.find('h2')).toHaveLength(1);
-      console.log(headingWrapper.html());
     });
     it('basic heading should have default Heading css class on h2', () => {
       const headingWrapper = mount(

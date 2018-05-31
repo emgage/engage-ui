@@ -66,27 +66,27 @@ describe('<Icon />', () => {
     describe('when set', () => {
       it('basic icon should have rendered one span element', () => {
         const iconWrapper = mount(
-                                  <Icon source="notes" color="white" theme={theme} />
+                                  <Icon source="notes" customColor="white" theme={theme} />
                             );
         expect(iconWrapper.find('span')).toHaveLength(1);
       });
       it('basic icon should have rendered with one colorWhite clss on span', () => {
         const iconWrapper = mount(
-                                  <Icon source="placeholder" color="white" theme={theme} />
+                                  <Icon source="placeholder" customColor="white" theme={theme} />
                             );
         expect(iconWrapper.find('span').hasClass('colorWhite'));
       });
       it('should verify given color when source as svg ', () => {
         const iconWrapper = mount(
-                                  <Icon source="notes" color="white" theme={theme} />
+                                  <Icon source="notes" customColor="white" theme={theme} />
                             );
-        expect(iconWrapper.prop('color')).toBe('white');
+        expect(iconWrapper.prop('customColor')).toBe('white');
       });
       it('should verify given color when source as placeholder ', () => {
         const iconWrapper = mount(
-                                  <Icon source="placeholder" color="white" theme={theme} />
+                                  <Icon source="placeholder" customColor="white" theme={theme} />
                             );
-        expect(iconWrapper.prop('color')).toBe('white');
+        expect(iconWrapper.prop('customColor')).toBe('white');
       });
     });
 
@@ -101,10 +101,10 @@ describe('<Icon />', () => {
         expect(iconWrapper.find('span').hasClass('Icon'));
       });
       it('should not have color property', () => {
-        expect(iconWrapper.find('color')).toHaveLength(0);
+        expect(iconWrapper.find('customColor')).toHaveLength(0);
       });
       it('should verify color property is not defined', () => {
-        expect(iconWrapper.prop('color')).toBeUndefined();
+        expect(iconWrapper.prop('customColor')).toBeUndefined();
       });
     });
   });

@@ -6,7 +6,7 @@ const TextFieldExample7 = () => (
   <div className={styles.example}>
     <TextField
       label="Price"
-      type="number"
+      customType="number"
       prefix="$"
     />
   </div>

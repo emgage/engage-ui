@@ -42,7 +42,7 @@ export interface Props {
   // Show overlay / backdrop
   overlay?: boolean;
   // Define width of drawer
-  width?: Width;
+  customWidth?: Width;
   // Set theme for drawer
   theme?: any;
   // Callback function to close or open the drawer
@@ -57,7 +57,7 @@ class Drawer extends React.Component<Props, never> {
   public id = getUniqueID();
   private activatorContainer: HTMLElement | null;
 
-  componentWillReceiveProps(newProps: any) {
+  componentWillReceiveProps(newProps: Props) {
     // Call the callback function if available
     // onOpen: when drawer open
     // onClose: when drawer close
@@ -83,7 +83,7 @@ class Drawer extends React.Component<Props, never> {
       flip,
       active,
       overlay,
-      width = 'medium',
+      customWidth = 'medium',
       theme,
     } = this.props;
 
@@ -91,9 +91,9 @@ class Drawer extends React.Component<Props, never> {
       theme.drawer,
       overlay && theme.overlay,
       flip && this.props.theme.flip,
-      width === 'small' && theme.small,
-      width === 'medium' && theme.medium,
-      width === 'large' && theme.large,
+      customWidth === 'small' && theme.small,
+      customWidth === 'medium' && theme.medium,
+      customWidth === 'large' && theme.large,
       active && theme.open
     );
   }
@@ -118,7 +118,7 @@ class Drawer extends React.Component<Props, never> {
       flip,
       mode,
       overlay,
-      width = 'medium',
+      customWidth = 'medium',
       theme,
     } = this.props;
 
@@ -129,22 +129,22 @@ class Drawer extends React.Component<Props, never> {
       bodyElement.className = this.props.active ? (theme.container) : '';
       bodyElement.className += overlay && this.props.active ? ' ' + (theme.overlay) : '';
       bodyElement.className += flip && this.props.active ? ' ' + (theme.flip) : '';
-      if (width === 'small') {
+      if (customWidth === 'small') {
         bodyElement.className += this.props.active ? ' ' + (theme.small) : '';
       }
-      if (width === 'medium') {
+      if (customWidth === 'medium') {
         bodyElement.className += this.props.active ? ' ' + (theme.medium) : '';
       }
-      if (width === 'large') {
+      if (customWidth === 'large') {
         bodyElement.className += this.props.active ? ' ' + (theme.large) : '';
       }
       if (mode === 'push' || mode === 'reveal') {
         bodyElement.className += this.props.active ? ' ' + (theme.animation) : '';
         if (rootElement !== null) {
           if (flip) {
-            rootElement.style.left = width && this.props.active ? `-${width}` : '';
+            rootElement.style.left = customWidth && this.props.active ? `-${customWidth}` : '';
           } else {
-            rootElement.style.left = width && this.props.active ? `${width}` : '';
+            rootElement.style.left = customWidth && this.props.active ? `${customWidth}` : '';
           }
         }
       }
@@ -168,7 +168,7 @@ class Drawer extends React.Component<Props, never> {
   }
 
   renderLayer() {
-    const { active, mode, width, theme } = this.props;
+    const { active, mode, customWidth, theme } = this.props;
     const containerClassName = this.getContainerClassName();
     const barClassName = this.getBarClassName();
 
@@ -176,7 +176,7 @@ class Drawer extends React.Component<Props, never> {
     const activeContent = this.renderActivechildren();
 
     const bar = [
-      <div className={barClassName} style={width ? { width: `${width}` }  : undefined} key={this.id}>
+      <div className={barClassName} style={customWidth ? { width: `${customWidth}` }  : undefined} key={this.id}>
         {
           active ?
           <div className={theme.label} aria-live={'assertive'} >
@@ -193,7 +193,7 @@ class Drawer extends React.Component<Props, never> {
         {
           mode === 'reveal'
             ?
-            <div className={theme.reveal} style={width && active ? { width: `${width}` }  : undefined}>
+            <div className={theme.reveal} style={customWidth && active ? { width: `${customWidth}` }  : undefined}>
               {bar}
             </div>
             :

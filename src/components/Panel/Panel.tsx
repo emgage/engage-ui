@@ -4,17 +4,21 @@ import { PANEL } from '../ThemeIdentifiers';
 import * as baseTheme from './Panel.scss';
 
 export interface Props {
+  // If heading needs to be added into panel
   heading: string | React.ReactNode;
+  // When need to add video into panel
   video?: React.ReactNode;
   children?: React.ReactNode;
+  // Theme to be injected via css-themr.
   theme?: any;
-  style?: React.CSSProperties;
+  // To apply custom styling.
+  customStyle?: React.CSSProperties;
 }
 
 class Panel extends React.PureComponent<Props, any> {
   render() {
     return (
-            <div className={this.props.theme.panel} style={this.props.style}>
+            <div className={this.props.theme.panel} style={this.props.customStyle}>
                 {
                   typeof this.props.heading === 'string'
                         ? <div className={this.props.theme.heading}>{this.props.heading}</div>

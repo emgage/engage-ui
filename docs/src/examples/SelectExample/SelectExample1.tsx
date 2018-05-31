@@ -13,8 +13,8 @@ const SelectExample1 = () => (
       ]}
       placeholder="Select"
       disabled
-      id="SelectId"
-      name="Select Name"
+      customId="SelectId"
+      customName="Select Name"
     />
   </div>
 );

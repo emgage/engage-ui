@@ -106,30 +106,36 @@ export const BUNDLED_ICONS = {
 const COLORS_WITH_BACKDROPS = ['teal', 'tealDark', 'greenDark', 'redDark', 'yellowDark', 'ink'];
 
 export interface Props {
+  // Souce for an icon.
   source: SVGSource | 'placeholder' | keyof typeof BUNDLED_ICONS;
-  color?: Color;
+  // To give colors for icons.
+  customColor?: Color;
+  // Show a backdrop behind the icon.
   backdrop?: boolean;
+  // Descriptive text to be read to screenreaders.
   accessibilityLabel?: string;
-  style?: React.CSSProperties;
+  // To provide styling.
+  customStyle?: React.CSSProperties;
+  // Theme to be injected via css-themr.
   theme?: any;
 }
 
 const icon = ({
   source,
-  color,
+  customColor,
   backdrop,
   accessibilityLabel,
-  style,
+  customStyle,
   theme,
 }: Props) => {
-  if (color && backdrop && COLORS_WITH_BACKDROPS.indexOf(color) < 0) {
+  if (customColor && backdrop && COLORS_WITH_BACKDROPS.indexOf(customColor) < 0) {
     // tslint:disable-next-line no-console
-    console.warn(`The ${color} icon doesn't accept backdrops. The icon colors that have backdrops are: ${COLORS_WITH_BACKDROPS.join(', ')}`);
+    console.warn(`The ${customColor} icon doesn't accept backdrops. The icon colors that have backdrops are: ${COLORS_WITH_BACKDROPS.join(', ')}`);
   }
 
   const className = classNames(
     theme.icon,
-    color && theme[variationName('color', color)],
+    customColor && theme[variationName('color', customColor)],
     backdrop && theme.hasBackdrop
   );
 
@@ -154,7 +160,7 @@ const icon = ({
   }
 
   return (
-    <span className={className} style={style} aria-label={accessibilityLabel}>
+    <span className={className} style={customStyle} aria-label={accessibilityLabel}>
       {contentMarkup}
     </span>
   );

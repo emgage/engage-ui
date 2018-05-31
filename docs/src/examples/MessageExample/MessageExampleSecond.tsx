@@ -22,7 +22,7 @@ class MessageExampleSecond extends React.Component<IProps, IState> {
     return (
       <div className={styles.example}>
         <Message
-          id = "1010101010"
+          customId = "1010101010"
           isVisible = {this.state.isvisibled}
         >
           This is your message

@@ -11,8 +11,11 @@ import { CARD } from '../ThemeIdentifiers';
 import * as baseTheme from './Card.scss';
 
 export interface Props {
+  // Card header related components to render inside this card header.
   children?: React.ReactNode;
+  // Card header actions
   actions?: DisableableAction[];
+  // Theme to be injected via css-themr.
   theme?: any;
 }
 

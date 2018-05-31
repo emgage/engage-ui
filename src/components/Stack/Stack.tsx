@@ -13,11 +13,17 @@ export type Alignment = 'leading' | 'trailing' | 'center' | 'fill' | 'baseline';
 export type Distribution = 'equalSpacing' | 'leading' | 'trailing' | 'center' | 'fill' | 'fillEvenly';
 
 export interface Props {
+  // Elements to display inside stack.
   children?: any;
+  // Stack the elements vertically.
   vertical?: boolean;
+  // Adjust spacing between elements. Available options: extraTight | tight | loose | extraLoose | none
   spacing?: Spacing;
+  // Adjust vertical alignment of elements.Available options: leading | trailing | center | fill | baseline
   alignment?: Alignment;
+  // Adjust horizontal alignment of elements. Available options: equalSpacing | eading | trailing | center | fill | fillEvenly
   distribution?: Distribution;
+  // Theme to be injected via css-themr.
   theme?: any;
 }
 

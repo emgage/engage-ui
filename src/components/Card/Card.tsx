@@ -12,13 +12,21 @@ import Section from './Section';
 import * as baseTheme from './Card.scss';
 
 export interface Props {
-  title?: string;
+  // Title content for the card.
+  customTitle?: string;
+  // Card related components to render inside this card.
   children?: React.ReactNode;
+  // A less prominent card
   subdued?: boolean;
+  // Auto wrap content in section
   sectioned?: boolean;
+  // Card actions
   actions?: Action[];
+  // Primary action in the card footer 
   primaryFooterAction?: Action;
+  // Secondary action in the card footer
   secondaryFooterAction?: Action;
+  // Theme to be injected via css-themr.
   theme?: any;
 }
 
@@ -28,7 +36,7 @@ class Card extends React.PureComponent<Props, never> {
   render() {
     const {
       children,
-      title,
+      customTitle,
       subdued,
       sectioned,
       actions,
@@ -39,8 +47,8 @@ class Card extends React.PureComponent<Props, never> {
 
     const className = classNames(theme.card, subdued && theme.subdued);
 
-    const headerMarkup = title
-      ? <Header actions={actions}>{title}</Header>
+    const headerMarkup = customTitle
+      ? <Header actions={actions}>{customTitle}</Header>
       : null;
 
     const content = sectioned

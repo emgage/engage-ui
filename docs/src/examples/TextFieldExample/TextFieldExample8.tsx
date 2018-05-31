@@ -6,7 +6,7 @@ const TextFieldExample8 = () => (
   <div className={styles.example}>
     <TextField
       label="Weight"
-      type="number"
+      customType="number"
       connectedRight={<Select label="Weight unit" labelHidden options={[
         'kg',
         'lb',

@@ -13,22 +13,33 @@ export { Action, labelID };
 export type Error = string;
 
 export interface Props {
-  id: LabelProps['id'];
+  // ID for the input.
+  customId: LabelProps['customId'];
+  // Label for labelled component
   label: string;
+  // To display error message.
   errors?: [string] | Error;
+  // Adds an action to the label.
   action: LabelProps['action'];
   helpText?: React.ReactNode;
+  // The content to display inside labelled.
   children?: React.ReactNode;
+  // Visually hide the labelled.
   labelHidden?: boolean;
+  // To make it required or not.
   required?: boolean;
+  // To display labelled focused.
   focused?: boolean;
+  // To display Initial value for the labelled.
   hasValue?: boolean;
-  style?: React.CSSProperties;
+  // To provide styling for labelled.
+  customStyle?: React.CSSProperties;
+  // Theme to be injected via css-themr.
   theme?: any;
 }
 
 const labelled = ({
-  id,
+  customId,
   label,
   errors,
   children,
@@ -37,7 +48,7 @@ const labelled = ({
   required,
   focused,
   hasValue,
-  style,
+  customStyle,
   theme,
   ...rest
 }: Props) => {
@@ -53,13 +64,13 @@ const labelled = ({
   );
 
   const helpTextMarkup = helpText
-    ? <div className={theme.helpText} id={helpTextID(id)}>{helpText}</div>
+    ? <div className={theme.helpText} id={helpTextID(customId)}>{helpText}</div>
     : null;
 
-  const errorId = errorID(id);
+  const errorId = errorID(customId);
   const errorMarkup = errors
     ? (
-      <Message id={errorId} isVisible={true}>
+      <Message customId={errorId} isVisible={true}>
         {errors instanceof Array ? errors.join(', ') : (typeof errors === 'string' ? errors : 'An error occurred.')}
       </Message>
     )
@@ -69,7 +80,7 @@ const labelled = ({
     ? (
       <div className={labelWrapperClassName} id={'labelMarkup'}>
         <Label
-          id={id}
+          customId={customId}
           hidden={false}
           focused={focused}
           hasValue={hasValue}
@@ -83,7 +94,7 @@ const labelled = ({
     : null;
 
   return (
-    <div className={wrapperClassName} aria-describedby={errorId} id={'labelled.tsx'} style={style}>
+    <div className={wrapperClassName} aria-describedby={errorId} id={'labelled.tsx'} style={customStyle}>
       {errorMarkup}
       {labelMarkup}
       {children}

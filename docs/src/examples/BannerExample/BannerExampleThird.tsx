@@ -5,7 +5,7 @@ import * as styles from '../../styles/components-page.scss';
 const BannerExample = () => (
   <div className={styles.example}>
     <Banner
-      title="USPS has updated their rates"
+      customTitle="USPS has updated their rates"
       action={{ content: 'Learn more', onAction:() => {alert('You clicked on Learn more.');} }}
       status="info"
     >

@@ -4,7 +4,7 @@ import * as styles from '../../styles/components-page.scss';
 
 const LabelExampleFirst = () => (
   <div className={styles.example}>
-    <Label id="lblid">Test</Label>
+    <Label customId="lblid">Test</Label>
   </div>
 );
 

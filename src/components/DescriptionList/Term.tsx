@@ -5,7 +5,9 @@ import * as baseTheme from './DescriptionList.scss';
 
 export interface Props {
   children?:React.ReactNode;
+  // Theme to be injected via css-themr
   theme?: any;
+  // Style to be applied. Available options: Inline | Stacked
   style?:string;
 }
 

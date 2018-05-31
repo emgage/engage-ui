@@ -3,22 +3,28 @@ import { createForm } from 'rc-form';
 
 export interface Props {
   form: {
+    // Field properties of form.
     getFieldProps: any,
+    // Field error of form.
     getFieldError: any,
+    // Validate fields and scroll of form.
     validateFieldsAndScroll: any,
-    validateFields(error?: any, values?: [any]): any;
+    validateFields(error?: any, values?: [React.FormEvent<any>]): any;
   };
-  style?: React.CSSProperties;
-  onSubmit: (values: [any]) => void;
-  onSubmitError: (values: [any], error: Error) => void;
+  // To apply styling externally
+  customStyle?: React.CSSProperties;
+  // Function to handle on submit of validated form.
+  onSubmit: (values: [React.FormEvent<any>]) => void;
+  // Function to handle errors on submit of validated form.
+  onSubmitError: (values: [React.FormEvent<any>], error: Error) => void;
 }
 
 class ValidatedForm extends React.Component<Props, {}> {
-  onSubmit = (event: any) => {
+  onSubmit = (event: React.FormEvent<any>) => {
     event.preventDefault();
     const { form, onSubmit, onSubmitError } = this.props;
 
-    form.validateFields((error: Error, values: [any]) => {
+    form.validateFields((error: Error, values: [React.FormEvent<any>]) => {
       if (!error && onSubmit) {
         onSubmit(values);
       } else if (onSubmitError) {
@@ -29,8 +35,8 @@ class ValidatedForm extends React.Component<Props, {}> {
 
   render() {
     return(
-      <form onSubmit={this.onSubmit} style={this.props.style}>
-        {this.props.children && React.Children.map(this.props.children, (child: any) => {
+      <form onSubmit={this.onSubmit} style={this.props.customStyle}>
+        {this.props.children && React.Children.map(this.props.children, (child: React.ReactElement<any>) => {
           return React.cloneElement(child, { form: this.props.form });
         })}
       </form>

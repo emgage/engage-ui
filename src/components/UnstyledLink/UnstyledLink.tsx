@@ -3,11 +3,15 @@ import { ReactComponent } from '@shopify/react-utilities/types';
 import { unstyled } from '../shared';
 
 export interface Props extends React.HTMLProps<HTMLAnchorElement> {
+  // The url to link to.
   url: string;
+  // Use for a links that open a different site
   external?: boolean;
+  // The content to display inside link.  
   children?: React.ReactNode;
   [key: string]: any;
-  style?: React.CSSProperties;
+  // To apply custom styling.
+  customStyle?: React.CSSProperties;
 }
 
 export type LinkLikeComponent = ReactComponent<Props>;
@@ -27,6 +31,6 @@ export default class UnstyledLink extends React.PureComponent<Props, never> {
     const { external, url, ...rest } = this.props;
     const target = external ? '_blank' : undefined;
     const rel = external ? 'noopener noreferrer' : undefined;
-    return <a style={this.props.style} target={target} {...rest} href={url} rel={rel} {...unstyled.props} />;
+    return <a style={this.props.customStyle} target={target} {...rest} href={url} rel={rel} {...unstyled.props} />;
   }
 }

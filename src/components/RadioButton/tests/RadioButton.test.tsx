@@ -158,7 +158,7 @@ describe('<RadioButton />', () => {
     describe('when set', () => {
       it('should verify radiobutton when id is set', () => {
         const radiobuttonWrapper = mount(
-                                        <RadioButton label="RadioButton" id="MyRadioButton" theme={theme} />
+                                        <RadioButton label="RadioButton" customId="MyRadioButton" theme={theme} />
                                     );
         expect(radiobuttonWrapper.find('label')).toHaveLength(1);
         expect(radiobuttonWrapper.find('div')).toHaveLength(5);
@@ -384,7 +384,7 @@ describe('<RadioButton />', () => {
     describe('when set', () => {
       it('should verify radiobutton when name is set', () => {
         const radiobuttonWrapper = mount(
-                                        <RadioButton label="RadioButton" name="MyRadioButton" theme={theme} />
+                                        <RadioButton label="RadioButton" customName="MyRadioButton" theme={theme} />
                                     );
         expect(radiobuttonWrapper.find('label')).toHaveLength(1);
         expect(radiobuttonWrapper.find('div')).toHaveLength(5);
@@ -415,8 +415,8 @@ describe('<RadioButton />', () => {
         expect(radiobuttonWrapper.find('div').at(2).hasClass('backdrop'));
         expect(radiobuttonWrapper.find('div').at(3).hasClass('icon'));
         expect(radiobuttonWrapper.find('div').at(4).text()).toBe('RadioButton');
-        expect(radiobuttonWrapper.prop('name')).toBeUndefined();
-        expect(radiobuttonWrapper.find('name')).toHaveLength(0);
+        expect(radiobuttonWrapper.prop('customName')).toBeUndefined();
+        expect(radiobuttonWrapper.find('customName')).toHaveLength(0);
       });
     });
   });
@@ -425,7 +425,7 @@ describe('<RadioButton />', () => {
     describe('when set', () => {
       it('should verify radiobutton when value is set', () => {
         const radiobuttonWrapper = mount(
-                                        <RadioButton label="RadioButton" value="MyRadioButton" theme={theme} />
+                                        <RadioButton label="RadioButton" customValue="MyRadioButton" theme={theme} />
                                     );
         expect(radiobuttonWrapper.find('label')).toHaveLength(1);
         expect(radiobuttonWrapper.find('div')).toHaveLength(5);
@@ -456,8 +456,8 @@ describe('<RadioButton />', () => {
         expect(radiobuttonWrapper.find('div').at(2).hasClass('backdrop'));
         expect(radiobuttonWrapper.find('div').at(3).hasClass('icon'));
         expect(radiobuttonWrapper.find('div').at(4).text()).toBe('RadioButton');
-        expect(radiobuttonWrapper.prop('value')).toBeUndefined();
-        expect(radiobuttonWrapper.find('value')).toHaveLength(0);
+        expect(radiobuttonWrapper.prop('customValue')).toBeUndefined();
+        expect(radiobuttonWrapper.find('customValue')).toHaveLength(0);
       });
     });
   });
@@ -528,7 +528,7 @@ describe('<RadioButton />', () => {
         const spy = jest.fn();
 
         const radiobuttonWrapper = mount(
-                                        <RadioButton label="RadioButton" id="Radioid" name="Radioname" value="Radiovalue" labelHidden helpText="Some Help" checked disabled onFocus={spy} onChange={spy} onBlur={spy} theme={theme} />
+                                        <RadioButton label="RadioButton" customId="Radioid" customName="Radioname" customValue="Radiovalue" labelHidden helpText="Some Help" checked disabled onFocus={spy} onChange={spy} onBlur={spy} theme={theme} />
                                      );
         const helpTextID = radiobuttonWrapper.find('input').prop<string>('aria-describedby');
         (radiobuttonWrapper.find('input') as any).instance().checked = true;

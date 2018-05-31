@@ -7,12 +7,16 @@ import { TEXT_FIELD } from '../ThemeIdentifiers';
 import * as baseTheme from '../TextField/TextField.scss';
 
 export interface Props extends SelectProps {
-  id: string;
-  name: string;
+  // Id of Validated Selectfield.
+  customId: string;
+  // Name displayed with Selectfield.
+  customName: string;
+  // Form in which Selectfield bind.
   form?: any;
+  // Action to trigger validation rules.
   validateTrigger?: ['onBlur' | 'onChange'];
+  // Validation rules for Selectfield. Validation Rule : { required: boolean; message: string; } or { type: string; message: string; }.
   validateRules?: [ValidationRule];
-  validator?(rule: object, value: any, callback: (error?: Error) => void): void;
 }
 
 class ValidatedSelectFieldComponent extends React.PureComponent<Props, {}> {
@@ -22,21 +26,20 @@ class ValidatedSelectFieldComponent extends React.PureComponent<Props, {}> {
   }
 
   render() {
-    if (!this.props.name) {
+    if (!this.props.customName) {
       throw new Error('Name property is required on ValidatedSelectFieldComponent.');
     }
 
     const {
         validateTrigger,
-        validator,
         validateRules,
         form,
         onChange,
         onBlur,
         ...otherProps
     } = this.props;
-    const initialValue = otherProps.value;
-    const { ...otherFieldProps } = form.getFieldProps(this.props.name, {
+    const initialValue = otherProps.customValue;
+    const { ...otherFieldProps } = form.getFieldProps(this.props.customName, {
       initialValue,
       onChange,
       onBlur,
@@ -49,7 +52,7 @@ class ValidatedSelectFieldComponent extends React.PureComponent<Props, {}> {
             {...otherProps}
             {...otherFieldProps}
             value={initialValue}
-            errors={form.getFieldError(this.props.name)}
+            errors={form.getFieldError(this.props.customName)}
         />
     );
   }

@@ -16,7 +16,16 @@ const ClickableChipState: IDocument = {
       name: 'onClick',
       type: 'function()',
       desc: 'Function used for clicking the chip.',
+    }, {
+      name: 'customStyle',
+      type: 'React.CSSProperties',
+      desc: 'To display the styling.',
+    }, {
+      name: 'theme',
+      type: 'any',
+      desc: 'Theme to be injected via css-themr',
     },
+
   ],
   exampleCode: ClickableChipExampleFirstCode,
   exampleComponent: ClickableChipExampleFirst,

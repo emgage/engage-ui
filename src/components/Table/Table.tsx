@@ -74,7 +74,7 @@ class Table extends React.Component<Props, State> {
     }
   }
 
-  componentWillReceiveProps(newProps: any) {
+  componentWillReceiveProps(newProps: Props) {
     const { field, searchKey, search } = newProps.filterData;
 
     if (search && !this.props.filterData.search) {
@@ -153,7 +153,7 @@ class Table extends React.Component<Props, State> {
                 <TableHead
                   key={item.key}
                   sort={thisSort}
-                  style={item.style}
+                  customStyle={item.style}
                   className={item.className}
                   order={field === item.key ? order.current : ''}
                   clickHandler={this.sortData}>
@@ -242,7 +242,7 @@ class Table extends React.Component<Props, State> {
 
   // Function to add checkbox in header as well
   addHeaderCheckbox = (): React.ReactElement<any> => {
-    return <TableHead style={{ width: 'auto' }}><Checkbox label="" checked={this.state.allRowChecked} onChange={this.toggleAllRowSelection} /></TableHead>;
+    return <TableHead customStyle={{ width: 'auto' }}><Checkbox label="" checked={this.state.allRowChecked} onChange={this.toggleAllRowSelection} /></TableHead>;
   }
 
   // Function to add checkbox for the row selection
@@ -255,7 +255,7 @@ class Table extends React.Component<Props, State> {
       <TableData>
         <Checkbox
           label=""
-          value={uniqueId}
+          customValue={uniqueId}
           checked={selectedRows.indexOf(uniqueId) !== -1 ? true : false}
           onChange={(checkedStatus: boolean) => {
             this.toggleSingleRowSelection(uniqueId, checkedStatus);
@@ -266,7 +266,7 @@ class Table extends React.Component<Props, State> {
 
   // Function to add checkbox for the row selection
   renderRadio = (rowData: any): React.ReactElement<any> => {
-    return <TableData><Checkbox label="" value={rowData.id} checked={rowData.checked ? true : false} /></TableData>;
+    return <TableData><Checkbox label="" customValue={rowData.id} checked={rowData.checked ? true : false} /></TableData>;
   }
 
   render () {
@@ -360,7 +360,6 @@ class Table extends React.Component<Props, State> {
 
   // Function to make search in data
   triggerSearch = (searchKey: string, field: string) => {
-    console.log('Search:', searchKey.trim());
     const trimmedSearchKey = searchKey.trim().toLowerCase();
     const { data } = this.getInitialState();
 

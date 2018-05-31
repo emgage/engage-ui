@@ -24,7 +24,7 @@ const VideoExample3 = () => (
       preload="auto"
       loop={false}
       muted
-      style={{ height: 400, width: 400 }} />
+      customStyle={{ height: 400, width: 400 }} />
   </div>
 );
 

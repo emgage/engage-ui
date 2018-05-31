@@ -12,7 +12,7 @@ const VisuallyHiddenExample = () => (
       <FormLayout>
         <TextField
           label="Title"
-          value="Artisanal Wooden Spoon"
+          customValue="Artisanal Wooden Spoon"
         />
         <TextField
           label="Description"

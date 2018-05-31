@@ -4,7 +4,9 @@ import { VISUALLY_HIDDEN } from '../ThemeIdentifiers';
 import * as baseTheme from './VisuallyHidden.scss';
 
 export interface Props {
+  // The content to be hidden visually.
   children?: React.ReactNode;
+  // Theme to be injected via css-themr.
   theme?: any;
 }
 

@@ -5,7 +5,7 @@ import * as styles from '../../styles/components-page.scss';
 const ChoiceListExample = () => (
   <div className={styles.example}>
     <ChoiceList
-      title="Company name"
+      customTitle="Company name"
       choices={[
         {
           label: 'Hidden',

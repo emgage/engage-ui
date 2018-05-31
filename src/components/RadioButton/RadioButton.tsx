@@ -8,17 +8,29 @@ import { RADIO_BUTTON } from '../ThemeIdentifiers';
 import * as baseTheme from './RadioButton.scss';
 
 export interface Props {
+  // Label for the radio button.
   label: string;
+  // Visually hide the label.
   labelHidden?: boolean;
+  // Additional text to aid in use.
   helpText?: React.ReactNode;
+  // Radio button is selected.
   checked?: boolean;
-  id?: string;
-  name?: string;
-  value?: string;
+  // ID for form input.
+  customId?: string;
+  // Name for form input.
+  customName?: string;
+  // Value for form input.
+  customValue?: string;
+  // Set as disabled or not.
   disabled?: boolean;
+  // Theme to be injected via css-themr.
   theme?: any;
+  // Callback when the radio button is toggled.
   onChange?(newValue: boolean): void;
+  // Callback when radio button is focussed.
   onFocus?(): void;
+  // Callback when focus is removed.
   onBlur?(): void;
 }
 
@@ -33,9 +45,9 @@ const radioButton = ({
   onChange,
   onFocus,
   onBlur,
-  id = getUniqueID(),
-  name = id,
-  value,
+  customId= getUniqueID(),
+  customName = customId,
+  customValue,
   theme,
 }: Props) => {
   function handleChange({ currentTarget }: React.ChangeEvent<HTMLInputElement>) {
@@ -44,15 +56,15 @@ const radioButton = ({
   }
 
   const describedBy = helpText
-    ? helpTextID(id)
+    ? helpTextID(customId)
     : null;
 
   const input = describedBy === null ?
     (
       <input
-        id={id}
-        name={name}
-        value={value}
+        id={customId}
+        name={customName}
+        value={customValue}
         type="radio"
         checked={checked}
         disabled={disabled}
@@ -63,9 +75,9 @@ const radioButton = ({
       />
     ) : (
       <input
-        id={id}
-        name={name}
-        value={value}
+        id={customId}
+        name={customName}
+        value={customValue}
         type="radio"
         checked={checked}
         disabled={disabled}
@@ -78,7 +90,7 @@ const radioButton = ({
     );
 
   return (
-    <Choice label={label} labelHidden={labelHidden} id={id} helpText={helpText}>
+    <Choice label={label} labelHidden={labelHidden} customId={customId} helpText={helpText}>
       <div className={theme.radioButton}>
         {input}
         <div className={theme.backdrop} />
