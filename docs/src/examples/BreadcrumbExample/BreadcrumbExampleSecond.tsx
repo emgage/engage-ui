@@ -1,9 +1,8 @@
 import * as React from 'react';
-import { Breadcrumb } from '../../../../src/components';
-import { ISourceData } from '../../../../src/components/Breadcrumb/Breadcrumb';
+import { BreadCrumb, BreadcrumbSourceData } from '../../../../src/components';
 import * as styles from '../../styles/components-page.scss';
 
-const breadcrumbData: ISourceData[] = [
+const breadcrumbData: BreadcrumbSourceData[] = [
   {
     name: 'Home',
     type: 'default',
@@ -27,7 +26,7 @@ class BreadcrumbExample extends React.Component {
   render() {
     return (
         <div className={styles.example}>
-          <Breadcrumb direction="left" source={breadcrumbData} displayStyle="yellow" />
+          <BreadCrumb direction="left" source={breadcrumbData} displayStyle="yellow" />
         </div>
     );
   }
