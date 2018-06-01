@@ -5,6 +5,10 @@ import { INavigationData } from '../../../../src/components/SideNavigation/SideN
 
 export interface Props {
   accordian: boolean;
+  drawerOpen: boolean,
+  source: INavigationData[],
+  hideCollapse: boolean,
+  drawerExpand: boolean,
 }
 
 export interface State {
@@ -27,7 +31,7 @@ class SideNavigationExampleFirst extends React.Component<Props, never> {
     return (
       <div className={styles.example}>
         <FormLayout>
-            <SideNavigation accordian={false} source={children}  />
+            <SideNavigation accordian={false} source={children} drawerOpen hideCollapse drawerExpand={false}/>
         </FormLayout>
       </div>
     );

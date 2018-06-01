@@ -20,7 +20,19 @@ const SideNavigationState: IDocument = {
       name: 'theme',
       type: 'any',
       desc: 'Theme to be injected via css-themr.',
-    },
+    }, {
+      name: 'drawerOpen',
+      type: 'boolean',
+      desc: 'To show or hide drawer.',
+    }, {
+      name: 'hideCollapse',
+      type: 'boolean',
+      desc: 'To show or hide collapse button.',
+    }, {
+      name: 'drawerExpand',
+      type: 'boolean',
+      desc: 'To keep the drawer expanded or collapsed.',
+    }
   ],
   exampleCode: SideNavigationExampleFirstCode,
   exampleComponent: SideNavigationExampleFirst,

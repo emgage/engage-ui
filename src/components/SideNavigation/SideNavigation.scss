@@ -1,7 +1,7 @@
 .expand {
     position: absolute;
     z-index: 1000;
-    top: 5px;
+    //top: 5px;
     right: 5px;
     padding: 5px;
 }
@@ -41,7 +41,7 @@
 
 .list {
     list-style: none;
-    margin-top: 0;
+    margin-top: 30px;
     padding-left: 0;
   
     + .list {
@@ -96,8 +96,15 @@
     display: inline-block;
     fill: currentcolor;
 }
-.navDivider {
+.navDiv {
     margin-top:10px;
-    border-bottom:1px solid #e5e5e5;  
     width: 200px;
+}
+.navDivider {
+    border-bottom:1px solid #e5e5e5;  
+}
+.active {
+    background-color: white;
+    color: black;
+    width: 270px;
 }

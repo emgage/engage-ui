@@ -14,10 +14,11 @@ describe('<SideNavigation />', () => {
     },
   ]
   describe('when default props are provided', () => {
-    it('default OffCanvas with default props', () => {
-      const sideNavigationMenu = mount(<SideNavigation source={children}></SideNavigation>);
-
-      expect(sideNavigationMenu.prop('accordian')).toBeUndefined;
+    it('default SideNavigation with default props', () => {
+      const sideNavigationMenu = mount(<SideNavigation accordian source={children} drawerOpen hideCollapse={false} drawerExpand></SideNavigation>);    
+      expect(sideNavigationMenu.prop('accordian')).toBe(true);
+      expect(sideNavigationMenu.prop('drawerOpen')).toBe(true);
+      expect(sideNavigationMenu.prop('hideCollapse')).toBe(false);
     });
   });
 });

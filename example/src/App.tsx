@@ -299,12 +299,15 @@ class App extends React.Component<{}, State> {
           id: 1,
           label: 'Basics', 
           icon: 'notes',
+          activeItem: true,
+          divider: false,
           action: () => console.log('Basics is clicked!')
       },
       {
           id:2,
           label: 'Content', 
           icon: 'print',
+          divider: true,
           action: () => console.log('Content is clicked!')
       },
       {
@@ -331,6 +334,7 @@ class App extends React.Component<{}, State> {
                   action: () => console.log('Permissions Item is clicked!')
               }
           ], 
+          divider: true,
           action: () => console.log('User is clicked!')
       },
       {
@@ -781,14 +785,14 @@ class App extends React.Component<{}, State> {
           <p> Some text with a
           <Tooltip content="This order has shipping labels.">
               <Link>Tooltip 1</Link>
-            </Tooltip> in it
+          </Tooltip> in it
         </p>
           <Tooltip
             content="This order has shipping."
           >
             <Link>Tooltip 2</Link>
           </Tooltip>
-          <SideNavigation accordian={false} source={sideNavigationData} />
+          <SideNavigation accordian={false} source={sideNavigationData} drawerOpen hideCollapse={false} drawerExpand ={false}/>
           <Heading>List</Heading>
           <List type="bullet">
             <Item>Yellow shirt</Item>
