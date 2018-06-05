@@ -25,7 +25,6 @@ export interface Props {
 
 // Drawer Content component, in here wrap all other required components or DOM for the Drawer
 class DrawerContent extends React.Component<Props, never> {
-  
   getContainerClassName() {
     const {
       flip,
@@ -59,10 +58,10 @@ class DrawerContent extends React.Component<Props, never> {
     const containerClassName = this.getContainerClassName();
     const barClassName = this.getBarClassName();
     const { active, children, closeButton, theme, toggleDrawer } = this.props;
-    let dcStyle = Object.assign(
-      {},                            
-      {  },  
-      this.props.style       
+    const dcStyle = Object.assign(
+      {},
+      {  },
+      this.props.style
     );
     return (
       <div className={containerClassName} >
