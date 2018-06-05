@@ -5,23 +5,20 @@ import { INavigationData } from '../../../../src/components/SideNavigation/SideN
 
 export interface Props {
   accordian: boolean;
-  drawerOpen: boolean,
-  source: INavigationData[],
-  hideCollapse: boolean,
-  drawerExpand: boolean,
+  drawerOpen: boolean;
+  source: INavigationData[];
+  hideCollapse: boolean;
+  drawerExpand: boolean;
 }
 
-export interface State {
-   
-}
 const children: INavigationData[] = [
   {
-      id: 1,
-      label: 'Basics', 
-      icon: 'notes',
-      action: () => console.log('Basics is clicked!')
+    id: 1,
+    label: 'Basics',
+    icon: 'notes',
+    action: () => console.log('Basics is clicked!')
   },
-]
+];
 class SideNavigationExampleFirst extends React.Component<Props, never> {
   constructor(props: Props) {
     super(props);

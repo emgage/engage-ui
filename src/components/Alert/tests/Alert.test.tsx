@@ -180,17 +180,13 @@ describe('<Alert />', () => {
     describe('when set', () => {
       it('should verify alert when children set', () => {
         const alertWrapper = mount(
-          <Alert theme={theme} >
-          <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
-          </p>
-          </Alert>
+          <Alert theme={theme} type="alertPrimary" />
         );
         expect(alertWrapper.find('div')).toHaveLength(1);
         expect(alertWrapper.find('button')).toHaveLength(1);
-        expect(alertWrapper.find('p')).toHaveLength(2);
+        expect(alertWrapper.find('p')).toHaveLength(1);
         expect(alertWrapper.find('div').at(0).hasClass('Alert')).toBe(true);
-        expect(alertWrapper.prop('children').props.children).toBe('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.');
+        expect(alertWrapper.prop('type')).toBe('alertPrimary');
       });
     });
   });
@@ -198,17 +194,12 @@ describe('<Alert />', () => {
   describe('verify all property together', () => {
     it('should verify alert when all properties are set', () => {
       const alertWrapper = mount(
-        <Alert theme={theme} >
-        <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
-        </p>
-        </Alert>
+        <Alert theme={theme} type="alertPrimary" />
       );
       expect(alertWrapper.find('div')).toHaveLength(1);
       expect(alertWrapper.find('button')).toHaveLength(1);
-      expect(alertWrapper.find('p')).toHaveLength(2);
-      expect(alertWrapper.prop('type')).toBeFalsy();
-      expect(alertWrapper.prop('children').props.children).toBe('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.');
+      expect(alertWrapper.find('p')).toHaveLength(1);
+      expect(alertWrapper.prop('type')).toBe('alertPrimary');
     });
   });
 });

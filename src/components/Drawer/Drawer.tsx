@@ -175,10 +175,10 @@ class Drawer extends React.Component<Props, never> {
 
     this.setBodyStyle();
     const activeContent = this.renderActivechildren();
-    let dStyle = Object.assign(
-      {},                              
-      { width: width ? { width: `${width}` } : undefined },  
-      this.props.style          
+    const dStyle = Object.assign(
+      {},
+      { width: width ? { width: `${width}` } : undefined },
+      this.props.style
     );
     const bar = [
       <div className={barClassName} style={dStyle} key={this.id}>
