@@ -56,7 +56,7 @@ class SideNavigation extends React.Component<Props, State> {
 
     const fullContentMarkup = source.map((full : any) => {
       const childrenMarkup = full.children !== undefined || null ? full.children.map((child:any) => {
-        <li><a className={childLiClass} onClick={child.action} aria-disabled={false}><Icon source={child.icon} color="white" />{child.label}</a></li>;
+        return <li><a className={childLiClass} onClick={child.action} aria-disabled={false}><Icon source={child.icon} color="white" />{child.label}</a></li>;
       }) : null;
       const items : AccordionItemProps[] = [{
         children: childrenMarkup,

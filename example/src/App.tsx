@@ -794,7 +794,7 @@ class App extends React.Component<{}, State> {
           >
             <Link>Tooltip 2</Link>
           </Tooltip>
-          <SideNavigation accordian={false} source={sideNavigationData} activeItem={1} drawerOpen hideCollapse={false} drawerExpand ={false}/>
+          <SideNavigation accordian={true} source={sideNavigationData} activeItem={1} drawerOpen hideCollapse={false} drawerExpand ={true}/>
           <Heading>List</Heading>
           <List type="bullet">
             <Item>Yellow shirt</Item>
