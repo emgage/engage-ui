@@ -713,14 +713,17 @@ class App extends React.Component<{}, State> {
           <Button onClick={() => this.toggleAccordionClose(undefined)}>undefined toggle close</Button>
 
           <Heading>Popover</Heading>
-          <Button style={{ left: 200 }}  onClick={e => this.popoverUpdate(e)} >Click to active and deactive dropdown</Button>
-          <Dropdown
-            active={this.state.popoverActive}
-            dropdownItems={items}
-            toggle={() => this.popoverUpdate}
-            direction="right"
-            anchorEl = {this.state.anchorEl}
-          />
+          <div style={{ marginLeft: '100px' }}>
+            <button onClick={(e: any) => this.popoverUpdate(e)}>Dropdown active</button>
+
+            <Dropdown
+              active={this.state.popoverActive}
+              dropdownItems={items}
+              toggle={() => this.popoverUpdate}
+              direction="up"
+              anchorEl = {this.state.anchorEl}
+            />
+          </div>
 
           <TextField
             id="TestName"
@@ -1243,7 +1246,7 @@ class App extends React.Component<{}, State> {
     return (value: any) => 'this.setState({ [value]: value })';
   }
 
-  popoverUpdate(e : React.FormEvent<HTMLElement>) {
+  popoverUpdate(e: any) {
     this.setState({
       popoverActive : !this.state.popoverActive,
       anchorEl: e.target as HTMLElement
