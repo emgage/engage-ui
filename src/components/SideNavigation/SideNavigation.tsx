@@ -8,6 +8,7 @@ import Tooltip from '../Tooltip';
 import Accordion, { AccordionItemProps }from '../Accordion';
 import * as baseTheme from './SideNavigation.scss';
 
+// All items config properties
 export interface INavigationData {
   id?:number;
   label?:React.ReactNode;
@@ -17,28 +18,40 @@ export interface INavigationData {
   action?(arg?:string|number|boolean|null):void | null;
 }
 
+// All prototypes type
 export interface Props {
+  // Set theme for SideNavigation
   theme?: any;
+  // Set accordian for child items or not
   accordian: boolean;
+  // Set active item
   activeItem?:number | null;
+  // Source property for items config
   source: INavigationData[];
+  // Set drawer open or close
   drawerOpen: boolean;
+  // Hide or show collapse icon
   hideCollapse: boolean;
+  // Show drawer in expanded or collapsed state
   drawerExpand: boolean;
 }
 
 export interface State {
+  // state for drawer id to be set icons or full content
   activeDrawerId: string;
 }
 
+// SideNavigation component, in here wrap all other required components or DOM for the SideNavigation
 class SideNavigation extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
+      // As per props value set the drawer id to be active
       activeDrawerId: this.props.drawerExpand ? 'fullContent' : 'collapsedContent',
     };
   }
   componentDidUpdate() {
+    // Set style for body elemnt
     const bodyElement = document.body;
     if (bodyElement !== null) {
       bodyElement.className +=  this.props.drawerOpen ? ' ' + this.props.theme.container : '';
@@ -48,21 +61,25 @@ class SideNavigation extends React.Component<Props, State> {
     const { source, theme, accordian, drawerOpen, hideCollapse, activeItem } = this.props;
     const { icon: iconClass, collapseIcon: iconCollClass, navDiv: navClass, navDivider: divClass, li: liClass, childLi: childLiClass } = theme;
     const actDrawerId = this.state.activeDrawerId;
+    // Set style for root div
     const rootElement = document.getElementById('root');
     if (rootElement !== null) {
       rootElement.className = drawerOpen ? (theme.container) : '';
       rootElement.className = rootElement.className + ' ' + (actDrawerId === 'collapsedContent' ? this.props.theme.rootCollapse : '');
     }
 
+    // Iterate through source config items and set markup when full content is displayed
     const fullContentMarkup = source.map((full : any) => {
       const childrenMarkup = full.children !== undefined || null ? full.children.map((child:any) => {
         return <li><a className={childLiClass} onClick={child.action} aria-disabled={false}><Icon source={child.icon} color="white" />{child.label}</a></li>;
       }) : null;
+      // Set Accordian Item properties
       const items : AccordionItemProps[] = [{
         children: childrenMarkup,
         header: <li className={liClass}><a className={liClass} onClick={full.action} aria-disabled={false}><Icon source={full.icon} color={activeItem === full.id ? 'black' : 'white'} />{full.label}</a></li>
       }
       ];
+      // Set markup based on the prop values
       const markup = accordian ? (
                     childrenMarkup ==  null ? (
                         <div>
@@ -91,6 +108,7 @@ class SideNavigation extends React.Component<Props, State> {
                 </div>
       );
     });
+    // Set markup when only icons need to be shown in collapsed state
     const collapsedContentMarkup = source.map((col:any) => {
       return (
       <p key={col.id} className={iconCollClass}>
@@ -109,6 +127,7 @@ class SideNavigation extends React.Component<Props, State> {
                 <button type="button" className={this.props.theme.navButton} onClick={() => this.setState({ activeDrawerId: drawerContentId })}><Icon source={collapseIcon} color="white" /></button>
             </span>
          : null;
+         // Return div with drawer component having the side navigation items wrapped in drawer content component
     return (
             <div>
                 <Drawer
