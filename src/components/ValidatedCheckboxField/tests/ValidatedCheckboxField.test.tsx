@@ -32,10 +32,10 @@ describe('<ValidatedCheckboxField / >', () => {
                                                 <ValidatedCheckboxField
                                                     id="appTerms"
                                                     label="I agree to terms and conditions"
-                                                    name="I agree to terms and conditions" 
+                                                    name="I agree to terms and conditions"
                                                     value=""/>
                                             </ValidatedForm>);
-          expect(validatedCheckboxFieldWrapper.find('form')).toHaveLength(1);
+        expect(validatedCheckboxFieldWrapper.find('form')).toHaveLength(1);
           expect(validatedCheckboxFieldWrapper.find('div')).toHaveLength(6);
           expect(validatedCheckboxFieldWrapper.find('input')).toHaveLength(1);
           expect(validatedCheckboxFieldWrapper.find('label')).toHaveLength(1);
@@ -56,7 +56,7 @@ describe('<ValidatedCheckboxField / >', () => {
                                                     label="I agree to terms and conditions"
                                                     name="I agree to terms and conditions" value=""/>
                                             </ValidatedForm>);
-          expect(validatedCheckboxFieldWrapper.find('form')).toHaveLength(1);
+        expect(validatedCheckboxFieldWrapper.find('form')).toHaveLength(1);
           expect(validatedCheckboxFieldWrapper.find('div')).toHaveLength(6);
           expect(validatedCheckboxFieldWrapper.find('input')).toHaveLength(1);
           expect(validatedCheckboxFieldWrapper.find('label')).toHaveLength(1);
@@ -76,7 +76,7 @@ describe('<ValidatedCheckboxField / >', () => {
                                                 <ValidatedCheckboxField
                                                     id="appTerms"
                                                     label="I agree to terms and conditions"
-                                                    name="I agree to terms and conditions" 
+                                                    name="I agree to terms and conditions"
                                                     value="true"
                                                     required={true}
                                                     onBlur={ () => spy()}
@@ -104,8 +104,7 @@ describe('<ValidatedCheckboxField / >', () => {
                                               <ValidatedCheckboxField
                                                     id="appTerms"
                                                     label="I agree to terms and conditions"
-                                                    name="I agree to terms and conditions" 
-                                                    value=""
+                                                    name="I agree to terms and conditions"                                                    value=""
                                                     required={true}
                                                     onBlur={ () => spy()}
                                                     validateTrigger={['onBlur']}
@@ -131,19 +130,19 @@ describe('<ValidatedCheckboxField / >', () => {
                                                 <ValidatedCheckboxField
                                                     id="appTerms"
                                                     label="I agree to terms and conditions"
-                                                    name="I agree to terms and conditions" 
+                                                    name="I agree to terms and conditions"
                                                     value="true"
                                                     required={true}
                                                     validateRules={[{ required: true, message: 'Please indicate that you have read and agree to the Terms and Conditions and Privacy Policy.' },
                                                 ]} />
                                             </ValidatedForm>);
-         expect(validatedCheckboxFieldWrapper.find('form')).toHaveLength(1);
-         expect(validatedCheckboxFieldWrapper.find('div')).toHaveLength(6);
-         expect(validatedCheckboxFieldWrapper.find('input')).toHaveLength(1);
-         expect(validatedCheckboxFieldWrapper.find('label')).toHaveLength(1);
-         expect(validatedCheckboxFieldWrapper.find('input').prop('id')).toBe('appTerms');
-         expect(validatedCheckboxFieldWrapper.find('input').prop('name')).toBe('I agree to terms and conditions');
-         expect(validatedCheckboxFieldWrapper.find('input').prop('value')).toBe('true');
+        expect(validatedCheckboxFieldWrapper.find('form')).toHaveLength(1);
+        expect(validatedCheckboxFieldWrapper.find('div')).toHaveLength(6);
+        expect(validatedCheckboxFieldWrapper.find('input')).toHaveLength(1);
+        expect(validatedCheckboxFieldWrapper.find('label')).toHaveLength(1);
+        expect(validatedCheckboxFieldWrapper.find('input').prop('id')).toBe('appTerms');
+        expect(validatedCheckboxFieldWrapper.find('input').prop('name')).toBe('I agree to terms and conditions');
+        expect(validatedCheckboxFieldWrapper.find('input').prop('value')).toBe('true');
       });
     });
   });
@@ -157,7 +156,7 @@ describe('<ValidatedCheckboxField / >', () => {
                                                 <ValidatedCheckboxField
                                                     id="appTerms"
                                                     label="I agree to terms and conditions"
-                                                    name="I agree to terms and conditions" 
+                                                    name="I agree to terms and conditions"
                                                     value=""
                                                     required={true}
                                                     onBlur={ () => spy()}
@@ -165,14 +164,14 @@ describe('<ValidatedCheckboxField / >', () => {
                                                     validateRules={[{ required: true, message: 'Please indicate that you have read and agree to the Terms and Conditions and Privacy Policy.' },
                                                 ]} />
                                             </ValidatedForm>);
-         expect(validatedCheckboxFieldWrapper.find('form')).toHaveLength(1);
-         expect(validatedCheckboxFieldWrapper.find('div')).toHaveLength(6);
-         expect(validatedCheckboxFieldWrapper.find('input')).toHaveLength(1);
-         expect(validatedCheckboxFieldWrapper.find('label')).toHaveLength(1);
-         expect(validatedCheckboxFieldWrapper.find('input').prop('id')).toBe('appTerms');
-         expect(validatedCheckboxFieldWrapper.find('input').prop('name')).toBe('I agree to terms and conditions');
-         expect(validatedCheckboxFieldWrapper.find('input').prop('value')).toBe('');
-         validatedCheckboxFieldWrapper.find('input').slice().simulate('blur');
+        expect(validatedCheckboxFieldWrapper.find('form')).toHaveLength(1);
+        expect(validatedCheckboxFieldWrapper.find('div')).toHaveLength(6);
+        expect(validatedCheckboxFieldWrapper.find('input')).toHaveLength(1);
+        expect(validatedCheckboxFieldWrapper.find('label')).toHaveLength(1);
+        expect(validatedCheckboxFieldWrapper.find('input').prop('id')).toBe('appTerms');
+        expect(validatedCheckboxFieldWrapper.find('input').prop('name')).toBe('I agree to terms and conditions');
+        expect(validatedCheckboxFieldWrapper.find('input').prop('value')).toBe('');
+        validatedCheckboxFieldWrapper.find('input').slice().simulate('blur');
         expect(validatedCheckboxFieldWrapper.find('span').text()).toBe('');
       });
     });
@@ -185,7 +184,7 @@ describe('<ValidatedCheckboxField / >', () => {
                                                 <ValidatedCheckboxField
                                                     id="appTerms"
                                                     label="I agree to terms and conditions"
-                                                    name="I agree to terms and conditions" 
+                                                    name="I agree to terms and conditions"
                                                     value=""
                                                     required={true}
                                                     onBlur={ () => spy()}
@@ -212,7 +211,7 @@ describe('<ValidatedCheckboxField / >', () => {
                                                 <ValidatedCheckboxField
                                                     id="appTerms"
                                                     label="I agree to terms and conditions"
-                                                    name="I agree to terms and conditions"  
+                                                    name="I agree to terms and conditions"
                                                     value="true"
                                                     required={true}
                                                     onChange={() => spy()}

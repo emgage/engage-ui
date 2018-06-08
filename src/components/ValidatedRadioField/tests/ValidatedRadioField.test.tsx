@@ -32,7 +32,7 @@ describe('<ValidatedRadioField / >', () => {
                                                 <ValidatedRadioField
                                                     id="appStatus"
                                                     label="Publish App"
-                                                    name="Publish App" 
+                                                    name="Publish App"
                                                     value=""/>
                                             </ValidatedForm>);
         expect(validatedRadioFieldWrapper.find('form')).toHaveLength(1);
@@ -76,7 +76,7 @@ describe('<ValidatedRadioField / >', () => {
                                                 <ValidatedRadioField
                                                     id="appStatus"
                                                     label="Publish App"
-                                                    name="Publish App" 
+                                                    name="Publish App"
                                                     value="true"
                                                     required={true}
                                                     onBlur={ () => spy()}
@@ -104,7 +104,7 @@ describe('<ValidatedRadioField / >', () => {
                                               <ValidatedRadioField
                                                     id="appStatus"
                                                     label="Publish App"
-                                                    name="Publish App" 
+                                                    name="Publish App"
                                                     value=""
                                                     required={true}
                                                     onBlur={ () => spy()}
@@ -131,17 +131,17 @@ describe('<ValidatedRadioField / >', () => {
                                                 <ValidatedRadioField
                                                     id="appStatus"
                                                     label="Publish App"
-                                                    name="Publish App" 
+                                                    name="Publish App"
                                                     value="true"
                                                     required={true}
                                                     validateRules={[{ required: true, message: 'App Name is required.' },
                                                 ]} />
                                             </ValidatedForm>);
-         expect(validatedRadioFieldWrapper.find('form')).toHaveLength(1);
-         expect(validatedRadioFieldWrapper.find('div')).toHaveLength(6);
-         expect(validatedRadioFieldWrapper.find('input')).toHaveLength(1);
-         expect(validatedRadioFieldWrapper.find('label')).toHaveLength(1);
-         expect(validatedRadioFieldWrapper.find('input').prop('id')).toBe('appStatus');
+        expect(validatedRadioFieldWrapper.find('form')).toHaveLength(1);
+        expect(validatedRadioFieldWrapper.find('div')).toHaveLength(6);
+        expect(validatedRadioFieldWrapper.find('input')).toHaveLength(1);
+        expect(validatedRadioFieldWrapper.find('label')).toHaveLength(1);
+        expect(validatedRadioFieldWrapper.find('input').prop('id')).toBe('appStatus');
          expect(validatedRadioFieldWrapper.find('input').prop('name')).toBe('Publish App');
          expect(validatedRadioFieldWrapper.find('input').prop('value')).toBe('true');
       });
@@ -157,7 +157,7 @@ describe('<ValidatedRadioField / >', () => {
                                                 <ValidatedRadioField
                                                     id="appStatus"
                                                     label="Publish App"
-                                                    name="Publish App" 
+                                                    name="Publish App"
                                                     value=""
                                                     required={true}
                                                     onBlur={ () => spy()}
@@ -165,14 +165,14 @@ describe('<ValidatedRadioField / >', () => {
                                                     validateRules={[{ required: true, message: 'Publish App is required.' },
                                                 ]} />
                                             </ValidatedForm>);
-         expect(validatedRadioFieldWrapper.find('form')).toHaveLength(1);
-         expect(validatedRadioFieldWrapper.find('div')).toHaveLength(6);
-         expect(validatedRadioFieldWrapper.find('input')).toHaveLength(1);
-         expect(validatedRadioFieldWrapper.find('label')).toHaveLength(1);
-         expect(validatedRadioFieldWrapper.find('input').prop('id')).toBe('appStatus');
+        expect(validatedRadioFieldWrapper.find('form')).toHaveLength(1);
+        expect(validatedRadioFieldWrapper.find('div')).toHaveLength(6);
+        expect(validatedRadioFieldWrapper.find('input')).toHaveLength(1);
+        expect(validatedRadioFieldWrapper.find('label')).toHaveLength(1);
+        expect(validatedRadioFieldWrapper.find('input').prop('id')).toBe('appStatus');
          expect(validatedRadioFieldWrapper.find('input').prop('name')).toBe('Publish App');
-         expect(validatedRadioFieldWrapper.find('input').prop('value')).toBe('');
-         validatedRadioFieldWrapper.find('input').slice().simulate('blur');
+        expect(validatedRadioFieldWrapper.find('input').prop('value')).toBe('');
+        validatedRadioFieldWrapper.find('input').slice().simulate('blur');
         expect(validatedRadioFieldWrapper.find('span').text()).toBe('Publish App is required.');
       });
     });
@@ -185,7 +185,7 @@ describe('<ValidatedRadioField / >', () => {
                                                 <ValidatedRadioField
                                                     id="appStatus"
                                                     label="Publish App"
-                                                    name="Publish App" 
+                                                    name="Publish App"
                                                     value=""
                                                     required={true}
                                                     onBlur={ () => spy()}
@@ -212,7 +212,7 @@ describe('<ValidatedRadioField / >', () => {
                                                 <ValidatedRadioField
                                                     id="appStatus"
                                                     label="Publish App"
-                                                    name="Publish App" 
+                                                    name="Publish App"
                                                     value="true"
                                                     required={true}
                                                     onChange={() => spy()}
