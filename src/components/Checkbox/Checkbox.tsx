@@ -3,7 +3,8 @@ import { themr, ThemedComponentClass } from 'react-css-themr';
 import { classNames } from '@shopify/react-utilities/styles';
 import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
 
-import Choice, { Error, errorID, helpTextID } from '../Choice';
+import Labelled, { Action, Error, errorID } from '../Labelled';
+import Choice, { ErrorChoice, errorIDChoice, helpTextIDChoice } from '../Choice';
 import Icon from '../Icon';
 import { CHECKBOX } from '../ThemeIdentifiers';
 
@@ -13,14 +14,17 @@ import * as baseTheme from './Checkbox.scss';
 export interface Props {
   label: string;
   labelHidden?: boolean;
+  labelAction?: Action;
   checked?: boolean;
   helpText?: React.ReactNode;
   id?: string;
   name?: string;
   value?: string;
-  error?: Error;
+  error?: ErrorChoice;
+  errors?: [string] | Error;
   disabled?: boolean;
   theme?: any;
+  required?: boolean;
   onChange?(newValue: boolean): void;
   onFocus?(): void;
   onBlur?(): void;
@@ -32,10 +36,13 @@ const checkbox = ({
   id = getUniqueID(),
   label,
   labelHidden,
+  labelAction,
   helpText,
   checked,
   error,
+  errors,
   disabled,
+  required,
   onChange,
   onFocus,
   onBlur,
@@ -43,15 +50,15 @@ const checkbox = ({
   value,
   theme,
 }: Props) => {
-  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+  function handleChange({ currentTarget }: React.ChangeEvent<HTMLInputElement>) {
     if (onChange == null) { return; }
-    const { currentTarget } = event;
     onChange(currentTarget.checked);
   }
 
   const describedBy: string[] = [];
-  if (typeof error === 'string') { describedBy.push(errorID(id)); }
-  if (helpText) { describedBy.push(helpTextID(id)); }
+  if (typeof error === 'string') { describedBy.push(errorIDChoice(id)); }
+  if (helpText) { describedBy.push(helpTextIDChoice(id)); }
+  if (errors) { describedBy.push(errorID(id)); }
 
   const className = classNames(
     theme.checkbox,
@@ -59,6 +66,15 @@ const checkbox = ({
   );
 
   return (
+    <Labelled
+      id={id}
+      label={''}
+      errors={errors}
+      action={labelAction}
+      labelHidden={labelHidden}
+      helpText={helpText}
+      required={required}
+    >
     <Choice
       id={id}
       label={label}
@@ -89,6 +105,7 @@ const checkbox = ({
         </div>
       </div>
     </Choice>
+    </Labelled>
   );
 };
 
