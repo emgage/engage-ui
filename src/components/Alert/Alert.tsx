@@ -4,14 +4,20 @@ import { ALERT } from '../ThemeIdentifiers';
 import * as baseTheme from './Alert.scss';
 
 export interface State {
+  // State for alert to be active or closed
   isActive?:boolean;
 }
 
+// All prototypes type
 export interface Props {
+  // Set the alert content to be displayed 
   children?: React.ReactNode;
+  // Set type of alert. It can be primary, success, warning or danger. 
   type?: string;
+  // Set theme for Alert
   theme?: any;
 }
+// Define custom close icon for smaller height-width
 const IconClose = (props:any) => {
   return (
     <svg width="12" height="12" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
@@ -21,13 +27,16 @@ const IconClose = (props:any) => {
   );
 };
 
+// Alert component, in here wrap all other required components or DOM for the Alert
 class Alert extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
+      // Set alert to be active
       isActive:true,
     };
   }
+  // When alert is closed, set alert active peroperty to be false
   closeAlert = () => {
     this.setState({
       isActive: false,
@@ -38,7 +47,7 @@ class Alert extends React.Component<Props, State> {
     let classes: string;
     let style: string;
     let color: string;
-
+    // Set style and color for alert based on the alert type set
     switch (type) {
       case 'primary':
         style = theme.alertPrimary;

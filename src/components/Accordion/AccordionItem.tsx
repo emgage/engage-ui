@@ -8,6 +8,7 @@ export interface Props {
   children: React.ReactElement<any>;
   active?: boolean;
   toggle?(index: number): void;
+  style?:any;
 }
 
 export default class AccordionItem extends React.PureComponent<Props, never> {
@@ -16,12 +17,13 @@ export default class AccordionItem extends React.PureComponent<Props, never> {
     const {
       header,
       children,
-      active
+      active,
+      style
     } = this.props;
 
     return (
       <div className={baseTheme.accordionItem}>
-        <div className={active ? baseTheme.header : baseTheme.headerCollapsed} onClick={this.clickHandler}>
+        <div className={active ? baseTheme.header : baseTheme.headerCollapsed} style={style} onClick={this.clickHandler}>
           {header}
         </div>
         <div className={active ? baseTheme.body : baseTheme.bodyCollapsed}>

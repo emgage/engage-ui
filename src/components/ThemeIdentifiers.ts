@@ -46,6 +46,7 @@ export const VISUALLY_HIDDEN = 'PVisuallyHidden';
 export const MODAL = 'PModal';
 export const CAPTION = 'PCaption';
 export const SPINNER = 'PSpinner';
+export const SIDENAVIGATION = 'PSideNavigation';
 export const TABLE = 'PTable';
 export const DRAWER = 'PDrawer';
 export const DRAWERCONTENT = 'PDrawerContent';

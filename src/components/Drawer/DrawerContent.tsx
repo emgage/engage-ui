@@ -18,6 +18,7 @@ export interface Props {
   id?: string;
   mode?: Mode;
   theme?: any;
+  style?: any;
   // Callback function to close or open the drawer
   toggleDrawer?(): void;
 }
@@ -57,11 +58,15 @@ class DrawerContent extends React.Component<Props, never> {
     const containerClassName = this.getContainerClassName();
     const barClassName = this.getBarClassName();
     const { active, children, closeButton, theme, toggleDrawer } = this.props;
-
+    const dcStyle = Object.assign(
+      {},
+      {  },
+      this.props.style
+    );
     return (
-      <div className={containerClassName}>
-        <div className={barClassName}>
-        {
+      <div className={containerClassName} >
+        <div className={barClassName} style={dcStyle}>
+          {
             closeButton ?
             <span className={theme.close}>
               <Button onClick={toggleDrawer} icon="cancel" plain />

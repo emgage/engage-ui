@@ -49,6 +49,7 @@ import CaptionState from './componentState/CaptionState';
 import SpinnerState from './componentState/SpinnerState';
 import TableState from './componentState/TableState';
 import DrawerState from './componentState/DrawerState';
+import SideNavigationState from './componentState/SideNavigationState';
 import AccordionState from './componentState/AccordionState';
 import TabState from './componentState/TabState';
 import BreadcrumbState from './componentState/BreadcrumbState';
@@ -103,6 +104,7 @@ const intialState: IDocumentAppState = {
     CaptionState,
     SpinnerState,
     DrawerState,
+    SideNavigationState,
     AccordionState,
     TableState,
     TabState,
