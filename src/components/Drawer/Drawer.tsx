@@ -176,13 +176,13 @@ class Drawer extends React.Component<Props, never> {
     }
 
     const activeContent = this.renderActivechildren();
-    // const dStyle = Object.assign(
-    //   {},
-    //   { width: width ? { width: `${width}` } : undefined },
-    //   this.props.style
-    // );
+    const dStyle = Object.assign(
+      {},
+      { width: width ? { width: `${width}` } : undefined },
+      this.props.style
+    );
     const bar = [
-      <div className={barClassName} style={width ? { width: `${width}` }  : undefined} key={this.id}>
+      <div className={barClassName} style={dStyle} key={this.id}>
         {
           active ?
           <div className={theme.label} aria-live={'assertive'} >
