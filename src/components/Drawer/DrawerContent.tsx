@@ -55,7 +55,7 @@ class DrawerContent extends React.Component<Props, never> {
   }
 
   render() {
-    const containerClassName = this.getContainerClassName();
+    // const containerClassName = this.getContainerClassName();
     const barClassName = this.getBarClassName();
     const { active, children, closeButton, theme, toggleDrawer } = this.props;
     const dcStyle = Object.assign(
@@ -64,7 +64,7 @@ class DrawerContent extends React.Component<Props, never> {
       this.props.style
     );
     return (
-      <div className={containerClassName} >
+      <div >
         <div className={barClassName} style={dcStyle}>
           {
             closeButton ?
