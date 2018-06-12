@@ -32,6 +32,8 @@ export interface Props {
   activeContentId?: string | string[];
   // Show or hide close button (X) to close drawer
   closeButton?: boolean;
+  // If there are multiple theme for drawer then you can pass theme required here
+  currentTheme?: string;
   // Open drawer in flip direction (i.e. right)
   flip?: boolean;
   // Open drawer in slide, push or reveal mode
@@ -55,7 +57,7 @@ const getUniqueID = createUniqueIDFactory('DrawerWrapper');
 
 @layeredComponent({ idPrefix: 'Drawer' })
 // Main Drawer component, its a wrapper for its content
-class Drawer extends React.Component<Props, never> {
+class Drawer extends React.PureComponent<Props, never> {
   public id = getUniqueID();
   private activatorContainer: HTMLElement | null;
 
@@ -104,12 +106,14 @@ class Drawer extends React.Component<Props, never> {
   // Function to get bar class names
   getBarClassName() {
     const {
+      currentTheme = '',
       mode,
       theme,
     } = this.props;
 
     return classNames(
       theme.bar,
+      currentTheme && theme[currentTheme],
       mode === 'slide' && theme.animation,
       mode === 'push' && theme.animation
     );
@@ -171,7 +175,7 @@ class Drawer extends React.Component<Props, never> {
     const containerClassName = this.getContainerClassName();
     const barClassName = this.getBarClassName();
 
-    if (mode === 'push' || mode === 'reveal') {
+    if (active && (mode === 'push' || mode === 'reveal')) {
       this.setBodyStyle();
     }
 
@@ -181,6 +185,7 @@ class Drawer extends React.Component<Props, never> {
       { width: width ? { width: `${width}` } : undefined },
       this.props.style
     );
+
     const bar = [
       <div className={barClassName} style={dStyle} key={this.id}>
         {
