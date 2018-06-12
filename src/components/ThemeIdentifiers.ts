@@ -33,6 +33,7 @@ export const PICKER = 'PPicker';
 export const DROPDOWN = 'PDropdown';
 export const DROPDOWNITEM = 'PDropdownItem';
 export const POSITIONED_OVERLAY = 'PPositionedOverlay';
+export const POPOVER = 'PPOPOVER';
 export const RADIO_BUTTON = 'PRadioButton';
 export const SCROLLABLE = 'PScrollable';
 export const SELECT = 'PSelect';

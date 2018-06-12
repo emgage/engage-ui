@@ -179,6 +179,11 @@ export {
 } from './Panel';
 
 export {
+  default as Popover,
+  Props as PopoverProps,
+} from './Popover';
+
+export {
   default as Picker,
   DisplayMoreInfo,
   Props as PickerProps,
