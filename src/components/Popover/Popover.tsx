@@ -195,14 +195,15 @@ class Popover extends React.PureComponent<Props, State> {
     if (!active) {
       return;
     }
-
+    // Close the popdown on ESC
     if (event.keyCode === Keys.ESCAPE && closeOnClickOutside) {
       const newState = !this.state.active;
-      this.setState({ active: newState }); // we update our state
-      const c = callbackParent;
-      if (c) {
-        c(newState);
-      } // Close the popdown on ESC
+      // Update the state
+      this.setState({ active: newState });
+      const callParent = callbackParent;
+      if (callParent) {
+        callParent(newState);
+      }
     }
   }
 
@@ -222,7 +223,7 @@ class Popover extends React.PureComponent<Props, State> {
     if (!active) {
       return;
     }
-
+    // Close the popdown on outside area click
     if (element !== null && event.target != null && element !== event.target && closeOnClickOutside) {
       const domNode = document.body;
       const targetNode = event.target;
@@ -232,9 +233,9 @@ class Popover extends React.PureComponent<Props, State> {
         const newState = !this.state.active;
         // update the state
         this.setState({ active: newState });
-        const c = callbackParent;
-        if (c) {
-          c(newState);
+        const callParent = callbackParent;
+        if (callParent) {
+          callParent(newState);
         }
       }
     }
