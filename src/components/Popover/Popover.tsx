@@ -35,6 +35,8 @@ export interface Props {
   onOpen?(): void;
   // Call toggle method on click 
   toggle?(): void;
+  // Call callbackParent method on outside area click 
+  callbackParent?(status:boolean) :void;
 }
 
 export interface State {
@@ -186,15 +188,21 @@ class Popover extends React.PureComponent<Props, State> {
 
     const {
       active,
-      toggle,
+      closeOnClickOutside,
+      callbackParent,
     } = this.props;
 
     if (!active) {
       return;
     }
 
-    if (event.keyCode === Keys.ESCAPE && toggle) {
-      toggle(); // Close the popdown on ESC
+    if (event.keyCode === Keys.ESCAPE && closeOnClickOutside) {
+      const newState = !this.state.active;
+      this.setState({ active: newState }); // we update our state
+      const c = callbackParent;
+      if (c) {
+        c(newState);
+      } // Close the popdown on ESC
     }
   }
 
@@ -205,7 +213,8 @@ class Popover extends React.PureComponent<Props, State> {
 
     const {
       active,
-      toggle,
+      closeOnClickOutside,
+      callbackParent,
     } = this.props;
 
     const element = findDOMNode(this);
@@ -214,27 +223,21 @@ class Popover extends React.PureComponent<Props, State> {
       return;
     }
 
-    if (element !== null && event.target != null && element !== event.target && toggle) {
-      if (!this.checkChild(element, event.target)) {
-        toggle(); // Close the click out side
+    if (element !== null && event.target != null && element !== event.target && closeOnClickOutside) {
+      const domNode = document.body;
+      const targetNode = event.target;
+      if ((!domNode || !domNode.contains(targetNode as Node))) {
+        this.setState({ active : true });
+      } else {
+        const newState = !this.state.active;
+        // update the state
+        this.setState({ active: newState });
+        const c = callbackParent;
+        if (c) {
+          c(newState);
+        }
       }
     }
-  }
-
-  // checkClild is use to check current componet's child or child's child and so is not the target
-  @autobind
-  private checkChild(element : Element | Text, target : EventTarget): boolean {
-    let isCurrent = false;
-    if (element !== null) {
-      element.childNodes.forEach((item) => {
-        if (target === item) {
-          isCurrent = true;
-        } else if (!isCurrent) {
-          isCurrent = this.checkChild(item as Element, target);
-        }
-      });
-    }
-    return isCurrent;
   }
 }
 

@@ -718,9 +718,9 @@ class App extends React.Component<{}, State> {
           <Button onClick={() => this.toggleAccordionClose(undefined)}>undefined toggle close</Button>
 
           <Heading>Popover</Heading>
-          <div>
+          <div style={{ marginLeft: '100px' }}>
             <button onClick={(e: any) => this.popoverUpdateContainer(e)}>Click Popover</button>
-            <Popover active={this.state.popoverActiveContainer} closeOnClickOutside toggle={() => this.popoverUpdateContainer} anchorEl = {this.state.anchorEl} direction="down" onClose={() => console.log('I am close')} onOpen={() => console.log('I am open')} >
+            <Popover active={this.state.popoverActiveContainer} closeOnClickOutside toggle={() => this.popoverUpdateContainer} anchorEl = {this.state.anchorEl} direction="down" onClose={() => console.log('I am close')} onOpen={() => console.log('I am open')} callbackParent={newState => this.onChildChanged(newState)}>
               I am popover <Button>Hello popover</Button>
             </Popover>
           </div>
@@ -1280,7 +1280,9 @@ class App extends React.Component<{}, State> {
       anchorEl: e.target as HTMLElement
     });
   }
-
+  onChildChanged(newState: boolean) {
+    this.setState({ popoverActiveContainer: newState });
+  }
   closed1() {
     console.log('called');
   }

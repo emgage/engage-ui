@@ -59,7 +59,7 @@ $font-weight-normal: 400 !default;
 
 .popup,
 .popright,
-.popover,
+.popdown,
 .popleft {
   position: relative;
   @include text-style-body;
@@ -104,7 +104,7 @@ $font-weight-normal: 400 !default;
   }
 }
 
-.popover {
+.popdown {
   .popoverContainer {
     &::before, &::after {
       bottom: 100%;
@@ -145,7 +145,7 @@ $font-weight-normal: 400 !default;
 }
 
 .popoverContainer {
-  //position: absolute;
+  position: absolute;
   top: 100%;
   left: 0;
   z-index: $zindex-popover;
