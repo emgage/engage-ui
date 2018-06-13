@@ -1,0 +1,110 @@
+.expand {
+    position: absolute;
+    z-index: 1000;
+    //top: 5px;
+    right: 5px;
+    padding: 5px;
+}
+
+.collapse {
+    position: absolute;
+    z-index: 1000;
+    top: 5px;
+    right: 1px;
+}
+
+.icon {
+    position: absolute;
+    display: inline-block;
+    height: 2rem;
+    max-height: 100%;
+    max-width: 100%;
+    margin: auto;
+}
+.collapseIcon {
+    display: inline-block;
+    height: 2rem;
+    width: 2rem;
+    max-height: 100%;
+    max-width: 100%;
+    margin-top: 20px
+}
+.li {
+    display: inline-flex;
+}
+
+.childLi {
+    display: inline-flex;
+    margin-left: 10px; 
+    margin-top: 10px;
+}
+
+.list {
+    list-style: none;
+    margin-top: 30px;
+    padding-left: 0;
+  
+    + .list {
+      margin-top: spacing();
+    }
+  
+    ul {
+      padding-left: spacing(loose);
+    }
+}
+
+.collapseList {
+    list-style: none;
+    margin-top: 25px;
+    padding-left: 0;
+    position: absolute;
+    right: 1px;
+    padding: 1px;
+}
+
+.container {
+    overflow: visible!important;
+}
+
+.drawerCollapse {
+    width: 10px;
+    padding: 20px;
+    position: absolute;
+    top: 46px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 102;
+    transform: translateZ(0);
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+
+.rootCollapse {
+    left: 30px!important;
+}
+
+.navButton {
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    color: inherit;
+    text-transform: none;
+    background-color: transparent;
+    display: inline-block;
+    fill: currentcolor;
+}
+.navDiv {
+    margin-top:10px;
+    width: 200px;
+}
+.navDivider {
+    border-bottom:1px solid #e5e5e5;  
+}
+.active {
+    background-color: white;
+    color: black;
+    width: 270px;
+}

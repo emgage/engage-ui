@@ -2,8 +2,11 @@ import * as React from 'react';
 import SingleDatePickerWrapper from './SingleDatePickerWrapper';
 import DateRangePickerWrapper from './DateRangePickerWrapper';
 import PickerAutoSuggestExample from './PickerAutoSuggestExample';
+import { ISourceData } from '../../src/components/Breadcrumb/Breadcrumb';
+import { INavigationData } from '../../src/components/SideNavigation/SideNavigation';
 
 import {
+  Alert,
   Banner,
   Badge,
   Button,
@@ -17,17 +20,22 @@ import {
   DisplayText,
   Drawer,
   DrawerContent,
+  SideNavigation,
   FlexBox,
   FormLayout,
   Heading,
   Link,
   List,
   Item,
+  DescriptionList,
+  Term,
+  Description,
+  // ListItem,
   Loading,
   // OffCanvas,
   Panel,
   Picker,
-  // Popover,
+  Dropdown,
   Select,
   TextField,
   Tooltip,
@@ -37,6 +45,7 @@ import {
   Video,
   VideoType,
   Modal,
+  ModalContent,
   ModalBody,
   ModalFooter,
   ModalHeader,
@@ -44,8 +53,14 @@ import {
   Spinner,
   Table,
   TableColumnConfig,
+  AccordionItemProps,
+  Accordion,
+  DropdownItemProps,
   TabPanel,
   Tab,
+  TreeView,
+  TreeSource,
+  BreadCrumb,
 } from '../../src/components';
 
 interface State {
@@ -60,18 +75,25 @@ interface State {
   bulkAction: any;
   filterConfig: any;
   modalOpen: boolean;
+  modalOpen2: boolean;
+  modalOpen3: boolean;
   drawer: boolean;
   drawerContent: any;
   activeDrawerId: string;
+  activeModalId: string;
+  AccordionItemOpen?: number;
+  AccordionItemClose?: number;
+  anchorEl?: HTMLElement;
   activeTabId: string;
 }
 
 class App extends React.Component<{}, State> {
-
   constructor(props: any) {
     super(props);
     this.state = {
       modalOpen: false,
+      modalOpen2: false,
+      modalOpen3: false,
       appName: '',
       appDescription: '',
       appCity: '',
@@ -102,8 +124,16 @@ class App extends React.Component<{}, State> {
         content2: true,
       },
       activeDrawerId: 'content1',
+      activeModalId: 'modalcontent1',
+      AccordionItemOpen: undefined,
+      AccordionItemClose: undefined,
       activeTabId: 'tab3'
     };
+    this.popovertoggle = this.popovertoggle.bind(this);
+    this.toggleAccordionOpen = this.toggleAccordionOpen.bind(this);
+    this.toggleAccordionClose = this.toggleAccordionClose.bind(this);
+    this.popoverUpdate = this.popoverUpdate.bind(this);
+    this.closed1 = this.closed1.bind(this);
   }
 
   rowGetter = (index: number) => this.state.rows[index];
@@ -118,6 +148,14 @@ class App extends React.Component<{}, State> {
 
   toggleModal = () => {
     this.setState({ modalOpen: !this.state.modalOpen });
+  }
+
+  toggleModal2 = () => {
+    this.setState({ modalOpen2: !this.state.modalOpen2 });
+  }
+
+  toggleModal3 = () => {
+    this.setState({ modalOpen3: !this.state.modalOpen3 });
   }
 
   onModalOpen = () => {
@@ -140,7 +178,40 @@ class App extends React.Component<{}, State> {
     this.setState({ drawer: !this.state.drawer });
   }
 
+  BreadcrumbClick = () => {
+    console.log('Breadcrumb clicked...');
+  }
+
   render() {
+    const Accordionitems : AccordionItemProps[] = [{
+      children: <Banner title={'banner'} status={'success'} />,
+      header: <Button>sk</Button>
+    },{
+      children: <Banner title={'banner11'} status={'warning'} />,
+      header: <Button>sk1</Button>
+    },{
+      children: <Banner title={'banner13'} status={'warning'} />,
+      header: <Button>sk3</Button>
+    }];
+    const items : DropdownItemProps[] = [
+      {
+        content: 'Item 1',
+        onClick: this.closed1,
+      },
+      {
+        content: 'Item 2',
+        divider: false
+      },
+      {
+        content: 'Item 3',
+        disabled: false
+      },
+      {
+        content: 'Item 4',
+        header: false
+      }
+    ];
+
     const posterUrl = new URL('http://4.bp.blogspot.com/_JSR8IC77Ub4/TKB-XAWXmhI/AAAAAAAABJA/MqOpdFTOaHo/w1200-' +
       'h630-p-k-no-nu/C:%5Cfakepath%5Cbird1.jpg');
     const singleVideoSource = [
@@ -233,6 +304,111 @@ class App extends React.Component<{}, State> {
       },
     ];
 
+    const breadcrumbData: ISourceData[] = [
+      {
+        name: 'Home',
+        type: 'default',
+        onBreadcrumbClick: () => { console.log('Home is clicked');}
+      }, {
+        name: <Badge children={'Home1'} status={'success'} />,
+        type: 'active',
+        onBreadcrumbClick: () => { console.log('Badge is clicked');}
+      }, {
+        name: 'Home2',
+        type: 'disabled'
+      }, {
+        name: 'Home3',
+        type: 'active',
+        onBreadcrumbClick: () => { console.log('Home3 is clicked');}
+      },
+    ];
+    const sideNavigationData: INavigationData[] = [
+      {
+        id: 1,
+        label: 'Basics',
+        icon: 'notes',
+        divider: false,
+        action: () => console.log('Basics is clicked!')
+      },
+      {
+        id:2,
+        label: 'Content',
+        icon: 'print',
+        divider: true,
+        action: () => console.log('Content is clicked!')
+      },
+      {
+        id:3,
+        label: 'User',
+        icon: 'conversation',
+        children: [
+          {
+            id:3.1,
+            label: 'Groups',
+            icon: 'conversation',
+            action: () => console.log('Groups Item is clicked!')
+          },
+          {
+            id:3.2,
+            label: 'Roles',
+            icon: 'conversation',
+            action: () => console.log('Roles Item is clicked!')
+          },
+          {
+            id:3.3,
+            label: 'Permissions',
+            icon: 'conversation',
+            action: () => console.log('Permissions Item is clicked!')
+          }
+        ],
+        divider: true,
+        action: () => console.log('User is clicked!')
+      },
+      {
+        id:4,
+        label: 'Pages',
+        icon: 'view',
+        children: [
+          {
+            id:4.1,
+            label: 'Forms',
+            icon: 'view',
+            action: () => console.log('Forms Item is clicked!')
+          },
+          {
+            id:4.2,
+            label: 'Workflow',
+            icon: 'view',
+            action: () => console.log('Workflow Item is clicked!')
+          },
+          {
+            id:4.3,
+            label: 'Themes',
+            icon: 'view',
+            action: () => console.log('Themes Item is clicked!')
+          }
+        ],
+        action: () => console.log('Pages is clicked!')
+      },
+      {
+        id:5,
+        label: 'Publishing',
+        icon: 'export',
+        action: () => console.log('Publishing is clicked!')
+      },
+      {
+        id:6,
+        label: 'App Analytics',
+        icon: 'embed',
+        action: () => console.log('App Analytics is clicked!')
+      },
+      {
+        id:7,
+        label: 'Sherpa',
+        icon: 'alert',
+        action: () => console.log('Sherpa is clicked!')
+      }
+    ];
     /*
       label: Table header lable which will be visible
       key: Match it with json data, this will help to get specific value from the data
@@ -294,6 +470,42 @@ class App extends React.Component<{}, State> {
       },
     ];
 
+    const treeSource: TreeSource[] = [
+      {
+        id: 1,
+        component: () => <span>I am component1</span>,
+        active: false,
+        onToggle: (status) => { console.log('Tree node open:', status);},
+        children: [
+          {
+            id: 11,
+            component: () => <span>I am child component1</span>,
+            active: false,
+          }, {
+            id: 12,
+            component: () => <Badge children="I am child component2" />,
+            active: false,
+            children: [
+              {
+                id: 111,
+                component: () => <span>I am child child component1</span>,
+                active: false,
+              },
+            ]
+          }, {
+            id: 13,
+            label: 'This is normal component',
+            active: false,
+          }
+        ]
+      }, {
+        id: 2,
+        component: () => <span>I am component2</span>,
+        active: false,
+        onToggle: (status) => { console.log('Tree node open:', status);},
+      }
+    ];
+
     return (
       <div>
         <Badge children={'Badge'} />
@@ -305,7 +517,7 @@ class App extends React.Component<{}, State> {
         <Badge children={'Badge'} progress={'partiallyComplete'} />
         <Badge children={'Badge'} progress={'complete'} />
         <div>
-          <TabPanel position={'top'} alignment={'center'}>
+          <TabPanel defaultTabId="tab1" position={'top'} alignment={'center'}>
             <Tab tabDescription={<Badge children={'Home'} status={'success'} />} tabId={'tab1'}>
               <p>content 0</p>
             </Tab>
@@ -328,31 +540,111 @@ class App extends React.Component<{}, State> {
         </div>
         <div>
           <Caption style={{ color: 'red' }}>This is modal</Caption>
-          <Button onClick={this.toggleModal}>Medium button</Button>
+          <Button onClick={this.toggleModal}>Nested modal</Button>
           <Modal
             active={this.state.modalOpen}
+            activeContentId={this.state.activeModalId}
             toggle={this.toggleModal}
             onOpen={this.onModalOpen}
             onClose={this.onModalClose}
+            width="large"
+            closeOnBackgroud
+            closeOnEsc
+            closeButton>
+            <ModalContent id="modalcontent1">
+              <ModalHeader>Modal content 1</ModalHeader>
+              <ModalBody modalOverflow>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae ex pellentesque, pretium lorem vel, tempor ipsum. Phasellus suscipit lacus in velit malesuada, at bibendum mi gravida. Sed cursus nisi sem, non pellentesque ligula euismod eget. Sed quis fringilla nibh, at vestibulum turpis. Donec sed sagittis sapien. Nam quis ex quis nulla porta molestie. Vestibulum eu lorem porta, facilisis orci a, tempor quam. Suspendisse et sollicitudin nulla. Aenean consectetur imperdiet leo nec condimentum. Aliquam scelerisque magna ut tortor accumsan condimentum.
+
+                Nulla quis ante sit amet leo lobortis rhoncus. Cras mollis quis leo nec tincidunt. Aliquam blandit est vitae leo ultrices, ut egestas sapien pharetra. Suspendisse nec aliquet orci. Suspendisse rutrum odio sed neque scelerisque, ut consectetur erat tincidunt. Duis ultrices metus eget ante posuere eleifend. Ut luctus felis neque, sit amet efficitur neque maximus id. Aliquam porta, tellus ut pellentesque facilisis, odio neque maximus erat, venenatis semper nisi metus id augue. Cras vel sem eu elit blandit laoreet id vitae tortor. Morbi sit amet mi rutrum, sagittis enim lacinia, dictum turpis.
+              </ModalBody>
+              <ModalFooter>
+                <Button onClick={this.toggleModal}>Close</Button>
+                <Button onClick={() => this.setState({ activeModalId: 'modalcontent2' })}>Next</Button>
+              </ModalFooter>
+            </ModalContent>
+            <ModalContent id="modalcontent2">
+              <ModalHeader>Modal content 2</ModalHeader>
+              <ModalBody>
+                I am content two, open next modal from here
+              </ModalBody>
+              <ModalFooter>
+                <Button onClick={this.toggleModal}>Close</Button>
+                <Button onClick={() => this.setState({ activeModalId: 'modalcontent1' })}>Back</Button>
+                <Button onClick={this.toggleModal2}>Open modal 2</Button>
+              </ModalFooter>
+            </ModalContent>
+          </Modal>
+
+          <Modal
+            active={this.state.modalOpen2}
+            toggle={this.toggleModal2}
             width="medium"
             closeOnBackgroud
             closeOnEsc
             closeButton>
-            <ModalHeader>Modal title</ModalHeader>
-            <ModalBody modalOverflow>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae ex pellentesque, pretium lorem vel, tempor ipsum. Phasellus suscipit lacus in velit malesuada, at bibendum mi gravida. Sed cursus nisi sem, non pellentesque ligula euismod eget. Sed quis fringilla nibh, at vestibulum turpis. Donec sed sagittis sapien. Nam quis ex quis nulla porta molestie. Vestibulum eu lorem porta, facilisis orci a, tempor quam. Suspendisse et sollicitudin nulla. Aenean consectetur imperdiet leo nec condimentum. Aliquam scelerisque magna ut tortor accumsan condimentum.
+            <ModalContent>
+              <ModalHeader>Modal title2</ModalHeader>
+              <ModalBody>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae ex pellentesque, pretium lorem vel, tempor ipsum. Phasellus suscipit lacus in velit malesuada, at bibendum mi gravida. Sed cursus nisi sem, non pellentesque ligula euismod eget. Sed quis fringilla nibh, at vestibulum turpis. Donec sed sagittis sapien. Nam quis ex quis nulla porta molestie. Vestibulum eu lorem porta, facilisis orci a, tempor quam. Suspendisse et sollicitudin nulla. Aenean consectetur imperdiet leo nec condimentum. Aliquam scelerisque magna ut tortor accumsan condimentum.
+              </ModalBody>
+              <ModalFooter>
+                <Button onClick={this.toggleModal2}>Close</Button>
+                <Button onClick={this.toggleModal3}>Open modal 3</Button>
+              </ModalFooter>
+            </ModalContent>
+          </Modal>
 
-              Nulla quis ante sit amet leo lobortis rhoncus. Cras mollis quis leo nec tincidunt. Aliquam blandit est vitae leo ultrices, ut egestas sapien pharetra. Suspendisse nec aliquet orci. Suspendisse rutrum odio sed neque scelerisque, ut consectetur erat tincidunt. Duis ultrices metus eget ante posuere eleifend. Ut luctus felis neque, sit amet efficitur neque maximus id. Aliquam porta, tellus ut pellentesque facilisis, odio neque maximus erat, venenatis semper nisi metus id augue. Cras vel sem eu elit blandit laoreet id vitae tortor. Morbi sit amet mi rutrum, sagittis enim lacinia, dictum turpis.
-            </ModalBody>
-            <ModalFooter>
-              <Button onClick={this.toggleModal}>Close</Button>
-            </ModalFooter>
+          <Modal
+            active={this.state.modalOpen3}
+            toggle={this.toggleModal3}
+            width="small"
+            closeOnBackgroud
+            closeOnEsc
+            closeButton>
+            <ModalContent>
+              <ModalHeader>Modal title3</ModalHeader>
+              <ModalBody>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae ex pellentesque, que ligula euismod eget. Sed quis fringilla nibh, at vestibulum turpis.
+              </ModalBody>
+              <ModalFooter>
+                <Button onClick={this.toggleModal3}>Close</Button>
+              </ModalFooter>
+            </ModalContent>
           </Modal>
         </div>
+        { /* this is treeview */ }
+        <div>
+          <label>This is treeview </label>
 
+          <TreeView
+            source={treeSource}
+          />
+        </div>
+        <br />
+        <div>
+          <p>This is my Breadcrumbs!!</p>
+          <BreadCrumb direction={'left'} source={breadcrumbData} displayStyle={'yellow'} />
+        </div>
         <br />
         <Caption style={{ color: 'red' }}>This is Caption</Caption>
         <br />
+        <Heading>Alert</Heading>
+        <Alert>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
+        </Alert>
+        <Alert type="primary" >
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
+        </Alert>
+        <Alert type="success">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
+        </Alert>
+        <Alert type="warning">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
+        </Alert>
+        <Alert type="danger">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
+        </Alert>
         <Checkbox label={'I am a checkbox'} />
         <Banner title={'banner'} status={'success'} />
         <Banner title={'banner'} status={'info'} />
@@ -436,7 +728,7 @@ class App extends React.Component<{}, State> {
         </div>
 
         <p> Some text with a
-          <Tooltip content="This order has shipping labels.">
+          <Tooltip content="This order has shipping labels.sdfsdfg">
             <Link>Tooltip 1</Link>
           </Tooltip> in it
         </p>
@@ -446,8 +738,33 @@ class App extends React.Component<{}, State> {
           <Link>Tooltip 2</Link>
         </Tooltip>
         <div>
-          */}
+          <h1>{this.state.AccordionItemClose}</h1>
+          <h1>{this.state.AccordionItemOpen}</h1>
+        <Accordion items={Accordionitems} closeIndex={this.state.AccordionItemClose} openIndex={this.state.AccordionItemOpen} />
+
+          <Button onClick={() => this.toggleAccordionOpen(0)}>item1 toggle open</Button>
+          <Button onClick={() => this.toggleAccordionOpen(1)}>item2 toggle open</Button>
+          <Button onClick={() => this.toggleAccordionOpen(2)}>item3 toggle open</Button>
+          <Button onClick={() => this.toggleAccordionOpen(undefined)}>undefined toggle open</Button>
+
+          <Button onClick={() => this.toggleAccordionClose(0)}>item1 toggle close</Button>
+          <Button onClick={() => this.toggleAccordionClose(1)}>item2 toggle close</Button>
+          <Button onClick={() => this.toggleAccordionClose(2)}>item3 toggle close</Button>
+          <Button onClick={() => this.toggleAccordionClose(undefined)}>undefined toggle close</Button>
+
           <Heading>Popover</Heading>
+          <div style={{ marginLeft: '100px' }}>
+            <button onClick={(e: any) => this.popoverUpdate(e)}>Dropdown active</button>
+
+            <Dropdown
+              active={this.state.popoverActive}
+              dropdownItems={items}
+              toggle={() => this.popoverUpdate}
+              direction="up"
+              anchorEl = {this.state.anchorEl}
+            />
+          </div>
+
           <TextField
             id="TestName"
             label="Text Counter"
@@ -457,7 +774,7 @@ class App extends React.Component<{}, State> {
             enableTextCounter
             maxLength={101}
             minLength={5}
-            onChange={this.valueUpdater('appTextCounter')}
+            // onChange={this.valueUpdater('appTextCounter')}
           />
           <TextField
             id="TestName1"
@@ -469,7 +786,7 @@ class App extends React.Component<{}, State> {
             minLength={5}
             multiline
             resizable
-            onChange={this.valueUpdater('appTextCounter')}
+            // onChange={this.valueUpdater('appTextCounter')}
           />
           <p> Some text with a
           <Tooltip content="This order has shipping labels.">
@@ -491,7 +808,7 @@ class App extends React.Component<{}, State> {
           >
             <Link>Tooltip 2</Link>
           </Tooltip>
-          <TextField id="TestName" label="Text Counter" placeholder="test-placeholder" value={this.state.appTextCounter} helpText="Helper Text" enableTextCounter={true} maxLength={100} onChange={this.valueUpdater('appTextCounter')} />
+          <TextField id="TestName" label="Text Counter" placeholder="test-placeholder" value={this.state.appTextCounter} helpText="Helper Text" enableTextCounter={true} maxLength={100} /* onChange={this.valueUpdater('appTextCounter')} */ />
           <ClickableChip chip={<Chip>Batman</Chip>}>
             <Card title="More about Batman">
               <p>Batman is a fictional superhero who appears in American comic books published by DC Comics. The character was created by artist Bob Kane and writer Bill Finger, and first appeared in Detective Comics #27</p>
@@ -510,13 +827,14 @@ class App extends React.Component<{}, State> {
           <p> Some text with a
           <Tooltip content="This order has shipping labels.">
               <Link>Tooltip 1</Link>
-            </Tooltip> in it
+          </Tooltip> in it
         </p>
           <Tooltip
             content="This order has shipping."
           >
             <Link>Tooltip 2</Link>
           </Tooltip>
+          <SideNavigation accordian={true} source={sideNavigationData} activeItem={1} drawerOpen hideCollapse={false} drawerExpand ={true}/>
           <Heading>List</Heading>
           <List type="bullet">
             <Item>Yellow shirt</Item>
@@ -540,6 +858,31 @@ class App extends React.Component<{}, State> {
             <Item>Second item</Item>
             <Item>Third Item</Item>
           </List>
+          <Heading>Description List</Heading>
+          <DescriptionList type="default" style="Inline">
+              <Term>Logistics</Term>
+              <Description>The management of products or other resources as they travel between a point of origin and a destination.</Description>
+              <Term>Sole proprietorship</Term>
+              <Description>A business structure where a single individual both owns and runs the company.</Description>
+              <Term>Discount code</Term>
+              <Description>A series of numbers and/or letters that an online shopper may enter at checkout to get a discount or special offer.</Description>
+          </DescriptionList>
+          <DescriptionList type="default" style="Stacked">
+            <Term>Logistics</Term>
+            <Description>The management of products or other resources as they travel between a point of origin and a destination.</Description>
+            <Term>Sole proprietorship</Term>
+            <Description>A business structure where a single individual both owns and runs the company.</Description>
+            <Term>Discount code</Term>
+            <Description>A series of numbers and/or letters that an online shopper may enter at checkout to get a discount or special offer.</Description>
+        </DescriptionList>
+          <DescriptionList type="divider" style="Stacked">
+           <Term>Logistics</Term>
+           <Description>The management of products or other resources as they travel between a point of origin and a destination.</Description>
+           <Term>Sole proprietorship</Term>
+           <Description>A business structure where a single individual both owns and runs the company.</Description>
+           <Term>Discount code</Term>
+           <Description>A series of numbers and/or letters that an online shopper may enter at checkout to get a discount or special offer.</Description>
+       </DescriptionList>
           <ChoiceList
             title="Company name"
             choices={[
@@ -585,7 +928,7 @@ class App extends React.Component<{}, State> {
                 label="App Name"
                 placeholder=""
                 helpText="We recommend keeping your app name under 23 characters."
-                onChange={this.valueUpdater('appName')}
+                // onChange={this.valueUpdater('appName')}
                 value={this.state.appName}
                 name="App Name"
                 validateTrigger={['onBlur']}
@@ -601,7 +944,7 @@ class App extends React.Component<{}, State> {
                 label="App Description"
                 placeholder=""
                 helpText="Provide an engaging description that highlights the features and functionality of your app. Let potential users know what makes your app unique and why they will love it."
-                onChange={this.valueUpdater('appDescription')}
+                // onChange={this.valueUpdater('appDescription')}
                 validateTrigger={['onBlur']}
                 validateRules={[
                   { required: true, message: 'App Description is required.' },
@@ -637,7 +980,7 @@ class App extends React.Component<{}, State> {
             value={this.state.appTextCounter}
             helpText="Helper Text"
             maxLength={100}
-            onChange={this.valueUpdater('appTextCounter')}
+            // onChange={this.valueUpdater('appTextCounter')}
             connectedRight={<Select label="Weight unit" labelHidden options={[
               'kg',
               'lb',
@@ -907,16 +1250,51 @@ class App extends React.Component<{}, State> {
     );
   }
 
+  // valueUpdater(field: any) {
+  //   return (value: any) => this.setState({ [field]: value });
+  // }
+
+  // handleChange(value1: any) {
+  //   return (value: any) => this.setState({ [value1]: value });
+  // }
+
+  popovertoggle(index: number) {
+    const updatedPopoverActive: any = this.state.popoverActive;
+    updatedPopoverActive[index] = !updatedPopoverActive[index];
+
+    this.setState({
+      popoverActive: updatedPopoverActive
+    });
+  }
+
+  toggleAccordionOpen(index?: number) {
+    this.setState({
+      AccordionItemOpen: index
+    });
+  }
+
+  toggleAccordionClose(index?: number) {
+    this.setState({
+      AccordionItemClose: index
+    });
+  }
   valueUpdater(field: any) {
-    return (value: any) => this.setState({ [field]: value });
+    return (value: any) => 'this.setState({ [field]: value })';
   }
 
   handleChange(value: string) {
-    return (value: any) => this.setState({ [value]: value });
+    return (value: any) => 'this.setState({ [value]: value })';
   }
 
-  popoverClose(field: any) {
-    return;
+  popoverUpdate(e: any) {
+    this.setState({
+      popoverActive : !this.state.popoverActive,
+      anchorEl: e.target as HTMLElement
+    });
+  }
+
+  closed1() {
+    console.log('called');
   }
 }
 

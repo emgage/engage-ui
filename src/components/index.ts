@@ -1,7 +1,18 @@
 export {
+  default as Accordion,
+  Props as AccordionProps,
+  AccordionItemProps
+} from './Accordion';
+
+export {
   default as Avatar,
   Props as AvatarProps,
 } from './Avatar';
+
+export {
+  default as Alert,
+  Props as AlertProps,
+} from './Alert';
 
 export {
   default as Badge,
@@ -77,6 +88,11 @@ export {
 } from './Drawer';
 
 export {
+  default as SideNavigation,
+  Props as SideNavigationProps
+} from './SideNavigation';
+
+export {
   default as FormLayout,
   Props as FormLayoutProps,
 } from './FormLayout';
@@ -136,6 +152,13 @@ export {
 } from './List';
 
 export {
+  default as DescriptionList,
+  Props as DescriptionListProps,
+  Term,
+  Description,
+} from './DescriptionList';
+
+export {
   default as Loading,
   Props as LoadingProps,
 } from './Loading';
@@ -162,9 +185,10 @@ export {
 } from './Picker';
 
 export {
-  default as Popover,
-  Props as PopoverProps,
-} from './Popover';
+  default as Dropdown,
+  Props as DropdownProps,
+  DropdownItemProps
+} from './Dropdown';
 
 export {
   default as PositionedOverlay,
@@ -257,6 +281,7 @@ export {
 
 export {
   Modal,
+  ModalContent,
   ModalBody,
   ModalFooter,
   ModalHeader,
@@ -283,3 +308,15 @@ export {
   TabPanel,
   Props as TabProps,
 } from './Tab';
+
+export {
+  TreeView,
+  Props as TreeProps,
+  SourceData as TreeSource,
+} from './TreeView';
+
+export {
+  BreadCrumb,
+  Props as BreadcrumbProps,
+  ISourceData as BreadcrumbSourceData,
+} from './BreadCrumb';

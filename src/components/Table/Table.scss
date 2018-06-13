@@ -100,8 +100,38 @@
   display: flex;
 }
 
-@media only screen and (max-width: 760px), (max-device-width: 1024px) and (min-device-width: 768px) {
-  .responsive {
-    display: table;
-  }
+@media screen and (max-width: 40em) {
+
+    .table {
+        border: 0;
+    }
+
+    .table thead {
+        display: none;
+    }
+
+    .table tr,
+    .table td {
+        display: block;
+    }
+
+    .table tr {
+        margin-bottom: 0.5em;
+    }
+
+    .table td {
+        border-bottom: 1px dotted #ccc;
+        text-align: center;
+    }
+
+    .table td:last-child {
+        border-bottom: 0;
+        text-align: left;
+    }
+
+    .table td:before {
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+    }
 }

@@ -241,6 +241,7 @@ class Table extends React.Component<Props, State> {
               <TableData
                 key={colItem.key}
                 style={colItem.style}
+                dataLabel={colItem.label}
               >
                 {/* 
                   Here injectBody helps to inject any custom component to td,
@@ -422,7 +423,6 @@ class Table extends React.Component<Props, State> {
 
   // Function to make search in data
   triggerSearch = (searchKey: string, field: string) => {
-    console.log('Search:', searchKey.trim());
     const trimmedSearchKey = searchKey.trim().toLowerCase();
     const { data } = this.getInitialState();
 

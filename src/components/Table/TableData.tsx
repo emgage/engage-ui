@@ -15,6 +15,7 @@ export interface Props {
   rowSpan?: number;
   // Custom style, if user wants to add in th
   style?: any;
+  dataLabel?: string;
 }
 
 class TableData extends React.Component<Props, never> {
@@ -23,10 +24,10 @@ class TableData extends React.Component<Props, never> {
   }
 
   render () {
-    const { accessibilityHeaders, children, colSpan, dataKey, rowSpan, style } = this.props;
+    const { accessibilityHeaders, children, colSpan, dataKey, dataLabel, rowSpan, style } = this.props;
 
     return (
-      <td
+      <td data-label={dataLabel}
         headers={accessibilityHeaders}
         colSpan={colSpan}
         rowSpan={rowSpan}
