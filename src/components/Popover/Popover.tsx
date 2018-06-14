@@ -17,8 +17,6 @@ export type Direction = 'up' | 'down' | 'left' | 'right';
 export interface Props {
   // Set children to display Popover with header and content elements
   children?:React.ReactNode;
-  // Set theme for DescriptionList
-  theme?: any;
   // Set direction to be applied. Available options: up | down | left | right.
   direction?:Direction;
   // Set active to true for popover to display, else false
@@ -31,7 +29,7 @@ export interface Props {
   anchorEl?: HTMLElement | null;
   // Call close method on click 
   onClose?(): void;
-  // Call close method on click 
+  // Call open method on click 
   onOpen?(): void;
   // Call toggle method on click 
   toggle?(): void;
