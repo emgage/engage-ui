@@ -21,6 +21,8 @@ export interface Props {
   direction?:Direction;
   // Set active to true for popover to display, else false
   active: boolean;
+  // Set disabled
+  disabled?:boolean;
   // Set wrapper element
   activatorWrapper?: string;
   // Set to true if you want to close popover when click anywhere in body
@@ -107,7 +109,8 @@ class Popover extends React.PureComponent<Props, State> {
       children,
       direction = 'down',
       active,
-      anchorEl
+      anchorEl,
+      disabled,
     } = this.props;
 
     const popoverClassName = classNames (
@@ -115,12 +118,12 @@ class Popover extends React.PureComponent<Props, State> {
       : direction === 'up' ? baseTheme.popup
       : direction === 'left' ? baseTheme.popleft
       : baseTheme.popright,
-      active && baseTheme.active
+      !disabled && active && baseTheme.active
     );
 
     const popoverContainerClassName = classNames (
       baseTheme.popoverContainer,
-      active && baseTheme.active
+      !disabled && active && baseTheme.active
     );
 
     const activatorComp = anchorEl;
