@@ -3,11 +3,13 @@ import PopoverExampleFirst from '../../examples/PopoverExample/PopoverExampleFir
 import PopoverExampleSecond from '../../examples/PopoverExample/PopoverExampleSecond';
 import PopoverExampleThird from '../../examples/PopoverExample/PopoverExampleThird';
 import PopoverExampleFourth from '../../examples/PopoverExample/PopoverExampleFourth';
+import PopoverExampleFifth from '../../examples/PopoverExample/PopoverExampleFifth';
 
 const PopoverExampleFirstCode = require('!raw-loader!../../examples/PopoverExample/PopoverExampleFirst') as string;
 const PopoverExampleSecondCode = require('!raw-loader!../../examples/PopoverExample/PopoverExampleSecond') as string;
 const PopoverExampleThirdCode = require('!raw-loader!../../examples/PopoverExample/PopoverExampleThird') as string;
 const PopoverExampleFourthCode = require('!raw-loader!../../examples/PopoverExample/PopoverExampleFourth') as string;
+const PopoverExampleFifthCode = require('!raw-loader!../../examples/PopoverExample/PopoverExampleFifth') as string;
 
 const PopoverState: IDocument = {
   id: 'popover',
@@ -64,6 +66,10 @@ const PopoverState: IDocument = {
   exampleComponent3: PopoverExampleFourth,
   exampleCodeHeader3: '4. Right Popover:',
   exampleCodeDescription3: 'Popover that opens in right direction.',
+  exampleCode4: PopoverExampleFifthCode,
+  exampleComponent4: PopoverExampleFifth,
+  exampleCodeHeader4: '5. Disable Popover:',
+  exampleCodeDescription4: 'A disabled Popover does not allow user interaction.',
 };
 
 export default PopoverState;

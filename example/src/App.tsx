@@ -727,13 +727,13 @@ class App extends React.Component<{}, State> {
           <br/>
           <div style={{ marginLeft: '100px' }}>
             <button onClick={(e: any) => this.popoverUpdate(e)}>Dropdown active</button>
-
             <Dropdown
               active={this.state.popoverActive}
               dropdownItems={items}
               toggle={() => this.popoverUpdate}
-              direction="up"
               anchorEl = {this.state.anchorEl}
+              direction="up"
+              closeOnClickOutside
             />
           </div>
 

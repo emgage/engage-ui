@@ -45,11 +45,12 @@ class DropdownExampleFirst extends React.Component<IProps, IState> {
 
     return (
       <div className={styles.example}>
-        <Button onClick={(e) => this.toggle(e)}>Dropdown1</Button>
+        <Button onClick={e => this.toggle(e)}>Dropdown1</Button>
         <Dropdown
           active={this.state.active}
           dropdownItems={items}
           anchorEl={this.state.anchorEl}
+          direction="down"
         />
       </div>
     );

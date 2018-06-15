@@ -17,6 +17,8 @@ export type Direction = 'up' | 'down' | 'left' | 'right';
 export interface Props {
   // Set children to display Popover with header and content elements
   children?:React.ReactNode;
+  // Set disabled
+  disabled?:boolean;
   // Set direction to be applied. Available options: up | down | left | right.
   direction?:Direction;
   // Set active to true for popover to display, else false
@@ -107,7 +109,8 @@ class Popover extends React.PureComponent<Props, State> {
       children,
       direction = 'down',
       active,
-      anchorEl
+      anchorEl,
+      disabled,
     } = this.props;
 
     const popoverClassName = classNames (
@@ -115,12 +118,12 @@ class Popover extends React.PureComponent<Props, State> {
       : direction === 'up' ? baseTheme.popup
       : direction === 'left' ? baseTheme.popleft
       : baseTheme.popright,
-      active && baseTheme.active
+      !disabled && active && baseTheme.active
     );
 
     const popoverContainerClassName = classNames (
       baseTheme.popoverContainer,
-      active && baseTheme.active
+      !disabled && active && baseTheme.active
     );
 
     const activatorComp = anchorEl;

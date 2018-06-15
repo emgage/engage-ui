@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Dropdown, DropdownItemProps, Button } from '../../../../src/components';
+import { Popover, Button } from '../../../../src/components';
 import * as styles from '../../styles/components-page.scss';
 
 export interface IProps{
@@ -27,32 +27,16 @@ class DropdownExampleFifth extends React.Component<IProps, IState> {
   }
 
   render() {
-    const items : DropdownItemProps[] = [
-      {
-        content: 'Item 1',
-      }, {
-        content: 'Item 2',
-        divider: true,
-      }, {
-        content: 'Item 3',
-      }, {
-        content: 'Item 4',
-        header: true,
-      },
-    ];
-
-    return (
+    return (
       <div className={styles.example}>
-        <Button onClick={e => this.toggle(e)}>Dropdown5</Button>
-        <Dropdown
+        <Button onClick={e => this.toggle(e)}>Popover5</Button>
+        <Popover
           active={this.state.active}
-          dropdownItems={items}
-          anchorEl={this.state.anchorEl}
-          direction="down"
-          disabled
-        />
-     </div>
-    );
+          anchorEl={this.state.anchorEl} disabled>
+          I am popover <Button>Hello popover</Button>
+        </Popover>
+      </div>
+        );
   }
 }
 
