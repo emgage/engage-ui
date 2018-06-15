@@ -10,7 +10,7 @@ export interface IState {
   anchorEl?: HTMLElement | null;
 }
 
-class DropdownExampleFifth extends React.Component<IProps, IState> {
+class PopoverExampleFifth extends React.Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
     this.state = {
@@ -40,4 +40,4 @@ class DropdownExampleFifth extends React.Component<IProps, IState> {
   }
 }
 
-export default DropdownExampleFifth;
+export default PopoverExampleFifth;

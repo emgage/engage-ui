@@ -29,6 +29,10 @@ const PopoverState: IDocument = {
       type: 'boolean',
       desc: 'Show or hide the Popover.',
     }, {
+      name: 'disabled',
+      type: 'boolean',
+      desc: 'Disable the dropdown',
+    }, {
       name: 'activatorWrapper',
       type: 'string',
       desc: 'The element type to wrap the activator with.',
