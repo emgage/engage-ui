@@ -23,6 +23,8 @@ export interface Props {
   direction?:Direction;
   // Set active to true for popover to display, else false
   active: boolean;
+  // Set disabled
+  disabled?:boolean;
   // Set wrapper element
   activatorWrapper?: string;
   // Set to true if you want to close popover when click anywhere in body
