@@ -43,7 +43,7 @@ class DropdownExampleFifth extends React.Component<IProps, IState> {
 
     return (
       <div className={styles.example}>
-        <Button onClick={(e) => this.toggle(e)}>Dropdown5</Button>
+        <Button onClick={e => this.toggle(e)}>Dropdown5</Button>
         <Dropdown
           active={this.state.active}
           dropdownItems={items}

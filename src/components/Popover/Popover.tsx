@@ -17,12 +17,12 @@ export type Direction = 'up' | 'down' | 'left' | 'right';
 export interface Props {
   // Set children to display Popover with header and content elements
   children?:React.ReactNode;
+  // Set disabled
+  disabled?:boolean;
   // Set direction to be applied. Available options: up | down | left | right.
   direction?:Direction;
   // Set active to true for popover to display, else false
   active: boolean;
-  // Set disabled
-  disabled?:boolean;
   // Set wrapper element
   activatorWrapper?: string;
   // Set to true if you want to close popover when click anywhere in body
