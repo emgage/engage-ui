@@ -17,6 +17,7 @@ import ClickableChipState from './componentState/ClickableChipState';
 import VideoState from './componentState/VideoState';
 import VisuallyHiddenState from './componentState/VisuallyHiddenState';
 import DropdownState from './componentState/DropdownState';
+import PopoverState from './componentState/PopoverState';
 import ImageState from './componentState/ImageState';
 import ScrollableState from './componentState/ScrollableState';
 import LinkState from './componentState/LinkState';
@@ -73,6 +74,7 @@ const intialState: IDocumentAppState = {
     VideoState,
     VisuallyHiddenState,
     DropdownState,
+    PopoverState,
     ImageState,
     ScrollableState,
     TextFieldState,
