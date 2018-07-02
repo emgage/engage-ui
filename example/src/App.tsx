@@ -54,6 +54,7 @@ import {
   Spinner,
   Table,
   TableColumnConfig,
+  TableNestedData,
   AccordionItemProps,
   Accordion,
   DropdownItemProps,
@@ -87,6 +88,7 @@ interface State {
   AccordionItemClose?: number;
   anchorEl?: HTMLElement;
   activeTabId: string;
+  nestedChildData: TableNestedData[];
 }
 
 class App extends React.Component<{}, State> {
@@ -130,8 +132,10 @@ class App extends React.Component<{}, State> {
       activeModalId: 'modalcontent1',
       AccordionItemOpen: undefined,
       AccordionItemClose: undefined,
-      activeTabId: 'tab3'
+      activeTabId: 'tab3',
+      nestedChildData: [],
     };
+
     this.popovertoggle = this.popovertoggle.bind(this);
     this.popoverToggleContainer = this.popoverToggleContainer.bind(this);
     this.toggleAccordionOpen = this.toggleAccordionOpen.bind(this);
@@ -187,6 +191,30 @@ class App extends React.Component<{}, State> {
     console.log('Breadcrumb clicked...');
   }
 
+  // toggleStatus if true that means row is open else its not
+  nestedChildCallback = (rowId: number | string, toggleStatus: boolean) => {
+    const { nestedChildData } = this.state;
+    const newData: TableNestedData = {
+      rowId,
+      component: <span>My name is {rowId}</span>,
+    };
+
+    console.log('RowId:', rowId, 'toggle:', toggleStatus);
+    nestedChildData.some((item: TableNestedData, index: number): boolean => {
+      if (item.rowId === rowId) {
+        nestedChildData.splice(index, 1);
+        return true;
+      }
+
+      return false;
+    });
+
+    nestedChildData.push(newData);
+
+    this.setState({ nestedChildData });
+    console.log('nestedChildData:', nestedChildData);
+  }
+
   render() {
     const Accordionitems : AccordionItemProps[] = [{
       children: <Banner title={'banner'} status={'success'} />,
@@ -198,6 +226,7 @@ class App extends React.Component<{}, State> {
       children: <Banner title={'banner13'} status={'warning'} />,
       header: <Button>sk3</Button>
     }];
+
     const items : DropdownItemProps[] = [
       {
         content: 'Item 1',
@@ -254,34 +283,6 @@ class App extends React.Component<{}, State> {
     ];
 
     const tableData = [
-      {
-        id: 1,
-        name: 'Dheeraj',
-        description: 'Test description',
-        status: 'Published',
-        type: 'admin',
-      }, {
-        id: 2,
-        name: 'Dheeraj4',
-        description: 'Test description2',
-        status: 'Published',
-        type: 'admin',
-      }, {
-        id: 3,
-        name: 'Dheeraj3',
-        description: 'Test description3',
-        status: 'Deleted',
-        type: 'admin',
-      }, {
-        id: 4,
-        name: 'Dheeraj2',
-        description: 'Test description2',
-        status: 'Deleted',
-        type: 'admin',
-      },
-    ];
-
-    const nestedTableData = [
       {
         id: 1,
         name: 'Dheeraj',
@@ -630,7 +631,7 @@ class App extends React.Component<{}, State> {
         <div>
           <p>This is my Breadcrumbs!!</p>
           <BreadCrumb direction={'left'} source={breadcrumbData} displayStyle={'yellow'} />
-        </div>
+       </div>
         <br />
         <Caption style={{ color: 'red' }}>This is Caption</Caption>
         <br />
@@ -672,6 +673,8 @@ class App extends React.Component<{}, State> {
             </div>
           </div>
           <Table
+            nestedChildData={this.state.nestedChildData}
+            nestedChildCallback={this.nestedChildCallback}
             data={tableData}
             column={columnConfig}
             hideRow={{ status: 'Deleted' }}
@@ -683,18 +686,8 @@ class App extends React.Component<{}, State> {
             selectCallbackValue="id"
             selectRowCallback={(val: any) => this.setState({ bulkAction: { selectedRow: val } })}
             bordered highlight sorting>
-
-            {/* Nested table */}
-            <Table
-              data={nestedTableData}
-              hideHeader={true}
-              column={columnConfig}
-              selectRow="checkbox"
-              selectCallbackValue="id"
-              selectRowCallback={(val: any) => this.setState({ bulkAction: { selectedRow: val } })}
-              bordered highlight sorting />
-
-          </Table>
+              Loading
+            </Table>
         </div>
 
         <div>

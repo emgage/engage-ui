@@ -21,3 +21,8 @@ export interface ColumnConfig {
   injectBody?(value?: any): void;
   injectHeader?(value?: any): void;
 }
+
+export interface NestedChild {
+  rowId: number | string;
+  component: any;
+}

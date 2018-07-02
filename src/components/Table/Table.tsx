@@ -12,7 +12,7 @@ import TableBody from './TableBody';
 import TableRow from './TableRow';
 import TableData from './TableData';
 
-import { ColumnConfig } from './interface';
+import { ColumnConfig, NestedChild } from './interface';
 import * as baseTheme from './Table.scss';
 
 export type RowSelection = 'checkbox' | 'radio';
@@ -37,6 +37,10 @@ export interface Props {
   hideRow?: any;
   // Highlight rows on hover
   highlight?: boolean;
+  // Nested data callback, when rows been clicked, rows id sent to parent and nested child data gets updated
+  nestedChildCallback?(id: number | string, toggleStatus: boolean): void;
+  // prop to receive nested data
+  nestedChildData?: NestedChild[];
   // Make table responsive
   responsive?: boolean;
   // Individual row action, if available add it in last of the column
@@ -213,6 +217,7 @@ class Table extends React.Component<Props, State> {
 
   // Function to toggle between the expanded row
   openNestedRow = (currentId: number | string) => {
+    const { nestedChildCallback } = this.props;
     let expandedRow: any[] = Object.assign([], this.state.expandedRow);
     const rowIndex = expandedRow.indexOf(currentId);
 
@@ -223,15 +228,19 @@ class Table extends React.Component<Props, State> {
     }
 
     this.setState({ expandedRow });
+
+    if (nestedChildCallback) {
+      nestedChildCallback(currentId, rowIndex === -1);
+    }
   }
 
   // Render the main table row
   renderTbodyRows = (item: any, index: number | string) => {
-    const { children, column, rowAction } = this.props;
+    const { column, rowAction } = this.props;
 
     return (
       <TableRow key={index}
-        onClick={children ? this.openNestedRow : undefined}
+        onClick={this.openNestedRow}
         callbackValue={item.id}
       >
         { this.renderRowSelection(item, 'body') }
@@ -260,14 +269,17 @@ class Table extends React.Component<Props, State> {
 
   // Function to render nested children for each row, this could be nested table or any other component
   renderNestedChildren = (key: string, id: number) => {
-    const { column, selectRow, rowAction } = this.props;
+    const { column, children, nestedChildData = [], selectRow, rowAction } = this.props;
 
     const colSpanVal = column.length + (selectRow ? 1 : 0) + (rowAction ? 1 : 0);
+
+    // Get current row's nested component by matching its id
+    const thisNestedComponent = nestedChildData.filter(item => item.rowId === id);
 
     return (
       <TableRow key={key}>
         <TableData colSpan={colSpanVal}>
-          {this.props.children}
+          {thisNestedComponent.length ? thisNestedComponent[0].component : children}
         </TableData>
       </TableRow>
     );

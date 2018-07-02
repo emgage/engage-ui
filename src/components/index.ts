@@ -235,6 +235,7 @@ export {
   TableRow,
   Props as TableProps,
   ColumnConfig as TableColumnConfig,
+  NestedChild as TableNestedData,
 } from './Table';
 
 export {
