@@ -462,17 +462,17 @@ class App extends React.Component<{}, State> {
 
     const rowActionConfig = [
       {
-        label: 'View',
-        action: (value: any) => { console.log('View:', value); },
+        content: 'View',
+        onClick: (value: any) => { console.log('View:', value); },
       }, {
-        label: 'Delete',
-        action: (value: any) => { console.log('Delete:', value); },
+        content: 'Delete',
+        onClick: (value: any) => { console.log('Delete:', value); },
       }, {
-        label: 'Archive',
-        action: (value: any) => { console.log('Archive:', value); },
+        content: 'Archive',
+        onClick: (value: any) => { console.log('Archive:', value); },
       }, {
-        label: 'Version History',
-        action: (value: any) => { console.log('Version:', value); },
+        content: 'Version History',
+        onClick: (value: any) => { console.log('Version:', value); },
       },
     ];
 

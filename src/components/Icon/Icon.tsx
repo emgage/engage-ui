@@ -112,15 +112,19 @@ export interface Props {
   accessibilityLabel?: string;
   style?: React.CSSProperties;
   theme?: any;
+  callbackValue?: any;
+  onClick?(id: number | string): void;
 }
 
 const icon = ({
+  callbackValue,
   source,
   color,
   backdrop,
   accessibilityLabel,
   style,
   theme,
+  onClick,
 }: Props) => {
   if (color && backdrop && COLORS_WITH_BACKDROPS.indexOf(color) < 0) {
     // tslint:disable-next-line no-console
@@ -154,7 +158,7 @@ const icon = ({
   }
 
   return (
-    <span className={className} style={style} aria-label={accessibilityLabel}>
+    <span className={className} style={style} aria-label={accessibilityLabel} onClick={(event) => { onClick ? onClick((callbackValue ? callbackValue : event)) : ''; }}>
       {contentMarkup}
     </span>
   );

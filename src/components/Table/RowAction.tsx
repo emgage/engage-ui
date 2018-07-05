@@ -3,12 +3,9 @@ import { themr, ThemedComponentClass } from 'react-css-themr';
 
 import { TABLE } from '../ThemeIdentifiers';
 
-// import Button from '../Button';
+import Button from '../Button';
 
-// import Item from '../List/Item';
-// import List from '../List';
-// import Popover from '../Dropdown';
-// import Pane from '../Dropdown/Pane';
+import Dropdown from '../Dropdown';
 
 import TableData from './TableData';
 
@@ -23,6 +20,7 @@ export interface Props {
 
 export interface State {
   active: boolean;
+  anchorEl?: HTMLElement;
 }
 
 class RowAction extends React.Component<Props, State> {
@@ -34,15 +32,30 @@ class RowAction extends React.Component<Props, State> {
     };
   }
 
-  triggerAction = (item: any) => {
-    return () =>  item.action(this.props.dataId);
+  dropdownToggle = (e: React.FormEvent<HTMLElement>) => {
+    this.setState({
+      anchorEl: e.target as HTMLElement,
+      active: !this.state.active
+    });
+
+    // return () =>  item.action(this.props.dataId);
   }
 
   render () {
-    // const { actionConfig } = this.props;
+    const { actionConfig } = this.props;
 
     return (
       <TableData>
+        <Button icon="horizontalDots" onClick={(e: React.FormEvent<HTMLElement>) => this.dropdownToggle(e)} />
+
+        <Dropdown
+          active={this.state.active}
+          dropdownItems={actionConfig}
+          toggle={() => this.dropdownToggle}
+          anchorEl = {this.state.anchorEl}
+          closeOnClickOutside
+        />
+
         {/* <Popover
           active={this.state.active}
           >

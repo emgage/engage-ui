@@ -5,6 +5,7 @@ import { classNames } from '@shopify/react-utilities/styles';
 import { TABLE } from '../ThemeIdentifiers';
 
 import Checkbox from '../Checkbox';
+import Icon from '../Icon';
 import RowAction from './RowAction';
 import TableHeader from './TableHeader';
 import TableHead from './TableHead';
@@ -221,6 +222,7 @@ class Table extends React.Component<Props, State> {
     let expandedRow: any[] = Object.assign([], this.state.expandedRow);
     const rowIndex = expandedRow.indexOf(currentId);
 
+    console.log('I am cliced');
     if (rowIndex === -1) {
       expandedRow = expandedRow.concat(currentId);
     } else {
@@ -229,6 +231,7 @@ class Table extends React.Component<Props, State> {
 
     this.setState({ expandedRow });
 
+    console.log('I am here');
     if (nestedChildCallback) {
       nestedChildCallback(currentId, rowIndex === -1);
     }
@@ -236,16 +239,13 @@ class Table extends React.Component<Props, State> {
 
   // Render the main table row
   renderTbodyRows = (item: any, index: number | string) => {
-    const { column, rowAction } = this.props;
+    const { column, nestedChildData, rowAction } = this.props;
 
     return (
-      <TableRow key={index}
-        onClick={this.openNestedRow}
-        callbackValue={item.id}
-      >
+      <TableRow key={index}>
         { this.renderRowSelection(item, 'body') }
         {
-          column.map((colItem: any) => {
+          column.map((colItem: any, index: number) => {
             return (
               <TableData
                 key={colItem.key}
@@ -256,6 +256,8 @@ class Table extends React.Component<Props, State> {
                   Here injectBody helps to inject any custom component to td,
                   we also return the specifc value, which then can be used in injected component
                 */}
+
+                {!index && nestedChildData ? this.renderCheckColumn(item, false) : ''}
                 {colItem.injectBody ? colItem.injectBody(item) : item[colItem.key]}
               </TableData>
             );
@@ -296,12 +298,17 @@ class Table extends React.Component<Props, State> {
 
   // Add checkbox or radio component to select the row, depending on `selectrow` flag
   renderRowSelection = (rowData: any, rowType: string) => {
-    const { selectRow } = this.props;
+    const { nestedChildData, selectRow } = this.props;
 
     if (selectRow) {
       if (rowType === 'body') {
+        // If row will be expanding then expanding element needs to be placed instead of checkbox
+        if (nestedChildData) {
+          return this.expandedRowElement(rowData.id);
+        }
+
         if (selectRow === 'checkbox') {
-          return this.renderCheckbox(rowData);
+          return this.renderCheckColumn(rowData);
         }
 
         return this.renderRadio(rowData);
@@ -315,27 +322,43 @@ class Table extends React.Component<Props, State> {
     return null;
   }
 
+  // Function to add the icon or anything which is required to expand or collapse the table row
+  expandedRowElement = (rowId: number | string) => {
+    return (
+      <TableData>
+        <Icon
+          onClick={this.openNestedRow}
+          callbackValue={rowId}
+          source="chevronDown"
+          style={{ margin: 0 }} />
+      </TableData>
+    );
+  }
+
   // Function to add checkbox in header as well
   addHeaderCheckbox = (): React.ReactElement<any> => {
     return <TableHead style={{ width: 'auto' }}><Checkbox label="" checked={this.state.allRowChecked} onChange={this.toggleAllRowSelection} /></TableHead>;
   }
 
   // Function to add checkbox for the row selection
-  renderCheckbox(rowData: any): React.ReactElement<any> {
+  renderCheckColumn(rowData: any, newColumn: boolean = true): React.ReactElement<any> {
+    return newColumn ? <TableData>{this.renderCheckbox(rowData)}</TableData> : <span style={{ display: 'inline-block' }}>{this.renderCheckbox(rowData)}</span>;
+  }
+
+  renderCheckbox(rowData: any) {
     const { selectedRows } = this.state;
     const { selectCallbackValue } = this.props;
     const uniqueId = selectCallbackValue ? rowData[selectCallbackValue] : rowData.id;
 
     return (
-      <TableData>
-        <Checkbox
-          label=""
-          value={uniqueId}
-          checked={selectedRows.indexOf(uniqueId) !== -1 ? true : false}
-          onChange={(checkedStatus: boolean) => {
-            this.toggleSingleRowSelection(uniqueId, checkedStatus);
-          }} />
-      </TableData>
+      <Checkbox
+        label=""
+        value={uniqueId}
+        checked={selectedRows.indexOf(uniqueId) !== -1 ? true : false}
+        onChange={(checkedStatus: boolean) => {
+          this.toggleSingleRowSelection(uniqueId, checkedStatus);
+        }}
+      />
     );
   }
 
@@ -403,7 +426,7 @@ class Table extends React.Component<Props, State> {
   // Function to toggle single row selection
   toggleSingleRowSelection = (dataId: string | number, checkedStatus: boolean) => {
     const selectedRows = [...this.state.selectedRows];
-
+    console.log(dataId, checkedStatus);
     if (!checkedStatus) {
       selectedRows.splice(selectedRows.indexOf(dataId), 1);
       this.setState({ selectedRows, allRowChecked: false }, () => {
