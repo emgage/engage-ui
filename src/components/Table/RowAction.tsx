@@ -42,7 +42,7 @@ class RowAction extends React.Component<Props, State> {
   }
 
   render () {
-    const { actionConfig } = this.props;
+    const { actionConfig, dataId } = this.props;
 
     return (
       <TableData>
@@ -53,6 +53,7 @@ class RowAction extends React.Component<Props, State> {
           dropdownItems={actionConfig}
           toggle={() => this.dropdownToggle}
           anchorEl = {this.state.anchorEl}
+          returnValue={dataId}
           closeOnClickOutside
         />
 

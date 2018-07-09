@@ -12,7 +12,8 @@ export interface Props {
   disabled?: boolean;
   divider?: boolean;
   header?: boolean;
-  onClick?(): void;
+  onClick?(data: any): void;
+  returnValue?: any;
 }
 
 const getUniqueID = createUniqueIDFactory('DropdownItem');
@@ -21,6 +22,14 @@ class DropdownItem extends React.Component<Props, never> {
 
   public id = getUniqueID();
 
+  clickCallback = (event: any) => {
+    const { onClick, returnValue } = this.props;
+
+    if (onClick) {
+      onClick(returnValue ? returnValue : event);
+    }
+  }
+
   render() {
     const {
       active,
@@ -28,7 +37,6 @@ class DropdownItem extends React.Component<Props, never> {
       divider,
       header,
       content,
-      onClick
     } = this.props;
 
     let className = null;
@@ -56,7 +64,7 @@ class DropdownItem extends React.Component<Props, never> {
       <div
         id={this.id}
         className={className}
-        onClick={onClick}
+        onClick={this.clickCallback}
       >
         {content}
       </div>

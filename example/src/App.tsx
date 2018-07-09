@@ -1316,8 +1316,8 @@ class App extends React.Component<{}, State> {
   onChildChanged(newState: boolean) {
     this.setState({ popoverActiveContainer: newState });
   }
-  closed1() {
-    console.log('called');
+  closed1(val: number) {
+    console.log('called:', val);
   }
 }
 
