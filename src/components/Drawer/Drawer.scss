@@ -4,6 +4,10 @@
 $drawer-z-index:                              1000 !default; //create global var?
 $drawer-bar-background:                       #fff !default; //create global var?
 
+$drawer-bar-width-collapsed:                  30px !default;
+$drawer-bar-padding-vertical-collapsed:       5px !default;
+$drawer-bar-padding-horizontal-collapsed:     5px !default;
+
 $drawer-bar-width-small:                      270px !default;
 $drawer-bar-padding-vertical-small:           30px !default;
 $drawer-bar-padding-horizontal-small:         30px !default;
@@ -56,23 +60,28 @@ $drawer-overlay-background:                   rgba(0,0,0,0.2) !default;
   -webkit-overflow-scrolling: touch;
   -webkit-transform: translateX(-100%);
   transform: translateX(-100%);
+
+  &.dark {
+    background: #000000;
+    color: #fff;
+  }
 }
 
 .drawer {
-  
+  &.collapsed .bar {
+    width: $drawer-bar-width-collapsed;
+  }
+
   &.small .bar {
     width: $drawer-bar-width-small;
-    padding: $drawer-bar-padding-vertical-small $drawer-bar-padding-horizontal-small;
   }
 
   &.medium .bar {
     width: $drawer-bar-width-medium;
-    padding: $drawer-bar-padding-vertical-medium $drawer-bar-padding-horizontal-medium;
   }
 
   &.large .bar {
     width: $drawer-bar-width-large;
-    padding: $drawer-bar-padding-vertical-large $drawer-bar-padding-horizontal-large;
   }
 }
 
@@ -92,26 +101,21 @@ $drawer-overlay-background:                   rgba(0,0,0,0.2) !default;
 
 //Medium and larger screens 
 @media (min-width: $breakpoint-medium) {
-
-  .bar {
-    padding: $drawer-bar-padding-vertical-medium $drawer-bar-padding-horizontal-medium;
-  }
-
   .drawer {
+    &.collapsed .bar {
+      width: $drawer-bar-width-collapsed;
+    }
 
     &.small .bar {
       width: $drawer-bar-width-small;
-      padding: $drawer-bar-padding-vertical-small $drawer-bar-padding-horizontal-small;
     }
 
     &.medium .bar {
       width: $drawer-bar-width-medium;
-      padding: $drawer-bar-padding-vertical-medium $drawer-bar-padding-horizontal-medium;
     }
 
     &.large .bar {
       width: $drawer-bar-width-large;
-      padding: $drawer-bar-padding-vertical-large $drawer-bar-padding-horizontal-large;
     }
   }
 
@@ -154,6 +158,10 @@ $drawer-overlay-background:                   rgba(0,0,0,0.2) !default;
 }
 
 // Open
+.collapsed.open > .reveal {
+  width: $drawer-bar-width-collapsed;
+}
+
 .small.open > .reveal {
   width: $drawer-bar-width-small;
 }
@@ -167,8 +175,11 @@ $drawer-overlay-background:                   rgba(0,0,0,0.2) !default;
 }
 
 // //Medium and larger screens 
-@media (min-width: $breakpoint-medium) {
-  
+@media (min-width: $breakpoint-medium) {  
+  .collapsed.open > .reveal {
+    width: $drawer-bar-width-collapsed;
+  }
+
   .small.open > .reveal {
     width: $drawer-bar-width-small;
   }
@@ -248,6 +259,11 @@ body.overlay {
   }
 
   &.animation {
+    &.collapsed {
+      :global #root {
+        left: $drawer-bar-width-collapsed;
+      }
+    }
 
     &.small {
       :global #root {
@@ -268,6 +284,11 @@ body.overlay {
     }
 
     &.flip {
+      &.collapsed {
+        :global #root {
+          left: (-$drawer-bar-width-collapsed);
+        }
+      }
 
       &.small {
         :global #root {
@@ -295,7 +316,12 @@ body.overlay {
   .container {
 
     &.animation {
-  
+      &.collapsed {
+        :global #root {
+          left: $drawer-bar-width-collapsed;
+        }
+      }
+
       &.small {
         :global #root {
           left: $drawer-bar-width-small;
@@ -315,6 +341,11 @@ body.overlay {
       }
   
       &.flip {
+        &.collapsed {
+          :global #root {
+            left: (-$drawer-bar-width-collapsed);
+          }
+        }
 
         &.small {
           :global #root {

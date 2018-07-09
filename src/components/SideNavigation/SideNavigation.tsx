@@ -1,11 +1,15 @@
 
 import * as React from 'react';
 import { themr, ThemedComponentClass } from 'react-css-themr';
+import { classNames } from '@shopify/react-utilities/styles';
+
 import Icon from '../Icon';
-import { SIDENAVIGATION } from '../ThemeIdentifiers';
+import { FlexBox } from '..';
 import { Drawer, DrawerContent } from '../Drawer';
 import Tooltip from '../Tooltip';
 import Accordion, { AccordionItemProps }from '../Accordion';
+
+import { SIDENAVIGATION } from '../ThemeIdentifiers';
 import * as baseTheme from './SideNavigation.scss';
 
 // All items config properties
@@ -45,11 +49,13 @@ export interface State {
 class SideNavigation extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
+
     this.state = {
       // As per props value set the drawer id to be active
       activeDrawerId: this.props.drawerExpand ? 'fullContent' : 'collapsedContent',
     };
   }
+
   componentDidUpdate() {
     // Set style for body elemnt
     const bodyElement = document.body;
@@ -57,100 +63,147 @@ class SideNavigation extends React.Component<Props, State> {
       bodyElement.className +=  this.props.drawerOpen ? ' ' + this.props.theme.container : '';
     }
   }
+
+  toggleDrawerContent = () => {
+    const drawerContentId = this.state.activeDrawerId === 'fullContent' ? 'collapsedContent' : 'fullContent';
+    this.setState({ activeDrawerId: drawerContentId });
+  }
+
   render() {
     const { source, theme, accordian, drawerOpen, hideCollapse, activeItem } = this.props;
-    const { icon: iconClass, collapseIcon: iconCollClass, navDiv: navClass, navDivider: divClass, li: liClass, childLi: childLiClass } = theme;
-    const actDrawerId = this.state.activeDrawerId;
-    // Set style for root div
-    const rootElement = document.getElementById('root');
-    if (rootElement !== null) {
-      rootElement.className = drawerOpen ? (theme.container) : '';
-      rootElement.className = rootElement.className + ' ' + (actDrawerId === 'collapsedContent' ? this.props.theme.rootCollapse : '');
-    }
+    const { collapseLink, li: liClass, childLi: childLiClass } = theme;
+    const { activeDrawerId } = this.state;
 
     // Iterate through source config items and set markup when full content is displayed
-    const fullContentMarkup = source.map((full : any) => {
-      const childrenMarkup = full.children !== undefined || null ? full.children.map((child:any) => {
-        return <li><a className={childLiClass} onClick={child.action} aria-disabled={false}><Icon source={child.icon} color="white" />{child.label}</a></li>;
+    const fullContentMarkup = source.map((full: any, index: number) => {
+      const childrenMarkup = full.children !== undefined || null ? full.children.map((child: any, index: number) => {
+        return (
+          <div key={index}>
+            <a className={childLiClass} onClick={child.action} aria-disabled={false}>
+              <Icon source={child.icon} color="white" />
+              {child.label}
+            </a>
+          </div>
+        );
       }) : null;
+
       // Set Accordian Item properties
       const items : AccordionItemProps[] = [{
         children: childrenMarkup,
-        header: <li className={liClass}><a className={liClass} onClick={full.action} aria-disabled={false}><Icon source={full.icon} color={activeItem === full.id ? 'black' : 'white'} />{full.label}</a></li>
-      }
-      ];
+        header:
+          <div
+            key={index}
+            className={liClass}
+          >
+            <div className={liClass} onClick={full.action} aria-disabled={false}>
+              <Icon source={full.icon} color={activeItem === full.id ? 'black' : 'white'} />
+              {full.label}
+            </div>
+          </div>
+      }];
+
       // Set markup based on the prop values
-      const markup = accordian ? (
-                    childrenMarkup ==  null ? (
-                        <div>
-                            <li className={liClass}><a className={liClass} onClick={full.action} aria-disabled={false}><Icon source={full.icon} color={activeItem === full.id ? 'black' : 'white'}/>{full.label}</a></li>
-                            {childrenMarkup}
-                        </div>
-                    ) : (
-                    <Accordion style={{ padding:'0px', height:'20px' }} mode="collapsible" items={items} />)
-                    ) : (
-                        <div>
-                            <li className={liClass}><a className={liClass} onClick={full.action} aria-disabled={false}><Icon source={full.icon} color={activeItem === full.id ? 'black' :'white'} />{full.label}</a></li>
-                            {childrenMarkup}
-                        </div>
-                    );
-      const p = childrenMarkup ==  null ? 30  : ((childrenMarkup.length + 1) * 30) + 20;
-      const pstyle = { paddingBottom: p + 'px' };
-      const dividerMarkup = full.divider ? <div className={divClass}/> : null;
-      const activeClass = activeItem === full.id ? theme.active : '';
+      const markup = accordian ? (childrenMarkup ==  null ?
+        (
+          <div key={index}>
+            <div className={liClass} onClick={full.action} aria-disabled={false}>
+              <Icon source={full.icon} color={activeItem === full.id ? 'black' : 'white'}/>
+              {full.label}
+            </div>
+
+            {childrenMarkup}
+          </div>
+        ) : <Accordion key={index} style={{ padding:'0px', height:'20px' }} mode="collapsible" items={items} />) :
+        (
+          <div key={index}>
+            <div className={liClass} onClick={full.action} aria-disabled={false}>
+              <Icon source={full.icon} color={activeItem === full.id ? 'black' :'white'} />
+              {full.label}
+            </div>
+
+            {childrenMarkup}
+          </div>
+        );
+
+      const singleItem = classNames(
+        theme.listItem,
+        activeItem === full.id && theme.active,
+        full.divider && theme.divider
+      );
+
       return (
-                <div key={full.id} className={activeClass}>
-                    <div className={iconClass}>
-                        {markup}
-                    </div>
-                    <div className={navClass} style={pstyle} />
-                    {dividerMarkup}
-                </div>
+        <div key={full.id} className={singleItem}>
+          {markup}
+        </div>
       );
     });
+
     // Set markup when only icons need to be shown in collapsed state
     const collapsedContentMarkup = source.map((col:any) => {
+      const singleItem = classNames(
+        theme.listItem,
+        activeItem === col.id && theme.active,
+        col.divider && theme.divider
+      );
+
       return (
-      <p key={col.id} className={iconCollClass}>
-                    <Tooltip content={col.label}>
-                    <a className={liClass} onClick={col.action} aria-disabled={false}>
-                        <Icon source={col.icon} color="white" />
-                    </a>
-                    </Tooltip>
-     </p>
+        <div key={col.id} className={singleItem}>
+          <Tooltip content={col.label}>
+            <div className={liClass} onClick={col.action} aria-disabled={false}>
+              <Icon source={col.icon} color={activeItem === col.id ? 'black' : 'white'} />
+            </div>
+          </Tooltip>
+        </div>
       );
     });
-    const collapseIcon = actDrawerId === 'fullContent' ? 'chevronLeft' : 'chevronRight';
-    const drawerContentId = actDrawerId === 'fullContent' ? 'collapsedContent' : 'fullContent';
+
+    const collapseIcon = activeDrawerId === 'fullContent' ? 'chevronLeft' : 'chevronRight';
     const collapseIconMarkup = (!hideCollapse) ?
-            <span className={this.props.theme.expand}>
-                <button type="button" className={this.props.theme.navButton} onClick={() => this.setState({ activeDrawerId: drawerContentId })}><Icon source={collapseIcon} color="white" /></button>
-            </span>
-         : null;
-         // Return div with drawer component having the side navigation items wrapped in drawer content component
+      <div
+        className={collapseLink}
+        onClick={this.toggleDrawerContent}
+      >
+        <FlexBox>
+          <Icon source={collapseIcon} color="white" />
+          { activeDrawerId === 'fullContent' ? 'Collapse' : ''}
+        </FlexBox>
+      </div>
+      : null;
+
+    // Return div with drawer component having the side navigation items wrapped in drawer content component
     return (
-            <div>
-                <Drawer
-                    active={drawerOpen}
-                    activeContentId={this.state.activeDrawerId}
-                    mode="push"
-                    width="small"
-                    style={actDrawerId === 'collapsedContent' ? { width: '10px', padding: '15px', overflow: 'visible' } : { width: '270px', overflow: 'visible'  }} >
-                    <DrawerContent id="fullContent" mode="slide" style={{ background: 'black', color: 'white', padding: '0px',overflowX: 'hidden' }}>
-                        {collapseIconMarkup}
-                        <ul className={this.props.theme.list}>
-                            {fullContentMarkup}
-                        </ul>
-                    </DrawerContent>
-                    <DrawerContent id="collapsedContent" mode="slide" style={{ width: '10px', padding: '15px', background: 'black', color: 'white' }}>
-                        {collapseIconMarkup}
-                        <ul className={this.props.theme.collapseList} >
-                            {collapsedContentMarkup}
-                        </ul>
-                    </DrawerContent>
-                </Drawer>
+      <div>
+        <Drawer
+          active={drawerOpen}
+          activeContentId={this.state.activeDrawerId}
+          currentTheme="dark"
+          mode="push"
+          width={activeDrawerId === 'collapsedContent' ? 'collapsed' : 'small'}>
+          <DrawerContent
+            id="fullContent"
+            mode="slide"
+          >
+            {collapseIconMarkup}
+
+            <div className={this.props.theme.list}>
+              {fullContentMarkup}
             </div>
+          </DrawerContent>
+
+          <DrawerContent
+            id="collapsedContent"
+            mode="slide"
+          >
+            {collapseIconMarkup}
+
+            <div className={this.props.theme.list} >
+              {collapsedContentMarkup}
+            </div>
+          </DrawerContent>
+        </Drawer>
+      </div>
     );
   }
 }
+
 export default themr(SIDENAVIGATION, baseTheme)(SideNavigation) as ThemedComponentClass<Props, {}>;
