@@ -38,6 +38,8 @@ export interface Props {
   hideCollapse: boolean;
   // Show drawer in expanded or collapsed state
   drawerExpand: boolean;
+  // Custom drawer style
+  drawerStyle?: any;
 }
 
 export interface State {
@@ -70,7 +72,7 @@ class SideNavigation extends React.Component<Props, State> {
   }
 
   render() {
-    const { source, theme, accordian, drawerOpen, hideCollapse, activeItem } = this.props;
+    const { source, theme, accordian, drawerOpen, hideCollapse, activeItem, drawerStyle } = this.props;
     const { collapseLink, li: liClass, childLi: childLiClass } = theme;
     const { activeDrawerId } = this.state;
 
@@ -178,7 +180,8 @@ class SideNavigation extends React.Component<Props, State> {
           activeContentId={this.state.activeDrawerId}
           currentTheme="dark"
           mode="push"
-          width={activeDrawerId === 'collapsedContent' ? 'collapsed' : 'small'}>
+          width={activeDrawerId === 'collapsedContent' ? 'collapsed' : 'small'}
+          style={drawerStyle}>
           <DrawerContent
             id="fullContent"
             mode="slide"
