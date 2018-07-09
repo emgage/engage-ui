@@ -34,6 +34,7 @@ import {
   Loading,
   // OffCanvas,
   Panel,
+  Popover,
   Picker,
   Dropdown,
   Select,
@@ -72,6 +73,7 @@ interface State {
   rows: object[];
   isMenuOpened: boolean;
   popoverActive: boolean;
+  popoverActiveContainer: boolean;
   bulkAction: any;
   filterConfig: any;
   modalOpen: boolean;
@@ -110,6 +112,7 @@ class App extends React.Component<{}, State> {
       ],
       isMenuOpened: false,
       popoverActive: false,
+      popoverActiveContainer: false,
       bulkAction: {
         selectedRow: [],
       },
@@ -130,9 +133,11 @@ class App extends React.Component<{}, State> {
       activeTabId: 'tab3'
     };
     this.popovertoggle = this.popovertoggle.bind(this);
+    this.popoverToggleContainer = this.popoverToggleContainer.bind(this);
     this.toggleAccordionOpen = this.toggleAccordionOpen.bind(this);
     this.toggleAccordionClose = this.toggleAccordionClose.bind(this);
     this.popoverUpdate = this.popoverUpdate.bind(this);
+    this.popoverUpdateContainer = this.popoverUpdateContainer.bind(this);
     this.closed1 = this.closed1.bind(this);
   }
 
@@ -714,14 +719,21 @@ class App extends React.Component<{}, State> {
 
           <Heading>Popover</Heading>
           <div style={{ marginLeft: '100px' }}>
+            <button onClick={(e: any) => this.popoverUpdateContainer(e)}>Click Popover</button>
+            <Popover active={this.state.popoverActiveContainer} direction="down" closeOnClickOutside toggle={() => this.popoverUpdateContainer} anchorEl = {this.state.anchorEl} onClose={() => console.log('I am close')} onOpen={() => console.log('I am open')} callbackParent={newState => this.onChildChanged(newState)}>
+              I am popover <Button>Hello popover</Button>
+            </Popover>
+          </div>
+          <br/>
+          <div style={{ marginLeft: '100px' }}>
             <button onClick={(e: any) => this.popoverUpdate(e)}>Dropdown active</button>
-
             <Dropdown
               active={this.state.popoverActive}
               dropdownItems={items}
               toggle={() => this.popoverUpdate}
-              direction="up"
               anchorEl = {this.state.anchorEl}
+              direction="up"
+              closeOnClickOutside
             />
           </div>
 
@@ -1227,6 +1239,15 @@ class App extends React.Component<{}, State> {
     });
   }
 
+  popoverToggleContainer(index: number) {
+    const updatedPopoverActiveContainer: any = this.state.popoverActiveContainer;
+    updatedPopoverActiveContainer[index] = !updatedPopoverActiveContainer[index];
+
+    this.setState({
+      popoverActiveContainer: updatedPopoverActiveContainer
+    });
+  }
+
   toggleAccordionOpen(index?: number) {
     this.setState({
       AccordionItemOpen: index
@@ -1253,6 +1274,15 @@ class App extends React.Component<{}, State> {
     });
   }
 
+  popoverUpdateContainer(e: any) {
+    this.setState({
+      popoverActiveContainer : !this.state.popoverActiveContainer,
+      anchorEl: e.target as HTMLElement
+    });
+  }
+  onChildChanged(newState: boolean) {
+    this.setState({ popoverActiveContainer: newState });
+  }
   closed1() {
     console.log('called');
   }

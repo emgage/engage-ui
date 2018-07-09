@@ -29,13 +29,9 @@ const DropdownState: IDocument = {
       type: 'boolean',
       desc: 'Show or hide the Dropdown.',
     }, {
-      name: 'disable',
+      name: 'disabled',
       type: 'boolean',
       desc: 'Disable the dropdown',
-    }, {
-      name: 'activatorWrapper',
-      type: 'string',
-      desc: 'The element type to wrap the activator with.',
     }, {
       name: 'dropdownItems',
       type: 'DropdownItemProps',
@@ -44,6 +40,10 @@ const DropdownState: IDocument = {
       name: 'toggle',
       type: 'function ()',
       desc: 'Callback when dropdown\'s active props changes.',
+    }, {
+      name: 'onOpen',
+      type: 'function ()',
+      desc: 'Callback when dropdown is opened.',
     }, {
       name: 'onClose',
       type: 'function ()',
