@@ -186,7 +186,7 @@ describe('<Alert />', () => {
         expect(alertWrapper.find('button')).toHaveLength(1);
         expect(alertWrapper.find('p')).toHaveLength(1);
         expect(alertWrapper.find('div').at(0).hasClass('Alert')).toBe(true);
-        expect(alertWrapper.prop('type')).toBe('alertPrimary');
+        expect(alertWrapper.prop('componentType')).toBe('alertPrimary');
       });
     });
   });
