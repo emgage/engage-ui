@@ -5,8 +5,8 @@ import * as styles from '../../styles/components-page.scss';
 const AvatarExample = () => (
   <div className={styles.example}>
     <Avatar
-      customSize="small"
-      customName="John Doe"
+      componentSize="small"
+      componentName="John Doe"
       initials="JD"
       customer={false}
       accessibilityLabel="hello"

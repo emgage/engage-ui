@@ -14,7 +14,7 @@ export type Error = string;
 
 export interface Props {
   // ID for the input.
-  customId: LabelProps['customId'];
+  componentId: LabelProps['componentId'];
   // Label for labelled component
   label: string;
   // To display error message.
@@ -33,13 +33,13 @@ export interface Props {
   // To display Initial value for the labelled.
   hasValue?: boolean;
   // To provide styling for labelled.
-  customStyle?: React.CSSProperties;
+  componentStyle?: React.CSSProperties;
   // Theme to be injected via css-themr.
   theme?: any;
 }
 
 const labelled = ({
-  customId,
+  componentId,
   label,
   errors,
   children,
@@ -48,7 +48,7 @@ const labelled = ({
   required,
   focused,
   hasValue,
-  customStyle,
+  componentStyle,
   theme,
   ...rest
 }: Props) => {
@@ -64,13 +64,13 @@ const labelled = ({
   );
 
   const helpTextMarkup = helpText
-    ? <div className={theme.helpText} id={helpTextID(customId)}>{helpText}</div>
+    ? <div className={theme.helpText} id={helpTextID(componentId)}>{helpText}</div>
     : null;
 
-  const errorId = errorID(customId);
+  const errorId = errorID(componentId);
   const errorMarkup = errors
     ? (
-      <Message customId={errorId} isVisible={true}>
+      <Message componentId={errorId} isVisible={true}>
         {errors instanceof Array ? errors.join(', ') : (typeof errors === 'string' ? errors : 'An error occurred.')}
       </Message>
     )
@@ -80,7 +80,7 @@ const labelled = ({
     ? (
       <div className={labelWrapperClassName} id={'labelMarkup'}>
         <Label
-          customId={customId}
+          componentId={componentId}
           hidden={false}
           focused={focused}
           hasValue={hasValue}
@@ -94,7 +94,7 @@ const labelled = ({
     : null;
 
   return (
-    <div className={wrapperClassName} aria-describedby={errorId} id={'labelled.tsx'} style={customStyle}>
+    <div className={wrapperClassName} aria-describedby={errorId} id={'labelled.tsx'} style={componentStyle}>
       {errorMarkup}
       {labelMarkup}
       {children}

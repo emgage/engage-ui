@@ -6,7 +6,7 @@ const DisplayTextExample = () => (
   <div className={styles.example}>
     <DisplayText
       element="h3"
-      customSize="small"
+      componentSize="small"
     >
       DisplayText with element and size
     </DisplayText>

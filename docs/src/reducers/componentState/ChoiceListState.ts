@@ -12,7 +12,7 @@ const choiceListState: IDocument = {
                Use this component if you need to group together a related list of interactive choices.`,
   property: [
     {
-      name: 'customTitle',
+      name: 'componentTitle',
       type: 'string',
       desc: 'Title of choice list.',
     }, {
@@ -28,7 +28,7 @@ const choiceListState: IDocument = {
       type: 'string[]',
       desc: 'Selected values',
     }, {
-      name: 'customName',
+      name: 'componentName',
       type: 'string',
       desc: 'Name of the chicelist',
     }, {

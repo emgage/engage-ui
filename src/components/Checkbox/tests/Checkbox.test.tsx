@@ -229,13 +229,13 @@ describe('<Checkbox />', () => {
         expect(checkboxWrapper.find('div').at(2).hasClass('backdrop')).toBe(true);
         expect(checkboxWrapper.find('div').at(3).hasClass('icon')).toBe(true);
         expect(checkboxWrapper.prop('label')).toBe('Checkbox');
-        expect(checkboxWrapper.prop('customName')).toBeUndefined();
+        expect(checkboxWrapper.prop('name')).toBeUndefined();
       });
     });
     describe('when set', () => {
       it('should verify checkbox when name is set', () => {
         const checkboxWrapper = mount(
-                                      <Checkbox label="Checkbox" customName="Soccer" theme={theme} />
+                                      <Checkbox label="Checkbox" name="Soccer" theme={theme} />
                                      );
         expect(checkboxWrapper.find('label')).toHaveLength(1);
         expect(checkboxWrapper.find('div')).toHaveLength(5);
@@ -246,7 +246,7 @@ describe('<Checkbox />', () => {
         expect(checkboxWrapper.find('div').at(2).hasClass('backdrop')).toBe(true);
         expect(checkboxWrapper.find('div').at(3).hasClass('icon')).toBe(true);
         expect(checkboxWrapper.prop('label')).toBe('Checkbox');
-        expect(checkboxWrapper.prop('customName')).toBe('Soccer');
+        expect(checkboxWrapper.prop('name')).toBe('Soccer');
       });
     });
   });
@@ -266,13 +266,13 @@ describe('<Checkbox />', () => {
         expect(checkboxWrapper.find('div').at(2).hasClass('backdrop')).toBe(true);
         expect(checkboxWrapper.find('div').at(3).hasClass('icon')).toBe(true);
         expect(checkboxWrapper.prop('label')).toBe('Checkbox');
-        expect(checkboxWrapper.prop('customValue')).toBeUndefined();
+        expect(checkboxWrapper.prop('value')).toBeUndefined();
       });
     });
     describe('when set', () => {
       it('should verify checkbox when value is set', () => {
         const checkboxWrapper = mount(
-                                      <Checkbox label="Checkbox" customValue="SomeValue" theme={theme} />
+                                      <Checkbox label="Checkbox" value="SomeValue" theme={theme} />
                                      );
         expect(checkboxWrapper.find('label')).toHaveLength(1);
         expect(checkboxWrapper.find('div')).toHaveLength(5);
@@ -283,7 +283,7 @@ describe('<Checkbox />', () => {
         expect(checkboxWrapper.find('div').at(2).hasClass('backdrop')).toBe(true);
         expect(checkboxWrapper.find('div').at(3).hasClass('icon')).toBe(true);
         expect(checkboxWrapper.prop('label')).toBe('Checkbox');
-        expect(checkboxWrapper.prop('customValue')).toBe('SomeValue');
+        expect(checkboxWrapper.prop('value')).toBe('SomeValue');
       });
     });
   });
@@ -309,7 +309,7 @@ describe('<Checkbox />', () => {
     describe('when set', () => {
       it('should verify checkbox when id is set', () => {
         const checkboxWrapper = mount(
-                                      <Checkbox label="Checkbox" customId="MyCheckbox" theme={theme} />
+                                      <Checkbox label="Checkbox" componentId="MyCheckbox" theme={theme} />
                                      );
         expect(checkboxWrapper.find('label')).toHaveLength(1);
         expect(checkboxWrapper.find('div')).toHaveLength(5);
@@ -535,8 +535,8 @@ describe('<Checkbox />', () => {
   describe('verify all property together', () => {
     it('should verify checkbox when all properties are set', () => {
       const checkboxWrapper = mount(
-                                    <Checkbox label="Checkbox" labelHidden checked helpText="Some help" customId="MyCheckbox"
-                                    customName="Checkbox" customValue="Some value" error="Some error" disabled theme={theme} />
+                                    <Checkbox label="Checkbox" labelHidden checked helpText="Some help" componentId="MyCheckbox"
+                                    name="Checkbox" value="Some value" error="Some error" disabled theme={theme} />
                                    );
       expect(checkboxWrapper.find('label')).toHaveLength(1);
       expect(checkboxWrapper.find('div')).toHaveLength(10);
@@ -551,9 +551,9 @@ describe('<Checkbox />', () => {
       expect(checkboxWrapper.prop('labelHidden')).toBe(true);
       expect(checkboxWrapper.prop('checked')).toBe(true);
       expect(checkboxWrapper.prop('helpText')).toBe('Some help');
-      expect(checkboxWrapper.prop('customId')).toBe('MyCheckbox');
-      expect(checkboxWrapper.prop('customName')).toBe('Checkbox');
-      expect(checkboxWrapper.prop('customValue')).toBe('Some value');
+      expect(checkboxWrapper.prop('componentId')).toBe('MyCheckbox');
+      expect(checkboxWrapper.prop('name')).toBe('Checkbox');
+      expect(checkboxWrapper.prop('value')).toBe('Some value');
       expect(checkboxWrapper.prop('error')).toBe('Some error');
       expect(checkboxWrapper.prop('disabled')).toBe(true);
     });

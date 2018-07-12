@@ -12,10 +12,10 @@ const SelectExample = () => (
         'Washigton DC',
       ]}
       placeholder="Select"
-      customValue="New York"
+      value="New York"
       helpText="Please Select City"
-      customId="SelectId"
-      customName="Select Name"
+      componentId="SelectId"
+      name="Select Name"
     />
   </div>
 );

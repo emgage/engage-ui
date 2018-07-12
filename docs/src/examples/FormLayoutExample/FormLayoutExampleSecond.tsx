@@ -7,8 +7,8 @@ const FormLayoutExampleSecond = () => (
   <div className={styles.example}>
     <FormLayout>
       <Group>
-        <TextField customType="number" label="Minimum order" />
-        <TextField customType="number" label="Maximum order" />
+        <TextField type="number" label="Minimum order" />
+        <TextField type="number" label="Maximum order" />
       </Group>
     </FormLayout>
 </div>

@@ -5,7 +5,7 @@ import * as styles from '../../styles/components-page.scss';
 const ClickableChipExample = () => (
   <div className={styles.example}>
     <ClickableChip chip={<Chip>Batman</Chip>}>
-      <Card customTitle="More about Batman"/>
+      <Card componentTitle="More about Batman"/>
     </ClickableChip>
   </div>
 );

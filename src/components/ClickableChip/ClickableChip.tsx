@@ -15,7 +15,7 @@ export interface Props {
   // Chip component is used as property.
   chip: React.ReactElement<ChipStates>;
   // To display the styling.
-  customStyle?: React.CSSProperties;
+  componentStyle?: React.CSSProperties;
   // Theme to be injected via css-themr
   theme?: any;
   // Function used for clicking the chip.

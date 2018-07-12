@@ -6,8 +6,8 @@ const TextFieldExample1 = () => (
   <div className={styles.example}>
     <TextField
       label=""
-      customType="number"
-      customValue="1"
+      type="number"
+      value="1"
     />
   </div>
 );

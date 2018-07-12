@@ -18,7 +18,7 @@ const FormLayoutState: IDocument = {
       type: 'React.ReactNode',
       desc: 'The content to display inside the formlayout',
     }, {
-      name: 'customStyle',
+      name: 'componentStyle',
       type: 'React.CSSProperties',
       desc: 'Set the style via css',
     }, {

@@ -17,7 +17,7 @@ export interface Props {
   // The content to display inside the button.
   children?: string;
   // Change the size of the button. It can be slim or large
-  customSize?: Size;
+  componentSize?: Size;
   // Allows the button to grow to the width of its container
   fullWidth?: boolean;
   // Display as primary button.
@@ -41,7 +41,7 @@ export interface Props {
   // Icon to display in the banner.
   icon?: IconProps['source'];
   // To display the styling.
-  customStyle?: React.CSSProperties;
+  componentStyle?: React.CSSProperties;
   // Theme to be injected via css-themr.
   theme?: any;
   // Callback when clicked.
@@ -68,9 +68,9 @@ const button = ({
   disclosure,
   plain,
   submit,
-  customSize,
+  componentSize,
   fullWidth,
-  customStyle,
+  componentStyle,
   theme,
 }: Props) => {
   const className = classNames(
@@ -80,7 +80,7 @@ const button = ({
     destructive && theme.destructive,
     disabled && theme.disabled,
     plain && theme.plain,
-    customSize && theme[variationName('size', customSize)],
+    componentSize && theme[variationName('size', componentSize)],
     fullWidth && theme.fullWidth,
     icon && children == null && theme.iconOnly
   );
@@ -120,7 +120,7 @@ const button = ({
           className={className}
           disabled={disabled}
           aria-label={accessibilityLabel}
-          style={customStyle}
+          style={componentStyle}
         >
           {content}
         </UnstyledLink>
@@ -135,7 +135,7 @@ const button = ({
           className={className}
           disabled={disabled}
           aria-label={accessibilityLabel}
-          style={customStyle}
+          style={componentStyle}
         >
           {content}
         </button>

@@ -51,7 +51,7 @@ const VideoState: IDocument = {
       type: 'any',
       desc: 'Theme to be injected via css-themr.',
     }, {
-      name: 'customStyle',
+      name: 'componentStyle',
       type: 'React.CSSProperties',
       desc: 'To provide styling.',
     },

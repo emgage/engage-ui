@@ -6,7 +6,7 @@ const TextFieldExample3 = () => (
   <div className={styles.example}>
     <FormLayout>
       <ChoiceList
-        customTitle="Gift card auto-expiration"
+        componentTitle="Gift card auto-expiration"
         choices={[
           {
             label: 'Gift cards never expire',
@@ -22,7 +22,7 @@ const TextFieldExample3 = () => (
       <TextField
         label="Gift cards expire after"
         labelHidden
-        customValue="12"
+        value="12"
         connectedRight={<Select label="Unit of time" labelHidden options={['months after purchase']} />}
       />
     </FormLayout>

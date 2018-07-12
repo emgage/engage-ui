@@ -14,26 +14,26 @@ export interface Props {
   // Display description list with term and description elements
   children?:React.ReactNode;
   // Type of description list to display. Available options: default | divider
-  customType?: Type;
+  componentType?: Type;
   // Theme to be injected via css-themr
   theme?: any;
   // Style to be applied. Available options: Inline | Stacked
-  customStyle?:string;
+  componentStyle?:string;
 }
 // DescriptionList component, in here wrap all other required components or DOM for the DescriptionList
 class DescriptionList extends React.PureComponent<Props, never> {
   render() {
-    const { children, customType, theme, customStyle } = this.props;
-    const background = customType === 'divider' && customStyle ===  'Stacked' ? baseTheme['description-list-divider'] : customType === 'default' && customStyle ===  'Stacked' ? baseTheme['naked'] : '';
+    const { children, componentType, theme, componentStyle } = this.props;
+    const background = componentType === 'divider' && componentStyle ===  'Stacked' ? baseTheme['description-list-divider'] : componentType === 'default' && componentStyle ===  'Stacked' ? baseTheme['naked'] : '';
     const className = classNames(
-      customStyle ===  'Inline' ?  theme.descriptionList : '',
-      customType && theme[variationName('type', customType)]
+      componentStyle ===  'Inline' ?  theme.descriptionList : '',
+      componentType && theme[variationName('type', componentType)]
     );
     // Set class for term based on the style
-    const classNameTerm = customStyle ===  'Inline' ?  classNames(theme.term) : '' ;
+    const classNameTerm = componentStyle ===  'Inline' ?  classNames(theme.term) : '' ;
     // Iterate through children and clone the element to set style for term 
     const childrenWithProps = React.Children.map(children, child  =>
-      React.cloneElement(child as React.ReactElement<any>, { customStyle: classNameTerm }));
+      React.cloneElement(child as React.ReactElement<any>, { componentStyle: classNameTerm }));
 
     return (
       <div>

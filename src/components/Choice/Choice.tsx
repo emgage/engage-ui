@@ -11,7 +11,7 @@ export type Error = boolean | string;
 
 export interface Props {
   // Set id of Choice component.
-  customId: string;
+  componentId: string;
   // Set label text.
   label: string;
   // To give error as boolean or string.
@@ -27,7 +27,7 @@ export interface Props {
 }
 
 const choice = ({
-  customId,
+  componentId,
   label,
   error,
   children,
@@ -37,19 +37,19 @@ const choice = ({
 }: Props) => {
   const className = classNames(theme.choice, labelHidden && theme.labelHidden);
   const labelMarkup = (
-    <label className={className} htmlFor={customId}>
+    <label className={className} htmlFor={componentId}>
       <div className={theme.control}>{children}</div>
       <div className={theme.label}>{label}</div>
     </label>
   );
 
   const helpTextMarkup = helpText
-    ? <div className={theme.helpText} id={helpTextID(customId)}>{helpText}</div>
+    ? <div className={theme.helpText} id={helpTextID(componentId)}>{helpText}</div>
     : null;
 
   const errorMarkup = typeof error === 'string'
     ? (
-      <div className={theme.error} id={errorID(customId)}>
+      <div className={theme.error} id={errorID(componentId)}>
         <div className={theme.errorIcon}><Icon source="alert" /></div>
         {error}
       </div>

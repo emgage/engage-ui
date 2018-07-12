@@ -25,7 +25,7 @@ export interface IStateProps {
 export interface IItemList {
   key?: number;
   image?: string;
-  customName?: string;
+  name?: string;
   email?: string;
   tabIndex?: number;
   alt?: string;
@@ -127,11 +127,11 @@ class Picker extends React.Component<Props, State> {
           return [];
         }
         const regex = new RegExp(escapedValue, 'i');
-        return this.state.itemsList.filter((language: IItemList) => regex.test(language.customName ? language.customName : ''));
+        return this.state.itemsList.filter((language: IItemList) => regex.test(language.name ? language.name : ''));
       },
 
       getSuggestionValue: (suggestion: IItemList) => {
-        return suggestion.customName;
+        return suggestion.name;
       },
 
       onChange: (event: React.FormEvent<any>, { newValue, method }: Autosuggest.ChangeEvent) => {
@@ -227,10 +227,10 @@ class Picker extends React.Component<Props, State> {
       },
 
       renderSuggestion: (suggestion: IItemList, { isHighlighted, query }: IRenderSuggestionProp) => {
-        const index = (suggestion.customName ? suggestion.customName.toLowerCase().indexOf(query.toLowerCase()) : 0);
-        const nameBefore = (suggestion.customName ? suggestion.customName.slice(0, index) : '');
-        const queryData = (suggestion.customName ? suggestion.customName.slice(index, index + query.length) : '');
-        const nameAfter = (suggestion.customName ? suggestion.customName.slice(index + query.length) : '');
+        const index = (suggestion.name ? suggestion.name.toLowerCase().indexOf(query.toLowerCase()) : 0);
+        const nameBefore = (suggestion.name ? suggestion.name.slice(0, index) : '');
+        const queryData = (suggestion.name ? suggestion.name.slice(index, index + query.length) : '');
+        const nameAfter = (suggestion.name ? suggestion.name.slice(index + query.length) : '');
 
         if (isHighlighted) {
           return <Card isHighlighted={true} image={suggestion.image} nameBefore={nameBefore} bold={queryData} nameAfter={nameAfter} email={suggestion.email} alt={suggestion.alt} />;
@@ -285,7 +285,7 @@ class Picker extends React.Component<Props, State> {
             autoSuggest={autoSuggest}
             autoSuggestMethods={autoSuggestMethods}
             label={filterLabel ? filterLabel : ''}
-            customValue={this.state.people}
+            value={this.state.people}
             placeholder={filterPlaceHolder}
             onChange={searchBehavior}
             stateProps={stateProps}

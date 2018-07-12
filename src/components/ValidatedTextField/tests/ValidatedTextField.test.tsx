@@ -10,20 +10,20 @@ describe('<ValidatedTextField / >', () => {
     const validatedTextFieldWrapper = mount(
                                             <ValidatedForm>
                                                 <ValidatedTextField
-                                                customId="AppName"
+                                                componentId="AppName"
                                                 label="App Name"
-                                                customName="App Name" />
+                                                name="App Name" />
                                             </ValidatedForm>);
   expect(validatedTextFieldWrapper.find('form')).toHaveLength(1);
   expect(validatedTextFieldWrapper.find('div')).toHaveLength(8);
   expect(validatedTextFieldWrapper.find('input')).toHaveLength(1);
   expect(validatedTextFieldWrapper.find('label')).toHaveLength(2);
-  expect(validatedTextFieldWrapper.find('input').prop('customName')).toBe('App Name');
+  expect(validatedTextFieldWrapper.find('input').prop('name')).toBe('App Name');
   expect(validatedTextFieldWrapper.find('label').at(1).prop('id')).toBe('AppNameLabel');
   expect(validatedTextFieldWrapper.find('label').at(1).text()).toBe('App Name');
-  expect(validatedTextFieldWrapper.find('input').prop('customId')).toBe('AppName');
-  expect(validatedTextFieldWrapper.find('input').prop('customName')).toBe('App Name');
-  expect(validatedTextFieldWrapper.find('input').prop('customValue')).toBe('');
+  expect(validatedTextFieldWrapper.find('input').prop('componentId')).toBe('AppName');
+  expect(validatedTextFieldWrapper.find('input').prop('name')).toBe('App Name');
+  expect(validatedTextFieldWrapper.find('input').prop('value')).toBe('');
     });
   });
 
@@ -33,20 +33,20 @@ describe('<ValidatedTextField / >', () => {
         const validatedTextFieldWrapper = mount(
                                             <ValidatedForm>
                                                 <ValidatedTextField
-                                                customId="AppName"
+                                                componentId="AppName"
                                                 label="App Name"
-                                                customName="App Name" />
+                                                name="App Name" />
                                             </ValidatedForm>);
         expect(validatedTextFieldWrapper.find('form')).toHaveLength(1);
         expect(validatedTextFieldWrapper.find('div')).toHaveLength(8);
         expect(validatedTextFieldWrapper.find('input')).toHaveLength(1);
         expect(validatedTextFieldWrapper.find('label')).toHaveLength(2);
-        expect(validatedTextFieldWrapper.find('input').prop('customName')).toBe('App Name');
+        expect(validatedTextFieldWrapper.find('input').prop('name')).toBe('App Name');
         expect(validatedTextFieldWrapper.find('label').at(1).prop('id')).toBe('AppNameLabel');
         expect(validatedTextFieldWrapper.find('label').at(1).text()).toBe('App Name');
-        expect(validatedTextFieldWrapper.find('input').prop('customId')).toBe('AppName');
-        expect(validatedTextFieldWrapper.find('input').prop('customName')).toBe('App Name');
-        expect(validatedTextFieldWrapper.find('input').prop('customValue')).toBe('');
+        expect(validatedTextFieldWrapper.find('input').prop('componentId')).toBe('AppName');
+        expect(validatedTextFieldWrapper.find('input').prop('name')).toBe('App Name');
+        expect(validatedTextFieldWrapper.find('input').prop('value')).toBe('');
       });
     });
   });
@@ -57,20 +57,20 @@ describe('<ValidatedTextField / >', () => {
         const validatedTextFieldWrapper = mount(
                                             <ValidatedForm>
                                                 <ValidatedTextField
-                                                customId="AppName"
+                                                componentId="AppName"
                                                 label="App Name"
-                                                customName ="App Name" />
+                                                name ="App Name" />
                                             </ValidatedForm>);
         expect(validatedTextFieldWrapper.find('form')).toHaveLength(1);
         expect(validatedTextFieldWrapper.find('div')).toHaveLength(8);
         expect(validatedTextFieldWrapper.find('input')).toHaveLength(1);
         expect(validatedTextFieldWrapper.find('label')).toHaveLength(2);
-        expect(validatedTextFieldWrapper.find('input').prop('customName')).toBe('App Name');
+        expect(validatedTextFieldWrapper.find('input').prop('name')).toBe('App Name');
         expect(validatedTextFieldWrapper.find('label').at(1).prop('id')).toBe('AppNameLabel');
         expect(validatedTextFieldWrapper.find('label').at(1).text()).toBe('App Name');
-        expect(validatedTextFieldWrapper.find('input').prop('customId')).toBe('AppName');
-        expect(validatedTextFieldWrapper.find('input').prop('customName')).toBe('App Name');
-        expect(validatedTextFieldWrapper.find('input').prop('customValue')).toBe('');
+        expect(validatedTextFieldWrapper.find('input').prop('componentId')).toBe('AppName');
+        expect(validatedTextFieldWrapper.find('input').prop('name')).toBe('App Name');
+        expect(validatedTextFieldWrapper.find('input').prop('value')).toBe('');
       });
     });
   });
@@ -82,10 +82,10 @@ describe('<ValidatedTextField / >', () => {
         const validatedTextFieldWrapper = mount(
                                             <ValidatedForm>
                                                 <ValidatedTextField
-                                                customId="AppName"
+                                                componentId="AppName"
                                                 label="App Name"
-                                                customName="App Name"
-                                                customValue="Test"
+                                                name="App Name"
+                                                value="Test"
                                                 required={true}
                                                 onBlur={ () => spy()}
                                                 validateTrigger={['onBlur']}
@@ -96,12 +96,12 @@ describe('<ValidatedTextField / >', () => {
         expect(validatedTextFieldWrapper.find('div')).toHaveLength(8);
         expect(validatedTextFieldWrapper.find('input')).toHaveLength(1);
         expect(validatedTextFieldWrapper.find('label')).toHaveLength(2);
-        expect(validatedTextFieldWrapper.find('input').prop('customName')).toBe('App Name');
+        expect(validatedTextFieldWrapper.find('input').prop('name')).toBe('App Name');
         expect(validatedTextFieldWrapper.find('label').at(1).prop('id')).toBe('AppNameLabel');
         expect(validatedTextFieldWrapper.find('label').at(1).text()).toBe('App Name');
-        expect(validatedTextFieldWrapper.find('input').prop('customId')).toBe('AppName');
-        expect(validatedTextFieldWrapper.find('input').prop('customName')).toBe('App Name');
-        expect(validatedTextFieldWrapper.find('input').prop('customValue')).toBe('Test');
+        expect(validatedTextFieldWrapper.find('input').prop('componentId')).toBe('AppName');
+        expect(validatedTextFieldWrapper.find('input').prop('name')).toBe('App Name');
+        expect(validatedTextFieldWrapper.find('input').prop('value')).toBe('Test');
         expect(validatedTextFieldWrapper.find('input').prop('required')).toBe(true);
         validatedTextFieldWrapper.find('input').slice().simulate('blur');
         expect(validatedTextFieldWrapper.find('span')).toHaveLength(0);
@@ -114,10 +114,10 @@ describe('<ValidatedTextField / >', () => {
         const validatedTextFieldWrapper = mount(
                                             <ValidatedForm>
                                                 <ValidatedTextField
-                                                customId="AppName"
+                                                componentId="AppName"
                                                 label="App Name"
-                                                customName="App Name"
-                                                customValue=""
+                                                name="App Name"
+                                                value=""
                                                 required={true}
                                                 onBlur={ () => spy()}
                                                 validateTrigger={['onBlur']}
@@ -128,12 +128,12 @@ describe('<ValidatedTextField / >', () => {
         expect(validatedTextFieldWrapper.find('div')).toHaveLength(8);
         expect(validatedTextFieldWrapper.find('input')).toHaveLength(1);
         expect(validatedTextFieldWrapper.find('label')).toHaveLength(2);
-        expect(validatedTextFieldWrapper.find('input').prop('customName')).toBe('App Name');
+        expect(validatedTextFieldWrapper.find('input').prop('name')).toBe('App Name');
         expect(validatedTextFieldWrapper.find('label').at(1).prop('id')).toBe('AppNameLabel');
         expect(validatedTextFieldWrapper.find('label').at(1).text()).toBe('App Name');
-        expect(validatedTextFieldWrapper.find('input').prop('customId')).toBe('AppName');
-        expect(validatedTextFieldWrapper.find('input').prop('customName')).toBe('App Name');
-        expect(validatedTextFieldWrapper.find('input').prop('customValue')).toBe('');
+        expect(validatedTextFieldWrapper.find('input').prop('componentId')).toBe('AppName');
+        expect(validatedTextFieldWrapper.find('input').prop('name')).toBe('App Name');
+        expect(validatedTextFieldWrapper.find('input').prop('value')).toBe('');
         expect(validatedTextFieldWrapper.find('input').prop('required')).toBe(true);
         validatedTextFieldWrapper.find('input').slice().simulate('blur');
         expect(validatedTextFieldWrapper.find('span').text()).toBe('App Name is required.');
@@ -145,10 +145,10 @@ describe('<ValidatedTextField / >', () => {
         const validatedTextFieldWrapper = mount(
                                             <ValidatedForm>
                                                 <ValidatedTextField
-                                                customId="AppName"
+                                                componentId="AppName"
                                                 label="App Name"
-                                                customName="App Name"
-                                                customValue="Test"
+                                                name="App Name"
+                                                value="Test"
                                                 required={true}
                                                 validateRules={[{ required: true, message: 'App Name is required.' },
                                                 ]} />
@@ -157,12 +157,12 @@ describe('<ValidatedTextField / >', () => {
         expect(validatedTextFieldWrapper.find('div')).toHaveLength(8);
         expect(validatedTextFieldWrapper.find('input')).toHaveLength(1);
         expect(validatedTextFieldWrapper.find('label')).toHaveLength(2);
-        expect(validatedTextFieldWrapper.find('input').prop('customName')).toBe('App Name');
+        expect(validatedTextFieldWrapper.find('input').prop('name')).toBe('App Name');
         expect(validatedTextFieldWrapper.find('label').at(1).prop('id')).toBe('AppNameLabel');
         expect(validatedTextFieldWrapper.find('label').at(1).text()).toBe('App Name');
-        expect(validatedTextFieldWrapper.find('input').prop('customId')).toBe('AppName');
-        expect(validatedTextFieldWrapper.find('input').prop('customName')).toBe('App Name');
-        expect(validatedTextFieldWrapper.find('input').prop('customValue')).toBe('Test');
+        expect(validatedTextFieldWrapper.find('input').prop('componentId')).toBe('AppName');
+        expect(validatedTextFieldWrapper.find('input').prop('name')).toBe('App Name');
+        expect(validatedTextFieldWrapper.find('input').prop('value')).toBe('Test');
         expect(validatedTextFieldWrapper.find('input').prop('required')).toBe(true);
       });
     });
@@ -175,12 +175,12 @@ describe('<ValidatedTextField / >', () => {
         const validatedTextFieldWrapper = mount(
                                             <ValidatedForm>
                                                 <ValidatedTextField
-                                                customId="AppName"
+                                                componentId="AppName"
                                                 label="App Name"
                                                 required={true}
                                                 onBlur={ () => spy()}
-                                                customName="App Name"
-                                                customValue=""
+                                                name="App Name"
+                                                value=""
                                                 validateTrigger={['onBlur']}
                                                 validateRules={[{ required: true, message: 'App Name is required.' },
                                                 ]} />
@@ -189,12 +189,12 @@ describe('<ValidatedTextField / >', () => {
         expect(validatedTextFieldWrapper.find('div')).toHaveLength(8);
         expect(validatedTextFieldWrapper.find('input')).toHaveLength(1);
         expect(validatedTextFieldWrapper.find('label')).toHaveLength(2);
-        expect(validatedTextFieldWrapper.find('input').prop('customName')).toBe('App Name');
+        expect(validatedTextFieldWrapper.find('input').prop('name')).toBe('App Name');
         expect(validatedTextFieldWrapper.find('label').at(1).prop('id')).toBe('AppNameLabel');
         expect(validatedTextFieldWrapper.find('label').at(1).text()).toBe('App Name');
-        expect(validatedTextFieldWrapper.find('input').prop('customId')).toBe('AppName');
-        expect(validatedTextFieldWrapper.find('input').prop('customName')).toBe('App Name');
-        expect(validatedTextFieldWrapper.find('input').prop('customValue')).toBe('');
+        expect(validatedTextFieldWrapper.find('input').prop('componentId')).toBe('AppName');
+        expect(validatedTextFieldWrapper.find('input').prop('name')).toBe('App Name');
+        expect(validatedTextFieldWrapper.find('input').prop('value')).toBe('');
         expect(validatedTextFieldWrapper.find('input').prop('required')).toBe(true);
         validatedTextFieldWrapper.find('input').slice().simulate('blur');
         expect(validatedTextFieldWrapper.find('span').text()).toBe('App Name is required.');
@@ -207,24 +207,24 @@ describe('<ValidatedTextField / >', () => {
         const validatedTextFieldWrapper = mount(
                                             <ValidatedForm>
                                                 <ValidatedTextField
-                                                customId="AppName"
+                                                componentId="AppName"
                                                 label="App Name"
                                                 required={true}
                                                 onBlur={ () => spy()}
-                                                customName="App Name"
-                                                customValue=""
+                                                name="App Name"
+                                                value=""
                                                 validateTrigger={['onBlur']} />
                                             </ValidatedForm>);
         expect(validatedTextFieldWrapper.find('form')).toHaveLength(1);
         expect(validatedTextFieldWrapper.find('div')).toHaveLength(8);
         expect(validatedTextFieldWrapper.find('input')).toHaveLength(1);
         expect(validatedTextFieldWrapper.find('label')).toHaveLength(2);
-        expect(validatedTextFieldWrapper.find('input').prop('customName')).toBe('App Name');
+        expect(validatedTextFieldWrapper.find('input').prop('name')).toBe('App Name');
         expect(validatedTextFieldWrapper.find('label').at(1).prop('id')).toBe('AppNameLabel');
         expect(validatedTextFieldWrapper.find('label').at(1).text()).toBe('App Name');
-        expect(validatedTextFieldWrapper.find('input').prop('customId')).toBe('AppName');
-        expect(validatedTextFieldWrapper.find('input').prop('customName')).toBe('App Name');
-        expect(validatedTextFieldWrapper.find('input').prop('customValue')).toBe('');
+        expect(validatedTextFieldWrapper.find('input').prop('componentId')).toBe('AppName');
+        expect(validatedTextFieldWrapper.find('input').prop('name')).toBe('App Name');
+        expect(validatedTextFieldWrapper.find('input').prop('value')).toBe('');
         expect(validatedTextFieldWrapper.find('input').prop('required')).toBe(true);
         validatedTextFieldWrapper.find('input').slice().simulate('blur');
       });
@@ -238,14 +238,14 @@ describe('<ValidatedTextField / >', () => {
         const validatedTextFieldWrapper = mount(
                                             <ValidatedForm>
                                                 <ValidatedTextField
-                                                customId="AppName"
+                                                componentId="AppName"
                                                 required={true}
                                                 label="App Name"
                                                 placeholder=""
                                                 helpText="We recommend keeping your app name under 23 characters."
                                                 onChange={() => spy()}
-                                                customName="App Name"
-                                                customValue="Text Value"
+                                                name="App Name"
+                                                value="Text Value"
                                                 validateTrigger={['onBlur']}
                                                 validateRules={[{ required: true, message: 'App Name is required.' },
                                                 ]} />
@@ -254,12 +254,12 @@ describe('<ValidatedTextField / >', () => {
         expect(validatedTextFieldWrapper.find('div')).toHaveLength(9);
         expect(validatedTextFieldWrapper.find('input')).toHaveLength(1);
         expect(validatedTextFieldWrapper.find('label')).toHaveLength(2);
-        expect(validatedTextFieldWrapper.find('input').prop('customName')).toBe('App Name');
+        expect(validatedTextFieldWrapper.find('input').prop('name')).toBe('App Name');
         expect(validatedTextFieldWrapper.find('label').at(1).prop('id')).toBe('AppNameLabel');
         expect(validatedTextFieldWrapper.find('label').at(1).text()).toBe('App Name');
-        expect(validatedTextFieldWrapper.find('input').prop('customId')).toBe('AppName');
-        expect(validatedTextFieldWrapper.find('input').prop('customName')).toBe('App Name');
-        expect(validatedTextFieldWrapper.find('input').prop('customValue')).toBe('Text Value');
+        expect(validatedTextFieldWrapper.find('input').prop('componentId')).toBe('AppName');
+        expect(validatedTextFieldWrapper.find('input').prop('name')).toBe('App Name');
+        expect(validatedTextFieldWrapper.find('input').prop('value')).toBe('Text Value');
         expect(validatedTextFieldWrapper.find('input').prop('required')).toBe(true);
         expect(validatedTextFieldWrapper.find('div').at(8).prop('id')).toBe('AppNameHelpText');
         expect(validatedTextFieldWrapper.find('div').at(8).text()).toBe('We recommend keeping your app name under 23 characters.');

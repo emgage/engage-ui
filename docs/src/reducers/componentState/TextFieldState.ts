@@ -39,7 +39,7 @@ const TextFieldState: IDocument = {
       type: 'string',
       desc: 'Hint text to display.',
     }, {
-      name: 'customValue',
+      name: 'value',
       type: 'string',
       desc: 'Initial value for the input.',
     }, {
@@ -91,15 +91,15 @@ const TextFieldState: IDocument = {
       type: 'React.ReactNode',
       desc: 'An element connected to the left of the input',
     }, {
-      name: 'customType',
+      name: 'componentType',
       type: 'enum',
       desc: 'Determine type of input. Available options: text | email | number | password | search | tel | url | date | datetime-local | month | time | week',
     }, {
-      name: 'customName',
+      name: 'name',
       type: 'string',
       desc: 'Name of the input.',
     }, {
-      name: 'customId',
+      name: 'componentId',
       type: 'string',
       desc: 'ID for the input.',
     }, {
@@ -143,7 +143,7 @@ const TextFieldState: IDocument = {
       type: 'boolean',
       desc: 'To make it resizable or not.',
     }, {
-      name: 'customStyle',
+      name: 'componentStyle',
       type: 'React.CSSProperties',
       desc: 'To provide styling.',
     }, {

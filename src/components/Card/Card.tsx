@@ -13,7 +13,7 @@ import * as baseTheme from './Card.scss';
 
 export interface Props {
   // Title content for the card.
-  customTitle?: string;
+  componentTitle?: string;
   // Card related components to render inside this card.
   children?: React.ReactNode;
   // A less prominent card
@@ -36,7 +36,7 @@ class Card extends React.PureComponent<Props, never> {
   render() {
     const {
       children,
-      customTitle,
+      componentTitle,
       subdued,
       sectioned,
       actions,
@@ -47,8 +47,8 @@ class Card extends React.PureComponent<Props, never> {
 
     const className = classNames(theme.card, subdued && theme.subdued);
 
-    const headerMarkup = customTitle
-      ? <Header actions={actions}>{customTitle}</Header>
+    const headerMarkup = componentTitle
+      ? <Header actions={actions}>{componentTitle}</Header>
       : null;
 
     const content = sectioned

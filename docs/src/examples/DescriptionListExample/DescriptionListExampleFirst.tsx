@@ -4,7 +4,7 @@ import * as styles from '../../styles/components-page.scss';
 
 const DescriptionListExampleFirst = () => (
   <div className={styles.example}>
-    <DescriptionList customType="default" customStyle="Inline">
+    <DescriptionList componentType="default" componentStyle="Inline">
         <Term>Logistics</Term>
         <Description>The management of products or other resources as they travel between a point of origin and a destination.</Description>
         <Term>Sole proprietorship</Term>

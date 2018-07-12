@@ -4,7 +4,7 @@ import Choice from '../Choice';
 
 describe('<Choice />', () => {
   it('uses the id as the for attribute of a label', () => {
-    const element = mount(<Choice customId="MyChoice" label="Label" />);
+    const element = mount(<Choice componentId="MyChoice" label="Label" />);
     const label = element.find('label');
 
     expect(label.prop('htmlFor')).toBe('MyChoice');
@@ -20,7 +20,7 @@ describe('<Choice />', () => {
       );
     };
 
-    const element = mount(<Choice customId="MyChoice" label="Label"><MYCOMPONENT /></Choice>);
+    const element = mount(<Choice componentId="MyChoice" label="Label"><MYCOMPONENT /></Choice>);
     const label = element.find('label');
 
     expect(label.containsMatchingElement(<MYCOMPONENT />)).toBe(true);

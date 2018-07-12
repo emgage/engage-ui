@@ -5,7 +5,7 @@ import * as styles from '../../styles/components-page.scss';
 const DisplayTextExample = () => (
   <div className={styles.example}>
     <DisplayText
-      customSize="small"
+      componentSize="small"
     >
       Small DisplayText
     </DisplayText>

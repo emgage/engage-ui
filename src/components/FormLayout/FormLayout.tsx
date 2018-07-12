@@ -12,7 +12,7 @@ export interface Props {
   // The content to display inside the formlayout
   children?: React.ReactNode;
   // Set the style via css
-  customStyle?: React.CSSProperties;
+  componentStyle?: React.CSSProperties;
   // Theme to be injected via css-themr
   theme?: any;
 }
@@ -23,13 +23,13 @@ class FormLayout extends React.PureComponent<Props, never> {
   render() {
     const {
       children,
-      customStyle,
+      componentStyle,
       theme,
       ...otherProps
     } = this.props;
 
     return (
-      <div className={theme.formLayout} style={customStyle}>
+      <div className={theme.formLayout} style={componentStyle}>
         {React.Children.map(children, (child: React.ReactElement<{}>, index: number) => {
           return wrapChildren(child, index, otherProps);
         })}

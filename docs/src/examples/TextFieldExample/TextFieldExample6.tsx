@@ -6,7 +6,7 @@ const TextFieldExample6 = () => (
   <div className={styles.example}>
     <TextField
       label="Account email"
-      customType="email"
+      type="email"
       helpText="We’ll use this address if we need to contact you about your account."
     />
   </div>

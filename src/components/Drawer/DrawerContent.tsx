@@ -15,7 +15,7 @@ export interface Props {
   // Show or hide close button (X) to close drawer
   closeButton?: boolean;
   flip?: boolean;
-  customId?: string;
+  componentId?: string;
   mode?: Mode;
   theme?: any;
   style?: any;

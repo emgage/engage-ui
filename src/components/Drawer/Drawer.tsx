@@ -42,7 +42,7 @@ export interface Props {
   // Show overlay / backdrop
   overlay?: boolean;
   // Define width of drawer
-  customWidth?: Width;
+  componentWidth?: Width;
   // Set theme for drawer
   theme?: any;
   // Callback function to close or open the drawer
@@ -84,7 +84,7 @@ class Drawer extends React.Component<Props, never> {
       flip,
       active,
       overlay,
-      customWidth = 'medium',
+      componentWidth = 'medium',
       theme,
     } = this.props;
 
@@ -92,9 +92,9 @@ class Drawer extends React.Component<Props, never> {
       theme.drawer,
       overlay && theme.overlay,
       flip && this.props.theme.flip,
-      customWidth === 'small' && theme.small,
-      customWidth === 'medium' && theme.medium,
-      customWidth === 'large' && theme.large,
+      componentWidth === 'small' && theme.small,
+      componentWidth === 'medium' && theme.medium,
+      componentWidth === 'large' && theme.large,
       active && theme.open
     );
   }
@@ -119,7 +119,7 @@ class Drawer extends React.Component<Props, never> {
       flip,
       mode,
       overlay,
-      customWidth = 'medium',
+      componentWidth = 'medium',
       theme,
     } = this.props;
 
@@ -130,22 +130,22 @@ class Drawer extends React.Component<Props, never> {
       bodyElement.className = this.props.active ? (theme.container) : '';
       bodyElement.className += overlay && this.props.active ? ' ' + (theme.overlay) : '';
       bodyElement.className += flip && this.props.active ? ' ' + (theme.flip) : '';
-      if (customWidth === 'small') {
+      if (componentWidth === 'small') {
         bodyElement.className += this.props.active ? ' ' + (theme.small) : '';
       }
-      if (customWidth === 'medium') {
+      if (componentWidth === 'medium') {
         bodyElement.className += this.props.active ? ' ' + (theme.medium) : '';
       }
-      if (customWidth === 'large') {
+      if (componentWidth === 'large') {
         bodyElement.className += this.props.active ? ' ' + (theme.large) : '';
       }
       if (mode === 'push' || mode === 'reveal') {
         bodyElement.className += this.props.active ? ' ' + (theme.animation) : '';
         if (rootElement !== null) {
           if (flip) {
-            rootElement.style.left = customWidth && this.props.active ? `-${customWidth}` : '';
+            rootElement.style.left = componentWidth && this.props.active ? `-${componentWidth}` : '';
           } else {
-            rootElement.style.left = customWidth && this.props.active ? `${customWidth}` : '';
+            rootElement.style.left = componentWidth && this.props.active ? `${componentWidth}` : '';
           }
         }
       }
@@ -169,7 +169,7 @@ class Drawer extends React.Component<Props, never> {
   }
 
   renderLayer() {
-    const { active, mode, customWidth, theme } = this.props;
+    const { active, mode, componentWidth, theme } = this.props;
     const containerClassName = this.getContainerClassName();
     const barClassName = this.getBarClassName();
 
@@ -177,7 +177,7 @@ class Drawer extends React.Component<Props, never> {
     const activeContent = this.renderActivechildren();
     const dStyle = Object.assign(
       {},
-      { width: width ? { width: `${width}` } : undefined },
+      { width: componentWidth ? { width: `${componentWidth}` } : undefined },
       this.props.style
     );
     const bar = [
@@ -198,7 +198,7 @@ class Drawer extends React.Component<Props, never> {
         {
           mode === 'reveal'
             ?
-            <div className={theme.reveal} style={customWidth && active ? { width: `${customWidth}` }  : undefined}>
+            <div className={theme.reveal} style={componentWidth && active ? { width: `${componentWidth}` }  : undefined}>
               {bar}
             </div>
             :

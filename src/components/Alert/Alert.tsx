@@ -13,7 +13,7 @@ export interface Props {
   // The content to display inside the alert
   children?: React.ReactNode;
   // Define the type of alert, It can be primary, success, warning or danger.
-  customType?: string;
+  componentType?: string;
   // Theme to be injected via css-themr
   theme?: any;
 }
@@ -43,12 +43,12 @@ class Alert extends React.Component<Props, State> {
     });
   }
   render() {
-    const { children, customType, theme } = this.props;
+    const { children, componentType, theme } = this.props;
     let classes: string;
     let style: string;
     let color: string;
 
-    switch (customType) {
+    switch (componentType) {
       case 'primary':
         style = theme.alertPrimary;
         color = '#1e87f0';

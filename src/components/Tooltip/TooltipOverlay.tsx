@@ -9,7 +9,7 @@ import * as styles from './Tooltip.scss';
 
 export interface Props {
   // Id for tooltip.
-  customId: string;
+  componentId: string;
   // Toggle whether the tooltip is visible.
   active: boolean;
   // Display tooltip with a light background.
@@ -60,7 +60,7 @@ export default class TooltipOverlay extends React.PureComponent<Props, never> {
       positioning,
       activatorRect,
     } = overlayDetails;
-    const { customId, children, light } = this.props;
+    const { componentId, children, light } = this.props;
 
     const tipStyle = calculateTipPosition(activatorRect.center.x, left);
 
@@ -83,7 +83,7 @@ export default class TooltipOverlay extends React.PureComponent<Props, never> {
           {tipMarkup}
           <div className={styles.wrapper}>
           <div
-            id={customId}
+            id={componentId}
             role="tooltip"
             className={styles.content}
             style={contentStyles}

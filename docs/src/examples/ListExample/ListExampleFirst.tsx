@@ -4,7 +4,7 @@ import * as styles from '../../styles/components-page.scss';
 
 const ListExampleFirst = () => (
   <div className={styles.example}>
-    <List customType="bullet">
+    <List componentType="bullet">
       <Item>Yellow shirt</Item>
       <Item>Red shirt</Item>
       <Item>Green shirt</Item>

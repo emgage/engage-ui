@@ -9,7 +9,7 @@ import * as baseTheme from './Card.scss';
 
 export interface Props {
   // Title content for the card section.
-  customTitle?: string;
+  componentTitle?: string;
   // Card section related components to render inside this card section.
   children?: React.ReactNode;
   // A less prominent card section
@@ -18,11 +18,11 @@ export interface Props {
   theme?: any;
 }
 
-const section = ({ children, customTitle, subdued, theme }: Props) => {
-  const headerContent = customTitle
+const section = ({ children, componentTitle, subdued, theme }: Props) => {
+  const headerContent = componentTitle
     ? (
       <div className={theme.sectionHeader}>
-        <Subheading>{customTitle}</Subheading>
+        <Subheading>{componentTitle}</Subheading>
       </div>
     )
     : null;

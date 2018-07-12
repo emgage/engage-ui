@@ -20,11 +20,11 @@ export interface Props {
   // Additional text to aide in use
   helpText?: React.ReactNode;
   // ID for form input
-  customId?: string;
+  componentId?: string;
   // Name for form input
-  customName?: string;
+  name?: string;
   // Value for form input
-  customValue?: string;
+  value?: string;
   // Display an error state
   error?: Error;
   // Disabled checkbox name
@@ -42,7 +42,7 @@ export interface Props {
 const getUniqueID = createUniqueIDFactory('Checkbox');
 
 const checkbox = ({
-  customId = getUniqueID(),
+  componentId = getUniqueID(),
   label,
   labelHidden,
   helpText,
@@ -52,8 +52,8 @@ const checkbox = ({
   onChange,
   onFocus,
   onBlur,
-  customName,
-  customValue,
+  name,
+  value,
   theme,
 }: Props) => {
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -63,8 +63,8 @@ const checkbox = ({
   }
 
   const describedBy: string[] = [];
-  if (typeof error === 'string') { describedBy.push(errorID(customId)); }
-  if (helpText) { describedBy.push(helpTextID(customId)); }
+  if (typeof error === 'string') { describedBy.push(errorID(componentId)); }
+  if (helpText) { describedBy.push(helpTextID(componentId)); }
 
   const className = classNames(
     theme.checkbox,
@@ -73,7 +73,7 @@ const checkbox = ({
 
   return (
     <Choice
-      customId={customId}
+      componentId={componentId}
       label={label}
       labelHidden={labelHidden}
       helpText={helpText}
@@ -81,9 +81,9 @@ const checkbox = ({
     >
       <div className={className}>
         <input
-          id={customId}
-          name={customName}
-          value={customValue}
+          id={componentId}
+          name={name}
+          value={value}
           type="checkbox"
           checked={checked}
           disabled={disabled}

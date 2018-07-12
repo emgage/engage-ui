@@ -10,16 +10,16 @@ export interface Props {
   // To display, if message is visible or not
   isVisible?: boolean;
   // To maintain identity for message.
-  customId: string;
+  componentId: string;
   // To apply style externally for this component
-  customStyle?: React.CSSProperties;
+  componentStyle?: React.CSSProperties;
   // Theme to be injected via css-themr
   theme?: any;
 }
 
 class Message extends React.Component<Props, {}> {
   render() {
-    const { children, isVisible, customId, customStyle, theme } = this.props;
+    const { children, isVisible, componentId, componentStyle, theme } = this.props;
 
     if (!isVisible) {
       // TODO This seems to be a bug. We want to return null.
@@ -27,7 +27,7 @@ class Message extends React.Component<Props, {}> {
     }
 
     return (
-      <div id={customId} className={theme.messageBlock} style={customStyle} role="alert" aria-live="polite">
+      <div id={componentId} className={theme.messageBlock} style={componentStyle} role="alert" aria-live="polite">
         <span className={theme.messagePrompt}>
           {children}
         </span>

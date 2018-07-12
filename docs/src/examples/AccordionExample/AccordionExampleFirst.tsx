@@ -12,15 +12,15 @@ class AccordionExampleFirst extends React.Component<never, never> {
     const items: AccordionItemProps[] = [
       {
         children: <DisplayText children="This is item 1" />,
-        header: <Label customId="1">Item1</Label>
+        header: <Label componentId="1">Item1</Label>
       },
       {
         children: <DisplayText children="This is item 2" />,
-        header: <Label customId="2">Item2</Label>
+        header: <Label componentId="2">Item2</Label>
       },
       {
         children: <DisplayText children="This is item 3" />,
-        header: <Label customId="3">Item3</Label>
+        header: <Label componentId="3">Item3</Label>
       }
     ];
 

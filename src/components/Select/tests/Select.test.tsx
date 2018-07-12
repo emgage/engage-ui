@@ -97,14 +97,14 @@ describe('<Select />', () => {
 
   describe('value', () => {
     it('uses the passed value for the select', () => {
-      const value = mount(<Select label="Select" customValue="Some value" options={[]} />).find('select').at(1).prop('value');
+      const value = mount(<Select label="Select" value="Some value" options={[]} />).find('select').at(1).prop('value');
       expect(value).toBe('Some value');
     });
   });
 
   describe('id', () => {
     it('sets the id on the input', () => {
-      const id = mount(<Select label="Select" customId="MySelect" options={[]} />).find('select').at(1).prop('id');
+      const id = mount(<Select label="Select" componentId="MySelect" options={[]} />).find('select').at(1).prop('id');
       expect(id).toBe('MySelect');
     });
 
@@ -144,13 +144,13 @@ describe('<Select />', () => {
       const select = mount(<Select label="Select" placeholder="Choose something" options={['one']} />);
       const placeholderOption = select.find('option').first();
 
-      expect(placeholderOption.prop('customValue')).toBe(select.find('select').at(1).prop('defaultValue'));
+      expect(placeholderOption.prop('value')).toBe(select.find('select').at(1).prop('defaultValue'));
       expect(placeholderOption.prop('disabled')).toBe(true);
       expect(placeholderOption.prop('hidden')).toBe(true);
     });
 
     it('does not render the placeholder when there is an existing value', () => {
-      const select = mount(<Select label="Select" placeholder="Choose something" options={['one']} customValue="one" />);
+      const select = mount(<Select label="Select" placeholder="Choose something" options={['one']} value="one" />);
       const placeholderOption = select.find('option');
       expect(placeholderOption.length).toBe(1);
       expect(placeholderOption.prop('disabled')).toBeFalsy();

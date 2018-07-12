@@ -14,7 +14,7 @@ export interface Props {
   // The content to display for displaytext
   children?: React.ReactNode;
   // Size of the text small, medium, large or extralarge
-  customSize?: Size;
+  componentSize?: Size;
   // Theme to be injected via css-themr
   theme?: any;
 }
@@ -22,12 +22,12 @@ export interface Props {
 const displayText = ({
   children,
   theme,
-  customSize = 'medium',
+  componentSize = 'medium',
   element: ELEMENT = 'p',
 }: Props) => {
   const className = classNames(
   theme.displayText,
-  customSize && theme[variationName('size', customSize)]
+  componentSize && theme[variationName('size', componentSize)]
 );
   return <ELEMENT className={className}>{children}</ELEMENT>;
 };

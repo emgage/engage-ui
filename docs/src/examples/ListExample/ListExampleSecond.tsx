@@ -4,7 +4,7 @@ import * as styles from '../../styles/components-page.scss';
 
 const ListExampleSecond = () => (
   <div className={styles.example}>
-    <List customType="number">
+    <List componentType="number">
         <Item>Yellow shirt</Item>
         <Item>Red shirt</Item>
         <Item>Green shirt</Item>

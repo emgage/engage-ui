@@ -37,7 +37,7 @@ export interface Props {
   // Callback function for opening or closing modal
   toggle?(): void;
   // Define size of modal: small, medium, large or px value
-  customWidth?: Width;
+  componentWidth?: Width;
 }
 
 const getUniqueID = createUniqueIDFactory('ModalContent');
@@ -76,13 +76,13 @@ class Modal extends React.Component<Props, never> {
   }
 
   getModalContainerClassName = () => {
-    const { theme, customWidth } = this.props;
+    const { theme, componentWidth } = this.props;
 
     return classNames(
       theme.dialog,
-      customWidth === 'small' && theme.small,
-      customWidth === 'medium' && theme.medium,
-      customWidth === 'large' && theme.large
+      componentWidth === 'small' && theme.small,
+      componentWidth === 'medium' && theme.medium,
+      componentWidth === 'large' && theme.large
     );
   }
 

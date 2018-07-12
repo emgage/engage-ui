@@ -4,7 +4,7 @@ import * as styles from '../../styles/components-page.scss';
 
 const ChoiceExample = () => (
   <div className={styles.example}>
-    <Choice customId="MyChoice" label="ChoiceLabel" helpText="This is Choice Component."/>
+    <Choice componentId="MyChoice" label="ChoiceLabel" helpText="This is Choice Component."/>
   </div>
 );
 

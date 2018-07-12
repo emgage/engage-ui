@@ -53,7 +53,7 @@ const ModalState: IDocument = {
       type: 'function',
       desc: 'Callback function get called when we need to close or open the modal',
     }, {
-      name: 'customWidth',
+      name: 'componentWidth',
       type: 'string',
       desc: 'Set size of modal: small, medium, large or px',
     },

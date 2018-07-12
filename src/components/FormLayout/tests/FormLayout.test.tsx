@@ -58,11 +58,11 @@ describe('<FormLayout />', () => {
                                             <FormLayout>
                                             <Group>
                                             <TextField
-                                                customType="number"
+                                                type="number"
                                                 label="Minimum order"
                                             />
                                             <TextField
-                                                customType="number"
+                                                type="number"
                                                 label="Maximum order"
                                             />
                                             </Group>
@@ -75,11 +75,11 @@ describe('<FormLayout />', () => {
                                             <FormLayout>
                                             <Group>
                                             <TextField
-                                                customType="number"
+                                                type="number"
                                                 label="Minimum order"
                                             />
                                             <TextField
-                                                customType="number"
+                                                type="number"
                                                 label="Maximum order"
                                             />
                                             </Group>
@@ -112,7 +112,7 @@ describe('<FormLayout />', () => {
         it('should verify form layout when condensed is undefined', () => {
         const formlayoutWrapper = mount(
                                         <FormLayout>
-                                            <Group customTitle="groupTitle">
+                                            <Group componentTitle="groupTitle">
                                             <TextField label="Length" />
                                             <TextField label="Width" />
                                             <TextField label="Height" />
@@ -124,7 +124,7 @@ describe('<FormLayout />', () => {
         });
         it('should verify form layout when condensed is false', () => {
         const formlayoutWrapper = mount(<FormLayout>
-                                    <Group customTitle="groupTitle" condensed={false}>
+                                    <Group componentTitle="groupTitle" condensed={false}>
                                         <TextField label="Length" />
                                         <TextField label="Width" />
                                         <TextField label="Height" />

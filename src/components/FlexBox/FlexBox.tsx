@@ -18,7 +18,7 @@ export interface Props {
   // Sets the alignment of flex items on the cross axis. Value of align can be one from this list : "Start", "Center", "End", "Stretch"
   align?: FlexAlign;
   // To display the styling.
-  customStyle?: React.CSSProperties;
+  componentStyle?: React.CSSProperties;
   // Theme to be injected via css-themr.
   theme?: any;
 }
@@ -86,7 +86,7 @@ class FlexBox extends React.PureComponent<Props, {}> {
     }
 
     return (
-            <div className={className} style={this.props.customStyle}>
+            <div className={className} style={this.props.componentStyle}>
                 {this.props.children}
             </div>
     );

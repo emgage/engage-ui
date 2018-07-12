@@ -109,33 +109,33 @@ export interface Props {
   // Souce for an icon.
   source: SVGSource | 'placeholder' | keyof typeof BUNDLED_ICONS;
   // To give colors for icons.
-  customColor?: Color;
+  componentColor?: Color;
   // Show a backdrop behind the icon.
   backdrop?: boolean;
   // Descriptive text to be read to screenreaders.
   accessibilityLabel?: string;
   // To provide styling.
-  customStyle?: React.CSSProperties;
+  componentStyle?: React.CSSProperties;
   // Theme to be injected via css-themr.
   theme?: any;
 }
 
 const icon = ({
   source,
-  customColor,
+  componentColor,
   backdrop,
   accessibilityLabel,
-  customStyle,
+  componentStyle,
   theme,
 }: Props) => {
-  if (customColor && backdrop && COLORS_WITH_BACKDROPS.indexOf(customColor) < 0) {
+  if (componentColor && backdrop && COLORS_WITH_BACKDROPS.indexOf(componentColor) < 0) {
     // tslint:disable-next-line no-console
-    console.warn(`The ${customColor} icon doesn't accept backdrops. The icon colors that have backdrops are: ${COLORS_WITH_BACKDROPS.join(', ')}`);
+    console.warn(`The ${componentColor} icon doesn't accept backdrops. The icon colors that have backdrops are: ${COLORS_WITH_BACKDROPS.join(', ')}`);
   }
 
   const className = classNames(
     theme.icon,
-    customColor && theme[variationName('color', customColor)],
+    componentColor && theme[variationName('color', componentColor)],
     backdrop && theme.hasBackdrop
   );
 
@@ -160,7 +160,7 @@ const icon = ({
   }
 
   return (
-    <span className={className} style={customStyle} aria-label={accessibilityLabel}>
+    <span className={className} style={componentStyle} aria-label={accessibilityLabel}>
       {contentMarkup}
     </span>
   );

@@ -7,7 +7,7 @@ import * as baseTheme from './Modal.scss';
 
 export interface Props {
   active?: boolean;
-  customId?: string;
+  componentId?: string;
   theme?: any;
 }
 

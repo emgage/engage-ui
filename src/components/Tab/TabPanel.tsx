@@ -29,7 +29,7 @@ export interface Props {
   // For Default active tab
   defaultTabId?: string;
   // User can Set style for TabPanel component
-  customStyle?: React.CSSProperties;
+  componentStyle?: React.CSSProperties;
   // Set theme for TabPanel
   theme?: any;
 }
@@ -82,7 +82,7 @@ class TabPanel extends React.Component<Props, State> {
 
   // Render Tab and TabContent togeather in TabPanel
   render() {
-    const { theme, position, alignment, customStyle } = this.props;
+    const { theme, position, alignment, componentStyle } = this.props;
 
     // Combination of classes required to bind for location prop
     const locationClassName = classNames(
@@ -102,7 +102,7 @@ class TabPanel extends React.Component<Props, State> {
     );
 
     return (
-      <div {...this.props} className={locationClassName} style={customStyle}>
+      <div {...this.props} className={locationClassName} style={componentStyle}>
         <div className={alignmentClassName}>
           {this.renderTabs()}
         </div>

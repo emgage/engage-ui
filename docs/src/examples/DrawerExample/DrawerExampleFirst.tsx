@@ -27,18 +27,18 @@ class DrawerExample extends React.Component<Props, State> {
           active={ this.state.drawer }
           activeContentId={this.state.activeDrawerId}
           mode="slide"
-          customWidth="large"
+          componentWidth="large"
           overlay
         >
           <DrawerContent
-            customId="content1"
+            componentId="content1"
             mode="slide">
             <FormLayout>
               <TextField
                 label="Full name"
               />
               <TextField
-                customType="email"
+                type="email"
                 label="Email address"
               />
 
@@ -50,7 +50,7 @@ class DrawerExample extends React.Component<Props, State> {
           </DrawerContent>
 
           <DrawerContent
-            customId="content2"
+            componentId="content2"
             mode="slide"
             flip>
             <FormLayout>

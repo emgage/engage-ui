@@ -25,7 +25,7 @@ export interface State {
 
 export interface Props {
   placeholder?: string;
-  customValue?: string;
+  value?: string;
   label: string;
   required?: boolean;
   theme?: any;
@@ -41,7 +41,7 @@ class TextField extends React.PureComponent<Props, State> {
 
   render() {
     const {
-      customValue = '',
+      value = '',
       placeholder,
       label,
       required,
@@ -54,7 +54,7 @@ class TextField extends React.PureComponent<Props, State> {
 
     const className = classNames(
       theme.textField,
-      Boolean(customValue) && theme.hasValue,
+      Boolean(value) && theme.hasValue,
       theme.disabled,
       theme.readOnly,
       theme.error,
@@ -63,7 +63,7 @@ class TextField extends React.PureComponent<Props, State> {
     );
     const input = React.createElement('input', {
       name,
-      customValue,
+      value,
       placeholder,
       required,
       formNoValidate: true,
@@ -80,12 +80,12 @@ class TextField extends React.PureComponent<Props, State> {
         stateProps={this.props.stateProps}
       />
       : input;
-    const hasValue = (!!this.props.customValue && this.props.customValue.length > 0);
+    const hasValue = (!!this.props.value && this.props.value.length > 0);
 
     return (
       <Labelled
         label={label}
-        customId={'textfield!!!' + label}
+        componentId={'textfield!!!' + label}
         action={undefined}
         focused={this.state.focused}
         hasValue={hasValue}

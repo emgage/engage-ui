@@ -34,16 +34,16 @@ export interface Props {
   // Additional text to aide in use
   helpText?: React.ReactNode;
   // ID for form input
-  customId?: string;
+  componentId?: string;
   // Name for form input
-  customName?: string;
+  name?: string;
   // Display an error state
   errors?: [Error];
   // Disable input
   disabled?: boolean;
   required?: boolean;
   // Value for form input
-  customValue?: string;
+  value?: string;
   // Content to display when component render.
   placeholder?: string;
   // Theme to be injected via css-themr.
@@ -59,8 +59,8 @@ export interface Props {
 const getUniqueID = createUniqueIDFactory('Select');
 
 const select = ({
-  customId = getUniqueID(),
-  customName,
+  componentId = getUniqueID(),
+  name,
   groups,
   options,
   labelHidden,
@@ -68,7 +68,7 @@ const select = ({
   helpText,
   label,
   errors,
-  customValue,
+  value,
   placeholder,
   disabled,
   required,
@@ -85,7 +85,7 @@ const select = ({
     optionsMarkup = groups.map(renderGroup);
   }
 
-  const isPlaceholder = customValue == null && placeholder != null;
+  const isPlaceholder = value == null && placeholder != null;
   const className = classNames(
     theme.select,
     errors && theme.error,
@@ -98,8 +98,8 @@ const select = ({
     : undefined;
 
   const describedBy: string[] = [];
-  if (helpText) { describedBy.push(helpTextID(customId)); }
-  if (errors) { describedBy.push(errorID(customId)); }
+  if (helpText) { describedBy.push(helpTextID(componentId)); }
+  if (errors) { describedBy.push(errorID(componentId)); }
 
   const placeholderOption = isPlaceholder
     ? <option label={placeholder} disabled hidden />
@@ -107,7 +107,7 @@ const select = ({
 
   return (
     <Labelled
-      customId={customId}
+      componentId={componentId}
       label={label}
       errors={errors}
       action={labelAction}
@@ -117,9 +117,9 @@ const select = ({
     >
       <div className={className}>
         <select
-          id={customId}
-          name={customName ? customName : 'select'}
-          value={customValue}
+          id={componentId}
+          name={name ? name : 'select'}
+          value={value}
           className={theme.input}
           disabled={disabled}
           required={required}

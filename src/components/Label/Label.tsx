@@ -13,13 +13,13 @@ export { Action };
 export interface Props {
   children?: string;
   // ID for the input.
-  customId: string;
+  componentId: string;
   // Adds an action to the label.
   action?: Action;
   // Visually hide the label.
   hidden?: boolean;
   // To provide styling for label.
-  customStyle?: React.CSSProperties;
+  componentStyle?: React.CSSProperties;
   // Theme to be injected via css-themr.
   theme?: any;
   // To make it required or not.
@@ -36,13 +36,13 @@ export function labelID(id: string) {
 
 function label({
   children,
-  customId,
+  componentId,
   action,
   hidden,
   required,
   focused,
   hasValue,
-  customStyle,
+  componentStyle,
   theme,
 }: Props) {
   const className = classNames(
@@ -59,7 +59,7 @@ function label({
 
   return (
     <div className={theme.label}>
-      <label id={labelID(customId)} htmlFor={customId} className={className} style={customStyle}>{children}</label>
+      <label id={labelID(componentId)} htmlFor={componentId} className={className} style={componentStyle}>{children}</label>
       {actionMarkup}
     </div>
   );

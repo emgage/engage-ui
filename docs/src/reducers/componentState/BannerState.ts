@@ -31,7 +31,7 @@ const BannerState: IDocument = {
       type: 'IconProps',
       desc: 'Icon to display in the banner',
     }, {
-      name: 'customTitle',
+      name: 'componentTitle',
       type: 'string',
       desc: 'Title content for the banner',
     }, {

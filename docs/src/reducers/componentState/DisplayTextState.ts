@@ -29,7 +29,7 @@ const DisplayTextState: IDocument = {
       type: 'React.ReactNode',
       desc: 'The content to display for displaytext' ,
     }, {
-      name: 'customSize',
+      name: 'componentSize',
       type: 'Size',
       desc: 'Size of the text small, medium, large or extralarge',
     },{

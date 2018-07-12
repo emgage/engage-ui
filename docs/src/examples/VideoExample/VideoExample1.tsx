@@ -16,7 +16,7 @@ const VideoExample1 = () => (
       poster={posterUrl}
       src={singleVideoSource}
       controls={true}
-      customStyle={{ height: 400, width: 400 }} />
+      componentStyle={{ height: 400, width: 400 }} />
   </div>
 );
 

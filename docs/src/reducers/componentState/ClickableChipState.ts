@@ -17,7 +17,7 @@ const ClickableChipState: IDocument = {
       type: 'function()',
       desc: 'Function used for clicking the chip.',
     }, {
-      name: 'customStyle',
+      name: 'componentStyle',
       type: 'React.CSSProperties',
       desc: 'To display the styling.',
     }, {

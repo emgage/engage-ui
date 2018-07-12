@@ -17,11 +17,11 @@ export interface Props {
   // Radio button is selected.
   checked?: boolean;
   // ID for form input.
-  customId?: string;
+  componentId?: string;
   // Name for form input.
-  customName?: string;
+  name?: string;
   // Value for form input.
-  customValue?: string;
+  value?: string;
   // Set as disabled or not.
   disabled?: boolean;
   // Theme to be injected via css-themr.
@@ -45,9 +45,9 @@ const radioButton = ({
   onChange,
   onFocus,
   onBlur,
-  customId= getUniqueID(),
-  customName = customId,
-  customValue,
+  componentId= getUniqueID(),
+  name = componentId,
+  value,
   theme,
 }: Props) => {
   function handleChange({ currentTarget }: React.ChangeEvent<HTMLInputElement>) {
@@ -56,15 +56,15 @@ const radioButton = ({
   }
 
   const describedBy = helpText
-    ? helpTextID(customId)
+    ? helpTextID(componentId)
     : null;
 
   const input = describedBy === null ?
     (
       <input
-        id={customId}
-        name={customName}
-        value={customValue}
+        id={componentId}
+        name={name}
+        value={value}
         type="radio"
         checked={checked}
         disabled={disabled}
@@ -75,9 +75,9 @@ const radioButton = ({
       />
     ) : (
       <input
-        id={customId}
-        name={customName}
-        value={customValue}
+        id={componentId}
+        name={name}
+        value={value}
         type="radio"
         checked={checked}
         disabled={disabled}
@@ -90,7 +90,7 @@ const radioButton = ({
     );
 
   return (
-    <Choice label={label} labelHidden={labelHidden} customId={customId} helpText={helpText}>
+    <Choice label={label} labelHidden={labelHidden} componentId={componentId} helpText={helpText}>
       <div className={theme.radioButton}>
         {input}
         <div className={theme.backdrop} />

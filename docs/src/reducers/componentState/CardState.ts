@@ -17,7 +17,7 @@ const cardState: IDocument = {
   subheading: 'Cards are used to group similar concepts and tasks together to make easier for user to scan, read, and get things done.',
   property: [
     {
-      name: 'customTitle',
+      name: 'componentTitle',
       type: 'string',
       desc: 'Title content for the card.',
     }, {

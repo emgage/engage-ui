@@ -13,7 +13,7 @@ export interface Props {
   // To display image for ListItem.
   image?: string;
   // To display name of ListItem.
-  customName?: string;
+  componentName?: string;
   // To display email for ListItem.
   email?: string;
   // Callback function whenever listitem is clicked.

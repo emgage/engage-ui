@@ -21,7 +21,7 @@ const AlertState: IDocument = {
       type: 'string',
       desc: 'The content to display inside the alert',
     }, {
-      name: 'customType',
+      name: 'componentType',
       type: 'type',
       desc: 'Set the color of the alert for the given type. It can be primary, success, warning or danger.',
     }, {

@@ -66,7 +66,7 @@ class Tooltip extends React.PureComponent<Props, State> {
 
     return (
       <TooltipOverlay
-        customId={id}
+        componentId={id}
         preferredPosition={preferredPosition}
         activator={activatorNode}
         active={active || this.state.active}

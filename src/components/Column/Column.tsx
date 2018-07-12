@@ -62,7 +62,7 @@ export interface Props {
   // Column set with extraLarge width size
   extraLarge?: ResponsiveWidth;
   // Set the style via css externally
-  customStyle?: React.CSSProperties;
+  componentStyle?: React.CSSProperties;
   // Theme to be injected via css-themr
   theme?: any;
 }
@@ -91,7 +91,7 @@ class Column extends React.PureComponent<Props, {}> {
     }
 
     return (
-            <div className={className} style={this.props.customStyle}>
+            <div className={className} style={this.props.componentStyle}>
                 {this.props.children}
             </div>
     );

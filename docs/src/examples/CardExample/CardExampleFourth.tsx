@@ -5,11 +5,11 @@ import * as styles from '../../styles/components-page.scss';
 
 const CardExample = () => (
   <div className={styles.example}>
-    <Card customTitle="Online store dashboard">
-      <Section customTitle="Reports">
+    <Card componentTitle="Online store dashboard">
+      <Section componentTitle="Reports">
         <p>View a summary of your online store’s performance.</p>
       </Section>
-      <Section customTitle="Summary">
+      <Section componentTitle="Summary">
         <p>View a summary of your online store’s performance, including sales, visitors, top products, and referrals.</p>
       </Section>
     </Card>

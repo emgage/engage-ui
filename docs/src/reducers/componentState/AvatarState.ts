@@ -13,11 +13,11 @@ const avatarState: IDocument = {
   subheading: `Avatars are used to show a thumbnail representation of an individual or business in the interface.`,
   property: [
     {
-      name: 'customSize',
+      name: 'componentSize',
       type: 'Size',
       desc: 'Size of avatar. It can be small, medium or large',
     }, {
-      name: 'customName',
+      name: 'componentName',
       type: 'string',
       desc: 'Name of the person for avatar',
     }, {

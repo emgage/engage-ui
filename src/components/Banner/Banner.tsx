@@ -26,7 +26,7 @@ export interface Props {
   // Icon to display in the banner
   icon?: IconProps['source'];
   // Title content for the banner
-  customTitle?: string;
+  componentTitle?: string;
   // Sets the status of the banner. It can be success, info, warning or critical
   status?: Status;
   // Action for banner
@@ -46,13 +46,13 @@ const banner = ({
   icon,
   action,
   secondaryAction,
-  customTitle,
+  componentTitle,
   children,
   status,
   onDismiss,
   theme,
 }: Props) => {
-  let color: IconProps['customColor'];
+  let color: IconProps['componentColor'];
   let defaultIcon: IconProps['source'];
 
   switch (status) {
@@ -89,11 +89,11 @@ const banner = ({
   let headingMarkup: React.ReactNode = null;
   let headingID: string | undefined;
 
-  if (customTitle) {
+  if (componentTitle) {
     headingID = `${id}Heading`;
     headingMarkup = (
       <div className={theme.heading} id={headingID}>
-        <Heading element="h6">{customTitle}</Heading>
+        <Heading element="h6">{componentTitle}</Heading>
       </div>
     );
   }
@@ -144,7 +144,7 @@ const banner = ({
     >
       {dismissButton}
       <div className={theme.ribbon}>
-        <Icon source={iconName} customColor={color} backdrop />
+        <Icon source={iconName} componentColor={color} backdrop />
       </div>
       <div>
         {headingMarkup}

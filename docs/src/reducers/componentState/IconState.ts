@@ -16,7 +16,7 @@ const IconState: IDocument = {
       type: 'SVGSource | placeholder | keyof typeof BUNDLED_ICONS',
       desc: 'Souce for an icon.',
     }, {
-      name: 'customColor',
+      name: 'componentColor',
       type: 'Color',
       desc: 'To give colors for icons.',
     }, {
@@ -28,7 +28,7 @@ const IconState: IDocument = {
       type: 'string',
       desc: 'Descriptive text to be read to screenreaders.',
     }, {
-      name: 'customStyle',
+      name: 'componentStyle',
       type: 'React.CSSProperties',
       desc: 'To provide styling.',
     }, {

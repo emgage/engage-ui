@@ -4,7 +4,7 @@ import * as styles from '../../styles/components-page.scss';
 
 const SpinnerExample = () => (
     <div className={styles.example}>
-        <Spinner customSize="small" customColor="inkLightest" />
+        <Spinner componentSize="small" componentColor="inkLightest" />
     </div>
 );
 

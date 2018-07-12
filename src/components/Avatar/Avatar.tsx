@@ -16,9 +16,9 @@ const AVATAR_IMAGES = Object.keys(avatars).map((key: keyof typeof avatars) => av
 
 export interface Props {
   // Size of avatar. It can be small, medium or large
-  customSize?: Size;
+  componentSize?: Size;
   // Name of the person for avatar
-  customName?: string;
+  componentName?: string;
   // Initials of person to display
   initials?: string;
   // Weather avatar is for customer
@@ -34,16 +34,16 @@ export interface Props {
 class Avatar extends React.Component<Props, {}> {
   render() {
     const {
-      customName,
+      componentName,
       source,
       initials,
       customer,
-      customSize = 'medium',
+      componentSize = 'medium',
       accessibilityLabel,
       theme,
     } = this.props;
 
-    const nameString = customName || initials;
+    const nameString = componentName || initials;
 
     let finalSource: string | undefined;
     let label: string | undefined;
@@ -68,7 +68,7 @@ class Avatar extends React.Component<Props, {}> {
       theme.avatar,
       theme[variationName('style', styleClass(nameString))],
       source && theme.hasImage,
-      customSize && theme[variationName('size', customSize)]
+      componentSize && theme[variationName('size', componentSize)]
     );
 
     let content = null;

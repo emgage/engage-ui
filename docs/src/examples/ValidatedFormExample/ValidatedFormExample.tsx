@@ -7,12 +7,12 @@ const ValidatedFormExample = () => (
     <ValidatedForm>
       <FormLayout>
         <ValidatedTextField
-          customId="AppName"
+          componentId="AppName"
           required={true}
           label="App Name"
           helpText="We recommend keeping your app name under 23 characters."
-          customValue=""
-          customName="App Name"
+          value=""
+          name="App Name"
           validateTrigger={['onBlur']}
           validateRules={[
             { required: true, message: 'App Name is required.' },
@@ -20,10 +20,10 @@ const ValidatedFormExample = () => (
         />
         <ValidatedTextField
           multiline
-          customId="appDescription"
+          componentId="appDescription"
           required={true}
-          customName="App Description"
-          customValue=""
+          name="App Description"
+          value=""
           label="App Description"
           helpText="Provide an engaging description that highlights the features and functionality of your app."
           validateTrigger={['onBlur']}

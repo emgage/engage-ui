@@ -9,21 +9,21 @@ export interface Props {
   // The content to display
   children?: React.ReactNode;
   // Set the style via css
-  customStyle?: React.CSSProperties;
+  componentStyle?: React.CSSProperties;
   // Theme to be injected via css-themr
   theme?: any;
 }
 
 const caption = ({
   children,
-  customStyle,
+  componentStyle,
   theme,
 }: Props) => {
   const className = classNames (
     theme.caption
   );
 
-  return <p className={className} style={customStyle}>{children}</p>;
+  return <p className={className} style={componentStyle}>{children}</p>;
 };
 
 export { caption as UnthemedCaption };

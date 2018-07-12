@@ -4,7 +4,7 @@ import List from '../List';
 
 describe('<List />', () => {
   it('sets the list type to ul when is a bullet list', () => {
-    const list = mount(<List customType="bullet">test</List>);
+    const list = mount(<List componentType="bullet">test</List>);
     expect(list.find('ul').exists()).toBeTruthy();
   });
 
@@ -14,7 +14,7 @@ describe('<List />', () => {
   });
 
   it('sets the list type to ol when is a number list', () => {
-    const list = mount(<List customType="number">test</List>);
+    const list = mount(<List componentType="number">test</List>);
     expect(list.find('ol').exists()).toBeTruthy();
   });
 });

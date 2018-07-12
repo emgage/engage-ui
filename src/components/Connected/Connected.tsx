@@ -13,7 +13,7 @@ export interface Props {
   // Display given text or render any node inside component
   children?: React.ReactNode;
   // Style to be injected via css
-  customStyle?: React.CSSProperties;
+  componentStyle?: React.CSSProperties;
   // Theme to be injected via css-themr
   theme?: any;
 }
@@ -26,7 +26,7 @@ const connected = ({
   children,
   left,
   right,
-  customStyle,
+  componentStyle,
   theme,
 }: Props) => {
   if (left == null && right == null) {
@@ -42,7 +42,7 @@ const connected = ({
     : null;
 
   return (
-    <div className={theme.connected} style={customStyle}>
+    <div className={theme.connected} style={componentStyle}>
       {leftConnectionMarkup}
       <Item position={Position.Primary}>
         {children}

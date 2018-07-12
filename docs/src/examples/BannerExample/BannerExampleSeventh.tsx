@@ -5,7 +5,7 @@ import * as styles from '../../styles/components-page.scss';
 const BannerExample = () =>  (
   <div className={styles.example}>
     <Banner
-      customTitle="Some of your product variants are missing weights"
+      componentTitle="Some of your product variants are missing weights"
       status="warning"
       action={{ content: 'Edit variant weights', onAction:() => {alert('You clicked on edit variant weights.');} }}
     >

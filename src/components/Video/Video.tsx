@@ -37,7 +37,7 @@ export interface Props {
   // Theme to be injected via css-themr.
   theme?: any;
   // To provide styling.
-  customStyle?: React.CSSProperties;
+  componentStyle?: React.CSSProperties;
 }
 
 class Video extends React.PureComponent<Props, any> {
@@ -73,7 +73,7 @@ class Video extends React.PureComponent<Props, any> {
                     controls={this.props.controls}
                     loop={this.props.loop}
                     muted={this.props.muted}
-                    style={this.props.customStyle}
+                    style={this.props.componentStyle}
                     preload={this.props.preload}
                     crossOrigin = {this.props.crossorigin}>
                     {

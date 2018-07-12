@@ -8,9 +8,9 @@ import * as baseTheme from '../TextField/TextField.scss';
 
 export interface Props extends TextFieldProps {
   // Id of Validated Textfield.
-  customId: string;
+  componentId: string;
   // Name displayed with TextField.
-  customName: string;
+  name: string;
   // Form in which textfield bind.
   form?: any;
   // Action to trigger validation rules.
@@ -26,7 +26,7 @@ class ValidatedTextFieldComponent extends React.PureComponent<Props, {}> {
   }
 
   render() {
-    if (!this.props.customName) {
+    if (!this.props.name) {
       throw new Error('Name property is required on ValidatedTextFieldComponent.');
     }
 
@@ -38,8 +38,8 @@ class ValidatedTextFieldComponent extends React.PureComponent<Props, {}> {
         onBlur,
         ...otherProps
     } = this.props;
-    const initialValue = otherProps.customValue;
-    const { ...otherFieldProps } = form.getFieldProps(this.props.customName, {
+    const initialValue = otherProps.value;
+    const { ...otherFieldProps } = form.getFieldProps(this.props.name, {
       initialValue,
       onChange,
       onBlur,
@@ -52,7 +52,7 @@ class ValidatedTextFieldComponent extends React.PureComponent<Props, {}> {
             {...otherProps}
             {...otherFieldProps}
             value={initialValue}
-            errors={form.getFieldError(this.props.customName)}
+            errors={form.getFieldError(this.props.name)}
         />
     );
   }

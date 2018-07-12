@@ -6,10 +6,10 @@ const ConnectedExample = () => (
   <div className={styles.example}>
     <Connected
       left= {
-        <TextField label="TextField Left" customValue="Some value" />
+        <TextField label="TextField Left" value="Some value" />
       }
       right= {
-        <TextField label="TextField Right" customValue="Some value" />
+        <TextField label="TextField Right" value="Some value" />
       }
     >
     </Connected>

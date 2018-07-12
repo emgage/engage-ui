@@ -12,13 +12,13 @@ export interface Props {
   // Theme to be injected via css-themr.
   theme?: any;
   // To apply custom styling.
-  customStyle?: React.CSSProperties;
+  componentStyle?: React.CSSProperties;
 }
 
 class Panel extends React.PureComponent<Props, any> {
   render() {
     return (
-            <div className={this.props.theme.panel} style={this.props.customStyle}>
+            <div className={this.props.theme.panel} style={this.props.componentStyle}>
                 {
                   typeof this.props.heading === 'string'
                         ? <div className={this.props.theme.heading}>{this.props.heading}</div>

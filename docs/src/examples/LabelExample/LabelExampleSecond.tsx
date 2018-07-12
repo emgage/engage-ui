@@ -5,7 +5,7 @@ import * as styles from '../../styles/components-page.scss';
 const LabelExampleSecond = () => (
   <div className={styles.example}>
     <Label
-      customId="lblid"
+      componentId="lblid"
       hidden={false}
       action={{ content: 'Click Here', onAction:() => {alert('You have performed Click Action.');} }}
       required focused hasValue >
