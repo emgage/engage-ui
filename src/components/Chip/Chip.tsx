@@ -5,22 +5,30 @@ import { CHIP } from '../ThemeIdentifiers';
 import * as baseTheme from './Chip.scss';
 
 export interface Props {
+  // Makes the chips body area clickable.
   clickable?: boolean;
+  // Enables the deletion of chips through the remove icon or the Delete/Backspace key.
   removable?: boolean;
+  // The image url and alt tag that will be shown in the chip.
   image?: {
     url: string,
     alt?: string,
   };
+  // Make the chip transparent.
   transparent?: boolean;
+  // Theme to be injected via css-themr
   theme?: any;
+  // Fired when remove button on chip is clicked.
   onRemove?(event: React.FormEvent<HTMLElement>): void;
+  // Makes the chips body area clickable.
   onClick?(event: React.FormEvent<HTMLElement>): void;
+  // The content to display inside chip.
   children?: string;
 }
 
 class Chip extends React.PureComponent<Props, any> {
 
-  onKeyDown = (item: any, e: KeyboardEvent) => {
+  onKeyDown = (item: React.FormEvent<HTMLElement>, e: KeyboardEvent) => {
     if (e.keyCode === 8 || e.keyCode === 46) {
       return this.props.onRemove ? this.props.onRemove(item) : null;
     }

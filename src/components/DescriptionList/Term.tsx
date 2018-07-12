@@ -7,9 +7,9 @@ import * as baseTheme from './DescriptionList.scss';
 export interface Props {
   // Set children to display description list with term 
   children?:React.ReactNode;
-  // Set theme for term
+  // Theme to be injected via css-themr
   theme?: any;
-  // Set style for term
+  // Style to be applied. Available options: Inline | Stacked
   style?:string;
 }
 

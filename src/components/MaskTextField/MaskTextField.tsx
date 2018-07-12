@@ -26,14 +26,22 @@ export interface State extends TextFieldState {
 }
 export interface Props extends TextFieldProps {
   [key: string]: any;
+  // String formatted data to be mask.
   mask?: string;
+  // Defines format characters with characters as a keys and corresponding RegExp strings as a values. 
   formatChars?: any;
+  // Character to cover unfilled parts of the mask.
   maskChar?: string;
+  // default mask
   defaultValue?: string;
+  // Show mask when input is empty and has no focus
   alwaysShowMask?: boolean;
+  // Callback when paste data into textfield
   onPaste?(e: any): void;
+  // Callback when keypress in textfield
   onKeyPress?(e: any): void;
   onKeyDown?(e: any): void;
+  // Callback when enter is pressed from masked textfield
   onEnter?(e: any): void;
 }
 class MaskTextField extends React.PureComponent<Props, State> {

@@ -21,14 +21,23 @@ import confettiSvg from './icons/confetti.svg';
 export type Status = 'success' | 'info' | 'warning' | 'critical';
 
 export interface Props {
+  // Sets aria-label that is used to provide the banner to any assistive technologies
   ariaLabel?: string;
+  // Icon to display in the banner
   icon?: IconProps['source'];
-  title?: string;
+  // Title content for the banner
+  componentTitle?: string;
+  // Sets the status of the banner. It can be success, info, warning or critical
   status?: Status;
+  // Action for banner
   action?: Action;
+  // Displays a secondary action
   secondaryAction?: Action;
+  // The child elements to render in the banner
   children?: React.ReactNode;
+  // Theme to be injected via css-themr
   theme?: any;
+  // Callback when banner is dismissed
   onDismiss?(): void;
 }
 
@@ -37,13 +46,13 @@ const banner = ({
   icon,
   action,
   secondaryAction,
-  title,
+  componentTitle,
   children,
   status,
   onDismiss,
   theme,
 }: Props) => {
-  let color: IconProps['color'];
+  let color: IconProps['componentColor'];
   let defaultIcon: IconProps['source'];
 
   switch (status) {
@@ -80,11 +89,11 @@ const banner = ({
   let headingMarkup: React.ReactNode = null;
   let headingID: string | undefined;
 
-  if (title) {
+  if (componentTitle) {
     headingID = `${id}Heading`;
     headingMarkup = (
       <div className={theme.heading} id={headingID}>
-        <Heading element="h6">{title}</Heading>
+        <Heading element="h6">{componentTitle}</Heading>
       </div>
     );
   }
@@ -135,7 +144,7 @@ const banner = ({
     >
       {dismissButton}
       <div className={theme.ribbon}>
-        <Icon source={iconName} color={color} backdrop />
+        <Icon source={iconName} componentColor={color} backdrop />
       </div>
       <div>
         {headingMarkup}

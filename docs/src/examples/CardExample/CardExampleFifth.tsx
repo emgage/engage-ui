@@ -5,7 +5,7 @@ import * as styles from '../../styles/components-page.scss';
 const CardExample = () => (
   <div className={styles.example}>
     <Card
-      title="Staff accounts"
+      componentTitle="Staff accounts"
       sectioned
       subdued
     >

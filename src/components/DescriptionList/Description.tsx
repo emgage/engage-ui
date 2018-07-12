@@ -6,9 +6,9 @@ import * as baseTheme from './DescriptionList.scss';
 
 // All prototypes type
 export interface Props {
-  // Set children to display description list with description 
+  // Display description list with term and description elements
   children?:React.ReactNode;
-  // Set theme for description
+  // Theme to be injected via css-themr
   theme?: any;
 }
 

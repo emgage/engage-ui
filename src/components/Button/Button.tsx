@@ -12,24 +12,43 @@ import * as baseTheme from './Button.scss';
 export type Size = 'slim' | 'large';
 
 export interface Props {
+  // To display the URL link.
   url?: string;
+  // The content to display inside the button.
   children?: string;
-  size?: Size;
+  // Change the size of the button. It can be slim or large
+  componentSize?: Size;
+  // Allows the button to grow to the width of its container
   fullWidth?: boolean;
+  // Display as primary button.
   primary?: boolean;
+  // Display an outlined button.
   outline?: boolean;
+  // Display as destructive button.
   destructive?: boolean;
+  // Display button as disable.
   disabled?: boolean;
+  // Use plain button style.
   plain?: boolean;
+  // Force url to open in a new tab.
   external?: boolean;
+  // Button will submit a form.
   submit?: boolean;
+  // Display button with a disclosure icon.
   disclosure?: boolean;
+  // Visually hidden text for screen readers.
   accessibilityLabel?: string;
+  // Icon to display in the banner.
   icon?: IconProps['source'];
-  style?: React.CSSProperties;
+  // To display the styling.
+  componentStyle?: React.CSSProperties;
+  // Theme to be injected via css-themr.
   theme?: any;
+  // Callback when clicked.
   onClick?(e: React.FormEvent<HTMLElement>): void;
+  // Callback when button becomes focussed.
   onFocus?(): void;
+  // Callback when focus leaves button.
   onBlur?(): void;
 }
 
@@ -49,9 +68,9 @@ const button = ({
   disclosure,
   plain,
   submit,
-  size,
+  componentSize,
   fullWidth,
-  style,
+  componentStyle,
   theme,
 }: Props) => {
   const className = classNames(
@@ -61,7 +80,7 @@ const button = ({
     destructive && theme.destructive,
     disabled && theme.disabled,
     plain && theme.plain,
-    size && theme[variationName('size', size)],
+    componentSize && theme[variationName('size', componentSize)],
     fullWidth && theme.fullWidth,
     icon && children == null && theme.iconOnly
   );
@@ -101,7 +120,7 @@ const button = ({
           className={className}
           disabled={disabled}
           aria-label={accessibilityLabel}
-          style={style}
+          style={componentStyle}
         >
           {content}
         </UnstyledLink>
@@ -116,7 +135,7 @@ const button = ({
           className={className}
           disabled={disabled}
           aria-label={accessibilityLabel}
-          style={style}
+          style={componentStyle}
         >
           {content}
         </button>

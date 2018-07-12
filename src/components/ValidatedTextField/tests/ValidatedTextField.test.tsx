@@ -10,7 +10,7 @@ describe('<ValidatedTextField / >', () => {
     const validatedTextFieldWrapper = mount(
                                             <ValidatedForm>
                                                 <ValidatedTextField
-                                                id="AppName"
+                                                componentId="AppName"
                                                 label="App Name"
                                                 name="App Name" />
                                             </ValidatedForm>);
@@ -21,7 +21,7 @@ describe('<ValidatedTextField / >', () => {
   expect(validatedTextFieldWrapper.find('input').prop('name')).toBe('App Name');
   expect(validatedTextFieldWrapper.find('label').at(1).prop('id')).toBe('AppNameLabel');
   expect(validatedTextFieldWrapper.find('label').at(1).text()).toBe('App Name');
-  expect(validatedTextFieldWrapper.find('input').prop('id')).toBe('AppName');
+  expect(validatedTextFieldWrapper.find('input').prop('componentId')).toBe('AppName');
   expect(validatedTextFieldWrapper.find('input').prop('name')).toBe('App Name');
   expect(validatedTextFieldWrapper.find('input').prop('value')).toBe('');
     });
@@ -33,7 +33,7 @@ describe('<ValidatedTextField / >', () => {
         const validatedTextFieldWrapper = mount(
                                             <ValidatedForm>
                                                 <ValidatedTextField
-                                                id="AppName"
+                                                componentId="AppName"
                                                 label="App Name"
                                                 name="App Name" />
                                             </ValidatedForm>);
@@ -44,7 +44,7 @@ describe('<ValidatedTextField / >', () => {
         expect(validatedTextFieldWrapper.find('input').prop('name')).toBe('App Name');
         expect(validatedTextFieldWrapper.find('label').at(1).prop('id')).toBe('AppNameLabel');
         expect(validatedTextFieldWrapper.find('label').at(1).text()).toBe('App Name');
-        expect(validatedTextFieldWrapper.find('input').prop('id')).toBe('AppName');
+        expect(validatedTextFieldWrapper.find('input').prop('componentId')).toBe('AppName');
         expect(validatedTextFieldWrapper.find('input').prop('name')).toBe('App Name');
         expect(validatedTextFieldWrapper.find('input').prop('value')).toBe('');
       });
@@ -57,9 +57,9 @@ describe('<ValidatedTextField / >', () => {
         const validatedTextFieldWrapper = mount(
                                             <ValidatedForm>
                                                 <ValidatedTextField
-                                                id="AppName"
+                                                componentId="AppName"
                                                 label="App Name"
-                                                name="App Name" />
+                                                name ="App Name" />
                                             </ValidatedForm>);
         expect(validatedTextFieldWrapper.find('form')).toHaveLength(1);
         expect(validatedTextFieldWrapper.find('div')).toHaveLength(8);
@@ -68,7 +68,7 @@ describe('<ValidatedTextField / >', () => {
         expect(validatedTextFieldWrapper.find('input').prop('name')).toBe('App Name');
         expect(validatedTextFieldWrapper.find('label').at(1).prop('id')).toBe('AppNameLabel');
         expect(validatedTextFieldWrapper.find('label').at(1).text()).toBe('App Name');
-        expect(validatedTextFieldWrapper.find('input').prop('id')).toBe('AppName');
+        expect(validatedTextFieldWrapper.find('input').prop('componentId')).toBe('AppName');
         expect(validatedTextFieldWrapper.find('input').prop('name')).toBe('App Name');
         expect(validatedTextFieldWrapper.find('input').prop('value')).toBe('');
       });
@@ -82,7 +82,7 @@ describe('<ValidatedTextField / >', () => {
         const validatedTextFieldWrapper = mount(
                                             <ValidatedForm>
                                                 <ValidatedTextField
-                                                id="AppName"
+                                                componentId="AppName"
                                                 label="App Name"
                                                 name="App Name"
                                                 value="Test"
@@ -99,7 +99,7 @@ describe('<ValidatedTextField / >', () => {
         expect(validatedTextFieldWrapper.find('input').prop('name')).toBe('App Name');
         expect(validatedTextFieldWrapper.find('label').at(1).prop('id')).toBe('AppNameLabel');
         expect(validatedTextFieldWrapper.find('label').at(1).text()).toBe('App Name');
-        expect(validatedTextFieldWrapper.find('input').prop('id')).toBe('AppName');
+        expect(validatedTextFieldWrapper.find('input').prop('componentId')).toBe('AppName');
         expect(validatedTextFieldWrapper.find('input').prop('name')).toBe('App Name');
         expect(validatedTextFieldWrapper.find('input').prop('value')).toBe('Test');
         expect(validatedTextFieldWrapper.find('input').prop('required')).toBe(true);
@@ -114,7 +114,7 @@ describe('<ValidatedTextField / >', () => {
         const validatedTextFieldWrapper = mount(
                                             <ValidatedForm>
                                                 <ValidatedTextField
-                                                id="AppName"
+                                                componentId="AppName"
                                                 label="App Name"
                                                 name="App Name"
                                                 value=""
@@ -131,7 +131,7 @@ describe('<ValidatedTextField / >', () => {
         expect(validatedTextFieldWrapper.find('input').prop('name')).toBe('App Name');
         expect(validatedTextFieldWrapper.find('label').at(1).prop('id')).toBe('AppNameLabel');
         expect(validatedTextFieldWrapper.find('label').at(1).text()).toBe('App Name');
-        expect(validatedTextFieldWrapper.find('input').prop('id')).toBe('AppName');
+        expect(validatedTextFieldWrapper.find('input').prop('componentId')).toBe('AppName');
         expect(validatedTextFieldWrapper.find('input').prop('name')).toBe('App Name');
         expect(validatedTextFieldWrapper.find('input').prop('value')).toBe('');
         expect(validatedTextFieldWrapper.find('input').prop('required')).toBe(true);
@@ -145,7 +145,7 @@ describe('<ValidatedTextField / >', () => {
         const validatedTextFieldWrapper = mount(
                                             <ValidatedForm>
                                                 <ValidatedTextField
-                                                id="AppName"
+                                                componentId="AppName"
                                                 label="App Name"
                                                 name="App Name"
                                                 value="Test"
@@ -160,7 +160,7 @@ describe('<ValidatedTextField / >', () => {
         expect(validatedTextFieldWrapper.find('input').prop('name')).toBe('App Name');
         expect(validatedTextFieldWrapper.find('label').at(1).prop('id')).toBe('AppNameLabel');
         expect(validatedTextFieldWrapper.find('label').at(1).text()).toBe('App Name');
-        expect(validatedTextFieldWrapper.find('input').prop('id')).toBe('AppName');
+        expect(validatedTextFieldWrapper.find('input').prop('componentId')).toBe('AppName');
         expect(validatedTextFieldWrapper.find('input').prop('name')).toBe('App Name');
         expect(validatedTextFieldWrapper.find('input').prop('value')).toBe('Test');
         expect(validatedTextFieldWrapper.find('input').prop('required')).toBe(true);
@@ -175,7 +175,7 @@ describe('<ValidatedTextField / >', () => {
         const validatedTextFieldWrapper = mount(
                                             <ValidatedForm>
                                                 <ValidatedTextField
-                                                id="AppName"
+                                                componentId="AppName"
                                                 label="App Name"
                                                 required={true}
                                                 onBlur={ () => spy()}
@@ -192,7 +192,7 @@ describe('<ValidatedTextField / >', () => {
         expect(validatedTextFieldWrapper.find('input').prop('name')).toBe('App Name');
         expect(validatedTextFieldWrapper.find('label').at(1).prop('id')).toBe('AppNameLabel');
         expect(validatedTextFieldWrapper.find('label').at(1).text()).toBe('App Name');
-        expect(validatedTextFieldWrapper.find('input').prop('id')).toBe('AppName');
+        expect(validatedTextFieldWrapper.find('input').prop('componentId')).toBe('AppName');
         expect(validatedTextFieldWrapper.find('input').prop('name')).toBe('App Name');
         expect(validatedTextFieldWrapper.find('input').prop('value')).toBe('');
         expect(validatedTextFieldWrapper.find('input').prop('required')).toBe(true);
@@ -207,7 +207,7 @@ describe('<ValidatedTextField / >', () => {
         const validatedTextFieldWrapper = mount(
                                             <ValidatedForm>
                                                 <ValidatedTextField
-                                                id="AppName"
+                                                componentId="AppName"
                                                 label="App Name"
                                                 required={true}
                                                 onBlur={ () => spy()}
@@ -222,7 +222,7 @@ describe('<ValidatedTextField / >', () => {
         expect(validatedTextFieldWrapper.find('input').prop('name')).toBe('App Name');
         expect(validatedTextFieldWrapper.find('label').at(1).prop('id')).toBe('AppNameLabel');
         expect(validatedTextFieldWrapper.find('label').at(1).text()).toBe('App Name');
-        expect(validatedTextFieldWrapper.find('input').prop('id')).toBe('AppName');
+        expect(validatedTextFieldWrapper.find('input').prop('componentId')).toBe('AppName');
         expect(validatedTextFieldWrapper.find('input').prop('name')).toBe('App Name');
         expect(validatedTextFieldWrapper.find('input').prop('value')).toBe('');
         expect(validatedTextFieldWrapper.find('input').prop('required')).toBe(true);
@@ -238,7 +238,7 @@ describe('<ValidatedTextField / >', () => {
         const validatedTextFieldWrapper = mount(
                                             <ValidatedForm>
                                                 <ValidatedTextField
-                                                id="AppName"
+                                                componentId="AppName"
                                                 required={true}
                                                 label="App Name"
                                                 placeholder=""
@@ -257,7 +257,7 @@ describe('<ValidatedTextField / >', () => {
         expect(validatedTextFieldWrapper.find('input').prop('name')).toBe('App Name');
         expect(validatedTextFieldWrapper.find('label').at(1).prop('id')).toBe('AppNameLabel');
         expect(validatedTextFieldWrapper.find('label').at(1).text()).toBe('App Name');
-        expect(validatedTextFieldWrapper.find('input').prop('id')).toBe('AppName');
+        expect(validatedTextFieldWrapper.find('input').prop('componentId')).toBe('AppName');
         expect(validatedTextFieldWrapper.find('input').prop('name')).toBe('App Name');
         expect(validatedTextFieldWrapper.find('input').prop('value')).toBe('Text Value');
         expect(validatedTextFieldWrapper.find('input').prop('required')).toBe(true);

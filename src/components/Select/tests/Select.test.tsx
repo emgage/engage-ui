@@ -104,7 +104,7 @@ describe('<Select />', () => {
 
   describe('id', () => {
     it('sets the id on the input', () => {
-      const id = mount(<Select label="Select" id="MySelect" options={[]} />).find('select').at(1).prop('id');
+      const id = mount(<Select label="Select" componentId="MySelect" options={[]} />).find('select').at(1).prop('id');
       expect(id).toBe('MySelect');
     });
 

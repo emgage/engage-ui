@@ -158,7 +158,7 @@ describe('<RadioButton />', () => {
     describe('when set', () => {
       it('should verify radiobutton when id is set', () => {
         const radiobuttonWrapper = mount(
-                                        <RadioButton label="RadioButton" id="MyRadioButton" theme={theme} />
+                                        <RadioButton label="RadioButton" componentId="MyRadioButton" theme={theme} />
                                     );
         expect(radiobuttonWrapper.find('label')).toHaveLength(1);
         expect(radiobuttonWrapper.find('div')).toHaveLength(5);
@@ -528,7 +528,7 @@ describe('<RadioButton />', () => {
         const spy = jest.fn();
 
         const radiobuttonWrapper = mount(
-                                        <RadioButton label="RadioButton" id="Radioid" name="Radioname" value="Radiovalue" labelHidden helpText="Some Help" checked disabled onFocus={spy} onChange={spy} onBlur={spy} theme={theme} />
+                                        <RadioButton label="RadioButton" componentId="Radioid" name="Radioname" value="Radiovalue" labelHidden helpText="Some Help" checked disabled onFocus={spy} onChange={spy} onBlur={spy} theme={theme} />
                                      );
         const helpTextID = radiobuttonWrapper.find('input').prop<string>('aria-describedby');
         (radiobuttonWrapper.find('input') as any).instance().checked = true;

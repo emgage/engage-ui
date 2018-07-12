@@ -4,7 +4,7 @@ import * as styles from '../../styles/components-page.scss';
 
 const DescriptionListExampleSecond = () => (
   <div className={styles.example}>
-    <DescriptionList type="default" style="Stacked">
+    <DescriptionList componentType="default" componentStyle="Stacked">
         <Term>Logistics</Term>
         <Description>The management of products or other resources as they travel between a point of origin and a destination.</Description>
         <Term>Sole proprietorship</Term>

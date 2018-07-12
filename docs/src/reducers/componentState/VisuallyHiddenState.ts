@@ -14,7 +14,7 @@ const VisuallyHiddenState: IDocument = {
       name: 'children',
       type: 'React.ReactNode',
       desc: '	The content to be hidden visually.',
-    },{
+    }, {
       name: 'theme',
       type: 'any',
       desc: 'Theme to be injected via css-themr.',

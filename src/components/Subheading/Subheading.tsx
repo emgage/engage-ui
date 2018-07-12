@@ -7,8 +7,11 @@ import { SUBHEADING } from '../ThemeIdentifiers';
 import * as baseTheme from './Subheading.scss';
 
 export interface Props {
+  // The element name to use for the subheading. Available options: h1, h2, h3, h4, h5, h6
   element?: HeadingTagName;
+  // Text to display in subheading.
   children?: React.ReactNode;
+  // Theme to be injected via css-themr.
   theme?: any;
 }
 

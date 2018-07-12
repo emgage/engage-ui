@@ -6,7 +6,7 @@ const ValidateTextFieldExample = () => (
   <div className={styles.example}>
     <ValidatedForm>
       <ValidatedTextField
-        id="AppName"
+        componentId="AppName"
         required={true}
         label="App Name"
         placeholder=""
@@ -18,7 +18,7 @@ const ValidateTextFieldExample = () => (
         ]}
       />
       <ValidatedTextField
-        id="AppDescription"
+        componentId="AppDescription"
         required={true}
         label="App Description"
         placeholder=""

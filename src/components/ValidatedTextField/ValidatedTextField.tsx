@@ -7,12 +7,16 @@ import { TEXT_FIELD } from '../ThemeIdentifiers';
 import * as baseTheme from '../TextField/TextField.scss';
 
 export interface Props extends TextFieldProps {
-  id: string;
+  // Id of Validated Textfield.
+  componentId: string;
+  // Name displayed with TextField.
   name: string;
+  // Form in which textfield bind.
   form?: any;
+  // Action to trigger validation rules.
   validateTrigger?: ['onBlur' | 'onChange'];
+  // Validation rules for textfield. Validation Rule : { required: boolean; message: string; } or { type: string; message: string; }.
   validateRules?: [ValidationRule];
-  validator?(rule: object, value: any, callback: (error?: Error) => void): void;
 }
 
 class ValidatedTextFieldComponent extends React.PureComponent<Props, {}> {
@@ -28,7 +32,6 @@ class ValidatedTextFieldComponent extends React.PureComponent<Props, {}> {
 
     const {
         validateTrigger,
-        validator,
         validateRules,
         form,
         onChange,

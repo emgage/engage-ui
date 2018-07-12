@@ -24,8 +24,8 @@ const DescriptionListState: IDocument = {
       name: 'theme',
       type: 'any',
       desc: 'Theme to be injected via css-themr',
-    },{
-      name: 'style',
+    }, {
+      name: 'componentStyle',
       type: 'string',
       desc: 'Style to be applied. Available options: Inline | Stacked',
     },

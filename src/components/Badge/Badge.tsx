@@ -11,11 +11,14 @@ export type Status = 'success' | 'info' | 'attention' | 'warning';
 export type Progress = 'incomplete' | 'partiallyComplete' | 'complete';
 
 export interface Props {
+  // The content to display inside the badge
   children?: string;
+  // Set the color of the badge for the given status. It can be success, info, attention or warning.
   status?: Status;
+  // Show the progress of badge using round indicator. It can be incomplete, partiallyComplete or complete
   progress?: Progress;
+  // Theme to be injected via css-themr
   theme?: any;
-  statusText?: boolean;
 }
 
 const PROGRESS_LABELS = {

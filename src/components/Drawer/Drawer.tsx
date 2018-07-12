@@ -45,7 +45,7 @@ export interface Props {
   // Show overlay / backdrop
   overlay?: boolean;
   // Define width of drawer
-  width?: Width;
+  componentWidth?: Width;
   // Set theme for drawer
   theme?: any;
   // Callback function to close or open the drawer
@@ -61,7 +61,7 @@ class Drawer extends React.PureComponent<Props, never> {
   public id = getUniqueID();
   private activatorContainer: HTMLElement | null;
 
-  componentWillReceiveProps(newProps: any) {
+  componentWillReceiveProps(newProps: Props) {
     // Call the callback function if available
     // onOpen: when drawer open
     // onClose: when drawer close
@@ -87,7 +87,7 @@ class Drawer extends React.PureComponent<Props, never> {
       flip,
       active,
       overlay,
-      width = 'medium',
+      componentWidth = 'medium',
       theme,
     } = this.props;
 
@@ -95,10 +95,7 @@ class Drawer extends React.PureComponent<Props, never> {
       theme.drawer,
       overlay && theme.overlay,
       flip && this.props.theme.flip,
-      width === 'collapsed' && theme.collapsed,
-      width === 'small' && theme.small,
-      width === 'medium' && theme.medium,
-      width === 'large' && theme.large,
+      theme[componentWidth],
       active && theme.open
     );
   }
@@ -125,7 +122,7 @@ class Drawer extends React.PureComponent<Props, never> {
       flip,
       mode,
       overlay,
-      width = 'medium',
+      componentWidth = 'medium',
       theme,
     } = this.props;
 
@@ -138,15 +135,15 @@ class Drawer extends React.PureComponent<Props, never> {
       bodyElement.className = this.props.active ? (theme.container) : '';
       bodyElement.className += overlay && this.props.active ? ' ' + (theme.overlay) : '';
       bodyElement.className += flip && this.props.active ? ' ' + (theme.flip) : '';
-      bodyElement.className += this.props.active ? ' ' + (theme[width]) : '';
+      bodyElement.className += this.props.active ? ' ' + (theme[componentWidth]) : '';
 
       if (mode === 'push' || mode === 'reveal') {
         bodyElement.className += this.props.active ? ' ' + (theme.animation) : '';
         if (rootElement !== null) {
           if (flip) {
-            rootElement.style.left = width && this.props.active ? `-${width}` : '';
+            rootElement.style.left = componentWidth && this.props.active ? `-${componentWidth}` : '';
           } else {
-            rootElement.style.left = width && this.props.active ? `${width}` : '';
+            rootElement.style.left = componentWidth && this.props.active ? `${componentWidth}` : '';
           }
         }
       }
@@ -160,8 +157,8 @@ class Drawer extends React.PureComponent<Props, never> {
     // Iterate through all the children content component & find active component
     // Match activeContentId with children's id & mark that as active: true
     return React.Children.map(children, (child: React.ReactElement<any>) => {
-      const { id } = child.props;
-      const cloneElemnt = (typeof activeContentId === 'string' && activeContentId === id) || (typeof activeContentId === 'object' && activeContentId.indexOf(id) !== id);
+      const { componentId } = child.props;
+      const cloneElemnt = (typeof activeContentId === 'string' && activeContentId === componentId) || (typeof activeContentId === 'object' && activeContentId.indexOf(componentId) !== componentId);
 
       // Clone active component & return it
       if (cloneElemnt) {
@@ -171,7 +168,7 @@ class Drawer extends React.PureComponent<Props, never> {
   }
 
   renderLayer() {
-    const { active, mode, width, theme } = this.props;
+    const { active, mode, componentWidth, theme } = this.props;
     const containerClassName = this.getContainerClassName();
     const barClassName = this.getBarClassName();
 
@@ -182,7 +179,7 @@ class Drawer extends React.PureComponent<Props, never> {
     const activeContent = this.renderActivechildren();
     const dStyle = Object.assign(
       {},
-      { width: width ? { width: `${width}` } : undefined },
+      { width: componentWidth ? { width: `${componentWidth}` } : undefined },
       this.props.style
     );
 
@@ -204,7 +201,7 @@ class Drawer extends React.PureComponent<Props, never> {
         {
           mode === 'reveal'
             ?
-            <div className={theme.reveal} style={width && active ? { width: `${width}` }  : undefined}>
+            <div className={theme.reveal} style={componentWidth && active ? { width: `${componentWidth}` }  : undefined}>
               {bar}
             </div>
             :

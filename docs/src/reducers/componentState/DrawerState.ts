@@ -37,7 +37,7 @@ const DrawerState: IDocument = {
       type: 'boolean',
       desc: 'Show the backdrop',
     }, {
-      name: 'width',
+      name: 'componentWidth',
       type: 'string',
       desc: 'set size of drawer: small, medium, large or any px value',
     }, {

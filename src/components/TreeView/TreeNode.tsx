@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from 'react-css-themr';
-// import { classNames } from '@shopify/react-utilities/styles';
 
 import { SourceData as Props } from './interface';
 import { TREEVIEW } from '../ThemeIdentifiers';
@@ -12,7 +11,7 @@ class TreeNode extends React.Component<Props, never> {
     super(props);
   }
 
-  renderNode = (): any => {
+  renderNode = (): React.ReactNode => {
     const { label = '' } = this.props;
 
     return label;

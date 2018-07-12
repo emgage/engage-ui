@@ -47,7 +47,7 @@ const FlexBoxState: IDocument = {
       type: 'React.ReactNode',
       desc: 'The child elements to render in the flexbox.',
     }, {
-      name: 'style',
+      name: 'componentStyle',
       type: 'React.CSSProperties',
       desc: 'To display the styling.',
     }, {

@@ -309,7 +309,7 @@ describe('<Checkbox />', () => {
     describe('when set', () => {
       it('should verify checkbox when id is set', () => {
         const checkboxWrapper = mount(
-                                      <Checkbox label="Checkbox" id="MyCheckbox" theme={theme} />
+                                      <Checkbox label="Checkbox" componentId="MyCheckbox" theme={theme} />
                                      );
         expect(checkboxWrapper.find('label')).toHaveLength(1);
         expect(checkboxWrapper.find('div')).toHaveLength(5);
@@ -535,7 +535,7 @@ describe('<Checkbox />', () => {
   describe('verify all property together', () => {
     it('should verify checkbox when all properties are set', () => {
       const checkboxWrapper = mount(
-                                    <Checkbox label="Checkbox" labelHidden checked helpText="Some help" id="MyCheckbox"
+                                    <Checkbox label="Checkbox" labelHidden checked helpText="Some help" componentId="MyCheckbox"
                                     name="Checkbox" value="Some value" error="Some error" disabled theme={theme} />
                                    );
       expect(checkboxWrapper.find('label')).toHaveLength(1);
@@ -551,7 +551,7 @@ describe('<Checkbox />', () => {
       expect(checkboxWrapper.prop('labelHidden')).toBe(true);
       expect(checkboxWrapper.prop('checked')).toBe(true);
       expect(checkboxWrapper.prop('helpText')).toBe('Some help');
-      expect(checkboxWrapper.prop('id')).toBe('MyCheckbox');
+      expect(checkboxWrapper.prop('componentId')).toBe('MyCheckbox');
       expect(checkboxWrapper.prop('name')).toBe('Checkbox');
       expect(checkboxWrapper.prop('value')).toBe('Some value');
       expect(checkboxWrapper.prop('error')).toBe('Some error');

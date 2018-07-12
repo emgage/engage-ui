@@ -88,7 +88,7 @@ class SideNavigation extends React.Component<Props, State> {
         return (
           <div key={index}>
             <a className={childLiClass} onClick={child.action} aria-disabled={false}>
-              <Icon source={child.icon} color="white" />
+              <Icon source={child.icon} componentColor="white" />
               {child.label}
             </a>
           </div>
@@ -104,7 +104,7 @@ class SideNavigation extends React.Component<Props, State> {
             className={liClass}
           >
             <div className={liClass} onClick={full.action} aria-disabled={false}>
-              <Icon source={full.icon} color={activeItem === full.id ? 'black' : 'white'} />
+              <Icon source={full.icon} componentColor={activeItem === full.id ? 'black' : 'white'} />
               {full.label}
             </div>
           </div>
@@ -115,7 +115,7 @@ class SideNavigation extends React.Component<Props, State> {
         (
           <div key={index}>
             <div className={liClass} onClick={full.action} aria-disabled={false}>
-              <Icon source={full.icon} color={activeItem === full.id ? 'black' : 'white'}/>
+              <Icon source={full.icon} componentColor={activeItem === full.id ? 'black' : 'white'}/>
               {full.label}
             </div>
 
@@ -125,7 +125,7 @@ class SideNavigation extends React.Component<Props, State> {
         (
           <div key={index}>
             <div className={liClass} onClick={full.action} aria-disabled={false}>
-              <Icon source={full.icon} color={activeItem === full.id ? 'black' :'white'} />
+              <Icon source={full.icon} componentColor={activeItem === full.id ? 'black' :'white'} />
               {full.label}
             </div>
 
@@ -158,7 +158,7 @@ class SideNavigation extends React.Component<Props, State> {
         <div key={col.id} className={singleItem}>
           <Tooltip content={col.label}>
             <div className={liClass} onClick={col.action} aria-disabled={false}>
-              <Icon source={col.icon} color={activeItem === col.id ? 'black' : 'white'} />
+              <Icon source={col.icon} componentColor={activeItem === col.id ? 'black' : 'white'} />
             </div>
           </Tooltip>
         </div>
@@ -172,7 +172,7 @@ class SideNavigation extends React.Component<Props, State> {
         onClick={this.toggleDrawerContent}
       >
         <FlexBox>
-          <Icon source={collapseIcon} color="white" />
+          <Icon source={collapseIcon} componentColor="white" />
           { activeDrawerId === 'fullContent' ? 'Collapse' : ''}
         </FlexBox>
       </div>
@@ -186,10 +186,10 @@ class SideNavigation extends React.Component<Props, State> {
           activeContentId={this.state.activeDrawerId}
           currentTheme="dark"
           mode="push"
-          width={activeDrawerId === 'collapsedContent' ? 'collapsed' : 'small'}
+          componentWidth={activeDrawerId === 'collapsedContent' ? 'collapsed' : 'small'}
           style={drawerStyle}>
           <DrawerContent
-            id="fullContent"
+            componentId="fullContent"
             mode="slide"
           >
             {collapseIconMarkup}
@@ -200,7 +200,7 @@ class SideNavigation extends React.Component<Props, State> {
           </DrawerContent>
 
           <DrawerContent
-            id="collapsedContent"
+            componentId="collapsedContent"
             mode="slide"
           >
             {collapseIconMarkup}

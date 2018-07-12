@@ -12,9 +12,13 @@ export interface State {
 }
 
 export interface Props {
+  // Chip component is used as property.
   chip: React.ReactElement<ChipStates>;
-  style?: React.CSSProperties;
+  // To display the styling.
+  componentStyle?: React.CSSProperties;
+  // Theme to be injected via css-themr
   theme?: any;
+  // Function used for clicking the chip.
   onClick?(): void;
 }
 
@@ -23,7 +27,7 @@ const getUniqueID = createUniqueIDFactory('DropdownItem');
 class ClickableChip extends React.PureComponent<Props, State> {
   public id = getUniqueID();
 
-  constructor(props: any) {
+  constructor(props: Props) {
     super(props);
     this.state = {
       active: false

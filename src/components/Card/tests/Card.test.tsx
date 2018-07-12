@@ -16,7 +16,7 @@ describe('<Card /> Test Suit', () => {
 
   it('should verify that Card has <h2> tag for title', () => {
     const cardWrapper = mount(
-                                <Card title="Online store dashboard - Card" sectioned subdued>
+                                <Card componentTitle="Online store dashboard - Card" sectioned subdued>
                                     <p>View a summary of your online store’s performance.</p>
                                 </Card>
                             );
@@ -24,15 +24,15 @@ describe('<Card /> Test Suit', () => {
   });
   it('should verify Card title', () => {
     const cardWrapper = mount(
-                                <Card title="Online store dashboard - Card" sectioned subdued>
+                                <Card componentTitle="Online store dashboard - Card" sectioned subdued>
                                     <p>View a summary of your online store’s performance.</p>
                                 </Card>
                             );
-    expect(cardWrapper.prop('title')).toBe('Online store dashboard - Card');
+    expect(cardWrapper.prop('componentTitle')).toBe('Online store dashboard - Card');
   });
   it('should verify sectioned when it is set', () => {
     const cardWrapper = mount(
-                                <Card title="Online store dashboard - Card" sectioned subdued>
+                                <Card componentTitle="Online store dashboard - Card" sectioned subdued>
                                     <p>View a summary of your online store’s performance.</p>
                                 </Card>
                             );
@@ -40,7 +40,7 @@ describe('<Card /> Test Suit', () => {
   });
   it('should verify sectioned when it is not set', () => {
     const cardWrapper = mount(
-                                <Card title="Online store dashboard - Card" subdued>
+                                <Card componentTitle="Online store dashboard - Card" subdued>
                                     <p>View a summary of your online store’s performance.</p>
                                 </Card>
                             );
@@ -50,7 +50,7 @@ describe('<Card /> Test Suit', () => {
   });
   it('should verify when subdued is set', () => {
     const cardWrapper = mount(
-                                <Card title="Online store dashboard - Card" sectioned subdued>
+                                <Card componentTitle="Online store dashboard - Card" sectioned subdued>
                                     <p>View a summary of your online store’s performance.</p>
                                 </Card>
                             );
@@ -58,7 +58,7 @@ describe('<Card /> Test Suit', () => {
   });
   it('should verify when subdued is no set', () => {
     const cardWrapper = mount(
-                                <Card title="Online store dashboard - Card" sectioned>
+                                <Card componentTitle="Online store dashboard - Card" sectioned>
                                     <p>View a summary of your online store’s performance.</p>
                                 </Card>
                             );
@@ -72,7 +72,7 @@ describe('<Card /> Test Suit', () => {
       onAction: () => { spy(); },
     };
     const cardWrapper = mount(
-                                <Card title="Online store dashboard - Card"  actions={[action]}>
+                                <Card componentTitle="Online store dashboard - Card"  actions={[action]}>
                                     <p>View a summary of your online store’s performance.</p>
                                 </Card>
                             );
@@ -86,7 +86,7 @@ describe('<Card /> Test Suit', () => {
       onAction: () => { spy(); },
     };
     const cardWrapper = mount(
-                                <Card title="Online store dashboard - Card"  primaryFooterAction={action}>
+                                <Card componentTitle="Online store dashboard - Card"  primaryFooterAction={action}>
                                     <p>View a summary of your online store’s performance.</p>
                                 </Card>
                             );
@@ -100,7 +100,7 @@ describe('<Card /> Test Suit', () => {
       onAction: () => { spy(); },
     };
     const cardWrapper = mount(
-                                <Card title="Online store dashboard - Card"  secondaryFooterAction={action}>
+                                <Card componentTitle="Online store dashboard - Card"  secondaryFooterAction={action}>
                                     <p>View a summary of your online store’s performance.</p>
                                 </Card>
                             );
@@ -109,7 +109,7 @@ describe('<Card /> Test Suit', () => {
   });
   it('should verify that sectioned is boolean type', () => {
     const cardWrapper = mount(
-                                <Card title="Online store dashboard - Card" sectioned>
+                                <Card componentTitle="Online store dashboard - Card" sectioned>
                                     <p>View a summary of your online store’s performance.</p>
                                 </Card>
                             );
@@ -117,7 +117,7 @@ describe('<Card /> Test Suit', () => {
   });
   it('should verify that subdued is boolean type', () => {
     const cardWrapper = mount(
-                                <Card title="Online store dashboard - Card" subdued>
+                                <Card componentTitle="Online store dashboard - Card" subdued>
                                     <p>View a summary of your online store’s performance.</p>
                                 </Card>
                             );
@@ -125,11 +125,11 @@ describe('<Card /> Test Suit', () => {
   });
   it('should verify that Card can have multiple sections with title', () => {
     const cardWrapper = mount(
-                                <Card title="Online store dashboard - Card" sectioned theme={theme}>
-                                    <Section title="Reports" theme={theme}>
+                                <Card componentTitle="Online store dashboard - Card" sectioned theme={theme}>
+                                    <Section componentTitle="Reports" theme={theme}>
                                         <p>View a summary of your online store’s performance.</p>
                                     </Section>
-                                    <Section title="Summary Reports" theme={theme}>
+                                    <Section componentTitle="Summary Reports" theme={theme}>
                                         <p>View a summary of your online store’s performance, including sales, visitors, top products, and referrals.</p>
                                     </Section>
                                 </Card>
@@ -142,11 +142,11 @@ describe('<Card /> Test Suit', () => {
   });
   it('should verify that Card is set with subdued option.', () => {
     const cardWrapper = mount(
-                                <Card title="Online store dashboard - Card" sectioned>
-                                    <Section title="Reports" subdued>
+                                <Card componentTitle="Online store dashboard - Card" sectioned>
+                                    <Section componentTitle="Reports" subdued>
                                         <p>View a summary of your online store’s performance.</p>
                                     </Section>
-                                    <Section title="Summary Reports" subdued>
+                                    <Section componentTitle="Summary Reports" subdued>
                                         <p>View a summary of your online store’s performance, including sales, visitors, top products, and referrals.</p>
                                     </Section>
                                 </Card>
@@ -158,11 +158,11 @@ describe('<Card /> Test Suit', () => {
   });
   it('should verify that Card is set with theme.', () => {
     const cardWrapper = mount(
-                                <Card title="Online store dashboard - Card" sectioned>
-                                    <Section title="Reports" subdued>
+                                <Card componentTitle="Online store dashboard - Card" sectioned>
+                                    <Section componentTitle="Reports" subdued>
                                         <p>View a summary of your online store’s performance.</p>
                                     </Section>
-                                    <Section title="Summary Reports" subdued theme={theme}>
+                                    <Section componentTitle="Summary Reports" subdued theme={theme}>
                                         <p>View a summary of your online store’s performance, including sales, visitors, top products, and referrals.</p>
                                     </Section>
                                 </Card>
