@@ -5,7 +5,7 @@ import * as styles from '../../styles/components-page.scss';
 const BannerExample = () =>  (
   <div className={styles.example}>
     <Banner
-      title="Before you can purchase a shipping label, this change needs to be made:"
+      componentTitle="Before you can purchase a shipping label, this change needs to be made:"
       action={{ content: 'Edit address', onAction:() => {alert('You clicked on Edit address.');} }}
        status="warning"
     >

@@ -13,26 +13,25 @@ describe('<Label />', () => {
   describe('when default props are provided', () => {
     it('basic label should have rendered one div clss element', () => {
       const labelWrapper = mount(
-                                  <Label id="lblid" theme={theme} />
+                                  <Label componentId="lblid" theme={theme} />
                            );
       expect(labelWrapper.find('div')).toHaveLength(1);
     });
     it('basic label should have rendered two label clss element', () => {
       const labelWrapper = mount(
-                                  <Label id="lblid" theme={theme} />
+                                  <Label componentId="lblid" theme={theme} />
                            );
-      console.log(labelWrapper.html());
       expect(labelWrapper.find('label')).toHaveLength(2);
     });
     it('basic label should have default label css clss on div', () => {
       const labelWrapper = mount(
-                                 <Label id="lblid" theme={theme} />
+                                 <Label componentId="lblid" theme={theme} />
                            );
       expect(labelWrapper.find('div').at(0).hasClass('Label')).toBe(true);
     });
     it('basic label should have default text css clss on label', () => {
       const labelWrapper = mount(
-                                  <Label id="lblid" theme={theme} />
+                                  <Label componentId="lblid" theme={theme} />
                            );
       expect(labelWrapper.find('label').at(1).hasClass('Text')).toBe(true);
     });
@@ -42,37 +41,37 @@ describe('<Label />', () => {
     describe('when not set', () => {
       it('basic label should have rendered one div clss element', () => {
         const labelWrapper = mount(
-                                   <Label id="lblid" theme={theme} />
+                                   <Label componentId="lblid" theme={theme} />
                              );
         expect(labelWrapper.find('div')).toHaveLength(1);
       });
       it('basic label should have rendered two label clss element', () => {
         const labelWrapper = mount(
-                                   <Label id="lblid" theme={theme} />
+                                   <Label componentId="lblid" theme={theme} />
                              );
         expect(labelWrapper.find('label')).toHaveLength(2);
       });
       it('basic label should have default label css class on div', () => {
         const labelWrapper = mount(
-                                   <Label id="lblid" theme={theme} />
+                                   <Label componentId ="lblid" theme={theme} />
                              );
         expect(labelWrapper.find('div').at(0).hasClass('Label')).toBe(true);
       });
       it('basic label should have default text css clss on label', () => {
         const labelWrapper = mount(
-                                   <Label id="lblid" theme={theme} />
+                                   <Label componentId="lblid" theme={theme} />
                              );
         expect(labelWrapper.find('label').at(1).hasClass('Text')).toBe(true);
       });
       it('should verify hidden property is not defined', () => {
         const labelWrapper = mount(
-                                   <Label id="lblid" theme={theme} />
+                                   <Label componentId="lblid" theme={theme} />
                              );
         expect(labelWrapper.prop('hidden')).toBeUndefined();
       });
       it('should verify hidden property is not available', () => {
         const labelWrapper = mount(
-                                   <Label id="lblid" theme={theme} />
+                                   <Label componentId="lblid" theme={theme} />
                              );
         expect(labelWrapper.find('hidden')).toHaveLength(0);
       });
@@ -81,31 +80,31 @@ describe('<Label />', () => {
     describe('when set to true', () => {
       it('basic label should have rendered  one div clss element', () => {
         const labelWrapper = mount(
-                                    <Label id="lblid" hidden={true} theme={theme} />
+                                    <Label componentId="lblid" hidden={true} theme={theme} />
                              );
         expect(labelWrapper.find('div')).toHaveLength(1);
       });
       it('basic label should have rendered two label clss element', () => {
         const labelWrapper = mount(
-                                   <Label id="lblid" hidden={true} theme={theme} />
+                                   <Label componentId="lblid" hidden={true} theme={theme} />
                              );
         expect(labelWrapper.find('label')).toHaveLength(2);
       });
       it('basic label should have default label css class on div', () => {
         const labelWrapper = mount(
-                                   <Label id="lblid" hidden={true} theme={theme} />
+                                   <Label componentId="lblid" hidden={true} theme={theme} />
                              );
         expect(labelWrapper.find('div').at(0).hasClass('Label')).toBe(true);
       });
       it('basic label should have default text hidden css clss on label', () => {
         const labelWrapper = mount(
-                                   <Label id="lblid" hidden={true} theme={theme} />
+                                   <Label componentId="lblid" hidden={true} theme={theme} />
                              );
         expect(labelWrapper.find('label').at(1).hasClass('hidden')).toBe(true);
       });
       it('should have hidden elememt and set as true', () => {
         const labelWrapper = mount(
-                                   <Label id="lblid" hidden={true} theme={theme} />
+                                   <Label componentId="lblid" hidden={true} theme={theme} />
                              );
         expect(labelWrapper.prop('hidden')).toBe(true);
       });
@@ -114,31 +113,31 @@ describe('<Label />', () => {
     describe('when set to false', () => {
       it('basic label should have rendered  one div clss element', () => {
         const labelWrapper = mount(
-                                   <Label id="lblid" hidden={false} theme={theme} />
+                                   <Label componentId="lblid" hidden={false} theme={theme} />
                              );
         expect(labelWrapper.find('div')).toHaveLength(1);
       });
       it('basic label should have rendered two label clss element', () => {
         const labelWrapper = mount(
-                                    <Label id="lblid" hidden={false} theme={theme} />
+                                    <Label componentId="lblid" hidden={false} theme={theme} />
                              );
         expect(labelWrapper.find('label')).toHaveLength(2);
       });
       it('basic label should have default label css class on div', () => {
         const labelWrapper = mount(
-                                    <Label id="lblid" hidden={false} theme={theme} />
+                                    <Label componentId="lblid" hidden={false} theme={theme} />
                              );
         expect(labelWrapper.find('div').at(0).hasClass('Label')).toBe(true);
       });
       it('basic label should have default text css clss on label', () => {
         const labelWrapper = mount(
-                                    <Label id="lblid" hidden={false} theme={theme} />
+                                    <Label componentId="lblid" hidden={false} theme={theme} />
                              );
         expect(labelWrapper.find('label').at(1).hasClass('Text')).toBe(true);
       });
       it('should have hidden elememt and set as false', () => {
         const labelWrapper = mount(
-                                    <Label id="lblid" hidden={false} theme={theme} />
+                                    <Label componentId="lblid" hidden={false} theme={theme} />
                              );
         expect(labelWrapper.prop('hidden')).toBe(false);
       });
@@ -149,63 +148,63 @@ describe('<Label />', () => {
     describe('when set', () => {
       it('basic label should have rendered  one div clss element', () => {
         const labelWrapper = mount(
-                                    <Label id="lblid" theme={theme} />
+                                    <Label componentId="lblid" theme={theme} />
                              );
         expect(labelWrapper.find('div')).toHaveLength(1);
       });
       it('basic label should have rendered two label clss element', () => {
         const labelWrapper = mount(
-                                   <Label id="lblid" theme={theme} />
+                                   <Label componentId="lblid" theme={theme} />
                              );
         expect(labelWrapper.find('label')).toHaveLength(2);
       });
       it('basic label should have default label css class on div', () => {
         const labelWrapper = mount(
-                                   <Label id="lblid" theme={theme} />
+                                   <Label componentId="lblid" theme={theme} />
                              );
         expect(labelWrapper.find('div').at(0).hasClass('Label')).toBe(true);
       });
       it('basic label should have default text css clss on label', () => {
         const labelWrapper = mount(
-                                   <Label id="lblid" theme={theme} />
+                                   <Label componentId="lblid" theme={theme} />
                              );
         expect(labelWrapper.find('label').at(1).hasClass('Text')).toBe(true);
       });
       it('should verify id given', () => {
         const labelWrapper = mount(
-                                   <Label id="lblid" theme={theme} />
+                                   <Label componentId="lblid" theme={theme} />
                              );
-        expect(labelWrapper.prop('id')).toBe('lblid');
+        expect(labelWrapper.prop('componentId')).toBe('lblid');
       });
     });
 
     describe('when set as random id', () => {
       it('basic label should have rendered  one div clss element', () => {
         const labelWrapper = mount(
-                                   <Label id="lblid" theme={theme} />
+                                   <Label componentId="lblid" theme={theme} />
                              );
         expect(labelWrapper.find('div')).toHaveLength(1);
       });
       it('basic label should have rendered two label clss element', () => {
         const labelWrapper = mount(
-                                   <Label id="lblid" theme={theme} />
+                                   <Label componentId="lblid" theme={theme} />
                              );
         expect(labelWrapper.find('label')).toHaveLength(2);
       });
       it('basic label should have default label css class on div', () => {
         const labelWrapper = mount(
-                                   <Label id="lblid" theme={theme} />
+                                   <Label componentId="lblid" theme={theme} />
                              );
         expect(labelWrapper.find('div').at(0).hasClass('Label')).toBe(true);
       });
       it('basic label should have default text css clss on label', () => {
         const labelWrapper = mount(
-                                   <Label id="lblid" theme={theme} />
+                                   <Label componentId="lblid" theme={theme} />
                              );
         expect(labelWrapper.find('label').at(1).hasClass('Text')).toBe(true);
       });
       it('Sets a random id when none is passed', () => {
-        const labelWrapper = mount(<Label id="lblid" theme={theme} />).prop('id');
+        const labelWrapper = mount(<Label componentId="lblid" theme={theme} />).prop('componentId');
         expect(typeof (labelWrapper)).toBe('string');
         expect(labelWrapper).toBeTruthy();
       });
@@ -216,7 +215,7 @@ describe('<Label />', () => {
     describe('when set', () => {
       it('basic label should have rendered  one div clss element', () => {
         const labelWrapper = mount(
-                                    <Label id="lblid" theme={theme}>
+                                    <Label componentId="lblid" theme={theme}>
                                       Test
                                     </Label>
                              );
@@ -224,7 +223,7 @@ describe('<Label />', () => {
       });
       it('basic label should have rendered two label clss element', () => {
         const labelWrapper = mount(
-                                    <Label id="lblid" theme={theme}>
+                                    <Label componentId="lblid" theme={theme}>
                                       Test
                                     </Label>
                              );
@@ -232,7 +231,7 @@ describe('<Label />', () => {
       });
       it('basic label should have default label css class on div', () => {
         const labelWrapper = mount(
-                                    <Label id="lblid" theme={theme}>
+                                    <Label componentId="lblid" theme={theme}>
                                       Test
                                     </Label>
                             );
@@ -240,7 +239,7 @@ describe('<Label />', () => {
       });
       it('basic label should have default text css clss on label', () => {
         const labelWrapper = mount(
-                                    <Label id="lblid" theme={theme}>
+                                    <Label componentId="lblid" theme={theme}>
                                       Test
                                     </Label>
                              );
@@ -248,7 +247,7 @@ describe('<Label />', () => {
       });
       it('should verify children is defined', () => {
         const labelWrapper = mount(
-                                    <Label id="lblid" theme={theme}>
+                                    <Label componentId="lblid" theme={theme}>
                                       Test
                                     </Label>
                              );
@@ -259,37 +258,37 @@ describe('<Label />', () => {
     describe('when not set', () => {
       it('basic label should have rendered  one div clss element', () => {
         const labelWrapper = mount(
-                                    <Label id="lblid" theme={theme} />
+                                    <Label componentId="lblid" theme={theme} />
                              );
         expect(labelWrapper.find('div')).toHaveLength(1);
       });
       it('basic label should have rendered two label clss element', () => {
         const labelWrapper = mount(
-                                   <Label id="lblid" theme={theme} />
+                                   <Label componentId="lblid" theme={theme} />
                              );
         expect(labelWrapper.find('label')).toHaveLength(2);
       });
       it('basic label should have default label css class on div', () => {
         const labelWrapper = mount(
-                                   <Label id="lblid" theme={theme} />
+                                   <Label componentId="lblid" theme={theme} />
                              );
         expect(labelWrapper.find('div').at(0).hasClass('Label')).toBe(true);
       });
       it('basic label should have default text css clss on label', () => {
         const labelWrapper = mount(
-                                   <Label id="lblid" theme={theme} />
+                                   <Label componentId="lblid" theme={theme} />
                              );
         expect(labelWrapper.find('label').at(1).hasClass('Text')).toBe(true);
       });
       it('should not have children element', () => {
         const labelWrapper = mount(
-                                   <Label id="lblid" theme={theme} />
+                                   <Label componentId="lblid" theme={theme} />
                              );
         expect(labelWrapper.find('children')).toHaveLength(0);
       });
       it('should verify children is not defined', () => {
         const labelWrapper = mount(
-                                   <Label id="lblid" theme={theme} />
+                                   <Label componentId="lblid" theme={theme} />
                              );
         expect(labelWrapper.prop('children')).toBeUndefined();
       });

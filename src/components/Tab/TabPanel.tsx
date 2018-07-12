@@ -29,7 +29,7 @@ export interface Props {
   // For Default active tab
   defaultTabId?: string;
   // User can Set style for TabPanel component
-  style?: React.CSSProperties;
+  componentStyle?: React.CSSProperties;
   // Set theme for TabPanel
   theme?: any;
 }
@@ -53,7 +53,7 @@ class TabPanel extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.onTabClick = this.onTabClick.bind(this);
-    const children: any = this.props.children;
+    const children : any = this.props.children;
     const defaultTabId = children.filter((item: React.ReactElement<tabProps>, index: number) => index === 0);
     this.state = {
       // Maintain Active status of Tab
@@ -75,14 +75,14 @@ class TabPanel extends React.Component<Props, State> {
 
   // Render content for the selected tab
   renderActivetabContent() {
-    const { children }: any = this.props;
+    const { children } :any = this.props;
     const activeContent = children.filter((item: React.ReactElement<tabProps>) => item.props.tabId === this.state.activeTabId);
     return activeContent[0].props.children;
   }
 
   // Render Tab and TabContent togeather in TabPanel
   render() {
-    const { theme, position, alignment, style } = this.props;
+    const { theme, position, alignment, componentStyle } = this.props;
 
     // Combination of classes required to bind for location prop
     const locationClassName = classNames(
@@ -102,7 +102,7 @@ class TabPanel extends React.Component<Props, State> {
     );
 
     return (
-      <div {...this.props} className={locationClassName} style={style}>
+      <div {...this.props} className={locationClassName} style={componentStyle}>
         <div className={alignmentClassName}>
           {this.renderTabs()}
         </div>

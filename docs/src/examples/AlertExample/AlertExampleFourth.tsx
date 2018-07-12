@@ -4,7 +4,7 @@ import * as styles from '../../styles/components-page.scss';
 
 const AlertExample = () => (
   <div className={styles.example}>
-    <Alert type="warning">
+    <Alert componentType="warning">
       Alert Example 4
     </Alert>
   </div>

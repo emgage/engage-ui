@@ -17,7 +17,7 @@ export interface ISourceData {
 
 // All prototypes type
 export interface Props {
-  style?: React.CSSProperties;
+  componentStyle?: React.CSSProperties;
   // Direction prop defines the direction in which breadcrumb start
   direction?: Direction;
   // Array of items render in breadcrumb
@@ -44,7 +44,7 @@ class BreadCrumb extends React.Component<Props, {}> {
   }
   // Render Breadcrumb and it's items
   render() {
-    const { theme, style, direction = 'left', displayStyle = '' } = this.props;
+    const { theme, componentStyle, direction = 'left', displayStyle = '' } = this.props;
 
     // Combination of classes required for breadcrumb component
     const classes = classNames(
@@ -54,7 +54,7 @@ class BreadCrumb extends React.Component<Props, {}> {
     );
 
     return (
-      <ul className={classes} style={style}>
+      <ul className={classes} style={componentStyle}>
         {this.renderBreadcrumbItems()}
       </ul>
     );

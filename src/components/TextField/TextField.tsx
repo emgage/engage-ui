@@ -20,40 +20,74 @@ export interface State {
 }
 
 export interface Props {
+  // Text to display before value.
   prefix?: React.ReactNode;
+  // Text to display after value.
   suffix?: React.ReactNode;
+  // Hint text to display.
   placeholder?: string;
+  // Initial value for the input.
   value?: string;
+  // Additional hint text to display.
   helpText?: React.ReactNode;
+  // display the TextCounter.
   enableTextCounter?: boolean;
+  // Label for the input.
   label: string;
+  // Adds an action to the label.
   labelAction?: Action;
+  // Visually hide the label.
   labelHidden?: boolean;
+  // Disable the input.
   disabled?: boolean;
+  // Disable editing of the input.
   readOnly?: boolean;
+  // Automatically focus the input.
   autoFocus?: boolean;
+  // Allow for multiple lines of input.
   multiline?: boolean | number;
+  // Error to display beneath the label.
   errors?: [string];
+  // An element connected to the right of the input.
   connectedRight?: React.ReactNode;
+  // An element connected to the left of the input
   connectedLeft?: React.ReactNode;
+  // Determine type of input. Available options: text | email | number | password | search | tel | url | date | datetime-local | month | time | week
   type?: Type;
+  // Name of the input.
   name?: string;
-  id?: string;
+  // ID for the input.
+  componentId?: string;
+  // Limit increment value for numeric and date-time inputs.
   step?: number;
+  // Enable automatic completion by the browser.
   autoComplete?: boolean;
+  // Maximum value for a numeric or date-time input.
   max?: number;
+  // Maximum character length for an input.
   maxLength?: number;
+  // Minimum value for a numeric or date-time input.
   min?: number;
+  // Minimum character length for an input.
   minLength?: number;
+  // A regular expression to check the value against.
   pattern?: string;
+  // To make it required or not.
   required?: boolean;
+  // Indicate whether value should have spelling checked.
   spellCheck?: boolean;
+  // To make it resizable or not.
   resizable?: boolean;
-  style?: React.CSSProperties;
+  // To provide styling.
+  componentStyle?: React.CSSProperties;
+  // Theme to be injected via css-themr.
   theme?: any;
+  // Callback when value is changed.
   onChange?(value: string): void;
-  onFocus?(e?: any): void;
-  onBlur?(e?: any): void;
+  // Callback when input is focused.
+  onFocus?(e?: React.FormEvent<HTMLElement>): void;
+  // Callback when focus is removed	.
+  onBlur?(e?: React.FormEvent<HTMLElement>): void;
 }
 
 const getUniqueID = createUniqueIDFactory('TextField');
@@ -65,7 +99,7 @@ class TextField extends React.PureComponent<Props, State> {
 
   render() {
     const {
-      id = getUniqueID(),
+      componentId = getUniqueID(),
       value = '',
       placeholder,
       disabled,
@@ -90,7 +124,7 @@ class TextField extends React.PureComponent<Props, State> {
       onFocus,
       onBlur,
       autoComplete,
-      style,
+      componentStyle,
       resizable,
       ...rest
     } = this.props;
@@ -108,18 +142,18 @@ class TextField extends React.PureComponent<Props, State> {
     );
 
     const prefixMarkup = prefix
-      ? <div onClick={this.handleInputFocus} className={theme.prefix} id={`${id}prefix`}>{prefix}</div>
+      ? <div onClick={this.handleInputFocus} className={theme.prefix} id={`${componentId}prefix`}>{prefix}</div>
       : null;
 
     const suffixMarkup = suffix
-      ? <div onClick={this.handleInputFocus} className={theme.suffix} id={`${id}suffix`}>{suffix}</div>
+      ? <div onClick={this.handleInputFocus} className={theme.suffix} id={`${componentId}suffix`}>{suffix}</div>
       : null;
 
     const spinnerMarkup = type === 'number'
       ? <Spinner onClick={this.handleInputFocus} onChange={this.handleNumberChange} />
       : null;
 
-    const componentStyle = (multiline && height) ? { height, ...style } : style;
+    const newComponentStyle = (multiline && height) ? { height, ...componentStyle } : componentStyle;
 
     const resizer = multiline === null
       ? null
@@ -137,24 +171,24 @@ class TextField extends React.PureComponent<Props, State> {
       const textCount = this.props.value ? this.props.value.toString().length : 0;
       const minLengthRed = this.props.minLength ? this.props.minLength : 0;
       counterTextMarkup =
-        <div className={theme.counterText} id={`${id}counter`}>
+        <div className={theme.counterText} id={`${componentId}counter`}>
           <span className={minLengthRed > textCount ? theme.red : ''}>{textCount}</span>
           {maxLengthString}
         </div>;
     }
 
     const describedBy: string[] = [];
-    if (errors) { describedBy.push(errorID(id)); }
-    if (helpText) { describedBy.push(helpTextID(id)); }
+    if (errors) { describedBy.push(errorID(componentId)); }
+    if (helpText) { describedBy.push(helpTextID(componentId)); }
 
-    const labelledBy = [labelID(id)];
-    if (prefix) { labelledBy.push(`${id}Prefix`); }
-    if (suffix) { labelledBy.push(`${id}Suffix`); }
+    const labelledBy = [labelID(componentId)];
+    if (prefix) { labelledBy.push(`${componentId}Prefix`); }
+    if (suffix) { labelledBy.push(`${componentId}Suffix`); }
 
     const input = React.createElement(multiline ? 'textarea' : 'input', {
       ...rest,
       name,
-      id,
+      componentId,
       type,
       disabled,
       readOnly,
@@ -164,7 +198,7 @@ class TextField extends React.PureComponent<Props, State> {
       required,
       onFocus: this.handleInputOnFocus,
       onBlur: this.handleInputOnBlur,
-      style: componentStyle,
+      style: newComponentStyle,
       formNoValidate: true,
       autoComplete: normalizeAutoComplete(autoComplete),
       className: theme.input,
@@ -182,7 +216,7 @@ class TextField extends React.PureComponent<Props, State> {
     return (
       <Labelled
         label={label}
-        id={id}
+        componentId={componentId}
         errors={errors}
         action={labelAction}
         labelHidden={labelHidden}
@@ -243,7 +277,7 @@ class TextField extends React.PureComponent<Props, State> {
   }
 
   @autobind
-  private onKeyDown(e:any) {
+  private onKeyDown(e: any) {
     const { onChange } = this.props;
     if (onChange == null) { return; }
     const value = this.props.value ? this.props.value : '';
@@ -255,7 +289,7 @@ class TextField extends React.PureComponent<Props, State> {
   }
 
   @autobind
-  private handleInputOnFocus(e: any) {
+  private handleInputOnFocus(e: React.FormEvent<HTMLElement>) {
     this.setState((prevState: State) => ({
       ...prevState,
       focused: true,
@@ -267,7 +301,7 @@ class TextField extends React.PureComponent<Props, State> {
   }
 
   @autobind
-  private handleInputOnBlur(e: any) {
+  private handleInputOnBlur(e: React.FormEvent<HTMLElement>) {
     this.setState((prevState: State) => ({
       ...prevState,
       focused: false,

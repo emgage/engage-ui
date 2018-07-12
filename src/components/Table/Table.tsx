@@ -74,7 +74,7 @@ class Table extends React.Component<Props, State> {
     }
   }
 
-  componentWillReceiveProps(newProps: any) {
+  componentWillReceiveProps(newProps: Props) {
     const { field, searchKey, search } = newProps.filterData;
 
     if (search && !this.props.filterData.search) {
@@ -153,7 +153,7 @@ class Table extends React.Component<Props, State> {
                 <TableHead
                   key={item.key}
                   sort={thisSort}
-                  style={item.style}
+                  componentStyle={item.style}
                   className={item.className}
                   order={field === item.key ? order.current : ''}
                   clickHandler={this.sortData}>
@@ -242,7 +242,7 @@ class Table extends React.Component<Props, State> {
 
   // Function to add checkbox in header as well
   addHeaderCheckbox = (): React.ReactElement<any> => {
-    return <TableHead style={{ width: 'auto' }}><Checkbox label="" checked={this.state.allRowChecked} onChange={this.toggleAllRowSelection} /></TableHead>;
+    return <TableHead componentStyle={{ width: 'auto' }}><Checkbox label="" checked={this.state.allRowChecked} onChange={this.toggleAllRowSelection} /></TableHead>;
   }
 
   // Function to add checkbox for the row selection
@@ -360,7 +360,6 @@ class Table extends React.Component<Props, State> {
 
   // Function to make search in data
   triggerSearch = (searchKey: string, field: string) => {
-    console.log('Search:', searchKey.trim());
     const trimmedSearchKey = searchKey.trim().toLowerCase();
     const { data } = this.getInitialState();
 

@@ -4,7 +4,9 @@ import { addEventListener, removeEventListener } from '@shopify/javascript-utili
 import { Keys } from '../../types';
 
 export interface Props {
+  // Code of keyboard key which triggered event.
   keyCode: Keys;
+  // Handler for handling particular event fired through keyboard.
   handler(event: KeyboardEvent): void;
 }
 

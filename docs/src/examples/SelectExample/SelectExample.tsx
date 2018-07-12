@@ -14,7 +14,7 @@ const SelectExample = () => (
       placeholder="Select"
       value="New York"
       helpText="Please Select City"
-      id="SelectId"
+      componentId="SelectId"
       name="Select Name"
     />
   </div>

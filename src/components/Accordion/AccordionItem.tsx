@@ -4,9 +4,13 @@ import { autobind } from '@shopify/javascript-utilities/decorators';
 
 export interface Props {
   index: number;
+  // Header of accordion item to be displayed
   header: React.ReactElement<any>;
+  // Item of accordion component to be displayed
   children: React.ReactElement<any>;
+  // Define accordion item is active or not
   active?: boolean;
+  // Make accordion item active or inactive.
   toggle?(index: number): void;
   style?:any;
 }

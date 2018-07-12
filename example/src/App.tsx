@@ -32,7 +32,6 @@ import {
   Description,
   // ListItem,
   Loading,
-  // OffCanvas,
   Panel,
   Popover,
   Picker,
@@ -189,13 +188,13 @@ class App extends React.Component<{}, State> {
 
   render() {
     const Accordionitems : AccordionItemProps[] = [{
-      children: <Banner title={'banner'} status={'success'} />,
+      children: <Banner componentTitle={'banner'} status={'success'} />,
       header: <Button>sk</Button>
     },{
-      children: <Banner title={'banner11'} status={'warning'} />,
+      children: <Banner componentTitle={'banner11'} status={'warning'} />,
       header: <Button>sk1</Button>
     },{
-      children: <Banner title={'banner13'} status={'warning'} />,
+      children: <Banner componentTitle={'banner13'} status={'warning'} />,
       header: <Button>sk3</Button>
     }];
     const items : DropdownItemProps[] = [
@@ -239,7 +238,7 @@ class App extends React.Component<{}, State> {
       src={singleVideoSource}
       autoplay={false}
       controls={false}
-      style={{
+      componentStyle={{
         height: 100,
         width: 100,
       }} />;
@@ -516,7 +515,7 @@ class App extends React.Component<{}, State> {
           <Button onClick={() => this.setState({ activeTabId: 'tab2' })}>Trigger User from here</Button>
         </div>
         <div>
-          <Caption style={{ color: 'red' }}>This is modal</Caption>
+          <Caption componentStyle={{ color: 'red' }}>This is modal</Caption>
           <Button onClick={this.toggleModal}>Nested modal</Button>
           <Modal
             active={this.state.modalOpen}
@@ -524,11 +523,11 @@ class App extends React.Component<{}, State> {
             toggle={this.toggleModal}
             onOpen={this.onModalOpen}
             onClose={this.onModalClose}
-            width="large"
+            componentWidth="large"
             closeOnBackgroud
             closeOnEsc
             closeButton>
-            <ModalContent id="modalcontent1">
+            <ModalContent componentId="modalcontent1">
               <ModalHeader>Modal content 1</ModalHeader>
               <ModalBody modalOverflow>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae ex pellentesque, pretium lorem vel, tempor ipsum. Phasellus suscipit lacus in velit malesuada, at bibendum mi gravida. Sed cursus nisi sem, non pellentesque ligula euismod eget. Sed quis fringilla nibh, at vestibulum turpis. Donec sed sagittis sapien. Nam quis ex quis nulla porta molestie. Vestibulum eu lorem porta, facilisis orci a, tempor quam. Suspendisse et sollicitudin nulla. Aenean consectetur imperdiet leo nec condimentum. Aliquam scelerisque magna ut tortor accumsan condimentum.
@@ -540,7 +539,7 @@ class App extends React.Component<{}, State> {
                 <Button onClick={() => this.setState({ activeModalId: 'modalcontent2' })}>Next</Button>
               </ModalFooter>
             </ModalContent>
-            <ModalContent id="modalcontent2">
+            <ModalContent componentId="modalcontent2">
               <ModalHeader>Modal content 2</ModalHeader>
               <ModalBody>
                 I am content two, open next modal from here
@@ -556,7 +555,7 @@ class App extends React.Component<{}, State> {
           <Modal
             active={this.state.modalOpen2}
             toggle={this.toggleModal2}
-            width="medium"
+            componentWidth="medium"
             closeOnBackgroud
             closeOnEsc
             closeButton>
@@ -575,7 +574,7 @@ class App extends React.Component<{}, State> {
           <Modal
             active={this.state.modalOpen3}
             toggle={this.toggleModal3}
-            width="small"
+            componentWidth="small"
             closeOnBackgroud
             closeOnEsc
             closeButton>
@@ -604,35 +603,35 @@ class App extends React.Component<{}, State> {
           <BreadCrumb direction={'left'} source={breadcrumbData} displayStyle={'yellow'} />
         </div>
         <br />
-        <Caption style={{ color: 'red' }}>This is Caption</Caption>
+        <Caption componentStyle={{ color: 'red' }}>This is Caption</Caption>
         <br />
         <Heading>Alert</Heading>
         <Alert>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
         </Alert>
-        <Alert type="primary" >
+        <Alert componentType="primary" >
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
         </Alert>
-        <Alert type="success">
+        <Alert componentType="success">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
         </Alert>
-        <Alert type="warning">
+        <Alert componentType="warning">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
         </Alert>
-        <Alert type="danger">
+        <Alert componentType="danger">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
         </Alert>
         <Checkbox label={'I am a checkbox'} />
-        <Banner title={'banner'} status={'success'} />
-        <Banner title={'banner'} status={'info'} />
-        <Banner title={'banner'} status={'warning'} />
-        <Banner title={'banner'} status={'critical'} />
+        <Banner componentTitle={'banner'} status={'success'} />
+        <Banner componentTitle={'banner'} status={'info'} />
+        <Banner componentTitle={'banner'} status={'warning'} />
+        <Banner componentTitle={'banner'} status={'critical'} />
         <PickerAutoSuggestExample />
         <SingleDatePickerWrapper />
         <DateRangePickerWrapper />
 
         <div style={{ marginTop: '20px', marginBottom: '20px' }}>
-          <Caption style={{ color: 'red' }}>This is Table field</Caption>
+          <Caption componentStyle={{ color: 'red' }}>This is Table field</Caption>
           <Button>
             {`Delete ${this.state.bulkAction.selectedRow.length ? `(${this.state.bulkAction.selectedRow.length})` : ''}`}
           </Button>
@@ -666,10 +665,10 @@ class App extends React.Component<{}, State> {
             onOpen={this.onDrawerOpen}
             onClose={this.onDrawerClose}
             mode="push"
-            width="large"
+            componentWidth="large"
             overlay
             closeButton>
-            <DrawerContent id="content1" mode="slide">
+            <DrawerContent componentId="content1" mode="slide">
               <p>Reveal Test</p>
               <ul>
                 <li>Link 1</li>
@@ -682,7 +681,7 @@ class App extends React.Component<{}, State> {
               <Button onClick={() => this.setState({ activeDrawerId: 'content2' })}>Content2 open</Button>
             </DrawerContent>
 
-            <DrawerContent id="content2" mode="slide">
+            <DrawerContent componentId="content2" mode="slide">
               I am inside drawer content 2
 
               <Button onClick={() => this.setState({ activeDrawerId: 'content1' })}>Content1 open</Button>
@@ -738,7 +737,7 @@ class App extends React.Component<{}, State> {
           </div>
 
           <TextField
-            id="TestName"
+            componentId="TestName"
             label="Text Counter"
             placeholder="test-placeholder"
             value={this.state.appTextCounter}
@@ -749,7 +748,7 @@ class App extends React.Component<{}, State> {
             // onChange={this.valueUpdater('appTextCounter')}
           />
           <TextField
-            id="TestName1"
+            componentId="TestName1"
             label="Text Counter"
             placeholder="test-placeholder"
             value={this.state.appTextCounter}
@@ -780,9 +779,9 @@ class App extends React.Component<{}, State> {
           >
             <Link>Tooltip 2</Link>
           </Tooltip>
-          <TextField id="TestName" label="Text Counter" placeholder="test-placeholder" value={this.state.appTextCounter} helpText="Helper Text" enableTextCounter={true} maxLength={100} /* onChange={this.valueUpdater('appTextCounter')} */ />
+          <TextField componentId="TestName" label="Text Counter" placeholder="test-placeholder" value={this.state.appTextCounter} helpText="Helper Text" enableTextCounter={true} maxLength={100} /* onChange={this.valueUpdater('appTextCounter')} */ />
           <ClickableChip chip={<Chip>Batman</Chip>}>
-            <Card title="More about Batman">
+            <Card componentTitle="More about Batman">
               <p>Batman is a fictional superhero who appears in American comic books published by DC Comics. The character was created by artist Bob Kane and writer Bill Finger, and first appeared in Detective Comics #27</p>
             </Card>
           </ClickableChip>
@@ -808,14 +807,14 @@ class App extends React.Component<{}, State> {
           </Tooltip>
           <SideNavigation accordian={true} source={sideNavigationData} activeItem={1} drawerOpen hideCollapse={false} drawerExpand ={true}/>
           <Heading>List</Heading>
-          <List type="bullet">
+          <List componentType="bullet">
             <Item>Yellow shirt</Item>
             <Item>Red shirt</Item>
-            <List type="bullet">
+            <List componentType="bullet">
               <Item>Yellow shirt</Item>
               <Item>Red shirt</Item>
               <Item>Green shirt</Item>
-              <List type="bullet">
+              <List componentType="bullet">
                 <Item>Yellow shirt</Item>
                 <Item>Red shirt</Item>
                 <Item>Green shirt</Item>
@@ -825,13 +824,13 @@ class App extends React.Component<{}, State> {
             <Item>Red shirt</Item>
             <Item>Green shirt</Item>
           </List>
-          <List type="number">
+          <List componentType="number">
             <Item>First item</Item>
             <Item>Second item</Item>
             <Item>Third Item</Item>
           </List>
           <Heading>Description List</Heading>
-          <DescriptionList type="default" style="Inline">
+          <DescriptionList componentType="default" componentStyle="Inline">
               <Term>Logistics</Term>
               <Description>The management of products or other resources as they travel between a point of origin and a destination.</Description>
               <Term>Sole proprietorship</Term>
@@ -839,7 +838,7 @@ class App extends React.Component<{}, State> {
               <Term>Discount code</Term>
               <Description>A series of numbers and/or letters that an online shopper may enter at checkout to get a discount or special offer.</Description>
           </DescriptionList>
-          <DescriptionList type="default" style="Stacked">
+          <DescriptionList componentType="default" componentStyle="Stacked">
             <Term>Logistics</Term>
             <Description>The management of products or other resources as they travel between a point of origin and a destination.</Description>
             <Term>Sole proprietorship</Term>
@@ -847,7 +846,7 @@ class App extends React.Component<{}, State> {
             <Term>Discount code</Term>
             <Description>A series of numbers and/or letters that an online shopper may enter at checkout to get a discount or special offer.</Description>
         </DescriptionList>
-          <DescriptionList type="divider" style="Stacked">
+          <DescriptionList componentType="divider" componentStyle="Stacked">
            <Term>Logistics</Term>
            <Description>The management of products or other resources as they travel between a point of origin and a destination.</Description>
            <Term>Sole proprietorship</Term>
@@ -856,7 +855,7 @@ class App extends React.Component<{}, State> {
            <Description>A series of numbers and/or letters that an online shopper may enter at checkout to get a discount or special offer.</Description>
        </DescriptionList>
           <ChoiceList
-            title="Company name"
+            componentTitle="Company name"
             choices={[
               {
                 label: 'Hidden',
@@ -891,12 +890,12 @@ class App extends React.Component<{}, State> {
 
             <Heading>App Basics</Heading>
 
-            <DisplayText size="large">This is Display Text, which is used to make a bold visual statement.</DisplayText>
+            <DisplayText componentSize="large">This is Display Text, which is used to make a bold visual statement.</DisplayText>
             <p>This is just some fun regular text.</p>
 
             <FormLayout>
               <ValidatedTextField
-                id="AppName"
+                componentId="AppName"
                 label="App Name"
                 placeholder=""
                 helpText="We recommend keeping your app name under 23 characters."
@@ -910,7 +909,7 @@ class App extends React.Component<{}, State> {
               />
               <ValidatedTextField
                 multiline
-                id="appDescription"
+                componentId="appDescription"
                 name="App Description"
                 value={this.state.appDescription}
                 label="App Description"
@@ -924,7 +923,7 @@ class App extends React.Component<{}, State> {
               />
 
               <ValidatedSelectField
-                id="appCity"
+                componentId="appCity"
                 required={true}
                 name="Select city"
                 label="Select city"
@@ -1032,10 +1031,10 @@ class App extends React.Component<{}, State> {
               }
               autoplay={false}
               controls={true}
-              style={{ height: 400, width: 400 }}
+              componentStyle={{ height: 400, width: 400 }}
             />
             <h4>Multi source video</h4>
-            <Video poster={posterUrl} src={multiVideoSource} autoplay={false} controls={true} style={{ height: 400, width: 400 }} />
+            <Video poster={posterUrl} src={multiVideoSource} autoplay={false} controls={true} componentStyle={{ height: 400, width: 400 }} />
           </div>
           <h4>Panel Component</h4>
           <Panel heading="BASIC PANEL">
@@ -1210,9 +1209,9 @@ class App extends React.Component<{}, State> {
           Create Role
       </Button>
         <br />
-        <Spinner color="inkLightest" size="small" />
+        <Spinner componentColor="inkLightest" componentSize="small" />
         <br />
-        <Spinner style={{ height: '100px' }} />
+        <Spinner componentStyle={{ height: '100px' }} />
         <br />
         <ButtonGroup segmented>
           <Button primary>Save Draft</Button>

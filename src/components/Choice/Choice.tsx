@@ -10,17 +10,24 @@ import * as baseTheme from './Choice.scss';
 export type Error = boolean | string;
 
 export interface Props {
-  id: string;
+  // Set id of Choice component.
+  componentId: string;
+  // Set label text.
   label: string;
+  // To give error as boolean or string.
   error?: Error;
+  // Display label or not.
   labelHidden?: boolean;
+  // To provide child text.
   children?: React.ReactNode;
+  // Text to understand in detail.
   helpText?: React.ReactNode;
+  // Theme to be injected via css-themr.
   theme?: any;
 }
 
 const choice = ({
-  id,
+  componentId,
   label,
   error,
   children,
@@ -30,19 +37,19 @@ const choice = ({
 }: Props) => {
   const className = classNames(theme.choice, labelHidden && theme.labelHidden);
   const labelMarkup = (
-    <label className={className} htmlFor={id}>
+    <label className={className} htmlFor={componentId}>
       <div className={theme.control}>{children}</div>
       <div className={theme.label}>{label}</div>
     </label>
   );
 
   const helpTextMarkup = helpText
-    ? <div className={theme.helpText} id={helpTextID(id)}>{helpText}</div>
+    ? <div className={theme.helpText} id={helpTextID(componentId)}>{helpText}</div>
     : null;
 
   const errorMarkup = typeof error === 'string'
     ? (
-      <div className={theme.error} id={errorID(id)}>
+      <div className={theme.error} id={errorID(componentId)}>
         <div className={theme.errorIcon}><Icon source="alert" /></div>
         {error}
       </div>

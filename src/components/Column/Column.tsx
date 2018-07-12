@@ -53,11 +53,17 @@ export type ResponsiveWidth =
     '9-10';
 
 export interface Props {
+  // Column set with small width size
   small?: ResponsiveWidth;
+  // Column set with medium width size
   medium?: ResponsiveWidth;
+  // Column set with large width size
   large?: ResponsiveWidth;
+  // Column set with extraLarge width size
   extraLarge?: ResponsiveWidth;
-  style?: React.CSSProperties;
+  // Set the style via css externally
+  componentStyle?: React.CSSProperties;
+  // Theme to be injected via css-themr
   theme?: any;
 }
 
@@ -85,7 +91,7 @@ class Column extends React.PureComponent<Props, {}> {
     }
 
     return (
-            <div className={className} style={this.props.style}>
+            <div className={className} style={this.props.componentStyle}>
                 {this.props.children}
             </div>
     );

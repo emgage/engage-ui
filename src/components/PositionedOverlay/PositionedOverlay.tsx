@@ -29,9 +29,12 @@ export interface OverlayDetails {
 }
 
 export interface Props {
+  // Is overlay active or not
   active: boolean;
   activator: HTMLElement;
+  // Define overlay position 
   preferredPosition?: PreferredPosition;
+  // Theme to be injected via css-themr.
   theme?: any;
   render(overlayDetails: OverlayDetails): React.ReactNode;
   onScrollOut?(): void;

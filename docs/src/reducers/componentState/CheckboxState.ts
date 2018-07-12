@@ -33,7 +33,7 @@ const CheckboxState: IDocument = {
       type: 'React.ReactNode',
       desc: 'Additional text to aide in use',
     }, {
-      name: 'id',
+      name: 'componentId',
       type: 'string',
       desc: 'ID for form input',
     }, {

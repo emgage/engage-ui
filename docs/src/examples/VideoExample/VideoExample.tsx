@@ -15,7 +15,7 @@ const VideoExample = () => (
     <Video
       poster={posterUrl}
       src={singleVideoSource}
-      style={{ height: 300, width: 300 }} />
+      componentStyle={{ height: 300, width: 300 }} />
   </div>
 );
 

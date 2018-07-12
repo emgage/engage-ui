@@ -6,8 +6,11 @@ import { HEADING } from '../ThemeIdentifiers';
 import * as baseTheme from './Heading.scss';
 
 export interface Props {
+  // The element name to use for the heading. Available options: h1 | h2 | h3 | h4 | h5 | h6
   element?: HeadingTagName;
+  // The content to display inside the heading.
   children?: React.ReactNode;
+  // Theme to be injected via css-themr.
   theme?: any;
 }
 

@@ -11,11 +11,11 @@ const SpinnerState: IDocument = {
   subheading: 'Spinners are used to notify users that their action is being processed.',
   property: [
     {
-      name: 'size',
+      name: 'componentSize',
       type: 'Size',
       desc: 'Size of Spinner. It can be small or large',
     } , {
-      name: 'color',
+      name: 'componentColor',
       type: 'Color',
       desc: 'Color of Spinner. It can be white, teal or inkLightest',
     } , {
@@ -27,7 +27,7 @@ const SpinnerState: IDocument = {
       type: 'any',
       desc: 'Theme to be injected via css-themr',
     } , {
-      name: 'style',
+      name: 'componentStyle',
       type: 'React.CSSProperties',
       desc: 'Set the style via css',
     },
