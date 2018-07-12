@@ -3,6 +3,7 @@ import SingleDatePickerWrapper from './SingleDatePickerWrapper';
 import DateRangePickerWrapper from './DateRangePickerWrapper';
 import PickerAutoSuggestExample from './PickerAutoSuggestExample';
 import { ISourceData } from '../../src/components/Breadcrumb/Breadcrumb';
+import { INavigationData } from '../../src/components/SideNavigation/SideNavigation';
 
 import {
   Alert,
@@ -19,6 +20,7 @@ import {
   DisplayText,
   Drawer,
   DrawerContent,
+  SideNavigation,
   FlexBox,
   FormLayout,
   Heading,
@@ -31,6 +33,7 @@ import {
   // ListItem,
   Loading,
   Panel,
+  Popover,
   Picker,
   Dropdown,
   Select,
@@ -69,6 +72,7 @@ interface State {
   rows: object[];
   isMenuOpened: boolean;
   popoverActive: boolean;
+  popoverActiveContainer: boolean;
   bulkAction: any;
   filterConfig: any;
   modalOpen: boolean;
@@ -107,6 +111,7 @@ class App extends React.Component<{}, State> {
       ],
       isMenuOpened: false,
       popoverActive: false,
+      popoverActiveContainer: false,
       bulkAction: {
         selectedRow: [],
       },
@@ -127,9 +132,11 @@ class App extends React.Component<{}, State> {
       activeTabId: 'tab3'
     };
     this.popovertoggle = this.popovertoggle.bind(this);
+    this.popoverToggleContainer = this.popoverToggleContainer.bind(this);
     this.toggleAccordionOpen = this.toggleAccordionOpen.bind(this);
     this.toggleAccordionClose = this.toggleAccordionClose.bind(this);
     this.popoverUpdate = this.popoverUpdate.bind(this);
+    this.popoverUpdateContainer = this.popoverUpdateContainer.bind(this);
     this.closed1 = this.closed1.bind(this);
   }
 
@@ -291,7 +298,93 @@ class App extends React.Component<{}, State> {
         onBreadcrumbClick: () => { console.log('Home3 is clicked');}
       },
     ];
-
+    const sideNavigationData: INavigationData[] = [
+      {
+        id: 1,
+        label: 'Basics',
+        icon: 'notes',
+        divider: false,
+        action: () => console.log('Basics is clicked!')
+      },
+      {
+        id:2,
+        label: 'Content',
+        icon: 'print',
+        divider: true,
+        action: () => console.log('Content is clicked!')
+      },
+      {
+        id:3,
+        label: 'User',
+        icon: 'conversation',
+        children: [
+          {
+            id:3.1,
+            label: 'Groups',
+            icon: 'conversation',
+            action: () => console.log('Groups Item is clicked!')
+          },
+          {
+            id:3.2,
+            label: 'Roles',
+            icon: 'conversation',
+            action: () => console.log('Roles Item is clicked!')
+          },
+          {
+            id:3.3,
+            label: 'Permissions',
+            icon: 'conversation',
+            action: () => console.log('Permissions Item is clicked!')
+          }
+        ],
+        divider: true,
+        action: () => console.log('User is clicked!')
+      },
+      {
+        id:4,
+        label: 'Pages',
+        icon: 'view',
+        children: [
+          {
+            id:4.1,
+            label: 'Forms',
+            icon: 'view',
+            action: () => console.log('Forms Item is clicked!')
+          },
+          {
+            id:4.2,
+            label: 'Workflow',
+            icon: 'view',
+            action: () => console.log('Workflow Item is clicked!')
+          },
+          {
+            id:4.3,
+            label: 'Themes',
+            icon: 'view',
+            action: () => console.log('Themes Item is clicked!')
+          }
+        ],
+        action: () => console.log('Pages is clicked!')
+      },
+      {
+        id:5,
+        label: 'Publishing',
+        icon: 'export',
+        action: () => console.log('Publishing is clicked!')
+      },
+      {
+        id:6,
+        label: 'App Analytics',
+        icon: 'embed',
+        action: () => console.log('App Analytics is clicked!')
+      },
+      {
+        id:7,
+        label: 'Sherpa',
+        icon: 'alert',
+        action: () => console.log('Sherpa is clicked!')
+      }
+    ];
     /*
       label: Table header lable which will be visible
       key: Match it with json data, this will help to get specific value from the data
@@ -624,14 +717,24 @@ class App extends React.Component<{}, State> {
           <Button onClick={() => this.toggleAccordionClose(undefined)}>undefined toggle close</Button>
 
           <Heading>Popover</Heading>
-          <Button customStyle={{ left: 200 }}  onClick={e => this.popoverUpdate(e)} >Click to active and deactive dropdown</Button>
-          <Dropdown
-            active={this.state.popoverActive}
-            dropdownItems={items}
-            toggle={() => this.popoverUpdate}
-            direction="right"
-            anchorEl = {this.state.anchorEl}
-          />
+          <div style={{ marginLeft: '100px' }}>
+            <button onClick={(e: any) => this.popoverUpdateContainer(e)}>Click Popover</button>
+            <Popover active={this.state.popoverActiveContainer} direction="down" closeOnClickOutside toggle={() => this.popoverUpdateContainer} anchorEl = {this.state.anchorEl} onClose={() => console.log('I am close')} onOpen={() => console.log('I am open')} callbackParent={newState => this.onChildChanged(newState)}>
+              I am popover <Button>Hello popover</Button>
+            </Popover>
+          </div>
+          <br/>
+          <div style={{ marginLeft: '100px' }}>
+            <button onClick={(e: any) => this.popoverUpdate(e)}>Dropdown active</button>
+            <Dropdown
+              active={this.state.popoverActive}
+              dropdownItems={items}
+              toggle={() => this.popoverUpdate}
+              anchorEl = {this.state.anchorEl}
+              direction="up"
+              closeOnClickOutside
+            />
+          </div>
 
           <TextField
             customId="TestName"
@@ -695,13 +798,14 @@ class App extends React.Component<{}, State> {
           <p> Some text with a
           <Tooltip content="This order has shipping labels.">
               <Link>Tooltip 1</Link>
-            </Tooltip> in it
+          </Tooltip> in it
         </p>
           <Tooltip
             content="This order has shipping."
           >
             <Link>Tooltip 2</Link>
           </Tooltip>
+          <SideNavigation accordian={true} source={sideNavigationData} activeItem={1} drawerOpen hideCollapse={false} drawerExpand ={true}/>
           <Heading>List</Heading>
           <List customType="bullet">
             <Item>Yellow shirt</Item>
@@ -1134,6 +1238,15 @@ class App extends React.Component<{}, State> {
     });
   }
 
+  popoverToggleContainer(index: number) {
+    const updatedPopoverActiveContainer: any = this.state.popoverActiveContainer;
+    updatedPopoverActiveContainer[index] = !updatedPopoverActiveContainer[index];
+
+    this.setState({
+      popoverActiveContainer: updatedPopoverActiveContainer
+    });
+  }
+
   toggleAccordionOpen(index?: number) {
     this.setState({
       AccordionItemOpen: index
@@ -1153,13 +1266,22 @@ class App extends React.Component<{}, State> {
     return (value: any) => 'this.setState({ [value]: value })';
   }
 
-  popoverUpdate(e : React.FormEvent<HTMLElement>) {
+  popoverUpdate(e: any) {
     this.setState({
       popoverActive : !this.state.popoverActive,
       anchorEl: e.target as HTMLElement
     });
   }
 
+  popoverUpdateContainer(e: any) {
+    this.setState({
+      popoverActiveContainer : !this.state.popoverActiveContainer,
+      anchorEl: e.target as HTMLElement
+    });
+  }
+  onChildChanged(newState: boolean) {
+    this.setState({ popoverActiveContainer: newState });
+  }
   closed1() {
     console.log('called');
   }

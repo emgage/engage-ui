@@ -42,10 +42,12 @@ const Nav = () => {
         <li><Link to="/component/message" activeClassName={styles.active}>Message</Link></li>
         <li><Link to="/component/modal" activeClassName={styles.active}>Modal</Link></li>
         {/*<li><Link to="/component/panel" activeClassName={styles.active}>Panel</Link></li>*/}
+        <li><Link to="/component/popover" activeClassName={styles.active}>Popover</Link></li>
         <li><Link to="/component/positionedoverlay" activeClassName={styles.active}>Positioned Overlay</Link></li>
         <li><Link to="/component/radiobutton" activeClassName={styles.active}>RadioButton</Link></li>
         <li><Link to="/component/Scrollable" activeClassName={styles.active}>Scrollable</Link></li>
         <li><Link to="/component/select" activeClassName={styles.active}>Select</Link></li>
+        <li><Link to="/component/sidenavigation" activeClassName={styles.active}>Side Navigation</Link></li>
         <li><Link to="/component/spinner" activeClassName={styles.active}>Spinner</Link></li>
         <li><Link to="/component/stack" activeClassName={styles.active}>Stack</Link></li>
         <li><Link to="/component/subheading" activeClassName={styles.active}>SubHeading</Link></li>

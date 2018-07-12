@@ -4,6 +4,7 @@ import { classNames } from '@shopify/react-utilities/styles';
 import { DESCRIPTIONLIST } from '../ThemeIdentifiers';
 import * as baseTheme from './DescriptionList.scss';
 
+// All prototypes type
 export interface Props {
   // Display description list with term and description elements
   children?:React.ReactNode;

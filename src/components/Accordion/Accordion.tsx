@@ -22,6 +22,7 @@ export interface Props {
   openIndex?: number;
   // Index of item which you want to be in-active
   closeIndex?: number;
+  style?:any;
 }
 
 interface State {
@@ -114,7 +115,7 @@ class Accordion extends React.Component<Props, State> {
           key= {this.getItemUniqueID()}
           toggle = {this.toggleItem}
           active = {active[index] ? true : false}
-          header = {item.header}
+          header = {item.header} style={this.props.style}
         >
           {item.children}
         </AccordionItem>

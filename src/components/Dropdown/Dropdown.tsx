@@ -1,283 +1,79 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from 'react-css-themr';
-import { autobind } from '@shopify/javascript-utilities/decorators';
-import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
-import { findFirstFocusableNode } from '@shopify/javascript-utilities/focus';
-import { addEventListener, removeEventListener } from '@shopify/javascript-utilities/events';
-
 import DropdownItem, { Props as DropdownItemProps } from './DropdownItem';
-import { classNames } from '@shopify/react-utilities/styles';
+import Popover, { Props as PopoverProps } from '../Popover';
 import { DROPDOWN } from '../ThemeIdentifiers';
 import * as baseTheme from './Dropdown.scss';
-import { Keys } from '../../types';
-import { findDOMNode } from 'react-dom';
 
-export type Direction = 'up' | 'down' | 'left' | 'right';
-
+// All prototypes type
 export interface Props {
-  // Disable the dropdown
-  disabled?: boolean;
-  // The direction to open the dropdown. Availablee options: up | down | left | right
-  direction?: Direction;
-  // Show or hide the Dropdown.
-  active: boolean;
-  // The element type to wrap the activator with.
-  activatorWrapper?: string;
-  // items of the dropdown.
+  // Set disabled
+  disabled?: PopoverProps['disabled'];
+  // Set direction to be applied. Available options: up | down | left | right.
+  direction?: PopoverProps['direction'];
+  // Set active to true for dropdown to display, else false
+  active: PopoverProps['active'];
+  // Set anchor element 
+  anchorEl?: PopoverProps['anchorEl'];
+  // Set to true if you want to close dropdown when click anywhere in body
+  closeOnClickOutside?: PopoverProps['closeOnClickOutside'];
+  // Set items to be displayed in dropdown wrapper
   dropdownItems: DropdownItemProps[];
-  // Close the dropdown when mouse click outside of the dropdown
-  closeOnClickOutside?: boolean;
-  // This is the DOM element that will be used to set the position of the dropdown.
-  anchorEl?: HTMLElement | null;
-  // Callback when dropdown is closed.
+  // Call toggle method on click 
+  toggle?(): void;
+  // Call close method on click 
   onClose?(): void;
-  // Callback when dropdown's active props changes.
-  toggle?() : void;
+  // Call toggle method on click 
+  onOpen?(): void;
 }
 
 export interface State {
   selectedIndex: number;
+  active: boolean;
 }
 
 export class Dropdown extends React.PureComponent<Props, State> {
-  private getUniqueID = createUniqueIDFactory('Dropdown');
-  private activatorContainer: HTMLElement | null;
-  private id = this.getUniqueID();
-
   constructor(props: Props) {
     super(props);
     this.state = {
-      selectedIndex: 0
+      // Set initial state
+      selectedIndex: 0,
+      active: false
     };
-  }
-
-  componentWillReceiveProps(newProps: any) {
-    const { active } = this.props;
-
-    if (active && !newProps.active && newProps.onClose) {
-      newProps.onClose();
-    }
-  }
-
-  componentDidMount() {
-    this.setAccessibilityAttributes();
-    const element = findDOMNode(this);
-    if (element !== null) {
-      addEventListener(element, 'keyup', this.handleKeyEvent);
-    }
-
-    if (this.props.closeOnClickOutside) {
-      addEventListener(document, 'click', this.handleMouseEvent);
-    }
-  }
-
-  componentDidUpdate() {
-    this.setAccessibilityAttributes();
-  }
-
-  componentWillUnmount() {
-    const element = findDOMNode(this);
-    if (element != null) {
-      removeEventListener(element, 'keyup', this.handleKeyEvent);
-    }
-
-    if (this.props.closeOnClickOutside) {
-      removeEventListener(document, 'click', this.handleMouseEvent);
-    }
   }
 
   render() {
     const {
-      activatorWrapper: WRAPPERCOMPONENT = 'div',
-      active,
       dropdownItems,
-      direction = 'down',
+      active,
+      direction,
       disabled,
-      anchorEl
+      anchorEl,
+      closeOnClickOutside
     } = this.props;
 
     const {
       selectedIndex
     } = this.state;
 
-    const dropdownClassName = classNames (
-      direction === 'down' ? baseTheme.dropdown
-      : direction === 'up' ? baseTheme.dropup
-      : direction === 'left' ? baseTheme.dropleft
-      : baseTheme.dropright,
-      !disabled && active && baseTheme.active
-    );
-
-    const dropdownMenuClassName = classNames (
-      baseTheme.dropdownMenu,
-      !disabled && active && baseTheme.active
-    );
-
-    const activatorComp = anchorEl;
-    let activatorRect: ClientRect | DOMRect;
-    let leftCord : number = 0;
-    if (activatorComp != null) {
-      activatorRect = activatorComp.getBoundingClientRect();
-      if (direction === 'up' || direction === 'down') {
-        leftCord = activatorRect.left + (activatorRect.width / 2) - 50 /* Menu Width / 2 */;
-      } else if (direction === 'left') {
-        leftCord = activatorRect.left - 100 /* Menu Width */;
-      } else {
-        leftCord = activatorRect.left + activatorRect.width;
-      }
-    }
-
+    // Display the drop down items
     const DropdownItemComponents = dropdownItems.map((item,index) =>
-            <DropdownItem
-              key={index}
-              active={selectedIndex === index}
-              disabled={item.disabled}
-              divider={item.divider}
-              header={item.header}
-              content={item.content}
-              onClick={item.onClick}
-            />
-        );
-
-    return (
-      <WRAPPERCOMPONENT ref={this.setActivator}>
-        <div className={dropdownClassName} key={this.id}>
-          <div className={dropdownMenuClassName} style= {{ left: leftCord }}>
-            <div className={baseTheme.box} />
-            {DropdownItemComponents}
-          </div>
-        </div>
-      </WRAPPERCOMPONENT>
+      <DropdownItem
+        key={index}
+        active={selectedIndex === index}
+        disabled={item.disabled}
+        divider={item.divider}
+        header={item.header}
+        content={item.content}
+        onClick={item.onClick}
+      />
     );
-  }
-
-  private setAccessibilityAttributes() {
-    const { id, activatorContainer } = this;
-    if (activatorContainer === null) { return; }
-
-    const firstFocusable = findFirstFocusableNode(activatorContainer);
-    const focusableActivator = firstFocusable || activatorContainer;
-
-    focusableActivator.tabIndex = 0;
-    focusableActivator.setAttribute('aria-controls', id);
-    focusableActivator.setAttribute('aria-owns', id);
-    focusableActivator.setAttribute('aria-haspopup', 'true');
-    focusableActivator.setAttribute('aria-expanded', String(this.props.active));
-  }
-
-  @autobind
-  private setActivator(node: HTMLElement | null) {
-    if (node === null) {
-      this.activatorContainer = null;
-      return;
-    }
-    this.activatorContainer = node;
-  }
-
-  @autobind
-  private handleKeyEvent(event: KeyboardEvent) {
-    event.preventDefault();
-
-    const {
-      active,
-      toggle,
-      disabled
-    } = this.props;
-
-    const {
-      selectedIndex
-    } = this.state;
-
-    if (!active && !disabled) {
-      return;
-    }
-
-    // Change Items on key up, down and tab
-    if (event.keyCode === Keys.UP_ARROW) {
-      this.changeItem(selectedIndex, -1);
-    } else if (event.keyCode === Keys.DOWN_ARROW || event.keyCode === Keys.TAB) {
-      this.changeItem(selectedIndex, 1);
-    } else if (event.keyCode === Keys.ESCAPE && toggle) {
-      toggle(); // Close the dropdown on ESC
-    }
-  }
-
-  @autobind
-  private changeItem(selectedIndex: number, direction : number) {
-    const DropdownCount = this.props.dropdownItems.length - 1;
-
-    if (direction === 1) {
-      if (selectedIndex === DropdownCount) {
-        this.changeItemState(0, 1);
-      } else {
-        this.changeItemState(selectedIndex + 1, 1);
-      }
-    } else if (direction === -1) {
-      if (selectedIndex === 0) {
-        this.changeItemState(DropdownCount, -1);
-      } else {
-        this.changeItemState(selectedIndex - 1, -1);
-      }
-    }
-  }
-
-  @autobind
-  private changeItemState(oldSelectedIndex: number, direction : number) {
-    const {
-      dropdownItems
-    } = this.props;
-
-    // if next selected item is disabled or devider find next one
-    if (dropdownItems[oldSelectedIndex].disabled || dropdownItems[oldSelectedIndex].divider || dropdownItems[oldSelectedIndex].header) {
-      this.changeItem(oldSelectedIndex, direction);
-      return;
-    }
-
-    this.setState({
-      selectedIndex: oldSelectedIndex
-    });
-  }
-
-  @autobind
-  private handleMouseEvent(event: MouseEvent) {
-    event.preventDefault();
-
-    const {
-      active,
-      toggle,
-      disabled
-    } = this.props;
-
-    const element = findDOMNode(this);
-
-    if (!active && !disabled) {
-      return;
-    }
-
-    if (element !== null && event.target != null && element !== event.target && toggle) {
-      /* 
-        checkClild is use to check current componet's child 
-        or child's child and so is not the target
-      */
-      if (!this.checkClild(element, event.target)) {
-        toggle(); // Close the click out side
-      }
-    }
-  }
-
-  @autobind
-  private checkClild(element : Element | Text, target : EventTarget): boolean {
-    let isCurrent = false;
-    if (element !== null) {
-      element.childNodes.forEach((item) => {
-        if (target === item) {
-          isCurrent = true;
-        } else if (!isCurrent) {
-          isCurrent = this.checkClild(item as Element, target);
-        }
-      });
-    }
-    return isCurrent;
+    // Use Popover component as wrapper component for drop down items
+    return (
+      <Popover active={active} direction={direction} disabled={disabled} anchorEl={anchorEl} closeOnClickOutside={closeOnClickOutside}>
+        {DropdownItemComponents}
+      </Popover>
+    );
   }
 }
 
