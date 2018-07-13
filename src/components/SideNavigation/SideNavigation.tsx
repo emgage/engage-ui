@@ -4,7 +4,7 @@ import { themr, ThemedComponentClass } from 'react-css-themr';
 import { classNames } from '@shopify/react-utilities/styles';
 
 import Icon from '../Icon';
-import { FlexBox } from '..';
+import { FlexBox } from '../';
 import { Drawer, DrawerContent } from '../Drawer';
 import Tooltip from '../Tooltip';
 import Accordion, { AccordionItemProps }from '../Accordion';

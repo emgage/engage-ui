@@ -55,8 +55,6 @@ class DrawerContent extends React.Component<Props, never> {
   }
 
   render() {
-    // const containerClassName = this.getContainerClassName();
-    // const barClassName = this.getBarClassName();
     const { active, children, closeButton, theme, toggleDrawer } = this.props;
     const dcStyle = Object.assign(
       {},
