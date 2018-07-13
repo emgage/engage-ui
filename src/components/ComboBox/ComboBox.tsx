@@ -3,8 +3,10 @@ import { themr, ThemedComponentClass } from 'react-css-themr';
 import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
 import { COMBOBOX } from '../ThemeIdentifiers';
 import ComboBoxItem from './ComboBoxItem';
+import Icon from '../Icon';
 import TextField from '../TextField';
 import Popover from '../Popover';
+import arrowSvg from './icons/arrow.svg';
 import * as baseTheme from './ComboBox.scss';
 
 export type Mode = 'collapsible' | 'multiple';
@@ -73,12 +75,13 @@ class ComboBox extends React.Component<Props, State> {
     this.setState({
       value,
       items: newItems,
+      open: value && value !== '' ? true : false
     });
   }
 
-  onFocus = (event: React.FormEvent<HTMLElement>) => {
+  onArrowClick = (event: React.FormEvent<HTMLElement>) => {
     this.setState({
-      open: true,
+      open: !this.state.open,
       anchorEl: event.target as HTMLElement
     });
   }
@@ -105,13 +108,15 @@ class ComboBox extends React.Component<Props, State> {
       );
 
     return (
-      <div key={this.id}>
+      <div key={this.id} className={baseTheme.comboboxContainer}>
         <TextField
           label={label}
           onChange={this.onChange}
-          onFocus={this.onFocus}
           value={this.state.value}
         />
+        <div className={baseTheme.comboboxArrow} onClick={this.onArrowClick}>
+          <Icon source={arrowSvg} />
+        </div>
         {open && <Popover
           style={{ background: '#dcdcdc', width: '100%', padding: '10px 100px' }}
           active={this.state.open}
