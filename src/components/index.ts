@@ -169,11 +169,6 @@ export {
 } from './Message';
 
 export {
-  default as OffCanvas,
-  Props as OffCanvasProps,
-} from './OffCanvas';
-
-export {
   default as Panel,
   Props as PanelProps,
 } from './Panel';

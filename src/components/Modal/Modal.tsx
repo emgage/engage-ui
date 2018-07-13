@@ -37,7 +37,7 @@ export interface Props {
   // Callback function for opening or closing modal
   toggle?(): void;
   // Define size of modal: small, medium, large or px value
-  width?: Width;
+  componentWidth?: Width;
 }
 
 const getUniqueID = createUniqueIDFactory('ModalContent');
@@ -59,7 +59,7 @@ class Modal extends React.Component<Props, never> {
     this.setAccessibilityAttributes();
   }
 
-  componentWillReceiveProps(newProps: any) {
+  componentWillReceiveProps(newProps: Props) {
     const { active } = this.props;
     // Call the callback function if available
     // onOpen: when drawer open
@@ -76,13 +76,13 @@ class Modal extends React.Component<Props, never> {
   }
 
   getModalContainerClassName = () => {
-    const { theme, width } = this.props;
+    const { theme, componentWidth } = this.props;
 
     return classNames(
       theme.dialog,
-      width === 'small' && theme.small,
-      width === 'medium' && theme.medium,
-      width === 'large' && theme.large
+      componentWidth === 'small' && theme.small,
+      componentWidth === 'medium' && theme.medium,
+      componentWidth === 'large' && theme.large
     );
   }
 

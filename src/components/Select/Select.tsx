@@ -21,29 +21,45 @@ export interface Group {
 }
 
 export interface Props {
+  // List of options to choose from 
   options?: Option[];
+  // List of option groups to choose from
   groups?: (Group | Option)[];
+  // Label for the Select
   label: string;
+  // Adds an action to the label
   labelAction?: Action;
+  // Visually hide the label
   labelHidden?: boolean;
+  // Additional text to aide in use
   helpText?: React.ReactNode;
-  id?: string;
+  // ID for form input
+  componentId?: string;
+  // Name for form input
   name?: string;
+  // Display an error state
   errors?: [Error];
+  // Disable input
   disabled?: boolean;
   required?: boolean;
+  // Value for form input
   value?: string;
+  // Content to display when component render.
   placeholder?: string;
+  // Theme to be injected via css-themr.
   theme?: any;
+  // Callback when selection is changed
   onChange?(selected: string): void;
+  // Callback when Select is focussed
   onFocus?(): void;
+  // Callback when focus is removed
   onBlur?(): void;
 }
 
 const getUniqueID = createUniqueIDFactory('Select');
 
 const select = ({
-  id = getUniqueID(),
+  componentId = getUniqueID(),
   name,
   groups,
   options,
@@ -82,8 +98,8 @@ const select = ({
     : undefined;
 
   const describedBy: string[] = [];
-  if (helpText) { describedBy.push(helpTextID(id)); }
-  if (errors) { describedBy.push(errorID(id)); }
+  if (helpText) { describedBy.push(helpTextID(componentId)); }
+  if (errors) { describedBy.push(errorID(componentId)); }
 
   const placeholderOption = isPlaceholder
     ? <option label={placeholder} disabled hidden />
@@ -91,7 +107,7 @@ const select = ({
 
   return (
     <Labelled
-      id={id}
+      componentId={componentId}
       label={label}
       errors={errors}
       action={labelAction}
@@ -101,7 +117,7 @@ const select = ({
     >
       <div className={className}>
         <select
-          id={id}
+          id={componentId}
           name={name ? name : 'select'}
           value={value}
           className={theme.input}

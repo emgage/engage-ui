@@ -10,8 +10,11 @@ import Item from './Item';
 export type Type = 'bullet' | 'number' | 'default' | 'striped' | 'divider';
 
 export interface Props {
+  // Display list item elements
   children?: React.ReactNode;
-  type?: Type;
+  // Type of list to display. Available options: bullet | number | default | striped | divider
+  componentType?: Type;
+  // Theme to be injected via css-themr
   theme?: any;
 }
 
@@ -19,14 +22,14 @@ class ContentList extends React.PureComponent<Props, never> {
   static Item = Item;
 
   render() {
-    const { children, type = 'bullet', theme } = this.props;
-    const background = type === 'divider' ? baseTheme['list-divider'] : type === 'striped' ? baseTheme['list-striped'] : type === 'default' ? baseTheme['naked'] : '';
+    const { children, componentType = 'bullet', theme } = this.props;
+    const background = componentType === 'divider' ? baseTheme['list-divider'] : componentType === 'striped' ? baseTheme['list-striped'] : componentType === 'default' ? baseTheme['naked'] : '';
     const className = classNames(
       theme.list,
-      type && theme[variationName('type', type)]
+      componentType && theme[variationName('type', componentType)]
     );
 
-    const LISTELEMENT = type === 'number' ? 'ol' : 'ul';
+    const LISTELEMENT = componentType === 'number' ? 'ol' : 'ul';
     return <LISTELEMENT className={className + ' ' + background}>{children}</LISTELEMENT>;
   }
 }

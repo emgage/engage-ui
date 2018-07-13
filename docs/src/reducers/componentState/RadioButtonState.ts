@@ -29,7 +29,7 @@ const RadioButtonState: IDocument = {
       type: 'boolean',
       desc: 'Radio button is selected.',
     }, {
-      name: 'id',
+      name: 'componentId',
       type: 'string',
       desc: 'ID for form input.',
     }, {

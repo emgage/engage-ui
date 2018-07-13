@@ -7,7 +7,7 @@ const CheckBoxExample = () => (
     <Checkbox
       label="Disabled"
       disabled
-      name="checkbox"
+      name ="checkbox"
       value="Some value"
     />
   </div>

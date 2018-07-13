@@ -8,12 +8,19 @@ import PositionedOverlay, { OverlayDetails, PreferredPosition } from '../Positio
 import * as styles from './Tooltip.scss';
 
 export interface Props {
-  id: string;
+  // Id for tooltip.
+  componentId: string;
+  // Toggle whether the tooltip is visible.
   active: boolean;
+  // Display tooltip with a light background.
   light?: boolean;
+  // The direction the tooltip tries to display Availabel options: above | below | mostSpace
   preferredPosition?: PreferredPosition;
+  // The children that activate the tooltip.
   children?: React.ReactNode;
+  // Activator is used to trigger tooltip component.
   activator: HTMLElement;
+  // callback when tooltip is closed.
   onClose(): void;
 }
 
@@ -53,7 +60,7 @@ export default class TooltipOverlay extends React.PureComponent<Props, never> {
       positioning,
       activatorRect,
     } = overlayDetails;
-    const { id, children, light } = this.props;
+    const { componentId, children, light } = this.props;
 
     const tipStyle = calculateTipPosition(activatorRect.center.x, left);
 
@@ -76,7 +83,7 @@ export default class TooltipOverlay extends React.PureComponent<Props, never> {
           {tipMarkup}
           <div className={styles.wrapper}>
           <div
-            id={id}
+            id={componentId}
             role="tooltip"
             className={styles.content}
             style={contentStyles}

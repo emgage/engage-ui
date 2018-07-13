@@ -106,11 +106,17 @@ export const BUNDLED_ICONS = {
 const COLORS_WITH_BACKDROPS = ['teal', 'tealDark', 'greenDark', 'redDark', 'yellowDark', 'ink'];
 
 export interface Props {
+  // Souce for an icon.
   source: SVGSource | 'placeholder' | keyof typeof BUNDLED_ICONS;
-  color?: Color;
+  // To give colors for icons.
+  componentColor?: Color;
+  // Show a backdrop behind the icon.
   backdrop?: boolean;
+  // Descriptive text to be read to screenreaders.
   accessibilityLabel?: string;
-  style?: React.CSSProperties;
+  // To provide styling.
+  componentStyle?: React.CSSProperties;
+  // Theme to be injected via css-themr.
   theme?: any;
   callbackValue?: any;
   onClick?(id: number | string): void;
@@ -119,21 +125,21 @@ export interface Props {
 const icon = ({
   callbackValue,
   source,
-  color,
+  componentColor,
   backdrop,
   accessibilityLabel,
-  style,
+  componentStyle,
   theme,
   onClick,
 }: Props) => {
-  if (color && backdrop && COLORS_WITH_BACKDROPS.indexOf(color) < 0) {
+  if (componentColor && backdrop && COLORS_WITH_BACKDROPS.indexOf(componentColor) < 0) {
     // tslint:disable-next-line no-console
-    console.warn(`The ${color} icon doesn't accept backdrops. The icon colors that have backdrops are: ${COLORS_WITH_BACKDROPS.join(', ')}`);
+    console.warn(`The ${componentColor} icon doesn't accept backdrops. The icon colors that have backdrops are: ${COLORS_WITH_BACKDROPS.join(', ')}`);
   }
 
   const className = classNames(
     theme.icon,
-    color && theme[variationName('color', color)],
+    componentColor && theme[variationName('color', componentColor)],
     backdrop && theme.hasBackdrop
   );
 
@@ -158,7 +164,7 @@ const icon = ({
   }
 
   return (
-    <span className={className} style={style} aria-label={accessibilityLabel} onClick={(event) => { onClick ? onClick((callbackValue ? callbackValue : event)) : ''; }}>
+    <span className={className} style={componentStyle} aria-label={accessibilityLabel} onClick={(event) => { onClick ? onClick((callbackValue ? callbackValue : event)) : ''; }}>
       {contentMarkup}
     </span>
   );

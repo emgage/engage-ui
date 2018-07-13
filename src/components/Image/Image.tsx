@@ -6,11 +6,12 @@ export interface SourceSet {
 }
 
 export interface Props extends React.DetailedHTMLProps<React.ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement> {
+  // To render text or image when particular image can not be displayed or not available.
   alt: string;
+  // Souce for an image.
   source: string;
   sourceSet?: SourceSet[];
 }
-
 
 class Image extends React.Component<Props, {}> {
   render() {

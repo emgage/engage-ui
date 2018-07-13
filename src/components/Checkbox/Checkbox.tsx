@@ -11,25 +11,38 @@ import checkmarkSvg from './icons/checkmark.svg';
 import * as baseTheme from './Checkbox.scss';
 
 export interface Props {
+  // Label for the checkbox
   label: string;
+  // Visually hide the label
   labelHidden?: boolean;
+  // Checkbox is selected or not
   checked?: boolean;
+  // Additional text to aide in use
   helpText?: React.ReactNode;
-  id?: string;
+  // ID for form input
+  componentId?: string;
+  // Name for form input
   name?: string;
+  // Value for form input
   value?: string;
+  // Display an error state
   error?: Error;
+  // Disabled checkbox name
   disabled?: boolean;
+  // Theme to be injected via css-themr
   theme?: any;
+  // Callback when checkbox is toggled
   onChange?(newValue: boolean): void;
+  // Callback when checkbox is focussed
   onFocus?(): void;
+  // Callback when focus is removed
   onBlur?(): void;
 }
 
 const getUniqueID = createUniqueIDFactory('Checkbox');
 
 const checkbox = ({
-  id = getUniqueID(),
+  componentId = getUniqueID(),
   label,
   labelHidden,
   helpText,
@@ -50,8 +63,8 @@ const checkbox = ({
   }
 
   const describedBy: string[] = [];
-  if (typeof error === 'string') { describedBy.push(errorID(id)); }
-  if (helpText) { describedBy.push(helpTextID(id)); }
+  if (typeof error === 'string') { describedBy.push(errorID(componentId)); }
+  if (helpText) { describedBy.push(helpTextID(componentId)); }
 
   const className = classNames(
     theme.checkbox,
@@ -60,7 +73,7 @@ const checkbox = ({
 
   return (
     <Choice
-      id={id}
+      componentId={componentId}
       label={label}
       labelHidden={labelHidden}
       helpText={helpText}
@@ -68,7 +81,7 @@ const checkbox = ({
     >
       <div className={className}>
         <input
-          id={id}
+          id={componentId}
           name={name}
           value={value}
           type="checkbox"

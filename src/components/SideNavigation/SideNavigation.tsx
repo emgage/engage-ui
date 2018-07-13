@@ -71,26 +71,26 @@ class SideNavigation extends React.Component<Props, State> {
     // Iterate through source config items and set markup when full content is displayed
     const fullContentMarkup = source.map((full : any) => {
       const childrenMarkup = full.children !== undefined || null ? full.children.map((child:any) => {
-        return <li><a className={childLiClass} onClick={child.action} aria-disabled={false}><Icon source={child.icon} color="white" />{child.label}</a></li>;
+        return <li><a className={childLiClass} onClick={child.action} aria-disabled={false}><Icon source={child.icon} componentColor="white" />{child.label}</a></li>;
       }) : null;
       // Set Accordian Item properties
       const items : AccordionItemProps[] = [{
         children: childrenMarkup,
-        header: <li className={liClass}><a className={liClass} onClick={full.action} aria-disabled={false}><Icon source={full.icon} color={activeItem === full.id ? 'black' : 'white'} />{full.label}</a></li>
+        header: <li className={liClass}><a className={liClass} onClick={full.action} aria-disabled={false}><Icon source={full.icon} componentColor={activeItem === full.id ? 'black' : 'white'} />{full.label}</a></li>
       }
       ];
       // Set markup based on the prop values
       const markup = accordian ? (
                     childrenMarkup ==  null ? (
                         <div>
-                            <li className={liClass}><a className={liClass} onClick={full.action} aria-disabled={false}><Icon source={full.icon} color={activeItem === full.id ? 'black' : 'white'}/>{full.label}</a></li>
+                            <li className={liClass}><a className={liClass} onClick={full.action} aria-disabled={false}><Icon source={full.icon} componentColor={activeItem === full.id ? 'black' : 'white'}/>{full.label}</a></li>
                             {childrenMarkup}
                         </div>
                     ) : (
                     <Accordion style={{ padding:'0px', height:'20px' }} mode="collapsible" items={items} />)
                     ) : (
                         <div>
-                            <li className={liClass}><a className={liClass} onClick={full.action} aria-disabled={false}><Icon source={full.icon} color={activeItem === full.id ? 'black' :'white'} />{full.label}</a></li>
+                            <li className={liClass}><a className={liClass} onClick={full.action} aria-disabled={false}><Icon source={full.icon} componentColor={activeItem === full.id ? 'black' :'white'} />{full.label}</a></li>
                             {childrenMarkup}
                         </div>
                     );
@@ -114,7 +114,7 @@ class SideNavigation extends React.Component<Props, State> {
       <p key={col.id} className={iconCollClass}>
                     <Tooltip content={col.label}>
                     <a className={liClass} onClick={col.action} aria-disabled={false}>
-                        <Icon source={col.icon} color="white" />
+                        <Icon source={col.icon} componentColor="white" />
                     </a>
                     </Tooltip>
      </p>
@@ -124,7 +124,7 @@ class SideNavigation extends React.Component<Props, State> {
     const drawerContentId = actDrawerId === 'fullContent' ? 'collapsedContent' : 'fullContent';
     const collapseIconMarkup = (!hideCollapse) ?
             <span className={this.props.theme.expand}>
-                <button type="button" className={this.props.theme.navButton} onClick={() => this.setState({ activeDrawerId: drawerContentId })}><Icon source={collapseIcon} color="white" /></button>
+                <button type="button" className={this.props.theme.navButton} onClick={() => this.setState({ activeDrawerId: drawerContentId })}><Icon source={collapseIcon} componentColor="white" /></button>
             </span>
          : null;
          // Return div with drawer component having the side navigation items wrapped in drawer content component
@@ -134,15 +134,15 @@ class SideNavigation extends React.Component<Props, State> {
                     active={drawerOpen}
                     activeContentId={this.state.activeDrawerId}
                     mode="push"
-                    width="small"
+                    componentWidth="small"
                     style={actDrawerId === 'collapsedContent' ? { width: '10px', padding: '15px', overflow: 'visible' } : { width: '270px', overflow: 'visible'  }} >
-                    <DrawerContent id="fullContent" mode="slide" style={{ background: 'black', color: 'white', padding: '0px',overflowX: 'hidden' }}>
+                    <DrawerContent componentId="fullContent" mode="slide" style={{ background: 'black', color: 'white', padding: '0px',overflowX: 'hidden' }}>
                         {collapseIconMarkup}
                         <ul className={this.props.theme.list}>
                             {fullContentMarkup}
                         </ul>
                     </DrawerContent>
-                    <DrawerContent id="collapsedContent" mode="slide" style={{ width: '10px', padding: '15px', background: 'black', color: 'white' }}>
+                    <DrawerContent componentId="collapsedContent" mode="slide" style={{ width: '10px', padding: '15px', background: 'black', color: 'white' }}>
                         {collapseIconMarkup}
                         <ul className={this.props.theme.collapseList} >
                             {collapsedContentMarkup}

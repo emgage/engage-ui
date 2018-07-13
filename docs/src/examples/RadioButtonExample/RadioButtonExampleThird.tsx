@@ -7,7 +7,7 @@ const RadioButtonExampleThird = () => (
         <RadioButton
             name="size"
             label="Large"
-            checked id="Radioid"
+            checked componentId="Radioid"
             value="Large"
             disabled
             labelHidden

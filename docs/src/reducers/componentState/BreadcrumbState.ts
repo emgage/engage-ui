@@ -21,7 +21,7 @@ const BreadcrumbState: IDocument = {
       type: 'ISourceData[]',
       desc: 'The content as Array of items, render in breadcrumb.',
     }, {
-      name: 'style',
+      name: 'componentStyle',
       type: 'React.CSSProperties',
       desc: 'To display the styling.',
     }, {

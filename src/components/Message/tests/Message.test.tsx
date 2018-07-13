@@ -11,7 +11,7 @@ describe('<Message />', () => {
   describe('when default props are provided', () => {
     it('basic message should have rendered 1 noscript element', () => {
       const messageWrapper = mount(
-                                    <Message id="10101" theme={theme} />
+                                    <Message componentId="10101" theme={theme} />
                                );
       expect(messageWrapper.find('noscript')).toHaveLength(1);
     });
@@ -21,16 +21,16 @@ describe('<Message />', () => {
     describe('when set', () => {
       it('basic message should have rendered 1 noscript element', () => {
         const messageWrapper = mount(
-                                      <Message id="10101" theme={theme} />
+                                      <Message componentId="10101" theme={theme} />
                                );
         expect(messageWrapper.find('noscript')).toHaveLength(1);
       });
 
       it('should verify id when set', () => {
         const messageWrapper = mount(
-                                      <Message id="10101" theme={theme} />
+                                      <Message componentId="10101" theme={theme} />
                                );
-        expect(messageWrapper.prop('id')).toBe('10101');
+        expect(messageWrapper.prop('componentId')).toBe('10101');
       });
     });
   });
@@ -39,13 +39,13 @@ describe('<Message />', () => {
     describe('when not set', () => {
       it('basic message should have rendered 1 noscript element', () => {
         const messageWrapper = mount(
-                                      <Message id="10101" theme={theme} />
+                                      <Message componentId="10101" theme={theme} />
                                    );
         expect(messageWrapper.find('noscript')).toHaveLength(1);
       });
       it('should verify children when is not set/defined', () => {
         const messageWrapper = mount(
-                                      <Message id="10101" theme={theme} />
+                                      <Message componentId="10101" theme={theme} />
                                );
         expect(messageWrapper.prop('children')).toBeUndefined();
         expect(messageWrapper.find('children')).toHaveLength(0);
@@ -54,7 +54,7 @@ describe('<Message />', () => {
     describe('when set', () => {
       it('basic message should have rendered 1 noscript element', () => {
         const messageWrapper = mount(
-                                      <Message id="10101" theme={theme} >
+                                      <Message componentId="10101" theme={theme} >
                                           Click Here
                                       </Message>
                                );
@@ -63,7 +63,7 @@ describe('<Message />', () => {
       });
       it('should verify children when is set', () => {
         const messageWrapper = mount(
-                                      <Message id="10101" theme={theme} >
+                                      <Message componentId="10101" theme={theme} >
                                           Click Here
                                       </Message>
                                );
@@ -76,7 +76,7 @@ describe('<Message />', () => {
     describe('when not set', () => {
       it('basic message should have rendered 1 noscript element', () => {
         const messageWrapper = mount(
-                                      <Message id = "10101" theme={theme}>
+                                      <Message componentId = "10101" theme={theme}>
                                         Click Here
                                       </Message>
                                );
@@ -87,7 +87,7 @@ describe('<Message />', () => {
     describe('when set to true', () => {
       it('basic message should have rendered 1 div element', () => {
         const messageWrapper = mount(
-                                      <Message id="10101" isVisible={true} theme={theme} >
+                                      <Message componentId="10101" isVisible={true} theme={theme} >
                                           Click Here
                                       </Message>
                                );
@@ -95,7 +95,7 @@ describe('<Message />', () => {
       });
       it('basic message should have rendered 1 span element', () => {
         const messageWrapper = mount(
-                                      <Message id="10101" isVisible={true} theme={theme} >
+                                      <Message componentId="10101" isVisible={true} theme={theme} >
                                         Click Here
                                       </Message>
                                );
@@ -103,7 +103,7 @@ describe('<Message />', () => {
       });
       it('basic message should have messageBlock css class on div', () => {
         const messageWrapper = mount(
-                                      <Message id="10101" isVisible={true} theme={theme} >
+                                      <Message componentId="10101" isVisible={true} theme={theme} >
                                           Click Here
                                       </Message>
                                );
@@ -111,7 +111,7 @@ describe('<Message />', () => {
       });
       it('basic message should have messagePrompt css class on span', () => {
         const messageWrapper = mount(
-                                      <Message id="10101" isVisible={true} theme={theme} >
+                                      <Message componentId="10101" isVisible={true} theme={theme} >
                                           Click Here
                                       </Message>
                                );
@@ -119,7 +119,7 @@ describe('<Message />', () => {
       });
       it('should verify isVisible set as true', () => {
         const messageWrapper = mount(
-                                      <Message id = "10101" isVisible={true} theme={theme}>
+                                      <Message componentId = "10101" isVisible={true} theme={theme}>
                                           Click Here
                                       </Message>
                                );
@@ -127,7 +127,7 @@ describe('<Message />', () => {
       });
       it('should verify children when isVisible set as true', () => {
         const messageWrapper = mount(
-                                      <Message id = "10101" isVisible={true} theme={theme}>
+                                      <Message componentId = "10101" isVisible={true} theme={theme}>
                                         Click Here
                                       </Message>
                                );
@@ -138,7 +138,7 @@ describe('<Message />', () => {
     describe('when set to false', () => {
       it('basic message should have rendered 1 noscript element', () => {
         const messageWrapper = mount(
-                                      <Message id = "10101" isVisible={false} theme={theme}>
+                                      <Message componentId = "10101" isVisible={false} theme={theme}>
                                         Click Here
                                       </Message>
                                );
@@ -146,7 +146,7 @@ describe('<Message />', () => {
       });
       it('should verify isVisible set as false', () => {
         const messageWrapper = mount(
-                                      <Message id = "10101" isVisible={false} theme={theme}>
+                                      <Message componentId = "10101" isVisible={false} theme={theme}>
                                           Click Here
                                       </Message>
                                );
@@ -158,7 +158,7 @@ describe('<Message />', () => {
   describe('verify all property together', () => {
     it('basic message should have rendered 1 div and 1 span element', () => {
       const messageWrapper = mount(
-                                    <Message id="10101" isVisible={true} theme={theme} >
+                                    <Message componentId="10101" isVisible={true} theme={theme} >
                                         Click Here
                                     </Message>
                              );
@@ -167,7 +167,7 @@ describe('<Message />', () => {
     });
     it('basic message should have messageBlock css class on div', () => {
       const messageWrapper = mount(
-                                    <Message id="10101" isVisible={true} theme={theme} >
+                                    <Message componentId="10101" isVisible={true} theme={theme} >
                                         Click Here
                                     </Message>
                              );
@@ -175,7 +175,7 @@ describe('<Message />', () => {
     });
     it('basic message should have messagePrompt css class on span', () => {
       const messageWrapper = mount(
-                                    <Message id="10101" isVisible={true} theme={theme} >
+                                    <Message componentId="10101" isVisible={true} theme={theme} >
                                     Click Here
                                     </Message>
                              );
@@ -183,11 +183,11 @@ describe('<Message />', () => {
     });
     it('should verify all properties are set', () => {
       const messageWrapper = mount(
-                                    <Message id = "10101" isVisible={true} theme={theme}>
+                                    <Message componentId = "10101" isVisible={true} theme={theme}>
                                       Click Here
                                     </Message>
                                 );
-      expect(messageWrapper.prop('id')).toBe('10101');
+      expect(messageWrapper.prop('componentId')).toBe('10101');
       expect(messageWrapper.prop('isVisible')).toBe(true);
       expect(messageWrapper.prop('children')).toBe('Click Here');
     });

@@ -8,19 +8,21 @@ import { LOADING } from '../ThemeIdentifiers';
 import * as baseTheme from './Loading.scss';
 
 export interface Props {
-  style?: React.CSSProperties;
+  // To apply style externally for this component
+  componentStyle?: React.CSSProperties;
+  // Theme to be injected via css-themr
   theme?: any;
 }
 
 class Loading extends React.PureComponent<Props, {}> {
   render() {
     const {
-            style,
+      componentStyle,
             theme,
         } = this.props;
 
     return (
-            <div style={style}>
+            <div style={componentStyle}>
                 <span className={theme.loading}><Icon source="spinner" /></span>
                 <VisuallyHidden>Loading...</VisuallyHidden>
             </div>

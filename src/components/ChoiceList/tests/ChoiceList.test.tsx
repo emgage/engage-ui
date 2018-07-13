@@ -44,7 +44,7 @@ describe('<ChoiceList />', () => {
     describe('when set', () => {
       it('should verify renders a legend for the fieldset', () => {
         const element = mount(
-                              <ChoiceList title="My title" selected={[]} choices={choices} theme={theme} />
+                              <ChoiceList componentTitle="My title" selected={[]} choices={choices} theme={theme} />
                              );
         expect(element.find('legend')).toHaveLength(1);
         expect(element.find('legend').at(0).hasClass('title')).toBe(true);
@@ -118,7 +118,7 @@ describe('<ChoiceList />', () => {
       let name: string;
 
       choiceElements.forEach((choiceElement) => {
-        const choiceName = choiceElement.prop<string>('name');
+        const choiceName = choiceElement.prop<string>('componentName');
         if (name == null) {
           name = choiceName;
         } else {
@@ -132,20 +132,20 @@ describe('<ChoiceList />', () => {
     it('uses the same name for every choice', () => {
       const name = 'MyChoiceList';
       const choiceElements = shallow(
-                                     <ChoiceList name={name} selected={[]} choices={choices} theme={theme} />
+                                     <ChoiceList componentName={name} selected={[]} choices={choices} theme={theme} />
                                     ).find(RadioButton);
       choiceElements.forEach((choiceElement) => {
-        expect(choiceElement.prop('name')).toBe(name);
+        expect(choiceElement.prop('componentName')).toBe(name);
       });
     });
 
     it('postpends [] when multiple options are allowed', () => {
       const name = 'MyChoiceList';
       const choiceElements = shallow(
-                                     <ChoiceList allowMultiple name={name} selected={[]} choices={choices} theme={theme} />
+                                     <ChoiceList allowMultiple componentName={name} selected={[]} choices={choices} theme={theme} />
                                     ).find(RadioButton);
       choiceElements.forEach((choiceElement) => {
-        expect(choiceElement.prop('name')).toBe(`${name}[]`);
+        expect(choiceElement.prop('componentName')).toBe(`${name}[]`);
       });
     });
   });
@@ -187,7 +187,7 @@ describe('<ChoiceList />', () => {
     describe('when  set as true', () => {
       it('should verify renders a titlehidden for the choicelist when set as true', () => {
         const element = mount(
-                              <ChoiceList title="My title" titleHidden={true}
+                              <ChoiceList componentTitle="My title" titleHidden={true}
                               selected={[]} choices={choices} theme={theme} />
                              );
         expect(element.prop('titleHidden')).toBe(true);
@@ -197,7 +197,7 @@ describe('<ChoiceList />', () => {
     describe('when  set as false', () => {
       it('should verify renders a titlehidden for the choicelist when set as false', () => {
         const element = mount(
-                              <ChoiceList title="My title" titleHidden={false}
+                              <ChoiceList componentTitle="My title" titleHidden={false}
                               selected={[]} choices={choices} theme={theme} />
                              );
         expect(element.prop('titleHidden')).toBe(false);

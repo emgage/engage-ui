@@ -9,8 +9,11 @@ import { BUTTON_GROUP } from '../ThemeIdentifiers';
 import * as baseTheme from './ButtonGroup.scss';
 
 export interface Props {
+  // Display true or false value. Join buttons as segmented group.
   segmented?: boolean;
+  // Name of button, Button components.
   children?: React.ReactNode;
+  // Theme to be injected via css-themr.
   theme?: any;
 }
 

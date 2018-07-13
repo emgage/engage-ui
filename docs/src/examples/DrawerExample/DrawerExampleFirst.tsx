@@ -27,11 +27,11 @@ class DrawerExample extends React.Component<Props, State> {
           active={ this.state.drawer }
           activeContentId={this.state.activeDrawerId}
           mode="slide"
-          width="large"
+          componentWidth="large"
           overlay
         >
           <DrawerContent
-            id="content1"
+            componentId="content1"
             mode="slide">
             <FormLayout>
               <TextField
@@ -50,7 +50,7 @@ class DrawerExample extends React.Component<Props, State> {
           </DrawerContent>
 
           <DrawerContent
-            id="content2"
+            componentId="content2"
             mode="slide"
             flip>
             <FormLayout>
