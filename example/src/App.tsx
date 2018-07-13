@@ -198,7 +198,6 @@ class App extends React.Component<{}, State> {
       component: <span>My name is {rowId}</span>,
     };
 
-    console.log('RowId:', rowId, 'toggle:', toggleStatus);
     nestedChildData.some((item: TableNestedData, index: number): boolean => {
       if (item.rowId === rowId) {
         nestedChildData.splice(index, 1);

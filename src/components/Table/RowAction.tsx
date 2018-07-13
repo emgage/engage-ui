@@ -4,17 +4,17 @@ import { themr, ThemedComponentClass } from 'react-css-themr';
 import { TABLE } from '../ThemeIdentifiers';
 
 import Button from '../Button';
-
 import Dropdown from '../Dropdown';
-
 import TableData from './TableData';
+
+import { DropdownItemProps } from '../';
 
 import * as baseTheme from './Table.scss';
 
 export interface Props {
   dataId?: string | number;
   // Individual row action, if available add it in last of the column
-  actionConfig?: any;
+  actionConfig: DropdownItemProps[];
   theme?: any;
 }
 
@@ -56,22 +56,6 @@ class RowAction extends React.Component<Props, State> {
           returnValue={dataId}
           closeOnClickOutside
         />
-
-        {/* <Popover
-          active={this.state.active}
-          >
-          <Pane>
-            <List type="striped">
-              {
-                actionConfig.map((item: any, index: number) => {
-                  return (
-                    <Item key={index} onClick={this.triggerAction(item)}>{ item.label }</Item>
-                  );
-                })
-              }
-            </List>
-          </Pane>
-        </Popover> */}
       </TableData>
     );
   }
