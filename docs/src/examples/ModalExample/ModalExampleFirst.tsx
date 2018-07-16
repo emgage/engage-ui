@@ -29,7 +29,7 @@ class ModalExample extends React.Component {
             toggle={this.toggleModal}
             onOpen={this.onModalOpen}
             onClose={this.onModalClose}
-            width="medium"
+            componentWidth="medium"
             closeOnBackgroud
             closeOnEsc
             closeButton>

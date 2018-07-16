@@ -7,8 +7,11 @@ import { TEXT_FIELD } from '../ThemeIdentifiers';
 import * as baseTheme from './TextField.scss';
 
 export interface Props {
+  // Theme to be injected via css-themr.
   theme?: any;
+  // Callback when value is changed.
   onChange(delta: number): void;
+  // Callback when Textfield is clicked
   onClick?(): void;
 }
 

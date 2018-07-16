@@ -9,11 +9,17 @@ export type FlexJustify = 'Start' | 'Center' | 'End' | 'SpaceAround' | 'SpaceBet
 export type FlexDirection = 'Row' | 'RowReverse' | 'Column' | 'ColumnReverse';
 
 export interface Props {
+  // Set display of flex container.
   inline?: boolean;
+  // Sets the direction of flex items in a flex container. Value of direction can be one from this list : "Row", "RowReverse", "Column", "ColumnReverse"
   direction?: FlexDirection ;
+  // Sets the alignment of flex items on the main axis. Value of justify can be one from this list : "Start", "Center", "End", "SpaceAround", "SpaceBetween"
   justify?: FlexJustify;
+  // Sets the alignment of flex items on the cross axis. Value of align can be one from this list : "Start", "Center", "End", "Stretch"
   align?: FlexAlign;
-  style?: React.CSSProperties;
+  // To display the styling.
+  componentStyle?: React.CSSProperties;
+  // Theme to be injected via css-themr.
   theme?: any;
 }
 
@@ -80,7 +86,7 @@ class FlexBox extends React.PureComponent<Props, {}> {
     }
 
     return (
-            <div className={className} style={this.props.style}>
+            <div className={className} style={this.props.componentStyle}>
                 {this.props.children}
             </div>
     );

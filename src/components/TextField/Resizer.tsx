@@ -7,10 +7,14 @@ import { TEXT_FIELD } from '../ThemeIdentifiers';
 import * as baseTheme from './TextField.scss';
 
 export interface Props {
+  // Theme to be injected via css-themr.
   theme?: any;
+  // Content placed inside textfield
   contents?: string;
+  // Show current height of field.
   currentHeight?: number | null;
   minimumLines?: number;
+  // Callback when height is changed or resized.
   onHeightChange(height: number): void;
 }
 

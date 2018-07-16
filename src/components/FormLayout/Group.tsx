@@ -12,9 +12,9 @@ import * as baseTheme from './FormLayout.scss';
 export interface Props {
   children?: React.ReactNode;
   condensed?: boolean;
-  title?: string;
+  componentTitle?: string;
   helpText?: React.ReactNode;
-  style?: React.CSSProperties;
+  componentStyle?: React.CSSProperties;
   theme?: any;
 }
 
@@ -22,7 +22,7 @@ const getUniqueID = createUniqueIDFactory('FormLayoutGroup');
 
 class Group extends React.Component<Props, {}> {
   render() {
-    const { children, condensed, title, helpText, style, theme } = this.props;
+    const { children, condensed, componentTitle, helpText, componentStyle, theme } = this.props;
     const className = classNames(
       condensed && theme.condensed
     );
@@ -39,9 +39,9 @@ class Group extends React.Component<Props, {}> {
       helpTextElement = <div id={helpTextID} className={theme.helpText}>{helpText}</div>;
     }
 
-    if (title) {
+    if (componentTitle) {
       titleID = `${id}Title`;
-      titleElement = <div id={titleID} className={theme.title}>{title}</div>;
+      titleElement = <div id={titleID} className={theme.title}>{componentTitle}</div>;
     }
 
     const itemsMarkup = React.Children.map(children, child => wrapWithComponent(child, Item));
@@ -52,7 +52,7 @@ class Group extends React.Component<Props, {}> {
         className={className}
         aria-labelledby={titleID}
         aria-describedby={helpTextID}
-        style={style}
+        style={componentStyle}
       >
         {titleElement}
         <div className={theme.items}>

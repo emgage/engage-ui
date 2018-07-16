@@ -16,7 +16,7 @@ const ListState: IDocument = {
       type: 'string',
       desc: 'Display list item elements',
     }, {
-      name: 'type',
+      name: 'componentType',
       type: 'enum',
       desc: 'Type of list to display. Available options: bullet | number | default | striped | divider',
     }, {

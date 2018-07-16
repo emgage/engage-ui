@@ -14,15 +14,20 @@ export interface AccordionItemProps {
 }
 
 export interface Props {
+  // Items of the accordion component
   items: AccordionItemProps[];
+  // Mode of accordion. it can be collapsible or multiple
   mode?: Mode;
+  // Index of item which you want to be active
   openIndex?: number;
+  // Index of item which you want to be in-active
   closeIndex?: number;
   style?:any;
   clickHandler?(event: React.FormEvent<HTMLElement>): void;
 }
 
 interface State {
+  // to maintain state of accordion component (active/inactive)
   active: boolean[];
 }
 

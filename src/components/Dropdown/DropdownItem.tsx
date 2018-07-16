@@ -8,10 +8,15 @@ import * as baseTheme from './Dropdown.scss';
 
 export interface Props {
   content?: React.ReactNode;
+  // Show or hide the Dropdown.
   active?: boolean;
+  // Disable the dropdown
   disabled?: boolean;
+  // To differentiate items in dropdown
   divider?: boolean;
+  // Header of item to render in dropdown
   header?: boolean;
+  // Callback when item from drowpdown is selected.
   onClick?(): void;
 }
 

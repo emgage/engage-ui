@@ -12,12 +12,19 @@ import TooltipOverlay from './TooltipOverlay';
 import * as baseTheme from './Tooltip.scss';
 
 export interface Props {
+  // The children that activate the tooltip.
   children?: React.ReactNode;
+  // The content to display within the tooltip.
   content: string;
+  // Toggle whether the tooltip is visible.
   active?: boolean;
+  // Display tooltip with a light background.
   light?: boolean;
+  // The direction the tooltip tries to display Availabel options: above | below | mostSpace
   preferredPosition?: PreferredPosition;
+  // The element type to wrap the activator in.
   activatorWrapper?: string;
+  // Theme to be injected via css-themr.
   theme?: any;
 }
 
@@ -59,7 +66,7 @@ class Tooltip extends React.PureComponent<Props, State> {
 
     return (
       <TooltipOverlay
-        id={id}
+        componentId={id}
         preferredPosition={preferredPosition}
         activator={activatorNode}
         active={active || this.state.active}

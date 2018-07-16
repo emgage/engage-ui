@@ -4,10 +4,15 @@ import UnstyledLink from '../UnstyledLink';
 import { LINK } from '../ThemeIdentifiers';
 
 export interface Props {
+  // The url to link to.
   url?: string;
+  // The content to display inside link.
   children?: React.ReactNode;
+  // Use for a links that open a different site
   external?: boolean;
+  // Theme to be injected via css-themr.
   theme?: any;
+  // Callback when a link is clicked
   onClick?(): void;
 }
 

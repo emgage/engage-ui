@@ -10,7 +10,9 @@ export enum Position {
 }
 
 export interface Props {
+  // To set position/direction of item to render inside component.
   position: Position;
+  // Display given text or render any node inside Item.
   children?: React.ReactNode;
 }
 

@@ -7,7 +7,7 @@ const ValidatedFormExample = () => (
     <ValidatedForm>
       <FormLayout>
         <ValidatedTextField
-          id="AppName"
+          componentId="AppName"
           required={true}
           label="App Name"
           helpText="We recommend keeping your app name under 23 characters."
@@ -20,7 +20,7 @@ const ValidatedFormExample = () => (
         />
         <ValidatedTextField
           multiline
-          id="appDescription"
+          componentId="appDescription"
           required={true}
           name="App Description"
           value=""
