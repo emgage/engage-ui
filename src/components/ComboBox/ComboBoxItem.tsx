@@ -34,9 +34,10 @@ export default class ComboBoxItem extends React.PureComponent<Props, never> {
         const accordianItems: AccordianItem[] = [];
         value.forEach((val: any, index: number) => {
           const headerKey = val.key;
+          const indexStr: string = index.toString();
           if (val.children.length === 0) return null;
           accordianItems.push({
-            header: renderer ? renderer(val, 'header') : <Label id={index.toString()}>{val.header}</Label>,
+            header: renderer ? renderer(val, 'header') : <Label componentId={indexStr}>{val.header}</Label>,
             children: val.children.map((child: any) => {
               const data = headerKey ? child[headerKey] : (key ? child[key] : child);
               return (
