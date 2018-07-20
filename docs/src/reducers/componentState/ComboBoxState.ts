@@ -16,7 +16,7 @@ const ComboBoxState: IDocument = {
   property: [
     {
       name: 'items',
-      type: 'ComboBoxProps',
+      type: 'ComboBoxItemProps',
       desc: 'Items of the combobox',
     }, {
       name: 'label',

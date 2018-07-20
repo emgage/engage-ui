@@ -1,11 +1,10 @@
 import * as React from 'react';
-import { autobind } from '@shopify/javascript-utilities/decorators';
 
 import Label from '../Label';
 import Accordion from '../Accordion';
 
 export interface ComboItemProps {
-  type? : string;
+  type? : 'Accordian' | undefined;
   key?: string;
   value: any;
   renderer?(value: any, type?: string): React.ReactElement<any>;
@@ -70,8 +69,7 @@ export default class ComboBoxItem extends React.PureComponent<Props, never> {
     return dom ? this.findParent(dom.parentElement) : false;
   }
 
-  @autobind
-  private handleClick(event: any) {
+  private handleClick = (event: any) => {
     const target = event.target;
     const dataValue: boolean | string | null  = this.findParent(target);
     if (dataValue && this.props.clickHandler) {
@@ -79,8 +77,7 @@ export default class ComboBoxItem extends React.PureComponent<Props, never> {
     }
   }
 
-  @autobind
-  private getItem(value: any, key: string|undefined, renderer: any) {
+  private getItem = (value: any, key: string|undefined, renderer: any) => {
     return value.map((val: any) => {
       const data = key ? val[key] : val;
       return (

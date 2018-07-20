@@ -11,24 +11,24 @@ import * as baseTheme from './ComboBox.scss';
 
 export type Mode = 'collapsible' | 'multiple';
 
-export interface ComboBoxProps {
-  type? : string;
+export interface ComboBoxItemProps {
+  type? : "Accordian" | undefined; 
   key?: string;
   value: any;
 }
 
 export interface Props {
-  items: ComboBoxProps[];
+  items: ComboBoxItemProps[];
   label: string;
   style?:any;
 }
 
 interface State {
   open: boolean;
-  items: ComboBoxProps[];
-  initialItems: ComboBoxProps[];
+  items: ComboBoxItemProps[];
+  initialItems: ComboBoxItemProps[];
   anchorEl?: HTMLElement | null;
-  value: string;
+  selectedValue: string;
 }
 
 class ComboBox extends React.Component<Props, State> {
@@ -41,10 +41,18 @@ class ComboBox extends React.Component<Props, State> {
     this.state = {
       open: false,
       items: props.items,
-      initialItems: JSON.parse(JSON.stringify(props.items)),
-      value: '',
+      // In case use is searching something, and then removes its search text, combobox shud list the initialItem
+      // Therefore, keeping copy of it so that its not lose, as items is changed depending on search and selection.
+      initialItems: JSON.parse(JSON.stringify(props.items)), 
+      selectedValue: '',
     };
   }
+
+  /*
+     on Change of combobox item, cloning the initial Items which was added to combobox,
+     and then search the value on those items, and list it in popover.
+     In case if its Accordian, then check for values with key specified and filter them out.
+  */
 
   onChange = (value: string) => {
     let newItems = this.state.initialItems;
@@ -73,9 +81,9 @@ class ComboBox extends React.Component<Props, State> {
       });
     }
     this.setState({
-      value,
+      selectedValue: value,
       items: newItems,
-      open: value && value !== '' ? true : false
+      open: value && value !== '' ? true : false // open the popover only if there is some value on search text.
     });
   }
 
@@ -87,7 +95,7 @@ class ComboBox extends React.Component<Props, State> {
   }
 
   handleClick = (value: string) => {
-    this.setState({ value, open: false });
+    this.setState({ selectedValue: value, open: false });
   }
 
   render() {
@@ -112,7 +120,7 @@ class ComboBox extends React.Component<Props, State> {
         <TextField
           label={label}
           onChange={this.onChange}
-          value={this.state.value}
+          value={this.state.selectedValue}
         />
         <div className={baseTheme.comboboxArrow} onClick={this.onArrowClick}>
           <Icon source={arrowSvg} />
