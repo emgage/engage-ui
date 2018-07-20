@@ -4,7 +4,7 @@ import Label from '../Label';
 import Accordion from '../Accordion';
 
 export interface ComboItemProps {
-  type? : 'Accordian' | undefined;
+  type? : string;
   key?: string;
   value: any;
   renderer?(value: any, type?: string): React.ReactElement<any>;

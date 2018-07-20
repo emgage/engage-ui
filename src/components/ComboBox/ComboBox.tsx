@@ -12,9 +12,10 @@ import * as baseTheme from './ComboBox.scss';
 export type Mode = 'collapsible' | 'multiple';
 
 export interface ComboBoxItemProps {
-  type? : "Accordian" | undefined; 
+  type? : string; 
   key?: string;
   value: any;
+  renderer?(value: any, type?: string): React.ReactElement<any>;
 }
 
 export interface Props {
