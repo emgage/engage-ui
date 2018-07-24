@@ -53,6 +53,7 @@ import {
   Spinner,
   Table,
   TableColumnConfig,
+  TableNestedData,
   AccordionItemProps,
   Accordion,
   DropdownItemProps,
@@ -86,6 +87,7 @@ interface State {
   AccordionItemClose?: number;
   anchorEl?: HTMLElement;
   activeTabId: string;
+  nestedChildData: TableNestedData[];
 }
 
 class App extends React.Component<{}, State> {
@@ -129,8 +131,10 @@ class App extends React.Component<{}, State> {
       activeModalId: 'modalcontent1',
       AccordionItemOpen: undefined,
       AccordionItemClose: undefined,
-      activeTabId: 'tab3'
+      activeTabId: 'tab3',
+      nestedChildData: [],
     };
+
     this.popovertoggle = this.popovertoggle.bind(this);
     this.popoverToggleContainer = this.popoverToggleContainer.bind(this);
     this.toggleAccordionOpen = this.toggleAccordionOpen.bind(this);
@@ -186,6 +190,29 @@ class App extends React.Component<{}, State> {
     console.log('Breadcrumb clicked...');
   }
 
+  // toggleStatus if true that means row is open else its not
+  nestedChildCallback = (rowId: number | string, toggleStatus: boolean) => {
+    const { nestedChildData } = this.state;
+    const newData: TableNestedData = {
+      rowId,
+      component: <span>My name is {rowId}</span>,
+    };
+
+    nestedChildData.some((item: TableNestedData, index: number): boolean => {
+      if (item.rowId === rowId) {
+        nestedChildData.splice(index, 1);
+        return true;
+      }
+
+      return false;
+    });
+
+    nestedChildData.push(newData);
+
+    this.setState({ nestedChildData });
+    console.log('nestedChildData:', nestedChildData);
+  }
+
   render() {
     const Accordionitems : AccordionItemProps[] = [{
       children: <Banner componentTitle={'banner'} status={'success'} />,
@@ -197,6 +224,7 @@ class App extends React.Component<{}, State> {
       children: <Banner componentTitle={'banner13'} status={'warning'} />,
       header: <Button>sk3</Button>
     }];
+
     const items : DropdownItemProps[] = [
       {
         content: 'Item 1',
@@ -432,17 +460,17 @@ class App extends React.Component<{}, State> {
 
     const rowActionConfig = [
       {
-        label: 'View',
-        action: (value: any) => { console.log('View:', value); },
+        content: 'View',
+        onClick: (value: any) => { console.log('View:', value); },
       }, {
-        label: 'Delete',
-        action: (value: any) => { console.log('Delete:', value); },
+        content: 'Delete',
+        onClick: (value: any) => { console.log('Delete:', value); },
       }, {
-        label: 'Archive',
-        action: (value: any) => { console.log('Archive:', value); },
+        content: 'Archive',
+        onClick: (value: any) => { console.log('Archive:', value); },
       }, {
-        label: 'Version History',
-        action: (value: any) => { console.log('Version:', value); },
+        content: 'Version History',
+        onClick: (value: any) => { console.log('Version:', value); },
       },
     ];
 
@@ -601,7 +629,7 @@ class App extends React.Component<{}, State> {
         <div>
           <p>This is my Breadcrumbs!!</p>
           <BreadCrumb direction={'left'} source={breadcrumbData} displayStyle={'yellow'} />
-        </div>
+       </div>
         <br />
         <Caption componentStyle={{ color: 'red' }}>This is Caption</Caption>
         <br />
@@ -643,6 +671,8 @@ class App extends React.Component<{}, State> {
             </div>
           </div>
           <Table
+            nestedChildData={this.state.nestedChildData}
+            nestedChildCallback={this.nestedChildCallback}
             data={tableData}
             column={columnConfig}
             hideRow={{ status: 'Deleted' }}
@@ -653,7 +683,9 @@ class App extends React.Component<{}, State> {
             rowAction={rowActionConfig}
             selectCallbackValue="id"
             selectRowCallback={(val: any) => this.setState({ bulkAction: { selectedRow: val } })}
-            bordered highlight sorting />
+            bordered highlight sorting>
+              Loading
+            </Table>
         </div>
 
         <div>
@@ -1282,8 +1314,8 @@ class App extends React.Component<{}, State> {
   onChildChanged(newState: boolean) {
     this.setState({ popoverActiveContainer: newState });
   }
-  closed1() {
-    console.log('called');
+  closed1(val: number) {
+    console.log('called:', val);
   }
 }
 

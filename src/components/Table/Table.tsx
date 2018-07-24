@@ -5,6 +5,7 @@ import { classNames } from '@shopify/react-utilities/styles';
 import { TABLE } from '../ThemeIdentifiers';
 
 import Checkbox from '../Checkbox';
+import Icon from '../Icon';
 import RowAction from './RowAction';
 import TableHeader from './TableHeader';
 import TableHead from './TableHead';
@@ -12,7 +13,8 @@ import TableBody from './TableBody';
 import TableRow from './TableRow';
 import TableData from './TableData';
 
-import { ColumnConfig } from './interface';
+import { ColumnConfig, FilterConfig, NestedChild, SortState } from './interface';
+import { DropdownItemProps } from '../';
 import * as baseTheme from './Table.scss';
 
 export type RowSelection = 'checkbox' | 'radio';
@@ -30,21 +32,27 @@ export interface Props {
   // Value could be 'asc' || 'desc'
   defaultSortOrder?: string;
   // Filter config, if data needs to be filtered by any mode like search
-  filterData?: any;
+  filterData?: FilterConfig;
+  // Hide header: Its mainly used for nested table, but user can also hide it for main table
+  hideHeader?: boolean;
   // Hide specific row & show them when its being asked to show
   hideRow?: any;
   // Highlight rows on hover
   highlight?: boolean;
+  // Nested data callback, when rows been clicked, rows id sent to parent and nested child data gets updated
+  nestedChildCallback?(id: number | string, toggleStatus: boolean): void;
+  // prop to receive nested data
+  nestedChildData?: NestedChild[];
   // Make table responsive
   responsive?: boolean;
   // Individual row action, if available add it in last of the column
-  rowAction?: any;
+  rowAction?: DropdownItemProps[];
   // This helps to add checkbox or radio to select the row & do bulk actions
   selectRow?: RowSelection;
   // Use this key to fetch the unique id from data & send it back to selectedrow
   selectCallbackValue?: string;
   // Function to get called when row got selected
-  selectRowCallback?(rows: any): void;
+  selectRowCallback?(rows: number[] | string[]): void;
   // Flag to indentify if table is sortable, if passed "all" then add sorting to all the columns
   sorting?: boolean | string;
   // Set greyed background for odd rows
@@ -55,8 +63,9 @@ export interface Props {
 export interface State {
   allRowChecked?: boolean;
   data: any;
-  sort?: any;
-  selectedRows: any[];
+  expandedRow: any;
+  sort: SortState;
+  selectedRows: any;
   searchKey: string;
 }
 
@@ -75,11 +84,15 @@ class Table extends React.Component<Props, State> {
   }
 
   componentWillReceiveProps(newProps: Props) {
-    const { field, searchKey, search } = newProps.filterData;
+    if (newProps.filterData) {
+      const { field, searchKey, search } = newProps.filterData;
 
-    if (search && !this.props.filterData.search) {
-      this.triggerSearch(searchKey, field);
-    } else if (newProps.data.length !== this.props.data.length) {
+      if (search && (this.props.filterData && !this.props.filterData.search)) {
+        this.triggerSearch(searchKey, field);
+      }
+    }
+
+    if (newProps.data.length !== this.props.data.length && JSON.stringify(newProps.data) !== JSON.stringify(this.props.data)) {
       this.setState({ data: newProps.data });
     }
   }
@@ -90,6 +103,7 @@ class Table extends React.Component<Props, State> {
     return {
       data,
       allRowChecked: false,
+      expandedRow: [],
       selectedRows: [],
       sort: {
         // Current sorting filed should be saved here, which can be used to show specific icons on specifc th
@@ -146,7 +160,7 @@ class Table extends React.Component<Props, State> {
         <TableRow>
           { this.renderRowSelection(null, 'head') }
           {
-            column.map((item: any) => {
+            column.map((item: ColumnConfig) => {
               const thisSort: string = (sorting === 'all' || item.sort) && !item.noSort ? item.key : '';
 
               return (
@@ -174,39 +188,105 @@ class Table extends React.Component<Props, State> {
 
   // Function to render tbody & td with specifc data & if user passed any custom component that can also get rendered
   renderBody = () => {
-    const { column, rowAction, selectRow } = this.props;
-    const { data } = this.state;
-    return (
-      <TableBody>
-        {
-          data.map((item: any, index: number) => {
-            if (!this.props.hideRow || !this.hideRow(item)) {
-              return (
-                <TableRow key={index}>
-                  { this.renderRowSelection(item, 'body') }
-                  {
-                    column.map((colItem: any) => {
-                      return (
-                        <TableData key={colItem.key} dataLabel = {colItem.label}>
-                          {/* 
-                            Here injectBody helps to inject any custom component to td,
-                            we also return the specifc value, which then can be used in injected component
-                          */}
-                          {colItem.injectBody ? colItem.injectBody(item) : item[colItem.key]}
-                        </TableData>
-                      );
-                    })
-                  }
+    const { children, column, hideRow, selectRow } = this.props;
+    const { data, expandedRow } = this.state;
 
-                  { rowAction ? <RowAction actionConfig={rowAction} dataId={item.id} /> : '' }
-                </TableRow>
-              );
-            }
+    if (!children) {
+      return (
+        <TableBody>
+          {
+            data.map((item: any, index: number) => {
+              if (!this.props.hideRow || !this.hideRow(item)) {
+                return this.renderTbodyRows(item, index);
+              }
+            })
+          }
+
+          { !data.length ? <TableRow><TableData colSpan={column.length + (selectRow ? 1 : 0)}>No record found</TableData></TableRow> : null }
+        </TableBody>
+      );
+    }
+
+    // If there is no children for the table component (which is being used to open when the row gets expanded)
+    return data.map((item: any, index: number) => {
+      if (!hideRow || !this.hideRow(item)) {
+        return (
+          <TableBody key={index}>
+            { this.renderTbodyRows(item, index + '_nested') }
+
+            { expandedRow.indexOf(item.id) > -1 ? this.renderNestedChildren(index + 'nest', item.id) : null }
+          </TableBody>
+        );
+      }
+    });
+  }
+
+  // Function to toggle between the expanded row
+  openNestedRow = (currentId: number | string) => {
+    const { nestedChildCallback } = this.props;
+    let expandedRow = Object.assign([], this.state.expandedRow);
+    const rowIndex = expandedRow.indexOf(currentId);
+
+    if (rowIndex === -1) {
+      expandedRow = expandedRow.concat(currentId);
+    } else {
+      expandedRow.splice(rowIndex, 1);
+    }
+
+    this.setState({ expandedRow });
+
+    if (nestedChildCallback) {
+      nestedChildCallback(currentId, rowIndex === -1);
+    }
+  }
+
+  // Render the main table row
+  renderTbodyRows = (item: any, index: number | string) => {
+    const { column, nestedChildData, rowAction } = this.props;
+
+    return (
+      <TableRow key={index}>
+        { this.renderRowSelection(item, 'body') }
+        {
+          column.map((colItem: ColumnConfig, index: number) => {
+            return (
+              <TableData
+                key={colItem.key}
+                style={colItem.style}
+                dataLabel={colItem.label}
+              >
+                {/* 
+                  Here injectBody helps to inject any custom component to td,
+                  we also return the specifc value, which then can be used in injected component
+                */}
+
+                {!index && nestedChildData ? this.renderCheckColumn(item, false) : ''}
+                {colItem.injectBody ? colItem.injectBody(item) : item[colItem.key]}
+              </TableData>
+            );
           })
         }
 
-        { !data.length ? <TableRow><TableData colSpan={column.length + (selectRow ? 1 : 0)}>No record found</TableData></TableRow> : null }
-      </TableBody>
+        { rowAction ? <RowAction actionConfig={rowAction} dataId={item.id} /> : '' }
+      </TableRow>
+    );
+  }
+
+  // Function to render nested children for each row, this could be nested table or any other component
+  renderNestedChildren = (key: string, id: number) => {
+    const { column, children, nestedChildData = [], selectRow, rowAction } = this.props;
+
+    const colSpanVal = column.length + (selectRow ? 1 : 0) + (rowAction ? 1 : 0);
+
+    // Get current row's nested component by matching its id
+    const thisNestedComponent = nestedChildData.filter(item => item.rowId === id);
+
+    return (
+      <TableRow key={key}>
+        <TableData colSpan={colSpanVal}>
+          {thisNestedComponent.length ? thisNestedComponent[0].component : children}
+        </TableData>
+      </TableRow>
     );
   }
 
@@ -221,12 +301,17 @@ class Table extends React.Component<Props, State> {
 
   // Add checkbox or radio component to select the row, depending on `selectrow` flag
   renderRowSelection = (rowData: any, rowType: string) => {
-    const { selectRow } = this.props;
+    const { nestedChildData, selectRow } = this.props;
 
     if (selectRow) {
       if (rowType === 'body') {
+        // If row will be expanding then expanding element needs to be placed instead of checkbox
+        if (nestedChildData) {
+          return this.expandedRowElement(rowData.id);
+        }
+
         if (selectRow === 'checkbox') {
-          return this.renderCheckbox(rowData);
+          return this.renderCheckColumn(rowData);
         }
 
         return this.renderRadio(rowData);
@@ -240,27 +325,43 @@ class Table extends React.Component<Props, State> {
     return null;
   }
 
+  // Function to add the icon or anything which is required to expand or collapse the table row
+  expandedRowElement = (rowId: number | string) => {
+    return (
+      <TableData>
+        <Icon
+          onClick={this.openNestedRow}
+          callbackValue={rowId}
+          source="chevronDown"
+          componentStyle={{ margin: 0 }} />
+      </TableData>
+    );
+  }
+
   // Function to add checkbox in header as well
   addHeaderCheckbox = (): React.ReactElement<any> => {
     return <TableHead componentStyle={{ width: 'auto' }}><Checkbox label="" checked={this.state.allRowChecked} onChange={this.toggleAllRowSelection} /></TableHead>;
   }
 
   // Function to add checkbox for the row selection
-  renderCheckbox(rowData: any): React.ReactElement<any> {
+  renderCheckColumn(rowData: any, newColumn: boolean = true): React.ReactElement<any> {
+    return newColumn ? <TableData>{this.renderCheckbox(rowData)}</TableData> : <span style={{ display: 'inline-block' }}>{this.renderCheckbox(rowData)}</span>;
+  }
+
+  renderCheckbox(rowData: any) {
     const { selectedRows } = this.state;
     const { selectCallbackValue } = this.props;
     const uniqueId = selectCallbackValue ? rowData[selectCallbackValue] : rowData.id;
 
     return (
-      <TableData>
-        <Checkbox
-          label=""
-          value={uniqueId}
-          checked={selectedRows.indexOf(uniqueId) !== -1 ? true : false}
-          onChange={(checkedStatus: boolean) => {
-            this.toggleSingleRowSelection(uniqueId, checkedStatus);
-          }} />
-      </TableData>
+      <Checkbox
+        label=""
+        value={uniqueId}
+        checked={selectedRows.indexOf(uniqueId) !== -1 ? true : false}
+        onChange={(checkedStatus: boolean) => {
+          this.toggleSingleRowSelection(uniqueId, checkedStatus);
+        }}
+      />
     );
   }
 
@@ -272,7 +373,7 @@ class Table extends React.Component<Props, State> {
   render () {
     const tableClass = this.getTableClassName();
     // const renderedTable = this.renderChildren();
-    const renderedHeader = this.renderHeader();
+    const renderedHeader = !this.props.hideHeader ? this.renderHeader() : null;
     const renderedBody = this.renderBody();
 
     return (

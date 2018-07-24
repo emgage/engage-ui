@@ -118,15 +118,19 @@ export interface Props {
   componentStyle?: React.CSSProperties;
   // Theme to be injected via css-themr.
   theme?: any;
+  callbackValue?: any;
+  onClick?(id: number | string): void;
 }
 
 const icon = ({
+  callbackValue,
   source,
   componentColor,
   backdrop,
   accessibilityLabel,
   componentStyle,
   theme,
+  onClick,
 }: Props) => {
   if (componentColor && backdrop && COLORS_WITH_BACKDROPS.indexOf(componentColor) < 0) {
     // tslint:disable-next-line no-console
@@ -160,7 +164,7 @@ const icon = ({
   }
 
   return (
-    <span className={className} style={componentStyle} aria-label={accessibilityLabel}>
+    <span className={className} style={componentStyle} aria-label={accessibilityLabel} onClick={(event) => { onClick ? onClick((callbackValue ? callbackValue : event)) : ''; }}>
       {contentMarkup}
     </span>
   );

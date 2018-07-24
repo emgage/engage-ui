@@ -3,26 +3,24 @@ import { themr, ThemedComponentClass } from 'react-css-themr';
 
 import { TABLE } from '../ThemeIdentifiers';
 
-// import Button from '../Button';
-
-// import Item from '../List/Item';
-// import List from '../List';
-// import Popover from '../Dropdown';
-// import Pane from '../Dropdown/Pane';
-
+import Button from '../Button';
+import Dropdown from '../Dropdown';
 import TableData from './TableData';
+
+import { DropdownItemProps } from '../';
 
 import * as baseTheme from './Table.scss';
 
 export interface Props {
   dataId?: string | number;
   // Individual row action, if available add it in last of the column
-  actionConfig?: any;
+  actionConfig: DropdownItemProps[];
   theme?: any;
 }
 
 export interface State {
   active: boolean;
+  anchorEl?: HTMLElement;
 }
 
 class RowAction extends React.Component<Props, State> {
@@ -34,30 +32,30 @@ class RowAction extends React.Component<Props, State> {
     };
   }
 
-  triggerAction = (item: any) => {
-    return () =>  item.action(this.props.dataId);
+  dropdownToggle = (e: React.FormEvent<HTMLElement>) => {
+    this.setState({
+      anchorEl: e.target as HTMLElement,
+      active: !this.state.active
+    });
+
+    // return () =>  item.action(this.props.dataId);
   }
 
   render () {
-    // const { actionConfig } = this.props;
+    const { actionConfig, dataId } = this.props;
 
     return (
       <TableData>
-        {/* <Popover
+        <Button icon="horizontalDots" onClick={(e: React.FormEvent<HTMLElement>) => this.dropdownToggle(e)} />
+
+        <Dropdown
           active={this.state.active}
-          >
-          <Pane>
-            <List type="striped">
-              {
-                actionConfig.map((item: any, index: number) => {
-                  return (
-                    <Item key={index} onClick={this.triggerAction(item)}>{ item.label }</Item>
-                  );
-                })
-              }
-            </List>
-          </Pane>
-        </Popover> */}
+          dropdownItems={actionConfig}
+          toggle={() => this.dropdownToggle}
+          anchorEl = {this.state.anchorEl}
+          returnValue={dataId}
+          closeOnClickOutside
+        />
       </TableData>
     );
   }

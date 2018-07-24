@@ -19,6 +19,8 @@ export interface Props {
   closeOnClickOutside?: PopoverProps['closeOnClickOutside'];
   // Set items to be displayed in dropdown wrapper
   dropdownItems: DropdownItemProps[];
+  // Value to be return when clicked on item, this could be anythig string number or component or  any other value
+  returnValue?: any;
   // Call toggle method on click 
   toggle?(): void;
   // Call close method on click 
@@ -49,7 +51,8 @@ export class Dropdown extends React.PureComponent<Props, State> {
       direction,
       disabled,
       anchorEl,
-      closeOnClickOutside
+      closeOnClickOutside,
+      returnValue,
     } = this.props;
 
     const {
@@ -66,6 +69,7 @@ export class Dropdown extends React.PureComponent<Props, State> {
         header={item.header}
         content={item.content}
         onClick={item.onClick}
+        returnValue={returnValue}
       />
     );
     // Use Popover component as wrapper component for drop down items
