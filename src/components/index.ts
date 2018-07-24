@@ -324,5 +324,6 @@ export {
 export {
   default as ComboBox,
   Props as ComboBoxProps,
+  ComboBoxItemType,
 } from './ComboBox';
 

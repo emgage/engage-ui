@@ -62,6 +62,7 @@ import {
   TreeSource,
   BreadCrumb,
   ComboBox,
+  ComboBoxItemType
 } from '../../src/components';
 
 interface State {
@@ -1220,7 +1221,7 @@ class App extends React.Component<{}, State> {
         </ButtonGroup>
 
         <div>ComboBox</div>
-        <ComboBox items={this.getComboBoxItems()} label='Select' />
+        <ComboBox items={this.getComboBoxItems()} label="Select" />
       </div>
     );
   }
@@ -1237,13 +1238,13 @@ class App extends React.Component<{}, State> {
     const data = [
       {
         key: 'name',
-        type: 'Accordian',
+        type: 'Accordian' as ComboBoxItemType,
         value: [{
           header: 'Item 1',
           children: [{
-              name: 'Ankit',
-              age: 27
-            },
+            name: 'Ankit',
+            age: 27
+          },
             {
               name: 'Dheeraj',
               age: 27
@@ -1262,7 +1263,7 @@ class App extends React.Component<{}, State> {
           }
         ]
       }
-    ]
+    ];
     return data;
   }
 

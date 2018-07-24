@@ -2,9 +2,10 @@ import * as React from 'react';
 
 import Label from '../Label';
 import Accordion from '../Accordion';
+import { ItemType } from './ComboBox';
 
 export interface ComboItemProps {
-  type? : string;
+  type?: ItemType;
   key?: string;
   value: any;
   renderer?(value: any, type?: string): React.ReactElement<any>;

@@ -10,9 +10,10 @@ import arrowSvg from './icons/arrow.svg';
 import * as baseTheme from './ComboBox.scss';
 
 export type Mode = 'collapsible' | 'multiple';
+export type ItemType = 'Accordian';
 
 export interface ComboBoxItemProps {
-  type? : string; 
+  type?: ItemType;
   key?: string;
   value: any;
   renderer?(value: any, type?: string): React.ReactElement<any>;
@@ -44,7 +45,7 @@ class ComboBox extends React.Component<Props, State> {
       items: props.items,
       // In case use is searching something, and then removes its search text, combobox shud list the initialItem
       // Therefore, keeping copy of it so that its not lose, as items is changed depending on search and selection.
-      initialItems: JSON.parse(JSON.stringify(props.items)), 
+      initialItems: JSON.parse(JSON.stringify(props.items)),
       selectedValue: '',
     };
   }

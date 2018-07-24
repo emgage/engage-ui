@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ComboBox } from '../../../../src/components/';
+import { ComboBox, ComboBoxItemType } from '../../../../src/components/';
 import * as styles from '../../styles/components-page.scss';
 
 class ComboBoxExampleFourth extends React.Component<never, never> {
@@ -22,7 +22,7 @@ class ComboBoxExampleFourth extends React.Component<never, never> {
     const items = [
       {
         key: 'name',
-        type: 'Accordian',
+        type: 'Accordian' as ComboBoxItemType,
         renderer: this.renderItems,
         value: [{
           header: 'Item 1',
@@ -55,7 +55,7 @@ class ComboBoxExampleFourth extends React.Component<never, never> {
       <div className={styles.example}>
         <ComboBox
             label="Select"
-            items = {items}
+            items={items}
         />
       </div>
     );
