@@ -127,7 +127,7 @@ describe('<TextField />', () => {
     });
   });
 
-  describe('counterTextMarkup',() => {
+  describe('counterTextMarkup', () => {
     it('display counter text while no maxLength', () => {
       const counterTextMarkup = mount(<div>{9}</div>);
       const textField = mount(<TextField label="TextField" value="Some Text" />);

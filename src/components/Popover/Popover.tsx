@@ -116,7 +116,7 @@ class Popover extends React.PureComponent<Props, State> {
       style,
     } = this.props;
 
-    const popoverClassName = classNames (
+    const popoverClassName = classNames(
       direction === 'down' ? baseTheme.popdown
       : direction === 'up' ? baseTheme.popup
       : direction === 'left' ? baseTheme.popleft
@@ -124,7 +124,7 @@ class Popover extends React.PureComponent<Props, State> {
       !disabled && active && baseTheme.active
     );
 
-    const popoverContainerClassName = classNames (
+    const popoverContainerClassName = classNames(
       baseTheme.popoverContainer,
       !disabled && active && baseTheme.active
     );
@@ -148,7 +148,7 @@ class Popover extends React.PureComponent<Props, State> {
         <WRAPPERCOMPONENT ref={this.setActivator}>
           <div className={popoverClassName} key={this.id}>
             <div
-              style={style ? {...style, ...popoverPosition} : popoverPosition }
+              style={style ? { ...style, ...popoverPosition } : popoverPosition }
               className={popoverContainerClassName}
               ref={node => this.popoverEle = node as HTMLElement}
             >

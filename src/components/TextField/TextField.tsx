@@ -102,14 +102,15 @@ class TextField extends React.PureComponent<Props, State> {
     super(props);
     this.state = {
       height: null,
-      value: props.value
-    }
+      value: props.value ? props.value : ''
+    };
   }
 
+  // tslint:disable-next-line:function-name
   UNSAFE_componentWillReceiveProps(nextProps: Props) {
     this.setState({
       value: nextProps.value
-    })
+    });
   }
 
   render() {
@@ -208,9 +209,9 @@ class TextField extends React.PureComponent<Props, State> {
       disabled,
       readOnly,
       autoFocus,
-      value: this.state.value,
       placeholder,
       required,
+      value: this.state.value,
       onFocus: this.handleInputOnFocus,
       onBlur: this.handleInputOnBlur,
       style: newComponentStyle,
@@ -282,7 +283,7 @@ class TextField extends React.PureComponent<Props, State> {
 
   @autobind
   private onChange(event: React.FormEvent<HTMLInputElement>) {
-    this.setState({value: event.currentTarget.value})
+    this.setState({ value: event.currentTarget.value });
     const { onChange } = this.props;
     if (onChange == null) { return; }
     const value = this.props.value ? this.props.value : '';

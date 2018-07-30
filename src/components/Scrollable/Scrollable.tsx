@@ -74,7 +74,7 @@ class Scrollable extends React.Component<Props, State> {
         className={finalClassName}
         {...scrollable.props}
         {...rest}
-        ref={(input) => {this.setScrollArea(input as HTMLElement);}}
+        ref={(input) => { this.setScrollArea(input as HTMLElement); }}
       >
         {children}
       </div>

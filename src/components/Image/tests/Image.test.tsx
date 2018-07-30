@@ -2,7 +2,6 @@ import * as React from 'react';
 import { mount } from 'enzyme';
 import Image from '../Image';
 
-
 describe('<Image />', () => {
   const url = 'https://www.w3schools.com/css/trolltunga.jpg';
   const alt = 'No Image.. Thanks!!';
