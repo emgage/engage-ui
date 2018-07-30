@@ -9,7 +9,9 @@ const CardExample = () => (
       componentTitle="Online store dashboard"
       actions = {[{
         content: 'Edit Dashboard',
-        onAction: () => { alert('Edit Content of Online Store Dashboard');},
+        onAction: () => {
+          alert('Edit Content of Online Store Dashboard');
+        },
       }]}
     >
       <Section>

@@ -2,7 +2,6 @@ import * as React from 'react';
 import { Badge, Button, Tab, TabPanel } from '../../../../src/components/';
 import * as styles from '../../styles/components-page.scss';
 
-
 class TabExample extends React.Component {
   state = {
     ModalOpen: false,

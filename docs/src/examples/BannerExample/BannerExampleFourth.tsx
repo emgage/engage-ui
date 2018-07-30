@@ -6,7 +6,7 @@ const BannerExample = () =>  (
   <div className={styles.example}>
     <Banner
       componentTitle="Before you can purchase a shipping label, this change needs to be made:"
-      action={{ content: 'Edit address', onAction:() => {alert('You clicked on Edit address.');} }}
+      action={{ content: 'Edit address', onAction:() => { alert('You clicked on Edit address.'); } }}
        status="warning"
     >
       <List>

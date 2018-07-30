@@ -2,7 +2,6 @@ import * as React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from '../../../../src/components/';
 import * as styles from '../../styles/components-page.scss';
 
-
 class ModalExample extends React.Component {
   state = {
     modalOpen: false,

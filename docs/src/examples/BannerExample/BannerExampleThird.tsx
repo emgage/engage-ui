@@ -6,7 +6,7 @@ const BannerExample = () => (
   <div className={styles.example}>
     <Banner
       componentTitle="USPS has updated their rates"
-      action={{ content: 'Learn more', onAction:() => {alert('You clicked on Learn more.');} }}
+      action={{ content: 'Learn more', onAction:() => { alert('You clicked on Learn more.'); } }}
       status="info"
     >
       <p>

@@ -6,7 +6,6 @@ import StackExample3 from '../../examples/StackExample/StackExample3';
 import StackExample4 from '../../examples/StackExample/StackExample4';
 import StackExample5 from '../../examples/StackExample/StackExample5';
 
-
 const StackExampleCode = require('!raw-loader!../../examples/StackExample/StackExample') as string;
 const StackExample1Code = require('!raw-loader!../../examples/StackExample/StackExample1') as string;
 const StackExample2Code = require('!raw-loader!../../examples/StackExample/StackExample2') as string;

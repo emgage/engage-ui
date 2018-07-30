@@ -5,7 +5,7 @@ import * as styles from '../../styles/components-page.scss';
 const BannerExample = () =>  (
   <div className={styles.example}>
     <Banner
-      onDismiss={() => {alert('Banner is dismissed.');}}
+      onDismiss={() => { alert('Banner is dismissed.'); }}
       status="success"
     >
       <p>

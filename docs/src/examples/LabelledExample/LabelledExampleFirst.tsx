@@ -7,7 +7,7 @@ const LabelledExampleFirst = () => (
     <Labelled
       componentId="lblid"
       label="Test"
-      action={{ content: 'Click Here', onAction:() => {alert('You have performed Click Action.');} }}
+      action={{ content: 'Click Here', onAction:() => { alert('You have performed Click Action.'); } }}
     />
   </div>
 );
