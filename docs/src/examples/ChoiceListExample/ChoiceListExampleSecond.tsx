@@ -19,7 +19,7 @@ const ChoiceListExample = () => (
           value: 'required',
         },
       ]}
-      selected={['optional','required']}
+      selected={['optional', 'required']}
     />
   </div>
 );

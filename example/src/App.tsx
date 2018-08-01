@@ -62,6 +62,8 @@ import {
   TreeView,
   TreeSource,
   BreadCrumb,
+  ComboBox,
+  ComboBoxItemType
 } from '../../src/components';
 
 interface State {
@@ -1249,6 +1251,9 @@ class App extends React.Component<{}, State> {
           <Button primary>Save Draft</Button>
           <Button primary>Publish</Button>
         </ButtonGroup>
+
+        <div>ComboBox</div>
+        <ComboBox items={this.getComboBoxItems()} label="Select" />
       </div>
     );
   }
@@ -1260,6 +1265,39 @@ class App extends React.Component<{}, State> {
   // handleChange(value1: any) {
   //   return (value: any) => this.setState({ [value1]: value });
   // }
+
+  getComboBoxItems() {
+    const data = [
+      {
+        key: 'name',
+        type: 'Accordian' as ComboBoxItemType,
+        value: [{
+          header: 'Item 1',
+          children: [{
+            name: 'Ankit',
+            age: 27
+          },
+            {
+              name: 'Dheeraj',
+              age: 27
+            }
+          ]
+        }]
+      },
+      {
+        key: 'name',
+        value: [
+          {
+            name: 'item1'
+          },
+          {
+            name: 'item2'
+          }
+        ]
+      }
+    ];
+    return data;
+  }
 
   popovertoggle(index: number) {
     const updatedPopoverActive: any = this.state.popoverActive;

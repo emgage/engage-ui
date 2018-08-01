@@ -7,7 +7,7 @@ const LabelledExampleThird = () => (
     <Labelled
         componentId="Id"
         label="Labelled hidden"
-        action={{ content: 'Click Here', onAction:() => {alert('You have performed Click Action.');} }}
+        action={{ content: 'Click Here', onAction:() => { alert('You have performed Click Action.'); } }}
         labelHidden
     />
   </div>

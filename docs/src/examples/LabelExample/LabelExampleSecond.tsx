@@ -7,7 +7,7 @@ const LabelExampleSecond = () => (
     <Label
       componentId="lblid"
       hidden={false}
-      action={{ content: 'Click Here', onAction:() => {alert('You have performed Click Action.');} }}
+      action={{ content: 'Click Here', onAction:() => { alert('You have performed Click Action.'); } }}
       required focused hasValue >
         Testing Label
     </Label>

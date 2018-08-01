@@ -32,7 +32,7 @@ const DisplayTextState: IDocument = {
       name: 'componentSize',
       type: 'Size',
       desc: 'Size of the text small, medium, large or extralarge',
-    },{
+    }, {
       name: 'theme',
       type: 'any',
       desc: 'Theme to be injected via css-themr',

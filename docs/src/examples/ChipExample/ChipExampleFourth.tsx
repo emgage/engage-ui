@@ -6,7 +6,7 @@ const ChipExample = () => (
   <div className={styles.example}>
     <Chip
       removable
-      onRemove={() => {alert('You clicked to remove Chip');}}
+      onRemove={() => { alert('You clicked to remove Chip'); }}
     >
       Trevor Hansen
     </Chip>

@@ -43,7 +43,6 @@ export function calculateVerticalPosition(
 
   if (preferredPosition === 'above') return positionIfAbove;
 
-
   if (preferredPosition === 'below') return positionIfBelow;
 
   if (enoughSpaceFromTopScroll && enoughSpaceFromBottomScroll) {

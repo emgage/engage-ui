@@ -2,15 +2,14 @@ import * as React from 'react';
 import { mount } from 'enzyme';
 import Accordion, { AccordionItemProps } from './../Accordion';
 import AccordionItem from './../AccordionItem';
-
 describe('<Accordion />', () => {
   const items : AccordionItemProps[] = [{
     children: <h4>this is the item 1 desc</h4>,
     header: <h2>item 1</h2>
-  },{
+  }, {
     children: <h4>this is the item 2 desc</h4>,
     header: <h2>item 2</h2>
-  },{
+  }, {
     children: <h4>this is the item 3 desc</h4>,
     header: <h2>item 3</h2>
   }];

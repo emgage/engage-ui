@@ -20,4 +20,3 @@ const SelectExample1 = () => (
 );
 
 export default SelectExample1;
-

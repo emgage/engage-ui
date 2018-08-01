@@ -31,7 +31,7 @@ const spinner = ({
   theme,
   componentStyle,
 }: Props) => {
-  const className = classNames (
+  const className = classNames(
     theme.spinner,
     componentColor && theme[variationName('color', componentColor)],
     componentSize && theme[variationName('size', componentSize)]

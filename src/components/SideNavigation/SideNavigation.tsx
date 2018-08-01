@@ -136,7 +136,7 @@ class SideNavigation extends React.Component<Props, State> {
                     mode="push"
                     componentWidth="small"
                     style={actDrawerId === 'collapsedContent' ? { width: '10px', padding: '15px', overflow: 'visible' } : { width: '270px', overflow: 'visible'  }} >
-                    <DrawerContent componentId="fullContent" mode="slide" style={{ background: 'black', color: 'white', padding: '0px',overflowX: 'hidden' }}>
+                    <DrawerContent componentId="fullContent" mode="slide" style={{ background: 'black', color: 'white', padding: '0px', overflowX: 'hidden' }}>
                         {collapseIconMarkup}
                         <ul className={this.props.theme.list}>
                             {fullContentMarkup}

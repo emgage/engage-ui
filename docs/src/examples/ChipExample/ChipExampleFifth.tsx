@@ -13,8 +13,8 @@ const ChipExample = () => (
       transparent
       clickable
       removable
-      onClick={() => {alert('You clicked on Chip');}}
-      onRemove={() => {alert('You clicked on remove button of Chip.');}}
+      onClick={() => { alert('You clicked on Chip'); }}
+      onRemove={() => { alert('You clicked on remove button of Chip.'); }}
       image={imgForChip}
     >
       Trevor Hansen

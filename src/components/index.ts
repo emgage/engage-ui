@@ -321,3 +321,9 @@ export {
   Props as BreadcrumbProps,
   ISourceData as BreadcrumbSourceData,
 } from './BreadCrumb';
+
+export {
+  default as ComboBox,
+  Props as ComboBoxProps,
+  ComboBoxItemType,
+} from './ComboBox';

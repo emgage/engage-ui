@@ -26,18 +26,24 @@ const breadcrumbData: ISourceData[] = [
   {
     name: 'Home',
     type: 'default',
-    onBreadcrumbClick: () => { console.log('Home is clicked');}
+    onBreadcrumbClick: () => {
+      console.log('Home is clicked');
+    }
   }, {
     name: <Badge children={'Home1'} status={'success'} />,
     type: 'active',
-    onBreadcrumbClick: () => { console.log('Badge is clicked');}
+    onBreadcrumbClick: () => {
+      console.log('Badge is clicked');
+    }
   }, {
     name: 'Home2',
     type: 'disabled'
   }, {
     name: 'Home3',
     type: 'active',
-    onBreadcrumbClick: () => { console.log('Home3 is clicked');}
+    onBreadcrumbClick: () => {
+      console.log('Home3 is clicked');
+    }
   },
 ];
 describe('<Breadcrumb />', () => {
