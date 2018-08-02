@@ -29,10 +29,10 @@ const DisplayTextState: IDocument = {
       type: 'React.ReactNode',
       desc: 'The content to display for displaytext' ,
     }, {
-      name: 'size',
+      name: 'componentSize',
       type: 'Size',
       desc: 'Size of the text small, medium, large or extralarge',
-    },{
+    }, {
       name: 'theme',
       type: 'any',
       desc: 'Theme to be injected via css-themr',

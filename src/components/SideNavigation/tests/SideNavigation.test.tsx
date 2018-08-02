@@ -2,7 +2,6 @@ import * as React from 'react';
 import { mount } from 'enzyme';
 import SideNavigation, { INavigationData } from '../SideNavigation';
 
-
 describe('<SideNavigation />', () => {
 
   const children: INavigationData[] = [

@@ -112,7 +112,7 @@ describe('<FormLayout />', () => {
         it('should verify form layout when condensed is undefined', () => {
         const formlayoutWrapper = mount(
                                         <FormLayout>
-                                            <Group title="groupTitle">
+                                            <Group componentTitle="groupTitle">
                                             <TextField label="Length" />
                                             <TextField label="Width" />
                                             <TextField label="Height" />
@@ -124,7 +124,7 @@ describe('<FormLayout />', () => {
         });
         it('should verify form layout when condensed is false', () => {
         const formlayoutWrapper = mount(<FormLayout>
-                                    <Group title="groupTitle" condensed={false}>
+                                    <Group componentTitle="groupTitle" condensed={false}>
                                         <TextField label="Length" />
                                         <TextField label="Width" />
                                         <TextField label="Height" />

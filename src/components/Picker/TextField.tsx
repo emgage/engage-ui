@@ -85,7 +85,7 @@ class TextField extends React.PureComponent<Props, State> {
     return (
       <Labelled
         label={label}
-        id={'textfield!!!' + label}
+        componentId={'textfield!!!' + label}
         action={undefined}
         focused={this.state.focused}
         hasValue={hasValue}

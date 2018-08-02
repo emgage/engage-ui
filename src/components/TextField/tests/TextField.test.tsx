@@ -64,12 +64,12 @@ describe('<TextField />', () => {
 
   describe('id', () => {
     it('sets the id on the input', () => {
-      const id = mount(<TextField label="TextField" id="MyField" />).find('input').prop('id');
+      const id = mount(<TextField label="TextField" componentId="MyField" />).find('input').prop('componentId');
       expect(id).toBe('MyField');
     });
 
     it('sets a random id on the input when none is passed', () => {
-      const id = mount(<TextField label="TextField" />).find('input').prop('id');
+      const id = mount(<TextField label="TextField" />).find('input').prop('componentId');
       expect(typeof id).toBe('string');
       expect(id).toBeTruthy();
     });
@@ -127,7 +127,7 @@ describe('<TextField />', () => {
     });
   });
 
-  describe('counterTextMarkup',() => {
+  describe('counterTextMarkup', () => {
     it('display counter text while no maxLength', () => {
       const counterTextMarkup = mount(<div>{9}</div>);
       const textField = mount(<TextField label="TextField" value="Some Text" />);

@@ -2,7 +2,6 @@ import * as React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from '../../../../src/components/';
 import * as styles from '../../styles/components-page.scss';
 
-
 class ModalExample extends React.Component {
   state = {
     modalOpen: false,
@@ -29,7 +28,7 @@ class ModalExample extends React.Component {
             toggle={this.toggleModal}
             onOpen={this.onModalOpen}
             onClose={this.onModalClose}
-            width="medium"
+            componentWidth="medium"
             closeOnBackgroud
             closeOnEsc
             closeButton>

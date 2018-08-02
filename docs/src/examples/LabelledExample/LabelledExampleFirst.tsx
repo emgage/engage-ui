@@ -5,9 +5,9 @@ import * as styles from '../../styles/components-page.scss';
 const LabelledExampleFirst = () => (
   <div className={styles.example}>
     <Labelled
-      id="lblid"
+      componentId="lblid"
       label="Test"
-      action={{ content: 'Click Here', onAction:() => {alert('You have performed Click Action.');} }}
+      action={{ content: 'Click Here', onAction:() => { alert('You have performed Click Action.'); } }}
     />
   </div>
 );

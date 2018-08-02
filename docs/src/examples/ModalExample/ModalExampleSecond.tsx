@@ -2,7 +2,6 @@ import * as React from 'react';
 import { Modal } from '../../../../src/components/';
 import * as styles from '../../styles/components-page.scss';
 
-
 const ModalExample = () => (
   <div className={styles.example}>
     {/* <Modal

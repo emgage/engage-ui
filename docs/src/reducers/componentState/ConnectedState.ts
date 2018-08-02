@@ -26,7 +26,7 @@ const ConnectedState: IDocument = {
       type: 'React.ReactNode',
       desc: 'Display given text',
     }, {
-      name: 'style',
+      name: 'componentStyle',
       type: 'React.CSSProperties',
       desc: 'Style to be injected via css',
     }, {

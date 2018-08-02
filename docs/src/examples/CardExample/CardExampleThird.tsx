@@ -6,10 +6,12 @@ import * as styles from '../../styles/components-page.scss';
 const CardExample = () => (
   <div className={styles.example}>
     <Card
-      title="Online store dashboard"
+      componentTitle="Online store dashboard"
       actions = {[{
         content: 'Edit Dashboard',
-        onAction: () => { alert('Edit Content of Online Store Dashboard');},
+        onAction: () => {
+          alert('Edit Content of Online Store Dashboard');
+        },
       }]}
     >
       <Section>

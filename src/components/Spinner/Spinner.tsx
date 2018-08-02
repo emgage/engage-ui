@@ -12,27 +12,32 @@ export type Color = 'white' | 'teal' | 'inkLightest';
 export type Size = 'small' | 'large';
 
 export interface Props {
-  size?: Size;
-  color?: Color;
+  // Size of Spinner. It can be small or large
+  componentSize?: Size;
+  // Color of Spinner. It can be white, teal or inkLightest
+  componentColor?: Color;
+  // Visually hidden text for screen readers
   accessibilityLabel?: string;
+  // Theme to be injected via css-themr
   theme?: any;
-  style?: React.CSSProperties;
+  // Set the style via css
+  componentStyle?: React.CSSProperties;
 }
 
 const spinner = ({
-  size = 'large',
-  color = 'teal',
+  componentSize = 'large',
+  componentColor = 'teal',
   accessibilityLabel,
   theme,
-  style,
+  componentStyle,
 }: Props) => {
-  const className = classNames (
+  const className = classNames(
     theme.spinner,
-    color && theme[variationName('color', color)],
-    size && theme[variationName('size', size)]
+    componentColor && theme[variationName('color', componentColor)],
+    componentSize && theme[variationName('size', componentSize)]
    );
 
-  const spinnerSvg = size === 'large'
+  const spinnerSvg = componentSize === 'large'
     ? spinnerLarge
     : spinnerSmall;
 
@@ -42,7 +47,7 @@ const spinner = ({
     contentMarkup = (
       <svg
         className={className}
-        style={style}
+        style={componentStyle}
         viewBox={spinnerSvg.viewBox}
         dangerouslySetInnerHTML={{ __html: spinnerSvg.body }}
       />

@@ -24,8 +24,6 @@ describe('when default props are provided', () => {
   it('div should have default flex inline style', () => {
     const subject = mount(<FlexBox theme={theme} />);
 
-    console.log(subject.html());
-
     expect(subject.find('div').hasClass('flex')).toBe(true);
     expect(subject.find('div').hasClass('row')).toBe(true);
     expect(subject.find('div').hasClass('contentStart')).toBe(true);
@@ -227,4 +225,3 @@ describe('when direction, justify and alignment are set', () => {
     expect(subject.find('div').hasClass('alignStretch')).toBe(false);
   });
 });
-

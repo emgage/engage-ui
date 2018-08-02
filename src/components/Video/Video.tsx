@@ -15,19 +15,30 @@ export enum VideoType {
 
 export interface VideoSource {
   src: string;
-  type: VideoType;}
+  type: VideoType;
+}
 
 export interface Props {
+  // To give Image URL for Video.
   poster: URL;
+  // Provide source of any video.
   src: VideoSource[];
+  // To autoplay or not.
   autoplay?: boolean;
+  // See controls i.e.Play/Pause,Volume etc.
   controls?: boolean;
+  // Give cross origine to video. Availabel options: anonymous | use-credentials
   crossorigin?: CrossOrigin;
+  // If true, upon reaching the end, the video will automatically replay.
   loop?: boolean;
+  // To mute video or not.
   muted?: boolean;
+  // Provide preload. Available options: none | metadata | auto
   preload?: Preload;
+  // Theme to be injected via css-themr.
   theme?: any;
-  style?: React.CSSProperties;
+  // To provide styling.
+  componentStyle?: React.CSSProperties;
 }
 
 class Video extends React.PureComponent<Props, any> {
@@ -63,7 +74,7 @@ class Video extends React.PureComponent<Props, any> {
                     controls={this.props.controls}
                     loop={this.props.loop}
                     muted={this.props.muted}
-                    style={this.props.style}
+                    style={this.props.componentStyle}
                     preload={this.props.preload}
                     crossOrigin = {this.props.crossorigin}>
                     {

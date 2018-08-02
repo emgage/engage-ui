@@ -19,7 +19,7 @@ export interface Props {
   // Any custom class that user wants to add which could be for setting width or any custom styling
   className?: string;
   // If sorting is enabled, then clickhndler will get triggered on click
-  clickHandler?(field: string): any;
+  clickHandler?(field: string): void;
   // To set colspan value
   colSpan?: number;
   // Current sort order, it will be only filled if the current sorting field will be this
@@ -29,7 +29,7 @@ export interface Props {
   // This have the key of current heading, this helps in sorting
   sort?: string;
   // Custom style, if user wants to add in th
-  style?: any;
+  componentStyle?: any;
   theme?: any;
 }
 
@@ -61,7 +61,7 @@ class TableHead extends React.Component<Props, never> {
   }
 
   render () {
-    const { accessibilityId, accessibilityScope, children, colSpan, order, rowSpan, sort, style } = this.props;
+    const { accessibilityId, accessibilityScope, children, colSpan, order, rowSpan, sort, componentStyle } = this.props;
     const customClassName = this.getClassName();
 
     return (
@@ -71,7 +71,7 @@ class TableHead extends React.Component<Props, never> {
         id={accessibilityId}
         colSpan={colSpan}
         rowSpan={rowSpan}
-        style={style}
+        style={componentStyle}
         onClick={this.triggerClick}>
         { children }
         {

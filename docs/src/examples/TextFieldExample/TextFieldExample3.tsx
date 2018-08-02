@@ -6,7 +6,7 @@ const TextFieldExample3 = () => (
   <div className={styles.example}>
     <FormLayout>
       <ChoiceList
-        title="Gift card auto-expiration"
+        componentTitle="Gift card auto-expiration"
         choices={[
           {
             label: 'Gift cards never expire',

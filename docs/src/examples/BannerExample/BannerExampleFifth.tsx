@@ -5,8 +5,8 @@ import * as styles from '../../styles/components-page.scss';
 const BannerExample = () =>  (
   <div className={styles.example}>
     <Banner
-      title="High risk of fraud detected"
-      action={{ content: 'Review risk analysis', onAction:() => {alert('You clicked on Review risk analysis.');} }}
+      componentTitle="High risk of fraud detected"
+      action={{ content: 'Review risk analysis', onAction:() => { alert('You clicked on Review risk analysis.'); } }}
       status="critical"
     >
       <p>

@@ -8,17 +8,29 @@ import { RADIO_BUTTON } from '../ThemeIdentifiers';
 import * as baseTheme from './RadioButton.scss';
 
 export interface Props {
+  // Label for the radio button.
   label: string;
+  // Visually hide the label.
   labelHidden?: boolean;
+  // Additional text to aid in use.
   helpText?: React.ReactNode;
+  // Radio button is selected.
   checked?: boolean;
-  id?: string;
+  // ID for form input.
+  componentId?: string;
+  // Name for form input.
   name?: string;
+  // Value for form input.
   value?: string;
+  // Set as disabled or not.
   disabled?: boolean;
+  // Theme to be injected via css-themr.
   theme?: any;
+  // Callback when the radio button is toggled.
   onChange?(newValue: boolean): void;
+  // Callback when radio button is focussed.
   onFocus?(): void;
+  // Callback when focus is removed.
   onBlur?(): void;
 }
 
@@ -33,8 +45,8 @@ const radioButton = ({
   onChange,
   onFocus,
   onBlur,
-  id = getUniqueID(),
-  name = id,
+  componentId= getUniqueID(),
+  name = componentId,
   value,
   theme,
 }: Props) => {
@@ -44,13 +56,13 @@ const radioButton = ({
   }
 
   const describedBy = helpText
-    ? helpTextID(id)
+    ? helpTextID(componentId)
     : null;
 
   const input = describedBy === null ?
     (
       <input
-        id={id}
+        id={componentId}
         name={name}
         value={value}
         type="radio"
@@ -63,7 +75,7 @@ const radioButton = ({
       />
     ) : (
       <input
-        id={id}
+        id={componentId}
         name={name}
         value={value}
         type="radio"
@@ -78,7 +90,7 @@ const radioButton = ({
     );
 
   return (
-    <Choice label={label} labelHidden={labelHidden} id={id} helpText={helpText}>
+    <Choice label={label} labelHidden={labelHidden} componentId={componentId} helpText={helpText}>
       <div className={theme.radioButton}>
         {input}
         <div className={theme.backdrop} />

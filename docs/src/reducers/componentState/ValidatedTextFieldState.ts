@@ -9,7 +9,7 @@ const ValidatedTextFieldState: IDocument = {
   subheading: `Use to let user know if their input is valid or if there’s an error.`,
   property: [
     {
-      name: 'id',
+      name: 'componentId',
       type: 'string',
       desc: 'Id of Validated Textfield.',
     }, {

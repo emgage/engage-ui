@@ -11,10 +11,15 @@ import { SCROLLABLE } from '../ThemeIdentifiers';
 import * as baseTheme from './Scrollable.scss';
 
 export interface Props extends React.HTMLProps<HTMLDivElement> {
+  // Content to display in scrollable area.
   children?: React.ReactNode;
+  // Scroll content vertically.
   vertical?: boolean;
+  // Scroll content horizontally.
   horizontal?: boolean;
+  // Add a shadow when content is scrollable.
   shadow?: boolean;
+  // Theme to be injected via css-themr.
   theme?: any;
 }
 
@@ -69,7 +74,7 @@ class Scrollable extends React.Component<Props, State> {
         className={finalClassName}
         {...scrollable.props}
         {...rest}
-        ref={(input) => {this.setScrollArea(input as HTMLElement);}}
+        ref={(input) => { this.setScrollArea(input as HTMLElement); }}
       >
         {children}
       </div>

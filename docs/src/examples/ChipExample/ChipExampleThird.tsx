@@ -6,7 +6,7 @@ const ChipExample = () => (
   <div className={styles.example}>
     <Chip
       clickable
-      onClick={() => {alert('You clicked on Chip');}}
+      onClick={() => { alert('You clicked on Chip'); }}
     >
       Trevor Hansen
     </Chip>

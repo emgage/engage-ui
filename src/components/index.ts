@@ -169,11 +169,6 @@ export {
 } from './Message';
 
 export {
-  default as OffCanvas,
-  Props as OffCanvasProps,
-} from './OffCanvas';
-
-export {
   default as Panel,
   Props as PanelProps,
 } from './Panel';
@@ -326,3 +321,9 @@ export {
   Props as BreadcrumbProps,
   ISourceData as BreadcrumbSourceData,
 } from './BreadCrumb';
+
+export {
+  default as ComboBox,
+  Props as ComboBoxProps,
+  ComboBoxItemType,
+} from './ComboBox';

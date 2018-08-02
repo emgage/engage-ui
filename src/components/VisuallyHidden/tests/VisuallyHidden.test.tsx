@@ -3,7 +3,7 @@ import { mount } from 'enzyme';
 import VisuallyHidden from '../VisuallyHidden';
 import Heading from '../../Heading/Heading';
 
-describe ('<VisuallyHidden /> - Test Suit', () => {
+describe('<VisuallyHidden /> - Test Suit', () => {
   const theme = {
     VisuallyHidden: 'VisuallyHidden',
   };

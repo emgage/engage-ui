@@ -24,6 +24,7 @@ const Nav = () => {
         <li><Link to="/component/choicelist" activeClassName={styles.active}>Choice List</Link></li>
         <li><Link to="/component/clickablechip" activeClassName={styles.active}>ClickableChip</Link></li>
         <li><Link to="/component/column" activeClassName={styles.active}>Column</Link></li>
+        <li><Link to="/component/combobox" activeClassName={styles.active}>ComboBox</Link></li>
         <li><Link to="/component/connected" activeClassName={styles.active}>Connected</Link></li>
         <li><Link to="/component/displaytext" activeClassName={styles.active}>DisplayText</Link></li>
         <li><Link to="/component/Drawer" activeClassName={styles.active}>Drawer</Link></li>

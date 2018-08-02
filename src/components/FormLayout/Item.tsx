@@ -6,7 +6,9 @@ import { FORM_LAYOUT } from '../ThemeIdentifiers';
 import * as baseTheme from './FormLayout.scss';
 
 export interface Props {
+  // The content to display inside the formlayout's Item.
   children?: React.ReactNode;
+  // Theme to be injected via css-themr
   theme?: any;
 }
 
