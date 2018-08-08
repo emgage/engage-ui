@@ -6,7 +6,7 @@ const BannerExample = () =>  (
   <div className={styles.example}>
     <Banner
       componentTitle="High risk of fraud detected"
-      action={{ content: 'Review risk analysis', onAction:() => {alert('You clicked on Review risk analysis.');} }}
+      action={{ content: 'Review risk analysis', onAction:() => { alert('You clicked on Review risk analysis.'); } }}
       status="critical"
     >
       <p>

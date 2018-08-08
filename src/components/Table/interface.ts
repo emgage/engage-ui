@@ -21,3 +21,23 @@ export interface ColumnConfig {
   injectBody?(value?: any): void;
   injectHeader?(value?: any): void;
 }
+
+export interface NestedChild {
+  rowId: number | string;
+  component: any;
+}
+
+export interface FilterConfig {
+  searchKey: string;
+  search?: boolean;
+  field: string;
+}
+
+interface SortOrder {
+  new: string;
+  current: string;
+}
+export interface SortState {
+  field: string;
+  order: SortOrder;
+}

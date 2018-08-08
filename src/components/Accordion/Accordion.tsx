@@ -23,6 +23,7 @@ export interface Props {
   // Index of item which you want to be in-active
   closeIndex?: number;
   style?:any;
+  clickHandler?(event: React.FormEvent<HTMLElement>): void;
 }
 
 interface State {
@@ -116,6 +117,7 @@ class Accordion extends React.Component<Props, State> {
           toggle = {this.toggleItem}
           active = {active[index] ? true : false}
           header = {item.header} style={this.props.style}
+          clickHandler={this.props.clickHandler}
         >
           {item.children}
         </AccordionItem>

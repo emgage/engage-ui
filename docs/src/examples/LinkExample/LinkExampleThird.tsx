@@ -4,7 +4,7 @@ import * as styles from '../../styles/components-page.scss';
 
 const LinkExampleThird = () => (
   <div className={styles.example}>
-    <Link onClick={() => {alert('You clicked on link');}}>
+    <Link onClick={() => { alert('You clicked on link'); }}>
       Test Link
     </Link>
   </div>

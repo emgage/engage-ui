@@ -15,7 +15,8 @@ export enum VideoType {
 
 export interface VideoSource {
   src: string;
-  type: VideoType;}
+  type: VideoType;
+}
 
 export interface Props {
   // To give Image URL for Video.

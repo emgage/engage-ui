@@ -19,7 +19,7 @@ const caption = ({
   componentStyle,
   theme,
 }: Props) => {
-  const className = classNames (
+  const className = classNames(
     theme.caption
   );
 

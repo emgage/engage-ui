@@ -3,7 +3,6 @@ import { IDocument } from '../../Types';
 
 // const ImageExampleFirstCode = require('!raw-loader!../../examples/ImageExample/ImageExampleFirst') as string;
 
-
 const ImageState: IDocument = {
   id: 'Image',
   heading: 'Image Component',

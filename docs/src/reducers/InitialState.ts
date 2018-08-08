@@ -54,6 +54,7 @@ import SideNavigationState from './componentState/SideNavigationState';
 import AccordionState from './componentState/AccordionState';
 import TabState from './componentState/TabState';
 import BreadcrumbState from './componentState/BreadcrumbState';
+import ComboBoxState from './componentState/ComboBoxState';
 
 const intialState: IDocumentAppState = {
   components: [
@@ -111,6 +112,7 @@ const intialState: IDocumentAppState = {
     TableState,
     TabState,
     BreadcrumbState,
+    ComboBoxState,
   ],
 };
 

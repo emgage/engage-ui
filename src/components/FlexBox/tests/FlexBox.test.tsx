@@ -225,4 +225,3 @@ describe('when direction, justify and alignment are set', () => {
     expect(subject.find('div').hasClass('alignStretch')).toBe(false);
   });
 });
-

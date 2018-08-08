@@ -5,7 +5,6 @@ import Badge from '../../Badge';
 import Item from '../Item';
 import Heading from '../../Heading';
 
-
 const theme = {
   item: 'Item',
   stack: 'Stack',

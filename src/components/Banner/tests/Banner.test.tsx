@@ -92,7 +92,7 @@ describe('<Banner />', () => {
         expect(bannerWrapper.find('div').at(0).prop('role')).toBe('banner success');
       });
       it('should verify banner when status set as info', () => {
-        const bannerWrapper = mount (
+        const bannerWrapper = mount(
                                      <Banner status="info" theme={theme} />
                                     );
         expect(bannerWrapper.find('div')).toHaveLength(3);

@@ -11,6 +11,8 @@ export interface Props {
     validateFieldsAndScroll: any,
     validateFields(error?: any, values?: [React.FormEvent<any>]): any;
   };
+  // Pass unique reference to the farm
+  formId?: string;
   // To apply styling externally
   componentStyle?: React.CSSProperties;
   // Function to handle on submit of validated form.
@@ -35,7 +37,7 @@ class ValidatedForm extends React.Component<Props, {}> {
 
   render() {
     return(
-      <form onSubmit={this.onSubmit} style={this.props.componentStyle}>
+      <form id={this.props.formId} onSubmit={this.onSubmit} style={this.props.componentStyle}>
         {this.props.children && React.Children.map(this.props.children, (child: React.ReactElement<any>) => {
           return React.cloneElement(child, { form: this.props.form });
         })}

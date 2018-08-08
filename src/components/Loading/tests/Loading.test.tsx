@@ -14,4 +14,3 @@ describe('<Loading />', () => {
     expect(subject.find('span').at(0).hasClass('loading')).toBe(true);
   });
 });
-

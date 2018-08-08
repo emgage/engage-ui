@@ -7,7 +7,7 @@ const BannerExample = () => (
     <Banner
       componentTitle="Your shipping label is ready to print."
       status="success"
-      action={{ content: 'Print label', onAction:() => {alert('You clicked on Print label.');} }}
+      action={{ content: 'Print label', onAction:() => { alert('You clicked on Print label.'); } }}
     />
   </div>
 );

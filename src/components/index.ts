@@ -230,6 +230,7 @@ export {
   TableRow,
   Props as TableProps,
   ColumnConfig as TableColumnConfig,
+  NestedChild as TableNestedData,
 } from './Table';
 
 export {
@@ -320,3 +321,9 @@ export {
   Props as BreadcrumbProps,
   ISourceData as BreadcrumbSourceData,
 } from './BreadCrumb';
+
+export {
+  default as ComboBox,
+  Props as ComboBoxProps,
+  ComboBoxItemType,
+} from './ComboBox';

@@ -7,7 +7,7 @@ const BannerExample = () =>  (
     <Banner
       componentTitle="Some of your product variants are missing weights"
       status="warning"
-      action={{ content: 'Edit variant weights', onAction:() => {alert('You clicked on edit variant weights.');} }}
+      action={{ content: 'Edit variant weights', onAction:() => { alert('You clicked on edit variant weights.'); } }}
     >
       <p>
         Add weights to show accurate rates.

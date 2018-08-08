@@ -53,3 +53,4 @@ export const DRAWERCONTENT = 'PDrawerContent';
 export const TAB = 'PTab';
 export const TREEVIEW = 'PTreeview';
 export const BREADCRUMB = 'PBreadcrumb';
+export const COMBOBOX = 'PComboBox';

@@ -13,9 +13,16 @@ export interface Props {
   // Make accordion item active or inactive.
   toggle?(index: number): void;
   style?:any;
+  clickHandler?(event: React.FormEvent<HTMLElement>) : void;
 }
 
 export default class AccordionItem extends React.PureComponent<Props, never> {
+
+  handleClick = (event: React.FormEvent<HTMLElement>) => {
+    if (this.props.clickHandler) {
+      this.props.clickHandler(event);
+    }
+  }
 
   render() {
     const {
@@ -30,7 +37,7 @@ export default class AccordionItem extends React.PureComponent<Props, never> {
         <div className={active ? baseTheme.header : baseTheme.headerCollapsed} style={style} onClick={this.clickHandler}>
           {header}
         </div>
-        <div className={active ? baseTheme.body : baseTheme.bodyCollapsed}>
+        <div className={active ? baseTheme.body : baseTheme.bodyCollapsed} onClick={this.handleClick}>
           {children}
         </div>
       </div>

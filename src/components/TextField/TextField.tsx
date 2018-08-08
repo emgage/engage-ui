@@ -17,6 +17,7 @@ export type Type = 'text' | 'email' | 'number' | 'password' | 'search' | 'tel' |
 export interface State {
   height?: number | null;
   focused?: boolean;
+  value?: string | undefined;
 }
 
 export interface Props {
@@ -93,9 +94,24 @@ export interface Props {
 const getUniqueID = createUniqueIDFactory('TextField');
 
 class TextField extends React.PureComponent<Props, State> {
-  state: State = { height: null };
+  state: State = { height: null, value: '' };
 
   private input: HTMLElement;
+
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      height: null,
+      value: props.value ? props.value : ''
+    };
+  }
+
+  // tslint:disable-next-line:function-name
+  UNSAFE_componentWillReceiveProps(nextProps: Props) {
+    this.setState({
+      value: nextProps.value
+    });
+  }
 
   render() {
     const {
@@ -193,9 +209,9 @@ class TextField extends React.PureComponent<Props, State> {
       disabled,
       readOnly,
       autoFocus,
-      value,
       placeholder,
       required,
+      value: this.state.value,
       onFocus: this.handleInputOnFocus,
       onBlur: this.handleInputOnBlur,
       style: newComponentStyle,
@@ -267,6 +283,7 @@ class TextField extends React.PureComponent<Props, State> {
 
   @autobind
   private onChange(event: React.FormEvent<HTMLInputElement>) {
+    this.setState({ value: event.currentTarget.value });
     const { onChange } = this.props;
     if (onChange == null) { return; }
     const value = this.props.value ? this.props.value : '';
