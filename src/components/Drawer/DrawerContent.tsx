@@ -55,8 +55,6 @@ class DrawerContent extends React.Component<Props, never> {
   }
 
   render() {
-    const containerClassName = this.getContainerClassName();
-    const barClassName = this.getBarClassName();
     const { active, children, closeButton, theme, toggleDrawer } = this.props;
     const dcStyle = Object.assign(
       {},
@@ -64,22 +62,20 @@ class DrawerContent extends React.Component<Props, never> {
       this.props.style
     );
     return (
-      <div className={containerClassName} >
-        <div className={barClassName} style={dcStyle}>
-          {
-            closeButton ?
-            <span className={theme.close}>
-              <Button onClick={toggleDrawer} icon="cancel" plain />
-            </span> :
-            null
-          }
+      <div style={dcStyle}>
+        {
+          closeButton ?
+          <span className={theme.close}>
+            <Button onClick={toggleDrawer} icon="cancel" plain />
+          </span> :
+          null
+        }
 
-          {
-            active ?
-            children :
-            ''
-          }
-        </div>
+        {
+          active ?
+          children :
+          ''
+        }
       </div>
     );
   }

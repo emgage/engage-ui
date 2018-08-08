@@ -6,11 +6,10 @@
     padding: 5px;
 }
 
-.collapse {
-    position: absolute;
-    z-index: 1000;
-    top: 5px;
-    right: 1px;
+.collapseLink {
+    position: fixed;
+    bottom: 10px;
+    left: 0;
 }
 
 .icon {
@@ -27,10 +26,10 @@
     width: 2rem;
     max-height: 100%;
     max-width: 100%;
-    margin-top: 20px
 }
 .li {
-    display: inline-flex;
+    display: flex;
+    cursor: pointer;
 }
 
 .childLi {
@@ -39,17 +38,11 @@
     margin-top: 10px;
 }
 
-.list {
-    list-style: none;
-    margin-top: 30px;
-    padding-left: 0;
-  
-    + .list {
-      margin-top: spacing();
-    }
-  
-    ul {
-      padding-left: spacing(loose);
+.listItem {  
+    padding: 7px 5px;
+
+    &.divider {
+        border-bottom: 1px solid #5f5f5f;
     }
 }
 
@@ -96,15 +89,11 @@
     display: inline-block;
     fill: currentcolor;
 }
-.navDiv {
-    margin-top:10px;
-    width: 200px;
-}
+
 .navDivider {
     border-bottom:1px solid #e5e5e5;  
 }
 .active {
     background-color: white;
     color: black;
-    width: 270px;
 }

@@ -16,11 +16,12 @@ import * as baseTheme from './Drawer.scss';
 */
 export type Mode = 'slide' | 'push' | 'reveal';
 /* Size of drawer
+  // Collapsed is for side navigation when navigation is hidden
   // Small gives the 270px width of drawer
   // Medium gives the 350px width of drawer
   // Large gives the 600px width of drawer
 */
-export type Width = 'small' | 'medium' | 'large' | string;
+export type Width = 'collapsed' | 'small' | 'medium' | 'large' | string;
 
 // All prototypes type
 export interface Props {
@@ -28,9 +29,11 @@ export interface Props {
   active?: boolean;
   accessibilityLabel?: string;
   // Store the id of active drawer content
-  activeContentId?: string;
+  activeContentId?: string | string[];
   // Show or hide close button (X) to close drawer
   closeButton?: boolean;
+  // If there are multiple theme for drawer then you can pass theme required here
+  currentTheme?: string;
   // Open drawer in flip direction (i.e. right)
   flip?: boolean;
   // Open drawer in slide, push or reveal mode
@@ -54,7 +57,7 @@ const getUniqueID = createUniqueIDFactory('DrawerWrapper');
 
 @layeredComponent({ idPrefix: 'Drawer' })
 // Main Drawer component, its a wrapper for its content
-class Drawer extends React.Component<Props, never> {
+class Drawer extends React.PureComponent<Props, never> {
   public id = getUniqueID();
   private activatorContainer: HTMLElement | null;
 
@@ -92,9 +95,7 @@ class Drawer extends React.Component<Props, never> {
       theme.drawer,
       overlay && theme.overlay,
       flip && this.props.theme.flip,
-      componentWidth === 'small' && theme.small,
-      componentWidth === 'medium' && theme.medium,
-      componentWidth === 'large' && theme.large,
+      theme[componentWidth],
       active && theme.open
     );
   }
@@ -102,12 +103,14 @@ class Drawer extends React.Component<Props, never> {
   // Function to get bar class names
   getBarClassName() {
     const {
+      currentTheme = '',
       mode,
       theme,
     } = this.props;
 
     return classNames(
       theme.bar,
+      currentTheme && theme[currentTheme],
       mode === 'slide' && theme.animation,
       mode === 'push' && theme.animation
     );
@@ -126,19 +129,14 @@ class Drawer extends React.Component<Props, never> {
     const bodyElement = document.body;
     const rootElement = document.getElementById('root');
 
+    bodyElement.className = '';
+
     if (bodyElement !== null) {
       bodyElement.className = this.props.active ? (theme.container) : '';
       bodyElement.className += overlay && this.props.active ? ' ' + (theme.overlay) : '';
       bodyElement.className += flip && this.props.active ? ' ' + (theme.flip) : '';
-      if (componentWidth === 'small') {
-        bodyElement.className += this.props.active ? ' ' + (theme.small) : '';
-      }
-      if (componentWidth === 'medium') {
-        bodyElement.className += this.props.active ? ' ' + (theme.medium) : '';
-      }
-      if (componentWidth === 'large') {
-        bodyElement.className += this.props.active ? ' ' + (theme.large) : '';
-      }
+      bodyElement.className += this.props.active ? ' ' + (theme[componentWidth]) : '';
+
       if (mode === 'push' || mode === 'reveal') {
         bodyElement.className += this.props.active ? ' ' + (theme.animation) : '';
         if (rootElement !== null) {
@@ -160,9 +158,10 @@ class Drawer extends React.Component<Props, never> {
     // Match activeContentId with children's id & mark that as active: true
     return React.Children.map(children, (child: React.ReactElement<any>) => {
       const { componentId } = child.props;
+      const cloneElemnt = (typeof activeContentId === 'string' && activeContentId === componentId) || (typeof activeContentId === 'object' && activeContentId.indexOf(componentId) !== componentId);
 
       // Clone active component & return it
-      if (activeContentId === componentId) {
+      if (cloneElemnt) {
         return React.cloneElement(child, { closeButton, toggleDrawer, active: true, });
       }
     });
@@ -173,13 +172,17 @@ class Drawer extends React.Component<Props, never> {
     const containerClassName = this.getContainerClassName();
     const barClassName = this.getBarClassName();
 
-    this.setBodyStyle();
+    if (active && (mode === 'push' || mode === 'reveal')) {
+      this.setBodyStyle();
+    }
+
     const activeContent = this.renderActivechildren();
     const dStyle = Object.assign(
       {},
       { width: componentWidth ? { width: `${componentWidth}` } : undefined },
       this.props.style
     );
+
     const bar = [
       <div className={barClassName} style={dStyle} key={this.id}>
         {
