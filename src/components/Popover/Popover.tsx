@@ -11,7 +11,7 @@ import { Keys } from '../../types';
 import { findDOMNode } from 'react-dom';
 
 // DEfine type for direction to render popover
-export type Direction = 'up' | 'down' | 'left' | 'right' | 'full';
+export type Direction = 'up' | 'down' | 'left' | 'right';
 
 // All prototypes type
 export interface Props {
@@ -29,8 +29,6 @@ export interface Props {
   closeOnClickOutside?: boolean;
   // Set anchor element or keep it null
   anchorEl?: HTMLElement | null;
-  // To add any inline style to Popover
-  style? : any;
   // Call close method on click 
   onClose?(): void;
   // Call open method on click 
@@ -113,10 +111,9 @@ class Popover extends React.PureComponent<Props, State> {
       active,
       anchorEl,
       disabled,
-      style,
     } = this.props;
 
-    const popoverClassName = classNames(
+    const popoverClassName = classNames (
       direction === 'down' ? baseTheme.popdown
       : direction === 'up' ? baseTheme.popup
       : direction === 'left' ? baseTheme.popleft
@@ -124,12 +121,13 @@ class Popover extends React.PureComponent<Props, State> {
       !disabled && active && baseTheme.active
     );
 
-    const popoverContainerClassName = classNames(
+    const popoverContainerClassName = classNames (
       baseTheme.popoverContainer,
       !disabled && active && baseTheme.active
     );
 
     const activatorComp = anchorEl;
+    
     let activatorRect: ClientRect | DOMRect;
     let popoverPosition = {};
 
@@ -141,6 +139,8 @@ class Popover extends React.PureComponent<Props, State> {
         popoverPosition = { left: - this.popoverOffset.width, top: - activatorRect.height };
       } else if (direction === 'right') {
         popoverPosition = { left: activatorRect.width, top: - activatorRect.height };
+      } else if (direction === 'down') {
+        popoverPosition = { left: `${- this.popoverOffset.width / 2 + activatorRect.width / 2}px`, top: 0 };
       }
     }
 
@@ -148,7 +148,7 @@ class Popover extends React.PureComponent<Props, State> {
         <WRAPPERCOMPONENT ref={this.setActivator}>
           <div className={popoverClassName} key={this.id}>
             <div
-              style={style ? { ...style, ...popoverPosition } : popoverPosition }
+              style={popoverPosition}
               className={popoverContainerClassName}
               ref={node => this.popoverEle = node as HTMLElement}
             >

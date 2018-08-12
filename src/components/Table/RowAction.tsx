@@ -4,17 +4,30 @@ import { themr, ThemedComponentClass } from 'react-css-themr';
 import { TABLE } from '../ThemeIdentifiers';
 
 import Button from '../Button';
+
 import Dropdown from '../Dropdown';
+
 import TableData from './TableData';
 
-import { DropdownItemProps } from '../';
+import * as Expression from './expression';
 
 import * as baseTheme from './Table.scss';
 
+interface expressionFunction {
+  (data: any, config: any): boolean;
+}
+type expressionType = string | expressionFunction;
+
+interface renderProps {
+  expression: expressionType,
+  key? : string
+}
+
 export interface Props {
-  dataId?: string | number;
+  data?: any;
+  render?: renderProps,
   // Individual row action, if available add it in last of the column
-  actionConfig: DropdownItemProps[];
+  actionConfig?: any;
   theme?: any;
 }
 
@@ -41,21 +54,58 @@ class RowAction extends React.Component<Props, State> {
     // return () =>  item.action(this.props.dataId);
   }
 
-  render () {
-    const { actionConfig, dataId } = this.props;
+  getActions = (actionConfig: any, data: any) => {
+    if (typeof(actionConfig) === "function") {
+      return actionConfig(data);
+    } else {
+      return actionConfig.filter((action: any) => {
+        if (action.render) {
+          const { expression, key } = action.render;
+          if (typeof(expression) === "string") {
+            const dataToPass = key ? data[key] : data;
+            const isValidAction = Expression.evalExpression(expression, dataToPass);
+            return isValidAction;
+          } else if (typeof(expression) === "function") {
+            return expression(action, data);
+          }
+          return false;
+        } else {
+          return true;
+        }
+      });
+    }
+  }
 
+  render () {
+    const { actionConfig, data } = this.props;
+    const validActionConfigs = this.getActions(actionConfig, data);
     return (
       <TableData>
         <Button icon="horizontalDots" onClick={(e: React.FormEvent<HTMLElement>) => this.dropdownToggle(e)} />
-
         <Dropdown
           active={this.state.active}
-          dropdownItems={actionConfig}
+          dropdownItems={validActionConfigs}
           toggle={() => this.dropdownToggle}
           anchorEl = {this.state.anchorEl}
-          returnValue={dataId}
+          returnValue={data.id}
           closeOnClickOutside
         />
+
+        {/* <Popover
+          active={this.state.active}
+          >
+          <Pane>
+            <List type="striped">
+              {
+                actionConfig.map((item: any, index: number) => {
+                  return (
+                    <Item key={index} onClick={this.triggerAction(item)}>{ item.label }</Item>
+                  );
+                })
+              }
+            </List>
+          </Pane>
+        </Popover> */}
       </TableData>
     );
   }
