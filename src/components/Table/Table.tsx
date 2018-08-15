@@ -14,7 +14,7 @@ import TableRow from './TableRow';
 import TableData from './TableData';
 
 import { ColumnConfig, FilterConfig, NestedChild, SortState } from './interface';
-//import { DropdownItemProps } from '../';
+// import { DropdownItemProps } from '../';
 import * as baseTheme from './Table.scss';
 
 export type RowSelection = 'checkbox' | 'radio';

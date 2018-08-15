@@ -54,7 +54,7 @@ class ComboBox extends React.Component<Props, State> {
   addRenderer = (items: any , cloneItems: any) => {
     items.forEach((it: any, ind: number) => {
       if (it.renderer) {
-        cloneItems[ind]["renderer"] = it.renderer;
+        cloneItems[ind]['renderer'] = it.renderer;
       }
     });
 
@@ -113,7 +113,7 @@ class ComboBox extends React.Component<Props, State> {
     if (this.props.onSelect) {
       this.props.onSelect(value);
     }
-    this.setState({ selectedValue: typeof(value) === "object" ? value[key] : value, open: false });
+    this.setState({ selectedValue: typeof(value) === 'object' ? value[key] : value, open: false });
   }
 
   render() {

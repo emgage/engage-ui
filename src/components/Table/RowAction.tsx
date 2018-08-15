@@ -7,7 +7,7 @@ import Button from '../Button';
 import Dropdown from '../Dropdown';
 import TableData from './TableData';
 
-//import { DropdownItemProps } from '../';
+// import { DropdownItemProps } from '../';
 
 import * as baseTheme from './Table.scss';
 import * as Expression from './expression';
@@ -17,13 +17,13 @@ interface expressionFunction {
 }
 type expressionType = string | expressionFunction;
 interface renderProps {
-  expression: expressionType,
-  key? : string
+  expression: expressionType;
+  key? : string;
 }
 
 export interface Props {
   data?: any;
-  render?: renderProps,
+  render?: renderProps;
   // Individual row action, if available add it in last of the column
   actionConfig: any;
   theme?: any;
@@ -53,25 +53,24 @@ class RowAction extends React.Component<Props, State> {
   }
 
   getActions = (actionConfig: any, data: any) => {
-    if (typeof(actionConfig) === "function") {
+    if (typeof(actionConfig) === 'function') {
       return actionConfig(data);
-    } else {
-      return actionConfig.filter((action: any) => {
-        if (action.render) {
-          const { expression, key } = action.render;
-          if (typeof(expression) === "string") {
-            const dataToPass = key ? data[key] : data;
-            const isValidAction = Expression.evalExpression(expression, dataToPass);
-            return isValidAction;
-          } else if (typeof(expression) === "function") {
-            return expression(action, data);
-          }
-          return false;
-        } else {
-          return true;
-        }
-      });
     }
+    return actionConfig.filter((action: any) => {
+      if (action.render) {
+        const { expression, key } = action.render;
+        if (typeof(expression) === 'string') {
+          const dataToPass = key ? data[key] : data;
+          const isValidAction = Expression.evalExpression(expression, dataToPass);
+          return isValidAction;
+        }
+        if (typeof(expression) === 'function') {
+          return expression(action, data);
+        }
+        return false;
+      }
+      return true;
+    });
   }
 
   render () {

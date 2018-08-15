@@ -18,7 +18,7 @@ export interface AccordianItem {
 
 export interface Props {
   item: ComboItemProps;
-  clickHandler?(value: string | null | boolean, key?: string ): void;
+  clickHandler?(value: string | null | boolean, key?: string): void;
 }
 
 export default class ComboBoxItem extends React.PureComponent<Props, never> {
