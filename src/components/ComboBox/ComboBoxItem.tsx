@@ -18,7 +18,7 @@ export interface AccordianItem {
 
 export interface Props {
   item: ComboItemProps;
-  clickHandler?(value: string | null | boolean): void;
+  clickHandler?(value: string | null | boolean, key?: string ): void;
 }
 
 export default class ComboBoxItem extends React.PureComponent<Props, never> {
@@ -41,7 +41,7 @@ export default class ComboBoxItem extends React.PureComponent<Props, never> {
             children: val.children.map((child: any) => {
               const data = headerKey ? child[headerKey] : (key ? child[key] : child);
               return (
-                <div data-value={data}>{renderer ? renderer(child, 'children') : data}</div>
+                <div data-key={headerKey ? headerKey : false} data-value={val} data-object={JSON.stringify(child)}>{renderer ? renderer(child, 'children') : data}</div>
               );
             })
           });
@@ -53,7 +53,7 @@ export default class ComboBoxItem extends React.PureComponent<Props, never> {
         );
       default:
         return (
-          <div onClick={this.handleClick}>
+          <div data-key={key ? key : false} onClick={this.handleClick}>
             {this.getItem(value, key, renderer)}
           </div>
         );
@@ -72,9 +72,11 @@ export default class ComboBoxItem extends React.PureComponent<Props, never> {
 
   private handleClick = (event: any) => {
     const target = event.target;
-    const dataValue: boolean | string | null  = this.findParent(target);
+    const dataValue: boolean | string | any  = this.findParent(target);
     if (dataValue && this.props.clickHandler) {
-      this.props.clickHandler(dataValue);
+      const hasKey = event.currentTarget.getAttribute('data-key');
+      const valueToPass = hasKey ?  JSON.parse(dataValue) : dataValue;
+      this.props.clickHandler(valueToPass, hasKey);
     }
   }
 
@@ -82,7 +84,7 @@ export default class ComboBoxItem extends React.PureComponent<Props, never> {
     return value.map((val: any) => {
       const data = key ? val[key] : val;
       return (
-        <div data-value={data}>
+        <div data-value={JSON.stringify(val)} data-key={key ? key : false} data-object={JSON.stringify(val)}>
           {renderer ? renderer(val) : data}
         </div>
       );
