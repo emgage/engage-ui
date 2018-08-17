@@ -15,10 +15,17 @@ script:
 - npm run build-dev
 - npm run test
 deploy:
-  - provider: npm
-    email: npm@emgage.com
-    api_key:
-      secure: dpsnYLmlCZyukRefikRdknEH8BtYBCGtQLKU+9GT/vhN8b2pZWiu7r0f0BwmjN01MgplrNSu/LkGS9Eqa6NdTOG/ysIo9AU533C+evRsFLc7Im+1W0Cv2q1RUrrG4N5waOcaYbBqxpHLHZzdSunlNaRORUkCgUn6Z3tMKB76EICdFxO0HPKNpQvWlS0AHn3LSfMeJhPEsePI48b0krurHbQyZlQKlhJYxEXtQyxE/mUvmfXVVPzjbJHngTwqqh3XFEcHxR9swUW/kIDoeLKbsGOcGAa2VM1sw+qs5hAEgdTNJnWQcBlOwgUVFt2zn2zI4ojgi1kDnLCfpiyouI/KuOm1APDIVH+sgyBqEpsfJD952izm3SEL6zXWBylvLNDxYu0PoJDHWcPzeQjT+Bvj4fuC5P0o+DyiWHFl18s2kVJ21j38bFfPlRWTAiC04B/WZjt/BH/1oi6GdVoqX+5Th+T0Tl8LuYin67e/Em0ltN/tizB/52MOgK9pLkJaMdOJurd8zL9tFpiStygWq8U+WnsFy1oRkWg1OClaBGz3B1ZACuAvcKgILmcibLW+ZnVyB4ACvE3oGmlM9xGSgZQ/iMRlWZ7sZjqDt6L7bx07lspKNN55Y4TuIV94B3AOvOPUnGpXtIV7Zk3CEGRcdQ8PfklWEK3fb3CVwidMPiggQ9c=
+  - provider: script
+    skip_cleanup: true
+    script: .travis/pu.sh
     on:
       repo: emgage/engage-ui
       branch: Feature/36462-npm-deployment
+      tags: false
+  - provider: npm
+    email: "$NPM_EMAIL"
+    api_key: "$NPM_TOKEN"
+    on:
+      repo: emgage/engage-ui
+      branch: Feature/36462-npm-deployment
+      tags: false
