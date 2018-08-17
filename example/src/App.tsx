@@ -219,10 +219,10 @@ class App extends React.Component<{}, State> {
     const Accordionitems : AccordionItemProps[] = [{
       children: <Banner componentTitle={'banner'} status={'success'} />,
       header: <Button>sk</Button>
-    },{
+    }, {
       children: <Banner componentTitle={'banner11'} status={'warning'} />,
       header: <Button>sk1</Button>
-    },{
+    }, {
       children: <Banner componentTitle={'banner13'} status={'warning'} />,
       header: <Button>sk3</Button>
     }];
@@ -314,18 +314,18 @@ class App extends React.Component<{}, State> {
       {
         name: 'Home',
         type: 'default',
-        onBreadcrumbClick: () => { console.log('Home is clicked');}
+        onBreadcrumbClick: () => console.log('Home is clicked')
       }, {
         name: <Badge children={'Home1'} status={'success'} />,
         type: 'active',
-        onBreadcrumbClick: () => { console.log('Badge is clicked');}
+        onBreadcrumbClick: () => console.log('Badge is clicked')
       }, {
         name: 'Home2',
         type: 'disabled'
       }, {
         name: 'Home3',
         type: 'active',
-        onBreadcrumbClick: () => { console.log('Home3 is clicked');}
+        onBreadcrumbClick: () => console.log('Home3 is clicked')
       },
     ];
     const sideNavigationData: INavigationData[] = [
@@ -481,7 +481,7 @@ class App extends React.Component<{}, State> {
         id: 1,
         component: () => <span>I am component1</span>,
         active: false,
-        onToggle: (status) => { console.log('Tree node open:', status);},
+        onToggle: status => console.log('Tree node open:', status),
         children: [
           {
             id: 11,
@@ -496,6 +496,28 @@ class App extends React.Component<{}, State> {
                 id: 111,
                 component: () => <span>I am child child component1</span>,
                 active: false,
+                children: [
+                  {
+                    id: 1112,
+                    component: () => <span>child component1</span>,
+                    active: false,
+                  }, {
+                    id: 1113,
+                    component: () => <span>child component2</span>,
+                    active: false,
+                    children: [
+                      {
+                        id: 11121,
+                        component: () => <span>child component1</span>,
+                        active: false,
+                      }, {
+                        id: 11131,
+                        component: () => <span>child component2</span>,
+                        active: false,
+                      },
+                    ]
+                  },
+                ]
               },
             ]
           }, {
@@ -508,7 +530,7 @@ class App extends React.Component<{}, State> {
         id: 2,
         component: () => <span>I am component2</span>,
         active: false,
-        onToggle: (status) => { console.log('Tree node open:', status);},
+        onToggle: status => console.log('Tree node open:', status),
       }
     ];
 
