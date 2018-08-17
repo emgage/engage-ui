@@ -1,12 +1,14 @@
-sudo: false
 language: node_js
-node_js:
-  - node
 cache:
   yarn: true
   directories:
+  - ~/.npm
   - node_modules
   - "$HOME/.yarn-cache"
+node_js:
+  - node
+notifications:
+  email: false
 install:
 - npm install
 - npm rebuild node-sass
@@ -14,18 +16,8 @@ script:
 - npm run lint
 - npm run build-dev
 - npm run test
-deploy:
-  - provider: script
-    skip_cleanup: true
-    script: .travis/pu.sh
-    on:
-      repo: emgage/engage-ui
-      branch: Feature/36462-npm-deployment
-      tags: false
-  - provider: npm
-    email: "$NPM_EMAIL"
-    api_key: "$NPM_TOKEN"
-    on:
-      repo: emgage/engage-ui
-      branch: Feature/36462-npm-deployment
-      tags: false
+after_success:
+  - npm run travis-deploy-once "npm run semantic-release"
+branches:
+  except:
+    - /^v\d+\.\d+\.\d+$/

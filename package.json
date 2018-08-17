@@ -1,6 +1,6 @@
 {
   "name": "engage-ui",
-  "version": "0.2.1",
+  "version": "0.2.1-development",
   "description": "Emgage's UI Component Library for React.",
   "license": "MIT",
   "author": "Emgage <work@emgage.com>",
@@ -18,6 +18,17 @@
   ],
   "main": "lib/",
   "types": "lib/@types/src/index.d.ts",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "tag": "latest"
+  },
+  "release": {
+    "verifyConditions": ["@semantic-release/npm"],
+    "prepare": ["@semantic-release/npm"],
+    "publish": ["@semantic-release/npm"],
+    "npmPublish": false,
+    "tarballDir": false
+  },
   "scripts": {
     "lint": "node node_modules/tslint/bin/tslint 'src/**/*.{ts,tsx}' --config tslint.json --exclude \"src/**/*.{js,jsx}\" --project tsconfig.json",
     "lint-fix": "node node_modules/tslint/bin/tslint --fix 'src/**/*.{ts,tsx}' --config tslint.json --exclude \"src/**/*.{js,jsx}\" --project tsconfig.json",
@@ -30,7 +41,9 @@
     "build-release": "node node_modules/webpack/bin/webpack.js -p",
     "example": "webpack-dev-server --config webpack.example.config",
     "docs": "webpack-dev-server --config webpack.docs.config",
-    "precommit-msg": "echo 'Running linting and testing checks...' && exit 0"
+    "precommit-msg": "echo 'Running linting and testing checks...' && exit 0",
+    "travis-deploy-once": "travis-deploy-once",
+    "semantic-release": "semantic-release"
   },
   "pre-commit": [
     "precommit-msg",
@@ -74,6 +87,7 @@
     "react-test-renderer": "^16.0.0",
     "sass-loader": "^6.0.3",
     "sass-resources-loader": "1.2.1",
+    "semantic-release": "^15.9.8",
     "style-loader": "^0.19.1",
     "svgo": "^0.7.2",
     "ts-loader": "^2.3.2",
@@ -83,7 +97,8 @@
     "typescript": "^2.9.0-dev.20180407",
     "underscore": "^1.8.3",
     "webpack": "^3.7.1",
-    "webpack-dev-server": "^2.7.1"
+    "webpack-dev-server": "^2.7.1",
+    "travis-deploy-once": "^5.0.2"
   },
   "peerDependencies": {
     "react": "^16.3.1",
