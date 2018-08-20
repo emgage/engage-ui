@@ -1,1 +1,11 @@
-.treeview {}
+.treeview {
+    list-style-type: none;
+
+    ul {
+        margin-right: 0px;
+    }
+}
+
+.active {
+    font-weight: bold;
+}
