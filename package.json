@@ -36,7 +36,7 @@
     "docs": "webpack-dev-server --config webpack.docs.config",
     "precommit-msg": "echo 'Running linting and testing checks...' && exit 0",
     "travis-deploy-once": "travis-deploy-once",
-    "semantic-release": "semantic-release",
+    "semantic-release": "semantic-release --debug",
     "commit": "node node_modules/semantic-git-commit-cli/dest/cli.js",
     "commitmsg": "commitlint -E GIT_PARAMS"
   },
@@ -63,7 +63,8 @@
       "@semantic-release/npm"
     ],
     "npmPublish": true,
-    "tarballDir": false
+    "tarballDir": false,
+    "branch": "Features/ci-test-deploy"
   },
   "sgc": {
     "lowercaseTypes": true
