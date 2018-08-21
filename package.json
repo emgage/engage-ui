@@ -23,9 +23,15 @@
     "tag": "latest"
   },
   "release": {
-    "verifyConditions": ["@semantic-release/npm"],
-    "prepare": ["@semantic-release/npm"],
-    "publish": ["@semantic-release/npm"],
+    "verifyConditions": [
+      "@semantic-release/npm"
+    ],
+    "prepare": [
+      "@semantic-release/npm"
+    ],
+    "publish": [
+      "@semantic-release/npm"
+    ],
     "npmPublish": false,
     "tarballDir": false
   },
@@ -43,7 +49,8 @@
     "docs": "webpack-dev-server --config webpack.docs.config",
     "precommit-msg": "echo 'Running linting and testing checks...' && exit 0",
     "travis-deploy-once": "travis-deploy-once",
-    "semantic-release": "semantic-release"
+    "semantic-release": "semantic-release -e ./config/release.config.js",
+    "commit": "node node_modules/semantic-git-commit-cli/dest/cli.js"
   },
   "pre-commit": [
     "precommit-msg",
@@ -87,9 +94,11 @@
     "react-test-renderer": "^16.0.0",
     "sass-loader": "^6.0.3",
     "sass-resources-loader": "1.2.1",
+    "semantic-git-commit-cli": "^3.0.2",
     "semantic-release": "^15.9.8",
     "style-loader": "^0.19.1",
     "svgo": "^0.7.2",
+    "travis-deploy-once": "^5.0.2",
     "ts-loader": "^2.3.2",
     "tslint": "^5.8.0",
     "tslint-config-airbnb": "^5.2.1",
@@ -97,8 +106,7 @@
     "typescript": "^2.9.0-dev.20180407",
     "underscore": "^1.8.3",
     "webpack": "^3.7.1",
-    "webpack-dev-server": "^2.7.1",
-    "travis-deploy-once": "^5.0.2"
+    "webpack-dev-server": "^2.7.1"
   },
   "peerDependencies": {
     "react": "^16.3.1",
