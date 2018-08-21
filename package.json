@@ -22,19 +22,6 @@
     "registry": "https://registry.npmjs.org/",
     "tag": "latest"
   },
-  "release": {
-    "verifyConditions": [
-      "@semantic-release/npm"
-    ],
-    "prepare": [
-      "@semantic-release/npm"
-    ],
-    "publish": [
-      "@semantic-release/npm"
-    ],
-    "npmPublish": false,
-    "tarballDir": false
-  },
   "scripts": {
     "lint": "node node_modules/tslint/bin/tslint 'src/**/*.{ts,tsx}' --config tslint.json --exclude \"src/**/*.{js,jsx}\" --project tsconfig.json",
     "lint-fix": "node node_modules/tslint/bin/tslint --fix 'src/**/*.{ts,tsx}' --config tslint.json --exclude \"src/**/*.{js,jsx}\" --project tsconfig.json",
@@ -49,9 +36,37 @@
     "docs": "webpack-dev-server --config webpack.docs.config",
     "precommit-msg": "echo 'Running linting and testing checks...' && exit 0",
     "travis-deploy-once": "travis-deploy-once",
-    "semantic-release": "semantic-release -e ./config/release.config.js",
+    "semantic-release": "semantic-release",
     "commit": "node node_modules/semantic-git-commit-cli/dest/cli.js",
     "commitmsg": "commitlint -E GIT_PARAMS"
+  },
+  "babel": {
+    "presets": [
+      "react",
+      "es2015",
+      "flow",
+      "shopify/node"
+    ]
+  },
+  "files": [
+    "src",
+    "lib"
+  ],
+  "release": {
+    "verifyConditions": [
+      "@semantic-release/npm"
+    ],
+    "prepare": [
+      "@semantic-release/npm"
+    ],
+    "publish": [
+      "@semantic-release/npm"
+    ],
+    "npmPublish": false,
+    "tarballDir": false
+  },
+  "sgc": {
+    "lowercaseTypes": true
   },
   "pre-commit": [
     "precommit-msg",
@@ -116,18 +131,6 @@
     "react": "^16.3.1",
     "react-dom": "^16.3.1"
   },
-  "babel": {
-    "presets": [
-      "react",
-      "es2015",
-      "flow",
-      "shopify/node"
-    ]
-  },
-  "files": [
-    "src",
-    "lib"
-  ],
   "dependencies": {
     "@shopify/images": "^1.1.0",
     "@shopify/javascript-utilities": "^2.1.0",
