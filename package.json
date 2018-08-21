@@ -1,6 +1,6 @@
 {
   "name": "engage-ui",
-  "version": "0.2.1-development",
+  "version": "0.1.1",
   "description": "Emgage's UI Component Library for React.",
   "license": "MIT",
   "author": "Emgage <work@emgage.com>",
@@ -36,7 +36,7 @@
     "docs": "webpack-dev-server --config webpack.docs.config",
     "precommit-msg": "echo 'Running linting and testing checks...' && exit 0",
     "travis-deploy-once": "travis-deploy-once",
-    "semantic-release": "semantic-release",
+    "semantic-release": "semantic-release --debug",
     "commit": "node node_modules/semantic-git-commit-cli/dest/cli.js",
     "commitmsg": "commitlint -E GIT_PARAMS"
   },
