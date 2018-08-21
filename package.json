@@ -50,7 +50,8 @@
     "precommit-msg": "echo 'Running linting and testing checks...' && exit 0",
     "travis-deploy-once": "travis-deploy-once",
     "semantic-release": "semantic-release -e ./config/release.config.js",
-    "commit": "node node_modules/semantic-git-commit-cli/dest/cli.js"
+    "commit": "node node_modules/semantic-git-commit-cli/dest/cli.js",
+    "commitmsg": "commitlint -E GIT_PARAMS"
   },
   "pre-commit": [
     "precommit-msg",
@@ -58,6 +59,8 @@
     "lint:docs"
   ],
   "devDependencies": {
+    "@commitlint/cli": "^7.0.0",
+    "@commitlint/config-conventional": "^7.0.1",
     "@types/enzyme": "^2.8.12",
     "@types/enzyme-adapter-react-16": "^1.0.2",
     "@types/jest": "^22.2.2",
