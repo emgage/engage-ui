@@ -514,7 +514,7 @@ class App extends React.Component<{}, State> {
 
     return (
       <div>
-        <span>Small change for test Change 2</span>
+        <span>Small change for test Change 3</span>
         <Badge children={'Badge'} />
         <Badge children={'Badge'} status={'success'} />
         <Badge children={'Badge'} status={'info'} />
