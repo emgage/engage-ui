@@ -63,8 +63,7 @@
       "@semantic-release/npm"
     ],
     "npmPublish": true,
-    "tarballDir": false,
-    "branch": "Features/ci-test-deploy"
+    "tarballDir": false
   },
   "sgc": {
     "lowercaseTypes": true
