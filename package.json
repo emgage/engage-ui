@@ -63,7 +63,8 @@
       "@semantic-release/npm"
     ],
     "npmPublish": true,
-    "tarballDir": false
+    "tarballDir": false,
+    "branch": "master"
   },
   "sgc": {
     "lowercaseTypes": true
