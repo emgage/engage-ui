@@ -9,6 +9,7 @@ import { BUTTON_GROUP } from '../ThemeIdentifiers';
 import * as baseTheme from './ButtonGroup.scss';
 
 export interface Props {
+  componentStyle?: any;
   // Display true or false value. Join buttons as segmented group.
   segmented?: boolean;
   // Name of button, Button components.
@@ -18,6 +19,7 @@ export interface Props {
 }
 
 const buttonGroup = ({
+  componentStyle,
   children,
   segmented,
   theme,
@@ -30,7 +32,7 @@ const buttonGroup = ({
   const contents = elementChildren(children)
     .map((child, index) => <Item button={child} key={index} />);
 
-  return <div className={className}>{contents}</div>;
+  return <div className={className} style={componentStyle}>{contents}</div>;
 };
 
 export default themr(BUTTON_GROUP, baseTheme)(buttonGroup) as ThemedComponentClass<Props, {}>;
