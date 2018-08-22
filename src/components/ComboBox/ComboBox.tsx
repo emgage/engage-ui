@@ -23,6 +23,7 @@ export interface Props {
   items: ComboBoxItemProps[];
   label: string;
   style?:any;
+  onSelect?(item: any): void;
 }
 
 interface State {
@@ -45,9 +46,19 @@ class ComboBox extends React.Component<Props, State> {
       items: props.items,
       // In case use is searching something, and then removes its search text, combobox shud list the initialItem
       // Therefore, keeping copy of it so that its not lose, as items is changed depending on search and selection.
-      initialItems: JSON.parse(JSON.stringify(props.items)),
+      initialItems: this.addRenderer(props.items, JSON.parse(JSON.stringify(props.items))),
       selectedValue: '',
     };
+  }
+
+  addRenderer = (items: any , cloneItems: any) => {
+    items.forEach((it: any, ind: number) => {
+      if (it.renderer) {
+        cloneItems[ind]['renderer'] = it.renderer;
+      }
+    });
+
+    return cloneItems;
   }
 
   /*
@@ -59,7 +70,8 @@ class ComboBox extends React.Component<Props, State> {
   onChange = (value: string) => {
     let newItems = this.state.initialItems;
     if (value && value !== '') {
-      const cloneItems = JSON.parse(JSON.stringify(this.state.initialItems));
+      let cloneItems = JSON.parse(JSON.stringify(this.state.initialItems));
+      cloneItems = this.addRenderer(this.state.items, cloneItems);
       newItems = cloneItems.map((it: any) => {
         const itemValues = it.value;
         const key = it.key;
@@ -67,14 +79,15 @@ class ComboBox extends React.Component<Props, State> {
         if (it.type === 'Accordian') {
           data = itemValues.map((itv: any) => {
             itv.children = itv.children.filter((child: any) => {
-              const flag = key ? (child[key].includes(value)) : child.includes(value);
+              const flag = key ? ((child[key].toLowerCase()).includes(value.toLowerCase())) : (child.toLowerCase()).includes(value.toLowerCase());
               return flag;
             });
             return itv;
           });
         } else {
           data = itemValues.filter((itv: any) => {
-            const flag = key ? (itv[key].includes(value)) : itv.includes(value);
+            const smallVal = value.toLowerCase();
+            const flag = key ? ((itv[key].toLowerCase()).includes(smallVal)) : (itv.toLowerCase()).includes(smallVal);
             return flag;
           });
         }
@@ -96,8 +109,11 @@ class ComboBox extends React.Component<Props, State> {
     });
   }
 
-  handleClick = (value: string) => {
-    this.setState({ selectedValue: value, open: false });
+  handleClick = (value: string | any, key: any) => {
+    if (this.props.onSelect) {
+      this.props.onSelect(value);
+    }
+    this.setState({ selectedValue: typeof(value) === 'object' ? value[key] : value, open: false });
   }
 
   render() {
