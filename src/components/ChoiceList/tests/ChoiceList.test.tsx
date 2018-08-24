@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { shallow, mount, ReactWrapper } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 
 import ChoiceList from '../ChoiceList';
 import RadioButton from '../../RadioButton';
