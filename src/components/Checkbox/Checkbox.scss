@@ -1,86 +1,68 @@
-@import 'foundation/colors';
-@import 'foundation/borders';
-@import 'foundation/border-radius';
-@import 'foundation/shadows';
-@import 'shared/accessibility';
-@import 'shared/controls';
-@import 'shared/icons';
 
-.checkbox {
+
+.customControl {
   position: relative;
+  display: inline-block;
+  min-height: 1.5rem;
+  margin-left: 1.5rem;
 }
 
-.error {
-  // The basic checked styles have more specificity than this, so need to
-  // basically duplicate that selector here, too.
-  // stylelint-disable-next-line selector-max-specificity
-  .input:checked + .backdrop,
-  .backdrop {
-    @include control-backdrop(error);
-  }
-
-  // We need to know if the input is focusing to change the border color.
-  // stylelint-disable-next-line selector-max-specificity
-  .input:focus + .backdrop,
-  .input:active + .backdrop {
-    @include control-backdrop(focused-error);
-  }
-
-  .icon {
-    @include recolor-icon(color(red, dark));
-  }
+input[type=checkbox], input[type=radio] {
+  box-sizing: border-box;
+  padding: 0;
 }
 
-.input {
-  @include visually-hidden;
-
-  &:focus,
-  &:active,
-  &:checked {
-    + .backdrop {
-      background: color(indigo);
-    }
-  }
-
-  &:checked {
-    ~ .icon {
-      transform: translate(-50%, -50%) scale(1);
-    }
-  }
-
-  &:focus,
-  &:active {
-    + .backdrop {
-      @include control-backdrop(focused);
-    }
-  }
-
-  &:disabled {
-    + .backdrop {
-      @include control-backdrop(disabled);
-    }
-
-    ~ .Icon {
-      @include recolor-icon(color(ink, lightest));
-    }
-  }
-}
-
-.backdrop {
-  @include control-backdrop;
+.customControlInput {
   position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  z-index: -1;
+  opacity: 0;
+
+  &:checked~label {
+    &:before {
+      color: #fff;
+      background-color: #007bff;
+      border-color: #0068d7;
+    }
+
+    &:after {
+      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3E%3C/svg%3E");
+    }
+  }
 }
 
-.icon {
-  @include recolor-icon(color(indigo));
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0);
-  transform-origin: 50% 50%;
-  transition: control-icon-transition();
+.customControlLabel {
+  display: inline-block;
+  position: relative;
+  margin-bottom: 0;
+  padding-left: 0.5rem;
+  height: 1.5rem;
+
+  &:before, &:after {
+    position: absolute;
+    top: .25rem;
+    left: -1.5rem;
+    display: block;
+    width: 1.5rem;
+    height: 1.5rem;
+    content: "";
+  }
+
+  &:before {
+    border-radius: .25rem;
+    transition: background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    pointer-events: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: #ffffff;
+    border: 1px solid #f6f6f6;
+  }
+
+  &:after {
+    
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 50% 50%;
+  }
 }

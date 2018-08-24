@@ -355,7 +355,6 @@ class Table extends React.Component<Props, State> {
 
     return (
       <Checkbox
-        label=""
         value={uniqueId}
         checked={selectedRows.indexOf(uniqueId) !== -1 ? true : false}
         onChange={(checkedStatus: boolean) => {
@@ -367,7 +366,7 @@ class Table extends React.Component<Props, State> {
 
   // Function to add checkbox for the row selection
   renderRadio = (rowData: any): React.ReactElement<any> => {
-    return <TableData><Checkbox label="" value={rowData.id} checked={rowData.checked ? true : false} /></TableData>;
+    return <TableData><Checkbox value={rowData.id} checked={rowData.checked ? true : false} /></TableData>;
   }
 
   render () {
