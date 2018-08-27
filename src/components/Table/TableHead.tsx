@@ -19,7 +19,7 @@ export interface Props {
   // Any custom class that user wants to add which could be for setting width or any custom styling
   className?: string;
   // If sorting is enabled, then clickhndler will get triggered on click
-  clickHandler?(field: string): void;
+  clickHandler?(field: string, sortBy: string): void;
   // To set colspan value
   colSpan?: number;
   // Current sort order, it will be only filled if the current sorting field will be this
@@ -28,6 +28,8 @@ export interface Props {
   rowSpan?: number;
   // This have the key of current heading, this helps in sorting
   sort?: string;
+  // If specific key contains an object this prop will tell which key from that object to be used
+  sortBy?: string;
   // Custom style, if user wants to add in th
   componentStyle?: any;
   theme?: any;
@@ -40,10 +42,10 @@ class TableHead extends React.Component<Props, never> {
 
   // Function to trigger the clickhandler if its defined
   triggerClick = () => {
-    const { clickHandler, sort } = this.props;
+    const { clickHandler, sort, sortBy = '' } = this.props;
 
     if (sort && clickHandler) {
-      clickHandler(sort);
+      clickHandler(sort, sortBy);
     }
   }
 
