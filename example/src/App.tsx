@@ -72,6 +72,7 @@ interface State {
   appCity: string;
   appTextCounter: string;
   columns: object[];
+  checkboxState: boolean;
   rows: object[];
   isMenuOpened: boolean;
   popoverActive: boolean;
@@ -103,6 +104,7 @@ class App extends React.Component<{}, State> {
       appDescription: '',
       appCity: '',
       appTextCounter: '',
+      checkboxState: true,
       columns: [
         { key: 'id', name: 'ID' },
         { key: 'title', name: 'Title' },
@@ -536,6 +538,7 @@ class App extends React.Component<{}, State> {
 
     return (
       <div>
+        <span>Small change for test Change 3</span>
         <Badge children={'Badge'} />
         <Badge children={'Badge'} status={'success'} />
         <Badge children={'Badge'} status={'info'} />
@@ -673,7 +676,7 @@ class App extends React.Component<{}, State> {
         <Alert componentType="danger">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
         </Alert>
-        <Checkbox label={'I am a checkbox'} />
+        <Checkbox helpText="this is help" checked={this.state.checkboxState} label={'I am a checkbox'} onChange={(newValue: boolean) => console.log('I am here:', newValue) } />
         <Banner componentTitle={'banner'} status={'success'} />
         <Banner componentTitle={'banner'} status={'info'} />
         <Banner componentTitle={'banner'} status={'warning'} />
