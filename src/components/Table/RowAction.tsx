@@ -45,7 +45,7 @@ class RowAction extends React.Component<Props, State> {
 
   dropdownToggle = (e: React.FormEvent<HTMLElement>) => {
     this.setState({
-      anchorEl: e.target as HTMLElement,
+      anchorEl: e ? e.target as HTMLElement : this.state.anchorEl,
       active: !this.state.active
     });
 

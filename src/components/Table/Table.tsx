@@ -161,12 +161,14 @@ class Table extends React.Component<Props, State> {
           { this.renderRowSelection(null, 'head') }
           {
             column.map((item: ColumnConfig) => {
-              const thisSort: string = (sorting === 'all' || item.sort) && !item.noSort ? item.key : '';
+              const { key, sort, noSort, sortBy } = item;
+              const thisSort: string = (sorting === 'all' || sort) && !noSort ? key : '';
 
               return (
                 <TableHead
-                  key={item.key}
+                  key={key}
                   sort={thisSort}
+                  sortBy={sortBy}
                   componentStyle={item.style}
                   className={item.className}
                   order={field === item.key ? order.current : ''}
@@ -387,14 +389,14 @@ class Table extends React.Component<Props, State> {
   }
 
   // Function to sort the data
-  sortData = (field: string) => {
+  sortData = (field: string, sortBy: string = '') => {
     const { data } = this.props;
     const { order } = this.state.sort;
 
     const sortedData = data.sort((item1: any, item2: any) => {
       // Converting strings to uppercase so for comparisions there will be no issue
-      const value1 = item1[field].toUpperCase();
-      const value2 = item2[field].toUpperCase();
+      const value1 = !sortBy ? item1[field].toUpperCase() : item1[field][sortBy].toUpperCase();
+      const value2 = !sortBy ? item2[field].toUpperCase() : item2[field][sortBy].toUpperCase();
 
       if (value1 < value2) {
         return -1;

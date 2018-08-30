@@ -52,16 +52,25 @@ class Popover extends React.PureComponent<Props, State> {
   private popoverEle: HTMLElement;
   private popoverOffset = { height: 0, width: 0 };
 
+  static defaultProps = {
+    closeOnClickOutside: true,
+  };
+
   constructor(props: Props) {
     super(props);
     this.state = {
       // As per props value set the popover to be active
-      active: false,
+      active: this.props.active,
     };
   }
 
   componentWillReceiveProps(newProps: Props) {
+    const { active: newActive } = newProps;
     const { active } = this.props;
+
+    if (newActive !== active) {
+      this.setState({ active: newActive });
+    }
 
     if (active && !newProps.active && newProps.onClose) {
       newProps.onClose();
@@ -110,11 +119,12 @@ class Popover extends React.PureComponent<Props, State> {
       activatorWrapper: WRAPPERCOMPONENT = 'div',
       children,
       direction = 'down',
-      active,
       anchorEl,
       disabled,
       style,
     } = this.props;
+
+    const { active } = this.state;
 
     const popoverClassName = classNames(
       direction === 'down' ? baseTheme.popdown
@@ -193,10 +203,11 @@ class Popover extends React.PureComponent<Props, State> {
     event.preventDefault();
 
     const {
-      active,
       closeOnClickOutside,
       callbackParent,
     } = this.props;
+
+    const { active } = this.state;
 
     if (!active) {
       return;
@@ -219,26 +230,28 @@ class Popover extends React.PureComponent<Props, State> {
     event.preventDefault();
 
     const {
-      active,
+      anchorEl,
       closeOnClickOutside,
       callbackParent,
     } = this.props;
 
+    const { active } = this.state;
     const element = findDOMNode(this);
 
     if (!active) {
       return;
     }
+
     // Close the popdown on outside area click
     if (element !== null && event.target != null && element !== event.target && closeOnClickOutside) {
       const domNode = document.body;
       const targetNode = event.target;
       if ((!domNode || !domNode.contains(targetNode as Node))) {
         this.setState({ active : true });
-      } else {
+      } else if (event.target !== anchorEl && !element.contains(event.target as Node)) {
         const newState = !this.state.active;
         // update the state
-        this.setState({ active: newState });
+        this.setState({ active: !this.state.active });
         const callParent = callbackParent;
         if (callParent) {
           callParent(newState);
