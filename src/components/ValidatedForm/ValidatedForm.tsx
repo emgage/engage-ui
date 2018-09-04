@@ -15,6 +15,7 @@ export interface Props {
   formId?: string;
   // To apply styling externally
   componentStyle?: React.CSSProperties;
+  formFields: string[];
   // Function to handle on submit of validated form.
   onSubmit: (values: [React.FormEvent<any>]) => void;
   // Function to handle errors on submit of validated form.
@@ -35,11 +36,39 @@ class ValidatedForm extends React.Component<Props, {}> {
     });
   }
 
+  renderChild = (child: React.ReactElement<any>, directChild: boolean = false): any => {
+    // console.log('I am here:', child);
+    // return React.cloneElement(child, { form: this.props.form });
+    const { formFields, form } = this.props;
+    const { props = {} } = child;
+    const { children, componentId } = props;
+
+    if (formFields.indexOf(componentId) !== -1) {
+      return React.cloneElement(child, { form });
+    }
+
+    if (directChild || typeof children === 'string') {
+      return React.cloneElement(child);
+    }
+
+    if (children) {
+      if (children.constructor === Array) {
+        return React.Children.map(children, (thisChild: React.ReactElement<any>) => {
+          return this.renderChild(thisChild);
+        });
+      }
+
+      return this.renderChild(children, true);
+    }
+  }
+
   render() {
     return(
       <form id={this.props.formId} onSubmit={this.onSubmit} style={this.props.componentStyle}>
         {this.props.children && React.Children.map(this.props.children, (child: React.ReactElement<any>) => {
-          return React.cloneElement(child, { form: this.props.form });
+          // console.log(this.renderChild(child));
+          return this.renderChild(child);
+          // return React.cloneElement(child, { form: this.props.form });
         })}
       </form>
     );

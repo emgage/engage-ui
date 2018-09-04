@@ -22,7 +22,7 @@ import {
   DrawerContent,
   SideNavigation,
   FlexBox,
-  FormLayout,
+  // FormLayout,
   Heading,
   Link,
   List,
@@ -958,6 +958,7 @@ class App extends React.Component<{}, State> {
           <ValidatedForm
             onSubmitError={(value: [any], error: Error) => console.log('value:', value, 'error:', error)}
             onSubmit={(value: [any]) => console.log('Submit Value:', value)}
+            formFields={['AppName', 'appDescription', 'appCity']}
           >
 
             <Heading>App Basics</Heading>
@@ -965,13 +966,13 @@ class App extends React.Component<{}, State> {
             <DisplayText componentSize="large">This is Display Text, which is used to make a bold visual statement.</DisplayText>
             <p>This is just some fun regular text.</p>
 
-            <FormLayout>
+            {/* <FormLayout> */}
               <ValidatedTextField
                 componentId="AppName"
                 label="App Name"
                 placeholder=""
                 helpText="We recommend keeping your app name under 23 characters."
-                // onChange={this.valueUpdater('appName')}
+                onChange={this.valueUpdater('appName')}
                 value={this.state.appName}
                 name="App Name"
                 validateTrigger={['onBlur']}
@@ -987,7 +988,7 @@ class App extends React.Component<{}, State> {
                 label="App Description"
                 placeholder=""
                 helpText="Provide an engaging description that highlights the features and functionality of your app. Let potential users know what makes your app unique and why they will love it."
-                // onChange={this.valueUpdater('appDescription')}
+                onChange={this.valueUpdater('appDescription')}
                 validateTrigger={['onBlur']}
                 validateRules={[
                   { required: true, message: 'App Description is required.' },
@@ -1011,7 +1012,7 @@ class App extends React.Component<{}, State> {
                 <Button>Cancel</Button>
                 <Button primary submit>Next</Button>
               </ButtonGroup>
-            </FormLayout>
+            {/* </FormLayout> */}
           </ValidatedForm>
 
           <Heading>Connected Text Field</Heading>
@@ -1367,7 +1368,9 @@ class App extends React.Component<{}, State> {
     });
   }
   valueUpdater(field: any) {
-    return (value: any) => 'this.setState({ [field]: value })';
+    return (value: any) => {
+      this.setState({ [field]: value });
+    };
   }
 
   handleChange(value: string) {
