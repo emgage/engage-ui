@@ -1008,10 +1008,41 @@ class App extends React.Component<{}, State> {
                   { required: true, message: 'City is required.' },
                 ]}
               />
-              <ButtonGroup>
-                <Button>Cancel</Button>
-                <Button primary submit>Next</Button>
-              </ButtonGroup>
+              <div><p>child<span>child 2</span></p></div>
+              <div>
+                <FlexBox>
+                  <ButtonGroup segmented={true}>
+                    <Button primary={true} submit={true}>
+                      Save Draft
+                    </Button>
+
+                    <Button primary={true}>
+                      Publish
+                    </Button>
+                  </ButtonGroup>
+
+                  <div style={{ marginLeft: '10px' }}>
+                    <Button>Cancel</Button>
+                  </div>
+              </FlexBox>
+            </div>
+
+            <div style={{ marginTop: '10px' }}>
+              <h5>User Status</h5>
+
+              <Checkbox
+                label="Active"
+                helpText="Uncheck to disable this users account"
+              />
+            </div>
+
+            <div style={{ marginTop: '10px' }}>
+              <h5>Invite Email</h5>
+
+              <Checkbox
+                label="Send an invite email to this user"
+              />
+            </div>
             {/* </FormLayout> */}
           </ValidatedForm>
 
