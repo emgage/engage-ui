@@ -48,7 +48,8 @@ class ValidatedForm extends React.Component<Props, {}> {
     }
 
     if (directChild || typeof children === 'string') {
-      return React.cloneElement(child);
+      const submitProp = child.props.submit ? { onClick: this.onSubmit } : undefined;
+      return React.cloneElement(child, submitProp);
     }
 
     if (children) {
