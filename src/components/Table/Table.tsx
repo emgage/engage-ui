@@ -54,7 +54,7 @@ export interface Props {
   // Use when you need multuple call back values
   multipleCallBackValue?: any[];
   // Function to get called when row got selected
-  selectRowCallback?(rows: number[] | string[]): void;
+  selectRowCallback?(rows: any): void;
   // Function to get called when single row got selected, it will return only one row value not the arrat
   singleSelectRowCallback?(row: number | string | any): void;
   // Flag to indentify if table is sortable, if passed "all" then add sorting to all the columns

@@ -76,6 +76,7 @@ class RowAction extends React.Component<Props, State> {
   render () {
     const { actionConfig, data } = this.props;
     const validActionConfigs = this.getActions(actionConfig, data);
+
     return (
       <TableData>
         <Button icon="horizontalDots" onClick={(e: React.FormEvent<HTMLElement>) => this.dropdownToggle(e)} />
@@ -83,7 +84,7 @@ class RowAction extends React.Component<Props, State> {
         <Dropdown
           active={this.state.active}
           dropdownItems={validActionConfigs}
-          toggle={() => this.dropdownToggle}
+          toggle={this.dropdownToggle}
           anchorEl = {this.state.anchorEl}
           returnValue={data.id}
           closeOnClickOutside
