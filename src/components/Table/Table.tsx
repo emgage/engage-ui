@@ -14,7 +14,7 @@ import TableRow from './TableRow';
 import TableData from './TableData';
 
 import { ColumnConfig, FilterConfig, NestedChild, SortState } from './interface';
-import { DropdownItemProps } from '../';
+// import { DropdownItemProps } from '../';
 import * as baseTheme from './Table.scss';
 
 export type RowSelection = 'checkbox' | 'radio';
@@ -46,7 +46,7 @@ export interface Props {
   // Make table responsive
   responsive?: boolean;
   // Individual row action, if available add it in last of the column
-  rowAction?: DropdownItemProps[];
+  rowAction?: any;
   // This helps to add checkbox or radio to select the row & do bulk actions
   selectRow?: RowSelection;
   // Use this key to fetch the unique id from data & send it back to selectedrow
@@ -254,7 +254,7 @@ class Table extends React.Component<Props, State> {
       <TableRow key={index}>
         { this.renderRowSelection(item, 'body') }
         {
-          column.map((colItem: ColumnConfig, index: number) => {
+          column.map((colItem: any, index: number) => {
             return (
               <TableData
                 key={colItem.key}
@@ -273,7 +273,7 @@ class Table extends React.Component<Props, State> {
           })
         }
 
-        { rowAction ? <RowAction actionConfig={rowAction} dataId={item.id} /> : '' }
+        { rowAction ? <RowAction actionConfig={rowAction} data={item} /> : '' }
       </TableRow>
     );
   }

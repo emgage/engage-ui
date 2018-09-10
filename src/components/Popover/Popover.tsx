@@ -151,7 +151,9 @@ class Popover extends React.PureComponent<Props, State> {
         popoverPosition = { left: - this.popoverOffset.width, top: - activatorRect.height };
       } else if (direction === 'right') {
         popoverPosition = { left: activatorRect.width, top: - activatorRect.height };
-      }
+      } /*else if (direction === 'down') {
+        popoverPosition = !this.state.active ? { left: `${- this.popoverOffset.width / 2 + activatorRect.width / 2}px`, top: 0 } : {};
+      }*/
     }
 
     return (
