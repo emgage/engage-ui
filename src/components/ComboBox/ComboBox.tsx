@@ -52,9 +52,9 @@ class ComboBox extends React.Component<Props, State> {
   }
 
   addRenderer = (items: any , cloneItems: any) => {
-    items.forEach((it: any, ind: number) => {
-      if (it.renderer) {
-        cloneItems[ind]['renderer'] = it.renderer;
+    items.forEach((item: any, index: number) => {
+      if (item.renderer) {
+        cloneItems[index]['renderer'] = item.renderer;
       }
     });
 
