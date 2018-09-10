@@ -22,7 +22,7 @@ export interface Props {
   // Value to be return when clicked on item, this could be anythig string number or component or  any other value
   returnValue?: any;
   // Call toggle method on click 
-  toggle?(): void;
+  toggle?(event?: any): void;
   // Call close method on click 
   onClose?(): void;
   // Call toggle method on click 
@@ -40,14 +40,29 @@ export class Dropdown extends React.PureComponent<Props, State> {
     this.state = {
       // Set initial state
       selectedIndex: 0,
-      active: false
+      active: props.active,
     };
+  }
+
+  componentWillReceiveProps(newProps: Props) {
+    const { active: newActive } = newProps;
+    const { active } = this.props;
+
+    if (newActive !== active) {
+      this.setState({ active: newActive });
+    }
+  }
+
+  // Callback function which will be called when dropdown gets closed when clicked outside
+  setDropdownState = (dropdownState: boolean) => {
+    if (this.props.toggle) {
+      this.props.toggle();
+    }
   }
 
   render() {
     const {
       dropdownItems,
-      active,
       direction,
       disabled,
       anchorEl,
@@ -56,6 +71,7 @@ export class Dropdown extends React.PureComponent<Props, State> {
     } = this.props;
 
     const {
+      active,
       selectedIndex
     } = this.state;
 
@@ -74,7 +90,14 @@ export class Dropdown extends React.PureComponent<Props, State> {
     );
     // Use Popover component as wrapper component for drop down items
     return (
-      <Popover active={active} direction={direction} disabled={disabled} anchorEl={anchorEl} closeOnClickOutside={closeOnClickOutside}>
+      <Popover
+        active={active}
+        direction={direction}
+        disabled={disabled}
+        anchorEl={anchorEl}
+        closeOnClickOutside={closeOnClickOutside}
+        callbackParent={this.setDropdownState}
+      >
         {DropdownItemComponents}
       </Popover>
     );

@@ -72,9 +72,11 @@ interface State {
   appCity: string;
   appTextCounter: string;
   columns: object[];
+  checkboxState: boolean;
   rows: object[];
   isMenuOpened: boolean;
   popoverActive: boolean;
+  popoverActive2: boolean;
   popoverActiveContainer: boolean;
   bulkAction: any;
   filterConfig: any;
@@ -88,6 +90,7 @@ interface State {
   AccordionItemOpen?: number;
   AccordionItemClose?: number;
   anchorEl?: HTMLElement;
+  anchorEl2?: HTMLElement;
   activeTabId: string;
   nestedChildData: TableNestedData[];
 }
@@ -103,6 +106,7 @@ class App extends React.Component<{}, State> {
       appDescription: '',
       appCity: '',
       appTextCounter: '',
+      checkboxState: true,
       columns: [
         { key: 'id', name: 'ID' },
         { key: 'title', name: 'Title' },
@@ -115,6 +119,7 @@ class App extends React.Component<{}, State> {
       ],
       isMenuOpened: false,
       popoverActive: false,
+      popoverActive2: false,
       popoverActiveContainer: false,
       bulkAction: {
         selectedRow: [],
@@ -219,10 +224,10 @@ class App extends React.Component<{}, State> {
     const Accordionitems : AccordionItemProps[] = [{
       children: <Banner componentTitle={'banner'} status={'success'} />,
       header: <Button>sk</Button>
-    },{
+    }, {
       children: <Banner componentTitle={'banner11'} status={'warning'} />,
       header: <Button>sk1</Button>
-    },{
+    }, {
       children: <Banner componentTitle={'banner13'} status={'warning'} />,
       header: <Button>sk3</Button>
     }];
@@ -287,25 +292,25 @@ class App extends React.Component<{}, State> {
         id: 1,
         name: 'Dheeraj',
         description: 'Test description',
-        status: 'Published',
+        status: { itemID: 1, itemName: 'New' },
         type: 'admin',
       }, {
         id: 2,
         name: 'Dheeraj4',
         description: 'Test description2',
-        status: 'Published',
+        status: { itemID: 2, itemName: 'Deleted' },
         type: 'admin',
       }, {
         id: 3,
         name: 'Dheeraj3',
         description: 'Test description3',
-        status: 'Deleted',
+        status: { itemID: 3, itemName: 'Draft' },
         type: 'admin',
       }, {
         id: 4,
         name: 'Dheeraj2',
         description: 'Test description2',
-        status: 'Deleted',
+        status: { itemID: 1, itemName: 'New' },
         type: 'admin',
       },
     ];
@@ -314,18 +319,18 @@ class App extends React.Component<{}, State> {
       {
         name: 'Home',
         type: 'default',
-        onBreadcrumbClick: () => { console.log('Home is clicked');}
+        onBreadcrumbClick: () => console.log('Home is clicked')
       }, {
         name: <Badge children={'Home1'} status={'success'} />,
         type: 'active',
-        onBreadcrumbClick: () => { console.log('Badge is clicked');}
+        onBreadcrumbClick: () => console.log('Badge is clicked')
       }, {
         name: 'Home2',
         type: 'disabled'
       }, {
         name: 'Home3',
         type: 'active',
-        onBreadcrumbClick: () => { console.log('Home3 is clicked');}
+        onBreadcrumbClick: () => console.log('Home3 is clicked')
       },
     ];
     const sideNavigationData: INavigationData[] = [
@@ -441,8 +446,9 @@ class App extends React.Component<{}, State> {
         label: 'Status',
         key: 'status',
         sort: true,
+        sortBy: 'itemName',
         style: { width: '150px' },
-        injectBody: (value: any) => <Badge status={value.status === 'Published' ? 'success' : 'warning'}>{value.status}</Badge>,
+        injectBody: (value: any) => <Badge status={value.status.itemID === 1 ? 'success' : 'warning'}>{value.status.itemName}</Badge>,
       }, {
         label: 'Type',
         key: 'type',
@@ -481,7 +487,7 @@ class App extends React.Component<{}, State> {
         id: 1,
         component: () => <span>I am component1</span>,
         active: false,
-        onToggle: (status) => { console.log('Tree node open:', status);},
+        onToggle: status => console.log('Tree node open:', status),
         children: [
           {
             id: 11,
@@ -496,6 +502,28 @@ class App extends React.Component<{}, State> {
                 id: 111,
                 component: () => <span>I am child child component1</span>,
                 active: false,
+                children: [
+                  {
+                    id: 1112,
+                    component: () => <span>child component1</span>,
+                    active: false,
+                  }, {
+                    id: 1113,
+                    component: () => <span>child component2</span>,
+                    active: false,
+                    children: [
+                      {
+                        id: 11121,
+                        component: () => <span>child component1</span>,
+                        active: false,
+                      }, {
+                        id: 11131,
+                        component: () => <span>child component2</span>,
+                        active: false,
+                      },
+                    ]
+                  },
+                ]
               },
             ]
           }, {
@@ -508,7 +536,7 @@ class App extends React.Component<{}, State> {
         id: 2,
         component: () => <span>I am component2</span>,
         active: false,
-        onToggle: (status) => { console.log('Tree node open:', status);},
+        onToggle: status => console.log('Tree node open:', status),
       }
     ];
 
@@ -652,7 +680,7 @@ class App extends React.Component<{}, State> {
         <Alert componentType="danger">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
         </Alert>
-        <Checkbox label={'I am a checkbox'} />
+        <Checkbox helpText="this is help" checked={this.state.checkboxState} label={'I am a checkbox'} onChange={(newValue: boolean) => console.log('I am here:', newValue) } />
         <Banner componentTitle={'banner'} status={'success'} />
         <Banner componentTitle={'banner'} status={'info'} />
         <Banner componentTitle={'banner'} status={'warning'} />
@@ -760,14 +788,23 @@ class App extends React.Component<{}, State> {
           </div>
           <br/>
           <div style={{ marginLeft: '100px' }}>
-            <button onClick={(e: any) => this.popoverUpdate(e)}>Dropdown active</button>
+            <Button onClick={(e: any) => this.popoverUpdate(e)}>Dropdown active</Button>
             <Dropdown
               active={this.state.popoverActive}
               dropdownItems={items}
-              toggle={() => this.popoverUpdate}
+              toggle={this.popoverUpdate}
               anchorEl = {this.state.anchorEl}
               direction="up"
-              closeOnClickOutside
+            />
+          </div>
+          <div style={{ marginLeft: '100px' }}>
+            <Button onClick={(e: any) => this.popoverUpdate2(e)}>Dropdown2 active</Button>
+            <Dropdown
+              active={this.state.popoverActive2}
+              dropdownItems={items}
+              toggle={this.popoverUpdate2}
+              anchorEl = {this.state.anchorEl2}
+              direction="down"
             />
           </div>
 
@@ -1374,7 +1411,14 @@ class App extends React.Component<{}, State> {
   popoverUpdate(e: any) {
     this.setState({
       popoverActive : !this.state.popoverActive,
-      anchorEl: e.target as HTMLElement
+      anchorEl: e ? e.target as HTMLElement : this.state.anchorEl
+    });
+  }
+
+  popoverUpdate2(e: any) {
+    this.setState({
+      popoverActive2 : !this.state.popoverActive2,
+      anchorEl2: e ? e.target as HTMLElement : this.state.anchorEl2
     });
   }
 
