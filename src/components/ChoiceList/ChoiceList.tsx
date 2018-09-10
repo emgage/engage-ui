@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from 'react-css-themr';
 import { classNames } from '@shopify/react-utilities/styles';
-// import { ReactComponent } from '@shopify/react-utilities/types';
 import { noop, createUniqueIDFactory } from '@shopify/javascript-utilities/other';
 
 import Checkbox from '../Checkbox';
