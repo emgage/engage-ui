@@ -35,14 +35,14 @@ class TreeView extends React.Component<Props, State> {
 
   componentWillReceiveProps(newProps: Props) {
     // If treenodes are changed or deleted or added new then it should render again
-    if (!Object.is(newProps.source, this.props.source)) {
+    if (JSON.stringify(newProps.source) === JSON.stringify(this.props.source)) {
       this.setState({ source: newProps.source });
     }
   }
 
   // Set the active or inactive status of node
   toggleNode = (id: number) => {
-    const { source } = this.props;
+    const { source } = this.state;
 
     source.some((item: SourceData): boolean => {
       if (item.id === id) {
@@ -58,10 +58,9 @@ class TreeView extends React.Component<Props, State> {
 
       // If current node have children then search this id in child node
       if (item.children) {
-        if (this.toggleChildNode(item.children, id)) {
-          this.setState({ source });
-          return true;
-        }
+        item.children = this.toggleChildNode(item.children, id);
+        this.setState({ source });
+        return true;
       }
 
       return false;
@@ -69,25 +68,24 @@ class TreeView extends React.Component<Props, State> {
   }
 
   // Set child nodes active or inactive status
-  toggleChildNode = (source: SourceData[], id: number) => {
-    return source.some((item: SourceData): boolean => {
-      if (item.id === id) {
-        item.active = !item.active;
-        // Call the toggle callback if available
-        if (item.onToggle) {
-          item.onToggle(item.active);
-        }
+  toggleChildNode = (thisSource: any, id: number) => {
+    for (let key = 0; key < thisSource.length; key++) {
+      if (thisSource[key].id === id) {
+        thisSource[key].active = !thisSource[key].active;
 
-        return true;
+        // Call the toggle callback if available
+        if (thisSource[key].onToggle) {
+          thisSource[key].onToggle(thisSource[key].active);
+        }
       }
 
       // Recursive if child node contains another child node
-      if (item.children) {
-        this.toggleChildNode(item.children, id);
+      if (thisSource[key].children) {
+        thisSource[key].children = this.toggleChildNode(thisSource[key].children, id);
       }
+    }
 
-      return false;
-    });
+    return thisSource;
   }
 
   // Render single node, also iterate through its children & render those as well if its parent active status is true
