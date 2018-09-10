@@ -5,38 +5,25 @@ import ValidatedForm from '../ValidatedForm';
 
 describe('<ValidatedForm / >', () => {
 
-  describe('when default props are provided', () => {
-    it('basic ValidatedForm should be rendered with default props', () => {
-      const validatedFormWrapper = mount(<ValidatedForm />);
-      expect(validatedFormWrapper.find('form')).toHaveLength(1);
-    });
-  });
-
   describe('children property', () => {
     describe('when set', () => {
       it('should verify ValidatedForm when children prop is set', () => {
         const validatedFormWrapper = mount(
-                                            <ValidatedForm>
+                                            <ValidatedForm
+                                              formFields={['AppName']}
+                                            >
                                                 <ValidatedTextField
                                                 componentId="AppName"
                                                 label="App Name"
                                                 name ="App Name" />
                                             </ValidatedForm>);
         expect(validatedFormWrapper.find('form')).toHaveLength(1);
-        expect(validatedFormWrapper.prop('children')).toBeDefined();
-        expect(validatedFormWrapper.find('div')).toHaveLength(8);
+        // expect(validatedFormWrapper.prop('children')).toBeDefined();
+        // expect(validatedFormWrapper.find('div')).toHaveLength(8);
         expect(validatedFormWrapper.find('input')).toHaveLength(1);
         expect(validatedFormWrapper.find('label')).toHaveLength(2);
         expect(validatedFormWrapper.find('label').at(1).prop('id')).toBe('AppNameLabel');
         expect(validatedFormWrapper.find('label').at(1).text()).toBe('App Name');
-      });
-    });
-
-    describe('children not set', () => {
-      it('should verify ValidatedForm when children prop is not set', () => {
-        const validatedFormWrapper = mount(<ValidatedForm />);
-        expect(validatedFormWrapper.find('form')).toHaveLength(1);
-        expect(validatedFormWrapper.prop('children')).toBeUndefined();
       });
     });
   });
@@ -45,7 +32,7 @@ describe('<ValidatedForm / >', () => {
     describe('when set', () => {
       it('should verify ValidatedForm when style prop is set', () => {
         const style = { color: 'red' };
-        const validatedFormWrapper = mount(<ValidatedForm componentStyle={style} />);
+        const validatedFormWrapper = mount(<ValidatedForm componentStyle={style} formFields={[]} />);
         expect(validatedFormWrapper.find('form')).toHaveLength(1);
         expect(validatedFormWrapper.prop('componentStyle')).toBe(style);
         expect(validatedFormWrapper.html()).toBe('<form style="color: red;"></form>');
@@ -54,7 +41,7 @@ describe('<ValidatedForm / >', () => {
 
     describe('when not set', () => {
       it('should verify ValidatedForm when style prop is not set', () => {
-        const validatedFormWrapper = mount(<ValidatedForm />);
+        const validatedFormWrapper = mount(<ValidatedForm formFields={[]} />);
         expect(validatedFormWrapper.find('form')).toHaveLength(1);
         expect(validatedFormWrapper.prop('componentStyle')).toBeUndefined();
       });
@@ -70,7 +57,7 @@ describe('<ValidatedForm / >', () => {
           validateFields: jest.fn((callback: any) => { callback(); }),
         };
         const submit = jest.fn();
-        const validatedFormWrapper = mount(<ValidatedForm onSubmit={submit} form={form} />);
+        const validatedFormWrapper = mount(<ValidatedForm onSubmit={submit} form={form} formFields={[]} />);
         expect(validatedFormWrapper.find('form')).toHaveLength(1);
         expect(validatedFormWrapper.prop('onSubmit')).toBeDefined();
         validatedFormWrapper.find('form').simulate('submit');
@@ -81,7 +68,7 @@ describe('<ValidatedForm / >', () => {
 
     describe('when not set', () => {
       it('should verify ValidatedForm when onSubmit prop is not set', () => {
-        const validatedFormWrapper = mount(<ValidatedForm />);
+        const validatedFormWrapper = mount(<ValidatedForm formFields={[]} />);
         expect(validatedFormWrapper.find('form')).toHaveLength(1);
         expect(validatedFormWrapper.prop('onSubmit')).toBeUndefined();
       });
@@ -97,7 +84,7 @@ describe('<ValidatedForm / >', () => {
           validateFields: jest.fn((callback: any) => { callback(new Error()); }),
         };
         const submitError = jest.fn();
-        const validatedFormWrapper = mount(<ValidatedForm onSubmitError={submitError} form={form} />);
+        const validatedFormWrapper = mount(<ValidatedForm onSubmitError={submitError} form={form} formFields={[]} />);
         expect(validatedFormWrapper.find('form')).toHaveLength(1);
         expect(validatedFormWrapper.prop('onSubmitError')).toBeDefined();
         validatedFormWrapper.find('form').simulate('submit');
@@ -108,7 +95,7 @@ describe('<ValidatedForm / >', () => {
 
     describe('when not set', () => {
       it('should verify ValidatedForm when onSubmitError prop is not set', () => {
-        const validatedFormWrapper = mount(<ValidatedForm />);
+        const validatedFormWrapper = mount(<ValidatedForm formFields={[]} />);
         expect(validatedFormWrapper.find('form')).toHaveLength(1);
         expect(validatedFormWrapper.prop('onSubmitError')).toBeUndefined();
       });
@@ -128,7 +115,7 @@ describe('<ValidatedForm / >', () => {
         const submitError = jest.fn();
         const validatedFormWrapper = mount(
                                             <ValidatedForm
-                                                componentStyle={style} onSubmit={submit} onSubmitError={submitError} form={form}>
+                                                componentStyle={style} onSubmit={submit} onSubmitError={submitError} form={form} formFields={['AppName']}>
                                                 <ValidatedTextField
                                                 componentId="AppName"
                                                 label="App Name"
@@ -136,7 +123,6 @@ describe('<ValidatedForm / >', () => {
                                             </ValidatedForm>);
         expect(validatedFormWrapper.find('form')).toHaveLength(1);
         expect(validatedFormWrapper.prop('children')).toBeDefined();
-        expect(validatedFormWrapper.find('div')).toHaveLength(8);
         expect(validatedFormWrapper.find('input')).toHaveLength(1);
         expect(validatedFormWrapper.find('label')).toHaveLength(2);
         expect(validatedFormWrapper.find('label').at(1).prop('id')).toBe('AppNameLabel');

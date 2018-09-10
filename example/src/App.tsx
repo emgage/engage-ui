@@ -22,7 +22,7 @@ import {
   DrawerContent,
   SideNavigation,
   FlexBox,
-  FormLayout,
+  // FormLayout,
   Heading,
   Link,
   List,
@@ -224,10 +224,10 @@ class App extends React.Component<{}, State> {
     const Accordionitems : AccordionItemProps[] = [{
       children: <Banner componentTitle={'banner'} status={'success'} />,
       header: <Button>sk</Button>
-    },{
+    }, {
       children: <Banner componentTitle={'banner11'} status={'warning'} />,
       header: <Button>sk1</Button>
-    },{
+    }, {
       children: <Banner componentTitle={'banner13'} status={'warning'} />,
       header: <Button>sk3</Button>
     }];
@@ -319,18 +319,18 @@ class App extends React.Component<{}, State> {
       {
         name: 'Home',
         type: 'default',
-        onBreadcrumbClick: () => { console.log('Home is clicked');}
+        onBreadcrumbClick: () => console.log('Home is clicked')
       }, {
         name: <Badge children={'Home1'} status={'success'} />,
         type: 'active',
-        onBreadcrumbClick: () => { console.log('Badge is clicked');}
+        onBreadcrumbClick: () => console.log('Badge is clicked')
       }, {
         name: 'Home2',
         type: 'disabled'
       }, {
         name: 'Home3',
         type: 'active',
-        onBreadcrumbClick: () => { console.log('Home3 is clicked');}
+        onBreadcrumbClick: () => console.log('Home3 is clicked')
       },
     ];
     const sideNavigationData: INavigationData[] = [
@@ -487,7 +487,7 @@ class App extends React.Component<{}, State> {
         id: 1,
         component: () => <span>I am component1</span>,
         active: false,
-        onToggle: (status) => { console.log('Tree node open:', status);},
+        onToggle: status => console.log('Tree node open:', status),
         children: [
           {
             id: 11,
@@ -502,6 +502,28 @@ class App extends React.Component<{}, State> {
                 id: 111,
                 component: () => <span>I am child child component1</span>,
                 active: false,
+                children: [
+                  {
+                    id: 1112,
+                    component: () => <span>child component1</span>,
+                    active: false,
+                  }, {
+                    id: 1113,
+                    component: () => <span>child component2</span>,
+                    active: false,
+                    children: [
+                      {
+                        id: 11121,
+                        component: () => <span>child component1</span>,
+                        active: false,
+                      }, {
+                        id: 11131,
+                        component: () => <span>child component2</span>,
+                        active: false,
+                      },
+                    ]
+                  },
+                ]
               },
             ]
           }, {
@@ -514,7 +536,7 @@ class App extends React.Component<{}, State> {
         id: 2,
         component: () => <span>I am component2</span>,
         active: false,
-        onToggle: (status) => { console.log('Tree node open:', status);},
+        onToggle: status => console.log('Tree node open:', status),
       }
     ];
 
@@ -936,6 +958,7 @@ class App extends React.Component<{}, State> {
           <ValidatedForm
             onSubmitError={(value: [any], error: Error) => console.log('value:', value, 'error:', error)}
             onSubmit={(value: [any]) => console.log('Submit Value:', value)}
+            formFields={['AppName', 'appDescription', 'appCity']}
           >
 
             <Heading>App Basics</Heading>
@@ -943,13 +966,13 @@ class App extends React.Component<{}, State> {
             <DisplayText componentSize="large">This is Display Text, which is used to make a bold visual statement.</DisplayText>
             <p>This is just some fun regular text.</p>
 
-            <FormLayout>
+            {/* <FormLayout> */}
               <ValidatedTextField
                 componentId="AppName"
                 label="App Name"
                 placeholder=""
                 helpText="We recommend keeping your app name under 23 characters."
-                // onChange={this.valueUpdater('appName')}
+                onChange={this.valueUpdater('appName')}
                 value={this.state.appName}
                 name="App Name"
                 validateTrigger={['onBlur']}
@@ -965,7 +988,7 @@ class App extends React.Component<{}, State> {
                 label="App Description"
                 placeholder=""
                 helpText="Provide an engaging description that highlights the features and functionality of your app. Let potential users know what makes your app unique and why they will love it."
-                // onChange={this.valueUpdater('appDescription')}
+                onChange={this.valueUpdater('appDescription')}
                 validateTrigger={['onBlur']}
                 validateRules={[
                   { required: true, message: 'App Description is required.' },
@@ -985,11 +1008,42 @@ class App extends React.Component<{}, State> {
                   { required: true, message: 'City is required.' },
                 ]}
               />
-              <ButtonGroup>
-                <Button>Cancel</Button>
-                <Button primary submit>Next</Button>
-              </ButtonGroup>
-            </FormLayout>
+              <div><p>child<span>child 2</span></p></div>
+              <div>
+                <FlexBox>
+                  <ButtonGroup segmented={true}>
+                    <Button primary={true} submit={true}>
+                      Save Draft
+                    </Button>
+
+                    <Button primary={true}>
+                      Publish
+                    </Button>
+                  </ButtonGroup>
+
+                  <div style={{ marginLeft: '10px' }}>
+                    <Button>Cancel</Button>
+                  </div>
+              </FlexBox>
+            </div>
+
+            <div style={{ marginTop: '10px' }}>
+              <h5>User Status</h5>
+
+              <Checkbox
+                label="Active"
+                helpText="Uncheck to disable this users account"
+              />
+            </div>
+
+            <div style={{ marginTop: '10px' }}>
+              <h5>Invite Email</h5>
+
+              <Checkbox
+                label="Send an invite email to this user"
+              />
+            </div>
+            {/* </FormLayout> */}
           </ValidatedForm>
 
           <Heading>Connected Text Field</Heading>
@@ -1345,7 +1399,9 @@ class App extends React.Component<{}, State> {
     });
   }
   valueUpdater(field: any) {
-    return (value: any) => 'this.setState({ [field]: value })';
+    return (value: any) => {
+      this.setState({ [field]: value });
+    };
   }
 
   handleChange(value: string) {

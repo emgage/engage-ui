@@ -8,7 +8,7 @@ describe('<ValidatedTextField / >', () => {
   describe('when default props are provided', () => {
   it('basic validatedtextfield should be rendered with default props', () => {
     const validatedTextFieldWrapper = mount(
-                                            <ValidatedForm>
+                                            <ValidatedForm formFields={['AppName']}>
                                                 <ValidatedTextField
                                                 componentId="AppName"
                                                 label="App Name"
@@ -31,7 +31,7 @@ describe('<ValidatedTextField / >', () => {
     describe('when set', () => {
       it('should verify validatedtextfield when id prop is set', () => {
         const validatedTextFieldWrapper = mount(
-                                            <ValidatedForm>
+                                            <ValidatedForm formFields={['AppName']}>
                                                 <ValidatedTextField
                                                 componentId="AppName"
                                                 label="App Name"
@@ -55,7 +55,7 @@ describe('<ValidatedTextField / >', () => {
     describe('when set', () => {
       it('should verify validatedtextfield when name prop is set', () => {
         const validatedTextFieldWrapper = mount(
-                                            <ValidatedForm>
+                                            <ValidatedForm formFields={['AppName']}>
                                                 <ValidatedTextField
                                                 componentId="AppName"
                                                 label="App Name"
@@ -80,7 +80,7 @@ describe('<ValidatedTextField / >', () => {
       it('should verify validatedtextfield when onBlur prop is set', () => {
         const spy = jest.fn();
         const validatedTextFieldWrapper = mount(
-                                            <ValidatedForm>
+                                            <ValidatedForm formFields={['AppName']}>
                                                 <ValidatedTextField
                                                 componentId="AppName"
                                                 label="App Name"
@@ -112,7 +112,7 @@ describe('<ValidatedTextField / >', () => {
       it('should verify validatedtextfield when onBlur prop is set', () => {
         const spy = jest.fn();
         const validatedTextFieldWrapper = mount(
-                                            <ValidatedForm>
+                                            <ValidatedForm formFields={['AppName']}>
                                                 <ValidatedTextField
                                                 componentId="AppName"
                                                 label="App Name"
@@ -143,7 +143,7 @@ describe('<ValidatedTextField / >', () => {
     describe('when not set', () => {
       it('should verify validatedtextfield when onBlur prop is not set', () => {
         const validatedTextFieldWrapper = mount(
-                                            <ValidatedForm>
+                                            <ValidatedForm formFields={['AppName']}>
                                                 <ValidatedTextField
                                                 componentId="AppName"
                                                 label="App Name"
@@ -173,7 +173,7 @@ describe('<ValidatedTextField / >', () => {
       it('should verify validatedtextfield when validateRules props are set', () => {
         const spy = jest.fn();
         const validatedTextFieldWrapper = mount(
-                                            <ValidatedForm>
+                                            <ValidatedForm formFields={['AppName']}>
                                                 <ValidatedTextField
                                                 componentId="AppName"
                                                 label="App Name"
@@ -205,7 +205,7 @@ describe('<ValidatedTextField / >', () => {
       it('should verify validatedtextfield when validateRules props are not set', () => {
         const spy = jest.fn();
         const validatedTextFieldWrapper = mount(
-                                            <ValidatedForm>
+                                            <ValidatedForm formFields={['AppName']}>
                                                 <ValidatedTextField
                                                 componentId="AppName"
                                                 label="App Name"
@@ -236,7 +236,7 @@ describe('<ValidatedTextField / >', () => {
       it('should verify validatedtextfield when all props are set', () => {
         const spy = jest.fn();
         const validatedTextFieldWrapper = mount(
-                                            <ValidatedForm>
+                                            <ValidatedForm formFields={['AppName']}>
                                                 <ValidatedTextField
                                                 componentId="AppName"
                                                 required={true}
