@@ -51,8 +51,12 @@ export interface Props {
   selectRow?: RowSelection;
   // Use this key to fetch the unique id from data & send it back to selectedrow
   selectCallbackValue?: string;
+  // Use when you need multuple call back values
+  multipleCallBackValue?: any[];
   // Function to get called when row got selected
   selectRowCallback?(rows: number[] | string[]): void;
+  // Function to get called when single row got selected, it will return only one row value not the arrat
+  singleSelectRowCallback?(row: number | string | any): void;
   // Flag to indentify if table is sortable, if passed "all" then add sorting to all the columns
   sorting?: boolean | string;
   // Set greyed background for odd rows
@@ -161,12 +165,14 @@ class Table extends React.Component<Props, State> {
           { this.renderRowSelection(null, 'head') }
           {
             column.map((item: ColumnConfig) => {
-              const thisSort: string = (sorting === 'all' || item.sort) && !item.noSort ? item.key : '';
+              const { key, sort, noSort, sortBy } = item;
+              const thisSort: string = (sorting === 'all' || sort) && !noSort ? key : '';
 
               return (
                 <TableHead
-                  key={item.key}
+                  key={key}
                   sort={thisSort}
+                  sortBy={sortBy}
                   componentStyle={item.style}
                   className={item.className}
                   order={field === item.key ? order.current : ''}
@@ -355,11 +361,10 @@ class Table extends React.Component<Props, State> {
 
     return (
       <Checkbox
-        label=""
         value={uniqueId}
         checked={selectedRows.indexOf(uniqueId) !== -1 ? true : false}
         onChange={(checkedStatus: boolean) => {
-          this.toggleSingleRowSelection(uniqueId, checkedStatus);
+          this.toggleSingleRowSelection(rowData, checkedStatus);
         }}
       />
     );
@@ -367,7 +372,7 @@ class Table extends React.Component<Props, State> {
 
   // Function to add checkbox for the row selection
   renderRadio = (rowData: any): React.ReactElement<any> => {
-    return <TableData><Checkbox label="" value={rowData.id} checked={rowData.checked ? true : false} /></TableData>;
+    return <TableData><Checkbox value={rowData.id} checked={rowData.checked ? true : false} /></TableData>;
   }
 
   render () {
@@ -387,14 +392,14 @@ class Table extends React.Component<Props, State> {
   }
 
   // Function to sort the data
-  sortData = (field: string) => {
+  sortData = (field: string, sortBy: string = '') => {
     const { data } = this.props;
     const { order } = this.state.sort;
 
     const sortedData = data.sort((item1: any, item2: any) => {
       // Converting strings to uppercase so for comparisions there will be no issue
-      const value1 = item1[field].toUpperCase();
-      const value2 = item2[field].toUpperCase();
+      const value1 = !sortBy ? item1[field].toUpperCase() : item1[field][sortBy].toUpperCase();
+      const value2 = !sortBy ? item2[field].toUpperCase() : item2[field][sortBy].toUpperCase();
 
       if (value1 < value2) {
         return -1;
@@ -427,17 +432,33 @@ class Table extends React.Component<Props, State> {
   }
 
   // Function to toggle single row selection
-  toggleSingleRowSelection = (dataId: string | number, checkedStatus: boolean) => {
+  toggleSingleRowSelection = (rowData: any, checkedStatus: boolean) => {
     const selectedRows = [...this.state.selectedRows];
+    const { singleSelectRowCallback, multipleCallBackValue } = this.props;
+    const { selectCallbackValue } = this.props;
+    const uniqueId = selectCallbackValue ? rowData[selectCallbackValue] : rowData.id;
 
     if (!checkedStatus) {
-      selectedRows.splice(selectedRows.indexOf(dataId), 1);
+      selectedRows.splice(selectedRows.indexOf(uniqueId), 1);
       this.setState({ selectedRows, allRowChecked: false }, () => {
         this.rowSelectionCallback();
       });
     } else {
-      this.setState({ selectedRows: this.state.selectedRows.concat([dataId]) }, () => {
+      this.setState({ selectedRows: this.state.selectedRows.concat([uniqueId]) }, () => {
         this.rowSelectionCallback();
+        if (singleSelectRowCallback) {
+          if (multipleCallBackValue && multipleCallBackValue.length) {
+            const returnVal: any = {};
+
+            multipleCallBackValue.forEach((item) => {
+              returnVal[item] = rowData[item] !== undefined ? rowData[item] : '';
+            });
+
+            singleSelectRowCallback(returnVal);
+          } else {
+            singleSelectRowCallback(uniqueId);
+          }
+        }
       });
     }
   }
