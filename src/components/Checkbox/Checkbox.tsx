@@ -6,10 +6,8 @@ import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
 import { Error, helpTextID } from '../Choice';
 import FlexBox from '../FlexBox';
 
-// import Icon from '../Icon';
 import { CHECKBOX } from '../ThemeIdentifiers';
 
-// import checkmarkSvg from './icons/checkmark.svg';
 import * as baseTheme from './Checkbox.scss';
 
 export interface Props {

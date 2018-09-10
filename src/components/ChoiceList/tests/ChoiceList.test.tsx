@@ -78,38 +78,6 @@ describe('<ChoiceList />', () => {
     });
   });
 
-  /*describe('onChange()', () => {
-    it('is called with the newly-selected choices', () => {
-      let selected = [choices[0].value];
-      const spy = jest.fn((newSelected: string[]) => {
-        selected = newSelected;
-      });
-      const choiceList = mount(
-                               <ChoiceList allowMultiple onChange={spy} selected={selected}
-                               choices={choices} theme={theme} />
-                              );
-      const choiceElements = choiceList.find(Checkbox);
-      changeCheckedForChoice(choiceElements.at(1), true);
-      expect(spy).toHaveBeenLastCalledWith(['one', 'two']);
-      choiceList.setProps({ selected });
-      changeCheckedForChoice(choiceElements.at(2), true);
-      expect(spy).toHaveBeenLastCalledWith(['one', 'two', 'three']);
-      choiceList.setProps({ selected });
-      changeCheckedForChoice(choiceElements.at(0), false);
-      expect(spy).toHaveBeenLastCalledWith(['two', 'three']);
-      choiceList.setProps({ selected });
-    });
-
-    function changeCheckedForChoice(choice: ReactWrapper<any, any>, checked: boolean, triggerChange = true) {
-      const input = choice.find('input');
-      (input as any).instance().checked = checked;
-
-      if (triggerChange) {
-        input.simulate('change');
-      }
-    }
-  });*/
-
   describe('name property', () => {
     it('provides a unique name when none is provided', () => {
       const choiceElements = shallow(
