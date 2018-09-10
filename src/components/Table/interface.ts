@@ -18,6 +18,7 @@ export interface ColumnConfig {
   style?: any;
   noSort?: boolean;
   sort?: boolean;
+  sortBy?: string;
   injectBody?(value?: any): void;
   injectHeader?(value?: any): void;
 }

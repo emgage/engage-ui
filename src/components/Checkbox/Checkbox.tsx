@@ -1,18 +1,18 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from 'react-css-themr';
-import { classNames } from '@shopify/react-utilities/styles';
+// import { classNames } from '@shopify/react-utilities/styles';
 import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
 
-import Choice, { Error, errorID, helpTextID } from '../Choice';
-import Icon from '../Icon';
+import { Error, helpTextID } from '../Choice';
+import FlexBox from '../FlexBox';
+
 import { CHECKBOX } from '../ThemeIdentifiers';
 
-import checkmarkSvg from './icons/checkmark.svg';
 import * as baseTheme from './Checkbox.scss';
 
 export interface Props {
   // Label for the checkbox
-  label: string;
+  label?: string;
   // Visually hide the label
   labelHidden?: boolean;
   // Checkbox is selected or not
@@ -39,71 +39,74 @@ export interface Props {
   onBlur?(): void;
 }
 
+export interface State {
+  checked: boolean;
+}
 const getUniqueID = createUniqueIDFactory('Checkbox');
 
-const checkbox = ({
-  componentId = getUniqueID(),
-  label,
-  labelHidden,
-  helpText,
-  checked,
-  error,
-  disabled,
-  onChange,
-  onFocus,
-  onBlur,
-  name,
-  value,
-  theme,
-}: Props) => {
-  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
-    if (onChange == null) { return; }
-    const { currentTarget } = event;
-    onChange(currentTarget.checked);
+class Checkbox extends React.PureComponent<Props, State> {
+  constructor(props: Props) {
+    super(props);
+
+    this.state = {
+      checked: props.checked || false,
+    };
   }
 
-  const describedBy: string[] = [];
-  if (typeof error === 'string') { describedBy.push(errorID(componentId)); }
-  if (helpText) { describedBy.push(helpTextID(componentId)); }
+  componentWillReceiveProps(newProps: Props) {
+    if (newProps.checked !== undefined) {
+      this.setState({ checked: newProps.checked });
+    }
+  }
 
-  const className = classNames(
-    theme.checkbox,
-    error && theme.error
-  );
+  handleChange = () => {
+    const { onChange } = this.props;
 
-  return (
-    <Choice
-      componentId={componentId}
-      label={label}
-      labelHidden={labelHidden}
-      helpText={helpText}
-      error={error}
-    >
-      <div className={className}>
-        <input
-          id={componentId}
-          name={name}
-          value={value}
-          type="checkbox"
-          checked={checked}
-          disabled={disabled}
-          className={theme.input}
-          onChange={handleChange}
-          onFocus={onFocus}
-          onBlur={onBlur}
-          aria-invalid={error != null}
-          aria-describedby={describedBy.length ? describedBy.join(' ') : undefined}
-          aria-checked={checked}
-        />
+    this.setState({ checked: !this.state.checked });
 
-        <div className={theme.backdrop} />
-        <div className={theme.icon}>
-          <Icon source={checkmarkSvg} />
+    if (onChange) {
+      onChange(!this.state.checked);
+    }
+  }
+
+  render() {
+    const { checked } = this.state;
+    const {
+      componentId = getUniqueID(),
+      disabled = false,
+      helpText,
+      label = '',
+      name = getUniqueID(),
+      theme,
+    } = this.props;
+
+    const describedBy: string[] = [];
+    if (helpText) {
+      describedBy.push(helpTextID(componentId));
+    }
+
+    return (
+      <FlexBox direction="Column">
+        <div className={theme.customControl} onClick={this.handleChange}>
+          <input
+            type="checkbox"
+            className={theme.customControlInput}
+            id={componentId}
+            checked={checked}
+            disabled={disabled}
+            name={name}
+            onChange={() => {}}
+            aria-describedby={describedBy.length ? describedBy.join(' ') : undefined}
+            aria-checked={checked}
+          />
+          <label className={theme.customControlLabel} htmlFor={componentId}>{label}</label>
         </div>
-      </div>
-    </Choice>
-  );
-};
+        {
+          helpText ? <div>{helpText}</div> : null
+        }
+      </FlexBox>
+    );
+  }
+}
 
-export { checkbox as UnthemedCheckbox };
-export default themr(CHECKBOX, baseTheme)(checkbox) as ThemedComponentClass<Props, {}>;
+export default themr(CHECKBOX, baseTheme)(Checkbox) as ThemedComponentClass<Props, {}>;
