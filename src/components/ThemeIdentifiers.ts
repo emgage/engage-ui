@@ -18,6 +18,7 @@ export const DISPLAY_TEXT = 'PDisplayText';
 export const FLEXBOX = 'PFlexBox';
 export const FORM_LAYOUT = 'PFormLayout';
 export const HEADING = 'Heading';
+export const GRID = 'PGrid';
 export const ICON = 'PIcon';
 export const LABEL = 'PLabel';
 export const LABELLED = 'PLabelled';

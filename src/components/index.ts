@@ -234,6 +234,18 @@ export {
 } from './Table';
 
 export {
+  Grid,
+  GridContent,
+  GridDescription,
+  GridFooter,
+  GridHeader,
+  GridImage,
+  GridTitle,
+  Props as GridProps,
+  GridType,
+} from './Grid';
+
+export {
   default as Tag,
   Props as TagProps,
 } from './Tag';
