@@ -32,7 +32,6 @@ const Grid = ({
     componentClass
   );
 
-  console.log('theme:', theme);
   return (
     <div style={componentStyle} className={gridClass}>
       {
