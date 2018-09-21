@@ -63,7 +63,15 @@ import {
   TreeSource,
   BreadCrumb,
   ComboBox,
-  ComboBoxItemType
+  ComboBoxItemType,
+  Grid,
+  GridContent,
+  GridDescription,
+  GridFooter,
+  GridHeader,
+  GridImage,
+  GridTitle,
+  GridType,
 } from '../../src/components';
 
 interface State {
@@ -93,6 +101,7 @@ interface State {
   anchorEl2?: HTMLElement;
   activeTabId: string;
   nestedChildData: TableNestedData[];
+  gridView: GridType;
 }
 
 class App extends React.Component<{}, State> {
@@ -140,6 +149,7 @@ class App extends React.Component<{}, State> {
       AccordionItemClose: undefined,
       activeTabId: 'tab3',
       nestedChildData: [],
+      gridView: 'block',
     };
 
     this.popovertoggle = this.popovertoggle.bind(this);
@@ -926,6 +936,54 @@ class App extends React.Component<{}, State> {
            <Term>Discount code</Term>
            <Description>A series of numbers and/or letters that an online shopper may enter at checkout to get a discount or special offer.</Description>
        </DescriptionList>
+
+        <Heading>Grid Block</Heading>
+        <ButtonGroup segmented={true}>
+          <Button onClick={() => this.setState({ gridView: 'block' })}>Block view</Button>
+          <Button onClick={() => this.setState({ gridView: 'list' })}>List view</Button>
+        </ButtonGroup>
+        <br />
+        <Grid gridType={this.state.gridView}>
+          <GridContent>
+            <GridHeader>Grid Header</GridHeader>
+            <GridImage>Image</GridImage>
+            <GridTitle>Grid Title</GridTitle>
+            <GridDescription>Grid Description</GridDescription>
+            <GridFooter>Grid Footer</GridFooter>
+          </GridContent>
+
+          <GridContent>
+            <GridHeader>Grid Header</GridHeader>
+            <GridImage>Image</GridImage>
+            <GridTitle>Grid Title</GridTitle>
+            <GridDescription>Grid Description</GridDescription>
+            <GridFooter>Grid Footer</GridFooter>
+          </GridContent>
+
+          <GridContent>
+            <GridHeader>Grid Header</GridHeader>
+            <GridImage>Image</GridImage>
+            <GridTitle>Grid Title</GridTitle>
+            <GridDescription>Grid Description</GridDescription>
+            <GridFooter>Grid Footer</GridFooter>
+          </GridContent>
+
+          <GridContent>
+            <GridHeader>Grid Header</GridHeader>
+            <GridImage>Image</GridImage>
+            <GridTitle>Grid Title</GridTitle>
+            <GridDescription>Grid Description</GridDescription>
+            <GridFooter>Grid Footer</GridFooter>
+          </GridContent>
+
+          <GridContent>
+            <GridHeader>Grid Header</GridHeader>
+            <GridImage>Image</GridImage>
+            <GridTitle>Grid Title</GridTitle>
+            <GridDescription>Grid Description</GridDescription>
+            <GridFooter>Grid Footer</GridFooter>
+          </GridContent>
+        </Grid>
           <ChoiceList
             componentTitle="Company name"
             choices={[
