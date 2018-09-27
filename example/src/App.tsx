@@ -1057,8 +1057,8 @@ class App extends React.Component<{}, State> {
                 componentId="appCity"
                 required={true}
                 name="Select city"
-                label="Select city"
-                options={[{ value: 'xyz', label: 'xyz' }, { value: 'abc', label: 'abc' }]}
+                label=""
+                options={[{ value: '', label: 'Select city' }, { value: 'xyz', label: 'xyz' }, { value: 'abc', label: 'abc' }]}
                 value={this.state.appCity}
                 onChange={this.valueUpdater('appCity')}
                 validateTrigger={['onBlur']}
