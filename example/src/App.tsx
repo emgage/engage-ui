@@ -858,6 +858,9 @@ class App extends React.Component<{}, State> {
       <br />
       <br />
       <br />
+      <Sticky position={'bottom'}>
+                <span>footer content</span>
+      </Sticky>
       <div>You can scroll and see me!</div>
       <div>Top Content!</div>
       <br />
@@ -910,9 +913,6 @@ class App extends React.Component<{}, State> {
       <br />
       <br />
       You can scroll and see me!</div>
-      <Sticky position={'top'}>
-                <span>footer content</span>
-            </Sticky>
             </ModalBody>
             <ModalFooter>
             </ModalFooter>
@@ -1066,6 +1066,9 @@ class App extends React.Component<{}, State> {
             <br />
             <br />
             <br />
+            <Sticky position={'top'}>
+            <span>footer content</span>
+            </Sticky>
             <div>You can scroll and see me!</div>
             <div>Top Content!</div>
             <br />
@@ -1169,9 +1172,6 @@ class App extends React.Component<{}, State> {
             <br />
             <br />
             You can scroll and see me!</div>
-            <Sticky position={'top'}>
-            <span>footer content</span>
-            </Sticky>
             </DrawerContent>
 
             <DrawerContent componentId="content2" mode="slide">

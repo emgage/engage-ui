@@ -12,7 +12,6 @@ export interface Props {
   style?: React.CSSProperties;
   // Theme to be injected via css-themr.
   theme?: any;
-
 }
 
 class Sticky extends React.PureComponent<Props, any> {
@@ -26,9 +25,10 @@ class Sticky extends React.PureComponent<Props, any> {
     );
 
     return (
-    <div>
-      <div className={ theme.Sticky } style={this.props.style}/>
-      <div className={ classes }>{this.props.children}</div>
+    <div className={ classes }>
+      <div className={ theme.Sticky } style={this.props.style}>
+        {this.props.children}
+      </div>
     </div>
     );
   }
