@@ -9,29 +9,50 @@ export type Position = 'top' | 'bottom';
 export interface Props {
   children?: React.ReactNode;
   position: Position;
-  style?: React.CSSProperties;
+  componentStyle?: React.CSSProperties;
+  componentClass?: string;
   // Theme to be injected via css-themr.
   theme?: any;
 }
 
-class Sticky extends React.PureComponent<Props, any> {
+const Sticky = ({ position, theme, componentClass, componentStyle, children }:Props) => {
 
-  render() {
-    const { position, theme } = this.props;
+  // const { position, theme, componentClass, componentStyle } = this.props;
 
-    const classes = classNames(
-      position === 'top' ? theme.headerSticky : theme.footerSticky,
-      theme.footerStyle
-    );
+  const classes = classNames(
+    position === 'top' ? theme.headerSticky : theme.footerSticky,
+    theme.footerStyle,
+    componentClass
+  );
 
-    return (
+  return (
     <div className={ classes }>
-      <div className={ theme.Sticky } style={this.props.style}>
-        {this.props.children}
+      <div className={ theme.Sticky } style={ componentStyle }>
+        {children}
       </div>
     </div>
-    );
-  }
-}
+  );
+};
+
+// class Sticky extends React.PureComponent<Props, any> {
+
+//   render() {
+//     const { position, theme, componentClass } = this.props;
+
+//     const classes = classNames(
+//       position === 'top' ? theme.headerSticky : theme.footerSticky,
+//       theme.footerStyle,
+//       componentClass
+//     );
+
+//     return (
+//     <div className={ classes }>
+//       <div className={ theme.Sticky } style={this.props.componentStyle}>
+//         {this.props.children}
+//       </div>
+//     </div>
+//     );
+//   }
+// }
 
 export default themr(STICKY, baseTheme)(Sticky) as ThemedComponentClass<Props, {}>;

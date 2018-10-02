@@ -19,9 +19,13 @@ const StickyState: IDocument = {
       type: 'Position',
       desc: 'Position prop allow user to choose StickyHeader or StickyFooter',
     }, {
-      name: 'style',
-      type: 'enum',
-      desc: 'style prop allow user to choose display colored theme for Sticky component.',
+      name: 'componentStyle',
+      type: 'React.CSSProperties',
+      desc: 'To display the styling.',
+    }, {
+      name: 'componentClass',
+      type: 'string',
+      desc: 'To display the styling via external class',
     }, {
       name: 'theme',
       type: 'any',
