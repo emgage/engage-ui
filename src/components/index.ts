@@ -339,3 +339,8 @@ export {
   Props as ComboBoxProps,
   ComboBoxItemType,
 } from './ComboBox';
+
+export {
+  default as Process,
+  Props as ProcessProps,
+} from './Process';

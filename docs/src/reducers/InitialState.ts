@@ -55,6 +55,7 @@ import AccordionState from './componentState/AccordionState';
 import TabState from './componentState/TabState';
 import BreadcrumbState from './componentState/BreadcrumbState';
 import ComboBoxState from './componentState/ComboBoxState';
+import ProcessState from './componentState/ProcessState';
 
 const intialState: IDocumentAppState = {
   components: [
@@ -113,6 +114,7 @@ const intialState: IDocumentAppState = {
     TabState,
     BreadcrumbState,
     ComboBoxState,
+    ProcessState,
   ],
 };
 
