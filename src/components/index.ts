@@ -339,3 +339,8 @@ export {
   Props as ComboBoxProps,
   ComboBoxItemType,
 } from './ComboBox';
+
+export {
+  default as Sticky,
+  Props as StickyProps,
+} from './Sticky';
