@@ -95,6 +95,11 @@ interface State {
   drawer: boolean;
   drawerContent: any;
   activeDrawerId: string;
+  outterDrawer: boolean;
+  innerDrawer: boolean;
+  outterDrawerId: string;
+  outterDrawerLabel: string;
+  innerDrawerId: string;
   activeModalId: string;
   AccordionItemOpen?: number;
   AccordionItemClose?: number;
@@ -103,6 +108,7 @@ interface State {
   activeTabId: string;
   nestedChildData: TableNestedData[];
   gridView: GridType;
+  [key: string]: any;
 }
 
 class App extends React.Component<{}, State> {
@@ -144,8 +150,13 @@ class App extends React.Component<{}, State> {
         content1: false,
         content2: true,
       },
+      outterDrawer: false,
+      innerDrawer: false,
+      outterDrawerId: 'dcontent1',
+      innerDrawerId: 'innerDrContent',
       activeDrawerId: 'content1',
       activeModalId: 'modalcontent1',
+      outterDrawerLabel: '',
       AccordionItemOpen: undefined,
       AccordionItemClose: undefined,
       activeTabId: 'tab3',
@@ -196,12 +207,20 @@ class App extends React.Component<{}, State> {
     console.log('drawer open');
   }
 
+  onInnerDrawerOpen = () => {
+    this.setState({ outterDrawerLabel: 'Contact' });
+  }
+
+  onInnerDrawerClose = () => {
+    this.setState({ outterDrawerLabel: '' });
+  }
+
   onDrawerClose = () => {
     console.log('drawer close');
   }
 
-  toggleDrawer = () => {
-    this.setState({ drawer: !this.state.drawer });
+  toggleDrawer = (drawerKey: string) => {
+    this.setState({ [drawerKey]: !this.state.drawer });
   }
 
   BreadcrumbClick = () => {
@@ -563,159 +582,7 @@ class App extends React.Component<{}, State> {
         <Badge children={'Badge'} progress={'partiallyComplete'} />
         <Badge children={'Badge'} progress={'complete'} />
         <div>
-      <div>Top Content!
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <div>Sandwich: Keep Scrolling!</div>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <div>You can scroll and see me!</div>
-      <div>Top Content!</div>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <div>Sandwich: Keep Scrolling!</div>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <div>You can scroll and see me!</div>
-      <div>Top Content!</div>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <div>Sandwich: Keep Scrolling!</div>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      You can scroll and see me!</div>
+
       {/* <Sticky>
       <span>footer content</span>
             </Sticky> */}
@@ -994,9 +861,39 @@ class App extends React.Component<{}, State> {
             <Button onClick={this.toggleModal}>Medium buttonas</Button>
             </Sticky>
         <div>
-          <Button onClick={this.toggleDrawer}>Drawer open</Button>
+          <Button onClick={() => this.toggleDrawer('outterDrawer')}>Drawer 1</Button>
           <Drawer
-            toggleDrawer={this.toggleDrawer}
+            toggleDrawer={() => this.toggleDrawer('outterDrawer')}
+            active={this.state.outterDrawer}
+            activeContentId={this.state.outterDrawerId}
+            mode="slide"
+            componentWidth="large"
+            componentLabel={this.state.outterDrawerLabel}
+            overlay
+            closeButton
+            flip>
+            <DrawerContent componentId="dcontent1" mode="slide">
+              <Button onClick={() => this.toggleDrawer('innerDrawer')}>Inner Drawer</Button>
+              <Drawer
+                toggleDrawer={() => this.toggleDrawer('innerDrawer')}
+                active={this.state.innerDrawer}
+                activeContentId={this.state.innerDrawerId}
+                mode="slide"
+                componentWidth="large"
+                onOpen={this.onInnerDrawerOpen}
+                overlay
+                closeButton
+                flip>
+                  <DrawerContent componentId="innerDrContent" mode="slide">
+                    I am inner
+                  </DrawerContent>
+              </Drawer>
+            </DrawerContent>
+          </Drawer>
+
+          <Button onClick={() => this.toggleDrawer('drawer')}>Drawer open</Button>
+          <Drawer
+            toggleDrawer={() => this.toggleDrawer('drawer')}
             active={this.state.drawer}
             activeContentId={this.state.activeDrawerId}
             onOpen={this.onDrawerOpen}
@@ -1006,6 +903,9 @@ class App extends React.Component<{}, State> {
             overlay
             closeButton>
             <DrawerContent componentId="content1" mode="slide">
+            <Sticky position={'top'}>
+              <span>Header content</span>
+            </Sticky>
               <p>Reveal Test</p>
               <ul>
                 <li>Link 1</li>
@@ -1066,7 +966,7 @@ class App extends React.Component<{}, State> {
             <br />
             <br />
             <br />
-            <Sticky position={'top'}>
+            <Sticky position={'bottom'}>
             <span>footer content</span>
             </Sticky>
             <div>You can scroll and see me!</div>

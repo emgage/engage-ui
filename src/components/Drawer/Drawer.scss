@@ -65,6 +65,10 @@ $drawer-overlay-background:                   rgba(0,0,0,0.2) !default;
     background: #000000;
     color: #fff;
   }
+
+  &.overflowDisable {
+    overflow: initial;
+  }
 }
 
 .drawer {
@@ -118,7 +122,6 @@ $drawer-overlay-background:                   rgba(0,0,0,0.2) !default;
       width: $drawer-bar-width-large;
     }
   }
-
 }
 
 // Slide and Push mode animation
@@ -157,6 +160,26 @@ $drawer-overlay-background:                   rgba(0,0,0,0.2) !default;
   }
 }
 
+.drawerLabel {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -26px;
+  background: $drawer-bar-background;
+  z-index: 1;
+  padding: 10px 3px;
+
+  .drawerLabelText {
+    writing-mode: vertical-rl;
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
+    white-space: nowrap;
+    display: block;
+  }
+}
 // Open
 .collapsed.open > .reveal {
   width: $drawer-bar-width-collapsed;
