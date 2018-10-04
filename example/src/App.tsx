@@ -905,10 +905,10 @@ class App extends React.Component<{}, State> {
             componentWidth="large"
             overlay
             closeButton>
-            <DrawerContent componentId="content1" mode="slide">
             <Sticky position={'top'}>
               <span>Header content</span>
             </Sticky>
+            <DrawerContent componentId="content1" mode="slide">
               <p>Reveal Test</p>
               <ul>
                 <li>Link 1</li>
