@@ -161,13 +161,17 @@ class Drawer extends React.PureComponent<Props, never> {
     // Iterate through all the children content component & find active component
     // Match activeContentId with children's id & mark that as active: true
     return React.Children.map(children, (child: React.ReactElement<any>) => {
-      const { componentId } = child.props;
-      const cloneElemnt = (typeof activeContentId === 'string' && activeContentId === componentId) || (typeof activeContentId === 'object' && activeContentId.indexOf(componentId) !== componentId);
+      if (child.props && child.props.componentId) {
+        const { componentId } = child.props;
+        const cloneElemnt = (typeof activeContentId === 'string' && activeContentId === componentId) || (typeof activeContentId === 'object' && activeContentId.indexOf(componentId) !== componentId);
 
-      // Clone active component & return it
-      if (cloneElemnt) {
-        return React.cloneElement(child, { closeButton, toggleDrawer, active: true, });
+        // Clone active component & return it
+        if (cloneElemnt) {
+          return React.cloneElement(child, { closeButton, toggleDrawer, active: true, });
+        }
       }
+
+      return React.cloneElement(child);
     });
   }
 
