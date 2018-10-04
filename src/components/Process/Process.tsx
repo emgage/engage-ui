@@ -4,14 +4,14 @@ import { classNames } from '@shopify/react-utilities/styles';
 import { PROCESS } from '../ThemeIdentifiers';
 import * as baseTheme from './Process.scss';
 
-export interface NavState {
+export interface NavigationState {
   indx: number;
   styles: string[];
 }
 
 export interface Step {
   name: string;
-  component: React.ReactNode;
+  component: React.ReactNode | string;
 }
 
 export interface Props {
@@ -26,16 +26,18 @@ export interface Props {
   componentStyle?: React.CSSProperties;
     // Custom class
   componentClass?: string;
+  // Call callbackParent method on outside area click 
+  onClick?(returnValue: any): void;
 }
 
 export interface State {
-  showPreviousBtn: boolean;
-  showNextBtn: boolean;
+  showPreviousButton: boolean;
+  showNextButton: boolean;
   compState: number;
-  navState: NavState;
+  navigationState: NavigationState;
 }
 
-const getNavStates = (indx: number, length: number) => {
+const getNavigationStates = (indx: number, length: number) => {
   const styles = [];
   for (let i = 0; i < length; i++) {
     if (i < indx) {
@@ -49,33 +51,14 @@ const getNavStates = (indx: number, length: number) => {
   return { indx, styles };
 };
 
-const checkNavState = (currentStep: number, stepsLength: number) => {
-  if (currentStep > 0 && currentStep < stepsLength - 1) {
-    return {
-      showPreviousBtn: true,
-      showNextBtn: true
-    };
-  } if (currentStep === 0) {
-    return {
-      showPreviousBtn: false,
-      showNextBtn: true
-    };
-  }
-
-  return {
-    showPreviousBtn: true,
-    showNextBtn: false
-  };
-};
-
 class Process extends React.PureComponent<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      showPreviousBtn: false,
-      showNextBtn: true,
+      showPreviousButton: false,
+      showNextButton: true,
       compState: 0,
-      navState: getNavStates(0, this.props.steps.length)
+      navigationState: getNavigationStates(0, this.props.steps.length)
     };
   }
 
@@ -83,49 +66,41 @@ class Process extends React.PureComponent<Props, State> {
     showNavigation: true
   };
 
-  setNavState = (next: number) => {
+  setNavigationState = (next: number) => {
     this.setState({
-      navState: getNavStates(next, this.props.steps.length)
+      navigationState: getNavigationStates(next, this.props.steps.length)
     });
     if (next === (this.state.compState + 1) || (next === (this.state.compState - 1) && this.props.allowBackStepping)) {
       this.setState({ compState: next });
     }
-    this.setState(checkNavState(next, this.props.steps.length));
-  }
-
-  handleKeyDown = (event: React.KeyboardEvent<EventTarget>) => {
-    if (event.which === 13) {
-      this.next();
-    }
   }
 
   handleOnClick = (evt: React.FormEvent<any>) => {
+    const { onClick, steps, allowBackStepping } = this.props;
     if (
       evt.currentTarget.value === (this.state.compState + 1) - 1 &&
-      this.state.compState === this.props.steps.length - 1 &&
+      this.state.compState === steps.length - 1 &&
       evt.currentTarget.value !== this.state.compState
     ) {
-      this.setNavState(this.props.steps.length);
+      this.setNavigationState(steps.length);
+
+      if (onClick) {
+        onClick(evt);
+      }
     } if (
-      evt.currentTarget.value < this.props.steps.length &&
-      (evt.currentTarget.value === (this.state.compState + 1) || (evt.currentTarget.value === (this.state.compState - 1) && this.props.allowBackStepping))
+      evt.currentTarget.value < steps.length &&
+      (evt.currentTarget.value === (this.state.compState + 1) || (evt.currentTarget.value === (this.state.compState - 1) && allowBackStepping))
     ) {
-      this.setNavState(evt.currentTarget.value);
-    }
-  }
+      this.setNavigationState(evt.currentTarget.value);
 
-  next = () => {
-    this.setNavState(this.state.compState + 1);
-  }
-
-  previous = () => {
-    if (this.state.compState > 0) {
-      this.setNavState(this.state.compState - 1);
+      if (onClick) {
+        onClick(evt);
+      }
     }
   }
 
   getClassName = (i: number) => {
-    return this.state.navState.styles[i];
+    return this.state.navigationState.styles[i];
   }
 
   renderSteps = () => {
@@ -143,31 +118,18 @@ class Process extends React.PureComponent<Props, State> {
   }
 
   render() {
-    const { theme, componentStyle, showNavigation, steps, componentClass } = this.props;
+    const { theme, componentStyle, steps, componentClass } = this.props;
     const className = classNames(
-      componentClass && theme.progtrckr
+      theme.progtrckr,
+      componentClass
     );
 
     return (
-      <div className={theme.container} onKeyDown={this.handleKeyDown}>
+      <div className={theme.container}>
         <ol className={className} style={componentStyle}>
           {this.renderSteps()}
         </ol>
         {steps[this.state.compState].component}
-        <div style={showNavigation ? {} : { display: 'none' }}>
-          <button
-            style={this.state.showPreviousBtn ? {} : { display: 'none' }}
-            onClick={this.previous}
-          >
-          Previous
-          </button>
-          <button
-            style={this.state.showNextBtn ? {} : { display: 'none' }}
-            onClick={this.next}
-          >
-          Next
-          </button>
-        </div>
       </div>
     );
   }

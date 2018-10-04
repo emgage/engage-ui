@@ -56,6 +56,7 @@ import TabState from './componentState/TabState';
 import BreadcrumbState from './componentState/BreadcrumbState';
 import ComboBoxState from './componentState/ComboBoxState';
 import ProcessState from './componentState/ProcessState';
+import StickyState from './componentState/StickyState';
 
 const intialState: IDocumentAppState = {
   components: [
@@ -115,6 +116,7 @@ const intialState: IDocumentAppState = {
     BreadcrumbState,
     ComboBoxState,
     ProcessState,
+    StickyState,
   ],
 };
 

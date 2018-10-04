@@ -32,4 +32,16 @@ describe('<Process />', () => {
       expect(subject.find('li').length).toBe(4);
     });
   });
+
+  describe('when callback props are provided', () => {
+    it('should have callbackfunction as props in process elements', () => {
+      const spy = jest.fn();
+      const subject = mount(
+      <Process steps={steps} allowBackStepping onClick={spy}></Process>);
+      expect(subject.find('ol').exists()).toBeTruthy();
+      expect(subject.find('li').exists()).toBeTruthy();
+      expect(subject.find('div').exists()).toBeTruthy();
+      expect(subject.find('li').length).toBe(4);
+    });
+  });
 });

@@ -12,7 +12,7 @@ class ProcessExampleFirst extends React.Component {
   render() {
     return (
       <div>
-        <Process steps={steps}></Process>
+        <Process steps={steps} onClick={() => console.log('Clicked')}></Process>
       </div>
     );
   }

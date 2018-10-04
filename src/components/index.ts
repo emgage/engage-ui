@@ -341,6 +341,11 @@ export {
 } from './ComboBox';
 
 export {
+  default as Sticky,
+  Props as StickyProps,
+} from './Sticky';
+
+export {
   default as Process,
   Props as ProcessProps,
 } from './Process';

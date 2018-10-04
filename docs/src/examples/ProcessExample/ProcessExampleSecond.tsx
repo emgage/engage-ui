@@ -12,7 +12,7 @@ class ProcessExampleSecond extends React.Component {
   render() {
     return (
       <div>
-        <Process steps={steps} allowBackStepping></Process>
+        <Process steps={steps} allowBackStepping onClick={() => console.log('Clicked')}></Process>
       </div>
     );
   }
