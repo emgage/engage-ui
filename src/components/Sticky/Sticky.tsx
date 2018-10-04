@@ -17,42 +17,17 @@ export interface Props {
 
 const Sticky = ({ position, theme, componentClass, componentStyle, children }:Props) => {
 
-  // const { position, theme, componentClass, componentStyle } = this.props;
-
   const classes = classNames(
     position === 'top' ? theme.headerSticky : theme.footerSticky,
-    theme.footerStyle,
+    theme.stickyStyle,
     componentClass
   );
 
   return (
-    <div className={ classes }>
-      <div className={ theme.Sticky } style={ componentStyle }>
-        {children}
-      </div>
+    <div className={ classes } style={ componentStyle }>
+      {children}
     </div>
   );
 };
-
-// class Sticky extends React.PureComponent<Props, any> {
-
-//   render() {
-//     const { position, theme, componentClass } = this.props;
-
-//     const classes = classNames(
-//       position === 'top' ? theme.headerSticky : theme.footerSticky,
-//       theme.footerStyle,
-//       componentClass
-//     );
-
-//     return (
-//     <div className={ classes }>
-//       <div className={ theme.Sticky } style={this.props.componentStyle}>
-//         {this.props.children}
-//       </div>
-//     </div>
-//     );
-//   }
-// }
 
 export default themr(STICKY, baseTheme)(Sticky) as ThemedComponentClass<Props, {}>;

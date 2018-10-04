@@ -989,9 +989,9 @@ class App extends React.Component<{}, State> {
               Loading
             </Table>
         </div>
-            <Sticky position={'top'}>
-            <span>footer content</span>
-            <Button onClick={this.toggleModal}>Medium buttonas</Button>
+            <Sticky position={'top'} componentStyle={{ backgroundColor: '#FFF', color: 'inherit' }}>
+              <span>footer content</span>
+              <Button onClick={this.toggleModal}>Medium buttonas</Button>
             </Sticky>
         <div>
           <Button onClick={this.toggleDrawer}>Drawer open</Button>
