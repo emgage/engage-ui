@@ -213,7 +213,19 @@ class App extends React.Component<{}, State> {
     const { nestedChildData } = this.state;
     const newData: TableNestedData = {
       rowId,
-      component: <span>My name is {rowId}</span>,
+      component: <div>
+        <span> Please select or create the Related Content for the Sales Rep relationship</span>
+        <TextField
+            componentId="TestName"
+            label="Related Content"
+            placeholder="test-placeholder"
+            value={this.state.appTextCounter}
+            enableTextCounter
+            maxLength={101}
+            minLength={5}
+            // onChange={this.valueUpdater('appTextCounter')}
+          />
+      </div>,
     };
 
     nestedChildData.some((item: TableNestedData, index: number): boolean => {
@@ -228,7 +240,6 @@ class App extends React.Component<{}, State> {
     nestedChildData.push(newData);
 
     this.setState({ nestedChildData });
-    console.log('nestedChildData:', nestedChildData);
   }
 
   render() {
