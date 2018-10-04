@@ -38,8 +38,8 @@ describe('<Sticky />', () => {
       console.log(subject.html());
       expect(subject.find('div').exists()).toBeTruthy();
       expect(subject.find('div').length).toBe(1);
-      expect(subject.find('div').at(0).hasClass('headerSticky')).toBe(true);
-      expect(subject.find('div').at(0).hasClass('footerStyle')).toBe(true);
+      expect(subject.find('div').hasClass('headerSticky')).toBe(true);
+      expect(subject.find('div').hasClass('stickyStyle')).toBe(true);
     });
   });
 
@@ -68,8 +68,8 @@ describe('<Sticky />', () => {
         </Sticky>);
       expect(subject.find('div').exists()).toBeTruthy();
       expect(subject.find('div').length).toBe(1);
-      expect(subject.find('div').at(0).hasClass('footerSticky')).toBe(true);
-      expect(subject.find('div').at(0).hasClass('footerStyle')).toBe(true);
+      expect(subject.find('div').hasClass('footerSticky')).toBe(true);
+      expect(subject.find('div').hasClass('stickyStyle')).toBe(true);
     });
   });
 });
