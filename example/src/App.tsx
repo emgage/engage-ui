@@ -73,6 +73,7 @@ import {
   GridTitle,
   GridType,
   Sticky,
+  Process,
 } from '../../src/components';
 
 interface State {
@@ -307,6 +308,13 @@ class App extends React.Component<{}, State> {
         height: 100,
         width: 100,
       }} />;
+
+    const steps = [
+      { name: 'StepOne', component: <Heading>test0</Heading> },
+      { name: 'StepTwo', component: <Heading>test1</Heading> },
+      { name: 'StepThree', component: <Heading>test2</Heading> },
+      { name: 'StepFour', component: <Heading>test3</Heading> }
+    ];
 
     const pickerdata = [
       { key: 1, image: 'http://msaadvertising.com/wp-content/uploads/2014/06/Larry-cartoon-headshot.jpg', name: 'John Doe', description: 'John Doe', email: 'test@gmail.com' },
@@ -799,6 +807,9 @@ class App extends React.Component<{}, State> {
           <p>This is my Breadcrumbs!!</p>
           <BreadCrumb direction={'left'} source={breadcrumbData} displayStyle={'yellow'} />
        </div>
+       <div> This is my process indicator
+         <Process steps={steps}></Process>
+         </div>
         <br />
         <Caption componentStyle={{ color: 'red' }}>This is Caption</Caption>
         <br />
