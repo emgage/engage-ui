@@ -842,6 +842,9 @@ class App extends React.Component<{}, State> {
           <Table
             nestedChildData={this.state.nestedChildData}
             nestedChildCallback={this.nestedChildCallback}
+            expandingRowId={[2, 4]}
+            rowExpandOnLoad={true}
+            hideExpandedIcon={true}
             data={tableData}
             column={columnConfig}
             hideRow={{ status: 'Deleted' }}
