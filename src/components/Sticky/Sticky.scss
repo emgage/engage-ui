@@ -1,0 +1,27 @@
+  .footerStyle {
+    background-color: indianred;
+    font-size: 20px;
+    color: white;
+    border-top: 1px solid #E7E7E7;
+    text-align: center;
+    padding: 20px;
+    position: sticky;
+    left: 0;
+    height: 60px;
+    width: 100%;
+  }
+
+  .sticky {
+    display: block;
+    padding: 20px;
+    height: 60px;
+    width: 100%;
+  }
+
+  .headerSticky {
+    top: 0;
+  }
+
+  .footerSticky {
+    bottom: 0;
+  }

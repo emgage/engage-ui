@@ -45,7 +45,7 @@ import {
   Video,
   VideoType,
   Modal,
-  ModalContent,
+  // ModalContent,
   ModalBody,
   ModalFooter,
   ModalHeader,
@@ -63,7 +63,16 @@ import {
   TreeSource,
   BreadCrumb,
   ComboBox,
-  ComboBoxItemType
+  ComboBoxItemType,
+  Grid,
+  GridContent,
+  GridDescription,
+  GridFooter,
+  GridHeader,
+  GridImage,
+  GridTitle,
+  GridType,
+  Sticky,
 } from '../../src/components';
 
 interface State {
@@ -93,6 +102,7 @@ interface State {
   anchorEl2?: HTMLElement;
   activeTabId: string;
   nestedChildData: TableNestedData[];
+  gridView: GridType;
 }
 
 class App extends React.Component<{}, State> {
@@ -140,6 +150,7 @@ class App extends React.Component<{}, State> {
       AccordionItemClose: undefined,
       activeTabId: 'tab3',
       nestedChildData: [],
+      gridView: 'block',
     };
 
     this.popovertoggle = this.popovertoggle.bind(this);
@@ -552,13 +563,170 @@ class App extends React.Component<{}, State> {
         <Badge children={'Badge'} progress={'partiallyComplete'} />
         <Badge children={'Badge'} progress={'complete'} />
         <div>
+      <div>Top Content!
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <div>Sandwich: Keep Scrolling!</div>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <div>You can scroll and see me!</div>
+      <div>Top Content!</div>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <div>Sandwich: Keep Scrolling!</div>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <div>You can scroll and see me!</div>
+      <div>Top Content!</div>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <div>Sandwich: Keep Scrolling!</div>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      You can scroll and see me!</div>
+      {/* <Sticky>
+      <span>footer content</span>
+            </Sticky> */}
+        </div>
+        <div>
           <TabPanel defaultTabId="tab1" position={'top'} alignment={'center'}>
             <Tab tabDescription={<Badge children={'Home'} status={'success'} />} tabId={'tab1'}>
               <p>content 0</p>
             </Tab>
             <Tab tabDescription="User" tabId={'tab2'}>
               <div>
-                <Button onClick={this.toggleModal}>Medium buttonas</Button>
               </div>
             </Tab>
             <Tab tabDescription="User1" tabId={'tab3'}>
@@ -574,79 +742,182 @@ class App extends React.Component<{}, State> {
           <Button onClick={() => this.setState({ activeTabId: 'tab2' })}>Trigger User from here</Button>
         </div>
         <div>
-          <Caption componentStyle={{ color: 'red' }}>This is modal</Caption>
-          <Button onClick={this.toggleModal}>Nested modal</Button>
+        <Button onClick={this.toggleModal}>Medium button</Button>
           <Modal
             active={this.state.modalOpen}
-            activeContentId={this.state.activeModalId}
             toggle={this.toggleModal}
             onOpen={this.onModalOpen}
             onClose={this.onModalClose}
-            componentWidth="large"
-            closeOnBackgroud
-            closeOnEsc
-            closeButton>
-            <ModalContent componentId="modalcontent1">
-              <ModalHeader>Modal content 1</ModalHeader>
-              <ModalBody modalOverflow>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae ex pellentesque, pretium lorem vel, tempor ipsum. Phasellus suscipit lacus in velit malesuada, at bibendum mi gravida. Sed cursus nisi sem, non pellentesque ligula euismod eget. Sed quis fringilla nibh, at vestibulum turpis. Donec sed sagittis sapien. Nam quis ex quis nulla porta molestie. Vestibulum eu lorem porta, facilisis orci a, tempor quam. Suspendisse et sollicitudin nulla. Aenean consectetur imperdiet leo nec condimentum. Aliquam scelerisque magna ut tortor accumsan condimentum.
-
-                Nulla quis ante sit amet leo lobortis rhoncus. Cras mollis quis leo nec tincidunt. Aliquam blandit est vitae leo ultrices, ut egestas sapien pharetra. Suspendisse nec aliquet orci. Suspendisse rutrum odio sed neque scelerisque, ut consectetur erat tincidunt. Duis ultrices metus eget ante posuere eleifend. Ut luctus felis neque, sit amet efficitur neque maximus id. Aliquam porta, tellus ut pellentesque facilisis, odio neque maximus erat, venenatis semper nisi metus id augue. Cras vel sem eu elit blandit laoreet id vitae tortor. Morbi sit amet mi rutrum, sagittis enim lacinia, dictum turpis.
-              </ModalBody>
-              <ModalFooter>
-                <Button onClick={this.toggleModal}>Close</Button>
-                <Button onClick={() => this.setState({ activeModalId: 'modalcontent2' })}>Next</Button>
-              </ModalFooter>
-            </ModalContent>
-            <ModalContent componentId="modalcontent2">
-              <ModalHeader>Modal content 2</ModalHeader>
-              <ModalBody>
-                I am content two, open next modal from here
-              </ModalBody>
-              <ModalFooter>
-                <Button onClick={this.toggleModal}>Close</Button>
-                <Button onClick={() => this.setState({ activeModalId: 'modalcontent1' })}>Back</Button>
-                <Button onClick={this.toggleModal2}>Open modal 2</Button>
-              </ModalFooter>
-            </ModalContent>
-          </Modal>
-
-          <Modal
-            active={this.state.modalOpen2}
-            toggle={this.toggleModal2}
             componentWidth="medium"
             closeOnBackgroud
             closeOnEsc
             closeButton>
-            <ModalContent>
-              <ModalHeader>Modal title2</ModalHeader>
-              <ModalBody>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae ex pellentesque, pretium lorem vel, tempor ipsum. Phasellus suscipit lacus in velit malesuada, at bibendum mi gravida. Sed cursus nisi sem, non pellentesque ligula euismod eget. Sed quis fringilla nibh, at vestibulum turpis. Donec sed sagittis sapien. Nam quis ex quis nulla porta molestie. Vestibulum eu lorem porta, facilisis orci a, tempor quam. Suspendisse et sollicitudin nulla. Aenean consectetur imperdiet leo nec condimentum. Aliquam scelerisque magna ut tortor accumsan condimentum.
-              </ModalBody>
-              <ModalFooter>
-                <Button onClick={this.toggleModal2}>Close</Button>
-                <Button onClick={this.toggleModal3}>Open modal 3</Button>
-              </ModalFooter>
-            </ModalContent>
-          </Modal>
+            <ModalHeader>Modal title</ModalHeader>
+            <ModalBody modalOverflow>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae ex pellentesque, pretium lorem vel, tempor ipsum. Phasellus suscipit lacus in velit malesuada, at bibendum mi gravida. Sed cursus nisi sem, non pellentesque ligula euismod eget. Sed quis fringilla nibh, at vestibulum turpis. Donec sed sagittis sapien. Nam quis ex quis nulla porta molestie. Vestibulum eu lorem porta, facilisis orci a, tempor quam. Suspendisse et sollicitudin nulla. Aenean consectetur imperdiet leo nec condimentum. Aliquam scelerisque magna ut tortor accumsan condimentum.
 
-          <Modal
-            active={this.state.modalOpen3}
-            toggle={this.toggleModal3}
-            componentWidth="small"
-            closeOnBackgroud
-            closeOnEsc
-            closeButton>
-            <ModalContent>
-              <ModalHeader>Modal title3</ModalHeader>
-              <ModalBody>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae ex pellentesque, que ligula euismod eget. Sed quis fringilla nibh, at vestibulum turpis.
-              </ModalBody>
-              <ModalFooter>
-                <Button onClick={this.toggleModal3}>Close</Button>
-              </ModalFooter>
-            </ModalContent>
+              Nulla quis ante sit amet leo lobortis rhoncus. Cras mollis quis leo nec tincidunt. Aliquam blandit est vitae leo ultrices, ut egestas sapien pharetra. Suspendisse nec aliquet orci. Suspendisse rutrum odio sed neque scelerisque, ut consectetur erat tincidunt. Duis ultrices metus eget ante posuere eleifend. Ut luctus felis neque, sit amet efficitur neque maximus id. Aliquam porta, tellus ut pellentesque facilisis, odio neque maximus erat, venenatis semper nisi metus id augue. Cras vel sem eu elit blandit laoreet id vitae tortor. Morbi sit amet mi rutrum, sagittis enim lacinia, dictum turpis.
+      <div>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <div>Sandwich: Keep Scrolling!</div>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <div>You can scroll and see me!</div>
+      <div>Top Content!</div>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <div>Sandwich: Keep Scrolling!</div>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <Sticky position={'bottom'}>
+                <span>footer content</span>
+      </Sticky>
+      <div>You can scroll and see me!</div>
+      <div>Top Content!</div>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <div>Sandwich: Keep Scrolling!</div>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      You can scroll and see me!</div>
+            </ModalBody>
+            <ModalFooter>
+            </ModalFooter>
           </Modal>
+          <Caption componentStyle={{ color: 'red' }}>This is modal</Caption>
         </div>
         { /* this is treeview */ }
         <div>
@@ -718,7 +989,10 @@ class App extends React.Component<{}, State> {
               Loading
             </Table>
         </div>
-
+            <Sticky position={'top'}>
+            <span>footer content</span>
+            <Button onClick={this.toggleModal}>Medium buttonas</Button>
+            </Sticky>
         <div>
           <Button onClick={this.toggleDrawer}>Drawer open</Button>
           <Drawer
@@ -742,6 +1016,162 @@ class App extends React.Component<{}, State> {
               </ul>
 
               <Button onClick={() => this.setState({ activeDrawerId: 'content2' })}>Content2 open</Button>
+              <div>Top Content!
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <div>Sandwich: Keep Scrolling!</div>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <Sticky position={'top'}>
+            <span>footer content</span>
+            </Sticky>
+            <div>You can scroll and see me!</div>
+            <div>Top Content!</div>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <div>Sandwich: Keep Scrolling!</div>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <div>You can scroll and see me!</div>
+            <div>Top Content!</div>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <div>Sandwich: Keep Scrolling!</div>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            You can scroll and see me!</div>
             </DrawerContent>
 
             <DrawerContent componentId="content2" mode="slide">
@@ -749,6 +1179,7 @@ class App extends React.Component<{}, State> {
 
               <Button onClick={() => this.setState({ activeDrawerId: 'content1' })}>Content1 open</Button>
               <Button onClick={() => this.setState({ drawer: false })}>Close</Button>
+
             </DrawerContent>
           </Drawer>
 
@@ -926,6 +1357,54 @@ class App extends React.Component<{}, State> {
            <Term>Discount code</Term>
            <Description>A series of numbers and/or letters that an online shopper may enter at checkout to get a discount or special offer.</Description>
        </DescriptionList>
+
+        <Heading>Grid Block</Heading>
+        <ButtonGroup segmented={true}>
+          <Button onClick={() => this.setState({ gridView: 'block' })}>Block view</Button>
+          <Button onClick={() => this.setState({ gridView: 'list' })}>List view</Button>
+        </ButtonGroup>
+        <br />
+        <Grid gridType={this.state.gridView}>
+          <GridContent>
+            <GridHeader>Grid Header</GridHeader>
+            <GridImage>Image</GridImage>
+            <GridTitle>Grid Title</GridTitle>
+            <GridDescription>Grid Description</GridDescription>
+            <GridFooter>Grid Footer</GridFooter>
+          </GridContent>
+
+          <GridContent>
+            <GridHeader>Grid Header</GridHeader>
+            <GridImage>Image</GridImage>
+            <GridTitle>Grid Title</GridTitle>
+            <GridDescription>Grid Description</GridDescription>
+            <GridFooter>Grid Footer</GridFooter>
+          </GridContent>
+
+          <GridContent>
+            <GridHeader>Grid Header</GridHeader>
+            <GridImage>Image</GridImage>
+            <GridTitle>Grid Title</GridTitle>
+            <GridDescription>Grid Description</GridDescription>
+            <GridFooter>Grid Footer</GridFooter>
+          </GridContent>
+
+          <GridContent>
+            <GridHeader>Grid Header</GridHeader>
+            <GridImage>Image</GridImage>
+            <GridTitle>Grid Title</GridTitle>
+            <GridDescription>Grid Description</GridDescription>
+            <GridFooter>Grid Footer</GridFooter>
+          </GridContent>
+
+          <GridContent>
+            <GridHeader>Grid Header</GridHeader>
+            <GridImage>Image</GridImage>
+            <GridTitle>Grid Title</GridTitle>
+            <GridDescription>Grid Description</GridDescription>
+            <GridFooter>Grid Footer</GridFooter>
+          </GridContent>
+        </Grid>
           <ChoiceList
             componentTitle="Company name"
             choices={[
