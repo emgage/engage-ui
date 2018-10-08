@@ -32,6 +32,8 @@ export interface Props {
   activeContentId?: string | string[];
   // Show or hide close button (X) to close drawer
   closeButton?: boolean;
+  // This will help to show the label to side of the drawer when there is a stacking of drawers
+  componentLabel?: string;
   // If there are multiple theme for drawer then you can pass theme required here
   currentTheme?: string;
   // Open drawer in flip direction (i.e. right)
@@ -103,6 +105,7 @@ class Drawer extends React.PureComponent<Props, never> {
   // Function to get bar class names
   getBarClassName() {
     const {
+      componentLabel,
       currentTheme = '',
       mode,
       theme,
@@ -110,6 +113,7 @@ class Drawer extends React.PureComponent<Props, never> {
 
     return classNames(
       theme.bar,
+      componentLabel && theme.overflowDisable,
       currentTheme && theme[currentTheme],
       mode === 'slide' && theme.animation,
       mode === 'push' && theme.animation
@@ -157,18 +161,22 @@ class Drawer extends React.PureComponent<Props, never> {
     // Iterate through all the children content component & find active component
     // Match activeContentId with children's id & mark that as active: true
     return React.Children.map(children, (child: React.ReactElement<any>) => {
-      const { componentId } = child.props;
-      const cloneElemnt = (typeof activeContentId === 'string' && activeContentId === componentId) || (typeof activeContentId === 'object' && activeContentId.indexOf(componentId) !== componentId);
+      if (child.props && child.props.componentId) {
+        const { componentId } = child.props;
+        const cloneElemnt = (typeof activeContentId === 'string' && activeContentId === componentId) || (typeof activeContentId === 'object' && activeContentId.indexOf(componentId) !== componentId);
 
-      // Clone active component & return it
-      if (cloneElemnt) {
-        return React.cloneElement(child, { closeButton, toggleDrawer, active: true, });
+        // Clone active component & return it
+        if (cloneElemnt) {
+          return React.cloneElement(child, { closeButton, toggleDrawer, active: true, });
+        }
       }
+
+      return React.cloneElement(child);
     });
   }
 
   renderLayer() {
-    const { active, mode, componentWidth, theme } = this.props;
+    const { active, mode, componentLabel, componentWidth, theme } = this.props;
     const containerClassName = this.getContainerClassName();
     const barClassName = this.getBarClassName();
 
@@ -185,6 +193,14 @@ class Drawer extends React.PureComponent<Props, never> {
 
     const bar = [
       <div className={barClassName} style={dStyle} key={this.id}>
+        {
+          componentLabel ?
+            <div className={theme.drawerLabel}>
+              <span className={theme.drawerLabelText}>{componentLabel}</span>
+            </div>
+            :
+            null
+        }
         {
           active ?
           <div className={theme.label} aria-live={'assertive'} >
