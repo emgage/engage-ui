@@ -20,6 +20,7 @@ import {
   DisplayText,
   Drawer,
   DrawerContent,
+  SliderContent,
   SideNavigation,
   FlexBox,
   // FormLayout,
@@ -73,6 +74,7 @@ import {
   GridTitle,
   GridType,
   Sticky,
+  Slider,
 } from '../../src/components';
 
 interface State {
@@ -93,8 +95,12 @@ interface State {
   modalOpen2: boolean;
   modalOpen3: boolean;
   drawer: boolean;
+  slider: boolean;
+  slider1: boolean;
+  slider2: boolean;
   drawerContent: any;
   activeDrawerId: string;
+  activeSliderId: string;
   activeModalId: string;
   AccordionItemOpen?: number;
   AccordionItemClose?: number;
@@ -140,11 +146,15 @@ class App extends React.Component<{}, State> {
         field: 'name',
       },
       drawer: false,
+      slider: false,
+      slider1: false,
+      slider2: false,
       drawerContent: {
         content1: false,
         content2: true,
       },
       activeDrawerId: 'content1',
+      activeSliderId: 'slider1',
       activeModalId: 'modalcontent1',
       AccordionItemOpen: undefined,
       AccordionItemClose: undefined,
@@ -192,6 +202,10 @@ class App extends React.Component<{}, State> {
     console.log('Modal close');
   }
 
+  toggleDrawer = () => {
+    this.setState({ drawer: !this.state.drawer });
+  }
+
   onDrawerOpen = () => {
     console.log('drawer open');
   }
@@ -200,8 +214,24 @@ class App extends React.Component<{}, State> {
     console.log('drawer close');
   }
 
-  toggleDrawer = () => {
-    this.setState({ drawer: !this.state.drawer });
+  toggleSlider = () => {
+    this.setState({ slider: !this.state.slider });
+  }
+
+  toggleSlider1 = () => {
+    this.setState({ slider1: !this.state.slider1 });
+  }
+
+  toggleSlider2 = () => {
+    this.setState({ slider2: !this.state.slider2 });
+  }
+
+  onSliderOpen = () => {
+    console.log('Slider open');
+  }
+
+  onSliderClose = () => {
+    console.log('Slider close');
   }
 
   BreadcrumbClick = () => {
@@ -563,162 +593,37 @@ class App extends React.Component<{}, State> {
         <Badge children={'Badge'} progress={'partiallyComplete'} />
         <Badge children={'Badge'} progress={'complete'} />
         <div>
-      <div>Top Content!
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <div>Sandwich: Keep Scrolling!</div>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <div>You can scroll and see me!</div>
-      <div>Top Content!</div>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <div>Sandwich: Keep Scrolling!</div>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <div>You can scroll and see me!</div>
-      <div>Top Content!</div>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <div>Sandwich: Keep Scrolling!</div>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      You can scroll and see me!</div>
-      {/* <Sticky>
-      <span>footer content</span>
-            </Sticky> */}
+        <Button onClick={this.toggleSlider}>Slider open</Button>
+        <Slider
+            toggleSlider={this.toggleSlider}
+            active={this.state.slider}
+            flip
+            activeContentId={this.state.activeSliderId}
+            onOpen={this.onSliderOpen}
+            onClose={this.onSliderClose}
+            componentWidth="large"
+            overlay
+            closeButton>
+        <SliderContent componentId="slider1">
+              <p>This is 1st slider content</p>
+              <Button onClick={this.toggleSlider1}>Slider1 open</Button>
+              <Slider
+              toggleSlider={this.toggleSlider1}
+              active={this.state.slider1}
+              flip
+              activeContentId={this.state.activeSliderId}
+              onOpen={this.onSliderOpen}
+              onClose={this.onSliderClose}
+              componentWidth="medium"
+              overlay
+              closeButton>
+              <SliderContent componentId="slider1">
+                <p>This is 2nd slider content</p>
+                <Button onClick={this.toggleSlider2}>Slider2 open</Button>
+              </SliderContent>
+        </Slider>
+        </SliderContent>
+        </Slider>
         </div>
         <div>
           <TabPanel defaultTabId="tab1" position={'top'} alignment={'center'}>
@@ -1001,7 +906,7 @@ class App extends React.Component<{}, State> {
             activeContentId={this.state.activeDrawerId}
             onOpen={this.onDrawerOpen}
             onClose={this.onDrawerClose}
-            mode="push"
+            mode="slide"
             componentWidth="large"
             overlay
             closeButton>

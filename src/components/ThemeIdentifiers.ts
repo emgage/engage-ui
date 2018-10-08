@@ -56,3 +56,4 @@ export const TREEVIEW = 'PTreeview';
 export const BREADCRUMB = 'PBreadcrumb';
 export const COMBOBOX = 'PComboBox';
 export const STICKY = 'PSticky';
+export const SLIDER = 'PSlider';

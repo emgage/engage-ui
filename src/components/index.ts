@@ -344,3 +344,9 @@ export {
   default as Sticky,
   Props as StickyProps,
 } from './Sticky';
+
+export {
+  Slider,
+  SliderContent,
+  SliderProps
+} from './Slider';
