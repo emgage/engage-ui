@@ -12,6 +12,8 @@ export interface NavigationState {
 export interface Step {
   name: string;
   component: React.ReactNode | string;
+  style?: any;
+  onClick?(): void;
 }
 
 export interface Props {
@@ -27,13 +29,16 @@ export interface Props {
     // Custom class
   componentClass?: string;
   // Call callbackParent method on outside area click 
-  onClick?(returnValue: any): void;
+  onClick?(returnValue: number): void;
+  // callback method for getting state when clicked from outside area.
+  onComponentStateUpdate?(currentComponentState: number, processComponentState: number): void;
+  ProcessComponentState?: number;
 }
 
 export interface State {
   showPreviousButton: boolean;
   showNextButton: boolean;
-  compState: number;
+  ProcessComponentState: number;
   navigationState: NavigationState;
 }
 
@@ -57,7 +62,7 @@ class Process extends React.PureComponent<Props, State> {
     this.state = {
       showPreviousButton: false,
       showNextButton: true,
-      compState: 0,
+      ProcessComponentState: 0,
       navigationState: getNavigationStates(0, this.props.steps.length)
     };
   }
@@ -66,35 +71,48 @@ class Process extends React.PureComponent<Props, State> {
     showNavigation: true
   };
 
+  componentWillReceiveProps(newProps: Props) {
+    const { ProcessComponentState: newProcessComponentState } = newProps;
+    const { ProcessComponentState } = this.props;
+
+    if (newProcessComponentState !== ProcessComponentState) {
+      this.setNavigationState(newProcessComponentState ? newProcessComponentState : 0);
+    }
+  }
+
   setNavigationState = (next: number) => {
-    this.setState({
-      navigationState: getNavigationStates(next, this.props.steps.length)
-    });
-    if (next === (this.state.compState + 1) || (next === (this.state.compState - 1) && this.props.allowBackStepping)) {
-      this.setState({ compState: next });
+    if (next < this.props.steps.length && next > -1) {
+      this.setState({
+        navigationState: getNavigationStates(next, this.props.steps.length)
+      });
+      if (next === (this.state.ProcessComponentState + 1) || (next === (this.state.ProcessComponentState - 1) && this.props.allowBackStepping)) {
+        this.setState({ ProcessComponentState: next });
+        if (this.props.onComponentStateUpdate) {
+          this.props.onComponentStateUpdate(this.props.steps.length, next);
+        }
+      }
     }
   }
 
   handleOnClick = (evt: React.FormEvent<any>) => {
     const { onClick, steps, allowBackStepping } = this.props;
     if (
-      evt.currentTarget.value === (this.state.compState + 1) - 1 &&
-      this.state.compState === steps.length - 1 &&
-      evt.currentTarget.value !== this.state.compState
+      evt.currentTarget.value === (this.state.ProcessComponentState + 1) - 1 &&
+      this.state.ProcessComponentState === steps.length - 1 &&
+      evt.currentTarget.value !== this.state.ProcessComponentState
     ) {
       this.setNavigationState(steps.length);
-
       if (onClick) {
-        onClick(evt);
+        onClick(evt.currentTarget.value);
       }
     } if (
       evt.currentTarget.value < steps.length &&
-      (evt.currentTarget.value === (this.state.compState + 1) || (evt.currentTarget.value === (this.state.compState - 1) && allowBackStepping))
+      (evt.currentTarget.value === (this.state.ProcessComponentState + 1) || (evt.currentTarget.value === (this.state.ProcessComponentState - 1) && allowBackStepping))
     ) {
       this.setNavigationState(evt.currentTarget.value);
 
       if (onClick) {
-        onClick(evt);
+        onClick(evt.currentTarget.value);
       }
     }
   }
@@ -107,6 +125,7 @@ class Process extends React.PureComponent<Props, State> {
     return this.props.steps.map((s, i) => (
       <li
         className={this.props.theme[this.getClassName(i)]}
+        style={this.props.steps[i].style}
         onClick={this.handleOnClick}
         key={i}
         value={i}
@@ -129,7 +148,7 @@ class Process extends React.PureComponent<Props, State> {
         <ol className={className} style={componentStyle}>
           {this.renderSteps()}
         </ol>
-        {steps[this.state.compState].component}
+        {steps[this.state.ProcessComponentState].component}
       </div>
     );
   }
