@@ -91,7 +91,7 @@ class Table extends React.Component<Props, State> {
     if (newProps.filterData) {
       const { field, searchKey, search } = newProps.filterData;
 
-      if (search && (this.props.filterData && !this.props.filterData.search)) {
+      if (search && (this.props.filterData)) {
         this.triggerSearch(searchKey, field);
       }
     }
@@ -495,6 +495,8 @@ class Table extends React.Component<Props, State> {
       });
 
       this.setState({ data: result });
+    } else {
+      this.setState({ data });
     }
   }
 }
