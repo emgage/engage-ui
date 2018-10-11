@@ -397,7 +397,6 @@ class Table extends React.Component<Props, State> {
 
   render () {
     const tableClass = this.getTableClassName();
-    // const renderedTable = this.renderChildren();
     const renderedHeader = !this.props.hideHeader ? this.renderHeader() : null;
     const renderedBody = this.renderBody();
 

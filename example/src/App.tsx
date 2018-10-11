@@ -223,7 +223,6 @@ class App extends React.Component<{}, State> {
             enableTextCounter
             maxLength={101}
             minLength={5}
-            // onChange={this.valueUpdater('appTextCounter')}
           />
       </div>,
     };
