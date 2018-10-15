@@ -15,7 +15,7 @@ describe('<Process />', () => {
     it('should have default process elements', () => {
       const subject = mount(
       <Process steps={steps}></Process>);
-      expect(subject.find('ol').exists()).toBeTruthy();
+      expect(subject.find('ul').exists()).toBeTruthy();
       expect(subject.find('li').exists()).toBeTruthy();
       expect(subject.find('div').exists()).toBeTruthy();
       expect(subject.find('li').length).toBe(4);
@@ -26,7 +26,7 @@ describe('<Process />', () => {
     it('should have allowBackStepping true process elements', () => {
       const subject = mount(
       <Process steps={steps} allowBackStepping></Process>);
-      expect(subject.find('ol').exists()).toBeTruthy();
+      expect(subject.find('ul').exists()).toBeTruthy();
       expect(subject.find('li').exists()).toBeTruthy();
       expect(subject.find('div').exists()).toBeTruthy();
       expect(subject.find('li').length).toBe(4);
@@ -38,7 +38,7 @@ describe('<Process />', () => {
       const spy = jest.fn();
       const subject = mount(
       <Process steps={steps} allowBackStepping onClick={spy}></Process>);
-      expect(subject.find('ol').exists()).toBeTruthy();
+      expect(subject.find('ul').exists()).toBeTruthy();
       expect(subject.find('li').exists()).toBeTruthy();
       expect(subject.find('div').exists()).toBeTruthy();
       expect(subject.find('li').length).toBe(4);
@@ -50,7 +50,7 @@ describe('<Process />', () => {
       const spy = jest.fn();
       const subject = mount(
       <Process steps={steps} allowBackStepping onClick={spy} onComponentStateUpdate={spy}></Process>);
-      expect(subject.find('ol').exists()).toBeTruthy();
+      expect(subject.find('ul').exists()).toBeTruthy();
       expect(subject.find('li').exists()).toBeTruthy();
       expect(subject.find('div').exists()).toBeTruthy();
       expect(subject.find('li').length).toBe(4);

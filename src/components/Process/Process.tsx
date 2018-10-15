@@ -9,11 +9,13 @@ export interface NavigationState {
   styles: string[];
 }
 
+export type ProcessStatus = 'active' | 'completed' | 'upcoming';
 export interface Step {
   name: string;
-  component: React.ReactNode | string;
+  component?: React.ReactNode | string;
   style?: any;
   onClick?(): void;
+  status?: string;
 }
 
 export interface Props {
@@ -32,13 +34,13 @@ export interface Props {
   onClick?(returnValue: number): void;
   // callback method for getting state when clicked from outside area.
   onComponentStateUpdate?(currentComponentState: number, processComponentState: number): void;
-  ProcessComponentState?: number;
+  processComponentState?: number;
 }
 
 export interface State {
   showPreviousButton: boolean;
   showNextButton: boolean;
-  ProcessComponentState: number;
+  processComponentState: number;
   navigationState: NavigationState;
 }
 
@@ -62,7 +64,7 @@ class Process extends React.PureComponent<Props, State> {
     this.state = {
       showPreviousButton: false,
       showNextButton: true,
-      ProcessComponentState: 0,
+      processComponentState: 0,
       navigationState: getNavigationStates(0, this.props.steps.length)
     };
   }
@@ -72,11 +74,11 @@ class Process extends React.PureComponent<Props, State> {
   };
 
   componentWillReceiveProps(newProps: Props) {
-    const { ProcessComponentState: newProcessComponentState } = newProps;
-    const { ProcessComponentState } = this.props;
+    const { processComponentState: newprocessComponentState } = newProps;
+    const { processComponentState } = this.props;
 
-    if (newProcessComponentState !== ProcessComponentState) {
-      this.setNavigationState(newProcessComponentState ? newProcessComponentState : 0);
+    if (newprocessComponentState !== processComponentState) {
+      this.setNavigationState(newprocessComponentState ? newprocessComponentState : 0);
     }
   }
 
@@ -85,8 +87,8 @@ class Process extends React.PureComponent<Props, State> {
       this.setState({
         navigationState: getNavigationStates(next, this.props.steps.length)
       });
-      if (next === (this.state.ProcessComponentState + 1) || (next === (this.state.ProcessComponentState - 1) && this.props.allowBackStepping)) {
-        this.setState({ ProcessComponentState: next });
+      if (next === (this.state.processComponentState + 1) || (next === (this.state.processComponentState - 1) && this.props.allowBackStepping)) {
+        this.setState({ processComponentState: next });
         if (this.props.onComponentStateUpdate) {
           this.props.onComponentStateUpdate(this.props.steps.length, next);
         }
@@ -97,9 +99,9 @@ class Process extends React.PureComponent<Props, State> {
   handleOnClick = (evt: React.FormEvent<any>) => {
     const { onClick, steps, allowBackStepping } = this.props;
     if (
-      evt.currentTarget.value === (this.state.ProcessComponentState + 1) - 1 &&
-      this.state.ProcessComponentState === steps.length - 1 &&
-      evt.currentTarget.value !== this.state.ProcessComponentState
+      evt.currentTarget.value === (this.state.processComponentState + 1) - 1 &&
+      this.state.processComponentState === steps.length - 1 &&
+      evt.currentTarget.value !== this.state.processComponentState
     ) {
       this.setNavigationState(steps.length);
       if (onClick) {
@@ -107,7 +109,7 @@ class Process extends React.PureComponent<Props, State> {
       }
     } if (
       evt.currentTarget.value < steps.length &&
-      (evt.currentTarget.value === (this.state.ProcessComponentState + 1) || (evt.currentTarget.value === (this.state.ProcessComponentState - 1) && allowBackStepping))
+      (evt.currentTarget.value === (this.state.processComponentState + 1) || (evt.currentTarget.value === (this.state.processComponentState - 1) && allowBackStepping))
     ) {
       this.setNavigationState(evt.currentTarget.value);
 
@@ -122,16 +124,22 @@ class Process extends React.PureComponent<Props, State> {
   }
 
   renderSteps = () => {
-    return this.props.steps.map((s, i) => (
+    const { steps, theme } = this.props;
+
+    return steps.map((item, index) => (
       <li
-        className={this.props.theme[this.getClassName(i)]}
-        style={this.props.steps[i].style}
-        onClick={this.handleOnClick}
-        key={i}
-        value={i}
+        className={theme[item.status ? item.status : 'upcoming']}
+        style={{ ...item.style, cursor: item.onClick ? 'pointer' : 'default' }}
+        onClick={item.onClick ? this.handleOnClick : () => {}}
+        key={index}
+        value={index}
       >
-        <em>{i + 1}</em>
-        <span>{this.props.steps[i].name}</span>
+        <div className={theme.processBar}>
+          <span className={theme.processIndex}>{index + 1}</span>
+          { steps.length !== (index + 1) ? <div className={theme.processDivider}></div> : null }
+        </div>
+
+        <label className={theme.processLabel}>{item.name}</label>
       </li>
     ));
   }
@@ -145,10 +153,10 @@ class Process extends React.PureComponent<Props, State> {
 
     return (
       <div className={theme.container}>
-        <ol className={className} style={componentStyle}>
+        <ul className={className} style={componentStyle}>
           {this.renderSteps()}
-        </ol>
-        {steps[this.state.ProcessComponentState].component}
+        </ul>
+        {steps[this.state.processComponentState].component ? steps[this.state.processComponentState].component : null}
       </div>
     );
   }

@@ -110,7 +110,7 @@ interface State {
   nestedChildData: TableNestedData[];
   gridView: GridType;
   [key: string]: any;
-  ProcessComponentState: number;
+  processComponentState: number;
   processLength: number;
 }
 
@@ -165,7 +165,7 @@ class App extends React.Component<{}, State> {
       activeTabId: 'tab3',
       nestedChildData: [],
       gridView: 'block',
-      ProcessComponentState: 0,
+      processComponentState: 0,
       processLength: 2,
     };
 
@@ -189,14 +189,14 @@ class App extends React.Component<{}, State> {
   }
 
   processNext = () => {
-    if (this.state.ProcessComponentState < this.state.processLength - 1) {
-      this.setState({ ProcessComponentState: this.state.ProcessComponentState + 1 });
+    if (this.state.processComponentState < this.state.processLength - 1) {
+      this.setState({ processComponentState: this.state.processComponentState + 1 });
     }
   }
 
   processPrevious = () => {
-    if (this.state.ProcessComponentState > 0 && this.state.ProcessComponentState < this.state.processLength + 1) {
-      this.setState({ ProcessComponentState: this.state.ProcessComponentState - 1 });
+    if (this.state.processComponentState > 0 && this.state.processComponentState < this.state.processLength + 1) {
+      this.setState({ processComponentState: this.state.processComponentState - 1 });
     }
   }
 
@@ -205,7 +205,7 @@ class App extends React.Component<{}, State> {
   }
 
   updateProcessStateonClick(processComponentState: number,) {
-    this.setState({ ProcessComponentState: processComponentState });
+    this.setState({ processComponentState });
   }
 
   toggleModal = () => {
@@ -334,9 +334,9 @@ class App extends React.Component<{}, State> {
       }} />;
 
     const steps = [
-      { name: 'Completed', component: <Heading>test0</Heading>, style: { borderBottom : '4px solid green' } },
-      { name: 'Active', component: <Heading>test1</Heading>, style: { borderBottom : '4px solid red' } },
-      { name: 'Upcoming', component: <Heading>test2</Heading> }
+      { name: 'Completed', status: 'completed' },
+      { name: 'Active' },
+      { name: 'Upcoming' }
     ];
 
     const pickerdata = [
@@ -833,7 +833,12 @@ class App extends React.Component<{}, State> {
        <div> This is my process indicator
        <Button onClick={() => this.processNext()}>Next Process</Button>
        <Button onClick={() => this.processPrevious()}>Previous Process</Button>
-         <Process steps={steps} allowBackStepping onClick={(processComponentState: number) => this.updateProcessStateonClick(processComponentState)} onComponentStateUpdate={(currentState: number, processComponentState: number) => this.updateProcessState(currentState, processComponentState) }  ProcessComponentState = {this.state.ProcessComponentState}></Process>
+         <Process
+          steps={steps}
+          allowBackStepping
+          onClick={(processComponentState: number) => this.updateProcessStateonClick(processComponentState)}
+          onComponentStateUpdate={(currentState: number, processComponentState: number) => this.updateProcessState(currentState, processComponentState) }
+          processComponentState = {this.state.processComponentState} />
          </div>
         <br />
         <Caption componentStyle={{ color: 'red' }}>This is Caption</Caption>

@@ -11,7 +11,7 @@ const steps = [
 class ProcessExampleSecond extends React.Component {
 
   state = {
-    ProcessComponentState: 0,
+    processComponentState: 0,
   };
 
   updateProcessState(processLength: number, processComponentState: number,) {
@@ -19,13 +19,13 @@ class ProcessExampleSecond extends React.Component {
   }
 
   updateProcessStateonClick(processComponentState: number,) {
-    this.setState({ ProcessComponentState: processComponentState });
+    this.setState({ processComponentState });
   }
 
   render() {
     return (
       <div>
-        <Process steps={steps} allowBackStepping onClick={(processComponentState: number) => this.updateProcessStateonClick(processComponentState)} onComponentStateUpdate={(currentState: number, processComponentState: number) => this.updateProcessState(currentState, processComponentState) }  ProcessComponentState = {this.state.ProcessComponentState}></Process>
+        <Process steps={steps} allowBackStepping onClick={(processComponentState: number) => this.updateProcessStateonClick(processComponentState)} onComponentStateUpdate={(currentState: number, processComponentState: number) => this.updateProcessState(currentState, processComponentState) }  processComponentState = {this.state.processComponentState}></Process>
       </div>
     );
   }
