@@ -15,6 +15,10 @@ export interface Props {
   componentClass?: string;
   // Prop to select the grid type, currently there are two block & list
   gridType?: GridType;
+  // Prop to handle callback function
+  onClick?(returnValue?: any): any;
+  // Prop to decide what value needs to be returned with callback
+  returnValue?: any;
   // Theme to be injected via css-themr
   theme?: any;
 }
@@ -24,6 +28,8 @@ const GridContent = ({
   componentClass,
   componentStyle,
   gridType = 'block',
+  onClick,
+  returnValue,
   theme,
 }: Props) => {
   const gridContentClass = classNames(
@@ -32,7 +38,7 @@ const GridContent = ({
     componentClass
   );
 
-  return <div style={componentStyle} className={gridContentClass}>{children}</div>;
+  return <div onClick={event => onClick ? onClick(returnValue ? returnValue : event) : ''} style={componentStyle} className={gridContentClass}>{children}</div>;
 };
 
 export default themr(GRID, baseTheme)(GridContent) as ThemedComponentClass<Props, {}>;
