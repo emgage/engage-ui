@@ -31,8 +31,12 @@ export interface Props {
   defaultSortField?: string;
   // Value could be 'asc' || 'desc'
   defaultSortOrder?: string;
+  // If not all the rows are expandable then pass the id of expanding row
+  expandingRowId?: number[];
   // Filter config, if data needs to be filtered by any mode like search
   filterData?: FilterConfig;
+  // This will hide the expanding row if passed
+  hideExpandedIcon?: boolean;
   // Hide header: Its mainly used for nested table, but user can also hide it for main table
   hideHeader?: boolean;
   // Hide specific row & show them when its being asked to show
@@ -47,6 +51,8 @@ export interface Props {
   responsive?: boolean;
   // Individual row action, if available add it in last of the column
   rowAction?: any;
+  // Pass this if row should be expanded bydefault on page load
+  rowExpandOnLoad?: boolean;
   // This helps to add checkbox or radio to select the row & do bulk actions
   selectRow?: RowSelection;
   // Use this key to fetch the unique id from data & send it back to selectedrow
@@ -194,7 +200,7 @@ class Table extends React.Component<Props, State> {
 
   // Function to render tbody & td with specifc data & if user passed any custom component that can also get rendered
   renderBody = () => {
-    const { children, column, hideRow, selectRow } = this.props;
+    const { children, column, expandingRowId = [], hideRow, rowExpandOnLoad, selectRow } = this.props;
     const { data, expandedRow } = this.state;
 
     if (!children) {
@@ -216,6 +222,10 @@ class Table extends React.Component<Props, State> {
     // If there is no children for the table component (which is being used to open when the row gets expanded)
     return data.map((item: any, index: number) => {
       if (!hideRow || !this.hideRow(item)) {
+        if (rowExpandOnLoad && expandingRowId.indexOf(item.id) !== -1 && expandedRow.indexOf(item.id) === -1) {
+          this.openNestedRow(item.id);
+        }
+
         return (
           <TableBody key={index}>
             { this.renderTbodyRows(item, index + '_nested') }
@@ -248,7 +258,7 @@ class Table extends React.Component<Props, State> {
 
   // Render the main table row
   renderTbodyRows = (item: any, index: number | string) => {
-    const { column, nestedChildData, rowAction } = this.props;
+    const { column, expandingRowId = [], hideExpandedIcon, nestedChildData, rowAction } = this.props;
 
     return (
       <TableRow key={index}>
@@ -266,7 +276,7 @@ class Table extends React.Component<Props, State> {
                   we also return the specifc value, which then can be used in injected component
                 */}
 
-                {!index && nestedChildData ? this.renderCheckColumn(item, false) : ''}
+                {!index && nestedChildData && !hideExpandedIcon && (!expandingRowId.length || expandingRowId.indexOf(item.id)) ? this.renderCheckColumn(item, false) : ''}
                 {colItem.injectBody ? colItem.injectBody(item) : item[colItem.key]}
               </TableData>
             );
@@ -307,12 +317,13 @@ class Table extends React.Component<Props, State> {
 
   // Add checkbox or radio component to select the row, depending on `selectrow` flag
   renderRowSelection = (rowData: any, rowType: string) => {
-    const { nestedChildData, selectRow } = this.props;
+    const { expandingRowId = [], hideExpandedIcon, nestedChildData, selectRow } = this.props;
 
     if (selectRow) {
       if (rowType === 'body') {
         // If row will be expanding then expanding element needs to be placed instead of checkbox
-        if (nestedChildData) {
+        // Expanding icon will not render if hideExpandedIcon is true & if expandingRowId does not match with rowId
+        if (nestedChildData && !hideExpandedIcon && (!expandingRowId.length || expandingRowId.indexOf(rowData.id) !== -1)) {
           return this.expandedRowElement(rowData.id);
         }
 
@@ -375,9 +386,17 @@ class Table extends React.Component<Props, State> {
     return <TableData><Checkbox value={rowData.id} checked={rowData.checked ? true : false} /></TableData>;
   }
 
+  // Function to expand the row on the page load
+  expandRowOnLoad = () => {
+    const { expandingRowId = [] } = this.props;
+
+    expandingRowId.forEach((item: number) => {
+      this.openNestedRow(item);
+    });
+  }
+
   render () {
     const tableClass = this.getTableClassName();
-    // const renderedTable = this.renderChildren();
     const renderedHeader = !this.props.hideHeader ? this.renderHeader() : null;
     const renderedBody = this.renderBody();
 
