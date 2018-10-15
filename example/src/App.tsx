@@ -73,6 +73,7 @@ import {
   GridTitle,
   GridType,
   Sticky,
+  Process,
 } from '../../src/components';
 
 interface State {
@@ -109,6 +110,8 @@ interface State {
   nestedChildData: TableNestedData[];
   gridView: GridType;
   [key: string]: any;
+  processComponentState: number;
+  processLength: number;
 }
 
 class App extends React.Component<{}, State> {
@@ -162,6 +165,8 @@ class App extends React.Component<{}, State> {
       activeTabId: 'tab3',
       nestedChildData: [],
       gridView: 'block',
+      processComponentState: 0,
+      processLength: 2,
     };
 
     this.popovertoggle = this.popovertoggle.bind(this);
@@ -181,6 +186,26 @@ class App extends React.Component<{}, State> {
 
   chipRemove = () => {
     console.log('chip removed...');
+  }
+
+  processNext = () => {
+    if (this.state.processComponentState < this.state.processLength - 1) {
+      this.setState({ processComponentState: this.state.processComponentState + 1 });
+    }
+  }
+
+  processPrevious = () => {
+    if (this.state.processComponentState > 0 && this.state.processComponentState < this.state.processLength + 1) {
+      this.setState({ processComponentState: this.state.processComponentState - 1 });
+    }
+  }
+
+  updateProcessState(processLength: number, processComponentState: number,) {
+    this.setState({ processLength, processComponentState });
+  }
+
+  updateProcessStateonClick(processComponentState: number,) {
+    this.setState({ processComponentState });
   }
 
   toggleModal = () => {
@@ -307,6 +332,12 @@ class App extends React.Component<{}, State> {
         height: 100,
         width: 100,
       }} />;
+
+    const steps = [
+      { name: 'Completed', status: 'completed' },
+      { name: 'Active' },
+      { name: 'Upcoming' }
+    ];
 
     const pickerdata = [
       { key: 1, image: 'http://msaadvertising.com/wp-content/uploads/2014/06/Larry-cartoon-headshot.jpg', name: 'John Doe', description: 'John Doe', email: 'test@gmail.com' },
@@ -799,6 +830,16 @@ class App extends React.Component<{}, State> {
           <p>This is my Breadcrumbs!!</p>
           <BreadCrumb direction={'left'} source={breadcrumbData} displayStyle={'yellow'} />
        </div>
+       <div> This is my process indicator
+       <Button onClick={() => this.processNext()}>Next Process</Button>
+       <Button onClick={() => this.processPrevious()}>Previous Process</Button>
+         <Process
+          steps={steps}
+          allowBackStepping
+          onClick={(processComponentState: number) => this.updateProcessStateonClick(processComponentState)}
+          onComponentStateUpdate={(currentState: number, processComponentState: number) => this.updateProcessState(currentState, processComponentState) }
+          processComponentState = {this.state.processComponentState} />
+         </div>
         <br />
         <Caption componentStyle={{ color: 'red' }}>This is Caption</Caption>
         <br />
