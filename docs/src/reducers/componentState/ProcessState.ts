@@ -27,6 +27,14 @@ const ProcessState: IDocument = {
       type: 'string',
       desc: 'To apply custom class to component.',
     }, {
+      name: 'onClick',
+      type: 'function ()',
+      desc: 'Callback when process component is clicked.',
+    }, {
+      name: 'onComponentStateUpdate',
+      type: 'function ()',
+      desc: 'callback method for getting state when clicked from outside area.',
+    }, {
       name: 'theme',
       type: 'any',
       desc: 'Theme to be injected via css-themr.',

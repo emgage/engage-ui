@@ -4,14 +4,18 @@ import { classNames } from '@shopify/react-utilities/styles';
 import { PROCESS } from '../ThemeIdentifiers';
 import * as baseTheme from './Process.scss';
 
-export interface NavState {
+export interface NavigationState {
   indx: number;
   styles: string[];
 }
 
+export type ProcessStatus = 'active' | 'completed' | 'upcoming';
 export interface Step {
   name: string;
-  component: React.ReactNode;
+  component?: React.ReactNode | string;
+  style?: any;
+  onClick?(): void;
+  status?: string;
 }
 
 export interface Props {
@@ -26,16 +30,21 @@ export interface Props {
   componentStyle?: React.CSSProperties;
     // Custom class
   componentClass?: string;
+  // Call callbackParent method on outside area click 
+  onClick?(returnValue: number): void;
+  // callback method for getting state when clicked from outside area.
+  onComponentStateUpdate?(currentComponentState: number, processComponentState: number): void;
+  processComponentState?: number;
 }
 
 export interface State {
-  showPreviousBtn: boolean;
-  showNextBtn: boolean;
-  compState: number;
-  navState: NavState;
+  showPreviousButton: boolean;
+  showNextButton: boolean;
+  processComponentState: number;
+  navigationState: NavigationState;
 }
 
-const getNavStates = (indx: number, length: number) => {
+const getNavigationStates = (indx: number, length: number) => {
   const styles = [];
   for (let i = 0; i < length; i++) {
     if (i < indx) {
@@ -49,33 +58,14 @@ const getNavStates = (indx: number, length: number) => {
   return { indx, styles };
 };
 
-const checkNavState = (currentStep: number, stepsLength: number) => {
-  if (currentStep > 0 && currentStep < stepsLength - 1) {
-    return {
-      showPreviousBtn: true,
-      showNextBtn: true
-    };
-  } if (currentStep === 0) {
-    return {
-      showPreviousBtn: false,
-      showNextBtn: true
-    };
-  }
-
-  return {
-    showPreviousBtn: true,
-    showNextBtn: false
-  };
-};
-
 class Process extends React.PureComponent<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      showPreviousBtn: false,
-      showNextBtn: true,
-      compState: 0,
-      navState: getNavStates(0, this.props.steps.length)
+      showPreviousButton: false,
+      showNextButton: true,
+      processComponentState: 0,
+      navigationState: getNavigationStates(0, this.props.steps.length)
     };
   }
 
@@ -83,91 +73,90 @@ class Process extends React.PureComponent<Props, State> {
     showNavigation: true
   };
 
-  setNavState = (next: number) => {
-    this.setState({
-      navState: getNavStates(next, this.props.steps.length)
-    });
-    if (next === (this.state.compState + 1) || (next === (this.state.compState - 1) && this.props.allowBackStepping)) {
-      this.setState({ compState: next });
+  componentWillReceiveProps(newProps: Props) {
+    const { processComponentState: newprocessComponentState } = newProps;
+    const { processComponentState } = this.props;
+
+    if (newprocessComponentState !== processComponentState) {
+      this.setNavigationState(newprocessComponentState ? newprocessComponentState : 0);
     }
-    this.setState(checkNavState(next, this.props.steps.length));
   }
 
-  handleKeyDown = (event: React.KeyboardEvent<EventTarget>) => {
-    if (event.which === 13) {
-      this.next();
+  setNavigationState = (next: number) => {
+    if (next < this.props.steps.length && next > -1) {
+      this.setState({
+        navigationState: getNavigationStates(next, this.props.steps.length)
+      });
+      if (next === (this.state.processComponentState + 1) || (next === (this.state.processComponentState - 1) && this.props.allowBackStepping)) {
+        this.setState({ processComponentState: next });
+        if (this.props.onComponentStateUpdate) {
+          this.props.onComponentStateUpdate(this.props.steps.length, next);
+        }
+      }
     }
   }
 
   handleOnClick = (evt: React.FormEvent<any>) => {
+    const { onClick, steps, allowBackStepping } = this.props;
     if (
-      evt.currentTarget.value === (this.state.compState + 1) - 1 &&
-      this.state.compState === this.props.steps.length - 1 &&
-      evt.currentTarget.value !== this.state.compState
+      evt.currentTarget.value === (this.state.processComponentState + 1) - 1 &&
+      this.state.processComponentState === steps.length - 1 &&
+      evt.currentTarget.value !== this.state.processComponentState
     ) {
-      this.setNavState(this.props.steps.length);
+      this.setNavigationState(steps.length);
+      if (onClick) {
+        onClick(evt.currentTarget.value);
+      }
     } if (
-      evt.currentTarget.value < this.props.steps.length &&
-      (evt.currentTarget.value === (this.state.compState + 1) || (evt.currentTarget.value === (this.state.compState - 1) && this.props.allowBackStepping))
+      evt.currentTarget.value < steps.length &&
+      (evt.currentTarget.value === (this.state.processComponentState + 1) || (evt.currentTarget.value === (this.state.processComponentState - 1) && allowBackStepping))
     ) {
-      this.setNavState(evt.currentTarget.value);
-    }
-  }
+      this.setNavigationState(evt.currentTarget.value);
 
-  next = () => {
-    this.setNavState(this.state.compState + 1);
-  }
-
-  previous = () => {
-    if (this.state.compState > 0) {
-      this.setNavState(this.state.compState - 1);
+      if (onClick) {
+        onClick(evt.currentTarget.value);
+      }
     }
   }
 
   getClassName = (i: number) => {
-    return this.state.navState.styles[i];
+    return this.state.navigationState.styles[i];
   }
 
   renderSteps = () => {
-    return this.props.steps.map((s, i) => (
+    const { steps, theme } = this.props;
+
+    return steps.map((item, index) => (
       <li
-        className={this.props.theme[this.getClassName(i)]}
-        onClick={this.handleOnClick}
-        key={i}
-        value={i}
+        className={theme[item.status ? item.status : 'upcoming']}
+        style={{ ...item.style, cursor: item.onClick ? 'pointer' : 'default' }}
+        onClick={item.onClick ? this.handleOnClick : () => {}}
+        key={index}
+        value={index}
       >
-        <em>{i + 1}</em>
-        <span>{this.props.steps[i].name}</span>
+        <div className={theme.processBar}>
+          <span className={theme.processIndex}>{index + 1}</span>
+          { steps.length !== (index + 1) ? <div className={theme.processDivider}></div> : null }
+        </div>
+
+        <label className={theme.processLabel}>{item.name}</label>
       </li>
     ));
   }
 
   render() {
-    const { theme, componentStyle, showNavigation, steps, componentClass } = this.props;
+    const { theme, componentStyle, steps, componentClass } = this.props;
     const className = classNames(
-      componentClass && theme.progtrckr
+      theme.progtrckr,
+      componentClass
     );
 
     return (
-      <div className={theme.container} onKeyDown={this.handleKeyDown}>
-        <ol className={className} style={componentStyle}>
+      <div className={theme.container}>
+        <ul className={className} style={componentStyle}>
           {this.renderSteps()}
-        </ol>
-        {steps[this.state.compState].component}
-        <div style={showNavigation ? {} : { display: 'none' }}>
-          <button
-            style={this.state.showPreviousBtn ? {} : { display: 'none' }}
-            onClick={this.previous}
-          >
-          Previous
-          </button>
-          <button
-            style={this.state.showNextBtn ? {} : { display: 'none' }}
-            onClick={this.next}
-          >
-          Next
-          </button>
-        </div>
+        </ul>
+        {steps[this.state.processComponentState].component ? steps[this.state.processComponentState].component : null}
       </div>
     );
   }
