@@ -13,11 +13,12 @@ module.exports = {
             {
                 test: /\.jsx?$/,
                 loader: 'babel-loader',
+                query: {compact: false},
                 exclude: /node_modules/,
             }, 
             {
                 test: /\.tsx?$/,
-                loader: 'babel-loader!ts-loader',
+                loaders: ['babel-loader?compact=false', 'ts-loader'],
                 exclude: /node_modules/
             },
             {
