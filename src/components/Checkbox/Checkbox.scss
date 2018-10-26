@@ -25,7 +25,13 @@ input[type=checkbox], input[type=radio] {
     }
 
     &:after {
-      background-image: url("/src/components/Checkbox/icons/checkmark.svg");
+     content: '\2713\0020';
+     box-sizing: border-box;
+     background-repeat: no-repeat;
+     background-position: 50%;
+     background-size: 50% 50%;
+     color: #fff;
+     padding-left: 2px;
     }
   }
 }
