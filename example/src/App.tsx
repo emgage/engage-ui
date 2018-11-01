@@ -361,25 +361,25 @@ class App extends React.Component<{}, State> {
     const tableData = [
       {
         id: 1,
-        name: 'Dheeraj',
+        name: 'Hiren',
         description: 'Test description',
         status: { itemID: 1, itemName: 'New' },
         type: 'admin',
       }, {
         id: 2,
-        name: 'Dheeraj4',
+        name: 'Dheeraj',
         description: 'Test description2',
         status: { itemID: 2, itemName: 'Deleted' },
         type: 'admin',
       }, {
         id: 3,
-        name: 'Dheeraj3',
+        name: 'Patel',
         description: 'Test description3',
         status: { itemID: 3, itemName: 'Draft' },
         type: 'admin',
       }, {
         id: 4,
-        name: 'Dheeraj2',
+        name: 'Raj',
         description: 'Test description2',
         status: { itemID: 1, itemName: 'New' },
         type: 'admin',
@@ -885,7 +885,7 @@ class App extends React.Component<{}, State> {
           </Button>
 
           <div className="fieldGroup">
-            <input type="text" value={this.state.filterConfig.searchKey} onChange={(event: any) => this.setState({ filterConfig: { ...this.state.filterConfig, searchKey: event.target.value, search: false } })} />
+            <input type="text" value={this.state.filterConfig.searchKey} onChange={(event: any) => this.setState({ filterConfig: { ...this.state.filterConfig, searchKey: event.target.value, search: true } })} />
             <div className="fieldGroupAddon">
               <Button onClick={(val: any) => this.setState({ filterConfig: { ...this.state.filterConfig, search: true } })}>Search</Button>
             </div>
