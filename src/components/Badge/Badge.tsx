@@ -17,6 +17,8 @@ export interface Props {
   status?: Status;
   // Show the progress of badge using round indicator. It can be incomplete, partiallyComplete or complete
   progress?: Progress;
+  // To apply custom styling.
+  componentStyle?: React.CSSProperties;
   // Theme to be injected via css-themr
   theme?: any;
 }
@@ -34,7 +36,7 @@ const STATUS_LABELS = {
   attention: 'Attention',
 };
 
-const badge = ({ children, status, progress, theme }: Props) => {
+const badge = ({ children, status, progress, theme, componentStyle }: Props) => {
   const className = classNames(
     theme.badge,
     status && theme[variationName('status', status)],
@@ -55,7 +57,7 @@ const badge = ({ children, status, progress, theme }: Props) => {
     : null;
 
   return (
-    <span className={className} role={role}>
+    <span className={className} role={role} style={componentStyle}>
       {statusLabelMarkup}
        {pipMarkup}
        {children}

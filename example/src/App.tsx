@@ -623,10 +623,6 @@ class App extends React.Component<{}, State> {
         <Badge children={'Badge'} progress={'partiallyComplete'} />
         <Badge children={'Badge'} progress={'complete'} />
         <div>
-
-      {/* <Sticky>
-      <span>footer content</span>
-            </Sticky> */}
         </div>
         <div>
           <TabPanel defaultTabId="tab1" position={'top'} alignment={'center'}>
