@@ -77,6 +77,7 @@ export interface State {
   sort: SortState;
   selectedRows: any;
   searchKey: string;
+  childData: any;
 }
 
 class Table extends React.Component<Props, State> {
@@ -112,6 +113,7 @@ class Table extends React.Component<Props, State> {
 
     return {
       data,
+      childData: [],
       allRowChecked: false,
       expandedRow: [],
       selectedRows: [],
@@ -296,6 +298,9 @@ class Table extends React.Component<Props, State> {
 
     // Get current row's nested component by matching its id
     const thisNestedComponent = nestedChildData.filter(item => item.rowId === id);
+    if (thisNestedComponent[0].component.props.data !== undefined && thisNestedComponent[0].component.props.data.length !== 0 && JSON.stringify(this.state.childData) !== JSON.stringify(thisNestedComponent[0].component.props.data)) {
+      this.setState({ childData: thisNestedComponent[0].component.props.data });
+    }
 
     return (
       <TableRow key={key}>
@@ -318,7 +323,7 @@ class Table extends React.Component<Props, State> {
   // Add checkbox or radio component to select the row, depending on `selectrow` flag
   renderRowSelection = (rowData: any, rowType: string) => {
     const { expandingRowId = [], hideExpandedIcon, nestedChildData, selectRow } = this.props;
-
+    // debugger;
     if (selectRow) {
       if (rowType === 'body') {
         // If row will be expanding then expanding element needs to be placed instead of checkbox
@@ -328,7 +333,22 @@ class Table extends React.Component<Props, State> {
         }
 
         if (selectRow === 'checkbox') {
-          return this.renderCheckColumn(rowData);
+          if (nestedChildData !== undefined && nestedChildData.length > 0) {
+            debugger;
+            const a = nestedChildData.map((item: any) => {
+              if (item.rowId === rowData.id) {
+                for (let i = 0; i < nestedChildData.length; i++) {
+                  return this.renderCheckColumn(item.component.props.data);
+                }
+              } else {
+                return this.renderCheckColumn(rowData);
+              }
+              // return item.component[i].props.data;
+            });
+
+            console.log(a);
+          }
+          // return this.renderCheckColumn(rowData);
         }
 
         return this.renderRadio(rowData);
@@ -362,6 +382,9 @@ class Table extends React.Component<Props, State> {
 
   // Function to add checkbox for the row selection
   renderCheckColumn(rowData: any, newColumn: boolean = true): React.ReactElement<any> {
+    // if (this.state.childData.length > 0 && this.state.childData !== undefined) {
+    //   rowData.push(this.state.childData);
+    // }
     return newColumn ? <TableData>{this.renderCheckbox(rowData)}</TableData> : <span style={{ display: 'inline-block' }}>{this.renderCheckbox(rowData)}</span>;
   }
 
@@ -369,7 +392,7 @@ class Table extends React.Component<Props, State> {
     const { selectedRows } = this.state;
     const { selectCallbackValue } = this.props;
     const uniqueId = selectCallbackValue ? rowData[selectCallbackValue] : rowData.id;
-
+    // debugger;
     return (
       <Checkbox
         value={uniqueId}
@@ -484,10 +507,14 @@ class Table extends React.Component<Props, State> {
 
   // Function to select all the rows on click of header  checkbox
   toggleAllRowSelection = (checkedStatus: boolean) => {
+
     const allRowId = this.state.data.map((item: any) => {
       return item.id;
     });
 
+    this.state.childData.map((item: any) => {
+      return allRowId.push(item.id);
+    });
     if (checkedStatus) {
       this.setState({ allRowChecked: true, selectedRows: allRowId }, () => {
         this.rowSelectionCallback();
