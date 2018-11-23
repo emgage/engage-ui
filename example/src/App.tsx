@@ -248,6 +248,15 @@ class App extends React.Component<{}, State> {
     this.setState({ [drawerKey]: !this.state.drawer });
   }
 
+  toggleDrawerOuter = (drawerKey: string) => {
+    this.setState({ [drawerKey]: !this.state.outterDrawer });
+  }
+
+  toggleDrawerInner = (drawerKey: string) => {
+    this.setState({ [drawerKey]: !this.state.innerDrawer });
+  }
+
+
   BreadcrumbClick = () => {
     console.log('Breadcrumb clicked...');
   }
@@ -911,9 +920,9 @@ class App extends React.Component<{}, State> {
               <Button onClick={this.toggleModal}>Medium buttonas</Button>
             </Sticky>
         <div>
-          <Button onClick={() => this.toggleDrawer('outterDrawer')}>Drawer 1</Button>
+          <Button onClick={() => this.toggleDrawerOuter('outterDrawer')}>Drawer 1</Button>
           <Drawer
-            toggleDrawer={() => this.toggleDrawer('outterDrawer')}
+            toggleDrawer={() => this.toggleDrawerOuter('outterDrawer')}
             active={this.state.outterDrawer}
             activeContentId={this.state.outterDrawerId}
             mode="slide"
@@ -923,9 +932,9 @@ class App extends React.Component<{}, State> {
             closeButton
             flip>
             <DrawerContent componentId="dcontent1" mode="slide">
-              <Button onClick={() => this.toggleDrawer('innerDrawer')}>Inner Drawer</Button>
+              <Button onClick={() => this.toggleDrawerInner('innerDrawer')}>Inner Drawer</Button>
               <Drawer
-                toggleDrawer={() => this.toggleDrawer('innerDrawer')}
+                toggleDrawer={() => this.toggleDrawerInner('innerDrawer')}
                 active={this.state.innerDrawer}
                 activeContentId={this.state.innerDrawerId}
                 mode="slide"
