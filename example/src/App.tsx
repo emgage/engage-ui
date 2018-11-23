@@ -258,13 +258,13 @@ class App extends React.Component<{}, State> {
     const childtableData = [
       {
         id: 11,
-        name: 'Hiren',
+        name: 'Hirens',
         description: 'Test description',
         status: { itemID: 1, itemName: 'New' },
         type: 'admin',
       }, {
         id: 13,
-        name: 'Patel',
+        name: 'Patels',
         description: 'Test description3',
         status: { itemID: 3, itemName: 'Draft' },
         type: 'admin',
