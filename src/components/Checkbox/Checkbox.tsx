@@ -86,7 +86,7 @@ class Checkbox extends React.PureComponent<Props, State> {
     }
 
     return (
-      <FlexBox direction="Column">
+      <FlexBox direction ={helpText ? 'Column' : 'Row'} >
         <div className={theme.customControl} onClick={this.handleChange}>
           <input
             type="checkbox"
