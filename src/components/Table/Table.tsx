@@ -505,6 +505,12 @@ class Table extends React.Component<Props, State> {
     debugger;
     allRowId.push(uniqueId);
 
+    if (selectedRows === allRowId) {
+      console.log('true');
+    }
+    const a = selectedRows.filter(e => allRowId.indexOf(e) > 0);
+    console.log(a);
+
     this.setState({ selectedRows: allRowId }, () => {
       if (!checkedStatus) {
         debugger;
