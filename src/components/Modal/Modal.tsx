@@ -125,7 +125,7 @@ class Modal extends React.Component<Props, never> {
 
   // Import keylistener if modal needs to be closed on pressing escape key
   renderKeyListener = () => {
-    return this.props.closeOnEsc ? (<KeypressListener keyCode={Keys.ESCAPE} handler={this.triggerCloseEvent} />) : null;
+    return (this.props.closeOnEsc && this.props.active) ? (<KeypressListener keyCode={Keys.ESCAPE} handler={this.triggerCloseEvent} />) : null;
   }
 
   renderLayer = () => {
