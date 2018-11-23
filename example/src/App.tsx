@@ -345,7 +345,7 @@ class App extends React.Component<{}, State> {
 
     const steps = [
       { name: 'Completed', status: 'completed' },
-      { name: 'Active' },
+      { name: 'Active', status: 'active' },
       { name: 'Upcoming' }
     ];
 
