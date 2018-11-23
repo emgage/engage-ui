@@ -203,7 +203,6 @@ class Modal extends React.Component<Props, never> {
 
     const accessibilityNode = activatorContainer;
 
-    accessibilityNode.tabIndex = 0;
     accessibilityNode.setAttribute('aria-describedby', id);
     accessibilityNode.setAttribute('aria-expanded', (this.props.active || false).toString());
     accessibilityNode.setAttribute('aria-label', this.props.accessibilityLabel ? this.props.accessibilityLabel : '');
