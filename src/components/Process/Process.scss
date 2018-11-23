@@ -1,3 +1,6 @@
+$greyProcess: #CCC;
+$blueProcess: #33C3F0;
+
 .progtrckr {
   margin: 0;
   list-style-type: none;
@@ -11,33 +14,33 @@
     &.active {
       .processIndex {
         color: #fff;
-        background-color: #33C3F0;
+        background-color: $blueProcess;
       }
 
       .processDivider {
-        border-top: 2px solid #33C3F0;
+        border-top: 2px solid $greyProcess;
       }
     }
 
     &.completed {
       .processIndex {
         color: #fff;
-        background-color: #33C3F0;
+        background-color: $blueProcess;
       }
 
       .processDivider {
-        border-top: 2px solid #33C3F0;
+        border-top: 2px solid $blueProcess;
       }
     }
 
     &.upcoming {
       .processIndex {
         color: #000;
-        background-color: #CCC;
+        background-color: $greyProcess;
       }
 
       .processDivider {
-        border-top: 2px solid #ccc;
+        border-top: 2px solid $greyProcess;
       }
     }
     
