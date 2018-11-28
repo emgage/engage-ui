@@ -248,6 +248,15 @@ class App extends React.Component<{}, State> {
     this.setState({ [drawerKey]: !this.state.drawer });
   }
 
+  toggleDrawerOuter = (drawerKey: string) => {
+    this.setState({ [drawerKey]: !this.state.outterDrawer });
+  }
+
+  toggleDrawerInner = (drawerKey: string) => {
+    this.setState({ [drawerKey]: !this.state.innerDrawer });
+  }
+
+
   BreadcrumbClick = () => {
     console.log('Breadcrumb clicked...');
   }
@@ -320,6 +329,7 @@ class App extends React.Component<{}, State> {
       selectRow="checkbox"
       rowAction={childrowActionConfig}
     />,
+
     };
 
     nestedChildData.some((item: TableNestedData, index: number): boolean => {
@@ -396,7 +406,7 @@ class App extends React.Component<{}, State> {
 
     const steps = [
       { name: 'Completed', status: 'completed' },
-      { name: 'Active' },
+      { name: 'Active', status: 'active' },
       { name: 'Upcoming' }
     ];
 
@@ -674,10 +684,6 @@ class App extends React.Component<{}, State> {
         <Badge children={'Badge'} progress={'partiallyComplete'} />
         <Badge children={'Badge'} progress={'complete'} />
         <div>
-
-      {/* <Sticky>
-      <span>footer content</span>
-            </Sticky> */}
         </div>
         <div>
           <TabPanel defaultTabId="tab1" position={'top'} alignment={'center'}>
@@ -944,7 +950,7 @@ class App extends React.Component<{}, State> {
           <Table
             nestedChildData={this.state.nestedChildData}
             nestedChildCallback={this.nestedChildCallback}
-            expandingRowId={[2, 4]}
+            expandingRowId={[2]}
             rowExpandOnLoad={true}
             hideExpandedIcon={true}
             data={tableData}
@@ -966,9 +972,9 @@ class App extends React.Component<{}, State> {
               <Button onClick={this.toggleModal}>Medium buttonas</Button>
             </Sticky>
         <div>
-          <Button onClick={() => this.toggleDrawer('outterDrawer')}>Drawer 1</Button>
+          <Button onClick={() => this.toggleDrawerOuter('outterDrawer')}>Drawer 1</Button>
           <Drawer
-            toggleDrawer={() => this.toggleDrawer('outterDrawer')}
+            toggleDrawer={() => this.toggleDrawerOuter('outterDrawer')}
             active={this.state.outterDrawer}
             activeContentId={this.state.outterDrawerId}
             mode="slide"
@@ -978,9 +984,9 @@ class App extends React.Component<{}, State> {
             closeButton
             flip>
             <DrawerContent componentId="dcontent1" mode="slide">
-              <Button onClick={() => this.toggleDrawer('innerDrawer')}>Inner Drawer</Button>
+              <Button onClick={() => this.toggleDrawerInner('innerDrawer')}>Inner Drawer</Button>
               <Drawer
-                toggleDrawer={() => this.toggleDrawer('innerDrawer')}
+                toggleDrawer={() => this.toggleDrawerInner('innerDrawer')}
                 active={this.state.innerDrawer}
                 activeContentId={this.state.innerDrawerId}
                 mode="slide"

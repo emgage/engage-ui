@@ -14,7 +14,6 @@ import TableRow from './TableRow';
 import TableData from './TableData';
 
 import { ColumnConfig, FilterConfig, NestedChild, SortState } from './interface';
-// import { DropdownItemProps } from '../';
 import * as baseTheme from './Table.scss';
 
 export type RowSelection = 'checkbox' | 'radio';
@@ -73,23 +72,21 @@ export interface Props {
 export interface State {
   allRowChecked?: boolean;
   data: any;
-  childData: any;
   expandedRow: any;
   sort: SortState;
   selectedRows: any;
   searchKey: string;
-  allRowLoaded: boolean;
 }
-let a: any;
+
+let callBackSelectedRows: any;
+
 class Table extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = this.getInitialState();
-    // this.showViewAction = this.showViewAction.bind(this);
   }
 
   componentWillMount() {
-    // If user asked to sort the data by default then call the sortdata before rendering
     if (this.props.defaultSortField) {
       this.sortData(this.props.defaultSortField);
     }
@@ -111,14 +108,11 @@ class Table extends React.Component<Props, State> {
 
   getInitialState() {
     const { data, defaultSortField, defaultSortOrder } = this.props;
-    console.log(a);
     return {
       data,
-      childData: [],
       allRowChecked: false,
-      allRowLoaded: true,
       expandedRow: [],
-      selectedRows: a === undefined || a === [] ? [] : a,
+      selectedRows: callBackSelectedRows === undefined || callBackSelectedRows === [] ? [] : callBackSelectedRows,
       sort: {
         // Current sorting filed should be saved here, which can be used to show specific icons on specifc th
         field: defaultSortField || '',
@@ -207,18 +201,6 @@ class Table extends React.Component<Props, State> {
     const { children, column, expandingRowId = [], hideRow, rowExpandOnLoad, selectRow } = this.props;
     const { data, expandedRow } = this.state;
 
-    // if (!this.state.allRowLoaded && nestedChildData !== undefined && nestedChildData.length > 0) {
-    //   const a: any = [];
-    //   for (const key in nestedChildData) {
-    //     if (nestedChildData[key].component.props.data.length > 0) {
-    //       for (const index in nestedChildData[key].component.props.data) {
-    //         a.push(nestedChildData[key].component.props.data[index]);
-    //       }
-    //     }
-    //   }
-    // }
-
-    console.log(this.state.selectedRows);
     if (!children) {
       return (
         <TableBody>
@@ -229,7 +211,6 @@ class Table extends React.Component<Props, State> {
               }
             })
           }
-
           { !data.length ? <TableRow><TableData colSpan={column.length + (selectRow ? 1 : 0)}>No record found</TableData></TableRow> : null }
         </TableBody>
       );
@@ -244,7 +225,6 @@ class Table extends React.Component<Props, State> {
         return (
           <TableBody key={index}>
             { this.renderTbodyRows(item, index + '_nested') }
-
             { expandedRow.indexOf(item.id) > -1 ? this.renderNestedChildren(index + 'nest', item.id) : null }
           </TableBody>
         );
@@ -303,10 +283,8 @@ class Table extends React.Component<Props, State> {
     );
   }
 
-  showViewAction(viewToShow: any) {
-    console.log(viewToShow);
-    a = viewToShow;
-    // this.setState({ allRowLoaded : viewToShow ? false : true });
+  callBackSelectedRows(selectedRows: any) {
+    callBackSelectedRows = selectedRows;
   }
 
   // Function to render nested children for each row, this could be nested table or any other component
@@ -319,7 +297,7 @@ class Table extends React.Component<Props, State> {
     const thisNestedComponent = nestedChildData.filter(item => item.rowId === id);
 
     return (
-      <TableRow key={key} showView={this.showViewAction} selectRow={this.state.selectedRows}>
+      <TableRow key={key} callBackSelectedRows={this.callBackSelectedRows} selectRow={this.state.selectedRows}>
         <TableData colSpan={colSpanVal}>
           {thisNestedComponent.length ? thisNestedComponent[0].component : children}
         </TableData>
@@ -387,11 +365,10 @@ class Table extends React.Component<Props, State> {
   }
 
   renderCheckbox(rowData: any) {
-    console.log(this.state);
     const { selectedRows } = this.state;
     const { selectCallbackValue } = this.props;
     const uniqueId = selectCallbackValue ? rowData[selectCallbackValue] : rowData.id;
-    // 
+
     return (
       <Checkbox
         value={uniqueId}
@@ -472,8 +449,7 @@ class Table extends React.Component<Props, State> {
 
   // Function to toggle single row selection
   toggleSingleRowSelection = (rowData: any, checkedStatus: boolean) => {
-    debugger;
-    this.setState({ allRowLoaded: false, expandedRow: [] });
+    this.setState({ expandedRow: [] });
     const selectedRows = [...this.state.selectedRows];
     const { singleSelectRowCallback, multipleCallBackValue } = this.props;
     const { selectCallbackValue } = this.props;
@@ -494,7 +470,6 @@ class Table extends React.Component<Props, State> {
           return item.id;
         });
       }
-      console.log(allChildData);
     }
 
     if (this.state.selectedRows.length > 0 && checkedStatus) {
@@ -502,21 +477,15 @@ class Table extends React.Component<Props, State> {
         allRowId.push(this.state.selectedRows[key]);
       }
     }
-    debugger;
     allRowId.push(uniqueId);
-
-    if (selectedRows === allRowId) {
-      console.log('true');
-    }
-    const a = selectedRows.filter(e => allRowId.indexOf(e) > 0);
-    console.log(a);
 
     this.setState({ selectedRows: allRowId }, () => {
       if (!checkedStatus) {
-        debugger;
         if (allRowId.length > 1) {
-          for (const key in allRowId) {
-            selectedRows.splice(selectedRows.indexOf(allRowId[key]), 1);
+          for (let key = 0; key < allRowId.length; key++) {
+            if (selectedRows.indexOf(allRowId[key]) > -1) {
+              selectedRows.splice(selectedRows.indexOf(allRowId[key]), 1);
+            }
           }
         } else {
           selectedRows.splice(selectedRows.indexOf(uniqueId), 1);
@@ -539,14 +508,12 @@ class Table extends React.Component<Props, State> {
         }
       }
     });
-
-
   }
 
   // Function to select all the rows on click of header  checkbox
   toggleAllRowSelection = (checkedStatus: boolean) => {
 
-    this.setState({ allRowLoaded: false, expandedRow: [] });
+    this.setState({ expandedRow: [] });
 
     const allChildData: any = [];
     if (this.props.nestedChildData !== undefined && this.props.nestedChildData.length > 0) {
