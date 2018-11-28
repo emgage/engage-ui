@@ -76,6 +76,7 @@ export interface State {
   sort: SortState;
   selectedRows: any;
   searchKey: string;
+  totalRowCount: number;
 }
 
 let callBackSelectedRows: any;
@@ -124,6 +125,7 @@ class Table extends React.Component<Props, State> {
         },
       },
       searchKey: '',
+      totalRowCount: 0,
     };
   }
 
@@ -200,7 +202,6 @@ class Table extends React.Component<Props, State> {
   renderBody = () => {
     const { children, column, expandingRowId = [], hideRow, rowExpandOnLoad, selectRow } = this.props;
     const { data, expandedRow } = this.state;
-
     if (!children) {
       return (
         <TableBody>
@@ -356,7 +357,8 @@ class Table extends React.Component<Props, State> {
 
   // Function to add checkbox in header as well
   addHeaderCheckbox = (): React.ReactElement<any> => {
-    return <TableHead componentStyle={{ width: 'auto' }}><Checkbox label="" checked={this.state.allRowChecked} onChange={this.toggleAllRowSelection} /></TableHead>;
+    const isAllChecked = ((this.state.totalRowCount - this.state.selectedRows.length) > 0 &&  this.state.totalRowCount > 0) ? true : false;
+    return <TableHead componentStyle={{ width: 'auto' }}><Checkbox label="" checked={isAllChecked && this.state.selectedRows.length > 0 ? true : (this.state.selectedRows.length > 0 && this.state.totalRowCount > 0 && this.state.totalRowCount === this.state.selectedRows.length) ? true : this.state.allRowChecked} indeterminante={isAllChecked} onChange={this.toggleAllRowSelection} /></TableHead>;
   }
 
   // Function to add checkbox for the row selection
@@ -372,7 +374,7 @@ class Table extends React.Component<Props, State> {
     return (
       <Checkbox
         value={uniqueId}
-        checked={selectedRows.indexOf(uniqueId) !== -1 ? true : false}
+        checked={(selectedRows.indexOf(uniqueId) !== -1) ? true : false}
         onChange={(checkedStatus: boolean) => {
           this.toggleSingleRowSelection(rowData, checkedStatus);
         }}
@@ -532,6 +534,8 @@ class Table extends React.Component<Props, State> {
     const allRowId = allData.map((item: any) => {
       return item.id;
     });
+
+    this.setState({ totalRowCount: allRowId.length });
 
     if (checkedStatus) {
       this.setState({ allRowChecked: true, selectedRows: allRowId }, () => {
