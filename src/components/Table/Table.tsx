@@ -417,8 +417,8 @@ class Table extends React.Component<Props, State> {
 
     const sortedData = data.sort((item1: any, item2: any) => {
       // Converting strings to uppercase so for comparisions there will be no issue
-      const value1 = !sortBy ? item1[field].toUpperCase() : item1[field][sortBy].toUpperCase();
-      const value2 = !sortBy ? item2[field].toUpperCase() : item2[field][sortBy].toUpperCase();
+      const value1 = item1[field] !== undefined ? (!sortBy ? item1[field].toUpperCase() : item1[field][sortBy].toUpperCase()) : '';
+      const value2 = item2[field] !== undefined ? (!sortBy ? item2[field].toUpperCase() : item2[field][sortBy].toUpperCase()) : '';
 
       if (value1 < value2) {
         return -1;
@@ -433,7 +433,20 @@ class Table extends React.Component<Props, State> {
 
     // If desending is required then reverse the data
     if (order.new === 'desc') {
-      sortedData.reverse();
+      sortedData.sort((item1: any, item2: any) => {
+        // Converting strings to uppercase so for comparisions there will be no issue
+        const value1 = item1[field] !== undefined ? (!sortBy ? item1[field].toUpperCase() : item1[field][sortBy].toUpperCase()) : '';
+        const value2 = item2[field] !== undefined ? (!sortBy ? item2[field].toUpperCase() : item2[field][sortBy].toUpperCase()) : '';
+
+        if (value1 > value2) {
+          return -1;
+        }
+        if (value1 < value2) {
+          return 1;
+        }
+        // if both values are same
+        return 0;
+      });
     }
 
     // Set the sorted data to the state
