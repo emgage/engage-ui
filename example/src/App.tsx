@@ -1813,7 +1813,7 @@ class App extends React.Component<{}, State> {
         </ButtonGroup>
 
         <div>ComboBox</div>
-        <ComboBox items={this.getComboBoxItems()} label="Select" />
+        <ComboBox items={this.getComboBoxItems()} label="Select" currentValue="item1" />
       </div>
     );
   }

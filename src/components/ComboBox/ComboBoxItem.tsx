@@ -22,38 +22,45 @@ export interface Props {
 }
 
 export default class ComboBoxItem extends React.PureComponent<Props, never> {
-
   render() {
     const {
       item,
     } = this.props;
 
     const { key, type, value, renderer } = item;
+
     switch (type) {
       case 'Accordian' :
         const accordianItems: AccordianItem[] = [];
+
         value.forEach((val: any, index: number) => {
           const headerKey = val.key;
           const indexStr: string = index.toString();
-          if (val.children.length === 0) return null;
+
+          if (val.children.length === 0) {
+            return null;
+          }
+
           accordianItems.push({
             header: renderer ? renderer(val, 'header') : <Label componentId={indexStr}>{val.header}</Label>,
-            children: val.children.map((child: any) => {
+            children: val.children.map((child: any, index: number) => {
               const data = headerKey ? child[headerKey] : (key ? child[key] : child);
+
               return (
-                <div data-key={headerKey ? headerKey : false} data-value={val} data-object={JSON.stringify(child)}>{renderer ? renderer(child, 'children') : data}</div>
+                <div key={index} data-key={headerKey ? headerKey : false} data-value={val} data-object={JSON.stringify(child)}>{renderer ? renderer(child, 'children') : data}</div>
               );
             })
           });
         });
+
         return (
-          <div onClick={this.handleClick} data-isparent={true}>
+          <div key={new Date().getUTCMilliseconds()} onClick={this.handleClick} data-isparent={true}>
             <Accordion items={accordianItems} />
           </div>
         );
       default:
         return (
-          <div data-key={key ? key : false} onClick={this.handleClick}>
+          <div key={new Date().getUTCMilliseconds()} data-key={key ? key : false} onClick={this.handleClick}>
             {this.getItem(value, key, renderer)}
           </div>
         );
@@ -67,24 +74,28 @@ export default class ComboBoxItem extends React.PureComponent<Props, never> {
     if (dom && dom.getAttribute('data-isparent')) {
       return false;
     }
+
     return dom ? this.findParent(dom.parentElement) : false;
   }
 
   private handleClick = (event: any) => {
     const target = event.target;
     const dataValue: boolean | string | any  = this.findParent(target);
+
     if (dataValue && this.props.clickHandler) {
       const hasKey = event.currentTarget.getAttribute('data-key');
       const valueToPass = hasKey ?  JSON.parse(dataValue) : dataValue;
+
       this.props.clickHandler(valueToPass, hasKey);
     }
   }
 
   private getItem = (value: any, key: string|undefined, renderer: any) => {
-    return value.map((val: any) => {
+    return value.map((val: any, index: number) => {
       const data = key ? val[key] : val;
+
       return (
-        <div data-value={JSON.stringify(val)} data-key={key ? key : false} data-object={JSON.stringify(val)}>
+        <div key={index + data} data-value={JSON.stringify(val)} data-key={key ? key : false} data-object={JSON.stringify(val)}>
           {renderer ? renderer(val) : data}
         </div>
       );

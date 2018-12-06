@@ -179,7 +179,6 @@ class Popover extends React.PureComponent<Props, State> {
     const firstFocusable = findFirstFocusableNode(activatorContainer);
     const focusableActivator = firstFocusable || activatorContainer;
 
-    focusableActivator.tabIndex = 0;
     focusableActivator.setAttribute('aria-controls', id);
     focusableActivator.setAttribute('aria-owns', id);
     focusableActivator.setAttribute('aria-haspopup', 'true');

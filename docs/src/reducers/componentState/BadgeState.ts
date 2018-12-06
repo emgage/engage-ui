@@ -34,6 +34,10 @@ const BadgeState: IDocument = {
       name: 'progress',
       type: 'Progress',
       desc: 'Show the progress of badge using round indicator. It can be incomplete, partiallyComplete or complete',
+    },  {
+      name: 'componentStyle',
+      type: 'React.CSSProperties',
+      desc: 'To display the styling.',
     }, {
       name: 'theme',
       type: 'any',

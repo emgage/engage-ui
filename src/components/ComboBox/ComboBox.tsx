@@ -20,6 +20,7 @@ export interface ComboBoxItemProps {
 }
 
 export interface Props {
+  currentValue?: string;
   items: ComboBoxItemProps[];
   label: string;
   style?:any;
@@ -41,13 +42,15 @@ class ComboBox extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
+    const { items, currentValue = '' } = props;
+
     this.state = {
+      items,
       open: false,
-      items: props.items,
       // In case use is searching something, and then removes its search text, combobox shud list the initialItem
       // Therefore, keeping copy of it so that its not lose, as items is changed depending on search and selection.
-      initialItems: this.addRenderer(props.items, JSON.parse(JSON.stringify(props.items))),
-      selectedValue: '',
+      initialItems: this.addRenderer(items, JSON.parse(JSON.stringify(items))),
+      selectedValue: '' || currentValue,
     };
   }
 
@@ -69,32 +72,40 @@ class ComboBox extends React.Component<Props, State> {
 
   onChange = (value: string) => {
     let newItems = this.state.initialItems;
+
     if (value && value !== '') {
       let cloneItems = JSON.parse(JSON.stringify(this.state.initialItems));
       cloneItems = this.addRenderer(this.state.items, cloneItems);
+
       newItems = cloneItems.map((it: any) => {
         const itemValues = it.value;
         const key = it.key;
         let data;
+
         if (it.type === 'Accordian') {
           data = itemValues.map((itv: any) => {
             itv.children = itv.children.filter((child: any) => {
               const flag = key ? ((child[key].toLowerCase()).includes(value.toLowerCase())) : (child.toLowerCase()).includes(value.toLowerCase());
+
               return flag;
             });
+
             return itv;
           });
         } else {
           data = itemValues.filter((itv: any) => {
             const smallVal = value.toLowerCase();
             const flag = key ? ((itv[key].toLowerCase()).includes(smallVal)) : (itv.toLowerCase()).includes(smallVal);
+
             return flag;
           });
         }
+
         it.value = data;
         return it;
       });
     }
+
     this.setState({
       selectedValue: value,
       items: newItems,
@@ -113,6 +124,7 @@ class ComboBox extends React.Component<Props, State> {
     if (this.props.onSelect) {
       this.props.onSelect(value);
     }
+
     this.setState({ selectedValue: typeof(value) === 'object' ? value[key] : value, open: false });
   }
 
@@ -128,6 +140,7 @@ class ComboBox extends React.Component<Props, State> {
 
     const itemsComponent = items.map((item, index) =>
         <ComboBoxItem
+          key={index}
           item={item}
           clickHandler={this.handleClick}
         />
@@ -140,9 +153,11 @@ class ComboBox extends React.Component<Props, State> {
           onChange={this.onChange}
           value={this.state.selectedValue}
         />
+
         <div className={baseTheme.comboboxArrow} onClick={this.onArrowClick}>
           <Icon source={arrowSvg} />
         </div>
+
         {open && <Popover
           style={{ background: '#dcdcdc', width: '100%', padding: '10px 100px' }}
           active={this.state.open}
