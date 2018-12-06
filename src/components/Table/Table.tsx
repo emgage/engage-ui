@@ -88,6 +88,7 @@ class Table extends React.Component<Props, State> {
   }
 
   componentWillMount() {
+    // If user asked to sort the data by default then call the sortdata before rendering
     if (this.props.defaultSortField) {
       this.sortData(this.props.defaultSortField);
     }
@@ -113,7 +114,7 @@ class Table extends React.Component<Props, State> {
       data,
       allRowChecked: false,
       expandedRow: [],
-      selectedRows: callBackSelectedRows === undefined || callBackSelectedRows === [] ? [] : callBackSelectedRows,
+      selectedRows: callBackSelectedRows === undefined || callBackSelectedRows.length < 1 ? [] : callBackSelectedRows,
       sort: {
         // Current sorting filed should be saved here, which can be used to show specific icons on specifc th
         field: defaultSortField || '',
@@ -357,8 +358,9 @@ class Table extends React.Component<Props, State> {
 
   // Function to add checkbox in header as well
   addHeaderCheckbox = (): React.ReactElement<any> => {
-    const isAllChecked = ((this.state.totalRowCount - this.state.selectedRows.length) > 0 &&  this.state.totalRowCount > 0) ? true : false;
-    return <TableHead componentStyle={{ width: 'auto' }}><Checkbox label="" checked={isAllChecked && this.state.selectedRows.length > 0 ? true : (this.state.selectedRows.length > 0 && this.state.totalRowCount > 0 && this.state.totalRowCount === this.state.selectedRows.length) ? true : this.state.allRowChecked} indeterminante={isAllChecked} onChange={this.toggleAllRowSelection} /></TableHead>;
+    const rowChecked = ((this.state.totalRowCount - this.state.selectedRows.length) > 0 &&  this.state.totalRowCount > 0) ? true : false;
+    const allRowChecked = (this.state.selectedRows.length > 0 && this.state.totalRowCount > 0 && this.state.totalRowCount === this.state.selectedRows.length) ? true : this.state.allRowChecked;
+    return <TableHead componentStyle={{ width: 'auto' }}><Checkbox label="" checked={rowChecked && this.state.selectedRows.length > 0 ? true : allRowChecked} indeterminante={rowChecked} onChange={this.toggleAllRowSelection} /></TableHead>;
   }
 
   // Function to add checkbox for the row selection
@@ -529,7 +531,7 @@ class Table extends React.Component<Props, State> {
     }
 
     allChildData.push(...this.state.data);
-    const allData = [...new Map(allChildData.map((o: any) => [o.id, o])).values()];
+    const allData = [...new Map(allChildData.map((childData: any) => [childData.id, childData])).values()];
 
     const allRowId = allData.map((item: any) => {
       return item.id;
