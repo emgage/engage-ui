@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr, ThemedComponentClass } from 'react-css-themr';
+import { themr } from '@friendsofreactjs/react-css-themr';
 import { classNames } from '@shopify/react-utilities/styles';
 import { noop, createUniqueIDFactory } from '@shopify/javascript-utilities/other';
 
@@ -102,4 +102,4 @@ class ChoiceList extends React.PureComponent<Props, {}> {
   }
 }
 
-export default themr(CHOICE_LIST, baseTheme)(ChoiceList) as ThemedComponentClass<Props, {}>;
+export default themr(CHOICE_LIST, baseTheme)(ChoiceList);

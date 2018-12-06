@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr, ThemedComponentClass } from 'react-css-themr';
+import { themr } from '@friendsofreactjs/react-css-themr';
 import { wrapWithComponent, isElementOfType } from '../../utilities';
 
 import Group from './Group';
@@ -43,4 +43,4 @@ function wrapChildren(child: React.ReactNode, index: number, props: {}) {
   return wrapWithComponent(child, Item, { key: index, ...props } as ItemProps);
 }
 
-export default themr(FORM_LAYOUT, baseTheme)(FormLayout) as ThemedComponentClass<Props, {}>;
+export default themr(FORM_LAYOUT, baseTheme)(FormLayout);

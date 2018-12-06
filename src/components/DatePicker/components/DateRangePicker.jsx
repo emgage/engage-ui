@@ -7,7 +7,7 @@ import Portal from 'react-portal';
 import { forbidExtraProps } from 'airbnb-prop-types';
 import { addEventListener, removeEventListener } from 'consolidated-events';
 import isTouchDevice from 'is-touch-device';
-import { themr } from 'react-css-themr';
+import { themr } from '@friendsofreactjs/react-css-themr';
 
 import { DateRangePickerPhrases } from '../defaultPhrases';
 

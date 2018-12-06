@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr, ThemedComponentClass } from 'react-css-themr';
+import { themr } from '@friendsofreactjs/react-css-themr';
 import { CONNECTED } from '../ThemeIdentifiers';
 import Item, { Position } from './Item';
 
@@ -52,4 +52,4 @@ const connected = ({
   );
 };
 
-export default themr(CONNECTED, baseTheme)(connected) as ThemedComponentClass<Props, State>;
+export default themr(CONNECTED, baseTheme)(connected);

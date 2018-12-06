@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr, ThemedComponentClass } from 'react-css-themr';
+import { themr } from '@friendsofreactjs/react-css-themr';
 import { classNames } from '@shopify/react-utilities/styles';
 import { GRID } from '../ThemeIdentifiers';
 import * as baseTheme from './Grid.scss';
@@ -43,4 +43,4 @@ const Grid = ({
   );
 };
 
-export default themr(GRID, baseTheme)(Grid) as ThemedComponentClass<Props, {}>;
+export default themr(GRID, baseTheme)(Grid);

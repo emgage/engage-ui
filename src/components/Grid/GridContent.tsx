@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr, ThemedComponentClass } from 'react-css-themr';
+import { themr } from '@friendsofreactjs/react-css-themr';
 import { classNames } from '@shopify/react-utilities/styles';
 import { GRID } from '../ThemeIdentifiers';
 import * as baseTheme from './Grid.scss';
@@ -41,4 +41,4 @@ const GridContent = ({
   return <div onClick={event => onClick ? onClick(returnValue ? returnValue : event) : ''} style={componentStyle} className={gridContentClass}>{children}</div>;
 };
 
-export default themr(GRID, baseTheme)(GridContent) as ThemedComponentClass<Props, {}>;
+export default themr(GRID, baseTheme)(GridContent);

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr, ThemedComponentClass } from 'react-css-themr';
+import { themr } from '@friendsofreactjs/react-css-themr';
 import { classNames } from '@shopify/react-utilities/styles';
 import { CHIP } from '../ThemeIdentifiers';
 import * as baseTheme from './Chip.scss';
@@ -81,4 +81,4 @@ class Chip extends React.PureComponent<Props, any> {
   }
 }
 
-export default themr(CHIP, baseTheme)(Chip) as ThemedComponentClass<Props, {}>;
+export default themr(CHIP, baseTheme)(Chip);

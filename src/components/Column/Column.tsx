@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr, ThemedComponentClass } from 'react-css-themr';
+import { themr } from '@friendsofreactjs/react-css-themr';
 import { classNames } from '@shopify/react-utilities';
 import { COLUMN } from '../ThemeIdentifiers';
 import * as baseTheme from './Column.scss';
@@ -98,4 +98,4 @@ class Column extends React.PureComponent<Props, {}> {
   }
 }
 
-export default themr(COLUMN, baseTheme)(Column) as ThemedComponentClass<Props, {}>;
+export default themr(COLUMN, baseTheme)(Column);

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr, ThemedComponentClass } from 'react-css-themr';
+import { themr } from '@friendsofreactjs/react-css-themr';
 import TextField, { Props as TextFieldProps } from '../TextField';
 import { ValidationRule } from '../../types';
 
@@ -58,4 +58,4 @@ class ValidatedTextFieldComponent extends React.PureComponent<Props, {}> {
   }
 }
 
-export default themr(TEXT_FIELD, baseTheme)(ValidatedTextFieldComponent) as ThemedComponentClass<Props, {}>;
+export default themr(TEXT_FIELD, baseTheme)(ValidatedTextFieldComponent);

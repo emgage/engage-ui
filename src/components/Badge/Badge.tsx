@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr, ThemedComponentClass } from 'react-css-themr';
+import { themr } from '@friendsofreactjs/react-css-themr';
 import { classNames, variationName } from '@shopify/react-utilities/styles';
 
 import VisuallyHidden from '../VisuallyHidden';
@@ -65,4 +65,4 @@ const badge = ({ children, status, progress, theme, componentStyle }: Props) => 
   );
 };
 
-export default themr(BADGE, baseTheme)(badge) as ThemedComponentClass<Props, {}>;
+export default themr(BADGE, baseTheme)(badge);

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr, ThemedComponentClass } from 'react-css-themr';
+import { themr } from '@friendsofreactjs/react-css-themr';
 import { autobind } from '@shopify/javascript-utilities/decorators';
 import { classNames } from '@shopify/react-utilities/styles';
 import { Props as ButtonProps } from '../Button';
@@ -51,4 +51,4 @@ class Item extends React.PureComponent<Props, State> {
   }
 }
 
-export default themr(BUTTON_GROUP, baseTheme)(Item) as ThemedComponentClass<Props, State>;
+export default themr(BUTTON_GROUP, baseTheme)(Item);

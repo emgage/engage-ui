@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr, ThemedComponentClass } from 'react-css-themr';
+import { themr } from '@friendsofreactjs/react-css-themr';
 import { autobind } from '@shopify/javascript-utilities/decorators';
 import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
 import { classNames } from '@shopify/react-utilities/styles';
@@ -341,4 +341,4 @@ function normalizeAutoComplete(autoComplete?: boolean) {
 }
 
 export { TextField as UnthemedTextField };
-export default themr(TEXT_FIELD, baseTheme)(TextField) as ThemedComponentClass<Props, State>;
+export default themr(TEXT_FIELD, baseTheme)(TextField);

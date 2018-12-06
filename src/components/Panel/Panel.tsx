@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr, ThemedComponentClass } from 'react-css-themr';
+import { themr } from '@friendsofreactjs/react-css-themr';
 import { PANEL } from '../ThemeIdentifiers';
 import * as baseTheme from './Panel.scss';
 
@@ -33,4 +33,4 @@ class Panel extends React.PureComponent<Props, any> {
   }
 }
 
-export default themr(PANEL, baseTheme)(Panel) as ThemedComponentClass<Props, {}>;
+export default themr(PANEL, baseTheme)(Panel);

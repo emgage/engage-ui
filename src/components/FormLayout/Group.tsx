@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr, ThemedComponentClass } from 'react-css-themr';
+import { themr } from '@friendsofreactjs/react-css-themr';
 import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
 import { classNames } from '@shopify/react-utilities/styles';
 import { wrapWithComponent } from '../../utilities';
@@ -64,4 +64,4 @@ class Group extends React.Component<Props, {}> {
   }
 }
 
-export default themr(FORM_LAYOUT, baseTheme)(Group) as ThemedComponentClass<Props, {}>;
+export default themr(FORM_LAYOUT, baseTheme)(Group);

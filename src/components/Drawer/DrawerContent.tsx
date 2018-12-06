@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr, ThemedComponentClass } from 'react-css-themr';
+import { themr } from '@friendsofreactjs/react-css-themr';
 import { classNames } from '@shopify/react-utilities/styles';
 import { Mode } from './Drawer';
 
@@ -81,4 +81,4 @@ class DrawerContent extends React.Component<Props, never> {
   }
 }
 
-export default themr(DRAWER, baseTheme)(DrawerContent) as ThemedComponentClass<Props, {}>;
+export default themr(DRAWER, baseTheme)(DrawerContent);

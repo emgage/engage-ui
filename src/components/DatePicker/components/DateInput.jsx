@@ -4,7 +4,7 @@ import { forbidExtraProps } from 'airbnb-prop-types';
 import cx from 'classnames';
 import throttle from 'lodash/throttle';
 import isTouchDevice from 'is-touch-device';
-import { themr } from 'react-css-themr';
+import { themr } from '@friendsofreactjs/react-css-themr';
 
 import { DATEPICKER } from './../../ThemeIdentifiers';
 import * as baseTheme from './../style/style.scss';

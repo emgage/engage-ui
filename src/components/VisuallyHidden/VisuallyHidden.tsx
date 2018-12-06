@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr, ThemedComponentClass } from 'react-css-themr';
+import { themr } from '@friendsofreactjs/react-css-themr';
 import { VISUALLY_HIDDEN } from '../ThemeIdentifiers';
 import * as baseTheme from './VisuallyHidden.scss';
 
@@ -16,4 +16,4 @@ const visuallyHidden = ({ children, theme }: Props) => {
   );
 };
 
-export default themr(VISUALLY_HIDDEN, baseTheme)(visuallyHidden) as ThemedComponentClass<Props, {}>;
+export default themr(VISUALLY_HIDDEN, baseTheme)(visuallyHidden);

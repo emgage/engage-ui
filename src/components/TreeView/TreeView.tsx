@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr, ThemedComponentClass } from 'react-css-themr';
+import { themr } from '@friendsofreactjs/react-css-themr';
 
 import { SourceData } from './interface';
 import TreeNode from './TreeNode';
@@ -144,4 +144,4 @@ class TreeView extends React.Component<Props, State> {
   }
 }
 
-export default themr(TREEVIEW, baseTheme)((TreeView)) as ThemedComponentClass<Props, State>;
+export default themr(TREEVIEW, baseTheme)((TreeView));

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr, ThemedComponentClass } from 'react-css-themr';
+import { themr } from '@friendsofreactjs/react-css-themr';
 import { PICKER } from '../ThemeIdentifiers';
 import TextField from './TextField';
 import { DisplayMoreInfo } from './PickerEnum';
@@ -346,4 +346,4 @@ class Picker extends React.Component<Props, State> {
 }
 
 export { Picker as UnthemedPicker };
-export default themr(PICKER, baseTheme)(Picker) as ThemedComponentClass<Props, State>;
+export default themr(PICKER, baseTheme)(Picker);

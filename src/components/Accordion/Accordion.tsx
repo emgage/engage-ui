@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr, ThemedComponentClass } from 'react-css-themr';
+import { themr } from '@friendsofreactjs/react-css-themr';
 import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
 import { autobind } from '@shopify/javascript-utilities/decorators';
 import { ACCORDION } from '../ThemeIdentifiers';
@@ -149,4 +149,4 @@ class Accordion extends React.Component<Props, State> {
 }
 
 export { Accordion as UnthemedAccordion };
-export default themr(ACCORDION, baseTheme)(Accordion) as ThemedComponentClass<Props, {}>;
+export default themr(ACCORDION, baseTheme)(Accordion);

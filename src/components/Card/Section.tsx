@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr, ThemedComponentClass } from 'react-css-themr';
+import { themr } from '@friendsofreactjs/react-css-themr';
 import { classNames } from '@shopify/react-utilities/styles';
 
 import Subheading from '../Subheading';
@@ -40,4 +40,4 @@ const section = ({ children, componentTitle, subdued, theme }: Props) => {
   );
 };
 
-export default themr(CARD, baseTheme)(section) as ThemedComponentClass<Props, {}>;
+export default themr(CARD, baseTheme)(section);

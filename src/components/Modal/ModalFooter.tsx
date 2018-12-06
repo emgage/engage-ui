@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr, ThemedComponentClass } from 'react-css-themr';
+import { themr } from '@friendsofreactjs/react-css-themr';
 
 import { MODAL } from '../ThemeIdentifiers';
 
@@ -24,4 +24,4 @@ class ModalFooter extends React.Component<Props, never> {
   }
 }
 
-export default themr(MODAL, baseTheme)((ModalFooter)) as ThemedComponentClass<Props, {}>;
+export default themr(MODAL, baseTheme)((ModalFooter));

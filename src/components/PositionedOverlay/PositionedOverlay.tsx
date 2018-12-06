@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr, ThemedComponentClass } from 'react-css-themr';
+import { themr } from '@friendsofreactjs/react-css-themr';
 import { autobind } from '@shopify/javascript-utilities/decorators';
 import { addEventListener, removeEventListener } from '@shopify/javascript-utilities/events';
 import { getRectForNode, Rect } from '@shopify/javascript-utilities/geometry';
@@ -176,4 +176,4 @@ function getZIndexForLayerFromNode(node: HTMLElement) {
   return isNaN(zIndex) ? 0 : zIndex;
 }
 
-export default themr(POSITIONED_OVERLAY, baseTheme)(PositionedOverlay) as ThemedComponentClass<Props, State>;
+export default themr(POSITIONED_OVERLAY, baseTheme)(PositionedOverlay);

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr, ThemedComponentClass } from 'react-css-themr';
+import { themr } from '@friendsofreactjs/react-css-themr';
 import { Props as TextFieldProps } from '../TextField';
 import { State as TextFieldState } from '../TextField/TextField';
 // tslint:disable-next-line
@@ -417,4 +417,4 @@ class MaskTextField extends React.PureComponent<Props, State> {
     return <TextField value={this.state.value} ref={(ref: React.Component<TextFieldProps>) => this.input = ref} {...passProps} />;
   }
 }
-export default themr(MASK_TEXT_FIELD, baseTheme)(MaskTextField) as ThemedComponentClass<Props, State>;
+export default themr(MASK_TEXT_FIELD, baseTheme)(MaskTextField);

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr, ThemedComponentClass } from 'react-css-themr';
+import { themr } from '@friendsofreactjs/react-css-themr';
 
 import { MESSAGE } from '../ThemeIdentifiers';
 import * as baseTheme from './Message.scss';
@@ -36,4 +36,4 @@ class Message extends React.Component<Props, {}> {
   }
 }
 
-export default themr(MESSAGE, baseTheme)(Message) as ThemedComponentClass<Props, {}>;
+export default themr(MESSAGE, baseTheme)(Message);

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr, ThemedComponentClass } from 'react-css-themr';
+import { themr } from '@friendsofreactjs/react-css-themr';
 // import { classNames } from '@shopify/react-utilities/styles';
 import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
 
@@ -109,4 +109,4 @@ class Checkbox extends React.PureComponent<Props, State> {
   }
 }
 
-export default themr(CHECKBOX, baseTheme)(Checkbox) as ThemedComponentClass<Props, {}>;
+export default themr(CHECKBOX, baseTheme)(Checkbox);

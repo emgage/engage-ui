@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr, ThemedComponentClass } from 'react-css-themr';
+import { themr } from '@friendsofreactjs/react-css-themr';
 import { VIDEO } from '../ThemeIdentifiers';
 import * as baseTheme from './Video.scss';
 
@@ -89,4 +89,4 @@ class Video extends React.PureComponent<Props, any> {
   }
 }
 
-export default themr(VIDEO, baseTheme)(Video) as ThemedComponentClass<Props, {}>;
+export default themr(VIDEO, baseTheme)(Video);

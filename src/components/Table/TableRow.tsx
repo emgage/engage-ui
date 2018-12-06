@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr, ThemedComponentClass } from 'react-css-themr';
+import { themr } from '@friendsofreactjs/react-css-themr';
 
 import { TABLE } from '../ThemeIdentifiers';
 
@@ -30,4 +30,4 @@ class TableRow extends React.Component<Props, never> {
   }
 }
 
-export default themr(TABLE, baseTheme)(TableRow) as ThemedComponentClass<Props, {}>;
+export default themr(TABLE, baseTheme)(TableRow);

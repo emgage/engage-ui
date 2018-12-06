@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr, ThemedComponentClass } from 'react-css-themr';
+import { themr } from '@friendsofreactjs/react-css-themr';
 import { autobind } from '@shopify/javascript-utilities/decorators';
 import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
 import { findFirstFocusableNode } from '@shopify/javascript-utilities/focus';
@@ -260,4 +260,4 @@ class Popover extends React.PureComponent<Props, State> {
   }
 }
 
-export default themr(POPOVER, baseTheme)(Popover) as ThemedComponentClass<Props, {}>;
+export default themr(POPOVER, baseTheme)(Popover);

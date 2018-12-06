@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr, ThemedComponentClass } from 'react-css-themr';
+import { themr } from '@friendsofreactjs/react-css-themr';
 
 import Icon from '../Icon';
 import VisuallyHidden from '../VisuallyHidden';
@@ -30,4 +30,4 @@ class Loading extends React.PureComponent<Props, {}> {
   }
 }
 
-export default themr(LOADING, baseTheme)(Loading) as ThemedComponentClass<Props, {}>;
+export default themr(LOADING, baseTheme)(Loading);

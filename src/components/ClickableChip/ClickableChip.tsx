@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr, ThemedComponentClass } from 'react-css-themr';
+import { themr } from '@friendsofreactjs/react-css-themr';
 import Dropdown, { DropdownItemProps } from '../Dropdown';
 import { Props as ChipStates } from '../Chip';
 import { CLICKABLECHIP } from '../ThemeIdentifiers';
@@ -62,4 +62,4 @@ class ClickableChip extends React.PureComponent<Props, State> {
   }
 }
 
-export default themr(CLICKABLECHIP, baseTheme)(ClickableChip) as ThemedComponentClass<Props, State>;
+export default themr(CLICKABLECHIP, baseTheme)(ClickableChip);

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr, ThemedComponentClass } from 'react-css-themr';
+import { themr } from '@friendsofreactjs/react-css-themr';
 import { DESCRIPTIONLIST } from '../ThemeIdentifiers';
 import * as baseTheme from './DescriptionList.scss';
 
@@ -23,4 +23,4 @@ const term = ({
   );
 };
 
-export default themr(DESCRIPTIONLIST, baseTheme)(term) as ThemedComponentClass<Props, {}>;
+export default themr(DESCRIPTIONLIST, baseTheme)(term);

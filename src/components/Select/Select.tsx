@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr, ThemedComponentClass } from 'react-css-themr';
+import { themr } from '@friendsofreactjs/react-css-themr';
 import { classNames } from '@shopify/react-utilities/styles';
 import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
 
@@ -164,4 +164,4 @@ function renderGroup(groupOrOption: Group | Option) {
 }
 
 export { select as UnthemedSelect };
-export default themr(SELECT, baseTheme)(select) as ThemedComponentClass<Props, {}>;
+export default themr(SELECT, baseTheme)(select);

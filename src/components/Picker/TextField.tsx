@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr, ThemedComponentClass } from 'react-css-themr';
+import { themr } from '@friendsofreactjs/react-css-themr';
 import { autobind } from '@shopify/javascript-utilities/decorators';
 import { classNames } from '@shopify/react-utilities/styles';
 import AutoSuggestText from './AutoSuggestText';
@@ -112,4 +112,4 @@ class TextField extends React.PureComponent<Props, State> {
 }
 
 export { TextField as UnthemedTextField };
-export default themr(TEXT_FIELD, baseTheme)(TextField) as ThemedComponentClass<Props, State>;
+export default themr(TEXT_FIELD, baseTheme)(TextField);

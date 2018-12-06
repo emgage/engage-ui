@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr, ThemedComponentClass } from 'react-css-themr';
+import { themr } from '@friendsofreactjs/react-css-themr';
 import { STICKY } from '../ThemeIdentifiers';
 import { classNames } from '@shopify/react-utilities/styles';
 import * as baseTheme from './Sticky.scss';
@@ -30,4 +30,4 @@ const Sticky = ({ position, theme, componentClass, componentStyle, children }:Pr
   );
 };
 
-export default themr(STICKY, baseTheme)(Sticky) as ThemedComponentClass<Props, {}>;
+export default themr(STICKY, baseTheme)(Sticky);

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr, ThemedComponentClass } from 'react-css-themr';
+import { themr } from '@friendsofreactjs/react-css-themr';
 import { classNames, variationName } from '@shopify/react-utilities/styles';
 
 import { SPINNER } from '../ThemeIdentifiers';
@@ -62,4 +62,4 @@ const spinner = ({
 };
 
 export { spinner as UnthemedSelect };
-export default themr(SPINNER, baseTheme)(spinner) as ThemedComponentClass<Props, {}>;
+export default themr(SPINNER, baseTheme)(spinner);

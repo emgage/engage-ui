@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr, ThemedComponentClass } from 'react-css-themr';
+import { themr } from '@friendsofreactjs/react-css-themr';
 import { classNames } from '@shopify/react-utilities/styles';
 
 import { CAPTION } from '../ThemeIdentifiers';
@@ -27,4 +27,4 @@ const caption = ({
 };
 
 export { caption as UnthemedCaption };
-export default themr(CAPTION, baseTheme)(caption) as ThemedComponentClass<Props, {}>;
+export default themr(CAPTION, baseTheme)(caption);

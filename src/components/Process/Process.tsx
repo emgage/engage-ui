@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr, ThemedComponentClass } from 'react-css-themr';
+import { themr } from '@friendsofreactjs/react-css-themr';
 import { classNames } from '@shopify/react-utilities/styles';
 import { PROCESS } from '../ThemeIdentifiers';
 import * as baseTheme from './Process.scss';
@@ -162,4 +162,4 @@ class Process extends React.PureComponent<Props, State> {
   }
 }
 
-export default themr(PROCESS, baseTheme)(Process) as ThemedComponentClass<Props, {}>;
+export default themr(PROCESS, baseTheme)(Process);

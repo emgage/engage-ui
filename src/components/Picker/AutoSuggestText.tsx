@@ -3,7 +3,7 @@ import * as Autosuggest from 'react-autosuggest';
 import * as React from 'react';
 import * as style from './Picker.scss';
 import Chip from '../Chip';
-import { themr, ThemedComponentClass } from 'react-css-themr';
+import { themr } from '@friendsofreactjs/react-css-themr';
 import { TEXT_FIELD } from '../ThemeIdentifiers';
 import { IAutoSuggestMethods, IItemList } from './Picker';
 
@@ -54,4 +54,4 @@ class AutoSuggestText extends React.Component<Props, {}> {
   }
 }
 
-export default themr(TEXT_FIELD, baseTheme)(AutoSuggestText) as ThemedComponentClass<Props, {}>;
+export default themr(TEXT_FIELD, baseTheme)(AutoSuggestText);

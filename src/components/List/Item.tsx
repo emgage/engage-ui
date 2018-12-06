@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr, ThemedComponentClass } from 'react-css-themr';
+import { themr } from '@friendsofreactjs/react-css-themr';
 
 import { LIST } from '../ThemeIdentifiers';
 
@@ -28,4 +28,4 @@ const item = ({ children, onClick, theme }: Props) => {
   return <li className={theme.item}>{children}</li>;
 };
 
-export default themr(LIST, baseTheme)(item) as ThemedComponentClass<Props, {}>;
+export default themr(LIST, baseTheme)(item);

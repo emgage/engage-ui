@@ -35,6 +35,7 @@
       }
     ],
     "strict-boolean-expressions": false,
-    "no-this-assignment": [true, {"allow-destructuring": true}]
+    "no-this-assignment": [true, {"allow-destructuring": true}],
+    "semicolon": [true, "always", "ignore-interfaces"]
   }
 }

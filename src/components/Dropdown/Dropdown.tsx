@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr, ThemedComponentClass } from 'react-css-themr';
+import { themr } from '@friendsofreactjs/react-css-themr';
 import DropdownItem, { Props as DropdownItemProps } from './DropdownItem';
 import Popover, { Props as PopoverProps } from '../Popover';
 import { DROPDOWN } from '../ThemeIdentifiers';
@@ -105,4 +105,4 @@ export class Dropdown extends React.PureComponent<Props, State> {
 }
 
 export { Dropdown as UnthemedDropdown };
-export default themr(DROPDOWN, baseTheme)(Dropdown) as ThemedComponentClass<Props, {}>;
+export default themr(DROPDOWN, baseTheme)(Dropdown);

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr, ThemedComponentClass } from 'react-css-themr';
+import { themr } from '@friendsofreactjs/react-css-themr';
 import { classNames, variationName } from '@shopify/react-utilities/styles';
 import { elementChildren, wrapWithComponent } from '@shopify/react-utilities/components';
 
@@ -54,4 +54,4 @@ class Stack extends React.PureComponent<Props, never> {
   }
 }
 
-export default themr(STACK, baseTheme)(Stack) as ThemedComponentClass<Props, {}>;
+export default themr(STACK, baseTheme)(Stack);

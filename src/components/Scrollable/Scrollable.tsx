@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr, ThemedComponentClass } from 'react-css-themr';
+import { themr } from '@friendsofreactjs/react-css-themr';
 import { autobind } from '@shopify/javascript-utilities/decorators';
 import { addEventListener, removeEventListener } from '@shopify/javascript-utilities/events';
 import { closest } from '@shopify/javascript-utilities/dom';
@@ -106,5 +106,5 @@ function forNode(node: HTMLElement) {
   return (closest(node, scrollable.selector) as HTMLElement | null) || document.body;
 }
 
-export default themr(SCROLLABLE, baseTheme)(Scrollable) as ThemedComponentClass<Props, State>;
+export default themr(SCROLLABLE, baseTheme)(Scrollable);
 export { forNode };

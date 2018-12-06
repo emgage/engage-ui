@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr, ThemedComponentClass } from 'react-css-themr';
+import { themr } from '@friendsofreactjs/react-css-themr';
 import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
 import { COMBOBOX } from '../ThemeIdentifiers';
 import ComboBoxItem from './ComboBoxItem';
@@ -170,4 +170,4 @@ class ComboBox extends React.Component<Props, State> {
 }
 
 export { ComboBox as UnthemedComboBox };
-export default themr(COMBOBOX, baseTheme)(ComboBox) as ThemedComponentClass<Props, {}>;
+export default themr(COMBOBOX, baseTheme)(ComboBox);

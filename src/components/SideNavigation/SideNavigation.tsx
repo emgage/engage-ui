@@ -1,6 +1,6 @@
 
 import * as React from 'react';
-import { themr, ThemedComponentClass } from 'react-css-themr';
+import { themr } from '@friendsofreactjs/react-css-themr';
 import { classNames } from '@shopify/react-utilities/styles';
 
 import Icon from '../Icon';
@@ -54,7 +54,7 @@ class SideNavigation extends React.Component<Props, State> {
 
     this.state = {
       // As per props value set the drawer id to be active
-      activeDrawerId: this.props.drawerExpand ? 'fullContent' : 'collapsedContent',
+      activeDrawerId: this.props.drawerExpand ? 'collapsedContent' : 'fullContent',
     };
   }
 
@@ -73,7 +73,9 @@ class SideNavigation extends React.Component<Props, State> {
   }
 
   toggleDrawerContent = () => {
+    console.log('activeDrawerId:', this.state.activeDrawerId);
     const drawerContentId = this.state.activeDrawerId === 'fullContent' ? 'collapsedContent' : 'fullContent';
+    console.log('I am clicked:', drawerContentId);
     this.setState({ activeDrawerId: drawerContentId });
   }
 
@@ -215,4 +217,4 @@ class SideNavigation extends React.Component<Props, State> {
   }
 }
 
-export default themr(SIDENAVIGATION, baseTheme)(SideNavigation) as ThemedComponentClass<Props, {}>;
+export default themr(SIDENAVIGATION, baseTheme)(SideNavigation);

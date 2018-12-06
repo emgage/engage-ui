@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr, ThemedComponentClass } from 'react-css-themr';
+import { themr } from '@friendsofreactjs/react-css-themr';
 import Select, { Props as SelectProps } from '../Select';
 import { ValidationRule } from '../../types';
 
@@ -58,4 +58,4 @@ class ValidatedSelectFieldComponent extends React.PureComponent<Props, {}> {
   }
 }
 
-export default themr(TEXT_FIELD, baseTheme)(ValidatedSelectFieldComponent) as ThemedComponentClass<Props, {}>;
+export default themr(TEXT_FIELD, baseTheme)(ValidatedSelectFieldComponent);

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr, ThemedComponentClass } from 'react-css-themr';
+import { themr } from '@friendsofreactjs/react-css-themr';
 import { classNames } from '@shopify/react-utilities/styles';
 import { TAB } from '../ThemeIdentifiers';
 import * as baseTheme from './Tab.scss';
@@ -121,4 +121,4 @@ class TabPanel extends React.Component<Props, State> {
   }
 }
 
-export default themr(TAB, baseTheme)(TabPanel) as ThemedComponentClass<Props, State>;
+export default themr(TAB, baseTheme)(TabPanel);

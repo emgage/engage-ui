@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr, ThemedComponentClass } from 'react-css-themr';
+import { themr } from '@friendsofreactjs/react-css-themr';
 
 import { DisableableAction } from '../../types';
 import { buttonsFrom } from '../Button';
@@ -47,4 +47,4 @@ const header = ({ children, actions, theme }: Props) => {
   );
 };
 
-export default themr(CARD, baseTheme)(header) as ThemedComponentClass<Props, {}>;
+export default themr(CARD, baseTheme)(header);

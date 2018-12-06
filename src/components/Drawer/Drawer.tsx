@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr, ThemedComponentClass } from 'react-css-themr';
+import { themr } from '@friendsofreactjs/react-css-themr';
 import { layeredComponent } from '@shopify/react-utilities/components';
 import { autobind } from '@shopify/javascript-utilities/decorators';
 import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
@@ -176,6 +176,7 @@ class Drawer extends React.PureComponent<Props, never> {
   }
 
   renderLayer() {
+    console.log('I am rendering:', this.props);
     const { active, mode, componentLabel, componentWidth, theme } = this.props;
     const containerClassName = this.getContainerClassName();
     const barClassName = this.getBarClassName();
@@ -251,10 +252,12 @@ class Drawer extends React.PureComponent<Props, never> {
   }
 
   render() {
+    console.log('newProps:', this.props);
+
     return (
       <div ref={this.setActivator}></div>
     );
   }
 }
 
-export default themr(DRAWER, baseTheme)(Drawer) as ThemedComponentClass<Props, {}>;
+export default themr(DRAWER, baseTheme)(Drawer);

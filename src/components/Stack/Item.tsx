@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr, ThemedComponentClass } from 'react-css-themr';
+import { themr } from '@friendsofreactjs/react-css-themr';
 import { classNames } from '@shopify/react-utilities/styles';
 
 import { STACK } from '../ThemeIdentifiers';
@@ -23,4 +23,4 @@ const item = ({ children, fill, theme }: Props) => {
   return <div className={className}>{children}</div>;
 };
 
-export default themr(STACK, baseTheme)(item) as ThemedComponentClass<Props, {}>;
+export default themr(STACK, baseTheme)(item);

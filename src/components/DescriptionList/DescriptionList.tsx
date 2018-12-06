@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr, ThemedComponentClass } from 'react-css-themr';
+import { themr } from '@friendsofreactjs/react-css-themr';
 import { classNames, variationName } from '@shopify/react-utilities/styles';
 import { DESCRIPTIONLIST } from '../ThemeIdentifiers';
 import * as baseTheme from './DescriptionList.scss';
@@ -45,4 +45,4 @@ class DescriptionList extends React.PureComponent<Props, never> {
   }
 }
 
-export default themr(DESCRIPTIONLIST, baseTheme)(DescriptionList) as ThemedComponentClass<Props, {}>;
+export default themr(DESCRIPTIONLIST, baseTheme)(DescriptionList);

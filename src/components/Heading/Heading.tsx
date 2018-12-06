@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr, ThemedComponentClass } from 'react-css-themr';
+import { themr } from '@friendsofreactjs/react-css-themr';
 import { HeadingTagName } from '../../types';
 
 import { HEADING } from '../ThemeIdentifiers';
@@ -22,4 +22,4 @@ const heading = ({
   return <ELEMENT className={theme.heading}>{children}</ELEMENT>;
 };
 
-export default themr(HEADING, baseTheme)(heading) as ThemedComponentClass<Props, {}>;
+export default themr(HEADING, baseTheme)(heading);

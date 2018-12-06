@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr, ThemedComponentClass } from 'react-css-themr';
+import { themr } from '@friendsofreactjs/react-css-themr';
 
 import { TABLE } from '../ThemeIdentifiers';
 
@@ -93,4 +93,4 @@ class RowAction extends React.Component<Props, State> {
   }
 }
 
-export default themr(TABLE, baseTheme)(RowAction) as ThemedComponentClass<Props, State>;
+export default themr(TABLE, baseTheme)(RowAction);
