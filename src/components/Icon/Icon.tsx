@@ -42,6 +42,7 @@ import {
   search,
   spinner,
   view,
+  circleFilled,
 } from '../../icons';
 
 import { ICON } from '../ThemeIdentifiers';
@@ -83,6 +84,7 @@ export const BUNDLED_ICONS = {
   circleChevronLeft,
   circleChevronRight,
   circleChevronUp,
+  circleFilled,
   circlePlus,
   conversation,
   disable,
@@ -116,6 +118,7 @@ export interface Props {
   accessibilityLabel?: string;
   // To provide styling.
   componentStyle?: React.CSSProperties;
+  componentClass?: string;
   // Theme to be injected via css-themr.
   theme?: any;
   callbackValue?: any;
@@ -129,6 +132,7 @@ const icon = ({
   backdrop,
   accessibilityLabel,
   componentStyle,
+  componentClass,
   theme,
   onClick,
 }: Props) => {
@@ -138,7 +142,7 @@ const icon = ({
   }
 
   const className = classNames(
-    theme.icon,
+    componentClass ? componentClass : theme.icon,
     componentColor && theme[variationName('color', componentColor)],
     backdrop && theme.hasBackdrop
   );

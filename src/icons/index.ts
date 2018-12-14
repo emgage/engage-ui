@@ -19,6 +19,7 @@ export { default as circleChevronLeft } from './circle-chevron-left.svg';
 export { default as circleChevronRight } from './circle-chevron-right.svg';
 export { default as circleChevronUp } from './circle-chevron-up.svg';
 export { default as circlePlus } from './circle-plus.svg';
+export { default as circleFilled } from './circlefilled.svg';
 export { default as conversation } from './conversation.svg';
 export { default as delete } from './delete.svg';
 export { default as disable } from './disable.svg';

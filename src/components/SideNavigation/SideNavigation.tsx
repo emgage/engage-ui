@@ -6,6 +6,7 @@ import { classNames } from '@shopify/react-utilities/styles';
 import Icon from '../Icon';
 import { FlexBox } from '../';
 import { Drawer, DrawerContent } from '../Drawer';
+// import { Sticky } from '../Sticky';
 import Tooltip from '../Tooltip';
 import Accordion, { AccordionItemProps }from '../Accordion';
 
@@ -18,6 +19,8 @@ export interface INavigationData {
   label?:React.ReactNode;
   icon?:React.ReactNode;
   divider?:boolean | null;
+  parentDivider?:boolean | null;
+  currentApp?:boolean | null;
   children?:React.ReactNode;
   action?(arg?:string|number|boolean|null):void | null;
 }
@@ -88,7 +91,7 @@ class SideNavigation extends React.Component<Props, State> {
         return (
           <div key={index}>
             <a className={childLiClass} onClick={child.action} aria-disabled={false}>
-              <Icon source={child.icon} componentColor="white" />
+              <Icon source={child.icon} componentColor="white" componentClass={theme.icon}/>
               {child.label}
             </a>
           </div>
@@ -104,7 +107,7 @@ class SideNavigation extends React.Component<Props, State> {
             className={liClass}
           >
             <div className={liClass} onClick={full.action} aria-disabled={false}>
-              <Icon source={full.icon} componentColor={activeItem === full.id ? 'black' : 'white'} />
+              <Icon source={full.icon} componentColor={activeItem === full.id ? 'black' : 'white'} componentClass={theme.icon}/>
               {full.label}
             </div>
           </div>
@@ -112,10 +115,23 @@ class SideNavigation extends React.Component<Props, State> {
 
       // Set markup based on the prop values
       const markup = accordian ? (childrenMarkup ==  null ?
+        full.currentApp ?
         (
           <div key={index}>
             <div className={liClass} onClick={full.action} aria-disabled={false}>
-              <Icon source={full.icon} componentColor={activeItem === full.id ? 'black' : 'white'}/>
+            {full.label}
+              <div className={theme.currentAppIcon}>
+                <Icon source={full.icon} componentColor={activeItem === full.id ? 'black' : 'white'} componentClass={theme.icon}/>
+              </div>
+            </div>
+
+            {childrenMarkup}
+          </div>
+        ) :
+        (
+          <div key={index}>
+            <div className={liClass} onClick={full.action} aria-disabled={false}>
+              <Icon source={full.icon} componentColor={activeItem === full.id ? 'black' : 'white'} componentClass={theme.icon}/>
               {full.label}
             </div>
 
@@ -125,7 +141,7 @@ class SideNavigation extends React.Component<Props, State> {
         (
           <div key={index}>
             <div className={liClass} onClick={full.action} aria-disabled={false}>
-              <Icon source={full.icon} componentColor={activeItem === full.id ? 'black' :'white'} />
+              <Icon source={full.icon} componentColor={activeItem === full.id ? 'black' :'white'} componentClass={theme.icon}/>
               {full.label}
             </div>
 
@@ -136,7 +152,8 @@ class SideNavigation extends React.Component<Props, State> {
       const singleItem = classNames(
         theme.listItem,
         activeItem === full.id && theme.active,
-        full.divider && theme.divider
+        full.divider && theme.divider,
+        full.parentDivider && theme.parentDivider
       );
 
       return (
@@ -151,14 +168,15 @@ class SideNavigation extends React.Component<Props, State> {
       const singleItem = classNames(
         theme.listItem,
         activeItem === col.id && theme.active,
-        col.divider && theme.divider
+        col.divider && theme.divider,
+        col.parentDivider && theme.parentDividerCollapse
       );
 
       return (
         <div key={col.id} className={singleItem}>
           <Tooltip content={col.label}>
             <div className={liClass} onClick={col.action} aria-disabled={false}>
-              <Icon source={col.icon} componentColor={activeItem === col.id ? 'black' : 'white'} />
+              <Icon source={col.icon} componentColor={activeItem === col.id ? 'black' : 'white'} componentClass={theme.collapseIcon}/>
             </div>
           </Tooltip>
         </div>
@@ -172,7 +190,7 @@ class SideNavigation extends React.Component<Props, State> {
         onClick={this.toggleDrawerContent}
       >
         <FlexBox>
-          <Icon source={collapseIcon} componentColor="white" />
+          <Icon source={collapseIcon} componentColor="white" componentClass={theme.icon}/>
           { activeDrawerId === 'fullContent' ? 'Collapse' : ''}
         </FlexBox>
       </div>
@@ -192,10 +210,11 @@ class SideNavigation extends React.Component<Props, State> {
             componentId="fullContent"
             mode="slide"
           >
-            {collapseIconMarkup}
-
             <div className={this.props.theme.list}>
               {fullContentMarkup}
+            </div>
+            <div className={this.props.theme.collapseList} >
+            {collapseIconMarkup}
             </div>
           </DrawerContent>
 
@@ -203,10 +222,11 @@ class SideNavigation extends React.Component<Props, State> {
             componentId="collapsedContent"
             mode="slide"
           >
-            {collapseIconMarkup}
-
             <div className={this.props.theme.list} >
               {collapsedContentMarkup}
+            </div>
+            <div className={this.props.theme.collapseList} >
+            {collapseIconMarkup}
             </div>
           </DrawerContent>
         </Drawer>
