@@ -97,7 +97,6 @@ class Popover extends React.PureComponent<Props, State> {
     this.popoverOffset.height = this.popoverEle.offsetHeight;
     this.popoverOffset.width = this.popoverEle.offsetWidth;
     this.popoverEle.style.display = '';
-    
 
     if (element !== null) {
       addEventListener(element, 'keyup', this.handleKeyEvent);
@@ -170,7 +169,7 @@ class Popover extends React.PureComponent<Props, State> {
         } else if (direction === 'right') {
           popoverPosition = { left: activatorRect.width, top: - activatorRect.height };
         } else if (direction === 'down') {
-          popoverPosition = { left: activatorRect.left - popoverPosition.left, top: popoverPosition.top - activatorRect.top - (activatorRect.height / 2)}
+          popoverPosition = { left: activatorRect.left - popoverPosition.left, top: popoverPosition.top - activatorRect.top - (activatorRect.height / 2) };
         }
       }
     }
@@ -294,10 +293,10 @@ class Popover extends React.PureComponent<Props, State> {
       : { activator: 0, container: 0, horizontal: 0 };
     const containerRect = getRectForNode(window);
     const zIndex = anchorEl ? getZIndexForLayerFromNode(anchorEl) + 1 : 1;
-    const verticalPosition = calculateVerticalPosition(activatorRect, overlayRect, overlayMargins, scrollableContainerRect, containerRect, direction === "down" ? "below" : "above");
+    const verticalPosition = calculateVerticalPosition(activatorRect, overlayRect, overlayMargins, scrollableContainerRect, containerRect, direction === 'down' ? 'below' : 'above');
     const horizontalPosition = calculateHorizontalPosition(activatorRect, overlayRect, containerRect);
 
-    return {top: verticalPosition.top, left: horizontalPosition, zIndex: zIndex};
+    return {  zIndex, top: verticalPosition.top, left: horizontalPosition };
   }
 }
 
