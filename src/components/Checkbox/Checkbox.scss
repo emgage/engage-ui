@@ -25,7 +25,31 @@ input[type=checkbox], input[type=radio] {
     }
 
     &:after {
-     content: '\2713\0020';
+     content: '\2714\0020';
+     box-sizing: border-box;
+     background-repeat: no-repeat;
+     background-position: 50%;
+     background-size: 50% 50%;
+     color: #fff;
+     padding-left: 2px;
+    }
+  }
+}
+
+.customControlInputIndeterminante {
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+
+  &:checked~label {
+    &:before {
+      color: #fff;
+      background-color: #007bff;
+      border-color: #0068d7;
+    }
+
+    &:after {
+     content: '\2212';
      box-sizing: border-box;
      background-repeat: no-repeat;
      background-position: 50%;

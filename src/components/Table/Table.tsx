@@ -14,7 +14,6 @@ import TableRow from './TableRow';
 import TableData from './TableData';
 
 import { ColumnConfig, FilterConfig, NestedChild, SortState } from './interface';
-// import { DropdownItemProps } from '../';
 import * as baseTheme from './Table.scss';
 
 export type RowSelection = 'checkbox' | 'radio';
@@ -77,12 +76,14 @@ export interface State {
   sort: SortState;
   selectedRows: any;
   searchKey: string;
+  totalRowCount: number;
 }
+
+let callBackSelectedRows: any;
 
 class Table extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
-
     this.state = this.getInitialState();
   }
 
@@ -109,12 +110,11 @@ class Table extends React.Component<Props, State> {
 
   getInitialState() {
     const { data, defaultSortField, defaultSortOrder } = this.props;
-
     return {
       data,
       allRowChecked: false,
       expandedRow: [],
-      selectedRows: [],
+      selectedRows: callBackSelectedRows === undefined || callBackSelectedRows.length < 1 ? [] : callBackSelectedRows,
       sort: {
         // Current sorting filed should be saved here, which can be used to show specific icons on specifc th
         field: defaultSortField || '',
@@ -126,6 +126,7 @@ class Table extends React.Component<Props, State> {
         },
       },
       searchKey: '',
+      totalRowCount: 0,
     };
   }
 
@@ -202,7 +203,6 @@ class Table extends React.Component<Props, State> {
   renderBody = () => {
     const { children, column, expandingRowId = [], hideRow, rowExpandOnLoad, selectRow } = this.props;
     const { data, expandedRow } = this.state;
-
     if (!children) {
       return (
         <TableBody>
@@ -213,12 +213,10 @@ class Table extends React.Component<Props, State> {
               }
             })
           }
-
           { !data.length ? <TableRow><TableData colSpan={column.length + (selectRow ? 1 : 0)}>No record found</TableData></TableRow> : null }
         </TableBody>
       );
     }
-
     // If there is no children for the table component (which is being used to open when the row gets expanded)
     return data.map((item: any, index: number) => {
       if (!hideRow || !this.hideRow(item)) {
@@ -229,7 +227,6 @@ class Table extends React.Component<Props, State> {
         return (
           <TableBody key={index}>
             { this.renderTbodyRows(item, index + '_nested') }
-
             { expandedRow.indexOf(item.id) > -1 ? this.renderNestedChildren(index + 'nest', item.id) : null }
           </TableBody>
         );
@@ -288,6 +285,10 @@ class Table extends React.Component<Props, State> {
     );
   }
 
+  callBackSelectedRows(selectedRows: any) {
+    callBackSelectedRows = selectedRows;
+  }
+
   // Function to render nested children for each row, this could be nested table or any other component
   renderNestedChildren = (key: string, id: number) => {
     const { column, children, nestedChildData = [], selectRow, rowAction } = this.props;
@@ -298,7 +299,7 @@ class Table extends React.Component<Props, State> {
     const thisNestedComponent = nestedChildData.filter(item => item.rowId === id);
 
     return (
-      <TableRow key={key}>
+      <TableRow key={key} callBackSelectedRows={this.callBackSelectedRows} selectRow={this.state.selectedRows}>
         <TableData colSpan={colSpanVal}>
           {thisNestedComponent.length ? thisNestedComponent[0].component : children}
         </TableData>
@@ -357,7 +358,9 @@ class Table extends React.Component<Props, State> {
 
   // Function to add checkbox in header as well
   addHeaderCheckbox = (): React.ReactElement<any> => {
-    return <TableHead componentStyle={{ width: 'auto' }}><Checkbox label="" checked={this.state.allRowChecked} onChange={this.toggleAllRowSelection} /></TableHead>;
+    const rowChecked = ((this.state.totalRowCount - this.state.selectedRows.length) > 0 &&  this.state.totalRowCount > 0) ? true : false;
+    const allRowChecked = (this.state.selectedRows.length > 0 && this.state.totalRowCount > 0 && this.state.totalRowCount === this.state.selectedRows.length) ? true : this.state.allRowChecked;
+    return <TableHead componentStyle={{ width: 'auto' }}><Checkbox label="" checked={rowChecked && this.state.selectedRows.length > 0 ? true : allRowChecked} indeterminante={rowChecked} onChange={this.toggleAllRowSelection} /></TableHead>;
   }
 
   // Function to add checkbox for the row selection
@@ -373,7 +376,7 @@ class Table extends React.Component<Props, State> {
     return (
       <Checkbox
         value={uniqueId}
-        checked={selectedRows.indexOf(uniqueId) !== -1 ? true : false}
+        checked={(selectedRows.indexOf(uniqueId) !== -1) ? true : false}
         onChange={(checkedStatus: boolean) => {
           this.toggleSingleRowSelection(rowData, checkedStatus);
         }}
@@ -399,7 +402,6 @@ class Table extends React.Component<Props, State> {
     const tableClass = this.getTableClassName();
     const renderedHeader = !this.props.hideHeader ? this.renderHeader() : null;
     const renderedBody = this.renderBody();
-
     return (
       <div>
         <table className={tableClass}>
@@ -414,7 +416,6 @@ class Table extends React.Component<Props, State> {
   sortData = (field: string, sortBy: string = '') => {
     const { data } = this.props;
     const { order } = this.state.sort;
-
     const sortedData = data.sort((item1: any, item2: any) => {
       // Converting strings to uppercase so for comparisions there will be no issue
       const value1 = item1[field] !== undefined ? (!sortBy ? item1[field].toUpperCase() : item1[field][sortBy].toUpperCase()) : '';
@@ -465,41 +466,91 @@ class Table extends React.Component<Props, State> {
 
   // Function to toggle single row selection
   toggleSingleRowSelection = (rowData: any, checkedStatus: boolean) => {
+    this.setState({ expandedRow: [] });
     const selectedRows = [...this.state.selectedRows];
     const { singleSelectRowCallback, multipleCallBackValue } = this.props;
     const { selectCallbackValue } = this.props;
     const uniqueId = selectCallbackValue ? rowData[selectCallbackValue] : rowData.id;
+    const allChildData = [];
+    let allRowId: any = [];
+    if (this.props.nestedChildData !== undefined && this.props.nestedChildData.length > 0) {
+      const childData = this.props.nestedChildData.filter(item => uniqueId === item.rowId);
+      if (childData !== undefined && childData.length > 0) {
+        for (const key in childData) {
+          if (childData[key].component.props.data.length > 0) {
+            for (const index in childData[key].component.props.data) {
+              allChildData.push(childData[key].component.props.data[index]);
+            }
+          }
+        }
+        allRowId = allChildData.map((item: any) => {
+          return item.id;
+        });
+      }
+    }
 
-    if (!checkedStatus) {
-      selectedRows.splice(selectedRows.indexOf(uniqueId), 1);
-      this.setState({ selectedRows, allRowChecked: false }, () => {
-        this.rowSelectionCallback();
-      });
-    } else {
-      this.setState({ selectedRows: this.state.selectedRows.concat([uniqueId]) }, () => {
+    if (this.state.selectedRows.length > 0 && checkedStatus) {
+      for (const key in this.state.selectedRows) {
+        allRowId.push(this.state.selectedRows[key]);
+      }
+    }
+    allRowId.push(uniqueId);
+
+    this.setState({ selectedRows: allRowId }, () => {
+      if (!checkedStatus) {
+        if (allRowId.length > 1) {
+          for (let key = 0; key < allRowId.length; key++) {
+            if (selectedRows.indexOf(allRowId[key]) > -1) {
+              selectedRows.splice(selectedRows.indexOf(allRowId[key]), 1);
+            }
+          }
+        } else {
+          selectedRows.splice(selectedRows.indexOf(uniqueId), 1);
+        }
+        this.setState({ selectedRows, allRowChecked: false }, () => {
+          this.rowSelectionCallback();
+        });
+      } else {
         this.rowSelectionCallback();
         if (singleSelectRowCallback) {
           if (multipleCallBackValue && multipleCallBackValue.length) {
             const returnVal: any = {};
-
             multipleCallBackValue.forEach((item) => {
               returnVal[item] = rowData[item] !== undefined ? rowData[item] : '';
             });
-
             singleSelectRowCallback(returnVal);
           } else {
             singleSelectRowCallback(uniqueId);
           }
         }
-      });
-    }
+      }
+    });
   }
 
   // Function to select all the rows on click of header  checkbox
   toggleAllRowSelection = (checkedStatus: boolean) => {
-    const allRowId = this.state.data.map((item: any) => {
+
+    this.setState({ expandedRow: [] });
+
+    const allChildData: any = [];
+    if (this.props.nestedChildData !== undefined && this.props.nestedChildData.length > 0) {
+      for (const key in this.props.nestedChildData) {
+        if (this.props.nestedChildData[key].component.props.data.length > 0) {
+          for (const index in this.props.nestedChildData[key].component.props.data) {
+            allChildData.push(this.props.nestedChildData[key].component.props.data[index]);
+          }
+        }
+      }
+    }
+
+    allChildData.push(...this.state.data);
+    const allData = [...new Map(allChildData.map((childData: any) => [childData.id, childData])).values()];
+
+    const allRowId = allData.map((item: any) => {
       return item.id;
     });
+
+    this.setState({ totalRowCount: allRowId.length });
 
     if (checkedStatus) {
       this.setState({ allRowChecked: true, selectedRows: allRowId }, () => {

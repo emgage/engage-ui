@@ -17,6 +17,8 @@ export interface Props {
   labelHidden?: boolean;
   // Checkbox is selected or not
   checked?: boolean;
+  // checkbox is indeterminante or not
+  indeterminante?: boolean;
   // Additional text to aide in use
   helpText?: React.ReactNode;
   // ID for form input
@@ -90,7 +92,7 @@ class Checkbox extends React.PureComponent<Props, State> {
         <div className={theme.customControl} onClick={this.handleChange}>
           <input
             type="checkbox"
-            className={theme.customControlInput}
+            className={ !this.props.indeterminante ?  theme.customControlInput : theme.customControlInputIndeterminante}
             id={componentId}
             checked={checked}
             disabled={disabled}
