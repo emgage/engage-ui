@@ -264,20 +264,72 @@ class App extends React.Component<{}, State> {
   // toggleStatus if true that means row is open else its not
   nestedChildCallback = (rowId: number | string, toggleStatus: boolean) => {
     const { nestedChildData } = this.state;
+    const childtableData = [
+      {
+        id: 11,
+        name: 'Hirens',
+        description: 'Test description',
+        status: { itemID: 1, itemName: 'New' },
+        type: 'admin',
+      }, {
+        id: 13,
+        name: 'Patels',
+        description: 'Test description3',
+        status: { itemID: 3, itemName: 'Draft' },
+        type: 'admin',
+      }
+    ];
+    const childrowActionConfig = [
+      {
+        content: 'View',
+        onClick: (value: any) => { console.log('View:', value); },
+      }, {
+        content: 'Delete',
+        onClick: (value: any) => { console.log('Delete:', value); },
+      }, {
+        content: 'Archive',
+        onClick: (value: any) => { console.log('Archive:', value); },
+      }, {
+        content: 'Version History',
+        onClick: (value: any) => { console.log('Version:', value); },
+      },
+    ];
+    const childcolumnConfig: TableColumnConfig[] = [
+      {
+        label: 'Name',
+        key: 'name',
+        className: '',
+        style: { width: '200px' },
+        sort: true,
+      }, {
+        label: 'Description',
+        key: 'description',
+        style: { width: 'auto' },
+      }, {
+        label: 'Status',
+        key: 'status',
+        sort: true,
+        sortBy: 'itemName',
+        style: { width: '150px' },
+        injectBody: (value: any) => <Badge status={value.status.itemID === 1 ? 'success' : 'warning'}>{value.status.itemName}</Badge>,
+      }, {
+        label: 'Type',
+        key: 'type',
+        style: { width: '100px' },
+      },
+    ];
     const newData: TableNestedData = {
       rowId,
-      component: <div>
-        <span> Please select or create the Related Content for the Sales Rep relationship</span>
-        <TextField
-            componentId="TestName"
-            label="Related Content"
-            placeholder="test-placeholder"
-            value={this.state.appTextCounter}
-            enableTextCounter
-            maxLength={101}
-            minLength={5}
-          />
-      </div>,
+      component: <Table
+      highlight={true}
+      hideHeader={true}
+      sorting="all"
+      data={childtableData}
+      column={childcolumnConfig}
+      selectRow="checkbox"
+      rowAction={childrowActionConfig}
+    />,
+
     };
 
     nestedChildData.some((item: TableNestedData, index: number): boolean => {
@@ -898,7 +950,7 @@ class App extends React.Component<{}, State> {
           <Table
             nestedChildData={this.state.nestedChildData}
             nestedChildCallback={this.nestedChildCallback}
-            expandingRowId={[2, 4]}
+            expandingRowId={[2]}
             rowExpandOnLoad={true}
             hideExpandedIcon={true}
             data={tableData}

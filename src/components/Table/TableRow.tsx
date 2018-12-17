@@ -8,11 +8,14 @@ import * as baseTheme from './Table.scss';
 export interface Props {
   callbackValue?: any;
   onClick?(id: number | string): void;
+  callBackSelectedRows?(id: number): void;
+  selectRow?: any;
 }
 
 class TableRow extends React.Component<Props, never> {
   constructor(props: Props) {
     super(props);
+    this.props.callBackSelectedRows ? this.props.callBackSelectedRows(this.props.selectRow) : null;
   }
 
   rowClickCallback = () => {
