@@ -5,10 +5,18 @@ import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
 import { findFirstFocusableNode } from '@shopify/javascript-utilities/focus';
 import { addEventListener, removeEventListener } from '@shopify/javascript-utilities/events';
 import { classNames } from '@shopify/react-utilities/styles';
+import { closest } from '@shopify/javascript-utilities/dom';
+import { layer } from '../shared';
 import { POPOVER } from '../ThemeIdentifiers';
 import * as baseTheme from './Popover.scss';
 import { Keys } from '../../types';
 import { findDOMNode } from 'react-dom';
+import { getRectForNode } from '@shopify/javascript-utilities/geometry';
+import { forNode as ScrollableForNode } from '../Scrollable';
+import {
+  calculateVerticalPosition,
+  calculateHorizontalPosition,
+} from '../PositionedOverlay/math';
 
 // DEfine type for direction to render popover
 export type Direction = 'up' | 'down' | 'left' | 'right' | 'full';
@@ -55,6 +63,8 @@ class Popover extends React.PureComponent<Props, State> {
   static defaultProps = {
     closeOnClickOutside: true,
   };
+
+  private scrollableContainer: HTMLElement;
 
   constructor(props: Props) {
     super(props);
@@ -112,6 +122,8 @@ class Popover extends React.PureComponent<Props, State> {
     if (this.props.closeOnClickOutside) {
       removeEventListener(document, 'click', this.handleMouseEvent);
     }
+    removeEventListener(this.scrollableContainer, 'scroll', this.handleMeasurement);
+    removeEventListener(window, 'resize', this.handleMeasurement);
   }
 
   render() {
@@ -141,19 +153,25 @@ class Popover extends React.PureComponent<Props, State> {
 
     const activatorComp = anchorEl;
     let activatorRect: ClientRect | DOMRect;
-    let popoverPosition = {};
+    let popoverPosition: any = {};
 
     if (activatorComp != null) {
-      activatorRect = activatorComp.getBoundingClientRect();
-      if (direction === 'up') {
-        popoverPosition = { top: - this.popoverOffset.height - activatorRect.height };
-      } else if (direction === 'left') {
-        popoverPosition = { left: - this.popoverOffset.width, top: - activatorRect.height };
-      } else if (direction === 'right') {
-        popoverPosition = { left: activatorRect.width, top: - activatorRect.height };
-      } /*else if (direction === 'down') {
-        popoverPosition = !this.state.active ? { left: `${- this.popoverOffset.width / 2 + activatorRect.width / 2}px`, top: 0 } : {};
-      }*/
+      if (this.props.anchorEl) {
+        this.scrollableContainer = ScrollableForNode(this.props.anchorEl);
+        addEventListener(this.scrollableContainer, 'scroll', this.handleMeasurement);
+        addEventListener(window, 'resize', this.handleMeasurement);
+        activatorRect = activatorComp.getBoundingClientRect();
+        popoverPosition = this.handleMeasurement();
+        if (direction === 'up') {
+          popoverPosition = { left: activatorRect.left - popoverPosition.left, top: - activatorRect.top + (activatorRect.height) };
+        } else if (direction === 'left') {
+          popoverPosition = { left: - this.popoverOffset.width, top: - activatorRect.height };
+        } else if (direction === 'right') {
+          popoverPosition = { left: activatorRect.width, top: - activatorRect.height };
+        } else if (direction === 'down') {
+          popoverPosition = { left: activatorRect.left - popoverPosition.left, top: popoverPosition.top - activatorRect.top - (activatorRect.height / 2) };
+        }
+      }
     }
 
     return (
@@ -179,6 +197,7 @@ class Popover extends React.PureComponent<Props, State> {
     const firstFocusable = findFirstFocusableNode(activatorContainer);
     const focusableActivator = firstFocusable || activatorContainer;
 
+    focusableActivator.tabIndex = 0;
     focusableActivator.setAttribute('aria-controls', id);
     focusableActivator.setAttribute('aria-owns', id);
     focusableActivator.setAttribute('aria-haspopup', 'true');
@@ -258,6 +277,42 @@ class Popover extends React.PureComponent<Props, State> {
       }
     }
   }
+
+  @autobind
+  private handleMeasurement() {
+    const {
+      direction = 'down',
+      anchorEl,
+    } = this.props;
+
+    const activatorRect = getRectForNode(anchorEl);
+    const overlayRect = getRectForNode(this.popoverEle);
+    const scrollableContainerRect = getRectForNode(this.scrollableContainer);
+    const overlayMargins = this.popoverEle.firstElementChild
+      ? getMarginsForNode(this.popoverEle.firstElementChild as HTMLElement)
+      : { activator: 0, container: 0, horizontal: 0 };
+    const containerRect = getRectForNode(window);
+    const zIndex = anchorEl ? getZIndexForLayerFromNode(anchorEl) + 1 : 1;
+    const verticalPosition = calculateVerticalPosition(activatorRect, overlayRect, overlayMargins, scrollableContainerRect, containerRect, direction === 'down' ? 'below' : 'above');
+    const horizontalPosition = calculateHorizontalPosition(activatorRect, overlayRect, containerRect);
+
+    return {  zIndex, top: verticalPosition.top, left: horizontalPosition };
+  }
+}
+
+function getMarginsForNode(node: HTMLElement) {
+  const styles = window.getComputedStyle(node);
+  return {
+    activator: parseFloat(styles.marginTop || ''),
+    container: parseFloat(styles.marginBottom || ''),
+    horizontal: parseFloat(styles.marginLeft || ''),
+  };
+}
+
+function getZIndexForLayerFromNode(node: HTMLElement) {
+  const layerNode = closest(node, layer.selector) || document.body;
+  const zIndex = parseInt(window.getComputedStyle(layerNode).zIndex || '0', 10);
+  return isNaN(zIndex) ? 0 : zIndex;
 }
 
 export default themr(POPOVER, baseTheme)(Popover) as ThemedComponentClass<Props, {}>;
