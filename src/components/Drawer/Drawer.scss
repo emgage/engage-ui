@@ -4,7 +4,7 @@
 $drawer-z-index:                              1000 !default; //create global var?
 $drawer-bar-background:                       #fff !default; //create global var?
 
-$drawer-bar-width-collapsed:                  30px !default;
+$drawer-bar-width-collapsed:                  40px !default;
 $drawer-bar-padding-vertical-collapsed:       5px !default;
 $drawer-bar-padding-horizontal-collapsed:     5px !default;
 
@@ -62,7 +62,7 @@ $drawer-overlay-background:                   rgba(0,0,0,0.2) !default;
   transform: translateX(-100%);
 
   &.dark {
-    background: #000000;
+    background: #212b36;
     color: #fff;
   }
 

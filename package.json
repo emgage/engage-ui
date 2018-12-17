@@ -50,7 +50,8 @@
   },
   "files": [
     "src",
-    "lib"
+    "lib",
+    "themes"
   ],
   "release": {
     "verifyConditions": [
@@ -167,7 +168,7 @@
     "loader-utils": "^1.1.0",
     "lodash": "^4.17.4",
     "pre-commit": "^1.2.2",
-    "prop-types": "^15.6.1",
+    "prop-types": "^15.6.2",
     "raw-loader": "^0.5.1",
     "rc-form": "^1.4.6",
     "react": "^16.3.1",

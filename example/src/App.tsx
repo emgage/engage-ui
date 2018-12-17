@@ -467,91 +467,115 @@ class App extends React.Component<{}, State> {
     ];
     const sideNavigationData: INavigationData[] = [
       {
+        id: 0.1,
+        label: 'Show All Apps',
+        icon: 'chevronLeft',
+        parentDivider: true,
+        action: () => console.log('Basics is clicked!')
+      }, {
+        id: 0.2,
+        label: 'Global Application',
+        icon: 'embed',
+        currentApp: true,
+        parentDivider: true,
+        action: () => console.log('Basics is clicked!')
+      }, {
+        id: 0.3,
+        label: 'Feature',
+        icon: 'notes',
+        divider: true,
+        action: () => console.log('Basics is clicked!')
+      }, {
         id: 1,
+        label: 'Dashboard',
+        icon: 'notes',
+        action: () => console.log('Basics is clicked!')
+      }, {
+        id: 2,
         label: 'Basics',
         icon: 'notes',
-        divider: false,
-        action: () => console.log('Basics is clicked!')
-      },
-      {
-        id:2,
-        label: 'Content',
-        icon: 'print',
         divider: true,
-        action: () => console.log('Content is clicked!')
-      },
-      {
-        id:3,
+        action: () => console.log('Basics is clicked!')
+      }, {
+        id: 3,
+        label: 'Content',
+        icon: 'notes',
+        divider: true,
+        action: () => console.log('Basics is clicked!')
+      }, {
+        id: 3.2,
+        label: 'Content Ins',
+        icon: 'notes',
+        divider: true,
+        action: () => console.log('Basics is clicked!')
+      }, {
+        id: 5.1,
+        label: 'Values',
+        icon: 'conversation',
+        divider: true,
+        action: () => console.log('Basics is clicked!')
+      }, {
+        id: 3.1,
         label: 'User',
         icon: 'conversation',
-        children: [
-          {
-            id:3.1,
-            label: 'Groups',
-            icon: 'conversation',
-            action: () => console.log('Groups Item is clicked!')
-          },
-          {
-            id:3.2,
-            label: 'Roles',
-            icon: 'conversation',
-            action: () => console.log('Roles Item is clicked!')
-          },
-          {
-            id:3.3,
-            label: 'Permissions',
-            icon: 'conversation',
-            action: () => console.log('Permissions Item is clicked!')
-          }
-        ],
+        action: () => console.log('Basics is clicked!')
+      }, {
+        id: 4,
+        label: 'Groups',
+        icon: 'conversation',
+        action: () => console.log('Basics is clicked!')
+      }, {
+        id: 5,
+        label: 'Roles',
+        icon: 'conversation',
+        action: () => console.log('Basics is clicked!')
+      }, {
+        id: 6,
+        label: 'Permissions',
+        icon: 'conversation',
         divider: true,
-        action: () => console.log('User is clicked!')
-      },
-      {
-        id:4,
+        action: () => console.log('Permissions Item is clicked!'),
+      }, {
+        id: 7,
         label: 'Pages',
         icon: 'view',
-        children: [
-          {
-            id:4.1,
-            label: 'Forms',
-            icon: 'view',
-            action: () => console.log('Forms Item is clicked!')
-          },
-          {
-            id:4.2,
-            label: 'Workflow',
-            icon: 'view',
-            action: () => console.log('Workflow Item is clicked!')
-          },
-          {
-            id:4.3,
-            label: 'Themes',
-            icon: 'view',
-            action: () => console.log('Themes Item is clicked!')
-          }
-        ],
-        action: () => console.log('Pages is clicked!')
-      },
-      {
-        id:5,
+        action: () => console.log('Basics is clicked!')
+      }, {
+        id: 8,
+        label: 'Forms',
+        icon: 'view',
+        action: () => console.log('Basics is clicked!')
+      }, {
+        id: 9,
+        label: 'Workflow',
+        icon: 'view',
+        action: () => console.log('Workflow Item is clicked!'),
+      }, {
+        id: 10,
+        label: 'Themes',
+        icon: 'view',
+        divider: true,
+        action: () => console.log('Themes Item is clicked!'),
+      }, {
+        id: 11,
         label: 'Publishing',
         icon: 'export',
-        action: () => console.log('Publishing is clicked!')
-      },
-      {
-        id:6,
+        divider: true,
+        action: () => console.log('Publishing is clicked!'),
+      }, {
+        id: 12,
         label: 'App Analytics',
         icon: 'embed',
-        action: () => console.log('App Analytics is clicked!')
-      },
-      {
-        id:7,
+        divider: true,
+        action: () => console.log('App Analytics is clicked!'),
+      }, {
+        id: 13,
         label: 'Sherpa',
         icon: 'alert',
-        action: () => console.log('Sherpa is clicked!')
-      }
+        action: () => console.log('Sherpa is clicked!'),
+      },
     ];
+
     /*
       label: Table header lable which will be visible
       key: Match it with json data, this will help to get specific value from the data
@@ -623,11 +647,13 @@ class App extends React.Component<{}, State> {
         children: [
           {
             id: 11,
-            component: () => <span>I am child component1</span>,
+            component: () => <span>I am child component1<br/>I am child component1<br/>I am child component1<br/>
+            I am child component1<br/>I am child component1<br/>I am child component1<br/>I am child component1
+            </span>,
             active: false,
           }, {
             id: 12,
-            component: () => <Badge children="I am child component2" />,
+            component: () => <span>I am child component2</span>,
             active: false,
             children: [
               {
@@ -823,9 +849,6 @@ class App extends React.Component<{}, State> {
       <br />
       <br />
       <br />
-      <Sticky position={'bottom'}>
-                <span>footer content</span>
-      </Sticky>
       <div>You can scroll and see me!</div>
       <div>Top Content!</div>
       <br />
@@ -877,6 +900,9 @@ class App extends React.Component<{}, State> {
       <br />
       <br />
       <br />
+      <Sticky position={'bottom'}>
+                <span>footer content</span>
+      </Sticky>
       You can scroll and see me!</div>
             </ModalBody>
             <ModalFooter>
@@ -1077,9 +1103,6 @@ class App extends React.Component<{}, State> {
             <br />
             <br />
             <br />
-            <Sticky position={'bottom'}>
-            <span>footer content</span>
-            </Sticky>
             <div>You can scroll and see me!</div>
             <div>Top Content!</div>
             <br />
@@ -1183,6 +1206,9 @@ class App extends React.Component<{}, State> {
             <br />
             <br />
             You can scroll and see me!</div>
+            <Sticky position={'bottom'}>
+            <span>footer content</span>
+            </Sticky>
             </DrawerContent>
 
             <DrawerContent componentId="content2" mode="slide">
