@@ -122,7 +122,11 @@ class Popover extends React.PureComponent<Props, State> {
     if (this.props.closeOnClickOutside) {
       removeEventListener(document, 'click', this.handleMouseEvent);
     }
-    removeEventListener(this.scrollableContainer, 'scroll', this.handleMeasurement);
+
+    if (!!this.scrollableContainer) {
+      removeEventListener(this.scrollableContainer, 'scroll', this.handleMeasurement);
+    }
+
     removeEventListener(window, 'resize', this.handleMeasurement);
   }
 
