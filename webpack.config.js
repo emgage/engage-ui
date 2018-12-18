@@ -7,26 +7,12 @@ BaseConfig.entry = {
 BaseConfig.output = {
     filename: '[name].js',
     path: path.join(__dirname, 'lib'),
-    libraryTarget: 'umd',
+    libraryTarget: 'window',
     library: 'EngageUI'
-},
-BaseConfig.externals = [
-    {
-        react: {
-            root: 'React',
-            commonjs2: 'react',
-            commonjs: 'react',
-            amd: 'react',
-        },
-    },
-    {
-        'react-dom': {
-            root: 'ReactDOM',
-            commonjs2: 'react-dom',
-            commonjs: 'react-dom',
-            amd: 'react-dom',
-        },
-    }
-],
+};
+BaseConfig.externals = {
+    react: 'React',
+    "react-dom": "ReactDOM",
+};
 
 module.exports = BaseConfig;
