@@ -48,12 +48,6 @@
       "shopify/node"
     ]
   },
-  "files": [
-    "@types",
-    "src",
-    "lib",
-    "themes"
-  ],
   "release": {
     "verifyConditions": [
       "@semantic-release/npm"
