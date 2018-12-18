@@ -49,10 +49,10 @@
     ]
   },
   "files": [
-    "./@types/**/*",
-    "./src/**/*",
-    "./lib/**/*",
-    "./themes/**/*"
+    "@types",
+    "src",
+    "lib",
+    "themes"
   ],
   "release": {
     "verifyConditions": [
