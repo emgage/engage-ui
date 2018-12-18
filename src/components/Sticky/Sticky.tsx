@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr, ThemedComponentClass } from 'react-css-themr';
+import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 import { STICKY } from '../ThemeIdentifiers';
 import { classNames } from '@shopify/react-utilities/styles';
 import * as baseTheme from './Sticky.scss';

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ThemeProvider } from 'react-css-themr';
+import { ThemeProvider } from '@friendsofreactjs/react-css-themr';
 
 export const DeliciousThemeContext = {
   PButton: require('./Button.scss'),

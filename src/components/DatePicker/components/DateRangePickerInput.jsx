@@ -5,7 +5,7 @@ import cx from 'classnames';
 
 import { DateRangePickerInputPhrases } from '../defaultPhrases';
 import getPhrasePropTypes from '../utils/getPhrasePropTypes';
-import { themr } from 'react-css-themr';
+import { themr } from '@friendsofreactjs/react-css-themr';
 
 import DateInput from './DateInput';
 import RightArrow from '../svg/arrow-right.svg';

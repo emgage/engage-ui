@@ -7,7 +7,7 @@ import momentPropTypes from 'react-moment-proptypes';
 import { forbidExtraProps, nonNegativeInteger } from 'airbnb-prop-types';
 import moment from 'moment';
 import cx from 'classnames';
-import { themr, ThemedComponentClass } from 'react-css-themr';
+import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 
 import { CalendarDayPhrases } from '../defaultPhrases';
 import getPhrasePropTypes from '../utils/getPhrasePropTypes';

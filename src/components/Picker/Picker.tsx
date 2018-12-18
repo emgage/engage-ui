@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr, ThemedComponentClass } from 'react-css-themr';
+import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 import { PICKER } from '../ThemeIdentifiers';
 import TextField from './TextField';
 import { DisplayMoreInfo } from './PickerEnum';

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr, ThemedComponentClass } from 'react-css-themr';
+import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 import { autobind } from '@shopify/javascript-utilities/decorators';
 import { classNames } from '@shopify/react-utilities/styles';
 import AutoSuggestText from './AutoSuggestText';

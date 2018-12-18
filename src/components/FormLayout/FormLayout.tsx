@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr, ThemedComponentClass } from 'react-css-themr';
+import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 import { wrapWithComponent, isElementOfType } from '../../utilities';
 
 import Group from './Group';

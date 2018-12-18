@@ -6,7 +6,7 @@ import { forbidExtraProps, nonNegativeInteger } from 'airbnb-prop-types';
 import moment from 'moment';
 import cx from 'classnames';
 import { addEventListener, removeEventListener } from 'consolidated-events';
-import { themr } from 'react-css-themr';
+import { themr } from '@friendsofreactjs/react-css-themr';
 
 import { CalendarDayPhrases } from '../defaultPhrases';
 import getPhrasePropTypes from '../utils/getPhrasePropTypes';

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr, ThemedComponentClass } from 'react-css-themr';
+import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 import { Props as TextFieldProps } from '../TextField';
 import { State as TextFieldState } from '../TextField/TextField';
 // tslint:disable-next-line

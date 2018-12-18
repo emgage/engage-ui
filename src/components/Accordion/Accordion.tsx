@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { themr, ThemedComponentClass } from 'react-css-themr';
+import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
 import { autobind } from '@shopify/javascript-utilities/decorators';
 import { ACCORDION } from '../ThemeIdentifiers';
