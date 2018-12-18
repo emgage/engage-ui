@@ -2,10 +2,64 @@
     list-style-type: none;
 
     ul {
+        margin-left: -12px;
+        margin-top: 5px;
         margin-right: 0px;
+        margin-bottom: 0px;
     }
 }
 
 .active {
     font-weight: bold;
+}
+
+.treeview li {
+    list-style-type:none;
+    margin:0;
+    padding:10px 5px 0 5px;
+    position:relative
+}
+.treeview li::before, .treeview li::after {
+    content:'';
+    left:-20px;
+    position:absolute;
+    right:auto
+}
+
+.treeview li::before {
+    border-left:1px solid #999;
+    bottom:50px;
+    height:100%;
+    top:-18px;
+    width:1px;
+}
+.treeview li::after {
+    border-top:1px solid #999;
+    height:20px;
+    top:18px;
+    width:35px;
+}
+
+.treeviewSpan{
+    border-bottom:1px solid #999;
+    border-width:100%;
+    display:inline-grid;
+    text-decoration:none;
+    width: 95%;
+    margin-left: 1%;
+}
+
+.treeview li.parent_li>span {
+    cursor:pointer;
+}
+.treeview>ul>li::before, .treeview>ul>li::after {
+    border:0
+}
+.treeview li:last-child::before {
+    height:37px
+}
+.treeview li.parent_li>span:hover, .treeview li.parent_li>span:hover+ul li span {
+    background:#eee;
+    border:1px solid #94a0b4;
+    color:#000
 }
