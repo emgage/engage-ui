@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ThemeProvider } from 'react-css-themr';
 
-const contextTheme = {
+export const DeliciousThemeContext = {
   PButton: require('./Button.scss'),
   PButtonGroup: require('./ButtonGroup.scss'),
   PConnected: require('./Connected.scss'),
@@ -17,7 +17,7 @@ const contextTheme = {
 
 export default (props: any) => {
   return (
-    <ThemeProvider theme={contextTheme}>
+    <ThemeProvider theme={DeliciousThemeContext}>
       {props.children}
     </ThemeProvider>
   );
