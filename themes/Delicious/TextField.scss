@@ -20,11 +20,6 @@ $backdrop-horizontal-spacing: spacing(tight) * 1.5;
   padding: control-vertical-padding() 0;
   transition: 0.3s all ease;
 
-  &:focus {
-    padding-top: 1.7rem;
-    padding-bottom: 0.5rem;
-  }
-
   &::placeholder {
     text-align: right;
   }
@@ -32,7 +27,7 @@ $backdrop-horizontal-spacing: spacing(tight) * 1.5;
 
 .hasValue {
 
-  .Input{
+  .Input, .input{
     padding-top: 1.7rem;
     padding-bottom: 0.5rem;
   }

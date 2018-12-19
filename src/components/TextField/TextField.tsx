@@ -227,7 +227,12 @@ class TextField extends React.PureComponent<Props, State> {
       'aria-invalid': Boolean(errors),
     });
 
-    const hasValue = (!!this.props.value && this.props.value.length > 0);
+    const hasValue = (!!this.props.value && this.props.value.length > 0) || this.state.value !== '';
+
+    const lableStyle = classNames(
+      theme.labelStyle,
+      (hasValue || this.state.focused) && theme.labelHasValue
+    );
 
     return (
       <Labelled
@@ -240,6 +245,7 @@ class TextField extends React.PureComponent<Props, State> {
         focused={this.state.focused}
         hasValue={hasValue}
         required={required}
+        componentClass={lableStyle}
       >
         <Connected
           left={connectedLeft}

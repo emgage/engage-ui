@@ -87,7 +87,7 @@ const select = ({
 
   const isPlaceholder = value == null && placeholder != null;
   const className = classNames(
-    theme.select,
+    theme.Select,
     errors && theme.error,
     disabled && theme.disabled,
     isPlaceholder && theme.placeholder
@@ -120,7 +120,7 @@ const select = ({
           id={componentId}
           name={name ? name : 'select'}
           value={value}
-          className={theme.input}
+          className={theme.select}
           disabled={disabled}
           required={required}
           onFocus={onFocus}
