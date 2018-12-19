@@ -12,6 +12,10 @@ import {
   Button,
   ButtonGroup,
   Card,
+  CardHeader,
+  CardFooter,
+  CardSection,
+  CardBody,
   Checkbox,
   Chip,
   ChoiceList,
@@ -1299,6 +1303,24 @@ class App extends React.Component<{}, State> {
             resizable
             // onChange={this.valueUpdater('appTextCounter')}
           />
+                                <Card>
+                                    <CardBody componentTitle="Online store dashboard - Card" sectioned>
+                                        <CardSection componentTitle="Reports" >
+                                            <p>View a summary of your online store’s performance.</p>
+                                        </CardSection>
+                                        <CardSection componentTitle="Summary Reports">
+                                            <p>View a summary of your online store’s performance, including sales, visitors, top products, and referrals.</p>
+                                        </CardSection>
+                                    </CardBody>
+                                </Card>
+                                <div>this is card sep</div>
+         <Card>
+            <CardHeader>Grid Header1</CardHeader>
+            <CardBody>
+            <CardSection>This is card Section</CardSection>
+            </CardBody>
+            <CardFooter><Button onClick={(e: any) => this.popoverUpdate2(e)}>Dropdown2 active</Button></CardFooter>
+         </Card>
           <p> Some text with a
           <Tooltip content="This order has shipping labels.">
               <Link>Tooltip 1</Link>
@@ -1321,7 +1343,7 @@ class App extends React.Component<{}, State> {
           </Tooltip>
           <TextField componentId="TestName" label="Text Counter" placeholder="test-placeholder" value={this.state.appTextCounter} helpText="Helper Text" enableTextCounter={true} maxLength={100} /* onChange={this.valueUpdater('appTextCounter')} */ />
           <ClickableChip chip={<Chip>Batman</Chip>}>
-            <Card componentTitle="More about Batman">
+            <Card>
               <p>Batman is a fictional superhero who appears in American comic books published by DC Comics. The character was created by artist Bob Kane and writer Bill Finger, and first appeared in Detective Comics #27</p>
             </Card>
           </ClickableChip>

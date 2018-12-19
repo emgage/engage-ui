@@ -35,7 +35,11 @@ export {
 } from './ButtonGroup';
 
 export {
-  default as Card,
+  Card,
+  CardHeader,
+  CardFooter,
+  CardBody,
+  CardSection,
   Props as CardProps,
 } from './Card';
 
