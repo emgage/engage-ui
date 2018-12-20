@@ -205,7 +205,7 @@ class SideNavigation extends React.Component<Props, State> {
           currentTheme="dark"
           mode="push"
           componentWidth={activeDrawerId === 'collapsedContent' ? 'collapsed' : 'small'}
-          style={drawerStyle}>
+          componentStyle={drawerStyle}>
           <DrawerContent
             componentId="fullContent"
             mode="slide"

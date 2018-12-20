@@ -52,7 +52,8 @@ export interface Props {
   theme?: any;
   // Callback function to close or open the drawer
   toggleDrawer?(): void;
-  style?: any;
+  componentStyle?: any;
+  componentClass?: string;
 }
 
 const getUniqueID = createUniqueIDFactory('DrawerWrapper');
@@ -90,11 +91,13 @@ class Drawer extends React.PureComponent<Props, never> {
       active,
       overlay,
       componentWidth = 'medium',
+      componentClass,
       theme,
     } = this.props;
 
     return classNames(
       theme.drawer,
+      componentClass,
       overlay && theme.overlay,
       flip && this.props.theme.flip,
       theme[componentWidth],
@@ -188,7 +191,7 @@ class Drawer extends React.PureComponent<Props, never> {
     const dStyle = Object.assign(
       {},
       { width: componentWidth ? { width: `${componentWidth}` } : undefined },
-      this.props.style
+      this.props.componentStyle
     );
 
     const bar = [

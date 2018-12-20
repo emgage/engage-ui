@@ -19,6 +19,7 @@ export interface Props {
   align?: FlexAlign;
   // To display the styling.
   componentStyle?: React.CSSProperties;
+  componentClass?: string;
   // Theme to be injected via css-themr.
   theme?: any;
 }
@@ -26,14 +27,17 @@ export interface Props {
 class FlexBox extends React.PureComponent<Props, {}> {
   render() {
     const {
-            inline,
-            direction ,
-            justify,
-            align,
-         } = this.props;
+      inline,
+      direction ,
+      justify,
+      align,
+      componentClass
+    } = this.props;
 
     let className = inline ? this.props.theme.inline : this.props.theme.flex;
-        // set direction property css
+    className = classNames(componentClass, className);
+
+    // set direction property css
     switch (direction) {
       case 'Column':
         className = classNames(this.props.theme.column, className);
@@ -49,7 +53,8 @@ class FlexBox extends React.PureComponent<Props, {}> {
         className = classNames(this.props.theme.row, className);
         break;
     }
-        // set justify property css
+
+    // set justify property css
     switch (justify) {
       case 'End':
         className = classNames(this.props.theme.contentEnd, className);

@@ -28,6 +28,8 @@ export interface Props {
   secondaryFooterAction?: Action;
   // Theme to be injected via css-themr.
   theme?: any;
+  componentStyle?: any;
+  componentClass?: string;
 }
 
 class Card extends React.PureComponent<Props, never> {
@@ -37,6 +39,8 @@ class Card extends React.PureComponent<Props, never> {
     const {
       children,
       componentTitle,
+      componentStyle,
+      componentClass,
       subdued,
       sectioned,
       actions,
@@ -45,7 +49,11 @@ class Card extends React.PureComponent<Props, never> {
       theme,
     } = this.props;
 
-    const className = classNames(theme.card, subdued && theme.subdued);
+    const className = classNames(
+      theme.card,
+      componentClass,
+      subdued && theme.subdued
+    );
 
     const headerMarkup = componentTitle
       ? <Header actions={actions}>{componentTitle}</Header>
@@ -75,7 +83,7 @@ class Card extends React.PureComponent<Props, never> {
       : null;
 
     return (
-      <div className={className}>
+      <div className={className} style={componentStyle}>
         {headerMarkup}
         {content}
         {footerMarkup}

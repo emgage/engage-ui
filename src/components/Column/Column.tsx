@@ -63,6 +63,7 @@ export interface Props {
   extraLarge?: ResponsiveWidth;
   // Set the style via css externally
   componentStyle?: React.CSSProperties;
+  componentClass?: string;
   // Theme to be injected via css-themr
   theme?: any;
 }
@@ -75,7 +76,7 @@ class Column extends React.PureComponent<Props, {}> {
   }
 
   render() {
-    let className = '';
+    let className = classNames(this.props.componentClass);
 
     if (this.props.small) {
       className = classNames(this.getClassName(this.props.small, 'small'), className);
