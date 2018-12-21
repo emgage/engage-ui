@@ -475,7 +475,7 @@ class App extends React.Component<{}, State> {
       }, {
         id: 0.2,
         label: 'Global Application',
-        icon: 'embed',
+        icon: 'external',
         currentApp: true,
         parentDivider: true,
         action: () => console.log('Basics is clicked!')
