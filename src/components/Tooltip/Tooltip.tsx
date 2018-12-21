@@ -5,7 +5,7 @@ import { autobind } from '@shopify/javascript-utilities/decorators';
 import { noop, createUniqueIDFactory } from '@shopify/javascript-utilities/other';
 import { findFirstFocusableNode } from '@shopify/javascript-utilities/focus';
 
-import { PreferredPosition } from '../PositionedOverlay';
+import { PreferredPosition, PreferredAlignment } from '../PositionedOverlay';
 import { TOOLTIP } from '../ThemeIdentifiers';
 
 import TooltipOverlay from './TooltipOverlay';
@@ -22,11 +22,17 @@ export interface Props {
   light?: boolean;
   // The direction the tooltip tries to display Availabel options: above | below | mostSpace
   preferredPosition?: PreferredPosition;
+  PreferredAlignment?: PreferredAlignment;
+  // Set direction to be applied. Available options: up | down | left | right.
+  direction?:Direction;
   // The element type to wrap the activator in.
   activatorWrapper?: string;
   // Theme to be injected via css-themr.
   theme?: any;
 }
+
+// DEfine type for direction to render popover
+export type Direction = 'up' | 'down' | 'left' | 'right' | 'full';
 
 export interface State {
   active: boolean;
@@ -57,7 +63,9 @@ class Tooltip extends React.PureComponent<Props, State> {
     if (activatorNode == null) { return null; }
 
     const {
+      direction = 'right',
       preferredPosition = 'below',
+      PreferredAlignment = 'center',
       active,
       light,
       content,
@@ -67,11 +75,14 @@ class Tooltip extends React.PureComponent<Props, State> {
     return (
       <TooltipOverlay
         componentId={id}
+        direction={direction}
         preferredPosition={preferredPosition}
+        preferredAlignment={PreferredAlignment}
         activator={activatorNode}
         active={active || this.state.active}
         onClose={noop}
         light={light}
+        theme={theme}
       >
          <div className={theme.label}>
           {content}

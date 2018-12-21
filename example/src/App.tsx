@@ -1300,8 +1300,8 @@ class App extends React.Component<{}, State> {
             // onChange={this.valueUpdater('appTextCounter')}
           />
           <p> Some text with a
-          <Tooltip content="This order has shipping labels.">
-              <Link>Tooltip 1</Link>
+          <Tooltip content="This order has shipping labels." direction="right">
+              <Link>Tooltipss 1</Link>
             </Tooltip> in it
         </p>
           <Tooltip

@@ -16,6 +16,7 @@ import { forNode as ScrollableForNode } from '../Scrollable';
 import {
   calculateVerticalPosition,
   calculateHorizontalPosition,
+  PreferredAlignment,
 } from '../PositionedOverlay/math';
 
 // DEfine type for direction to render popover
@@ -29,6 +30,7 @@ export interface Props {
   disabled?:boolean;
   // Set direction to be applied. Available options: up | down | left | right.
   direction?:Direction;
+  preferredAlignment?: PreferredAlignment;
   // Set active to true for popover to display, else false
   active: boolean;
   // Set wrapper element
@@ -37,6 +39,7 @@ export interface Props {
   closeOnClickOutside?: boolean;
   // Set anchor element or keep it null
   anchorEl?: HTMLElement | null;
+  fixed?: boolean;
   // To add any inline style to Popover
   style? : any;
   // Call close method on click 
@@ -287,6 +290,8 @@ class Popover extends React.PureComponent<Props, State> {
     const {
       direction = 'down',
       anchorEl,
+      fixed,
+      preferredAlignment = 'center'
     } = this.props;
 
     const activatorRect = getRectForNode(anchorEl);
@@ -297,8 +302,8 @@ class Popover extends React.PureComponent<Props, State> {
       : { activator: 0, container: 0, horizontal: 0 };
     const containerRect = getRectForNode(window);
     const zIndex = anchorEl ? getZIndexForLayerFromNode(anchorEl) + 1 : 1;
-    const verticalPosition = calculateVerticalPosition(activatorRect, overlayRect, overlayMargins, scrollableContainerRect, containerRect, direction === 'down' ? 'below' : 'above');
-    const horizontalPosition = calculateHorizontalPosition(activatorRect, overlayRect, containerRect);
+    const verticalPosition = calculateVerticalPosition(activatorRect, overlayRect, overlayMargins, scrollableContainerRect, containerRect, direction === 'down' ? 'below' : 'above', fixed);
+    const horizontalPosition = calculateHorizontalPosition(activatorRect, overlayRect, containerRect, overlayMargins, preferredAlignment);
 
     return {  zIndex, top: verticalPosition.top, left: horizontalPosition };
   }
