@@ -1004,7 +1004,7 @@ class App extends React.Component<{}, State> {
             active={this.state.outterDrawer}
             activeContentId={this.state.outterDrawerId}
             mode="slide"
-            componentWidth="large"
+            componentWidth="530px"
             componentLabel={this.state.outterDrawerLabel}
             overlay
             closeButton

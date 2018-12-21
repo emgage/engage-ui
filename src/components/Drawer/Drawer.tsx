@@ -21,7 +21,10 @@ export type Mode = 'slide' | 'push' | 'reveal';
   // Medium gives the 350px width of drawer
   // Large gives the 600px width of drawer
 */
-export type Width = 'collapsed' | 'small' | 'medium' | 'large' | string;
+const stringLitArray = <L extends string>(arr: L[]) => arr;
+const widthType = stringLitArray(['collapsed', 'small', 'medium', 'large']);
+
+export type Width = (typeof widthType)[number];
 
 // All prototypes type
 export interface Props {
@@ -36,6 +39,8 @@ export interface Props {
   componentLabel?: string;
   // If there are multiple theme for drawer then you can pass theme required here
   currentTheme?: string;
+  // This helps to define specifc theme from the parent component
+  themeClass?: string;
   // Open drawer in flip direction (i.e. right)
   flip?: boolean;
   // Open drawer in slide, push or reveal mode
@@ -47,7 +52,7 @@ export interface Props {
   // Show overlay / backdrop
   overlay?: boolean;
   // Define width of drawer
-  componentWidth?: Width;
+  componentWidth?: Width | string;
   // Set theme for drawer
   theme?: any;
   // Callback function to close or open the drawer
@@ -84,6 +89,11 @@ class Drawer extends React.PureComponent<Props, never> {
     this.setAccessibilityAttributes();
   }
 
+  // Function to check if the component width is pre-defined or the custom pixel value
+  isWidthPreDefine = (width: any): width is Width => {
+    return widthType.includes(width);
+  }
+
   // Function to get the drawer container class names
   getContainerClassName() {
     const {
@@ -100,7 +110,8 @@ class Drawer extends React.PureComponent<Props, never> {
       componentClass,
       overlay && theme.overlay,
       flip && this.props.theme.flip,
-      theme[componentWidth],
+      this.isWidthPreDefine(componentWidth) && theme[componentWidth],
+      !this.isWidthPreDefine(componentWidth) && theme.customWidth,
       active && theme.open
     );
   }
@@ -110,12 +121,14 @@ class Drawer extends React.PureComponent<Props, never> {
     const {
       componentLabel,
       currentTheme = '',
+      themeClass = '',
       mode,
       theme,
     } = this.props;
 
     return classNames(
       theme.bar,
+      themeClass,
       componentLabel && theme.overflowDisable,
       currentTheme && theme[currentTheme],
       mode === 'slide' && theme.animation,
@@ -179,7 +192,7 @@ class Drawer extends React.PureComponent<Props, never> {
   }
 
   renderLayer() {
-    const { active, mode, componentLabel, componentWidth, theme } = this.props;
+    const { active, mode, componentLabel, componentWidth, theme,  } = this.props;
     const containerClassName = this.getContainerClassName();
     const barClassName = this.getBarClassName();
 
@@ -190,7 +203,7 @@ class Drawer extends React.PureComponent<Props, never> {
     const activeContent = this.renderActivechildren();
     const dStyle = Object.assign(
       {},
-      { width: componentWidth ? { width: `${componentWidth}` } : undefined },
+      { width: componentWidth && !this.isWidthPreDefine(componentWidth) ? `${componentWidth}` : undefined },
       this.props.componentStyle
     );
 
