@@ -105,7 +105,7 @@ class TreeView extends React.Component<Props, State> {
           <span onClick={() => this.toggleNode(item.id)}>
             {item.active ? <Icon componentStyle={iconStyle} componentColor={iconColor} source="circleChevronDown" /> : <Icon componentColor={iconColor} componentStyle={iconStyle} source="circleChevronRight" />}
           </span> :
-          <span> <Icon componentStyle={iconStyle} componentColor={iconColor} source="circleFilled" /> </span>
+          <span> <Icon componentStyle={iconStyle} componentColor={iconColor} source="circle" /> </span>
         }
 
         <span className={this.props.theme.treeviewSpan}><TreeNode { ...item } /></span>
