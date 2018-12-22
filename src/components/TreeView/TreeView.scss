@@ -1,12 +1,20 @@
 .treeview {
     list-style-type: none;
+    padding: 0;
+    margin: 0;
 
     ul {
-        margin-left: -12px;
-        margin-top: 5px;
-        margin-right: 0px;
-        margin-bottom: 0px;
+        padding: 0;
+        margin: 0;
+        margin-left: -1.4em;
     }
+}
+
+.nodeicon {
+  width: 1em;
+  height: 1em;
+  position: absolute;
+  left: 1em;
 }
 
 .active {
@@ -16,47 +24,54 @@
 .treeview li {
     list-style-type:none;
     margin:0;
-    padding:10px 5px 0 5px;
-    position:relative
-}
-.treeview li::before, .treeview li::after {
-    content:'';
-    left:-20px;
-    position:absolute;
-    right:auto
+    padding: 0.7em 0.7em 0.7em 2.8em;
+    position:relative;
 }
 
-.treeview li::before {
-    border-left:1px solid #999;
-    bottom:50px;
-    height:100%;
-    top:-18px;
-    width:1px;
+// need to clean up for multiline top node which has childen
+// li.haschildren::before {
+//   content:'';
+//   left:1.4em;
+//   position:absolute;
+//   right:auto;
+//   border-left:1px solid #999;
+//   bottom:0;
+//   top:0;
+// }
+
+.treeview ul li::before, .treeview ul li::after {
+    content:'';
+    left:0;
+    position:absolute;
+    right:auto;
 }
-.treeview li::after {
+
+.treeview ul li::before {
+    border-left:1px solid #999;  
+    bottom:0;
+    top:0;
+}
+.treeview ul li::after {
     border-top:1px solid #999;
-    height:20px;
-    top:18px;
-    width:35px;
+    top:calc(1em/2 + 0.7em); //18px;
+    width:1em;
 }
 
 .treeviewSpan{
-    border-bottom:1px solid #999;
-    border-width:100%;
-    display:inline-grid;
-    text-decoration:none;
-    width: 95%;
-    margin-left: 1%;
+    // border-bottom:1px solid #999;
+    // border-width:100%;
+    // display:inline-grid;
+    // text-decoration:none;
+    // width: 95%;
 }
 
 .treeview li.parent_li>span {
     cursor:pointer;
 }
-.treeview>ul>li::before, .treeview>ul>li::after {
-    border:0
-}
-.treeview li:last-child::before {
-    height:37px
+
+// set last node tail to line height plus list item top margin
+.treeview li:not(.haschildren):last-child::before {
+    height: calc(1em/2 + 0.7em);
 }
 .treeview li.parent_li>span:hover, .treeview li.parent_li>span:hover+ul li span {
     background:#eee;
