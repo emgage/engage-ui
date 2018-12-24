@@ -24,6 +24,7 @@ $stacking-order: (
 .textField {
   @include text-style-input;
   position: relative;
+  z-index: 1;
   display: flex;
   align-items: baseline;
   padding: 0 $backdrop-horizontal-spacing;
@@ -31,8 +32,6 @@ $stacking-order: (
 }
 
 .multiline {
-  padding: 0;
-
   > .input {
     overflow: auto;
   }
@@ -102,6 +101,10 @@ $stacking-order: (
   appearance: none;
   padding-top: 1.7rem;
   padding-bottom: 0.5rem;
+
+  &.noLabel {
+    padding: 1.1rem 0;
+  }
 
   &:disabled {
     color: color(ink, lightest);

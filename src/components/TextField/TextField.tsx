@@ -201,6 +201,11 @@ class TextField extends React.PureComponent<Props, State> {
     if (prefix) { labelledBy.push(`${componentId}Prefix`); }
     if (suffix) { labelledBy.push(`${componentId}Suffix`); }
 
+    const inputEleClass = classNames(
+      theme.input,
+      !label && theme.noLabel
+    );
+
     const input = React.createElement(multiline ? 'textarea' : 'input', {
       ...rest,
       name,
@@ -217,7 +222,7 @@ class TextField extends React.PureComponent<Props, State> {
       style: newComponentStyle,
       formNoValidate: true,
       autoComplete: normalizeAutoComplete(autoComplete),
-      className: theme.input,
+      className: inputEleClass,
       onChange: this.onChange,
       onKeyDown: this.onKeyDown,
       ref: this.setInput,
