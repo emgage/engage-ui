@@ -116,7 +116,7 @@ class TreeView extends React.Component<Props, State> {
                 }
               </div> :
               <div>
-                <Icon componentStyle={dotIconStyle} componentColor={iconColor} source="circleFilled" />
+                <Icon componentStyle={dotIconStyle} componentColor={iconColor} source="circle" />
               </div>
             }
 

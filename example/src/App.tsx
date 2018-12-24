@@ -475,103 +475,103 @@ class App extends React.Component<{}, State> {
       }, {
         id: 0.2,
         label: 'Global Application',
-        icon: 'embed',
+        icon: 'external',
         currentApp: true,
         parentDivider: true,
         action: () => console.log('Basics is clicked!')
       }, {
         id: 0.3,
-        label: 'Feature',
+        label: 'Features',
         icon: 'notes',
         divider: true,
         action: () => console.log('Basics is clicked!')
       }, {
         id: 1,
         label: 'Dashboard',
-        icon: 'notes',
+        icon: 'tachometer',
         action: () => console.log('Basics is clicked!')
       }, {
         id: 2,
         label: 'Basics',
-        icon: 'notes',
+        icon: 'infoCircle',
         divider: true,
         action: () => console.log('Basics is clicked!')
       }, {
         id: 3,
         label: 'Content',
-        icon: 'notes',
+        icon: 'database',
         divider: true,
         action: () => console.log('Basics is clicked!')
       }, {
         id: 3.2,
-        label: 'Content Ins',
-        icon: 'notes',
+        label: 'Content Definitions',
+        icon: 'database',
         divider: true,
         action: () => console.log('Basics is clicked!')
       }, {
         id: 5.1,
-        label: 'Values',
-        icon: 'conversation',
+        label: 'Value Definitions',
+        icon: 'database',
         divider: true,
         action: () => console.log('Basics is clicked!')
       }, {
         id: 3.1,
         label: 'User',
-        icon: 'conversation',
+        icon: 'user',
         action: () => console.log('Basics is clicked!')
       }, {
         id: 4,
         label: 'Groups',
-        icon: 'conversation',
+        icon: 'users',
         action: () => console.log('Basics is clicked!')
       }, {
         id: 5,
         label: 'Roles',
-        icon: 'conversation',
+        icon: 'userMd',
         action: () => console.log('Basics is clicked!')
       }, {
         id: 6,
         label: 'Permissions',
-        icon: 'conversation',
+        icon: 'lock',
         divider: true,
         action: () => console.log('Permissions Item is clicked!'),
       }, {
         id: 7,
         label: 'Pages',
-        icon: 'view',
+        icon: 'file',
         action: () => console.log('Basics is clicked!')
       }, {
         id: 8,
         label: 'Forms',
-        icon: 'view',
+        icon: 'checkSquare',
         action: () => console.log('Basics is clicked!')
       }, {
         id: 9,
         label: 'Workflow',
-        icon: 'view',
+        icon: 'puzzlePiece',
         action: () => console.log('Workflow Item is clicked!'),
       }, {
         id: 10,
         label: 'Themes',
-        icon: 'view',
+        icon: 'paintBrush',
         divider: true,
         action: () => console.log('Themes Item is clicked!'),
       }, {
         id: 11,
         label: 'Publishing',
-        icon: 'export',
+        icon: 'refresh',
         divider: true,
         action: () => console.log('Publishing is clicked!'),
       }, {
         id: 12,
         label: 'App Analytics',
-        icon: 'embed',
+        icon: 'chartBar',
         divider: true,
         action: () => console.log('App Analytics is clicked!'),
       }, {
         id: 13,
         label: 'Sherpa',
-        icon: 'alert',
+        icon: 'handsHelping',
         action: () => console.log('Sherpa is clicked!'),
       },
     ];
