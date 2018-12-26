@@ -256,7 +256,8 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
           overlayRect,
           containerRect,
           overlayMargins,
-          preferredAlignment
+          preferredAlignment,
+          preferredPosition
         );
 
         this.setState({

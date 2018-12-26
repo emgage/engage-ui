@@ -78,7 +78,7 @@
 
 import { Rect } from '@shopify/javascript-utilities/geometry';
 
-export type PreferredPosition = 'above' | 'below' | 'mostSpace';
+export type PreferredPosition = 'above' | 'below' | 'left' | 'right' | 'mostSpace';
 export type PreferredAlignment = 'left' | 'center' | 'right';
 
 export interface Margins {
@@ -117,7 +117,7 @@ export function calculateVerticalPosition(
   const heightIfBelow = Math.min(spaceBelow, desiredHeight);
   const heightIfAbove = Math.min(spaceAbove, desiredHeight);
   const containerRectTop = fixed ? 0 : containerRect.top;
-
+  debugger;
   const positionIfAbove = {
     height: heightIfAbove - verticalMargins,
     top: activatorTop + containerRectTop - heightIfAbove,
@@ -130,6 +130,12 @@ export function calculateVerticalPosition(
     positioning: 'below',
   };
 
+  const positionIfLeftOrRight = {
+    height: heightIfBelow - verticalMargins,
+    top: positionIfBelow.top - positionIfBelow.height,
+    positioning: 'below',
+  };
+
   if (preferredPosition === 'above') {
     return (enoughSpaceFromTopScroll ||
       (distanceToTopScroll >= distanceToBottomScroll &&
@@ -139,13 +145,8 @@ export function calculateVerticalPosition(
       : positionIfBelow;
   }
 
-  if (preferredPosition === 'below') {
-    return (enoughSpaceFromBottomScroll ||
-      (distanceToBottomScroll >= distanceToTopScroll &&
-        !enoughSpaceFromTopScroll)) &&
-      (spaceBelow > desiredHeight || spaceBelow > spaceAbove)
-      ? positionIfBelow
-      : positionIfAbove;
+  if (preferredPosition === 'right' || preferredPosition === 'left') {
+    return positionIfLeftOrRight;
   }
 
   if (enoughSpaceFromTopScroll && enoughSpaceFromBottomScroll) {
@@ -162,7 +163,8 @@ export function calculateHorizontalPosition(
   overlayRect: Rect,
   containerRect: Rect,
   overlayMargins: Margins,
-  preferredAlignment: PreferredAlignment
+  preferredAlignment: PreferredAlignment,
+  preferredPosition: PreferredPosition
 ) {
   const maximum = containerRect.width - overlayRect.width;
 
@@ -179,6 +181,12 @@ export function calculateHorizontalPosition(
         0,
         activatorRight - overlayRect.width + overlayMargins.horizontal
       )
+    );
+  } if (preferredPosition === 'left' || preferredPosition === 'right') {
+    debugger;
+    return Math.min(
+      maximum,
+      Math.max(0, preferredPosition === 'right' ? (activatorRect.center.x + activatorRect.width / 2) : (activatorRect.center.x - (activatorRect.width) - (activatorRect.width / 2)))
     );
   }
 

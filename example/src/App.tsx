@@ -1299,16 +1299,17 @@ class App extends React.Component<{}, State> {
             resizable
             // onChange={this.valueUpdater('appTextCounter')}
           />
-          <p> Some text with a
-          <Tooltip content="This order has shipping labels." direction="right">
-              <Link>Tooltipss 1</Link>
+          <div> Some text with a
+          <Tooltip content="This order has shipping labels." preferredPosition="right" >
+              <Link>Tooltipss 1 and toolstip <br/>
+               for demo content</Link>
             </Tooltip> in it
-        </p>
-          <Tooltip
+        </div>
+          {/* <Tooltip
             content="This order has shipping."
           >
             <Link>Tooltip 2</Link>
-          </Tooltip>
+          </Tooltip> */}
           <p> Some text with a
           <Tooltip content="This order has shipping labels.">
               <Link>Tooltip 1</Link>

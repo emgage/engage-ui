@@ -17,6 +17,7 @@ import {
   calculateVerticalPosition,
   calculateHorizontalPosition,
   PreferredAlignment,
+  PreferredPosition,
 } from '../PositionedOverlay/math';
 
 // DEfine type for direction to render popover
@@ -31,6 +32,8 @@ export interface Props {
   // Set direction to be applied. Available options: up | down | left | right.
   direction?:Direction;
   preferredAlignment?: PreferredAlignment;
+  // Define overlay position 
+  preferredPosition?: PreferredPosition;
   // Set active to true for popover to display, else false
   active: boolean;
   // Set wrapper element
@@ -291,7 +294,8 @@ class Popover extends React.PureComponent<Props, State> {
       direction = 'down',
       anchorEl,
       fixed,
-      preferredAlignment = 'center'
+      preferredAlignment = 'center',
+      preferredPosition = 'below',
     } = this.props;
 
     const activatorRect = getRectForNode(anchorEl);
@@ -303,7 +307,7 @@ class Popover extends React.PureComponent<Props, State> {
     const containerRect = getRectForNode(window);
     const zIndex = anchorEl ? getZIndexForLayerFromNode(anchorEl) + 1 : 1;
     const verticalPosition = calculateVerticalPosition(activatorRect, overlayRect, overlayMargins, scrollableContainerRect, containerRect, direction === 'down' ? 'below' : 'above', fixed);
-    const horizontalPosition = calculateHorizontalPosition(activatorRect, overlayRect, containerRect, overlayMargins, preferredAlignment);
+    const horizontalPosition = calculateHorizontalPosition(activatorRect, overlayRect, containerRect, overlayMargins, preferredAlignment, preferredPosition);
 
     return {  zIndex, top: verticalPosition.top, left: horizontalPosition };
   }
