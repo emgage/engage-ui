@@ -2,7 +2,6 @@ import * as React from 'react';
 import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 import { autobind } from '@shopify/javascript-utilities/decorators';
 import { classNames } from '@shopify/react-utilities/styles';
-// import { addEventListener, removeEventListener } from '@shopify/javascript-utilities/events';
 import { getRectForNode, Rect } from '@shopify/javascript-utilities/geometry';
 import { closest } from '@shopify/javascript-utilities/dom';
 import { forNode as ScrollableForNode } from '../Scrollable';
@@ -21,7 +20,7 @@ import * as baseTheme from './PositionedOverlay.scss';
 
 export { PreferredPosition };
 export { PreferredAlignment };
-export type Positioning = 'above' | 'below';
+export type Positioning = 'below' | 'above';
 
 export interface OverlayDetails {
   left: number;
@@ -77,10 +76,6 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
   private scrollableContainer: HTMLElement;
 
   componentDidMount() {
-    // this.scrollableContainer = ScrollableForNode(this.props.activator);
-    // addEventListener(this.scrollableContainer, 'scroll', this.handleMeasurement);
-    // addEventListener(window, 'resize', this.handleMeasurement);
-    // this.handleMeasurement();
 
     this.scrollableContainer = ScrollableForNode(this.props.activator);
     if (this.scrollableContainer && !this.props.fixed) {
@@ -91,15 +86,6 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
     }
     this.handleMeasurement();
   }
-
-  // componentDidUpdate() {
-  //   const { outsideScrollableContainer, top } = this.state;
-  //   const { onScrollOut, active } = this.props;
-
-  //   if (active && onScrollOut != null && top !== 0 && outsideScrollableContainer) {
-  //     onScrollOut();
-  //   }
-  // }
 
   componentDidUpdate() {
     const { outsideScrollableContainer, top } = this.state;
@@ -128,27 +114,9 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
     this.handleMeasurement();
   }
 
-  // render() {
-  //   const { left, top, zIndex } = this.state;
-  //   const { render, theme } = this.props;
-
-  //   return (
-  //     <div
-  //       className={theme.positionedOverlay}
-  //       style={{ top, left, zIndex }}
-  //       ref={(input) => {
-  //         this.setOverlay(input as HTMLElement);
-  //       }}
-  //     >
-  //       {render(this.overlayDetails())}
-  //     </div>
-  //   );
-  // }
-
   render() {
     const { left, top, zIndex, width } = this.state;
     const { render, fixed, theme } = this.props;
-
     const style = {
       top: top == null ? undefined : top,
       left: left == null ? undefined : left,

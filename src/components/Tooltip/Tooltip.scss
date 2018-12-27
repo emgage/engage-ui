@@ -11,8 +11,35 @@ $visible-portion-of-arrow: rem(5px);
 $content-max-height: rem(100px);
 $content-max-width: rem(200px);
 
-.tooltip {
+.aboveTooltip {
   margin: $visible-portion-of-arrow spacing() spacing();
+  opacity: 1;
+  box-shadow: shadow(deep);
+  border-radius: border-radius();
+  pointer-events: none;
+  will-change: opacity, left, top;
+  transition: opacity duration() easing(in);
+}
+.rightTooltip {
+  margin: $visible-portion-of-arrow spacing() $visible-portion-of-arrow;
+  opacity: 1;
+  box-shadow: shadow(deep);
+  border-radius: border-radius();
+  pointer-events: none;
+  will-change: opacity, left, top;
+  transition: opacity duration() easing(in);
+}
+.belowTooltip {
+  margin: $visible-portion-of-arrow spacing() spacing();
+  opacity: 1;
+  box-shadow: shadow(deep);
+  border-radius: border-radius();
+  pointer-events: none;
+  will-change: opacity, left, top;
+  transition: opacity duration() easing(in);
+}
+.leftTooltip {
+  margin: spacing() spacing() spacing() $visible-portion-of-arrow;
   opacity: 1;
   box-shadow: shadow(deep);
   border-radius: border-radius();
@@ -64,8 +91,6 @@ $content-max-width: rem(200px);
 
 .tip {
   position: absolute;
-  top: 0;
-  left: 50%;
   transform: translateX(-50%) rotate(45deg);
   height: $arrow-size;
   width: $arrow-size;
