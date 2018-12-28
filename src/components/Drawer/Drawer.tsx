@@ -101,13 +101,11 @@ class Drawer extends React.PureComponent<Props, never> {
       active,
       overlay,
       componentWidth = 'medium',
-      componentClass,
       theme,
     } = this.props;
 
     return classNames(
       theme.drawer,
-      componentClass,
       overlay && theme.overlay,
       flip && this.props.theme.flip,
       this.isWidthPreDefine(componentWidth) && theme[componentWidth],
@@ -120,6 +118,7 @@ class Drawer extends React.PureComponent<Props, never> {
   getBarClassName() {
     const {
       componentLabel,
+      componentClass,
       currentTheme = '',
       themeClass = '',
       mode,
@@ -129,6 +128,7 @@ class Drawer extends React.PureComponent<Props, never> {
     return classNames(
       theme.bar,
       themeClass,
+      componentClass,
       componentLabel && theme.overflowDisable,
       currentTheme && theme[currentTheme],
       mode === 'slide' && theme.animation,

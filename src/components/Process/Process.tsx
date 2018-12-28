@@ -139,7 +139,7 @@ class Process extends React.PureComponent<Props, State> {
           { steps.length !== (index + 1) ? <div className={theme.processDivider}></div> : null }
         </div>
 
-        <label className={theme.processLabel}>{item.name}</label>
+        <span className={theme.processLabel}>{item.name}</span>
       </li>
     ));
   }
