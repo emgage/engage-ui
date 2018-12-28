@@ -26,7 +26,6 @@ export interface Props {
 
 export default class TooltipOverlay extends React.PureComponent<Props, never> {
   render() {
-    debugger;
     const markup = this.props.active
       ? this.renderOverlay()
       : null;
