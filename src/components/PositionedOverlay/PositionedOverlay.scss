@@ -1,8 +1,10 @@
-@import 'foundation/z-index';
-
-.positionedOverlay {
+.PositionedOverlay {
   position: absolute;
   z-index: z-index(overlay);
+}
+
+.fixed {
+  position: fixed;
 }
 
 .calculating {

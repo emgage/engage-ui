@@ -1300,15 +1300,10 @@ class App extends React.Component<{}, State> {
             // onChange={this.valueUpdater('appTextCounter')}
           />
           <p> Some text with a
-          <Tooltip content="This order has shipping labels.">
-              <Link>Tooltip 1</Link>
+          <Tooltip content="Order" preferredPosition="left" active>
+              <Link>Tooltipss</Link>
             </Tooltip> in it
         </p>
-          <Tooltip
-            content="This order has shipping."
-          >
-            <Link>Tooltip 2</Link>
-          </Tooltip>
           <p> Some text with a
           <Tooltip content="This order has shipping labels.">
               <Link>Tooltip 1</Link>
@@ -1326,8 +1321,8 @@ class App extends React.Component<{}, State> {
             </Card>
           </ClickableChip>
           <p> Some text with a
-          <Tooltip content="This order has shipping labels.">
-              <Link>Tooltip 1</Link>
+          <Tooltip content="This order has shipping labels." >
+              <Link>Tooltipba 1</Link>
             </Tooltip> in it
         </p>
           <Tooltip
