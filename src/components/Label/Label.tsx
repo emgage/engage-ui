@@ -20,6 +20,8 @@ export interface Props {
   hidden?: boolean;
   // To provide styling for label.
   componentStyle?: React.CSSProperties;
+  // Extra class passed as a prop
+  componentClass?: string;
   // Theme to be injected via css-themr.
   theme?: any;
   // To make it required or not.
@@ -43,10 +45,12 @@ function label({
   focused,
   hasValue,
   componentStyle,
+  componentClass = '',
   theme,
 }: Props) {
   const className = classNames(
     theme.text,
+    componentClass,
     hidden && theme.hidden,
     required && theme.required,
     focused && theme.focused,

@@ -42,6 +42,7 @@ export interface Props {
   icon?: IconProps['source'];
   // To display the styling.
   componentStyle?: React.CSSProperties;
+  componentClass?: string;
   // Theme to be injected via css-themr.
   theme?: any;
   // Callback when clicked.
@@ -71,10 +72,12 @@ const button = ({
   componentSize,
   fullWidth,
   componentStyle,
+  componentClass,
   theme,
 }: Props) => {
   const className = classNames(
     theme.button,
+    componentClass,
     primary && theme.primary,
     outline && theme.outline,
     destructive && theme.destructive,

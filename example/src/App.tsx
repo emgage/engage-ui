@@ -1004,7 +1004,7 @@ class App extends React.Component<{}, State> {
             active={this.state.outterDrawer}
             activeContentId={this.state.outterDrawerId}
             mode="slide"
-            componentWidth="large"
+            componentWidth="530px"
             componentLabel={this.state.outterDrawerLabel}
             overlay
             closeButton
@@ -1285,7 +1285,7 @@ class App extends React.Component<{}, State> {
             enableTextCounter
             maxLength={101}
             minLength={5}
-            // onChange={this.valueUpdater('appTextCounter')}
+            onChange={this.valueUpdater('appTextCounter')}
           />
           <TextField
             componentId="TestName1"
@@ -1320,6 +1320,9 @@ class App extends React.Component<{}, State> {
               <p>Batman is a fictional superhero who appears in American comic books published by DC Comics. The character was created by artist Bob Kane and writer Bill Finger, and first appeared in Detective Comics #27</p>
             </Card>
           </ClickableChip>
+          <Card componentTitle="More about Batman">
+              <p>Batman is a fictional superhero who appears in American comic books published by DC Comics. The character was created by artist Bob Kane and writer Bill Finger, and first appeared in Detective Comics #27</p>
+            </Card>
           <p> Some text with a
           <Tooltip content="This order has shipping labels." >
               <Link>Tooltipba 1</Link>
@@ -1518,6 +1521,15 @@ class App extends React.Component<{}, State> {
                 validateRules={[
                   { required: true, message: 'City is required.' },
                 ]}
+              />
+
+              <Select
+                componentId="appCity"
+                name="Select city 2"
+                label=""
+                options={[{ value: '', label: 'Select city' }, { value: 'xyz', label: 'xyz' }, { value: 'abc', label: 'abc' }]}
+                value={this.state.appCity}
+                onChange={this.valueUpdater('appCity')}
               />
               <div><p>child<span>child 2</span></p></div>
               <div>

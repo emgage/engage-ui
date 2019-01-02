@@ -11,9 +11,20 @@ $stacking-order: (
   color: red;
 }
 
+.labelStyle {
+  font-size: 16px;
+  color: #9e9e9e;
+
+  &.labelHasValue {
+    font-size: 13px;
+    color: #616161;
+  }
+}
+
 .textField {
   @include text-style-input;
   position: relative;
+  z-index: 1;
   display: flex;
   align-items: baseline;
   padding: 0 $backdrop-horizontal-spacing;
@@ -21,12 +32,8 @@ $stacking-order: (
 }
 
 .multiline {
-  padding: 0;
-
   > .input {
     overflow: auto;
-    padding-left: $backdrop-horizontal-spacing;
-    padding-right: $backdrop-horizontal-spacing;
   }
 }
 
@@ -47,7 +54,7 @@ $stacking-order: (
   .input::placeholder {
     // This is the only place this color is used.
     // stylelint-disable-next-line color-no-hex
-    color: #9c9798;
+    color: #9e9e9e;
   }
 
   > .input ~ .backdrop {
@@ -92,6 +99,12 @@ $stacking-order: (
   font-size: inherit;
   font-weight: inherit;
   appearance: none;
+  padding-top: 1.7rem;
+  padding-bottom: 0.5rem;
+
+  &.noLabel {
+    padding: 0.9rem 0;
+  }
 
   &:disabled {
     color: color(ink, lightest);
@@ -99,6 +112,7 @@ $stacking-order: (
 
   &:focus {
     outline: none;
+    box-shadow: none;
 
     ~ .backdrop {
       border-color: color(indigo);
@@ -231,9 +245,7 @@ $stacking-order: (
   }
 }
 .counterText{
-  @include text-style-body;
-  @include text-emphasis-subdued;
-  margin-top: spacing(extra-tight);
-  display: inline;
   float: right;
+  font-size: 13px;
+  color: #616161;
 }

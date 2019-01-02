@@ -66,6 +66,7 @@ input[type=checkbox], input[type=radio] {
   margin-bottom: 0;
   padding-left: 0.5rem;
   height: 1.5rem;
+  font-weight: normal;
 
   &:before, &:after {
     position: absolute;

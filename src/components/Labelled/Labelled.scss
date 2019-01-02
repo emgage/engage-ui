@@ -15,7 +15,6 @@
 .empty {}
 
 .helpText {
-  @include text-style-body;
-  @include text-emphasis-subdued;
-  margin-top: spacing(extra-tight);
+  font-size: 13px;
+  color: #616161;
 }
