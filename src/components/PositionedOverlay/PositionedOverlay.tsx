@@ -118,10 +118,10 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
     const { left, top, zIndex, width } = this.state;
     const { render, fixed, theme } = this.props;
     const style = {
-      top: top == null ? undefined : top,
-      left: left == null ? undefined : left,
-      width: width == null ? undefined : width,
-      zIndex: zIndex == null ? undefined : zIndex,
+      top: top === null ? undefined : top,
+      left: left === null ? undefined : left,
+      width: width === null ? undefined : width,
+      zIndex: zIndex === null ? undefined : zIndex,
     };
 
     const className = classNames(
@@ -168,7 +168,7 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
         measuring: true,
       },
       () => {
-        if (this.overlay == null || this.scrollableContainer == null) {
+        if (this.overlay === null || this.scrollableContainer === null) {
           return;
         }
         const {
@@ -209,7 +209,7 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
         const containerRect = windowRect();
         const zIndexForLayer = getZIndexForLayerFromNode(activator);
         const zIndex =
-          zIndexForLayer == null ? zIndexForLayer : zIndexForLayer + 1;
+          zIndexForLayer === null ? zIndexForLayer : zIndexForLayer + 1;
         const verticalPosition = calculateVerticalPosition(
           activatorRect,
           overlayRect,
