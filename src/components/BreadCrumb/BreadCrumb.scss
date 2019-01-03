@@ -377,39 +377,35 @@ ul.breadcrumb.right li.disabled:hover:after {
 
 // Classes for primary/basic theme
 
-.breadcrumbPrimary li{
+.breadcrumbPrimary li {
   display: inline-block;
   position: relative;
-  padding-left: 03px;
-  padding-right: 03px;
-  line-height: 40px;
   text-align: center;
-  height: 40px;
   justify-content: left;
   cursor: pointer;
-  }
-
-  .breadcrumbPrimary li.disabled {
-        color: grey;
-        cursor: default;
 }
 
-  .breadcrumbPrimary.left li:nth-child(n+2) {
-    &::before {
-        color: grey;
-        font-weight: bolder;
-        font-size: 20px;
-        content: ">";
-        padding-right: 05px;
-     }
-    }
+.breadcrumbPrimary li.disabled {
+  color: grey;
+  cursor: default;
+}
 
-  .breadcrumbPrimary.right li:nth-child(n+2) {
-    &::before {
-        color: grey;
-        font-weight: bolder;
-        font-size: 20px;
-        content: "<";
-        padding-right: 05px;
-     }
-    }
+  // .breadcrumbPrimary.left li:nth-child(n+2) {
+  //   &::before {
+  //       color: grey;
+  //       font-weight: bolder;
+  //       font-size: 20px;
+  //       content: ">";
+  //       padding-right: 05px;
+  //    }
+  //   }
+
+  // .breadcrumbPrimary.right li:nth-child(n+2) {
+  //   &::before {
+  //       color: grey;
+  //       font-weight: bolder;
+  //       font-size: 20px;
+  //       content: "<";
+  //       padding-right: 05px;
+  //    }
+  //   }
