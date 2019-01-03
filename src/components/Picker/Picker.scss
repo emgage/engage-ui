@@ -35,7 +35,7 @@
   background-color: white; 
   padding: 0;
   margin: 0 0 0 10px;
-  z-index: 1;
+  z-index: 10;
 }
 
 .suggestionsContainer {
@@ -47,7 +47,7 @@
   background-color: transparent;
   display: inline-block;
   font-size: 1.3rem;
-  color: #212b36;
+  color: #212121;
   overflow: hidden;
   text-overflow: ellipsis;
   width: 200px;
@@ -87,10 +87,7 @@
   width: 100%;
   border-radius: 5px;
   cursor: text;
-  // min-width: 100px;
-  // width:100%;
   min-height: 25px;
-  // max-width: 500px;
 }
 
 .flex {
@@ -101,8 +98,8 @@
 }
 .emailStyle {
   width: 240px; 
-  color: grey;
+  color: rgba(0, 0, 0, 0.54);
 }
 .grey {
-  background-color: #E8E8E8;
+  background-color: #eeeeee;
 }
