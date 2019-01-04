@@ -301,11 +301,11 @@ class Popover extends React.PureComponent<Props, State> {
     const activatorRect = getRectForNode(anchorEl);
     const overlayRect = getRectForNode(this.popoverEle);
     const scrollableContainerRect = getRectForNode(this.scrollableContainer);
-    const overlayMargins = this.popoverEle.firstElementChild
+    const overlayMargins = this.popoverEle && this.popoverEle.firstElementChild
       ? getMarginsForNode(this.popoverEle.firstElementChild as HTMLElement)
       : { activator: 0, container: 0, horizontal: 0 };
     const containerRect = getRectForNode(window);
-    const zIndex = anchorEl ? getZIndexForLayerFromNode(anchorEl) + 1 : 1;
+    const zIndex = anchorEl ? getZIndexForLayerFromNode(anchorEl) + 2 : 2;
     const verticalPosition = calculateVerticalPosition(activatorRect, overlayRect, overlayMargins, scrollableContainerRect, containerRect, direction === 'down' ? 'below' : 'above', fixed);
     const horizontalPosition = calculateHorizontalPosition(activatorRect, overlayRect, containerRect, overlayMargins, preferredAlignment, preferredPosition);
 
@@ -325,6 +325,7 @@ function getMarginsForNode(node: HTMLElement) {
 function getZIndexForLayerFromNode(node: HTMLElement) {
   const layerNode = closest(node, layer.selector) || document.body;
   const zIndex = parseInt(window.getComputedStyle(layerNode).zIndex || '0', 10);
+
   return isNaN(zIndex) ? 0 : zIndex;
 }
 
