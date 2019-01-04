@@ -83,18 +83,25 @@ export function calculateHorizontalPosition(
 ) {
   const maximum = containerRect.width - overlayRect.width;
 
-  if (preferredAlignment === 'left') {
+  if (preferredAlignment === 'left' && (preferredPosition === 'above' || preferredPosition === 'below')) {
     return Math.min(
       maximum,
       Math.max(0, activatorRect.left - overlayMargins.horizontal)
     );
-  } if (preferredAlignment === 'right') {
-    const activatorRight = activatorRect.left + activatorRect.width;
+  } if (preferredAlignment === 'right' && (preferredPosition === 'above' || preferredPosition === 'below')) {
     return Math.min(
       maximum,
       Math.max(
         0,
-        activatorRight - overlayRect.width + overlayMargins.horizontal
+        activatorRect.left - ((activatorRect.width - overlayRect.width) / 2)
+      )
+    );
+  } if (preferredAlignment === 'center' && (preferredPosition === 'above' || preferredPosition === 'below')) {
+    return Math.min(
+      maximum,
+      Math.max(
+        0,
+        activatorRect.left - ((activatorRect.width - overlayRect.width) / 2)
       )
     );
   } if (preferredPosition === 'left' || preferredPosition === 'right') {

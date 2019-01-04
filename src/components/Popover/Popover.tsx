@@ -57,6 +57,7 @@ export interface Props {
 
 export interface State {
   active: boolean;
+  renderCount: number;
 }
 // Popover component, in here wrap all other required components or DOM for the Popover
 class Popover extends React.PureComponent<Props, State> {
@@ -77,6 +78,7 @@ class Popover extends React.PureComponent<Props, State> {
     this.state = {
       // As per props value set the popover to be active
       active: this.props.active,
+      renderCount: 0
     };
   }
 
@@ -87,7 +89,6 @@ class Popover extends React.PureComponent<Props, State> {
     if (newActive !== active) {
       this.setState({ active: newActive });
     }
-
     if (active && !newProps.active && newProps.onClose) {
       newProps.onClose();
     } else if (!active && newProps.active && newProps.onOpen) {
@@ -204,6 +205,11 @@ class Popover extends React.PureComponent<Props, State> {
     const { id, activatorContainer } = this;
     if (activatorContainer === null) { return; }
 
+    const overlayRect = getRectForNode(this.popoverEle);
+    if (overlayRect.width !== 0 && this.state.renderCount < 1) {
+
+      this.forceUpdate();
+    }
     const firstFocusable = findFirstFocusableNode(activatorContainer);
     const focusableActivator = firstFocusable || activatorContainer;
 
@@ -211,7 +217,7 @@ class Popover extends React.PureComponent<Props, State> {
     focusableActivator.setAttribute('aria-controls', id);
     focusableActivator.setAttribute('aria-owns', id);
     focusableActivator.setAttribute('aria-haspopup', 'true');
-    focusableActivator.setAttribute('aria-expanded', String(this.props.active));
+    focusableActivator.setAttribute('aria-expanded', String(!this.props.active));
   }
 
   // Get activator node i.e. trigger which opened up popover
@@ -229,7 +235,7 @@ class Popover extends React.PureComponent<Props, State> {
   @autobind
   private handleKeyEvent(event: KeyboardEvent) {
     event.preventDefault();
-
+    this.setState({ renderCount: 0 });
     const {
       closeOnClickOutside,
       callbackParent,
@@ -269,7 +275,7 @@ class Popover extends React.PureComponent<Props, State> {
     if (!active) {
       return;
     }
-
+    this.setState({ renderCount: 0 });
     // Close the popdown on outside area click
     if (element !== null && event.target != null && element !== event.target && closeOnClickOutside) {
       const domNode = document.body;
@@ -297,6 +303,10 @@ class Popover extends React.PureComponent<Props, State> {
       preferredAlignment = 'center',
       preferredPosition = 'below',
     } = this.props;
+
+    if (this.state.renderCount < 2) {
+      this.setState({ renderCount: this.state.renderCount + 1 });
+    }
 
     const activatorRect = getRectForNode(anchorEl);
     const overlayRect = getRectForNode(this.popoverEle);
