@@ -479,103 +479,103 @@ class App extends React.Component<{}, State> {
       }, {
         id: 0.2,
         label: 'Global Application',
-        icon: 'embed',
+        icon: 'external',
         currentApp: true,
         parentDivider: true,
         action: () => console.log('Basics is clicked!')
       }, {
         id: 0.3,
-        label: 'Feature',
+        label: 'Features',
         icon: 'notes',
         divider: true,
         action: () => console.log('Basics is clicked!')
       }, {
         id: 1,
         label: 'Dashboard',
-        icon: 'notes',
+        icon: 'tachometer',
         action: () => console.log('Basics is clicked!')
       }, {
         id: 2,
         label: 'Basics',
-        icon: 'notes',
+        icon: 'infoCircle',
         divider: true,
         action: () => console.log('Basics is clicked!')
       }, {
         id: 3,
         label: 'Content',
-        icon: 'notes',
+        icon: 'database',
         divider: true,
         action: () => console.log('Basics is clicked!')
       }, {
         id: 3.2,
-        label: 'Content Ins',
-        icon: 'notes',
+        label: 'Content Definitions',
+        icon: 'database',
         divider: true,
         action: () => console.log('Basics is clicked!')
       }, {
         id: 5.1,
-        label: 'Values',
-        icon: 'conversation',
+        label: 'Value Definitions',
+        icon: 'database',
         divider: true,
         action: () => console.log('Basics is clicked!')
       }, {
         id: 3.1,
         label: 'User',
-        icon: 'conversation',
+        icon: 'user',
         action: () => console.log('Basics is clicked!')
       }, {
         id: 4,
         label: 'Groups',
-        icon: 'conversation',
+        icon: 'users',
         action: () => console.log('Basics is clicked!')
       }, {
         id: 5,
         label: 'Roles',
-        icon: 'conversation',
+        icon: 'userMd',
         action: () => console.log('Basics is clicked!')
       }, {
         id: 6,
         label: 'Permissions',
-        icon: 'conversation',
+        icon: 'lock',
         divider: true,
         action: () => console.log('Permissions Item is clicked!'),
       }, {
         id: 7,
         label: 'Pages',
-        icon: 'view',
+        icon: 'file',
         action: () => console.log('Basics is clicked!')
       }, {
         id: 8,
         label: 'Forms',
-        icon: 'view',
+        icon: 'checkSquare',
         action: () => console.log('Basics is clicked!')
       }, {
         id: 9,
         label: 'Workflow',
-        icon: 'view',
+        icon: 'puzzlePiece',
         action: () => console.log('Workflow Item is clicked!'),
       }, {
         id: 10,
         label: 'Themes',
-        icon: 'view',
+        icon: 'paintBrush',
         divider: true,
         action: () => console.log('Themes Item is clicked!'),
       }, {
         id: 11,
         label: 'Publishing',
-        icon: 'export',
+        icon: 'refresh',
         divider: true,
         action: () => console.log('Publishing is clicked!'),
       }, {
         id: 12,
         label: 'App Analytics',
-        icon: 'embed',
+        icon: 'chartBar',
         divider: true,
         action: () => console.log('App Analytics is clicked!'),
       }, {
         id: 13,
         label: 'Sherpa',
-        icon: 'alert',
+        icon: 'handsHelping',
         action: () => console.log('Sherpa is clicked!'),
       },
     ];
@@ -1008,7 +1008,7 @@ class App extends React.Component<{}, State> {
             active={this.state.outterDrawer}
             activeContentId={this.state.outterDrawerId}
             mode="slide"
-            componentWidth="large"
+            componentWidth="530px"
             componentLabel={this.state.outterDrawerLabel}
             overlay
             closeButton
@@ -1289,7 +1289,7 @@ class App extends React.Component<{}, State> {
             enableTextCounter
             maxLength={101}
             minLength={5}
-            // onChange={this.valueUpdater('appTextCounter')}
+            onChange={this.valueUpdater('appTextCounter')}
           />
           <TextField
             componentId="TestName1"
@@ -1322,15 +1322,10 @@ class App extends React.Component<{}, State> {
             <CardFooter><Button onClick={(e: any) => this.popoverUpdate2(e)}>Dropdown2 active</Button></CardFooter>
          </Card>
           <p> Some text with a
-          <Tooltip content="This order has shipping labels.">
-              <Link>Tooltip 1</Link>
+          <Tooltip content="Order" preferredPosition="left" active>
+              <Link>Tooltipss</Link>
             </Tooltip> in it
         </p>
-          <Tooltip
-            content="This order has shipping."
-          >
-            <Link>Tooltip 2</Link>
-          </Tooltip>
           <p> Some text with a
           <Tooltip content="This order has shipping labels.">
               <Link>Tooltip 1</Link>
@@ -1347,9 +1342,12 @@ class App extends React.Component<{}, State> {
               <p>Batman is a fictional superhero who appears in American comic books published by DC Comics. The character was created by artist Bob Kane and writer Bill Finger, and first appeared in Detective Comics #27</p>
             </Card>
           </ClickableChip>
+          <Card componentTitle="More about Batman">
+              <p>Batman is a fictional superhero who appears in American comic books published by DC Comics. The character was created by artist Bob Kane and writer Bill Finger, and first appeared in Detective Comics #27</p>
+            </Card>
           <p> Some text with a
-          <Tooltip content="This order has shipping labels.">
-              <Link>Tooltip 1</Link>
+          <Tooltip content="This order has shipping labels." >
+              <Link>Tooltipba 1</Link>
             </Tooltip> in it
         </p>
           <Tooltip
@@ -1545,6 +1543,15 @@ class App extends React.Component<{}, State> {
                 validateRules={[
                   { required: true, message: 'City is required.' },
                 ]}
+              />
+
+              <Select
+                componentId="appCity"
+                name="Select city 2"
+                label=""
+                options={[{ value: '', label: 'Select city' }, { value: 'xyz', label: 'xyz' }, { value: 'abc', label: 'abc' }]}
+                value={this.state.appCity}
+                onChange={this.valueUpdater('appCity')}
               />
               <div><p>child<span>child 2</span></p></div>
               <div>

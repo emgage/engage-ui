@@ -418,8 +418,8 @@ class Table extends React.Component<Props, State> {
     const { order } = this.state.sort;
     const sortedData = data.sort((item1: any, item2: any) => {
       // Converting strings to uppercase so for comparisions there will be no issue
-      const value1 = item1[field] !== undefined ? (!sortBy ? item1[field].toUpperCase() : item1[field][sortBy].toUpperCase()) : '';
-      const value2 = item2[field] !== undefined ? (!sortBy ? item2[field].toUpperCase() : item2[field][sortBy].toUpperCase()) : '';
+      const value1 = (item1[field] !== undefined && item1[field] !== null) ? (!sortBy ? item1[field].toUpperCase() : item1[field][sortBy].toUpperCase()) : '';
+      const value2 = (item2[field] !== undefined && item2[field] !== null) ? (!sortBy ? item2[field].toUpperCase() : item2[field][sortBy].toUpperCase()) : '';
 
       if (value1 < value2) {
         return -1;
@@ -436,8 +436,8 @@ class Table extends React.Component<Props, State> {
     if (order.new === 'desc') {
       sortedData.sort((item1: any, item2: any) => {
         // Converting strings to uppercase so for comparisions there will be no issue
-        const value1 = item1[field] !== undefined ? (!sortBy ? item1[field].toUpperCase() : item1[field][sortBy].toUpperCase()) : '';
-        const value2 = item2[field] !== undefined ? (!sortBy ? item2[field].toUpperCase() : item2[field][sortBy].toUpperCase()) : '';
+        const value1 = (item1[field] !== undefined && item1[field] !== null) ? (!sortBy ? item1[field].toUpperCase() : item1[field][sortBy].toUpperCase()) : '';
+        const value2 = (item2[field] !== undefined && item2[field] !== null) ? (!sortBy ? item2[field].toUpperCase() : item2[field][sortBy].toUpperCase()) : '';
 
         if (value1 > value2) {
           return -1;

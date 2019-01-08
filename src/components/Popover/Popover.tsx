@@ -16,6 +16,8 @@ import { forNode as ScrollableForNode } from '../Scrollable';
 import {
   calculateVerticalPosition,
   calculateHorizontalPosition,
+  PreferredAlignment,
+  PreferredPosition,
 } from '../PositionedOverlay/math';
 
 // DEfine type for direction to render popover
@@ -29,6 +31,9 @@ export interface Props {
   disabled?:boolean;
   // Set direction to be applied. Available options: up | down | left | right.
   direction?:Direction;
+  preferredAlignment?: PreferredAlignment;
+  // Define overlay position 
+  preferredPosition?: PreferredPosition;
   // Set active to true for popover to display, else false
   active: boolean;
   // Set wrapper element
@@ -37,6 +42,7 @@ export interface Props {
   closeOnClickOutside?: boolean;
   // Set anchor element or keep it null
   anchorEl?: HTMLElement | null;
+  fixed?: boolean;
   // To add any inline style to Popover
   style? : any;
   // Call close method on click 
@@ -287,18 +293,21 @@ class Popover extends React.PureComponent<Props, State> {
     const {
       direction = 'down',
       anchorEl,
+      fixed,
+      preferredAlignment = 'center',
+      preferredPosition = 'below',
     } = this.props;
 
     const activatorRect = getRectForNode(anchorEl);
     const overlayRect = getRectForNode(this.popoverEle);
     const scrollableContainerRect = getRectForNode(this.scrollableContainer);
-    const overlayMargins = this.popoverEle.firstElementChild
+    const overlayMargins = this.popoverEle && this.popoverEle.firstElementChild
       ? getMarginsForNode(this.popoverEle.firstElementChild as HTMLElement)
       : { activator: 0, container: 0, horizontal: 0 };
     const containerRect = getRectForNode(window);
-    const zIndex = anchorEl ? getZIndexForLayerFromNode(anchorEl) + 1 : 1;
-    const verticalPosition = calculateVerticalPosition(activatorRect, overlayRect, overlayMargins, scrollableContainerRect, containerRect, direction === 'down' ? 'below' : 'above');
-    const horizontalPosition = calculateHorizontalPosition(activatorRect, overlayRect, containerRect);
+    const zIndex = anchorEl ? getZIndexForLayerFromNode(anchorEl) + 2 : 2;
+    const verticalPosition = calculateVerticalPosition(activatorRect, overlayRect, overlayMargins, scrollableContainerRect, containerRect, direction === 'down' ? 'below' : 'above', fixed);
+    const horizontalPosition = calculateHorizontalPosition(activatorRect, overlayRect, containerRect, overlayMargins, preferredAlignment, preferredPosition);
 
     return {  zIndex, top: verticalPosition.top, left: horizontalPosition };
   }
@@ -316,6 +325,7 @@ function getMarginsForNode(node: HTMLElement) {
 function getZIndexForLayerFromNode(node: HTMLElement) {
   const layerNode = closest(node, layer.selector) || document.body;
   const zIndex = parseInt(window.getComputedStyle(layerNode).zIndex || '0', 10);
+
   return isNaN(zIndex) ? 0 : zIndex;
 }
 

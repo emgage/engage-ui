@@ -31,7 +31,7 @@
 }
 
 .header {
-  padding: .75rem 1.25rem;
+  padding: spacing(loose) spacing(loose) 0;
   margin-bottom: 0;
   background-color: rgba(0,0,0,.03);
   border-bottom: 1px solid rgba(0,0,0,.125);
@@ -64,14 +64,11 @@
 .footer {
   display: flex;
   justify-content: flex-end;
-  // padding: 0 spacing(loose) spacing(loose);
+  padding: 0 spacing(loose) spacing(loose);
 }
 
 .cardTitle {
-  font-size: 24px;
-  font-family: OpenSans-Semibold;
   letter-spacing: 0;
-  color: #212121;
-  margin-bottom: .75rem;
+  margin-bottom: spacing(loose);
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }

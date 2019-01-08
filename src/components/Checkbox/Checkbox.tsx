@@ -17,6 +17,7 @@ export interface Props {
   labelHidden?: boolean;
   // Checkbox is selected or not
   checked?: boolean;
+  componentClass?: string;
   // checkbox is indeterminante or not
   indeterminante?: boolean;
   // Additional text to aide in use
@@ -74,6 +75,7 @@ class Checkbox extends React.PureComponent<Props, State> {
   render() {
     const { checked } = this.state;
     const {
+      componentClass = '',
       componentId = getUniqueID(),
       disabled = false,
       helpText,
@@ -88,7 +90,7 @@ class Checkbox extends React.PureComponent<Props, State> {
     }
 
     return (
-      <FlexBox direction ={helpText ? 'Column' : 'Row'} >
+      <FlexBox componentClass={componentClass} direction ={helpText ? 'Column' : 'Row'} >
         <div className={theme.customControl} onClick={this.handleChange}>
           <input
             type="checkbox"

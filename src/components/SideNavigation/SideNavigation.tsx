@@ -174,7 +174,7 @@ class SideNavigation extends React.Component<Props, State> {
 
       return (
         <div key={col.id} className={singleItem}>
-          <Tooltip content={col.label}>
+          <Tooltip content={col.label} preferredPosition="right">
             <div className={liClass} onClick={col.action} aria-disabled={false}>
               <Icon source={col.icon} componentColor={activeItem === col.id ? 'black' : 'white'} componentClass={theme.collapseIcon}/>
             </div>
@@ -205,7 +205,7 @@ class SideNavigation extends React.Component<Props, State> {
           currentTheme="dark"
           mode="push"
           componentWidth={activeDrawerId === 'collapsedContent' ? 'collapsed' : 'small'}
-          style={drawerStyle}>
+          componentStyle={drawerStyle}>
           <DrawerContent
             componentId="fullContent"
             mode="slide"
