@@ -55,7 +55,6 @@ export function calculateVerticalPosition(
     top: positionIfBelow.top - activatorRect.height - ((overlayRect.height - activatorRect.height) / 2),
     positioning: 'below',
   };
-
   if (preferredPosition === 'above') return positionIfAbove;
 
   if (preferredPosition === 'below') return positionIfBelow;
@@ -79,24 +78,28 @@ export function calculateHorizontalPosition(
   containerRect: Rect,
   overlayMargins: Margins,
   preferredAlignment: PreferredAlignment,
-  preferredPosition: PreferredPosition
+  preferredPosition: PreferredPosition,
+  preloadedPopover: boolean
 ) {
   const maximum = containerRect.width - overlayRect.width;
 
-  if (preferredAlignment === 'left' && (preferredPosition === 'above' || preferredPosition === 'below')) {
+  if (preferredAlignment === 'left') {
+
     return Math.min(
       maximum,
       Math.max(0, activatorRect.left - overlayMargins.horizontal)
     );
-  } if (preferredAlignment === 'right' && (preferredPosition === 'above' || preferredPosition === 'below')) {
+  } if (preferredAlignment === 'right') {
+
     return Math.min(
       maximum,
       Math.max(
         0,
-        activatorRect.left - ((activatorRect.width - overlayRect.width) / 2)
+        activatorRect.left - ((activatorRect.width - overlayRect.width))
       )
     );
-  } if (preferredAlignment === 'center' && (preferredPosition === 'above' || preferredPosition === 'below')) {
+  } if (preferredAlignment === 'center' && (preferredPosition === 'above' || preferredPosition === 'below') && !preloadedPopover) {
+
     return Math.min(
       maximum,
       Math.max(

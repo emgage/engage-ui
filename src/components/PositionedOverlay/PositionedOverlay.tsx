@@ -39,6 +39,8 @@ export interface Props {
   preferredAlignment?: PreferredAlignment;
   fullWidth?: boolean;
   fixed?: boolean;
+  // To identify when popover is preloaded when its a tooltip
+  preloadedPopover?: boolean;
   // Theme to be injected via css-themr.
   theme?: any;
   render(overlayDetails: OverlayDetails): React.ReactNode;
@@ -178,6 +180,7 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
           onScrollOut,
           fullWidth,
           fixed,
+          preloadedPopover
         } = this.props;
 
         const textFieldActivator = activator.querySelector('input');
@@ -225,7 +228,8 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
           containerRect,
           overlayMargins,
           preferredAlignment,
-          preferredPosition
+          preferredPosition,
+          preloadedPopover ? preloadedPopover : false
         );
 
         this.setState({

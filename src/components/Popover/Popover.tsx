@@ -141,7 +141,7 @@ class Popover extends React.PureComponent<Props, State> {
     const {
       activatorWrapper: WRAPPERCOMPONENT = 'div',
       children,
-      direction = 'down',
+      direction,
       anchorEl,
       disabled,
       style,
@@ -277,12 +277,12 @@ class Popover extends React.PureComponent<Props, State> {
     }
     this.setState({ renderCount: 0 });
     // Close the popdown on outside area click
-    if (element !== null && event.target != null && element !== event.target && closeOnClickOutside) {
+    if (element !== null && event.currentTarget != null && element !== event.currentTarget && closeOnClickOutside) {
       const domNode = document.body;
-      const targetNode = event.target;
+      const targetNode = event.currentTarget;
       if ((!domNode || !domNode.contains(targetNode as Node))) {
         this.setState({ active : true });
-      } else if (event.target !== anchorEl && !element.contains(event.target as Node)) {
+      } else if (event.currentTarget !== anchorEl && !element.contains(event.currentTarget as Node)) {
         const newState = !this.state.active;
         // update the state
         this.setState({ active: !this.state.active });
@@ -297,7 +297,7 @@ class Popover extends React.PureComponent<Props, State> {
   @autobind
   private handleMeasurement() {
     const {
-      direction = 'down',
+      direction,
       anchorEl,
       fixed,
       preferredAlignment = 'center',
@@ -317,7 +317,7 @@ class Popover extends React.PureComponent<Props, State> {
     const containerRect = getRectForNode(window);
     const zIndex = anchorEl ? getZIndexForLayerFromNode(anchorEl) + 1 : 1;
     const verticalPosition = calculateVerticalPosition(activatorRect, overlayRect, overlayMargins, scrollableContainerRect, containerRect, direction === 'down' ? 'below' : 'above', fixed);
-    const horizontalPosition = calculateHorizontalPosition(activatorRect, overlayRect, containerRect, overlayMargins, preferredAlignment, preferredPosition);
+    const horizontalPosition = calculateHorizontalPosition(activatorRect, overlayRect, containerRect, overlayMargins, preferredAlignment, preferredPosition, false);
 
     return {  zIndex, top: verticalPosition.top, left: horizontalPosition };
   }
