@@ -319,7 +319,7 @@ class Popover extends React.PureComponent<Props, State> {
       ? getMarginsForNode(this.popoverEle.firstElementChild as HTMLElement)
       : { activator: 0, container: 0, horizontal: 0 };
     const containerRect = getRectForNode(window);
-    const zIndex = anchorEl ? getZIndexForLayerFromNode(anchorEl) + 1 : 1;
+    const zIndex = anchorEl ? getZIndexForLayerFromNode(anchorEl) + 2 : 2;
 
     // Used to get top position of popover
     const verticalPosition = calculateVerticalPosition(activatorRect, overlayRect, overlayMargins, scrollableContainerRect, containerRect, direction === 'down' ? 'below' : 'above', fixed);
