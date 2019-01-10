@@ -149,6 +149,7 @@ class Popover extends React.PureComponent<Props, State> {
 
     const { active } = this.state;
 
+    // Styling for popover
     const popoverClassName = classNames(
       direction === 'down' ? baseTheme.popdown
       : direction === 'up' ? baseTheme.popup
@@ -157,6 +158,7 @@ class Popover extends React.PureComponent<Props, State> {
       !disabled && active && baseTheme.active
     );
 
+    // Styling for popover container
     const popoverContainerClassName = classNames(
       baseTheme.popoverContainer,
       !disabled && active && baseTheme.active
@@ -205,6 +207,7 @@ class Popover extends React.PureComponent<Props, State> {
     const { id, activatorContainer } = this;
     if (activatorContainer === null) { return; }
 
+    // This will be used to get element dimention for any element except tooltip, which will be render later.
     const overlayRect = getRectForNode(this.popoverEle);
     if (overlayRect.width !== 0 && this.state.renderCount < 1) {
 
@@ -294,6 +297,7 @@ class Popover extends React.PureComponent<Props, State> {
     }
   }
 
+  // This function can be used to get measurement of any html element and we can decide where to put popover
   @autobind
   private handleMeasurement() {
     const {
@@ -316,13 +320,17 @@ class Popover extends React.PureComponent<Props, State> {
       : { activator: 0, container: 0, horizontal: 0 };
     const containerRect = getRectForNode(window);
     const zIndex = anchorEl ? getZIndexForLayerFromNode(anchorEl) + 1 : 1;
+
+    // Used to get top position of popover
     const verticalPosition = calculateVerticalPosition(activatorRect, overlayRect, overlayMargins, scrollableContainerRect, containerRect, direction === 'down' ? 'below' : 'above', fixed);
+    // Used to get left or right alignment of popover
     const horizontalPosition = calculateHorizontalPosition(activatorRect, overlayRect, containerRect, overlayMargins, preferredAlignment, preferredPosition, false);
 
     return {  zIndex, top: verticalPosition.top, left: horizontalPosition };
   }
 }
 
+// Funtion used to 
 function getMarginsForNode(node: HTMLElement) {
   const styles = window.getComputedStyle(node);
   return {

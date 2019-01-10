@@ -36,6 +36,7 @@ export interface Props {
   activator: HTMLElement;
   // Define overlay position 
   preferredPosition?: PreferredPosition;
+  // Define overlay alignment
   preferredAlignment?: PreferredAlignment;
   fullWidth?: boolean;
   fixed?: boolean;
