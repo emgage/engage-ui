@@ -3,6 +3,8 @@ import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 import { classNames } from '@shopify/react-utilities/styles';
 import { BREADCRUMB } from '../ThemeIdentifiers';
 import * as baseTheme from './BreadCrumb.scss';
+import Icon from '../Icon';
+import FlexBox from '../FlexBox';
 
 export type Direction = 'left' | 'right';
 export type Type = 'default' | 'disabled' | 'active';
@@ -39,7 +41,19 @@ class BreadCrumb extends React.Component<Props, {}> {
         theme[direction],
         theme[child.type]
       );
-      return <li key={index} className={classnames} onClick={child.type === 'disabled' ? undefined : child.onBreadcrumbClick} style={child.style}>{child.name}</li>;
+      return (
+        <li
+          key={index}
+          className={classnames}
+          onClick={child.type === 'disabled' ? undefined : child.onBreadcrumbClick}
+          style={child.style}>
+          <FlexBox>
+            <span>{child.name}</span>
+
+            { (index + 1) < source.length ? <Icon componentColor="blackLight" source="chevronRight" /> : null}
+          </FlexBox>
+        </li>
+      );
     });
   }
   // Render Breadcrumb and it's items
