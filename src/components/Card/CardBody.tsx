@@ -7,8 +7,6 @@ import CardSection from './CardSection';
 import * as baseTheme from './Card.scss';
 
 export interface Props {
-  // Title content for the card section.
-  componentTitle?: string;
   // Card section related components to render inside this card section.
   children?: React.ReactNode;
   // Auto wrap content in section
@@ -21,12 +19,7 @@ export interface Props {
   theme?: any;
 }
 
-const cardBody = ({ children, sectioned, theme, componentTitle, componentStyle, componentClass }: Props) => {
-
-  const cardTitle = componentTitle
-    ? <div className={theme.cardTitle}>{componentTitle}</div>
-    : null;
-
+const cardBody = ({ children, sectioned, theme, componentStyle, componentClass }: Props) => {
   const bodyContent = sectioned
     ? <CardSection>{children}</CardSection>
     : children;
@@ -38,7 +31,6 @@ const cardBody = ({ children, sectioned, theme, componentTitle, componentStyle, 
 
   return (
     <div className={className} style={componentStyle}>
-      {cardTitle}
       {bodyContent}
     </div>
   );
