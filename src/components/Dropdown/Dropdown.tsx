@@ -4,6 +4,7 @@ import DropdownItem, { Props as DropdownItemProps } from './DropdownItem';
 import Popover, { Props as PopoverProps } from '../Popover';
 import { DROPDOWN } from '../ThemeIdentifiers';
 import * as baseTheme from './Dropdown.scss';
+import { PreferredAlignment } from '../PositionedOverlay/math';
 
 // All prototypes type
 export interface Props {
@@ -21,6 +22,8 @@ export interface Props {
   dropdownItems: DropdownItemProps[];
   // Value to be return when clicked on item, this could be anythig string number or component or  any other value
   returnValue?: any;
+  // to set popOver alignment as left right or center
+  preferredAlignment?: PreferredAlignment;
   // Call toggle method on click 
   toggle?(event?: any): void;
   // Call close method on click 
@@ -68,13 +71,13 @@ export class Dropdown extends React.PureComponent<Props, State> {
       anchorEl,
       closeOnClickOutside,
       returnValue,
+      preferredAlignment
     } = this.props;
 
     const {
       active,
       selectedIndex
     } = this.state;
-
     // Display the drop down items
     const DropdownItemComponents = dropdownItems.map((item, index) =>
       <DropdownItem
@@ -97,6 +100,7 @@ export class Dropdown extends React.PureComponent<Props, State> {
         anchorEl={anchorEl}
         closeOnClickOutside={closeOnClickOutside}
         callbackParent={this.setDropdownState}
+        preferredAlignment={preferredAlignment}
       >
         {DropdownItemComponents}
       </Popover>
