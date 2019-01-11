@@ -9,6 +9,7 @@ export interface Margins {
   horizontal: number;
 }
 
+// Function used to calculate vertical position of overlay
 export function calculateVerticalPosition(
   activatorRect: Rect,
   overlayRect: Rect,
@@ -39,23 +40,27 @@ export function calculateVerticalPosition(
   const heightIfBelow = Math.min(spaceBelow, desiredHeight);
   const heightIfAbove = Math.min(spaceAbove, desiredHeight);
   const containerRectTop = fixed ? 0 : containerRect.top;
+
+  // Calculate dimentions of overlay when overlay needs to be displayed on top / above of dropdown
   const positionIfAbove = {
     height: heightIfAbove - verticalMargins,
     top: activatorTop + containerRectTop - heightIfAbove,
     positioning: 'above',
   };
 
+  // Calculate dimentions of overlay when overlay needs to be displayed on bottom / below of dropdown
   const positionIfBelow = {
     height: heightIfBelow - verticalMargins,
     top: activatorBottom + containerRectTop,
     positioning: 'below',
   };
+
+  // Calculate dimentions of overlay when overlay needs to be displayed on left / right side of dropdown
   const positionIfLeftOrRight = {
     height: overlayRect.height,
     top: positionIfBelow.top - activatorRect.height - ((overlayRect.height - activatorRect.height) / 2),
     positioning: 'below',
   };
-
   if (preferredPosition === 'above') return positionIfAbove;
 
   if (preferredPosition === 'below') return positionIfBelow;
@@ -73,30 +78,47 @@ export function calculateVerticalPosition(
     : positionIfBelow;
 }
 
+// Function used to calculate horizontal position of overlay
 export function calculateHorizontalPosition(
   activatorRect: Rect,
   overlayRect: Rect,
   containerRect: Rect,
   overlayMargins: Margins,
   preferredAlignment: PreferredAlignment,
-  preferredPosition: PreferredPosition
+  preferredPosition: PreferredPosition,
+  preloadedPopover: boolean
 ) {
   const maximum = containerRect.width - overlayRect.width;
 
+  // Define when overlay needs to be displayed left aligned with dropdown's left side
   if (preferredAlignment === 'left') {
+
     return Math.min(
       maximum,
       Math.max(0, activatorRect.left - overlayMargins.horizontal)
     );
+
+  // Define when overlay needs to be displayed left aligned with dropdown's left side
   } if (preferredAlignment === 'right') {
-    const activatorRight = activatorRect.left + activatorRect.width;
+
     return Math.min(
       maximum,
       Math.max(
         0,
-        activatorRight - overlayRect.width + overlayMargins.horizontal
+        activatorRect.left - ((activatorRect.width - overlayRect.width))
       )
     );
+  // Define when overlay needs to be displayed center aligned with dropdown node
+  } if (preferredAlignment === 'center' && (preferredPosition === 'above' || preferredPosition === 'below') && !preloadedPopover) {
+
+    return Math.min(
+      maximum,
+      Math.max(
+        0,
+        activatorRect.left - ((activatorRect.width - overlayRect.width) / 2)
+      )
+    );
+  // Define when overlay needs to be displayed left or right side of dropdown  
   } if (preferredPosition === 'left' || preferredPosition === 'right') {
     return Math.min(
       maximum,

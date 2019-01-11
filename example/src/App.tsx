@@ -921,7 +921,7 @@ class App extends React.Component<{}, State> {
         <br />
         <div>
           <p>This is my Breadcrumbs!!</p>
-          <BreadCrumb direction={'left'} source={breadcrumbData} displayStyle={'yellow'} />
+          <BreadCrumb direction={'left'} source={breadcrumbData} displayStyle="primary" />
        </div>
        <div> This is my process indicator
        <Button onClick={() => this.processNext()}>Next Process</Button>
@@ -1250,7 +1250,7 @@ class App extends React.Component<{}, State> {
           <Heading>Popover</Heading>
           <div style={{ marginLeft: '100px' }}>
             <button onClick={(e: any) => this.popoverUpdateContainer(e)}>Click Popover</button>
-            <Popover active={this.state.popoverActiveContainer} direction="down" closeOnClickOutside toggle={() => this.popoverUpdateContainer} anchorEl = {this.state.anchorEl} onClose={() => console.log('I am close')} onOpen={() => console.log('I am open')} callbackParent={newState => this.onChildChanged(newState)}>
+            <Popover active={this.state.popoverActiveContainer} direction="up" closeOnClickOutside toggle={() => this.popoverUpdateContainer} anchorEl = {this.state.anchorEl} onClose={() => console.log('I am close')} onOpen={() => console.log('I am open')} callbackParent={newState => this.onChildChanged(newState)}>
               I am popover <Button>Hello popover</Button>
             </Popover>
           </div>
@@ -1266,13 +1266,14 @@ class App extends React.Component<{}, State> {
             />
           </div>
           <div style={{ marginLeft: '100px' }}>
-            <Button onClick={(e: any) => this.popoverUpdate2(e)}>Dropdown2 active</Button>
+            <Button onClick={(e: any) => this.popoverUpdate2(e)}>Dro</Button>
             <Dropdown
               active={this.state.popoverActive2}
               dropdownItems={items}
               toggle={this.popoverUpdate2}
               anchorEl = {this.state.anchorEl2}
               direction="down"
+              preferredAlignment="center"
             />
           </div>
 
@@ -1305,7 +1306,7 @@ class App extends React.Component<{}, State> {
             </Tooltip> in it
         </p>
           <p> Some text with a
-          <Tooltip content="This order has shipping labels.">
+          <Tooltip content="This order has" preferredPosition="above">
               <Link>Tooltip 1</Link>
             </Tooltip> in it
         </p>
@@ -1324,7 +1325,7 @@ class App extends React.Component<{}, State> {
               <p>Batman is a fictional superhero who appears in American comic books published by DC Comics. The character was created by artist Bob Kane and writer Bill Finger, and first appeared in Detective Comics #27</p>
             </Card>
           <p> Some text with a
-          <Tooltip content="This order has shipping labels." >
+          <Tooltip content="This order has shipping labels.">
               <Link>Tooltipba 1</Link>
             </Tooltip> in it
         </p>
@@ -1941,7 +1942,7 @@ class App extends React.Component<{}, State> {
   popoverUpdate2(e: any) {
     this.setState({
       popoverActive2 : !this.state.popoverActive2,
-      anchorEl2: e ? e.target as HTMLElement : this.state.anchorEl2
+      anchorEl2: e ? e.currentTarget as HTMLElement : this.state.anchorEl2
     });
   }
 
