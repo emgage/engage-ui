@@ -37,6 +37,10 @@ $stacking-order: (
   fill: color(black);
 }
 
+.colorBlackLight {
+  fill: color(black, light);
+}
+
 .colorSkyLighter {
   fill: color(sky, lighter);
 }

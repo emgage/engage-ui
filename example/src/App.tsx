@@ -921,7 +921,7 @@ class App extends React.Component<{}, State> {
         <br />
         <div>
           <p>This is my Breadcrumbs!!</p>
-          <BreadCrumb direction={'left'} source={breadcrumbData} displayStyle={'yellow'} />
+          <BreadCrumb direction={'left'} source={breadcrumbData} displayStyle="primary" />
        </div>
        <div> This is my process indicator
        <Button onClick={() => this.processNext()}>Next Process</Button>
