@@ -1304,11 +1304,14 @@ class App extends React.Component<{}, State> {
             // onChange={this.valueUpdater('appTextCounter')}
           />
                                 <Card>
-                                    <CardBody componentTitle="Online store dashboard - Card" sectioned>
-                                        <CardSection componentTitle="Reports" >
+                                <CardHeader>Online store dashboard - Card</CardHeader>
+                                    <CardBody sectioned>
+                                        <CardSection>
+                                        <CardHeader>Reports</CardHeader>
                                             <p>View a summary of your online store’s performance.</p>
                                         </CardSection>
-                                        <CardSection componentTitle="Summary Reports">
+                                        <CardSection>
+                                        <CardHeader>Summary Reports</CardHeader>
                                             <p>View a summary of your online store’s performance, including sales, visitors, top products, and referrals.</p>
                                         </CardSection>
                                     </CardBody>
@@ -1342,7 +1345,8 @@ class App extends React.Component<{}, State> {
               <p>Batman is a fictional superhero who appears in American comic books published by DC Comics. The character was created by artist Bob Kane and writer Bill Finger, and first appeared in Detective Comics #27</p>
             </Card>
           </ClickableChip>
-          <Card componentTitle="More about Batman">
+          <Card>
+          <CardHeader>More about Batman</CardHeader>
               <p>Batman is a fictional superhero who appears in American comic books published by DC Comics. The character was created by artist Bob Kane and writer Bill Finger, and first appeared in Detective Comics #27</p>
             </Card>
           <p> Some text with a
