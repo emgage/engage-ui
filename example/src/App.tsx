@@ -482,7 +482,7 @@ class App extends React.Component<{}, State> {
       }, {
         id: 0.3,
         label: 'Features',
-        icon: 'notes',
+        icon: 'lightbulb',
         divider: true,
         action: () => console.log('Basics is clicked!')
       }, {
