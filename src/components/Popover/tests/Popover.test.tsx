@@ -7,8 +7,9 @@ describe('<Popover />', () => {
     it('Render Properly when direction is not provided', () => {
       const spy = jest.fn();
       const popoverWrapper = mount(<Popover active={false} toggle={spy}>Hi there I'm popover</Popover>);
+      console.log(popoverWrapper.html());
       expect(popoverWrapper.find('div')).toHaveLength(3);
-      expect(popoverWrapper.find('div').at(1).hasClass('popdown')).toBeTruthy();
+      expect(popoverWrapper.find('div').at(1).hasClass('popright')).toBeTruthy();
       expect(popoverWrapper.find('div').at(1).hasClass('active')).toBeFalsy();
       expect(popoverWrapper.find('div').at(2).hasClass('popoverContainer')).toBeTruthy();
     });
@@ -57,7 +58,7 @@ describe('<Popover />', () => {
       const spy = jest.fn();
       const popoverWrapper = mount(<Popover active={true} toggle={spy}>Hi there I'm popover</Popover>);
       expect(popoverWrapper.find('div')).toHaveLength(3);
-      expect(popoverWrapper.find('div').at(1).hasClass('popdown')).toBeTruthy();
+      expect(popoverWrapper.find('div').at(1).hasClass('popright')).toBeTruthy();
       expect(popoverWrapper.find('div').at(1).hasClass('active')).toBeTruthy();
       expect(popoverWrapper.find('div').at(2).hasClass('popoverContainer')).toBeTruthy();
       expect(popoverWrapper.prop('active')).toBe(true);
