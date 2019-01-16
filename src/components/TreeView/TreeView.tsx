@@ -100,13 +100,13 @@ class TreeView extends React.Component<Props, State> {
       <li key={item.id}>
         {
           item.children ?
-          <span onClick={() => this.toggleNode(item.id)} className={this.props.theme.nodeicon}>
+          <div onClick={() => this.toggleNode(item.id)} className={this.props.theme.nodeicon}>
             {item.active ? <Icon componentColor={iconColor} source="circleChevronDown" /> : <Icon componentColor={iconColor} source="circleChevronRight" />}
-          </span> :
-          <span className={this.props.theme.nodeicon}> <Icon componentStyle={iconStyle} componentColor={iconColor} source="circle" /> </span>
+          </div> :
+          <div className={this.props.theme.nodeicon}> <Icon componentStyle={iconStyle} componentColor={iconColor} source="circle" /> </div>
         }
 
-        <span className={this.props.theme.treeviewSpan}><TreeNode { ...item } /></span>
+        <div className={this.props.theme.treeviewSpan}><TreeNode { ...item } /></div>
       </li>
     );
 
@@ -116,10 +116,10 @@ class TreeView extends React.Component<Props, State> {
     if (item.children && item.active) {
       return (
         <li key={item.id} className={this.props.theme.haschildren}>
-          <span onClick={() => this.toggleNode(item.id)} className={this.props.theme.nodeicon}>
+          <div onClick={() => this.toggleNode(item.id)} className={this.props.theme.nodeicon}>
             {item.active ? <Icon componentColor={iconColor} source="circleChevronDown" /> : <Icon componentColor={iconColor} source="circleChevronRight" />}
-          </span>
-          <span className={this.props.theme.treeviewSpan}><TreeNode { ...item } /></span>
+          </div>
+          <div className={this.props.theme.treeviewSpan}><TreeNode { ...item } /></div>
 
           <ul>
             { item.children.map((childItem: SourceData) => this.renderNode(childItem)) }

@@ -654,7 +654,7 @@ class App extends React.Component<{}, State> {
           },
           {
             id: 12,
-            component: () => <span>I am child component2</span>,
+            component: () => <span>I am child component2<br />I am child component2<br />I am child component2</span>,
             active: false,
             children: [
               {
