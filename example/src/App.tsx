@@ -659,12 +659,18 @@ class App extends React.Component<{}, State> {
             children: [
               {
                 id: 121,
-                component: () => <span>I am child child component1</span>,
+                component: () => <Card componentTitle="About Batman">
+                <p>Batman is a fictional superhero who appears in American comic books published by DC Comics. The character was created by artist Bob Kane and writer Bill Finger, and first appeared in Detective Comics #27</p>
+              </Card>,
+              // component: () => <span>I am child child component1</span>,
                 active: false,
                 children: [
                   {
                     id: 1211,
-                    component: () => <span>child component1</span>,
+                    component: () => <Card componentTitle="About Robin">
+                <p>The American robin (Turdus migratorius) is a migratory songbird of the true thrush genus and Turdidae, the wider thrush family.</p>
+              </Card>,
+                    // component: () => <span>child component1</span>,
                     active: false,
                   },
                   {

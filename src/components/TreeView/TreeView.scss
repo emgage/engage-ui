@@ -15,6 +15,7 @@
   height: 1em;
   position: absolute;
   left: 1em;
+  cursor:pointer;
 }
 
 .active {
@@ -24,20 +25,9 @@
 .treeview li {
     list-style-type:none;
     margin:0;
-    padding: 0.7em 0.7em 0.7em 2.8em;
+    padding: 0.7em 0.7em 0.7em calc(2.8em + 1px);
     position:relative;
 }
-
-// need to clean up for multiline top node which has childen
-// li.haschildren::before {
-//   content:'';
-//   left:1.4em;
-//   position:absolute;
-//   right:auto;
-//   border-left:1px solid #999;
-//   bottom:0;
-//   top:0;
-// }
 
 .treeview ul li::before, .treeview ul li::after {
     content:'';
@@ -51,48 +41,55 @@
   bottom:0;
   top:0;
 }
+
 .treeview ul li::after {
     border-top:1px solid #999;
     top:calc(1em/2 + 0.7em); //18px;
-    width:1em;
+    width:calc(1em + 1px);
 }
 
 .treeview ul li:last-child.haschildren::before {
   height: calc(1em/2 + 0.7em);
 }
 
-// .treeviewSpan{
-//     border-bottom:1px solid #999;
-//     border-width:100%;
-//     display:inline-grid;
-//     text-decoration:none;
-//     width: 95%;
-// }
+.nodecontent {
+}
 
-li.haschildren > .treeviewSpan {
-  border-left: 1px solid #999;  
-  bottom: 0;
-  margin-top: 1em;
-  display: inline-block;
+li.haschildren {
+  padding-bottom: 0;
+}
+
+li.haschildren > .nodecontent {
   padding-left: 1.4em;
+  padding-bottom: 0.7em;
+  padding-top: 0.7em;
   margin-left: -1.4em;
-}
-li.haschildren > .treeviewSpan > * {
-  margin-top: -1em;
-  display: block;
+  margin-top: -0.7em;
+  position: relative;
 }
 
-// what's this?
-.treeview li.parent_li>span {
-    cursor:pointer;
+li.haschildren > .nodecontent::before {
+  content:'';
+  left:0;
+  position:absolute;
+  right:auto;
+  border-left:1px solid #999;  
+  bottom:0;
+  height: calc(100% - 0.7em - (14/16)em);
 }
 
 // set last node tail to line height plus list item top margin
 .treeview li:not(.haschildren):last-child::before {
     height: calc(1em/2 + 0.7em);
 }
-.treeview li.parent_li>span:hover, .treeview li.parent_li>span:hover+ul li span {
-    background:#eee;
-    border:1px solid #94a0b4;
-    color:#000
-}
+
+// Styling for use in app list
+// li:not(.haschildren ) {
+//   border-top: 1px solid #ccc;
+// }
+// li.haschildren {
+//   border-top: 1px solid #ccc;
+// }
+// .treeview > li:last-child {
+//   border-bottom: 1px solid #ccc;
+// }

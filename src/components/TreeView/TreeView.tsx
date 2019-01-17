@@ -106,7 +106,9 @@ class TreeView extends React.Component<Props, State> {
           <div className={this.props.theme.nodeicon}> <Icon componentStyle={iconStyle} componentColor={iconColor} source="circle" /> </div>
         }
 
-        <div className={this.props.theme.treeviewSpan}><TreeNode { ...item } /></div>
+        <div className={this.props.theme.nodecontent}>
+          <div className={this.props.theme.nodecontentwrapper}><TreeNode { ...item } /></div>
+        </div>
       </li>
     );
 
@@ -119,7 +121,9 @@ class TreeView extends React.Component<Props, State> {
           <div onClick={() => this.toggleNode(item.id)} className={this.props.theme.nodeicon}>
             {item.active ? <Icon componentColor={iconColor} source="circleChevronDown" /> : <Icon componentColor={iconColor} source="circleChevronRight" />}
           </div>
-          <div className={this.props.theme.treeviewSpan}><TreeNode { ...item } /></div>
+          <div className={this.props.theme.nodecontent}>
+            <div className={this.props.theme.nodecontentwrapper}><TreeNode { ...item } /></div>
+          </div>
 
           <ul>
             { item.children.map((childItem: SourceData) => this.renderNode(childItem)) }
