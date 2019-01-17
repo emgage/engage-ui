@@ -201,6 +201,11 @@ class TextField extends React.PureComponent<Props, State> {
     if (prefix) { labelledBy.push(`${componentId}Prefix`); }
     if (suffix) { labelledBy.push(`${componentId}Suffix`); }
 
+    const inputEleClass = classNames(
+      theme.input,
+      !label && theme.noLabel
+    );
+
     const input = React.createElement(multiline ? 'textarea' : 'input', {
       ...rest,
       name,
@@ -217,7 +222,7 @@ class TextField extends React.PureComponent<Props, State> {
       style: newComponentStyle,
       formNoValidate: true,
       autoComplete: normalizeAutoComplete(autoComplete),
-      className: theme.input,
+      className: inputEleClass,
       onChange: this.onChange,
       onKeyDown: this.onKeyDown,
       ref: this.setInput,
@@ -227,7 +232,12 @@ class TextField extends React.PureComponent<Props, State> {
       'aria-invalid': Boolean(errors),
     });
 
-    const hasValue = (!!this.props.value && this.props.value.length > 0);
+    const hasValue = (!!this.props.value && this.props.value.length > 0) || this.state.value !== '';
+
+    const lableStyle = classNames(
+      theme.labelStyle,
+      (hasValue || this.state.focused) && theme.labelHasValue
+    );
 
     return (
       <Labelled
@@ -240,6 +250,7 @@ class TextField extends React.PureComponent<Props, State> {
         focused={this.state.focused}
         hasValue={hasValue}
         required={required}
+        componentClass={lableStyle}
       >
         <Connected
           left={connectedLeft}

@@ -39,7 +39,6 @@ class Tooltip extends React.PureComponent<Props, State> {
   state: State = {
     active: false,
   };
-
   private id = getUniqueID();
   private activatorNode: HTMLElement | null;
   private activatorContainer: HTMLElement | null;

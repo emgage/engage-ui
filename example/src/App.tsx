@@ -368,7 +368,7 @@ class App extends React.Component<{}, State> {
         divider: false
       },
       {
-        content: 'Item 3',
+        content: 'Itemasdadmmm 3',
         disabled: false
       },
       {
@@ -482,7 +482,7 @@ class App extends React.Component<{}, State> {
       }, {
         id: 0.3,
         label: 'Features',
-        icon: 'notes',
+        icon: 'lightbulb',
         divider: true,
         action: () => console.log('Basics is clicked!')
       }, {
@@ -944,7 +944,7 @@ class App extends React.Component<{}, State> {
         <br />
         <div>
           <p>This is my Breadcrumbs!!</p>
-          <BreadCrumb direction={'left'} source={breadcrumbData} displayStyle={'yellow'} />
+          <BreadCrumb direction={'left'} source={breadcrumbData} displayStyle="primary" />
        </div>
        <div> This is my process indicator
        <Button onClick={() => this.processNext()}>Next Process</Button>
@@ -1027,7 +1027,7 @@ class App extends React.Component<{}, State> {
             active={this.state.outterDrawer}
             activeContentId={this.state.outterDrawerId}
             mode="slide"
-            componentWidth="large"
+            componentWidth="530px"
             componentLabel={this.state.outterDrawerLabel}
             overlay
             closeButton
@@ -1273,7 +1273,7 @@ class App extends React.Component<{}, State> {
           <Heading>Popover</Heading>
           <div style={{ marginLeft: '100px' }}>
             <button onClick={(e: any) => this.popoverUpdateContainer(e)}>Click Popover</button>
-            <Popover active={this.state.popoverActiveContainer} direction="down" closeOnClickOutside toggle={() => this.popoverUpdateContainer} anchorEl = {this.state.anchorEl} onClose={() => console.log('I am close')} onOpen={() => console.log('I am open')} callbackParent={newState => this.onChildChanged(newState)}>
+            <Popover active={this.state.popoverActiveContainer} direction="up" closeOnClickOutside toggle={() => this.popoverUpdateContainer} anchorEl = {this.state.anchorEl} onClose={() => console.log('I am close')} onOpen={() => console.log('I am open')} callbackParent={newState => this.onChildChanged(newState)}>
               I am popover <Button>Hello popover</Button>
             </Popover>
           </div>
@@ -1289,13 +1289,14 @@ class App extends React.Component<{}, State> {
             />
           </div>
           <div style={{ marginLeft: '100px' }}>
-            <Button onClick={(e: any) => this.popoverUpdate2(e)}>Dropdown2 active</Button>
+            <Button onClick={(e: any) => this.popoverUpdate2(e)}>Dro</Button>
             <Dropdown
               active={this.state.popoverActive2}
               dropdownItems={items}
               toggle={this.popoverUpdate2}
               anchorEl = {this.state.anchorEl2}
               direction="down"
+              preferredAlignment="right"
             />
           </div>
 
@@ -1308,7 +1309,7 @@ class App extends React.Component<{}, State> {
             enableTextCounter
             maxLength={101}
             minLength={5}
-            // onChange={this.valueUpdater('appTextCounter')}
+            onChange={this.valueUpdater('appTextCounter')}
           />
           <TextField
             componentId="TestName1"
@@ -1323,17 +1324,12 @@ class App extends React.Component<{}, State> {
             // onChange={this.valueUpdater('appTextCounter')}
           />
           <p> Some text with a
-          <Tooltip content="This order has shipping labels.">
-              <Link>Tooltip 1</Link>
+          <Tooltip content="Order" preferredPosition="left" active>
+              <Link>Tooltipss</Link>
             </Tooltip> in it
         </p>
-          <Tooltip
-            content="This order has shipping."
-          >
-            <Link>Tooltip 2</Link>
-          </Tooltip>
           <p> Some text with a
-          <Tooltip content="This order has shipping labels.">
+          <Tooltip content="This order has" preferredPosition="above">
               <Link>Tooltip 1</Link>
             </Tooltip> in it
         </p>
@@ -1348,9 +1344,12 @@ class App extends React.Component<{}, State> {
               <p>Batman is a fictional superhero who appears in American comic books published by DC Comics. The character was created by artist Bob Kane and writer Bill Finger, and first appeared in Detective Comics #27</p>
             </Card>
           </ClickableChip>
+          <Card componentTitle="More about Batman">
+              <p>Batman is a fictional superhero who appears in American comic books published by DC Comics. The character was created by artist Bob Kane and writer Bill Finger, and first appeared in Detective Comics #27</p>
+            </Card>
           <p> Some text with a
           <Tooltip content="This order has shipping labels.">
-              <Link>Tooltip 1</Link>
+              <Link>Tooltipba 1</Link>
             </Tooltip> in it
         </p>
           <Tooltip
@@ -1546,6 +1545,15 @@ class App extends React.Component<{}, State> {
                 validateRules={[
                   { required: true, message: 'City is required.' },
                 ]}
+              />
+
+              <Select
+                componentId="appCity"
+                name="Select city 2"
+                label=""
+                options={[{ value: '', label: 'Select city' }, { value: 'xyz', label: 'xyz' }, { value: 'abc', label: 'abc' }]}
+                value={this.state.appCity}
+                onChange={this.valueUpdater('appCity')}
               />
               <div><p>child<span>child 2</span></p></div>
               <div>
@@ -1950,14 +1958,14 @@ class App extends React.Component<{}, State> {
   popoverUpdate(e: any) {
     this.setState({
       popoverActive : !this.state.popoverActive,
-      anchorEl: e ? e.target as HTMLElement : this.state.anchorEl
+      anchorEl: e ? e.currentTarget as HTMLElement : this.state.anchorEl
     });
   }
 
   popoverUpdate2(e: any) {
     this.setState({
       popoverActive2 : !this.state.popoverActive2,
-      anchorEl2: e ? e.target as HTMLElement : this.state.anchorEl2
+      anchorEl2: e ? e.currentTarget as HTMLElement : this.state.anchorEl2
     });
   }
 

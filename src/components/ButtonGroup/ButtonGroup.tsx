@@ -10,6 +10,7 @@ import * as baseTheme from './ButtonGroup.scss';
 
 export interface Props {
   componentStyle?: any;
+  componentClass?: string;
   // Display true or false value. Join buttons as segmented group.
   segmented?: boolean;
   // Name of button, Button components.
@@ -20,12 +21,14 @@ export interface Props {
 
 const buttonGroup = ({
   componentStyle,
+  componentClass,
   children,
   segmented,
   theme,
 }: Props) => {
   const className = classNames(
     theme.buttonGroup,
+    componentClass,
     segmented && theme.segmented
   );
 

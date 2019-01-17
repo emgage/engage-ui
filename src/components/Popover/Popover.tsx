@@ -16,6 +16,8 @@ import { forNode as ScrollableForNode } from '../Scrollable';
 import {
   calculateVerticalPosition,
   calculateHorizontalPosition,
+  PreferredAlignment,
+  PreferredPosition,
 } from '../PositionedOverlay/math';
 
 // DEfine type for direction to render popover
@@ -29,6 +31,9 @@ export interface Props {
   disabled?:boolean;
   // Set direction to be applied. Available options: up | down | left | right.
   direction?:Direction;
+  preferredAlignment?: PreferredAlignment;
+  // Define overlay position 
+  preferredPosition?: PreferredPosition;
   // Set active to true for popover to display, else false
   active: boolean;
   // Set wrapper element
@@ -37,6 +42,7 @@ export interface Props {
   closeOnClickOutside?: boolean;
   // Set anchor element or keep it null
   anchorEl?: HTMLElement | null;
+  fixed?: boolean;
   // To add any inline style to Popover
   style? : any;
   // Call close method on click 
@@ -51,6 +57,7 @@ export interface Props {
 
 export interface State {
   active: boolean;
+  renderCount: number;
 }
 // Popover component, in here wrap all other required components or DOM for the Popover
 class Popover extends React.PureComponent<Props, State> {
@@ -71,6 +78,7 @@ class Popover extends React.PureComponent<Props, State> {
     this.state = {
       // As per props value set the popover to be active
       active: this.props.active,
+      renderCount: 0
     };
   }
 
@@ -81,7 +89,6 @@ class Popover extends React.PureComponent<Props, State> {
     if (newActive !== active) {
       this.setState({ active: newActive });
     }
-
     if (active && !newProps.active && newProps.onClose) {
       newProps.onClose();
     } else if (!active && newProps.active && newProps.onOpen) {
@@ -134,7 +141,7 @@ class Popover extends React.PureComponent<Props, State> {
     const {
       activatorWrapper: WRAPPERCOMPONENT = 'div',
       children,
-      direction = 'down',
+      direction,
       anchorEl,
       disabled,
       style,
@@ -142,6 +149,7 @@ class Popover extends React.PureComponent<Props, State> {
 
     const { active } = this.state;
 
+    // Styling for popover
     const popoverClassName = classNames(
       direction === 'down' ? baseTheme.popdown
       : direction === 'up' ? baseTheme.popup
@@ -150,6 +158,7 @@ class Popover extends React.PureComponent<Props, State> {
       !disabled && active && baseTheme.active
     );
 
+    // Styling for popover container
     const popoverContainerClassName = classNames(
       baseTheme.popoverContainer,
       !disabled && active && baseTheme.active
@@ -198,6 +207,12 @@ class Popover extends React.PureComponent<Props, State> {
     const { id, activatorContainer } = this;
     if (activatorContainer === null) { return; }
 
+    // This will be used to get element dimention for any element except tooltip, which will be render later.
+    const overlayRect = getRectForNode(this.popoverEle);
+    if (overlayRect.width !== 0 && this.state.renderCount < 1) {
+
+      this.forceUpdate();
+    }
     const firstFocusable = findFirstFocusableNode(activatorContainer);
     const focusableActivator = firstFocusable || activatorContainer;
 
@@ -205,7 +220,7 @@ class Popover extends React.PureComponent<Props, State> {
     focusableActivator.setAttribute('aria-controls', id);
     focusableActivator.setAttribute('aria-owns', id);
     focusableActivator.setAttribute('aria-haspopup', 'true');
-    focusableActivator.setAttribute('aria-expanded', String(this.props.active));
+    focusableActivator.setAttribute('aria-expanded', String(!this.props.active));
   }
 
   // Get activator node i.e. trigger which opened up popover
@@ -223,7 +238,7 @@ class Popover extends React.PureComponent<Props, State> {
   @autobind
   private handleKeyEvent(event: KeyboardEvent) {
     event.preventDefault();
-
+    this.setState({ renderCount: 0 });
     const {
       closeOnClickOutside,
       callbackParent,
@@ -263,14 +278,14 @@ class Popover extends React.PureComponent<Props, State> {
     if (!active) {
       return;
     }
-
+    this.setState({ renderCount: 0 });
     // Close the popdown on outside area click
-    if (element !== null && event.target != null && element !== event.target && closeOnClickOutside) {
+    if (element !== null && event.currentTarget != null && element !== event.currentTarget && closeOnClickOutside) {
       const domNode = document.body;
-      const targetNode = event.target;
+      const targetNode = event.currentTarget;
       if ((!domNode || !domNode.contains(targetNode as Node))) {
         this.setState({ active : true });
-      } else if (event.target !== anchorEl && !element.contains(event.target as Node)) {
+      } else if (event.currentTarget !== anchorEl && !element.contains(event.currentTarget as Node)) {
         const newState = !this.state.active;
         // update the state
         this.setState({ active: !this.state.active });
@@ -282,12 +297,20 @@ class Popover extends React.PureComponent<Props, State> {
     }
   }
 
+  // This function can be used to get measurement of any html element and we can decide where to put popover
   @autobind
   private handleMeasurement() {
     const {
-      direction = 'down',
+      direction,
       anchorEl,
+      fixed,
+      preferredAlignment = 'center',
+      preferredPosition = 'below',
     } = this.props;
+
+    if (this.state.renderCount < 2) {
+      this.setState({ renderCount: this.state.renderCount + 1 });
+    }
 
     const activatorRect = getRectForNode(anchorEl);
     const overlayRect = getRectForNode(this.popoverEle);
@@ -296,14 +319,17 @@ class Popover extends React.PureComponent<Props, State> {
       ? getMarginsForNode(this.popoverEle.firstElementChild as HTMLElement)
       : { activator: 0, container: 0, horizontal: 0 };
     const containerRect = getRectForNode(window);
-    const zIndex = anchorEl ? getZIndexForLayerFromNode(anchorEl) + 1 : 1;
-    const verticalPosition = calculateVerticalPosition(activatorRect, overlayRect, overlayMargins, scrollableContainerRect, containerRect, direction === 'down' ? 'below' : 'above');
-    const horizontalPosition = calculateHorizontalPosition(activatorRect, overlayRect, containerRect);
+    const zIndex = anchorEl ? getZIndexForLayerFromNode(anchorEl) + 2 : 2;
 
+    // Used to get top position of popover
+    const verticalPosition = calculateVerticalPosition(activatorRect, overlayRect, overlayMargins, scrollableContainerRect, containerRect, direction === 'down' ? 'below' : 'above', fixed);
+    // Used to get left or right alignment of popover
+    const horizontalPosition = calculateHorizontalPosition(activatorRect, overlayRect, containerRect, overlayMargins, preferredAlignment, preferredPosition, false);
     return {  zIndex, top: verticalPosition.top, left: horizontalPosition };
   }
 }
 
+// Funtion used to 
 function getMarginsForNode(node: HTMLElement) {
   const styles = window.getComputedStyle(node);
   return {

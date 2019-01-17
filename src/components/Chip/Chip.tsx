@@ -3,6 +3,7 @@ import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 import { classNames } from '@shopify/react-utilities/styles';
 import { CHIP } from '../ThemeIdentifiers';
 import * as baseTheme from './Chip.scss';
+import Icon from '../Icon';
 
 export interface Props {
   // Makes the chips body area clickable.
@@ -67,16 +68,12 @@ class Chip extends React.PureComponent<Props, any> {
       : chipContents;
     const isRemovable = removable ?
       <a className={theme.Remove} aria-label={'Remove ' + children} onClick={onRemove} tabIndex={-1}>
-        <span aria-hidden="true">×</span>
+        <Icon source="cancel" />
       </a>
       : '';
 
     return (
-      <span
-        onKeyDown={removable ? this.onKeyDown.bind(this, Event) : null}
-      >
-        {React.createElement('button', { className }, isClickable, isRemovable)}
-      </span>
+        React.createElement('button', { className, onKeyDown: removable ? this.onKeyDown.bind(this, Event) : null }, isClickable, isRemovable)
     );
   }
 }

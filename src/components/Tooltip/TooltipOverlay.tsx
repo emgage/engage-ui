@@ -47,6 +47,7 @@ export default class TooltipOverlay extends React.PureComponent<Props, never> {
         activator={activator}
         preferredPosition={preferredPosition}
         render={this.renderTooltip.bind(this)}
+        preloadedPopover={true}
       />
     );
   }
@@ -60,12 +61,15 @@ export default class TooltipOverlay extends React.PureComponent<Props, never> {
       positioning,
       activatorRect,
     } = overlayDetails;
-    const { componentId, children, light } = this.props;
+    const { componentId, children, light, preferredPosition } = this.props;
 
-    const tipStyle = calculateTipPosition(activatorRect.center.x, left);
+    const tipStyle = calculateTipPosition(activatorRect.center.x, left, preferredPosition);
 
     const containerClassName = classNames(
-      styles.tooltip,
+      preferredPosition === 'below' && styles.belowTooltip,
+      preferredPosition === 'right' && styles.rightTooltip,
+      preferredPosition === 'above' && styles.aboveTooltip,
+      preferredPosition === 'left' && styles.leftTooltip,
       light && styles.light,
       measuring && styles.measuring,
       positioning === 'above' && styles.positionedAbove
@@ -96,6 +100,14 @@ export default class TooltipOverlay extends React.PureComponent<Props, never> {
   }
 }
 
-function calculateTipPosition(activatorRectXAxisCenter: number, left: number) {
-  return { left: activatorRectXAxisCenter - left };
+function calculateTipPosition(activatorRectXAxisCenter: number, left: number, preferredPosition?: PreferredPosition) {
+  if (preferredPosition === 'above') {
+    return { left: activatorRectXAxisCenter - left };
+  } if (preferredPosition === 'below' || preferredPosition === 'mostSpace') {
+    return { left: activatorRectXAxisCenter - left, top: 0 };
+  } if (preferredPosition === 'right') {
+    return { top: '34%' };
+  } if (preferredPosition === 'left') {
+    return { top: '34%', right: '4%' };
+  }
 }

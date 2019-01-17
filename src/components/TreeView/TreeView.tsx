@@ -90,7 +90,7 @@ class TreeView extends React.Component<Props, State> {
 
   // Render single node, also iterate through its children & render those as well if its parent active status is true
   renderNode = (item: SourceData): React.ReactNode => {
-    const { iconColor = 'black' } = this.props;
+    const { iconColor = 'black', theme } = this.props;
     const iconStyle = {
       padding: '0.25em 0.5em 0.25em 0',
     };
@@ -100,14 +100,14 @@ class TreeView extends React.Component<Props, State> {
       <li key={item.id}>
         {
           item.children ?
-          <div onClick={() => this.toggleNode(item.id)} className={this.props.theme.nodeicon}>
+          <div onClick={() => this.toggleNode(item.id)} className={theme.nodeicon}>
             {item.active ? <Icon componentColor={iconColor} source="circleChevronDown" /> : <Icon componentColor={iconColor} source="circleChevronRight" />}
           </div> :
-          <div className={this.props.theme.nodeicon}> <Icon componentStyle={iconStyle} componentColor={iconColor} source="circle" /> </div>
+          <div className={theme.nodeicon}> <Icon componentStyle={iconStyle} componentColor={iconColor} source="circle" /> </div>
         }
 
-        <div className={this.props.theme.nodecontent}>
-          <div className={this.props.theme.nodecontentwrapper}><TreeNode { ...item } /></div>
+        <div className={theme.nodecontent}>
+          <div className={theme.nodecontentwrapper}><TreeNode { ...item } /></div>
         </div>
       </li>
     );
@@ -117,12 +117,12 @@ class TreeView extends React.Component<Props, State> {
     // If children node further finds its child node it will recurse through the list
     if (item.children && item.active) {
       return (
-        <li key={item.id} className={this.props.theme.haschildren}>
-          <div onClick={() => this.toggleNode(item.id)} className={this.props.theme.nodeicon}>
+        <li key={item.id} className={theme.haschildren}>
+          <div onClick={() => this.toggleNode(item.id)} className={theme.nodeicon}>
             {item.active ? <Icon componentColor={iconColor} source="circleChevronDown" /> : <Icon componentColor={iconColor} source="circleChevronRight" />}
           </div>
-          <div className={this.props.theme.nodecontent}>
-            <div className={this.props.theme.nodecontentwrapper}><TreeNode { ...item } /></div>
+          <div className={theme.nodecontent}>
+            <div className={theme.nodecontentwrapper}><TreeNode { ...item } /></div>
           </div>
 
           <ul>

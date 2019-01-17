@@ -87,25 +87,36 @@ $input-vertical-adjust: rem(1px);
   pointer-events: none;
 }
 
-.input {
+.Select {
   @include text-style-input;
   position: relative;
   z-index: z-index(input, $stacking-order);
   width: 100%;
   min-height: control-height();
   margin: 0;
-  padding: control-vertical-padding() ($input-horizontal-padding + $icon-size) control-vertical-padding() $input-horizontal-padding;
+  background: transparent;
+  border: border(transparent);
+  appearance: none;
+
+  &:focus {
+    ~ .backdrop {
+      @include control-backdrop(focused);
+    }
+  }
+}
+
+.select {
+  width: 100%;
   background: transparent;
   border: border(transparent);
   appearance: none;
   line-height: rem(20px);
+  padding: 12px;
+  z-index: z-index(input, $stacking-order);
 
   &:focus {
     outline: none;
-
-    ~ .backdrop {
-      @include control-backdrop(focused);
-    }
+    box-shadow: none;
   }
 
   &:disabled {
