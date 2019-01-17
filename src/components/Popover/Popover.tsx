@@ -325,7 +325,6 @@ class Popover extends React.PureComponent<Props, State> {
     const verticalPosition = calculateVerticalPosition(activatorRect, overlayRect, overlayMargins, scrollableContainerRect, containerRect, direction === 'down' ? 'below' : 'above', fixed);
     // Used to get left or right alignment of popover
     const horizontalPosition = calculateHorizontalPosition(activatorRect, overlayRect, containerRect, overlayMargins, preferredAlignment, preferredPosition, false);
-
     return {  zIndex, top: verticalPosition.top, left: horizontalPosition };
   }
 }

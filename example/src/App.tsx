@@ -368,7 +368,7 @@ class App extends React.Component<{}, State> {
         divider: false
       },
       {
-        content: 'Item 3',
+        content: 'Itemasdadmmm 3',
         disabled: false
       },
       {
@@ -1273,7 +1273,7 @@ class App extends React.Component<{}, State> {
               toggle={this.popoverUpdate2}
               anchorEl = {this.state.anchorEl2}
               direction="down"
-              preferredAlignment="center"
+              preferredAlignment="right"
             />
           </div>
 
@@ -1935,7 +1935,7 @@ class App extends React.Component<{}, State> {
   popoverUpdate(e: any) {
     this.setState({
       popoverActive : !this.state.popoverActive,
-      anchorEl: e ? e.target as HTMLElement : this.state.anchorEl
+      anchorEl: e ? e.currentTarget as HTMLElement : this.state.anchorEl
     });
   }
 
