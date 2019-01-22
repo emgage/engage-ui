@@ -168,7 +168,7 @@ export interface Props {
   // Theme to be injected via css-themr.
   theme?: any;
   callbackValue?: any;
-  onClick?(id: number | string): void;
+  onClick?(id: number | string, additionalParam?: boolean): void;
 }
 
 const icon = ({

@@ -77,6 +77,7 @@ export interface State {
   selectedRows: any;
   searchKey: string;
   totalRowCount: number;
+  rowExpandOnLoad: boolean;
 }
 
 let callBackSelectedRows: any;
@@ -127,6 +128,7 @@ class Table extends React.Component<Props, State> {
       },
       searchKey: '',
       totalRowCount: 0,
+      rowExpandOnLoad: this.props.rowExpandOnLoad === undefined ? false : this.props.rowExpandOnLoad,
     };
   }
 
@@ -201,7 +203,7 @@ class Table extends React.Component<Props, State> {
 
   // Function to render tbody & td with specifc data & if user passed any custom component that can also get rendered
   renderBody = () => {
-    const { children, column, expandingRowId = [], hideRow, rowExpandOnLoad, selectRow } = this.props;
+    const { children, column, expandingRowId = [], hideRow, selectRow } = this.props;
     const { data, expandedRow } = this.state;
     if (!children) {
       return (
@@ -220,8 +222,8 @@ class Table extends React.Component<Props, State> {
     // If there is no children for the table component (which is being used to open when the row gets expanded)
     return data.map((item: any, index: number) => {
       if (!hideRow || !this.hideRow(item)) {
-        if (rowExpandOnLoad && expandingRowId.indexOf(item.id) !== -1 && expandedRow.indexOf(item.id) === -1) {
-          this.openNestedRow(item.id);
+        if (this.state.rowExpandOnLoad && expandingRowId.indexOf(item.id) !== -1 && expandedRow.indexOf(item.id) === -1) {
+          this.openNestedRow(item.id, true);
         }
 
         return (
@@ -235,7 +237,7 @@ class Table extends React.Component<Props, State> {
   }
 
   // Function to toggle between the expanded row
-  openNestedRow = (currentId: number | string) => {
+  openNestedRow = (currentId: number | string, isCheckboxClicked: boolean) => {
     const { nestedChildCallback } = this.props;
     let expandedRow = Object.assign([], this.state.expandedRow);
     const rowIndex = expandedRow.indexOf(currentId);
@@ -245,8 +247,8 @@ class Table extends React.Component<Props, State> {
     } else {
       expandedRow.splice(rowIndex, 1);
     }
-
-    this.setState({ expandedRow });
+    debugger;
+    this.setState({ expandedRow, rowExpandOnLoad: isCheckboxClicked ? this.state.rowExpandOnLoad : !this.state.rowExpandOnLoad });
 
     if (nestedChildCallback) {
       nestedChildCallback(currentId, rowIndex === -1);
@@ -256,7 +258,6 @@ class Table extends React.Component<Props, State> {
   // Render the main table row
   renderTbodyRows = (item: any, index: number | string) => {
     const { column, expandingRowId = [], hideExpandedIcon, nestedChildData, rowAction } = this.props;
-
     return (
       <TableRow key={index}>
         { this.renderRowSelection(item, 'body') }
@@ -394,7 +395,7 @@ class Table extends React.Component<Props, State> {
     const { expandingRowId = [] } = this.props;
 
     expandingRowId.forEach((item: number) => {
-      this.openNestedRow(item);
+      this.openNestedRow(item, true);
     });
   }
 
