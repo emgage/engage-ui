@@ -12,6 +12,10 @@ import {
   Button,
   ButtonGroup,
   Card,
+  CardHeader,
+  CardFooter,
+  CardSection,
+  CardBody,
   Checkbox,
   Chip,
   ChoiceList,
@@ -1323,6 +1327,27 @@ class App extends React.Component<{}, State> {
             resizable
             // onChange={this.valueUpdater('appTextCounter')}
           />
+                                <Card>
+                                <CardHeader>Online store dashboard - Card</CardHeader>
+                                    <CardBody sectioned>
+                                        <CardSection>
+                                        <CardHeader>Reports</CardHeader>
+                                            <p>View a summary of your online store’s performance.</p>
+                                        </CardSection>
+                                        <CardSection>
+                                        <CardHeader>Summary Reports</CardHeader>
+                                            <p>View a summary of your online store’s performance, including sales, visitors, top products, and referrals.</p>
+                                        </CardSection>
+                                    </CardBody>
+                                </Card>
+                                <div>this is card sep</div>
+         <Card>
+            <CardHeader>Grid Header1</CardHeader>
+            <CardBody>
+            <CardSection>This is card Section</CardSection>
+            </CardBody>
+            <CardFooter><Button onClick={(e: any) => this.popoverUpdate2(e)}>Dropdown2 active</Button></CardFooter>
+         </Card>
           <p> Some text with a
           <Tooltip content="Order" preferredPosition="left" active>
               <Link>Tooltipss</Link>
@@ -1340,11 +1365,12 @@ class App extends React.Component<{}, State> {
           </Tooltip>
           <TextField componentId="TestName" label="Text Counter" placeholder="test-placeholder" value={this.state.appTextCounter} helpText="Helper Text" enableTextCounter={true} maxLength={100} /* onChange={this.valueUpdater('appTextCounter')} */ />
           <ClickableChip chip={<Chip>Batman</Chip>}>
-            <Card componentTitle="More about Batman">
+            <Card>
               <p>Batman is a fictional superhero who appears in American comic books published by DC Comics. The character was created by artist Bob Kane and writer Bill Finger, and first appeared in Detective Comics #27</p>
             </Card>
           </ClickableChip>
-          <Card componentTitle="More about Batman">
+          <Card>
+          <CardHeader>More about Batman</CardHeader>
               <p>Batman is a fictional superhero who appears in American comic books published by DC Comics. The character was created by artist Bob Kane and writer Bill Finger, and first appeared in Detective Comics #27</p>
             </Card>
           <p> Some text with a

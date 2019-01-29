@@ -1,11 +1,15 @@
 import * as React from 'react';
-import { ClickableChip, Chip, Card  } from '../../../../src/components/';
+import { ClickableChip, Chip, Card, CardBody, CardHeader  } from '../../../../src/components/';
 import * as styles from '../../styles/components-page.scss';
 
 const ClickableChipExample = () => (
   <div className={styles.example}>
     <ClickableChip chip={<Chip>Batman</Chip>}>
-      <Card componentTitle="More about Batman"/>
+      <Card>
+        <CardHeader>More about Batman></CardHeader>
+        <CardBody>
+        </CardBody>
+      </Card>
     </ClickableChip>
   </div>
 );
