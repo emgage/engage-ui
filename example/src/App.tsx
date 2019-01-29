@@ -641,8 +641,8 @@ class App extends React.Component<{}, State> {
     const treeSource: TreeSource[] = [
       {
         id: 1,
-        component: () => <span>I am component1</span>,
-        active: false,
+        component: () => <span>I am component1<br />I am component1<br />I am component1</span>,
+        active: true,
         onToggle: status => console.log('Tree node open:', status),
         children: [
           {
@@ -651,31 +651,40 @@ class App extends React.Component<{}, State> {
             I am child component1<br/>I am child component1<br/>I am child component1<br/>I am child component1
             </span>,
             active: false,
-          }, {
+          },
+          {
             id: 12,
-            component: () => <span>I am child component2</span>,
+            component: () => <span>I am child component2<br />I am child component2<br />I am child component2</span>,
             active: false,
             children: [
               {
-                id: 111,
-                component: () => <span>I am child child component1</span>,
+                id: 121,
+                component: () => <Card componentTitle="About Batman">
+                <p>Batman is a fictional superhero who appears in American comic books published by DC Comics. The character was created by artist Bob Kane and writer Bill Finger, and first appeared in Detective Comics #27</p>
+              </Card>,
+              // component: () => <span>I am child child component1</span>,
                 active: false,
                 children: [
                   {
-                    id: 1112,
-                    component: () => <span>child component1</span>,
+                    id: 1211,
+                    component: () => <Card componentTitle="About Robin">
+                <p>The American robin (Turdus migratorius) is a migratory songbird of the true thrush genus and Turdidae, the wider thrush family.</p>
+              </Card>,
+                    // component: () => <span>child component1</span>,
                     active: false,
-                  }, {
-                    id: 1113,
+                  },
+                  {
+                    id: 1212,
                     component: () => <span>child component2</span>,
                     active: false,
                     children: [
                       {
-                        id: 11121,
+                        id: 12121,
                         component: () => <span>child component1</span>,
                         active: false,
-                      }, {
-                        id: 11131,
+                      },
+                      {
+                        id: 12122,
                         component: () => <span>child component2</span>,
                         active: false,
                       },
@@ -683,19 +692,33 @@ class App extends React.Component<{}, State> {
                   },
                 ]
               },
+              {
+                id: 122,
+                component: () => <span>I am child component2</span>,
+                active: false,
+              }
             ]
-          }, {
+          },
+          {
             id: 13,
             label: 'This is normal component',
             active: false,
+          },
+          {
+            id: 14,
+            component: () => <span>I am child component1<br/>I am child component1<br/>I am child component1<br/>
+            I am child component1<br/>I am child component1<br/>I am child component1<br/>I am child component1
+            </span>,
+            active: false,
           }
         ]
-      }, {
-        id: 2,
-        component: () => <span>I am component2</span>,
-        active: false,
-        onToggle: status => console.log('Tree node open:', status),
       }
+      // , {
+      //   id: 2,
+      //   component: () => <span>I am component2</span>,
+      //   active: false,
+      //   onToggle: status => console.log('Tree node open:', status),
+      // }
     ];
 
     return (
@@ -911,7 +934,7 @@ class App extends React.Component<{}, State> {
           <Caption componentStyle={{ color: 'red' }}>This is modal</Caption>
         </div>
         { /* this is treeview */ }
-        <div>
+        <div style={{ padding: '20px' }}>
           <label>This is treeview </label>
 
           <TreeView

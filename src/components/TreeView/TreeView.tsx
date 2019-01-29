@@ -6,7 +6,6 @@ import TreeNode from './TreeNode';
 import { TREEVIEW } from '../ThemeIdentifiers';
 import Icon, { IconColor }  from '../Icon';
 import * as baseTheme from './TreeView.scss';
-import FlexBox from '../FlexBox';
 
 // There could be multiple themes, but right now lets take only a basic theme
 type Themes = 'basic';
@@ -92,37 +91,24 @@ class TreeView extends React.Component<Props, State> {
   // Render single node, also iterate through its children & render those as well if its parent active status is true
   renderNode = (item: SourceData): React.ReactNode => {
     const { iconColor = 'black', theme } = this.props;
-    const chevronIconStyle = {
-      width: '1.5rem',
-      height: '1.5rem',
-    };
-    const dotIconStyle = {
-      width: '1rem',
-      height: '1rem',
+    const iconStyle = {
+      padding: '0.25em 0.5em 0.25em 0',
     };
 
     // Current node aka parent node
     const node = (
       <li key={item.id}>
-        <FlexBox componentClass={theme.singleNode} align="Start">
-          <div className={theme.treeDivider}></div>
-          <FlexBox align="Start" componentClass={theme.nodeContent}>
-            {
-              item.children ?
-              <div className={theme.iconStyle} onClick={() => this.toggleNode(item.id)}>
-                {item.active ?
-                  <Icon componentStyle={chevronIconStyle} componentColor={iconColor} source="circleChevronDown" /> :
-                  <Icon componentColor={iconColor} componentStyle={chevronIconStyle} source="circleChevronRight" />
-                }
-              </div> :
-              <div>
-                <Icon componentStyle={dotIconStyle} componentColor={iconColor} source="circle" />
-              </div>
-            }
+        {
+          item.children ?
+          <div onClick={() => this.toggleNode(item.id)} className={theme.nodeicon}>
+            {item.active ? <Icon componentColor={iconColor} source="circleChevronDown" /> : <Icon componentColor={iconColor} source="circleChevronRight" />}
+          </div> :
+          <div className={theme.nodeicon}> <Icon componentStyle={iconStyle} componentColor={iconColor} source="circle" /> </div>
+        }
 
-            <div className={theme.treeviewSpan}><TreeNode { ...item } /></div>
-          </FlexBox>
-        </FlexBox>
+        <div className={theme.nodecontent}>
+          <div className={theme.nodecontentwrapper}><TreeNode { ...item } /></div>
+        </div>
       </li>
     );
 
@@ -131,19 +117,13 @@ class TreeView extends React.Component<Props, State> {
     // If children node further finds its child node it will recurse through the list
     if (item.children && item.active) {
       return (
-        <li key={item.id}>
-          <FlexBox componentClass={theme.singleNode} align="Start">
-            <div className={theme.treeDivider}></div>
-            <FlexBox align="Start" componentClass={theme.nodeContent}>
-              <div className={theme.iconStyle} onClick={() => this.toggleNode(item.id)}>
-                {item.active ?
-                  <Icon componentStyle={chevronIconStyle} componentColor={iconColor} source="circleChevronDown" /> :
-                  <Icon componentStyle={chevronIconStyle} componentColor={iconColor} source="circleChevronRight" />}
-              </div>
-
-              <div className={this.props.theme.treeviewSpan}><TreeNode { ...item } /></div>
-            </FlexBox>
-          </FlexBox>
+        <li key={item.id} className={theme.haschildren}>
+          <div onClick={() => this.toggleNode(item.id)} className={theme.nodeicon}>
+            {item.active ? <Icon componentColor={iconColor} source="circleChevronDown" /> : <Icon componentColor={iconColor} source="circleChevronRight" />}
+          </div>
+          <div className={theme.nodecontent}>
+            <div className={theme.nodecontentwrapper}><TreeNode { ...item } /></div>
+          </div>
 
           <ul>
             { item.children.map((childItem: SourceData) => this.renderNode(childItem)) }
