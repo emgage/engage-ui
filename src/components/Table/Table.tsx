@@ -406,7 +406,7 @@ class Table extends React.Component<Props, State> {
                               this.props.nestedChildData.filter(
                                 (item: any) => this.state.selectedRows.indexOf(item.rowId) !== -1);
     console.log(isAllChildChecked);
-    // const totalRowUnchecked = (isAllChildChecked && isAllChildChecked.length > 0 && this.state.selectedRows.length > 0 && this.state.totalRowCount > 0 && ((this.state.totalRowCount - this.state.selectedRows.length) === (this.state.totalRowCount - 1))) ? true : false;
+    const totalRowUnchecked = (isAllChildChecked && isAllChildChecked.length > 0 && this.state.selectedRows.length > 0 && this.state.totalRowCount > 0 && ((this.state.totalRowCount - this.state.selectedRows.length) === (this.state.totalRowCount - 1))) ? true : false;
     // if (this.state.totalRowCount > 0 && this.state.selectedRows.length > 0 && this.state.selectedRows.length === 1 && this.state.totalRowCount !== this.state.selectedRows.length) {
     //   this.props.nestedChildData && this.props.nestedChildData[0].component.props.data.filter((item: any) => selectedRows.indexOf(item.id) === -1);
     // }
@@ -424,8 +424,7 @@ class Table extends React.Component<Props, State> {
     //                                   ) ? true : false;
 
     debugger;
-    // totalRowUnchecked ? false : 
-    return <TableHead componentStyle={{ width: 'auto' }}><Checkbox label="" checked={(rowChecked && (!isAllChildChecked || isAllChildChecked.length === 0)) && this.state.selectedRows.length > 0 ? true : allRowChecked} indeterminante={rowChecked} onChange={this.toggleAllRowSelection} /></TableHead>;
+    return <TableHead componentStyle={{ width: 'auto' }}><Checkbox label="" checked={(rowChecked && (!isAllChildChecked || (isAllChildChecked !== undefined ? isAllChildChecked.length === 0 : true))) && this.state.selectedRows.length > 0 ? true : allRowChecked} indeterminante={totalRowUnchecked ? false : rowChecked} onChange={this.toggleAllRowSelection} /></TableHead>;
   }
 
   // Function to add checkbox for the row selection
@@ -449,8 +448,6 @@ class Table extends React.Component<Props, State> {
                                       // childData[0].component.props.data.length !== isAllChildChecked.length
                                       ) ? true : false;
     debugger;
-    // const totalRowUnchecked = (isAllChildChecked && isAllChildChecked.length > 0 && this.state.selectedRows.length > 0 && this.state.totalRowCount > 0 && ((this.state.totalRowCount - this.state.selectedRows.length) === (this.state.totalRowCount - 1))) ? true : false;
-    // console.log(totalRowUnchecked);
     //  || getCurrentParentData.length > 0
     // const getCurrentParentData = this.props.nestedChildData && this.props.nestedChildData.length > 0 && this.props.nestedChildData[0].component.props.data.filter((item: any) => item.id === uniqueId);
     // const parentId = (getCurrentParentData && getCurrentParentData.length > 0) ? getCurrentParentData[0].rowId : null;
@@ -461,7 +458,7 @@ class Table extends React.Component<Props, State> {
     return (
       <Checkbox
         value={uniqueId}
-        checked={(((selectedRows.indexOf(uniqueId) !== -1)) && (!isParentUncheked)) ? true : false}
+        checked={(((selectedRows.indexOf(uniqueId) !== -1) || (isAllChildChecked && isAllChildChecked.length > 0) || (childData && childData.length > 0 && !isCheckBoxIndeterminante)) && (!isParentUncheked)) ? true : false}
         indeterminante={isCheckBoxIndeterminante ? true : false}
         onChange={(checkedStatus: boolean) => {
           this.toggleSingleRowSelection(rowData, checkedStatus);
@@ -554,11 +551,34 @@ class Table extends React.Component<Props, State> {
   toggleSingleRowSelection = (rowData: any, checkedStatus: boolean) => {
     // this.setState({ expandedRow: [] });
     // debugger;
+
+    const allRowIds = this.getAllRowIds();
+    this.setState({ totalRowCount: allRowIds.length });
+
     const selectedRows = [...this.state.selectedRows];
     const { singleSelectRowCallback, multipleCallBackValue, selectCallbackValue } = this.props;
     const uniqueId = selectCallbackValue ? rowData[selectCallbackValue] : rowData.id;
     const allChildData = [];
     let allRowId: any = [];
+
+    const childData = this.props.nestedChildData && this.props.nestedChildData;
+    const expandedRowId = (childData && childData.length > 0 && childData[0].rowId);
+    const isAllChildChecked = childData && childData.length > 0
+    && childData[0].component.props.data.filter((item: any) => selectedRows.indexOf(item.id) === -1);
+    const isCheckBoxIndeterminante = (isAllChildChecked &&
+                                    isAllChildChecked.length > 0 &&
+                                    uniqueId === expandedRowId
+                                    // childData && childData.length > 0 &&
+                                    // childData[0].component.props.data.length !== isAllChildChecked.length
+                                    ) ? true : false;
+
+  //  || getCurrentParentData.length > 0
+  // const getCurrentParentData = this.props.nestedChildData && this.props.nestedChildData.length > 0 && this.props.nestedChildData[0].component.props.data.filter((item: any) => item.id === uniqueId);
+  // const parentId = (getCurrentParentData && getCurrentParentData.length > 0) ? getCurrentParentData[0].rowId : null;
+
+  // const allRowChecked = (this.state.selectedRows.length > 0 && this.state.totalRowCount > 0 && this.state.totalRowCount === this.state.selectedRows.length) ? true : false;
+    const isParentUncheked = (childData && childData.length > 0 &&
+                            childData[0].component.props.data.length === isAllChildChecked.length) ? true : false;
     // const getCurrentChildData = this.props.nestedChildData && this.props.nestedChildData[0].component.props.data.filter((item: any) => item.id === uniqueId);
     // const parentId = (getCurrentChildData && getCurrentChildData.length > 0) ? this.props.nestedChildData && this.props.nestedChildData[0].rowId : null;
 
@@ -585,8 +605,10 @@ class Table extends React.Component<Props, State> {
       }
     }
 
-    debugger;
-    console.log(allRowId);
+    // if (selectedRows.indexOf(expandedRowId) === -1 && !isParentUncheked && !isCheckBoxIndeterminante) {
+    //   selectedRows.push(expandedRowId);
+    // }
+
     if (this.state.selectedRows.length > 0 && checkedStatus) {
       for (const key in this.state.selectedRows) {
         allRowId.push(this.state.selectedRows[key]);
@@ -594,6 +616,11 @@ class Table extends React.Component<Props, State> {
     }
     allRowId.push(uniqueId);
 
+
+    if (allRowId.indexOf(expandedRowId) === -1 && !isParentUncheked && !isCheckBoxIndeterminante) {
+      allRowId.push(expandedRowId);
+    }
+    debugger;
     this.setState({ selectedRows: allRowId }, () => {
       if (!checkedStatus) {
         if (allRowId.length > 1) {
@@ -638,6 +665,52 @@ class Table extends React.Component<Props, State> {
 
   // Function to select all the rows on click of header  checkbox
   toggleAllRowSelection = (checkedStatus: boolean) => {
+    // const { nestedChildCallback, expandingRowId } = this.props;
+    // console.log(this.state.expandedRow);
+    // // this.setState({ expandedRow: [] });
+
+    // const data = expandingRowId;
+    // if (data && data.length > 0) {
+    //   data.map((item: any) => {
+    //     nestedChildCallback && nestedChildCallback(item, true);
+    //   });
+    // }
+
+    // debugger;
+    // const allChildData: any = [];
+    // if (this.props.nestedChildData !== undefined && this.props.nestedChildData.length > 0) {
+    //   for (const key in this.props.nestedChildData) {
+    //     if (this.props.nestedChildData[key].component.props.data.length > 0) {
+    //       for (const index in this.props.nestedChildData[key].component.props.data) {
+    //         allChildData.push(this.props.nestedChildData[key].component.props.data[index]);
+    //       }
+    //     }
+    //   }
+    // }
+
+    // allChildData.push(...this.state.data);
+    // const allData = [...new Map(allChildData.map((childData: any) => [childData.id, childData])).values()];
+
+    // const allRowId = allData.map((item: any) => {
+    //   return item.id;
+    // });
+    // debugger;
+    const allRowIds = this.getAllRowIds();
+    debugger;
+    this.setState({ totalRowCount: allRowIds.length });
+
+    if (checkedStatus) {
+      this.setState({ allRowChecked: true, selectedRows: allRowIds }, () => {
+        this.rowSelectionCallback();
+      });
+    } else {
+      this.setState({ allRowChecked: false, selectedRows: [] }, () => {
+        this.rowSelectionCallback();
+      });
+    }
+  }
+
+  getAllRowIds = () => {
     const { nestedChildCallback, expandingRowId } = this.props;
     console.log(this.state.expandedRow);
     // this.setState({ expandedRow: [] });
@@ -649,7 +722,6 @@ class Table extends React.Component<Props, State> {
       });
     }
 
-    debugger;
     const allChildData: any = [];
     if (this.props.nestedChildData !== undefined && this.props.nestedChildData.length > 0) {
       for (const key in this.props.nestedChildData) {
@@ -667,20 +739,9 @@ class Table extends React.Component<Props, State> {
     const allRowId = allData.map((item: any) => {
       return item.id;
     });
-    debugger;
-    this.setState({ totalRowCount: allRowId.length });
-
-    if (checkedStatus) {
-      this.setState({ allRowChecked: true, selectedRows: allRowId }, () => {
-        this.rowSelectionCallback();
-      });
-    } else {
-      this.setState({ allRowChecked: false, selectedRows: [] }, () => {
-        this.rowSelectionCallback();
-      });
-    }
+    return allRowId;
+    // this.setState({ totalRowCount: allRowId.length });
   }
-
   // Function to make search in data
   triggerSearch = (searchKey: string, field: string) => {
     const trimmedSearchKey = searchKey.trim().toLowerCase();
