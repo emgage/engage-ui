@@ -952,7 +952,7 @@ class App extends React.Component<{}, State> {
         <Alert componentType="danger">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
         </Alert>
-        <Checkbox helpText="this is help" checked={this.state.checkboxState} label={'I am a checkbox'} onChange={(newValue: boolean) => console.log('I am here:', newValue) } />
+        <Checkbox helpText="this is help" checked={this.state.checkboxState} indeterminante={true} label={'I am a checkbox'} onChange={(newValue: boolean) => console.log('I am here:', newValue) } />
         <Banner componentTitle={'banner'} status={'success'} />
         <Banner componentTitle={'banner'} status={'info'} />
         <Banner componentTitle={'banner'} status={'warning'} />
@@ -977,8 +977,8 @@ class App extends React.Component<{}, State> {
             nestedChildData={this.state.nestedChildData}
             nestedChildCallback={this.nestedChildCallback}
             expandingRowId={[2]}
-            rowExpandOnLoad={true}
-            hideExpandedIcon={true}
+            rowExpandOnLoad={false}
+            hideExpandedIcon={false}
             data={tableData}
             column={columnConfig}
             hideRow={{ status: 'Deleted' }}
@@ -988,7 +988,9 @@ class App extends React.Component<{}, State> {
             selectRow="checkbox"
             rowAction={rowActionConfig}
             selectCallbackValue="id"
+            multipleCallBackValue={['id', 'name']}
             selectRowCallback={(val: any) => this.setState({ bulkAction: { selectedRow: val } })}
+            singleSelectRowCallback={this.handleSelectRowCallback}
             bordered highlight sorting>
               Loading
             </Table>
@@ -1859,6 +1861,11 @@ class App extends React.Component<{}, State> {
   // handleChange(value1: any) {
   //   return (value: any) => this.setState({ [value1]: value });
   // }
+
+  handleSelectRowCallback = (selectedEntity: any) => {
+    debugger;
+    console.log(selectedEntity);
+  }
 
   getComboBoxItems() {
     const data = [
