@@ -290,12 +290,16 @@ class Table extends React.Component<Props, State> {
 
   // Function to render nested children for each row, this could be nested table or any other component
   renderNestedChildren = (key: string, id: number) => {
-    const { column, children, nestedChildData = [], selectRow, rowAction } = this.props;
+    const { column, children, nestedChildData = [], selectRow, rowAction, filterData } = this.props;
     const colSpanVal = column.length + (selectRow ? 1 : 0) + (rowAction ? 1 : 0);
 
+    const field = filterData !== undefined ? filterData.field : 'id';
+    const searchKey = (field !== undefined && this.state.searchKey !== '') ? this.state.searchKey : 'item[id]';
     // Get current row's nested component by matching its id
-    const thisNestedComponent = nestedChildData.filter(item => item.rowId === id);
+    const thisNestedComponent = nestedChildData.filter((item: any) => item.rowId === id &&
+                                                                      item[field] === searchKey);
     console.log(children, colSpanVal);
+    debugger;
     // return (
     //   <TableRow key={key} callBackSelectedRows={this.callBackSelectedRows} selectRow={this.state.selectedRows}>
     //     <TableData colSpan={colSpanVal}>
@@ -745,8 +749,37 @@ class Table extends React.Component<Props, State> {
   // Function to make search in data
   triggerSearch = (searchKey: string, field: string) => {
     const trimmedSearchKey = searchKey.trim().toLowerCase();
-    const { data } = this.getInitialState();
+    const { data } =  this.getInitialState();
 
+    // const { nestedChildCallback, expandingRowId } = this.props;
+    // console.log(this.state.expandedRow);
+    // // this.setState({ expandedRow: [] });
+
+    // const expandingRowData = expandingRowId;
+    // if (expandingRowData && expandingRowData.length > 0) {
+    //   expandingRowData.map((item: any) => {
+    //     nestedChildCallback && nestedChildCallback(item, true);
+    //   });
+    // }
+
+    // const allChildData = [];
+    // if (this.props.nestedChildData !== undefined && this.props.nestedChildData.length > 0) {
+    //   for (const key in this.props.nestedChildData) {
+    //     if (this.props.nestedChildData[key].component.props.data.length > 0) {
+    //       for (const index in this.props.nestedChildData[key].component.props.data) {
+    //         allChildData.push(this.props.nestedChildData[key].component.props.data[index]);
+    //       }
+    //     }
+    //   }
+    // }
+
+    // const parentData: any[] = data;
+    // // data.push(allChildData);
+    // const allParentChildData = parentData.concat(allChildData);
+    // console.log(allDatas);
+
+    debugger;
+    console.log(this.props.nestedChildData);
     if (trimmedSearchKey) {
       const result = data.filter((item: any) => {
         const thisVal = item[field].toLowerCase();
@@ -756,7 +789,7 @@ class Table extends React.Component<Props, State> {
         }
       });
 
-      this.setState({ data: result });
+      this.setState({ data: result, searchKey: trimmedSearchKey });
     } else {
       this.setState({ data });
     }
