@@ -976,7 +976,7 @@ class App extends React.Component<{}, State> {
           <Table
             nestedChildData={this.state.nestedChildData}
             nestedChildCallback={this.nestedChildCallback}
-            expandingRowId={[2]}
+            expandingRowId={[2, 4]}
             rowExpandOnLoad={false}
             hideExpandedIcon={false}
             data={tableData}
@@ -1863,7 +1863,6 @@ class App extends React.Component<{}, State> {
   // }
 
   handleSelectRowCallback = (selectedEntity: any) => {
-    debugger;
     console.log(selectedEntity);
   }
 
