@@ -7,6 +7,7 @@ import ButtonGroup from '../ButtonGroup';
 import Stack, { Item as StackItem } from '../Stack';
 import Heading from '../Heading';
 import { CARD } from '../ThemeIdentifiers';
+import { classNames } from '@shopify/react-utilities/styles';
 
 import * as baseTheme from './Card.scss';
 
@@ -15,11 +16,15 @@ export interface Props {
   children?: React.ReactNode;
   // Card header actions
   actions?: DisableableAction[];
+  // Custom style
+  componentStyle?: any;
+  // Custom class
+  componentClass?: string;
   // Theme to be injected via css-themr.
   theme?: any;
 }
 
-const header = ({ children, actions, theme }: Props) => {
+const cardHeader = ({ children, actions, theme, componentStyle, componentClass }: Props) => {
   const actionMarkup = actions
     ? (
       <ButtonGroup>
@@ -40,11 +45,17 @@ const header = ({ children, actions, theme }: Props) => {
     )
     : <Heading>{children}</Heading>;
 
+  const headerClass = classNames(
+    theme.header,
+    componentClass
+  );
+
+
   return (
-    <div className={theme.header}>
+    <div style={componentStyle} className={headerClass}>
       {headingMarkup}
     </div>
   );
 };
 
-export default themr(CARD, baseTheme)(header) as ThemedComponentClass<Props, {}>;
+export default themr(CARD, baseTheme)(cardHeader) as ThemedComponentClass<Props, {}>;

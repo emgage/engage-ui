@@ -1,17 +1,21 @@
 .treeview {
     list-style-type: none;
-    margin: 0px;
+    padding: 0;
+    margin: 0;
 
     ul {
+        padding: 0;
         margin: 0;
-        padding-left: 20px;
-
-        .singleNode {
-            &::before {
-                top: -15px;
-            }
-        }
+        margin-left: -1.4em;
     }
+}
+
+.nodeicon {
+  width: 1em;
+  height: 1em;
+  position: absolute;
+  left: 1em;
+  cursor:pointer;
 }
 
 .active {
@@ -19,57 +23,73 @@
 }
 
 .treeview li {
-    display: flex;
-    flex-direction: column;
-    list-style-type: none;
-    position: relative;
+    list-style-type:none;
+    margin:0;
+    padding: 0.7em 0.7em 0.7em calc(2.8em + 1px);
+    position:relative;
 }
 
-.singleNode {
-    .treeDivider {
-        width: 15px;
-        border-top: 1px solid #999;
-    }
-
-    &::before {
-        content:'';
-        position: absolute;
-    }
-    &::before {
-        border-left: 1px solid #999;
-        top: 0;
-        bottom: 0;
-        width: 1px;
-    }
-
-    .iconStyle {
-        position: relative;
-        left: -1px;
-    }
-
-    .nodeContent {
-        position: relative;
-        top: -6px;
-        width: 100%;
-    }
+.treeview ul li::before, .treeview ul li::after {
+    content:'';
+    left:0;
+    position:absolute;
+    right:auto;
 }
 
-.treeviewSpan {
-    border-bottom: 1px solid #999;
-    width: 100%;
+.treeview ul li::before {
+  border-left:1px solid #999;  
+  bottom:0;
+  top:0;
 }
 
-.treeview li.parent_li>span {
-    cursor: pointer;
+.treeview ul li::after {
+    border-top:1px solid #999;
+    top:calc(1em/2 + 0.7em); //18px;
+    width:calc(1em + 1px);
 }
-.treeview>ul>li::before, .treeview>ul>li::after {
-    border: 0
+
+.treeview ul li:last-child.haschildren::before {
+  height: calc(1em/2 + 0.7em);
 }
-.treeview li:last-child::before {
-    height: 37px
+
+.nodecontent {
 }
-.treeview li.parent_li>span:hover, .treeview li.parent_li>span:hover+ul li span {
-    background: #eee;
-    border: 1px solid #94a0b4;
-    color: #000
+
+li.haschildren {
+  padding-bottom: 0;
 }
+
+li.haschildren > .nodecontent {
+  padding-left: 1.4em;
+  padding-bottom: 0.7em;
+  padding-top: 0.7em;
+  margin-left: -1.4em;
+  margin-top: -0.7em;
+  position: relative;
+}
+
+li.haschildren > .nodecontent::before {
+  content:'';
+  left:0;
+  position:absolute;
+  right:auto;
+  border-left:1px solid #999;  
+  bottom:0;
+  height: calc(100% - 0.7em - (14/16)em);
+}
+
+// set last node tail to line height plus list item top margin
+.treeview li:not(.haschildren):last-child::before {
+    height: calc(1em/2 + 0.7em);
+}
+
+// Styling for use in app list
+// li:not(.haschildren ) {
+//   border-top: 1px solid #ccc;
+// }
+// li.haschildren {
+//   border-top: 1px solid #ccc;
+// }
+// .treeview > li:last-child {
+//   border-bottom: 1px solid #ccc;
+// }

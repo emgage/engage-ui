@@ -12,6 +12,10 @@ import {
   Button,
   ButtonGroup,
   Card,
+  CardHeader,
+  CardFooter,
+  CardSection,
+  CardBody,
   Checkbox,
   Chip,
   ChoiceList,
@@ -641,8 +645,8 @@ class App extends React.Component<{}, State> {
     const treeSource: TreeSource[] = [
       {
         id: 1,
-        component: () => <span>I am component1</span>,
-        active: false,
+        component: () => <span>I am component1<br />I am component1<br />I am component1</span>,
+        active: true,
         onToggle: status => console.log('Tree node open:', status),
         children: [
           {
@@ -651,31 +655,40 @@ class App extends React.Component<{}, State> {
             I am child component1<br/>I am child component1<br/>I am child component1<br/>I am child component1
             </span>,
             active: false,
-          }, {
+          },
+          {
             id: 12,
-            component: () => <span>I am child component2</span>,
+            component: () => <span>I am child component2<br />I am child component2<br />I am child component2</span>,
             active: false,
             children: [
               {
-                id: 111,
-                component: () => <span>I am child child component1</span>,
+                id: 121,
+                component: () => <Card>
+                <p>Batman is a fictional superhero who appears in American comic books published by DC Comics. The character was created by artist Bob Kane and writer Bill Finger, and first appeared in Detective Comics #27</p>
+              </Card>,
+              // component: () => <span>I am child child component1</span>,
                 active: false,
                 children: [
                   {
-                    id: 1112,
-                    component: () => <span>child component1</span>,
+                    id: 1211,
+                    component: () => <Card>
+                <p>The American robin (Turdus migratorius) is a migratory songbird of the true thrush genus and Turdidae, the wider thrush family.</p>
+              </Card>,
+                    // component: () => <span>child component1</span>,
                     active: false,
-                  }, {
-                    id: 1113,
+                  },
+                  {
+                    id: 1212,
                     component: () => <span>child component2</span>,
                     active: false,
                     children: [
                       {
-                        id: 11121,
+                        id: 12121,
                         component: () => <span>child component1</span>,
                         active: false,
-                      }, {
-                        id: 11131,
+                      },
+                      {
+                        id: 12122,
                         component: () => <span>child component2</span>,
                         active: false,
                       },
@@ -683,19 +696,33 @@ class App extends React.Component<{}, State> {
                   },
                 ]
               },
+              {
+                id: 122,
+                component: () => <span>I am child component2</span>,
+                active: false,
+              }
             ]
-          }, {
+          },
+          {
             id: 13,
             label: 'This is normal component',
             active: false,
+          },
+          {
+            id: 14,
+            component: () => <span>I am child component1<br/>I am child component1<br/>I am child component1<br/>
+            I am child component1<br/>I am child component1<br/>I am child component1<br/>I am child component1
+            </span>,
+            active: false,
           }
         ]
-      }, {
-        id: 2,
-        component: () => <span>I am component2</span>,
-        active: false,
-        onToggle: status => console.log('Tree node open:', status),
       }
+      // , {
+      //   id: 2,
+      //   component: () => <span>I am component2</span>,
+      //   active: false,
+      //   onToggle: status => console.log('Tree node open:', status),
+      // }
     ];
 
     return (
@@ -911,7 +938,7 @@ class App extends React.Component<{}, State> {
           <Caption componentStyle={{ color: 'red' }}>This is modal</Caption>
         </div>
         { /* this is treeview */ }
-        <div>
+        <div style={{ padding: '20px' }}>
           <label>This is treeview </label>
 
           <TreeView
@@ -952,7 +979,7 @@ class App extends React.Component<{}, State> {
         <Alert componentType="danger">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
         </Alert>
-        <Checkbox helpText="this is help" checked={this.state.checkboxState} indeterminante={true} label={'I am a checkbox'} onChange={(newValue: boolean) => console.log('I am here:', newValue) } />
+        <Checkbox helpText="this is help" checked={this.state.checkboxState} label={'I am a checkbox'} onChange={(newValue: boolean) => console.log('I am here:', newValue) } />
         <Banner componentTitle={'banner'} status={'success'} />
         <Banner componentTitle={'banner'} status={'info'} />
         <Banner componentTitle={'banner'} status={'warning'} />
@@ -976,7 +1003,7 @@ class App extends React.Component<{}, State> {
           <Table
             nestedChildData={this.state.nestedChildData}
             nestedChildCallback={this.nestedChildCallback}
-            expandingRowId={[2, 4]}
+            expandingRowId={[2,4]}
             rowExpandOnLoad={false}
             hideExpandedIcon={false}
             data={tableData}
@@ -988,9 +1015,7 @@ class App extends React.Component<{}, State> {
             selectRow="checkbox"
             rowAction={rowActionConfig}
             selectCallbackValue="id"
-            multipleCallBackValue={['id', 'name']}
             selectRowCallback={(val: any) => this.setState({ bulkAction: { selectedRow: val } })}
-            singleSelectRowCallback={this.handleSelectRowCallback}
             bordered highlight sorting>
               Loading
             </Table>
@@ -1302,6 +1327,27 @@ class App extends React.Component<{}, State> {
             resizable
             // onChange={this.valueUpdater('appTextCounter')}
           />
+                                <Card>
+                                <CardHeader>Online store dashboard - Card</CardHeader>
+                                    <CardBody sectioned>
+                                        <CardSection>
+                                        <CardHeader>Reports</CardHeader>
+                                            <p>View a summary of your online store’s performance.</p>
+                                        </CardSection>
+                                        <CardSection>
+                                        <CardHeader>Summary Reports</CardHeader>
+                                            <p>View a summary of your online store’s performance, including sales, visitors, top products, and referrals.</p>
+                                        </CardSection>
+                                    </CardBody>
+                                </Card>
+                                <div>this is card sep</div>
+         <Card>
+            <CardHeader>Grid Header1</CardHeader>
+            <CardBody>
+            <CardSection>This is card Section</CardSection>
+            </CardBody>
+            <CardFooter><Button onClick={(e: any) => this.popoverUpdate2(e)}>Dropdown2 active</Button></CardFooter>
+         </Card>
           <p> Some text with a
           <Tooltip content="Order" preferredPosition="left" active>
               <Link>Tooltipss</Link>
@@ -1319,11 +1365,12 @@ class App extends React.Component<{}, State> {
           </Tooltip>
           <TextField componentId="TestName" label="Text Counter" placeholder="test-placeholder" value={this.state.appTextCounter} helpText="Helper Text" enableTextCounter={true} maxLength={100} /* onChange={this.valueUpdater('appTextCounter')} */ />
           <ClickableChip chip={<Chip>Batman</Chip>}>
-            <Card componentTitle="More about Batman">
+            <Card>
               <p>Batman is a fictional superhero who appears in American comic books published by DC Comics. The character was created by artist Bob Kane and writer Bill Finger, and first appeared in Detective Comics #27</p>
             </Card>
           </ClickableChip>
-          <Card componentTitle="More about Batman">
+          <Card>
+          <CardHeader>More about Batman</CardHeader>
               <p>Batman is a fictional superhero who appears in American comic books published by DC Comics. The character was created by artist Bob Kane and writer Bill Finger, and first appeared in Detective Comics #27</p>
             </Card>
           <p> Some text with a
@@ -1861,10 +1908,6 @@ class App extends React.Component<{}, State> {
   // handleChange(value1: any) {
   //   return (value: any) => this.setState({ [value1]: value });
   // }
-
-  handleSelectRowCallback = (selectedEntity: any) => {
-    console.log(selectedEntity);
-  }
 
   getComboBoxItems() {
     const data = [
