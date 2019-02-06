@@ -78,7 +78,7 @@ class SideNavigation extends React.Component<Props, State> {
     const drawerContentId = this.state.activeDrawerId === 'fullContent' ? 'collapsedContent' : 'fullContent';
     this.setState({ activeDrawerId: drawerContentId }, () => {
       if (this.props.onCollapse) {
-          this.props.onCollapse(this.state.activeDrawerId === 'collapsedContent');
+        this.props.onCollapse(this.state.activeDrawerId === 'collapsedContent');
       }
     });
   }
