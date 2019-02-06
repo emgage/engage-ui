@@ -95,7 +95,6 @@ class Table extends React.Component<Props, State> {
   }
 
   componentWillReceiveProps(newProps: Props) {
-    debugger;
     if (newProps.filterData) {
       const { field, searchKey, search } = newProps.filterData;
 
