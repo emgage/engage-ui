@@ -109,6 +109,10 @@ class Table extends React.Component<Props, State> {
     if (newProps.data.length !== this.props.data.length && JSON.stringify(newProps.data) !== JSON.stringify(this.props.data)) {
       this.setState({ data: newProps.data });
     }
+
+    if (JSON.stringify(newProps.nestedChildData) !== JSON.stringify(this.props.nestedChildData)) {
+      this.expandRowOnLoad();
+    }
   }
 
   getInitialState() {

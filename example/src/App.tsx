@@ -116,6 +116,7 @@ interface State {
   [key: string]: any;
   processComponentState: number;
   processLength: number;
+  childtableData: any;
 }
 
 class App extends React.Component<{}, State> {
@@ -171,6 +172,7 @@ class App extends React.Component<{}, State> {
       gridView: 'block',
       processComponentState: 0,
       processLength: 2,
+      childtableData: [],
     };
 
     this.popovertoggle = this.popovertoggle.bind(this);
@@ -322,13 +324,16 @@ class App extends React.Component<{}, State> {
         style: { width: '100px' },
       },
     ];
+
+    this.setState({ childtableData });
+
     const newData: TableNestedData = {
       rowId,
       component: <Table
       highlight={true}
       hideHeader={true}
       sorting="all"
-      data={childtableData}
+      data={this.state.childtableData}
       column={childcolumnConfig}
       selectRow="checkbox"
       rowAction={childrowActionConfig}
@@ -348,6 +353,20 @@ class App extends React.Component<{}, State> {
     nestedChildData.push(newData);
 
     this.setState({ nestedChildData });
+  }
+
+  updateChildData = () => {
+    const childData = [
+      {
+        id: 14,
+        name: 'dheee',
+        description: 'Test description3',
+        status: { itemID: 3, itemName: 'Draft' },
+        type: 'admin',
+      }
+    ];
+
+    this.setState({ childtableData: this.state.childtableData.concat(childData) });
   }
 
   render() {
@@ -663,7 +682,7 @@ class App extends React.Component<{}, State> {
             children: [
               {
                 id: 121,
-                component: () => <Card componentTitle="About Batman">
+                component: () => <Card>
                 <p>Batman is a fictional superhero who appears in American comic books published by DC Comics. The character was created by artist Bob Kane and writer Bill Finger, and first appeared in Detective Comics #27</p>
               </Card>,
               // component: () => <span>I am child child component1</span>,
@@ -671,7 +690,7 @@ class App extends React.Component<{}, State> {
                 children: [
                   {
                     id: 1211,
-                    component: () => <Card componentTitle="About Robin">
+                    component: () => <Card>
                 <p>The American robin (Turdus migratorius) is a migratory songbird of the true thrush genus and Turdidae, the wider thrush family.</p>
               </Card>,
                     // component: () => <span>child component1</span>,
@@ -1000,6 +1019,8 @@ class App extends React.Component<{}, State> {
               <Button onClick={(val: any) => this.setState({ filterConfig: { ...this.state.filterConfig, search: true } })}>Search</Button>
             </div>
           </div>
+
+          <Button onClick={this.updateChildData}>Updatechild</Button>
           <Table
             nestedChildData={this.state.nestedChildData}
             nestedChildCallback={this.nestedChildCallback}
