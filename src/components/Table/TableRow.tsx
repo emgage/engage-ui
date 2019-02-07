@@ -10,6 +10,7 @@ export interface Props {
   onClick?(id: number | string): void;
   callBackSelectedRows?(id: number): void;
   selectRow?: any;
+  componentStyle?: any;
 }
 
 class TableRow extends React.Component<Props, never> {

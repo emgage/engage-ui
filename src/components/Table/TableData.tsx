@@ -14,7 +14,8 @@ export interface Props {
   dataKey?: string;
   rowSpan?: number;
   // Custom style, if user wants to add in th
-  style?: any;
+  componentStyle?: any;
+  componentClass?: string;
   dataLabel?: string;
 }
 
@@ -24,14 +25,15 @@ class TableData extends React.Component<Props, never> {
   }
 
   render () {
-    const { accessibilityHeaders, children, colSpan, dataKey, dataLabel, rowSpan, style } = this.props;
+    const { accessibilityHeaders, children, colSpan, componentClass = '', dataKey, dataLabel, rowSpan, componentStyle } = this.props;
 
     return (
       <td data-label={dataLabel}
         headers={accessibilityHeaders}
         colSpan={colSpan}
         rowSpan={rowSpan}
-        style={style}
+        style={componentStyle}
+        className={componentClass}
       >
         { dataKey ? dataKey : children }
       </td>
