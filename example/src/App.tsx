@@ -303,23 +303,19 @@ class App extends React.Component<{}, State> {
         label: 'Name',
         key: 'name',
         className: '',
-        style: { width: '200px' },
         sort: true,
       }, {
         label: 'Description',
         key: 'description',
-        style: { width: 'auto' },
       }, {
         label: 'Status',
         key: 'status',
         sort: true,
         sortBy: 'itemName',
-        style: { width: '150px' },
         injectBody: (value: any) => <Badge status={value.status.itemID === 1 ? 'success' : 'warning'}>{value.status.itemName}</Badge>,
       }, {
         label: 'Type',
         key: 'type',
-        style: { width: '100px' },
       },
     ];
     const newData: TableNestedData = {
@@ -332,6 +328,7 @@ class App extends React.Component<{}, State> {
       column={childcolumnConfig}
       selectRow="checkbox"
       rowAction={childrowActionConfig}
+      bordered
     />,
 
     };
@@ -596,23 +593,19 @@ class App extends React.Component<{}, State> {
         label: 'Name',
         key: 'name',
         className: '',
-        style: { width: '200px' },
         sort: true,
       }, {
         label: 'Description',
         key: 'description',
-        style: { width: 'auto' },
       }, {
         label: 'Status',
         key: 'status',
         sort: true,
         sortBy: 'itemName',
-        style: { width: '150px' },
         injectBody: (value: any) => <Badge status={value.status.itemID === 1 ? 'success' : 'warning'}>{value.status.itemName}</Badge>,
       }, {
         label: 'Type',
         key: 'type',
-        style: { width: '100px' },
       },
     ];
 
@@ -663,7 +656,7 @@ class App extends React.Component<{}, State> {
             children: [
               {
                 id: 121,
-                component: () => <Card componentTitle="About Batman">
+                component: () => <Card>
                 <p>Batman is a fictional superhero who appears in American comic books published by DC Comics. The character was created by artist Bob Kane and writer Bill Finger, and first appeared in Detective Comics #27</p>
               </Card>,
               // component: () => <span>I am child child component1</span>,
@@ -671,7 +664,7 @@ class App extends React.Component<{}, State> {
                 children: [
                   {
                     id: 1211,
-                    component: () => <Card componentTitle="About Robin">
+                    component: () => <Card>
                 <p>The American robin (Turdus migratorius) is a migratory songbird of the true thrush genus and Turdidae, the wider thrush family.</p>
               </Card>,
                     // component: () => <span>child component1</span>,
