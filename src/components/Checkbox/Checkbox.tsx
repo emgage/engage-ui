@@ -103,7 +103,7 @@ class Checkbox extends React.PureComponent<Props, State> {
             aria-describedby={describedBy.length ? describedBy.join(' ') : undefined}
             aria-checked={checked}
           />
-          <label className={theme.customControlLabel} htmlFor={componentId}>{label}</label>
+          <label className={theme.customControlLabel} style={{ padding: !label ? 0 : 'initial' }} htmlFor={componentId}>{label}</label>
         </div>
         {
           helpText ? <div>{helpText}</div> : null

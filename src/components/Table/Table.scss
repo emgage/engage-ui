@@ -9,11 +9,11 @@
     border: none;
     border-radius: 2px;
     display: table-cell;
-    padding: 15px 5px;
-    text-align: left;
+    padding: 0;
     vertical-align: middle;
     white-space: nowrap; 
     text-overflow: ellipsis;
+    text-align: left;
   }
 
   thead {
@@ -24,6 +24,21 @@
     display: table-row;
     vertical-align: inherit;
     border-color: inherit;
+  }
+
+  &.nestedTable {
+    margin-left: 29px;
+    border-left: 3px solid #eceeef;
+
+    tr:last-child {
+      border-bottom: none;
+    }
+  }
+
+  .nestedCheckbox {
+    padding-left: 10px;
+    padding-right: 16px;
+    width: 20px;
   }
 }
 

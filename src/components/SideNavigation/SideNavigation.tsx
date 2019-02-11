@@ -43,6 +43,8 @@ export interface Props {
   drawerExpand: boolean;
   // Custom drawer style
   drawerStyle?: any;
+  // Handle Collapse of sidebar
+  onCollapse?(value: boolean): void;
 }
 
 export interface State {
@@ -77,7 +79,11 @@ class SideNavigation extends React.Component<Props, State> {
 
   toggleDrawerContent = () => {
     const drawerContentId = this.state.activeDrawerId === 'fullContent' ? 'collapsedContent' : 'fullContent';
-    this.setState({ activeDrawerId: drawerContentId });
+    this.setState({ activeDrawerId: drawerContentId }, () => {
+      if (this.props.onCollapse) {
+        this.props.onCollapse(this.state.activeDrawerId === 'collapsedContent');
+      }
+    });
   }
 
   render() {
