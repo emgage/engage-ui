@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { findDOMNode } from 'react-dom';
 import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 import { classNames } from '@shopify/react-utilities/styles';
 
@@ -20,10 +21,16 @@ export type RowSelection = 'checkbox' | 'radio';
 export type SortOrder = 'asc' | 'desc';
 
 export interface Props {
+  // Prop to gather all the widths of row, which than can be used to assign width to nested table
+  allRowWidth?: number[];
   // To make table bordered
   bordered?: boolean;
   // Column config, which renders the header
   column: ColumnConfig[];
+  // Custom styling
+  componentStyle?: any;
+  // New class passed from parent
+  componentClass?: string;
   // Get the data & use it to populate tds
   data?: any;
   // On load by default it will be sorted by this field
@@ -70,6 +77,7 @@ export interface Props {
 }
 
 export interface State {
+  allRowWidth?: number[];
   allRowChecked?: boolean;
   data: any;
   expandedRow: any;
@@ -82,6 +90,8 @@ export interface State {
 let callBackSelectedRows: any;
 
 class Table extends React.Component<Props, State> {
+  public allRowWidth: number[] = [];
+  private checkboxColWidth: string = '42px';
   constructor(props: Props) {
     super(props);
     this.state = this.getInitialState();
@@ -105,6 +115,18 @@ class Table extends React.Component<Props, State> {
 
     if (newProps.data.length !== this.props.data.length && JSON.stringify(newProps.data) !== JSON.stringify(this.props.data)) {
       this.setState({ data: newProps.data });
+    }
+
+    if (JSON.stringify(newProps.nestedChildData) !== JSON.stringify(this.props.nestedChildData)) {
+      this.expandRowOnLoad();
+    }
+  }
+
+  componentDidMount() {
+    const { allRowWidth = [] } = this.props;
+
+    if (allRowWidth.length) {
+      this.setState({ allRowWidth });
     }
   }
 
@@ -137,13 +159,16 @@ class Table extends React.Component<Props, State> {
       highlight,
       striped,
       theme,
+      componentClass = '',
     } = this.props;
 
     return classNames(
       theme.table,
       bordered && theme.bordered,
       highlight && theme.highlight,
-      striped && theme.striped
+      striped && theme.striped,
+      striped && theme.striped,
+      componentClass
     );
   }
 
@@ -165,6 +190,7 @@ class Table extends React.Component<Props, State> {
   renderHeader = () => {
     const { column, sorting, rowAction } = this.props;
     const { field, order } = this.state.sort;
+    this.allRowWidth = [];
 
     return (
       <TableHeader>
@@ -183,7 +209,13 @@ class Table extends React.Component<Props, State> {
                   componentStyle={item.style}
                   className={item.className}
                   order={field === item.key ? order.current : ''}
-                  clickHandler={this.sortData}>
+                  clickHandler={this.sortData}
+                  ref={(thisRef: any) => {
+                    const thisDom: any = findDOMNode(thisRef);
+                    if (thisDom) {
+                      this.allRowWidth.push(thisDom.getBoundingClientRect().width);
+                    }
+                  }}>
                   {/* 
                     Here injectheader helps to inject any custom component,
                     Header value can be sent & then used in custom component
@@ -203,6 +235,7 @@ class Table extends React.Component<Props, State> {
   renderBody = () => {
     const { children, column, expandingRowId = [], hideRow, rowExpandOnLoad, selectRow } = this.props;
     const { data, expandedRow } = this.state;
+
     if (!children) {
       return (
         <TableBody>
@@ -254,25 +287,28 @@ class Table extends React.Component<Props, State> {
 
   // Render the main table row
   renderTbodyRows = (item: any, index: number | string) => {
-    const { column, expandingRowId = [], hideExpandedIcon, nestedChildData, rowAction } = this.props;
+    const { allRowWidth = [], column, expandingRowId = [], hideExpandedIcon, nestedChildData, rowAction } = this.props;
     return (
       <TableRow key={index}>
         { this.renderRowSelection(item, 'body') }
         {
           column.map((colItem: any, index: number) => {
+            const thisRowWidth = allRowWidth[index] !== undefined ? index === 0 ? allRowWidth[index] - 32 : allRowWidth[index] : undefined;
+            const renderCheckbox = (!index && nestedChildData && !hideExpandedIcon && (!expandingRowId.length || expandingRowId.indexOf(item.id) >= 0));
+
             return (
               <TableData
                 key={colItem.key}
                 style={colItem.style}
+                componentStyle={{ ...colItem.style, width: thisRowWidth }}
                 dataLabel={colItem.label}
               >
                 {/* 
                   Here injectBody helps to inject any custom component to td,
                   we also return the specifc value, which then can be used in injected component
                 */}
-
-                {(!index && nestedChildData && !hideExpandedIcon && (!expandingRowId.length || expandingRowId.indexOf(item.id) >= 0)) ? this.renderCheckColumn(item, false) : ''}
-                {colItem.injectBody ? colItem.injectBody(item) : item[colItem.key]}
+                { renderCheckbox ? this.renderCheckColumn(item, false) : ''}
+                {colItem.injectBody ? colItem.injectBody(item) : renderCheckbox ? <span style={{ paddingLeft: '16px' }}>{item[colItem.key]}</span> : item[colItem.key] }
               </TableData>
             );
           })
@@ -289,7 +325,7 @@ class Table extends React.Component<Props, State> {
 
   // Function to render nested children for each row, this could be nested table or any other component
   renderNestedChildren = (key: string, id: number) => {
-    const { column,  nestedChildData = [], rowAction, filterData } = this.props;
+    const { column,  nestedChildData = [], rowAction, filterData, theme } = this.props;
     const field = filterData !== undefined ? filterData.field : 'id';
     // Get current row's nested component by matching its id
     const thisNestedComponent = nestedChildData.filter((item: any) => item.rowId === id);
@@ -397,12 +433,16 @@ class Table extends React.Component<Props, State> {
                                 (item: any) => this.state.selectedRows.indexOf(item.rowId) !== -1);
     const totalRowUnchecked = (isAllChildChecked && isAllChildChecked.length > 0 && this.state.selectedRows.length > 0 && this.state.totalRowCount > 0 && ((this.state.totalRowCount - this.state.selectedRows.length) === (this.state.totalRowCount - 1))) ? true : false;
 
-    return <TableHead componentStyle={{ width: 'auto' }}><Checkbox label="" checked={(rowChecked && (!isAllChildChecked || (isAllChildChecked !== undefined ? isAllChildChecked.length === 0 : true))) && this.state.selectedRows.length > 0 ? true : allRowChecked} indeterminante={totalRowUnchecked ? false : rowChecked} onChange={this.toggleAllRowSelection} /></TableHead>;
+    return <TableHead componentStyle={{ width: this.checkboxColWidth }}>
+    <Checkbox label="" checked={(rowChecked && (!isAllChildChecked || (isAllChildChecked !== undefined ? isAllChildChecked.length === 0 : true))) && this.state.selectedRows.length > 0 ? true : allRowChecked} indeterminante={totalRowUnchecked ? false : rowChecked} onChange={this.toggleAllRowSelection} />
+    </TableHead>;
   }
 
   // Function to add checkbox for the row selection
   renderCheckColumn(rowData: any, newColumn: boolean = true): React.ReactElement<any> {
-    return newColumn ? <TableData>{this.renderCheckbox(rowData)}</TableData> : <span style={{ display: 'inline-block' }}>{this.renderCheckbox(rowData)}</span>;
+    const columnStyle = this.props.allRowWidth ? this.props.theme.nestedCheckbox : '';
+
+    return newColumn ? <TableData componentClass={columnStyle}>{this.renderCheckbox(rowData)}</TableData> : <span style={{ display: 'inline-block' }}>{this.renderCheckbox(rowData)}</span>;
   }
 
   renderCheckbox(rowData: any) {
@@ -449,16 +489,15 @@ class Table extends React.Component<Props, State> {
   }
 
   render () {
+    const { componentStyle = {} } = this.props;
     const tableClass = this.getTableClassName();
     const renderedHeader = !this.props.hideHeader ? this.renderHeader() : null;
     const renderedBody = this.renderBody();
     return (
-      <div>
-        <table className={tableClass}>
-          { renderedHeader }
-          { renderedBody }
-        </table>
-      </div>
+      <table className={tableClass} style={componentStyle}>
+        { renderedHeader }
+        { renderedBody }
+      </table>
     );
   }
 
