@@ -73,6 +73,8 @@ export interface Props {
   sorting?: boolean | string;
   // Set greyed background for odd rows
   striped?: boolean;
+  // Used when same table component is nested as child component
+  isChildParentConfigSame?: boolean;
   theme?: any;
 }
 
@@ -324,8 +326,9 @@ class Table extends React.Component<Props, State> {
 
   // Function to render nested children for each row, this could be nested table or any other component
   renderNestedChildren = (key: string, id: number) => {
-    const { column,  nestedChildData = [], rowAction, filterData } = this.props;
+    const { column,  nestedChildData = [], rowAction, filterData, isChildParentConfigSame, children, theme, selectRow } = this.props;
     const field = filterData !== undefined ? filterData.field : 'id';
+    const colSpanVal = column.length + (selectRow ? 1 : 0) + (rowAction ? 1 : 0);
     // Get current row's nested component by matching its id
     const thisNestedComponent = nestedChildData.filter((item: any) => item.rowId === id);
 
@@ -339,33 +342,42 @@ class Table extends React.Component<Props, State> {
       }
     });
 
-    return result.map((item: any, index: number) => {
-      return (
-        <TableRow key={index}>
-        { this.renderRowSelection(item, 'body') }
-        {
-          column.map((colItem: any, index: number) => {
-            return (
-              <TableData
-                key={colItem.key}
-                componentStyle={colItem.style}
-                dataLabel={colItem.label}
-              >
-                {/* 
-                  Here injectBody helps to inject any custom component to td,
-                  we also return the specifc value, which then can be used in injected component
-                */}
-                {colItem.injectBody ? colItem.injectBody(item) : item[colItem.key]}
-              </TableData>
-            );
-          })
-        }
+    if (isChildParentConfigSame) {
+      return result.map((item: any, index: number) => {
+        return (
+          <TableRow key={index} componentClass= {theme.parentChildTable}>
+          { this.renderRowSelection(item, 'body') }
+          {
+            column.map((colItem: any, index: number) => {
+              return (
+                <TableData
+                  key={colItem.key}
+                  dataLabel={colItem.label}
+                >
+                  {/* 
+                    Here injectBody helps to inject any custom component to td,
+                    we also return the specifc value, which then can be used in injected component
+                  */}
+                  {colItem.injectBody ? colItem.injectBody(item) : item[colItem.key]}
+                </TableData>
+              );
+            })
+          }
 
-        { rowAction ? <RowAction actionConfig={rowAction} data={item} /> : '' }
+          { rowAction ? <RowAction actionConfig={rowAction} data={item} /> : '' }
+        </TableRow>
+        );
+      });
+    }
+
+    return (
+      <TableRow key={key} callBackSelectedRows={this.callBackSelectedRows} selectRow={this.state.selectedRows}>
+        <TableData colSpan={colSpanVal}>
+          {thisNestedComponent.length ? React.cloneElement(thisNestedComponent[0].component, { allRowWidth: this.allRowWidth, componentClass: theme.nestedTable }) : children}
+        </TableData>
       </TableRow>
-      );
-      // }
-    });
+    );
+
   }
 
   // Function to call the callback function on row selection

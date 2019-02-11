@@ -1008,6 +1008,7 @@ class App extends React.Component<{}, State> {
             selectRow="checkbox"
             rowAction={rowActionConfig}
             selectCallbackValue="id"
+            isChildParentConfigSame
             selectRowCallback={(val: any) => this.setState({ bulkAction: { selectedRow: val } })}
             bordered highlight sorting>
               Loading
