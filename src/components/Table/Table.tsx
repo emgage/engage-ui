@@ -299,7 +299,6 @@ class Table extends React.Component<Props, State> {
             return (
               <TableData
                 key={colItem.key}
-                style={colItem.style}
                 componentStyle={{ ...colItem.style, width: thisRowWidth }}
                 dataLabel={colItem.label}
               >
@@ -325,7 +324,7 @@ class Table extends React.Component<Props, State> {
 
   // Function to render nested children for each row, this could be nested table or any other component
   renderNestedChildren = (key: string, id: number) => {
-    const { column,  nestedChildData = [], rowAction, filterData, theme } = this.props;
+    const { column,  nestedChildData = [], rowAction, filterData } = this.props;
     const field = filterData !== undefined ? filterData.field : 'id';
     // Get current row's nested component by matching its id
     const thisNestedComponent = nestedChildData.filter((item: any) => item.rowId === id);
@@ -349,7 +348,7 @@ class Table extends React.Component<Props, State> {
             return (
               <TableData
                 key={colItem.key}
-                style={colItem.style}
+                componentStyle={colItem.style}
                 dataLabel={colItem.label}
               >
                 {/* 
