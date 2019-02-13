@@ -175,6 +175,8 @@ class Popover extends React.PureComponent<Props, State> {
         addEventListener(window, 'resize', this.handleMeasurement);
         activatorRect = activatorComp.getBoundingClientRect();
         popoverPosition = this.handleMeasurement();
+
+        console.log('activatorRect:', activatorRect);
         if (direction === 'up') {
           popoverPosition = { left: activatorRect.left - popoverPosition.left, top: - activatorRect.top + (activatorRect.height) };
         } else if (direction === 'left') {
@@ -183,6 +185,8 @@ class Popover extends React.PureComponent<Props, State> {
           popoverPosition = { left: activatorRect.width, top: - activatorRect.height };
         } else if (direction === 'down') {
           popoverPosition = { left: activatorRect.left - popoverPosition.left, top: popoverPosition.top - activatorRect.top - (activatorRect.height / 2) };
+        } else if (direction === 'full') {
+          popoverPosition = { left: 0, top: 0 };
         }
       }
     }
@@ -315,7 +319,7 @@ class Popover extends React.PureComponent<Props, State> {
     const activatorRect = getRectForNode(anchorEl);
     const overlayRect = getRectForNode(this.popoverEle);
     const scrollableContainerRect = getRectForNode(this.scrollableContainer);
-    const overlayMargins = this.popoverEle.firstElementChild
+    const overlayMargins = this.popoverEle && this.popoverEle.firstElementChild
       ? getMarginsForNode(this.popoverEle.firstElementChild as HTMLElement)
       : { activator: 0, container: 0, horizontal: 0 };
     const containerRect = getRectForNode(window);
