@@ -145,6 +145,7 @@ class Popover extends React.PureComponent<Props, State> {
       anchorEl,
       disabled,
       style,
+      preferredAlignment,
     } = this.props;
 
     const { active } = this.state;
@@ -155,6 +156,9 @@ class Popover extends React.PureComponent<Props, State> {
       : direction === 'up' ? baseTheme.popup
       : direction === 'left' ? baseTheme.popleft
       : baseTheme.popright,
+      preferredAlignment === 'left' ? baseTheme.alignLeft
+      : preferredAlignment === 'right' ? baseTheme.alignRight
+      : baseTheme.alignCenter,
       !disabled && active && baseTheme.active
     );
 
