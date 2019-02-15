@@ -104,46 +104,6 @@ $font-weight-normal: 400 !default;
   }
 }
 
-.popdown {
-  .popoverContainer {
-    &::before, &::after {
-      bottom: 100%;
-      left: 50%;
-    }
-
-    &::after {
-      border-bottom-color: #fff;
-      margin-left: -8px;
-    }
-
-    &::before {
-      border-color: rgba(0, 0, 0, 0);
-      border-bottom-color: $popover-border-color;
-      margin-left: -9px;
-    }
-  }
-}
-
-.popup {
-  .popoverContainer {
-    &::before, &::after {
-      top: 100%;
-	    left: 50%;
-    }
-
-    &::after {
-      border-top-color: #fff;
-      margin-left: -8px;
-    }
-
-    &::before {
-      border-color: rgba(0, 0, 0, 0);
-      border-top-color: $popover-border-color;
-      margin-left: -9px;
-    }
-  }
-}
-
 .popoverContainer {
   position: absolute;
   top: 100%;
@@ -211,6 +171,80 @@ $font-weight-normal: 400 !default;
   }
 }
 
+.popdown {
+  .popoverContainer {
+    &::before, &::after {
+      bottom: 100%;
+      left: 50%;
+    }
 
+    &::after {
+      border-bottom-color: #fff;
+      margin-left: -8px;
+    }
 
-  
+    &::before {
+      border-color: rgba(0, 0, 0, 0);
+      border-bottom-color: $popover-border-color;
+      margin-left: -9px;
+    }
+  }
+  &.alignLeft {
+    .popoverContainer {
+      &::before, &::after {
+        left: 25px;
+      }
+    }
+  }
+  &.alignRight {
+    .popoverContainer {
+      &::before, &::after {
+        right: 25px;
+        left: auto;
+      }
+      &::before {
+        margin-right: -1px;
+        margin-left: auto;
+      }
+    }
+  }
+}
+
+.popup {
+  .popoverContainer {
+    &::before, &::after {
+      top: 100%;
+	    left: 50%;
+    }
+
+    &::after {
+      border-top-color: #fff;
+      margin-left: -8px;
+    }
+
+    &::before {
+      border-color: rgba(0, 0, 0, 0);
+      border-top-color: $popover-border-color;
+      margin-left: -9px;
+    }
+  }
+  &.alignLeft {
+    .popoverContainer {
+      &::before, &::after {
+        left: 25px;
+      }
+    }
+  }
+  &.alignRight {
+    .popoverContainer {
+      &::before, &::after {
+        right: 25px;
+        left: auto;
+      }
+      &::before {
+        margin-right: -1px;
+        margin-left: auto;
+      }
+    }
+  }
+}
