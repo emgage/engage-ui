@@ -89,6 +89,8 @@ export interface Props {
   onFocus?(e?: React.FormEvent<HTMLElement>): void;
   // Callback when focus is removed	.
   onBlur?(e?: React.FormEvent<HTMLElement>): void;
+  // Callback when value is inserted in Input.
+  onInput?(e?: React.ChangeEvent<HTMLSelectElement>): void;
 }
 
 const getUniqueID = createUniqueIDFactory('TextField');
@@ -139,6 +141,7 @@ class TextField extends React.PureComponent<Props, State> {
       theme,
       onFocus,
       onBlur,
+      onInput,
       autoComplete,
       componentStyle,
       resizable,
@@ -219,6 +222,7 @@ class TextField extends React.PureComponent<Props, State> {
       value: this.state.value,
       onFocus: this.handleInputOnFocus,
       onBlur: this.handleInputOnBlur,
+      onInput: this.handleInputOnBlur,
       style: newComponentStyle,
       formNoValidate: true,
       autoComplete: normalizeAutoComplete(autoComplete),
