@@ -1,6 +1,6 @@
 $borders-data: (
-  base: 1px solid color(sky),
-  dark: 1px solid color(sky, dark),
+  base: 1px solid theme-color(m-grey, 100),
+  dark: 1px solid theme-color(m-grey, 500),
   transparent: 1px solid transparent
 );
 

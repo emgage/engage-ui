@@ -2,32 +2,93 @@
 // ========================================================================
 
 $default-button-text-color: theme-color(m-grey, 900);
-$primary-button-color: theme-color(m-pink);
+$primary-button-color: theme-color(m-blue, 700);
 $primary-button-text-color: theme-color(white);
 $primary-button-icon-color: theme-color(white);
 $destructive-button-color: theme-color(m-red);
 $destructive-button-icon-color: theme-color(white);
-$outline-button-color: theme-color(m-blue-grey);
+$outline-button-color: theme-color(m-grey, 500);
 
 // Styles
 // ========================================================================
 
+$slim-min-height: rem(36px);
+
 .button {
+  background: color(white);
+  border: border(dark);
+  box-shadow: none;
   border-radius: border-radius();
   color: $default-button-text-color;
+
+  &:hover {
+    background: rgba($outline-button-color, 0.15);
+    border-color: $outline-button-color;
+  }
+
+  &:focus {
+    background: rgba($outline-button-color, 0.15);
+    border-color: $outline-button-color;
+  }
+
+  &:active {
+    background: rgba($outline-button-color, 0.05);
+    box-shadow: none;
+  }
+
+  &.disabled {
+    @include recolor-icon(color(ink, lightest));
+    background: color(white);
+    color: color(ink, lightest);
+  }
+
 }
 
 .primary {
-  @include button-filled($primary-button-color, theme-color(m-pink, 700));
+  @include button-filled($primary-button-color, $primary-button-color);
   @include recolor-icon($primary-button-icon-color);
   color: $primary-button-text-color;
+  border: border(transparent);
 }
 
 .destructive {
-  @include button-filled($destructive-button-color, color(red, dark));
+  @include button-filled($destructive-button-color, $destructive-button-color);
   @include recolor-icon($destructive-button-icon-color);
 }
 
 .outline {
   @include button-outline($outline-button-color);
+}
+
+.destructive.outline {
+  @include button-outline($destructive-button-color);
+  @include recolor-icon($destructive-button-color);
+  color: $destructive-button-color;
+}
+
+// stylelint-disable selector-max-specificity
+
+.plain {
+  background: transparent;
+  border: border(transparent);
+  box-shadow: none;
+  color: color(blue);
+
+  &:hover,
+  &:focus,
+  &:active {
+    @include recolor-icon(color(blue, dark));
+    background: transparent;
+    border: border(transparent);
+    box-shadow: none;
+    color: color(blue, dark);
+  }
+
+  &:focus > .content::after {
+    opacity: 1;
+  }
+
+  &.disabled {
+    background: none;
+  }
 }

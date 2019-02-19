@@ -1888,6 +1888,14 @@ class App extends React.Component<{}, State> {
           <Button primary>Save Draft</Button>
           <Button primary>Publish</Button>
         </ButtonGroup>
+        <br />
+        <Button>Button</Button>&nbsp;
+        <Button plain>Plain</Button>&nbsp;
+        <Button primary>Primary</Button>&nbsp;
+        <Button outline>Outline</Button>&nbsp;
+        <Button destructive>Destructive</Button>&nbsp;
+        <Button destructive outline>Destructive</Button>
+
 
         <div>ComboBox</div>
         <ComboBox items={this.getComboBoxItems()} label="Select" currentValue="item1" />
