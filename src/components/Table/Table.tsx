@@ -611,7 +611,7 @@ class Table extends React.Component<Props, State> {
     allRowId.push(uniqueId);
 
 
-    if (allRowId.indexOf(expandedRowId) === -1 && !isParentUncheked && !isCheckBoxIndeterminante) {
+    if (expandedRowId && allRowId.indexOf(expandedRowId) === -1 && !isParentUncheked && !isCheckBoxIndeterminante) {
       allRowId.push(expandedRowId);
     }
     this.setState({ selectedRows: allRowId }, () => {
