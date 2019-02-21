@@ -1,17 +1,48 @@
 $backdrop-horizontal-spacing: spacing(tight) * 1.5;
+$default-border-color: theme-color(m-grey, 400);
 
 .textField {
   @include text-style-input;
+  z-index: auto;
   padding: 0 $backdrop-horizontal-spacing;
   color: color(ink, lightest);
 }
 
 .multiline {
 
-  > .Input {
+  > .input {
     padding-left: 0;
     padding-right: 0;
   }
+}
+
+.hasValue {
+
+  .input{
+    padding-top: 1.7rem;
+    padding-bottom: 0.5rem;
+  }
+}
+
+.error {
+
+  > .input ~ .Backdrop {
+    background-color: theme-color(error, 50);
+    border-color: theme-color(error);
+    box-shadow:
+    inset shadow(transparent),
+    0 0 0 1px theme-color(error);
+  }
+}
+
+.readOnly > .backdrop {
+  border-color: theme-color(m-grey, 50);
+  border-color: theme-color(m-grey, 400);
+}
+
+.disabled > .backdrop {
+  border-color: theme-color(m-grey, 50);
+  border-color: theme-color(m-grey, 400);
 }
 
 .input {
@@ -20,28 +51,31 @@ $backdrop-horizontal-spacing: spacing(tight) * 1.5;
   padding: control-vertical-padding() 0;
   transition: 0.3s all ease;
 
+  &:disabled {
+    color: ctheme-color(m-grey, 500);
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: none;
+    padding-top: 1.7rem;
+    padding-bottom: 0.5rem;
+
+    ~ .backdrop {
+      border-color: theme-color(m-blue, 300);
+      box-shadow: 0 0 0 1px theme-color(m-blue, 300);
+    }
+  }
+
   &::placeholder {
     text-align: right;
   }
 }
 
-.hasValue {
-
-  .Input, .input{
-    padding-top: 1.7rem;
-    padding-bottom: 0.5rem;
-  }
-}
-
-.error {
-
-  > .Input ~ .Backdrop {
-    background-color: theme-color(error, 50);
-    border-color: theme-color(error);
-    box-shadow:
-    inset shadow(transparent),
-    0 0 0 1px theme-color(error);
-  }
+.backdrop {
+  border: border(dark);
+  border-color: $default-border-color;
+  
 }
 
 .dummyInput {

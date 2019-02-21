@@ -1,7 +1,7 @@
 $label-horizontal-spacing: spacing(tight) * 1.5;
 
 $stacking-order: (
-  label: 40,
+  label: 15,
 );
 
 
@@ -13,15 +13,10 @@ $stacking-order: (
   transform: translate3D(0, calc(1.1rem + 3px), 0);
   transition: all .2s ease-out;
   backface-visibility: hidden;
-//.required {}
 
   &.focused,
   &:not(.empty) {
     transform: translate3D(0,0.2rem,0);
   }
 
-//.invalid {}
-
 }
-
-//.HelpText {}

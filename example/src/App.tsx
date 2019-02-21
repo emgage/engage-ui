@@ -1298,6 +1298,14 @@ class App extends React.Component<{}, State> {
             />
           </div>
 
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+
+          <Column small="2-4" medium="2-4" large="2-4">
+
           <TextField
             componentId="TestName"
             label="Text Counter"
@@ -1321,6 +1329,8 @@ class App extends React.Component<{}, State> {
             resizable
             // onChange={this.valueUpdater('appTextCounter')}
           />
+          </Column>
+
                                 <Card>
                                 <CardHeader>Online store dashboard - Card</CardHeader>
                                     <CardBody sectioned>
@@ -1888,13 +1898,23 @@ class App extends React.Component<{}, State> {
           <Button primary>Save Draft</Button>
           <Button primary>Publish</Button>
         </ButtonGroup>
-        <br />
-        <Button>Button</Button>&nbsp;
+        <br /><br />
         <Button plain>Plain</Button>&nbsp;
+        <Button plain disabled>Plain Disabled</Button>&nbsp;
+        <Button>Button</Button>&nbsp;
+        <Button disabled>Disabled</Button>&nbsp;
+        <br /><br />
         <Button primary>Primary</Button>&nbsp;
+        <Button primary disabled>Primary Disabled</Button>&nbsp;
+        <Button primary outline>Primary Outline</Button>&nbsp;
         <Button outline>Outline</Button>&nbsp;
+        <Button outline disabled>Outline Disabled</Button>&nbsp;
+        <br /><br />
         <Button destructive>Destructive</Button>&nbsp;
-        <Button destructive outline>Destructive</Button>
+        <Button destructive disabled>Destructive Disabled</Button>&nbsp;
+        <Button destructive outline>Destructive Outline</Button>&nbsp;
+        <Button destructive outline disabled>Destructive Outline Disabled</Button>&nbsp;
+        <br />
 
 
         <div>ComboBox</div>
@@ -1973,8 +1993,14 @@ class App extends React.Component<{}, State> {
       AccordionItemClose: index
     });
   }
-  valueUpdater(field: any) {
-    return (value: any) => {
+  // valueUpdater(field: any) {
+  //   return (value: any) => {
+  //     this.setState({ [field]: value });
+  //   };
+  // }
+
+  valueUpdater = (field: string) => {
+    return (value: string) => {
       this.setState({ [field]: value });
     };
   }

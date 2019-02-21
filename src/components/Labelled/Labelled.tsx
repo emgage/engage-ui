@@ -81,7 +81,7 @@ const labelled = ({
 
   const labelMarkup = label
     ? (
-      <div className={labelWrapperClassName} id={'labelMarkup'}>
+      <div className={labelWrapperClassName}>
         <Label
           componentId={componentId}
           hidden={false}
@@ -98,7 +98,7 @@ const labelled = ({
     : null;
 
   return (
-    <div className={wrapperClassName} aria-describedby={errorId} id={'labelled.tsx'} style={componentStyle}>
+    <div className={wrapperClassName} aria-describedby={errorId} style={componentStyle}>
       {errorMarkup}
       {labelMarkup}
       {children}
