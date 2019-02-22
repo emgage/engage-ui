@@ -2,32 +2,198 @@
 // ========================================================================
 
 $default-button-text-color: theme-color(m-grey, 900);
-$primary-button-color: theme-color(m-pink);
+$default-button-icon-color: theme-color(m-grey, 900);
+$default-button-border-color: theme-color(m-grey, 400);
+$default-button-default-color: theme-color(white);
+$default-button-hover-color: theme-color(m-grey, 100);
+$default-button-focus-color: theme-color(m-grey, 100);
+$default-button-active-color: theme-color(m-grey, 50);
+
 $primary-button-text-color: theme-color(white);
 $primary-button-icon-color: theme-color(white);
-$destructive-button-color: theme-color(m-red);
-$destructive-button-icon-color: theme-color(white);
-$outline-button-color: theme-color(m-blue-grey);
+$primary-button-default-color: theme-color(m-blue, 700);
+$primary-button-hover-color: theme-color(m-blue, 600);
+$primary-button-focus-color: theme-color(m-blue, 600);
+$primary-button-active-color: theme-color(m-blue, 500);
+
+$destructive-button-text-color: theme-color(m-red, A700);
+$destructive-button-icon-color: theme-color(m-red, A700);
+$destructive-button-border-color: theme-color(m-red, A700);
+$destructive-button-default-color: theme-color(white);
+$destructive-button-hover-color: theme-color(m-red, 100);
+$destructive-button-focus-color: theme-color(m-red, 100);
+$destructive-button-active-color: theme-color(m-red, 50);
+
+$disabled-button-text-color: #919EAB;
+$disabled-button-icon-color: #919EAB;
+$disabled-button-border-color: theme-color(m-grey, 400);
+$disabled-button-default-color: theme-color(white);
 
 // Styles
 // ========================================================================
 
+$slim-min-height: rem(36px);
+
 .button {
-  border-radius: border-radius();
   color: $default-button-text-color;
+  background: $default-button-default-color;
+  border: border(dark);
+  border-color: $default-button-border-color;
+  border-radius: border-radius();
+  box-shadow: none;
+ 
+  &:hover {
+    background: $default-button-hover-color;
+    border-color: $default-button-border-color;
+    box-shadow: none;
+  }
+
+  &:focus {
+    background: $default-button-focus-color;
+    border-color: $default-button-border-color;
+    box-shadow: none;
+  }
+
+  &:active {
+    background: $default-button-active-color;
+    border-color: $default-button-border-color;
+    box-shadow: none;
+  }
+
+  &.disabled {
+    @include recolor-icon($disabled-button-icon-color);
+    color: $disabled-button-text-color;
+    background: $disabled-button-default-color;
+    border-color: $disabled-button-border-color;
+  }
+
 }
 
 .primary {
-  @include button-filled($primary-button-color, theme-color(m-pink, 700));
   @include recolor-icon($primary-button-icon-color);
   color: $primary-button-text-color;
-}
+  background: $primary-button-default-color;
+  border-color: $primary-button-default-color;
 
-.destructive {
-  @include button-filled($destructive-button-color, color(red, dark));
-  @include recolor-icon($destructive-button-icon-color);
+  &:hover {
+    background: $primary-button-hover-color;
+    border-color: $primary-button-hover-color;
+  }
+
+  &:focus {
+    background: $primary-button-focus-color;
+    border-color: $primary-button-focus-color;
+  }
+
+  &:active {
+    background: $primary-button-active-color;
+    border-color: $primary-button-active-color;
+  }
+
+  &.disabled {
+    @include recolor-icon($disabled-button-icon-color);
+    color: $disabled-button-text-color;
+    background: $disabled-button-default-color;
+    border-color: $disabled-button-border-color;
+  }
 }
 
 .outline {
-  @include button-outline($outline-button-color);
+  @include recolor-icon($default-button-icon-color);
+  color: $default-button-text-color;
+  background: $default-button-default-color;
+  border-color: $default-button-border-color;
+
+  &:hover {
+    background: $default-button-hover-color;
+    border-color: $default-button-border-color;
+  }
+
+  &:focus {
+    background: $default-button-focus-color;
+    border-color: $default-button-border-color;
+  }
+
+  &:active {
+    background: $default-button-active-color;
+    border-color: $default-button-border-color;
+  }
+
+  &.disabled {
+    @include recolor-icon($disabled-button-icon-color);
+    color: $disabled-button-text-color;
+    background: $disabled-button-default-color;
+    border-color: $disabled-button-border-color;
+  }
+}
+
+.destructive,
+.destructive.outline  {
+  @include recolor-icon($destructive-button-icon-color);
+  color: $destructive-button-text-color;
+  background: $destructive-button-default-color;
+  border-color: $destructive-button-border-color;
+
+  &:hover {
+    background: $destructive-button-hover-color;
+    border-color: $destructive-button-border-color;
+  }
+
+  &:focus {
+    background: $destructive-button-focus-color;
+    border-color: $destructive-button-border-color;
+    box-shadow: none;
+  }
+
+  &:active {
+    background: $destructive-button-active-color;
+    border-color: $destructive-button-border-color;
+  }
+
+  &.disabled {
+    @include recolor-icon($disabled-button-icon-color);
+    color: $disabled-button-text-color;
+    background: $disabled-button-default-color;
+    border-color: $disabled-button-border-color;
+  }
+}
+
+.disabled {
+  @include recolor-icon($disabled-button-icon-color);
+  color: $disabled-button-text-color;
+  background: $disabled-button-default-color;
+  border-color: $disabled-button-border-color;
+
+  &:hover,
+  &:focus,
+  &:active {
+    background: $disabled-button-default-color;
+    border-color: $disabled-button-border-color;
+  }
+}
+
+// stylelint-disable selector-max-specificity
+
+.plain {
+  color: theme-color(link);
+  background: transparent;
+  border: border(transparent);
+
+  &:hover,
+  &:focus,
+  &:active {
+    @include recolor-icon(color(theme-color(link), dark));
+    color: color(theme-color(link), dark);
+    background: transparent;
+    border: border(transparent);
+  }
+
+  &:focus > .content::after {
+    opacity: 0;
+  }
+
+  &.disabled {
+    background: none;
+    border: border(transparent);
+  }
 }

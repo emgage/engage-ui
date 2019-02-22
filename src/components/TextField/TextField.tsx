@@ -135,6 +135,7 @@ class TextField extends React.PureComponent<Props, State> {
       helpText,
       enableTextCounter,
       maxLength,
+      minLength,
       prefix,
       suffix,
       required,
@@ -188,10 +189,10 @@ class TextField extends React.PureComponent<Props, State> {
     if (enableTextCounter) {
       const maxLengthString = maxLength ? '/' + maxLength : '';
       const textCount = this.props.value ? this.props.value.toString().length : 0;
-      const minLengthRed = this.props.minLength ? this.props.minLength : 0;
+      const minLengthTest = minLength ? minLength : 0;
       counterTextMarkup =
         <div className={theme.counterText} id={`${componentId}counter`}>
-          <span className={minLengthRed > textCount ? theme.red : ''}>{textCount}</span>
+          <span className={minLengthTest > textCount ? theme.invalid : ''}>{textCount}</span>
           {maxLengthString}
         </div>;
     }
@@ -238,9 +239,10 @@ class TextField extends React.PureComponent<Props, State> {
 
     const hasValue = (!!this.props.value && this.props.value.length > 0) || this.state.value !== '';
 
-    const lableStyle = classNames(
+    const labelStyle = classNames(
       theme.labelStyle,
-      (hasValue || this.state.focused) && theme.labelHasValue
+      (hasValue || this.state.focused) && theme.labelHasValue,
+      disabled && theme.labelDisabled
     );
 
     return (
@@ -251,10 +253,11 @@ class TextField extends React.PureComponent<Props, State> {
         action={labelAction}
         labelHidden={labelHidden}
         helpText={helpText}
+        disabled={disabled}
         focused={this.state.focused}
         hasValue={hasValue}
         required={required}
-        componentClass={lableStyle}
+        componentClass={labelStyle}
       >
         <Connected
           left={connectedLeft}

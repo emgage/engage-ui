@@ -1,47 +1,3 @@
-// Variables
-// ========================================================================
-
-$extra-large-font-size: (
-  base: 27px,
-  large-screen: 42px
-);
-$large-font-size: (
-  base: 24px,
-  large-screen: 28px
-);
-$medium-font-size: (
-  base: 21px,
-  large-screen: 26px
-);
-$small-font-size: (
-  base: 16px,
-  large-screen: 20px
-);
-$heading-font-size: (
-  base: 17px,
-  large-screen: 16px
-);
-$subheading-font-size:(
-  base: 17px,
-  large-screen: 16px
-);
-$body-font-size: (
-  base: 15px,
-  large-screen: 14px
-);
-$caption-font-size: (
-  base: 13px,
-  large-screen: 12px
-);
-$input-font-size: (
-  base: 16px,
-  large-screen: 14px
-);
-
-
-// Styles
-// ========================================================================
-
 $typography-condensed: em(640px);
 
 $font-family-data: (
@@ -66,6 +22,12 @@ $line-height-data: (
   body: (
     base: rem(20px)
   ),
+  body-large: (
+    base: rem(24px)
+  ),
+  body-small: (
+    base: rem(16px)
+  ),
   display-x-large: (
     base: rem(36px),
     large-screen: rem(44px)
@@ -86,40 +48,48 @@ $line-height-data: (
 
 $font-size-data: (
   caption: (
-    base: rem(map-get($caption-font-size, base)),
-    large-screen: rem(map-get($caption-font-size, large-screen))
+    base: rem(13px),
+    large-screen: rem(12px)
   ),
   heading: (
-    base: rem(map-get($heading-font-size, base)),
-    large-screen: rem(map-get($heading-font-size, large-screen))
+    base: rem(17px),
+    large-screen: rem(16px)
   ),
   subheading: (
-    base: rem(map-get($subheading-font-size, base)),
-    large-screen: rem(map-get($subheading-font-size, large-screen))
+    base: rem(13px),
+    large-screen: rem(12px)
   ),
   input: (
-    base: rem(map-get($input-font-size, base)),
-    large-screen: rem(map-get($input-font-size, large-screen))
+    base: rem(16px),
+    large-screen: rem(16px)
   ),
   body: (
-    base: rem(map-get($body-font-size, base)),
-    large-screen: rem(map-get($body-font-size, large-screen))
+    base: rem(14px),
+    large-screen: rem(14px)
+  ),
+  body-large: (
+    base: rem(16px),
+    large-screen: rem(16px)
+  ),
+  body-small: (
+    base: rem(13px),
+    large-screen: rem(13px)
   ),
   display-x-large: (
-    base: rem(map-get($extra-large-font-size, base)),
-    large-screen: rem(map-get($extra-large-font-size, large-screen))
+    base: rem(27px),
+    large-screen: rem(42px)
   ),
   display-large: (
-    base: rem(map-get($large-font-size, base)),
-    large-screen: rem(map-get($large-font-size, large-screen))
+    base: rem(24px),
+    large-screen: rem(28px)
   ),
   display-medium: (
-    base: rem(map-get($medium-font-size, base)),
-    large-screen: rem(map-get($medium-font-size, large-screen))
+    base: rem(21px),
+    large-screen: rem(26px)
   ),
   display-small: (
-    base: rem(map-get($small-font-size, base)),
-    large-screen: rem(map-get($small-font-size, large-screen))
+    base: rem(16px),
+    large-screen: rem(20px)
   )
 );
 

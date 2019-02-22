@@ -8,7 +8,7 @@ import Icon from '../Icon';
 import { SELECT } from '../ThemeIdentifiers';
 
 import * as baseTheme from './Select.scss';
-import arrowSvg from './icons/arrow.svg';
+// import arrowSvg from './icons/arrow.svg';
 
 export type Option = string | {
   value: string,
@@ -56,6 +56,7 @@ export interface Props {
   onBlur?(): void;
 }
 
+const PLACEHOLDER_VALUE = '__placeholder__';
 const getUniqueID = createUniqueIDFactory('Select');
 
 const select = ({
@@ -87,7 +88,8 @@ const select = ({
 
   const isPlaceholder = value == null && placeholder != null;
   const className = classNames(
-    theme.Select,
+    theme.select,
+    Boolean(value) && theme.hasValue,
     errors && theme.error,
     disabled && theme.disabled,
     isPlaceholder && theme.placeholder
@@ -102,8 +104,16 @@ const select = ({
   if (errors) { describedBy.push(errorID(componentId)); }
 
   const placeholderOption = isPlaceholder
-    ? <option label={placeholder} disabled hidden />
+    ? <option label={placeholder} value={PLACEHOLDER_VALUE} disabled hidden />
     : null;
+
+  const hasValue = (value != null && value !== '') || isPlaceholder;
+
+  const labelStyle = classNames(
+    theme.labelStyle,
+    hasValue && theme.labelHasValue,
+    disabled && theme.labelDisabled
+  );
 
   return (
     <Labelled
@@ -113,14 +123,18 @@ const select = ({
       action={labelAction}
       labelHidden={labelHidden}
       helpText={helpText}
+      disabled={disabled}
+      hasValue={hasValue}
       required={required}
+      componentClass={labelStyle}
     >
       <div className={className}>
         <select
           id={componentId}
           name={name ? name : 'select'}
           value={value}
-          className={theme.select}
+          defaultValue={PLACEHOLDER_VALUE}
+          className={theme.input}
           disabled={disabled}
           required={required}
           onFocus={onFocus}
@@ -134,7 +148,7 @@ const select = ({
         </select>
 
         <div className={theme.icon}>
-          <Icon source={arrowSvg} />
+          <Icon source="triangleDown" />
         </div>
         <div className={theme.backdrop} />
       </div>
