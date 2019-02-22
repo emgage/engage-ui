@@ -1,65 +1,66 @@
 $backdrop-horizontal-spacing: spacing(tight) * 1.5;
-$default-border-color: theme-color(m-grey, 400);
 
 .textField {
   @include text-style-input;
   z-index: auto;
   padding: 0 $backdrop-horizontal-spacing;
-  color: color(ink, lightest);
+  color: theme-color(m-grey, 900);
 }
 
 .multiline {
+  padding: 0 0 0 $backdrop-horizontal-spacing;
 
   > .input {
     padding-left: 0;
-    padding-right: 0;
+    padding-right: $backdrop-horizontal-spacing;
   }
 }
 
 .hasValue {
-
   .input{
-    padding-top: 1.7rem;
-    padding-bottom: 0.5rem;
+    color: theme-color(m-grey, 900);
+    padding-top: 1.9rem;
+    padding-bottom: 0.3rem;
   }
 }
 
 .error {
 
-  > .input ~ .Backdrop {
-    background-color: theme-color(error, 50);
-    border-color: theme-color(error);
+  > .input ~ .backdrop {
+    background-color: theme-color(m-red, 50);
+    border-color: theme-color(m-red, 600);
     box-shadow:
     inset shadow(transparent),
-    0 0 0 1px theme-color(error);
+    0 0 0 1px theme-color(m-red, 600);
   }
 }
 
 .readOnly > .backdrop {
-  border-color: theme-color(m-grey, 50);
+  background-color: theme-color(m-grey, 50);
   border-color: theme-color(m-grey, 400);
 }
 
 .disabled > .backdrop {
-  border-color: theme-color(m-grey, 50);
-  border-color: theme-color(m-grey, 400);
+  background-color: theme-color(m-grey, 50);
+  border-color: theme-color(m-grey, 300);
 }
 
 .input {
+  @include text-style-input;
   height: auto;
   min-height: control-height();
   padding: control-vertical-padding() 0;
   transition: 0.3s all ease;
 
   &:disabled {
-    color: ctheme-color(m-grey, 500);
+    color: theme-color(m-grey, 700);
   }
 
   &:focus {
     outline: none;
     box-shadow: none;
-    padding-top: 1.7rem;
-    padding-bottom: 0.5rem;
+    padding-top: 1.9rem;
+    padding-bottom: 0.3rem;
 
     ~ .backdrop {
       border-color: theme-color(m-blue, 300);
@@ -68,17 +69,52 @@ $default-border-color: theme-color(m-grey, 400);
   }
 
   &::placeholder {
+    color: theme-color(m-grey, 500);
     text-align: right;
   }
 }
 
 .backdrop {
   border: border(dark);
-  border-color: $default-border-color;
-  
+  border-color: theme-color(m-grey, 400);
+  border-radius: border-radius();
+  box-shadow: none;
+  will-change: auto;
+  transition: none;
 }
 
 .dummyInput {
   @include text-style-input;
   padding: control-vertical-padding() $backdrop-horizontal-spacing;
+}
+
+
+// Character counter
+
+.counterText {
+  @include text-style-body-small;
+  color: theme-color(m-grey, 700);
+  margin-top: 0.3rem;
+
+  .invalid {
+    color: theme-color(m-red, 800);
+  }
+}
+
+
+// Lable Styling
+
+.labelStyle {
+  @include text-style-body-large;
+  color: theme-color(m-grey, 500);
+  transition: 0.3s all ease;
+}
+
+.labelHasValue {
+  @include text-style-body-small;
+  color: theme-color(m-grey, 700);
+}
+
+.labelDisabled {
+  color: theme-color(m-grey, 500);
 }

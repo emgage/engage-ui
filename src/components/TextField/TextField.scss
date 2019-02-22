@@ -3,28 +3,13 @@ $addon-horizontal-spacing: 0.25em;
 $spinner-icon-size: rem(12px);
 
 $stacking-order: (
-  contents: 20,
+  input: 20,
   backdrop: 10,
 );
-
-.red {
-  color: red;
-}
-
-.labelStyle {
-  font-size: 16px;
-  color: #9e9e9e;
-
-  &.labelHasValue {
-    font-size: 13px;
-    color: #616161;
-  }
-}
 
 .textField {
   @include text-style-input;
   position: relative;
-  z-index: 1;
   display: flex;
   align-items: baseline;
   padding: 0 $backdrop-horizontal-spacing;
@@ -32,8 +17,12 @@ $stacking-order: (
 }
 
 .multiline {
+  padding: 0;
+  
   > .input {
     overflow: auto;
+    padding-left: $backdrop-horizontal-spacing;
+    padding-right: $backdrop-horizontal-spacing;
   }
 }
 
@@ -54,7 +43,7 @@ $stacking-order: (
   .input::placeholder {
     // This is the only place this color is used.
     // stylelint-disable-next-line color-no-hex
-    color: #9e9e9e;
+    color: #9c9798;
   }
 
   > .input ~ .backdrop {
@@ -86,7 +75,7 @@ $stacking-order: (
 .input {
   @include text-style-input;
   position: relative;
-  z-index: z-index(contents, $stacking-order);
+  z-index: z-index(input, $stacking-order);
   display: block;
   flex: 1 1 0%;
   width: 100%;
@@ -101,10 +90,6 @@ $stacking-order: (
   appearance: none;
   padding-top: 1.7rem;
   padding-bottom: 0.5rem;
-
-  &.noLabel {
-    padding: 1.1rem 0;
-  }
 
   &:disabled {
     color: color(ink, lightest);
@@ -157,7 +142,7 @@ $stacking-order: (
 
 .prefix {
   position: relative;
-  z-index: z-index(contents, $stacking-order);
+  z-index: z-index(input, $stacking-order);
   flex: 0 0 auto;
   margin-right: $addon-horizontal-spacing;
   color: currentColor;
@@ -165,14 +150,14 @@ $stacking-order: (
 
 .suffix {
   position: relative;
-  z-index: z-index(contents, $stacking-order);
+  z-index: z-index(input, $stacking-order);
   flex: 0 0 auto;
   margin-left: $addon-horizontal-spacing;
   color: currentColor;
 }
 
 .spinner {
-  z-index: z-index(contents, $stacking-order);
+  z-index: z-index(input, $stacking-order);
   display: flex;
   align-self: stretch;
   flex-direction: column;
@@ -244,8 +229,10 @@ $stacking-order: (
     border-bottom-right-radius: border-radius();
   }
 }
+
 .counterText{
+  @include text-style-body;
+  @include text-emphasis-subdued;
+  margin-top: spacing(extra-tight);
   float: right;
-  font-size: 13px;
-  color: #616161;
 }

@@ -32,34 +32,34 @@ $input-vertical-adjust: rem(1px);
 }
 
 .disabled {
-  .Backdrop {
+  .backdrop {
     @include control-backdrop(disabled);
   }
 
-  .Icon {
+  .icon {
     opacity: 0.4;
   }
 }
 
 .error {
-  .Backdrop {
+  .backdrop {
     @include control-backdrop(error);
   }
 
   // Need to override the higher specificity of the sibling selector
   // so that errors still have red borders.
   // stylelint-disable-next-line selector-max-specificity
-  .Input:focus ~ .Backdrop {
+  .input:focus ~ .backdrop {
     @include control-backdrop(focused-error);
   }
 }
 
 .placeholder {
-  .Input {
+  .input {
     color: color(ink, lightest);
   }
 
-  &.error .Input {
+  &.error .input {
     // This is the only place this color is used.
     // stylelint-disable-next-line color-no-hex
     color: #9c9798;
@@ -87,36 +87,25 @@ $input-vertical-adjust: rem(1px);
   pointer-events: none;
 }
 
-.Select {
+.input {
   @include text-style-input;
   position: relative;
   z-index: z-index(input, $stacking-order);
   width: 100%;
   min-height: control-height();
   margin: 0;
-  background: transparent;
-  border: border(transparent);
-  appearance: none;
-
-  &:focus {
-    ~ .backdrop {
-      @include control-backdrop(focused);
-    }
-  }
-}
-
-.select {
-  width: 100%;
+  padding: control-vertical-padding() ($input-horizontal-padding + $icon-size) control-vertical-padding() $input-horizontal-padding;
   background: transparent;
   border: border(transparent);
   appearance: none;
   line-height: rem(20px);
-  padding: 12px;
-  z-index: z-index(input, $stacking-order);
 
   &:focus {
     outline: none;
-    box-shadow: none;
+
+    ~ .backdrop {
+      @include control-backdrop(focused);
+    }
   }
 
   &:disabled {

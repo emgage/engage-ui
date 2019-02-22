@@ -1,5 +1,15 @@
 $typography-condensed: em(640px);
 
+// font weight properties
+// normal
+//   Same as 400.
+// bold
+//   Same as 700.
+// lighter
+//   One font weight lighter than the parent element (among the available weights of the font).
+// bolder
+//   One font weight heavier than the parent element (among the available weights of the font).
+
 @mixin when-typography-not-condensed {
   @include breakpoint-after($typography-condensed) { @content; }
 }
@@ -63,6 +73,32 @@ $typography-condensed: em(640px);
 
   @include when-typography-not-condensed {
     font-size: font-size(body, large-screen);
+  }
+}
+
+@mixin text-style-body-large {
+  font-size: font-size(body-large);
+  font-weight: 400;
+  line-height: line-height(body-large);
+
+  text-transform: initial;
+  letter-spacing: initial;
+
+  @include when-typography-not-condensed {
+    font-size: font-size(body-large, large-screen);
+  }
+}
+
+@mixin text-style-body-small {
+  font-size: font-size(body-small);
+  font-weight: 400;
+  line-height: line-height(body-small);
+
+  text-transform: initial;
+  letter-spacing: initial;
+
+  @include when-typography-not-condensed {
+    font-size: font-size(body-small, large-screen);
   }
 }
 

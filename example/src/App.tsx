@@ -85,6 +85,7 @@ interface State {
   appDescription: string;
   appCity: string;
   appTextCounter: string;
+  appTextCounter1: string;
   columns: object[];
   checkboxState: boolean;
   rows: object[];
@@ -128,7 +129,9 @@ class App extends React.Component<{}, State> {
       appName: '',
       appDescription: '',
       appCity: '',
+      appCity1: null,
       appTextCounter: '',
+      appTextCounter1: '',
       checkboxState: true,
       columns: [
         { key: 'id', name: 'ID' },
@@ -1310,24 +1313,40 @@ class App extends React.Component<{}, State> {
             componentId="TestName"
             label="Text Counter"
             placeholder="test-placeholder"
-            value={this.state.appTextCounter}
+            value={this.state.appTextCounter1}
+            // value="Value"
             helpText="Helper Text"
             enableTextCounter
             maxLength={101}
             minLength={5}
-            onChange={this.valueUpdater('appTextCounter')}
+            onChange={this.valueUpdater('appTextCounter1')}
+            // disabled
           />
           <TextField
             componentId="TestName1"
             label="Text Counter"
             placeholder="test-placeholder"
             value={this.state.appTextCounter}
+            // value="Value"
             helpText="Helper Text"
             maxLength={101}
             minLength={5}
             multiline
             resizable
-            // onChange={this.valueUpdater('appTextCounter')}
+            onChange={this.valueUpdater('appTextCounter')}
+            disabled
+          />
+          <Select
+            componentId="appCity1"
+            name="Select city 2"
+            label="Label"
+            options={[{ value: '', label: '' },{ value: 'pasadena', label: 'Pasadena' }, { value: 'altadena', label: 'Altadena' }]}
+            value={this.state.appCity1}
+            // value="Value"
+            onChange={this.valueUpdater('appCity1')}
+            placeholder="Some stuff"
+            helpText="Help Text"
+            // disabled
           />
           </Column>
 

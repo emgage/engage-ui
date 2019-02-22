@@ -22,6 +22,7 @@ export interface Props {
   // Adds an action to the label.
   action: LabelProps['action'];
   helpText?: React.ReactNode;
+  disabled?: boolean;
   // The content to display inside labelled.
   children?: React.ReactNode;
   // Visually hide the labelled.
@@ -47,6 +48,7 @@ const labelled = ({
   children,
   labelHidden,
   helpText,
+  disabled,
   required,
   focused,
   hasValue,
@@ -66,8 +68,13 @@ const labelled = ({
     !hasValue && theme.empty
   );
 
+  const helpTextClassName = classNames(
+    theme.helpText,
+    disabled && theme.disabled
+  );
+
   const helpTextMarkup = helpText
-    ? <div className={theme.helpText} id={helpTextID(componentId)}>{helpText}</div>
+    ? <div className={helpTextClassName} id={helpTextID(componentId)}>{helpText}</div>
     : null;
 
   const errorId = errorID(componentId);
@@ -85,8 +92,8 @@ const labelled = ({
         <Label
           componentId={componentId}
           hidden={false}
-          focused={focused}
           hasValue={hasValue}
+          focused={focused}
           required={required}
           componentClass={componentClass}
           {...rest}
