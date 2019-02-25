@@ -182,8 +182,8 @@ $slim-min-height: rem(36px);
   &:hover,
   &:focus,
   &:active {
-    @include recolor-icon(color(theme-color(link), dark));
-    color: color(theme-color(link), dark);
+    @include recolor-icon(theme-color(link));
+    color: theme-color(link);
     background: transparent;
     border: border(transparent);
   }
