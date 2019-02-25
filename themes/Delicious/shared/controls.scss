@@ -42,7 +42,7 @@
     &::after { background: color(white); }
   } @else if $style == error {
     background: theme-color(m-red, 600);
-    box-shadow: 0 0 0 1px transparent;
+    box-shadow: 0 0 0 1px theme-color(m-red, 600);
 
     &::after { background: theme-color(m-red, 50); }
   } @else if $style == disabled {
