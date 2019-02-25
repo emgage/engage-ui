@@ -64,10 +64,6 @@ $input-horizontal-padding: spacing(tight) * 1.5;
 
 .backdrop {
   @include control-backdrop;
-  // border: border(dark);
-  // border-color: theme-color(m-grey, 400);
-  // border-radius: border-radius();
-  // box-shadow: none;
 }
 
 .icon {
@@ -81,8 +77,6 @@ $input-horizontal-padding: spacing(tight) * 1.5;
   min-height: control-height();
   padding: control-vertical-padding() ($input-horizontal-padding + $icon-size) control-vertical-padding() $input-horizontal-padding;
   transition: 0.3s all ease;
-  // background: transparent;
-  // border: border(transparent);
 
   &:focus {
     outline: none;

@@ -3,8 +3,8 @@ import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 import Select, { Props as SelectProps } from '../Select';
 import { ValidationRule } from '../../types';
 
-import { TEXT_FIELD } from '../ThemeIdentifiers';
-import * as baseTheme from '../TextField/TextField.scss';
+import { SELECT } from '../ThemeIdentifiers';
+import * as baseTheme from '../Select/Select.scss';
 
 export interface Props extends SelectProps {
   // Id of Validated Selectfield.
@@ -58,4 +58,4 @@ class ValidatedSelectFieldComponent extends React.PureComponent<Props, {}> {
   }
 }
 
-export default themr(TEXT_FIELD, baseTheme)(ValidatedSelectFieldComponent) as ThemedComponentClass<Props, {}>;
+export default themr(SELECT, baseTheme)(ValidatedSelectFieldComponent) as ThemedComponentClass<Props, {}>;

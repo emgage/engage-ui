@@ -1586,8 +1586,8 @@ class App extends React.Component<{}, State> {
                 componentId="appCity"
                 required={true}
                 name="Select city"
-                label=""
-                options={[{ value: '', label: 'Select city' }, { value: 'xyz', label: 'xyz' }, { value: 'abc', label: 'abc' }]}
+                label="Select city"
+                options={[{ value: '', label: '' }, { value: 'xyz', label: 'xyz' }, { value: 'abc', label: 'abc' }]}
                 value={this.state.appCity}
                 onChange={this.valueUpdater('appCity')}
                 validateTrigger={['onBlur']}
@@ -1596,14 +1596,6 @@ class App extends React.Component<{}, State> {
                 ]}
               />
 
-              <Select
-                componentId="appCity"
-                name="Select city 2"
-                label=""
-                options={[{ value: '', label: 'Select city' }, { value: 'xyz', label: 'xyz' }, { value: 'abc', label: 'abc' }]}
-                value={this.state.appCity}
-                onChange={this.valueUpdater('appCity')}
-              />
               <div><p>child<span>child 2</span></p></div>
               <div>
                 <FlexBox>
