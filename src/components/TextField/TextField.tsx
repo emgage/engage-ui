@@ -223,7 +223,6 @@ class TextField extends React.PureComponent<Props, State> {
       value: this.state.value,
       onFocus: this.handleInputOnFocus,
       onBlur: this.handleInputOnBlur,
-      onInput: this.handleInputOnBlur,
       style: newComponentStyle,
       formNoValidate: true,
       autoComplete: normalizeAutoComplete(autoComplete),
