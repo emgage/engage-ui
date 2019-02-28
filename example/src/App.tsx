@@ -787,7 +787,6 @@ class App extends React.Component<{}, State> {
       <br />
       <br />
       <br />
-      <br />
       <div>Sandwich: Keep Scrolling!</div>
       <br />
       <br />
