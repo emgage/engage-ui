@@ -218,7 +218,7 @@ class Table extends React.Component<Props, State> {
                       this.allRowWidth.push(thisDom.getBoundingClientRect().width);
                     }
                   }}>
-                  {/* 
+                  {/*
                     Here injectheader helps to inject any custom component,
                     Header value can be sent & then used in custom component
                   */}
@@ -271,6 +271,7 @@ class Table extends React.Component<Props, State> {
 
   // Function to toggle between the expanded row
   openNestedRow = (currentId: number | string) => {
+
     const { nestedChildCallback } = this.props;
     let expandedRow = Object.assign([], this.state.expandedRow);
     const rowIndex = expandedRow.indexOf(currentId);
@@ -304,7 +305,7 @@ class Table extends React.Component<Props, State> {
                 componentStyle={{ ...colItem.style, width: thisRowWidth }}
                 dataLabel={colItem.label}
               >
-                {/* 
+                {/*
                   Here injectBody helps to inject any custom component to td,
                   we also return the specifc value, which then can be used in injected component
                 */}
@@ -332,17 +333,18 @@ class Table extends React.Component<Props, State> {
     // Get current row's nested component by matching its id
     const thisNestedComponent = nestedChildData.filter((item: any) => item.rowId === id);
 
-    const thisNestedChildrenComponent = thisNestedComponent[0].component.props.data;
+    const thisNestedChildrenComponent = thisNestedComponent && thisNestedComponent.length > 0 ? thisNestedComponent[0].component.props.data : null;
 
-    const result = thisNestedChildrenComponent.filter((item: any) => {
+    const result = thisNestedChildrenComponent && thisNestedChildrenComponent.length > 0 ?
+    thisNestedChildrenComponent.filter((item: any) => {
       const thisVal = item[field].toLowerCase();
 
       if (thisVal.indexOf(this.state.searchKey) !== -1) {
         return true;
       }
-    });
+    }) : null;
 
-    if (isChildParentConfigSame) {
+    if (isChildParentConfigSame && result) {
       return result.map((item: any, index: number) => {
         return (
           <TableRow key={index} componentClass= {theme.parentChildTable}>
@@ -354,7 +356,7 @@ class Table extends React.Component<Props, State> {
                   key={colItem.key}
                   dataLabel={colItem.label}
                 >
-                  {/* 
+                  {/*
                     Here injectBody helps to inject any custom component to td,
                     we also return the specifc value, which then can be used in injected component
                   */}
@@ -566,7 +568,6 @@ class Table extends React.Component<Props, State> {
 
   // Function to toggle single row selection
   toggleSingleRowSelection = (rowData: any, checkedStatus: boolean) => {
-
     const allRowIds = this.getAllRowIds();
     this.setState({ totalRowCount: allRowIds.length });
 
@@ -611,7 +612,7 @@ class Table extends React.Component<Props, State> {
     allRowId.push(uniqueId);
 
 
-    if (allRowId.indexOf(expandedRowId) === -1 && !isParentUncheked && !isCheckBoxIndeterminante) {
+    if (expandedRowId && allRowId.indexOf(expandedRowId) === -1 && !isParentUncheked && !isCheckBoxIndeterminante) {
       allRowId.push(expandedRowId);
     }
     this.setState({ selectedRows: allRowId }, () => {
@@ -699,7 +700,6 @@ class Table extends React.Component<Props, State> {
     if (trimmedSearchKey) {
       const result = data.filter((item: any) => {
         const thisVal = item[field].toLowerCase();
-
         if (thisVal.indexOf(trimmedSearchKey) !== -1 || expandingRowId.indexOf(item.id) !== -1) {
           return true;
         }

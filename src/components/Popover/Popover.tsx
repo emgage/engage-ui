@@ -53,6 +53,8 @@ export interface Props {
   toggle?(): void;
   // Call callbackParent method on outside area click 
   callbackParent?(status:boolean) :void;
+  // Used for Custom top Length
+  isTopSizeDynamic?: boolean;
 }
 
 export interface State {
@@ -146,6 +148,7 @@ class Popover extends React.PureComponent<Props, State> {
       disabled,
       style,
       preferredAlignment,
+      isTopSizeDynamic,
     } = this.props;
 
     const { active } = this.state;
@@ -187,7 +190,7 @@ class Popover extends React.PureComponent<Props, State> {
         } else if (direction === 'right') {
           popoverPosition = { left: activatorRect.width, top: - activatorRect.height };
         } else if (direction === 'down') {
-          popoverPosition = { left: activatorRect.left - popoverPosition.left, top: popoverPosition.top - activatorRect.top - (activatorRect.height / 2) };
+          popoverPosition = { left: activatorRect.left - popoverPosition.left, top: isTopSizeDynamic ? (popoverPosition.top - activatorRect.top - (activatorRect.height / 2)) : 8 };
         } else if (direction === 'full') {
           popoverPosition = { left: 0, top: 0 };
         }
