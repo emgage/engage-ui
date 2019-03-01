@@ -30,6 +30,7 @@ describe('<TextField />', () => {
     expect(input.prop('value')).toBe('Some value');
     expect(input.prop('min')).toBe(20);
     expect(input.prop('max')).toBe(50);
+    expect(input.prop('minLength')).toBe(2);
     expect(input.prop('spellCheck')).toBe(false);
     expect(input.prop('pattern')).toBe(pattern);
   });

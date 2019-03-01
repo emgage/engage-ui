@@ -56,7 +56,7 @@ export interface Props {
   onBlur?(): void;
 }
 
-const PLACEHOLDER_VALUE = '__placeholder__';
+const PLACEHOLDER_VALUE = '';
 const getUniqueID = createUniqueIDFactory('Select');
 
 const select = ({
@@ -69,7 +69,7 @@ const select = ({
   helpText,
   label,
   errors,
-  value,
+  value = PLACEHOLDER_VALUE,
   placeholder,
   disabled,
   required,
@@ -86,7 +86,7 @@ const select = ({
     optionsMarkup = groups.map(renderGroup);
   }
 
-  const isPlaceholder = value == null && placeholder != null;
+  const isPlaceholder = value === '' && placeholder != null;
   const className = classNames(
     theme.select,
     Boolean(value) && theme.hasValue,
@@ -133,7 +133,6 @@ const select = ({
           id={componentId}
           name={name ? name : 'select'}
           value={value}
-          defaultValue={PLACEHOLDER_VALUE}
           className={theme.input}
           disabled={disabled}
           required={required}
