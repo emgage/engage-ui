@@ -11,6 +11,7 @@ export const DeliciousThemeContext = {
   PLabelled: require('./Labelled.scss'),
   PMessage: require('./Message.scss'),
   PModal: require('./Modal.scss'),
+  PProcess: require('./Process.scss'),
   PSelect: require('./Select.scss'),
   PTextField: require('./TextField.scss'),
 };

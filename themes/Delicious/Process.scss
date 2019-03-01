@@ -1,0 +1,143 @@
+$greyProcess: #CCC;
+$blueProcess: #33C3F0;
+
+$small-size: rem(32px);
+$medium-size: rem(40px);
+$large-size: rem(60px);
+
+.processLabel {
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  background: color(teal);
+  border-radius: 50%;
+  user-select: none;
+}
+
+.sizeSmall {
+  height: $small-size;
+  width: $small-size;
+  font-size: rem(14px);
+}
+
+.sizeMedium {
+  height: $medium-size;
+  width: $medium-size;
+  font-size: rem(18px);
+}
+
+.sizeLarge {
+  height: $large-size;
+  width: $large-size;
+  font-size: rem(26px);
+}
+
+.styleOne {
+  background: color(teal);
+}
+
+.styleTwo {
+  background: color(red);
+}
+
+.styleThree {
+  background: color(orange);
+}
+
+.styleFour {
+  background: color(green);
+}
+
+.styleFive {
+  background: color(blue);
+}
+
+.styleSix {
+  background: color(purple);
+}
+
+.initials {
+  line-height: 0;
+  color: color(white);
+  text-transform: uppercase;
+}
+
+
+
+
+.progtrckr {
+  @include text-style-body-small;
+  margin: 0;
+  list-style-type: none;
+  display: flex;
+
+  li {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+
+    &.active {
+      .processIndex {
+        color: #fff;
+        background-color: $blueProcess;
+      }
+
+      .processDivider {
+        border-top: 2px solid $greyProcess;
+      }
+    }
+
+    &.completed {
+      .processIndex {
+        color: #fff;
+        background-color: $blueProcess;
+      }
+
+      .processDivider {
+        border-top: 2px solid $blueProcess;
+      }
+    }
+
+    &.upcoming {
+      .processIndex {
+        color: #000;
+        background-color: $greyProcess;
+      }
+
+      .processDivider {
+        border-top: 2px solid $greyProcess;
+      }
+    }
+    
+    .processBar {
+      display: flex;
+      flex-grow: 1;
+      flex-wrap: wrap;
+
+      .processIndex {
+        border-radius: 50%;
+        font-weight: normal;
+        font-weight: normal;
+        font-size: 12px;
+        position: relative;
+        bottom: 1px;
+        text-align: center;
+        margin-bottom: 0px;
+        flex: 0 0 20px;
+        max-width: 20px;
+      }
+
+      .processDivider {
+        display: inline-block;
+        height: 1px;
+        position: relative;
+        left: 3%;
+        top: 8px;
+        flex: 0 0 85%;
+        max-width: 85%;
+      }
+    }
+  }
+}
