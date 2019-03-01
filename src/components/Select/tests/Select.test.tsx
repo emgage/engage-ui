@@ -144,7 +144,7 @@ describe('<Select />', () => {
       const select = mount(<Select label="Select" placeholder="Choose something" options={['one']} />);
       const placeholderOption = select.find('option').first();
 
-      expect(placeholderOption.prop('value')).toBe(select.find('select').at(1).prop('defaultValue'));
+      expect(placeholderOption.prop('value')).toBe('');
       expect(placeholderOption.prop('disabled')).toBe(true);
       expect(placeholderOption.prop('hidden')).toBe(true);
     });
