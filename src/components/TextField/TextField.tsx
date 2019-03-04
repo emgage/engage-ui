@@ -135,7 +135,6 @@ class TextField extends React.PureComponent<Props, State> {
       helpText,
       enableTextCounter,
       maxLength,
-      minLength,
       prefix,
       suffix,
       required,
@@ -189,7 +188,7 @@ class TextField extends React.PureComponent<Props, State> {
     if (enableTextCounter) {
       const maxLengthString = maxLength ? '/' + maxLength : '';
       const textCount = this.props.value ? this.props.value.toString().length : 0;
-      const minLengthTest = minLength ? minLength : 0;
+      const minLengthTest = this.props.minLength ? this.props.minLength : 0;
       counterTextMarkup =
         <div className={theme.counterText} id={`${componentId}counter`}>
           <span className={minLengthTest > textCount ? theme.invalid : ''}>{textCount}</span>
@@ -213,13 +212,13 @@ class TextField extends React.PureComponent<Props, State> {
     const input = React.createElement(multiline ? 'textarea' : 'input', {
       ...rest,
       name,
-      componentId,
       type,
       disabled,
       readOnly,
       autoFocus,
       placeholder,
       required,
+      id: componentId,
       value: this.state.value,
       onFocus: this.handleInputOnFocus,
       onBlur: this.handleInputOnBlur,

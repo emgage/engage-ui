@@ -129,7 +129,7 @@ class App extends React.Component<{}, State> {
       appName: '',
       appDescription: '',
       appCity: '',
-      appCity1: null,
+      appCity1: '',
       appTextCounter: '',
       appTextCounter1: '',
       checkboxState: true,
@@ -1643,7 +1643,7 @@ class App extends React.Component<{}, State> {
             helpText="Helper Text"
             maxLength={100}
             // onChange={this.valueUpdater('appTextCounter')}
-            connectedRight={<Select label="Weight unit" labelHidden options={[
+            connectedRight={<Select label="Weight unit" value="" labelHidden options={[
               'kg',
               'lb',
             ]} />}
