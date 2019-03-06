@@ -187,6 +187,33 @@ class Table extends React.Component<Props, State> {
     return hideStatus;
   }
 
+  getPartExpression = (object: string, data: any) => {
+    let partExpression = '';
+
+    // Extract all '{variable}'
+    const variables = object.match(/\{.*?\}/g);
+    let obj = object;
+    if (variables) {
+      for (let i = 0; i < variables.length; i++) {
+        const variable = variables[i].replace(/[{}]/g, '');
+        // Not using check for undefined or null. That can be directly done by user in the expression
+        // if i substitute undefined with '' then '' == 0  is evaluating to true.
+        obj = object.replace(variables[i], '"' + data[variable] + '"'); // variable has to be quoted other wise the value will be say abcd and javascrit will expect a variable like that.
+      }
+      partExpression = obj;
+    }
+
+    return partExpression;
+  }
+
+  getExpression = (expressionStr: string, data: any) => {
+    let expression: string = ' ( ';
+    expression += this.getPartExpression(expressionStr, data);
+    expression += ' ) ';
+
+    return expression;
+  }
+
   // Render the thead with th & contain specific header label
   // Used certain flags which will help to add sorting for any specific fields
   renderHeader = () => {
@@ -286,6 +313,30 @@ class Table extends React.Component<Props, State> {
     if (nestedChildCallback) {
       nestedChildCallback(currentId, rowIndex === -1);
     }
+  }
+
+  evaluate = (expressionStr: string, data: any) => {
+    if (data) {
+      // tslint:disable-next-line:no-eval
+      if (eval(this.getExpression(expressionStr, data))) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  // Function to add the icon or anything which is required to expand or collapse the table row
+  expandedRowElement = (rowId: number | string) => {
+    return (
+      <TableData>
+        <Icon
+          onClick={this.openNestedRow}
+          callbackValue={rowId}
+          source="chevronDown"
+          componentStyle={{ margin: 0 }} />
+      </TableData>
+    );
   }
 
   // Render the main table row
@@ -416,19 +467,6 @@ class Table extends React.Component<Props, State> {
     }
 
     return null;
-  }
-
-  // Function to add the icon or anything which is required to expand or collapse the table row
-  expandedRowElement = (rowId: number | string) => {
-    return (
-      <TableData>
-        <Icon
-          onClick={this.openNestedRow}
-          callbackValue={rowId}
-          source="chevronDown"
-          componentStyle={{ margin: 0 }} />
-      </TableData>
-    );
   }
 
   // Function to add checkbox in header as well
