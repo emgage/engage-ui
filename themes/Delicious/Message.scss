@@ -1,9 +1,9 @@
 .messagePrompt {
-    background: theme-color(error);
+    background: theme-color(m-red, 800);
     color: color(white);
 }
 .messagePrompt:after {
-    border-color: theme-color(error);
+    border-color: theme-color(m-red, 800);
     border-left-color: transparent;
     border-right-color: transparent;
 }

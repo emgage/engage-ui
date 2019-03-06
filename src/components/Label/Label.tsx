@@ -42,8 +42,8 @@ function label({
   action,
   hidden,
   required,
-  focused,
   hasValue,
+  focused,
   componentStyle,
   componentClass = '',
   theme,
@@ -53,8 +53,8 @@ function label({
     componentClass,
     hidden && theme.hidden,
     required && theme.required,
-    focused && theme.focused,
-    !hasValue && theme.empty
+    !hasValue && theme.empty,
+    focused && theme.focused
   );
 
   const actionMarkup = action

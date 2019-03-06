@@ -53,6 +53,8 @@ export interface Props {
   toggle?(): void;
   // Call callbackParent method on outside area click 
   callbackParent?(status:boolean) :void;
+  // Used for Custom top Length
+  isTopSizeDynamic?: boolean;
 }
 
 export interface State {
@@ -145,6 +147,8 @@ class Popover extends React.PureComponent<Props, State> {
       anchorEl,
       disabled,
       style,
+      preferredAlignment,
+      isTopSizeDynamic,
     } = this.props;
 
     const { active } = this.state;
@@ -155,6 +159,9 @@ class Popover extends React.PureComponent<Props, State> {
       : direction === 'up' ? baseTheme.popup
       : direction === 'left' ? baseTheme.popleft
       : baseTheme.popright,
+      preferredAlignment === 'left' ? baseTheme.alignLeft
+      : preferredAlignment === 'right' ? baseTheme.alignRight
+      : baseTheme.alignCenter,
       !disabled && active && baseTheme.active
     );
 
@@ -175,6 +182,7 @@ class Popover extends React.PureComponent<Props, State> {
         addEventListener(window, 'resize', this.handleMeasurement);
         activatorRect = activatorComp.getBoundingClientRect();
         popoverPosition = this.handleMeasurement();
+
         if (direction === 'up') {
           popoverPosition = { left: activatorRect.left - popoverPosition.left, top: - activatorRect.top + (activatorRect.height) };
         } else if (direction === 'left') {
@@ -182,7 +190,9 @@ class Popover extends React.PureComponent<Props, State> {
         } else if (direction === 'right') {
           popoverPosition = { left: activatorRect.width, top: - activatorRect.height };
         } else if (direction === 'down') {
-          popoverPosition = { left: activatorRect.left - popoverPosition.left, top: popoverPosition.top - activatorRect.top - (activatorRect.height / 2) };
+          popoverPosition = { left: activatorRect.left - popoverPosition.left, top: isTopSizeDynamic ? (popoverPosition.top - activatorRect.top - (activatorRect.height / 2)) : 8 };
+        } else if (direction === 'full') {
+          popoverPosition = { left: 0, top: 0 };
         }
       }
     }
@@ -315,7 +325,7 @@ class Popover extends React.PureComponent<Props, State> {
     const activatorRect = getRectForNode(anchorEl);
     const overlayRect = getRectForNode(this.popoverEle);
     const scrollableContainerRect = getRectForNode(this.scrollableContainer);
-    const overlayMargins = this.popoverEle.firstElementChild
+    const overlayMargins = this.popoverEle && this.popoverEle.firstElementChild
       ? getMarginsForNode(this.popoverEle.firstElementChild as HTMLElement)
       : { activator: 0, container: 0, horizontal: 0 };
     const containerRect = getRectForNode(window);

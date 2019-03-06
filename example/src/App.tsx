@@ -85,6 +85,7 @@ interface State {
   appDescription: string;
   appCity: string;
   appTextCounter: string;
+  appTextCounter1: string;
   columns: object[];
   checkboxState: boolean;
   rows: object[];
@@ -129,7 +130,9 @@ class App extends React.Component<{}, State> {
       appName: '',
       appDescription: '',
       appCity: '',
+      appCity1: '',
       appTextCounter: '',
+      appTextCounter1: '',
       checkboxState: true,
       columns: [
         { key: 'id', name: 'ID' },
@@ -305,23 +308,19 @@ class App extends React.Component<{}, State> {
         label: 'Name',
         key: 'name',
         className: '',
-        style: { width: '200px' },
         sort: true,
       }, {
         label: 'Description',
         key: 'description',
-        style: { width: 'auto' },
       }, {
         label: 'Status',
         key: 'status',
         sort: true,
         sortBy: 'itemName',
-        style: { width: '150px' },
         injectBody: (value: any) => <Badge status={value.status.itemID === 1 ? 'success' : 'warning'}>{value.status.itemName}</Badge>,
       }, {
         label: 'Type',
         key: 'type',
-        style: { width: '100px' },
       },
     ];
 
@@ -337,6 +336,7 @@ class App extends React.Component<{}, State> {
       column={childcolumnConfig}
       selectRow="checkbox"
       rowAction={childrowActionConfig}
+      bordered
     />,
 
     };
@@ -615,23 +615,19 @@ class App extends React.Component<{}, State> {
         label: 'Name',
         key: 'name',
         className: '',
-        style: { width: '200px' },
         sort: true,
       }, {
         label: 'Description',
         key: 'description',
-        style: { width: 'auto' },
       }, {
         label: 'Status',
         key: 'status',
         sort: true,
         sortBy: 'itemName',
-        style: { width: '150px' },
         injectBody: (value: any) => <Badge status={value.status.itemID === 1 ? 'success' : 'warning'}>{value.status.itemName}</Badge>,
       }, {
         label: 'Type',
         key: 'type',
-        style: { width: '100px' },
       },
     ];
 
@@ -795,7 +791,6 @@ class App extends React.Component<{}, State> {
 
               Nulla quis ante sit amet leo lobortis rhoncus. Cras mollis quis leo nec tincidunt. Aliquam blandit est vitae leo ultrices, ut egestas sapien pharetra. Suspendisse nec aliquet orci. Suspendisse rutrum odio sed neque scelerisque, ut consectetur erat tincidunt. Duis ultrices metus eget ante posuere eleifend. Ut luctus felis neque, sit amet efficitur neque maximus id. Aliquam porta, tellus ut pellentesque facilisis, odio neque maximus erat, venenatis semper nisi metus id augue. Cras vel sem eu elit blandit laoreet id vitae tortor. Morbi sit amet mi rutrum, sagittis enim lacinia, dictum turpis.
       <div>
-      <br />
       <br />
       <br />
       <br />
@@ -1036,6 +1031,7 @@ class App extends React.Component<{}, State> {
             selectRow="checkbox"
             rowAction={rowActionConfig}
             selectCallbackValue="id"
+            isChildParentConfigSame
             selectRowCallback={(val: any) => this.setState({ bulkAction: { selectedRow: val } })}
             bordered highlight sorting>
               Loading
@@ -1325,29 +1321,55 @@ class App extends React.Component<{}, State> {
             />
           </div>
 
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+
+          <Column small="2-4" medium="2-4" large="2-4">
+
           <TextField
             componentId="TestName"
             label="Text Counter"
             placeholder="test-placeholder"
-            value={this.state.appTextCounter}
+            value={this.state.appTextCounter1}
+            // value="Value"
             helpText="Helper Text"
             enableTextCounter
             maxLength={101}
             minLength={5}
-            onChange={this.valueUpdater('appTextCounter')}
+            onChange={this.valueUpdater('appTextCounter1')}
+            // disabled
           />
           <TextField
             componentId="TestName1"
             label="Text Counter"
             placeholder="test-placeholder"
             value={this.state.appTextCounter}
+            // value="Value"
             helpText="Helper Text"
             maxLength={101}
             minLength={5}
             multiline
             resizable
-            // onChange={this.valueUpdater('appTextCounter')}
+            onChange={this.valueUpdater('appTextCounter')}
+            disabled
           />
+          <Select
+            componentId="appCity1"
+            name="Select city 2"
+            label="Label"
+            options={[{ value: '', label: '' },{ value: 'pasadena', label: 'Pasadena' }, { value: 'altadena', label: 'Altadena' }]}
+            value={this.state.appCity1}
+            // value="Value"
+            onChange={this.valueUpdater('appCity1')}
+            placeholder="Some stuff"
+            helpText="Help Text"
+            // disabled
+          />
+          </Column>
+
                                 <Card>
                                 <CardHeader>Online store dashboard - Card</CardHeader>
                                     <CardBody sectioned>
@@ -1584,8 +1606,8 @@ class App extends React.Component<{}, State> {
                 componentId="appCity"
                 required={true}
                 name="Select city"
-                label=""
-                options={[{ value: '', label: 'Select city' }, { value: 'xyz', label: 'xyz' }, { value: 'abc', label: 'abc' }]}
+                label="Select city"
+                options={[{ value: '', label: '' }, { value: 'xyz', label: 'xyz' }, { value: 'abc', label: 'abc' }]}
                 value={this.state.appCity}
                 onChange={this.valueUpdater('appCity')}
                 validateTrigger={['onBlur']}
@@ -1594,14 +1616,6 @@ class App extends React.Component<{}, State> {
                 ]}
               />
 
-              <Select
-                componentId="appCity"
-                name="Select city 2"
-                label=""
-                options={[{ value: '', label: 'Select city' }, { value: 'xyz', label: 'xyz' }, { value: 'abc', label: 'abc' }]}
-                value={this.state.appCity}
-                onChange={this.valueUpdater('appCity')}
-              />
               <div><p>child<span>child 2</span></p></div>
               <div>
                 <FlexBox>
@@ -1650,7 +1664,7 @@ class App extends React.Component<{}, State> {
             helpText="Helper Text"
             maxLength={100}
             // onChange={this.valueUpdater('appTextCounter')}
-            connectedRight={<Select label="Weight unit" labelHidden options={[
+            connectedRight={<Select label="Weight unit" value="" labelHidden options={[
               'kg',
               'lb',
             ]} />}
@@ -1915,6 +1929,24 @@ class App extends React.Component<{}, State> {
           <Button primary>Save Draft</Button>
           <Button primary>Publish</Button>
         </ButtonGroup>
+        <br /><br />
+        <Button plain>Plain</Button>&nbsp;
+        <Button plain disabled>Plain Disabled</Button>&nbsp;
+        <Button>Button</Button>&nbsp;
+        <Button disabled>Disabled</Button>&nbsp;
+        <br /><br />
+        <Button primary>Primary</Button>&nbsp;
+        <Button primary disabled>Primary Disabled</Button>&nbsp;
+        <Button primary outline>Primary Outline</Button>&nbsp;
+        <Button outline>Outline</Button>&nbsp;
+        <Button outline disabled>Outline Disabled</Button>&nbsp;
+        <br /><br />
+        <Button destructive>Destructive</Button>&nbsp;
+        <Button destructive disabled>Destructive Disabled</Button>&nbsp;
+        <Button destructive outline>Destructive Outline</Button>&nbsp;
+        <Button destructive outline disabled>Destructive Outline Disabled</Button>&nbsp;
+        <br />
+
 
         <div>ComboBox</div>
         <ComboBox items={this.getComboBoxItems()} label="Select" currentValue="item1" />
@@ -1992,8 +2024,14 @@ class App extends React.Component<{}, State> {
       AccordionItemClose: index
     });
   }
-  valueUpdater(field: any) {
-    return (value: any) => {
+  // valueUpdater(field: any) {
+  //   return (value: any) => {
+  //     this.setState({ [field]: value });
+  //   };
+  // }
+
+  valueUpdater = (field: string) => {
+    return (value: string) => {
       this.setState({ [field]: value });
     };
   }

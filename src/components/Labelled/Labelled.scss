@@ -6,15 +6,16 @@
   margin-bottom: spacing(extra-tight);
 }
 
-.required {}
-
-.focused {}
-
-.invalid {}
-
-.empty {}
-
 .helpText {
-  font-size: 13px;
-  color: #616161;
+  @include text-style-body;
+  @include text-emphasis-subdued;
+  margin-top: spacing(extra-tight);
 }
+
+// .required {}
+
+// .focused {}
+
+// .invalid {}
+
+// .empty {}

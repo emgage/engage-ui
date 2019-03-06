@@ -10,6 +10,8 @@ export interface Props {
   onClick?(id: number | string): void;
   callBackSelectedRows?(id: number): void;
   selectRow?: any;
+  componentStyle?: any;
+  componentClass?: string;
 }
 
 class TableRow extends React.Component<Props, never> {
@@ -26,7 +28,7 @@ class TableRow extends React.Component<Props, never> {
 
   render () {
     return (
-      <tr onClick={this.rowClickCallback}>
+      <tr onClick={this.rowClickCallback} className={this.props.componentClass} style ={this.props.componentStyle}>
         { this.props.children }
       </tr>
     );

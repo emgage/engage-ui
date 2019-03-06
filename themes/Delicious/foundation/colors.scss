@@ -2,9 +2,14 @@
 // stylelint-disable color-no-hex, no-indistinguishable-colors, function-max-empty-lines, value-list-max-empty-lines
 $theme-color-palette-data: (
 
+  // This shold not be necessart
   error: (
-    50: #fff1f0,
-    500: #c31032
+    50: #fff1f0, //m-red, 50
+    500: #c31032 //m-red, 800
+  ),
+
+  link: (
+    500: #007ACE,
   ),
 
   m-red: (
@@ -17,7 +22,11 @@ $theme-color-palette-data: (
     600: #E53935,
     700: #D32F2F,
     800: #C62828,
-    900: #B71C1C
+    900: #B71C1C,
+    A100: #ff8a80,
+    A200: #ff5252,
+    A400: #ff1744,
+    A700: #d50000
   ),
 
   m-pink: (
@@ -30,7 +39,11 @@ $theme-color-palette-data: (
     600: #D81B60,
     700: #C2185B,
     800: #AD1457,
-    900: #880E4F
+    900: #880E4F,
+    A100: #ff80ab,
+    A200: #ff4081,
+    A400: #f50057,
+    A700: #c51162
   ),
 
   m-purple: (
@@ -43,7 +56,11 @@ $theme-color-palette-data: (
     600: #8E24AA,
     700: #7B1FA2,
     800: #6A1B9A,
-    900: #4A148C
+    900: #4A148C,
+    A100: #ea80fc,
+    A200: #e040fb,
+    A400: #d500f9,
+    A700: #aa00ff
   ),
 
   m-deep-purple: (
@@ -56,7 +73,11 @@ $theme-color-palette-data: (
     600: #5E35B1,
     700: #512DA8,
     800: #4527A0,
-    900: #311B92
+    900: #311B92,
+    A100: #b388ff,
+    A200: #7c4dff,
+    A400: #651fff,
+    A700: #6200ea
   ),
 
   m-indigo: (
@@ -69,7 +90,11 @@ $theme-color-palette-data: (
     600: #3949AB,
     700: #303F9F,
     800: #283593,
-    900: #1A237E
+    900: #1A237E,
+    A100: #8c9eff,
+    A200: #536dfe,
+    A400: #3d5afe,
+    A700: #304ffe
   ),
 
   m-blue: (
@@ -82,7 +107,11 @@ $theme-color-palette-data: (
     600: #1E88E5,
     700: #1976D2,
     800: #1565C0,
-    900: #0D47A1
+    900: #0D47A1,
+    A100: #82b1ff,
+    A200: #448aff,
+    A400: #2979ff,
+    A700: #2962ff
   ),
 
   m-light-blue: (
@@ -95,7 +124,11 @@ $theme-color-palette-data: (
     600: #039BE5,
     700: #0288D1,
     800: #0277BD,
-    900: #01579B
+    900: #01579B,
+    A100: #80d8ff,
+    A200: #40c4ff,
+    A400: #00b0ff,
+    A700: #0091ea
   ),
 
   m-cyan: (
@@ -108,7 +141,11 @@ $theme-color-palette-data: (
     600: #00ACC1,
     700: #0097A7,
     800: #00838F,
-    900: #006064
+    900: #006064,
+    A100: #84ffff,
+    A200: #18ffff,
+    A400: #00e5ff,
+    A700: #00b8d4
   ),
 
   m-teal: (
@@ -121,7 +158,11 @@ $theme-color-palette-data: (
     600: #00897B,
     700: #00796B,
     800: #00695C,
-    900: #004D40
+    900: #004D40,
+    A100: #a7ffeb,
+    A200: #64ffda,
+    A400: #1de9b6,
+    A700: #00bfa5
   ),
 
   m-green: (
@@ -134,7 +175,11 @@ $theme-color-palette-data: (
     600: #43A047,
     700: #388E3C,
     800: #2E7D32,
-    900: #1B5E20
+    900: #1B5E20,
+    A100: #b9f6ca,
+    A200: #69f0ae,
+    A400: #00e676,
+    A700: #00c853
   ),
 
   m-light-green: (
@@ -147,7 +192,11 @@ $theme-color-palette-data: (
     600: #7CB342,
     700: #689F38,
     800: #558B2F,
-    900: #33691E
+    900: #33691E,
+    A100: #ccff90,
+    A200: #b2ff59,
+    A400: #76ff03,
+    A700: #64dd17
   ),
 
   m-lime: (
@@ -160,7 +209,11 @@ $theme-color-palette-data: (
     600: #C0CA33,
     700: #AFB42B,
     800: #9E9D24,
-    900: #827717
+    900: #827717,
+    A100: #f4ff81,
+    A200: #eeff41,
+    A400: #c6ff00,
+    A700: #aeea00
   ),
 
   m-yellow: (
@@ -173,7 +226,11 @@ $theme-color-palette-data: (
     600: #FDD835,
     700: #FBC02D,
     800: #F9A825,
-    900: #F57F17
+    900: #F57F17,
+    A100: #ffff8d,
+    A200: #ffff00,
+    A400: #ffea00,
+    A700: #ffd600
   ),
 
   m-amber: (
@@ -186,7 +243,11 @@ $theme-color-palette-data: (
     600: #FFB300,
     700: #FFA000,
     800: #FF8F00,
-    900: #FF6F00
+    900: #FF6F00,
+    A100: #ffe57f,
+    A200: #ffd740,
+    A400: #ffc400,
+    A700: #ffab00
   ),
 
   m-orange: (
@@ -199,7 +260,11 @@ $theme-color-palette-data: (
     600: #FB8C00,
     700: #F57C00,
     800: #EF6C00,
-    900: #E65100
+    900: #E65100,
+    A100: #ffd180,
+    A200: #ffab40,
+    A400: #ff9100,
+    A700: #ff6d00
   ),
 
   m-deep-orange: (
@@ -212,7 +277,11 @@ $theme-color-palette-data: (
     600: #F4511E,
     700: #E64A19,
     800: #D84315,
-    900: #BF360C
+    900: #BF360C,
+    A100: #ff9e80,
+    A200: #ff6e40,
+    A400: #ff3d00,
+    A700: #dd2c00
   ),
 
   m-brown: (

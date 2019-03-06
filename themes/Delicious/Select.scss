@@ -20,24 +20,99 @@ $input-horizontal-padding: spacing(tight) * 1.5;
 
 // Without a small amount of vertical adjustment, the text
 // in the Select does not appear vertically centered.
-$input-vertical-adjust: rem(1px);
+// $input-vertical-adjust: rem(1px);
 
+.select {
+  position: relative;
 
-.Input {
+  // IE 11 fix to remove default dropdown arrow
+  select::-ms-expand {
+    display: none;
+  }
+}
+
+.disabled {
+  .backdrop {
+    @include control-backdrop(disabled);
+  }
+
+  .icon {
+    opacity: 0.4;
+  }
+}
+
+.hasValue {
+  .input{
+    color: theme-color(m-grey, 900);
+    padding-top: 1.9rem;
+    padding-bottom: 0.3rem;
+  }
+}
+
+.error {
+  .backdrop {
+    @include control-backdrop(error);
+  }
+
+  // Need to override the higher specificity of the sibling selector
+  // so that errors still have red borders.
+  // stylelint-disable-next-line selector-max-specificity
+  .input:focus ~ .backdrop {
+    @include control-backdrop(focused-error);
+  }
+}
+
+.backdrop {
+  @include control-backdrop;
+}
+
+.icon {
+  @include recolor-icon(theme-color(m-grey, 800));
+ }
+
+.input {
   @include text-style-input;
+  color: theme-color(m-grey, 900);
   z-index: z-index(input, $stacking-order);
   min-height: control-height();
   padding: control-vertical-padding() ($input-horizontal-padding + $icon-size) control-vertical-padding() $input-horizontal-padding;
-  line-height: rem(20px);
+  transition: 0.3s all ease;
 
   &:focus {
+    outline: none;
 
-    ~ .Backdrop {
+    ~ .backdrop {
       @include control-backdrop(focused);
     }
   }
 
   &:disabled {
-    color: color(ink, lightest);
+    color: theme-color(m-grey, 700);
   }
+}
+
+.placeholder {
+  .input {
+    color: theme-color(m-grey, 500);
+    padding-top: 1.9rem;
+    padding-bottom: 0.3rem;
+  }
+}
+
+
+// Lable Styling
+
+.labelStyle {
+  @include text-style-body-large;
+  color: theme-color(m-grey, 500);
+  transition: 0.3s all ease;
+}
+
+.labelHasValue {
+  @include text-style-body-small;
+  color: theme-color(m-grey, 700);
+}
+
+.labelDisabled {
+  color: theme-color(m-grey, 500);
 }

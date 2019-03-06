@@ -89,6 +89,8 @@ export interface Props {
   onFocus?(e?: React.FormEvent<HTMLElement>): void;
   // Callback when focus is removed	.
   onBlur?(e?: React.FormEvent<HTMLElement>): void;
+  // Callback when value is inserted in Input.
+  onInput?(e?: React.ChangeEvent<HTMLSelectElement>): void;
 }
 
 const getUniqueID = createUniqueIDFactory('TextField');
@@ -139,6 +141,7 @@ class TextField extends React.PureComponent<Props, State> {
       theme,
       onFocus,
       onBlur,
+      onInput,
       autoComplete,
       componentStyle,
       resizable,
@@ -185,10 +188,10 @@ class TextField extends React.PureComponent<Props, State> {
     if (enableTextCounter) {
       const maxLengthString = maxLength ? '/' + maxLength : '';
       const textCount = this.props.value ? this.props.value.toString().length : 0;
-      const minLengthRed = this.props.minLength ? this.props.minLength : 0;
+      const minLengthTest = this.props.minLength ? this.props.minLength : 0;
       counterTextMarkup =
         <div className={theme.counterText} id={`${componentId}counter`}>
-          <span className={minLengthRed > textCount ? theme.red : ''}>{textCount}</span>
+          <span className={minLengthTest > textCount ? theme.invalid : ''}>{textCount}</span>
           {maxLengthString}
         </div>;
     }
@@ -209,16 +212,17 @@ class TextField extends React.PureComponent<Props, State> {
     const input = React.createElement(multiline ? 'textarea' : 'input', {
       ...rest,
       name,
-      componentId,
       type,
       disabled,
       readOnly,
       autoFocus,
       placeholder,
       required,
+      id: componentId,
       value: this.state.value,
       onFocus: this.handleInputOnFocus,
       onBlur: this.handleInputOnBlur,
+      onInput: this.handleInputOnBlur,
       style: newComponentStyle,
       formNoValidate: true,
       autoComplete: normalizeAutoComplete(autoComplete),
@@ -234,9 +238,10 @@ class TextField extends React.PureComponent<Props, State> {
 
     const hasValue = (!!this.props.value && this.props.value.length > 0) || this.state.value !== '';
 
-    const lableStyle = classNames(
+    const labelStyle = classNames(
       theme.labelStyle,
-      (hasValue || this.state.focused) && theme.labelHasValue
+      (hasValue || this.state.focused) && theme.labelHasValue,
+      disabled && theme.labelDisabled
     );
 
     return (
@@ -247,10 +252,11 @@ class TextField extends React.PureComponent<Props, State> {
         action={labelAction}
         labelHidden={labelHidden}
         helpText={helpText}
+        disabled={disabled}
         focused={this.state.focused}
         hasValue={hasValue}
         required={required}
-        componentClass={lableStyle}
+        componentClass={labelStyle}
       >
         <Connected
           left={connectedLeft}

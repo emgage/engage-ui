@@ -12,11 +12,11 @@
 
 @mixin control-backdrop($style: base) {
   @if $style == base {
-    background: color(sky, dark);
+    background: theme-color(m-grey, 400);
     border: border(transparent);
     box-shadow:
       0 0 0 1px transparent,
-      shadow(faint);
+      shadow(transparent);
     border-radius: border-radius();
     transition-property: box-shadow, background;
     transition-duration: duration();
@@ -30,30 +30,30 @@
       left: 0;
       right: 0;
       display: block;
-      background: linear-gradient(to bottom, color(white), color(sky, lighter));
+      background: theme-color(white);
       border-radius: calc(#{border-radius()} - 1px);
     }
   } @else if $style == focused {
-    background: color(indigo);
+    background: theme-color(m-blue, 300);
     box-shadow:
-      0 0 0 1px color(indigo),
+      0 0 0 1px theme-color(m-blue, 300),
       shadow(transparent);
 
     &::after { background: color(white); }
   } @else if $style == error {
-    background: color(red);
-    box-shadow: 0 0 0 1px transparent;
+    background: theme-color(m-red, 600);
+    box-shadow: 0 0 0 1px theme-color(m-red, 600);
 
-    &::after { background: color(red, lighter); }
+    &::after { background: theme-color(m-red, 50); }
   } @else if $style == disabled {
-    background: color(sky);
+    background: theme-color(m-grey, 300);
     box-shadow: none;
 
-    &::after { background: color(sky, lighter); }
+    &::after { background: theme-color(m-grey, 50); }
   } @else if $style == focused-error {
-    background: color(indigo);
-    box-shadow: 0 0 0 1px color(indigo);
+    background: theme-color(m-red, 600);
+    box-shadow: 0 0 0 1px theme-color(m-red, 600);
 
-    &::after { background: color(red, lighter); }
+    &::after { background: theme-color(m-red, 50); }
   }
 }
