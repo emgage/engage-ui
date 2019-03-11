@@ -75,6 +75,7 @@ export interface Props {
   striped?: boolean;
   // Used when same table component is nested as child component
   isChildParentConfigSame?: boolean;
+  callChildCallback?: boolean;
   theme?: any;
 }
 
@@ -87,6 +88,7 @@ export interface State {
   selectedRows: any;
   searchKey: string;
   totalRowCount: number;
+  callChildCallback: boolean;
 }
 
 let callBackSelectedRows: any;
@@ -122,6 +124,15 @@ class Table extends React.Component<Props, State> {
     if (JSON.stringify(newProps.nestedChildData) !== JSON.stringify(this.props.nestedChildData)) {
       this.expandRowOnLoad();
     }
+
+    if ((newProps.callChildCallback !== this.props.callChildCallback && newProps.callChildCallback)) {
+      // this.setState({ callChildCallback: newProps.callChildCallback });
+      this.reRenderRow();
+    }
+
+    if (!newProps.nestedChildData && JSON.stringify(newProps.data) !== JSON.stringify(this.state.data)) {
+      this.setState({ data: newProps.data });
+    }
   }
 
   componentDidMount() {
@@ -151,6 +162,7 @@ class Table extends React.Component<Props, State> {
       },
       searchKey: '',
       totalRowCount: 0,
+      callChildCallback: false,
     };
   }
 
@@ -271,7 +283,6 @@ class Table extends React.Component<Props, State> {
 
   // Function to toggle between the expanded row
   openNestedRow = (currentId: number | string) => {
-
     const { nestedChildCallback } = this.props;
     let expandedRow = Object.assign([], this.state.expandedRow);
     const rowIndex = expandedRow.indexOf(currentId);
@@ -281,6 +292,7 @@ class Table extends React.Component<Props, State> {
     } else {
       expandedRow.splice(rowIndex, 1);
     }
+
     this.setState({ expandedRow });
 
     if (nestedChildCallback) {
@@ -498,6 +510,15 @@ class Table extends React.Component<Props, State> {
 
     expandingRowId.forEach((item: number) => {
       this.openNestedRow(item);
+    });
+  }
+
+  reRenderRow = () => {
+    const { nestedChildCallback = () => {} } = this.props;
+    const { expandedRow = [] } = this.state;
+
+    expandedRow.forEach((item: number) => {
+      nestedChildCallback(item, true);
     });
   }
 

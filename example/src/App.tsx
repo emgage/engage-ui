@@ -117,6 +117,7 @@ interface State {
   [key: string]: any;
   processComponentState: number;
   processLength: number;
+  callChildCallback: boolean;
 }
 
 class App extends React.Component<{}, State> {
@@ -174,6 +175,7 @@ class App extends React.Component<{}, State> {
       gridView: 'block',
       processComponentState: 0,
       processLength: 2,
+      callChildCallback: false,
     };
 
     this.popovertoggle = this.popovertoggle.bind(this);
@@ -347,7 +349,8 @@ class App extends React.Component<{}, State> {
 
     nestedChildData.push(newData);
 
-    this.setState({ nestedChildData });
+    console.log('I am called');
+    this.setState({ nestedChildData, callChildCallback: false });
   }
 
   render() {
@@ -994,10 +997,13 @@ class App extends React.Component<{}, State> {
             <div className="fieldGroupAddon">
               <Button onClick={(val: any) => this.setState({ filterConfig: { ...this.state.filterConfig, search: true } })}>Search</Button>
             </div>
+
+            <Button onClick={() => this.setState({ callChildCallback: true })}>Update child</Button>
           </div>
           <Table
             nestedChildData={this.state.nestedChildData}
             nestedChildCallback={this.nestedChildCallback}
+            callChildCallback={this.state.callChildCallback}
             expandingRowId={[2,4]}
             rowExpandOnLoad={false}
             hideExpandedIcon={false}
