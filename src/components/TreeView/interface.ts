@@ -2,7 +2,7 @@ import { ReactElement } from 'react';
 
 export interface SourceData {
   id: number;
-  key: number;
+  key?: number;
   label?: string;
   component?(): ReactElement<any>;
   active: boolean;
