@@ -276,18 +276,19 @@ class App extends React.Component<{}, State> {
     const childtableData = [
       {
         id: 11,
-        name: 'Hirens',
+        name: 'Dheir',
         description: 'Test description',
         status: { itemID: 1, itemName: 'New' },
         type: 'admin',
       }, {
         id: 13,
-        name: 'Patels',
+        name: 'DheePat',
         description: 'Test description3',
         status: { itemID: 3, itemName: 'Draft' },
         type: 'admin',
       }
     ];
+
     const childrowActionConfig = [
       {
         content: 'View',
@@ -303,6 +304,7 @@ class App extends React.Component<{}, State> {
         onClick: (value: any) => { console.log('Version:', value); },
       },
     ];
+
     const childcolumnConfig: TableColumnConfig[] = [
       {
         label: 'Name',
