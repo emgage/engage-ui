@@ -312,6 +312,7 @@ class App extends React.Component<{}, State> {
       }, {
         label: 'Description',
         key: 'description',
+        sort: true,
       }, {
         label: 'Status',
         key: 'status',
@@ -327,13 +328,13 @@ class App extends React.Component<{}, State> {
       rowId,
       component: <Table
       highlight={true}
-      hideHeader={true}
       sorting="all"
       data={childtableData}
       column={childcolumnConfig}
       selectRow="checkbox"
       rowAction={childrowActionConfig}
       bordered
+      renderHeaderCheckbox={false}
     />,
 
     };
@@ -349,7 +350,6 @@ class App extends React.Component<{}, State> {
 
     nestedChildData.push(newData);
 
-    console.log('I am called');
     this.setState({ nestedChildData, callChildCallback: false });
   }
 
