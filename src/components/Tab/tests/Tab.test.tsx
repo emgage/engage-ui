@@ -223,7 +223,7 @@ describe('<Tab />', () => {
         </TabPanel>);
       expect(subject.find('div').exists()).toBeTruthy();
       expect(subject.find('div').length).toBe(5);
-      expect(subject.find('div').at(0).prop('defaultTabId')).toBe('tab1');
+      expect(subject.find('div').at(0).prop('defaulttabid')).toBe('tab1');
       expect(subject.find('div').at(3).children).toHaveLength(1);
       expect(subject.find('p').text()).toBe('content 0');
     });
@@ -244,7 +244,7 @@ describe('<Tab />', () => {
         </TabPanel>);
       expect(subject.find('div').exists()).toBeTruthy();
       expect(subject.find('div').length).toBe(5);
-      expect(subject.find('div').at(0).prop('defaultTabId')).toBe('tab1');
+      expect(subject.find('div').at(0).prop('defaulttabid')).toBe('tab1');
       expect(subject.find('div').at(3).children).toHaveLength(1);
       expect(subject.find('p').length).toBe(1);
     });
@@ -266,7 +266,7 @@ describe('<Tab />', () => {
         </TabPanel>);
       expect(subject.find('div').exists()).toBeTruthy();
       expect(subject.find('div').length).toBe(6);
-      expect(subject.find('div').at(0).prop('defaultTabId')).toBe('tab2');
+      expect(subject.find('div').at(0).prop('defaulttabid')).toBe('tab2');
       expect(subject.find('div').at(4).children).toHaveLength(1);
       expect(subject.find('button')).toHaveLength(2);
       subject.find('button').at(1).simulate('click');
