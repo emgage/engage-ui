@@ -25,7 +25,7 @@ describe('<Tab />', () => {
   describe('when default props are provided', () => {
     it('should have default tab elements', () => {
       const subject = mount(
-        <TabPanel position={'top'} alignment={'center'} defaultTabId={'tab1'} theme={theme} >
+        <TabPanel position={'top'} alignment={'center'} defaulttabid={'tab1'} theme={theme} >
           <Tab tabDescription={<Badge children={'Home'} status={'success'} />} tabId={'tab1'}>
             <p>content 0</p>
           </Tab>
@@ -42,7 +42,7 @@ describe('<Tab />', () => {
 
     it('should have tab with active tab panel', () => {
       const subject = mount(
-        <TabPanel position={'top'} alignment={'center'} defaultTabId={'tab1'} theme={theme} >
+        <TabPanel position={'top'} alignment={'center'} defaulttabid={'tab1'} theme={theme} >
           <Tab tabDescription={<Badge children={'Home'} status={'success'} />} tabId={'tab1'}>
             <p>content 0</p>
           </Tab>
@@ -60,7 +60,7 @@ describe('<Tab />', () => {
 
     it('should have 2 tabs with tabpanel', () => {
       const subject = mount(
-        <TabPanel position={'top'} alignment={'center'} defaultTabId={'tab1'} theme={theme} >
+        <TabPanel position={'top'} alignment={'center'} defaulttabid={'tab1'} theme={theme} >
           <Tab tabDescription={<Badge children={'Home'} status={'success'} />} tabId={'tab1'}>
             <p>content 0</p>
           </Tab>
@@ -81,7 +81,7 @@ describe('<Tab />', () => {
   describe('when position props are provided', () => {
     it('should have value top as position prop', () => {
       const subject = mount(
-        <TabPanel position={'top'} alignment={'center'} defaultTabId={'tab1'} theme={theme} >
+        <TabPanel position={'top'} alignment={'center'} defaulttabid={'tab1'} theme={theme} >
           <Tab tabDescription={<Badge children={'Home'} status={'success'} />} tabId={'tab1'}>
             <p>content 0</p>
           </Tab>
@@ -99,7 +99,7 @@ describe('<Tab />', () => {
 
     it('should have value bottom as position prop', () => {
       const subject = mount(
-        <TabPanel position={'bottom'} alignment={'center'} defaultTabId={'tab1'} theme={theme} >
+        <TabPanel position={'bottom'} alignment={'center'} defaulttabid={'tab1'} theme={theme} >
           <Tab tabDescription={<Badge children={'Home'} status={'success'} />} tabId={'tab1'}>
             <p>content 0</p>
           </Tab>
@@ -117,7 +117,7 @@ describe('<Tab />', () => {
 
     it('should have value left as position prop', () => {
       const subject = mount(
-        <TabPanel position={'left'} alignment={'center'} defaultTabId={'tab1'} theme={theme} >
+        <TabPanel position={'left'} alignment={'center'} defaulttabid={'tab1'} theme={theme} >
           <Tab tabDescription={<Badge children={'Home'} status={'success'} />} tabId={'tab1'}>
             <p>content 0</p>
           </Tab>
@@ -135,7 +135,7 @@ describe('<Tab />', () => {
 
     it('should have value right as position prop', () => {
       const subject = mount(
-        <TabPanel position={'right'} alignment={'center'} defaultTabId={'tab1'} theme={theme} >
+        <TabPanel position={'right'} alignment={'center'} defaulttabid={'tab1'} theme={theme} >
           <Tab tabDescription={<Badge children={'Home'} status={'success'} />} tabId={'tab1'}>
             <p>content 0</p>
           </Tab>
@@ -155,7 +155,7 @@ describe('<Tab />', () => {
   describe('when alignment props are provided', () => {
     it('should have value right as alignment prop', () => {
       const subject = mount(
-        <TabPanel position={'top'} alignment={'right'} defaultTabId={'tab1'} theme={theme} >
+        <TabPanel position={'top'} alignment={'right'} defaulttabid={'tab1'} theme={theme} >
           <Tab tabDescription={<Badge children={'Home'} status={'success'} />} tabId={'tab1'}>
             <p>content 0</p>
           </Tab>
@@ -173,7 +173,7 @@ describe('<Tab />', () => {
 
     it('should have value center as alignment prop', () => {
       const subject = mount(
-        <TabPanel position={'top'} alignment={'center'} defaultTabId={'tab1'} theme={theme} >
+        <TabPanel position={'top'} alignment={'center'} defaulttabid={'tab1'} theme={theme} >
           <Tab tabDescription={<Badge children={'Home'} status={'success'} />} tabId={'tab1'}>
             <p>content 0</p>
           </Tab>
@@ -191,7 +191,7 @@ describe('<Tab />', () => {
 
     it('should have value left as alignment prop', () => {
       const subject = mount(
-        <TabPanel position={'top'} alignment={'left'} defaultTabId={'tab1'} theme={theme} >
+        <TabPanel position={'top'} alignment={'left'} defaulttabid={'tab1'} theme={theme} >
           <Tab tabDescription={<Badge children={'Home'} status={'success'} />} tabId={'tab1'}>
             <p>content 0</p>
           </Tab>
@@ -211,7 +211,7 @@ describe('<Tab />', () => {
   describe('when defaulttabId prop is provided', () => {
     it('should have value of first tab as alignment prop', () => {
       const subject = mount(
-        <TabPanel position={'top'} alignment={'right'} defaultTabId={'tab1'} theme={theme} >
+        <TabPanel position={'top'} alignment={'right'} defaulttabid={'tab1'} theme={theme} >
           <Tab tabDescription={<Badge children={'Home'} status={'success'} />} tabId={'tab1'}>
             <p>content 0</p>
           </Tab>
@@ -232,7 +232,7 @@ describe('<Tab />', () => {
   describe('when defaulttabId prop is not provided', () => {
     it('should have value of first tab as alignment prop', () => {
       const subject = mount(
-        <TabPanel position={'top'} alignment={'right'} defaultTabId={'tab1'} theme={theme} >
+        <TabPanel position={'top'} alignment={'right'} defaulttabid={'tab1'} theme={theme} >
           <Tab tabDescription={<Badge children={'Home'} status={'success'} />} tabId={'tab1'}>
             <p>content 0</p>
           </Tab>
@@ -254,7 +254,7 @@ describe('<Tab />', () => {
     it('should have value of first tab as alignment prop', () => {
       const spy = jest.fn();
       const subject = mount(
-        <TabPanel position={'top'} alignment={'right'} defaultTabId={'tab2'} theme={theme} >
+        <TabPanel position={'top'} alignment={'right'} defaulttabid={'tab2'} theme={theme} >
           <Tab tabDescription={<Badge children={'Home'} status={'success'} />} tabId={'tab1'}>
             <p>content 0</p>
           </Tab>

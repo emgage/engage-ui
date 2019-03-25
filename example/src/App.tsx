@@ -2,7 +2,7 @@ import * as React from 'react';
 import SingleDatePickerWrapper from './SingleDatePickerWrapper';
 import DateRangePickerWrapper from './DateRangePickerWrapper';
 import PickerAutoSuggestExample from './PickerAutoSuggestExample';
-import { ISourceData } from '../../src/components/Breadcrumb/Breadcrumb';
+import { ISourceData } from '../../src/components/BreadCrumb/BreadCrumb';
 import { INavigationData } from '../../src/components/SideNavigation/SideNavigation';
 
 import {
@@ -738,7 +738,7 @@ class App extends React.Component<{}, State> {
         <div>
         </div>
         <div>
-          <TabPanel defaultTabId="tab1" position={'top'} alignment={'center'}>
+          <TabPanel defaulttabid="tab1" position={'top'} alignment={'center'}>
             <Tab tabDescription={<Badge children={'Home'} status={'success'} />} tabId={'tab1'}>
               <p>content 0</p>
             </Tab>
