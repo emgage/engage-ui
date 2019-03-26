@@ -271,18 +271,18 @@ class App extends React.Component<{}, State> {
   }
 
   // toggleStatus if true that means row is open else its not
-  nestedChildCallback = (rowId: number | string, toggleStatus: boolean) => {
+  nestedChildCallback = (rowId: number, toggleStatus: boolean) => {
     const { nestedChildData } = this.state;
     const childtableData = [
       {
-        id: 11,
-        name: 'Dheir',
+        id: 11 + rowId,
+        name: `Dheir${rowId}`,
         description: 'Test description',
         status: { itemID: 1, itemName: 'New' },
         type: 'admin',
       }, {
-        id: 13,
-        name: 'DheePat',
+        id: 13 + rowId,
+        name: `DheePat${rowId}`,
         description: 'Test description3',
         status: { itemID: 3, itemName: 'Draft' },
         type: 'admin',

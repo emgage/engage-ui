@@ -115,6 +115,8 @@ class Table extends React.Component<Props, State> {
   }
 
   componentWillReceiveProps(newProps: Props) {
+    const { defaultCheckedDataId } = newProps;
+
     if (newProps.filterData) {
       const { field, searchKey, search } = newProps.filterData;
 
@@ -141,11 +143,11 @@ class Table extends React.Component<Props, State> {
     }
 
     // Updated selectedRows if defaultCheckedDataId has been passed, this will help to check the checkbpx
-    if (newProps.defaultCheckedDataId && JSON.stringify(newProps.defaultCheckedDataId) !== JSON.stringify(this.props.defaultCheckedDataId)) {
-      this.setState({ selectedRows: newProps.defaultCheckedDataId });
+    if (defaultCheckedDataId && JSON.stringify(defaultCheckedDataId) !== JSON.stringify(this.props.defaultCheckedDataId)) {
+      this.setState({ selectedRows: defaultCheckedDataId });
 
       if (newProps.selectRowCallback) {
-        newProps.selectRowCallback(newProps.defaultCheckedDataId);
+        newProps.selectRowCallback(defaultCheckedDataId);
       }
     }
   }
@@ -559,21 +561,28 @@ class Table extends React.Component<Props, State> {
   // Function to toggle single row selection
   toggleSingleRowSelection = (rowData: any, checkedStatus: boolean) => {
     const { parentRowId, parentCallback = () => {}, selectRowCallback } = this.props;
-    const { data, nestedChildData, selectedRows } = this.state;
+    const { data, intermediateRow, nestedChildData, selectedRows } = this.state;
     const currentSelectedRows = JSON.parse(JSON.stringify(selectedRows));
+    const currentIntermediateRow = JSON.parse(JSON.stringify(intermediateRow));
     // This get you the selected row id index, if its already selected, else gives -1
     // If already selected than remove that from the list
     const currentSelectedRowIndex = currentSelectedRows.indexOf(rowData.id);
+    const currentIntermediateRowIndex = currentIntermediateRow.indexOf(rowData.id);
 
     if (currentSelectedRowIndex !== -1) {
       // If selecting row is already in selectedRow state, then remove from array else push it
       currentSelectedRows.splice(currentSelectedRowIndex, 1);
-    } else {
+    } else if (checkedStatus) {
       currentSelectedRows.push(rowData.id);
     }
 
+    // When unchecking intermediate then remove it from the array
+    if (currentIntermediateRowIndex !== -1) {
+      currentIntermediateRow.splice(currentIntermediateRowIndex, 1);
+    }
+
     // Save the new state
-    this.setState({ selectedRows: currentSelectedRows });
+    this.setState({ selectedRows: currentSelectedRows, intermediateRow: currentIntermediateRow });
 
     // Check if callback is passed, if passed then call it
     if (selectRowCallback) {
@@ -584,58 +593,87 @@ class Table extends React.Component<Props, State> {
       const parentCheckStatus = data.length === currentSelectedRows.length ? 'all' : currentSelectedRows.length ? 'inter' : 'none';
       parentCallback(parentRowId, parentCheckStatus);
     }
+
     // Check if there is nestedChildData for this row.
     // We need to select all the child data on selecting parent data
     if (nestedChildData && nestedChildData.length) {
-      let thisNestedIndex = 0;
-
-      const thisRowNestedData: any = nestedChildData.filter((item, index) => {
-        if (item.rowId === rowData.id) {
-          thisNestedIndex = index;
-          return item;
-        }
-      });
-
-      if (thisRowNestedData.length) {
-        const newNestedChildData = JSON.parse(JSON.stringify(nestedChildData));
-
-        // Get the data id of nested table
-        const nestedDataId = thisRowNestedData[0].component.props.data.map((item: any) => item.id);
-
-        // Updated nested child data with the filtered data
-        // Check if parent is checked than select the child (pass defaultCheckedDataId) else not
-        newNestedChildData[thisNestedIndex] = {
-          ...newNestedChildData[thisNestedIndex],
-          component: React.cloneElement(nestedChildData[thisNestedIndex].component, {
-            defaultCheckedDataId: currentSelectedRows.indexOf(rowData.id) !== -1 ? nestedDataId : []
-          })
-        };
-
-        this.setState({ nestedChildData: newNestedChildData });
-      }
+      this.toggleDefaultCheckedId(rowData.id, false, checkedStatus);
     }
   }
 
   // Function to toggle parent checkbox unchecked / intermediate
   // Depending on the child select status
   toggleParentCheckbox = (parentRowId: number, checkStatus: string) => {
-    const { intermediateRow } = this.state;
-    const { selectedRows } = this.state;
+    const { intermediateRow, selectedRows } = this.state;
+    const intermediateRowIndex = intermediateRow.indexOf(parentRowId);
+    const selectedRowsIndex = selectedRows.indexOf(parentRowId);
 
-    intermediateRow.splice(intermediateRow.indexOf(parentRowId), 1);
-    selectedRows.splice(selectedRows.indexOf(parentRowId), 1);
+    if (intermediateRowIndex !== -1) {
+      intermediateRow.splice(intermediateRowIndex, 1);
+    }
+
+    if (selectedRowsIndex !== -1) {
+      selectedRows.splice(selectedRowsIndex, 1);
+    }
 
     if (checkStatus === 'all') {
       this.setState({ intermediateRow, selectedRows: this.state.selectedRows.concat([parentRowId]) });
     } else if (checkStatus === 'none') {
+      this.toggleDefaultCheckedId(parentRowId, true);
       this.setState({ selectedRows, intermediateRow });
     } else {
-      this.setState({ intermediateRow: intermediateRow.concat([parentRowId]) });
+      this.setState({ selectedRows, intermediateRow: intermediateRow.concat([parentRowId]) });
     }
   }
+
+  // Function to pass defaultCheckedDataId to nested table
+  toggleDefaultCheckedId = (rowId: number, noDefaultCheck: boolean = false, checkedStatus: boolean = false) => {
+    const { nestedChildData = [] } = this.state;
+
+    let thisNestedIndex = 0;
+
+    const thisRowNestedData: any = nestedChildData.filter((item, index) => {
+      if (item.rowId === rowId) {
+        thisNestedIndex = index;
+        return item;
+      }
+    });
+
+    if (thisRowNestedData.length) {
+      // Get the data id of nested table
+      const nestedDataId = thisRowNestedData[0].component.props.data.map((item: any) => item.id);
+
+      // Updated nested child data with the filtered data
+      // Check if parent is checked than select the child (pass defaultCheckedDataId) else not
+      const newNestedChildData = nestedChildData.map((item: any, index: number) => {
+        if (thisNestedIndex === index) {
+          const newItem = {
+            ...item,
+            component: React.cloneElement(item.component, {
+              defaultCheckedDataId: checkedStatus && !noDefaultCheck ? nestedDataId : []
+            })
+          };
+
+          return newItem;
+        }
+
+        const newItem = {
+          ...item,
+          component: React.cloneElement(item.component)
+        };
+
+        return newItem;
+      });
+
+      this.setState({ nestedChildData: newNestedChildData });
+    }
+  }
+
   // Function to select all the rows on click of header  checkbox
   toggleAllRowSelection = (checkedStatus: boolean) => {
-    const allRowIds = this.getAllRowIds();
+    const { data} = this.state;
+    const allRowIds = data.map((item: any) => item.id);
+
     this.setState({ totalRowCount: allRowIds.length });
 
     if (checkedStatus) {
@@ -647,40 +685,25 @@ class Table extends React.Component<Props, State> {
         this.rowSelectionCallback();
       });
     }
+
+    this.toggleAllNestedRowSelection(checkedStatus);
   }
 
-  getAllRowIds = () => {
-    const { nestedChildCallback, expandingRowId } = this.props;
-    const { nestedChildData } = this.state;
-    const data = expandingRowId;
+  // Function to check/uncheck the nested rows
+  toggleAllNestedRowSelection = (checkedStatus: boolean) => {
+    const { data, nestedChildData = [] } = this.state;
 
-    if (data && data.length > 0) {
-      data.map((item: any) => {
-        nestedChildCallback && nestedChildCallback(item, true);
-      });
-    }
+    data.forEach((item: any) => {
+      nestedChildData.some((nestedItem: any) => {
+        if (nestedItem.rowId === item.id) {
+          setTimeout(() => this.toggleDefaultCheckedId(item.id, false, checkedStatus), 200);
 
-    const allChildData: any = [];
-
-    if (nestedChildData !== undefined && nestedChildData.length > 0) {
-      for (const key in nestedChildData) {
-        if (nestedChildData[key].component.props.data.length > 0) {
-          for (const index in nestedChildData[key].component.props.data) {
-            allChildData.push(nestedChildData[key].component.props.data[index]);
-          }
+          return true;
         }
-      }
-    }
 
-    allChildData.push(...this.state.data);
-
-    const allData = [...new Map(allChildData.map((childData: any) => [childData.id, childData])).values()];
-
-    const allRowId = allData.map((item: any) => {
-      return item.id;
+        return false;
+      });
     });
-
-    return allRowId;
   }
 
   // Function to make search in data
