@@ -334,6 +334,7 @@ class App extends React.Component<{}, State> {
       data={childtableData}
       column={childcolumnConfig}
       selectRow="checkbox"
+      selectRowCallback={(val: any) => console.log('nested table callback:', val)}
       rowAction={childrowActionConfig}
       bordered
       renderHeaderCheckbox={false}
@@ -1006,7 +1007,7 @@ class App extends React.Component<{}, State> {
             nestedChildData={this.state.nestedChildData}
             nestedChildCallback={this.nestedChildCallback}
             callChildCallback={this.state.callChildCallback}
-            expandingRowId={[2,4]}
+            expandingRowId={[1, 2, 3, 4]}
             rowExpandOnLoad={false}
             hideExpandedIcon={false}
             data={tableData}
