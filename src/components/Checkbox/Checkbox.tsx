@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
-// import { classNames } from '@shopify/react-utilities/styles';
 import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
 
 import { Error, helpTextID } from '../Choice';
 import FlexBox from '../FlexBox';
+import Message from '../Message';
 
 import { CHECKBOX } from '../ThemeIdentifiers';
 
@@ -30,6 +30,7 @@ export interface Props {
   value?: string;
   // Display an error state
   error?: Error;
+  errors?: [string];
   // Disabled checkbox name
   disabled?: boolean;
   // Theme to be injected via css-themr
@@ -82,6 +83,7 @@ class Checkbox extends React.PureComponent<Props, State> {
       label = '',
       name = getUniqueID(),
       theme,
+      errors,
     } = this.props;
 
     const describedBy: string[] = [];
@@ -89,8 +91,17 @@ class Checkbox extends React.PureComponent<Props, State> {
       describedBy.push(helpTextID(componentId));
     }
 
+    const errorMarkup = errors
+    ? (
+      <Message componentId={`${componentId}Error`} isVisible={true}>
+        {errors instanceof Array ? errors.join(', ') : (typeof errors === 'string' ? errors : 'An error occurred.')}
+      </Message>
+    )
+    : null;
+
     return (
       <FlexBox componentClass={componentClass} direction ={helpText ? 'Column' : 'Row'} >
+        {errorMarkup}
         <div className={theme.customControl} onClick={this.handleChange}>
           <input
             type="checkbox"

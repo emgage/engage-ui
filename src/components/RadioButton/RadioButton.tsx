@@ -4,6 +4,7 @@ import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
 
 import Choice, { helpTextID } from '../Choice';
 import { RADIO_BUTTON } from '../ThemeIdentifiers';
+import Message from '../Message';
 
 import * as baseTheme from './RadioButton.scss';
 
@@ -20,6 +21,7 @@ export interface Props {
   componentId?: string;
   // Name for form input.
   name?: string;
+  errors?: [string];
   // Value for form input.
   value?: string;
   // Set as disabled or not.
@@ -41,6 +43,7 @@ const radioButton = ({
   labelHidden,
   helpText,
   checked,
+  errors,
   disabled,
   onChange,
   onFocus,
@@ -58,6 +61,15 @@ const radioButton = ({
   const describedBy = helpText
     ? helpTextID(componentId)
     : null;
+
+  const errorMarkup = errors
+  ? (
+    <Message componentId={`${componentId}Error`} isVisible={true}>
+      {errors instanceof Array ? errors.join(', ') : (typeof errors === 'string' ? errors : 'An error occurred.')}
+    </Message>
+  )
+  : null;
+
 
   const input = describedBy === null ?
     (
@@ -90,13 +102,16 @@ const radioButton = ({
     );
 
   return (
-    <Choice label={label} labelHidden={labelHidden} componentId={componentId} helpText={helpText}>
-      <div className={theme.radioButton}>
-        {input}
-        <div className={theme.backdrop} />
-        <div className={theme.icon} />
-      </div>
-    </Choice>
+    <div>
+      {errorMarkup}
+      <Choice label={label} labelHidden={labelHidden} componentId={componentId} helpText={helpText}>
+        <div className={theme.radioButton}>
+          {input}
+          <div className={theme.backdrop} />
+          <div className={theme.icon} />
+        </div>
+      </Choice>
+    </div>
   );
 };
 
