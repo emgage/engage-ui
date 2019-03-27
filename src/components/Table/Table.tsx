@@ -671,7 +671,7 @@ class Table extends React.Component<Props, State> {
 
   // Function to select all the rows on click of header  checkbox
   toggleAllRowSelection = (checkedStatus: boolean) => {
-    const { data} = this.state;
+    const { data } = this.state;
     const allRowIds = data.map((item: any) => item.id);
 
     this.setState({ totalRowCount: allRowIds.length });
