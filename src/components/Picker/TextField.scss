@@ -7,6 +7,17 @@ $stacking-order: (
   backdrop: 10,
 );
 
+.customPlaceholder {
+  position: absolute;
+  font-size: 13px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.23;
+  letter-spacing: normal;
+  color: #616161;
+}
+
 .textField {
   @include text-style-input;
   position: relative;
@@ -236,4 +247,12 @@ $stacking-order: (
   margin-top: spacing(extra-tight);
   display: inline;
   float: right;
+}
+
+.iconRight {
+  position: absolute;
+  right: 15px;
+  bottom: 10px;
+  width: 20px;
+  height: 20px;
 }

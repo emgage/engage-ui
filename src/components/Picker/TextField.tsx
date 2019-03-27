@@ -8,6 +8,7 @@ import * as Autosuggest from 'react-autosuggest';
 import Labelled from '../Labelled';
 import { TEXT_FIELD } from '../ThemeIdentifiers';
 import * as baseTheme from './TextField.scss';
+import Icon  from '../Icon';
 
 export type Type = 'text' | 'email' | 'number' | 'password' | 'search' | 'tel' | 'url' | 'date' | 'datetime-local' | 'month' | 'time' | 'week';
 
@@ -24,6 +25,8 @@ export interface State {
 }
 
 export interface Props {
+  itemSelected?: boolean;
+  showIcon?: boolean;
   placeholder?: string;
   value?: string;
   label: string;
@@ -48,6 +51,8 @@ class TextField extends React.PureComponent<Props, State> {
       theme,
       autoSuggest,
       autoSuggestMethods,
+      showIcon,
+      itemSelected
     } = this.props;
 
     const backdrop = autoSuggest ? theme.backdropAutosuggest : theme.backdrop;
@@ -92,7 +97,9 @@ class TextField extends React.PureComponent<Props, State> {
         required={required}
       >
         <div className={className}>
+          {itemSelected && <div className={theme.customPlaceholder}>{placeholder}</div> }
           {inputValue}
+          {showIcon && <Icon componentClass={theme.iconRight} componentColor="skyDark" source="users" /> }
         </div>
       </Labelled>
     );
