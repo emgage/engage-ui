@@ -289,6 +289,8 @@ class Picker extends React.Component<Props, State> {
             placeholder={filterPlaceHolder}
             onChange={searchBehavior}
             stateProps={stateProps}
+            showIcon
+            itemSelected={!!this.state.chipListState.length}
           />
         </div>
         <div>
