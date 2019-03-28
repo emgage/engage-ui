@@ -102,7 +102,7 @@ class TabPanel extends React.Component<Props, State> {
     );
 
     return (
-      <div {...this.props} className={locationClassName} style={componentStyle}>
+      <div className={locationClassName} style={componentStyle}>
         <div className={alignmentClassName}>
           {this.renderTabs()}
         </div>

@@ -94,7 +94,6 @@ describe('<Tab />', () => {
       expect(subject.find('div').exists()).toBeTruthy();
       expect(subject.find('div').length).toBe(5);
       expect(subject.find('div').at(0).hasClass('top')).toBe(true);
-      expect(subject.find('div').at(0).prop('position')).toBe('top');
     });
 
     it('should have value bottom as position prop', () => {
@@ -112,7 +111,6 @@ describe('<Tab />', () => {
       expect(subject.find('div').exists()).toBeTruthy();
       expect(subject.find('div').length).toBe(5);
       expect(subject.find('div').at(0).hasClass('bottom')).toBe(true);
-      expect(subject.find('div').at(0).prop('position')).toBe('bottom');
     });
 
     it('should have value left as position prop', () => {
@@ -130,7 +128,6 @@ describe('<Tab />', () => {
       expect(subject.find('div').exists()).toBeTruthy();
       expect(subject.find('div').length).toBe(5);
       expect(subject.find('div').at(0).hasClass('left')).toBe(true);
-      expect(subject.find('div').at(0).prop('position')).toBe('left');
     });
 
     it('should have value right as position prop', () => {
@@ -148,7 +145,6 @@ describe('<Tab />', () => {
       expect(subject.find('div').exists()).toBeTruthy();
       expect(subject.find('div').length).toBe(5);
       expect(subject.find('div').at(0).hasClass('right')).toBe(true);
-      expect(subject.find('div').at(0).prop('position')).toBe('right');
     });
   });
 
@@ -168,7 +164,6 @@ describe('<Tab />', () => {
       expect(subject.find('div').exists()).toBeTruthy();
       expect(subject.find('div').length).toBe(5);
       expect(subject.find('div').at(1).hasClass('end')).toBe(true);
-      expect(subject.find('div').at(0).prop('alignment')).toBe('right');
     });
 
     it('should have value center as alignment prop', () => {
@@ -186,7 +181,6 @@ describe('<Tab />', () => {
       expect(subject.find('div').exists()).toBeTruthy();
       expect(subject.find('div').length).toBe(5);
       expect(subject.find('div').at(1).hasClass('center')).toBe(true);
-      expect(subject.find('div').at(0).prop('alignment')).toBe('center');
     });
 
     it('should have value left as alignment prop', () => {
@@ -204,7 +198,6 @@ describe('<Tab />', () => {
       expect(subject.find('div').exists()).toBeTruthy();
       expect(subject.find('div').length).toBe(5);
       expect(subject.find('div').at(1).hasClass('start')).toBe(true);
-      expect(subject.find('div').at(0).prop('alignment')).toBe('left');
     });
   });
 
@@ -223,7 +216,6 @@ describe('<Tab />', () => {
         </TabPanel>);
       expect(subject.find('div').exists()).toBeTruthy();
       expect(subject.find('div').length).toBe(5);
-      expect(subject.find('div').at(0).prop('defaultTabId')).toBe('tab1');
       expect(subject.find('div').at(3).children).toHaveLength(1);
       expect(subject.find('p').text()).toBe('content 0');
     });
@@ -244,7 +236,6 @@ describe('<Tab />', () => {
         </TabPanel>);
       expect(subject.find('div').exists()).toBeTruthy();
       expect(subject.find('div').length).toBe(5);
-      expect(subject.find('div').at(0).prop('defaultTabId')).toBe('tab1');
       expect(subject.find('div').at(3).children).toHaveLength(1);
       expect(subject.find('p').length).toBe(1);
     });
@@ -266,7 +257,6 @@ describe('<Tab />', () => {
         </TabPanel>);
       expect(subject.find('div').exists()).toBeTruthy();
       expect(subject.find('div').length).toBe(6);
-      expect(subject.find('div').at(0).prop('defaultTabId')).toBe('tab2');
       expect(subject.find('div').at(4).children).toHaveLength(1);
       expect(subject.find('button')).toHaveLength(2);
       subject.find('button').at(1).simulate('click');
