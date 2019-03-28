@@ -23,7 +23,7 @@ class TabExample extends React.Component {
   render() {
     return (
       <div className={styles.example}>
-        <TabPanel position={'bottom'} alignment={'right'} defaulttabid={this.state.activeTabId} >
+        <TabPanel position={'bottom'} alignment={'right'} defaultTabId={this.state.activeTabId} >
           <Tab tabDescription={<Badge children={'Home'} status={'success'} />} tabId={'tab1'}>
             <p>content 0</p>
           </Tab>

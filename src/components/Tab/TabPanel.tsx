@@ -27,7 +27,7 @@ export interface Props {
   // Alignment prop defines the tab's Alignment in tab panel
   alignment: Alignment;
   // For Default active tab
-  defaulttabid?: string;
+  defaultTabId?: string;
   // User can Set style for TabPanel component
   componentStyle?: React.CSSProperties;
   // Set theme for TabPanel
@@ -54,10 +54,10 @@ class TabPanel extends React.Component<Props, State> {
     super(props);
     this.onTabClick = this.onTabClick.bind(this);
     const children : any = this.props.children;
-    const defaulttabid = children.filter((item: React.ReactElement<tabProps>, index: number) => index === 0);
+    const defaultTabId = children.filter((item: React.ReactElement<tabProps>, index: number) => index === 0);
     this.state = {
       // Maintain Active status of Tab
-      activeTabId: props.defaulttabid ? props.defaulttabid : defaulttabid[0].props.tabId,
+      activeTabId: props.defaultTabId ? props.defaultTabId : defaultTabId[0].props.tabId,
     };
   }
 
@@ -102,7 +102,7 @@ class TabPanel extends React.Component<Props, State> {
     );
 
     return (
-      <div {...this.props} className={locationClassName} style={componentStyle}>
+      <div className={locationClassName} style={componentStyle}>
         <div className={alignmentClassName}>
           {this.renderTabs()}
         </div>
