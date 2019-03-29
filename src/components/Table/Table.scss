@@ -4,6 +4,10 @@
   border-spacing: 0;
   display: table;
   width: 100%;
+  
+  .table {
+    width: calc(100% - 29px);
+  }
 
   th, td {
     border: none;
@@ -14,6 +18,10 @@
     white-space: nowrap; 
     text-overflow: ellipsis;
     text-align: left;
+  }
+
+  th {
+    background-color: #f4f6f8;
   }
 
   thead {
@@ -74,6 +82,33 @@
 
     &:hover {
       background-color: #f2f2f2;
+    }
+  }
+}
+
+.sortingHeader {
+  display: flex
+}
+.sortIcon {
+  display: flex;
+  flex-direction: column;
+
+  .iconStyle, .iconGroupStyle {
+    width: 1.7rem;
+    height: 1.7rem;
+  }
+
+  .iconStyle {
+    position: relative;
+    top: 3px;
+  }
+
+  .iconGroupStyle {
+    width: 1.7rem;
+    height: 1.7rem;
+
+    &:last-child {
+      margin-top: -1.2rem;
     }
   }
 }

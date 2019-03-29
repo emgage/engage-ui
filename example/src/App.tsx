@@ -276,18 +276,19 @@ class App extends React.Component<{}, State> {
     const childtableData = [
       {
         id: 11,
-        name: 'Hirens',
+        name: 'Dheir',
         description: 'Test description',
         status: { itemID: 1, itemName: 'New' },
         type: 'admin',
       }, {
         id: 13,
-        name: 'Patels',
+        name: 'DheePat',
         description: 'Test description3',
         status: { itemID: 3, itemName: 'Draft' },
         type: 'admin',
       }
     ];
+
     const childrowActionConfig = [
       {
         content: 'View',
@@ -303,6 +304,7 @@ class App extends React.Component<{}, State> {
         onClick: (value: any) => { console.log('Version:', value); },
       },
     ];
+
     const childcolumnConfig: TableColumnConfig[] = [
       {
         label: 'Name',
@@ -312,6 +314,7 @@ class App extends React.Component<{}, State> {
       }, {
         label: 'Description',
         key: 'description',
+        sort: true,
       }, {
         label: 'Status',
         key: 'status',
@@ -327,13 +330,13 @@ class App extends React.Component<{}, State> {
       rowId,
       component: <Table
       highlight={true}
-      hideHeader={true}
       sorting="all"
       data={childtableData}
       column={childcolumnConfig}
       selectRow="checkbox"
       rowAction={childrowActionConfig}
       bordered
+      renderHeaderCheckbox={false}
     />,
 
     };
@@ -349,7 +352,6 @@ class App extends React.Component<{}, State> {
 
     nestedChildData.push(newData);
 
-    console.log('I am called');
     this.setState({ nestedChildData, callChildCallback: false });
   }
 

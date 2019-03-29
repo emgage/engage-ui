@@ -188,7 +188,8 @@ const icon = ({
   }
 
   const className = classNames(
-    componentClass ? componentClass : theme.icon,
+    theme.icon,
+    componentClass,
     componentColor && theme[variationName('color', componentColor)],
     backdrop && theme.hasBackdrop
   );

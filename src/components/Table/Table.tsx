@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { findDOMNode } from 'react-dom';
 import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 import { classNames } from '@shopify/react-utilities/styles';
 
@@ -21,8 +20,6 @@ export type RowSelection = 'checkbox' | 'radio';
 export type SortOrder = 'asc' | 'desc';
 
 export interface Props {
-  // Prop to gather all the widths of row, which than can be used to assign width to nested table
-  allRowWidth?: number[];
   // To make table bordered
   bordered?: boolean;
   // Column config, which renders the header
@@ -55,6 +52,8 @@ export interface Props {
   nestedChildData?: NestedChild[];
   // Make table responsive
   responsive?: boolean;
+  // Prop to define if we want to add header checkbox or not
+  renderHeaderCheckbox?: boolean;
   // Individual row action, if available add it in last of the column
   rowAction?: any;
   // Pass this if row should be expanded bydefault on page load
@@ -80,7 +79,6 @@ export interface Props {
 }
 
 export interface State {
-  allRowWidth?: number[];
   allRowChecked?: boolean;
   data: any;
   expandedRow: any;
@@ -89,13 +87,12 @@ export interface State {
   searchKey: string;
   totalRowCount: number;
   callChildCallback: boolean;
+  nestedChildData?: NestedChild[];
 }
 
 let callBackSelectedRows: any;
 
 class Table extends React.Component<Props, State> {
-  public allRowWidth: number[] = [];
-  private checkboxColWidth: string = '42px';
   constructor(props: Props) {
     super(props);
     this.state = this.getInitialState();
@@ -122,24 +119,16 @@ class Table extends React.Component<Props, State> {
     }
 
     if (JSON.stringify(newProps.nestedChildData) !== JSON.stringify(this.props.nestedChildData)) {
+      this.setState({ nestedChildData: newProps.nestedChildData });
       this.expandRowOnLoad();
     }
 
     if ((newProps.callChildCallback !== this.props.callChildCallback && newProps.callChildCallback)) {
-      // this.setState({ callChildCallback: newProps.callChildCallback });
       this.reRenderRow();
     }
 
     if (!newProps.nestedChildData && JSON.stringify(newProps.data) !== JSON.stringify(this.state.data)) {
       this.setState({ data: newProps.data });
-    }
-  }
-
-  componentDidMount() {
-    const { allRowWidth = [] } = this.props;
-
-    if (allRowWidth.length) {
-      this.setState({ allRowWidth });
     }
   }
 
@@ -163,6 +152,7 @@ class Table extends React.Component<Props, State> {
       searchKey: '',
       totalRowCount: 0,
       callChildCallback: false,
+      nestedChildData: this.props.nestedChildData,
     };
   }
 
@@ -181,7 +171,6 @@ class Table extends React.Component<Props, State> {
       bordered && theme.bordered,
       highlight && theme.highlight,
       striped && theme.striped,
-      striped && theme.striped,
       componentClass
     );
   }
@@ -190,7 +179,7 @@ class Table extends React.Component<Props, State> {
     const { hideRow } = this.props;
     let hideStatus: boolean = false;
 
-    Object.keys(hideRow).forEach((key, index) => {
+    Object.keys(hideRow).forEach((key) => {
       if (item[key] && item[key] === hideRow[key]) {
         hideStatus = true;
       }
@@ -204,7 +193,6 @@ class Table extends React.Component<Props, State> {
   renderHeader = () => {
     const { column, sorting, rowAction } = this.props;
     const { field, order } = this.state.sort;
-    this.allRowWidth = [];
 
     return (
       <TableHeader>
@@ -223,13 +211,7 @@ class Table extends React.Component<Props, State> {
                   componentStyle={item.style}
                   className={item.className}
                   order={field === item.key ? order.current : ''}
-                  clickHandler={this.sortData}
-                  ref={(thisRef: any) => {
-                    const thisDom: any = findDOMNode(thisRef);
-                    if (thisDom) {
-                      this.allRowWidth.push(thisDom.getBoundingClientRect().width);
-                    }
-                  }}>
+                  clickHandler={this.sortData}>
                   {/*
                     Here injectheader helps to inject any custom component,
                     Header value can be sent & then used in custom component
@@ -264,6 +246,7 @@ class Table extends React.Component<Props, State> {
         </TableBody>
       );
     }
+
     // If there is no children for the table component (which is being used to open when the row gets expanded)
     return data.map((item: any, index: number) => {
       if (!hideRow || !this.hideRow(item)) {
@@ -302,22 +285,23 @@ class Table extends React.Component<Props, State> {
 
   // Render the main table row
   renderTbodyRows = (item: any, index: number | string) => {
-    const { allRowWidth = [], column, expandingRowId = [], hideExpandedIcon, nestedChildData, rowAction } = this.props;
+    const { column, expandingRowId = [], hideExpandedIcon, rowAction } = this.props;
+    const { nestedChildData } = this.state;
+
     return (
       <TableRow key={index}>
         { this.renderRowSelection(item, 'body') }
         {
           column.map((colItem: any, index: number) => {
-            const thisRowWidth = allRowWidth[index] !== undefined ? index === 0 ? allRowWidth[index] - 32 : allRowWidth[index] : undefined;
             const renderCheckbox = (!index && nestedChildData && !hideExpandedIcon && (!expandingRowId.length || expandingRowId.indexOf(item.id) >= 0));
 
             return (
               <TableData
                 key={colItem.key}
-                componentStyle={{ ...colItem.style, width: thisRowWidth }}
+                componentStyle={ colItem.style }
                 dataLabel={colItem.label}
               >
-                {/*
+                {/* 
                   Here injectBody helps to inject any custom component to td,
                   we also return the specifc value, which then can be used in injected component
                 */}
@@ -339,59 +323,20 @@ class Table extends React.Component<Props, State> {
 
   // Function to render nested children for each row, this could be nested table or any other component
   renderNestedChildren = (key: string, id: number) => {
-    const { column,  nestedChildData = [], rowAction, filterData, isChildParentConfigSame, children, theme, selectRow } = this.props;
-    const field = filterData !== undefined ? filterData.field : 'id';
+    const { column, children, selectRow, rowAction, theme } = this.props;
+    const { nestedChildData = [] } = this.state;
     const colSpanVal = column.length + (selectRow ? 1 : 0) + (rowAction ? 1 : 0);
+
     // Get current row's nested component by matching its id
-    const thisNestedComponent = nestedChildData.filter((item: any) => item.rowId === id);
-
-    const thisNestedChildrenComponent = thisNestedComponent && thisNestedComponent.length > 0 ? thisNestedComponent[0].component.props.data : null;
-
-    const result = thisNestedChildrenComponent && thisNestedChildrenComponent.length > 0 ?
-    thisNestedChildrenComponent.filter((item: any) => {
-      const thisVal = item[field].toLowerCase();
-
-      if (thisVal.indexOf(this.state.searchKey) !== -1) {
-        return true;
-      }
-    }) : null;
-
-    if (isChildParentConfigSame && result) {
-      return result.map((item: any, index: number) => {
-        return (
-          <TableRow key={index} componentClass= {theme.parentChildTable}>
-          { this.renderRowSelection(item, 'body') }
-          {
-            column.map((colItem: any, index: number) => {
-              return (
-                <TableData
-                  key={colItem.key}
-                  dataLabel={colItem.label}
-                >
-                  {/*
-                    Here injectBody helps to inject any custom component to td,
-                    we also return the specifc value, which then can be used in injected component
-                  */}
-                  {colItem.injectBody ? colItem.injectBody(item) : item[colItem.key]}
-                </TableData>
-              );
-            })
-          }
-
-          { rowAction ? <RowAction actionConfig={rowAction} data={item} /> : '' }
-        </TableRow>
-        );
-      });
-    }
+    const thisNestedComponent = nestedChildData.filter(item => item.rowId === id);
 
     return (
       <TableRow key={key} callBackSelectedRows={this.callBackSelectedRows} selectRow={this.state.selectedRows}>
         <TableData colSpan={colSpanVal}>
-          {thisNestedComponent.length ? React.cloneElement(thisNestedComponent[0].component, { allRowWidth: this.allRowWidth, componentClass: theme.nestedTable }) : children}
+          {thisNestedComponent.length ? React.cloneElement(thisNestedComponent[0].component, { componentClass: theme.nestedTable }) : children}
         </TableData>
       </TableRow>
     );
-
   }
 
   // Function to call the callback function on row selection
@@ -405,7 +350,8 @@ class Table extends React.Component<Props, State> {
 
   // Add checkbox or radio component to select the row, depending on `selectrow` flag
   renderRowSelection = (rowData: any, rowType: string) => {
-    const { expandingRowId = [], hideExpandedIcon, nestedChildData, selectRow } = this.props;
+    const { expandingRowId = [], hideExpandedIcon, renderHeaderCheckbox, selectRow } = this.props;
+    const { nestedChildData } = this.state;
 
     if (selectRow) {
       if (rowType === 'body') {
@@ -422,9 +368,11 @@ class Table extends React.Component<Props, State> {
         return this.renderRadio(rowData);
       }
 
-      if (selectRow === 'checkbox') {
+      if (selectRow === 'checkbox' && (renderHeaderCheckbox || renderHeaderCheckbox === undefined)) {
         return this.addHeaderCheckbox();
       }
+
+      return <TableHead componentStyle={{ width: 'auto' }}></TableHead>;
     }
 
     return null;
@@ -445,45 +393,39 @@ class Table extends React.Component<Props, State> {
 
   // Function to add checkbox in header as well
   addHeaderCheckbox = (): React.ReactElement<any> => {
+    const {} = this.props;
+    const { allRowChecked, nestedChildData, totalRowCount, selectedRows } = this.state;
+    const rowChecked = ((totalRowCount - selectedRows.length) > 0 &&  totalRowCount > 0) ? true : false;
+    const thisAllRowChecked = (selectedRows.length > 0 && totalRowCount > 0 && totalRowCount === selectedRows.length) ? true : allRowChecked;
 
-    const rowChecked = ((this.state.totalRowCount - this.state.selectedRows.length) > 0 &&  this.state.totalRowCount > 0) ? true : false;
+    const isAllChildChecked = nestedChildData && nestedChildData.length > 0 &&
+                              totalRowCount > 0 && selectedRows.length > 0 &&
+                              selectedRows.length === 1 &&
+                              totalRowCount !== selectedRows.length &&
+                              nestedChildData.filter((item: any) => selectedRows.indexOf(item.rowId) !== -1);
+    const totalRowUnchecked = (isAllChildChecked && isAllChildChecked.length > 0 && selectedRows.length > 0 && totalRowCount > 0 && ((totalRowCount - selectedRows.length) === (totalRowCount - 1))) ? true : false;
 
-    const allRowChecked = (this.state.selectedRows.length > 0 && this.state.totalRowCount > 0 && this.state.totalRowCount === this.state.selectedRows.length) ? true : this.state.allRowChecked;
-
-    const isAllChildChecked = this.props.nestedChildData && this.props.nestedChildData.length > 0 &&
-                              this.state.totalRowCount > 0 && this.state.selectedRows.length > 0 &&
-                              this.state.selectedRows.length === 1 &&
-                              this.state.totalRowCount !== this.state.selectedRows.length &&
-                              this.props.nestedChildData.filter(
-                                (item: any) => this.state.selectedRows.indexOf(item.rowId) !== -1);
-    const totalRowUnchecked = (isAllChildChecked && isAllChildChecked.length > 0 && this.state.selectedRows.length > 0 && this.state.totalRowCount > 0 && ((this.state.totalRowCount - this.state.selectedRows.length) === (this.state.totalRowCount - 1))) ? true : false;
-
-    return <TableHead componentStyle={{ width: this.checkboxColWidth }}>
-    <Checkbox label="" checked={(rowChecked && (!isAllChildChecked || (isAllChildChecked !== undefined ? isAllChildChecked.length === 0 : true))) && this.state.selectedRows.length > 0 ? true : allRowChecked} indeterminante={totalRowUnchecked ? false : rowChecked} onChange={this.toggleAllRowSelection} />
-    </TableHead>;
+    return (
+      <TableHead componentStyle={{ width: 'auto' }}>
+        <Checkbox label="" checked={(rowChecked && (!isAllChildChecked || (isAllChildChecked !== undefined ? isAllChildChecked.length === 0 : true))) && selectedRows.length > 0 ? true : thisAllRowChecked} indeterminante={totalRowUnchecked ? false : rowChecked} onChange={this.toggleAllRowSelection} />
+      </TableHead>
+    );
   }
 
   // Function to add checkbox for the row selection
   renderCheckColumn(rowData: any, newColumn: boolean = true): React.ReactElement<any> {
-    const columnStyle = this.props.allRowWidth ? this.props.theme.nestedCheckbox : '';
-
-    return newColumn ? <TableData componentClass={columnStyle}>{this.renderCheckbox(rowData)}</TableData> : <span style={{ display: 'inline-block' }}>{this.renderCheckbox(rowData)}</span>;
+    return newColumn ? <TableData>{this.renderCheckbox(rowData)}</TableData> : <span style={{ display: 'inline-block' }}>{this.renderCheckbox(rowData)}</span>;
   }
 
   renderCheckbox(rowData: any) {
-    const { selectedRows } = this.state;
+    const { nestedChildData, selectedRows } = this.state;
     const { selectCallbackValue } = this.props;
     const uniqueId = selectCallbackValue ? rowData[selectCallbackValue] : rowData.id;
-    const childData = this.props.nestedChildData && this.props.nestedChildData.filter(item => uniqueId === item.rowId);
+    const childData = nestedChildData && nestedChildData.filter(item => uniqueId === item.rowId);
     const expandedRowId = (childData && childData.length > 0 && childData[0].rowId);
 
-    const isAllChildChecked = childData && childData.length > 0
-      && childData[0].component.props.data.filter((item: any) => selectedRows.indexOf(item.id) === -1);
-
-    const isCheckBoxIndeterminante = (isAllChildChecked &&
-                                      isAllChildChecked.length > 0 &&
-                                      uniqueId === expandedRowId
-                                      ) ? true : false;
+    const isAllChildChecked = childData && childData.length > 0 && childData[0].component.props.data.filter((item: any) => selectedRows.indexOf(item.id) === -1);
+    const isCheckBoxIndeterminante = (isAllChildChecked && isAllChildChecked.length > 0 && uniqueId === expandedRowId) ? true : false;
 
     const isParentUncheked = (childData && childData.length > 0 &&
                               childData[0].component.props.data.length === isAllChildChecked.length) ? true : false;
@@ -494,6 +436,7 @@ class Table extends React.Component<Props, State> {
         indeterminante={isCheckBoxIndeterminante ? true : false}
         onChange={(checkedStatus: boolean) => {
           this.toggleSingleRowSelection(rowData, checkedStatus);
+          this.reRenderRow();
         }}
       />
     );
@@ -502,15 +445,6 @@ class Table extends React.Component<Props, State> {
   // Function to add checkbox for the row selection
   renderRadio = (rowData: any): React.ReactElement<any> => {
     return <TableData><Checkbox value={rowData.id} checked={rowData.checked ? true : false} /></TableData>;
-  }
-
-  // Function to expand the row on the page load
-  expandRowOnLoad = () => {
-    const { expandingRowId = [] } = this.props;
-
-    expandingRowId.forEach((item: number) => {
-      this.openNestedRow(item);
-    });
   }
 
   reRenderRow = () => {
@@ -522,16 +456,27 @@ class Table extends React.Component<Props, State> {
     });
   }
 
+  // Function to expand the row on the page load
+  expandRowOnLoad = () => {
+    const { expandingRowId = [] } = this.props;
+
+    expandingRowId.forEach((item: number) => {
+      this.openNestedRow(item);
+    });
+  }
+
   render () {
     const { componentStyle = {} } = this.props;
     const tableClass = this.getTableClassName();
     const renderedHeader = !this.props.hideHeader ? this.renderHeader() : null;
     const renderedBody = this.renderBody();
     return (
-      <table className={tableClass} style={componentStyle}>
-        { renderedHeader }
-        { renderedBody }
-      </table>
+      <div>
+        <table className={tableClass} style={componentStyle}>
+          { renderedHeader }
+          { renderedBody }
+        </table>
+      </div>
     );
   }
 
@@ -589,6 +534,7 @@ class Table extends React.Component<Props, State> {
 
   // Function to toggle single row selection
   toggleSingleRowSelection = (rowData: any, checkedStatus: boolean) => {
+    const { nestedChildData } = this.state;
     const allRowIds = this.getAllRowIds();
     this.setState({ totalRowCount: allRowIds.length });
 
@@ -598,20 +544,16 @@ class Table extends React.Component<Props, State> {
     const allChildData = [];
     let allRowId: any = [];
 
-    const childData = this.props.nestedChildData && this.props.nestedChildData;
+    const childData = nestedChildData && nestedChildData;
     const expandedRowId = (childData && childData.length > 0 && childData[0].rowId);
-    const isAllChildChecked = childData && childData.length > 0
-    && childData[0].component.props.data.filter((item: any) => selectedRows.indexOf(item.id) === -1);
-    const isCheckBoxIndeterminante = (isAllChildChecked &&
-                                    isAllChildChecked.length > 0 &&
-                                    uniqueId === expandedRowId
-                                    ) ? true : false;
+    const isAllChildChecked = childData && childData.length > 0 && childData[0].component.props.data.filter((item: any) => selectedRows.indexOf(item.id) === -1);
+    const isCheckBoxIndeterminante = (isAllChildChecked && isAllChildChecked.length > 0 && uniqueId === expandedRowId) ? true : false;
 
-    const isParentUncheked = (childData && childData.length > 0 &&
-                            childData[0].component.props.data.length === isAllChildChecked.length) ? true : false;
+    const isParentUncheked = childData && childData.length > 0 && childData[0].component.props.data.length === isAllChildChecked.length ? true : false;
 
-    if (this.props.nestedChildData !== undefined && this.props.nestedChildData.length > 0) {
-      const childData = this.props.nestedChildData.filter(item => uniqueId === item.rowId);
+    if (nestedChildData !== undefined && nestedChildData.length > 0) {
+      const childData = nestedChildData.filter(item => uniqueId === item.rowId);
+
       if (childData !== undefined && childData.length > 0) {
         for (const key in childData) {
           if (childData[key].component.props.data.length > 0) {
@@ -620,22 +562,25 @@ class Table extends React.Component<Props, State> {
             }
           }
         }
+
         allRowId = allChildData.map((item: any) => {
           return item.id;
         });
       }
     }
+
     if (this.state.selectedRows.length > 0 && checkedStatus) {
       for (const key in this.state.selectedRows) {
         allRowId.push(this.state.selectedRows[key]);
       }
     }
-    allRowId.push(uniqueId);
 
+    allRowId.push(uniqueId);
 
     if (expandedRowId && allRowId.indexOf(expandedRowId) === -1 && !isParentUncheked && !isCheckBoxIndeterminante) {
       allRowId.push(expandedRowId);
     }
+
     this.setState({ selectedRows: allRowId }, () => {
       if (!checkedStatus) {
         if (allRowId.length > 1) {
@@ -647,17 +592,21 @@ class Table extends React.Component<Props, State> {
         } else {
           selectedRows.splice(selectedRows.indexOf(uniqueId), 1);
         }
+
         this.setState({ selectedRows, allRowChecked: false }, () => {
           this.rowSelectionCallback();
         });
       } else {
         this.rowSelectionCallback();
+
         if (singleSelectRowCallback) {
           if (multipleCallBackValue && multipleCallBackValue.length) {
             const returnVal: any = {};
+
             multipleCallBackValue.forEach((item) => {
               returnVal[item] = rowData[item] !== undefined ? rowData[item] : '';
             });
+
             singleSelectRowCallback(returnVal);
           } else {
             singleSelectRowCallback(uniqueId);
@@ -685,7 +634,9 @@ class Table extends React.Component<Props, State> {
 
   getAllRowIds = () => {
     const { nestedChildCallback, expandingRowId } = this.props;
+    const { nestedChildData } = this.state;
     const data = expandingRowId;
+
     if (data && data.length > 0) {
       data.map((item: any) => {
         nestedChildCallback && nestedChildCallback(item, true);
@@ -693,42 +644,93 @@ class Table extends React.Component<Props, State> {
     }
 
     const allChildData: any = [];
-    if (this.props.nestedChildData !== undefined && this.props.nestedChildData.length > 0) {
-      for (const key in this.props.nestedChildData) {
-        if (this.props.nestedChildData[key].component.props.data.length > 0) {
-          for (const index in this.props.nestedChildData[key].component.props.data) {
-            allChildData.push(this.props.nestedChildData[key].component.props.data[index]);
+
+    if (nestedChildData !== undefined && nestedChildData.length > 0) {
+      for (const key in nestedChildData) {
+        if (nestedChildData[key].component.props.data.length > 0) {
+          for (const index in nestedChildData[key].component.props.data) {
+            allChildData.push(nestedChildData[key].component.props.data[index]);
           }
         }
       }
     }
 
     allChildData.push(...this.state.data);
+
     const allData = [...new Map(allChildData.map((childData: any) => [childData.id, childData])).values()];
 
     const allRowId = allData.map((item: any) => {
       return item.id;
     });
+
     return allRowId;
   }
 
   // Function to make search in data
-  triggerSearch = (searchKey: string, field: string) => {
+  triggerSearch = (searchKey: string, field: string, thisData?: any) => {
     const trimmedSearchKey = searchKey.trim().toLowerCase();
-    const { data } =  this.getInitialState();
+    const { data, nestedChildData = [] } =  this.getInitialState();
     const { expandingRowId = [] } = this.props;
+    const currentData = thisData ? thisData : data;
 
     if (trimmedSearchKey) {
-      const result = data.filter((item: any) => {
+      const result = currentData.filter((item: any) => {
+        // Get the value by making it lowercase
         const thisVal = item[field].toLowerCase();
-        if (thisVal.indexOf(trimmedSearchKey) !== -1 || expandingRowId.indexOf(item.id) !== -1) {
+
+        if (thisVal.indexOf(trimmedSearchKey) !== -1) {
+          // Check if the row is expanded, so it will search on that as well
+          if (expandingRowId.indexOf(item.id) !== -1) {
+            let nestedIndex = 0;
+
+            // Get the nesteddata for expanded row
+            const filteredChildData = nestedChildData.filter((nestedItem: any, index: number) => {
+              if (nestedItem.rowId === item.id) {
+                nestedIndex = index;
+                return nestedItem;
+              }
+            });
+
+            if (filteredChildData.length) {
+              // Get the searched data of nested data
+              const newChildData = this.triggerNestedSearch(filteredChildData[0], searchKey, field);
+              const newNestedChildData = JSON.parse(JSON.stringify(nestedChildData));
+
+              // Updated nested child data with the filtered data
+              newNestedChildData[nestedIndex] = {
+                ...newNestedChildData[nestedIndex],
+                component: React.cloneElement(nestedChildData[nestedIndex].component, { data: newChildData })
+              };
+
+              this.setState({ nestedChildData: newNestedChildData });
+            }
+          }
+
           return true;
         }
       });
-      this.setState({ data: result, searchKey: trimmedSearchKey });
-    } else {
-      this.setState({ data });
+
+      if (!thisData) {
+        this.setState({ data: result, searchKey: trimmedSearchKey });
+      }
+
+      return result;
     }
+
+    if (!thisData) {
+      this.setState({ nestedChildData, data: currentData });
+    } else {
+      return currentData;
+    }
+  }
+
+  // Function to trigger search for nested data
+  triggerNestedSearch = (data: any, searchKey: string, field: string) => {
+    const nestedData = data.component.props.data;
+    // Trigger search for nesteddata
+    const newData = this.triggerSearch(searchKey, field, nestedData);
+
+    return newData;
   }
 }
 

@@ -5,6 +5,7 @@ import { classNames } from '@shopify/react-utilities/styles';
 import { TABLE } from '../ThemeIdentifiers';
 
 import * as baseTheme from './Table.scss';
+import Icon from '../Icon';
 
 // Accessibility values for scope will be col or row
 // If its for thead > th then use 'col'
@@ -63,7 +64,7 @@ class TableHead extends React.Component<Props, never> {
   }
 
   render () {
-    const { accessibilityId, accessibilityScope, children, colSpan, order, rowSpan, sort, componentStyle } = this.props;
+    const { accessibilityId, accessibilityScope, children, colSpan, order, rowSpan, sort, componentStyle, theme } = this.props;
     const customClassName = this.getClassName();
 
     return (
@@ -75,10 +76,24 @@ class TableHead extends React.Component<Props, never> {
         rowSpan={rowSpan}
         style={componentStyle}
         onClick={this.triggerClick}>
-        { children }
-        {
-          sort ? <small> { order ? order : 'asc | desc' }</small> : ''
-        }
+        <div className={theme.sortingHeader}>
+          { children }
+          {
+            sort ?
+              <div className={theme.sortIcon}>
+                {
+                  order ?
+                    order === 'asc' ? <Icon componentClass={theme.iconStyle} source="caretUp" /> : <Icon componentClass={theme.iconStyle} source="caretDown" />
+                    :
+                    <div>
+                      <Icon componentClass={theme.iconGroupStyle} componentColor="blackLight" source="caretUp" />
+                      <Icon componentClass={theme.iconGroupStyle} componentColor="blackLight" source="caretDown" />
+                    </div>
+                }
+              </div>
+              : ''
+          }
+        </div>
       </th>
     );
   }
