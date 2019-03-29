@@ -43,6 +43,7 @@ import {
   Select,
   TextField,
   Tooltip,
+  ValidatedCheckbox,
   ValidatedTextField,
   ValidatedSelectField,
   ValidatedForm,
@@ -84,6 +85,9 @@ interface State {
   appName?: string;
   appDescription: string;
   appCity: string;
+  appRadio1: string;
+  appRadio2: string;
+  appRadioVal: string;
   appTextCounter: string;
   appTextCounter1: string;
   columns: object[];
@@ -129,6 +133,9 @@ class App extends React.Component<{}, State> {
       modalOpen3: false,
       appName: '',
       appDescription: '',
+      appRadio1: 'active1',
+      appRadio2: 'active2',
+      appRadioVal: '',
       appCity: '',
       appCity1: '',
       appTextCounter: '',
@@ -1553,7 +1560,7 @@ class App extends React.Component<{}, State> {
           <ValidatedForm
             onSubmitError={(value: [any], error: Error) => console.log('value:', value, 'error:', error)}
             onSubmit={(value: [any]) => console.log('Submit Value:', value)}
-            formFields={['AppName', 'appDescription', 'appCity']}
+            formFields={['AppName', 'appDescription', 'appCity', 'appActive', 'appRadioAction']}
           >
 
             <Heading>App Basics</Heading>
@@ -1631,6 +1638,17 @@ class App extends React.Component<{}, State> {
                 helpText="Uncheck to disable this users account"
               />
             </div>
+
+              <ValidatedCheckbox
+                componentId="appActive"
+                name="appActive"
+                label="Validated Active"
+                helpText="Uncheck to disable this users account"
+                validateTrigger={['onChange', 'onClick']}
+                validateRules={[
+                  { required: true, message: 'Active is required.' },
+                ]}
+              />
 
             <div style={{ marginTop: '10px' }}>
               <h5>Invite Email</h5>

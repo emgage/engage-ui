@@ -43,7 +43,6 @@ class ValidatedForm extends React.Component<Props, {}> {
     const { props = {} } = child;
     const { children, componentId } = props;
 
-    // console.log('Child:', child);
     // Check if current component id matches the form field id
     // If matches then clone it with the "form" prop
     if (formFields.indexOf(componentId) !== -1) {
