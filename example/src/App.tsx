@@ -271,18 +271,18 @@ class App extends React.Component<{}, State> {
   }
 
   // toggleStatus if true that means row is open else its not
-  nestedChildCallback = (rowId: number | string, toggleStatus: boolean) => {
+  nestedChildCallback = (rowId: number, toggleStatus: boolean) => {
     const { nestedChildData } = this.state;
     const childtableData = [
       {
-        id: 11,
-        name: 'Dheir',
+        id: 11 + rowId,
+        name: `Dheir${rowId}`,
         description: 'Test description',
         status: { itemID: 1, itemName: 'New' },
         type: 'admin',
       }, {
-        id: 13,
-        name: 'DheePat',
+        id: 13 + rowId,
+        name: `DheePat${rowId}`,
         description: 'Test description3',
         status: { itemID: 3, itemName: 'Draft' },
         type: 'admin',
@@ -334,6 +334,7 @@ class App extends React.Component<{}, State> {
       data={childtableData}
       column={childcolumnConfig}
       selectRow="checkbox"
+      selectRowCallback={(val: any) => console.log('nested table callback:', val)}
       rowAction={childrowActionConfig}
       bordered
       renderHeaderCheckbox={false}
@@ -1006,7 +1007,7 @@ class App extends React.Component<{}, State> {
             nestedChildData={this.state.nestedChildData}
             nestedChildCallback={this.nestedChildCallback}
             callChildCallback={this.state.callChildCallback}
-            expandingRowId={[2,4]}
+            expandingRowId={[1, 2, 3, 4]}
             rowExpandOnLoad={false}
             hideExpandedIcon={false}
             data={tableData}
@@ -1650,7 +1651,6 @@ class App extends React.Component<{}, State> {
             value={this.state.appTextCounter}
             helpText="Helper Text"
             maxLength={100}
-            // onChange={this.valueUpdater('appTextCounter')}
             connectedRight={<Select label="Weight unit" value="" labelHidden options={[
               'kg',
               'lb',
