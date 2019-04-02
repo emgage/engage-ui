@@ -279,6 +279,9 @@ class App extends React.Component<{}, State> {
 
   // toggleStatus if true that means row is open else its not
   nestedChildCallback = (rowId: number, toggleStatus: boolean) => {
+    const max = 90;
+    const min = 1;
+    const randomNumber = Math.floor(Math.random() * (+max - +min)) + +min;
     const { nestedChildData } = this.state;
     const childtableData = [
       {
@@ -296,6 +299,13 @@ class App extends React.Component<{}, State> {
       }
     ];
 
+    childtableData.push({
+      id: randomNumber + rowId,
+      name: `Dheir${randomNumber}`,
+      description: 'Test description',
+      status: { itemID: 1, itemName: 'New' },
+      type: 'admin',
+    });
     const childrowActionConfig = [
       {
         content: 'View',
@@ -745,6 +755,7 @@ class App extends React.Component<{}, State> {
         <Badge children={'Badge'} progress={'incomplete'} />
         <Badge children={'Badge'} progress={'partiallyComplete'} />
         <Badge children={'Badge'} progress={'complete'} />
+        <Badge componentStyle={{ padding: '0.5rem 1rem' }}><Loading iconStyle={{ width: '1.1rem', height: '1.1rem' }} /> Badge</Badge>
         <div>
         </div>
         <div>
