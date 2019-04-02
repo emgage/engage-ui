@@ -134,7 +134,7 @@ class Table extends React.Component<Props, State> {
       this.expandRowOnLoad();
     }
 
-    if ((newProps.callChildCallback !== this.props.callChildCallback && newProps.callChildCallback)) {
+    if ((newProps.callChildCallback && newProps.callChildCallback !== this.props.callChildCallback)) {
       this.reRenderRow();
     }
 

@@ -12,13 +12,14 @@ export type Progress = 'incomplete' | 'partiallyComplete' | 'complete';
 
 export interface Props {
   // The content to display inside the badge
-  children?: string;
+  children?: React.ReactNode;
   // Set the color of the badge for the given status. It can be success, info, attention or warning.
   status?: Status;
   // Show the progress of badge using round indicator. It can be incomplete, partiallyComplete or complete
   progress?: Progress;
   // To apply custom styling.
   componentStyle?: React.CSSProperties;
+  componentClass?: string;
   // Theme to be injected via css-themr
   theme?: any;
 }
@@ -36,8 +37,9 @@ const STATUS_LABELS = {
   attention: 'Attention',
 };
 
-const badge = ({ children, status, progress, theme, componentStyle }: Props) => {
+const badge = ({ children, status, progress, theme, componentClass = '', componentStyle }: Props) => {
   const className = classNames(
+    componentClass,
     theme.badge,
     status && theme[variationName('status', status)],
     progress && theme[variationName('progress', progress)]
