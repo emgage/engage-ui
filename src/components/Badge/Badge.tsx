@@ -2,6 +2,7 @@ import * as React from 'react';
 import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 import { classNames, variationName } from '@shopify/react-utilities/styles';
 
+import Icon from '../Icon';
 import VisuallyHidden from '../VisuallyHidden';
 import { BADGE } from '../ThemeIdentifiers';
 
@@ -17,6 +18,8 @@ export interface Props {
   status?: Status;
   // Show the progress of badge using round indicator. It can be incomplete, partiallyComplete or complete
   progress?: Progress;
+  // Show the working status of badge using spinning indicator.
+  working?: boolean;
   // To apply custom styling.
   componentStyle?: React.CSSProperties;
   componentClass?: string;
@@ -37,7 +40,7 @@ const STATUS_LABELS = {
   attention: 'Attention',
 };
 
-const badge = ({ children, status, progress, theme, componentClass = '', componentStyle }: Props) => {
+const badge = ({ children, status, progress, working, theme, componentClass = '', componentStyle }: Props) => {
   const className = classNames(
     componentClass,
     theme.badge,
@@ -45,24 +48,32 @@ const badge = ({ children, status, progress, theme, componentClass = '', compone
     progress && theme[variationName('progress', progress)]
   );
 
-  const role = progress ? PROGRESS_LABELS[progress] : 'badge';
   const statusLabelMarkup = status
-    ? <VisuallyHidden>{STATUS_LABELS[status]} {children}</VisuallyHidden>
+    ? <VisuallyHidden>{STATUS_LABELS[status]}</VisuallyHidden>
     : null;
 
   const pipMarkup = progress
     ? (
       <span className={theme.pip}>
-        <VisuallyHidden>{PROGRESS_LABELS[progress]} {children}</VisuallyHidden>
+        <VisuallyHidden>{PROGRESS_LABELS[progress]}</VisuallyHidden>
       </span>
     )
     : null;
 
+  const workingMarkup = working
+  ? (
+    <span className={theme.working}>
+      <Icon source="refresh" componentColor="inkLighter" />
+    </span>
+  )
+  : null;
+
   return (
-    <span className={className} role={role} style={componentStyle}>
+    <span className={className} style={componentStyle}>
       {statusLabelMarkup}
-       {pipMarkup}
-       {children}
+      {workingMarkup}
+      {pipMarkup}
+      {children}
     </span>
   );
 };

@@ -8,6 +8,9 @@ $horizontal-padding: ($height / 2);
 $pip-size: rem(10px);
 $pip-spacing: ($height - $pip-size) / 2;
 
+$spinner-size: rem(14px);
+$spinner-spacing: ($height - $spinner-size) / 2;
+
 @mixin pip-color($color) {
   .pip {
     color: $color;
@@ -16,11 +19,10 @@ $pip-spacing: ($height - $pip-size) / 2;
 
 .badge {
   @include pip-color(color(ink, lightest));
-  display: inline-flex;
-  align-items: center;
+  display: inline-block;
   padding: 0 $horizontal-padding;
   background-color: color(sky);
-  border: 2px solid color(white);
+  border: rem(2px) solid color(white);
   border-radius: $height;
   font-size: rem(13px);
   line-height: $height;
@@ -62,7 +64,27 @@ $pip-spacing: ($height - $pip-size) / 2;
 .pip {
   height: $pip-size;
   width: $pip-size;
+  display: inline-block;
   margin: 0 spacing(extra-tight) 0 ($pip-spacing - $horizontal-padding);
   border: rem(2px) solid currentColor;
   border-radius: 50%;
+}
+
+.working {
+  height: $spinner-size;
+  width: $spinner-size;
+  display: inline-block;
+  vertical-align: top;
+  margin: $spinner-spacing $spinner-spacing 0 ($spinner-spacing - $horizontal-padding);
+  // animation: spin 1s infinite steps(8);
+  animation: spin 1s infinite linear;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(359deg);
+  }
 }
