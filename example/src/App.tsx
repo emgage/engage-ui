@@ -747,6 +747,7 @@ class App extends React.Component<{}, State> {
     return (
       <div>
         <span>Small change for test Change 3</span>
+        <Badge children={'Badge'} working />
         <Badge children={'Badge'} />
         <Badge children={'Badge'} status={'success'} />
         <Badge children={'Badge'} status={'info'} />
@@ -755,7 +756,9 @@ class App extends React.Component<{}, State> {
         <Badge children={'Badge'} progress={'incomplete'} />
         <Badge children={'Badge'} progress={'partiallyComplete'} />
         <Badge children={'Badge'} progress={'complete'} />
-        <Badge componentStyle={{ padding: '0.5rem 1rem' }}><Loading iconStyle={{ width: '1.1rem', height: '1.1rem' }} /> Badge</Badge>
+        <Badge children={'Publishing'} status={'info'} working />
+        <Badge status={'info'} working >Publishing</Badge>
+        <Badge componentStyle={{ padding: '0.5rem 1rem' }}><Loading iconStyle={{ width: '1.1rem', height: '1.1rem' }} componentStyle={{ display: 'inline-block' }} /> Badge</Badge>
         <div>
         </div>
         <div>

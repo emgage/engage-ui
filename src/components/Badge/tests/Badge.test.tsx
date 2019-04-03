@@ -101,7 +101,7 @@ describe('<Badge />', () => {
                                        {text}
                                    </Badge>
                              );
-        expect(badgeWrapper.find('span').at(1).text()).toBe('Success ' + text);
+        expect(badgeWrapper.find('span').at(1).text()).toBe('Success');
       });
 
       it('should verify status set as info', () => {
@@ -127,7 +127,7 @@ describe('<Badge />', () => {
                                        {text}
                                    </Badge>
                              );
-        expect(badgeWrapper.find('span').at(1).text()).toBe('Info ' + text);
+        expect(badgeWrapper.find('span').at(1).text()).toBe('Info');
       });
 
       it('should verify stauts set as attention', () => {
@@ -153,7 +153,7 @@ describe('<Badge />', () => {
                                       {text}
                                    </Badge>
                              );
-        expect(badgeWrapper.find('span').at(1).text()).toBe('Attention ' + text);
+        expect(badgeWrapper.find('span').at(1).text()).toBe('Attention');
       });
 
       it('should verify stauts set as warning', () => {
@@ -179,7 +179,7 @@ describe('<Badge />', () => {
                                       {text}
                                    </Badge>
                              );
-        expect(badgeWrapper.find('span').at(1).text()).toBe('Warning ' + text);
+        expect(badgeWrapper.find('span').at(1).text()).toBe('Warning');
       });
     });
   });
@@ -323,7 +323,7 @@ describe('<Badge />', () => {
                                        {text}
                                    </Badge>
                              );
-        expect(badgeWrapper.find('span').at(1).text()).toBe('Incomplete ' + text);
+        expect(badgeWrapper.find('span').at(1).text()).toBe('Incomplete');
       });
 
       it('should verify progress set as partiallyComplete', () => {
@@ -349,7 +349,7 @@ describe('<Badge />', () => {
                                        {text}
                                    </Badge>
                              );
-        expect(badgeWrapper.find('span').at(1).text()).toBe('Partially complete ' + text);
+        expect(badgeWrapper.find('span').at(1).text()).toBe('Partially complete');
       });
 
       it('should verify progress set as complete', () => {
@@ -373,7 +373,7 @@ describe('<Badge />', () => {
                                        {text}
                                    </Badge>
                              );
-        expect(badgeWrapper.find('span').at(1).text()).toBe('Complete ' + text);
+        expect(badgeWrapper.find('span').at(1).text()).toBe('Complete');
       });
     });
   });
@@ -425,7 +425,7 @@ describe('<Badge />', () => {
                                       {text}
                                   </Badge>
                             );
-      expect(badgeWrapper.find('span').at(1).text()).toBe('Info ' + text);
+      expect(badgeWrapper.find('span').at(1).text()).toBe('Info');
     });
     it('should verify text on span as per progress', () => {
       const text = 'All properties are set for Badge.';
@@ -434,7 +434,7 @@ describe('<Badge />', () => {
                                       {text}
                                   </Badge>
                             );
-      expect(badgeWrapper.find('span').at(2).text()).toBe('Complete ' + text);
+      expect(badgeWrapper.find('span').at(2).text()).toBe('Complete');
     });
     it('should verify all properties are set', () => {
       const badgeWrapper = mount(
