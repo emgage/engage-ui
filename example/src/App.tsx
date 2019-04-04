@@ -450,7 +450,7 @@ class App extends React.Component<{}, State> {
       {
         id: 1,
         name: 'Hiren',
-        description: 'Test description',
+        description: 'Test description Test description Test description Test description',
         status: { itemID: 1, itemName: 'New' },
         type: 'admin',
       }, {
@@ -620,18 +620,22 @@ class App extends React.Component<{}, State> {
         key: 'name',
         className: '',
         sort: true,
+        style: { width: '100px' },
       }, {
         label: 'Description',
         key: 'description',
+        style: { width: '250px' },
       }, {
         label: 'Status',
         key: 'status',
         sort: true,
         sortBy: 'itemName',
         injectBody: (value: any) => <Badge status={value.status.itemID === 1 ? 'success' : 'warning'}>{value.status.itemName}</Badge>,
+        style: { width: '100px' },
       }, {
         label: 'Type',
         key: 'type',
+        style: { width: '100px' },
       },
     ];
 
