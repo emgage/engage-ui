@@ -18,6 +18,14 @@
     white-space: nowrap; 
     text-overflow: ellipsis;
     text-align: left;
+
+    .tableDataWrap {
+      display: inline-block;
+      width: inherit;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
   }
 
   th {

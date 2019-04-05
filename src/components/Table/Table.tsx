@@ -315,7 +315,7 @@ class Table extends React.Component<Props, State> {
 
   // Render the main table row
   renderTbodyRows = (item: any, index: number | string) => {
-    const { column, expandingRowId = [], hideExpandedIcon, rowAction } = this.props;
+    const { column, expandingRowId = [], hideExpandedIcon, rowAction, theme } = this.props;
     const { nestedChildData } = this.state;
 
     return (
@@ -336,7 +336,7 @@ class Table extends React.Component<Props, State> {
                   we also return the specifc value, which then can be used in injected component
                 */}
                 { renderCheckbox ? this.renderCheckColumn(item, false) : ''}
-                {colItem.injectBody ? colItem.injectBody(item) : renderCheckbox ? <span style={{ paddingLeft: '16px' }}>{item[colItem.key]}</span> : item[colItem.key] }
+                {colItem.injectBody ? colItem.injectBody(item) : renderCheckbox ? <span style={{ paddingLeft: '16px' }}>{item[colItem.key]}</span> : <span className={theme.tableDataWrap}>{item[colItem.key]}</span> }
               </TableData>
             );
           })
@@ -407,7 +407,7 @@ class Table extends React.Component<Props, State> {
         return this.addHeaderCheckbox();
       }
 
-      return <TableHead componentStyle={{ width: 'auto' }}></TableHead>;
+      return <TableHead componentStyle={{ width: '30px' }}></TableHead>;
     }
 
     return null;
@@ -440,7 +440,7 @@ class Table extends React.Component<Props, State> {
     const totalRowUnchecked = (isAllChildChecked && isAllChildChecked.length > 0 && selectedRows.length > 0 && totalRowCount > 0 && ((totalRowCount - selectedRows.length) === (totalRowCount - 1))) ? true : false;
 
     return (
-      <TableHead componentStyle={{ width: 'auto' }}>
+      <TableHead componentStyle={{ width: '30px' }}>
         <Checkbox label="" checked={(rowChecked && (!isAllChildChecked || (isAllChildChecked !== undefined ? isAllChildChecked.length === 0 : true))) && selectedRows.length > 0 ? true : thisAllRowChecked} indeterminante={totalRowUnchecked ? false : rowChecked} onChange={this.toggleAllRowSelection} />
       </TableHead>
     );
