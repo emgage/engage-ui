@@ -48,11 +48,11 @@ const getNavigationStates = (indx: number, length: number) => {
   const styles = [];
   for (let i = 0; i < length; i++) {
     if (i < indx) {
-      styles.push('progtrckrdone');
+      styles.push('processTrackerDone');
     } else if (i === indx) {
-      styles.push('progtrckrdoing');
+      styles.push('processTrackerDoing');
     } else {
-      styles.push('progtrckrtodo');
+      styles.push('processTrackerTodo');
     }
   }
   return { indx, styles };
@@ -129,17 +129,20 @@ class Process extends React.PureComponent<Props, State> {
     return steps.map((item, index) => (
       <li
         className={theme[item.status ? item.status : 'upcoming']}
-        style={{ ...item.style, cursor: item.onClick ? 'pointer' : 'default' }}
-        onClick={item.onClick ? this.handleOnClick : () => {}}
         key={index}
         value={index}
       >
-        <div className={theme.processBar}>
-          <span className={theme.processIndex}>{index + 1}</span>
-          { steps.length !== (index + 1) ? <div className={theme.processDivider}></div> : null }
+        { index !== 0 ? <div className={theme.processBar}><span className={theme.processDivider}></span></div> : null }
+        <div className={theme.processItem}>
+          <span
+            className={theme.processIndex}
+            style={{ ...item.style, cursor: item.onClick ? 'pointer' : 'default' }}
+            onClick={item.onClick ? this.handleOnClick : () => {}}
+          >
+            {index + 1}
+          </span>
+          <span className={theme.processLabel}>{item.name}</span>
         </div>
-
-        <span className={theme.processLabel}>{item.name}</span>
       </li>
     ));
   }
@@ -147,7 +150,7 @@ class Process extends React.PureComponent<Props, State> {
   render() {
     const { theme, componentStyle, steps, componentClass } = this.props;
     const className = classNames(
-      theme.progtrckr,
+      theme.processTracker,
       componentClass
     );
 
