@@ -54,7 +54,7 @@ export interface Props {
   // Define width of drawer
   componentWidth?: Width | string;
   // Define custom zIndex for Drawer
-  zIndex: number,
+  zIndex: number;
   // Set theme for drawer
   theme?: any;
   // Callback function to close or open the drawer
@@ -112,7 +112,7 @@ class Drawer extends React.PureComponent<Props, never> {
       flip && this.props.theme.flip,
       this.isWidthPreDefine(componentWidth) && theme[componentWidth],
       !this.isWidthPreDefine(componentWidth) && theme.customWidth,
-      active && theme.open,
+      active && theme.open
     );
   }
 
@@ -231,7 +231,7 @@ class Drawer extends React.PureComponent<Props, never> {
     ];
 
     return (
-      <div className={containerClassName} style={{ zIndex: zIndex }}>
+      <div className={containerClassName} style={{ zIndex }}>
         {
           mode === 'reveal'
             ?
