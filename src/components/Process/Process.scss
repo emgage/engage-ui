@@ -1,76 +1,97 @@
-$greyProcess: #CCC;
-$blueProcess: #33C3F0;
+$activeProcess: color(blue);
+$comleteProcess: color(blue);
+$upcomingProcess: color(ink, lighter);
 
-.progtrckr {
+.processTracker {
   margin: 0;
   list-style-type: none;
   display: flex;
+  flex-direction: row;
+  align-items: flex-start;
 
   li {
     display: flex;
-    flex-grow: 1;
+    flex: 1;
     flex-direction: column;
+    position: relative;
+  }
+}
 
-    &.active {
-      .processIndex {
-        color: #fff;
-        background-color: $blueProcess;
-      }
+.processBar {
+  flex: 1 1 auto;
+  top: 1rem;
+  left: calc(-50% + 2.3rem);
+  right: calc(50% + 2.3rem);
+  position: absolute;
+}
 
-      .processDivider {
-        border-top: 2px solid $greyProcess;
-      }
-    }
+.processDivider {
+  display: block;
+  border-top: 0.2rem;
+  border-top-style: solid;
+}
 
-    &.completed {
-      .processIndex {
-        color: #fff;
-        background-color: $blueProcess;
-      }
+.processItem {
+  font-size: 1.3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-      .processDivider {
-        border-top: 2px solid $blueProcess;
-      }
-    }
+}
 
-    &.upcoming {
-      .processIndex {
-        color: #000;
-        background-color: $greyProcess;
-      }
+.processIndex {
+  color: #fff;
+  font-size: 1rem;
+  font-weight: normal;
+  text-align: center;
+  display: block;
+  height: 2.2rem;
+  min-width: 2.2rem;
+  border-radius: 50%;
+  position: relative;
+  margin-bottom: 0px;
+}
 
-      .processDivider {
-        border-top: 2px solid $greyProcess;
-      }
-    }
-    
-    .processBar {
-      display: flex;
-      flex-grow: 1;
-      flex-wrap: wrap;
+.processLabel {
+  text-align: center;
+  display: block;
+  margin-top: 0.8rem;
+}
 
-      .processIndex {
-        border-radius: 50%;
-        font-weight: normal;
-        font-weight: normal;
-        font-size: 12px;
-        position: relative;
-        bottom: 1px;
-        text-align: center;
-        margin-bottom: 0px;
-        flex: 0 0 20px;
-        max-width: 20px;
-      }
+.active {
+  .processIndex {
+    background-color: $activeProcess;
+  }
+  .processDivider {
+    border-color: $activeProcess;
+    opacity: 0.6;
+  }
+}
 
-      .processDivider {
-        display: inline-block;
-        height: 1px;
-        position: relative;
-        left: 3%;
-        top: 8px;
-        flex: 0 0 85%;
-        max-width: 85%;
-      }
-    }
+.completed {
+  .processIndex {
+    background-color: $comleteProcess;
+    opacity: 0.6;
+  }
+  .processLabel {
+    opacity: 0.6;
+  }
+  .processDivider {
+    border-color: $comleteProcess;
+    opacity: 0.6;
+  }
+}
+
+.upcoming {
+  .processIndex {
+    background-color: $upcomingProcess;
+    opacity: 0.6;
+  }
+  .processLabel {
+    opacity: 0.6;
+  }
+  .processDivider {
+    border-color: $upcomingProcess;
+    opacity: 0.6;
   }
 }
