@@ -53,6 +53,8 @@ export interface Props {
   overlay?: boolean;
   // Define width of drawer
   componentWidth?: Width | string;
+  // Define custom zIndex for Drawer
+  zIndex?: number;
   // Set theme for drawer
   theme?: any;
   // Callback function to close or open the drawer
@@ -192,7 +194,7 @@ class Drawer extends React.PureComponent<Props, never> {
   }
 
   renderLayer() {
-    const { active, mode, componentLabel, componentWidth, theme,  } = this.props;
+    const { active, mode, componentLabel, componentWidth, theme, zIndex  } = this.props;
     const containerClassName = this.getContainerClassName();
     const barClassName = this.getBarClassName();
 
@@ -229,7 +231,7 @@ class Drawer extends React.PureComponent<Props, never> {
     ];
 
     return (
-      <div className={containerClassName}>
+      <div className={containerClassName} style={{ zIndex }}>
         {
           mode === 'reveal'
             ?
@@ -274,3 +276,4 @@ class Drawer extends React.PureComponent<Props, never> {
 }
 
 export default themr(DRAWER, baseTheme)(Drawer) as ThemedComponentClass<Props, {}>;
+
