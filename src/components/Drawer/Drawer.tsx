@@ -54,7 +54,7 @@ export interface Props {
   // Define width of drawer
   componentWidth?: Width | string;
   // Define custom zIndex for Drawer
-  zIndex: number;
+  zIndex?: number;
   // Set theme for drawer
   theme?: any;
   // Callback function to close or open the drawer
