@@ -91,6 +91,10 @@ export interface Props {
   onBlur?(e?: React.FormEvent<HTMLElement>): void;
   // Callback when value is inserted in Input.
   onInput?(e?: React.ChangeEvent<HTMLSelectElement>): void;
+  // Check alphanumeric value and convert into capital
+  capital?: boolean;
+  // Check alphanumeric value
+  alphanumeric?: boolean;
 }
 
 const getUniqueID = createUniqueIDFactory('TextField');
@@ -304,8 +308,19 @@ class TextField extends React.PureComponent<Props, State> {
     if (onChange == null) { return; }
     const value = this.props.value ? this.props.value : '';
     const maxLength = this.props.maxLength ? this.props.maxLength : Number.POSITIVE_INFINITY;
+    const alphaRegex = RegExp(/^[A-Za-z0-9\b]+$/,'g');
     if (event.currentTarget.value.length <= maxLength) {
-      onChange(event.currentTarget.value);
+      if (this.props.capital && alphaRegex.test(event.currentTarget.value)) {
+        onChange(event.currentTarget.value.toUpperCase());
+      }else if (this.props.alphanumeric && alphaRegex.test(event.currentTarget.value)) {
+        onChange(event.currentTarget.value);
+      }else {
+        if ((this.props.capital || this.props.alphanumeric) && event.currentTarget.value.length > 0) {
+          onChange(value);
+          return ;
+        }
+        onChange(event.currentTarget.value);
+      }
     }else {
       onChange(value);
     }

@@ -1599,6 +1599,7 @@ class App extends React.Component<{}, State> {
                 validateRules={[
                   { required: true, message: 'App Name is required.' },
                 ]}
+                alphanumeric
               />
               <ValidatedTextField
                 multiline
