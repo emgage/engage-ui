@@ -1331,6 +1331,8 @@ class App extends React.Component<{}, State> {
               anchorEl = {this.state.anchorEl2}
               direction="down"
               preferredAlignment="right"
+              closeOnClickOption
+              closeOnClickOutside
             />
           </div>
 
@@ -1599,7 +1601,6 @@ class App extends React.Component<{}, State> {
                 validateRules={[
                   { required: true, message: 'App Name is required.' },
                 ]}
-                alphanumeric
               />
               <ValidatedTextField
                 multiline
@@ -2071,7 +2072,7 @@ class App extends React.Component<{}, State> {
     });
   }
 
-  popoverUpdate2(e: any) {
+  popoverUpdate2 = (e: any) => {
     this.setState({
       popoverActive2 : !this.state.popoverActive2,
       anchorEl2: e ? e.currentTarget as HTMLElement : this.state.anchorEl2
