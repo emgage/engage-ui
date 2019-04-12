@@ -73,7 +73,7 @@ export class Dropdown extends React.PureComponent<Props, State> {
       disabled,
       anchorEl,
       closeOnClickOutside,
-      closeOnClickOption,
+      closeOnClickOption = true,
       returnValue,
       preferredAlignment
     } = this.props;
