@@ -21,7 +21,7 @@ export interface Props {
   closeOnClickOption?: boolean;
   // Return this value in callback function
   returnValue?: any;
-  setDropdownState?(): void;
+  toggleDropdown?(): void;
 }
 
 const getUniqueID = createUniqueIDFactory('DropdownItem');
@@ -30,10 +30,10 @@ class DropdownItem extends React.Component<Props, never> {
   public id = getUniqueID();
 
   clickCallback = (event: any) => {
-    const { closeOnClickOption, onClick, returnValue, setDropdownState } = this.props;
+    const { closeOnClickOption, onClick, returnValue, toggleDropdown } = this.props;
 
-    if (closeOnClickOption && setDropdownState) {
-      setDropdownState();
+    if (closeOnClickOption && toggleDropdown) {
+      toggleDropdown();
     }
 
     if (onClick) {

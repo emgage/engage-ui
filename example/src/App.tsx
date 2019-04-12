@@ -1331,7 +1331,6 @@ class App extends React.Component<{}, State> {
               anchorEl = {this.state.anchorEl2}
               direction="down"
               preferredAlignment="right"
-              closeOnClickOption
               closeOnClickOutside
             />
           </div>
