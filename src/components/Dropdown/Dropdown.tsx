@@ -65,6 +65,11 @@ export class Dropdown extends React.PureComponent<Props, State> {
     }
   }
 
+  // Function to toggle dropdown from component itself
+  innerToggleDropdown = () => {
+    this.setState({ active: !this.state.active});
+  }
+
   // Callback function
   render() {
     const {
@@ -94,7 +99,7 @@ export class Dropdown extends React.PureComponent<Props, State> {
         onClick={item.onClick}
         closeOnClickOption={closeOnClickOption}
         returnValue={returnValue}
-        setDropdownState={this.setDropdownState}
+        toggleDropdown={this.innerToggleDropdown}
       />
     );
     // Use Popover component as wrapper component for drop down items
