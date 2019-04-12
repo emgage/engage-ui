@@ -18,6 +18,8 @@ export interface Props {
   anchorEl?: PopoverProps['anchorEl'];
   // Set to true if you want to close dropdown when click anywhere in body
   closeOnClickOutside?: PopoverProps['closeOnClickOutside'];
+  // Prop to close the dropdown when click on its option
+  closeOnClickOption?: boolean;
   // Set items to be displayed in dropdown wrapper
   dropdownItems: DropdownItemProps[];
   // Value to be return when clicked on item, this could be anythig string number or component or  any other value
@@ -57,12 +59,13 @@ export class Dropdown extends React.PureComponent<Props, State> {
   }
 
   // Callback function which will be called when dropdown gets closed when clicked outside
-  setDropdownState = (dropdownState: boolean) => {
+  setDropdownState = () => {
     if (this.props.toggle) {
       this.props.toggle();
     }
   }
 
+  // Callback function
   render() {
     const {
       dropdownItems,
@@ -70,6 +73,7 @@ export class Dropdown extends React.PureComponent<Props, State> {
       disabled,
       anchorEl,
       closeOnClickOutside,
+      closeOnClickOption,
       returnValue,
       preferredAlignment
     } = this.props;
@@ -88,7 +92,9 @@ export class Dropdown extends React.PureComponent<Props, State> {
         header={item.header}
         content={item.content}
         onClick={item.onClick}
+        closeOnClickOption={closeOnClickOption}
         returnValue={returnValue}
+        setDropdownState={this.setDropdownState}
       />
     );
     // Use Popover component as wrapper component for drop down items
