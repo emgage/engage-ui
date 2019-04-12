@@ -67,7 +67,7 @@ export class Dropdown extends React.PureComponent<Props, State> {
 
   // Function to toggle dropdown from component itself
   innerToggleDropdown = () => {
-    this.setState({ active: !this.state.active});
+    this.setState({ active: !this.state.active });
   }
 
   // Callback function
