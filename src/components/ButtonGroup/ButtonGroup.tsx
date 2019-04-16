@@ -10,6 +10,7 @@ import * as baseTheme from './ButtonGroup.scss';
 
 export interface Props {
   componentStyle?: any;
+  // Set a custom class
   componentClass?: string;
   // Display true or false value. Join buttons as segmented group.
   segmented?: boolean;

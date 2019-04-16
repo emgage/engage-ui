@@ -10,6 +10,7 @@ export interface Props {
   children?: React.ReactNode;
   position: Position;
   componentStyle?: React.CSSProperties;
+  // Set a custom class
   componentClass?: string;
   // Theme to be injected via css-themr.
   theme?: any;

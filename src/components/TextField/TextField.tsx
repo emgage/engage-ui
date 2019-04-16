@@ -5,12 +5,13 @@ import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
 import { classNames } from '@shopify/react-utilities/styles';
 
 import Labelled, { Action, helpTextID, errorID, labelID } from '../Labelled';
+import Spinner from '../Spinner';
 import Connected from '../Connected';
 import { TEXT_FIELD } from '../ThemeIdentifiers';
 
 import * as baseTheme from './TextField.scss';
 import Resizer from './Resizer';
-import Spinner from './Spinner';
+import SpinnerButtons from './SpinnerButtons';
 
 export type Type = 'text' | 'email' | 'number' | 'password' | 'search' | 'tel' | 'url' | 'date' | 'datetime-local' | 'month' | 'time' | 'week';
 
@@ -39,6 +40,8 @@ export interface Props {
   labelAction?: Action;
   // Visually hide the label.
   labelHidden?: boolean;
+  // Display loading indicator
+  loading?: boolean;
   // Disable the input.
   disabled?: boolean;
   // Disable editing of the input.
@@ -136,6 +139,7 @@ class TextField extends React.PureComponent<Props, State> {
       label,
       labelAction,
       labelHidden,
+      loading,
       helpText,
       enableTextCounter,
       maxLength,
@@ -172,8 +176,8 @@ class TextField extends React.PureComponent<Props, State> {
       ? <div onClick={this.handleInputFocus} className={theme.suffix} id={`${componentId}suffix`}>{suffix}</div>
       : null;
 
-    const spinnerMarkup = type === 'number'
-      ? <Spinner onClick={this.handleInputFocus} onChange={this.handleNumberChange} />
+    const spinnerButtonsMarkup = type === 'number'
+      ? <SpinnerButtons onClick={this.handleInputFocus} onChange={this.handleNumberChange} />
       : null;
 
     const newComponentStyle = (multiline && height) ? { height, ...componentStyle } : componentStyle;
@@ -269,7 +273,8 @@ class TextField extends React.PureComponent<Props, State> {
             {prefixMarkup}
             {input}
             {suffixMarkup}
-            {spinnerMarkup}
+            {spinnerButtonsMarkup}
+            {loading && <div className={theme.spinnerWrapper}><Spinner componentSize="small" componentColor="disabled" /></div>}
             <div className={theme.backdrop} />
             {resizer}
           </div>

@@ -15,20 +15,20 @@ export interface Props {
   onClick?(): void;
 }
 
-const spinner = ({ theme, onChange, onClick }: Props)  => {
+const spinnerButtons = ({ theme, onChange, onClick }: Props)  => {
   function handleStep(step: number) {
     return () => onChange(step);
   }
 
   return (
-    <div className={theme.spinner} onClick={onClick} aria-hidden>
+    <div className={theme.spinnerButtons} onClick={onClick} aria-hidden>
       <div
         role="button"
         className={theme.segment}
         tabIndex={-1}
         onClick={handleStep(1)}
       >
-        <div className={theme.spinnerIcon}>
+        <div className={theme.spinnerButtonsIcon}>
           <Icon source="caretUp" />
         </div>
       </div>
@@ -39,7 +39,7 @@ const spinner = ({ theme, onChange, onClick }: Props)  => {
         tabIndex={-1}
         onClick={handleStep(-1)}
       >
-        <div className={theme.spinnerIcon}>
+        <div className={theme.spinnerButtonsIcon}>
           <Icon source="caretDown" />
         </div>
       </div>
@@ -47,4 +47,4 @@ const spinner = ({ theme, onChange, onClick }: Props)  => {
   );
 };
 
-export default themr(TEXT_FIELD, baseTheme)(spinner) as ThemedComponentClass<Props, {}>;
+export default themr(TEXT_FIELD, baseTheme)(spinnerButtons) as ThemedComponentClass<Props, {}>;

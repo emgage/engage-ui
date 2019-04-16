@@ -60,6 +60,7 @@ export interface Props {
   // Callback function to close or open the drawer
   toggleDrawer?(): void;
   componentStyle?: any;
+  // Set a custom class
   componentClass?: string;
 }
 
