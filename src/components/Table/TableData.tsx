@@ -15,6 +15,7 @@ export interface Props {
   rowSpan?: number;
   // Custom style, if user wants to add in th
   componentStyle?: any;
+  // Set a custom class
   componentClass?: string;
   dataLabel?: string;
 }

@@ -76,15 +76,11 @@ $spinner-spacing: ($height - $spinner-size) / 2;
   display: inline-block;
   vertical-align: top;
   margin: $spinner-spacing $spinner-spacing 0 ($spinner-spacing - $horizontal-padding);
-  // animation: spin 1s infinite steps(8);
-  animation: spin 1s infinite linear;
+  animation: spin duration(basespin) linear infinite;
 }
 
 @keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(359deg);
+  to {
+    transform: rotate(360deg);
   }
 }

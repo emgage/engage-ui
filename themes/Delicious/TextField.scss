@@ -22,6 +22,10 @@ $backdrop-horizontal-spacing: spacing(tight) * 1.5;
     padding-top: 1.9rem;
     padding-bottom: 0.3rem;
   }
+
+  .spinnerWrapper {
+    padding-top: calc(1.9rem + 0.2rem);
+  }
 }
 
 .error {
@@ -62,6 +66,10 @@ $backdrop-horizontal-spacing: spacing(tight) * 1.5;
     padding-top: 1.9rem;
     padding-bottom: 0.3rem;
 
+    ~ .spinnerWrapper {
+      padding-top: calc(1.9rem + 0.2rem);
+    }
+
     ~ .backdrop {
       border-color: theme-color(m-blue, 300);
       box-shadow: 0 0 0 1px theme-color(m-blue, 300);
@@ -72,6 +80,12 @@ $backdrop-horizontal-spacing: spacing(tight) * 1.5;
     color: theme-color(m-grey, 500);
     text-align: right;
   }
+}
+
+.spinnerWrapper {
+  right: $backdrop-horizontal-spacing;
+  padding-top: calc(#{control-vertical-padding()} + 0.2rem);
+  transition: 0.3s all ease;
 }
 
 .backdrop {

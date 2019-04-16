@@ -12,6 +12,7 @@ export const DeliciousThemeContext = {
   PMessage: require('./Message.scss'),
   PModal: require('./Modal.scss'),
   PSelect: require('./Select.scss'),
+  PSpinner: require('./Spinner.scss'),
   PTextField: require('./TextField.scss'),
 };
 

@@ -1,11 +1,12 @@
 $backdrop-horizontal-spacing: spacing(tight) * 1.5;
 $addon-horizontal-spacing: 0.25em;
-$spinner-icon-size: rem(12px);
+$spinner-buttons-icon-size: rem(12px);
 
 $stacking-order: (
   input: 20,
   backdrop: 10,
-);
+  spinner: 30,
+  );
 
 .textField {
   @include text-style-input;
@@ -112,7 +113,7 @@ $stacking-order: (
     color: color(ink, lightest);
   }
 
-  // These properties are used to remove the default "spinner" controls
+  // These properties are used to remove the default "SpinnerButtons" controls
   // for number fields, since we add our own, custom versions instead.
   &[type='number'] {
     appearance: textfield;
@@ -156,7 +157,7 @@ $stacking-order: (
   color: currentColor;
 }
 
-.spinner {
+.spinnerButtons {
   z-index: z-index(input, $stacking-order);
   display: flex;
   align-self: stretch;
@@ -166,9 +167,9 @@ $stacking-order: (
   color: color(ink);
 }
 
-.spinnerIcon {
-  height: $spinner-icon-size;
-  width: $spinner-icon-size;
+.spinnerButtonsIcon {
+  height: $spinner-buttons-icon-size;
+  width: $spinner-buttons-icon-size;
 }
 
 .resizer {
@@ -235,4 +236,14 @@ $stacking-order: (
   @include text-emphasis-subdued;
   margin-top: spacing(extra-tight);
   float: right;
+}
+
+.spinnerWrapper {
+  position: absolute;
+  z-index: z-index(spinner, $stacking-order);
+  right: control-vertical-padding();
+  padding-top: 1.7rem;
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
 }

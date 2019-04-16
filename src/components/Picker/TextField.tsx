@@ -10,8 +10,6 @@ import { TEXT_FIELD } from '../ThemeIdentifiers';
 import * as baseTheme from './TextField.scss';
 import Icon  from '../Icon';
 
-export type Type = 'text' | 'email' | 'number' | 'password' | 'search' | 'tel' | 'url' | 'date' | 'datetime-local' | 'month' | 'time' | 'week';
-
 export interface IStateProps {
   chipListState: IItemList[];
   suggestions: Autosuggest[];

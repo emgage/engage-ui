@@ -18,7 +18,7 @@ export interface Props {
   actions?: DisableableAction[];
   // Custom style
   componentStyle?: any;
-  // Custom class
+  // Set a custom class
   componentClass?: string;
   // Theme to be injected via css-themr.
   theme?: any;

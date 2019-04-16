@@ -19,6 +19,7 @@ export interface Props {
   align?: FlexAlign;
   // To display the styling.
   componentStyle?: React.CSSProperties;
+  // Set a custom class
   componentClass?: string;
   // Theme to be injected via css-themr.
   theme?: any;

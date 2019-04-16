@@ -1,20 +1,9 @@
 $small-size: rem(20px);
 $large-size: rem(44px);
 
-@keyframes loading {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 @mixin spinnerSize($size) {
   height: $size;
   width: $size;
-}
-
-.spinner {
-  animation: loading duration(fastspin) linear infinite;
-  color: transparent;
 }
 
 .sizeSmall {
@@ -26,13 +15,13 @@ $large-size: rem(44px);
 }
 
 .colorReverse {
-  fill: color(white);
+  fill: theme-color(white);
 }
 
 .colorNormal {
-  fill: color(teal);
+  fill: theme-color(m-blue-grey, 700);
 }
 
 .colorDisabled {
-  fill: color(ink, lightest);
+  fill: theme-color(m-grey, 500);
 }

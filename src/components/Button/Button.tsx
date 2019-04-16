@@ -42,6 +42,7 @@ export interface Props {
   icon?: IconProps['source'];
   // To display the styling.
   componentStyle?: React.CSSProperties;
+  // Set a custom class
   componentClass?: string;
   // Theme to be injected via css-themr.
   theme?: any;

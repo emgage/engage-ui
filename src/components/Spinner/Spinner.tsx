@@ -7,14 +7,14 @@ import * as baseTheme from './Spinner.scss';
 
 import { spinnerLarge, spinnerSmall } from '../../icons';
 
-export type Color = 'white' | 'teal' | 'inkLightest';
+export type Color = 'reverse' | 'normal' | 'disabled';
 
 export type Size = 'small' | 'large';
 
 export interface Props {
   // Size of Spinner. It can be small or large
   componentSize?: Size;
-  // Color of Spinner. It can be white, teal or inkLightest
+  // Color of Spinner. It can be reverse, normal or disabled
   componentColor?: Color;
   // Visually hidden text for screen readers
   accessibilityLabel?: string;
@@ -26,7 +26,7 @@ export interface Props {
 
 const spinner = ({
   componentSize = 'large',
-  componentColor = 'teal',
+  componentColor = 'normal',
   accessibilityLabel,
   theme,
   componentStyle,
