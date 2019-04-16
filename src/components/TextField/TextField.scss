@@ -1,6 +1,7 @@
 $backdrop-horizontal-spacing: spacing(tight) * 1.5;
 $addon-horizontal-spacing: 0.25em;
 $spinner-buttons-icon-size: rem(12px);
+$spinner-size: rem(20px);
 
 $stacking-order: (
   input: 20,
@@ -25,11 +26,23 @@ $stacking-order: (
     padding-left: $backdrop-horizontal-spacing;
     padding-right: $backdrop-horizontal-spacing;
   }
+
+  &.loading {
+    > .input {
+      padding-right: ($backdrop-horizontal-spacing + $spinner-size + 0.6rem);
+    }
+  }
 }
 
 .multiline:not(.resizable) {
   > .input {
       resize: none;
+  }
+}
+
+.loading {
+  > .input {
+    padding-right: ($spinner-size + 0.6rem);
   }
 }
 
@@ -89,8 +102,6 @@ $stacking-order: (
   font-size: inherit;
   font-weight: inherit;
   appearance: none;
-  padding-top: 1.7rem;
-  padding-bottom: 0.5rem;
 
   &:disabled {
     color: color(ink, lightest);
@@ -98,7 +109,6 @@ $stacking-order: (
 
   &:focus {
     outline: none;
-    box-shadow: none;
 
     ~ .backdrop {
       border-color: color(indigo);
@@ -231,7 +241,7 @@ $stacking-order: (
   }
 }
 
-.counterText{
+.counterText {
   @include text-style-body;
   @include text-emphasis-subdued;
   margin-top: spacing(extra-tight);
@@ -241,9 +251,9 @@ $stacking-order: (
 .spinnerWrapper {
   position: absolute;
   z-index: z-index(spinner, $stacking-order);
-  right: control-vertical-padding();
-  padding-top: 1.7rem;
-  width: 20px;
-  height: 20px;
+  top: calc(( 2.4rem - #{$spinner-size} ) / 2 + #{control-vertical-padding()} );
+  right: $backdrop-horizontal-spacing;
+  width: $spinner-size;
+  height: $spinner-size;
   pointer-events: none;
 }

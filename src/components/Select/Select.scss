@@ -16,6 +16,7 @@ $stacking-order: (
 );
 
 $icon-size: rem(16px);
+$spinner-size: rem(20px);
 $input-horizontal-padding: spacing(tight) * 1.5;
 
 // Without a small amount of vertical adjustment, the text
@@ -111,4 +112,21 @@ $input-vertical-adjust: rem(1px);
   &:disabled {
     color: color(ink, lightest);
   }
+}
+
+.loading {
+  > .input {
+    padding-right: ($input-horizontal-padding + $icon-size + $spinner-size + 0.6rem);
+  }
+}
+
+.spinnerWrapper {
+  position: absolute;
+  z-index: z-index(icon, $stacking-order);
+  top: 50%;
+  right: ($input-horizontal-padding + $icon-size);
+  transform: translateY(-50%);
+  width: $spinner-size;
+  height: $spinner-size;
+  pointer-events: none;
 }

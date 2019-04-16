@@ -5,6 +5,7 @@ import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
 
 import Labelled, { Action, Error, helpTextID, errorID } from '../Labelled';
 import Icon from '../Icon';
+import Spinner from '../Spinner';
 import { SELECT } from '../ThemeIdentifiers';
 
 import * as baseTheme from './Select.scss';
@@ -31,6 +32,8 @@ export interface Props {
   labelAction?: Action;
   // Visually hide the label
   labelHidden?: boolean;
+  // Display loading indicator
+  loading?: boolean;
   // Additional text to aide in use
   helpText?: React.ReactNode;
   // ID for form input
@@ -66,6 +69,7 @@ const select = ({
   options,
   labelHidden,
   labelAction,
+  loading,
   helpText,
   label,
   errors,
@@ -92,7 +96,8 @@ const select = ({
     Boolean(value) && theme.hasValue,
     errors && theme.error,
     disabled && theme.disabled,
-    isPlaceholder && theme.placeholder
+    isPlaceholder && theme.placeholder,
+    loading && theme.loading
   );
 
   const handleChange = onChange
@@ -143,12 +148,11 @@ const select = ({
           aria-describedby={describedBy.length ? describedBy.join(' ') : undefined}
         >
           {placeholderOption}
+          {loading && <option label="Loading..." value="LOADING" disabled />}
           {optionsMarkup}
         </select>
-
-        <div className={theme.icon}>
-          <Icon source="triangleDown" />
-        </div>
+        <div className={theme.icon}><Icon source="triangleDown" /></div>
+        {loading && <div className={theme.spinnerWrapper}><Spinner componentSize="small" componentColor="disabled" /></div>}
         <div className={theme.backdrop} />
       </div>
     </Labelled>
