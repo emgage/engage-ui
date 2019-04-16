@@ -16,13 +16,43 @@ export interface Props extends TextFieldProps {
   // Action to trigger validation rules.
   validateTrigger?: ['onBlur' | 'onChange'];
   // Validation rules for textfield. Validation Rule : { required: boolean; message: string; } or { type: string; message: string; }.
-  validateRules?: [ValidationRule];
+  validateRules?: ValidationRule[];
 }
 
 class ValidatedTextFieldComponent extends React.PureComponent<Props, {}> {
+  private rules: any;
 
   constructor(props: Props) {
     super(props);
+
+    this.rules = props.validateRules || [];
+    this.rules = this.rules.concat([{ validator: this.customValidation }]);
+  }
+
+  // Function for custom validation, this will help to add any validation to the textfield
+  customValidation = (rule: any, value: any, callback: any) => {
+    const { validateRules } = this.props;
+
+    if (validateRules) {
+      validateRules.forEach((item: any) => {
+        if (item.minRange || item.maxRange) {
+          this.rangeValidation(item, value, callback);
+        } else {
+          callback();
+        }
+      });
+    }
+  }
+
+  // This is validation for range field
+  rangeValidation = (validationRule: any, value: any, callback: any) => {
+    if (validationRule.minRange !== undefined && value < validationRule.minRange) {
+      callback(validationRule.message);
+    } else if (validationRule.maxRange !== undefined && value > validationRule.maxRange) {
+      callback(validationRule.message);
+    }
+
+    callback();
   }
 
   render() {
@@ -31,22 +61,24 @@ class ValidatedTextFieldComponent extends React.PureComponent<Props, {}> {
     }
 
     const {
-        validateTrigger,
-        validateRules,
-        form,
-        onChange,
-        onBlur,
-        onInput,
-        ...otherProps
+      validateTrigger,
+      validateRules,
+      form,
+      onChange,
+      onBlur,
+      onInput,
+      ...otherProps
     } = this.props;
+
     const initialValue = otherProps.value;
+
     const { ...otherFieldProps } = form.getFieldProps(this.props.name, {
       initialValue,
       onChange,
       onBlur,
       onInput,
       validateTrigger,
-      rules: validateRules,
+      rules: this.rules,
     });
 
     return (

@@ -46,7 +46,12 @@ export interface TypeValidationRule {
   message: string;
 }
 
-export type ValidationRule = RequiredValidationRule | TypeValidationRule;
+export interface CustomValidationRule {
+  [key: string]: any;
+  message: string;
+}
+
+export type ValidationRule = CustomValidationRule | RequiredValidationRule | TypeValidationRule;
 
 export enum Keys {
   BACKSPACE = 8,

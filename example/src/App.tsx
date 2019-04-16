@@ -1599,7 +1599,8 @@ class App extends React.Component<{}, State> {
                 name="App Name"
                 validateTrigger={['onBlur']}
                 validateRules={[
-                  { required: true, message: 'App Name is required.' },
+                  { minRange: 2, maxRange: 32760, message: 'Range is between 2 & 32760' },
+                  { required: true, message: 'App Description is required' },
                 ]}
               />
               <ValidatedTextField
