@@ -25,7 +25,7 @@ class ValidatedTextFieldComponent extends React.PureComponent<Props, {}> {
   constructor(props: Props) {
     super(props);
 
-    this.rules = props.validateRules;
+    this.rules = props.validateRules || [];
     this.rules = this.rules.concat([{ validator: this.customValidation }]);
   }
 
