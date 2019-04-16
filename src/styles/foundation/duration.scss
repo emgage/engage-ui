@@ -6,7 +6,10 @@ $duration-data: (
   slow: $unit * 3,
   slower: $unit * 4,
   slowest: $unit * 5,
-);
+  fastspin: $unit * 5,
+  basespin: $unit * 10,
+  slowspin: $unit * 13,
+  );
 
 /// Returns the duration value for a given variant.
 ///

@@ -28,7 +28,7 @@ export interface Props {
   theme?: any;
   // To apply custom styling.
   componentStyle?: React.CSSProperties;
-    // Custom class
+  // Set a custom class
   componentClass?: string;
   // Call callbackParent method on outside area click 
   onClick?(returnValue: number): void;

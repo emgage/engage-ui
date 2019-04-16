@@ -1,17 +1,30 @@
+$small-size: rem(20px);
+
 .loadingContainer {
   line-height: 10px;
 }
 .loading {
     display: inline-block;
-    animation: spin 1s infinite steps(8);
-    //animation: spin 2s infinite linear;
+    // animation: step 1s infinite steps(8);
+    animation: spin duration(slowest) linear infinite;
 }
 
-@keyframes spin {
+@keyframes step {
   0% {
     transform: rotate(0deg);
   }
   100% {
     transform: rotate(359deg);
   }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@mixin spinnerSize($size) {
+  height: $size;
+  width: $size;
 }

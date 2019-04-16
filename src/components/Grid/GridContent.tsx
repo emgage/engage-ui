@@ -11,7 +11,7 @@ export interface Props {
   children?: React.ReactNode;
   // Custom style
   componentStyle?: any;
-  // Custom class
+  // Set a custom class
   componentClass?: string;
   // Prop to select the grid type, currently there are two block & list
   gridType?: GridType;

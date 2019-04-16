@@ -17,6 +17,7 @@ export interface Props {
   labelHidden?: boolean;
   // Checkbox is selected or not
   checked?: boolean;
+  // Set a custom class
   componentClass?: string;
   // checkbox is indeterminante or not
   indeterminante?: boolean;

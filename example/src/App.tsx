@@ -762,7 +762,8 @@ class App extends React.Component<{}, State> {
         <Badge children={'Badge'} progress={'complete'} />
         <Badge children={'Publishing'} status={'info'} working />
         <Badge status={'info'} working >Publishing</Badge>
-        <Badge componentStyle={{ padding: '0.5rem 1rem' }}><Loading iconStyle={{ width: '1.1rem', height: '1.1rem' }} componentStyle={{ display: 'inline-block' }} /> Badge</Badge>
+        <Badge><Spinner componentSize="small" componentStyle={{ width: '1.1rem', height: '1.1rem', marginLeft: '-.5rem' }} /> Badge</Badge>
+
         <div>
         </div>
         <div>
@@ -1346,7 +1347,7 @@ class App extends React.Component<{}, State> {
           <TextField
             componentId="TestName"
             label="Text Counter"
-            placeholder="test-placeholder"
+            // placeholder="test-placeholder"
             value={this.state.appTextCounter1}
             // value="Value"
             helpText="Helper Text"
@@ -1355,6 +1356,7 @@ class App extends React.Component<{}, State> {
             minLength={5}
             onChange={this.valueUpdater('appTextCounter1')}
             // disabled
+            loading
           />
           <TextField
             componentId="TestName1"
@@ -1565,10 +1567,9 @@ class App extends React.Component<{}, State> {
             ]}
             selected={['hidden']}
           />
-          <Loading />
           <Picker
             chipComponent={Chip}
-            filterPlaceHolder="!People!!"
+            filterPlaceHolder="People"
             searchResultComponent={Chip}
             source={pickerdata}
             maxSelectedItems={5}
@@ -1680,7 +1681,6 @@ class App extends React.Component<{}, State> {
           </ValidatedForm>
 
           <Heading>Connected Text Field</Heading>
-          <Loading />
           <TextField
             label="Connected Text Field"
             type="text"
@@ -1945,9 +1945,15 @@ class App extends React.Component<{}, State> {
           Create Role
       </Button>
         <br />
-        <Spinner componentColor="inkLightest" componentSize="small" />
+        <Spinner accessibilityLabel="Loading" />
+        <Spinner componentColor="reverse" />
+        <Spinner componentColor="disabled" />
         <br />
-        <Spinner componentStyle={{ height: '100px' }} />
+        <Spinner componentSize="small" />
+        <Spinner componentSize="small" componentColor="reverse" />
+        <Spinner componentSize="small" componentColor="disabled" />
+        <br />
+        <Loading />
         <br />
         <ButtonGroup segmented>
           <Button primary>Save Draft</Button>

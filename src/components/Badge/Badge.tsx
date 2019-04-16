@@ -22,6 +22,7 @@ export interface Props {
   working?: boolean;
   // To apply custom styling.
   componentStyle?: React.CSSProperties;
+  // Set a custom class
   componentClass?: string;
   // Theme to be injected via css-themr
   theme?: any;

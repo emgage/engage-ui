@@ -1,6 +1,5 @@
 $backdrop-horizontal-spacing: spacing(tight) * 1.5;
 $addon-horizontal-spacing: 0.25em;
-$spinner-icon-size: rem(12px);
 
 $stacking-order: (
   contents: 20,
@@ -116,22 +115,6 @@ $stacking-order: (
   &::placeholder {
     color: color(ink, lightest);
   }
-
-  // These properties are used to remove the default "spinner" controls
-  // for number fields, since we add our own, custom versions instead.
-  &[type='number'] {
-    -webkit-appearance: textfield;
-    -moz-appearance: textfield;
-    appearance: textfield;
-
-    &::-webkit-outer-spin-button,
-    &::-webkit-inner-spin-button {
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      appearance: none;
-      margin: 0;
-    }
-  }
 }
 
 .backdrop {
@@ -160,34 +143,6 @@ $stacking-order: (
   border-radius: border-radius();
   will-change: box-shadow;
   transition: box-shadow duration() easing();
-}
-
-
-
-
-
-.spinner {
-  z-index: z-index(contents, $stacking-order);
-  display: flex;
-  align-self: stretch;
-  flex-direction: column;
-  width: rem(22px);
-  margin: 1px calc(-#{$backdrop-horizontal-spacing} + 1px) 1px $backdrop-horizontal-spacing;
-  color: color(ink);
-}
-
-.spinnerIcon {
-  height: $spinner-icon-size;
-  width: $spinner-icon-size;
-}
-
-.resizer {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 0;
-  visibility: hidden;
 }
 
 .dummyinput {

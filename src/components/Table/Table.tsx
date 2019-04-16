@@ -27,7 +27,7 @@ export interface Props {
   column: ColumnConfig[];
   // Custom styling
   componentStyle?: any;
-  // New class passed from parent
+  // Set a custom class
   componentClass?: string;
   // Get the data & use it to populate tds
   data?: any;

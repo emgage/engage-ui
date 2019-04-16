@@ -49,6 +49,7 @@ export { default as refresh } from './refresh.svg';
 export { default as risk } from './risk.svg';
 export { default as search } from './search.svg';
 export { default as spinner } from './spinner.svg';
+export { default as spinnerDots } from './spinner-dots.svg';
 export { default as spinnerLarge } from './spinner-large.svg';
 export { default as spinnerSmall } from './spinner-small.svg';
 export { default as tachometer } from './tachometer.svg';

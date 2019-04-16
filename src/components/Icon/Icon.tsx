@@ -55,6 +55,7 @@ import {
   risk,
   search,
   spinner,
+  spinnerDots,
   tachometer,
   triangleDown,
   user,
@@ -135,6 +136,7 @@ export const BUNDLED_ICONS = {
   risk,
   search,
   spinner,
+  spinnerDots,
   tachometer,
   triangleDown,
   user,
@@ -164,6 +166,7 @@ export interface Props {
   accessibilityLabel?: string;
   // To provide styling.
   componentStyle?: React.CSSProperties;
+  // Set a custom class
   componentClass?: string;
   // Theme to be injected via css-themr.
   theme?: any;

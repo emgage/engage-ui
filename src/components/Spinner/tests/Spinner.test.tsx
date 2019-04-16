@@ -60,15 +60,15 @@ describe('<Spinner />', () => {
         expect(spinnerWrapper.prop('componentColor')).toBeFalsy();
       });
     });
-    describe('when set to white', () => {
+    describe('when set to reverse', () => {
       const spinnerWrapper = mount(
-        <Spinner componentColor="white" />
+        <Spinner componentColor="reverse" />
       );
       it('Basic Spinner have rendered one span element', () => {
         expect(spinnerWrapper.find('span')).toHaveLength(1);
       });
-      it('Varify color property when it is set to white', () => {
-        expect(spinnerWrapper.prop('componentColor')).toBe('white');
+      it('Varify color property when it is set to reverse', () => {
+        expect(spinnerWrapper.prop('componentColor')).toBe('reverse');
       });
     });
   });
@@ -106,7 +106,7 @@ describe('<Spinner />', () => {
 
   describe('verify all property together', () => {
     const spinnerWrapper = mount(
-      <Spinner componentColor="inkLightest" componentSize="small" accessibilityLabel="loading" />
+      <Spinner componentColor="disabled" componentSize="small" accessibilityLabel="loading" />
     );
     it('varify size property when it set to small', () => {
       expect(spinnerWrapper.prop('componentSize')).toBe('small');
@@ -114,8 +114,8 @@ describe('<Spinner />', () => {
     it('Basic Spinner have rendered one span element', () => {
       expect(spinnerWrapper.find('span')).toHaveLength(1);
     });
-    it('Varify color property when it is set to inkLightest', () => {
-      expect(spinnerWrapper.prop('componentColor')).toBe('inkLightest');
+    it('Varify color property when it is set to disabled', () => {
+      expect(spinnerWrapper.prop('componentColor')).toBe('disabled');
     });
     it('Varify accessibilityLabel property when it is set', () => {
       expect(spinnerWrapper.prop('accessibilityLabel')).toBe('loading');

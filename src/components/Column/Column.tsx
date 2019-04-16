@@ -63,6 +63,7 @@ export interface Props {
   extraLarge?: ResponsiveWidth;
   // Set the style via css externally
   componentStyle?: React.CSSProperties;
+  // Set a custom class
   componentClass?: string;
   // Theme to be injected via css-themr
   theme?: any;
