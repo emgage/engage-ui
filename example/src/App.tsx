@@ -639,15 +639,47 @@ class App extends React.Component<{}, State> {
       },
     ];
 
-    /* 
-      Filtering table data
-      mode: Mode of filteration, right now we have only one which is search
-      search: If mode is search then it holds search config
-        event: When the search should fire, on click or on input
-        field: Name of field by which search should happen
-        placeholder: Filed placeholder
-        title: Title of field
-    */
+    const columnConfig1: TableColumnConfig[] = [
+      {
+        label: '',
+        key: 'rowAction',
+        className: '',
+        sort: false,
+        style: { width: '50px' },
+      },
+      {
+        label: 'Name',
+        key: 'name',
+        className: '',
+        sort: true,
+        style: { width: '80px' }
+      }, {
+        label: 'Description',
+        key: 'description',
+        style: { width: '250px' },
+      }, {
+        label: 'Status',
+        key: 'status',
+        sort: true,
+        sortBy: 'itemName',
+        style: { width: '100px' },
+        injectBody: (value: any) => <Badge status={value.status.itemID === 1 ? 'success' : 'warning'}>{value.status.itemName}</Badge>,
+      }, {
+        label: 'Type',
+        key: 'type',
+      },
+    ];
+
+
+      /*
+        Filtering table data
+        mode: Mode of filteration, right now we have only one which is search
+        search: If mode is search then it holds search config
+          event: When the search should fire, on click or on input
+          field: Name of field by which search should happen
+          placeholder: Filed placeholder
+          title: Title of field
+      */
 
     const rowActionConfig = [
       {
@@ -1048,6 +1080,20 @@ class App extends React.Component<{}, State> {
             isChildParentConfigSame
             selectRowCallback={(val: any) => this.setState({ bulkAction: { selectedRow: val } })}
             bordered highlight sorting>
+              Loading
+            </Table>
+            <Table
+              data={tableData}
+              column={columnConfig1}
+              filterData={this.state.filterConfig}
+              defaultSortField="name"
+              defaultSortOrder="asc"
+              rowAction={rowActionConfig}
+              rowActionLeft
+              selectCallbackValue="id"
+              isChildParentConfigSame
+              selectRowCallback={(val: any) => this.setState({ bulkAction: { selectedRow: val } })}
+              bordered highlight sorting>
               Loading
             </Table>
         </div>

@@ -84,6 +84,8 @@ export interface Props {
   // Set greyed background for odd rows
   striped?: boolean;
   theme?: any;
+  // Put more action button as first column
+  rowActionLeft?: boolean;
 }
 
 export interface State {
@@ -221,7 +223,7 @@ class Table extends React.Component<Props, State> {
   // Render the thead with th & contain specific header label
   // Used certain flags which will help to add sorting for any specific fields
   renderHeader = () => {
-    const { column, sorting, rowAction } = this.props;
+    const { column, sorting, rowAction, rowActionLeft } = this.props;
     const { field, order } = this.state.sort;
 
     return (
@@ -251,7 +253,7 @@ class Table extends React.Component<Props, State> {
               );
             })
           }
-          { rowAction ? <TableHead key="headRowAction" /> : '' }
+          { rowAction && !rowActionLeft ? <TableHead key="headRowAction" /> : '' }
         </TableRow>
       </TableHeader>
     );
@@ -315,7 +317,7 @@ class Table extends React.Component<Props, State> {
 
   // Render the main table row
   renderTbodyRows = (item: any, index: number | string) => {
-    const { column, expandingRowId = [], hideExpandedIcon, rowAction, theme } = this.props;
+    const { column, expandingRowId = [], hideExpandedIcon, rowAction, theme, rowActionLeft } = this.props;
     const { nestedChildData } = this.state;
 
     return (
@@ -335,6 +337,7 @@ class Table extends React.Component<Props, State> {
                   Here injectBody helps to inject any custom component to td,
                   we also return the specifc value, which then can be used in injected component
                 */}
+                { colItem.key === 'rowAction' ? <RowAction actionConfig={rowAction} data={item} rowActionLeft /> : '' }
                 { renderCheckbox ? this.renderCheckColumn(item, false) : ''}
                 {colItem.injectBody ? colItem.injectBody(item) : renderCheckbox ? <span style={{ paddingLeft: '16px' }}>{item[colItem.key]}</span> : <span className={theme.tableDataWrap}>{item[colItem.key]}</span> }
               </TableData>
@@ -342,7 +345,7 @@ class Table extends React.Component<Props, State> {
           })
         }
 
-        { rowAction ? <RowAction actionConfig={rowAction} data={item} /> : '' }
+        { rowAction && !rowActionLeft ? <RowAction actionConfig={rowAction} data={item} /> : '' }
       </TableRow>
     );
   }

@@ -27,6 +27,7 @@ export interface Props {
   // Individual row action, if available add it in last of the column
   actionConfig: any;
   theme?: any;
+  rowActionLeft?: boolean;
 }
 
 export interface State {
@@ -74,7 +75,7 @@ class RowAction extends React.Component<Props, State> {
   }
 
   render () {
-    const { actionConfig, data } = this.props;
+    const { actionConfig, data, rowActionLeft } = this.props;
     const validActionConfigs = this.getActions(actionConfig, data);
     return (
       <TableData>
@@ -88,7 +89,7 @@ class RowAction extends React.Component<Props, State> {
           returnValue={data.id}
           closeOnClickOutside
           direction="down"
-          preferredAlignment="right"
+          preferredAlignment={ rowActionLeft ? 'left' : 'right' }
         />
       </TableData>
     );
