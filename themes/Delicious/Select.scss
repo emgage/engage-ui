@@ -1,20 +1,3 @@
-@import 'foundation/borders';
-@import 'foundation/border-radius';
-@import 'foundation/colors';
-@import 'foundation/spacing';
-@import 'foundation/shadows';
-@import 'foundation/utilities';
-@import 'foundation/z-index';
-@import 'shared/controls';
-@import 'shared/icons';
-@import 'shared/typography';
-
-$stacking-order: (
-  backdrop: 10,
-  input: 20,
-  icon: 30
-);
-
 $icon-size: rem(16px);
 $input-horizontal-padding: spacing(tight) * 1.5;
 
@@ -73,7 +56,6 @@ $input-horizontal-padding: spacing(tight) * 1.5;
 .input {
   @include text-style-input;
   color: theme-color(m-grey, 900);
-  z-index: z-index(input, $stacking-order);
   min-height: control-height();
   padding: control-vertical-padding() ($input-horizontal-padding + $icon-size) control-vertical-padding() $input-horizontal-padding;
   transition: 0.3s all ease;

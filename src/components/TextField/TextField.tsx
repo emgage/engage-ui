@@ -165,7 +165,8 @@ class TextField extends React.PureComponent<Props, State> {
       readOnly && theme.readOnly,
       errors && theme.error,
       multiline && theme.multiline,
-      resizable && theme.resizable
+      resizable && theme.resizable,
+      loading && theme.loading
     );
 
     const prefixMarkup = prefix

@@ -1393,7 +1393,7 @@ class App extends React.Component<{}, State> {
           <TextField
             componentId="TestName"
             label="Text Counter"
-            // placeholder="test-placeholder"
+            placeholder="test-placeholder"
             value={this.state.appTextCounter1}
             // value="Value"
             helpText="Helper Text"
@@ -1417,18 +1417,20 @@ class App extends React.Component<{}, State> {
             resizable
             onChange={this.valueUpdater('appTextCounter')}
             disabled
+            loading
           />
           <Select
             componentId="appCity1"
             name="Select city 2"
             label="Label"
-            options={[{ value: '', label: '' },{ value: 'pasadena', label: 'Pasadena' }, { value: 'altadena', label: 'Altadena' }]}
+            // options={[{ value: '', label: '' },{ value: 'pasadena', label: 'Pasadena' }, { value: 'altadena', label: 'Altadena' }]}
             value={this.state.appCity1}
             // value="Value"
             onChange={this.valueUpdater('appCity1')}
             placeholder="Some stuff"
             helpText="Help Text"
             // disabled
+            loading
           />
           </Column>
 
