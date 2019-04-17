@@ -644,7 +644,7 @@ class App extends React.Component<{}, State> {
         label: '',
         key: 'rowAction',
         className: '',
-        sort: true,
+        sort: false,
         style: { width: '50px' },
       },
       {
