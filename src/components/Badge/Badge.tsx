@@ -2,13 +2,13 @@ import * as React from 'react';
 import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 import { classNames, variationName } from '@shopify/react-utilities/styles';
 
-import Icon from '../Icon';
+import Icon, { IconColor, IconList } from '../Icon';
 import VisuallyHidden from '../VisuallyHidden';
 import { BADGE } from '../ThemeIdentifiers';
 
 import * as baseTheme from './Badge.scss';
 
-export type Status = 'success' | 'info' | 'attention' | 'warning';
+export type Status = 'success' | 'info' | 'attention' | 'warning' | 'new' | 'draft' | 'working' | 'published' | 'archive' | 'archived' | 'delete' | 'deleted' | 'locked';
 export type Progress = 'incomplete' | 'partiallyComplete' | 'complete';
 
 export interface Props {
@@ -20,6 +20,12 @@ export interface Props {
   progress?: Progress;
   // Show the working status of badge using spinning indicator.
   working?: boolean;
+  // Add an icon to the badge.
+  icon?: boolean;
+  // Component can show any icon by passing the source
+  iconSource?: keyof typeof IconList;
+  // Change the icon color
+  iconColor?: IconColor;
   // To apply custom styling.
   componentStyle?: React.CSSProperties;
   // Set a custom class
@@ -39,9 +45,18 @@ const STATUS_LABELS = {
   success: 'Success',
   warning: 'Warning',
   attention: 'Attention',
+  new: 'New',
+  draft: 'Draft',
+  working: 'Working',
+  published: 'Published',
+  archive: 'Archive',
+  archived: 'Archived',
+  delete: 'Delete',
+  deleted: 'Deleted',
+  locked: 'Locked',
 };
 
-const badge = ({ children, status, progress, working, theme, componentClass = '', componentStyle }: Props) => {
+const badge = ({ children, status, progress, working, theme, icon, iconSource = 'lock', iconColor = 'inkLighter', componentClass = '', componentStyle }: Props) => {
   const className = classNames(
     componentClass,
     theme.badge,
@@ -61,6 +76,14 @@ const badge = ({ children, status, progress, working, theme, componentClass = ''
     )
     : null;
 
+  const iconMarkup = icon
+    ? (
+    <span className={theme.icon}>
+      <Icon componentColor={iconColor} source={iconSource} />
+    </span>
+  )
+  : null;
+
   const workingMarkup = working
   ? (
     <span className={theme.working}>
@@ -74,6 +97,7 @@ const badge = ({ children, status, progress, working, theme, componentClass = ''
       {statusLabelMarkup}
       {workingMarkup}
       {pipMarkup}
+      {iconMarkup}
       {children}
     </span>
   );

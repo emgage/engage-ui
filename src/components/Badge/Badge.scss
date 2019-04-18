@@ -9,7 +9,10 @@ $pip-size: rem(10px);
 $pip-spacing: ($height - $pip-size) / 2;
 
 $spinner-size: rem(14px);
-$spinner-spacing: ($height - $spinner-size) / 2;
+$spinner-spacing: ($height - $spinner-size - rem(4px)) / 2;
+
+$icon-size: rem(14px);
+$icon-spacing: ($height - $icon-size - rem(4px)) / 2;
 
 @mixin pip-color($color) {
   .pip {
@@ -20,33 +23,91 @@ $spinner-spacing: ($height - $spinner-size) / 2;
 .badge {
   @include pip-color(color(ink, lightest));
   display: inline-block;
-  padding: 0 $horizontal-padding;
+  padding: 0 ($horizontal-padding - rem(2px));
   background-color: color(sky);
-  border: rem(2px) solid color(white);
+  border: rem(2px) solid color(sky);
   border-radius: $height;
   font-size: rem(13px);
-  line-height: $height;
+  line-height: ($height - rem(4px));
   color: color(ink);
 }
 
 .statusSuccess {
   @include pip-color(color(green, dark));
   background-color: color(green, light);
+  border-color: color(green, light);
 }
 
 .statusInfo {
   @include pip-color(color(blue, dark));
   background-color: color(blue, light);
+  border-color: color(blue, light);
 }
 
 .statusAttention {
   @include pip-color(color(yellow, dark));
   background-color: color(yellow, light);
+  border-color: color(yellow, light);
 }
 
 .statusWarning {
   @include pip-color(color(orange, dark));
   background-color: color(orange, light);
+  border-color: color(orange, light);
+}
+
+.statusNew {
+  @include pip-color(color(yellow, light));
+  background-color: color(white);
+  border-color: color(yellow, light);
+}
+
+.statusDraft {
+  @include pip-color(color(yellow, dark));
+  background-color: color(yellow, light);
+  border-color: color(yellow, light);
+}
+
+.statusWorking {
+  @include pip-color(color(blue, dark));
+  background-color: color(blue, light);
+  border-color: color(blue, light);
+}
+
+.statusPublished {
+  @include pip-color(color(green, dark));
+  background-color: color(green, light);
+  border-color: color(green, light);
+}
+
+.statusArchive {
+  @include pip-color(color(ink, lightest));
+  background-color: color(white);
+  border-color: color(sky);
+}
+
+.statusArchived {
+  @include pip-color(color(ink, lightest));
+  background-color: color(sky);
+  border-color: color(sky);
+}
+
+.statusDelete {
+  @include pip-color(color(red, dark));
+  background-color: color(white);
+  border-color: color(red, light);
+}
+
+.statusDeleted {
+  @include pip-color(color(red, dark));
+  background-color: color(red, light);
+  border-color: color(red, light);
+}
+
+.statusLocked {
+  @include pip-color(color(ink, lightest));
+  background-color: color(sky, light);
+  border-color: color(sky, light);
 }
 
 .progressIncomplete .pip {
@@ -70,12 +131,20 @@ $spinner-spacing: ($height - $spinner-size) / 2;
   border-radius: 50%;
 }
 
+.icon {
+  height: $icon-size;
+  width: $icon-size;
+  display: inline-block;
+  vertical-align: top;
+  margin: $icon-spacing $icon-spacing 0 ($icon-spacing - $horizontal-padding + rem(2px));
+}
+
 .working {
   height: $spinner-size;
   width: $spinner-size;
   display: inline-block;
   vertical-align: top;
-  margin: $spinner-spacing $spinner-spacing 0 ($spinner-spacing - $horizontal-padding);
+  margin: $spinner-spacing $spinner-spacing 0 ($spinner-spacing - $horizontal-padding + rem(2px));
   animation: spin duration(basespin) linear infinite;
 }
 
