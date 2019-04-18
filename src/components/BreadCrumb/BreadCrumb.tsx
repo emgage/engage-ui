@@ -50,7 +50,7 @@ class BreadCrumb extends React.Component<Props, {}> {
           <FlexBox>
             <span>{child.name}</span>
 
-            { (index + 1) < source.length ? <Icon componentColor="blackLight" source="chevronRight" /> : null}
+            { (index + 1) < source.length ? <Icon componentColor="inkLightest" source="chevronRight" /> : null}
           </FlexBox>
         </li>
       );

@@ -789,6 +789,20 @@ class App extends React.Component<{}, State> {
         <Badge children={'Badge'} status={'info'} />
         <Badge children={'Badge'} status={'attention'} />
         <Badge children={'Badge'} status={'warning'} />
+
+        <Badge children={'New'} status={'new'} />
+        <Badge children={'Draft'} status={'draft'} />
+        <Badge children={'Published'} status={'published'} />
+        <Badge children={'Working'} status={'working'} working />
+        <Badge children={'Archive'} status={'archive'} />
+        <Badge children={'Archived'} status={'archived'} />
+        <Badge children={'Delete'} status={'delete'} />
+        <Badge children={'Deleted'} status={'deleted'} />
+        <Badge status={'locked'} icon >Locked</Badge>
+
+        <Badge children={''} icon />
+        <Badge children={'Draft'} status={'draft'} icon iconSource = {'user'} iconColor = {'orange'} />
+
         <Badge children={'Badge'} progress={'incomplete'} />
         <Badge children={'Badge'} progress={'partiallyComplete'} />
         <Badge children={'Badge'} progress={'complete'} />

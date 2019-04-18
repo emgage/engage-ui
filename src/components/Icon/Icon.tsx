@@ -74,7 +74,7 @@ import * as baseTheme from './Icon.scss';
 
 export type Color = (
   'white' |
-  'black' | 'blackLight' |
+  'black' |
   'skyLighter' | 'skyLight' | 'sky' | 'skyDark' |
   'inkLightest' | 'inkLighter' | 'inkLight' | 'ink' |
   'blueLighter' | 'blueLight' | 'blue' | 'blueDark' | 'blueDarker' |

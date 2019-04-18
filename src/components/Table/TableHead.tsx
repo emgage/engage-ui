@@ -86,8 +86,8 @@ class TableHead extends React.Component<Props, never> {
                     order === 'asc' ? <Icon componentClass={theme.iconStyle} source="caretUp" /> : <Icon componentClass={theme.iconStyle} source="caretDown" />
                     :
                     <div>
-                      <Icon componentClass={theme.iconGroupStyle} componentColor="blackLight" source="caretUp" />
-                      <Icon componentClass={theme.iconGroupStyle} componentColor="blackLight" source="caretDown" />
+                      <Icon componentClass={theme.iconGroupStyle} componentColor="inkLightest" source="caretUp" />
+                      <Icon componentClass={theme.iconGroupStyle} componentColor="inkLightest" source="caretDown" />
                     </div>
                 }
               </div>
