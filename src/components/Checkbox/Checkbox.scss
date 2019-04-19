@@ -12,7 +12,7 @@ input[type=checkbox], input[type=radio] {
   padding: 0;
 }
 
-.customControlInput {
+.checkboxCommon {
   position: absolute;
   z-index: -1;
   opacity: 0;
@@ -25,37 +25,50 @@ input[type=checkbox], input[type=radio] {
     }
 
     &:after {
-     content: '\2714\0020';
      box-sizing: border-box;
      background-repeat: no-repeat;
      background-position: 50%;
      background-size: 50% 50%;
      color: #fff;
      padding-left: 2px;
+     top: 0px;
+    }
+  }
+}
+
+.checkboxDisabled {
+  ~label {
+    &:before {
+      border-color: #dfe3e8;
+    }
+  }
+
+  &:checked~label {
+    &:before {
+      color: #919eab;
+      background-color: #f9fafb;
+      border-color: #dfe3e8;
+    }
+
+    &:after {
+     content: '\2714\0020';
+     color: #919eab;
+    }
+  }
+}
+
+.customControlInput {
+  &:checked~label {
+    &:after {
+     content: '\2714\0020';
     }
   }
 }
 
 .customControlInputIndeterminante {
-  position: absolute;
-  z-index: -1;
-  opacity: 0;
-
   &:checked~label {
-    &:before {
-      color: #fff;
-      background-color: #007bff;
-      border-color: #0068d7;
-    }
-
     &:after {
-     content: '\2212';
-     box-sizing: border-box;
-     background-repeat: no-repeat;
-     background-position: 50%;
-     background-size: 50% 50%;
-     color: #fff;
-     padding-left: 2px;
+      content: '\2212';
     }
   }
 }

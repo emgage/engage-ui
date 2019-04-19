@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
+import { classNames } from '@shopify/react-utilities/styles';
 
 import { Error, helpTextID } from '../Choice';
 import FlexBox from '../FlexBox';
@@ -65,12 +66,14 @@ class Checkbox extends React.PureComponent<Props, State> {
   }
 
   handleChange = () => {
-    const { onChange } = this.props;
+    const { disabled, onChange } = this.props;
 
-    this.setState({ checked: !this.state.checked });
+    if (!disabled) {
+      this.setState({ checked: !this.state.checked });
 
-    if (onChange) {
-      onChange(!this.state.checked);
+      if (onChange) {
+        onChange(!this.state.checked);
+      }
     }
   }
 
@@ -81,6 +84,7 @@ class Checkbox extends React.PureComponent<Props, State> {
       componentId = getUniqueID(),
       disabled = false,
       helpText,
+      indeterminante,
       label = '',
       name = getUniqueID(),
       theme,
@@ -91,6 +95,13 @@ class Checkbox extends React.PureComponent<Props, State> {
     if (helpText) {
       describedBy.push(helpTextID(componentId));
     }
+
+    const checkboxClass = classNames(
+      theme.checkboxCommon,
+      disabled && theme.checkboxDisabled,
+      !indeterminante && theme.customControlInput,
+      indeterminante && theme.customControlInputIndeterminante
+    );
 
     const errorMarkup = errors
     ? (
@@ -106,7 +117,7 @@ class Checkbox extends React.PureComponent<Props, State> {
         <div className={theme.customControl} onClick={this.handleChange}>
           <input
             type="checkbox"
-            className={ !this.props.indeterminante ?  theme.customControlInput : theme.customControlInputIndeterminante}
+            className={checkboxClass}
             id={componentId}
             checked={checked}
             disabled={disabled}
