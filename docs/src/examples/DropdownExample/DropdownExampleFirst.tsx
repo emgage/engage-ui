@@ -7,7 +7,7 @@ export interface IProps{
 
 export interface IState {
   active: boolean;
-  anchorEl?: HTMLElement | null;
+  anchorEl?: HTMLElement;
 }
 
 class DropdownExampleFirst extends React.Component<IProps, IState> {

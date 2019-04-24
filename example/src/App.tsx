@@ -115,6 +115,7 @@ interface State {
   AccordionItemClose?: number;
   anchorEl?: HTMLElement;
   anchorEl2?: HTMLElement;
+  popoverAnchorEl?: HTMLElement;
   activeTabId: string;
   nestedChildData: TableNestedData[];
   gridView: GridType;
@@ -122,6 +123,7 @@ interface State {
   processComponentState: number;
   processLength: number;
   callChildCallback: boolean;
+  popoverActiveState: boolean;
 }
 
 class App extends React.Component<{}, State> {
@@ -183,6 +185,7 @@ class App extends React.Component<{}, State> {
       processComponentState: 0,
       processLength: 2,
       callChildCallback: false,
+      popoverActiveState: false,
     };
 
     this.popovertoggle = this.popovertoggle.bind(this);
@@ -811,6 +814,13 @@ class App extends React.Component<{}, State> {
         <Badge><Spinner componentSize="small" componentStyle={{ width: '1.1rem', height: '1.1rem', marginLeft: '-.5rem' }} /> Badge</Badge>
 
         <div>
+          <Button onClick={(e: any) => this.newPopoverUpdate(e)}>Popover</Button>
+          <Popover
+            anchorEl={this.state.popoverAnchorEl}
+            active={this.state.popoverActiveState}
+          >
+            This is popover component
+          </Popover>
         </div>
         <div>
           <TabPanel defaultTabId="tab1" position={'top'} alignment={'center'}>
@@ -1368,7 +1378,7 @@ class App extends React.Component<{}, State> {
           <Heading>Popover</Heading>
           <div style={{ marginLeft: '100px' }}>
             <button onClick={(e: any) => this.popoverUpdateContainer(e)}>Click Popover</button>
-            <Popover active={this.state.popoverActiveContainer} direction="up" closeOnClickOutside toggle={() => this.popoverUpdateContainer} anchorEl = {this.state.anchorEl} onClose={() => console.log('I am close')} onOpen={() => console.log('I am open')} callbackParent={newState => this.onChildChanged(newState)}>
+            <Popover active={this.state.popoverActiveContainer} direction="up" closeOnClickOutside toggle={() => this.popoverUpdateContainer} anchorEl={this.state.anchorEl} onClose={() => console.log('I am close')} onOpen={() => console.log('I am open')} callbackParent={newState => this.onChildChanged(newState)}>
               I am popover <Button>Hello popover</Button>
             </Popover>
           </div>
@@ -2131,6 +2141,13 @@ class App extends React.Component<{}, State> {
 
   handleChange(value: string) {
     return (value: any) => 'this.setState({ [value]: value })';
+  }
+
+  newPopoverUpdate(e: any) {
+    this.setState({
+      popoverActive : !this.state.popoverActiveState,
+      popoverAnchorEl: e ? e.currentTarget as HTMLElement : this.state.popoverAnchorEl
+    });
   }
 
   popoverUpdate(e: any) {

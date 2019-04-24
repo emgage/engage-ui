@@ -1,358 +1,138 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
+import { layeredComponent } from '@shopify/react-utilities/components';
 import { autobind } from '@shopify/javascript-utilities/decorators';
-import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
+import { noop, createUniqueIDFactory } from '@shopify/javascript-utilities/other';
 import { findFirstFocusableNode } from '@shopify/javascript-utilities/focus';
-import { addEventListener, removeEventListener } from '@shopify/javascript-utilities/events';
-import { classNames } from '@shopify/react-utilities/styles';
-import { closest } from '@shopify/javascript-utilities/dom';
-import { layer } from '../shared';
-import { POPOVER } from '../ThemeIdentifiers';
+
+import { PreferredPosition } from '../PositionedOverlay';
+import { TOOLTIP } from '../ThemeIdentifiers';
+
+import PopoverOverlay from './PopoverOverlay';
 import * as baseTheme from './Popover.scss';
-import { Keys } from '../../types';
-import { findDOMNode } from 'react-dom';
-import { getRectForNode } from '@shopify/javascript-utilities/geometry';
-import { forNode as ScrollableForNode } from '../Scrollable';
-import {
-  calculateVerticalPosition,
-  calculateHorizontalPosition,
-  PreferredAlignment,
-  PreferredPosition,
-} from '../PositionedOverlay/math';
 
-// DEfine type for direction to render popover
-export type Direction = 'up' | 'down' | 'left' | 'right' | 'full';
-
-// All prototypes type
 export interface Props {
-  // Set children to display Popover with header and content elements
-  children?:React.ReactNode;
-  // Set disabled
-  disabled?:boolean;
-  // Set direction to be applied. Available options: up | down | left | right.
-  direction?:Direction;
-  preferredAlignment?: PreferredAlignment;
-  // Define overlay position 
+  // The children that activate the popover.
+  children?: React.ReactNode;
+  // The content to display within the popover.
+  content: string;
+  // Toggle whether the popover is visible.
+  active?: boolean;
+  // Display popover with a light background.
+  light?: boolean;
+  // The direction the popover tries to display Availabel options: above | below | mostSpace
   preferredPosition?: PreferredPosition;
-  // Set active to true for popover to display, else false
-  active: boolean;
-  // Set wrapper element
-  activatorWrapper?: string;
-  // Set to true if you want to close popover when click anywhere in body
-  closeOnClickOutside?: boolean;
-  // Set anchor element or keep it null
-  anchorEl?: HTMLElement | null;
-  fixed?: boolean;
-  // To add any inline style to Popover
-  style? : any;
-  // Call close method on click 
-  onClose?(): void;
-  // Call open method on click 
-  onOpen?(): void;
-  // Call toggle method on click 
-  toggle?(): void;
-  // Call callbackParent method on outside area click 
-  callbackParent?(status:boolean) :void;
-  // Used for Custom top Length
-  isTopSizeDynamic?: boolean;
+  // Theme to be injected via css-themr.
+  theme?: any;
 }
 
 export interface State {
   active: boolean;
-  renderCount: number;
 }
-// Popover component, in here wrap all other required components or DOM for the Popover
+
+const getUniqueID = createUniqueIDFactory('PopoverContent');
+
+@layeredComponent({ idPrefix: 'Popover' })
 class Popover extends React.PureComponent<Props, State> {
-  private getUniqueID = createUniqueIDFactory('Popover');
-  private activatorContainer: HTMLElement | null;
-  private id = this.getUniqueID();
-  private popoverEle: HTMLElement;
-  private popoverOffset = { height: 0, width: 0 };
-
-  static defaultProps = {
-    closeOnClickOutside: true,
+  state: State = {
+    active: false,
   };
-
-  private scrollableContainer: HTMLElement;
-
-  constructor(props: Props) {
-    super(props);
-    this.state = {
-      // As per props value set the popover to be active
-      active: this.props.active,
-      renderCount: 0
-    };
-  }
-
-  componentWillReceiveProps(newProps: Props) {
-    const { active: newActive } = newProps;
-    const { active } = this.props;
-
-    if (newActive !== active) {
-      this.setState({ active: newActive });
-    }
-    if (active && !newProps.active && newProps.onClose) {
-      newProps.onClose();
-    } else if (!active && newProps.active && newProps.onOpen) {
-      newProps.onOpen();
-    }
-  }
+  private id = getUniqueID();
+  private activatorNode: HTMLElement | null;
+  private activatorContainer: HTMLElement | null;
 
   componentDidMount() {
-    // Set accessibility attributes for Popover
     this.setAccessibilityAttributes();
-    const element = findDOMNode(this);
-    this.popoverEle.style.display = 'block';
-    this.popoverOffset.height = this.popoverEle.offsetHeight;
-    this.popoverOffset.width = this.popoverEle.offsetWidth;
-    this.popoverEle.style.display = '';
-
-    if (element !== null) {
-      addEventListener(element, 'keyup', this.handleKeyEvent);
-    }
-
-    if (this.props.closeOnClickOutside) {
-      addEventListener(document, 'click', this.handleMouseEvent);
-    }
   }
 
   componentDidUpdate() {
-     // Set accessibility attributes for Popover
     this.setAccessibilityAttributes();
   }
 
-  componentWillUnmount() {
-    // Find domnode and remove event listeners attached to it
-    const element = findDOMNode(this);
-    if (element != null) {
-      removeEventListener(element, 'keyup', this.handleKeyEvent);
-    }
+  renderLayer() {
+    const { id, activatorNode } = this;
+    if (activatorNode == null) { return null; }
 
-    if (this.props.closeOnClickOutside) {
-      removeEventListener(document, 'click', this.handleMouseEvent);
-    }
+    const {
+      preferredPosition = 'below',
+      active,
+      light,
+      content,
+      theme,
+    } = this.props;
 
-    if (!!this.scrollableContainer) {
-      removeEventListener(this.scrollableContainer, 'scroll', this.handleMeasurement);
-    }
-
-    removeEventListener(window, 'resize', this.handleMeasurement);
+    return (
+      <PopoverOverlay
+        componentId={id}
+        preferredPosition={preferredPosition}
+        activator={activatorNode}
+        active={active || this.state.active}
+        onClose={noop}
+        light={light}
+      >
+         <div className={theme.label}>
+          {content}
+         </div>
+      </PopoverOverlay>
+    );
   }
 
   render() {
-    const {
-      activatorWrapper: WRAPPERCOMPONENT = 'div',
-      children,
-      direction,
-      anchorEl,
-      disabled,
-      style,
-      preferredAlignment,
-      isTopSizeDynamic,
-    } = this.props;
-
-    const { active } = this.state;
-
-    // Styling for popover
-    const popoverClassName = classNames(
-      direction === 'down' ? baseTheme.popdown
-      : direction === 'up' ? baseTheme.popup
-      : direction === 'left' ? baseTheme.popleft
-      : baseTheme.popright,
-      preferredAlignment === 'left' ? baseTheme.alignLeft
-      : preferredAlignment === 'right' ? baseTheme.alignRight
-      : baseTheme.alignCenter,
-      !disabled && active && baseTheme.active
-    );
-
-    // Styling for popover container
-    const popoverContainerClassName = classNames(
-      baseTheme.popoverContainer,
-      !disabled && active && baseTheme.active
-    );
-
-    const activatorComp = anchorEl;
-    let activatorRect: ClientRect | DOMRect;
-    let popoverPosition: any = {};
-
-    if (activatorComp != null) {
-      if (this.props.anchorEl) {
-        this.scrollableContainer = ScrollableForNode(this.props.anchorEl);
-        addEventListener(this.scrollableContainer, 'scroll', this.handleMeasurement);
-        addEventListener(window, 'resize', this.handleMeasurement);
-        activatorRect = activatorComp.getBoundingClientRect();
-        popoverPosition = this.handleMeasurement();
-
-        if (direction === 'up') {
-          popoverPosition = { left: activatorRect.left - popoverPosition.left, top: - activatorRect.top + (activatorRect.height) };
-        } else if (direction === 'left') {
-          popoverPosition = { left: - this.popoverOffset.width, top: - activatorRect.height };
-        } else if (direction === 'right') {
-          popoverPosition = { left: activatorRect.width, top: - activatorRect.height };
-        } else if (direction === 'down') {
-          popoverPosition = { left: activatorRect.left - popoverPosition.left, top: isTopSizeDynamic ? (popoverPosition.top - activatorRect.top - (activatorRect.height / 2)) : 8 };
-        } else if (direction === 'full') {
-          popoverPosition = { left: 0, top: 0 };
-        }
-      }
-    }
-
     return (
-        <WRAPPERCOMPONENT ref={this.setActivator}>
-          <div className={popoverClassName} key={this.id}>
-            <div
-              style={style ? { ...style, ...popoverPosition } : popoverPosition }
-              className={popoverContainerClassName}
-              ref={node => this.popoverEle = node as HTMLElement}
-            >
-            {children}
-          </div>
-        </div>
-      </WRAPPERCOMPONENT>
+      <div
+        onFocus={this.handleFocus}
+        onBlur={this.handleBlur}
+        onMouseEnter={this.handleMouseEnter}
+        onMouseLeave={this.handleMouseLeave}
+        ref={this.setActivator}
+      >
+        {this.props.children}
+      </div>
     );
   }
 
-  // set accessibility attributes
-  private setAccessibilityAttributes() {
-    const { id, activatorContainer } = this;
-    if (activatorContainer === null) { return; }
-
-    // This will be used to get element dimention for any element except tooltip, which will be render later.
-    const overlayRect = getRectForNode(this.popoverEle);
-    if (overlayRect.width !== 0 && this.state.renderCount < 1) {
-
-      this.forceUpdate();
-    }
-    const firstFocusable = findFirstFocusableNode(activatorContainer);
-    const focusableActivator = firstFocusable || activatorContainer;
-
-    focusableActivator.tabIndex = 0;
-    focusableActivator.setAttribute('aria-controls', id);
-    focusableActivator.setAttribute('aria-owns', id);
-    focusableActivator.setAttribute('aria-haspopup', 'true');
-    focusableActivator.setAttribute('aria-expanded', String(!this.props.active));
-  }
-
-  // Get activator node i.e. trigger which opened up popover
-  // This node will be used to set accessibility attributes
   @autobind
   private setActivator(node: HTMLElement | null) {
-    if (node === null) {
+    if (node == null) {
+      this.activatorNode = null;
       this.activatorContainer = null;
       return;
     }
+
+    this.activatorNode = node.firstElementChild as HTMLElement;
     this.activatorContainer = node;
   }
 
-  // Key event handler to see if escape is pressed
   @autobind
-  private handleKeyEvent(event: KeyboardEvent) {
-    event.preventDefault();
-    this.setState({ renderCount: 0 });
-    const {
-      closeOnClickOutside,
-      callbackParent,
-    } = this.props;
-
-    const { active } = this.state;
-
-    if (!active) {
-      return;
-    }
-    // Close the popdown on ESC
-    if (event.keyCode === Keys.ESCAPE && closeOnClickOutside) {
-      const newState = !this.state.active;
-      // Update the state
-      this.setState({ active: newState });
-      const callParent = callbackParent;
-      if (callParent) {
-        callParent(newState);
-      }
-    }
+  private handleFocus() {
+    this.setState({ active: true });
   }
 
-  // Mouse event handler to track the click event
   @autobind
-  private handleMouseEvent(event: MouseEvent) {
-    event.preventDefault();
-
-    const {
-      anchorEl,
-      closeOnClickOutside,
-      callbackParent,
-    } = this.props;
-
-    const { active } = this.state;
-    const element = findDOMNode(this);
-
-    if (!active) {
-      return;
-    }
-    this.setState({ renderCount: 0 });
-    // Close the popdown on outside area click
-    if (element !== null && event.currentTarget != null && element !== event.currentTarget && closeOnClickOutside) {
-      const domNode = document.body;
-      const targetNode = event.currentTarget;
-      if ((!domNode || !domNode.contains(targetNode as Node))) {
-        this.setState({ active : true });
-      } else if (event.currentTarget !== anchorEl && !element.contains(event.currentTarget as Node)) {
-        const newState = !this.state.active;
-        // update the state
-        this.setState({ active: !this.state.active });
-        const callParent = callbackParent;
-        if (callParent) {
-          callParent(newState);
-        }
-      }
-    }
+  private handleBlur() {
+    this.setState({ active: false });
   }
 
-  // This function can be used to get measurement of any html element and we can decide where to put popover
   @autobind
-  private handleMeasurement() {
-    const {
-      direction,
-      anchorEl,
-      fixed,
-      preferredAlignment = 'center',
-      preferredPosition = 'below',
-    } = this.props;
+  private handleMouseEnter() {
+    this.setState({ active: true });
+  }
 
-    if (this.state.renderCount < 2) {
-      this.setState({ renderCount: this.state.renderCount + 1 });
-    }
+  @autobind
+  private handleMouseLeave() {
+    this.setState({ active: false });
+  }
 
-    const activatorRect = getRectForNode(anchorEl);
-    const overlayRect = getRectForNode(this.popoverEle);
-    const scrollableContainerRect = getRectForNode(this.scrollableContainer);
-    const overlayMargins = this.popoverEle && this.popoverEle.firstElementChild
-      ? getMarginsForNode(this.popoverEle.firstElementChild as HTMLElement)
-      : { activator: 0, container: 0, horizontal: 0 };
-    const containerRect = getRectForNode(window);
-    const zIndex = anchorEl ? getZIndexForLayerFromNode(anchorEl) + 2 : 2;
+  private setAccessibilityAttributes() {
+    const { activatorContainer, id } = this;
+    if (activatorContainer == null) { return; }
 
-    // Used to get top position of popover
-    const verticalPosition = calculateVerticalPosition(activatorRect, overlayRect, overlayMargins, scrollableContainerRect, containerRect, direction === 'down' ? 'below' : 'above', fixed);
-    // Used to get left or right alignment of popover
-    const horizontalPosition = calculateHorizontalPosition(activatorRect, overlayRect, containerRect, overlayMargins, preferredAlignment, preferredPosition, false);
-    return {  zIndex, top: verticalPosition.top, left: horizontalPosition };
+    const firstFocusable = findFirstFocusableNode(activatorContainer);
+    const accessibilityNode = firstFocusable || activatorContainer;
+
+    accessibilityNode.tabIndex = 0;
+    accessibilityNode.setAttribute('aria-describedby', id);
   }
 }
 
-// Funtion used to 
-function getMarginsForNode(node: HTMLElement) {
-  const styles = window.getComputedStyle(node);
-  return {
-    activator: parseFloat(styles.marginTop || ''),
-    container: parseFloat(styles.marginBottom || ''),
-    horizontal: parseFloat(styles.marginLeft || ''),
-  };
-}
-
-function getZIndexForLayerFromNode(node: HTMLElement) {
-  const layerNode = closest(node, layer.selector) || document.body;
-  const zIndex = parseInt(window.getComputedStyle(layerNode).zIndex || '0', 10);
-  return isNaN(zIndex) ? 0 : zIndex;
-}
-
-export default themr(POPOVER, baseTheme)(Popover) as ThemedComponentClass<Props, {}>;
+export default themr(TOOLTIP, baseTheme)(Popover) as ThemedComponentClass<Props, {}>;
