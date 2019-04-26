@@ -78,7 +78,6 @@ class TextField extends React.PureComponent<Props, State> {
 
     const inputValue = autoSuggest ?
       <AutoSuggestText
-        placeholder={placeholder}
         autoSuggestMethods={autoSuggestMethods}
         stateProps={this.props.stateProps}
       />
