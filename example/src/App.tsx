@@ -122,6 +122,7 @@ interface State {
   processComponentState: number;
   processLength: number;
   callChildCallback: boolean;
+  error: any;
 }
 
 class App extends React.Component<{}, State> {
@@ -183,6 +184,7 @@ class App extends React.Component<{}, State> {
       processComponentState: 0,
       processLength: 2,
       callChildCallback: false,
+      error:{}
     };
 
     this.popovertoggle = this.popovertoggle.bind(this);
@@ -372,6 +374,16 @@ class App extends React.Component<{}, State> {
 
     this.setState({ nestedChildData, callChildCallback: false });
   }
+
+  getErrors = (error:any, name:string) => {
+    this.setState({ error: {  ...this.state.error, [name]: error || [] } });
+  };
+
+  isValidate = (): boolean => {
+    let allErrors: any[] = [];
+    Object.values(this.state.error).forEach(value => allErrors = allErrors.concat(value));
+    return !!allErrors.length;
+  };
 
   render() {
     const Accordionitems : AccordionItemProps[] = [{
@@ -1652,6 +1664,7 @@ class App extends React.Component<{}, State> {
 
             {/* <FormLayout> */}
               <ValidatedTextField
+                getErrors={this.getErrors}
                 componentId="AppName"
                 label="App Name"
                 placeholder=""
@@ -1666,6 +1679,7 @@ class App extends React.Component<{}, State> {
                 ]}
               />
               <ValidatedTextField
+                getErrors={this.getErrors}
                 multiline
                 componentId="appDescription"
                 name="App Description"
@@ -1698,7 +1712,7 @@ class App extends React.Component<{}, State> {
               <div>
                 <FlexBox>
                   <ButtonGroup segmented={true}>
-                    <Button primary={true} submit={true}>
+                    <Button disabled={this.isValidate()} primary={true} submit={true}>
                       Save Draft
                     </Button>
 
@@ -1723,6 +1737,7 @@ class App extends React.Component<{}, State> {
             </div>
 
               <ValidatedCheckbox
+                getErrors={this.getErrors}
                 componentId="appActive"
                 name="appActive"
                 label="Validated Active"
