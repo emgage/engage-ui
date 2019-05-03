@@ -94,6 +94,8 @@ export interface Props {
   onBlur?(e?: React.FormEvent<HTMLElement>): void;
   // Callback when value is inserted in Input.
   onInput?(e?: React.ChangeEvent<HTMLSelectElement>): void;
+  // Function return all errors
+  getErrors?(errors:any, name?:string): void;
   // Check alphanumeric value and convert into capital
   capital?: boolean;
   // Check alphanumeric value
@@ -120,6 +122,11 @@ class TextField extends React.PureComponent<Props, State> {
     this.setState({
       value: nextProps.value
     });
+
+    if (JSON.stringify(this.props.errors) !== JSON.stringify(nextProps.errors)) {
+      const { getErrors } = this.props;
+      getErrors && getErrors(nextProps.errors, nextProps.name);
+    }
   }
 
   render() {
