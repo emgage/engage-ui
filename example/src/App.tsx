@@ -1102,6 +1102,8 @@ class App extends React.Component<{}, State> {
               filterData={this.state.filterConfig}
               defaultSortField="name"
               defaultSortOrder="asc"
+              onRowClick={(name: any) => { console.log('Selected name ' + name); } }
+              rowCallbackValue="name"
               rowAction={rowActionConfig}
               rowActionLeft
               selectCallbackValue="id"
