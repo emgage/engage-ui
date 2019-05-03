@@ -242,29 +242,30 @@ class Picker extends React.Component<Props, State> {
       },
     };
 
+    const {
+        autoSuggest,
+        filterPlaceHolder,
+        filterLabel,
+        selectedResultsBehavior,
+        moreInfoComponent,
+        chipComponent,
+        searchResultComponent,
+        searchBehavior = this.handleChange,
+        moreInfoComponentShowOn = DisplayMoreInfo.onClick,
+        onSelect = this.handleSelect,
+        onRemove = this.handleRemove,
+        onMoreInfo = this.handleMoreInfo,
+        theme,
+    } = this.props;
     const { value, suggestions, chipListState } = this.state;
     const inputProps: Autosuggest.InputProps = {
       value,
       onChange: autoSuggestMethods.onChange,
       onKeyDown: autoSuggestMethods.onKeyDown,
+      placeholder: filterPlaceHolder
     };
     const stateProps: IStateProps = { value, suggestions, chipListState, inputProps };
 
-    const {
-      autoSuggest,
-      filterPlaceHolder,
-      filterLabel,
-      selectedResultsBehavior,
-      moreInfoComponent,
-      chipComponent,
-      searchResultComponent,
-      searchBehavior = this.handleChange,
-      moreInfoComponentShowOn = DisplayMoreInfo.onClick,
-      onSelect = this.handleSelect,
-      onRemove = this.handleRemove,
-      onMoreInfo = this.handleMoreInfo,
-      theme,
-    } = this.props;
     let className = '';
     if (selectedResultsBehavior === 'hide') {
       className = theme.pickerResultHide;
