@@ -196,7 +196,6 @@ class TextField extends React.PureComponent<Props, State> {
           contents={value || placeholder}
           currentHeight={height}
           minimumLines={typeof multiline === 'number' ? multiline : 3}
-          onHeightChange={this.handleExpandingResize}
         />
       );
 
@@ -307,11 +306,6 @@ class TextField extends React.PureComponent<Props, State> {
 
     const newValue = Math.min(max, Math.max(numericValue + (steps * step), min));
     onChange(String(newValue));
-  }
-
-  @autobind
-  private handleExpandingResize(height: number) {
-    this.setState({ height });
   }
 
   @autobind
