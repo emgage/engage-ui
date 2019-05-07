@@ -1669,7 +1669,7 @@ class App extends React.Component<{}, State> {
                 getErrors={this.getErrors}
                 componentId="AppName"
                 label="App Name"
-                placeholder=""
+                placeholder="App Name"
                 helpText="We recommend keeping your app name under 23 characters."
                 onChange={this.valueUpdater('appName')}
                 value={this.state.appName}

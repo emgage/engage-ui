@@ -20,7 +20,7 @@ describe('<ValidatedTextField / >', () => {
   expect(validatedTextFieldWrapper.find('label')).toHaveLength(2);
   expect(validatedTextFieldWrapper.find('input').prop('name')).toBe('App Name');
   expect(validatedTextFieldWrapper.find('label').at(1).prop('id')).toBe('AppNameLabel');
-  expect(validatedTextFieldWrapper.find('label').at(1).text()).toBe('App Name');
+  expect(validatedTextFieldWrapper.find('label').at(1).text()).toBe('');
   expect(validatedTextFieldWrapper.find('input').prop('id')).toBe('AppName');
   expect(validatedTextFieldWrapper.find('input').prop('name')).toBe('App Name');
   expect(validatedTextFieldWrapper.find('input').prop('value')).toBe('');
@@ -43,7 +43,7 @@ describe('<ValidatedTextField / >', () => {
         expect(validatedTextFieldWrapper.find('label')).toHaveLength(2);
         expect(validatedTextFieldWrapper.find('input').prop('name')).toBe('App Name');
         expect(validatedTextFieldWrapper.find('label').at(1).prop('id')).toBe('AppNameLabel');
-        expect(validatedTextFieldWrapper.find('label').at(1).text()).toBe('App Name');
+        expect(validatedTextFieldWrapper.find('label').at(1).text()).toBe('');
         expect(validatedTextFieldWrapper.find('input').prop('id')).toBe('AppName');
         expect(validatedTextFieldWrapper.find('input').prop('name')).toBe('App Name');
         expect(validatedTextFieldWrapper.find('input').prop('value')).toBe('');
@@ -67,7 +67,7 @@ describe('<ValidatedTextField / >', () => {
         expect(validatedTextFieldWrapper.find('label')).toHaveLength(2);
         expect(validatedTextFieldWrapper.find('input').prop('name')).toBe('App Name');
         expect(validatedTextFieldWrapper.find('label').at(1).prop('id')).toBe('AppNameLabel');
-        expect(validatedTextFieldWrapper.find('label').at(1).text()).toBe('App Name');
+        expect(validatedTextFieldWrapper.find('label').at(1).text()).toBe('');
         expect(validatedTextFieldWrapper.find('input').prop('id')).toBe('AppName');
         expect(validatedTextFieldWrapper.find('input').prop('name')).toBe('App Name');
         expect(validatedTextFieldWrapper.find('input').prop('value')).toBe('');
@@ -130,7 +130,7 @@ describe('<ValidatedTextField / >', () => {
         expect(validatedTextFieldWrapper.find('label')).toHaveLength(2);
         expect(validatedTextFieldWrapper.find('input').prop('name')).toBe('App Name');
         expect(validatedTextFieldWrapper.find('label').at(1).prop('id')).toBe('AppNameLabel');
-        expect(validatedTextFieldWrapper.find('label').at(1).text()).toBe('App Name');
+        expect(validatedTextFieldWrapper.find('label').at(1).text()).toBe('');
         expect(validatedTextFieldWrapper.find('input').prop('id')).toBe('AppName');
         expect(validatedTextFieldWrapper.find('input').prop('name')).toBe('App Name');
         expect(validatedTextFieldWrapper.find('input').prop('value')).toBe('');
@@ -191,7 +191,7 @@ describe('<ValidatedTextField / >', () => {
         expect(validatedTextFieldWrapper.find('label')).toHaveLength(2);
         expect(validatedTextFieldWrapper.find('input').prop('name')).toBe('App Name');
         expect(validatedTextFieldWrapper.find('label').at(1).prop('id')).toBe('AppNameLabel');
-        expect(validatedTextFieldWrapper.find('label').at(1).text()).toBe('App Name');
+        expect(validatedTextFieldWrapper.find('label').at(1).text()).toBe('');
         expect(validatedTextFieldWrapper.find('input').prop('id')).toBe('AppName');
         expect(validatedTextFieldWrapper.find('input').prop('name')).toBe('App Name');
         expect(validatedTextFieldWrapper.find('input').prop('value')).toBe('');
@@ -221,7 +221,7 @@ describe('<ValidatedTextField / >', () => {
         expect(validatedTextFieldWrapper.find('label')).toHaveLength(2);
         expect(validatedTextFieldWrapper.find('input').prop('name')).toBe('App Name');
         expect(validatedTextFieldWrapper.find('label').at(1).prop('id')).toBe('AppNameLabel');
-        expect(validatedTextFieldWrapper.find('label').at(1).text()).toBe('App Name');
+        expect(validatedTextFieldWrapper.find('label').at(1).text()).toBe('');
         expect(validatedTextFieldWrapper.find('input').prop('id')).toBe('AppName');
         expect(validatedTextFieldWrapper.find('input').prop('name')).toBe('App Name');
         expect(validatedTextFieldWrapper.find('input').prop('value')).toBe('');
