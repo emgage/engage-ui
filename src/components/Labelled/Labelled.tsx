@@ -98,7 +98,7 @@ const labelled = ({
           componentClass={componentClass}
           {...rest}
         >
-          {label}
+          { hasValue ? label : '' }
         </Label>
       </div>
     )
