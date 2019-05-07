@@ -313,7 +313,6 @@ class TextField extends React.PureComponent<Props, State> {
     this.setState({ value: event.currentTarget.value });
     const { onChange } = this.props;
     if (onChange == null) { return; }
-    const value = this.props.value ? this.props.value : '';
     const maxLength = this.props.maxLength ? this.props.maxLength : Number.POSITIVE_INFINITY;
     const alphaRegex = RegExp(/^[A-Za-z0-9\b]+$/,'g');
     const newValue = event.currentTarget.value.length <= maxLength ? event.currentTarget.value : event.currentTarget.value.substr(0, maxLength);
@@ -323,7 +322,14 @@ class TextField extends React.PureComponent<Props, State> {
       onChange(newValue);
     }else {
       if ((this.props.capital || this.props.alphanumeric) && newValue.length > 0) {
-        onChange(value);
+        const oldValueArray = [...newValue];
+        const newValueArray: any[] = [];
+        oldValueArray.forEach((char: string) => {
+          if (RegExp(/^[A-Za-z0-9\b]+$/,'g').test(char)) {
+            newValueArray.push(this.props.capital ? char.toUpperCase() : char);
+          }
+        });
+        onChange(newValueArray.join(''));
         return ;
       }
       onChange(newValue);
