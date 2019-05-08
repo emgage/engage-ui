@@ -66,11 +66,20 @@ export function isElementOfType(
 export function calculateTipPosition(activatorRectXAxisCenter: number, left: number, preferredPosition?: any) {
   if (preferredPosition === 'above') {
     return { left: activatorRectXAxisCenter - left };
-  } if (preferredPosition === 'below' || preferredPosition === 'mostSpace') {
+  }
+  if (preferredPosition === 'below' || preferredPosition === 'mostSpace') {
     return { left: activatorRectXAxisCenter - left, top: 0 };
-  } if (preferredPosition === 'right') {
+  }
+  if (preferredPosition === 'belowLeft') {
+    return { left: activatorRectXAxisCenter - left, top: 0 };
+  }
+  if (preferredPosition === 'belowRight') {
+    return { left: activatorRectXAxisCenter - left, top: 0 };
+  }
+  if (preferredPosition === 'right') {
     return { top: '34%' };
-  } if (preferredPosition === 'left') {
+  }
+  if (preferredPosition === 'left') {
     return { top: '34%', right: '4%' };
   }
 }

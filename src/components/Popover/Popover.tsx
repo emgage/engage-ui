@@ -1,9 +1,11 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
+import { classNames } from '@shopify/react-utilities/styles';
 import { layeredComponent } from '@shopify/react-utilities/components';
 import { autobind } from '@shopify/javascript-utilities/decorators';
 import { noop, createUniqueIDFactory } from '@shopify/javascript-utilities/other';
 import { findFirstFocusableNode } from '@shopify/javascript-utilities/focus';
+import { addEventListener, removeEventListener } from '@shopify/javascript-utilities/events';
 
 import { PreferredPosition } from '../PositionedOverlay';
 import { TOOLTIP } from '../ThemeIdentifiers';
@@ -12,14 +14,14 @@ import PopoverOverlay from './PopoverOverlay';
 import * as baseTheme from './Popover.scss';
 
 export interface Props {
+  addArrow?: boolean;
+  // Set anchor element 
+  anchorEl?: any;
   // The children that activate the popover.
   children?: React.ReactNode;
-  // The content to display within the popover.
-  content: string;
-  // Toggle whether the popover is visible.
-  active?: boolean;
-  // Display popover with a light background.
-  light?: boolean;
+  closeOnClickInside?: boolean;
+  componentClass?: string;
+  componentStyle?: any;
   // The direction the popover tries to display Availabel options: above | below | mostSpace
   preferredPosition?: PreferredPosition;
   // Theme to be injected via css-themr.
@@ -34,59 +36,104 @@ const getUniqueID = createUniqueIDFactory('PopoverContent');
 
 @layeredComponent({ idPrefix: 'Popover' })
 class Popover extends React.PureComponent<Props, State> {
-  state: State = {
-    active: false,
-  };
   private id = getUniqueID();
-  private activatorNode: HTMLElement | null;
   private activatorContainer: HTMLElement | null;
+
+  constructor(props: Props) {
+    super(props);
+
+    this.state = {
+      active: false
+    };
+  }
+
+  componentWillMount() {
+    addEventListener(document, 'mousedown', this.handleOutsideClick);
+  }
 
   componentDidMount() {
     this.setAccessibilityAttributes();
+  }
+
+  componentWillUnmount() {
+    removeEventListener(document, 'mousedown', this.handleOutsideClick);
+    addEventListener(this.props.anchorEl, 'mousedown', this.handleAnchorClick);
+  }
+
+  componentWillReceiveProps(newProps: Props) {
+    const { anchorEl } = newProps;
+    const { anchorEl: oldAnchorEle } = this.props;
+
+    if (anchorEl !== oldAnchorEle) {
+      this.setState({ active: true });
+
+      addEventListener(anchorEl, 'mousedown', this.handleAnchorClick);
+    }
   }
 
   componentDidUpdate() {
     this.setAccessibilityAttributes();
   }
 
-  renderLayer() {
-    const { id, activatorNode } = this;
-    if (activatorNode == null) { return null; }
+  handleAnchorClick = (event: any) => {
+    this.setState({ active: !this.state.active });
+  }
 
+  handleOutsideClick = (event: any) => {
+    const { anchorEl, closeOnClickInside = true } = this.props;
+
+    if (closeOnClickInside && anchorEl && !anchorEl.contains(event.target)) {
+      this.setState({ active: false });
+      return;
+    }
+
+    if ((this.activatorContainer && this.activatorContainer.contains(event.target)) || (anchorEl && anchorEl.contains(event.target))) {
+      return;
+    }
+
+    this.setState({ active: false });
+  }
+
+  renderLayer() {
+    const { id } = this;
+    const { active } = this.state;
     const {
-      preferredPosition = 'below',
-      active,
-      light,
-      content,
+      anchorEl,
+      addArrow = true,
+      children,
+      componentClass = '',
+      componentStyle = {},
+      preferredPosition = 'belowLeft',
       theme,
     } = this.props;
 
+    const themeClass = classNames(
+      theme.label,
+      componentClass
+    );
+
+    if (!anchorEl) { return null; }
+
     return (
       <PopoverOverlay
+        addArrow={addArrow}
         componentId={id}
         preferredPosition={preferredPosition}
-        activator={activatorNode}
-        active={active || this.state.active}
+        activator={anchorEl}
+        active={active}
         onClose={noop}
-        light={light}
+        popoverRef={this.setActivator}
       >
-         <div className={theme.label}>
-          {content}
-         </div>
+        <div className={themeClass} style={componentStyle}>
+          {children}
+        </div>
       </PopoverOverlay>
     );
   }
 
   render() {
     return (
-      <div
-        onFocus={this.handleFocus}
-        onBlur={this.handleBlur}
-        onMouseEnter={this.handleMouseEnter}
-        onMouseLeave={this.handleMouseLeave}
-        ref={this.setActivator}
-      >
-        {this.props.children}
+      <div>
       </div>
     );
   }
@@ -94,33 +141,11 @@ class Popover extends React.PureComponent<Props, State> {
   @autobind
   private setActivator(node: HTMLElement | null) {
     if (node == null) {
-      this.activatorNode = null;
       this.activatorContainer = null;
       return;
     }
 
-    this.activatorNode = node.firstElementChild as HTMLElement;
     this.activatorContainer = node;
-  }
-
-  @autobind
-  private handleFocus() {
-    this.setState({ active: true });
-  }
-
-  @autobind
-  private handleBlur() {
-    this.setState({ active: false });
-  }
-
-  @autobind
-  private handleMouseEnter() {
-    this.setState({ active: true });
-  }
-
-  @autobind
-  private handleMouseLeave() {
-    this.setState({ active: false });
   }
 
   private setAccessibilityAttributes() {

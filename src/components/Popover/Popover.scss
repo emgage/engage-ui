@@ -1,8 +1,98 @@
-.popoverContainer {
-  background-color: #FFF;
-  box-shadow: 0 0 0 1px rgba(6,44,82,.1), 0 2px 16px rgba(33,43,54,.08);
+@import 'foundation/colors';
+@import 'foundation/shadows';
+@import 'foundation/spacing';
+@import 'foundation/borders';
+@import 'foundation/border-radius';
+@import 'foundation/duration';
+@import 'foundation/easing';
+
+$arrow-size: rem(14px);
+$visible-portion-of-arrow: rem(5px);
+
+.abovePopover {
+  margin: $visible-portion-of-arrow spacing() spacing();
+  opacity: 1;
+  box-shadow: shadow(base);
+  border-radius: border-radius();
+  pointer-events: none;
+  will-change: opacity, left, top;
+  transition: opacity duration() easing(in);
+}
+.rightPopover {
+  margin: $visible-portion-of-arrow spacing() $visible-portion-of-arrow;
+  opacity: 1;
+  box-shadow: shadow(base);
+  border-radius: border-radius();
+  pointer-events: none;
+  will-change: opacity, left, top;
+  transition: opacity duration() easing(in);
+}
+.belowPopover {
+  margin: $visible-portion-of-arrow spacing() spacing();
+  opacity: 1;
+  box-shadow: shadow(base);
+  border-radius: border-radius();
+  pointer-events: none;
+  will-change: opacity, left, top;
+  transition: opacity duration() easing(in);
+}
+.leftPopover {
+  margin: spacing() spacing() spacing() $visible-portion-of-arrow;
+  opacity: 1;
+  box-shadow: shadow(base);
+  border-radius: border-radius();
+  pointer-events: none;
+  will-change: opacity, left, top;
+  transition: opacity duration() easing(in);
+}
+
+.measuring {
+  opacity: 0;
+}
+
+.positionedAbove {
+  margin: spacing() spacing() $visible-portion-of-arrow;
+
+  .tip {
+    top: inherit;
+    bottom: 0;
+  }
+}
+
+.light {
+  .wrapper {
+    background: color(ink);
+    color: color(white);
+  }
+
+  .tip {
+    background: color(ink);
+  }
+}
+
+.wrapper {
+  position: relative;
+  display: flex;
+  background-color: color(white);
+  border-radius: border-radius();
+  color: color(ink);
+}
+
+.content {
+  position: relative;
+  margin-top: spacing(extra-tight);
+  border-radius: border-radius();
+}
+
+.tip {
   position: absolute;
-  width: auto;
-  top: 100%;
-  z-index: 1;
+  transform: translateX(-50%) rotate(45deg);
+  height: $arrow-size;
+  width: $arrow-size;
+  background: color(white);
+  box-shadow: shadow(deep);
+}
+
+.label {
+  padding: 0 spacing(tight) spacing(extra-tight);
 }

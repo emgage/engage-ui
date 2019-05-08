@@ -9,18 +9,18 @@ import * as styles from './Popover.scss';
 import { calculateTipPosition } from '../../utilities';
 
 export interface Props {
+  addArrow: boolean;
   // Id for popover.
   componentId: string;
   // Toggle whether the popover is visible.
   active: boolean;
-  // Display popover with a light background.
-  light?: boolean;
   // The direction the popover tries to display Availabel options: above | below | mostSpace
   preferredPosition?: PreferredPosition;
   // The children that activate the popover.
   children?: React.ReactNode;
   // Activator is used to trigger popover component.
   activator: HTMLElement;
+  popoverRef(node: HTMLElement | null): any;
   // callback when popover is closed.
   onClose(): void;
 }
@@ -58,11 +58,10 @@ export default class PopoverOverlay extends React.PureComponent<Props, never> {
     const {
       left,
       measuring,
-      desiredHeight,
       positioning,
       activatorRect,
     } = overlayDetails;
-    const { componentId, children, light, preferredPosition } = this.props;
+    const { addArrow, componentId, children, preferredPosition } = this.props;
 
     const tipStyle = calculateTipPosition(activatorRect.center.x, left, preferredPosition);
 
@@ -71,27 +70,22 @@ export default class PopoverOverlay extends React.PureComponent<Props, never> {
       preferredPosition === 'right' && styles.rightPopover,
       preferredPosition === 'above' && styles.abovePopover,
       preferredPosition === 'left' && styles.leftPopover,
-      light && styles.light,
       measuring && styles.measuring,
       positioning === 'above' && styles.positionedAbove
     );
 
-    const contentStyles = measuring
-      ? undefined
-      : { maxHeight: isNaN(desiredHeight) ? 0 : desiredHeight };
     const tipMarkup = !measuring
       ? <div style={tipStyle} className={styles.tip} />
       : null;
 
     return (
-      <div className={containerClassName} {...layer.props}>
-          {tipMarkup}
+      <div className={containerClassName} {...layer.props} ref={this.props.popoverRef}>
+          {addArrow ? tipMarkup : null}
           <div className={styles.wrapper}>
           <div
             id={componentId}
             role="popover"
             className={styles.content}
-            style={contentStyles}
           >
             {children}
           </div>

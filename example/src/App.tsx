@@ -124,6 +124,8 @@ interface State {
   processLength: number;
   callChildCallback: boolean;
   popoverActiveState: boolean;
+  dPopoverActive: boolean;
+  dAnchorEle?: HTMLElement;
 }
 
 class App extends React.Component<{}, State> {
@@ -154,6 +156,7 @@ class App extends React.Component<{}, State> {
         { id: 3, title: 'Title 3', count: 3 },
       ],
       isMenuOpened: false,
+      dPopoverActive: false,
       popoverActive: false,
       popoverActive2: false,
       popoverActiveContainer: false,
@@ -813,7 +816,7 @@ class App extends React.Component<{}, State> {
         <Badge status={'info'} working >Publishing</Badge>
         <Badge><Spinner componentSize="small" componentStyle={{ width: '1.1rem', height: '1.1rem', marginLeft: '-.5rem' }} /> Badge</Badge>
 
-        <div>
+        {/* <div>
           <Button onClick={(e: any) => this.newPopoverUpdate(e)}>Popover</Button>
           <Popover
             anchorEl={this.state.popoverAnchorEl}
@@ -821,7 +824,7 @@ class App extends React.Component<{}, State> {
           >
             This is popover component
           </Popover>
-        </div>
+        </div> */}
         <div>
           <TabPanel defaultTabId="tab1" position={'top'} alignment={'center'}>
             <Tab tabDescription={<Badge children={'Home'} status={'success'} />} tabId={'tab1'}>
@@ -1126,6 +1129,18 @@ class App extends React.Component<{}, State> {
               <Button onClick={this.toggleModal}>Medium buttonas</Button>
             </Sticky>
         <div>
+        <Button onClick={(e: any) => {
+          this.setState({
+            dPopoverActive : true,
+            dAnchorEle: e ? e.currentTarget as HTMLElement : this.state.dAnchorEle
+          });
+        }}>DPopover</Button>
+        <Popover
+          anchorEl={this.state.dAnchorEle}
+        >
+          <span>Popover check</span>
+        </Popover>
+
           <Button onClick={() => this.toggleDrawerOuter('outterDrawer')}>Drawer 1</Button>
           <Drawer
             toggleDrawer={() => this.toggleDrawerOuter('outterDrawer')}
@@ -1376,31 +1391,26 @@ class App extends React.Component<{}, State> {
           <Button onClick={() => this.toggleAccordionClose(undefined)}>undefined toggle close</Button>
 
           <Heading>Popover</Heading>
-          <div style={{ marginLeft: '100px' }}>
+          {/* <div style={{ marginLeft: '100px' }}>
             <button onClick={(e: any) => this.popoverUpdateContainer(e)}>Click Popover</button>
             <Popover active={this.state.popoverActiveContainer} direction="up" closeOnClickOutside toggle={() => this.popoverUpdateContainer} anchorEl={this.state.anchorEl} onClose={() => console.log('I am close')} onOpen={() => console.log('I am open')} callbackParent={newState => this.onChildChanged(newState)}>
               I am popover <Button>Hello popover</Button>
             </Popover>
-          </div>
+          </div> */}
           <br/>
           <div style={{ marginLeft: '100px' }}>
             <Button onClick={(e: any) => this.popoverUpdate(e)}>Dropdown active</Button>
             <Dropdown
-              active={this.state.popoverActive}
               dropdownItems={items}
-              toggle={this.popoverUpdate}
-              anchorEl = {this.state.anchorEl}
-              direction="up"
+              anchorEl={this.state.anchorEl}
             />
           </div>
           <div style={{ marginLeft: '100px' }}>
             <Button onClick={(e: any) => this.popoverUpdate2(e)}>Dro</Button>
             <Dropdown
-              active={this.state.popoverActive2}
               dropdownItems={items}
               toggle={this.popoverUpdate2}
-              anchorEl = {this.state.anchorEl2}
-              direction="down"
+              anchorEl={this.state.anchorEl2}
               preferredAlignment="right"
               closeOnClickOutside
             />

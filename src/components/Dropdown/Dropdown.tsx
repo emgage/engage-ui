@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 import DropdownItem, { Props as DropdownItemProps } from './DropdownItem';
-import Popover, { Props as PopoverProps } from '../Popover';
+import Popover from '../Popover';
+import { PreferredPosition } from '../PositionedOverlay';
+
 import { DROPDOWN } from '../ThemeIdentifiers';
 import * as baseTheme from './Dropdown.scss';
 import { PreferredAlignment } from '../PositionedOverlay/math';
@@ -9,15 +11,13 @@ import { PreferredAlignment } from '../PositionedOverlay/math';
 // All prototypes type
 export interface Props {
   // Set disabled
-  disabled?: PopoverProps['disabled'];
+  disabled?: boolean;
   // Set direction to be applied. Available options: up | down | left | right.
-  direction?: PopoverProps['direction'];
-  // Set active to true for dropdown to display, else false
-  active: PopoverProps['active'];
+  preferredPosition?: PreferredPosition;
   // Set anchor element 
-  anchorEl?: PopoverProps['anchorEl'];
+  anchorEl?: any;
   // Set to true if you want to close dropdown when click anywhere in body
-  closeOnClickOutside?: PopoverProps['closeOnClickOutside'];
+  closeOnClickOutside?: any;
   // Prop to close the dropdown when click on its option
   closeOnClickOption?: boolean;
   // Set items to be displayed in dropdown wrapper
@@ -45,17 +45,8 @@ export class Dropdown extends React.PureComponent<Props, State> {
     this.state = {
       // Set initial state
       selectedIndex: 0,
-      active: props.active,
+      active: false,
     };
-  }
-
-  componentWillReceiveProps(newProps: Props) {
-    const { active: newActive } = newProps;
-    const { active } = this.props;
-
-    if (newActive !== active) {
-      this.setState({ active: newActive });
-    }
   }
 
   // Callback function which will be called when dropdown gets closed when clicked outside
@@ -74,17 +65,13 @@ export class Dropdown extends React.PureComponent<Props, State> {
   render() {
     const {
       dropdownItems,
-      direction,
-      disabled,
+      preferredPosition,
       anchorEl,
-      closeOnClickOutside,
       closeOnClickOption = true,
       returnValue,
-      preferredAlignment
     } = this.props;
 
     const {
-      active,
       selectedIndex
     } = this.state;
     // Display the drop down items
@@ -102,16 +89,13 @@ export class Dropdown extends React.PureComponent<Props, State> {
         toggleDropdown={this.innerToggleDropdown}
       />
     );
+
     // Use Popover component as wrapper component for drop down items
     return (
       <Popover
-        active={active}
-        direction={direction}
-        disabled={disabled}
+        preferredPosition={preferredPosition}
         anchorEl={anchorEl}
-        closeOnClickOutside={closeOnClickOutside}
-        callbackParent={this.setDropdownState}
-        preferredAlignment={preferredAlignment}
+        // preferredAlignment={preferredAlignment}
       >
         {DropdownItemComponents}
       </Popover>

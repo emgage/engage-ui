@@ -23,7 +23,7 @@ describe('<Dropdown />', () => {
   describe('Default dropdown rendering', () => {
     it('Render Properly when direction is not provided', () => {
       const spy = jest.fn();
-      const dropdownWrapper = mount(<Dropdown active={false} toggle={spy} dropdownItems={items} />);
+      const dropdownWrapper = mount(<Dropdown toggle={spy} dropdownItems={items} />);
       expect(dropdownWrapper.find('div')).toHaveLength(6);
       expect(dropdownWrapper.find('div').at(1).hasClass('active')).toBeFalsy();
       expect(dropdownWrapper.find('div').at(3).hasClass('dropdownItem')).toBeTruthy();
@@ -32,21 +32,9 @@ describe('<Dropdown />', () => {
       expect(dropdownWrapper.find('div').at(5).hasClass('dropdownDivider')).toBeTruthy();
     });
 
-    it('Render Properly when direction is down', () => {
+    it('Render Properly when direction is below', () => {
       const spy = jest.fn();
-      const dropdownWrapper = mount(<Dropdown active={false} toggle={spy} dropdownItems={items} direction="down"/>);
-      expect(dropdownWrapper.find('div')).toHaveLength(6);
-      expect(dropdownWrapper.find('div').at(1).hasClass('active')).toBeFalsy();
-      expect(dropdownWrapper.find('div').at(3).hasClass('dropdownItem')).toBeTruthy();
-      expect(dropdownWrapper.find('div').at(4).hasClass('dropdownItem')).toBeTruthy();
-      expect(dropdownWrapper.find('div').at(4).hasClass('disabled')).toBeTruthy();
-      expect(dropdownWrapper.find('div').at(5).hasClass('dropdownDivider')).toBeTruthy();
-      expect(dropdownWrapper.prop('active')).toBe(false);
-    });
-
-    it('Render Properly when direction is up', () => {
-      const spy = jest.fn();
-      const dropdownWrapper = mount(<Dropdown active={false} toggle={spy} dropdownItems={items} direction="up"/>);
+      const dropdownWrapper = mount(<Dropdown toggle={spy} dropdownItems={items} preferredPosition="below"/>);
       expect(dropdownWrapper.find('div')).toHaveLength(6);
       expect(dropdownWrapper.find('div').at(1).hasClass('active')).toBeFalsy();
       expect(dropdownWrapper.find('div').at(3).hasClass('dropdownItem')).toBeTruthy();
@@ -56,9 +44,9 @@ describe('<Dropdown />', () => {
       expect(dropdownWrapper.prop('active')).toBe(false);
     });
 
-    it('Render Properly when direction is left', () => {
+    it('Render Properly when preferredPosition is above', () => {
       const spy = jest.fn();
-      const dropdownWrapper = mount(<Dropdown active={false} toggle={spy} dropdownItems={items} direction="left"/>);
+      const dropdownWrapper = mount(<Dropdown toggle={spy} dropdownItems={items} preferredPosition="above"/>);
       expect(dropdownWrapper.find('div')).toHaveLength(6);
       expect(dropdownWrapper.find('div').at(1).hasClass('active')).toBeFalsy();
       expect(dropdownWrapper.find('div').at(3).hasClass('dropdownItem')).toBeTruthy();
@@ -68,9 +56,21 @@ describe('<Dropdown />', () => {
       expect(dropdownWrapper.prop('active')).toBe(false);
     });
 
-    it('Render Properly when direction is right', () => {
+    it('Render Properly when preferredPosition is left', () => {
       const spy = jest.fn();
-      const dropdownWrapper = mount(<Dropdown active={false} toggle={spy} dropdownItems={items} direction="right"/>);
+      const dropdownWrapper = mount(<Dropdown toggle={spy} dropdownItems={items} preferredPosition="left"/>);
+      expect(dropdownWrapper.find('div')).toHaveLength(6);
+      expect(dropdownWrapper.find('div').at(1).hasClass('active')).toBeFalsy();
+      expect(dropdownWrapper.find('div').at(3).hasClass('dropdownItem')).toBeTruthy();
+      expect(dropdownWrapper.find('div').at(4).hasClass('dropdownItem')).toBeTruthy();
+      expect(dropdownWrapper.find('div').at(4).hasClass('disabled')).toBeTruthy();
+      expect(dropdownWrapper.find('div').at(5).hasClass('dropdownDivider')).toBeTruthy();
+      expect(dropdownWrapper.prop('active')).toBe(false);
+    });
+
+    it('Render Properly when preferredPosition is right', () => {
+      const spy = jest.fn();
+      const dropdownWrapper = mount(<Dropdown toggle={spy} dropdownItems={items} preferredPosition="right"/>);
       expect(dropdownWrapper.find('div')).toHaveLength(6);
       expect(dropdownWrapper.find('div').at(1).hasClass('active')).toBeFalsy();
       expect(dropdownWrapper.find('div').at(3).hasClass('dropdownItem')).toBeTruthy();
@@ -82,7 +82,7 @@ describe('<Dropdown />', () => {
 
     it('Set classes when active prop is true', () => {
       const spy = jest.fn();
-      const dropdownWrapper = mount(<Dropdown active={true} toggle={spy} dropdownItems={items}  />);
+      const dropdownWrapper = mount(<Dropdown toggle={spy} dropdownItems={items}  />);
       expect(dropdownWrapper.find('div')).toHaveLength(6);
       expect(dropdownWrapper.find('div').at(1).hasClass('active')).toBeTruthy();
       expect(dropdownWrapper.find('div').at(3).hasClass('dropdownItem')).toBeTruthy();
