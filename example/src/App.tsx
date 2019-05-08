@@ -126,6 +126,7 @@ interface State {
   popoverActiveState: boolean;
   dPopoverActive: boolean;
   dAnchorEle?: HTMLElement;
+  error: any;
 }
 
 class App extends React.Component<{}, State> {
@@ -189,6 +190,7 @@ class App extends React.Component<{}, State> {
       processLength: 2,
       callChildCallback: false,
       popoverActiveState: false,
+      error:{}
     };
 
     this.popovertoggle = this.popovertoggle.bind(this);
@@ -378,6 +380,16 @@ class App extends React.Component<{}, State> {
 
     this.setState({ nestedChildData, callChildCallback: false });
   }
+
+  getErrors = (error:any, name:string) => {
+    this.setState({ error: {  ...this.state.error, [name]: error || [] } });
+  };
+
+  isValidate = (): boolean => {
+    let allErrors: any[] = [];
+    Object.values(this.state.error).forEach(value => allErrors = allErrors.concat(value));
+    return !!allErrors.length;
+  };
 
   render() {
     const Accordionitems : AccordionItemProps[] = [{
@@ -1115,6 +1127,8 @@ class App extends React.Component<{}, State> {
               filterData={this.state.filterConfig}
               defaultSortField="name"
               defaultSortOrder="asc"
+              onRowClick={(name: any) => { console.log('Selected name ' + name); } }
+              rowCallbackValue="name"
               rowAction={rowActionConfig}
               rowActionLeft
               selectCallbackValue="id"
@@ -1672,6 +1686,7 @@ class App extends React.Component<{}, State> {
 
             {/* <FormLayout> */}
               <ValidatedTextField
+                getErrors={this.getErrors}
                 componentId="AppName"
                 label="App Name"
                 placeholder=""
@@ -1686,6 +1701,7 @@ class App extends React.Component<{}, State> {
                 ]}
               />
               <ValidatedTextField
+                getErrors={this.getErrors}
                 multiline
                 componentId="appDescription"
                 name="App Description"
@@ -1718,7 +1734,7 @@ class App extends React.Component<{}, State> {
               <div>
                 <FlexBox>
                   <ButtonGroup segmented={true}>
-                    <Button primary={true} submit={true}>
+                    <Button disabled={this.isValidate()} primary={true} submit={true}>
                       Save Draft
                     </Button>
 
@@ -1743,6 +1759,7 @@ class App extends React.Component<{}, State> {
             </div>
 
               <ValidatedCheckbox
+                getErrors={this.getErrors}
                 componentId="appActive"
                 name="appActive"
                 label="Validated Active"
