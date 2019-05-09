@@ -20,9 +20,20 @@ export interface Props {
   onSubmit: (values: [React.FormEvent<any>]) => void;
   // Function to handle errors on submit of validated form.
   onSubmitError: (values: [React.FormEvent<any>], error: Error) => void;
+  showError: boolean;
 }
 
 class ValidatedForm extends React.Component<Props, {}> {
+  componentWillReceiveProps(nextProps: Props) {
+    if (this.props.showError !== nextProps.showError && nextProps.showError) {
+      const { form , onSubmitError } = this.props;
+      form.validateFields((error: Error, values: [React.FormEvent<any>]) => {
+        if (onSubmitError) {
+          onSubmitError(values, error);
+        }
+      });
+    }
+  }
   onSubmit = (event: React.FormEvent<any>) => {
     event.preventDefault();
     const { form, onSubmit, onSubmitError } = this.props;
