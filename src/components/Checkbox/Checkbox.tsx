@@ -43,6 +43,8 @@ export interface Props {
   onFocus?(): void;
   // Callback when focus is removed
   onBlur?(): void;
+  // Function return all errors
+  getErrors?(errors:any, name?:string): void;
 }
 
 export interface State {
@@ -62,6 +64,10 @@ class Checkbox extends React.PureComponent<Props, State> {
   componentWillReceiveProps(newProps: Props) {
     if (newProps.checked !== undefined) {
       this.setState({ checked: newProps.checked });
+    }
+    if (JSON.stringify(this.props.errors) !== JSON.stringify(newProps.errors)) {
+      const { getErrors } = this.props;
+      getErrors && getErrors(newProps.errors, newProps.name);
     }
   }
 

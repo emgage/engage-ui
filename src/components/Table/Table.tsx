@@ -86,6 +86,10 @@ export interface Props {
   theme?: any;
   // Put more action button as first column
   rowActionLeft?: boolean;
+  // Function to get call when row got clikced
+  onRowClick?(value: any): void;
+  // Use this key to fetch the unique id from data & send it back to clickedrow
+  rowCallbackValue?: string;
 }
 
 export interface State {
@@ -317,11 +321,11 @@ class Table extends React.Component<Props, State> {
 
   // Render the main table row
   renderTbodyRows = (item: any, index: number | string) => {
-    const { column, expandingRowId = [], hideExpandedIcon, rowAction, theme, rowActionLeft } = this.props;
+    const { column, expandingRowId = [], hideExpandedIcon, rowAction, theme, rowActionLeft, onRowClick, rowCallbackValue } = this.props;
     const { nestedChildData } = this.state;
 
     return (
-      <TableRow key={index}>
+      <TableRow key={index} onClick={onRowClick} callbackValue={rowCallbackValue && item[rowCallbackValue]}>
         { this.renderRowSelection(item, 'body') }
         {
           column.map((colItem: any, index: number) => {

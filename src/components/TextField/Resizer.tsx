@@ -15,7 +15,7 @@ export interface Props {
   currentHeight?: number | null;
   minimumLines?: number;
   // Callback when height is changed or resized.
-  onHeightChange(height: number): void;
+  onHeightChange?(height: number): void;
 }
 
 class Resizer extends React.PureComponent<Props, never> {
@@ -71,7 +71,7 @@ class Resizer extends React.PureComponent<Props, never> {
     const { currentHeight, onHeightChange } = this.props;
 
     if (newHeight !== currentHeight) {
-      onHeightChange(newHeight);
+      onHeightChange && onHeightChange(newHeight);
     }
   }
 

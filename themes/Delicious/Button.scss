@@ -24,8 +24,8 @@ $destructive-button-hover-color: theme-color(m-red, 100);
 $destructive-button-focus-color: theme-color(m-red, 100);
 $destructive-button-active-color: theme-color(m-red, 50);
 
-$disabled-button-text-color: #919EAB;
-$disabled-button-icon-color: #919EAB;
+$disabled-button-text-color: theme-color(m-grey, 500);
+$disabled-button-icon-color: theme-color(m-grey, 500);
 $disabled-button-border-color: theme-color(m-grey, 400);
 $disabled-button-default-color: theme-color(white);
 
