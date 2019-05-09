@@ -60,14 +60,14 @@ class Popover extends React.PureComponent<Props, State> {
 
   componentWillUnmount() {
     removeEventListener(document, 'mousedown', this.handleOutsideClick);
-    addEventListener(this.props.anchorEl, 'mousedown', this.handleAnchorClick);
+    removeEventListener(this.props.anchorEl, 'mousedown', this.handleAnchorClick);
   }
 
   componentWillReceiveProps(newProps: Props) {
     const { anchorEl, manualInActive = false } = newProps;
     const { anchorEl: oldAnchorEle, manualInActive: oldManualActive } = this.props;
 
-    if (anchorEl !== oldAnchorEle) {
+    if (anchorEl && anchorEl !== oldAnchorEle) {
       this.setState({ active: true });
 
       addEventListener(anchorEl, 'mousedown', this.handleAnchorClick);

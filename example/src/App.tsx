@@ -385,17 +385,17 @@ class App extends React.Component<{}, State> {
 
   getErrors = (error:any, name:string) => {
     this.setState({ error: {  ...this.state.error, [name]: error || [] } });
-  };
+  }
 
   isValidate = (): boolean => {
     let allErrors: any[] = [];
     Object.values(this.state.error).forEach(value => allErrors = allErrors.concat(value));
     return !!allErrors.length;
-  };
+  }
 
   onPublish = () => {
     this.setState({ showError: true });
-  };
+  }
 
   render() {
     const Accordionitems : AccordionItemProps[] = [{
