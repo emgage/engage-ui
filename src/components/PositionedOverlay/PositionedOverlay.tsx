@@ -34,6 +34,7 @@ export interface Props {
   // Is overlay active or not
   active: boolean;
   activator: HTMLElement;
+  componentStyle?: any;
   // Define overlay position 
   preferredPosition?: PreferredPosition;
   // Define overlay alignment
@@ -120,12 +121,14 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
 
   render() {
     const { left, top, zIndex, width } = this.state;
-    const { render, fixed, theme } = this.props;
+    const { componentStyle = {}, render, fixed, theme } = this.props;
+
     const style = {
+      ...componentStyle,
       top: top === null ? undefined : top,
       left: left === null ? undefined : left,
       width: width === null ? undefined : width,
-      zIndex: zIndex === null ? undefined : zIndex,
+      zIndex: zIndex === null ? (componentStyle.zIndex ? componentStyle.zIndex : undefined) : zIndex,
     };
 
     const className = classNames(
