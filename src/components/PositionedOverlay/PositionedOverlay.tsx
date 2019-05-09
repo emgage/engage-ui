@@ -79,14 +79,15 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
   private scrollableContainer: HTMLElement;
 
   componentDidMount() {
-
     this.scrollableContainer = ScrollableForNode(this.props.activator);
+
     if (this.scrollableContainer && !this.props.fixed) {
       this.scrollableContainer.addEventListener(
         'scroll',
         this.handleMeasurement
       );
     }
+
     this.handleMeasurement();
   }
 
@@ -144,6 +145,7 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
   @autobind
   private overlayDetails(): OverlayDetails {
     const { measuring, left, positioning, height, activatorRect } = this.state;
+
     return {
       measuring,
       left,
@@ -174,6 +176,7 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
         if (this.overlay === null || this.scrollableContainer === null) {
           return;
         }
+
         const {
           activator,
           preferredPosition = 'below',

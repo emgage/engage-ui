@@ -8,14 +8,13 @@ const theme = {
 };
 
 describe('<ClickableChip />', () => {
-
   describe('when default props are provided', () => {
     it('basic clickablechip should be rendered with default props', () => {
       const onChipClick = jest.fn();
       const clickablechipWrapper = mount(
                                         <ClickableChip chip={<Chip>Batman</Chip>} onClick={onChipClick} theme={theme} />
                                     );
-      expect(clickablechipWrapper.find('div')).toHaveLength(6);
+      expect(clickablechipWrapper.find('div')).toHaveLength(3);
       expect(clickablechipWrapper.find('span')).toHaveLength(1);
       expect(clickablechipWrapper.find('span').at(0).hasClass(''));
     });
@@ -28,7 +27,7 @@ describe('<ClickableChip />', () => {
         const clickablechipWrapper = mount(
                                         <ClickableChip chip={<Chip>Batman</Chip>} onClick={onChipClick} theme={theme} />
                                     );
-        expect(clickablechipWrapper.find('div')).toHaveLength(6);
+        expect(clickablechipWrapper.find('div')).toHaveLength(3);
         expect(clickablechipWrapper.find('span')).toHaveLength(1);
         expect(clickablechipWrapper.find('span').at(0).hasClass(''));
       });
@@ -42,7 +41,7 @@ describe('<ClickableChip />', () => {
         const clickablechipWrapper = mount(
                                         <ClickableChip chip={<Chip>Batman</Chip>} onClick={onChipClick} theme={theme} />
                                     );
-        expect(clickablechipWrapper.find('div')).toHaveLength(6);
+        expect(clickablechipWrapper.find('div')).toHaveLength(3);
         expect(clickablechipWrapper.find('span')).toHaveLength(1);
         expect(clickablechipWrapper.find('span').at(0).hasClass(''));
       });
@@ -56,7 +55,7 @@ describe('<ClickableChip />', () => {
         const clickablechipWrapper = mount(
                                         <ClickableChip chip={<Chip>Batman</Chip>} onClick={onChipClick} />
                                     );
-        expect(clickablechipWrapper.find('div')).toHaveLength(6);
+        expect(clickablechipWrapper.find('div')).toHaveLength(3);
         expect(clickablechipWrapper.find('span')).toHaveLength(1);
         expect(clickablechipWrapper.find('span').at(0).hasClass(''));
       });
@@ -68,7 +67,7 @@ describe('<ClickableChip />', () => {
         const clickablechipWrapper = mount(
                                         <ClickableChip chip={<Chip>Batman</Chip>} onClick={onChipClick} theme={theme} />
                                     );
-        expect(clickablechipWrapper.find('div')).toHaveLength(6);
+        expect(clickablechipWrapper.find('div')).toHaveLength(3);
         expect(clickablechipWrapper.find('span')).toHaveLength(1);
         expect(clickablechipWrapper.find('span').at(0).hasClass(''));
       });

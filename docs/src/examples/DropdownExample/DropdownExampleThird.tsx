@@ -7,7 +7,7 @@ export interface IProps{
 
 export interface IState {
   active: boolean;
-  anchorEl?: HTMLElement | null;
+  anchorEl?: HTMLElement;
 }
 
 class DropdownExampleThird extends React.Component<IProps, IState> {
@@ -46,10 +46,9 @@ class DropdownExampleThird extends React.Component<IProps, IState> {
       <div className={styles.example}>
         <Button onClick={e => this.toggle(e)}>Dropdown3</Button>
         <Dropdown
-          active={this.state.active}
           dropdownItems={items}
           anchorEl={this.state.anchorEl}
-          direction="left"
+          preferredPosition="left"
         />
       </div>
     );

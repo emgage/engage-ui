@@ -82,13 +82,11 @@ class RowAction extends React.Component<Props, State> {
         <Button icon="horizontalDots" onClick={(e: React.FormEvent<HTMLElement>) => this.dropdownToggle(e)} />
 
         <Dropdown
-          active={this.state.active}
           dropdownItems={validActionConfigs}
           toggle={() => this.dropdownToggle}
           anchorEl = {this.state.anchorEl}
           returnValue={data.id}
           closeOnClickOutside
-          direction="down"
           preferredAlignment={ rowActionLeft ? 'left' : 'right' }
         />
       </TableData>

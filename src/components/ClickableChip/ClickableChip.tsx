@@ -8,7 +8,7 @@ import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
 
 export interface State {
   active: boolean;
-  anchorEl?: HTMLElement | null;
+  anchorEl?: HTMLElement;
 }
 
 export interface Props {
@@ -49,16 +49,19 @@ class ClickableChip extends React.PureComponent<Props, State> {
         <div onClick={this.handleClick} id={this.id}>
           {chip}
         </div>
-        <Dropdown anchorEl={this.state.anchorEl} active={this.state.active} onClose={this.onClose} toggle={this.handleClick} dropdownItems={Items} ></Dropdown>
+        <Dropdown anchorEl={this.state.anchorEl} onClose={this.onClose} toggle={this.handleClick} dropdownItems={Items} ></Dropdown>
       </div>
     );
   }
 
   private handleClick = () => {
-    this.setState({
-      active: !this.state.active,
-      anchorEl: document.getElementById(this.id)
-    });
+    const thisEle = document.getElementById(this.id);
+
+    this.setState({ active: !this.state.active });
+
+    if (thisEle) {
+      this.setState({ anchorEl: thisEle });
+    }
   }
 }
 

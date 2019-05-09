@@ -31,7 +31,7 @@ interface State {
   open: boolean;
   items: ComboBoxItemProps[];
   initialItems: ComboBoxItemProps[];
-  anchorEl?: HTMLElement | null;
+  anchorEl?: HTMLElement;
   selectedValue: string;
 }
 
@@ -159,10 +159,9 @@ class ComboBox extends React.Component<Props, State> {
         </div>
 
         {open && <Popover
-          style={{ background: '#dcdcdc', width: '100%', padding: '10px 100px' }}
-          active={this.state.open}
+          componentStyle={{ background: '#dcdcdc', width: '100%', padding: '10px 100px' }}
           anchorEl={this.state.anchorEl}
-          direction="full"
+          preferredPosition="mostSpace"
           >
             {itemsComponent}
         </Popover>}

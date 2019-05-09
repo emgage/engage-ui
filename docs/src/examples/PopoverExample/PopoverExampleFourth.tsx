@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { Popover, Button } from '../../../../src/components';
+import { Button } from '../../../../src/components';
+import { Popover } from '../../../../src/components/';
+
 import * as styles from '../../styles/components-page.scss';
 
 export interface IProps{
@@ -7,7 +9,7 @@ export interface IProps{
 
 export interface IState {
   active: boolean;
-  anchorEl?: HTMLElement | null;
+  anchorEl?: HTMLElement;
 }
 
 class PopoverExampleFourth extends React.Component<IProps, IState> {
@@ -31,9 +33,8 @@ class PopoverExampleFourth extends React.Component<IProps, IState> {
       <div className={styles.example}>
         <Button onClick={e => this.toggle(e)}>Popover4</Button>
         <Popover
-          active={this.state.active}
           anchorEl={this.state.anchorEl}
-          direction="right">
+          preferredPosition="right">
           I am popover <Button>Hello popover</Button>
         </Popover>
       </div>
