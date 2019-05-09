@@ -121,6 +121,7 @@ $stacking-order: (
 
   &::placeholder {
     color: color(ink, lightest);
+    text-align: left !important;
   }
 
   // These properties are used to remove the default "SpinnerButtons" controls

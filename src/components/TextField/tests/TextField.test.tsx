@@ -171,12 +171,12 @@ describe('<TextField />', () => {
       const textField = mount(<TextField label="TextField" prefix="$" />);
       const labels = textField.find('input').prop<string>('aria-labelledby').split(' ');
       expect(labels.length).toBe(2);
-      expect(textField.find(`#${labels[0]}`).text()).toBe('TextField');
+      expect(textField.find(`#${labels[0]}`).text()).toBe('');
       expect(textField.find('div').at(4).text()).toBe('$');
     });
 
     it('connects the input to the prefix, suffix, and label', () => {
-      const textField = mount(<TextField label="TextField" prefix="$" suffix=".00" />);
+      const textField = mount(<TextField label="TextField" value="test" prefix="$" suffix=".00" />);
       const labels = textField.find('input').prop<string>('aria-labelledby').split(' ');
       expect(labels.length).toBe(3);
       expect(textField.find(`#${labels[0]}`).text()).toBe('TextField');
@@ -187,7 +187,7 @@ describe('<TextField />', () => {
 
   describe('suffix', () => {
     it('connects the input to the suffix and label', () => {
-      const textField = mount(<TextField label="TextField" suffix="kg" />);
+      const textField = mount(<TextField label="TextField" value="test" suffix="kg" />);
       const labels = textField.find('input').prop<string>('aria-labelledby').split(' ');
       expect(labels.length).toBe(2);
       expect(textField.find('label').at(0).text());
