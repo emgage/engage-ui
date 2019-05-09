@@ -32,12 +32,12 @@ class DropdownItem extends React.Component<Props, never> {
   clickCallback = (event: any) => {
     const { closeOnClickOption, onClick, returnValue, toggleDropdown } = this.props;
 
-    if (closeOnClickOption && toggleDropdown) {
-      toggleDropdown();
-    }
-
     if (onClick) {
       onClick(returnValue ? returnValue : event);
+    }
+
+    if (closeOnClickOption && toggleDropdown) {
+      toggleDropdown();
     }
   }
 

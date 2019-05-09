@@ -37,6 +37,7 @@ export interface Props {
 export interface State {
   selectedIndex: number;
   active: boolean;
+  manualInActive: boolean;
 }
 
 export class Dropdown extends React.PureComponent<Props, State> {
@@ -46,6 +47,7 @@ export class Dropdown extends React.PureComponent<Props, State> {
       // Set initial state
       selectedIndex: 0,
       active: false,
+      manualInActive: false
     };
   }
 
@@ -58,7 +60,7 @@ export class Dropdown extends React.PureComponent<Props, State> {
 
   // Function to toggle dropdown from component itself
   innerToggleDropdown = () => {
-    this.setState({ active: !this.state.active });
+    this.setState({ active: false, manualInActive: true });
   }
 
   // Callback function
@@ -93,8 +95,11 @@ export class Dropdown extends React.PureComponent<Props, State> {
     // Use Popover component as wrapper component for drop down items
     return (
       <Popover
+        manualInActive={this.state.manualInActive}
         preferredPosition={preferredPosition}
         anchorEl={anchorEl}
+        closeOnClickInside={false}
+        onClose={() => this.setState({ manualInActive: false })}
         // preferredAlignment={preferredAlignment}
       >
         {DropdownItemComponents}

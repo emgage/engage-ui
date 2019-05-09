@@ -14,6 +14,8 @@ import PopoverOverlay from './PopoverOverlay';
 import * as baseTheme from './Popover.scss';
 
 export interface Props {
+  // This will help to set popover active or inactive when required from parent component
+  manualInActive?: boolean;
   addArrow?: boolean;
   // Set anchor element 
   anchorEl?: any;
@@ -22,6 +24,7 @@ export interface Props {
   closeOnClickInside?: boolean;
   componentClass?: string;
   componentStyle?: any;
+  onClose?(): void;
   // The direction the popover tries to display Availabel options: above | below | mostSpace
   preferredPosition?: PreferredPosition;
   // Theme to be injected via css-themr.
@@ -61,13 +64,19 @@ class Popover extends React.PureComponent<Props, State> {
   }
 
   componentWillReceiveProps(newProps: Props) {
-    const { anchorEl } = newProps;
-    const { anchorEl: oldAnchorEle } = this.props;
+    const { anchorEl, manualInActive = false } = newProps;
+    const { anchorEl: oldAnchorEle, manualInActive: oldManualActive } = this.props;
 
     if (anchorEl !== oldAnchorEle) {
       this.setState({ active: true });
 
       addEventListener(anchorEl, 'mousedown', this.handleAnchorClick);
+    }
+
+    if (manualInActive && manualInActive !== oldManualActive) {
+      this.setState({ active: false }, () => {
+        this.handleOnClose();
+      });
     }
   }
 
@@ -76,14 +85,20 @@ class Popover extends React.PureComponent<Props, State> {
   }
 
   handleAnchorClick = (event: any) => {
-    this.setState({ active: !this.state.active });
+    this.setState({ active: !this.state.active }, () => {
+      if (!this.state.active) {
+        this.handleOnClose();
+      }
+    });
   }
 
   handleOutsideClick = (event: any) => {
-    const { anchorEl, closeOnClickInside = true } = this.props;
+    const { anchorEl, closeOnClickInside = false } = this.props;
 
     if (closeOnClickInside && anchorEl && !anchorEl.contains(event.target)) {
-      this.setState({ active: false });
+      this.setState({ active: false }, () => {
+        this.handleOnClose();
+      });
       return;
     }
 
@@ -91,7 +106,17 @@ class Popover extends React.PureComponent<Props, State> {
       return;
     }
 
-    this.setState({ active: false });
+    this.setState({ active: false }, () => {
+      this.handleOnClose();
+    });
+  }
+
+  handleOnClose = () => {
+    const { onClose } = this.props;
+
+    if (onClose) {
+      onClose();
+    }
   }
 
   renderLayer() {
