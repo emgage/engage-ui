@@ -18,14 +18,11 @@
   width: 100px;
 }
 .cardElem {
-  display: flex;
-  align-items: center; 
+  align-items: center;
   margin: 5px 5px 5px 5px;
   white-space: pre;
 }
 .cardItem {
-  display: flex;
-  flex-direction: row;
   z-index: 2;
 }
 
