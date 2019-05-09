@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { Button } from '../../../../src/components';
+import { Popover } from '../../../../src/components/';
+
 import * as styles from '../../styles/components-page.scss';
 
 export interface IProps{
@@ -30,11 +32,10 @@ class PopoverExampleFifth extends React.Component<IProps, IState> {
     return (
       <div className={styles.example}>
         <Button onClick={e => this.toggle(e)}>Popover5</Button>
-        {/* <Popover
-          active={this.state.active}
-          anchorEl={this.state.anchorEl} disabled>
+        <Popover
+          anchorEl={this.state.anchorEl}>
           I am popover <Button>Hello popover</Button>
-        </Popover> */}
+        </Popover>
       </div>
         );
   }
