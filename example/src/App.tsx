@@ -127,6 +127,7 @@ interface State {
   dPopoverActive: boolean;
   dAnchorEle?: HTMLElement;
   error: any;
+  showError: boolean;
 }
 
 class App extends React.Component<{}, State> {
@@ -190,7 +191,8 @@ class App extends React.Component<{}, State> {
       processLength: 2,
       callChildCallback: false,
       popoverActiveState: false,
-      error:{}
+      error:{},
+      showError: false
     };
 
     this.popovertoggle = this.popovertoggle.bind(this);
@@ -389,6 +391,10 @@ class App extends React.Component<{}, State> {
     let allErrors: any[] = [];
     Object.values(this.state.error).forEach(value => allErrors = allErrors.concat(value));
     return !!allErrors.length;
+  };
+
+  onPublish = () => {
+    this.setState({ showError: true });
   };
 
   render() {
@@ -1674,6 +1680,7 @@ class App extends React.Component<{}, State> {
             moreInfoComponent={<Button children="ranmal" />}
           />
           <ValidatedForm
+            showError={this.state.showError}
             onSubmitError={(value: [any], error: Error) => console.log('value:', value, 'error:', error)}
             onSubmit={(value: [any]) => console.log('Submit Value:', value)}
             formFields={['AppName', 'appDescription', 'appCity', 'appActive', 'appRadioAction']}
@@ -1738,7 +1745,7 @@ class App extends React.Component<{}, State> {
                       Save Draft
                     </Button>
 
-                    <Button primary={true}>
+                    <Button onClick={this.onPublish} primary={true}>
                       Publish
                     </Button>
                   </ButtonGroup>
