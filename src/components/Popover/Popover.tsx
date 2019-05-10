@@ -60,10 +60,10 @@ class Popover extends React.PureComponent<Props, State> {
 
   componentWillUnmount() {
     const { anchorEl } = this.props;
-    removeEventListener(document, 'mousedown', this.handleOutsideClick);
+    removeEventListener(document, 'mousedown', () => {});
 
     if (anchorEl) {
-      removeEventListener(anchorEl, 'mousedown', this.handleAnchorClick);
+      removeEventListener(anchorEl, 'mousedown', () => {});
     }
   }
 
@@ -132,7 +132,7 @@ class Popover extends React.PureComponent<Props, State> {
       children,
       componentClass = '',
       componentStyle = {},
-      preferredPosition = 'belowLeft',
+      preferredPosition = 'below',
     } = this.props;
 
     const themeClass = classNames(
