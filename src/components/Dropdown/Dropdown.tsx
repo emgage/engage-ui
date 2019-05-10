@@ -73,14 +73,10 @@ export class Dropdown extends React.PureComponent<Props, State> {
       returnValue,
     } = this.props;
 
-    const {
-      selectedIndex
-    } = this.state;
     // Display the drop down items
     const DropdownItemComponents = dropdownItems.map((item, index) =>
       <DropdownItem
         key={index}
-        active={selectedIndex === index}
         disabled={item.disabled}
         divider={item.divider}
         header={item.header}
