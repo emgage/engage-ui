@@ -52,6 +52,7 @@ class Popover extends React.PureComponent<Props, State> {
 
   componentWillMount() {
     addEventListener(document, 'mousedown', this.handleOutsideClick);
+    addEventListener(document, 'keyup', this.handleKeyboard);
   }
 
   componentDidMount() {
@@ -115,6 +116,13 @@ class Popover extends React.PureComponent<Props, State> {
     });
   }
 
+  handleKeyboard = (event: KeyboardEvent) => {
+    if (event.which === 27) {
+      this.setState({ active: false }, () => {
+        this.handleOnClose();
+      });
+    }
+  }
   handleOnClose = () => {
     const { onClose } = this.props;
 
