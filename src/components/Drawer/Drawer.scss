@@ -259,6 +259,10 @@ body.overlay {
   touch-action: none;
 }
 
+body.container {
+  overflow: auto !important;
+}
+
 :global #root {
   position: relative;
   left: 0;
@@ -274,7 +278,7 @@ body.overlay {
   overflow-x: hidden;
 
   &.overlay {
-    overflow: hidden;
+    overflow: auto;
 
     :global #root {
       overflow-y: hidden;
