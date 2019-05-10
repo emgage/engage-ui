@@ -16,13 +16,13 @@ $content-max-width: rem(400px);
 $white: #fff !default;
 $black: #000 !default;
 $gray-100: #f8f9fa !default;
-$gray-200: #e9ecef !default;
+$gray-200: #dfe3e8 !default;
 $gray-600: #6c757d !default;
 $gray-900: #212529 !default;
 $dropdown-link-hover-color: #2eb5e2 !default;
 $border-radius: .25rem !default;
 $border-width: 1px !default;
-$component-active-color: #add8e6 !default;
+$component-active-color: #424242 !default;
 $enable-gradients: false !default;
 $component-active-bg: theme-color("primary") !default;
 $dropdown-min-width: 10rem !default;
@@ -38,10 +38,10 @@ $dropdown-link-color: $gray-900 !default;
 $dropdown-link-hover-color: darken($gray-900, 5%) !default;
 $dropdown-link-hover-bg: $gray-100 !default;
 $dropdown-link-active-color: $component-active-color !default;
-$dropdown-link-active-bg: $component-active-bg !default;
+$dropdown-link-active-bg: #f4f6f8 !default;
 $dropdown-link-disabled-color: $gray-600 !default;
-$dropdown-item-padding-y: .25rem !default;
-$dropdown-item-padding-x: 1.5rem !default;
+$dropdown-item-padding-y: 1rem !default;
+$dropdown-item-padding-x: 1.6rem !default;
 $dropdown-header-color: $gray-600 !default;
 $zindex-dropdown: 1000 !default;
 $font-size-base: 1rem !default;
@@ -58,27 +58,24 @@ $font-weight-normal: 400 !default;
 }
 
 .dropdownDivider {
-  height: 0;
-  margin: 0 0;
-  overflow: hidden;
-  border-top: 1px solid $dropdown-divider-bg;
+  border-bottom: 1px solid $dropdown-divider-bg;
 }
 
 .dropdownItem {
   display: block;
   width: 100%;
   padding: $dropdown-item-padding-y $dropdown-item-padding-x;
-  clear: both;
   font-weight: $font-weight-normal;
   color: $dropdown-link-color;
   text-align: inherit;
   white-space: nowrap;
   background-color: transparent;
-  border: 0;
+  font-size: 14px;
 
   &:hover {
-    color: $dropdown-link-hover-color;
+    color: $dropdown-link-active-color;
     text-decoration: none;
+    @include gradient-bg($dropdown-link-active-bg);
   }
 
   &.active,

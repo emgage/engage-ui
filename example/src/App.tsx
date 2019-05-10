@@ -416,7 +416,7 @@ class App extends React.Component<{}, State> {
       },
       {
         content: 'Item 2',
-        divider: false
+        divider: true,
       },
       {
         content: 'Itemasdadmmm 3',
@@ -424,7 +424,7 @@ class App extends React.Component<{}, State> {
       },
       {
         content: 'Item 4',
-        header: false
+        header: true,
       }
     ];
 

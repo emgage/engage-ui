@@ -133,11 +133,9 @@ class Popover extends React.PureComponent<Props, State> {
       componentClass = '',
       componentStyle = {},
       preferredPosition = 'belowLeft',
-      theme,
     } = this.props;
 
     const themeClass = classNames(
-      theme.label,
       componentClass
     );
 
