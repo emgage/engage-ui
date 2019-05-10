@@ -14,7 +14,6 @@ $visible-portion-of-arrow: rem(5px);
   opacity: 1;
   box-shadow: shadow(base);
   border-radius: border-radius();
-  pointer-events: none;
   will-change: opacity, left, top;
   transition: opacity duration() easing(in);
 }
@@ -23,7 +22,6 @@ $visible-portion-of-arrow: rem(5px);
   opacity: 1;
   box-shadow: shadow(base);
   border-radius: border-radius();
-  pointer-events: none;
   will-change: opacity, left, top;
   transition: opacity duration() easing(in);
 }
@@ -32,7 +30,6 @@ $visible-portion-of-arrow: rem(5px);
   opacity: 1;
   box-shadow: shadow(base);
   border-radius: border-radius();
-  pointer-events: none;
   will-change: opacity, left, top;
   transition: opacity duration() easing(in);
 }
@@ -41,7 +38,6 @@ $visible-portion-of-arrow: rem(5px);
   opacity: 1;
   box-shadow: shadow(base);
   border-radius: border-radius();
-  pointer-events: none;
   will-change: opacity, left, top;
   transition: opacity duration() easing(in);
 }
