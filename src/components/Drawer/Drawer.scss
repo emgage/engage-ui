@@ -278,7 +278,7 @@ body.container {
   overflow-x: hidden;
 
   &.overlay {
-    overflow: auto;
+    overflow: hidden;
 
     :global #root {
       overflow-y: hidden;
