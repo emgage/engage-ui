@@ -23,7 +23,7 @@ describe('<ValidatedForm / >', () => {
         expect(validatedFormWrapper.find('input')).toHaveLength(1);
         expect(validatedFormWrapper.find('label')).toHaveLength(2);
         expect(validatedFormWrapper.find('label').at(1).prop('id')).toBe('AppNameLabel');
-        expect(validatedFormWrapper.find('label').at(1).text()).toBe('');
+        expect(validatedFormWrapper.find('label').at(1).text()).toBe('App Name');
       });
     });
   });
