@@ -26,7 +26,7 @@ describe('<TextField />', () => {
     expect(input.prop('readOnly')).toBe(false);
     expect(input.prop('autoFocus')).toBe(true);
     expect(input.prop('name')).toBe('TextField');
-    expect(input.prop('placeholder')).toBe('A placeholder');
+    expect(input.prop('placeholder')).toBe('');
     expect(input.prop('value')).toBe('Some value');
     expect(input.prop('min')).toBe(20);
     expect(input.prop('max')).toBe(50);
@@ -171,7 +171,7 @@ describe('<TextField />', () => {
       const textField = mount(<TextField label="TextField" prefix="$" />);
       const labels = textField.find('input').prop<string>('aria-labelledby').split(' ');
       expect(labels.length).toBe(2);
-      expect(textField.find(`#${labels[0]}`).text()).toBe('');
+      expect(textField.find(`#${labels[0]}`).text()).toBe('TextField');
       expect(textField.find('div').at(4).text()).toBe('$');
     });
 
