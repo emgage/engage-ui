@@ -128,6 +128,7 @@ interface State {
   dAnchorEle?: HTMLElement;
   error: any;
   showError: boolean;
+  treeAnchor?: any;
 }
 
 class App extends React.Component<{}, State> {
@@ -192,7 +193,8 @@ class App extends React.Component<{}, State> {
       callChildCallback: false,
       popoverActiveState: false,
       error:{},
-      showError: false
+      showError: false,
+      treeAnchor: {},
     };
 
     this.popovertoggle = this.popovertoggle.bind(this);
@@ -395,6 +397,24 @@ class App extends React.Component<{}, State> {
 
   onPublish = () => {
     this.setState({ showError: true });
+  }
+
+  getDropdown = (thisId: number) => {
+    const dropdownItems = [];
+
+    for (let i = 0; i <= 4; i++) {
+      dropdownItems.push({ content: `Test${i} - ${thisId}` });
+    }
+
+    return (
+      <span>
+        <Button plain icon="horizontalDots"
+          onClick={(event: React.FormEvent<HTMLElement>) => this.setState({ treeAnchor: { [thisId]: event.currentTarget as HTMLElement } })} />
+            <Dropdown
+              dropdownItems={dropdownItems}
+              anchorEl={this.state.treeAnchor[thisId]} />
+      </span>
+    );
   }
 
   render() {
@@ -722,6 +742,7 @@ class App extends React.Component<{}, State> {
       },
     ];
 
+
     const treeSource: TreeSource[] = [
       {
         id: 1,
@@ -732,13 +753,13 @@ class App extends React.Component<{}, State> {
           {
             id: 11,
             component: () => <span>I am child component1<br/>I am child component1<br/>I am child component1<br/>
-            I am child component1<br/>I am child component1<br/>I am child component1<br/>I am child component1
+            I am child component1<br/>I am child component1<br/>I am child component1<br/>I am child component1 - {this.getDropdown(11)}
             </span>,
             active: false,
           },
           {
             id: 12,
-            component: () => <span>I am child component2<br />I am child component2<br />I am child component2</span>,
+            component: () => <span>I am child component2<br />I am child component2<br />I am child component2 {this.getDropdown(12)}</span>,
             active: false,
             children: [
               {
