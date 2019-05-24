@@ -70,7 +70,7 @@ class ComboBox extends React.Component<Props, State> {
      In case if its Accordian, then check for values with key specified and filter them out.
   */
 
-  onChange = (value: string) => {
+  onChange = (value: string, event: React.FormEvent<HTMLElement>) => {
     let newItems = this.state.initialItems;
 
     if (value && value !== '') {
@@ -107,6 +107,7 @@ class ComboBox extends React.Component<Props, State> {
     }
 
     this.setState({
+      anchorEl: event.target as HTMLElement,
       selectedValue: value,
       items: newItems,
       open: value && value !== '' ? true : false // open the popover only if there is some value on search text.
@@ -162,6 +163,7 @@ class ComboBox extends React.Component<Props, State> {
           componentStyle={{ background: '#dcdcdc', width: '100%', padding: '10px 100px' }}
           anchorEl={this.state.anchorEl}
           preferredPosition="mostSpace"
+          open={open}
           >
             {itemsComponent}
         </Popover>}

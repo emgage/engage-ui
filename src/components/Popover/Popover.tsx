@@ -29,6 +29,7 @@ export interface Props {
   preferredPosition?: PreferredPosition;
   // Theme to be injected via css-themr.
   theme?: any;
+  open?: boolean;
 }
 
 export interface State {
@@ -142,6 +143,7 @@ class Popover extends React.PureComponent<Props, State> {
       componentClass = '',
       componentStyle = {},
       preferredPosition = 'below',
+      open
     } = this.props;
 
     const themeClass = classNames(
@@ -156,7 +158,7 @@ class Popover extends React.PureComponent<Props, State> {
         componentId={id}
         preferredPosition={preferredPosition}
         activator={anchorEl}
-        active={active}
+        active={open ? open : active}
         onClose={noop}
         popoverRef={this.setActivator}
       >

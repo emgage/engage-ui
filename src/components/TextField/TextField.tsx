@@ -87,7 +87,7 @@ export interface Props {
   // Theme to be injected via css-themr.
   theme?: any;
   // Callback when value is changed.
-  onChange?(value: string): void;
+  onChange?(value: string, e?: React.FormEvent<HTMLElement>): void;
   // Callback when input is focused.
   onFocus?(e?: React.FormEvent<HTMLElement>): void;
   // Callback when focus is removed	.
@@ -332,7 +332,7 @@ class TextField extends React.PureComponent<Props, State> {
         onChange(newValueArray.join(''));
         return ;
       }
-      onChange(newValue);
+      onChange(newValue, event);
     }
   }
 
