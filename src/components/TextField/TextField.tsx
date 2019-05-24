@@ -332,7 +332,7 @@ class TextField extends React.PureComponent<Props, State> {
         onChange(newValueArray.join(''));
         return ;
       }
-      onChange(newValue,event);
+      onChange(newValue, event);
     }
   }
 
