@@ -160,9 +160,9 @@ class ComboBox extends React.Component<Props, State> {
         </div>
 
         {open && <Popover
-          componentStyle={{ background: '#dcdcdc', width: '100%', padding: '10px 100px' }}
+          componentStyle={{ background: '#dcdcdc', width: '100%', padding: '10px 100px', maxHeight: 200, overflow: 'auto' }}
           anchorEl={this.state.anchorEl}
-          preferredPosition="mostSpace"
+          preferredPosition="below"
           open={open}
           >
             {itemsComponent}
