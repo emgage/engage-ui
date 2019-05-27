@@ -26,6 +26,7 @@ import {
   DrawerContent,
   SideNavigation,
   FlexBox,
+  Icon,
   // FormLayout,
   Heading,
   Link,
@@ -1465,6 +1466,12 @@ class App extends React.Component<{}, State> {
           <br/>
 
           <Column small="2-4" medium="2-4" large="2-4">
+
+          <TextField
+            disabled
+            placeholder="Find Content Definition..."
+            suffix={<Icon source="search" />}
+          />
 
           <TextField
             componentId="TestName"

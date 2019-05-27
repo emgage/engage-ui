@@ -22,50 +22,41 @@ export interface State {
 }
 
 export interface Props {
-  // Text to display before value.
-  prefix?: React.ReactNode;
-  // Text to display after value.
-  suffix?: React.ReactNode;
-  // Hint text to display.
-  placeholder?: string;
-  // Initial value for the input.
-  value?: string;
-  // Additional hint text to display.
-  helpText?: React.ReactNode;
+  // Check alphanumeric value
+  alphanumeric?: boolean;
+  // Enable automatic completion by the browser.
+  autoComplete?: boolean;
+  // Automatically focus the input.
+  autoFocus?: boolean;
+  // Check alphanumeric value and convert into capital
+  capital?: boolean;
+  componentClass?: string;
+  // ID for the input.
+  componentId?: string;
+  // To provide styling.
+  componentStyle?: React.CSSProperties;
+  // An element connected to the right of the input.
+  connectedRight?: React.ReactNode;
+  // An element connected to the left of the input
+  connectedLeft?: React.ReactNode;
+  // Disable the input.
+  disabled?: boolean;
   // display the TextCounter.
   enableTextCounter?: boolean;
+  // Error to display beneath the label.
+  errors?: [string];
+  // Function return all errors
+  getErrors?(errors:any, name?:string): void;
+  // Additional hint text to display.
+  helpText?: React.ReactNode;
   // Label for the input.
-  label: string;
+  label?: string;
   // Adds an action to the label.
   labelAction?: Action;
   // Visually hide the label.
   labelHidden?: boolean;
   // Display loading indicator
   loading?: boolean;
-  // Disable the input.
-  disabled?: boolean;
-  // Disable editing of the input.
-  readOnly?: boolean;
-  // Automatically focus the input.
-  autoFocus?: boolean;
-  // Allow for multiple lines of input.
-  multiline?: boolean | number;
-  // Error to display beneath the label.
-  errors?: [string];
-  // An element connected to the right of the input.
-  connectedRight?: React.ReactNode;
-  // An element connected to the left of the input
-  connectedLeft?: React.ReactNode;
-  // Determine type of input. Available options: text | email | number | password | search | tel | url | date | datetime-local | month | time | week
-  type?: Type;
-  // Name of the input.
-  name?: string;
-  // ID for the input.
-  componentId?: string;
-  // Limit increment value for numeric and date-time inputs.
-  step?: number;
-  // Enable automatic completion by the browser.
-  autoComplete?: boolean;
   // Maximum value for a numeric or date-time input.
   max?: number;
   // Maximum character length for an input.
@@ -74,18 +65,10 @@ export interface Props {
   min?: number;
   // Minimum character length for an input.
   minLength?: number;
-  // A regular expression to check the value against.
-  pattern?: string;
-  // To make it required or not.
-  required?: boolean;
-  // Indicate whether value should have spelling checked.
-  spellCheck?: boolean;
-  // To make it resizable or not.
-  resizable?: boolean;
-  // To provide styling.
-  componentStyle?: React.CSSProperties;
-  // Theme to be injected via css-themr.
-  theme?: any;
+  // Allow for multiple lines of input.
+  multiline?: boolean | number;
+  // Name of the input.
+  name?: string;
   // Callback when value is changed.
   onChange?(value: string, e?: React.FormEvent<HTMLElement>): void;
   // Callback when input is focused.
@@ -94,12 +77,30 @@ export interface Props {
   onBlur?(e?: React.FormEvent<HTMLElement>): void;
   // Callback when value is inserted in Input.
   onInput?(e?: React.ChangeEvent<HTMLSelectElement>): void;
-  // Function return all errors
-  getErrors?(errors:any, name?:string): void;
-  // Check alphanumeric value and convert into capital
-  capital?: boolean;
-  // Check alphanumeric value
-  alphanumeric?: boolean;
+  // A regular expression to check the value against.
+  pattern?: string;
+  // Hint text to display.
+  placeholder?: string;
+  // Text to display before value.
+  prefix?: React.ReactNode;
+  // To make it required or not.
+  required?: boolean;
+  // Disable editing of the input.
+  readOnly?: boolean;
+  // To make it resizable or not.
+  resizable?: boolean;
+  // Text to display after value.
+  suffix?: React.ReactNode;
+  // Limit increment value for numeric and date-time inputs.
+  step?: number;
+  // Indicate whether value should have spelling checked.
+  spellCheck?: boolean;
+  // Theme to be injected via css-themr.
+  theme?: any;
+  // Determine type of input. Available options: text | email | number | password | search | tel | url | date | datetime-local | month | time | week
+  type?: Type;
+  // Initial value for the input.
+  value?: string;
 }
 
 const getUniqueID = createUniqueIDFactory('TextField');
@@ -131,41 +132,43 @@ class TextField extends React.PureComponent<Props, State> {
 
   render() {
     const {
-      componentId = getUniqueID(),
-      value = '',
-      placeholder,
-      disabled,
-      readOnly,
+      autoComplete,
       autoFocus,
-      type,
-      name,
-      errors,
-      multiline,
+      componentId = getUniqueID(),
+      componentClass = '',
+      componentStyle = {},
       connectedRight,
       connectedLeft,
-      label,
+      disabled,
+      enableTextCounter,
+      errors,
+      helpText,
+      label = '',
       labelAction,
       labelHidden,
       loading,
-      helpText,
-      enableTextCounter,
       maxLength,
+      multiline,
+      name,
+      placeholder,
       prefix,
-      suffix,
-      required,
-      theme,
       onFocus,
       onBlur,
       onInput,
-      autoComplete,
-      componentStyle,
+      readOnly,
       resizable,
+      required,
+      suffix,
+      theme,
+      type,
+      value = '',
       ...rest
     } = this.props;
 
     const { height } = this.state;
 
     const className = classNames(
+      componentClass,
       theme.textField,
       Boolean(value) && theme.hasValue,
       disabled && theme.disabled,
