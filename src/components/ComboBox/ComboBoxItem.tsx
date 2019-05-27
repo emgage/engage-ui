@@ -1,8 +1,13 @@
 import * as React from 'react';
+import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 
 import Label from '../Label';
 import Accordion from '../Accordion';
 import { ItemType } from './ComboBox';
+import { COMBOBOX } from '../ThemeIdentifiers';
+
+import * as baseTheme from './ComboBox.scss';
+import Icon from '../Icon';
 
 export interface ComboItemProps {
   type?: ItemType;
@@ -19,12 +24,14 @@ export interface AccordianItem {
 export interface Props {
   item: ComboItemProps;
   clickHandler?(value: string | null | boolean, key?: string): void;
+  theme?: any;
 }
 
-export default class ComboBoxItem extends React.PureComponent<Props, never> {
+class ComboBoxItem extends React.PureComponent<Props, never> {
   render() {
     const {
       item,
+      theme,
     } = this.props;
 
     const { key, type, value, renderer } = item;
@@ -42,12 +49,23 @@ export default class ComboBoxItem extends React.PureComponent<Props, never> {
           }
 
           accordianItems.push({
-            header: renderer ? renderer(val, 'header') : <Label componentId={indexStr}>{val.header}</Label>,
+            header: renderer ? renderer(val, 'header') :
+              <Label componentClass={theme.accordionItemHeader} componentId={indexStr}>
+                <Icon source="chevronRight" />
+                <span className={theme.headerText}>{val.header}</span>
+              </Label>,
             children: val.children.map((child: any, index: number) => {
               const data = headerKey ? child[headerKey] : (key ? child[key] : child);
 
               return (
-                <div key={index} data-key={headerKey ? headerKey : false} data-value={JSON.stringify(child)} data-object={JSON.stringify(child)}>{renderer ? renderer(child, 'children') : data}</div>
+                <div
+                  key={index}
+                  data-key={headerKey ? headerKey : false}
+                  data-value={JSON.stringify(child)}
+                  data-object={JSON.stringify(child)}
+                  className={theme.accordionItem}>
+                    {renderer ? renderer(child, 'children') : data}
+                </div>
               );
             })
           });
@@ -60,7 +78,7 @@ export default class ComboBoxItem extends React.PureComponent<Props, never> {
         );
       default:
         return (
-          <div key={new Date().getUTCMilliseconds()} data-key={key ? key : false} onClick={this.handleClick}>
+          <div key={new Date().getUTCMilliseconds()} data-key={key ? key : false} onClick={this.handleClick} className={theme.itemContainer}>
             {this.getItem(value, key, renderer)}
           </div>
         );
@@ -91,14 +109,23 @@ export default class ComboBoxItem extends React.PureComponent<Props, never> {
   }
 
   private getItem = (value: any, key: string|undefined, renderer: any) => {
+    const { theme } = this.props;
+
     return value.map((val: any, index: number) => {
       const data = key ? val[key] : val;
 
       return (
-        <div key={index + data} data-value={JSON.stringify(val)} data-key={key ? key : false} data-object={JSON.stringify(val)}>
+        <div
+          key={index + data}
+          data-value={JSON.stringify(val)}
+          data-key={key ? key : false}
+          data-object={JSON.stringify(val)}
+          className={theme.comboboxItem}>
           {renderer ? renderer(val) : data}
         </div>
       );
     });
   }
 }
+
+export default themr(COMBOBOX, baseTheme)(ComboBoxItem) as ThemedComponentClass<Props, never>;

@@ -25,6 +25,7 @@ export interface Props {
   label: string;
   style?:any;
   onSelect?(item: any): void;
+  theme?: any;
 }
 
 interface State {
@@ -139,7 +140,8 @@ class ComboBox extends React.Component<Props, State> {
 
   render() {
     const {
-      label
+      label,
+      theme
     } = this.props;
 
     const {
@@ -157,20 +159,20 @@ class ComboBox extends React.Component<Props, State> {
       );
 
     return (
-      <div key={this.id} className={baseTheme.comboboxContainer} onClick={this.onArrowClick} ref={event => this.comboWidth(event)}>
+      <div key={this.id} className={theme.comboboxContainer} onClick={this.onArrowClick} ref={event => this.comboWidth(event)}>
         <TextField
           label={label}
           onChange={this.onChange}
           value={this.state.selectedValue}
         />
 
-        <div className={baseTheme.comboboxArrow}>
+        <div className={theme.comboboxArrow}>
           <Icon source={arrowSvg} />
         </div>
 
         {open && <Popover
           addArrow={false}
-          componentStyle={{ background: '#dcdcdc', maxHeight: 200, overflow: 'auto', width: popoverWidth }}
+          componentStyle={{ maxHeight: 800, overflow: 'auto', width: popoverWidth }}
           anchorEl={this.state.anchorEl}
           open={open}
           >

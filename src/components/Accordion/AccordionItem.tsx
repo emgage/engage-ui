@@ -1,23 +1,29 @@
 import * as React from 'react';
-import * as baseTheme from './Accordion.scss';
 import { autobind } from '@shopify/javascript-utilities/decorators';
+import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
+import { classNames } from '@shopify/react-utilities/styles';
+
+import { ACCORDION } from '../ThemeIdentifiers';
+import * as baseTheme from './Accordion.scss';
+
 
 export interface Props {
-  index: number;
-  // Header of accordion item to be displayed
-  header: React.ReactElement<any>;
-  // Item of accordion component to be displayed
-  children: React.ReactElement<any>;
   // Define accordion item is active or not
   active?: boolean;
+  clickHandler?(event: React.FormEvent<HTMLElement>) : void;
+  // Item of accordion component to be displayed
+  children: React.ReactElement<any>;
+  componentClass?: string;
+  // Header of accordion item to be displayed
+  header: React.ReactElement<any>;
+  index: number;
+  style?:any;
   // Make accordion item active or inactive.
   toggle?(index: number): void;
-  style?:any;
-  clickHandler?(event: React.FormEvent<HTMLElement>) : void;
+  theme?: any;
 }
 
-export default class AccordionItem extends React.PureComponent<Props, never> {
-
+class AccordionItem extends React.PureComponent<Props, never> {
   handleClick = (event: React.FormEvent<HTMLElement>) => {
     if (this.props.clickHandler) {
       this.props.clickHandler(event);
@@ -26,18 +32,26 @@ export default class AccordionItem extends React.PureComponent<Props, never> {
 
   render() {
     const {
+      componentClass = '',
       header,
       children,
       active,
-      style
+      style,
+      theme,
     } = this.props;
 
+    const containerClass = classNames(
+      componentClass,
+      theme.accordionItem
+    );
+
     return (
-      <div className={baseTheme.accordionItem}>
-        <div className={active ? baseTheme.header : baseTheme.headerCollapsed} style={style} onClick={this.clickHandler}>
+      <div className={containerClass}>
+        <div className={active ? theme.header : theme.headerCollapsed} style={style} onClick={this.clickHandler}>
           {header}
         </div>
-        <div className={active ? baseTheme.body : baseTheme.bodyCollapsed} onClick={this.handleClick}>
+
+        <div className={active ? theme.body : theme.bodyCollapsed} onClick={this.handleClick}>
           {children}
         </div>
       </div>
@@ -51,3 +65,4 @@ export default class AccordionItem extends React.PureComponent<Props, never> {
     }
   }
 }
+export default themr(ACCORDION, baseTheme)(AccordionItem) as ThemedComponentClass<Props, never>;

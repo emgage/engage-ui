@@ -11,7 +11,7 @@ import * as baseTheme from './Label.scss';
 export { Action };
 
 export interface Props {
-  children?: string;
+  children?: any;
   // ID for the input.
   componentId: string;
   // Adds an action to the label.

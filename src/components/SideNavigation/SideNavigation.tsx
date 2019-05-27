@@ -143,7 +143,7 @@ class SideNavigation extends React.Component<Props, State> {
 
             {childrenMarkup}
           </div>
-        ) : <Accordion key={index} style={{ padding:'0px', height:'20px' }} mode="collapsible" items={items} />) :
+        ) : <Accordion key={index} componentStyle={{ padding:'0px', height:'20px' }} mode="collapsible" items={items} />) :
         (
           <div key={index}>
             <div className={liClass} onClick={full.action} aria-disabled={false}>
