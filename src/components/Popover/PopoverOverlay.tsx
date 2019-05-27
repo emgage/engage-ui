@@ -67,7 +67,7 @@ export default class PopoverOverlay extends React.PureComponent<Props, never> {
     const tipStyle = calculateTipPosition(activatorRect.center.x, left, preferredPosition);
 
     const containerClassName = classNames(
-      preferredPosition === 'below' && styles.belowPopover,
+      (preferredPosition === 'below' || preferredPosition === 'mostSpace') && styles.belowPopover,
       preferredPosition === 'right' && styles.rightPopover,
       preferredPosition === 'above' && styles.abovePopover,
       preferredPosition === 'left' && styles.leftPopover,

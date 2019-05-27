@@ -33,6 +33,7 @@ interface State {
   initialItems: ComboBoxItemProps[];
   anchorEl?: HTMLElement;
   selectedValue: string;
+  popoverWidth: string;
 }
 
 class ComboBox extends React.Component<Props, State> {
@@ -50,6 +51,7 @@ class ComboBox extends React.Component<Props, State> {
       // In case use is searching something, and then removes its search text, combobox shud list the initialItem
       // Therefore, keeping copy of it so that its not lose, as items is changed depending on search and selection.
       initialItems: this.addRenderer(items, JSON.parse(JSON.stringify(items))),
+      popoverWidth: '',
       selectedValue: '' || currentValue,
     };
   }
@@ -129,14 +131,21 @@ class ComboBox extends React.Component<Props, State> {
     this.setState({ selectedValue: typeof(value) === 'object' ? value[key] : value, open: false });
   }
 
+  comboWidth = (event: any) => {
+    if (event && !this.state.popoverWidth) {
+      this.setState({ popoverWidth: event.offsetWidth });
+    }
+  }
+
   render() {
     const {
       label
     } = this.props;
 
     const {
+      items,
       open,
-      items
+      popoverWidth
     } = this.state;
 
     const itemsComponent = items.map((item, index) =>
@@ -148,21 +157,21 @@ class ComboBox extends React.Component<Props, State> {
       );
 
     return (
-      <div key={this.id} className={baseTheme.comboboxContainer}>
+      <div key={this.id} className={baseTheme.comboboxContainer} onClick={this.onArrowClick} ref={event => this.comboWidth(event)}>
         <TextField
           label={label}
           onChange={this.onChange}
           value={this.state.selectedValue}
         />
 
-        <div className={baseTheme.comboboxArrow} onClick={this.onArrowClick}>
+        <div className={baseTheme.comboboxArrow}>
           <Icon source={arrowSvg} />
         </div>
 
         {open && <Popover
-          componentStyle={{ background: '#dcdcdc', width: '100%', padding: '10px 100px', maxHeight: 200, overflow: 'auto' }}
+          addArrow={false}
+          componentStyle={{ background: '#dcdcdc', maxHeight: 200, overflow: 'auto', width: popoverWidth }}
           anchorEl={this.state.anchorEl}
-          preferredPosition="below"
           open={open}
           >
             {itemsComponent}

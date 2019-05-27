@@ -34,7 +34,7 @@ export default class ComboBoxItem extends React.PureComponent<Props, never> {
         const accordianItems: AccordianItem[] = [];
 
         value.forEach((val: any, index: number) => {
-          const headerKey = val.key;
+          const headerKey = key;
           const indexStr: string = index.toString();
 
           if (val.children.length === 0) {
@@ -47,7 +47,7 @@ export default class ComboBoxItem extends React.PureComponent<Props, never> {
               const data = headerKey ? child[headerKey] : (key ? child[key] : child);
 
               return (
-                <div key={index} data-key={headerKey ? headerKey : false} data-value={val} data-object={JSON.stringify(child)}>{renderer ? renderer(child, 'children') : data}</div>
+                <div key={index} data-key={headerKey ? headerKey : false} data-value={JSON.stringify(child)} data-object={JSON.stringify(child)}>{renderer ? renderer(child, 'children') : data}</div>
               );
             })
           });
@@ -83,7 +83,7 @@ export default class ComboBoxItem extends React.PureComponent<Props, never> {
     const dataValue: boolean | string | any  = this.findParent(target);
 
     if (dataValue && this.props.clickHandler) {
-      const hasKey = event.currentTarget.getAttribute('data-key');
+      const hasKey = target.getAttribute('data-key');
       const valueToPass = hasKey ?  JSON.parse(dataValue) : dataValue;
 
       this.props.clickHandler(valueToPass, hasKey);
