@@ -129,6 +129,7 @@ class ComboBox extends React.Component<Props, State> {
       this.props.onSelect(value);
     }
 
+    console.log('value:', value, 'key:', key);
     this.setState({ selectedValue: typeof(value) === 'object' ? value[key] : value, open: false });
   }
 

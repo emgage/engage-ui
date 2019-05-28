@@ -101,14 +101,14 @@ class ComboBoxItem extends React.PureComponent<Props, never> {
     const dataValue: boolean | string | any  = this.findParent(target);
 
     if (dataValue && this.props.clickHandler) {
-      const hasKey = target.getAttribute('data-key');
+      const hasKey = target.getAttribute('data-key') ?  target.getAttribute('data-key') : event.currentTarget.getAttribute('data-key');
       const valueToPass = hasKey ?  JSON.parse(dataValue) : dataValue;
 
       this.props.clickHandler(valueToPass, hasKey);
     }
   }
 
-  private getItem = (value: any, key: string|undefined, renderer: any) => {
+  private getItem = (value: any, key: string | undefined, renderer: any) => {
     const { theme } = this.props;
 
     return value.map((val: any, index: number) => {
