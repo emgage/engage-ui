@@ -2115,7 +2115,7 @@ class App extends React.Component<{}, State> {
 
 
         <div>ComboBox</div>
-        <ComboBox items={this.getComboBoxItems()} label="Select" currentValue="item1" />
+        <div style={{ width: '50%' }}><ComboBox items={this.getComboBoxItems()} label="Select" currentValue="item1" /></div>
       </div>
     );
   }

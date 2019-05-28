@@ -14,16 +14,18 @@ export interface AccordionItemProps {
 }
 
 export interface Props {
+  clickHandler?(event: React.FormEvent<HTMLElement>): void;
+  // Index of item which you want to be in-active
+  closeIndex?: number;
+  componentClass?: string;
+  componentStyle?: any;
   // Items of the accordion component
   items: AccordionItemProps[];
   // Mode of accordion. it can be collapsible or multiple
   mode?: Mode;
   // Index of item which you want to be active
   openIndex?: number;
-  // Index of item which you want to be in-active
-  closeIndex?: number;
-  style?:any;
-  clickHandler?(event: React.FormEvent<HTMLElement>): void;
+  theme?: any;
 }
 
 interface State {
@@ -71,8 +73,10 @@ class Accordion extends React.Component<Props, State> {
           });
         } else {
           const newActive = this.state.active;
+
           newActive[nextProps.closeIndex] = false;
           newActive[nextProps.openIndex] = true;
+
           this.setState({
             active: newActive
           });
@@ -80,7 +84,9 @@ class Accordion extends React.Component<Props, State> {
       }
     } else if (nextProps.closeIndex !== undefined && nextProps.closeIndex < this.state.active.length && this.state.active[nextProps.closeIndex]) {
       const newActive = this.state.active;
+
       newActive[nextProps.closeIndex] = false;
+
       this.setState({
         active: newActive
       });
@@ -93,7 +99,9 @@ class Accordion extends React.Component<Props, State> {
         });
       } else {
         const newActive = this.state.active;
+
         newActive[nextProps.openIndex] = true;
+
         this.setState({
           active: newActive
         });
@@ -103,6 +111,9 @@ class Accordion extends React.Component<Props, State> {
 
   render() {
     const {
+      clickHandler,
+      componentClass = '',
+      componentStyle = {},
       items
     } = this.props;
 
@@ -112,12 +123,13 @@ class Accordion extends React.Component<Props, State> {
 
     const itemsComponent = items.map((item, index) =>
         <AccordionItem
-          index= {index}
-          key= {this.getItemUniqueID()}
-          toggle = {this.toggleItem}
-          active = {active[index] ? true : false}
-          header = {item.header} style={this.props.style}
-          clickHandler={this.props.clickHandler}
+          componentClass={componentClass}
+          index={index}
+          key={this.getItemUniqueID()}
+          toggle={this.toggleItem}
+          active={active[index] ? true : false}
+          header={item.header} style={componentStyle}
+          clickHandler={clickHandler}
         >
           {item.children}
         </AccordionItem>
