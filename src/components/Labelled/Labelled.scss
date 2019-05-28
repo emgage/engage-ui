@@ -4,6 +4,8 @@
 
 .labelWrapper {
   margin-bottom: spacing(extra-tight);
+  width: 100%;
+  z-index: 50 !important;
 }
 
 .helpText {
