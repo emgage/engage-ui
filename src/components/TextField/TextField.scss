@@ -153,6 +153,16 @@ $stacking-order: (
   transition: box-shadow duration() easing();
 }
 
+.multiLineLabel {
+  position: absolute;
+  background: #FFF;
+  z-index: 100;
+  left: 0;
+  right: 28px;
+  top: -2px;
+  padding-top: 2px;
+}
+
 .prefix {
   position: relative;
   z-index: z-index(input, $stacking-order);

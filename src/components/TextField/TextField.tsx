@@ -274,6 +274,7 @@ class TextField extends React.PureComponent<Props, State> {
         hasValue={hasValue}
         required={required}
         componentClass={labelStyle}
+        labelWrapperStyle={multiline && theme.multiLineLabel}
       >
         <Connected
           left={connectedLeft}
