@@ -19,15 +19,6 @@ describe('<Accordion />', () => {
     expect(accordionWrapper.find('div')).toHaveLength(10);
     expect(accordionWrapper.find('h4')).toHaveLength(3);
     expect(accordionWrapper.find('h2')).toHaveLength(3);
-    expect(accordionWrapper.find('div').at(1).hasClass('accordionItem')).toBeTruthy();
-    expect(accordionWrapper.find('div').at(2).hasClass('headerCollapsed')).toBeTruthy();
-    expect(accordionWrapper.find('div').at(3).hasClass('bodyCollapsed')).toBeTruthy();
-    expect(accordionWrapper.find('div').at(4).hasClass('accordionItem')).toBeTruthy();
-    expect(accordionWrapper.find('div').at(5).hasClass('headerCollapsed')).toBeTruthy();
-    expect(accordionWrapper.find('div').at(6).hasClass('bodyCollapsed')).toBeTruthy();
-    expect(accordionWrapper.find('div').at(7).hasClass('accordionItem')).toBeTruthy();
-    expect(accordionWrapper.find('div').at(8).hasClass('headerCollapsed')).toBeTruthy();
-    expect(accordionWrapper.find('div').at(9).hasClass('bodyCollapsed')).toBeTruthy();
     expect(accordionWrapper.prop('mode')).toBeUndefined();
   });
 
@@ -36,15 +27,6 @@ describe('<Accordion />', () => {
     expect(accordionWrapper.find('div')).toHaveLength(10);
     expect(accordionWrapper.find('h4')).toHaveLength(3);
     expect(accordionWrapper.find('h2')).toHaveLength(3);
-    expect(accordionWrapper.find('div').at(1).hasClass('accordionItem')).toBeTruthy();
-    expect(accordionWrapper.find('div').at(2).hasClass('headerCollapsed')).toBeTruthy();
-    expect(accordionWrapper.find('div').at(3).hasClass('bodyCollapsed')).toBeTruthy();
-    expect(accordionWrapper.find('div').at(4).hasClass('accordionItem')).toBeTruthy();
-    expect(accordionWrapper.find('div').at(5).hasClass('header')).toBeTruthy();
-    expect(accordionWrapper.find('div').at(6).hasClass('body')).toBeTruthy();
-    expect(accordionWrapper.find('div').at(7).hasClass('accordionItem')).toBeTruthy();
-    expect(accordionWrapper.find('div').at(8).hasClass('headerCollapsed')).toBeTruthy();
-    expect(accordionWrapper.find('div').at(9).hasClass('bodyCollapsed')).toBeTruthy();
     expect(accordionWrapper.prop('mode')).toBe('multiple');
   });
 
