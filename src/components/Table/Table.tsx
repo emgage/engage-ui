@@ -132,7 +132,7 @@ class Table extends React.Component<Props, State> {
     }
 
     if (newProps.data.length !== this.props.data.length && JSON.stringify(newProps.data) !== JSON.stringify(this.props.data)) {
-      this.setState({ data: newProps.data });
+      this.setState({ data: newProps.data, totalRowCount: newProps.data.map((item: any) => item.id).length });
     }
 
     if (JSON.stringify(newProps.nestedChildData) !== JSON.stringify(this.props.nestedChildData)) {
@@ -186,7 +186,7 @@ class Table extends React.Component<Props, State> {
         },
       },
       searchKey: '',
-      totalRowCount: 0,
+      totalRowCount: this.props.data.map((item: any) => item.id).length,
       callChildCallback: false,
       nestedChildData: this.props.nestedChildData,
     };
