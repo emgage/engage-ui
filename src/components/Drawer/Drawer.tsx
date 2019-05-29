@@ -62,6 +62,7 @@ export interface Props {
   componentStyle?: any;
   // Set a custom class
   componentClass?: string;
+  id?: string;
 }
 
 const getUniqueID = createUniqueIDFactory('DrawerWrapper');
@@ -195,7 +196,7 @@ class Drawer extends React.PureComponent<Props, never> {
   }
 
   renderLayer() {
-    const { active, mode, componentLabel, componentWidth, theme, zIndex  } = this.props;
+    const { active, mode, componentLabel, componentWidth, theme, zIndex, id  } = this.props;
     const containerClassName = this.getContainerClassName();
     const barClassName = this.getBarClassName();
 
@@ -211,7 +212,7 @@ class Drawer extends React.PureComponent<Props, never> {
     );
 
     const bar = [
-      <div className={barClassName} style={dStyle} key={this.id}>
+      <div id={id ? id : undefined} className={barClassName} style={dStyle} key={this.id}>
         {
           componentLabel ?
             <div className={theme.drawerLabel}>
