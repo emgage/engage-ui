@@ -52,9 +52,6 @@
   height: calc(1em/2 + 0.7em);
 }
 
-.nodecontent {
-}
-
 li.haschildren {
   padding-bottom: 0;
 }
@@ -82,14 +79,3 @@ li.haschildren > .nodecontent::before {
 .treeview li:not(.haschildren):last-child::before {
     height: calc(1em/2 + 0.7em);
 }
-
-// Styling for use in app list
-// li:not(.haschildren ) {
-//   border-top: 1px solid #ccc;
-// }
-// li.haschildren {
-//   border-top: 1px solid #ccc;
-// }
-// .treeview > li:last-child {
-//   border-bottom: 1px solid #ccc;
-// }
