@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
-import { classNames } from '@shopify/react-utilities/styles';
 
 import { SourceData } from './interface';
 import TreeNode from './TreeNode';
@@ -17,8 +16,6 @@ export interface Props {
   selectedTheme?: Themes;
   // Datasource to bind into treeview component
   source: SourceData[];
-  // Set a custom class
-  componentClass?: string;
   // Theme to be injected via css-themr.
   theme?: any;
 }
@@ -140,15 +137,10 @@ class TreeView extends React.Component<Props, State> {
 
   render() {
     const { source } = this.state;
-    const {
-      theme,
-      componentClass,
-    } = this.props;
-
-    const className = classNames(theme.treeview, componentClass);
+    const { theme } = this.props;
 
     return (
-      <ul className={className}>
+      <ul className={theme.treeview}>
         { source.map(item => this.renderNode(item)) }
       </ul>
     );
