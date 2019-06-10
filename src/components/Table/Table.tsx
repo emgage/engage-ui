@@ -90,7 +90,7 @@ export interface Props {
   onRowClick?(value: any): void;
   // Use this key to fetch the unique id from data & send it back to clickedrow
   rowCallbackValue?: string;
-  // Use for disabled or enable selected Row checkbox
+  // Use for disabled or enable selected Row checkbox and RowAction button
   actionInProgress?: boolean;
 }
 
