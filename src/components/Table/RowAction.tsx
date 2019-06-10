@@ -28,6 +28,7 @@ export interface Props {
   actionConfig: any;
   theme?: any;
   rowActionLeft?: boolean;
+  actionInProgress?: boolean;
 }
 
 export interface State {
@@ -75,11 +76,11 @@ class RowAction extends React.Component<Props, State> {
   }
 
   render () {
-    const { actionConfig, data, rowActionLeft } = this.props;
+    const { actionConfig, data, rowActionLeft, actionInProgress } = this.props;
     const validActionConfigs = this.getActions(actionConfig, data);
     return (
       <TableData>
-        <Button icon="horizontalDots" onClick={(e: React.FormEvent<HTMLElement>) => this.dropdownToggle(e)} />
+        <Button disabled={actionInProgress} icon="horizontalDots" onClick={(e: React.FormEvent<HTMLElement>) => this.dropdownToggle(e)} />
 
         <Dropdown
           dropdownItems={validActionConfigs}
