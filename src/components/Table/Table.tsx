@@ -90,6 +90,8 @@ export interface Props {
   onRowClick?(value: any): void;
   // Use this key to fetch the unique id from data & send it back to clickedrow
   rowCallbackValue?: string;
+  // Use for disabled or enable selected Row checkbox and RowAction button
+  actionInProgress?: boolean;
 }
 
 export interface State {
@@ -321,7 +323,7 @@ class Table extends React.Component<Props, State> {
 
   // Render the main table row
   renderTbodyRows = (item: any, index: number | string) => {
-    const { column, expandingRowId = [], hideExpandedIcon, rowAction, theme, rowActionLeft, onRowClick, rowCallbackValue } = this.props;
+    const { actionInProgress, column, expandingRowId = [], hideExpandedIcon, rowAction, theme, rowActionLeft, onRowClick, rowCallbackValue } = this.props;
     const { nestedChildData } = this.state;
 
     return (
@@ -341,7 +343,7 @@ class Table extends React.Component<Props, State> {
                   Here injectBody helps to inject any custom component to td,
                   we also return the specifc value, which then can be used in injected component
                 */}
-                { colItem.key === 'rowAction' ? <RowAction actionConfig={rowAction} data={item} rowActionLeft /> : '' }
+                { colItem.key === 'rowAction' ? <RowAction actionInProgress={actionInProgress} actionConfig={rowAction} data={item} rowActionLeft /> : '' }
                 { renderCheckbox ? this.renderCheckColumn(item, false) : ''}
                 {colItem.injectBody ? colItem.injectBody(item) : renderCheckbox ? <span style={{ paddingLeft: '16px' }}>{item[colItem.key]}</span> : <span className={theme.tableDataWrap}>{item[colItem.key]}</span> }
               </TableData>
@@ -349,7 +351,7 @@ class Table extends React.Component<Props, State> {
           })
         }
 
-        { rowAction && !rowActionLeft ? <RowAction actionConfig={rowAction} data={item} /> : '' }
+        { rowAction && !rowActionLeft ? <RowAction actionInProgress={actionInProgress} actionConfig={rowAction} data={item} /> : '' }
       </TableRow>
     );
   }
@@ -460,12 +462,13 @@ class Table extends React.Component<Props, State> {
 
   renderCheckbox(rowData: any) {
     const { intermediateRow, selectedRows = [] } = this.state;
-    const { selectCallbackValue } = this.props;
+    const { selectCallbackValue, actionInProgress } = this.props;
     const uniqueId = selectCallbackValue ? rowData[selectCallbackValue] : rowData.id;
     const isCheckboxChecked: boolean = selectedRows.indexOf(uniqueId) !== -1 || intermediateRow.indexOf(uniqueId) !== -1;
 
     return (
       <Checkbox
+        disabled={actionInProgress}
         checked={isCheckboxChecked}
         indeterminante={intermediateRow.indexOf(uniqueId) !== -1}
         onChange={(checkedStatus: boolean) => {
