@@ -4,8 +4,11 @@
 
 .labelWrapper {
   margin-bottom: spacing(extra-tight);
-  width: 50%;
+  width: 90%;
   z-index: 50 !important;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .helpText {
