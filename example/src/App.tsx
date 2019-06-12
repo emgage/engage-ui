@@ -1722,21 +1722,24 @@ class App extends React.Component<{}, State> {
             <p>This is just some fun regular text.</p>
 
             {/* <FormLayout> */}
-              <ValidatedTextField
-                getErrors={this.getErrors}
-                componentId="AppName"
-                label="App Name"
-                placeholder="App Name"
-                helpText="We recommend keeping your app name under 23 characters."
-                onChange={this.valueUpdater('appName')}
-                value={this.state.appName}
-                name="App Name"
-                validateTrigger={['onBlur']}
-                validateRules={[
-                  { minRange: 2, maxRange: 32760, message: 'Range is between 2 & 32760' },
-                  { required: true, message: 'App Description is required' },
-                ]}
-              />
+              <div style={{ width: '100px' }}>
+                <ValidatedTextField
+                  getErrors={this.getErrors}
+                  componentId="AppName"
+                  label="App Name"
+                  placeholder="App Name"
+                  type="number"
+                  helpText="We recommend keeping your app name under 23 characters."
+                  onChange={this.valueUpdater('appName')}
+                  value={this.state.appName}
+                  name="App Name"
+                  validateTrigger={['onBlur']}
+                  validateRules={[
+                    { minRange: 2, maxRange: 32760, message: 'Range is between 2 & 32760' },
+                    { required: true, message: 'App Description is required' },
+                  ]}
+                />
+              </div>
               <ValidatedTextField
                 getErrors={this.getErrors}
                 multiline
