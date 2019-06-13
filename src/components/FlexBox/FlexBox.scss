@@ -50,3 +50,13 @@
     align-items: stretch;
     align-content: stretch;   
 }
+
+.noWrap {
+  flex-wrap: nowrap;
+}
+.wrap {
+  flex-wrap: wrap;
+}
+.wrapReverse {
+  flex-wrap: wrap-reverse;
+}

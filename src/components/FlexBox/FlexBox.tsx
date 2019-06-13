@@ -7,6 +7,7 @@ import * as baseTheme from './FlexBox.scss';
 export type FlexAlign = 'Start' | 'Center' | 'End' | 'Stretch';
 export type FlexJustify = 'Start' | 'Center' | 'End' | 'SpaceAround' | 'SpaceBetween';
 export type FlexDirection = 'Row' | 'RowReverse' | 'Column' | 'ColumnReverse';
+export type FlexWrap = 'NoWrap' | 'Wrap' | 'WrapReverse';
 
 export interface Props {
   // Set display of flex container.
@@ -17,6 +18,8 @@ export interface Props {
   justify?: FlexJustify;
   // Sets the alignment of flex items on the cross axis. Value of align can be one from this list : "Start", "Center", "End", "Stretch"
   align?: FlexAlign;
+  // Defines whether flex items are forced in a single line or can be flowed into multiple lines. Value of wrap can be one from this list : "NoWrap", "Wrap", "WrapReverse"
+  wrap?: FlexWrap;
   // To display the styling.
   componentStyle?: React.CSSProperties;
   // Set a custom class
@@ -32,6 +35,7 @@ class FlexBox extends React.PureComponent<Props, {}> {
       direction ,
       justify,
       align,
+      wrap,
       componentClass
     } = this.props;
 
@@ -74,7 +78,8 @@ class FlexBox extends React.PureComponent<Props, {}> {
         className = classNames(this.props.theme.contentStart, className);
         break;
     }
-        // set align property css
+
+    // set align property css
     switch (align) {
       case 'Start':
         className = classNames(this.props.theme.alignStart, className);
@@ -88,6 +93,19 @@ class FlexBox extends React.PureComponent<Props, {}> {
       case 'Stretch':
       default:
         className = classNames(this.props.theme.alignStretch, className);
+        break;
+    }
+
+    // set wrap property css
+    switch (wrap) {
+      case 'NoWrap':
+        className = classNames(this.props.theme.noWrap, className);
+        break;
+      case 'Wrap':
+        className = classNames(this.props.theme.wrap, className);
+        break;
+      case 'WrapReverse':
+        className = classNames(this.props.theme.WrapReverse, className);
         break;
     }
 
