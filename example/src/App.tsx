@@ -1857,7 +1857,7 @@ class App extends React.Component<{}, State> {
             <Link>Tooltip 2</Link>
           </Tooltip>
 
-          <FlexBox direction="Row" align="Stretch" justify="SpaceAround">
+          <FlexBox direction="Row" align="Stretch" justify="SpaceAround" wrap="Wrap">
             <div style={{ backgroundColor: 'aqua' }}>Demo 1</div>
             <div style={{ backgroundColor: 'pink' }}>Demo 2</div>
             <div style={{ backgroundColor: 'lime' }}>Demo 3</div>
