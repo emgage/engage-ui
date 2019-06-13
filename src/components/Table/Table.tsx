@@ -592,7 +592,7 @@ class Table extends React.Component<Props, State> {
     }
 
     // Save the new state
-    this.setState({ selectedRows: currentSelectedRows, intermediateRow: currentIntermediateRow });
+    this.setState({ selectedRows: currentSelectedRows, intermediateRow: currentIntermediateRow, allRowChecked: currentSelectedRows.length ? true : false });
 
     // Check if callback is passed, if passed then call it
     if (selectRowCallback) {
