@@ -203,6 +203,7 @@ class TextField extends React.PureComponent<Props, State> {
       );
 
     let counterTextMarkup;
+
     if (enableTextCounter) {
       const maxLengthString = maxLength ? '/' + maxLength : '';
       const textCount = this.props.value ? this.props.value.toString().length : 0;
