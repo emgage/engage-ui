@@ -225,7 +225,8 @@ class TextField extends React.PureComponent<Props, State> {
 
     const inputEleClass = classNames(
       theme.input,
-      !label && theme.noLabel
+      !label && theme.noLabel,
+      this.state.value && theme.notEmpty
     );
 
     const input = React.createElement(multiline ? 'textarea' : 'input', {

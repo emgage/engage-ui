@@ -136,6 +136,11 @@ $stacking-order: (
       margin: 0;
     }
   }
+
+  &.notEmpty {
+    padding-top: 1.9rem;
+    padding-bottom: .3rem;
+  }
 }
 
 .backdrop {
