@@ -97,6 +97,7 @@
 .sortingHeader {
   display: flex
 }
+
 .sortIcon {
   display: flex;
   flex-direction: column;
@@ -160,6 +161,12 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+}
+
+.rowActionButton {
+  background: transparent;
+  border: none;
+  min-height: auto
 }
 
 @media screen and (max-width: 40em) {
