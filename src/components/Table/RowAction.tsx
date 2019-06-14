@@ -76,11 +76,11 @@ class RowAction extends React.Component<Props, State> {
   }
 
   render () {
-    const { actionConfig, data, rowActionLeft, actionInProgress } = this.props;
+    const { actionConfig, data, rowActionLeft, actionInProgress, theme } = this.props;
     const validActionConfigs = this.getActions(actionConfig, data);
     return (
       <TableData>
-        <Button disabled={actionInProgress} icon="horizontalDots" onClick={(e: React.FormEvent<HTMLElement>) => this.dropdownToggle(e)} />
+        <Button componentClass={theme.rowActionButton} disabled={actionInProgress} icon="horizontalDots" onClick={(e: React.FormEvent<HTMLElement>) => this.dropdownToggle(e)} />
 
         <Dropdown
           dropdownItems={validActionConfigs}
