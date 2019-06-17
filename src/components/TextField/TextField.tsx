@@ -247,7 +247,6 @@ class TextField extends React.PureComponent<Props, State> {
       autoComplete: normalizeAutoComplete(autoComplete),
       className: inputEleClass,
       onChange: this.onChange,
-      onKeyDown: this.onKeyDown,
       ref: this.setInput,
       'aria-required': required ? true : false,
       'aria-describedby': describedBy.length ? describedBy.join(' ') : undefined,
@@ -339,18 +338,6 @@ class TextField extends React.PureComponent<Props, State> {
         return ;
       }
       onChange(newValue, event);
-    }
-  }
-
-  @autobind
-  private onKeyDown(e: any) {
-    const { onChange } = this.props;
-    if (onChange == null) { return; }
-    const value = this.props.value ? this.props.value : '';
-    const maxLength = this.props.maxLength ? this.props.maxLength : Number.POSITIVE_INFINITY;
-    if (value.length >= maxLength && e.keyCode === 8) {
-      onChange(e.currentTarget.value.slice(0, e.currentTarget.value.length - 1));
-      e.preventDefault();
     }
   }
 
