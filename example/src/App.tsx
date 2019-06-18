@@ -1481,6 +1481,7 @@ class App extends React.Component<{}, State> {
           />
 
           <TextField
+            capital
             componentId="TestName"
             label="Text Counter"
             placeholder="test-placeholder"
@@ -1488,7 +1489,7 @@ class App extends React.Component<{}, State> {
             // value="Value"
             helpText="Helper Text"
             enableTextCounter
-            maxLength={101}
+            maxLength={5}
             minLength={5}
             onChange={this.valueUpdater('appTextCounter1')}
             // disabled
