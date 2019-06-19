@@ -25,7 +25,7 @@ $input-vertical-adjust: rem(1px);
 
 .select {
   position: relative;
-  margin-bottom: 15px;
+  margin-bottom: 15px !important;
 
   // IE 11 fix to remove default dropdown arrow
   select::-ms-expand {
