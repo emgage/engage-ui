@@ -394,8 +394,7 @@ class Table extends React.Component<Props, State> {
 
   // Add checkbox or radio component to select the row, depending on `selectrow` flag
   renderRowSelection = (rowData: any, rowType: string) => {
-    const { expandingRowId = [], hideExpandedIcon, renderHeaderCheckbox, selectRow } = this.props;
-    const { nestedChildData } = this.state;
+    const { expandingRowId = [], hideExpandedIcon, renderHeaderCheckbox, selectRow, nestedChildData } = this.props;
 
     if (selectRow) {
       if (rowType === 'body') {
