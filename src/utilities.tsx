@@ -68,13 +68,13 @@ export function calculateTipPosition(activatorRectXAxisCenter: number, left: num
     return { left: activatorRectXAxisCenter - left };
   }
   if (preferredPosition === 'below' || preferredPosition === 'mostSpace') {
-    return { left: activatorRectXAxisCenter - left, top: 0 };
+    return { left: activatorRectXAxisCenter - left, top: '-1px' };
   }
   if (preferredPosition === 'belowLeft') {
-    return { left: activatorRectXAxisCenter - left, top: 0 };
+    return { left: activatorRectXAxisCenter - left, top: '-1px' };
   }
   if (preferredPosition === 'belowRight') {
-    return { left: activatorRectXAxisCenter - left, top: 0 };
+    return { left: activatorRectXAxisCenter - left, top: '-1px' };
   }
   if (preferredPosition === 'right') {
     return { top: '34%' };
