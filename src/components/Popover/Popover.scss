@@ -10,33 +10,33 @@ $arrow-size: rem(14px);
 $visible-portion-of-arrow: rem(5px);
 
 .abovePopover {
-  margin: $visible-portion-of-arrow spacing() spacing();
+  margin: spacing(extra-tight) spacing() spacing();
   opacity: 1;
-  box-shadow: shadow(base);
+  box-shadow: shadow(deep);
   border-radius: border-radius();
   will-change: opacity, left, top;
   transition: opacity duration() easing(in);
 }
 .rightPopover {
-  margin: $visible-portion-of-arrow spacing() $visible-portion-of-arrow;
+  margin: spacing(extra-tight) spacing();
   opacity: 1;
-  box-shadow: shadow(base);
+  box-shadow: shadow(deep);
   border-radius: border-radius();
   will-change: opacity, left, top;
   transition: opacity duration() easing(in);
 }
 .belowPopover {
-  margin: $visible-portion-of-arrow spacing() spacing();
+  margin: spacing(extra-tight) spacing() spacing();
   opacity: 1;
-  box-shadow: shadow(base);
+  box-shadow: shadow(deep);
   border-radius: border-radius();
   will-change: opacity, left, top;
   transition: opacity duration() easing(in);
 }
 .leftPopover {
-  margin: spacing() spacing() spacing() $visible-portion-of-arrow;
+  margin: spacing() spacing() spacing() spacing(extra-tight);
   opacity: 1;
-  box-shadow: shadow(base);
+  box-shadow: shadow(deep);
   border-radius: border-radius();
   will-change: opacity, left, top;
   transition: opacity duration() easing(in);
@@ -47,7 +47,7 @@ $visible-portion-of-arrow: rem(5px);
 }
 
 .positionedAbove {
-  margin: spacing() spacing() $visible-portion-of-arrow;
+  margin: spacing() spacing() spacing(extra-tight);
 
   .tip {
     top: inherit;
@@ -87,6 +87,7 @@ $visible-portion-of-arrow: rem(5px);
   width: $arrow-size;
   background: color(white);
   box-shadow: shadow(deep);
+  border-radius: calc( #{border-radius()} - 1 );
 }
 
 .label {
