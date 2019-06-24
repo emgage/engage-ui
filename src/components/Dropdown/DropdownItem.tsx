@@ -22,6 +22,7 @@ export interface Props {
   // Return this value in callback function
   returnValue?: any;
   toggleDropdown?(): void;
+  theme?: any;
 }
 
 const getUniqueID = createUniqueIDFactory('DropdownItem');
@@ -48,21 +49,22 @@ class DropdownItem extends React.Component<Props, never> {
       divider,
       header,
       content,
+      theme,
     } = this.props;
 
     let className = null;
 
     if (header) {
-      className = baseTheme.dropdownHeader;
+      className = theme.dropdownHeader;
       return (
         <div id={this.id} className={className}>{content}</div>
       );
     }
     className = classNames(
-      baseTheme.dropdownItem,
-      divider && baseTheme.dropdownDivider,
-      active && baseTheme.active,
-      disabled && baseTheme.disabled
+      theme.dropdownItem,
+      divider && theme.dropdownDivider,
+      active && theme.active,
+      disabled && theme.disabled
     );
 
     return (
