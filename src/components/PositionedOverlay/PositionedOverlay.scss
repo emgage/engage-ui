@@ -1,6 +1,6 @@
 .PositionedOverlay {
   position: absolute;
-  z-index: z-index(overlay);
+  z-index: 9999;
 }
 
 .fixed {
