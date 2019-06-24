@@ -166,7 +166,8 @@
 .rowActionButton {
   background: transparent !important;
   border: none !important;
-  min-height: auto
+  min-height: auto;
+  padding: 0;
 }
 
 @media screen and (max-width: 40em) {
