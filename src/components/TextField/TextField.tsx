@@ -89,6 +89,8 @@ export interface Props {
   readOnly?: boolean;
   // To make it resizable or not.
   resizable?: boolean;
+  // Show or hide increment / decrement icon
+  showNumberIcon?: boolean;
   // Text to display after value.
   suffix?: React.ReactNode;
   // Limit increment value for numeric and date-time inputs.
@@ -158,6 +160,7 @@ class TextField extends React.PureComponent<Props, State> {
       readOnly,
       resizable,
       required,
+      showNumberIcon = true,
       suffix,
       theme,
       type,
@@ -187,7 +190,7 @@ class TextField extends React.PureComponent<Props, State> {
       ? <div onClick={this.handleInputFocus} className={theme.suffix} id={`${componentId}suffix`}>{suffix}</div>
       : null;
 
-    const spinnerButtonsMarkup = type === 'number'
+    const spinnerButtonsMarkup = type === 'number' && showNumberIcon
       ? <SpinnerButtons onClick={this.handleInputFocus} onChange={this.handleNumberChange} />
       : null;
 

@@ -1475,6 +1475,12 @@ class App extends React.Component<{}, State> {
           />
 
           <TextField
+            type="number"
+            placeholder="Number field"
+            showNumberIcon={false}
+          />
+
+          <TextField
             capital
             componentId="TestName"
             label="Text Counter"
