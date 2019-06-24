@@ -5,7 +5,9 @@ import { TABLE } from '../ThemeIdentifiers';
 
 import * as baseTheme from './Table.scss';
 
-export interface Props {}
+export interface Props {
+  theme?: any;
+}
 
 class TableHeader extends React.Component<Props, never> {
   static displayName = 'TableHeader';

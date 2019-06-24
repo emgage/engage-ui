@@ -18,6 +18,7 @@ export interface Props {
   // Set a custom class
   componentClass?: string;
   dataLabel?: string;
+  theme?: any;
 }
 
 class TableData extends React.Component<Props, never> {

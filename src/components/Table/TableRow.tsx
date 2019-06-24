@@ -12,6 +12,7 @@ export interface Props {
   selectRow?: any;
   componentStyle?: any;
   componentClass?: string;
+  theme?: any;
 }
 
 class TableRow extends React.Component<Props, never> {
