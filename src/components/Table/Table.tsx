@@ -25,6 +25,7 @@ export interface Props {
   callChildCallback?: boolean;
   // Column config, which renders the header
   column: ColumnConfig[];
+  columnFirstChildWidth?: string;
   // Custom styling
   componentStyle?: any;
   // Set a custom class
@@ -396,7 +397,7 @@ class Table extends React.Component<Props, State> {
 
   // Add checkbox or radio component to select the row, depending on `selectrow` flag
   renderRowSelection = (rowData: any, rowType: string) => {
-    const { expandingRowId = [], hideExpandedIcon, renderHeaderCheckbox, selectRow, nestedChildData, theme } = this.props;
+    const { columnFirstChildWidth = '30px', expandingRowId = [], hideExpandedIcon, renderHeaderCheckbox, selectRow, nestedChildData, theme } = this.props;
 
     if (selectRow) {
       if (rowType === 'body') {
@@ -417,7 +418,7 @@ class Table extends React.Component<Props, State> {
         return this.addHeaderCheckbox();
       }
 
-      return <TableHead theme={theme} componentStyle={{ width: '30px' }}></TableHead>;
+      return <TableHead theme={theme} componentStyle={{ width: columnFirstChildWidth }}></TableHead>;
     }
 
     return null;
@@ -442,7 +443,7 @@ class Table extends React.Component<Props, State> {
   // Function to add checkbox in header as well
   addHeaderCheckbox = (): React.ReactElement<any> => {
     const { allRowChecked, nestedChildData, totalRowCount, selectedRows } = this.state;
-    const { theme } = this.props;
+    const { columnFirstChildWidth = '30px', theme } = this.props;
     const rowChecked = ((totalRowCount - selectedRows.length) > 0 &&  totalRowCount > 0) ? true : false;
     const thisAllRowChecked = (selectedRows.length > 0 && totalRowCount > 0 && totalRowCount === selectedRows.length) ? true : allRowChecked;
 
@@ -454,7 +455,7 @@ class Table extends React.Component<Props, State> {
     const totalRowUnchecked = (isAllChildChecked && isAllChildChecked.length > 0 && selectedRows.length > 0 && totalRowCount > 0 && ((totalRowCount - selectedRows.length) === (totalRowCount - 1))) ? true : false;
 
     return (
-      <TableHead componentStyle={{ width: '30px' }} theme={theme}>
+      <TableHead componentStyle={{ width: columnFirstChildWidth }} theme={theme}>
         <Checkbox theme={theme} label="" checked={(rowChecked && (!isAllChildChecked || (isAllChildChecked !== undefined ? isAllChildChecked.length === 0 : true))) && selectedRows.length > 0 ? true : thisAllRowChecked} indeterminante={totalRowUnchecked ? false : rowChecked} onChange={this.toggleAllRowSelection} />
       </TableHead>
     );
