@@ -32,6 +32,7 @@ export interface Props {
   onClose?(): void;
   // Call toggle method on click 
   onOpen?(): void;
+  theme?: any;
 }
 
 export interface State {
@@ -71,6 +72,7 @@ export class Dropdown extends React.PureComponent<Props, State> {
       anchorEl,
       closeOnClickOption = true,
       returnValue,
+      theme,
     } = this.props;
 
     // Display the drop down items
@@ -85,6 +87,7 @@ export class Dropdown extends React.PureComponent<Props, State> {
         closeOnClickOption={closeOnClickOption}
         returnValue={returnValue}
         toggleDropdown={this.innerToggleDropdown}
+        theme={theme}
       />
     );
 
@@ -96,6 +99,7 @@ export class Dropdown extends React.PureComponent<Props, State> {
         anchorEl={anchorEl}
         closeOnClickInside={false}
         onClose={() => this.setState({ manualInActive: false })}
+        theme={theme}
         // preferredAlignment={preferredAlignment}
       >
         {DropdownItemComponents}

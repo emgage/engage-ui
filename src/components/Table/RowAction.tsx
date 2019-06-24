@@ -80,7 +80,7 @@ class RowAction extends React.Component<Props, State> {
     const validActionConfigs = this.getActions(actionConfig, data);
     return (
       <TableData>
-        <Button componentClass={theme.rowActionButton} disabled={actionInProgress} icon="horizontalDots" onClick={(e: React.FormEvent<HTMLElement>) => this.dropdownToggle(e)} />
+        <Button theme={theme} componentClass={theme.rowActionButton} disabled={actionInProgress} icon="horizontalDots" onClick={(e: React.FormEvent<HTMLElement>) => this.dropdownToggle(e)} />
 
         <Dropdown
           dropdownItems={validActionConfigs}
@@ -89,6 +89,7 @@ class RowAction extends React.Component<Props, State> {
           returnValue={data.id}
           closeOnClickOutside
           preferredAlignment={ rowActionLeft ? 'left' : 'right' }
+          theme={theme}
         />
       </TableData>
     );
