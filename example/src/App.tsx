@@ -1507,8 +1507,23 @@ class App extends React.Component<{}, State> {
             multiline
             resizable
             onChange={this.valueUpdater('appTextCounter')}
-            disabled
+            // disabled
             loading
+          />
+          <TextField
+            componentId="TestName2"
+            label="Read Only Text Field"
+            value="Something to Read"
+            // value="Value"
+            helpText="Helper Text"
+            maxLength={101}
+            minLength={5}
+            enableTextCounter
+            // disabled
+            readOnly
+            loading
+            backdropHidden
+            // multiline
           />
           <Select
             componentId="appCity1"

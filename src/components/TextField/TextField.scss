@@ -158,6 +158,32 @@ $stacking-order: (
   transition: box-shadow duration() easing();
 }
 
+.backdropHidden {
+
+  & > .backdrop {
+    background-color: transparent;
+    border-color: transparent;
+    box-shadow: none;
+  }
+
+  &.error > .input ~ .backdrop {
+    background-color: transparent;
+    border-color: transparent;
+    box-shadow: none;
+  }
+
+  &.disabled > .backdrop {
+    background-color: transparent;
+    border-color: transparent;
+  }
+
+  .input:focus ~ .backdrop {
+    border-color: transparent;
+    box-shadow: none;
+  }
+
+}
+
 .multiLineLabel {
   position: absolute;
   background: #FFF;

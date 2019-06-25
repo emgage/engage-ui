@@ -40,11 +40,6 @@ $spinner-size: rem(20px);
   }
 }
 
-.readOnly > .backdrop {
-  background-color: theme-color(m-grey, 50);
-  border-color: theme-color(m-grey, 400);
-}
-
 .disabled > .backdrop {
   background-color: theme-color(m-grey, 50);
   border-color: theme-color(m-grey, 300);
@@ -114,6 +109,10 @@ $spinner-size: rem(20px);
   .invalid {
     color: theme-color(m-red, 800);
   }
+}
+
+.disabled + .counterText {
+  color: theme-color(m-grey, 500);
 }
 
 
