@@ -25,10 +25,20 @@ $input-horizontal-padding: spacing(tight) * 1.5;
 }
 
 .hasValue {
+  
   .input{
     color: theme-color(m-grey, 900);
     padding-top: 1.9rem;
     padding-bottom: 0.3rem;
+  }
+
+  &.labelHidden {
+  
+    > .input {
+      padding-top: control-vertical-padding();
+      padding-bottom: control-vertical-padding();
+    }
+
   }
 }
 
@@ -73,12 +83,31 @@ $input-horizontal-padding: spacing(tight) * 1.5;
   }
 }
 
+.labelHidden {
+  
+  > .input {
+    transition: none;
+  }
+
+}
+
 .placeholder {
+  
   .input {
     color: theme-color(m-grey, 500);
     padding-top: 1.9rem;
     padding-bottom: 0.3rem;
   }
+
+  &.labelHidden {
+  
+    .input {
+      padding-top: control-vertical-padding();
+      padding-bottom: control-vertical-padding();
+    }
+
+  }
+
 }
 
 

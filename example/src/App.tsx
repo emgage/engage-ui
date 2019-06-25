@@ -1509,12 +1509,12 @@ class App extends React.Component<{}, State> {
             onChange={this.valueUpdater('appTextCounter')}
             // disabled
             loading
+            // labelHidden
           />
           <TextField
             componentId="TestName2"
             label="Read Only Text Field"
-            value="Something to Read"
-            // value="Value"
+            value="Value"
             helpText="Helper Text"
             maxLength={101}
             minLength={5}
@@ -1524,12 +1524,13 @@ class App extends React.Component<{}, State> {
             loading
             backdropHidden
             // multiline
+            // labelHidden
           />
           <Select
             componentId="appCity1"
             name="Select city 2"
             label="Label"
-            // options={[{ value: '', label: '' },{ value: 'pasadena', label: 'Pasadena' }, { value: 'altadena', label: 'Altadena' }]}
+            options={[{ value: '', label: '' },{ value: 'pasadena', label: 'Pasadena' }, { value: 'altadena', label: 'Altadena' }]}
             value={this.state.appCity1}
             // value="Value"
             onChange={this.valueUpdater('appCity1')}
@@ -1537,6 +1538,7 @@ class App extends React.Component<{}, State> {
             helpText="Help Text"
             // disabled
             loading
+            // labelHidden
           />
           </Column>
 
