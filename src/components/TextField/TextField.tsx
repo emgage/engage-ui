@@ -181,6 +181,7 @@ class TextField extends React.PureComponent<Props, State> {
       readOnly && theme.readOnly,
       backdropHidden && theme.backdropHidden,
       errors && theme.error,
+      labelHidden && theme.labelHidden,
       multiline && theme.multiline,
       resizable && theme.resizable,
       loading && theme.loading

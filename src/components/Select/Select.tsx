@@ -95,6 +95,7 @@ const select = ({
     theme.select,
     Boolean(value) && theme.hasValue,
     errors && theme.error,
+    labelHidden && theme.labelHidden,
     disabled && theme.disabled,
     isPlaceholder && theme.placeholder,
     loading && theme.loading

@@ -18,15 +18,40 @@ $spinner-size: rem(20px);
 }
 
 .hasValue {
+
   .input{
     color: theme-color(m-grey, 900);
     padding-top: 1.9rem;
     padding-bottom: 0.3rem;
   }
 
+  &.multiline > .input {
+    margin-top: 1.9rem;
+    padding-top: 0;
+  }
+
   .spinnerWrapper {
     top: calc(( 2.4rem - #{$spinner-size} ) / 2 + 1.9rem );
   }
+
+  &.labelHidden {
+  
+    > .input {
+      padding-top: control-vertical-padding();
+      padding-bottom: control-vertical-padding();
+    }
+
+    &.multiline > .input {
+      margin-top: 0;
+      padding-top: control-vertical-padding();
+    }
+
+    .spinnerWrapper {
+      top: calc(( 2.4rem - #{$spinner-size} ) / 2 + #{control-vertical-padding()} );
+    }
+
+  }
+
 }
 
 .error {
@@ -131,4 +156,23 @@ $spinner-size: rem(20px);
 
 .labelDisabled {
   color: theme-color(m-grey, 500);
+}
+
+.labelHidden {
+
+  > .input {
+    transition: none;
+
+    &:focus {
+      padding-top: control-vertical-padding();
+      padding-bottom: control-vertical-padding();
+
+      ~ .spinnerWrapper {
+        top: calc(( 2.4rem - #{$spinner-size} ) / 2 + #{control-vertical-padding()} );
+      }
+
+    }
+
+  }
+
 }
