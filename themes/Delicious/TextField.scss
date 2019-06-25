@@ -78,20 +78,6 @@ $spinner-size: rem(20px);
   }
 }
 
-.readOnly {
-
-  & > .backdrop {
-    background-color: transparent;
-    border-color: transparent;
-  }
-
-  .input:focus ~ .backdrop {
-    border-color: transparent;
-    box-shadow: none;
-  }
-
-}
-
 .spinnerWrapper {
   right: $backdrop-horizontal-spacing;
   top: calc(( 2.4rem - #{$spinner-size} ) / 2 + #{control-vertical-padding()} );

@@ -1522,6 +1522,7 @@ class App extends React.Component<{}, State> {
             // disabled
             readOnly
             loading
+            backdropHidden
             // multiline
           />
           <Select

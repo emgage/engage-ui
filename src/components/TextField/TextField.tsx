@@ -28,6 +28,8 @@ export interface Props {
   autoComplete?: boolean;
   // Automatically focus the input.
   autoFocus?: boolean;
+  // Visually hide the border.
+  backdropHidden?: boolean;
   // Check alphanumeric value and convert into capital
   capital?: boolean;
   componentClass?: string;
@@ -136,6 +138,7 @@ class TextField extends React.PureComponent<Props, State> {
     const {
       autoComplete,
       autoFocus,
+      backdropHidden,
       componentId = getUniqueID(),
       componentClass = '',
       componentStyle = {},
@@ -176,6 +179,7 @@ class TextField extends React.PureComponent<Props, State> {
       Boolean(value) && theme.hasValue,
       disabled && theme.disabled,
       readOnly && theme.readOnly,
+      backdropHidden && theme.backdropHidden,
       errors && theme.error,
       multiline && theme.multiline,
       resizable && theme.resizable,
