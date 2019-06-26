@@ -52,7 +52,7 @@ class TableHead extends React.Component<Props, never> {
         clickHandler(sort, sortBy);
       }
     } else {
-      serverSort(sort, order);
+      serverSort(sort + (sortBy ? `.${sortBy}` : ''), order);
     }
   }
 
