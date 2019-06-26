@@ -1183,7 +1183,7 @@ class App extends React.Component<{}, State> {
             serverSort={{
               field: 'name',
               order: 'asc',
-              callback: (field, order) => console.log('field:', field, 'order:', order)
+              callback: (field, order, sortBy) => console.log('field:', field, 'order:', order, 'sortBy:', sortBy)
             }}
             bordered highlight />
         </div>
