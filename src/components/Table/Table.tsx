@@ -13,13 +13,15 @@ import TableBody from './TableBody';
 import TableRow from './TableRow';
 import TableData from './TableData';
 
-import { ColumnConfig, FilterConfig, NestedChild, SortState } from './interface';
+import { ColumnConfig, FilterConfig, NestedChild, SortState, ServerSort } from './interface';
 import * as baseTheme from './Table.scss';
 
 export type RowSelection = 'checkbox' | 'radio';
 export type SortOrder = 'asc' | 'desc';
 
 export interface Props {
+  // Use for disabled or enable selected Row checkbox and RowAction button
+  actionInProgress?: boolean;
   // To make table bordered
   bordered?: boolean;
   callChildCallback?: boolean;
@@ -58,6 +60,8 @@ export interface Props {
   nestedChildCallback?(id: number | string, toggleStatus: boolean): void;
   // prop to receive nested data
   nestedChildData?: NestedChild[];
+  // Function to get call when row got clikced
+  onRowClick?(value: any): void;
   // Callback function from child to parent, this will help to do any operation needed
   parentCallback?(parentId: number | string, otherParam?: any): void;
   // This will help to know if the current component is child component & what's its parent id is
@@ -68,6 +72,10 @@ export interface Props {
   responsive?: boolean;
   // Prop to define if we want to add header checkbox or not
   renderHeaderCheckbox?: boolean;
+  // Put more action button as first column
+  rowActionLeft?: boolean;
+  // Use this key to fetch the unique id from data & send it back to clickedrow
+  rowCallbackValue?: string;
   // Individual row action, if available add it in last of the column
   rowAction?: any;
   // Pass this if row should be expanded bydefault on page load
@@ -78,6 +86,8 @@ export interface Props {
   selectCallbackValue?: string;
   // Function to get called when row got selected
   selectRowCallback?(rows: number[] | string[]): void;
+  // Callback function to do the server sort
+  serverSort?: ServerSort;
   // Function to get called when single row got selected, it will return only one row value not the arrat
   singleSelectRowCallback?(row: number | string | any): void;
   // Flag to indentify if table is sortable, if passed "all" then add sorting to all the columns
@@ -85,14 +95,6 @@ export interface Props {
   // Set greyed background for odd rows
   striped?: boolean;
   theme?: any;
-  // Put more action button as first column
-  rowActionLeft?: boolean;
-  // Function to get call when row got clikced
-  onRowClick?(value: any): void;
-  // Use this key to fetch the unique id from data & send it back to clickedrow
-  rowCallbackValue?: string;
-  // Use for disabled or enable selected Row checkbox and RowAction button
-  actionInProgress?: boolean;
 }
 
 export interface State {
@@ -162,7 +164,7 @@ class Table extends React.Component<Props, State> {
   }
 
   getInitialState() {
-    const { data, defaultCheckedDataId = [], defaultSortField, defaultSortOrder, parentSelectedRow, selectRowCallback = () => {} } = this.props;
+    const { data, defaultCheckedDataId = [], defaultSortField, defaultSortOrder, parentSelectedRow, selectRowCallback = () => {}, serverSort } = this.props;
     let selectedRows = callBackSelectedRows === undefined || callBackSelectedRows.length < 1 || defaultCheckedDataId.length ? [] : callBackSelectedRows;
 
     // If parent is selected than store those Id to the child's selectedRow state
@@ -180,12 +182,12 @@ class Table extends React.Component<Props, State> {
       intermediateRow: [],
       sort: {
         // Current sorting filed should be saved here, which can be used to show specific icons on specifc th
-        field: defaultSortField || '',
+        field: defaultSortField || (serverSort && serverSort.field) || '',
         order: {
           // New order is for sorting the table with that order
-          new: defaultSortOrder || 'asc',
+          new: defaultSortOrder || (serverSort && serverSort.order) || 'asc',
           // Current order is store the current sorted order
-          current: defaultSortOrder || 'asc',
+          current: defaultSortOrder || (serverSort && serverSort.order) || 'asc',
         },
       },
       searchKey: '',
@@ -251,6 +253,7 @@ class Table extends React.Component<Props, State> {
                   className={item.className}
                   order={field === item.key ? order.current : ''}
                   clickHandler={this.sortData}
+                  serverSort={this.serverSort}
                   theme={theme}>
                   {/*
                     Here injectheader helps to inject any custom component,
@@ -521,6 +524,25 @@ class Table extends React.Component<Props, State> {
         { renderedBody }
       </table>
     );
+  }
+
+  serverSort = (field: string, orderState: string = '') => {
+    const { serverSort } = this.props;
+    const { order } = this.state.sort;
+
+    if (serverSort) {
+      this.setState({
+        sort: {
+          field,
+          order: {
+            new: order.new === 'asc' ? 'desc' : 'asc',
+            current: order.new,
+          },
+        },
+      });
+
+      serverSort.callback(field, order.new);
+    }
   }
 
   // Function to sort the data

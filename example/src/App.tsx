@@ -1167,6 +1167,22 @@ class App extends React.Component<{}, State> {
               bordered highlight sorting>
               Loading
             </Table>
+
+            <div><strong>New table test</strong></div>
+            <Table
+            data={tableData}
+            column={columnConfig}
+            filterData={this.state.filterConfig}
+            selectRow="checkbox"
+            rowAction={rowActionConfig}
+            selectCallbackValue="id"
+            selectRowCallback={(val: any) => this.setState({ bulkAction: { selectedRow: val } })}
+            serverSort={{
+              field: 'name',
+              order: 'asc',
+              callback: (field, order) => console.log('field:', field, 'order:', order)
+            }}
+            bordered highlight />
         </div>
             <Sticky position={'top'} componentStyle={{ backgroundColor: '#FFF', color: 'inherit' }}>
               <span>footer content</span>
