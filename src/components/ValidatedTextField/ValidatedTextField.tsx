@@ -33,16 +33,23 @@ class ValidatedTextFieldComponent extends React.PureComponent<Props, {}> {
   customValidation = (rule: any, value: any, callback: any) => {
     const { validateRules } = this.props;
 
-    if (validateRules) {
-      validateRules.forEach((item: any) => {
-        if (item.minRange || item.maxRange) {
-          this.rangeValidation(item, value, callback);
-        } else {
-          callback();
-        }
-      });
+    if (value) {
+      if (validateRules) {
+        validateRules.forEach((item: any) => {
+          if (item.minRange || item.maxRange) {
+            this.rangeValidation(item, value, callback);
+          } else if (item.minLength || item.maxLength) {
+            this.lengthValidation(item, value, callback);
+          }
+          else {
+            callback();
+          }
+        });
+      }
+    } else {
+      callback()
     }
-  }
+  };
 
   // This is validation for range field
   rangeValidation = (validationRule: any, value: any, callback: any) => {
@@ -54,6 +61,17 @@ class ValidatedTextFieldComponent extends React.PureComponent<Props, {}> {
 
     callback();
   }
+
+  // This is validation for length field
+  lengthValidation = (validationRule: any, value: any, callback: any) => {
+    if (validationRule.minLength !== undefined && value.length < validationRule.minLength) {
+      callback(validationRule.message);
+    } else if (validationRule.maxLength !== undefined && value.length > validationRule.maxLength) {
+      callback(validationRule.message);
+    }
+
+    callback();
+  };
 
   render() {
     if (!this.props.name) {

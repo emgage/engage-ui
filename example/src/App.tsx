@@ -84,6 +84,7 @@ import {
 
 interface State {
   appName?: string;
+  appUri?: string;
   appDescription: string;
   appCity: string;
   appRadio1: string;
@@ -140,6 +141,7 @@ class App extends React.Component<{}, State> {
       modalOpen2: false,
       modalOpen3: false,
       appName: '',
+      appUri: '',
       appDescription: '',
       appRadio1: 'active1',
       appRadio2: 'active2',
@@ -1737,7 +1739,7 @@ class App extends React.Component<{}, State> {
             showError={this.state.showError}
             onSubmitError={(value: [any], error: Error) => console.log('value:', value, 'error:', error)}
             onSubmit={(value: [any]) => console.log('Submit Value:', value)}
-            formFields={['AppName', 'appDescription', 'appCity', 'appActive', 'appRadioAction']}
+            formFields={['AppName', 'AppUri', 'appDescription', 'appCity', 'appActive', 'appRadioAction']}
           >
 
             <Heading>App Basics</Heading>
@@ -1746,6 +1748,21 @@ class App extends React.Component<{}, State> {
             <p>This is just some fun regular text.</p>
 
             {/* <FormLayout> */}
+
+              <ValidatedTextField
+                  getErrors={this.getErrors}
+                  componentId="AppUri"
+                  label="App Uri"
+                  placeholder="App Uri"
+                  onChange={this.valueUpdater('appUri')}
+                  value={this.state.appUri}
+                  name="App Uri"
+                  validateTrigger={['onBlur']}
+                  validateRules={[
+                    { minLength: 2, message: 'AtList 2 character needed' },
+                    { required: true, message: 'App Uri is required' },
+                  ]}
+              />
               <div style={{ width: '100px' }}>
                 <ValidatedTextField
                   getErrors={this.getErrors}
