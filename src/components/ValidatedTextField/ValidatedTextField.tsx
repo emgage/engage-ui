@@ -40,16 +40,15 @@ class ValidatedTextFieldComponent extends React.PureComponent<Props, {}> {
             this.rangeValidation(item, value, callback);
           } else if (item.minLength || item.maxLength) {
             this.lengthValidation(item, value, callback);
-          }
-          else {
+          } else {
             callback();
           }
         });
       }
     } else {
-      callback()
+      callback();
     }
-  };
+  }
 
   // This is validation for range field
   rangeValidation = (validationRule: any, value: any, callback: any) => {
@@ -71,7 +70,7 @@ class ValidatedTextFieldComponent extends React.PureComponent<Props, {}> {
     }
 
     callback();
-  };
+  }
 
   render() {
     if (!this.props.name) {
