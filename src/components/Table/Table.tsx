@@ -526,7 +526,7 @@ class Table extends React.Component<Props, State> {
     );
   }
 
-  serverSort = (field: string, orderState: string = '') => {
+  serverSort = (field: string, sortBy: string) => {
     const { serverSort } = this.props;
     const { order } = this.state.sort;
 
@@ -541,7 +541,7 @@ class Table extends React.Component<Props, State> {
         },
       });
 
-      serverSort.callback(field, order.new);
+      serverSort.callback(field, order.new, sortBy);
     }
   }
 

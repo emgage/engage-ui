@@ -34,7 +34,7 @@ export interface Props {
   // If specific key contains an object this prop will tell which key from that object to be used
   sortBy?: string;
   // Callback function to do the server sort
-  serverSort?(field: string, order: string): void;
+  serverSort?(field: string, sortBy: string): void;
   theme?: any;
 }
 
@@ -45,14 +45,14 @@ class TableHead extends React.Component<Props, never> {
 
   // Function to trigger the clickhandler if its defined
   triggerClick = () => {
-    const { clickHandler, sort = '', serverSort, sortBy = '', order = '' } = this.props;
+    const { clickHandler, sort = '', serverSort, sortBy = '' } = this.props;
 
     if (!serverSort) {
       if (sort && clickHandler) {
         clickHandler(sort, sortBy);
       }
     } else {
-      serverSort(sort + (sortBy ? `.${sortBy}` : ''), order);
+      serverSort(sort, sortBy);
     }
   }
 

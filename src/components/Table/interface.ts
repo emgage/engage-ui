@@ -47,5 +47,5 @@ export interface SortState {
 export interface ServerSort {
   field: string;
   order: string;
-  callback(field: string, order: string): void;
+  callback(field: string, order: string, sortBy: string): void;
 }
