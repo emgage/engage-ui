@@ -97,7 +97,7 @@ class SideNavigation extends React.Component<Props, State> {
         return (
           <div key={index}>
             <a className={childLiClass} onClick={child.action} aria-disabled={false}>
-              <Icon source={child.icon} componentColor="white" componentClass={theme.icon}/>
+              <Icon source={child.icon} componentColor="white" componentClass={theme.icon} theme={theme} />
               {child.label}
             </a>
           </div>
@@ -113,7 +113,7 @@ class SideNavigation extends React.Component<Props, State> {
             className={liClass}
           >
             <div className={liClass} onClick={full.action} aria-disabled={false}>
-              <Icon source={full.icon} componentColor={activeItem === full.id ? 'black' : 'white'} componentClass={theme.icon}/>
+              <Icon source={full.icon} componentColor={activeItem === full.id ? 'black' : 'white'} componentClass={theme.icon} theme={theme} />
               {full.label}
             </div>
           </div>
@@ -127,7 +127,7 @@ class SideNavigation extends React.Component<Props, State> {
             <div className={liClass} onClick={full.action} aria-disabled={false}>
             {full.label}
               <div className={theme.currentAppIcon}>
-                <Icon source={full.icon} componentColor={activeItem === full.id ? 'black' : 'white'} componentClass={theme.icon}/>
+                <Icon source={full.icon} componentColor={activeItem === full.id ? 'black' : 'white'} componentClass={theme.icon} theme={theme} />
               </div>
             </div>
 
@@ -137,17 +137,17 @@ class SideNavigation extends React.Component<Props, State> {
         (
           <div key={index}>
             <div className={liClass} onClick={full.action} aria-disabled={false}>
-              <Icon source={full.icon} componentColor={activeItem === full.id ? 'black' : 'white'} componentClass={theme.icon}/>
+              <Icon source={full.icon} componentColor={activeItem === full.id ? 'black' : 'white'} componentClass={theme.icon} theme={theme} />
               {full.label}
             </div>
 
             {childrenMarkup}
           </div>
-        ) : <Accordion key={index} componentStyle={{ padding:'0px', height:'20px' }} mode="collapsible" items={items} />) :
+        ) : <Accordion key={index} componentStyle={{ padding:'0px', height:'20px' }} mode="collapsible" items={items} theme={theme} />) :
         (
           <div key={index}>
             <div className={liClass} onClick={full.action} aria-disabled={false}>
-              <Icon source={full.icon} componentColor={activeItem === full.id ? 'black' :'white'} componentClass={theme.icon}/>
+              <Icon source={full.icon} componentColor={activeItem === full.id ? 'black' :'white'} componentClass={theme.icon} theme={theme} />
               {full.label}
             </div>
 
@@ -180,9 +180,9 @@ class SideNavigation extends React.Component<Props, State> {
 
       return (
         <div key={col.id} className={singleItem}>
-          <Tooltip content={col.label} preferredPosition="right">
+          <Tooltip content={col.label} preferredPosition="right" theme={theme}>
             <div className={liClass} onClick={col.action} aria-disabled={false}>
-              <Icon source={col.icon} componentColor={activeItem === col.id ? 'black' : 'white'} componentClass={theme.collapseIcon}/>
+              <Icon source={col.icon} componentColor={activeItem === col.id ? 'black' : 'white'} componentClass={theme.collapseIcon} theme={theme} />
             </div>
           </Tooltip>
         </div>
@@ -211,10 +211,12 @@ class SideNavigation extends React.Component<Props, State> {
           currentTheme="dark"
           mode="push"
           componentWidth={activeDrawerId === 'collapsedContent' ? 'collapsed' : 'small'}
-          componentStyle={drawerStyle}>
+          componentStyle={drawerStyle}
+          theme={theme}>
           <DrawerContent
             componentId="fullContent"
             mode="slide"
+            theme={theme}
           >
             <div className={this.props.theme.list}>
               {fullContentMarkup}
@@ -227,6 +229,7 @@ class SideNavigation extends React.Component<Props, State> {
           <DrawerContent
             componentId="collapsedContent"
             mode="slide"
+            theme={theme}
           >
             <div className={this.props.theme.list} >
               {collapsedContentMarkup}

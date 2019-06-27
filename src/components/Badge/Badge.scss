@@ -131,7 +131,7 @@ $icon-spacing: ($height - $icon-size - rem(4px)) / 2;
   border-radius: 50%;
 }
 
-.icon {
+.iconWrapper {
   height: $icon-size;
   width: $icon-size;
   display: inline-block;

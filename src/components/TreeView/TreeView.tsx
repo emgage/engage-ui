@@ -101,9 +101,9 @@ class TreeView extends React.Component<Props, State> {
         {
           item.children ?
           <div onClick={() => this.toggleNode(item.id)} className={theme.nodeicon}>
-            {item.active ? <Icon componentColor={iconColor} source="circleChevronDown" /> : <Icon componentColor={iconColor} source="circleChevronRight" />}
+            {item.active ? <Icon componentColor={iconColor} source="circleChevronDown" theme={theme} /> : <Icon componentColor={iconColor} source="circleChevronRight" theme={theme} />}
           </div> :
-          <div className={theme.nodeicon}> <Icon componentStyle={iconStyle} componentColor={iconColor} source="circle" /> </div>
+          <div className={theme.nodeicon}> <Icon componentStyle={iconStyle} componentColor={iconColor} source="circle" theme={theme} /> </div>
         }
 
         <div className={theme.nodecontent}>
@@ -119,7 +119,7 @@ class TreeView extends React.Component<Props, State> {
       return (
         <li key={item.id} className={theme.haschildren}>
           <div onClick={() => this.toggleNode(item.id)} className={theme.nodeicon}>
-            {item.active ? <Icon componentColor={iconColor} source="circleChevronDown" /> : <Icon componentColor={iconColor} source="circleChevronRight" />}
+            {item.active ? <Icon componentColor={iconColor} source="circleChevronDown" theme={theme} /> : <Icon componentColor={iconColor} source="circleChevronRight" theme={theme} />}
           </div>
           <div className={theme.nodecontent}>
             <div className={theme.nodecontentwrapper}><TreeNode { ...item } /></div>

@@ -133,6 +133,7 @@ const select = ({
       hasValue={hasValue}
       required={required}
       componentClass={labelStyle}
+      theme={theme}
     >
       <div className={className}>
         <select
@@ -152,8 +153,8 @@ const select = ({
           {loading && <option label="Loading..." value="LOADING" disabled />}
           {optionsMarkup}
         </select>
-        <div className={theme.icon}><Icon source="triangleDown" /></div>
-        {loading && <div className={theme.spinnerWrapper}><Spinner componentSize="small" componentColor="disabled" /></div>}
+        <div className={theme.icon}><Icon source="triangleDown" theme={theme} /></div>
+        {loading && <div className={theme.spinnerWrapper}><Spinner componentSize="small" componentColor="disabled" theme={theme} /></div>}
         <div className={theme.backdrop} />
       </div>
     </Labelled>

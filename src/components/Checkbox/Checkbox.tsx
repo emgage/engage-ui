@@ -112,14 +112,14 @@ class Checkbox extends React.PureComponent<Props, State> {
 
     const errorMarkup = errors
     ? (
-      <Message componentId={`${componentId}Error`} isVisible={true}>
+      <Message componentId={`${componentId}Error`} isVisible={true} theme={theme}>
         {errors instanceof Array ? errors.join(', ') : (typeof errors === 'string' ? errors : 'An error occurred.')}
       </Message>
     )
     : null;
 
     return (
-      <FlexBox componentClass={componentClass} direction ={helpText ? 'Column' : 'Row'} >
+      <FlexBox componentClass={componentClass} direction ={helpText ? 'Column' : 'Row'} theme={theme}>
         {errorMarkup}
         <div className={theme.customControl} onClick={this.handleChange}>
           <input

@@ -18,9 +18,11 @@ class ModalHeader extends React.Component<Props, never> {
   }
 
   render() {
+    const { children, theme } = this.props;
+
     return (
-      <div className={this.props.theme.header}>
-        <Heading>{this.props.children}</Heading>
+      <div className={theme.header}>
+        <Heading theme={theme}>{children}</Heading>
       </div>
     );
   }

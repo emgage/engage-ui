@@ -64,7 +64,7 @@ const radioButton = ({
 
   const errorMarkup = errors
   ? (
-    <Message componentId={`${componentId}Error`} isVisible={true}>
+    <Message componentId={`${componentId}Error`} isVisible={true} theme={theme}>
       {errors instanceof Array ? errors.join(', ') : (typeof errors === 'string' ? errors : 'An error occurred.')}
     </Message>
   )
@@ -104,7 +104,7 @@ const radioButton = ({
   return (
     <div>
       {errorMarkup}
-      <Choice label={label} labelHidden={labelHidden} componentId={componentId} helpText={helpText}>
+      <Choice label={label} labelHidden={labelHidden} componentId={componentId} helpText={helpText} theme={theme}>
         <div className={theme.radioButton}>
           {input}
           <div className={theme.backdrop} />

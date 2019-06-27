@@ -129,7 +129,6 @@ class ComboBox extends React.Component<Props, State> {
       this.props.onSelect(value);
     }
 
-    console.log('value:', value, 'key:', key);
     this.setState({ selectedValue: typeof(value) === 'object' ? value[key] : value, open: false });
   }
 
@@ -156,6 +155,7 @@ class ComboBox extends React.Component<Props, State> {
           key={index}
           item={item}
           clickHandler={this.handleClick}
+          theme={theme}
         />
       );
 
@@ -165,10 +165,11 @@ class ComboBox extends React.Component<Props, State> {
           label={label}
           onChange={this.onChange}
           value={this.state.selectedValue}
+          theme={theme}
         />
 
         <div className={theme.comboboxArrow}>
-          <Icon source={arrowSvg} />
+          <Icon source={arrowSvg} theme={theme} />
         </div>
 
         {open && <Popover
@@ -176,7 +177,8 @@ class ComboBox extends React.Component<Props, State> {
           componentStyle={{ maxHeight: 800, overflow: 'auto', width: popoverWidth }}
           anchorEl={this.state.anchorEl}
           open={open}
-          >
+          theme={theme}
+        >
             {itemsComponent}
         </Popover>}
       </div>

@@ -196,7 +196,7 @@ class TextField extends React.PureComponent<Props, State> {
       : null;
 
     const spinnerButtonsMarkup = type === 'number' && showNumberIcon
-      ? <SpinnerButtons onClick={this.handleInputFocus} onChange={this.handleNumberChange} />
+      ? <SpinnerButtons onClick={this.handleInputFocus} onChange={this.handleNumberChange} theme={theme} />
       : null;
 
     const newComponentStyle = (multiline && height) ? { height, ...componentStyle } : componentStyle;
@@ -207,6 +207,7 @@ class TextField extends React.PureComponent<Props, State> {
           contents={value || placeholder}
           currentHeight={height}
           minimumLines={typeof multiline === 'number' ? multiline : 3}
+          theme={theme}
         />
       );
 
@@ -284,17 +285,19 @@ class TextField extends React.PureComponent<Props, State> {
         required={required}
         componentClass={labelStyle}
         labelWrapperStyle={multiline && theme.multiLineLabel}
+        theme={theme}
       >
         <Connected
           left={connectedLeft}
           right={connectedRight}
+          theme={theme}
         >
           <div className={className}>
             {prefixMarkup}
             {input}
             {suffixMarkup}
             {spinnerButtonsMarkup}
-            {loading && <div className={theme.spinnerWrapper}><Spinner componentSize="small" componentColor="disabled" /></div>}
+            {loading && <div className={theme.spinnerWrapper}><Spinner componentSize="small" componentColor="disabled" theme={theme} /></div>}
             <div className={theme.backdrop} />
             {resizer}
           </div>
