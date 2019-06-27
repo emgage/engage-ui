@@ -219,7 +219,7 @@ $large-vertical-padding: ($large-min-height - line-height(body) - rem(2px)) / 2;
   align-items: center;
 }
 
-.icon {
+.customIcon {
   @include text-style-body;
   transition: color duration() easing();
 

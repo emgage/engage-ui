@@ -20,7 +20,7 @@
   }
 
   &:checked {
-    ~ .icon {
+    ~ .customIcon {
       transform: translate(-50%, -50%) scale(1);
     }
   }
@@ -37,7 +37,7 @@
       @include control-backdrop(disabled);
     }
 
-    ~ .icon {
+    ~ .customIcon {
       background-color: color(sky, dark);
     }
   }
@@ -57,7 +57,7 @@
   }
 }
 
-.icon {
+.customIcon {
   position: absolute;
   top: 50%;
   left: 50%;

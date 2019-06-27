@@ -38,7 +38,7 @@ $input-vertical-adjust: rem(1px);
     @include control-backdrop(disabled);
   }
 
-  .icon {
+  .customIcon {
     opacity: 0.4;
   }
 }
@@ -78,7 +78,7 @@ $input-vertical-adjust: rem(1px);
   right: 0;
 }
 
-.icon {
+.customIcon {
   @include recolor-icon(color(ink, lighter));
   position: absolute;
   z-index: z-index(icon, $stacking-order);
