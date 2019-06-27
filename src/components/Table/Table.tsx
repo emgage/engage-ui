@@ -272,7 +272,7 @@ class Table extends React.Component<Props, State> {
 
   // Function to render tbody & td with specifc data & if user passed any custom component that can also get rendered
   renderBody = () => {
-    const { children, column, expandingRowId = [], hideRow, rowExpandOnLoad, selectRow, theme } = this.props;
+    const { children, column, expandingRowId = [], hideRow, rowAction, rowExpandOnLoad, selectRow, theme } = this.props;
     const { data, expandedRow } = this.state;
 
     if (!children) {
@@ -285,7 +285,7 @@ class Table extends React.Component<Props, State> {
               }
             })
           }
-          { !data.length ? <TableRow theme={theme}><TableData theme={theme} colSpan={column.length + (selectRow ? 1 : 0)}>No record found</TableData></TableRow> : null }
+          { !data.length ? <TableRow theme={theme}><TableData theme={theme} colSpan={column.length + (selectRow ? 1 : 0) + (rowAction ? 1 : 0)}>No record found</TableData></TableRow> : null }
         </TableBody>
       );
     }
