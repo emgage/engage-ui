@@ -43,6 +43,7 @@ class AutoSuggestText extends React.Component<Props, {}> {
           inputProps={this.props.stateProps ? this.props.stateProps.inputProps : null}
           ref={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.storeInputReference : this.refHolder}
           theme={{
+            ...theme,
             container: this.props.stateProps ? (this.props.stateProps.chipListState.length ? style.container : style.containerInit) : null,
             suggestion: style.cardItem,
             suggestionsList: style.suggestionsList,

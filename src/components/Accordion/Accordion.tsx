@@ -114,7 +114,8 @@ class Accordion extends React.Component<Props, State> {
       clickHandler,
       componentClass = '',
       componentStyle = {},
-      items
+      items,
+      theme
     } = this.props;
 
     const {
@@ -130,6 +131,7 @@ class Accordion extends React.Component<Props, State> {
           active={active[index] ? true : false}
           header={item.header} style={componentStyle}
           clickHandler={clickHandler}
+          theme={theme}
         >
           {item.children}
         </AccordionItem>

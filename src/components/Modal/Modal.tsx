@@ -120,7 +120,7 @@ class Modal extends React.Component<Props, never> {
   renderCloseButton = () => {
     const { closeButton, theme } = this.props;
 
-    return closeButton ? (<div className={theme.close}><Button plain onClick={this.closeModal} icon="cancel" /></div>) : null;
+    return closeButton ? (<div className={theme.close}><Button plain onClick={this.closeModal} icon="cancel" theme={theme} /></div>) : null;
   }
 
   // Import keylistener if modal needs to be closed on pressing escape key

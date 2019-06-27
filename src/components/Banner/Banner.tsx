@@ -93,7 +93,7 @@ const banner = ({
     headingID = `${id}Heading`;
     headingMarkup = (
       <div className={theme.heading} id={headingID}>
-        <Heading element="h6">{componentTitle}</Heading>
+        <Heading element="h6" theme={theme}>{componentTitle}</Heading>
       </div>
     );
   }
@@ -105,7 +105,7 @@ const banner = ({
   const actionMarkup = action
     ? (
       <div className={theme.actions}>
-        <ButtonGroup>
+        <ButtonGroup theme={theme}>
           {buttonFrom(action, { outline: true })}
           {secondaryActionMarkup}
         </ButtonGroup>
@@ -129,7 +129,7 @@ const banner = ({
   const dismissButton = onDismiss
     ? (
       <div className={theme.dismiss}>
-        <Button plain icon="cancelSmall" accessibilityLabel="Dismiss notification" onClick={onDismiss}/>
+        <Button plain icon="cancelSmall" accessibilityLabel="Dismiss notification" onClick={onDismiss} theme={theme} />
       </div>
     )
     : null;
@@ -144,7 +144,7 @@ const banner = ({
     >
       {dismissButton}
       <div className={theme.ribbon}>
-        <Icon source={iconName} componentColor={color} backdrop />
+        <Icon source={iconName} componentColor={color} backdrop theme={theme} />
       </div>
       <div>
         {headingMarkup}

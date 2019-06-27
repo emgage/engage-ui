@@ -82,7 +82,7 @@ const labelled = ({
   const errorId = errorID(componentId);
   const errorMarkup = errors
     ? (
-      <Message componentId={errorId} isVisible={true}>
+      <Message componentId={errorId} isVisible={true} theme={theme}>
         {errors instanceof Array ? errors.join(', ') : (typeof errors === 'string' ? errors : 'An error occurred.')}
       </Message>
     )
@@ -100,6 +100,7 @@ const labelled = ({
           componentClass={componentClass}
           labelContainerClass={labelWrapperStyle}
           {...rest}
+          theme={theme}
         >
           {label}
         </Label>

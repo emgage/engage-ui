@@ -86,6 +86,7 @@ class ChoiceList extends React.PureComponent<Props, {}> {
             label={label}
             checked={this.choiceIsSelected(choice, selected)}
             onChange={handleChange}
+            theme={theme}
           />
         </li>
       );

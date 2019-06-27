@@ -31,7 +31,6 @@ class ValidatedCheckboxComponent extends React.PureComponent<Props, {}> {
   isChecked = (rule: any, value: any, callback: any) => {
     const { validateRules = [] } = this.props;
 
-    console.log('ischecked');
     // Check if checkbox is checked, if not then send throw the error
     if (value) {
       callback();

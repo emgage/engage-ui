@@ -65,20 +65,20 @@ const badge = ({ children, status, progress, working, theme, icon, iconSource = 
   );
 
   const statusLabelMarkup = status
-    ? <VisuallyHidden>{STATUS_LABELS[status]}</VisuallyHidden>
+    ? <VisuallyHidden theme={theme}>{STATUS_LABELS[status]}</VisuallyHidden>
     : null;
 
   const pipMarkup = progress
     ? (
       <span className={theme.pip}>
-        <VisuallyHidden>{PROGRESS_LABELS[progress]}</VisuallyHidden>
+        <VisuallyHidden theme={theme}>{PROGRESS_LABELS[progress]}</VisuallyHidden>
       </span>
     )
     : null;
 
   const iconMarkup = icon
     ? (
-    <span className={theme.icon}>
+    <span className={theme.iconWrapper}>
       <Icon componentColor={iconColor} source={iconSource} />
     </span>
   )
@@ -87,7 +87,7 @@ const badge = ({ children, status, progress, working, theme, icon, iconSource = 
   const workingMarkup = working
   ? (
     <span className={theme.working}>
-      <Icon source="refresh" componentColor="inkLighter" />
+      <Icon source="refresh" componentColor="inkLighter" theme={theme} />
     </span>
   )
   : null;
