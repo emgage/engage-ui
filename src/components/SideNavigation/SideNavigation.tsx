@@ -97,7 +97,7 @@ class SideNavigation extends React.Component<Props, State> {
         return (
           <div key={index}>
             <a className={childLiClass} onClick={child.action} aria-disabled={false}>
-              <Icon source={child.icon} componentColor="white" componentClass={theme.icon} theme={theme} />
+              <Icon source={child.icon} componentColor="white" componentClass={theme.customIcon} theme={theme} />
               {child.label}
             </a>
           </div>
@@ -113,7 +113,7 @@ class SideNavigation extends React.Component<Props, State> {
             className={liClass}
           >
             <div className={liClass} onClick={full.action} aria-disabled={false}>
-              <Icon source={full.icon} componentColor={activeItem === full.id ? 'black' : 'white'} componentClass={theme.icon} theme={theme} />
+              <Icon source={full.icon} componentColor={activeItem === full.id ? 'black' : 'white'} componentClass={theme.customIcon} theme={theme} />
               {full.label}
             </div>
           </div>
@@ -127,7 +127,7 @@ class SideNavigation extends React.Component<Props, State> {
             <div className={liClass} onClick={full.action} aria-disabled={false}>
             {full.label}
               <div className={theme.currentAppIcon}>
-                <Icon source={full.icon} componentColor={activeItem === full.id ? 'black' : 'white'} componentClass={theme.icon} theme={theme} />
+                <Icon source={full.icon} componentColor={activeItem === full.id ? 'black' : 'white'} componentClass={theme.customIcon} theme={theme} />
               </div>
             </div>
 
@@ -137,7 +137,7 @@ class SideNavigation extends React.Component<Props, State> {
         (
           <div key={index}>
             <div className={liClass} onClick={full.action} aria-disabled={false}>
-              <Icon source={full.icon} componentColor={activeItem === full.id ? 'black' : 'white'} componentClass={theme.icon} theme={theme} />
+              <Icon source={full.icon} componentColor={activeItem === full.id ? 'black' : 'white'} componentClass={theme.customIcon} theme={theme} />
               {full.label}
             </div>
 
@@ -147,7 +147,7 @@ class SideNavigation extends React.Component<Props, State> {
         (
           <div key={index}>
             <div className={liClass} onClick={full.action} aria-disabled={false}>
-              <Icon source={full.icon} componentColor={activeItem === full.id ? 'black' :'white'} componentClass={theme.icon} theme={theme} />
+              <Icon source={full.icon} componentColor={activeItem === full.id ? 'black' :'white'} componentClass={theme.customIcon} theme={theme} />
               {full.label}
             </div>
 
@@ -196,7 +196,7 @@ class SideNavigation extends React.Component<Props, State> {
         onClick={this.toggleDrawerContent}
       >
         <FlexBox>
-          <Icon source={collapseIcon} componentColor="white" componentClass={theme.icon}/>
+          <Icon source={collapseIcon} componentColor="white" componentClass={theme.customIcon}/>
           { activeDrawerId === 'fullContent' ? 'Collapse' : ''}
         </FlexBox>
       </div>
