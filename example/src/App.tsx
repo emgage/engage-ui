@@ -828,7 +828,7 @@ class App extends React.Component<{}, State> {
     ];
 
     return (
-      <div>
+      <div style={{ width: '60%' }}>
         <span>Small change for test Change 3</span>
         <Badge children={'Badge'} working />
         <Badge children={'Badge'} />
@@ -1724,8 +1724,9 @@ class App extends React.Component<{}, State> {
             selected={['hidden']}
           />
           <Picker
+            label="Picker Component"
             chipComponent={Chip}
-            filterPlaceHolder="People"
+            // filterPlaceHolder="People"
             searchResultComponent={Chip}
             source={pickerdata}
             maxSelectedItems={5}

@@ -14,6 +14,7 @@ export const DeliciousThemeContext = {
   PSelect: require('./Select.scss'),
   PSpinner: require('./Spinner.scss'),
   PTextField: require('./TextField.scss'),
+  PPicker: require('./Picker.scss'),
 };
 
 export default (props: any) => {

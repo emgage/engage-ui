@@ -1,7 +1,9 @@
+$control-height: rem(64px);
+$control-vertical-padding: (($control-height - line-height(input) - rem(2px)) / 2);
 $backdrop-horizontal-spacing: spacing(tight) * 1.5;
 $spinner-size: rem(20px);
 
-.textField {
+.pickerTextField {
   @include text-style-input;
   z-index: auto;
   padding: 0 $backdrop-horizontal-spacing;
@@ -21,33 +23,33 @@ $spinner-size: rem(20px);
 
   .input{
     color: theme-color(m-grey, 900);
-    padding-top: calc((#{control-vertical-padding()} * 2) - 0.3rem); // total padding - padding-bottom
+    padding-top: calc((#{$control-vertical-padding} * 2 ) - 0.3rem ) ; // total padding - padding-bottom
     padding-bottom: 0.3rem;
   }
 
   &.multiline > .input {
-    margin-top: calc((#{control-vertical-padding()} * 2) - 0.3rem);
+    margin-top: calc((#{$control-vertical-padding} * 2 ) - 0.3rem );
     padding-top: 0;
   }
 
   .spinnerWrapper {
-    top: calc(( 2.4rem - #{$spinner-size} ) / 2 + ((#{control-vertical-padding()} * 2) - 0.3rem) );
+    top: calc(( 2.4rem - #{$spinner-size} ) / 2 + ((#{$control-vertical-padding} * 2 ) - 0.3rem ));
   }
 
   &.labelHidden {
   
     > .input {
-      padding-top: control-vertical-padding();
-      padding-bottom: control-vertical-padding();
+      padding-top: $control-vertical-padding;
+      padding-bottom: $control-vertical-padding;
     }
 
     &.multiline > .input {
       margin-top: 0;
-      padding-top: control-vertical-padding();
+      padding-top: $control-vertical-padding;
     }
 
     .spinnerWrapper {
-      top: calc(( 2.4rem - #{$spinner-size} ) / 2 + #{control-vertical-padding()} );
+      top: calc(( 2.4rem - #{$spinner-size} ) / 2 + #{$control-vertical-padding} );
     }
 
   }
@@ -73,8 +75,8 @@ $spinner-size: rem(20px);
 .input {
   @include text-style-input;
   height: auto;
-  min-height: control-height();
-  padding: control-vertical-padding() 0;
+  min-height: $control-height;
+  padding: $control-vertical-padding 0;
   transition: 0.3s all ease;
 
   &:disabled {
@@ -84,11 +86,11 @@ $spinner-size: rem(20px);
   &:focus {
     outline: none;
     box-shadow: none;
-    padding-top: calc((#{control-vertical-padding()} * 2) - 0.3rem);
+    padding-top: calc((#{$control-vertical-padding} * 2 ) - 0.3rem ) ;
     padding-bottom: 0.3rem;
 
     ~ .spinnerWrapper {
-      top: calc(( 2.4rem - #{$spinner-size} ) / 2 + ((#{control-vertical-padding()} * 2) - 0.3rem) );
+      top: calc(( 2.4rem - #{$spinner-size} ) / 2 + 1.9rem );
     }
 
     ~ .backdrop {
@@ -101,6 +103,7 @@ $spinner-size: rem(20px);
     color: theme-color(m-grey, 500);
     text-align: right;
   }
+
 }
 
 .spinnerWrapper {
@@ -123,25 +126,21 @@ $spinner-size: rem(20px);
   padding: control-vertical-padding() $backdrop-horizontal-spacing;
 }
 
+.icon {
+  @include recolor-icon(theme-color(m-grey, 500));
+ }
 
-// Character counter
+ // Lable Styling
 
-.counterText {
-  @include text-style-body-small;
-  color: theme-color(m-grey, 700);
-  margin-top: 0.3rem;
+ .labelWrapper {
+  transform: translate3D(0, 1.2rem, 0);
 
-  .invalid {
-    color: theme-color(m-red, 800);
+  &.focused,
+  &:not(.empty) {
+    transform: translate3D(0,0.3rem,0);
   }
-}
-
-.disabled + .counterText {
-  color: theme-color(m-grey, 500);
-}
-
-
-// Lable Styling
+  
+ }
 
 .labelStyle {
   @include text-style-body-large;

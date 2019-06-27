@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 import { PICKER } from '../ThemeIdentifiers';
-import TextField from './TextField';
+import PickerTextField from './PickerTextField';
 import { DisplayMoreInfo } from './PickerEnum';
 import * as Autosuggest from 'react-autosuggest';
 import * as baseTheme from './Picker.scss';
@@ -70,8 +70,10 @@ export interface State {
 
 export interface Props {
   selectedResultsBehavior?: Type;
+  // Hint text to display.
   filterPlaceHolder?: string;
-  filterLabel?: string;
+  // Label for the input.
+  label?: string;
   maxSelectedItems?: number;
   minSelectedItems?: number;
   chipComponent?: React.ReactNode;
@@ -245,7 +247,7 @@ class Picker extends React.Component<Props, State> {
     const {
         autoSuggest,
         filterPlaceHolder,
-        filterLabel,
+        label,
         selectedResultsBehavior,
         moreInfoComponent,
         chipComponent,
@@ -282,16 +284,17 @@ class Picker extends React.Component<Props, State> {
               })
             }
           </div>
-          <TextField
+          <PickerTextField
             autoSuggest={autoSuggest}
             autoSuggestMethods={autoSuggestMethods}
-            label={filterLabel ? filterLabel : ''}
+            label={label ? label : ''}
             value={this.state.people}
             placeholder={filterPlaceHolder}
             onChange={searchBehavior}
             stateProps={stateProps}
             showIcon
             itemSelected={!!this.state.chipListState.length}
+            theme={theme}
           />
         </div>
         <div>
