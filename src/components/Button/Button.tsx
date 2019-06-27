@@ -90,11 +90,11 @@ const button = ({
   );
 
   const disclosureIconMarkup = disclosure
-    ? <span className={theme.icon}><Icon source="caretDown" /></span>
+    ? <span className={theme.customIcon}><Icon source="caretDown" /></span>
     : null;
 
   const iconMarkup = icon
-    ? <span className={theme.icon}><Icon source={icon} /></span>
+    ? <span className={theme.customIcon}><Icon source={icon} /></span>
     : null;
 
   const childMarkup = children ? <span>{children}</span> : null;

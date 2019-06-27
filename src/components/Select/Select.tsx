@@ -153,7 +153,7 @@ const select = ({
           {loading && <option label="Loading..." value="LOADING" disabled />}
           {optionsMarkup}
         </select>
-        <div className={theme.icon}><Icon source="triangleDown" theme={theme} /></div>
+        <div className={theme.customIcon}><Icon source="triangleDown" theme={theme} /></div>
         {loading && <div className={theme.spinnerWrapper}><Spinner componentSize="small" componentColor="disabled" theme={theme} /></div>}
         <div className={theme.backdrop} />
       </div>

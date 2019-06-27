@@ -108,7 +108,7 @@ const radioButton = ({
         <div className={theme.radioButton}>
           {input}
           <div className={theme.backdrop} />
-          <div className={theme.icon} />
+          <div className={theme.customIcon} />
         </div>
       </Choice>
     </div>
