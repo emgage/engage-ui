@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 import { PICKER } from '../ThemeIdentifiers';
-import PickerTextField from './PickerTextField';
+import TextField from '../TextField';
 import { DisplayMoreInfo } from './PickerEnum';
 import * as Autosuggest from 'react-autosuggest';
 import * as baseTheme from './Picker.scss';
@@ -284,7 +284,7 @@ class Picker extends React.Component<Props, State> {
               })
             }
           </div>
-          <PickerTextField
+          <TextField
             autoSuggest={autoSuggest}
             autoSuggestMethods={autoSuggestMethods}
             label={label ? label : ''}

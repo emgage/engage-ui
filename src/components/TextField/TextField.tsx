@@ -7,6 +7,8 @@ import { classNames } from '@shopify/react-utilities/styles';
 import Labelled, { Action, helpTextID, errorID, labelID } from '../Labelled';
 import Spinner from '../Spinner';
 import Connected from '../Connected';
+import AutoSuggestText, { IStateProps } from '../Picker/AutoSuggestText';
+import { IAutoSuggestMethods } from '../Picker/Picker';
 import { TEXT_FIELD } from '../ThemeIdentifiers';
 
 import * as baseTheme from './TextField.scss';
@@ -22,6 +24,9 @@ export interface State {
 }
 
 export interface Props {
+  autoSuggest?: boolean;
+  autoSuggestMethods?: IAutoSuggestMethods;
+  stateProps?: IStateProps;
   // Check alphanumeric value
   alphanumeric?: boolean;
   // Enable automatic completion by the browser.
@@ -51,6 +56,7 @@ export interface Props {
   getErrors?(errors:any, name?:string): void;
   // Additional hint text to display.
   helpText?: React.ReactNode;
+  itemSelected?: boolean;
   // Label for the input.
   label?: string;
   // Adds an action to the label.
@@ -93,6 +99,8 @@ export interface Props {
   resizable?: boolean;
   // Show or hide increment / decrement icon
   showNumberIcon?: boolean;
+  // Show or hide icon
+  showIcon?: boolean;
   // Text to display after value.
   suffix?: React.ReactNode;
   // Limit increment value for numeric and date-time inputs.
@@ -138,6 +146,8 @@ class TextField extends React.PureComponent<Props, State> {
     const {
       autoComplete,
       autoFocus,
+      autoSuggest,
+      autoSuggestMethods,
       backdropHidden,
       componentId = getUniqueID(),
       componentClass = '',
@@ -262,6 +272,13 @@ class TextField extends React.PureComponent<Props, State> {
       'aria-invalid': Boolean(errors),
     });
 
+    const inputValue = autoSuggest ?
+      <AutoSuggestText
+        autoSuggestMethods={autoSuggestMethods}
+        stateProps={this.props.stateProps}
+      />
+      : input;
+
     const hasValue = (!!this.props.value && this.props.value.length > 0) || this.state.value !== '';
 
     const labelStyle = classNames(
@@ -272,6 +289,7 @@ class TextField extends React.PureComponent<Props, State> {
 
     return (
       <Labelled
+        autoSuggest={autoSuggest}
         label={label}
         componentId={componentId}
         errors={errors}
@@ -291,7 +309,7 @@ class TextField extends React.PureComponent<Props, State> {
         >
           <div className={className}>
             {prefixMarkup}
-            {input}
+            {inputValue}
             {suffixMarkup}
             {spinnerButtonsMarkup}
             {loading && <div className={theme.spinnerWrapper}><Spinner componentSize="small" componentColor="disabled" /></div>}

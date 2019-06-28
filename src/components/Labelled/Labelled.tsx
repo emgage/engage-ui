@@ -13,6 +13,7 @@ export { Action, labelID };
 export type Error = string;
 
 export interface Props {
+  autoSuggest?: boolean;
   // ID for the input.
   componentId: LabelProps['componentId'];
   // Label for labelled component
