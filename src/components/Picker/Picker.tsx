@@ -2,9 +2,11 @@ import * as React from 'react';
 import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 import { PICKER } from '../ThemeIdentifiers';
 import TextField from '../TextField';
+import Icon from '../Icon';
 import { DisplayMoreInfo } from './PickerEnum';
 import * as Autosuggest from 'react-autosuggest';
 import * as baseTheme from './Picker.scss';
+// TODO: Why are we using this custom card and not the Card component?
 import Card from './Card';
 
 export interface IPickerInfo {
@@ -72,8 +74,14 @@ export interface Props {
   selectedResultsBehavior?: Type;
   // Hint text to display.
   filterPlaceHolder?: string;
+  // Additional hint text to display.
+  helpText?: React.ReactNode;
   // Label for the input.
   label?: string;
+  // Visually hide the label.
+  labelHidden?: boolean;
+  // Display loading indicator
+  loading?: boolean;
   maxSelectedItems?: number;
   minSelectedItems?: number;
   chipComponent?: React.ReactNode;
@@ -247,7 +255,10 @@ class Picker extends React.Component<Props, State> {
     const {
         autoSuggest,
         filterPlaceHolder,
+        helpText,
         label,
+        labelHidden,
+        loading,
         selectedResultsBehavior,
         moreInfoComponent,
         chipComponent,
@@ -287,14 +298,17 @@ class Picker extends React.Component<Props, State> {
           <TextField
             autoSuggest={autoSuggest}
             autoSuggestMethods={autoSuggestMethods}
-            label={label ? label : ''}
-            value={this.state.people}
-            placeholder={filterPlaceHolder}
-            onChange={searchBehavior}
-            stateProps={stateProps}
-            showIcon
+            helpText={helpText}
             itemSelected={!!this.state.chipListState.length}
+            label={label ? label : ''}
+            labelHidden={labelHidden}
+            loading={loading}
+            value={this.state.people}
+            onChange={searchBehavior}
+            placeholder={filterPlaceHolder}
+            stateProps={stateProps}
             theme={theme}
+            suffix={<Icon componentColor="inkLightest" source="users" />}
           />
         </div>
         <div>

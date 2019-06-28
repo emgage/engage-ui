@@ -38,7 +38,6 @@ export interface Props {
   componentStyle?: React.CSSProperties;
   // Add external class
   componentClass?: string;
-  labelWrapperStyle?: string;
   // Theme to be injected via css-themr.
   theme?: any;
 }
@@ -56,7 +55,6 @@ const labelled = ({
   hasValue,
   componentStyle,
   componentClass,
-  labelWrapperStyle = '',
   theme,
   ...rest
 }: Props) => {
@@ -99,7 +97,6 @@ const labelled = ({
           focused={focused}
           required={required}
           componentClass={componentClass}
-          labelContainerClass={labelWrapperStyle}
           {...rest}
         >
           {label}

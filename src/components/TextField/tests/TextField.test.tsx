@@ -26,7 +26,7 @@ describe('<TextField />', () => {
     expect(input.prop('readOnly')).toBe(false);
     expect(input.prop('autoFocus')).toBe(true);
     expect(input.prop('name')).toBe('TextField');
-    expect(input.prop('placeholder')).toBe('');
+    expect(input.prop('placeholder')).toBe('A placeholder');
     expect(input.prop('value')).toBe('Some value');
     expect(input.prop('min')).toBe(20);
     expect(input.prop('max')).toBe(50);

@@ -122,7 +122,6 @@ $stacking-order: (
 
   &::placeholder {
     color: color(ink, lightest);
-    text-align: left !important;
   }
 
   // These properties are used to remove the default "SpinnerButtons" controls
@@ -182,16 +181,6 @@ $stacking-order: (
     box-shadow: none;
   }
 
-}
-
-.multiLineLabel {
-  position: absolute;
-  background: #FFF;
-  z-index: 100;
-  left: 0;
-  right: 28px;
-  top: -2px;
-  padding-top: 2px;
 }
 
 .prefix {

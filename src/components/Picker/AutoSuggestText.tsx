@@ -2,6 +2,7 @@
 import * as React from 'react';
 import * as Autosuggest from 'react-autosuggest';
 import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
+import { classNames } from '@shopify/react-utilities/styles';
 
 import { PICKER } from '../ThemeIdentifiers';
 import Chip from '../Chip';
@@ -29,9 +30,14 @@ class AutoSuggestText extends React.Component<Props, {}> {
   render() {
     const { theme }: any = this.props;
 
+    const className = classNames(
+      theme.containerWrapper,
+      this.props.stateProps ? this.props.stateProps.chipListState.length ? null : theme.empty : null
+    );
+
     return (
-      <div className={this.props.stateProps ? this.props.stateProps.chipListState.length ? theme.inputOutline : theme.inputOutlineInit : null}>
-        {this.props.stateProps ? this.props.stateProps.chipListState.map((input: any) => <Chip image={{ url: input.image }} removable={true} onRemove={() => this.props.autoSuggestMethods ? this.props.autoSuggestMethods.chipRemove(input) : null} key={input.key}>{input.text}</Chip>) : null}
+      <div className={className}>
+        {this.props.stateProps ? this.props.stateProps.chipListState.map((input: any) => <Chip theme={theme} image={{ url: input.image }} removable={true} onRemove={() => this.props.autoSuggestMethods ? this.props.autoSuggestMethods.chipRemove(input) : null} key={input.key}>{input.text}</Chip>) : null}
         <Autosuggest
           className={theme.suggestionsContainer}
           suggestions={this.props.stateProps ? this.props.stateProps.suggestions : null}
@@ -45,7 +51,7 @@ class AutoSuggestText extends React.Component<Props, {}> {
           ref={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.storeInputReference : this.refHolder}
           theme={{
             ...theme,
-            container: this.props.stateProps ? (this.props.stateProps.chipListState.length ? theme.container : theme.containerInit) : null,
+            container: theme.container,
             suggestion: theme.cardItem,
             suggestionsList: theme.suggestionsList,
             input: theme.input,

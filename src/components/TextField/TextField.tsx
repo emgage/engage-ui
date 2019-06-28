@@ -99,8 +99,6 @@ export interface Props {
   resizable?: boolean;
   // Show or hide increment / decrement icon
   showNumberIcon?: boolean;
-  // Show or hide icon
-  showIcon?: boolean;
   // Text to display after value.
   suffix?: React.ReactNode;
   // Limit increment value for numeric and date-time inputs.
@@ -255,7 +253,7 @@ class TextField extends React.PureComponent<Props, State> {
       readOnly,
       autoFocus,
       required,
-      placeholder : !label ? placeholder : '',
+      placeholder,
       id: componentId,
       value: this.state.value,
       onFocus: this.handleInputOnFocus,
@@ -301,7 +299,6 @@ class TextField extends React.PureComponent<Props, State> {
         hasValue={hasValue}
         required={required}
         componentClass={labelStyle}
-        labelWrapperStyle={multiline && theme.multiLineLabel}
       >
         <Connected
           left={connectedLeft}

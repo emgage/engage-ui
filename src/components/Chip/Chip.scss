@@ -1,21 +1,24 @@
 $height: rem(32px);
-$horizontal-padding: (3 * $height / 8);
+$horizontal-padding: spacing(tight) * 1.5;
+
+$min-height: control-height();
+$vertical-padding: ($min-height - line-height(body) - rem(2px)) / 2;
 
 .Chip {
+    @include text-style-input;
     display: inline-block;
-    font-size: rem(13px);
     color: rgba(0, 0, 0, 0.54);
     line-height: $height;
+    min-height: $height;
+    min-width: $height;
+    margin: 0;
     padding: 0 $horizontal-padding;
     border: none;
     border-radius: $height / 2;
     background-color: rgba(153, 153, 153, 0.2);
-    margin-bottom: 5px;
-    margin-right: 5px;
-    margin-top: 20px;
     overflow: hidden;
     text-overflow: ellipsis;
-    vertical-align: top;
+    // vertical-align: top;
 }
 
 :focus {

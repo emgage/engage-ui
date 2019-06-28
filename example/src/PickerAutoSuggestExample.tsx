@@ -18,8 +18,11 @@ class PickerAutoSuggestExample extends React.Component<{}, {}> {
 
     return (
       <Picker
+        label="Picker Component"
         chipComponent={Chip}
-        filterPlaceHolder="hello"
+        filterPlaceHolder="placeholder"
+        helpText="Helper Text"
+        // loading
         source={pickerdata}
         autoSuggest
         searchResultComponent={Chip}

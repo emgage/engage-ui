@@ -3,89 +3,10 @@ $control-vertical-padding: (($control-height - line-height(input) - rem(2px)) / 
 $backdrop-horizontal-spacing: spacing(tight) * 1.5;
 $spinner-size: rem(20px);
 
-.pickerTextField {
-  @include text-style-input;
-  z-index: auto;
-  padding: 0 $backdrop-horizontal-spacing;
-  color: theme-color(m-grey, 900);
-}
 
-.multiline {
-  padding: 0 0 0 $backdrop-horizontal-spacing;
+.containerWrapper {
 
-  > .input {
-    padding-left: 0;
-    padding-right: $backdrop-horizontal-spacing;
-  }
-}
-
-.hasValue {
-
-  .input{
-    color: theme-color(m-grey, 900);
-    padding-top: calc((#{$control-vertical-padding} * 2 ) - 0.3rem ) ; // total padding - padding-bottom
-    padding-bottom: 0.3rem;
-  }
-
-  &.multiline > .input {
-    margin-top: calc((#{$control-vertical-padding} * 2 ) - 0.3rem );
-    padding-top: 0;
-  }
-
-  .spinnerWrapper {
-    top: calc(( 2.4rem - #{$spinner-size} ) / 2 + ((#{$control-vertical-padding} * 2 ) - 0.3rem ));
-  }
-
-  &.labelHidden {
-  
-    > .input {
-      padding-top: $control-vertical-padding;
-      padding-bottom: $control-vertical-padding;
-    }
-
-    &.multiline > .input {
-      margin-top: 0;
-      padding-top: $control-vertical-padding;
-    }
-
-    .spinnerWrapper {
-      top: calc(( 2.4rem - #{$spinner-size} ) / 2 + #{$control-vertical-padding} );
-    }
-
-  }
-
-}
-
-.error {
-
-  > .input ~ .backdrop {
-    background-color: theme-color(m-red, 50);
-    border-color: theme-color(m-red, 600);
-    box-shadow:
-    inset shadow(transparent),
-    0 0 0 1px theme-color(m-red, 600);
-  }
-}
-
-.disabled > .backdrop {
-  background-color: theme-color(m-grey, 50);
-  border-color: theme-color(m-grey, 300);
-}
-
-.input {
-  @include text-style-input;
-  height: auto;
-  min-height: $control-height;
-  padding: $control-vertical-padding 0;
-  transition: 0.3s all ease;
-
-  &:disabled {
-    color: theme-color(m-grey, 700);
-  }
-
-  &:focus {
-    outline: none;
-    box-shadow: none;
+  &.focused {
     padding-top: calc((#{$control-vertical-padding} * 2 ) - 0.3rem ) ;
     padding-bottom: 0.3rem;
 
@@ -97,81 +18,40 @@ $spinner-size: rem(20px);
       border-color: theme-color(m-blue, 300);
       box-shadow: 0 0 0 1px theme-color(m-blue, 300);
     }
+
+  }
+
+}
+
+.input {
+  @include text-style-input;
+  height: auto;
+  min-height: control-height();
+  padding: control-vertical-padding() 0;
+  transition: 0.3s all ease;
+
+  &:disabled {
+    color: theme-color(m-grey, 700);
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: none;
   }
 
   &::placeholder {
     color: theme-color(m-grey, 500);
-    text-align: right;
+    // text-align: start;
   }
 
 }
 
-.spinnerWrapper {
-  right: $backdrop-horizontal-spacing;
-  top: calc(( 2.4rem - #{$spinner-size} ) / 2 + #{control-vertical-padding()} );
-  transition: 0.3s all ease;
-}
-
-.backdrop {
-  border: border(dark);
-  border-color: theme-color(m-grey, 400);
-  border-radius: border-radius();
-  box-shadow: none;
-  will-change: auto;
-  transition: none;
-}
-
-.dummyInput {
-  @include text-style-input;
-  padding: control-vertical-padding() $backdrop-horizontal-spacing;
-}
-
-.icon {
-  @include recolor-icon(theme-color(m-grey, 500));
- }
-
- // Lable Styling
-
- .labelWrapper {
-  transform: translate3D(0, 1.2rem, 0);
-
-  &.focused,
-  &:not(.empty) {
-    transform: translate3D(0,0.3rem,0);
-  }
-  
- }
-
-.labelStyle {
-  @include text-style-body-large;
-  color: theme-color(m-grey, 500);
-  transition: 0.3s all ease;
-}
-
-.labelHasValue {
-  @include text-style-body-small;
-  color: theme-color(m-grey, 700);
-}
-
-.labelDisabled {
-  color: theme-color(m-grey, 500);
-}
-
-.labelHidden {
-
-  > .input {
-    transition: none;
-
-    &:focus {
-      padding-top: control-vertical-padding();
-      padding-bottom: control-vertical-padding();
-
-      ~ .spinnerWrapper {
-        top: calc(( 2.4rem - #{$spinner-size} ) / 2 + #{control-vertical-padding()} );
+.containerWrapper {
+  &.empty {
+    .input {
+      &::placeholder {
+        text-align: right;
       }
-
     }
-
   }
-
 }

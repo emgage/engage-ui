@@ -1111,7 +1111,9 @@ class App extends React.Component<{}, State> {
         <Banner componentTitle={'banner'} status={'info'} />
         <Banner componentTitle={'banner'} status={'warning'} />
         <Banner componentTitle={'banner'} status={'critical'} />
+        <Heading>Picker</Heading>
         <PickerAutoSuggestExample />
+        <Heading>Date Picker</Heading>
         <SingleDatePickerWrapper />
         <DateRangePickerWrapper />
 
@@ -1726,13 +1728,15 @@ class App extends React.Component<{}, State> {
           <Picker
             label="Picker Component"
             chipComponent={Chip}
-            // filterPlaceHolder="People"
+            filterPlaceHolder="placeholder"
+            helpText="Helper Text"
             searchResultComponent={Chip}
             source={pickerdata}
             maxSelectedItems={5}
             minSelectedItems={2}
             autoSuggest
-            moreInfoComponent={<Button children="ranmal" />}
+            loading
+            // moreInfoComponent={<Button>More Info</Button>}
           />
           <ValidatedForm
             showError={this.state.showError}
