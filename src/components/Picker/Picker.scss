@@ -1,102 +1,121 @@
-.pickerResultShow{display:block;}
-.pickerResultHide{display:none;}
+// Increased to account for chip height
+$controlHeight: control-height() + rem(8px);
+$backdrop-horizontal-spacing: spacing(tight) * 1.5;
 
-// Card Component
-.avatarImage {
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-}
-.cardBorder {
-  width: 400px;
-  background-color: white;
-  margin: 0;
-  padding: 0;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-.check {
-  width: 100px;
-}
-.cardElem {
-  align-items: center;
-  margin: 5px 5px 5px 5px;
-  white-space: pre;
-}
-.cardItem {
-  z-index: 2;
-}
+$stacking-order: (
+  suggestions: 30,
+  input: 20,
+  backdrop: 10,
+);
 
-.suggestionsList {
-  position: absolute;
-  list-style-type: none;
-  background-color: white; 
-  padding: 0;
-  margin: 0 0 0 10px;
-  z-index: 1000;
-}
+// AutoSuggest Container Styles
 
-.suggestionsContainer {
-  z-index: 2;
-}
-
-.autosuggestInput {
-  border: none;
-  background-color: transparent;
-  display: inline-block;
-  font-size: 1.3rem;
-  color: #212121;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  width: 200px;
-  padding-left: 7px;
-}
-
-.containerInit {
-  display: inline-block;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  width:100%;
-}
-
-.container {
-  display: inline-block;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.autosuggestInput:focus {
-  outline: none;
-}
-
-.bold {
-  font-weight: bold;
-  white-space: pre;
-}
-
-.inputOutline {
-  border-radius: 5px;
-  cursor: text;
-  min-width: 100px;
-  min-height: 25px;
-}
-
-.inputOutlineInit {
+.containerWrapper {
   width: 100%;
   border-radius: 5px;
   cursor: text;
   min-height: 25px;
+  z-index: z-index(input, $stacking-order);
+  
+  &.empty {
+    min-width: 100px;
+
+    > .container {
+      width:100%;
+    }
+  }
+
+  //TODO: Consider using Stack component instead of adding margin.
+  .Chip {
+    margin-top: control-vertical-padding() + rem(1px);
+    margin-right: control-vertical-padding() + rem(1px);
+    vertical-align: top;
+  }
 }
 
-.flex {
-  display: flex;
+.container {
+  display: inline-block;
+  //overflow: hidden;
+  text-overflow: ellipsis;
 }
-.nameStyle {
-  width: 100px;
+
+.input {
+  @include text-style-input;
+  position: relative;
+  display: block;
+  flex: 1 1 0%;
+  width: 100%;
+  min-height: $controlHeight;
+  margin: 0;
+  padding: control-vertical-padding() 0;
+  background: none;
+  border: border(transparent);
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  appearance: none;
+
+  &:disabled {
+    color: color(ink, lightest);
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &::placeholder {
+    color: color(ink, lightest);
+  }
 }
-.emailStyle {
-  width: 240px; 
-  color: rgba(0, 0, 0, 0.54);
+
+// AutoSuggest Suggestions Styles
+
+.suggestionsList {
+  position: absolute;
+  margin: -5px 0 0;
+  padding: 0;
+  background: color(white);
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.25);
+  list-style-type: none;
+  z-index: z-index(input, $stacking-order);
 }
-.grey {
-  background-color: #eeeeee;
+
+
+// AutoSuggest Card Styles
+
+.cardItem {
+  padding: 0 4px;
+
+  &.highlighted {
+    background: color(sky, light);
+  }
+  
+  .avatarImage {
+    border-radius: 50%;
+    width: rem(40px);
+    height: rem(40px);
+    margin: 8px 0 8px 12px;
+    vertical-align: middle;
+  }
+
+  .nameStyle {
+    @include text-style-body;
+    margin: 18px 0 18px 12px;
+    // width: 200px;
+  }
+
+  .emailStyle {
+    @include text-style-body;
+    @include text-emphasis-subdued;
+    margin: 18px 12px;
+    // width: 200px;
+  }
+
+  .hinting {
+    font-weight: bold;
+  }
 }
+
+// TODO: Do we need these? Should display be none, or hidden?
+.pickerResultShow{display:block;}
+.pickerResultHide{display:none;}

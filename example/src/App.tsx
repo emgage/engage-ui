@@ -90,6 +90,7 @@ interface State {
   appRadio1: string;
   appRadio2: string;
   appRadioVal: string;
+  appNumberCounter: string;
   appTextCounter: string;
   appTextCounter1: string;
   columns: object[];
@@ -148,6 +149,7 @@ class App extends React.Component<{}, State> {
       appRadioVal: '',
       appCity: '',
       appCity1: '',
+      appNumberCounter: '',
       appTextCounter: '',
       appTextCounter1: '',
       checkboxState: true,
@@ -831,7 +833,7 @@ class App extends React.Component<{}, State> {
     ];
 
     return (
-      <div>
+      <div style={{ width: '60%' }}>
         <span>Small change for test Change 3</span>
         <Badge children={'Badge'} working />
         <Badge children={'Badge'} />
@@ -1114,7 +1116,9 @@ class App extends React.Component<{}, State> {
         <Banner componentTitle={'banner'} status={'info'} />
         <Banner componentTitle={'banner'} status={'warning'} />
         <Banner componentTitle={'banner'} status={'critical'} />
+        <Heading>Picker</Heading>
         <PickerAutoSuggestExample />
+        <Heading>Date Picker</Heading>
         <SingleDatePickerWrapper />
         <DateRangePickerWrapper />
 
@@ -1494,9 +1498,12 @@ class App extends React.Component<{}, State> {
           />
 
           <TextField
+            label="Number field"
             type="number"
-            placeholder="Number field"
-            showNumberIcon={false}
+            placeholder="placeholder"
+            value={this.state.appNumberCounter}
+            onChange={this.valueUpdater('appNumberCounter')}
+            // showNumberIcon={false}
           />
 
           <TextField
@@ -1513,6 +1520,8 @@ class App extends React.Component<{}, State> {
             onChange={this.valueUpdater('appTextCounter1')}
             // disabled
             loading
+            labelHidden
+            // suffix={<Icon componentColor="inkLightest" source="users" />}
           />
           <TextField
             componentId="TestName1"
@@ -1529,6 +1538,7 @@ class App extends React.Component<{}, State> {
             // disabled
             loading
             // labelHidden
+            // suffix={<Icon componentColor="inkLightest" source="users" />}
           />
           <TextField
             componentId="TestName2"
@@ -1743,14 +1753,17 @@ class App extends React.Component<{}, State> {
             selected={['hidden']}
           />
           <Picker
+            label="Picker Component"
             chipComponent={Chip}
-            filterPlaceHolder="People"
+            filterPlaceHolder="placeholder"
+            helpText="Helper Text"
             searchResultComponent={Chip}
             source={pickerdata}
             maxSelectedItems={5}
             minSelectedItems={2}
             autoSuggest
-            moreInfoComponent={<Button children="ranmal" />}
+            loading
+            // moreInfoComponent={<Button>More Info</Button>}
           />
           <ValidatedForm
             showError={this.state.showError}

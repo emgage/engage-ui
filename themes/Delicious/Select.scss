@@ -28,7 +28,7 @@ $input-horizontal-padding: spacing(tight) * 1.5;
   
   .input{
     color: theme-color(m-grey, 900);
-    padding-top: 1.9rem;
+    padding-top: calc((#{control-vertical-padding()} * 2) - 0.3rem); // total padding - padding-bottom
     padding-bottom: 0.3rem;
   }
 
@@ -95,7 +95,7 @@ $input-horizontal-padding: spacing(tight) * 1.5;
   
   .input {
     color: theme-color(m-grey, 500);
-    padding-top: 1.9rem;
+    padding-top: calc((#{control-vertical-padding()} * 2) - 0.3rem); // total padding - padding-bottom
     padding-bottom: 0.3rem;
   }
 

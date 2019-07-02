@@ -7,6 +7,8 @@ import { classNames } from '@shopify/react-utilities/styles';
 import Labelled, { Action, helpTextID, errorID, labelID } from '../Labelled';
 import Spinner from '../Spinner';
 import Connected from '../Connected';
+import AutoSuggestText, { IStateProps } from '../Picker/AutoSuggestText';
+import { IAutoSuggestMethods } from '../Picker/Picker';
 import { TEXT_FIELD } from '../ThemeIdentifiers';
 
 import * as baseTheme from './TextField.scss';
@@ -22,6 +24,9 @@ export interface State {
 }
 
 export interface Props {
+  autoSuggest?: boolean;
+  autoSuggestMethods?: IAutoSuggestMethods;
+  stateProps?: IStateProps;
   // Check alphanumeric value
   alphanumeric?: boolean;
   // Enable automatic completion by the browser.
@@ -49,8 +54,11 @@ export interface Props {
   errors?: [string];
   // Function return all errors
   getErrors?(errors:any, name?:string): void;
+  hasValue?: boolean;
   // Additional hint text to display.
   helpText?: React.ReactNode;
+  itemSelected?: boolean;
+  isFocused?: boolean;
   // Label for the input.
   label?: string;
   // Adds an action to the label.
@@ -138,6 +146,8 @@ class TextField extends React.PureComponent<Props, State> {
     const {
       autoComplete,
       autoFocus,
+      autoSuggest,
+      autoSuggestMethods,
       backdropHidden,
       componentId = getUniqueID(),
       componentClass = '',
@@ -147,7 +157,9 @@ class TextField extends React.PureComponent<Props, State> {
       disabled,
       enableTextCounter,
       errors,
+      hasValue: propHasValue,
       helpText,
+      isFocused,
       label = '',
       labelAction,
       labelHidden,
@@ -176,7 +188,7 @@ class TextField extends React.PureComponent<Props, State> {
     const className = classNames(
       componentClass,
       theme.textField,
-      Boolean(value) && theme.hasValue,
+      (Boolean(value) || propHasValue) && theme.hasValue,
       disabled && theme.disabled,
       readOnly && theme.readOnly,
       backdropHidden && theme.backdropHidden,
@@ -184,7 +196,8 @@ class TextField extends React.PureComponent<Props, State> {
       labelHidden && theme.labelHidden,
       multiline && theme.multiline,
       resizable && theme.resizable,
-      loading && theme.loading
+      loading && theme.loading,
+      isFocused && theme.focused
     );
 
     const prefixMarkup = prefix
@@ -207,7 +220,6 @@ class TextField extends React.PureComponent<Props, State> {
           contents={value || placeholder}
           currentHeight={height}
           minimumLines={typeof multiline === 'number' ? multiline : 3}
-          theme={theme}
         />
       );
 
@@ -246,7 +258,7 @@ class TextField extends React.PureComponent<Props, State> {
       readOnly,
       autoFocus,
       required,
-      placeholder : !label ? placeholder : '',
+      placeholder,
       id: componentId,
       value: this.state.value,
       onFocus: this.handleInputOnFocus,
@@ -263,6 +275,13 @@ class TextField extends React.PureComponent<Props, State> {
       'aria-invalid': Boolean(errors),
     });
 
+    const inputValue = autoSuggest ?
+      <AutoSuggestText
+        autoSuggestMethods={autoSuggestMethods}
+        stateProps={this.props.stateProps}
+      />
+      : input;
+
     const hasValue = (!!this.props.value && this.props.value.length > 0) || this.state.value !== '';
 
     const labelStyle = classNames(
@@ -273,6 +292,7 @@ class TextField extends React.PureComponent<Props, State> {
 
     return (
       <Labelled
+        autoSuggest={autoSuggest}
         label={label}
         componentId={componentId}
         errors={errors}
@@ -280,24 +300,22 @@ class TextField extends React.PureComponent<Props, State> {
         labelHidden={labelHidden}
         helpText={helpText}
         disabled={disabled}
-        focused={this.state.focused}
-        hasValue={hasValue}
+        focused={this.state.focused || isFocused}
+        hasValue={hasValue || propHasValue}
         required={required}
         componentClass={labelStyle}
-        labelWrapperStyle={multiline && theme.multiLineLabel}
         theme={theme}
       >
         <Connected
           left={connectedLeft}
           right={connectedRight}
-          theme={theme}
         >
           <div className={className}>
             {prefixMarkup}
-            {input}
+            {inputValue}
+            {loading && <div className={theme.spinnerWrapper}><Spinner componentSize="small" componentColor="disabled" /></div>}
             {suffixMarkup}
             {spinnerButtonsMarkup}
-            {loading && <div className={theme.spinnerWrapper}><Spinner componentSize="small" componentColor="disabled" theme={theme} /></div>}
             <div className={theme.backdrop} />
             {resizer}
           </div>
@@ -354,12 +372,12 @@ class TextField extends React.PureComponent<Props, State> {
 
   @autobind
   private handleInputOnFocus(e: React.FormEvent<HTMLElement>) {
+    const { onFocus } = this.props;
     this.setState((prevState: State) => ({
       ...prevState,
       focused: true,
     }));
 
-    const { onFocus } = this.props;
     if (onFocus == null) { return; }
     onFocus(e);
   }

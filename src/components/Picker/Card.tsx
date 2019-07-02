@@ -1,6 +1,8 @@
 import * as React from 'react';
 import * as style from './Picker.scss';
 
+import FlexBox from '../FlexBox';
+
 export interface Props {
   image?: string;
   nameBefore?: string;
@@ -16,21 +18,23 @@ class Card extends React.Component<Props, {}> {
     super(props);
   }
   render() {
-    const cardBackground = (this.props.isHighlighted) ? style.cardItem + ' ' + style.grey : style.cardItem;
+    const cardBackground = (this.props.isHighlighted) ? style.cardItem + ' ' + style.highlighted : style.cardItem;
     return (
       <div>
         <div className={cardBackground}>
+        <FlexBox align="Center">
           {
             this.props.image ?
-              <span><img className={style.avatarImage + ' ' + style.cardElem} src={this.props.image} alt={this.props.alt} aria-hidden={!this.props.nameAfter || !this.props.nameBefore} /></span>
+              <span><img className={style.avatarImage} src={this.props.image} alt={this.props.alt} aria-hidden={!this.props.nameAfter || !this.props.nameBefore} /></span>
               : null
           }
-          <span className={style.cardElem + ' ' + style.nameStyle}>
+          <span className={style.nameStyle}>
             <span>{this.props.nameBefore}</span>
-            <span className={style.bold}>{this.props.bold}</span>
+            <span className={style.hinting}>{this.props.bold}</span>
             <span>{this.props.nameAfter}</span>
           </span>
-          <span className={style.cardElem + ' ' + style.emailStyle} aria-hidden>{this.props.email}</span>
+          <span className={style.emailStyle} aria-hidden>{this.props.email}</span>
+          </FlexBox>
         </div>
       </div>
     );

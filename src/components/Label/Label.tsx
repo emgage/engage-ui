@@ -22,7 +22,6 @@ export interface Props {
   componentStyle?: React.CSSProperties;
   // Extra class passed as a prop
   componentClass?: string;
-  labelContainerClass?: string;
   // Theme to be injected via css-themr.
   theme?: any;
   // To make it required or not.
@@ -47,7 +46,6 @@ function label({
   focused,
   componentStyle,
   componentClass = '',
-  labelContainerClass = '',
   theme,
 }: Props) {
   const className = classNames(
@@ -59,17 +57,12 @@ function label({
     focused && theme.focused
   );
 
-  const labelClass = classNames(
-    labelContainerClass,
-    theme.label
-  );
-
   const actionMarkup = action
     ? buttonFrom(action, { plain: true })
     : null;
 
   return (
-    <div className={labelClass}>
+    <div className={theme.label}>
       <label id={labelID(componentId)} htmlFor={componentId} className={className} style={componentStyle}>{children}</label>
       {actionMarkup}
     </div>

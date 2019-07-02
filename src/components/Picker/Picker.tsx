@@ -1,10 +1,12 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 import { PICKER } from '../ThemeIdentifiers';
-import TextField from './TextField';
+import TextField from '../TextField';
+import Icon from '../Icon';
 import { DisplayMoreInfo } from './PickerEnum';
 import * as Autosuggest from 'react-autosuggest';
 import * as baseTheme from './Picker.scss';
+// TODO: Why are we using this custom card and not the Card component?
 import Card from './Card';
 
 export interface IPickerInfo {
@@ -40,7 +42,9 @@ export interface IAutoSuggestMethods {
   onSuggestionsClearRequested(item: object): void;
   getSuggestions(value: string): any[];
   getSuggestionValue(suggestion: object): void;
+  onBlur(event: React.FormEvent<any>): void;
   onChange(event: React.FormEvent<any>, { newValue, method }: Autosuggest.ChangeEvent): void;
+  onFocus(event: React.FormEvent<any>): void;
   onKeyDown(e: React.FormEvent<Element> | KeyboardEvent): void;
   onSuggestionsFetchRequested({ value }: Autosuggest.SuggestionsFetchRequest): void;
   onSuggestionSelected(event: React.FormEvent<Element>, { suggestion }: Autosuggest.SuggestionSelectedEventData<Autosuggest>): void;
@@ -66,12 +70,22 @@ export interface State {
   itemsList: IItemList[];
   focused: number;
   number: number;
+  isFocused: boolean;
+  hasValue: boolean;
 }
 
 export interface Props {
   selectedResultsBehavior?: Type;
+  // Hint text to display.
   filterPlaceHolder?: string;
-  filterLabel?: string;
+  // Additional hint text to display.
+  helpText?: React.ReactNode;
+  // Label for the input.
+  label?: string;
+  // Visually hide the label.
+  labelHidden?: boolean;
+  // Display loading indicator
+  loading?: boolean;
   maxSelectedItems?: number;
   minSelectedItems?: number;
   chipComponent?: React.ReactNode;
@@ -102,6 +116,8 @@ class Picker extends React.Component<Props, State> {
       chipListState: [],
       focusArr: [],
       itemsList: this.props.source,
+      isFocused: false,
+      hasValue: false,
       focused: 0,
       number: 0,
     };
@@ -152,6 +168,14 @@ class Picker extends React.Component<Props, State> {
         }
       },
 
+      onFocus: (event: React.FormEvent<any>) => {
+        this.setState({ isFocused: true });
+      },
+
+      onBlur: (event: React.FormEvent<any>) => {
+        this.setState({ isFocused: false });
+      },
+
       onSuggestionsFetchRequested: ({ value }: Autosuggest.SuggestionsFetchRequest) => {
         if (value) {
           this.setState({
@@ -178,6 +202,7 @@ class Picker extends React.Component<Props, State> {
         this.setState({
           chipListState,
           value: '',
+          hasValue: true,
         });
 
         if (this.props.onSelect) {
@@ -204,6 +229,7 @@ class Picker extends React.Component<Props, State> {
           focusArr,
           number,
           focused,
+          hasValue: chipListState.length ? true : false
         });
 
         if (this.props.onRemove) {
@@ -245,7 +271,10 @@ class Picker extends React.Component<Props, State> {
     const {
         autoSuggest,
         filterPlaceHolder,
-        filterLabel,
+        helpText,
+        label,
+        labelHidden,
+        loading,
         selectedResultsBehavior,
         moreInfoComponent,
         chipComponent,
@@ -257,11 +286,13 @@ class Picker extends React.Component<Props, State> {
         onMoreInfo = this.handleMoreInfo,
         theme,
     } = this.props;
-    const { value, suggestions, chipListState } = this.state;
+    const { isFocused, hasValue, value, suggestions, chipListState } = this.state;
     const inputProps: Autosuggest.InputProps = {
       value,
       onChange: autoSuggestMethods.onChange,
       onKeyDown: autoSuggestMethods.onKeyDown,
+      onFocus: autoSuggestMethods.onFocus,
+      onBlur: autoSuggestMethods.onBlur,
       placeholder: filterPlaceHolder
     };
     const stateProps: IStateProps = { value, suggestions, chipListState, inputProps };
@@ -285,13 +316,19 @@ class Picker extends React.Component<Props, State> {
           <TextField
             autoSuggest={autoSuggest}
             autoSuggestMethods={autoSuggestMethods}
-            label={filterLabel ? filterLabel : ''}
-            value={this.state.people}
-            placeholder={filterPlaceHolder}
-            onChange={searchBehavior}
-            stateProps={stateProps}
-            showIcon
+            helpText={helpText}
             itemSelected={!!this.state.chipListState.length}
+            label={label ? label : ''}
+            labelHidden={labelHidden}
+            loading={loading}
+            value={this.state.people}
+            onChange={searchBehavior}
+            placeholder={filterPlaceHolder}
+            stateProps={stateProps}
+            theme={theme}
+            suffix={<Icon componentColor="inkLightest" source="users" />}
+            isFocused={isFocused}
+            hasValue={hasValue}
           />
         </div>
         <div>

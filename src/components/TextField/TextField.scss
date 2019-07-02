@@ -20,18 +20,11 @@ $stacking-order: (
 }
 
 .multiline {
-  padding: 0;
   
   > .input {
     overflow: auto;
-    padding-left: $backdrop-horizontal-spacing;
     padding-right: $backdrop-horizontal-spacing;
-  }
-
-  &.loading {
-    > .input {
-      padding-right: ($backdrop-horizontal-spacing + $spinner-size + 0.6rem);
-    }
+    margin-right: -$backdrop-horizontal-spacing;
   }
 }
 
@@ -39,18 +32,22 @@ $stacking-order: (
   > .input {
       resize: none;
   }
-}
 
-.loading {
-  > .input {
-    padding-right: ($spinner-size + 0.6rem);
-  }
-}
+  .loading {
+    > .input {
+      padding-right: ($spinner-size + 0.6rem);
+    }
+  } 
+} 
 
 .hasValue {
   .input {
     color: color(ink);
   }
+}
+
+.focused {
+  color: inherit;
 }
 
 .error {
@@ -116,13 +113,11 @@ $stacking-order: (
       box-shadow:
         inset shadow(transparent),
         0 0 0 1px color(indigo);
-    
     }
   }
 
   &::placeholder {
     color: color(ink, lightest);
-    text-align: left !important;
   }
 
   // These properties are used to remove the default "SpinnerButtons" controls
@@ -135,11 +130,6 @@ $stacking-order: (
       appearance: none;
       margin: 0;
     }
-  }
-
-  &.notEmpty {
-    padding-top: 1.9rem;
-    padding-bottom: .3rem;
   }
 }
 
@@ -182,16 +172,6 @@ $stacking-order: (
     box-shadow: none;
   }
 
-}
-
-.multiLineLabel {
-  position: absolute;
-  background: #FFF;
-  z-index: 100;
-  left: 0;
-  right: 28px;
-  top: -2px;
-  padding-top: 2px;
 }
 
 .prefix {
@@ -291,11 +271,12 @@ $stacking-order: (
 }
 
 .spinnerWrapper {
-  position: absolute;
+  position: relative;
   z-index: z-index(spinner, $stacking-order);
-  top: calc(( 2.4rem - #{$spinner-size} ) / 2 + #{control-vertical-padding()} );
-  right: $backdrop-horizontal-spacing;
+  top: 0;
+  right: 0;
   width: $spinner-size;
   height: $spinner-size;
+  margin-left: $addon-horizontal-spacing;
   pointer-events: none;
 }
