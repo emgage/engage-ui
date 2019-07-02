@@ -42,7 +42,9 @@ export interface IAutoSuggestMethods {
   onSuggestionsClearRequested(item: object): void;
   getSuggestions(value: string): any[];
   getSuggestionValue(suggestion: object): void;
+  onBlur(event: React.FormEvent<any>): void;
   onChange(event: React.FormEvent<any>, { newValue, method }: Autosuggest.ChangeEvent): void;
+  onFocus(event: React.FormEvent<any>): void;
   onKeyDown(e: React.FormEvent<Element> | KeyboardEvent): void;
   onSuggestionsFetchRequested({ value }: Autosuggest.SuggestionsFetchRequest): void;
   onSuggestionSelected(event: React.FormEvent<Element>, { suggestion }: Autosuggest.SuggestionSelectedEventData<Autosuggest>): void;
@@ -68,6 +70,8 @@ export interface State {
   itemsList: IItemList[];
   focused: number;
   number: number;
+  isFocused: boolean;
+  hasValue: boolean;
 }
 
 export interface Props {
@@ -112,6 +116,8 @@ class Picker extends React.Component<Props, State> {
       chipListState: [],
       focusArr: [],
       itemsList: this.props.source,
+      isFocused: false,
+      hasValue: false,
       focused: 0,
       number: 0,
     };
@@ -162,6 +168,14 @@ class Picker extends React.Component<Props, State> {
         }
       },
 
+      onFocus: (event: React.FormEvent<any>) => {
+        this.setState({ isFocused: true });
+      },
+
+      onBlur: (event: React.FormEvent<any>) => {
+        this.setState({ isFocused: false });
+      },
+
       onSuggestionsFetchRequested: ({ value }: Autosuggest.SuggestionsFetchRequest) => {
         if (value) {
           this.setState({
@@ -188,6 +202,7 @@ class Picker extends React.Component<Props, State> {
         this.setState({
           chipListState,
           value: '',
+          hasValue: true,
         });
 
         if (this.props.onSelect) {
@@ -214,6 +229,7 @@ class Picker extends React.Component<Props, State> {
           focusArr,
           number,
           focused,
+          hasValue: chipListState.length ? true : false
         });
 
         if (this.props.onRemove) {
@@ -270,11 +286,13 @@ class Picker extends React.Component<Props, State> {
         onMoreInfo = this.handleMoreInfo,
         theme,
     } = this.props;
-    const { value, suggestions, chipListState } = this.state;
+    const { isFocused, hasValue, value, suggestions, chipListState } = this.state;
     const inputProps: Autosuggest.InputProps = {
       value,
       onChange: autoSuggestMethods.onChange,
       onKeyDown: autoSuggestMethods.onKeyDown,
+      onFocus: autoSuggestMethods.onFocus,
+      onBlur: autoSuggestMethods.onBlur,
       placeholder: filterPlaceHolder
     };
     const stateProps: IStateProps = { value, suggestions, chipListState, inputProps };
@@ -309,6 +327,8 @@ class Picker extends React.Component<Props, State> {
             stateProps={stateProps}
             theme={theme}
             suffix={<Icon componentColor="inkLightest" source="users" />}
+            isFocused={isFocused}
+            hasValue={hasValue}
           />
         </div>
         <div>

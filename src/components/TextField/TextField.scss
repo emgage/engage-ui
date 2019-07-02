@@ -53,6 +53,10 @@ $stacking-order: (
   }
 }
 
+.focused {
+  color: inherit;
+}
+
 .error {
   
   .input::placeholder {

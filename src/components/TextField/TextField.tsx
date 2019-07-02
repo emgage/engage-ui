@@ -54,9 +54,11 @@ export interface Props {
   errors?: [string];
   // Function return all errors
   getErrors?(errors:any, name?:string): void;
+  hasValue?: boolean;
   // Additional hint text to display.
   helpText?: React.ReactNode;
   itemSelected?: boolean;
+  isFocused?: boolean;
   // Label for the input.
   label?: string;
   // Adds an action to the label.
@@ -155,7 +157,9 @@ class TextField extends React.PureComponent<Props, State> {
       disabled,
       enableTextCounter,
       errors,
+      hasValue: propHasValue,
       helpText,
+      isFocused,
       label = '',
       labelAction,
       labelHidden,
@@ -184,7 +188,7 @@ class TextField extends React.PureComponent<Props, State> {
     const className = classNames(
       componentClass,
       theme.textField,
-      Boolean(value) && theme.hasValue,
+      (Boolean(value) || propHasValue) && theme.hasValue,
       disabled && theme.disabled,
       readOnly && theme.readOnly,
       backdropHidden && theme.backdropHidden,
@@ -192,7 +196,8 @@ class TextField extends React.PureComponent<Props, State> {
       labelHidden && theme.labelHidden,
       multiline && theme.multiline,
       resizable && theme.resizable,
-      loading && theme.loading
+      loading && theme.loading,
+      isFocused && theme.focused
     );
 
     const prefixMarkup = prefix
@@ -295,8 +300,8 @@ class TextField extends React.PureComponent<Props, State> {
         labelHidden={labelHidden}
         helpText={helpText}
         disabled={disabled}
-        focused={this.state.focused}
-        hasValue={hasValue}
+        focused={this.state.focused || isFocused}
+        hasValue={hasValue || propHasValue}
         required={required}
         componentClass={labelStyle}
       >
@@ -366,12 +371,12 @@ class TextField extends React.PureComponent<Props, State> {
 
   @autobind
   private handleInputOnFocus(e: React.FormEvent<HTMLElement>) {
+    const { onFocus } = this.props;
     this.setState((prevState: State) => ({
       ...prevState,
       focused: true,
     }));
 
-    const { onFocus } = this.props;
     if (onFocus == null) { return; }
     onFocus(e);
   }
