@@ -209,7 +209,7 @@ class TextField extends React.PureComponent<Props, State> {
       : null;
 
     const spinnerButtonsMarkup = type === 'number' && showNumberIcon
-      ? <SpinnerButtons onClick={this.handleInputFocus} onChange={this.handleNumberChange} />
+      ? <SpinnerButtons onClick={this.handleInputFocus} onChange={this.handleNumberChange} theme={theme} />
       : null;
 
     const newComponentStyle = (multiline && height) ? { height, ...componentStyle } : componentStyle;

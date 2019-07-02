@@ -42,3 +42,10 @@ export interface SortState {
   field: string;
   order: SortOrder;
 }
+
+// Server sort interface
+export interface ServerSort {
+  field: string;
+  order: string;
+  callback(field: string, order: string, sortBy: string): void;
+}

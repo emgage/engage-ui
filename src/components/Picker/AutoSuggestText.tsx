@@ -54,6 +54,7 @@ class AutoSuggestText extends React.Component<Props, {}> {
             container: theme.container,
             suggestion: theme.suggestionItem,
             suggestionsList: theme.suggestionsList,
+
             input: theme.input,
           }}
         />

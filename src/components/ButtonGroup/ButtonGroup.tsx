@@ -34,7 +34,7 @@ const buttonGroup = ({
   );
 
   const contents = elementChildren(children)
-    .map((child, index) => <Item button={child} key={index} />);
+    .map((child, index) => <Item button={child} key={index} theme={theme} />);
 
   return <div className={className} style={componentStyle}>{contents}</div>;
 };

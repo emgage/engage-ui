@@ -84,6 +84,7 @@ import {
 
 interface State {
   appName?: string;
+  appUri?: string;
   appDescription: string;
   appCity: string;
   appRadio1: string;
@@ -141,6 +142,7 @@ class App extends React.Component<{}, State> {
       modalOpen2: false,
       modalOpen3: false,
       appName: '',
+      appUri: '',
       appDescription: '',
       appRadio1: 'active1',
       appRadio2: 'active2',
@@ -668,6 +670,7 @@ class App extends React.Component<{}, State> {
         key: 'name',
         className: '',
         sort: true,
+        sortBy: 'keyword',
         style: { width: '100px' },
       }, {
         label: 'Description',
@@ -1171,6 +1174,22 @@ class App extends React.Component<{}, State> {
               bordered highlight sorting>
               Loading
             </Table>
+
+            <div><strong>New table test</strong></div>
+            <Table
+            data={tableData}
+            column={columnConfig}
+            filterData={this.state.filterConfig}
+            selectRow="checkbox"
+            rowAction={rowActionConfig}
+            selectCallbackValue="id"
+            selectRowCallback={(val: any) => this.setState({ bulkAction: { selectedRow: val } })}
+            serverSort={{
+              field: 'name',
+              order: 'asc',
+              callback: (field, order, sortBy) => console.log('field:', field, 'order:', order, 'sortBy:', sortBy)
+            }}
+            bordered highlight />
         </div>
             <Sticky position={'top'} componentStyle={{ backgroundColor: '#FFF', color: 'inherit' }}>
               <span>footer content</span>
@@ -1750,7 +1769,7 @@ class App extends React.Component<{}, State> {
             showError={this.state.showError}
             onSubmitError={(value: [any], error: Error) => console.log('value:', value, 'error:', error)}
             onSubmit={(value: [any]) => console.log('Submit Value:', value)}
-            formFields={['AppName', 'appDescription', 'appCity', 'appActive', 'appRadioAction']}
+            formFields={['AppName', 'AppUri', 'appDescription', 'appCity', 'appActive', 'appRadioAction']}
           >
 
             <Heading>App Basics</Heading>
@@ -1759,6 +1778,21 @@ class App extends React.Component<{}, State> {
             <p>This is just some fun regular text.</p>
 
             {/* <FormLayout> */}
+
+              <ValidatedTextField
+                  getErrors={this.getErrors}
+                  componentId="AppUri"
+                  label="App Uri"
+                  placeholder="App Uri"
+                  onChange={this.valueUpdater('appUri')}
+                  value={this.state.appUri}
+                  name="App Uri"
+                  validateTrigger={['onBlur']}
+                  validateRules={[
+                    { minLength: 2, message: 'AtList 2 character needed' },
+                    { required: true, message: 'App Uri is required' },
+                  ]}
+              />
               <div style={{ width: '100px' }}>
                 <ValidatedTextField
                   getErrors={this.getErrors}

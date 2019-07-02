@@ -29,7 +29,7 @@ const spinnerButtons = ({ theme, onChange, onClick }: Props)  => {
         onClick={handleStep(1)}
       >
         <div className={theme.spinnerButtonsIcon}>
-          <Icon source="caretUp" />
+          <Icon source="caretUp" theme={theme} />
         </div>
       </div>
 
@@ -40,7 +40,7 @@ const spinnerButtons = ({ theme, onChange, onClick }: Props)  => {
         onClick={handleStep(-1)}
       >
         <div className={theme.spinnerButtonsIcon}>
-          <Icon source="caretDown" />
+          <Icon source="caretDown" theme={theme} />
         </div>
       </div>
     </div>

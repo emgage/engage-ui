@@ -38,7 +38,7 @@ class ClickableChip extends React.PureComponent<Props, State> {
   onClose = () => { };
 
   render() {
-    const chip = this.props.chip;
+    const { chip, theme } = this.props;
 
     const Items: DropdownItemProps[] = [{
       content: this.props.children
@@ -49,7 +49,7 @@ class ClickableChip extends React.PureComponent<Props, State> {
         <div onClick={this.handleClick} id={this.id}>
           {chip}
         </div>
-        <Dropdown anchorEl={this.state.anchorEl} onClose={this.onClose} toggle={this.handleClick} dropdownItems={Items} ></Dropdown>
+        <Dropdown anchorEl={this.state.anchorEl} onClose={this.onClose} toggle={this.handleClick} dropdownItems={Items} theme={theme}></Dropdown>
       </div>
     );
   }

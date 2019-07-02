@@ -1,9 +1,11 @@
 .segmented {
 
   .item {
-
-    &:not(:first-child) {
+    &.primary {
       margin-left: 1px;
     }
+    // &:not(:first-child) {
+      
+    // }
   }
 }

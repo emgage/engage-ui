@@ -23,6 +23,8 @@ export interface Props {
   clickHandler?(field: string, sortBy: string): void;
   // To set colspan value
   colSpan?: number;
+  // Custom style, if user wants to add in th
+  componentStyle?: any;
   // Current sort order, it will be only filled if the current sorting field will be this
   order?: string;
   // Set row span value
@@ -31,8 +33,8 @@ export interface Props {
   sort?: string;
   // If specific key contains an object this prop will tell which key from that object to be used
   sortBy?: string;
-  // Custom style, if user wants to add in th
-  componentStyle?: any;
+  // Callback function to do the server sort
+  serverSort?(field: string, sortBy: string): void;
   theme?: any;
 }
 
@@ -43,10 +45,14 @@ class TableHead extends React.Component<Props, never> {
 
   // Function to trigger the clickhandler if its defined
   triggerClick = () => {
-    const { clickHandler, sort, sortBy = '' } = this.props;
+    const { clickHandler, sort = '', serverSort, sortBy = '' } = this.props;
 
-    if (sort && clickHandler) {
-      clickHandler(sort, sortBy);
+    if (!serverSort) {
+      if (sort && clickHandler) {
+        clickHandler(sort, sortBy);
+      }
+    } else {
+      serverSort(sort, sortBy);
     }
   }
 

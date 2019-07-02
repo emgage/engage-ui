@@ -50,8 +50,8 @@ class ComboBoxItem extends React.PureComponent<Props, never> {
 
           accordianItems.push({
             header: renderer ? renderer(val, 'header') :
-              <Label componentClass={theme.accordionItemHeader} componentId={indexStr}>
-                <Icon source="chevronRight" />
+              <Label componentClass={theme.accordionItemHeader} componentId={indexStr} theme={theme}>
+                <Icon source="chevronRight" theme={theme} />
                 <span className={theme.headerText}>{val.header}</span>
               </Label>,
             children: val.children.map((child: any, index: number) => {
@@ -73,7 +73,7 @@ class ComboBoxItem extends React.PureComponent<Props, never> {
 
         return (
           <div key={new Date().getUTCMilliseconds()} onClick={this.handleClick} data-isparent={true}>
-            <Accordion items={accordianItems} />
+            <Accordion items={accordianItems} theme={theme} />
           </div>
         );
       default:
