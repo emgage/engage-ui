@@ -304,6 +304,7 @@ class TextField extends React.PureComponent<Props, State> {
         hasValue={hasValue || propHasValue}
         required={required}
         componentClass={labelStyle}
+        theme={theme}
       >
         <Connected
           left={connectedLeft}
@@ -312,9 +313,9 @@ class TextField extends React.PureComponent<Props, State> {
           <div className={className}>
             {prefixMarkup}
             {inputValue}
+            {loading && <div className={theme.spinnerWrapper}><Spinner componentSize="small" componentColor="disabled" /></div>}
             {suffixMarkup}
             {spinnerButtonsMarkup}
-            {loading && <div className={theme.spinnerWrapper}><Spinner componentSize="small" componentColor="disabled" /></div>}
             <div className={theme.backdrop} />
             {resizer}
           </div>

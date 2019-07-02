@@ -8,8 +8,7 @@ $stacking-order: (
   backdrop: 10,
 );
 
-
-// AutoSuggestText Component
+// AutoSuggest Container Styles
 
 .containerWrapper {
   width: 100%;
@@ -28,8 +27,9 @@ $stacking-order: (
 
   //TODO: Consider using Stack component instead of adding margin.
   .Chip {
-    margin-top: control-vertical-padding();
-    margin-right: control-vertical-padding();
+    margin-top: control-vertical-padding() + rem(1px);
+    margin-right: control-vertical-padding() + rem(1px);
+    vertical-align: top;
   }
 }
 
@@ -68,112 +68,54 @@ $stacking-order: (
   }
 }
 
+// AutoSuggest Suggestions Styles
+
 .suggestionsList {
   position: absolute;
-  margin: 0;
+  margin: -5px 0 0;
   padding: 0;
   background: color(white);
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.25);
   list-style-type: none;
   z-index: z-index(input, $stacking-order);
 }
 
 
-// Card Component
-.avatarImage {
-  border-radius: 50%;
-  width: rem(40px);
-  height: rem(40px);
-}
+// AutoSuggest Card Styles
 
-
-
-// Continue from here
-
-
-
-.cardBorder {
-  width: 400px;
-  background-color: white;
-  margin: 0;
-  padding: 0;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-.check {
-  width: 100px;
-}
-.cardElem {
-  align-items: center;
-  margin: 5px 5px 5px 5px;
-  white-space: pre;
-}
 .cardItem {
-  z-index: 2;
+  padding: 0 4px;
+
+  &.highlighted {
+    background: color(sky, light);
+  }
+  
+  .avatarImage {
+    border-radius: 50%;
+    width: rem(40px);
+    height: rem(40px);
+    margin: 8px 0 8px 12px;
+    vertical-align: middle;
+  }
+
+  .nameStyle {
+    @include text-style-body;
+    margin: 18px 0 18px 12px;
+    // width: 200px;
+  }
+
+  .emailStyle {
+    @include text-style-body;
+    @include text-emphasis-subdued;
+    margin: 18px 12px;
+    // width: 200px;
+  }
+
+  .hinting {
+    font-weight: bold;
+  }
 }
 
-
-
-
-
-.autosuggestInput {
-  border: none;
-  background-color: transparent;
-  display: inline-block;
-  font-size: 1.3rem;
-  color: #212121;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  width: 200px;
-  padding-left: 7px;
-}
-
-.autosuggestInput:focus {
-  outline: none;
-}
-
-.nameStyle {
-  width: 100px;
-}
-.emailStyle {
-  width: 240px; 
-  color: rgba(0, 0, 0, 0.54);
-}
-.grey {
-  background-color: #eeeeee;
-}
-
-
-
-
-// TODO: revisit
-.customPlaceholder {
-  position: absolute;
-  font-size: 13px;
-  font-weight: normal;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: 1.23;
-  letter-spacing: normal;
-  color: #616161;
-}
-
-
+// TODO: Do we need these? Should display be none, or hidden?
 .pickerResultShow{display:block;}
 .pickerResultHide{display:none;}
-
-
-
-// AutoSuggest Component
-
-.backdropAutosuggest {
-  z-index: 1;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: color(white);
-  border: border(dark);
-  box-shadow: inset 0 1px 0 0 rgba(color(ink, lighter), 0.05);
-  border-radius: border-radius();
-  will-change: box-shadow;
-  transition: box-shadow duration() easing();
-}

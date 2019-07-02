@@ -22,12 +22,13 @@ class PickerAutoSuggestExample extends React.Component<{}, {}> {
         chipComponent={Chip}
         filterPlaceHolder="placeholder"
         helpText="Helper Text"
-        // loading
         source={pickerdata}
         autoSuggest
         searchResultComponent={Chip}
         onSelect={(value: any) => console.log('I am here:', value)}
         onRemove={(value: any) => console.log('I am removed:', value)}
+        // labelHidden
+        // loading
       />
     );
   }

@@ -1,52 +1,68 @@
 $control-height: rem(64px);
-$control-vertical-padding: (($control-height - line-height(input) - rem(2px)) / 2);
+$control-vertical-padding: (($control-height - rem(44px)) / 2);
 $backdrop-horizontal-spacing: spacing(tight) * 1.5;
-$spinner-size: rem(20px);
 
+// Lable Styling
 
-.containerWrapper {
+.labelWrapper {
+  transform: translate3D(0, 2rem, 0);
+ 
+  &.focused,
+  &:not(.empty) {
+    transform: translate3D(0,0.3rem,0);
 
-  &.focused {
-    padding-top: calc((#{$control-vertical-padding} * 2 ) - 0.3rem ) ;
-    padding-bottom: 0.3rem;
-
-    ~ .spinnerWrapper {
-      top: calc(( 2.4rem - #{$spinner-size} ) / 2 + 1.9rem );
-    }
-
-    ~ .backdrop {
-      border-color: theme-color(m-blue, 300);
-      box-shadow: 0 0 0 1px theme-color(m-blue, 300);
-    }
-
+    .labelStyle {
+      @include text-style-body-small;
+      color: theme-color(m-grey, 700);
+    }  
   }
-
 }
 
-.input {
+// Picker Styling
+
+.textField {
   @include text-style-input;
   height: auto;
   min-height: control-height();
-  padding: control-vertical-padding() 0;
+  padding: $control-vertical-padding $backdrop-horizontal-spacing;
   transition: 0.3s all ease;
 
-  &:disabled {
-    color: theme-color(m-grey, 700);
+  &.focused {
+    padding-top: calc((#{$control-vertical-padding} * 2) - 0.3rem);
+    padding-bottom: 0.3rem;
+
+    > .backdrop {
+      border-color: theme-color(m-blue, 300);
+      box-shadow: 0 0 0 1px theme-color(m-blue, 300);
+    }
   }
 
-  &:focus {
-    outline: none;
-    box-shadow: none;
+  &.hasValue {
+    padding-top: calc((#{$control-vertical-padding} * 2) - 0.3rem);
+    padding-bottom: 0.3rem;
   }
 
-  &::placeholder {
-    color: theme-color(m-grey, 500);
-    // text-align: start;
+  &.labelHidden {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
   }
-
 }
 
 .containerWrapper {
+
+  .input {
+    @include text-style-input;
+  
+    &:disabled {
+      color: theme-color(m-grey, 700);
+    }
+  
+    &::placeholder {
+      color: theme-color(m-grey, 500);
+    }
+  
+  }
+
   &.empty {
     .input {
       &::placeholder {

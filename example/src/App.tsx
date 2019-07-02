@@ -89,6 +89,7 @@ interface State {
   appRadio1: string;
   appRadio2: string;
   appRadioVal: string;
+  appNumberCounter: string;
   appTextCounter: string;
   appTextCounter1: string;
   columns: object[];
@@ -146,6 +147,7 @@ class App extends React.Component<{}, State> {
       appRadioVal: '',
       appCity: '',
       appCity1: '',
+      appNumberCounter: '',
       appTextCounter: '',
       appTextCounter1: '',
       checkboxState: true,
@@ -1477,9 +1479,12 @@ class App extends React.Component<{}, State> {
           />
 
           <TextField
+            label="Number field"
             type="number"
-            placeholder="Number field"
-            showNumberIcon={false}
+            placeholder="placeholder"
+            value={this.state.appNumberCounter}
+            onChange={this.valueUpdater('appNumberCounter')}
+            // showNumberIcon={false}
           />
 
           <TextField
@@ -1496,6 +1501,8 @@ class App extends React.Component<{}, State> {
             onChange={this.valueUpdater('appTextCounter1')}
             // disabled
             loading
+            labelHidden
+            // suffix={<Icon componentColor="inkLightest" source="users" />}
           />
           <TextField
             componentId="TestName1"
@@ -1512,6 +1519,7 @@ class App extends React.Component<{}, State> {
             // disabled
             loading
             // labelHidden
+            // suffix={<Icon componentColor="inkLightest" source="users" />}
           />
           <TextField
             componentId="TestName2"

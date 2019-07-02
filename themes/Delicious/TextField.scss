@@ -8,30 +8,17 @@ $spinner-size: rem(20px);
   color: theme-color(m-grey, 900);
 }
 
-.multiline {
-  padding: 0 0 0 $backdrop-horizontal-spacing;
-
-  > .input {
-    padding-left: 0;
-    padding-right: $backdrop-horizontal-spacing;
-  }
-}
-
 .hasValue {
 
   .input{
     color: theme-color(m-grey, 900);
-    padding-top: calc((#{control-vertical-padding()} * 2) - 0.3rem); // total padding - padding-bottom
+    padding-top: (control-vertical-padding() * 2) - 0.3rem; // total padding - padding-bottom
     padding-bottom: 0.3rem;
   }
 
   &.multiline > .input {
-    margin-top: calc((#{control-vertical-padding()} * 2) - 0.3rem);
+    margin-top: (control-vertical-padding() * 2) - 0.3rem;
     padding-top: 0;
-  }
-
-  .spinnerWrapper {
-    top: calc(( 2.4rem - #{$spinner-size} ) / 2 + ((#{control-vertical-padding()} * 2) - 0.3rem) );
   }
 
   &.labelHidden {
@@ -42,16 +29,10 @@ $spinner-size: rem(20px);
     }
 
     &.multiline > .input {
-      margin-top: 0;
-      padding-top: control-vertical-padding();
+      margin-top: control-vertical-padding();
+      padding-top: 0;
     }
-
-    .spinnerWrapper {
-      top: calc(( 2.4rem - #{$spinner-size} ) / 2 + #{control-vertical-padding()} );
-    }
-
   }
-
 }
 
 .error {
@@ -84,12 +65,8 @@ $spinner-size: rem(20px);
   &:focus {
     outline: none;
     box-shadow: none;
-    padding-top: calc((#{control-vertical-padding()} * 2) - 0.3rem);
+    padding-top: (control-vertical-padding() * 2) - 0.3rem;
     padding-bottom: 0.3rem;
-
-    ~ .spinnerWrapper {
-      top: calc(( 2.4rem - #{$spinner-size} ) / 2 + ((#{control-vertical-padding()} * 2) - 0.3rem) );
-    }
 
     ~ .backdrop {
       border-color: theme-color(m-blue, 300);
@@ -104,8 +81,6 @@ $spinner-size: rem(20px);
 }
 
 .spinnerWrapper {
-  right: $backdrop-horizontal-spacing;
-  top: calc(( 2.4rem - #{$spinner-size} ) / 2 + #{control-vertical-padding()} );
   transition: 0.3s all ease;
 }
 
@@ -166,13 +141,6 @@ $spinner-size: rem(20px);
     &:focus {
       padding-top: control-vertical-padding();
       padding-bottom: control-vertical-padding();
-
-      ~ .spinnerWrapper {
-        top: calc(( 2.4rem - #{$spinner-size} ) / 2 + #{control-vertical-padding()} );
-      }
-
     }
-
   }
-
 }

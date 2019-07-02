@@ -52,7 +52,7 @@ class AutoSuggestText extends React.Component<Props, {}> {
           theme={{
             ...theme,
             container: theme.container,
-            suggestion: theme.cardItem,
+            suggestion: theme.suggestionItem,
             suggestionsList: theme.suggestionsList,
             input: theme.input,
           }}

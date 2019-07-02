@@ -11,6 +11,7 @@ ReactDOM.render(
       <label>React Version: {REACT_VERSION}</label>
       <App />
     </div>
-  </BaseTheme>,
-  document.getElementById('root'),
+  </BaseTheme>
+  ,
+  document.getElementById('root')
 );
