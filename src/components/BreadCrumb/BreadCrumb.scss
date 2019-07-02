@@ -17,11 +17,6 @@ ul.breadcrumb.left li {
   padding-left: 40px;
   padding-right: 40px;
   text-align: center;
-  cursor: pointer;
-}
-
-ul.breadcrumb.left li:hover {
-  cursor: pointer
 }
 
 ul.breadcrumb.left li:after,
@@ -42,28 +37,13 @@ ul.breadcrumb.left li:after {
   margin-top: -20px;
 }
 
-ul.breadcrumb.left li:hover:after {
-  cursor: pointer;
-}
+
 ul.breadcrumb.left li:before {
  
   border-color: rgba(194, 225, 245, 0);
   border-left-color: #FFF;
   border-width: 22px;
   margin-top: -22px;
-}
-
-ul.breadcrumb.left li.default:after {
-  cursor: default;
-}
-
-ul.breadcrumb.left li.default:hover{
-  cursor: default;
-}
-
-
-ul.breadcrumb.left li.default:hover:after {
-  cursor: pointer;
 }
 
 ul.breadcrumb.right li {
@@ -77,7 +57,6 @@ ul.breadcrumb.right li {
   margin-left: -1px;
   justify-content: right;
 }
-
 
 ul.breadcrumb.right li:after,
 ul.breadcrumb.right li:before {
@@ -95,26 +74,6 @@ ul.breadcrumb.right li:after {
   border-color: rgba(136, 183, 213, 0);
   border-width: 20px;
   margin-top: -20px;
-}
-
-ul.breadcrumb.right li:hover {
-  cursor: pointer;
-}
-
-ul.breadcrumb.right li.default:after {
-  cursor: pointer;
-}
-
-ul.breadcrumb.right li.default:hover{
-  cursor: pointer;
-}
-
-ul.breadcrumb.right li.default:hover:after {
-  cursor: pointer;
-}
-
-ul.breadcrumb.right li:hover:after {
-  cursor: pointer;
 }
 
 ul.breadcrumb.right li:before {
@@ -343,17 +302,14 @@ ul.breadcrumb.left li.disabled {
 
 ul.breadcrumb.left li.disabled:after {
   border-left-color: #a3a196;
-  cursor: normal;
 }
 
 ul.breadcrumb.left li.disabled:hover{
   background: #a3a196;
-  cursor: default;
 }
 
 ul.breadcrumb.left li.disabled:hover:after {
   border-left-color: #a3a196;
-  cursor: default;
 }
 
 ul.breadcrumb.right li.disabled {
@@ -362,17 +318,14 @@ ul.breadcrumb.right li.disabled {
 
 ul.breadcrumb.right li.disabled:after {
   border-right-color: #a3a196;
-  cursor: normal;
 }
 
 ul.breadcrumb.right li.disabled:hover{
   background: #a3a196;
-  cursor: default;
 }
 
 ul.breadcrumb.right li.disabled:hover:after {
   border-right-color: #a3a196;
-  cursor: default;
 }
 
 // Classes for primary/basic theme
@@ -382,10 +335,8 @@ ul.breadcrumb.right li.disabled:hover:after {
   position: relative;
   text-align: center;
   justify-content: left;
-  cursor: pointer;
 }
 
 .breadcrumbPrimary li.disabled {
   color: grey;
-  cursor: default;
 }

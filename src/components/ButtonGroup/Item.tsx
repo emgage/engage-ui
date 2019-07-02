@@ -22,9 +22,11 @@ class Item extends React.PureComponent<Props, State> {
   render() {
     const { button, theme } = this.props;
     const { focused } = this.state;
+    const isPrimary = button.props.primary ? true : false;
 
     const className = classNames(
       theme.item,
+      isPrimary && theme.primary,
       focused && theme['Item-focused'],
       button.props.plain && theme['Item-plain']
     );
