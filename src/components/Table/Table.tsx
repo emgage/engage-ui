@@ -336,7 +336,7 @@ class Table extends React.Component<Props, State> {
         { this.renderRowSelection(item, 'body') }
         {
           column.map((colItem: any, index: number) => {
-            const renderCheckbox = (!index && nestedChildData && !hideExpandedIcon && (!expandingRowId.length || expandingRowId.indexOf(item.id) >= 0));
+            const renderCheckbox = (!index && nestedChildData && nestedChildData.length && !hideExpandedIcon && (!expandingRowId.length || expandingRowId.indexOf(item.id) >= 0));
 
             return (
               <TableData
