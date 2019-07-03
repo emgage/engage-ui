@@ -1,122 +1,91 @@
+@import 'foundation/colors';
+@import 'foundation/borders';
+@import 'foundation/border-radius';
+@import 'foundation/shadows';
+@import 'shared/accessibility';
+@import 'shared/controls';
+@import 'shared/icons';
 
-
-.customControl {
+.checkbox {
   position: relative;
-  display: inline-block;
-  min-height: 1.5rem;
-  margin-left: 1.5rem;
 }
 
-input[type=checkbox], input[type=radio] {
-  box-sizing: border-box;
-  padding: 0;
+.error {
+  // The basic checked styles have more specificity than this, so need to
+  // basically duplicate that selector here, too.
+  // stylelint-disable-next-line selector-max-specificity
+  .input:checked + .backdrop,
+  .input.indeterminate + .backdrop,
+  .backdrop {
+    @include control-backdrop(error);
+  }
+
+  // We need to know if the input is focusing to change the border color.
+  // stylelint-disable-next-line selector-max-specificity
+  .input:focus + .backdrop,
+  .input:active + .backdrop {
+    @include control-backdrop(focused-error);
+  }
+
+  .icon {
+    @include recolor-icon(color(red, dark));
+  }
 }
 
-.checkboxCommon {
+.input {
+  @include visually-hidden;
+
+  &:focus,
+  &:active,
+  &:checked,
+  &.indeterminate  {
+    + .backdrop {
+      background: color(indigo);
+    }
+  }
+
+  &:checked,
+  &.indeterminate {
+    ~ .icon {
+      transform: translate(-50%, -50%) scale(1);
+    }
+  }
+
+  &:focus,
+  &:active {
+    + .backdrop {
+      @include control-backdrop(focused);
+    }
+  }
+
+  &:disabled {
+    + .backdrop {
+      @include control-backdrop(disabled);
+    }
+
+    ~ .icon {
+      @include recolor-icon(color(ink, lightest));
+    }
+  }
+}
+
+.backdrop {
+  @include control-backdrop;
   position: absolute;
-  z-index: -1;
-  opacity: 0;
-
-  &:checked~label {
-    &:before {
-      color: #fff;
-      background-color: #007bff;
-      border-color: #0068d7;
-    }
-
-    &:after {
-     box-sizing: border-box;
-     background-repeat: no-repeat;
-     background-position: 50%;
-     background-size: 50% 50%;
-     color: #fff;
-     padding-left: 2px;
-     top: 0px;
-    }
-  }
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  pointer-events: none;
 }
 
-.checkboxDisabled {
-  ~label {
-    &:before {
-      border-color: #dfe3e8;
-    }
-  }
-
-  &:checked~label {
-    &:before {
-      color: #919eab;
-      background-color: #f9fafb;
-      border-color: #dfe3e8;
-    }
-
-    &:after {
-     content: '\2714\0020';
-     color: #919eab;
-    }
-  }
-}
-
-.customControlInput {
-  &:checked~label {
-    &:after {
-     content: '\2714\0020';
-    }
-  }
-}
-
-.customControlInputIndeterminante {
-  &:checked~label {
-    &:after {
-      content: '\2212';
-    }
-  }
-}
-
-.customControlLabel {
-  display: inline-block;
-  position: relative;
-  margin-bottom: 0;
-  padding-left: 0.5rem;
-  height: 1.5rem;
-  font-weight: normal;
-
-  &:before, &:after {
-    position: absolute;
-    top: .25rem;
-    left: -2.0rem;
-    display: block;
-    width: 1.5rem;
-    height: 1.5rem;
-    content: "";
-  }
-
-  &:before {
-    border-radius: .25rem;
-    transition: background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-    pointer-events: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    background-color: #ffffff;
-    border: 1px solid #d5d5d5;
-  }
-
-  &:after {
-    
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: 50% 50%;
-  }
-}
-
-.helpText {
-  font-size: 1.3rem;
-  font-weight: 400;
-  line-height: 1.6rem;
-  text-transform: none;
-  letter-spacing: normal;
-  color: #616161;
-  margin-top: .3rem;
+.icon {
+  @include recolor-icon(color(indigo));
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transform-origin: 50% 50%;
+  transition: control-icon-transition();
+  pointer-events: none;
 }
