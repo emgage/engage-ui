@@ -21,7 +21,7 @@ $icon-horizontal-adjustment: 2px;
 }
 
 .labelHidden {
-  > .Label {
+  > .label {
     @include visually-hidden;
   }
 }
