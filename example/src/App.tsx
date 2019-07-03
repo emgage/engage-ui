@@ -1116,7 +1116,7 @@ class App extends React.Component<{}, State> {
         <Checkbox helpText="Help Text" checked={this.state.checkboxState} label="Checkbox" onChange={(newValue: boolean) => console.log('I am here:', newValue) } />
         <Checkbox helpText="Help Text" checked label="Checked Checkbox" />
         <Checkbox checked label="Checked Checkbox" />
-        <Checkbox checked="indeterminate" label="Indeterminante Checkbox" />
+        <Checkbox checked="indeterminate" label="Indeterminate Checkbox" />
         <Checkbox helpText="Help Text" disabled checked={this.state.checkboxState} label="Disabled Checkbox" onChange={(newValue: boolean) => console.log('I am here:', newValue) } />
         <Checkbox helpText="Help Text" checked label="Hidden Label Checkbox" labelHidden />
         <Checkbox checked label="Hidden Label Checkbox" labelHidden />

@@ -143,6 +143,7 @@ class Checkbox extends React.PureComponent<Props, State> {
           label={label}
           labelHidden={labelHidden}
           helpText={helpText}
+          disabled={disabled}
           theme={theme}
         >
           <span className={wrapperClassName} onClick={this.handleChange}>

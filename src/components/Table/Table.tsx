@@ -447,7 +447,9 @@ class Table extends React.Component<Props, State> {
   addHeaderCheckbox = (): React.ReactElement<any> => {
     const { allRowChecked, nestedChildData, totalRowCount, selectedRows } = this.state;
     const { columnFirstChildWidth = '30px', theme } = this.props;
-    const rowChecked = ((totalRowCount - selectedRows.length) > 0 &&  totalRowCount > 0) ? true : false;
+    // TODO: This whole section of code is very confusing. Please add comments expaling the logic.
+    const rowChecked = (selectedRows.length > 0 && (totalRowCount - selectedRows.length) > 0) ? true : false;
+    // const rowChecked = ((totalRowCount - selectedRows.length) > 0 && totalRowCount > 0) ? true : false;
     const thisAllRowChecked = (selectedRows.length > 0 && totalRowCount > 0 && totalRowCount === selectedRows.length) ? true : allRowChecked;
 
     const isAllChildChecked = nestedChildData && nestedChildData.length > 0 &&
@@ -455,13 +457,14 @@ class Table extends React.Component<Props, State> {
                               selectedRows.length === 1 &&
                               totalRowCount !== selectedRows.length &&
                               nestedChildData.filter((item: any) => selectedRows.indexOf(item.rowId) !== -1);
-    // TODO: Need to add checked="indeterminate" logic 
-    // const totalRowUnchecked = (isAllChildChecked && isAllChildChecked.length > 0 && selectedRows.length > 0 && totalRowCount > 0 && ((totalRowCount - selectedRows.length) === (totalRowCount - 1))) ? true : false;
+    const totalRowUnchecked = (isAllChildChecked && isAllChildChecked.length > 0 && selectedRows.length > 0 && totalRowCount > 0 && ((totalRowCount - selectedRows.length) === (totalRowCount - 1))) ? true : false;
 
     return (
       <TableHead componentStyle={{ width: columnFirstChildWidth }} theme={theme}>
-        {/* TODO: Need to add checked="indeterminate" logic - indeterminate={totalRowUnchecked ? false : rowChecked} */}
-        <Checkbox theme={theme} label="" checked={(rowChecked && (!isAllChildChecked || (isAllChildChecked !== undefined ? isAllChildChecked.length === 0 : true))) && selectedRows.length > 0 ? true : thisAllRowChecked} onChange={this.toggleAllRowSelection} />
+        {/* TODO: "checked" prop logic needs some TLC... it kinda works,but has issues, and the lack of comments makes it suoer hard to decifer what the logic is supposed to be doing. I left the original in the comment below. */}
+        {/* TODO: Checkbox below requires a label for acccesibility. Using labelHidden to hide the label from people who can see the screen. */}
+        <Checkbox theme={theme} label="I need a label that a blind person could hear and understand 1" labelHidden checked={totalRowUnchecked ? false : rowChecked ? 'indeterminate' : (rowChecked && (!isAllChildChecked || (isAllChildChecked !== undefined ? isAllChildChecked.length === 0 : true))) && selectedRows.length > 0 ? true : thisAllRowChecked} onChange={this.toggleAllRowSelection} />
+        {/* <Checkbox theme={theme} label="" checked={(rowChecked && (!isAllChildChecked || (isAllChildChecked !== undefined ? isAllChildChecked.length === 0 : true))) && selectedRows.length > 0 ? true : thisAllRowChecked} indeterminante={totalRowUnchecked ? false : rowChecked} onChange={this.toggleAllRowSelection} /> */}
       </TableHead>
     );
   }
@@ -479,13 +482,13 @@ class Table extends React.Component<Props, State> {
 
     return (
       <Checkbox
-        // TODO: This requires a label for acccesibility
-        label=""
+        // TODO: This requires a label for acccesibility. Using labelHidden to hide the label from people who can see the screen.
+        label="I need a label that a blind person could hear and understand 2"
         labelHidden
         theme={theme}
         disabled={actionInProgress}
-        checked={isCheckboxChecked}
-        // TODO: Need to move indeterminate check into checked prop
+        checked={intermediateRow.indexOf(uniqueId) !== -1 ? 'indeterminate' : isCheckboxChecked}
+        // checked={isCheckboxChecked}
         // indeterminante={intermediateRow.indexOf(uniqueId) !== -1}
         onChange={(checkedStatus: boolean) => {
           this.toggleSingleRowSelection(rowData, checkedStatus);
@@ -498,8 +501,8 @@ class Table extends React.Component<Props, State> {
   renderRadio = (rowData: any): React.ReactElement<any> => {
     const { theme } = this.props;
 
-    // TODO: Checkbox below requires a label for acccesibility
-    return <TableData theme={theme}><Checkbox label="" labelHidden theme={theme} value={rowData.id} checked={rowData.checked ? true : false} /></TableData>;
+    // TODO: Checkbox below requires a label for acccesibility. Using labelHidden to hide the label from people who can see the screen.
+    return <TableData theme={theme}><Checkbox label="I need a label that a blind person could hear and understand 3" labelHidden theme={theme} value={rowData.id} checked={rowData.checked ? true : false} /></TableData>;
   }
 
   reRenderRow = () => {
