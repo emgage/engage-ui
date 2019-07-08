@@ -675,6 +675,7 @@ class App extends React.Component<{}, State> {
       }, {
         label: 'Description',
         key: 'description',
+        noSort: true,
         style: { width: '250px' },
       }, {
         label: 'Status',

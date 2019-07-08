@@ -47,12 +47,14 @@ class TableHead extends React.Component<Props, never> {
   triggerClick = () => {
     const { clickHandler, sort = '', serverSort, sortBy = '' } = this.props;
 
-    if (!serverSort) {
-      if (sort && clickHandler) {
-        clickHandler(sort, sortBy);
+    if (sort && sortBy) {
+      if (!serverSort) {
+        if (sort && clickHandler) {
+          clickHandler(sort, sortBy);
+        }
+      } else {
+        serverSort(sort, sortBy);
       }
-    } else {
-      serverSort(sort, sortBy);
     }
   }
 
