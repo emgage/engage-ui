@@ -98,14 +98,12 @@ export interface Props {
 }
 
 export interface State {
-  allRowChecked?: boolean;
   data: any;
   expandedRow: any;
   intermediateRow: any;
   sort: SortState;
-  selectedRows: any;
+  selectedRows: number[];
   searchKey: string;
-  totalRowCount: number;
   callChildCallback: boolean;
   nestedChildData?: NestedChild[];
 }
@@ -137,7 +135,7 @@ class Table extends React.Component<Props, State> {
     }
 
     if (newProps.data.length !== this.props.data.length && JSON.stringify(newProps.data) !== JSON.stringify(this.props.data)) {
-      this.setState({ data: newProps.data, totalRowCount: newProps.data.map((item: any) => item.id).length });
+      this.setState({ data: newProps.data });
     }
 
     if (JSON.stringify(newProps.nestedChildData) !== JSON.stringify(this.props.nestedChildData)) {
@@ -177,7 +175,6 @@ class Table extends React.Component<Props, State> {
     return {
       data,
       selectedRows,
-      allRowChecked: false,
       expandedRow: [],
       intermediateRow: [],
       sort: {
@@ -191,7 +188,6 @@ class Table extends React.Component<Props, State> {
         },
       },
       searchKey: '',
-      totalRowCount: this.props.data.map((item: any) => item.id).length,
       callChildCallback: false,
       nestedChildData: this.props.nestedChildData,
     };
@@ -445,26 +441,29 @@ class Table extends React.Component<Props, State> {
 
   // Function to add checkbox in header as well
   addHeaderCheckbox = (): React.ReactElement<any> => {
-    const { allRowChecked, nestedChildData, totalRowCount, selectedRows } = this.state;
+    const { nestedChildData = [], data = [], intermediateRow = [], selectedRows = [] } = this.state;
     const { columnFirstChildWidth = '30px', theme } = this.props;
-    // TODO: This whole section of code is very confusing. Please add comments expaling the logic.
-    const rowChecked = (selectedRows.length > 0 && (totalRowCount - selectedRows.length) > 0) ? true : false;
-    // const rowChecked = ((totalRowCount - selectedRows.length) > 0 && totalRowCount > 0) ? true : false;
-    const thisAllRowChecked = (selectedRows.length > 0 && totalRowCount > 0 && totalRowCount === selectedRows.length) ? true : allRowChecked;
 
-    const isAllChildChecked = nestedChildData && nestedChildData.length > 0 &&
-                              totalRowCount > 0 && selectedRows.length > 0 &&
-                              selectedRows.length === 1 &&
-                              totalRowCount !== selectedRows.length &&
-                              nestedChildData.filter((item: any) => selectedRows.indexOf(item.rowId) !== -1);
-    const totalRowUnchecked = (isAllChildChecked && isAllChildChecked.length > 0 && selectedRows.length > 0 && totalRowCount > 0 && ((totalRowCount - selectedRows.length) === (totalRowCount - 1))) ? true : false;
+    // This gives the checked status: true means all child are checked, intermediate atlease one child is checked, false means nothing is checked
+    const rowCheckedStatus = !intermediateRow.length ?
+      (selectedRows.length && data.length === selectedRows.length ?
+        true : (selectedRows.length ?
+          'indeterminate' : false))
+      : 'indeterminate';
+
+    console.log('nestedChildData:', nestedChildData);
+    console.log('intermediateRow:', intermediateRow);
+    console.log('selectedRows:', selectedRows);
+    console.log('rowCheckedStatus:', rowCheckedStatus);
 
     return (
       <TableHead componentStyle={{ width: columnFirstChildWidth }} theme={theme}>
-        {/* TODO: "checked" prop logic needs some TLC... it kinda works,but has issues, and the lack of comments makes it suoer hard to decifer what the logic is supposed to be doing. I left the original in the comment below. */}
-        {/* TODO: Checkbox below requires a label for acccesibility. Using labelHidden to hide the label from people who can see the screen. */}
-        <Checkbox theme={theme} label="I need a label that a blind person could hear and understand 1" labelHidden checked={totalRowUnchecked ? false : rowChecked ? 'indeterminate' : (rowChecked && (!isAllChildChecked || (isAllChildChecked !== undefined ? isAllChildChecked.length === 0 : true))) && selectedRows.length > 0 ? true : thisAllRowChecked} onChange={this.toggleAllRowSelection} />
-        {/* <Checkbox theme={theme} label="" checked={(rowChecked && (!isAllChildChecked || (isAllChildChecked !== undefined ? isAllChildChecked.length === 0 : true))) && selectedRows.length > 0 ? true : thisAllRowChecked} indeterminante={totalRowUnchecked ? false : rowChecked} onChange={this.toggleAllRowSelection} /> */}
+        <Checkbox
+          labelHidden
+          theme={theme}
+          label="Select all"
+          checked={rowCheckedStatus}
+          onChange={this.toggleAllRowSelection} />
       </TableHead>
     );
   }
@@ -474,22 +473,20 @@ class Table extends React.Component<Props, State> {
     return newColumn ? <TableData theme={this.props.theme}>{this.renderCheckbox(rowData)}</TableData> : <span style={{ display: 'inline-block' }}>{this.renderCheckbox(rowData)}</span>;
   }
 
+  // Function to render table row checkboxes
   renderCheckbox(rowData: any) {
     const { intermediateRow, selectedRows = [] } = this.state;
     const { selectCallbackValue, actionInProgress, theme } = this.props;
     const uniqueId = selectCallbackValue ? rowData[selectCallbackValue] : rowData.id;
-    const isCheckboxChecked: boolean = selectedRows.indexOf(uniqueId) !== -1 || intermediateRow.indexOf(uniqueId) !== -1;
+    const rowCheckedStatus = selectedRows.indexOf(uniqueId) !== -1 ? true : intermediateRow.indexOf(uniqueId) !== -1 ? 'indeterminate' : false;
 
     return (
       <Checkbox
-        // TODO: This requires a label for acccesibility. Using labelHidden to hide the label from people who can see the screen.
-        label="I need a label that a blind person could hear and understand 2"
+        label={`Check ${rowData.name}`}
         labelHidden
         theme={theme}
         disabled={actionInProgress}
-        checked={intermediateRow.indexOf(uniqueId) !== -1 ? 'indeterminate' : isCheckboxChecked}
-        // checked={isCheckboxChecked}
-        // indeterminante={intermediateRow.indexOf(uniqueId) !== -1}
+        checked={rowCheckedStatus}
         onChange={(checkedStatus: boolean) => {
           this.toggleSingleRowSelection(rowData, checkedStatus);
         }}
@@ -501,8 +498,7 @@ class Table extends React.Component<Props, State> {
   renderRadio = (rowData: any): React.ReactElement<any> => {
     const { theme } = this.props;
 
-    // TODO: Checkbox below requires a label for acccesibility. Using labelHidden to hide the label from people who can see the screen.
-    return <TableData theme={theme}><Checkbox label="I need a label that a blind person could hear and understand 3" labelHidden theme={theme} value={rowData.id} checked={rowData.checked ? true : false} /></TableData>;
+    return <TableData theme={theme}><Checkbox label={`Check ${rowData.name}`} labelHidden theme={theme} value={rowData.id} checked={rowData.checked ? true : false} /></TableData>;
   }
 
   reRenderRow = () => {
@@ -631,7 +627,7 @@ class Table extends React.Component<Props, State> {
     }
 
     // Save the new state
-    this.setState({ selectedRows: currentSelectedRows, intermediateRow: currentIntermediateRow, allRowChecked: currentSelectedRows.length ? true : false });
+    this.setState({ selectedRows: currentSelectedRows });
 
     // Check if callback is passed, if passed then call it
     if (selectRowCallback) {
@@ -723,14 +719,12 @@ class Table extends React.Component<Props, State> {
     const { data } = this.state;
     const allRowIds = data.map((item: any) => item.id);
 
-    this.setState({ totalRowCount: allRowIds.length });
-
     if (checkedStatus) {
-      this.setState({ allRowChecked: true, selectedRows: allRowIds }, () => {
+      this.setState({ selectedRows: allRowIds }, () => {
         this.rowSelectionCallback();
       });
     } else {
-      this.setState({ allRowChecked: false, selectedRows: [] }, () => {
+      this.setState({ selectedRows: [] }, () => {
         this.rowSelectionCallback();
       });
     }
