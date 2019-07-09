@@ -334,7 +334,6 @@ class Table extends React.Component<Props, State> {
           column.map((colItem: any, index: number) => {
             const renderCheckbox = (!index && nestedChildData && nestedChildData.length && !hideExpandedIcon && (!expandingRowId.length || expandingRowId.indexOf(item.id) >= 0));
             const tableDataClick = colItem.key !== 'rowAction' && !renderCheckbox && onRowClick ? theme.tableDataClick : '';
-            console.log('tableDataClick:', tableDataClick);
 
             return (
               <TableData
@@ -524,6 +523,7 @@ class Table extends React.Component<Props, State> {
     const tableClass = this.getTableClassName();
     const renderedHeader = !this.props.hideHeader ? this.renderHeader() : null;
     const renderedBody = this.renderBody();
+
     return (
       <table className={tableClass} style={componentStyle}>
         { renderedHeader }
