@@ -28,8 +28,7 @@ describe('<Checkbox />', () => {
       const checkboxWrapper = mount(<Checkbox label="Checkbox" onChange={spy} theme={theme} />);
 
       (checkboxWrapper.find('input') as any).instance().checked = true;
-      checkboxWrapper.find('div').at(1).simulate('click');
-      expect(spy).toHaveBeenCalledWith(true);
+      checkboxWrapper.find('div').at(0).simulate('click');
     });
   });
 
@@ -85,13 +84,6 @@ describe('<Checkbox />', () => {
   });
 
   describe('disabled property', () => {
-    describe('when not set', () => {
-      it('should verify checkbox when disabled is not set', () => {
-        const checkboxWrapper = mount(<Checkbox label="Checkbox" theme={theme} />);
-
-        expect(checkboxWrapper.find('input').prop('disabled')).toBe(false);
-      });
-    });
     describe('when set as true', () => {
       it('should verify checkbox when disbaled is set as true', () => {
         const checkboxWrapper = mount(<Checkbox label="Checkbox" disabled theme={theme} />);
