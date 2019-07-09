@@ -9,6 +9,7 @@ import * as baseTheme from './Table.scss';
 export interface Props {
   // Used for accessibility, match this with id set in <th>
   accessibilityHeaders?: string;
+  callbackValue?: any;
   colSpan?: number;
   // This stores the key of specific json value, which needs to be rendered for this td
   dataKey?: string;
@@ -18,12 +19,21 @@ export interface Props {
   // Set a custom class
   componentClass?: string;
   dataLabel?: string;
+  onClick?(id: number | string): void;
   theme?: any;
 }
 
 class TableData extends React.Component<Props, never> {
   constructor(props: Props) {
     super(props);
+  }
+
+  rowClickCallback = () => {
+    const { callbackValue, onClick } = this.props;
+
+    if (onClick) {
+      onClick(callbackValue);
+    }
   }
 
   render () {
@@ -36,6 +46,7 @@ class TableData extends React.Component<Props, never> {
         rowSpan={rowSpan}
         style={componentStyle}
         className={componentClass}
+        onClick={this.rowClickCallback}
       >
         { dataKey ? dataKey : children }
       </td>
