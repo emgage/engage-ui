@@ -17,7 +17,7 @@ describe('<Checkbox />', () => {
                                     <Checkbox label="Checkbox" theme={theme} />
                                    );
       expect(checkboxWrapper.find('label')).toHaveLength(1);
-      expect(checkboxWrapper.find('div')).toHaveLength(2);
+      expect(checkboxWrapper.find('div')).toHaveLength(1);
       expect(checkboxWrapper.find('input')).toHaveLength(1);
     });
   });

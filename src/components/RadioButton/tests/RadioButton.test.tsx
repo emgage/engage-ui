@@ -17,7 +17,7 @@ describe('<RadioButton />', () => {
                                       <RadioButton label="RadioButton" theme={theme} />
                                   );
       expect(radiobuttonWrapper.find('label')).toHaveLength(1);
-      expect(radiobuttonWrapper.find('div')).toHaveLength(6);
+      expect(radiobuttonWrapper.find('div')).toHaveLength(4);
       expect(radiobuttonWrapper.find('input')).toHaveLength(1);
       expect(radiobuttonWrapper.find('label').hasClass(''));
       expect(radiobuttonWrapper.find('div').at(2).hasClass('radioButton'));
@@ -40,7 +40,7 @@ describe('<RadioButton />', () => {
         radiobuttonWrapper.find('input').simulate('change');
         expect(spy).toHaveBeenCalledWith(true);
         expect(radiobuttonWrapper.find('label')).toHaveLength(1);
-        expect(radiobuttonWrapper.find('div')).toHaveLength(6);
+        expect(radiobuttonWrapper.find('div')).toHaveLength(4);
         expect(radiobuttonWrapper.find('input')).toHaveLength(1);
         expect(radiobuttonWrapper.find('label').hasClass(''));
         expect(radiobuttonWrapper.find('div').at(2).hasClass('radioButton'));
@@ -59,7 +59,7 @@ describe('<RadioButton />', () => {
                                         <RadioButton label="RadioButton" theme={theme} />
                                   );
         expect(radiobuttonWrapper.find('label')).toHaveLength(1);
-        expect(radiobuttonWrapper.find('div')).toHaveLength(6);
+        expect(radiobuttonWrapper.find('div')).toHaveLength(4);
         expect(radiobuttonWrapper.find('input')).toHaveLength(1);
         expect(radiobuttonWrapper.find('label').hasClass(''));
         expect(radiobuttonWrapper.find('div').at(2).hasClass('radioButton'));
@@ -82,7 +82,7 @@ describe('<RadioButton />', () => {
         radiobuttonWrapper.find('input').simulate('focus');
         expect(spy).toHaveBeenCalled();
         expect(radiobuttonWrapper.find('label')).toHaveLength(1);
-        expect(radiobuttonWrapper.find('div')).toHaveLength(6);
+        expect(radiobuttonWrapper.find('div')).toHaveLength(4);
         expect(radiobuttonWrapper.find('input')).toHaveLength(1);
         expect(radiobuttonWrapper.find('label').hasClass(''));
         expect(radiobuttonWrapper.find('div').at(2).hasClass('radioButton'));
@@ -100,7 +100,7 @@ describe('<RadioButton />', () => {
                                         <RadioButton label="RadioButton" theme={theme} />
                                   );
         expect(radiobuttonWrapper.find('label')).toHaveLength(1);
-        expect(radiobuttonWrapper.find('div')).toHaveLength(6);
+        expect(radiobuttonWrapper.find('div')).toHaveLength(4);
         expect(radiobuttonWrapper.find('input')).toHaveLength(1);
         expect(radiobuttonWrapper.find('label').hasClass(''));
         expect(radiobuttonWrapper.find('div').at(2).hasClass('radioButton'));
@@ -123,7 +123,7 @@ describe('<RadioButton />', () => {
         radiobuttonWrapper.find('input').simulate('blur');
         expect(spy).toHaveBeenCalled();
         expect(radiobuttonWrapper.find('label')).toHaveLength(1);
-        expect(radiobuttonWrapper.find('div')).toHaveLength(6);
+        expect(radiobuttonWrapper.find('div')).toHaveLength(4);
         expect(radiobuttonWrapper.find('input')).toHaveLength(1);
         expect(radiobuttonWrapper.find('label').hasClass(''));
         expect(radiobuttonWrapper.find('div').at(2).hasClass('radioButton'));
@@ -141,7 +141,7 @@ describe('<RadioButton />', () => {
                                         <RadioButton label="RadioButton" theme={theme} />
                                     );
         expect(radiobuttonWrapper.find('label')).toHaveLength(1);
-        expect(radiobuttonWrapper.find('div')).toHaveLength(6);
+        expect(radiobuttonWrapper.find('div')).toHaveLength(4);
         expect(radiobuttonWrapper.find('input')).toHaveLength(1);
         expect(radiobuttonWrapper.find('label').hasClass(''));
         expect(radiobuttonWrapper.find('div').at(2).hasClass('radioButton'));
@@ -161,7 +161,7 @@ describe('<RadioButton />', () => {
                                         <RadioButton label="RadioButton" componentId="MyRadioButton" theme={theme} />
                                     );
         expect(radiobuttonWrapper.find('label')).toHaveLength(1);
-        expect(radiobuttonWrapper.find('div')).toHaveLength(6);
+        expect(radiobuttonWrapper.find('div')).toHaveLength(4);
         expect(radiobuttonWrapper.find('input')).toHaveLength(1);
         expect(radiobuttonWrapper.find('label').hasClass(''));
         expect(radiobuttonWrapper.find('div').at(2).hasClass('radioButton'));
@@ -182,7 +182,7 @@ describe('<RadioButton />', () => {
                                         <RadioButton label="RadioButton" theme={theme} />
                                     );
         expect(radiobuttonWrapper.find('label')).toHaveLength(1);
-        expect(radiobuttonWrapper.find('div')).toHaveLength(6);
+        expect(radiobuttonWrapper.find('div')).toHaveLength(4);
         expect(radiobuttonWrapper.find('input')).toHaveLength(1);
         expect(radiobuttonWrapper.find('label').hasClass(''));
         expect(radiobuttonWrapper.find('div').at(2).hasClass('radioButton'));
@@ -204,7 +204,7 @@ describe('<RadioButton />', () => {
                                         <RadioButton label="RadioButton" theme={theme} />
                                     );
         expect(radiobuttonWrapper.find('label')).toHaveLength(1);
-        expect(radiobuttonWrapper.find('div')).toHaveLength(6);
+        expect(radiobuttonWrapper.find('div')).toHaveLength(4);
         expect(radiobuttonWrapper.find('input')).toHaveLength(1);
         expect(radiobuttonWrapper.find('label').hasClass(''));
         expect(radiobuttonWrapper.find('div').at(2).hasClass('radioButton'));
@@ -225,7 +225,7 @@ describe('<RadioButton />', () => {
                                         <RadioButton label="RadioButton" labelHidden theme={theme} />
                                     );
         expect(radiobuttonWrapper.find('label')).toHaveLength(1);
-        expect(radiobuttonWrapper.find('div')).toHaveLength(6);
+        expect(radiobuttonWrapper.find('div')).toHaveLength(4);
         expect(radiobuttonWrapper.find('input')).toHaveLength(1);
         expect(radiobuttonWrapper.find('label').hasClass(''));
         expect(radiobuttonWrapper.find('div').at(2).hasClass('radioButton'));
@@ -244,7 +244,7 @@ describe('<RadioButton />', () => {
                                         <RadioButton label="RadioButton" labelHidden={false} theme={theme} />
                                     );
         expect(radiobuttonWrapper.find('label')).toHaveLength(1);
-        expect(radiobuttonWrapper.find('div')).toHaveLength(6);
+        expect(radiobuttonWrapper.find('div')).toHaveLength(4);
         expect(radiobuttonWrapper.find('input')).toHaveLength(1);
         expect(radiobuttonWrapper.find('label').hasClass(''));
         expect(radiobuttonWrapper.find('div').at(2).hasClass('radioButton'));
@@ -263,7 +263,7 @@ describe('<RadioButton />', () => {
                                         <RadioButton label="RadioButton" theme={theme} />
                                     );
         expect(radiobuttonWrapper.find('label')).toHaveLength(1);
-        expect(radiobuttonWrapper.find('div')).toHaveLength(6);
+        expect(radiobuttonWrapper.find('div')).toHaveLength(4);
         expect(radiobuttonWrapper.find('input')).toHaveLength(1);
         expect(radiobuttonWrapper.find('label').hasClass(''));
         expect(radiobuttonWrapper.find('div').at(2).hasClass('radioButton'));
@@ -286,7 +286,7 @@ describe('<RadioButton />', () => {
                                      );
         const helpTextID = radiobuttonWrapper.find('input').prop<string>('aria-describedby');
         expect(radiobuttonWrapper.find('label')).toHaveLength(1);
-        expect(radiobuttonWrapper.find('div')).toHaveLength(9);
+        expect(radiobuttonWrapper.find('div')).toHaveLength(7);
         expect(radiobuttonWrapper.find('input')).toHaveLength(1);
         expect(radiobuttonWrapper.find('label').hasClass(''));
         expect(radiobuttonWrapper.find('div').at(3).hasClass('radioButton'));
@@ -305,7 +305,7 @@ describe('<RadioButton />', () => {
                                         <RadioButton label="RadioButton" theme={theme} />
                                      );
         expect(radiobuttonWrapper.find('label')).toHaveLength(1);
-        expect(radiobuttonWrapper.find('div')).toHaveLength(6);
+        expect(radiobuttonWrapper.find('div')).toHaveLength(4);
         expect(radiobuttonWrapper.find('input')).toHaveLength(1);
         expect(radiobuttonWrapper.find('label').hasClass(''));
         expect(radiobuttonWrapper.find('div').at(2).hasClass('radioButton'));
@@ -327,7 +327,7 @@ describe('<RadioButton />', () => {
                                         <RadioButton label="RadioButton" disabled theme={theme} />
                                      );
         expect(radiobuttonWrapper.find('label')).toHaveLength(1);
-        expect(radiobuttonWrapper.find('div')).toHaveLength(6);
+        expect(radiobuttonWrapper.find('div')).toHaveLength(4);
         expect(radiobuttonWrapper.find('input')).toHaveLength(1);
         expect(radiobuttonWrapper.find('label').hasClass(''));
         expect(radiobuttonWrapper.find('div').at(2).hasClass('radioButton'));
@@ -346,7 +346,7 @@ describe('<RadioButton />', () => {
                                         <RadioButton label="RadioButton" disabled={false} theme={theme} />
                                      );
         expect(radiobuttonWrapper.find('label')).toHaveLength(1);
-        expect(radiobuttonWrapper.find('div')).toHaveLength(6);
+        expect(radiobuttonWrapper.find('div')).toHaveLength(4);
         expect(radiobuttonWrapper.find('input')).toHaveLength(1);
         expect(radiobuttonWrapper.find('label').hasClass(''));
         expect(radiobuttonWrapper.find('div').at(2).hasClass('radioButton'));
@@ -365,7 +365,7 @@ describe('<RadioButton />', () => {
                                         <RadioButton label="RadioButton" theme={theme} />
                                      );
         expect(radiobuttonWrapper.find('label')).toHaveLength(1);
-        expect(radiobuttonWrapper.find('div')).toHaveLength(6);
+        expect(radiobuttonWrapper.find('div')).toHaveLength(4);
         expect(radiobuttonWrapper.find('input')).toHaveLength(1);
         expect(radiobuttonWrapper.find('label').hasClass(''));
         expect(radiobuttonWrapper.find('div').at(2).hasClass('radioButton'));
@@ -387,7 +387,7 @@ describe('<RadioButton />', () => {
                                         <RadioButton label="RadioButton" name="MyRadioButton" theme={theme} />
                                     );
         expect(radiobuttonWrapper.find('label')).toHaveLength(1);
-        expect(radiobuttonWrapper.find('div')).toHaveLength(6);
+        expect(radiobuttonWrapper.find('div')).toHaveLength(4);
         expect(radiobuttonWrapper.find('input')).toHaveLength(1);
         expect(radiobuttonWrapper.find('label').hasClass(''));
         expect(radiobuttonWrapper.find('div').at(2).hasClass('radioButton'));
@@ -406,7 +406,7 @@ describe('<RadioButton />', () => {
                                         <RadioButton label="RadioButton" theme={theme} />
                                     );
         expect(radiobuttonWrapper.find('label')).toHaveLength(1);
-        expect(radiobuttonWrapper.find('div')).toHaveLength(6);
+        expect(radiobuttonWrapper.find('div')).toHaveLength(4);
         expect(radiobuttonWrapper.find('input')).toHaveLength(1);
         expect(radiobuttonWrapper.find('label').hasClass(''));
         expect(radiobuttonWrapper.find('div').at(2).hasClass('radioButton'));
@@ -428,7 +428,7 @@ describe('<RadioButton />', () => {
                                         <RadioButton label="RadioButton" value="MyRadioButton" theme={theme} />
                                     );
         expect(radiobuttonWrapper.find('label')).toHaveLength(1);
-        expect(radiobuttonWrapper.find('div')).toHaveLength(6);
+        expect(radiobuttonWrapper.find('div')).toHaveLength(4);
         expect(radiobuttonWrapper.find('input')).toHaveLength(1);
         expect(radiobuttonWrapper.find('label').hasClass(''));
         expect(radiobuttonWrapper.find('div').at(2).hasClass('radioButton'));
@@ -447,7 +447,7 @@ describe('<RadioButton />', () => {
                                         <RadioButton label="RadioButton" theme={theme} />
                                     );
         expect(radiobuttonWrapper.find('label')).toHaveLength(1);
-        expect(radiobuttonWrapper.find('div')).toHaveLength(6);
+        expect(radiobuttonWrapper.find('div')).toHaveLength(4);
         expect(radiobuttonWrapper.find('input')).toHaveLength(1);
         expect(radiobuttonWrapper.find('label').hasClass(''));
         expect(radiobuttonWrapper.find('div').at(2).hasClass('radioButton'));
@@ -469,7 +469,7 @@ describe('<RadioButton />', () => {
                                         <RadioButton label="RadioButton" checked theme={theme} />
                                      );
         expect(radiobuttonWrapper.find('label')).toHaveLength(1);
-        expect(radiobuttonWrapper.find('div')).toHaveLength(6);
+        expect(radiobuttonWrapper.find('div')).toHaveLength(4);
         expect(radiobuttonWrapper.find('input')).toHaveLength(1);
         expect(radiobuttonWrapper.find('label').hasClass(''));
         expect(radiobuttonWrapper.find('div').at(2).hasClass('radioButton'));
@@ -488,7 +488,7 @@ describe('<RadioButton />', () => {
                                         <RadioButton label="RadioButton" checked={false} theme={theme} />
                                      );
         expect(radiobuttonWrapper.find('label')).toHaveLength(1);
-        expect(radiobuttonWrapper.find('div')).toHaveLength(6);
+        expect(radiobuttonWrapper.find('div')).toHaveLength(4);
         expect(radiobuttonWrapper.find('input')).toHaveLength(1);
         expect(radiobuttonWrapper.find('label').hasClass(''));
         expect(radiobuttonWrapper.find('div').at(2).hasClass('radioButton'));
@@ -507,7 +507,7 @@ describe('<RadioButton />', () => {
                                         <RadioButton label="RadioButton" theme={theme} />
                                      );
         expect(radiobuttonWrapper.find('label')).toHaveLength(1);
-        expect(radiobuttonWrapper.find('div')).toHaveLength(6);
+        expect(radiobuttonWrapper.find('div')).toHaveLength(4);
         expect(radiobuttonWrapper.find('input')).toHaveLength(1);
         expect(radiobuttonWrapper.find('label').hasClass(''));
         expect(radiobuttonWrapper.find('div').at(2).hasClass('radioButton'));
@@ -537,7 +537,7 @@ describe('<RadioButton />', () => {
         radiobuttonWrapper.find('input').simulate('blur');
         expect(spy).toHaveBeenCalledWith(true);
         expect(radiobuttonWrapper.find('label')).toHaveLength(1);
-        expect(radiobuttonWrapper.find('div')).toHaveLength(9);
+        expect(radiobuttonWrapper.find('div')).toHaveLength(7);
         expect(radiobuttonWrapper.find('input')).toHaveLength(1);
         expect(radiobuttonWrapper.find('label').hasClass(''));
         expect(radiobuttonWrapper.find('div').at(3).hasClass('radioButton'));
@@ -565,7 +565,7 @@ describe('<RadioButton />', () => {
                                       <RadioButton label="RadioButton" theme={theme} />
                                   );
         expect(radiobuttonWrapper.find('label')).toHaveLength(1);
-        expect(radiobuttonWrapper.find('div')).toHaveLength(6);
+        expect(radiobuttonWrapper.find('div')).toHaveLength(4);
         expect(radiobuttonWrapper.find('input')).toHaveLength(1);
         expect(radiobuttonWrapper.find('label').hasClass(''));
         expect(radiobuttonWrapper.find('div').at(2).hasClass('radioButton'));
@@ -583,7 +583,7 @@ describe('<RadioButton />', () => {
                                       <RadioButton label="RadioButton" />
                                   );
         expect(radiobuttonWrapper.find('label')).toHaveLength(1);
-        expect(radiobuttonWrapper.find('div')).toHaveLength(6);
+        expect(radiobuttonWrapper.find('div')).toHaveLength(4);
         expect(radiobuttonWrapper.find('input')).toHaveLength(1);
         expect(radiobuttonWrapper.find('label').hasClass(''));
         expect(radiobuttonWrapper.find('input').prop('type')).toBe('radio');
