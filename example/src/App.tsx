@@ -1112,7 +1112,17 @@ class App extends React.Component<{}, State> {
         <Alert componentType="danger">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
         </Alert>
-        <Checkbox helpText="this is help" disabled checked={this.state.checkboxState} label={'I am a checkbox'} onChange={(newValue: boolean) => console.log('I am here:', newValue) } />
+        <Heading>Checkbox</Heading>
+        <div style={{ padding: '20px' }}>
+        <Checkbox helpText="Help Text" checked={this.state.checkboxState} label="Checkbox" onChange={(newValue: boolean) => console.log('I am here:', newValue) } />
+        <Checkbox helpText="Help Text" checked label="Checked Checkbox" />
+        <Checkbox checked label="Checked Checkbox" />
+        <Checkbox checked="indeterminate" label="Indeterminate Checkbox" />
+        <Checkbox helpText="Help Text" disabled checked={this.state.checkboxState} label="Disabled Checkbox" onChange={(newValue: boolean) => console.log('I am here:', newValue) } />
+        <Checkbox helpText="Help Text" checked label="Hidden Label Checkbox" labelHidden />
+        <Checkbox checked label="Hidden Label Checkbox" labelHidden />
+        </div>
+        <Heading>Banner</Heading>
         <Banner componentTitle={'banner'} status={'success'} />
         <Banner componentTitle={'banner'} status={'info'} />
         <Banner componentTitle={'banner'} status={'warning'} />

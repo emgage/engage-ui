@@ -14,6 +14,8 @@ export interface Props {
   componentId: string;
   // Set label text.
   label: string;
+  // Whether the associated form control is disabled
+  disabled?: Boolean;
   // To give error as boolean or string.
   error?: Error;
   // Display label or not.
@@ -29,17 +31,22 @@ export interface Props {
 const choice = ({
   componentId,
   label,
+  disabled,
   error,
   children,
   labelHidden,
   helpText,
   theme,
 }: Props) => {
-  const className = classNames(theme.choice, labelHidden && theme.labelHidden);
+  const className = classNames(
+    theme.choice,
+    labelHidden && theme.labelHidden,
+    disabled && theme.disabled
+  );
   const labelMarkup = (
     <label className={className} htmlFor={componentId}>
-      <div className={theme.control}>{children}</div>
-      <div className={theme.label}>{label}</div>
+      <span className={theme.control}>{children}</span>
+      <span className={theme.label}>{label}</span>
     </label>
   );
 

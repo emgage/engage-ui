@@ -21,8 +21,21 @@ $icon-horizontal-adjustment: 2px;
 }
 
 .labelHidden {
-  > .Label {
+  padding: 0;
+
+  > .label {
     @include visually-hidden;
+  }
+
+  .control {
+    margin-top: 0;
+    margin-right: 0;
+  }
+}
+
+.disabled {
+  > .Label {
+    color: color('ink', 'lightest');
   }
 }
 
