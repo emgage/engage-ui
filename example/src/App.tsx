@@ -1161,6 +1161,8 @@ class App extends React.Component<{}, State> {
             defaultSortField="name"
             defaultSortOrder="asc"
             selectRow="checkbox"
+            onRowClick={(name: any) => { console.log('Selected name ' + name); }}
+            rowCallbackValue="id"
             rowAction={rowActionConfig}
             selectCallbackValue="id"
             isChildParentConfigSame
@@ -1175,7 +1177,7 @@ class App extends React.Component<{}, State> {
               filterData={this.state.filterConfig}
               defaultSortField="name"
               defaultSortOrder="asc"
-              onRowClick={(name: any) => { console.log('Selected name ' + name); } }
+              onRowClick={(name: any) => { console.log('Selected name ' + name); }}
               rowCallbackValue="name"
               rowAction={rowActionConfig}
               rowActionLeft

@@ -328,18 +328,23 @@ class Table extends React.Component<Props, State> {
     const { nestedChildData } = this.state;
 
     return (
-      <TableRow key={index} onClick={onRowClick} callbackValue={rowCallbackValue && item[rowCallbackValue]} theme={theme}>
+      <TableRow key={index} theme={theme}>
         { this.renderRowSelection(item, 'body') }
         {
           column.map((colItem: any, index: number) => {
             const renderCheckbox = (!index && nestedChildData && nestedChildData.length && !hideExpandedIcon && (!expandingRowId.length || expandingRowId.indexOf(item.id) >= 0));
+            const tableDataClick = colItem.key !== 'rowAction' && !renderCheckbox && onRowClick ? theme.tableDataClick : '';
+            console.log('tableDataClick:', tableDataClick);
 
             return (
               <TableData
                 key={colItem.key}
+                callbackValue={rowCallbackValue && item[rowCallbackValue]}
                 componentStyle={ colItem.style }
+                componentClass={tableDataClick}
                 dataLabel={colItem.label}
                 theme={theme}
+                onClick={colItem.key !== 'rowAction' && !renderCheckbox ? onRowClick : undefined}
               >
                 {/* 
                   Here injectBody helps to inject any custom component to td,
@@ -347,7 +352,7 @@ class Table extends React.Component<Props, State> {
                 */}
                 { colItem.key === 'rowAction' ? <RowAction theme={theme} actionInProgress={actionInProgress} actionConfig={rowAction} data={item} rowActionLeft /> : '' }
                 { renderCheckbox ? this.renderCheckColumn(item, false) : ''}
-                {colItem.injectBody ? colItem.injectBody(item) : renderCheckbox ? <span style={{ paddingLeft: '16px' }}>{item[colItem.key]}</span> : <span className={theme.tableDataWrap}>{item[colItem.key]}</span> }
+                { colItem.injectBody ? colItem.injectBody(item) : renderCheckbox ? <span style={{ paddingLeft: '16px' }}>{item[colItem.key]}</span> : <span className={theme.tableDataWrap}>{item[colItem.key]}</span> }
               </TableData>
             );
           })
@@ -441,7 +446,7 @@ class Table extends React.Component<Props, State> {
 
   // Function to add checkbox in header as well
   addHeaderCheckbox = (): React.ReactElement<any> => {
-    const { nestedChildData = [], data = [], intermediateRow = [], selectedRows = [] } = this.state;
+    const { data = [], intermediateRow = [], selectedRows = [] } = this.state;
     const { columnFirstChildWidth = '30px', theme } = this.props;
 
     // This gives the checked status: true means all child are checked, intermediate atlease one child is checked, false means nothing is checked
@@ -450,11 +455,6 @@ class Table extends React.Component<Props, State> {
         true : (selectedRows.length ?
           'indeterminate' : false))
       : 'indeterminate';
-
-    console.log('nestedChildData:', nestedChildData);
-    console.log('intermediateRow:', intermediateRow);
-    console.log('selectedRows:', selectedRows);
-    console.log('rowCheckedStatus:', rowCheckedStatus);
 
     return (
       <TableHead componentStyle={{ width: columnFirstChildWidth }} theme={theme}>
