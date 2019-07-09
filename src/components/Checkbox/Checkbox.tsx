@@ -8,8 +8,7 @@ import Icon from '../Icon';
 import { CHECKBOX } from '../ThemeIdentifiers';
 import Message from '../Message';
 
-import ticksmallminorSvg from './icons/ticksmallminor.svg';
-import minusminorSvg from './icons/minusminor.svg';
+import { minusMinor, tickSmallMinor } from '../../icons';
 import * as baseTheme from './Checkbox.scss';
 
 export interface Props {
@@ -123,7 +122,7 @@ class Checkbox extends React.PureComponent<Props, State> {
       ? { indeterminate: 'true', 'aria-checked': 'mixed' as 'mixed' }
       : { 'aria-checked': isChecked };
 
-    const iconSource = isIndeterminate ? minusminorSvg : ticksmallminorSvg;
+    const iconSource = isIndeterminate ? minusMinor : tickSmallMinor;
 
     const wrapperClassName = classNames(
       theme.checkbox
