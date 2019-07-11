@@ -357,7 +357,7 @@ class Table extends React.Component<Props, State> {
           })
         }
 
-        { rowAction && !rowActionLeft ? <RowAction actionInProgress={actionInProgress} actionConfig={rowAction} data={item} theme={theme} /> : '' }
+        { rowAction && !rowActionLeft ? <TableData> <RowAction actionInProgress={actionInProgress} actionConfig={rowAction} data={item} theme={theme} /> </TableData> : '' }
       </TableRow>
     );
   }

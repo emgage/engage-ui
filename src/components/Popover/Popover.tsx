@@ -170,10 +170,7 @@ class Popover extends React.PureComponent<Props, State> {
   }
 
   render() {
-    return (
-      <div>
-      </div>
-    );
+    return null;
   }
 
   @autobind
