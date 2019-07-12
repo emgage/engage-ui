@@ -24,7 +24,7 @@ describe('<Dropdown />', () => {
     it('Render Properly when direction is not provided', () => {
       const spy = jest.fn();
       const dropdownWrapper = mount(<Dropdown toggle={spy} dropdownItems={items} />);
-      expect(dropdownWrapper.find('div')).toHaveLength(1);
+      expect(dropdownWrapper.find('div')).toHaveLength(0);
       // expect(dropdownWrapper.find('div').at(3).hasClass('dropdownItem')).toBeTruthy();
       // expect(dropdownWrapper.find('div').at(4).hasClass('dropdownItem')).toBeTruthy();
       // expect(dropdownWrapper.find('div').at(4).hasClass('disabled')).toBeTruthy();
@@ -34,7 +34,7 @@ describe('<Dropdown />', () => {
     it('Render Properly when direction is below', () => {
       const spy = jest.fn();
       const dropdownWrapper = mount(<Dropdown toggle={spy} dropdownItems={items} preferredPosition="below"/>);
-      expect(dropdownWrapper.find('div')).toHaveLength(1);
+      expect(dropdownWrapper.find('div')).toHaveLength(0);
       // expect(dropdownWrapper.find('div').at(3).hasClass('dropdownItem')).toBeTruthy();
       // expect(dropdownWrapper.find('div').at(4).hasClass('dropdownItem')).toBeTruthy();
       // expect(dropdownWrapper.find('div').at(4).hasClass('disabled')).toBeTruthy();
@@ -44,7 +44,7 @@ describe('<Dropdown />', () => {
     it('Render Properly when preferredPosition is above', () => {
       const spy = jest.fn();
       const dropdownWrapper = mount(<Dropdown toggle={spy} dropdownItems={items} preferredPosition="above"/>);
-      expect(dropdownWrapper.find('div')).toHaveLength(1);
+      expect(dropdownWrapper.find('div')).toHaveLength(0);
       // expect(dropdownWrapper.find('div').at(3).hasClass('dropdownItem')).toBeTruthy();
       // expect(dropdownWrapper.find('div').at(4).hasClass('dropdownItem')).toBeTruthy();
       // expect(dropdownWrapper.find('div').at(4).hasClass('disabled')).toBeTruthy();
@@ -54,7 +54,7 @@ describe('<Dropdown />', () => {
     it('Render Properly when preferredPosition is left', () => {
       const spy = jest.fn();
       const dropdownWrapper = mount(<Dropdown toggle={spy} dropdownItems={items} preferredPosition="left"/>);
-      expect(dropdownWrapper.find('div')).toHaveLength(1);
+      expect(dropdownWrapper.find('div')).toHaveLength(0);
       // expect(dropdownWrapper.find('div').at(3).hasClass('dropdownItem')).toBeTruthy();
       // expect(dropdownWrapper.find('div').at(4).hasClass('dropdownItem')).toBeTruthy();
       // expect(dropdownWrapper.find('div').at(4).hasClass('disabled')).toBeTruthy();
@@ -64,7 +64,7 @@ describe('<Dropdown />', () => {
     it('Render Properly when preferredPosition is right', () => {
       const spy = jest.fn();
       const dropdownWrapper = mount(<Dropdown toggle={spy} dropdownItems={items} preferredPosition="right"/>);
-      expect(dropdownWrapper.find('div')).toHaveLength(1);
+      expect(dropdownWrapper.find('div')).toHaveLength(0);
       // expect(dropdownWrapper.find('div').at(3).hasClass('dropdownItem')).toBeTruthy();
       // expect(dropdownWrapper.find('div').at(4).hasClass('dropdownItem')).toBeTruthy();
       // expect(dropdownWrapper.find('div').at(4).hasClass('disabled')).toBeTruthy();
@@ -75,7 +75,7 @@ describe('<Dropdown />', () => {
       const spy = jest.fn();
       const dropdownWrapper = mount(<Dropdown toggle={spy} dropdownItems={items}  />);
 
-      expect(dropdownWrapper.find('div')).toHaveLength(1);
+      expect(dropdownWrapper.find('div')).toHaveLength(0);
       // expect(dropdownWrapper.find('div').at(0).hasClass('dropdownItem')).toBeTruthy();
       // expect(dropdownWrapper.find('div').at(0).hasClass('dropdownItem')).toBeTruthy();
       // expect(dropdownWrapper.find('div').at(0).hasClass('disabled')).toBeTruthy();

@@ -5,7 +5,6 @@ import { TABLE } from '../ThemeIdentifiers';
 
 import Button from '../Button';
 import Dropdown from '../Dropdown';
-import TableData from './TableData';
 
 // import { DropdownItemProps } from '../';
 
@@ -79,7 +78,7 @@ class RowAction extends React.Component<Props, State> {
     const { actionConfig, data, rowActionLeft, actionInProgress, theme } = this.props;
     const validActionConfigs = this.getActions(actionConfig, data);
     return (
-      <TableData>
+      <React.Fragment>
         <Button theme={theme} componentClass={theme.rowActionButton} disabled={actionInProgress} icon="horizontalDots" onClick={(e: React.FormEvent<HTMLElement>) => this.dropdownToggle(e)} />
 
         <Dropdown
@@ -91,7 +90,7 @@ class RowAction extends React.Component<Props, State> {
           preferredAlignment={ rowActionLeft ? 'left' : 'right' }
           theme={theme}
         />
-      </TableData>
+      </React.Fragment>
     );
   }
 }

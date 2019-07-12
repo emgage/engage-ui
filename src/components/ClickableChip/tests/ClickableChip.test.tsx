@@ -14,7 +14,7 @@ describe('<ClickableChip />', () => {
       const clickablechipWrapper = mount(
                                         <ClickableChip chip={<Chip>Batman</Chip>} onClick={onChipClick} theme={theme} />
                                     );
-      expect(clickablechipWrapper.find('div')).toHaveLength(3);
+      expect(clickablechipWrapper.find('div')).toHaveLength(2);
       expect(clickablechipWrapper.find('span')).toHaveLength(1);
       expect(clickablechipWrapper.find('span').at(0).hasClass(''));
     });
@@ -27,7 +27,7 @@ describe('<ClickableChip />', () => {
         const clickablechipWrapper = mount(
                                         <ClickableChip chip={<Chip>Batman</Chip>} onClick={onChipClick} theme={theme} />
                                     );
-        expect(clickablechipWrapper.find('div')).toHaveLength(3);
+        expect(clickablechipWrapper.find('div')).toHaveLength(2);
         expect(clickablechipWrapper.find('span')).toHaveLength(1);
         expect(clickablechipWrapper.find('span').at(0).hasClass(''));
       });
@@ -41,7 +41,7 @@ describe('<ClickableChip />', () => {
         const clickablechipWrapper = mount(
                                         <ClickableChip chip={<Chip>Batman</Chip>} onClick={onChipClick} theme={theme} />
                                     );
-        expect(clickablechipWrapper.find('div')).toHaveLength(3);
+        expect(clickablechipWrapper.find('div')).toHaveLength(2);
         expect(clickablechipWrapper.find('span')).toHaveLength(1);
         expect(clickablechipWrapper.find('span').at(0).hasClass(''));
       });
@@ -55,7 +55,7 @@ describe('<ClickableChip />', () => {
         const clickablechipWrapper = mount(
                                         <ClickableChip chip={<Chip>Batman</Chip>} onClick={onChipClick} />
                                     );
-        expect(clickablechipWrapper.find('div')).toHaveLength(3);
+        expect(clickablechipWrapper.find('div')).toHaveLength(2);
         expect(clickablechipWrapper.find('span')).toHaveLength(1);
         expect(clickablechipWrapper.find('span').at(0).hasClass(''));
       });
@@ -67,7 +67,7 @@ describe('<ClickableChip />', () => {
         const clickablechipWrapper = mount(
                                         <ClickableChip chip={<Chip>Batman</Chip>} onClick={onChipClick} theme={theme} />
                                     );
-        expect(clickablechipWrapper.find('div')).toHaveLength(3);
+        expect(clickablechipWrapper.find('div')).toHaveLength(2);
         expect(clickablechipWrapper.find('span')).toHaveLength(1);
         expect(clickablechipWrapper.find('span').at(0).hasClass(''));
       });
