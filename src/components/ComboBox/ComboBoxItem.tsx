@@ -88,6 +88,7 @@ class ComboBoxItem extends React.PureComponent<Props, never> {
   }
 
   private findParent(dom: HTMLElement | null): boolean | string | null {
+    console.log('dom:', dom);
     if (dom && dom.getAttribute('data-value')) {
       return dom.getAttribute('data-value');
     }
@@ -98,14 +99,29 @@ class ComboBoxItem extends React.PureComponent<Props, never> {
     return dom ? this.findParent(dom.parentElement) : false;
   }
 
+  private getDataKey(event: any) {
+    const dom = event.target;
+
+    if (dom && dom.getAttribute('data-key')) {
+      return dom.getAttribute('data-key');
+    }
+
+    if (event.currentTarget.getAttribute('data-key')) {
+      return event.currentTarget.getAttribute('data-key');
+    }
+
+    return dom ? this.findParent(dom.parentElement) : false;
+  }
+
   private handleClick = (event: any) => {
     const target = event.target;
     const dataValue: boolean | string | any  = this.findParent(target);
 
+    console.log('This is handleclick from box item');
     console.log('target:', target);
     console.log('dataValue:', dataValue);
     if (dataValue && this.props.clickHandler) {
-      const hasKey = target.getAttribute('data-key') ?  target.getAttribute('data-key') : event.currentTarget.getAttribute('data-key');
+      const hasKey = this.getDataKey(event);
       const valueToPass = hasKey ?  JSON.parse(dataValue) : dataValue;
 
       console.log('haskey:', hasKey);

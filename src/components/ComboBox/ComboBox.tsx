@@ -154,7 +154,6 @@ class ComboBox extends React.Component<Props, State> {
       popoverWidth
     } = this.state;
 
-    console.log('renderItem:', items);
     const itemsComponent = items.map((item, index) =>
         <ComboBoxItem
           key={index}
