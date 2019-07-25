@@ -34,6 +34,8 @@ class ComboBoxItem extends React.PureComponent<Props, never> {
       theme,
     } = this.props;
 
+    console.log('itemProps:', this.props);
+
     const { key, type, value, renderer } = item;
 
     switch (type) {
@@ -100,10 +102,14 @@ class ComboBoxItem extends React.PureComponent<Props, never> {
     const target = event.target;
     const dataValue: boolean | string | any  = this.findParent(target);
 
+    console.log('target:', target);
+    console.log('dataValue:', dataValue);
     if (dataValue && this.props.clickHandler) {
       const hasKey = target.getAttribute('data-key') ?  target.getAttribute('data-key') : event.currentTarget.getAttribute('data-key');
       const valueToPass = hasKey ?  JSON.parse(dataValue) : dataValue;
 
+      console.log('haskey:', hasKey);
+      console.log('valueToPass:', valueToPass);
       this.props.clickHandler(valueToPass, hasKey);
     }
   }
