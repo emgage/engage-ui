@@ -125,10 +125,8 @@ class ComboBox extends React.Component<Props, State> {
   }
 
   handleClick = (value: string | any, key: any) => {
-    console.log('Value:', value, 'typeof:', typeof value);
     const selectedValue = typeof value === 'string' ? JSON.parse(value) : value;
 
-    console.log('selectedValue:', selectedValue, 'key:', key);
     if (this.props.onSelect) {
       this.props.onSelect(selectedValue);
     }

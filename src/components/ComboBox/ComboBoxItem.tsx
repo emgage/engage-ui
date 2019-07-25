@@ -34,8 +34,6 @@ class ComboBoxItem extends React.PureComponent<Props, never> {
       theme,
     } = this.props;
 
-    console.log('itemProps:', this.props);
-
     const { key, type, value, renderer } = item;
 
     switch (type) {
@@ -87,8 +85,8 @@ class ComboBoxItem extends React.PureComponent<Props, never> {
     }
   }
 
+  // get the parent of the clicked element, to fetch the selected value
   private findParent(dom: HTMLElement | null): boolean | string | null {
-    console.log('dom:', dom);
     if (dom && dom.getAttribute('data-value')) {
       return dom.getAttribute('data-value');
     }
@@ -99,6 +97,7 @@ class ComboBoxItem extends React.PureComponent<Props, never> {
     return dom ? this.findParent(dom.parentElement) : false;
   }
 
+  // Get fetching key which get the field key
   private getDataKey(dom: HTMLElement | null, event: any): boolean | string | null {
     if (dom && dom.getAttribute('data-key')) {
       return dom.getAttribute('data-key');
@@ -115,15 +114,10 @@ class ComboBoxItem extends React.PureComponent<Props, never> {
     const target = event.target;
     const dataValue: boolean | string | any  = this.findParent(target);
 
-    console.log('This is handleclick from box item');
-    console.log('target:', target);
-    console.log('dataValue:', dataValue);
     if (dataValue && this.props.clickHandler) {
       const hasKey = this.getDataKey(target, event);
       const valueToPass = hasKey ?  JSON.parse(dataValue) : dataValue;
 
-      console.log('haskey:', hasKey);
-      console.log('valueToPass:', valueToPass);
       this.props.clickHandler(valueToPass, hasKey as string);
     }
   }
