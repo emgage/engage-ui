@@ -102,6 +102,7 @@ class ComboBoxItem extends React.PureComponent<Props, never> {
     const target = event.target;
     const dataValue: boolean | string | any  = this.findParent(target);
 
+    console.log('This is handleclick from box item');
     console.log('target:', target);
     console.log('dataValue:', dataValue);
     if (dataValue && this.props.clickHandler) {
