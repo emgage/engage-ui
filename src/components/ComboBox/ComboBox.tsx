@@ -125,11 +125,13 @@ class ComboBox extends React.Component<Props, State> {
   }
 
   handleClick = (value: string | any, key: any) => {
+    const selectedValue = typeof value === 'string' ? JSON.parse(value) : value;
+
     if (this.props.onSelect) {
-      this.props.onSelect(value);
+      this.props.onSelect(selectedValue);
     }
 
-    this.setState({ selectedValue: typeof(value) === 'object' ? value[key] : value, open: false });
+    this.setState({ selectedValue: typeof(selectedValue) === 'object' ? selectedValue[key] : selectedValue, open: false });
   }
 
   comboWidth = (event: any) => {
