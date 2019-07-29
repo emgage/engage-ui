@@ -835,6 +835,12 @@ class App extends React.Component<{}, State> {
 
     return (
       <div style={{ width: '60%' }}>
+        <Icon source="grid" />
+        <Icon source="list" />
+        <Icon source="listAlt" />
+        <Icon source="lock" />
+        <Icon source="plus" />
+        <br></br>
         <span>Small change for test Change 3</span>
         <Badge children={'Badge'} working />
         <Badge children={'Badge'} />
