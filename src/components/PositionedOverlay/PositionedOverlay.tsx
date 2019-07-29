@@ -106,7 +106,7 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
     }
     window.onresize = () => {
       this.handleMeasurement();
-    }
+    };
   }
 
   componentWillUnmount() {
@@ -230,7 +230,7 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
           overlayMargins,
           scrollableContainerRect,
           containerRect,
-            preferredPosition === "below" ? window.outerHeight - activatorRect.top < 250 ? 'above' : preferredPosition : preferredPosition,
+          preferredPosition === 'below' ? window.outerHeight - activatorRect.top < 250 ? 'above' : preferredPosition : preferredPosition,
           fixed
         );
         const horizontalPosition = calculateHorizontalPosition(
@@ -239,7 +239,7 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
           containerRect,
           overlayMargins,
           preferredAlignment,
-            preferredPosition === "below" ? window.outerHeight - activatorRect.top < 250 ? 'above' : preferredPosition : preferredPosition,
+          preferredPosition === 'below' ? window.outerHeight - activatorRect.top < 250 ? 'above' : preferredPosition : preferredPosition,
           preloadedPopover ? preloadedPopover : false
         );
 
