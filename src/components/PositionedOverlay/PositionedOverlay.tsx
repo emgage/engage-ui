@@ -104,6 +104,9 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
     ) {
       onScrollOut();
     }
+    window.onresize = () => {
+      this.handleMeasurement();
+    }
   }
 
   componentWillUnmount() {
@@ -112,6 +115,7 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
         'scroll',
         this.handleMeasurement
       );
+      window.onresize = null;
     }
   }
 
@@ -226,7 +230,7 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
           overlayMargins,
           scrollableContainerRect,
           containerRect,
-          preferredPosition,
+            preferredPosition === "below" ? window.outerHeight - activatorRect.top < 250 ? 'above' : preferredPosition : preferredPosition,
           fixed
         );
         const horizontalPosition = calculateHorizontalPosition(
@@ -235,7 +239,7 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
           containerRect,
           overlayMargins,
           preferredAlignment,
-          preferredPosition,
+            preferredPosition === "below" ? window.outerHeight - activatorRect.top < 250 ? 'above' : preferredPosition : preferredPosition,
           preloadedPopover ? preloadedPopover : false
         );
 
