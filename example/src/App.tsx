@@ -838,8 +838,12 @@ class App extends React.Component<{}, State> {
         <Icon source="grid" />
         <Icon source="list" />
         <Icon source="listAlt" />
-        <Icon source="lock" />
-        <Icon source="plus" />
+        <Icon source="table" />
+        <Icon source="hierarchy" />
+        <Icon source="folder" />
+        <Icon source="event" />
+        <Icon source="enumList" />
+        <Icon source="user" />
         <br></br>
         <span>Small change for test Change 3</span>
         <Badge children={'Badge'} working />
