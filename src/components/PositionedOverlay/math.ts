@@ -39,19 +39,18 @@ export function calculateVerticalPosition(
   const enoughSpaceFromBottomScroll = distanceToBottomScroll >= minimumSpaceToScroll;
   const heightIfBelow = Math.min(spaceBelow, desiredHeight);
   const heightIfAbove = Math.min(spaceAbove, desiredHeight);
-  const containerRectTop = fixed ? 0 : containerRect.top;
 
   // Calculate dimentions of overlay when overlay needs to be displayed on top / above of dropdown
   const positionIfAbove = {
     height: heightIfAbove - verticalMargins,
-    top: activatorTop + containerRectTop - heightIfAbove,
+    top: activatorTop - heightIfAbove,
     positioning: 'above',
   };
 
   // Calculate dimentions of overlay when overlay needs to be displayed on bottom / below of dropdown
   const positionIfBelow = {
     height: heightIfBelow - verticalMargins,
-    top: activatorBottom + containerRectTop,
+    top: activatorBottom,
     positioning: 'below',
   };
 
