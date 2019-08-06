@@ -232,6 +232,7 @@ export {
   TableHead,
   TableHeader,
   TableRow,
+  RowAction,
   Props as TableProps,
   ColumnConfig as TableColumnConfig,
   NestedChild as TableNestedData,
