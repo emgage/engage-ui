@@ -5,6 +5,7 @@ import TableFooter from './TableFooter';
 import TableHead from './TableHead';
 import TableHeader from './TableHeader';
 import TableRow from './TableRow';
+import RowAction from './RowAction';
 
 export { Props } from './Table';
 export { ColumnConfig, NestedChild } from './interface';
@@ -16,4 +17,5 @@ export {
     TableHead,
     TableHeader,
     TableRow,
+    RowAction,
 };
