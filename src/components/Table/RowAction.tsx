@@ -87,7 +87,7 @@ class RowAction extends React.Component<Props, State> {
           anchorEl = {this.state.anchorEl}
           returnValue={data.id}
           closeOnClickOutside
-          preferredAlignment={ rowActionLeft ? 'left' : 'right' }
+          preferredAlignment={ rowActionLeft ? 'right' : 'left' }
           theme={theme}
         />
       </React.Fragment>

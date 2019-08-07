@@ -7,7 +7,7 @@ import { noop, createUniqueIDFactory } from '@shopify/javascript-utilities/other
 import { findFirstFocusableNode } from '@shopify/javascript-utilities/focus';
 import { addEventListener, removeEventListener } from '@shopify/javascript-utilities/events';
 
-import { PreferredPosition } from '../PositionedOverlay';
+import { PreferredAlignment, PreferredPosition } from '../PositionedOverlay';
 import { TOOLTIP } from '../ThemeIdentifiers';
 
 import PopoverOverlay from './PopoverOverlay';
@@ -27,6 +27,7 @@ export interface Props {
   onClose?(): void;
   // The direction the popover tries to display Availabel options: above | below | mostSpace
   preferredPosition?: PreferredPosition;
+  preferredAlignment?: PreferredAlignment;
   // Theme to be injected via css-themr.
   theme?: any;
   open?: boolean;
@@ -143,7 +144,8 @@ class Popover extends React.PureComponent<Props, State> {
       componentClass = '',
       componentStyle = {},
       preferredPosition = 'below',
-      open
+      preferredAlignment = 'center',
+      open,
     } = this.props;
 
     const themeClass = classNames(
@@ -157,6 +159,7 @@ class Popover extends React.PureComponent<Props, State> {
         addArrow={addArrow}
         componentId={id}
         preferredPosition={preferredPosition}
+        preferredAlignment={preferredAlignment}
         activator={anchorEl}
         active={open ? open : active}
         onClose={noop}

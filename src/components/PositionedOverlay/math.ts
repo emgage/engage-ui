@@ -93,14 +93,14 @@ export function calculateHorizontalPosition(
 
     return Math.min(
       maximum,
-      Math.max(0, activatorRect.left - overlayMargins.horizontal)
+      Math.max(0, activatorRect.left  - (overlayRect.width / 2))
     );
 
   // Define when overlay needs to be displayed left aligned with dropdown's left side
   } if (preferredAlignment === 'right') {
     return Math.max(
         0,
-        activatorRect.left + (Math.abs(activatorRect.width - overlayRect.width))
+        (activatorRect.left - overlayMargins.horizontal)
     );
 
   // Define when overlay needs to be displayed center aligned with dropdown node
