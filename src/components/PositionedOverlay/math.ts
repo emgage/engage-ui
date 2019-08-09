@@ -87,7 +87,7 @@ export function calculateHorizontalPosition(
   preferredPosition: PreferredPosition,
   preloadedPopover: boolean
 ) {
-  const maximum = containerRect.width - overlayRect.width;
+  const maximum = containerRect.width - overlayRect.width - overlayMargins.horizontal;
   // Define when overlay needs to be displayed left aligned with dropdown's left side
   if (preferredAlignment === 'left') {
 
