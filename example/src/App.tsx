@@ -1868,11 +1868,11 @@ class App extends React.Component<{}, State> {
               <div>
                 <FlexBox>
                   <ButtonGroup segmented={true}>
-                    <Button disabled={this.isValidate()} primary={true} submit={true}>
+                    <Button componentSize="large" disabled={this.isValidate()} primary={true} submit={true}>
                       Save Draft
                     </Button>
 
-                    <Button onClick={this.onPublish} primary={true}>
+                    <Button componentSize="large" onClick={this.onPublish} primary={true}>
                       Publish
                     </Button>
                   </ButtonGroup>
