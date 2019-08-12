@@ -87,23 +87,20 @@ export function calculateHorizontalPosition(
   preferredPosition: PreferredPosition,
   preloadedPopover: boolean
 ) {
-  const maximum = containerRect.width - overlayRect.width;
+  const maximum = containerRect.width - overlayRect.width - overlayMargins.horizontal;
   // Define when overlay needs to be displayed left aligned with dropdown's left side
   if (preferredAlignment === 'left') {
 
     return Math.min(
       maximum,
-      Math.max(0, activatorRect.left - overlayMargins.horizontal)
+      Math.max(0, activatorRect.left  - (overlayRect.width / 2))
     );
 
   // Define when overlay needs to be displayed left aligned with dropdown's left side
   } if (preferredAlignment === 'right') {
-    return Math.min(
-        maximum,
-        Math.max(
-            0,
-            activatorRect.width +  overlayMargins.horizontal +  ((activatorRect.left - overlayRect.width))
-        )
+    return Math.max(
+        0,
+        (activatorRect.left - overlayMargins.horizontal)
     );
 
   // Define when overlay needs to be displayed center aligned with dropdown node

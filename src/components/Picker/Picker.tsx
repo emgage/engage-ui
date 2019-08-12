@@ -270,7 +270,6 @@ class Picker extends React.Component<Props, State> {
 
     const {
         autoSuggest,
-        filterPlaceHolder,
         helpText,
         label,
         labelHidden,
@@ -286,14 +285,13 @@ class Picker extends React.Component<Props, State> {
         onMoreInfo = this.handleMoreInfo,
         theme,
     } = this.props;
-    const { isFocused, hasValue, value, suggestions, chipListState } = this.state;
+    const { isFocused, hasValue, value, suggestions, chipListState, selectedItems } = this.state;
     const inputProps: Autosuggest.InputProps = {
       value,
       onChange: autoSuggestMethods.onChange,
       onKeyDown: autoSuggestMethods.onKeyDown,
       onFocus: autoSuggestMethods.onFocus,
       onBlur: autoSuggestMethods.onBlur,
-      placeholder: filterPlaceHolder
     };
     const stateProps: IStateProps = { value, suggestions, chipListState, inputProps };
 
@@ -308,7 +306,7 @@ class Picker extends React.Component<Props, State> {
         <div>
           <div className={className}>
             {
-              this.state.selectedItems.map((i) => {
+              selectedItems.map((i) => {
                 return React.createElement(chipComponent as React.ComponentClass<{ clickable: boolean, removable: boolean, onRemove(item: React.FormEvent<HTMLElement>): void }>, { onRemove, key: i.id, clickable: false, removable: true }, [i.name]);
               })
             }
@@ -317,13 +315,12 @@ class Picker extends React.Component<Props, State> {
             autoSuggest={autoSuggest}
             autoSuggestMethods={autoSuggestMethods}
             helpText={helpText}
-            itemSelected={!!this.state.chipListState.length}
+            itemSelected={!!chipListState.length}
             label={label ? label : ''}
             labelHidden={labelHidden}
             loading={loading}
             value={this.state.people}
             onChange={searchBehavior}
-            placeholder={filterPlaceHolder}
             stateProps={stateProps}
             theme={theme}
             suffix={<Icon componentColor="inkLightest" source="users" />}

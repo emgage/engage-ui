@@ -3,7 +3,7 @@ import { autobind } from '@shopify/javascript-utilities/decorators';
 import { classNames } from '@shopify/react-utilities/styles';
 
 import { layer } from '../shared';
-import PositionedOverlay, { OverlayDetails, PreferredPosition } from '../PositionedOverlay';
+import PositionedOverlay, { OverlayDetails, PreferredAlignment, PreferredPosition } from '../PositionedOverlay';
 
 import * as styles from './Popover.scss';
 import { calculateTipPosition } from '../../utilities';
@@ -23,6 +23,8 @@ export interface Props {
   popoverRef(node: HTMLElement | null): any;
   // callback when popover is closed.
   onClose(): void;
+  preferredAlignment?: PreferredAlignment;
+
 }
 
 export default class PopoverOverlay extends React.PureComponent<Props, never> {
@@ -40,6 +42,7 @@ export default class PopoverOverlay extends React.PureComponent<Props, never> {
       active,
       activator,
       preferredPosition = 'below',
+      preferredAlignment = 'center'
     } = this.props;
 
     return (
@@ -48,6 +51,7 @@ export default class PopoverOverlay extends React.PureComponent<Props, never> {
         activator={activator}
         componentStyle={{ zIndex: 1050 }}
         preferredPosition={preferredPosition}
+        preferredAlignment={preferredAlignment}
         render={this.renderPopover.bind(this)}
         preloadedPopover={true}
       />
