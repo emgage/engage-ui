@@ -418,7 +418,7 @@ class App extends React.Component<{}, State> {
             <Dropdown
               dropdownItems={dropdownItems}
               anchorEl={this.state.treeAnchor[thisId]}
-              preferredAlignment="right"/>
+              preferredAlignment="left"/>
       </span>
     );
   }
