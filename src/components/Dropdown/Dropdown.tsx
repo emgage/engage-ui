@@ -69,6 +69,7 @@ export class Dropdown extends React.PureComponent<Props, State> {
     const {
       dropdownItems,
       preferredPosition,
+      preferredAlignment,
       anchorEl,
       closeOnClickOption = true,
       returnValue,
@@ -100,7 +101,7 @@ export class Dropdown extends React.PureComponent<Props, State> {
         closeOnClickInside={false}
         onClose={() => this.setState({ manualInActive: false })}
         theme={theme}
-        // preferredAlignment={preferredAlignment}
+        preferredAlignment={preferredAlignment}
       >
         {DropdownItemComponents}
       </Popover>

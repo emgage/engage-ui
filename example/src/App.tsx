@@ -417,7 +417,8 @@ class App extends React.Component<{}, State> {
           onClick={(event: React.FormEvent<HTMLElement>) => this.setState({ treeAnchor: { [thisId]: event.currentTarget as HTMLElement } })} />
             <Dropdown
               dropdownItems={dropdownItems}
-              anchorEl={this.state.treeAnchor[thisId]} />
+              anchorEl={this.state.treeAnchor[thisId]}
+              preferredAlignment="left"/>
       </span>
     );
   }
