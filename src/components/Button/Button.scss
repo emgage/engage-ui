@@ -18,7 +18,6 @@ $vertical-padding: ($min-height - line-height(body) - rem(2px)) / 2;
 $slim-min-height: rem(30px);
 $slim-vertical-padding: ($slim-min-height - line-height(body) - rem(2px)) / 2;
 $large-min-height: rem(48px);
-$large-min-width: rem(99px);
 $large-vertical-padding: ($large-min-height - line-height(body) - rem(2px)) / 2;
 
 
@@ -203,7 +202,7 @@ $large-vertical-padding: ($large-min-height - line-height(body) - rem(2px)) / 2;
 
 .sizeLarge {
   min-height: $large-min-height;
-  min-width: $large-min-width;
+  min-width: $large-min-height;
   padding: $large-vertical-padding spacing(base);
 }
 
