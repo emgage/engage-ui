@@ -836,6 +836,7 @@ class App extends React.Component<{}, State> {
 
     return (
       <div style={{ width: '60%' }}>
+        <Icon source="checkCircle" />
         <Icon source="grid" />
         <Icon source="list" />
         <Icon source="listAlt" />
