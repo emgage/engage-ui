@@ -12,6 +12,7 @@ export { default as caretUp } from './caret-up.svg';
 export { default as chartArea } from './chart-area.svg';
 export { default as chartBar } from './chart-bar.svg';
 export { default as chartPie } from './chart-pie.svg';
+export { default as checkCircle } from './check-circle.svg';
 export { default as checkSquare } from './check-square.svg';
 export { default as chevronDown } from './chevron-down.svg';
 export { default as chevronLeft } from './chevron-left.svg';
