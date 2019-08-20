@@ -23,7 +23,7 @@ export interface Props {
   name?: string;
   errors?: [string];
   // Value for form input.
-  value?: string;
+  value?: any;
   // Set as disabled or not.
   disabled?: boolean;
   // Theme to be injected via css-themr.
