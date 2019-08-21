@@ -50,6 +50,8 @@ export interface Props {
   hideHeader?: boolean;
   // Hide specific row & show them when its being asked to show
   hideRow?: any;
+  // hide header checkbox for selected row
+  hideSelectAll?: boolean;
   // Highlight rows on hover
   highlight?: boolean;
   // Used when same table component is nested as child component
@@ -89,7 +91,7 @@ export interface Props {
   // Callback function to do the server sort
   serverSort?: ServerSort;
   // Function to get called when single row got selected, it will return only one row value not the arrat
-  singleSelectRowCallback?(row: number | string | any): void;
+  singleSelectRowCallback?(row: number | string | any, checked: boolean, rows: number[] | string[]): void;
   // Flag to indentify if table is sortable, if passed "all" then add sorting to all the columns
   sorting?: boolean | string;
   // Set greyed background for odd rows
@@ -446,7 +448,7 @@ class Table extends React.Component<Props, State> {
   // Function to add checkbox in header as well
   addHeaderCheckbox = (): React.ReactElement<any> => {
     const { data = [], intermediateRow = [], selectedRows = [] } = this.state;
-    const { columnFirstChildWidth = '30px', theme } = this.props;
+    const { columnFirstChildWidth = '30px', theme, hideSelectAll = true } = this.props;
 
     // This gives the checked status: true means all child are checked, intermediate atlease one child is checked, false means nothing is checked
     const rowCheckedStatus = !intermediateRow.length ?
@@ -457,12 +459,12 @@ class Table extends React.Component<Props, State> {
 
     return (
       <TableHead componentStyle={{ width: columnFirstChildWidth }} theme={theme}>
-        <Checkbox
+         { hideSelectAll && <Checkbox
           labelHidden
           theme={theme}
           label="Select all"
           checked={rowCheckedStatus}
-          onChange={this.toggleAllRowSelection} />
+          onChange={this.toggleAllRowSelection} /> }
       </TableHead>
     );
   }
@@ -605,7 +607,7 @@ class Table extends React.Component<Props, State> {
 
   // Function to toggle single row selection
   toggleSingleRowSelection = (rowData: any, checkedStatus: boolean) => {
-    const { parentRowId, parentCallback = () => {}, selectRowCallback } = this.props;
+    const { parentRowId, parentCallback = () => {}, selectRowCallback, singleSelectRowCallback } = this.props;
     const { data, intermediateRow, nestedChildData, selectedRows } = this.state;
     const currentSelectedRows = JSON.parse(JSON.stringify(selectedRows));
     const currentIntermediateRow = JSON.parse(JSON.stringify(intermediateRow));
@@ -632,6 +634,10 @@ class Table extends React.Component<Props, State> {
     // Check if callback is passed, if passed then call it
     if (selectRowCallback) {
       selectRowCallback(currentSelectedRows);
+    }
+
+    if (singleSelectRowCallback) {
+      singleSelectRowCallback(rowData.id, checkedStatus, currentSelectedRows);
     }
 
     if (parentRowId) {
