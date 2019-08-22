@@ -27,8 +27,8 @@ describe('<ChoiceList />', () => {
       const element = mount(
                             <ChoiceList selected={[]} choices={choices} theme={theme} />
                           );
-      expect(element.find('fieldset').exists()).toBe(true);
-      expect(element.find('fieldset').hasClass('choiceList')).toBe(true);
+      expect(element.find('div').exists()).toBe(true);
+      expect(element.find('div').at(0).hasClass('choiceList')).toBe(true);
     });
   });
 
@@ -38,7 +38,7 @@ describe('<ChoiceList />', () => {
         const element = mount(
                               <ChoiceList selected={[]} choices={choices} theme={theme} />
                              );
-        expect(element.prop('legend')).toBeUndefined();
+        expect(element.prop('div')).toBeUndefined();
       });
     });
     describe('when set', () => {
@@ -46,9 +46,9 @@ describe('<ChoiceList />', () => {
         const element = mount(
                               <ChoiceList componentTitle="My title" selected={[]} choices={choices} theme={theme} />
                              );
-        expect(element.find('legend')).toHaveLength(1);
-        expect(element.find('legend').at(0).hasClass('title')).toBe(true);
-        expect(element.find('legend').text()).toBe('My title');
+        expect(element.find('div.title')).toHaveLength(1);
+        expect(element.find('div').at(1).hasClass('title')).toBe(true);
+        expect(element.find('div').at(1).text()).toBe('My title');
       });
     });
   });
@@ -149,7 +149,7 @@ describe('<ChoiceList />', () => {
                               <ChoiceList selected={[]} choices={choices} theme={theme} />
                              );
         expect(element.prop('titleHidden')).toBeUndefined();
-        expect(element.find('fieldset').hasClass('titleHidden')).toBe(false);
+        expect(element.find('div').at(0).hasClass('titleHidden')).toBe(false);
       });
     });
     describe('when  set as true', () => {
@@ -159,7 +159,7 @@ describe('<ChoiceList />', () => {
                               selected={[]} choices={choices} theme={theme} />
                              );
         expect(element.prop('titleHidden')).toBe(true);
-        expect(element.find('fieldset').hasClass('titleHidden')).toBe(true);
+        expect(element.find('div').at(0).hasClass('titleHidden')).toBe(true);
       });
     });
     describe('when  set as false', () => {
@@ -169,7 +169,7 @@ describe('<ChoiceList />', () => {
                               selected={[]} choices={choices} theme={theme} />
                              );
         expect(element.prop('titleHidden')).toBe(false);
-        expect(element.find('fieldset').hasClass('titleHidden')).toBe(false);
+        expect(element.find('div').at(0).hasClass('titleHidden')).toBe(false);
       });
     });
   });

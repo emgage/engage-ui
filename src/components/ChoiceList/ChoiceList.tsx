@@ -10,7 +10,7 @@ import { CHOICE_LIST } from '../ThemeIdentifiers';
 import * as baseTheme from './ChoiceList.scss';
 
 export interface ChoiceDescriptor {
-  value: string;
+  value: any;
   label: string;
 }
 
@@ -24,7 +24,7 @@ export interface Props {
   // Array of choices to be displayed. Choice is object of { value: string, label: string }.
   choices: Choice[];
   // Selected values
-  selected: string[];
+  selected: any[];
   // Name of the chicelist
   componentName?: string;
   // Allow multiple selection
@@ -33,21 +33,30 @@ export interface Props {
   theme?: any;
   // Function to handle on change of choice list.
   onChange?(selected: string[]): void;
+  // Set choice list position
+  horizontal?: boolean;
+  // set helper text
+  helpText?: string;
 }
 
 const getUniqueID = createUniqueIDFactory('ChoiceList');
 
 class ChoiceList extends React.PureComponent<Props, {}> {
-  choiceIsSelected = ({ value }: Choice, selected: string[]) => {
+  choiceIsSelected = ({ value }: Choice, selected: any[]) => {
     return selected.indexOf(value) >= 0;
   }
 
-  updateSelectedChoices = ({ value }: Choice, checked: boolean, selected: string[], allowMultiple = false) => {
+  updateSelectedChoices = ({ value }: Choice, checked: boolean, selected: any[], allowMultiple = false) => {
     if (checked) {
       return allowMultiple ? [...selected, value] : [value];
     }
 
     return selected.filter(selectedChoice => selectedChoice !== value);
+  }
+
+  handleChange = (choice: Choice, checked: boolean) => {
+    const { allowMultiple, onChange = noop, selected } = this.props;
+    onChange(this.updateSelectedChoices(choice, checked, selected, allowMultiple));
   }
 
   render() {
@@ -57,8 +66,9 @@ class ChoiceList extends React.PureComponent<Props, {}> {
       allowMultiple,
       choices,
       selected,
-      onChange = noop,
+      horizontal,
       theme,
+      helpText,
       componentName = getUniqueID(),
     } = this.props;
 
@@ -66,17 +76,19 @@ class ChoiceList extends React.PureComponent<Props, {}> {
     const finalName = allowMultiple ? `${componentName}[]` : componentName;
     const className = classNames(theme.choiceList, titleHidden && theme.titleHidden);
     const titleMarkup = componentTitle
-      ? <legend className={theme.title}>{componentTitle}</legend>
+      ? <div className={theme.title}>{componentTitle}</div>
       : null;
+
+    const helpTextMarkup = helpText
+        ? <div className={theme.helpText}>{helpText}</div>
+        : null;
 
     const choicesMarkup = choices.map((choice) => {
       const key = choice.value;
       const value = choice.value;
       const label = choice.label;
 
-      function handleChange(checked: boolean) {
-        onChange(this.updateSelectedChoices(choice, checked, selected, allowMultiple));
-      }
+
 
       return (
         <li key={key}>
@@ -84,8 +96,8 @@ class ChoiceList extends React.PureComponent<Props, {}> {
             name={finalName}
             value={value}
             label={label}
-            checked={this.choiceIsSelected(choice, selected)}
-            onChange={handleChange}
+            checked={selected && this.choiceIsSelected(choice, selected)}
+            onChange={(checked: boolean) => this.handleChange(choice, checked)}
             theme={theme}
           />
         </li>
@@ -93,12 +105,13 @@ class ChoiceList extends React.PureComponent<Props, {}> {
     });
 
     return (
-      <fieldset className={className}>
+      <div className={className}>
         {titleMarkup}
-        <ul className={theme.choices}>
+        {helpTextMarkup}
+        <ul className={ horizontal ? theme.choicesHorizontal : theme.choices}>
           {choicesMarkup}
         </ul>
-      </fieldset>
+      </div>
     );
   }
 }

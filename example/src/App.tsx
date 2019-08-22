@@ -132,6 +132,7 @@ interface State {
   error: any;
   showError: boolean;
   treeAnchor?: any;
+  ChoiceListSelected: any[]
 }
 
 class App extends React.Component<{}, State> {
@@ -200,6 +201,7 @@ class App extends React.Component<{}, State> {
       error:{},
       showError: false,
       treeAnchor: {},
+      ChoiceListSelected:[1]
     };
 
     this.popovertoggle = this.popovertoggle.bind(this);
@@ -1764,18 +1766,20 @@ class App extends React.Component<{}, State> {
             choices={[
               {
                 label: 'Hidden',
-                value: 'hidden',
+                value: 1,
               },
               {
                 label: 'Optional',
-                value: 'optional',
+                value: 2,
               },
               {
                 label: 'Required',
-                value: 'required',
+                value: 3,
               },
             ]}
-            selected={['hidden']}
+            selected={this.state.ChoiceListSelected}
+            onChange={(selected) => this.setState({ ChoiceListSelected: selected })}
+            horizontal
           />
           <Picker
             label="Picker Component"
