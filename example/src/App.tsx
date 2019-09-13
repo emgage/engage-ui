@@ -41,6 +41,7 @@ import {
   Popover,
   Picker,
   Dropdown,
+  DateTimePicker,
   Select,
   TextField,
   Tooltip,
@@ -1144,6 +1145,8 @@ class App extends React.Component<{}, State> {
         <Heading>Picker</Heading>
         <PickerAutoSuggestExample />
         <Heading>Date Picker</Heading>
+
+        <DateTimePicker label="Expiration" timePicker onBlur={(dateTime: string) => console.log(dateTime)} />
         <SingleDatePickerWrapper />
         <DateRangePickerWrapper />
 
