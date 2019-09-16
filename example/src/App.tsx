@@ -133,7 +133,7 @@ interface State {
   error: any;
   showError: boolean;
   treeAnchor?: any;
-  ChoiceListSelected: any[]
+  ChoiceListSelected: any[];
 }
 
 class App extends React.Component<{}, State> {
@@ -202,7 +202,7 @@ class App extends React.Component<{}, State> {
       error:{},
       showError: false,
       treeAnchor: {},
-      ChoiceListSelected:[1]
+      ChoiceListSelected:[1],
     };
 
     this.popovertoggle = this.popovertoggle.bind(this);
@@ -1210,7 +1210,12 @@ class App extends React.Component<{}, State> {
             data={tableData}
             column={columnConfig}
             filterData={this.state.filterConfig}
+            checkedRowsId={[1,2,3]}
             selectRow="checkbox"
+            defaultCheckedDataId={[1,2,3]}
+            disableAllRowCallback={(val: any) => {
+              console.log(val);
+            }}
             rowAction={rowActionConfig}
             selectCallbackValue="id"
             selectRowCallback={(val: any) => this.setState({ bulkAction: { selectedRow: val } })}

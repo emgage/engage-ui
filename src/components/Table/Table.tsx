@@ -32,6 +32,8 @@ export interface Props {
   componentStyle?: any;
   // Set a custom class
   componentClass?: string;
+  //   temp & we need to use the defaultCheckedDataId prop in future
+  checkedRowsId?: number[];
   // Get the data & use it to populate tds
   data?: any;
   // If we want to select any data by default, then pass the id here
@@ -92,6 +94,8 @@ export interface Props {
   serverSort?: ServerSort;
   // Function to get called when single row got selected, it will return only one row value not the arrat
   singleSelectRowCallback?(row: number | string | any, checked: boolean, rows: number[] | string[]): void;
+  // Callback function to header checkbox, it will return checked status
+  disableAllRowCallback?(checked: boolean): void;
   // Flag to indentify if table is sortable, if passed "all" then add sorting to all the columns
   sorting?: boolean | string;
   // Set greyed background for odd rows
@@ -101,6 +105,7 @@ export interface Props {
 
 export interface State {
   data: any;
+  disableAllRow: boolean;
   expandedRow: any;
   intermediateRow: any;
   sort: SortState;
@@ -164,7 +169,7 @@ class Table extends React.Component<Props, State> {
   }
 
   getInitialState() {
-    const { data, defaultCheckedDataId = [], defaultSortField, defaultSortOrder, parentSelectedRow, selectRowCallback = () => {}, serverSort } = this.props;
+    const { checkedRowsId, data, defaultCheckedDataId = [], defaultSortField, defaultSortOrder, parentSelectedRow, selectRowCallback = () => {}, serverSort } = this.props;
     let selectedRows = callBackSelectedRows === undefined || callBackSelectedRows.length < 1 || defaultCheckedDataId.length ? [] : callBackSelectedRows;
 
     // If parent is selected than store those Id to the child's selectedRow state
@@ -176,7 +181,7 @@ class Table extends React.Component<Props, State> {
 
     return {
       data,
-      selectedRows,
+      selectedRows: checkedRowsId || selectedRows,
       expandedRow: [],
       intermediateRow: [],
       sort: {
@@ -191,6 +196,7 @@ class Table extends React.Component<Props, State> {
       },
       searchKey: '',
       callChildCallback: false,
+      disableAllRow: false,
       nestedChildData: this.props.nestedChildData,
     };
   }
@@ -402,7 +408,7 @@ class Table extends React.Component<Props, State> {
 
   // Add checkbox or radio component to select the row, depending on `selectrow` flag
   renderRowSelection = (rowData: any, rowType: string) => {
-    const { columnFirstChildWidth = '30px', expandingRowId = [], hideExpandedIcon, renderHeaderCheckbox, selectRow, nestedChildData, theme } = this.props;
+    const { columnFirstChildWidth = '30px', disableAllRowCallback, expandingRowId = [], hideExpandedIcon, renderHeaderCheckbox, selectRow, nestedChildData, theme } = this.props;
 
     if (selectRow) {
       if (rowType === 'body') {
@@ -417,6 +423,10 @@ class Table extends React.Component<Props, State> {
         }
 
         return this.renderRadio(rowData);
+      }
+
+      if (selectRow === 'checkbox' && disableAllRowCallback) {
+        return this.addHeaderDisableAllRowCheckbox();
       }
 
       if (selectRow === 'checkbox' && (renderHeaderCheckbox || renderHeaderCheckbox === undefined)) {
@@ -448,7 +458,7 @@ class Table extends React.Component<Props, State> {
   // Function to add checkbox in header as well
   addHeaderCheckbox = (): React.ReactElement<any> => {
     const { data = [], intermediateRow = [], selectedRows = [] } = this.state;
-    const { columnFirstChildWidth = '30px', theme, hideSelectAll = true } = this.props;
+    const { columnFirstChildWidth = '30px', theme, hideSelectAll  , actionInProgress } = this.props;
 
     // This gives the checked status: true means all child are checked, intermediate atlease one child is checked, false means nothing is checked
     const rowCheckedStatus = !intermediateRow.length ?
@@ -459,14 +469,33 @@ class Table extends React.Component<Props, State> {
 
     return (
       <TableHead componentStyle={{ width: columnFirstChildWidth }} theme={theme}>
-         { hideSelectAll && <Checkbox
+         { !hideSelectAll && <Checkbox
           labelHidden
           theme={theme}
           label="Select all"
+          disabled={actionInProgress}
           checked={rowCheckedStatus}
           onChange={this.toggleAllRowSelection} /> }
       </TableHead>
     );
+  }
+
+  addHeaderDisableAllRowCheckbox = ():  React.ReactElement<any> => {
+    const { disableAllRow } = this.state;
+    const { columnFirstChildWidth = '30px', theme, disableAllRowCallback } = this.props;
+
+    return (<TableHead componentStyle={{ width: columnFirstChildWidth }} theme={theme}>
+           <Checkbox
+              labelHidden
+              theme={theme}
+              label="Disable all"
+              checked={disableAllRow}
+              onChange={(checked: boolean) => this.setState({ disableAllRow: checked }, () => {
+                if (disableAllRowCallback) {
+                  disableAllRowCallback(checked);
+                }
+              })}/>
+        </TableHead>);
   }
 
   // Function to add checkbox for the row selection
@@ -476,8 +505,8 @@ class Table extends React.Component<Props, State> {
 
   // Function to render table row checkboxes
   renderCheckbox(rowData: any) {
-    const { intermediateRow, selectedRows = [] } = this.state;
-    const { selectCallbackValue, actionInProgress, theme } = this.props;
+    const { disableAllRow, intermediateRow, selectedRows = [] } = this.state;
+    const { selectCallbackValue, actionInProgress, theme,  } = this.props;
     const uniqueId = selectCallbackValue ? rowData[selectCallbackValue] : rowData.id;
     const rowCheckedStatus = selectedRows.indexOf(uniqueId) !== -1 ? true : intermediateRow.indexOf(uniqueId) !== -1 ? 'indeterminate' : false;
 
@@ -486,7 +515,7 @@ class Table extends React.Component<Props, State> {
         label={`Check ${rowData.name}`}
         labelHidden
         theme={theme}
-        disabled={actionInProgress}
+        disabled={disableAllRow ? disableAllRow : actionInProgress}
         checked={rowCheckedStatus}
         onChange={(checkedStatus: boolean) => {
           this.toggleSingleRowSelection(rowData, checkedStatus);
