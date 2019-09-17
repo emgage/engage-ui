@@ -92,8 +92,8 @@ export interface Props {
   selectRowCallback?(rows: number[] | string[]): void;
   // Callback function to do the server sort
   serverSort?: ServerSort;
-  // Function to get called when single row got selected, it will return only one row value not the arrat
-  singleSelectRowCallback?(row: number | string | any, checked: boolean, rows: number[] | string[]): void;
+  // Function to get called when single row got selected, it will return only one row value not the array
+  singleSelectRowCallback?(row: number | string | any, checked: boolean, rows: number[] | string[], rowData: any): void;
   // Callback function to header checkbox, it will return checked status
   disableAllRowCallback?(checked: boolean): void;
   // Flag to indentify if table is sortable, if passed "all" then add sorting to all the columns
@@ -666,7 +666,7 @@ class Table extends React.Component<Props, State> {
     }
 
     if (singleSelectRowCallback) {
-      singleSelectRowCallback(rowData.id, checkedStatus, currentSelectedRows);
+      singleSelectRowCallback(rowData.id, checkedStatus, currentSelectedRows, rowData);
     }
 
     if (parentRowId) {
