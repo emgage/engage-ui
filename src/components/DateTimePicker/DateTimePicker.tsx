@@ -9,14 +9,18 @@ import * as baseTheme from './DateTimePicker.scss';
 
 
 export interface Props {
+  // set default Date time
+  defaultDateTime?: string;
   // label for dateTime picker input
   label: string;
   // Theme to be injected via css-themr.
   theme?: any;
   // enable time in picker
   timePicker?: boolean;
+  // return on Change
+  onChange(dataTime: any): void;
   // return date time
-  onBlur(dateTime: string): void;
+  onBlur?(dateTime: any): void;
 }
 
 export interface State {
@@ -35,17 +39,19 @@ class DateTimePicker extends React.Component<Props,State>{
   constructor(props: Props) {
     super(props);
     this.state = {
-      dateTime: moment(),
+      dateTime: props.defaultDateTime ? moment(props.defaultDateTime) : moment(),
       open: false
     };
   }
 
   setDateTime = (dateTime: any) => {
     this.setState({ dateTime });
+    this.props.onChange(dateTime);
   }
 
   onTextInputChange = (dateTimeString: string)  => {
     this.dateTimeString = dateTimeString;
+    this.props.onChange(this.state.dateTime);
   }
 
   onTextInputBlur = () => {
@@ -53,11 +59,7 @@ class DateTimePicker extends React.Component<Props,State>{
     dateTimeArray.splice(1,1);
     dateTimeArray.splice(dateTimeArray.length - 1, 1);
     const newDate = moment(dateTimeArray.join(' '));
-    this.setState({ dateTime: newDate.isValid() ? newDate : this.state.dateTime }, () => {
-      if (newDate.isValid()) {
-        this.props.onBlur(this.dateTimeString);
-      }
-    });
+    this.setState({ dateTime: newDate.isValid() ? newDate : this.state.dateTime });
   }
 
   render() {
