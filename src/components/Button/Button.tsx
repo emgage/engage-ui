@@ -30,6 +30,8 @@ export interface Props {
   disabled?: boolean;
   // Use plain button style.
   plain?: boolean;
+  // name of button
+  name?: string;
   // Force url to open in a new tab.
   external?: boolean;
   // Button will submit a form.
@@ -69,6 +71,7 @@ const button = ({
   destructive,
   disclosure,
   plain,
+  name,
   submit,
   componentSize,
   fullWidth,
@@ -138,6 +141,7 @@ const button = ({
           onMouseUp={handleMouseUp}
           className={className}
           disabled={disabled}
+          name={name}
           aria-label={accessibilityLabel}
           style={componentStyle}
         >
