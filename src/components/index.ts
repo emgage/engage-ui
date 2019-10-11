@@ -35,6 +35,11 @@ export {
 } from './ButtonGroup';
 
 export {
+  default as ToggleButtonGroup,
+  Props as ToggleButtonGroupProps,
+} from './ToggleButtonGroup';
+
+export {
   Card,
   CardHeader,
   CardFooter,

@@ -81,6 +81,7 @@ import {
   GridType,
   Sticky,
   Process,
+  ToggleButtonGroup
 } from '../../src/components';
 
 interface State {
@@ -839,6 +840,12 @@ class App extends React.Component<{}, State> {
 
     return (
       <div style={{ width: '60%' }}>
+
+        <ToggleButtonGroup segmented={true} helpText="Test Help Text">
+          <Button>On</Button>
+          <Button>Off</Button>
+        </ToggleButtonGroup>
+
         <Icon source="checkCircle" />
         <Icon source="grid" />
         <Icon source="list" />
@@ -1726,8 +1733,10 @@ class App extends React.Component<{}, State> {
         <ButtonGroup segmented={true}>
           <Button onClick={() => this.setState({ gridView: 'block' })}>Block view</Button>
           <Button onClick={() => this.setState({ gridView: 'list' })}>List view</Button>
+          <Button onClick={() => this.setState({ gridView: 'list' })}>List view</Button>
         </ButtonGroup>
-        <br />
+
+          <br />
         <Grid gridType={this.state.gridView}>
           <GridContent>
             <GridHeader>Grid Header</GridHeader>
@@ -1786,7 +1795,7 @@ class App extends React.Component<{}, State> {
               },
             ]}
             selected={this.state.ChoiceListSelected}
-            onChange={(selected) => this.setState({ ChoiceListSelected: selected })}
+            onChange={selected => this.setState({ ChoiceListSelected: selected })}
             horizontal
           />
           <Picker
@@ -1843,7 +1852,7 @@ class App extends React.Component<{}, State> {
                   name="App Name"
                   validateTrigger={['onBlur']}
                   validateRules={[
-                    { minRange: 2, maxRange: 32760, message: 'Range is between 2 & 32760' },
+                     { minRange: 2, maxRange: 32760, message: 'Range is between 2 & 32760' },
                     { required: true, message: 'App Description is required' },
                   ]}
                 />
