@@ -13,7 +13,7 @@ describe('<ToggleButtonGroup />', () => {
     it('ToggleButtonGroup should be rendered with default props', () => {
       const buttonWrapper = mount(<ToggleButtonGroup theme={theme} />);
       expect(buttonWrapper.find('div')).toHaveLength(2);
-      expect(buttonWrapper.find('div').hasClass('ToggleButtonGroup'));
+      expect(buttonWrapper.find('div').at(1).hasClass('ToggleButtonGroup'));
     });
   });
 
@@ -62,7 +62,7 @@ describe('<ToggleButtonGroup />', () => {
       it('ToggleButtonGroup should not have segmented property', () => {
         const buttonWrapper = mount(<ToggleButtonGroup theme={theme} />);
         expect(buttonWrapper.find('div')).toHaveLength(2);
-        expect(buttonWrapper.find('div').hasClass('ToggleButtonGroup'));
+        expect(buttonWrapper.find('div').at(0).hasClass('ToggleButtonGroup'));
         expect(buttonWrapper.find('segmented')).toHaveLength(0);
         expect(buttonWrapper.prop('segmented')).toBeUndefined();
       });
@@ -95,7 +95,7 @@ describe('<ToggleButtonGroup />', () => {
 
         const buttonWrapper = mount(<ToggleButtonGroup theme={theme} />);
         expect(buttonWrapper.find('div')).toHaveLength(2);
-        expect(buttonWrapper.find('div').hasClass('ToggleButtonGroup'));
+        expect(buttonWrapper.find('div').at(1).hasClass('ToggleButtonGroup'));
         expect(buttonWrapper.find('children')).toHaveLength(0);
         expect(buttonWrapper.prop('children')).toBeUndefined();
       });
