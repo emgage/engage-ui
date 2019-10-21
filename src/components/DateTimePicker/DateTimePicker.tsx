@@ -9,6 +9,12 @@ import * as baseTheme from './DateTimePicker.scss';
 
 
 export interface Props {
+  /*
+  Defines the format for the date. It accepts any moment.js date format.
+  If true the date will be displayed using the defaults for the current locale.
+  If false the datepicker is disabled and the component can be used as timepicker.
+  */
+  dateFormat?: boolean | string;
   // set default Date time
   defaultDateTime?: string;
   // label for dateTime picker input
@@ -32,7 +38,7 @@ export interface State {
 
 class DateTimePicker extends React.Component<Props,State>{
   // set time format for Date picker base on timePicker props
-  private timeFormat = this.props.timePicker ? 'MM/DD/YYYY [at] h:mm A' :  'MM/DD/YYYY';
+  private timeFormat = this.props.timePicker && this.props.dateFormat ? 'MM/DD/YYYY [at] h:mm A' : this.props.timePicker ? 'h:mm A' : 'MM/DD/YYYY';
   // set dateTime for moment string
   private dateTimeString = moment().format(this.timeFormat);
 
@@ -42,6 +48,12 @@ class DateTimePicker extends React.Component<Props,State>{
       dateTime: props.defaultDateTime ? moment(props.defaultDateTime) : moment(),
       open: false
     };
+    document.addEventListener('click', (e) => {
+      const html = e.target as any;
+      if (html.nodeName.toString() === 'DIV') {
+        this.setState({ open: false });
+      }
+    });
   }
 
   setDateTime = (dateTime: any) => {
@@ -51,10 +63,6 @@ class DateTimePicker extends React.Component<Props,State>{
 
   onTextInputChange = (dateTimeString: string)  => {
     this.dateTimeString = dateTimeString;
-    this.props.onChange(this.state.dateTime);
-  }
-
-  onTextInputBlur = () => {
     const dateTimeArray = this.dateTimeString.split(' ');
     dateTimeArray.splice(1,1);
     dateTimeArray.splice(dateTimeArray.length - 1, 1);
@@ -63,7 +71,7 @@ class DateTimePicker extends React.Component<Props,State>{
   }
 
   render() {
-    const { label, theme, timePicker } = this.props;
+    const { dateFormat, label, theme, timePicker } = this.props;
     const { dateTime, open } = this.state;
     return (
         <div>
@@ -71,7 +79,6 @@ class DateTimePicker extends React.Component<Props,State>{
                 label={label}
                 value={dateTime.format(this.timeFormat)}
                 onFocus={() => { this.setState({ open: true }); }}
-                onBlur={this.onTextInputBlur}
                 onChange={(dateTimeString: string) => { this.onTextInputChange(dateTimeString); }}
                 suffix={<Icon source="event" />}
             />
@@ -83,6 +90,7 @@ class DateTimePicker extends React.Component<Props,State>{
                 className={theme.dateTimeInput}
                 onChange={(dateTime: any) => { this.setDateTime(dateTime); }}
                 timeFormat={timePicker}
+                dateFormat={dateFormat}
             />
         </div>
     );

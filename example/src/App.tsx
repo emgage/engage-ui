@@ -1146,7 +1146,12 @@ class App extends React.Component<{}, State> {
         <PickerAutoSuggestExample />
         <Heading>Date Picker</Heading>
 
-        <DateTimePicker defaultDateTime="2019-09-30T01:07:00.000Z" label="Expiration" timePicker onChange={(dateTime: any) => console.log(dateTime.add(5.5, 'h').toISOString())} onBlur={(dateTime: string) => console.log(dateTime)} />
+        <DateTimePicker
+          defaultDateTime="2019-09-30T01:07:00.000Z"
+          label="Expiration"
+          timePicker
+          onChange={(dateTime: any) => console.log(dateTime.add(5.5, 'h').toISOString())}
+          onBlur={(dateTime: string) => console.log(dateTime)} />
         <SingleDatePickerWrapper />
         <DateRangePickerWrapper />
 
