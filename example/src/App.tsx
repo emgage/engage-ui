@@ -1743,8 +1743,8 @@ class App extends React.Component<{}, State> {
 
           <br />
         <Grid gridType={this.state.gridView}>
-          <GridContent>
-            <GridHeader>Grid Header</GridHeader>
+          <GridContent onClick={event => console.log('event:', event)}>
+            <GridHeader disableClick={true}>Grid Header</GridHeader>
             <GridImage>Image</GridImage>
             <GridTitle>Grid Title</GridTitle>
             <GridDescription>Grid Description</GridDescription>
