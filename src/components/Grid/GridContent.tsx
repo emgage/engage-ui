@@ -38,7 +38,15 @@ const GridContent = ({
     componentClass
   );
 
-  return <div onClick={event => onClick ? onClick(returnValue ? returnValue : event) : ''} style={componentStyle} className={gridContentClass}>{children}</div>;
+  const thisChildren = React.Children.map(children, (child: React.ReactElement<any>) => {
+    if (onClick && !child.props.disableClick) {
+      return React.cloneElement(child, { onClick, returnValue });
+    }
+
+    return React.cloneElement(child);
+  });
+
+  return <div style={componentStyle} className={gridContentClass}>{thisChildren}</div>;
 };
 
 export default themr(GRID, baseTheme)(GridContent) as ThemedComponentClass<Props, {}>;

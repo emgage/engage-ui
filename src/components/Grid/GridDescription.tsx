@@ -13,6 +13,12 @@ export interface Props {
   componentStyle?: any;
   // Set a custom class
   componentClass?: string;
+  // Prop to disable onClick method
+  disableClick?: boolean;
+  // Prop to handle callback function
+  onClick?(returnValue?: any): any;
+  // Prop to decide what value needs to be returned with callback
+  returnValue?: any;
   // Theme to be injected via css-themr
   theme?: any;
 }
@@ -21,6 +27,8 @@ const GridDescription = ({
   children,
   componentClass,
   componentStyle,
+  onClick,
+  returnValue,
   theme,
 }: Props) => {
   const gridDescriptionClass = classNames(
@@ -28,7 +36,7 @@ const GridDescription = ({
     componentClass
   );
 
-  return <p style={componentStyle} className={gridDescriptionClass}>{children}</p>;
+  return <p onClick={event => onClick ? onClick(returnValue ? returnValue : event) : ''} style={componentStyle} className={gridDescriptionClass}>{children}</p>;
 };
 
 export default themr(GRID, baseTheme)(GridDescription) as ThemedComponentClass<Props, {}>;
