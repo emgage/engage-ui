@@ -27,13 +27,3 @@ $modal-border-radius:                            8px;
 .footer {
   border-radius: 0 0 8px 8px;
 }
-
-//Medium and larger screens
-@media (min-width: $breakpoint-medium) {
-
-  .close {
-    top: -23px;
-    right: -23px;
-  }
-  
-}
