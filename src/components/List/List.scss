@@ -3,6 +3,18 @@
 
 $number-size: rem(12px);
 $bullet-size: rem(18px);
+$font-color: #616161;
+$border-color: #dbdbdb;
+
+
+@mixin fontStyle($fontSize, $fontWeight) {
+  font-size: $fontSize;
+  font-weight: $fontWeight;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.23;
+  letter-spacing: normal;
+}
 
 .list {
   list-style: none;
@@ -37,10 +49,46 @@ $bullet-size: rem(18px);
   }
 }
 
+.list-divider {
+  margin: 0;
+  + div {
+    padding: 16px 24px;
+    margin: 0 auto;
+  }
+}
+
 .list-divider > li:nth-child(n+2) {
-  margin-top: 10px;
+  margin: 0;
   padding-top: 10px;
   border-top: 1px solid #e5e5e5;
+}
+
+.list-divider > li {
+   padding: 15px;
+   margin: 0;
+   span {
+    &:first-child {
+      @include fontStyle(1.3rem, normal);
+      color: $font-color;
+      min-width: 4.5rem;
+      display: inline-block;
+    }
+    &:nth-child(2) {
+      @include fontStyle(1.4rem, bold);
+      margin-left: 2.5rem;
+    }
+  }
+  div {
+    &:first-child {
+      @include fontStyle(1.4rem, bold);
+    }
+    &:nth-child(2) {
+      color: $font-color;
+    }
+  }
+  &:last-child {
+    border-bottom: 1px solid $border-color;
+  }
 }
 
 .list-striped > li {

@@ -81,7 +81,7 @@ import {
   GridType,
   Sticky,
   Process,
-  ToggleButtonGroup
+  ToggleButtonGroup,
 } from '../../src/components';
 
 interface State {
@@ -1955,6 +1955,18 @@ class App extends React.Component<{}, State> {
               'lb',
             ]} />}
           />
+          <Card>
+            <CardHeader> Coming Events </CardHeader>
+            <List componentType="divider">
+              <Item><span>JUN 1</span><span>Women's Basketball Elite Camp</span></Item>
+              <Item><span>JUN 22</span><span>Spring Classes End</span></Item>
+              <Item><span>JUN 23</span><span>Summer Classes Begin</span></Item>
+              <Item><div>SVSU STEM program inspires computer coding curriculum in Freeland schools</div><div>More than 1,000 students in the Freeland Community School District were inspired to learn about computer coding…</div></Item>
+              <Item>World</Item>
+            </List>
+            <div><Button> All News </Button></div>
+          </Card>
+
           <Heading>Flexbox</Heading>
           <FlexBox>
             <div style={{ backgroundColor: 'aqua' }}>Demo 1</div>

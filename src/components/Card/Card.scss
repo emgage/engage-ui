@@ -31,11 +31,14 @@
 }
 
 .header {
-  padding: spacing(loose) spacing(loose) 0;
+  padding: 1rem 2rem;
   margin-bottom: 0;
-  background-color: rgba(0,0,0,.03);
   border-bottom: 1px solid rgba(0,0,0,.125);
-  margin:0.5%;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.23;
+  letter-spacing: normal;
+  background-color: transparent;
 }
 
 .body {
