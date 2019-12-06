@@ -374,9 +374,3 @@ export {
   default as DateTimePicker,
   Props as DateTimePickerProps
 } from './DateTimePicker';
-
-
-export {
-  default as ResourceList,
-  Props as ResourceListProps,
-} from './ResourceList/';
