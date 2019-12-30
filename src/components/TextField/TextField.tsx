@@ -258,6 +258,7 @@ class TextField extends React.PureComponent<Props, State> {
       readOnly,
       autoFocus,
       required,
+      maxLength,
       placeholder,
       id: componentId,
       value: this.state.value,
