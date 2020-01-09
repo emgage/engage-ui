@@ -29,6 +29,10 @@ const connected = ({
   componentStyle,
   theme,
 }: Props) => {
+  if (left == null && right == null) {
+    return children;
+  }
+
   const leftConnectionMarkup = left
     ? <Item position={Position.Left}>{left}</Item>
     : null;
