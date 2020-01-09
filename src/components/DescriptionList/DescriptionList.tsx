@@ -37,7 +37,7 @@ class DescriptionList extends React.PureComponent<Props, never> {
 
     return (
       <div>
-        <dl className={className + ' ' + background}>
+        <dl className={`${className} ${background}`}>
           {childrenWithProps}
         </dl>
       </div>

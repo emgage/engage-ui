@@ -67,7 +67,7 @@ class SideNavigation extends React.Component<Props, State> {
     // Set style for body elemnt
     const bodyElement = document.body;
     if (bodyElement !== null) {
-      bodyElement.className +=  this.props.drawerOpen ? ' ' + this.props.theme.container : '';
+      bodyElement.className +=  this.props.drawerOpen ? ` ${this.props.theme.container}` : '';
     }
   }
 

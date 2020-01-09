@@ -18,7 +18,7 @@ class Card extends React.Component<Props, {}> {
     super(props);
   }
   render() {
-    const cardBackground = (this.props.isHighlighted) ? style.cardItem + ' ' + style.highlighted : style.cardItem;
+    const cardBackground = (this.props.isHighlighted) ? `${style.cardItem} ${style.highlighted}` : style.cardItem;
     return (
       <div>
         <div className={cardBackground}>

@@ -6,7 +6,6 @@ import { classNames } from '@shopify/react-utilities/styles';
 import { ACCORDION } from '../ThemeIdentifiers';
 import * as baseTheme from './Accordion.scss';
 
-
 export interface Props {
   // Define accordion item is active or not
   active?: boolean;

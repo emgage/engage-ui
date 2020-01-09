@@ -303,8 +303,8 @@ class Table extends React.Component<Props, State> {
 
         return (
           <TableBody theme={theme} key={index}>
-            { this.renderTbodyRows(item, index + '_nested') }
-            { expandedRow.indexOf(item.id) > -1 ? this.renderNestedChildren(index + 'nest', item.id) : null }
+            { this.renderTbodyRows(item, `${index}_nested`) }
+            { expandedRow.indexOf(item.id) > -1 ? this.renderNestedChildren(`${index}nest`, item.id) : null }
           </TableBody>
         );
       }

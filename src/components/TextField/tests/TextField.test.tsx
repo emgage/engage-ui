@@ -136,7 +136,7 @@ describe('<TextField />', () => {
     it('display counter text and maxLength', () => {
       const counterTextMarkup = mount(<div>{9}/{100}</div>);
       const textField = mount(<TextField label="TextField" maxLength={100} value="Some Text" />);
-      expect(counterTextMarkup.text()).toBe(textField.prop('value').length.toString() + '/' + textField.prop('maxLength').toString());
+      expect(counterTextMarkup.text()).toBe(`${textField.prop('value').length.toString()}/${textField.prop('maxLength').toString()}`);
     });
   });
 

@@ -7,7 +7,6 @@ import * as moment from 'moment';
 import { DATETIMEPICKER } from '../ThemeIdentifiers';
 import * as baseTheme from './DateTimePicker.scss';
 
-
 export interface Props {
   /*
   Defines the format for the date. It accepts any moment.js date format.
@@ -36,7 +35,7 @@ export interface State {
   open: boolean;
 }
 
-class DateTimePicker extends React.Component<Props,State>{
+class DateTimePicker extends React.Component<Props, State>{
   // set time format for Date picker base on timePicker props
   private timeFormat = this.props.timePicker && this.props.dateFormat ? 'MM/DD/YYYY [at] h:mm A' : this.props.timePicker ? 'h:mm A' : 'MM/DD/YYYY';
   // set dateTime for moment string
@@ -64,7 +63,7 @@ class DateTimePicker extends React.Component<Props,State>{
   onTextInputChange = (dateTimeString: string)  => {
     this.dateTimeString = dateTimeString;
     const dateTimeArray = this.dateTimeString.split(' ');
-    dateTimeArray.splice(1,1);
+    dateTimeArray.splice(1, 1);
     dateTimeArray.splice(dateTimeArray.length - 1, 1);
     const newDate = moment(dateTimeArray.join(' '));
     this.setState({ dateTime: newDate.isValid() ? newDate : this.state.dateTime });

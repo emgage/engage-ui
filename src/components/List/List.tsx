@@ -30,7 +30,7 @@ class ContentList extends React.PureComponent<Props, never> {
     );
 
     const LISTELEMENT = componentType === 'number' ? 'ol' : 'ul';
-    return <LISTELEMENT className={className + ' ' + background}>{children}</LISTELEMENT>;
+    return <LISTELEMENT className={`${className} ${background}`}>{children}</LISTELEMENT>;
   }
 }
 

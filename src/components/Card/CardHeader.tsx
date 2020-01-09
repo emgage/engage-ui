@@ -50,7 +50,6 @@ const cardHeader = ({ children, actions, theme, componentStyle, componentClass }
     componentClass
   );
 
-
   return (
     <div style={componentStyle} className={headerClass}>
       {headingMarkup}

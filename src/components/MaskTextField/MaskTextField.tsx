@@ -215,7 +215,7 @@ class MaskTextField extends React.PureComponent<Props, State> {
     return document.activeElement === this.getInputDOMNode();
   }
   getStringValue = (value: any) => {
-    return !value && value !== 0 ? '' : value + '';
+    return !value && value !== 0 ? '' : `${value}`;
   }
   onKeyDown = (event: any) => {
     this.backspaceOrDeleteRemoval = undefined;

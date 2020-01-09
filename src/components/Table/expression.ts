@@ -10,7 +10,7 @@ const getPartExpression = function (object: string, data: any) {
       const variable = variables[i].replace(/[{}]/g, '');
       // Not using check for undefined or null. That can be directly done by user in the expression
       // if i substitute undefined with '' then '' == 0  is evaluating to true.
-      obj = object.replace(variables[i], '"' + data[variable] + '"'); // variable has to be quoted other wise the value will be say abcd and javascrit will expect a variable like that.
+      obj = object.replace(variables[i], `"${data[variable]}"`); // variable has to be quoted other wise the value will be say abcd and javascrit will expect a variable like that.
     }
     partExpression = obj;
   }

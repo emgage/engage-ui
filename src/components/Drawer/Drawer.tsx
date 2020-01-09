@@ -157,12 +157,12 @@ class Drawer extends React.PureComponent<Props, never> {
 
     if (bodyElement !== null) {
       bodyElement.className = this.props.active ? (theme.container) : '';
-      bodyElement.className += overlay && this.props.active ? ' ' + (theme.overlay) : '';
-      bodyElement.className += flip && this.props.active ? ' ' + (theme.flip) : '';
-      bodyElement.className += this.props.active ? ' ' + (theme[componentWidth]) : '';
+      bodyElement.className += overlay && this.props.active ? ` ${theme.overlay}` : '';
+      bodyElement.className += flip && this.props.active ? ` ${theme.flip}` : '';
+      bodyElement.className += this.props.active ? ` ${(theme[componentWidth])}` : '';
 
       if (mode === 'push' || mode === 'reveal') {
-        bodyElement.className += this.props.active ? ' ' + (theme.animation) : '';
+        bodyElement.className += this.props.active ? ` ${theme.animation}` : '';
         if (rootElement !== null) {
           if (flip) {
             rootElement.style.left = componentWidth && this.props.active ? `-${componentWidth}` : '';
@@ -278,4 +278,3 @@ class Drawer extends React.PureComponent<Props, never> {
 }
 
 export default themr(DRAWER, baseTheme)(Drawer) as ThemedComponentClass<Props, {}>;
-

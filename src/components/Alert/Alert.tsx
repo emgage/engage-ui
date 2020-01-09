@@ -70,7 +70,7 @@ class Alert extends React.Component<Props, State> {
         color = '#000';
     }
 
-    classes = theme.alert + ' ' + style;
+    classes = `${theme.alert} ${style}`;
     return (
       <React.Fragment>
       { this.state.isActive && <div className={classes}>
