@@ -30,7 +30,7 @@ const connected = ({
   theme,
 }: Props) => {
   if (left == null && right == null) {
-    return children;
+    return React.Children.only(children) as JSX.Element;
   }
 
   const leftConnectionMarkup = left
