@@ -18,7 +18,7 @@ module.exports = {
             }, 
             {
                 test: /\.tsx?$/,
-                loaders: ['babel-loader?compact=false', 'ts-loader'],
+                loaders: ['babel-loader?compact=false', 'awesome-typescript-loader'],
                 exclude: /node_modules/
             },
             {
@@ -49,7 +49,9 @@ module.exports = {
                             includePaths: [
                                 path.join(__dirname, 'src'),
                                 path.join(__dirname, 'src', 'styles'),
+                                path.join(__dirname, 'src', 'styles', 'foundation'),
                                 path.join(__dirname, 'src', 'styles', 'components'),
+                                path.join(__dirname, 'src', 'themes', 'Delicious'),
                             ],
                             sourceMap: false
                         }
@@ -111,7 +113,7 @@ module.exports = {
         }),
         new webpack.NoEmitOnErrorsPlugin(),
         new webpack.LoaderOptionsPlugin({
-            debug: true
+            debug: true,
        })
     ],
     devtool: 'source-map',
