@@ -88,8 +88,6 @@ class ChoiceList extends React.PureComponent<Props, {}> {
       const value = choice.value;
       const label = choice.label;
 
-
-
       return (
         <li key={key}>
           <CONTROLCOMPONENT

@@ -278,4 +278,3 @@ class Drawer extends React.PureComponent<Props, never> {
 }
 
 export default themr(DRAWER, baseTheme)(Drawer) as ThemedComponentClass<Props, {}>;
-

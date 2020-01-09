@@ -12,4 +12,3 @@ export {
     CardBody,
     CardSection
 };
-

@@ -11,18 +11,18 @@ import Dropdown from '../Dropdown';
 import * as baseTheme from './Table.scss';
 import * as Expression from './expression';
 
-interface expressionFunction {
+interface ExpressionFunction {
   (data: any, config: any): boolean;
 }
-type expressionType = string | expressionFunction;
-interface renderProps {
+type expressionType = string | ExpressionFunction;
+interface RenderProps {
   expression: expressionType;
   key? : string;
 }
 
 export interface Props {
   data?: any;
-  render?: renderProps;
+  render?: RenderProps;
   // Individual row action, if available add it in last of the column
   actionConfig: any;
   theme?: any;
