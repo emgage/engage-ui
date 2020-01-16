@@ -6,6 +6,7 @@
     "no-for-in-array": false,
     "no-inferred-empty-object-type": false,
     "restrict-plus-operands": false,
+    "prefer-template": false,
     "max-line-length": [
       false
     ],

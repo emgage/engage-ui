@@ -225,7 +225,7 @@ const icon = ({
 
   if (!source) {
     // tslint:disable-next-line no-console
-    console.warn(`The source prop is null in Icon Component.`);
+    console.warn('The source prop is null in Icon Component.');
   } else if (source === 'placeholder') {
     contentMarkup = <div className={theme.placeholder} />;
   } else {

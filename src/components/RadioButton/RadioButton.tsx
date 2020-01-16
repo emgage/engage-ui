@@ -70,7 +70,6 @@ const radioButton = ({
   )
   : null;
 
-
   const input = describedBy === null ?
     (
       <input
