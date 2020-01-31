@@ -25,6 +25,7 @@ export { default as circleChevronLeft } from './circle-chevron-left.svg';
 export { default as circleChevronRight } from './circle-chevron-right.svg';
 export { default as circleChevronUp } from './circle-chevron-up.svg';
 export { default as circlePlus } from './circle-plus.svg';
+export { default as clip } from './clip.svg';
 export { default as comments } from './conversation.svg';
 export { default as conversation } from './comments.svg';
 export { default as database } from './database.svg';
