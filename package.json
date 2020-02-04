@@ -67,7 +67,6 @@
       "@semantic-release/npm"
     ],
     "npmPublish": true,
-    "tarballDir": false,
     "branch": "master"
   },
   "sgc": {
