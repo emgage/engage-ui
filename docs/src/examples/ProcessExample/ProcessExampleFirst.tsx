@@ -7,18 +7,17 @@ const steps = [
   { name: 'Upcoming', component: <Heading>test2</Heading> }
 ];
 
-
 class ProcessExampleFirst extends React.Component {
 
   state = {
     processComponentState: 0,
   };
 
-  updateProcessState(processLength: number, processComponentState: number,) {
+  updateProcessState(processLength: number, processComponentState: number) {
     this.setState({ processLength, processComponentState });
   }
 
-  updateProcessStateonClick(processComponentState: number,) {
+  updateProcessStateonClick(processComponentState: number) {
     this.setState({ processComponentState });
   }
 

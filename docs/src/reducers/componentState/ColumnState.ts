@@ -14,7 +14,7 @@ const ColumnExampleCodeFifth = require('!raw-loader!../../examples/ColumnExample
 const ColumnState: IDocument = {
   id: 'column',
   heading: 'Column',
-  subheading: `Column responsivewidth size are vary and show information in multiple line based on size selected for column by user.`,
+  subheading: 'Column responsivewidth size are vary and show information in multiple line based on size selected for column by user.',
   property: [
     {
       name: 'small',

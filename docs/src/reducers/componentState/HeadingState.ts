@@ -8,7 +8,7 @@ const HeadingExampleSecondCode = require('!raw-loader!../../examples/HeadingExam
 const HeadingState: IDocument = {
   id: 'heading',
   heading: 'Heading Component',
-  subheading: `Headings are used as the titles of each major section of a page in the interface.`,
+  subheading: 'Headings are used as the titles of each major section of a page in the interface.',
   property: [
     {
       name: 'element',

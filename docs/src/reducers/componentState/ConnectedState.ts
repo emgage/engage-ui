@@ -10,7 +10,7 @@ const ConnectedExampleCodeThird = require('!raw-loader!../../examples/ConnectedE
 const ConnectedState: IDocument = {
   id: 'connected',
   heading: 'Connected',
-  subheading: `Connected component is used to display other component either right or left.`,
+  subheading: 'Connected component is used to display other component either right or left.',
 
   property: [
     {

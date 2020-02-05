@@ -10,7 +10,7 @@ const BreadcrumbExampleThirdCode = require('!raw-loader!../../examples/Breadcrum
 const BreadcrumbState: IDocument = {
   id: 'Breadcrumb',
   heading: 'Breadcrumb',
-  subheading: `The Breadcrumb component consists of links, which are aligned side by side and separated by a divider. Breadcrumbs are a good way to display your current location. This is usually used when you have multiple layers of content.`,
+  subheading: 'The Breadcrumb component consists of links, which are aligned side by side and separated by a divider. Breadcrumbs are a good way to display your current location. This is usually used when you have multiple layers of content.',
   property: [
     {
       name: 'direction',

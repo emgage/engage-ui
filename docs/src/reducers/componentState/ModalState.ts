@@ -10,7 +10,7 @@ const ModalExampleCodeFirst = require('!raw-loader!../../examples/ModalExample/M
 const ModalState: IDocument = {
   id: 'modal',
   heading: 'Modal',
-  subheading: `Modal component is used to show particular information/details in modal popup.`,
+  subheading: 'Modal component is used to show particular information/details in modal popup.',
   property: [
     {
       name: 'active',

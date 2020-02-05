@@ -8,7 +8,7 @@ const ProcessExampleSecondCode = require('!raw-loader!../../examples/ProcessExam
 const ProcessState: IDocument = {
   id: 'Process',
   heading: 'Process',
-  subheading: `The Process component you can use to communicate the Process of loaders, timers or whatever else you might need a Process indicator for.`,
+  subheading: 'The Process component you can use to communicate the Process of loaders, timers or whatever else you might need a Process indicator for.',
   property: [
     {
       name: 'steps',

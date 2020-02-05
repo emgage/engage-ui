@@ -20,7 +20,7 @@ const BadgeExampleCodeEighth = require('!raw-loader!../../examples/BadgeExample/
 const BadgeState: IDocument = {
   id: 'badge',
   heading: 'Badge',
-  subheading: `Badges are used to inform of the status of a piece of information or of an action that’s been taken.`,
+  subheading: 'Badges are used to inform of the status of a piece of information or of an action that’s been taken.',
   property: [
     {
       name: 'children',

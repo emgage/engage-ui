@@ -8,7 +8,7 @@ const SelectExample1Code = require('!raw-loader!../../examples/SelectExample/Sel
 const SelectState: IDocument = {
   id: 'select',
   heading: 'Select',
-  subheading: `Select lets users choose one option from a list in a dropdown menu. It works well for lists of more than four choices when displaying them could clutter up the interface.`,
+  subheading: 'Select lets users choose one option from a list in a dropdown menu. It works well for lists of more than four choices when displaying them could clutter up the interface.',
   property: [
     {
       name: 'options',

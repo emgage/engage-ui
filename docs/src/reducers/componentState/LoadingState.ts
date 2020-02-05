@@ -6,7 +6,7 @@ const LoadingExampleFirstCode = require('!raw-loader!../../examples/LoadingExamp
 const LoadingState: IDocument = {
   id: 'loading',
   heading: 'Loading Component',
-  subheading: `Loading component can be used to display loading icon.`,
+  subheading: 'Loading component can be used to display loading icon.',
 
   exampleCode: LoadingExampleFirstCode,
   exampleComponent: LoadingExampleFirst,

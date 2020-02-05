@@ -12,7 +12,7 @@ const TooltipExample3Code = require('!raw-loader!../../examples/TooltipExample/T
 const TooltipState: IDocument = {
   id: 'tooltip',
   heading: 'Tooltip',
-  subheading: `Tooltips are floating labels that briefly explain the function of a user interface element. They can be triggered when users hover, focus, tap, or click.`,
+  subheading: 'Tooltips are floating labels that briefly explain the function of a user interface element. They can be triggered when users hover, focus, tap, or click.',
   property: [
     {
       name: 'children',

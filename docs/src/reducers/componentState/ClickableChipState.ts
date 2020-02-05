@@ -6,7 +6,7 @@ const ClickableChipExampleFirstCode = require('!raw-loader!../../examples/Clicka
 const ClickableChipState: IDocument = {
   id: 'clickablechip',
   heading: 'ClickableChip',
-  subheading: `ClickableChips is used to provide clickability of Chip component. Clicking on that it displays details.`,
+  subheading: 'ClickableChips is used to provide clickability of Chip component. Clicking on that it displays details.',
   property: [
     {
       name: 'chip',

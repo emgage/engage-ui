@@ -12,7 +12,7 @@ const ComboBoxExampleCodeFourth = require('!raw-loader!../../examples/ComboBoxEx
 const ComboBoxState: IDocument = {
   id: 'combobox',
   heading: 'CpmboBox',
-  subheading: `Create a list of searchable combobox, with support of rendering different components.`,
+  subheading: 'Create a list of searchable combobox, with support of rendering different components.',
   property: [
     {
       name: 'items',

@@ -35,6 +35,8 @@ export interface Props {
   activeContentId?: string | string[];
   // Show or hide close button (X) to close drawer
   closeButton?: boolean;
+  // set fixed position close button (X) to close drawer
+  fixedCloseButton?: boolean;
   // This will help to show the label to side of the drawer when there is a stacking of drawers
   componentLabel?: string;
   // If there are multiple theme for drawer then you can pass theme required here
@@ -176,7 +178,7 @@ class Drawer extends React.PureComponent<Props, never> {
 
   // Function to get the current active drawer content from props.children & set that as active & render that component only
   renderActivechildren() {
-    const { activeContentId, children, closeButton, toggleDrawer } = this.props;
+    const { activeContentId, children, closeButton, fixedCloseButton, toggleDrawer } = this.props;
 
     // Iterate through all the children content component & find active component
     // Match activeContentId with children's id & mark that as active: true
@@ -187,7 +189,7 @@ class Drawer extends React.PureComponent<Props, never> {
 
         // Clone active component & return it
         if (cloneElemnt) {
-          return React.cloneElement(child, { closeButton, toggleDrawer, active: true, });
+          return React.cloneElement(child, { closeButton, fixedCloseButton, toggleDrawer, active: true, });
         }
       }
 

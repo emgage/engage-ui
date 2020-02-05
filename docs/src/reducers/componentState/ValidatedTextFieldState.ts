@@ -6,7 +6,7 @@ const ValidatedTextFieldExampleCode = require('!raw-loader!../../examples/Valida
 const ValidatedTextFieldState: IDocument = {
   id: 'validatedtextfield',
   heading: 'Validated Text Field',
-  subheading: `Use to let user know if their input is valid or if there’s an error.`,
+  subheading: 'Use to let user know if their input is valid or if there’s an error.',
   property: [
     {
       name: 'componentId',

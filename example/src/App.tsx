@@ -1264,6 +1264,7 @@ class App extends React.Component<{}, State> {
             componentWidth="530px"
             componentLabel={this.state.outterDrawerLabel}
             overlay
+            fixedCloseButton
             closeButton
             flip>
             <DrawerContent componentId="dcontent1" mode="slide">
@@ -1276,10 +1277,299 @@ class App extends React.Component<{}, State> {
                 componentWidth="large"
                 onOpen={this.onInnerDrawerOpen}
                 overlay
+                fixedCloseButton
                 closeButton
                 flip>
                   <DrawerContent componentId="innerDrContent" mode="slide">
                     I am inner
+                    <div>
+                      <h1>test</h1>
+
+                      <h1>test</h1>
+
+                      <h1>test</h1>
+
+                      <h1>test</h1>
+
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+
+                      <h1>test</h1>
+
+                      <h1>test</h1>
+
+                      <h1>test</h1>
+
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+
+                      <h1>test</h1>
+
+                      <h1>test</h1>
+
+                      <h1>test</h1>
+
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+
+                      <h1>test</h1>
+
+                      <h1>test</h1>
+
+                      <h1>test</h1>
+
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+
+                      <h1>test</h1>
+
+                      <h1>test</h1>
+
+                      <h1>test</h1>
+
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                      <h1>test</h1>
+                    <h1>test</h1>
+
+                    <h1>test</h1>
+
+                    <h1>test</h1>
+
+                    <h1>test</h1>
+
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                   </DrawerContent>
               </Drawer>
             </DrawerContent>

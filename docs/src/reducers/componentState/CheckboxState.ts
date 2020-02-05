@@ -14,7 +14,7 @@ const CheckboxExampleCodeFifth = require('!raw-loader!../../examples/CheckBoxExa
 const CheckboxState: IDocument = {
   id: 'checkbox',
   heading: 'Checkbox',
-  subheading: `Checkboxes are most commonly used to give a way to make a range of selections. Selection can be zero, one or multiple.`,
+  subheading: 'Checkboxes are most commonly used to give a way to make a range of selections. Selection can be zero, one or multiple.',
   property: [
     {
       name: 'label',

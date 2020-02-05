@@ -14,7 +14,7 @@ const PopoverExampleFifthCode = require('!raw-loader!../../examples/PopoverExamp
 const PopoverState: IDocument = {
   id: 'popover',
   heading: 'Popover Component',
-  subheading: `Popover are small overlays that open on demand, usually when the merchant clicks a button. They let users access supplementary actions without cluttering the page.`,
+  subheading: 'Popover are small overlays that open on demand, usually when the merchant clicks a button. They let users access supplementary actions without cluttering the page.',
   property: [
     {
       name: 'anchorEl',

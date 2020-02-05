@@ -18,7 +18,7 @@ const DisplayTextExampleCodeSeventh = require('!raw-loader!../../examples/Displa
 const DisplayTextState: IDocument = {
   id: 'displaytext',
   heading: 'Display Text',
-  subheading: `Display Texts are used to inform the status of a piece of information or of an action that’s been taken.`,
+  subheading: 'Display Texts are used to inform the status of a piece of information or of an action that’s been taken.',
   property: [
     {
       name: 'element',

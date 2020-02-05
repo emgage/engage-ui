@@ -10,7 +10,7 @@ const TabExampleCodeSecond = require('!raw-loader!../../examples/TabExample/TabE
 const TabState: IDocument = {
   id: 'Tab',
   heading: 'Tab',
-  subheading: `Tabs allow to simply switch between different content.`,
+  subheading: 'Tabs allow to simply switch between different content.',
   property: [
     {
       name: 'position',

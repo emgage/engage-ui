@@ -6,7 +6,7 @@ const DrawerExampleFirstCode = require('!raw-loader!../../examples/DrawerExample
 const DrawerState: IDocument = {
   id: 'Drawer',
   heading: 'Drawer',
-  subheading: `Drawer aka OffCanvas, is something like modal which can be used to contain different components`,
+  subheading: 'Drawer aka OffCanvas, is something like modal which can be used to contain different components',
   property: [
     {
       name: 'active',

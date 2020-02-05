@@ -6,7 +6,7 @@ const PickerExampleCodeFirst = require('!raw-loader!../../examples/PickerExample
 const PickerState: IDocument = {
   id: 'picker',
   heading: 'Picker',
-  subheading: `Picker component will work like the people picker control. It can get items from a source. User can then filter and add items (in form of chips) to the picker. Optionally, user can remove chips. User can also click chips to open more items.`,
+  subheading: 'Picker component will work like the people picker control. It can get items from a source. User can then filter and add items (in form of chips) to the picker. Optionally, user can remove chips. User can also click chips to open more items.',
   property: [
     {
       name: 'chipComponent',

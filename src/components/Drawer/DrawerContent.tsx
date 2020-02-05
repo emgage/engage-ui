@@ -19,6 +19,7 @@ export interface Props {
   mode?: Mode;
   theme?: any;
   style?: any;
+  fixedCloseButton?: boolean;
   // Callback function to close or open the drawer
   toggleDrawer?(): void;
 }
@@ -55,7 +56,7 @@ class DrawerContent extends React.Component<Props, never> {
   }
 
   render() {
-    const { active, children, closeButton, theme, toggleDrawer } = this.props;
+    const { active, children, closeButton, fixedCloseButton, theme, toggleDrawer } = this.props;
     const dcStyle = Object.assign(
       {},
       {  },
@@ -65,7 +66,7 @@ class DrawerContent extends React.Component<Props, never> {
       <div style={dcStyle}>
         {
           closeButton ?
-          <span className={theme.close}>
+          <span className={  fixedCloseButton ? theme.fixedClose : theme.close}>
             <Button onClick={toggleDrawer} icon="cancel" plain theme={theme} />
           </span> :
           null

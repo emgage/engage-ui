@@ -10,7 +10,7 @@ const ChoiceExampleThirdCode = require('!raw-loader!../../examples/ChoiceExample
 const ChoiceState: IDocument = {
   id: 'choice',
   heading: 'Choice',
-  subheading: `Choice component is used to provide selection for RadioButton, Checkbox and Choicelist components.`,
+  subheading: 'Choice component is used to provide selection for RadioButton, Checkbox and Choicelist components.',
   property: [
     {
       name: 'componentId',
