@@ -100,7 +100,7 @@ $drawer-overlay-background:                   rgba(0,0,0,0.2) !default;
 // Open
 .open > .bar {
   -webkit-transform: translateX(0);
-  transform: translateX(0);
+  transform: none;
 }
 
 //Medium and larger screens 
@@ -221,6 +221,16 @@ $drawer-overlay-background:                   rgba(0,0,0,0.2) !default;
 // ------------------------------------------------------------------------
 .close {
   position: absolute;
+  z-index: $drawer-z-index;
+  top: $drawer-close-position;
+  right: $drawer-close-position;
+  padding: $drawer-close-padding;
+}
+
+// Fixed Close
+// ------------------------------------------------------------------------
+.fixedClose {
+  position: fixed;
   z-index: $drawer-z-index;
   top: $drawer-close-position;
   right: $drawer-close-position;

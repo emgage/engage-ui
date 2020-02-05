@@ -24,7 +24,7 @@ const TextFieldExample9Code = require('!raw-loader!../../examples/TextFieldExamp
 const TextFieldState: IDocument = {
   id: 'TextField',
   heading: 'TextField',
-  subheading: `A text field is an input field that a user can type into. It has a range of options and supports several text formats including numbers.`,
+  subheading: 'A text field is an input field that a user can type into. It has a range of options and supports several text formats including numbers.',
   property: [
     {
       name: 'prefix',

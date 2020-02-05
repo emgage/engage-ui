@@ -6,7 +6,7 @@ const SideNavigationExampleFirstCode = require('!raw-loader!../../examples/SideN
 const SideNavigationState: IDocument = {
   id: 'sidenavigation',
   heading: 'SideNavigation',
-  subheading: `SideNavigation is something like drawer which can be used to contain different components`,
+  subheading: 'SideNavigation is something like drawer which can be used to contain different components',
   property: [
     {
       name: 'accordian',

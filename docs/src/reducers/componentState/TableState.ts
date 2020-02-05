@@ -6,7 +6,7 @@ const TableExampleCode = require('!raw-loader!../../examples/TableExample/TableE
 const TableState: IDocument = {
   id: 'Table',
   heading: 'Table component',
-  subheading: `Basic table component, with colspan, rowspan & accessibility options (scope, id & header)`,
+  subheading: 'Basic table component, with colspan, rowspan & accessibility options (scope, id & header)',
   property: [
     {
       name: 'bordered',

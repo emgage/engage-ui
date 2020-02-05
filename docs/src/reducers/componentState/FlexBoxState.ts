@@ -24,7 +24,7 @@ const FlexBoxExampleTenthCode = require('!raw-loader!../../examples/FlexBoxExamp
 const FlexBoxState: IDocument = {
   id: 'FlexBox',
   heading: 'FlexBox',
-  subheading: `Quickly manage the layout, alignment, and sizing of grid columns, navigation, components, and more with flexbox.`,
+  subheading: 'Quickly manage the layout, alignment, and sizing of grid columns, navigation, components, and more with flexbox.',
   property: [
     {
       name: 'inline',

@@ -6,7 +6,7 @@ const ValidatedFormExampleCode = require('!raw-loader!../../examples/ValidatedFo
 const ValidatedFormState: IDocument = {
   id: 'validatedform',
   heading: 'Validate Form',
-  subheading: `A validation form lets you vaidate the form controls.`,
+  subheading: 'A validation form lets you vaidate the form controls.',
   property: [
     {
       name: 'form{getFieldProps}',

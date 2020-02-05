@@ -10,7 +10,7 @@ const DescriptionListExampleThirdCode = require('!raw-loader!../../examples/Desc
 const DescriptionListState: IDocument = {
   id: 'descriptionlist',
   heading: 'Description List Component',
-  subheading: `Description lists are a way to organize and explain related information. They’re particularly useful when you need to list and define terms such as in a glossary.`,
+  subheading: 'Description lists are a way to organize and explain related information. They’re particularly useful when you need to list and define terms such as in a glossary.',
   property: [
     {
       name: 'children',

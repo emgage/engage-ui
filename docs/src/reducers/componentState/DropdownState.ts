@@ -14,7 +14,7 @@ const DropdownExampleFifthCode = require('!raw-loader!../../examples/DropdownExa
 const DropdownState: IDocument = {
   id: 'dropdown',
   heading: 'Dropdown Component',
-  subheading: `Dropdown are small overlays that open on demand, usually when the merchant clicks a button. They let users access supplementary actions without cluttering the page.`,
+  subheading: 'Dropdown are small overlays that open on demand, usually when the merchant clicks a button. They let users access supplementary actions without cluttering the page.',
   property: [
     {
       name: 'anchorEl',

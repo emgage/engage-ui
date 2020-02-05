@@ -16,7 +16,7 @@ const StackExample5Code = require('!raw-loader!../../examples/StackExample/Stack
 const StackState: IDocument = {
   id: 'stack',
   heading: 'Stack',
-  subheading: `Used to layout a horizontal row of components or to achieve no-fuss vertical centering. A stack is made of flexible items that wrap each of the stack’s children. Options provide control of the spacing and relative size of the items in the stack.`,
+  subheading: 'Used to layout a horizontal row of components or to achieve no-fuss vertical centering. A stack is made of flexible items that wrap each of the stack’s children. Options provide control of the spacing and relative size of the items in the stack.',
   property: [
     {
       name: 'children',

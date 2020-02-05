@@ -6,7 +6,7 @@ const AccordionExampleCodeFirst = require('!raw-loader!../../examples/AccordionE
 const AccordionState: IDocument = {
   id: 'accordion',
   heading: 'Accordion',
-  subheading: `Create a list of items that can be shown individually by clicking an item's header.`,
+  subheading: "Create a list of items that can be shown individually by clicking an item's header.",
   property: [
     {
       name: 'Items',

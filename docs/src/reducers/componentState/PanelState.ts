@@ -10,7 +10,7 @@ import { IDocument } from '../../Types';
 const PanelState: IDocument = {
   id: 'panel',
   heading: 'Panel Component',
-  subheading: `May be used in page builder`,
+  subheading: 'May be used in page builder',
   // property: [
   //   {
   //     name: 'heading',

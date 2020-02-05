@@ -8,7 +8,7 @@ const VisuallyHiddenExample1Code = require('!raw-loader!../../examples/VisuallyH
 const VisuallyHiddenState: IDocument = {
   id: 'visuallyhidden',
   heading: 'VisuallyHidden',
-  subheading: `It is used when an element needs to be available to assistive technology (e.g. screen readers) but otherwise hidden.Wrap the piece of text in the visually hidden component so it doesn’t show on the interface, but will still be available to users using a screen reader.`,
+  subheading: 'It is used when an element needs to be available to assistive technology (e.g. screen readers) but otherwise hidden.Wrap the piece of text in the visually hidden component so it doesn’t show on the interface, but will still be available to users using a screen reader.',
   property: [
     {
       name: 'children',

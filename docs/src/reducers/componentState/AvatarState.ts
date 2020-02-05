@@ -10,7 +10,7 @@ const AvatarExampleCodeThird = require('!raw-loader!../../examples/AvatarExample
 const avatarState: IDocument = {
   id: 'avatar',
   heading: 'Avatar',
-  subheading: `Avatars are used to show a thumbnail representation of an individual or business in the interface.`,
+  subheading: 'Avatars are used to show a thumbnail representation of an individual or business in the interface.',
   property: [
     {
       name: 'componentSize',

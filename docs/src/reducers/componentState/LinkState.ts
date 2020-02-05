@@ -10,7 +10,7 @@ const LinkExampleThirdCode = require('!raw-loader!../../examples/LinkExample/Lin
 const LinkState: IDocument = {
   id: 'Link',
   heading: 'Link Component',
-  subheading: `Links are used to embed actions or pathways to more information in a sentence.`,
+  subheading: 'Links are used to embed actions or pathways to more information in a sentence.',
   property: [
     {
       name: 'url',

@@ -14,7 +14,7 @@ const AlertExampleCodeFifth = require('!raw-loader!../../examples/AlertExample/A
 const AlertState: IDocument = {
   id: 'alert',
   heading: 'Alert',
-  subheading: `Alerts are used to display basic, primary, success, warning and error messages.`,
+  subheading: 'Alerts are used to display basic, primary, success, warning and error messages.',
   property: [
     {
       name: 'children',

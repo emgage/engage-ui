@@ -14,7 +14,7 @@ const ChipExampleCodeFifth = require('!raw-loader!../../examples/ChipExample/Chi
 const ChipState: IDocument = {
   id: 'chip',
   heading: 'Chip',
-  subheading: `Chips represent complex entities in small blocks. A chip may contain brief information in the form of a photo, icon, and/or short text.`,
+  subheading: 'Chips represent complex entities in small blocks. A chip may contain brief information in the form of a photo, icon, and/or short text.',
   property: [
     {
       name: 'image',

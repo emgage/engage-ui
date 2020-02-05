@@ -8,7 +8,7 @@ const StickyExample1Code = require('!raw-loader!../../examples/StickyExample/Sti
 const StickyState: IDocument = {
   id: 'Sticky',
   heading: 'Sticky',
-  subheading: `Make elements remain at the top or bottom of the viewport, like a sticky navigation.`,
+  subheading: 'Make elements remain at the top or bottom of the viewport, like a sticky navigation.',
   property: [
     {
       name: 'children',
