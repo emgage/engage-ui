@@ -101,7 +101,6 @@ export type Color = (
   'purple'
 );
 
-// nothin
 export const BUNDLED_ICONS = {
   add,
   alert,
