@@ -30,7 +30,6 @@ $arrow-size: rem(14px);
   box-shadow: shadow(deep);
   border-radius: border-radius();
   will-change: opacity, left, top;
-  transition: opacity duration() easing(in);
 }
 .leftPopover {
   margin: spacing() spacing() spacing() spacing(extra-tight);
