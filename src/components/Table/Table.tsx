@@ -341,7 +341,7 @@ class Table extends React.Component<Props, State> {
         {
           column.map((colItem: any, index: number) => {
             const renderCheckbox = (!index && nestedChildData && nestedChildData.length && !hideExpandedIcon && (!expandingRowId.length || expandingRowId.indexOf(item.id) >= 0));
-            const tableDataClick = colItem.key !== 'rowAction' && !renderCheckbox && onRowClick ? theme.tableDataClick : '';
+            const tableDataClick = colItem.key !== 'rowAction' && !renderCheckbox && onRowClick && !item['isRowClickDisable'] ? theme.tableDataClick : '';
 
             return (
               <TableData
@@ -351,7 +351,7 @@ class Table extends React.Component<Props, State> {
                 componentClass={tableDataClick}
                 dataLabel={colItem.label}
                 theme={theme}
-                onClick={colItem.key !== 'rowAction' && !renderCheckbox ? onRowClick : undefined}
+                onClick={((colItem.key !== 'rowAction' && !renderCheckbox) && !item['isRowClickDisable']) ? onRowClick : undefined}
               >
                 {/* 
                   Here injectBody helps to inject any custom component to td,

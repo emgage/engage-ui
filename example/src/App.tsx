@@ -508,6 +508,7 @@ class App extends React.Component<{}, State> {
         description: 'Test description Test description Test description Test description',
         status: { itemID: 1, itemName: 'New' },
         type: 'admin',
+        isRowClickDisable: true
       }, {
         id: 2,
         name: 'Dheeraj',
