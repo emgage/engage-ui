@@ -178,6 +178,11 @@ export {
 } from './Message';
 
 export {
+  Pagination,
+  DefaultProps as PaginationDefaultProps
+} from './Pagination';
+
+export {
   default as Panel,
   Props as PanelProps,
 } from './Panel';

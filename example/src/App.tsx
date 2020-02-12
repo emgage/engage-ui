@@ -82,6 +82,8 @@ import {
   Sticky,
   Process,
   ToggleButtonGroup,
+  Pagination,
+  PaginationDefaultProps,
 } from '../../src/components';
 
 interface State {
@@ -135,6 +137,7 @@ interface State {
   showError: boolean;
   treeAnchor?: any;
   ChoiceListSelected: any[];
+  paginationCurrent: number;
 }
 
 class App extends React.Component<{}, State> {
@@ -204,6 +207,7 @@ class App extends React.Component<{}, State> {
       showError: false,
       treeAnchor: {},
       ChoiceListSelected:[1],
+      paginationCurrent: 3
     };
 
     this.popovertoggle = this.popovertoggle.bind(this);
@@ -237,11 +241,11 @@ class App extends React.Component<{}, State> {
     }
   }
 
-  updateProcessState(processLength: number, processComponentState: number,) {
+  updateProcessState(processLength: number, processComponentState: number) {
     this.setState({ processLength, processComponentState });
   }
 
-  updateProcessStateonClick(processComponentState: number,) {
+  updateProcessStateonClick(processComponentState: number) {
     this.setState({ processComponentState });
   }
 
@@ -292,7 +296,6 @@ class App extends React.Component<{}, State> {
   toggleDrawerInner = (drawerKey: string) => {
     this.setState({ [drawerKey]: !this.state.innerDrawer });
   }
-
 
   BreadcrumbClick = () => {
     console.log('Breadcrumb clicked...');
@@ -727,7 +730,6 @@ class App extends React.Component<{}, State> {
       },
     ];
 
-
       /*
         Filtering table data
         mode: Mode of filteration, right now we have only one which is search
@@ -753,7 +755,6 @@ class App extends React.Component<{}, State> {
         onClick: (value: any) => { console.log('Version:', value); },
       },
     ];
-
 
     const treeSource: TreeSource[] = [
       {
@@ -894,6 +895,11 @@ class App extends React.Component<{}, State> {
             This is popover component
           </Popover>
         </div> */}
+
+        <div>
+          Pagination:
+          <Pagination {...PaginationDefaultProps} onChange={(page: number) => this.setState({ paginationCurrent: page })} current={this.state.paginationCurrent} total={25} pageSize={3} />
+        </div>
         <div>
           <TabPanel defaultTabId="tab1" position={'top'} alignment={'center'}>
             <Tab tabDescription={<Badge children={'Home'} status={'success'} />} tabId={'tab1'}>
@@ -1222,9 +1228,9 @@ class App extends React.Component<{}, State> {
             data={tableData}
             column={columnConfig}
             filterData={this.state.filterConfig}
-            checkedRowsId={[1,2,3]}
+            checkedRowsId={[1, 2, 3]}
             selectRow="checkbox"
-            defaultCheckedDataId={[1,2,3]}
+            defaultCheckedDataId={[1, 2, 3]}
             disableAllRowCallback={(val: any) => {
               console.log(val);
             }}
@@ -1554,22 +1560,6 @@ class App extends React.Component<{}, State> {
                     <h1>test</h1>
                     <h1>test</h1>
                     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                   </DrawerContent>
               </Drawer>
             </DrawerContent>
@@ -1896,7 +1886,7 @@ class App extends React.Component<{}, State> {
             componentId="appCity1"
             name="Select city 2"
             label="Label"
-            options={[{ value: '', label: '' },{ value: 'pasadena', label: 'Pasadena' }, { value: 'altadena', label: 'Altadena' }]}
+            options={[{ value: '', label: '' }, { value: 'pasadena', label: 'Pasadena' }, { value: 'altadena', label: 'Altadena' }]}
             value={this.state.appCity1}
             // value="Value"
             onChange={this.valueUpdater('appCity1')}
@@ -2540,7 +2530,6 @@ class App extends React.Component<{}, State> {
         <Button destructive outline>Destructive Outline</Button>&nbsp;
         <Button destructive outline disabled>Destructive Outline Disabled</Button>&nbsp;
         <br />
-
 
         <div>ComboBox</div>
         <div style={{ width: '50%' }}><ComboBox items={this.getComboBoxItems()} label="Select" currentValue="item1" /></div>
