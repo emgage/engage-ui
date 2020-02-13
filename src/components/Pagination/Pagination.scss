@@ -200,17 +200,6 @@ $prefixClass: rc-pagination;
     }
   }
 
-  &-prev, &-next {
-    border: 1px solid #d9d9d9;
-    font-size: 18px;
-    a {
-      color: #666;
-      &:after {
-        margin-top: -1px;
-      }
-    }
-  }
-
   &-disabled {
     cursor: not-allowed;
     a {
