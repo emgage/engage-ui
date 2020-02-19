@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 import { classNames } from '@shopify/react-utilities/styles';
-import { layeredComponent } from '@shopify/react-utilities/components';
 import { autobind } from '@shopify/javascript-utilities/decorators';
 import { noop, createUniqueIDFactory } from '@shopify/javascript-utilities/other';
 import { findFirstFocusableNode } from '@shopify/javascript-utilities/focus';
@@ -38,8 +37,6 @@ export interface State {
 }
 
 const getUniqueID = createUniqueIDFactory('PopoverContent');
-
-@layeredComponent({ idPrefix: 'Popover' })
 class Popover extends React.PureComponent<Props, State> {
   private id = getUniqueID();
   private activatorContainer: HTMLElement | null;
@@ -134,7 +131,7 @@ class Popover extends React.PureComponent<Props, State> {
     }
   }
 
-  renderLayer() {
+  render() {
     const { id } = this;
     const { active } = this.state;
     const {
@@ -170,10 +167,6 @@ class Popover extends React.PureComponent<Props, State> {
         </div>
       </PopoverOverlay>
     );
-  }
-
-  render() {
-    return null;
   }
 
   @autobind

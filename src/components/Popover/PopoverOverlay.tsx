@@ -49,7 +49,7 @@ export default class PopoverOverlay extends React.PureComponent<Props, never> {
       <PositionedOverlay
         active={active}
         activator={activator}
-        componentStyle={{ zIndex: 1050 }}
+        componentStyle={{ zIndex: 1050, position: 'absolute' }}
         preferredPosition={preferredPosition}
         preferredAlignment={preferredAlignment}
         render={this.renderPopover.bind(this)}

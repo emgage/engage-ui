@@ -53,7 +53,6 @@ export interface State {
   measuring: boolean;
   activatorRect: Rect;
   left: number;
-  top: number;
   height: number;
   width: number | null;
   positioning: Positioning;
@@ -67,7 +66,6 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
     measuring: true,
     activatorRect: getRectForNode(this.props.activator),
     left: 0,
-    top: 0,
     height: 0,
     width: null,
     positioning: 'below',
@@ -93,13 +91,12 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
   }
 
   componentDidUpdate() {
-    const { outsideScrollableContainer, top } = this.state;
+    const { outsideScrollableContainer } = this.state;
     const { onScrollOut, active } = this.props;
 
     if (
       active &&
       onScrollOut != null &&
-      top !== 0 &&
       outsideScrollableContainer
     ) {
       onScrollOut();
@@ -124,12 +121,11 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
   }
 
   render() {
-    const { left, top, zIndex, width } = this.state;
+    const { left, zIndex, width } = this.state;
     const { componentStyle = {}, render, fixed, theme } = this.props;
 
     const style = {
       ...componentStyle,
-      top: top === null ? undefined : top,
       left: left === null ? undefined : left,
       width: width === null ? undefined : width,
       zIndex: zIndex === null ? (componentStyle.zIndex ? componentStyle.zIndex : undefined) : zIndex,
@@ -169,12 +165,10 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
 
   @autobind
   private handleMeasurement() {
-    const { lockPosition, top } = this.state;
 
     this.setState(
       {
         left: 0,
-        top: lockPosition ? top : 0,
         height: 0,
         positioning: 'below',
         measuring: true,
@@ -248,7 +242,6 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
           measuring: false,
           activatorRect: getRectForNode(activator),
           left: horizontalPosition,
-          top: lockPosition ? top : verticalPosition.top,
           lockPosition: Boolean(fixed),
           height: verticalPosition.height || 0,
           width: fullWidth ? overlayRect.width : null,
