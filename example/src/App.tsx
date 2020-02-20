@@ -1207,7 +1207,7 @@ class App extends React.Component<{}, State> {
               Loading
             </Table>
             <Table
-              actionInProgress={true}
+              actionInProgress={false}
               data={tableData}
               column={columnConfig1}
               filterData={this.state.filterConfig}

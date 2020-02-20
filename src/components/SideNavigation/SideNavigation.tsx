@@ -4,7 +4,7 @@ import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 import { classNames } from '@shopify/react-utilities/styles';
 
 import Icon from '../Icon';
-import {Button, Dropdown, FlexBox} from '../';
+import { Button, Dropdown, FlexBox } from '../';
 import { Drawer, DrawerContent } from '../Drawer';
 // import { Sticky } from '../Sticky';
 import Tooltip from '../Tooltip';
@@ -50,7 +50,7 @@ export interface Props {
 export interface State {
   // state for drawer id to be set icons or full content
   activeDrawerId: string;
-  popoverActive2: boolean,
+  popoverActive2: boolean;
   anchorEl2?: HTMLElement;
 }
 
@@ -247,21 +247,15 @@ class SideNavigation extends React.Component<Props, State> {
 
               <h1>test</h1>
 
+              <h1>test</h1>
 
               <h1>test</h1>
 
+              <h1>test</h1>
 
               <h1>test</h1>
 
-
               <h1>test</h1>
-
-
-              <h1>test</h1>
-
-
-              <h1>test</h1>
-
 
               <h1>test</h1>
 
@@ -273,21 +267,15 @@ class SideNavigation extends React.Component<Props, State> {
 
               <h1>test</h1>
 
+              <h1>test</h1>
 
               <h1>test</h1>
 
+              <h1>test</h1>
 
               <h1>test</h1>
 
-
               <h1>test</h1>
-
-
-              <h1>test</h1>
-
-
-              <h1>test</h1>
-
 
               <h1>test</h1>
 
@@ -299,13 +287,11 @@ class SideNavigation extends React.Component<Props, State> {
 
               <h1>test</h1>
 
-
               <h1>test</h1>
 
-
-              <Button data-polaris-layer='btnTest' onClick={(e: any) => this.popoverUpdate2(e)}>Dropdown active</Button>
+              <Button data-polaris-layer="btnTest" onClick={(e: any) => this.popoverUpdate2(e)}>Dropdown active</Button>
               <Dropdown
-                data-polaris-layer='dropdownsuc'
+                data-polaris-layer="dropdownsuc"
                 toggle={this.popoverUpdate2}
                 anchorEl={this.state.anchorEl2}
                 preferredAlignment="right"
@@ -331,15 +317,11 @@ class SideNavigation extends React.Component<Props, State> {
 
               <h1>test</h1>
 
+              <h1>test</h1>
 
               <h1>test</h1>
 
-
               <h1>test</h1>
-
-
-              <h1>test</h1>
-
 
               <h1>test</h1>
 
@@ -351,21 +333,11 @@ class SideNavigation extends React.Component<Props, State> {
 
               <h1>test</h1>
 
+              <h1>test</h1>
 
               <h1>test</h1>
 
-
               <h1>test</h1>
-
-
-              <h1>test</h1>
-
-
-              <h1>test</h1>
-
-
-              <h1>test</h1>
-
 
               <h1>test</h1>
 
@@ -373,13 +345,9 @@ class SideNavigation extends React.Component<Props, State> {
 
               <h1>test</h1>
 
+              <h1>test</h1>
 
-
-
-
-
-
-
+              <h1>test</h1>
 
               <h1>test</h1>
               {collapseIconMarkup}

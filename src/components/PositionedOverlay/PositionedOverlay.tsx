@@ -28,6 +28,7 @@ export interface OverlayDetails {
   positioning: Positioning;
   measuring: boolean;
   activatorRect: Rect;
+  anchorPosition: number;
 }
 
 export interface Props {
@@ -52,6 +53,7 @@ export interface Props {
 export interface State {
   measuring: boolean;
   activatorRect: Rect;
+  anchorPosition: number;
   left: number;
   height: number;
   width: number | null;
@@ -66,6 +68,7 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
     measuring: true,
     activatorRect: getRectForNode(this.props.activator),
     left: 0,
+    anchorPosition: 0,
     height: 0,
     width: null,
     positioning: 'below',
@@ -126,11 +129,12 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
 
     const style = {
       ...componentStyle,
-      left: left === null ? undefined : left,
+      marginLeft: left,
       width: width === null ? undefined : width,
       zIndex: zIndex === null ? (componentStyle.zIndex ? componentStyle.zIndex : undefined) : zIndex,
     };
 
+    console.log('style', style)
     const className = classNames(
       theme.PositionedOverlay,
       fixed && theme.fixed
@@ -147,7 +151,7 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
 
   @autobind
   private overlayDetails(): OverlayDetails {
-    const { measuring, left, positioning, height, activatorRect } = this.state;
+    const { measuring, left, positioning, height, activatorRect, anchorPosition } = this.state;
 
     return {
       measuring,
@@ -155,6 +159,7 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
       positioning,
       activatorRect,
       desiredHeight: height,
+      anchorPosition
     };
   }
 
@@ -242,6 +247,7 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
           measuring: false,
           activatorRect: getRectForNode(activator),
           left: horizontalPosition,
+          anchorPosition: overlayRect.width - activatorRect.width - overlayMargins.horizontal,
           lockPosition: Boolean(fixed),
           height: verticalPosition.height || 0,
           width: fullWidth ? overlayRect.width : null,

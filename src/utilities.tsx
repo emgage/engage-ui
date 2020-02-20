@@ -63,18 +63,29 @@ export function isElementOfType(
 }
 
 // Function to calculate position of tooltip or popover
-export function calculateTipPosition(activatorRectXAxisCenter: number, left: number, preferredPosition?: any) {
+export function calculateTipPosition(activatorRectXAxisCenter: number, left: number, preferredPosition?: any, preferredAlignment?: any) {
+  debugger
+  debugger
+  if(preferredAlignment === 'right' && preferredPosition === 'below') {
+    return { marginLeft: activatorRectXAxisCenter, marginTop: '-4px' };
+  }
+  if(preferredAlignment === 'center' && preferredPosition === 'below') {
+    return { marginLeft: (activatorRectXAxisCenter / 2) + 8, marginTop: '-4px' };
+  }
+  if(preferredAlignment === 'left' && preferredPosition === 'below') {
+    return { marginLeft: 16, marginTop: '-4px' };
+  }
   if (preferredPosition === 'above') {
     return { left: activatorRectXAxisCenter - left };
   }
   if (preferredPosition === 'below' || preferredPosition === 'mostSpace') {
-    return { left: activatorRectXAxisCenter - left, top: '-1px' };
+    return { marginLeft: activatorRectXAxisCenter, marginTop: '-4px' };
   }
   if (preferredPosition === 'belowLeft') {
-    return { left: activatorRectXAxisCenter - left, top: '-1px' };
+    return { marginLeft: activatorRectXAxisCenter, marginTop: '-4px' };
   }
   if (preferredPosition === 'belowRight') {
-    return { left: activatorRectXAxisCenter - left, top: '-1px' };
+    return { left: activatorRectXAxisCenter - left, marginTop: '-4px' };
   }
   if (preferredPosition === 'right') {
     return { top: '34%' };
