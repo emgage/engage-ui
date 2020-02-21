@@ -158,8 +158,8 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
       left,
       positioning,
       activatorRect,
+      anchorPosition,
       desiredHeight: height,
-      anchorPosition
     };
   }
 

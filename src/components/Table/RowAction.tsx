@@ -79,17 +79,18 @@ class RowAction extends React.Component<Props, State> {
     const validActionConfigs = this.getActions(actionConfig, data);
     return (
       <React.Fragment>
+        <div>
         <Button theme={theme} componentClass={theme.rowActionButton} disabled={actionInProgress} icon="horizontalDots" onClick={(e: React.FormEvent<HTMLElement>) => this.dropdownToggle(e)} />
-
-        <Dropdown
-          dropdownItems={validActionConfigs}
-          toggle={() => this.dropdownToggle}
-          anchorEl = {this.state.anchorEl}
-          returnValue={data.id}
-          closeOnClickOutside
-          preferredAlignment={ rowActionLeft ? 'left' : 'right' }
-          theme={theme}
-        />
+          <Dropdown
+            dropdownItems={validActionConfigs}
+            toggle={() => this.dropdownToggle}
+            anchorEl = {this.state.anchorEl}
+            returnValue={data.id}
+            closeOnClickOutside
+            preferredAlignment={ rowActionLeft ? 'left' : 'right' }
+            theme={theme}
+          />
+        </div>
       </React.Fragment>
     );
   }
