@@ -134,7 +134,6 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
       zIndex: zIndex === null ? (componentStyle.zIndex ? componentStyle.zIndex : undefined) : zIndex,
     };
 
-    console.log('style', style)
     const className = classNames(
       theme.PositionedOverlay,
       fixed && theme.fixed
