@@ -4,9 +4,8 @@ import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 import { classNames } from '@shopify/react-utilities/styles';
 
 import Icon from '../Icon';
-import { Button, Dropdown, FlexBox } from '../';
+import { FlexBox } from '../';
 import { Drawer, DrawerContent } from '../Drawer';
-// import { Sticky } from '../Sticky';
 import Tooltip from '../Tooltip';
 import Accordion, { AccordionItemProps }from '../Accordion';
 
@@ -232,125 +231,7 @@ class SideNavigation extends React.Component<Props, State> {
               {fullContentMarkup}
             </div>
             <div className={this.props.theme.collapseList} >
-              <p>test</p>
-
-              <h1>test</h1>
-              <h1>test</h1>
-
-              <h1>test</h1>
-
-              <h1>test</h1>
-
-              <h1>test</h1>
-
-              <h1>test</h1>
-
-              <h1>test</h1>
-
-              <h1>test</h1>
-
-              <h1>test</h1>
-
-              <h1>test</h1>
-
-              <h1>test</h1>
-
-              <h1>test</h1>
-
-              <h1>test</h1>
-
-              <h1>test</h1>
-
-              <h1>test</h1>
-
-              <h1>test</h1>
-
-              <h1>test</h1>
-
-              <h1>test</h1>
-
-              <h1>test</h1>
-
-              <h1>test</h1>
-
-              <h1>test</h1>
-
-              <h1>test</h1>
-
-              <h1>test</h1>
-
-              <h1>test</h1>
-
-              <h1>test</h1>
-
-              <h1>test</h1>
-
-              <h1>test</h1>
-
-              <h1>test</h1>
-
-              <Button data-polaris-layer="btnTest" onClick={(e: any) => this.popoverUpdate2(e)}>Dropdown active</Button>
-              <Dropdown
-                data-polaris-layer="dropdownsuc"
-                toggle={this.popoverUpdate2}
-                anchorEl={this.state.anchorEl2}
-                preferredAlignment="right"
-                closeOnClickOutside
-                dropdownItems={[
-                  {
-                    content: 'Item 1',
-                  },
-                  {
-                    content: 'Item 2',
-                    divider: true,
-                  },
-                  {
-                    content: 'Itemasdadmmm 3',
-                    disabled: false
-                  },
-                  {
-                    content: 'Item 4',
-                    header: true,
-                  }
-                ]}
-              />
-
-              <h1>test</h1>
-
-              <h1>test</h1>
-
-              <h1>test</h1>
-
-              <h1>test</h1>
-
-              <h1>test</h1>
-
-              <h1>test</h1>
-
-              <h1>test</h1>
-
-              <h1>test</h1>
-
-              <h1>test</h1>
-
-              <h1>test</h1>
-
-              <h1>test</h1>
-
-              <h1>test</h1>
-
-              <h1>test</h1>
-
-              <h1>test</h1>
-
-              <h1>test</h1>
-
-              <h1>test</h1>
-
-              <h1>test</h1>
-
-              <h1>test</h1>
-              {collapseIconMarkup}
+            {collapseIconMarkup}
             </div>
           </DrawerContent>
 
