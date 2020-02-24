@@ -6,7 +6,6 @@ import { classNames } from '@shopify/react-utilities/styles';
 import Icon from '../Icon';
 import { FlexBox } from '../';
 import { Drawer, DrawerContent } from '../Drawer';
-// import { Sticky } from '../Sticky';
 import Tooltip from '../Tooltip';
 import Accordion, { AccordionItemProps }from '../Accordion';
 
@@ -50,6 +49,8 @@ export interface Props {
 export interface State {
   // state for drawer id to be set icons or full content
   activeDrawerId: string;
+  popoverActive2: boolean;
+  anchorEl2?: HTMLElement;
 }
 
 // SideNavigation component, in here wrap all other required components or DOM for the SideNavigation
@@ -59,8 +60,16 @@ class SideNavigation extends React.Component<Props, State> {
 
     this.state = {
       // As per props value set the drawer id to be active
+      popoverActive2: false,
       activeDrawerId: this.props.drawerExpand ? 'fullContent' : 'collapsedContent',
     };
+  }
+
+  popoverUpdate2 = (e: any) => {
+    this.setState({
+      popoverActive2 : !this.state.popoverActive2,
+      anchorEl2: e ? e.currentTarget as HTMLElement : this.state.anchorEl2
+    });
   }
 
   componentDidUpdate() {

@@ -49,7 +49,7 @@ export default class PopoverOverlay extends React.PureComponent<Props, never> {
       <PositionedOverlay
         active={active}
         activator={activator}
-        componentStyle={{ zIndex: 1050 }}
+        componentStyle={{ zIndex: 1050, position: 'absolute' }}
         preferredPosition={preferredPosition}
         preferredAlignment={preferredAlignment}
         render={this.renderPopover.bind(this)}
@@ -65,10 +65,11 @@ export default class PopoverOverlay extends React.PureComponent<Props, never> {
       measuring,
       positioning,
       activatorRect,
+      anchorPosition
     } = overlayDetails;
-    const { addArrow, componentId, children, preferredPosition } = this.props;
+    const { addArrow, componentId, children, preferredPosition, preferredAlignment } = this.props;
 
-    const tipStyle = calculateTipPosition(activatorRect.center.x, left, preferredPosition === 'below' ? window.outerHeight - activatorRect.top < 250 ? 'above' : preferredPosition : preferredPosition);
+    const tipStyle = calculateTipPosition(anchorPosition + 8, left, preferredPosition === 'below' ? window.outerHeight - activatorRect.top < 250 ? 'above' : preferredPosition : preferredPosition, preferredAlignment);
 
     const containerClassName = classNames(
       (preferredPosition === 'below' || preferredPosition === 'mostSpace') && styles.belowPopover,

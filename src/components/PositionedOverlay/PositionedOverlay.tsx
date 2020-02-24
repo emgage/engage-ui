@@ -28,6 +28,7 @@ export interface OverlayDetails {
   positioning: Positioning;
   measuring: boolean;
   activatorRect: Rect;
+  anchorPosition: number;
 }
 
 export interface Props {
@@ -52,8 +53,9 @@ export interface Props {
 export interface State {
   measuring: boolean;
   activatorRect: Rect;
+  anchorPosition: number;
   left: number;
-  top: number;
+  top: number | null;
   height: number;
   width: number | null;
   positioning: Positioning;
@@ -68,6 +70,7 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
     activatorRect: getRectForNode(this.props.activator),
     left: 0,
     top: 0,
+    anchorPosition: 0,
     height: 0,
     width: null,
     positioning: 'below',
@@ -124,13 +127,13 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
   }
 
   render() {
-    const { left, top, zIndex, width } = this.state;
+    const { left, zIndex, top, width } = this.state;
     const { componentStyle = {}, render, fixed, theme } = this.props;
 
     const style = {
       ...componentStyle,
       top: top === null ? undefined : top,
-      left: left === null ? undefined : left,
+      marginLeft: left,
       width: width === null ? undefined : width,
       zIndex: zIndex === null ? (componentStyle.zIndex ? componentStyle.zIndex : undefined) : zIndex,
     };
@@ -151,13 +154,14 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
 
   @autobind
   private overlayDetails(): OverlayDetails {
-    const { measuring, left, positioning, height, activatorRect } = this.state;
+    const { measuring, left, positioning, height, activatorRect, anchorPosition } = this.state;
 
     return {
       measuring,
       left,
       positioning,
       activatorRect,
+      anchorPosition,
       desiredHeight: height,
     };
   }
@@ -165,6 +169,10 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
   @autobind
   private setOverlay(node: HTMLElement) {
     this.overlay = node;
+  }
+
+  public getTopHeight(preferredPosition: string, activatorRect : any, overlayRect : any) {
+    return preferredPosition === 'below' ? window.outerHeight - activatorRect.top < 300 ? overlayRect.top > 0 ? (activatorRect.top - Math.abs(overlayRect.top) - overlayRect.height) : (activatorRect.top + Math.abs(overlayRect.top) - overlayRect.height) : null : null;
   }
 
   @autobind
@@ -230,7 +238,7 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
           overlayMargins,
           scrollableContainerRect,
           containerRect,
-          preferredPosition === 'below' ? window.outerHeight - activatorRect.top < 250 ? 'above' : preferredPosition : preferredPosition,
+          preferredPosition === 'below' ? window.outerHeight - activatorRect.top < 300 ? 'above' : preferredPosition : preferredPosition,
           fixed
         );
         const horizontalPosition = calculateHorizontalPosition(
@@ -239,7 +247,7 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
           containerRect,
           overlayMargins,
           preferredAlignment,
-          preferredPosition === 'below' ? window.outerHeight - activatorRect.top < 250 ? 'above' : preferredPosition : preferredPosition,
+          preferredPosition === 'below' ? window.outerHeight - activatorRect.top < 300 ? 'above' : preferredPosition : preferredPosition,
           preloadedPopover ? preloadedPopover : false
         );
 
@@ -248,7 +256,8 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
           measuring: false,
           activatorRect: getRectForNode(activator),
           left: horizontalPosition,
-          top: lockPosition ? top : verticalPosition.top,
+          top: this.getTopHeight(preferredPosition, activatorRect, overlayRect),
+          anchorPosition: overlayRect.width - activatorRect.width - overlayMargins.horizontal,
           lockPosition: Boolean(fixed),
           height: verticalPosition.height || 0,
           width: fullWidth ? overlayRect.width : null,

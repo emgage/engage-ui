@@ -365,7 +365,7 @@ class Table extends React.Component<Props, State> {
           })
         }
 
-        { rowAction && !rowActionLeft ? <TableData> <RowAction actionInProgress={actionInProgress} actionConfig={rowAction} data={item} theme={theme} /> </TableData> : '' }
+        { rowAction && !rowActionLeft ? <TableData componentStyle={{ float: 'right' }}> <RowAction actionInProgress={actionInProgress} actionConfig={rowAction} data={item} theme={theme} /> </TableData> : '' }
       </TableRow>
     );
   }
