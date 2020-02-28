@@ -89,6 +89,9 @@ $font-weight-normal: 400 !default;
   &:disabled {
     color: $dropdown-link-disabled-color;
     background-color: transparent;
+    &:hover{
+      cursor: default;
+    }
   }
 }
 

@@ -453,7 +453,7 @@ class App extends React.Component<{}, State> {
       },
       {
         content: 'Itemasdadmmm 3',
-        disabled: false
+        disabled: true
       },
       {
         content: 'Item 4',
