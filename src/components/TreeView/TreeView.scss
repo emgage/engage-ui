@@ -72,7 +72,7 @@ li.haschildren > .nodecontent::before {
   right:auto;
   border-left:1px solid #999;  
   bottom:0;
-  height: calc(100% - 0.7em - (14/16)em);
+  height: calc(100% - 1.575em);
 }
 
 // set last node tail to line height plus list item top margin
