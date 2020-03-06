@@ -20,7 +20,7 @@
     "component library"
   ],
   "main": "lib/",
-  "types": "lib/@types/src/index.d.ts",
+  "types": "./types/src/components/index.d.ts",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
     "tag": "latest"
@@ -54,7 +54,8 @@
   "files": [
     "src",
     "lib",
-    "themes"
+    "themes",
+    "types"
   ],
   "release": {
     "verifyConditions": [
