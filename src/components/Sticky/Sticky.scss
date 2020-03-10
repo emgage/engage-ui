@@ -1,8 +1,13 @@
+$stacking-order: (
+  overlay: 100,
+);
+  
+  
   .stickyStyle {
     position: sticky;
     left: 0;
     width: 100%;
-    z-index: 1000;
+    z-index: z-index(overlay, $stacking-order);
   }
 
   .headerSticky {

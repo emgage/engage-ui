@@ -1,7 +1,6 @@
 // Variables
 // ========================================================================
 
-$drawer-z-index:                              1000 !default; //create global var?
 $drawer-bar-background:                       #fff !default; //create global var?
 
 $drawer-bar-width-collapsed:                  40px !default;
@@ -25,6 +24,12 @@ $drawer-close-padding:                        5px !default;
 
 $drawer-overlay-background:                   rgba(0,0,0,0.2) !default;
 
+// master placed drawer above all other items on page 
+$stacking-order: (
+  master: 500,
+  standard: 200,
+  close: 190,
+);
 
 // Styles
 // ========================================================================
@@ -34,7 +39,7 @@ $drawer-overlay-background:                   rgba(0,0,0,0.2) !default;
   top: 0;
   bottom: 0;
   left: 0;
-  z-index: $drawer-z-index;
+  z-index: z-index(standard, $stacking-order);
 
   // Flip modifier
   &.flip {
@@ -221,7 +226,7 @@ $drawer-overlay-background:                   rgba(0,0,0,0.2) !default;
 // ------------------------------------------------------------------------
 .close {
   position: absolute;
-  z-index: $drawer-z-index;
+  z-index: z-index(close, $stacking-order);
   top: $drawer-close-position;
   right: $drawer-close-position;
   padding: $drawer-close-padding;
@@ -231,7 +236,7 @@ $drawer-overlay-background:                   rgba(0,0,0,0.2) !default;
 // ------------------------------------------------------------------------
 .fixedClose {
   position: fixed;
-  z-index: $drawer-z-index;
+  z-index: z-index(close, $stacking-order);
   top: $drawer-close-position;
   right: $drawer-close-position;
   padding: $drawer-close-padding;
