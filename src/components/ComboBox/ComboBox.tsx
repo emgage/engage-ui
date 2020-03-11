@@ -43,8 +43,6 @@ class ComboBox extends React.Component<Props, State> {
   private wrapperRef: HTMLDivElement;
   constructor(props: Props) {
     super(props);
-    this.setWrapperRef = this.setWrapperRef.bind(this);
-    this.handleClickOutside = this.handleClickOutside.bind(this);
     const { items, currentValue = '' } = props;
 
     this.state = {
@@ -66,7 +64,7 @@ class ComboBox extends React.Component<Props, State> {
     document.removeEventListener('click', this.handleClickOutside);
   }
 
-  handleClickOutside(event: any) {
+  handleClickOutside = (event: any) => {
     if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
       if (this.state.open) {
         this.setState({ open: false });
@@ -74,7 +72,7 @@ class ComboBox extends React.Component<Props, State> {
     }
   }
 
-  setWrapperRef(node: any) {
+  setWrapperRef = (node: any) => {
     if (node && !this.state.popoverWidth) {
       this.setState({ popoverWidth: node.offsetWidth });
       this.wrapperRef = node;
