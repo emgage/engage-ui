@@ -40,10 +40,9 @@ interface State {
 class ComboBox extends React.Component<Props, State> {
   private getUniqueID = createUniqueIDFactory('ComboBox');
   private id = this.getUniqueID();
-
+  private wrapperRef: HTMLDivElement;
   constructor(props: Props) {
     super(props);
-
     const { items, currentValue = '' } = props;
 
     this.state = {
@@ -55,6 +54,29 @@ class ComboBox extends React.Component<Props, State> {
       popoverWidth: '',
       selectedValue: '' || currentValue,
     };
+  }
+
+  componentDidMount() {
+    document.addEventListener('click', this.handleClickOutside);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('click', this.handleClickOutside);
+  }
+
+  handleClickOutside = (event: any) => {
+    if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
+      if (this.state.open) {
+        this.setState({ open: false });
+      }
+    }
+  }
+
+  setWrapperRef = (node: any) => {
+    if (node && !this.state.popoverWidth) {
+      this.setState({ popoverWidth: node.offsetWidth });
+      this.wrapperRef = node;
+    }
   }
 
   addRenderer = (items: any , cloneItems: any) => {
@@ -113,7 +135,6 @@ class ComboBox extends React.Component<Props, State> {
       anchorEl: event.target as HTMLElement,
       selectedValue: value,
       items: newItems,
-      open: value && value !== '' ? true : false // open the popover only if there is some value on search text.
     });
   }
 
@@ -132,12 +153,6 @@ class ComboBox extends React.Component<Props, State> {
     }
 
     this.setState({ selectedValue: typeof(selectedValue) === 'object' ? selectedValue[key] : selectedValue, open: false });
-  }
-
-  comboWidth = (event: any) => {
-    if (event && !this.state.popoverWidth) {
-      this.setState({ popoverWidth: event.offsetWidth });
-    }
   }
 
   render() {
@@ -162,7 +177,7 @@ class ComboBox extends React.Component<Props, State> {
       );
 
     return (
-      <div key={this.id} className={theme.comboboxContainer} onClick={this.onArrowClick} ref={event => this.comboWidth(event)}>
+      <div key={this.id} className={theme.comboboxContainer} onClick={this.onArrowClick} ref={node => this.setWrapperRef(node)} >
         <TextField
           label={label}
           onChange={this.onChange}
