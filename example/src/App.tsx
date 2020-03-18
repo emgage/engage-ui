@@ -1,6 +1,4 @@
 import * as React from 'react';
-import SingleDatePickerWrapper from './SingleDatePickerWrapper';
-import DateRangePickerWrapper from './DateRangePickerWrapper';
 import PickerAutoSuggestExample from './PickerAutoSuggestExample';
 import { ISourceData } from '../../src/components/BreadCrumb/BreadCrumb';
 import { INavigationData } from '../../src/components/SideNavigation/SideNavigation';
@@ -1166,8 +1164,6 @@ class App extends React.Component<{}, State> {
           timePicker
           onChange={(dateTime: any) => console.log(dateTime.add(5.5, 'h').toISOString())}
           onBlur={(dateTime: string) => console.log(dateTime)} />
-        <SingleDatePickerWrapper />
-        <DateRangePickerWrapper />
 
         <div style={{ marginTop: '20px', marginBottom: '20px' }}>
           <Caption componentStyle={{ color: 'red' }}>This is Table field</Caption>
