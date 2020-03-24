@@ -113,6 +113,8 @@ export interface Props {
   type?: Type;
   // Initial value for the input.
   value?: string;
+  // number of rows for textarea
+  rows?: number;
 }
 
 const getUniqueID = createUniqueIDFactory('TextField');
