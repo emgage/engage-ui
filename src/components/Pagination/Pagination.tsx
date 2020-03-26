@@ -10,29 +10,29 @@ import * as baseTheme from './Pagination.scss';
 import Button from '../Button';
 
 interface IProps {
-  disabled: boolean;
-  prefixCls: string;
-  className: string;
+  disabled?: boolean;
+  prefixCls?: string;
+  className?: string;
   current: number;
-  defaultCurrent: number;
+  defaultCurrent?: number;
   total: number;
   pageSize: number;
-  defaultPageSize: number;
-  onChange(page: number, pageSize: number): void;
-  hideOnSinglePage: boolean;
-  showSizeChanger: boolean;
-  showLessItems: boolean;
-  onShowSizeChange(current: any, size: any): void;
-  selectComponentClass(): void;
-  selectPrefixCls: string;
-  showPrevNextJumpers: boolean;
-  showQuickJumper: any;
-  showTitle: boolean;
-  pageSizeOptions: string[];
+  defaultPageSize?: number;
+  onChange?(page: number, pageSize: number): void;
+  hideOnSinglePage?: boolean;
+  showSizeChanger?: boolean;
+  showLessItems?: boolean;
+  onShowSizeChange?(current: any, size: any): void;
+  selectComponentClass?(): void;
+  selectPrefixCls?: string;
+  showPrevNextJumpers?: boolean;
+  showQuickJumper?: any;
+  showTitle?: boolean;
+  pageSizeOptions?: string[];
   showTotal?(param1: any, param2: any): any;
   locale?: any;
   style?: any;
-  itemRender(param1: any, param2: any, param3: any): any;
+  itemRender?(param1: any, param2: any, param3: any): any;
   prevIcon?: any;
   nextIcon?: any;
   jumpPrevIcon?: any;
@@ -107,12 +107,12 @@ class Pagination extends React.Component<IProps, IState> {
       console.warn('Warning: You provided a `current` prop to a Pagination component without an `onChange` handler. This will render a read-only component.'); // eslint-disable-line
     }
 
-    let current = props.defaultCurrent;
+    let current = props.defaultCurrent || 1;
     if ('current' in props) {
       current = props.current;
     }
 
-    let pageSize = props.defaultPageSize;
+    let pageSize = props.defaultPageSize || 10;
     if ('pageSize' in props) {
       pageSize = props.pageSize;
     }
@@ -278,7 +278,9 @@ class Pagination extends React.Component<IProps, IState> {
         });
       }
     }
-    this.props.onShowSizeChange(current, size);
+    if (this.props.onShowSizeChange) {
+      this.props.onShowSizeChange(current, size);
+    }
   }
 
   handleChange = (p: any) => {
@@ -301,8 +303,10 @@ class Pagination extends React.Component<IProps, IState> {
       }
 
       const pageSize = this.state.pageSize;
-      this.props.onChange(page, pageSize);
-
+      if (this.props.onChange){
+        this.props.onChange(page, pageSize);
+      }
+      
       return page;
     }
 
@@ -367,7 +371,7 @@ class Pagination extends React.Component<IProps, IState> {
   }
 
   render() {
-    const { className, disabled, theme } = this.props;
+    const { className, disabled = false, theme } = this.props;
 
     // When hideOnSinglePage is true and there is only 1 page, hide the pager
     if (this.props.hideOnSinglePage && this.props.total <= this.state.pageSize) {
@@ -722,7 +726,7 @@ class Pagination extends React.Component<IProps, IState> {
           changeSize={this.props.showSizeChanger ? this.changePageSize : undefined}
           current={this.state.current}
           pageSize={this.state.pageSize}
-          pageSizeOptions={this.props.pageSizeOptions}
+          pageSizeOptions={this.props.pageSizeOptions || []}
           quickGo={this.shouldDisplayQuickJumper() ? this.handleChange : undefined}
           goButton={goButton}
         />
