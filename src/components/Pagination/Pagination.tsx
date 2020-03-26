@@ -303,10 +303,9 @@ class Pagination extends React.Component<IProps, IState> {
       }
 
       const pageSize = this.state.pageSize;
-      if (this.props.onChange){
+      if (this.props.onChange) {
         this.props.onChange(page, pageSize);
       }
-      
       return page;
     }
 
