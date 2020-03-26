@@ -14,6 +14,8 @@ export type Size = 'slim' | 'large';
 export interface Props {
   // To display the URL link.
   url?: string;
+  // The content to display inside the button.
+  children?: React.ReactNode;
   // Change the size of the button. It can be slim or large
   componentSize?: Size;
   // Allows the button to grow to the width of its container
