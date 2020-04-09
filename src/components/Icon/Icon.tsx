@@ -6,6 +6,9 @@ import { classNames, variationName } from '@shopify/react-utilities/styles';
 import {
   add,
   alert,
+  alignCenter,
+  alignLeft,
+  alignRight,
   arrowDown,
   arrowLeft,
   arrowRight,
@@ -104,6 +107,9 @@ export type Color = (
 export const BUNDLED_ICONS = {
   add,
   alert,
+  alignCenter,
+  alignLeft,
+  alignRight,
   arrowDown,
   arrowLeft,
   arrowRight,

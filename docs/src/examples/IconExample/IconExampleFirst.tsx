@@ -14,6 +14,18 @@ const IconExampleFirst = () => (
         <Caption>alert</Caption>
       </div>
       <div>
+        <Icon source="alignCenter" />
+        <Caption>alignCenter</Caption>
+      </div>
+      <div>
+        <Icon source="alignLeft" />
+        <Caption>alignLeft</Caption>
+      </div>
+      <div>
+        <Icon source="arrowRight" />
+        <Caption>arrowRight</Caption>
+      </div>
+      <div>
         <Icon source="arrowDown" />
         <Caption>arrowDown</Caption>
       </div>
