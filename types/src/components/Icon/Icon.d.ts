@@ -5,6 +5,9 @@ export declare type Color = ('white' | 'black' | 'skyLighter' | 'skyLight' | 'sk
 export declare const BUNDLED_ICONS: {
     add: any;
     alert: any;
+    alignCenter: any;
+    alignLeft: any;
+    alignRight: any;
     arrowDown: any;
     arrowLeft: any;
     arrowRight: any;

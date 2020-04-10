@@ -27,12 +27,16 @@ interface State {
 declare class ComboBox extends React.Component<Props, State> {
     private getUniqueID;
     private id;
+    private wrapperRef;
     constructor(props: Props);
+    componentDidMount(): void;
+    componentWillUnmount(): void;
+    handleClickOutside: (event: any) => void;
+    setWrapperRef: (node: any) => void;
     addRenderer: (items: any, cloneItems: any) => any;
     onChange: (value: string, event: React.FormEvent<HTMLElement>) => void;
     onArrowClick: (event: React.FormEvent<HTMLElement>) => void;
     handleClick: (value: any, key: any) => void;
-    comboWidth: (event: any) => void;
     render(): JSX.Element;
 }
 export { ComboBox as UnthemedComboBox };

@@ -1269,7 +1269,9 @@ class App extends React.Component<{}, State> {
             overlay
             fixedCloseButton
             closeButton
-            flip>
+            flip
+            master
+          >
             <DrawerContent componentId="dcontent1" mode="slide">
               <Button onClick={() => this.toggleDrawerInner('innerDrawer')}>Inner Drawer</Button>
               <Drawer

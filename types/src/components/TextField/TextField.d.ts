@@ -58,6 +58,7 @@ export interface Props {
     theme?: any;
     type?: Type;
     value?: string;
+    rows?: number;
 }
 declare class TextField extends React.PureComponent<Props, State> {
     state: State;

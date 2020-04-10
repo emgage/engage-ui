@@ -41,6 +41,11 @@ $stacking-order: (
   left: 0;
   z-index: z-index(standard, $stacking-order);
 
+  // Master modifier
+  &.master {
+    z-index: z-index(master, $stacking-order);
+  }
+
   // Flip modifier
   &.flip {
     right: 0;
