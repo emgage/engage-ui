@@ -65,6 +65,8 @@ export interface Props {
   // Set a custom class
   componentClass?: string;
   id?: string;
+  // props for master drawer
+  master?: boolean;
 }
 
 const getUniqueID = createUniqueIDFactory('DrawerWrapper');
@@ -108,10 +110,12 @@ class Drawer extends React.PureComponent<Props, never> {
       overlay,
       componentWidth = 'medium',
       theme,
+      master
     } = this.props;
 
     return classNames(
       theme.drawer,
+      master && theme.master,
       overlay && theme.overlay,
       flip && this.props.theme.flip,
       this.isWidthPreDefine(componentWidth) && theme[componentWidth],

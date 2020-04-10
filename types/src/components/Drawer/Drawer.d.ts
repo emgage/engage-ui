@@ -23,6 +23,7 @@ export interface Props {
     componentStyle?: any;
     componentClass?: string;
     id?: string;
+    master?: boolean;
 }
 declare const _default: ThemedComponentClass<Props, {}>;
 export default _default;
