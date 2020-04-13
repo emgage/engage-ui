@@ -3,6 +3,7 @@ const path = require('path');
 
 BaseConfig.entry = {
     index: './src/index.ts', 
+    deliciousTheme: './themes/Delicious/index.tsx',
 };
 BaseConfig.output = {
     filename: '[name].js',

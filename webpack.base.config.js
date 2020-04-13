@@ -1,6 +1,49 @@
 const path = require('path');
 const webpack = require('webpack');
 const TypeScriptConfigFile = require('./tsconfig.json');
+// const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+// From SASS -> CSS, we use the same loaders
+// When it comes to theme, we want to use style loader options
+// to put styles in body, for base styles, we want them in head.
+const sharedCssLoaders = [{
+        loader: 'css-loader',
+        options: {
+            localIdentName: '[name]__[local]__[hash:base64:5]',
+            modules: true,
+            importLoaders: 1,
+            sourceMap: false,
+        }
+    }, 
+    {
+        loader: 'postcss-loader',
+    },
+    {
+        loader: 'sass-loader',
+        options: {
+            includePaths: [
+                path.join(__dirname, 'src'),
+                path.join(__dirname, 'src', 'styles'),
+                path.join(__dirname, 'src', 'styles', 'foundation'),
+                path.join(__dirname, 'src', 'styles', 'components'),
+                path.join(__dirname, 'src', 'themes', 'Delicious'),
+            ],
+            sourceMap: false
+        }
+    },
+    {
+        loader: 'sass-resources-loader',
+        options: {
+            resources: [
+                './src/styles/calendar.scss',
+                './src/styles/foundation.scss',
+                './themes/Delicious/foundation.scss',
+                './src/styles/shared.scss',
+                './themes/Delicious/shared.scss',
+            ],
+        },
+    },
+];
 
 module.exports = {
     resolveLoader: {
@@ -29,47 +72,25 @@ module.exports = {
                 test: /\.scss$/,
                 use: [
                     {
-                        loader: 'style-loader'
+                        loader: 'style-loader',
                     },
+                    ...sharedCssLoaders,
+                ],
+                exclude: [/node_modules/, /themes/]
+            },
+            // Theme styles need to be put in body to override base
+            {
+                test: /themes.*\.scss/,
+                use: [
                     {
-                        loader: 'css-loader',
+                        loader: 'style-loader',
                         options: {
-                            localIdentName: '[name]__[local]__[hash:base64:5]',
-                            modules: true,
-                            importLoaders: 1,
-                            sourceMap: false,
-                        }
-                    }, 
-                    {
-                        loader: 'postcss-loader',
-                    },
-                    {
-                        loader: 'sass-loader',
-                        options: {
-                            includePaths: [
-                                path.join(__dirname, 'src'),
-                                path.join(__dirname, 'src', 'styles'),
-                                path.join(__dirname, 'src', 'styles', 'foundation'),
-                                path.join(__dirname, 'src', 'styles', 'components'),
-                                path.join(__dirname, 'src', 'themes', 'Delicious'),
-                            ],
-                            sourceMap: false
-                        }
-                    },
-                    {
-                        loader: 'sass-resources-loader',
-                        options: {
-                            resources: [
-                                './src/styles/calendar.scss',
-                                './src/styles/foundation.scss',
-                                './themes/Delicious/foundation.scss',
-                                './src/styles/shared.scss',
-                                './themes/Delicious/shared.scss',
-                            ],
+                            insert: 'body',
                         },
                     },
+                    ...sharedCssLoaders,
                 ],
-                exclude: /node_modules/
+                exclude: [/node_modules/]
             },
             {
                 test: /\.svg$/,
@@ -117,4 +138,5 @@ module.exports = {
        })
     ],
     devtool: 'source-map',
+    mode: 'development',
 };

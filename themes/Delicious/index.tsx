@@ -1,6 +1,3 @@
-import * as React from 'react';
-import { ThemeProvider } from '@friendsofreactjs/react-css-themr';
-
 export const DeliciousThemeContext = {
   PButton: require('./Button.scss'),
   PButtonGroup: require('./ButtonGroup.scss'),
@@ -15,12 +12,4 @@ export const DeliciousThemeContext = {
   PSpinner: require('./Spinner.scss'),
   PTextField: require('./TextField.scss'),
   PPicker: require('./Picker.scss'),
-};
-
-export default (props: any) => {
-  return (
-    <ThemeProvider theme={DeliciousThemeContext}>
-      {props.children}
-    </ThemeProvider>
-  );
 };

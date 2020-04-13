@@ -1,17 +1,18 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import App from './App';
-import BaseTheme from '../../themes/Delicious/index';
+import { ThemeProvider } from '@friendsofreactjs/react-css-themr';
+import { DeliciousThemeContext } from '../../themes/Delicious/index';
 
 const REACT_VERSION = React.version;
 
 ReactDOM.render(
-  <BaseTheme>
+  <ThemeProvider theme={DeliciousThemeContext}>
     <div>
       <label>React Version: {REACT_VERSION}</label>
       <App />
     </div>
-  </BaseTheme>
+  </ThemeProvider>
   ,
   document.getElementById('root')
 );
