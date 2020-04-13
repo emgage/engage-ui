@@ -5,7 +5,7 @@ const TypeScriptConfigFile = require('./tsconfig.json');
 
 // From SASS -> CSS, we use the same loaders
 // When it comes to theme, we want to use style loader options
-// to put styles in body, for base styles, we want them in head.
+// to put styles in body, for base styles, we want them in head
 const sharedCssLoaders = [{
         loader: 'css-loader',
         options: {
