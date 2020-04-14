@@ -29,6 +29,7 @@ import {
   Heading,
   Link,
   List,
+  Login,
   Item,
   DescriptionList,
   Term,
@@ -840,7 +841,14 @@ class App extends React.Component<{}, State> {
 
     return (
       <div style={{ width: '60%' }}>
-
+        <Login
+          isLogin
+          loginUrl={'loginUrl'}
+          logoutUrl={'logoutUrl'}
+          userName={'test@emgage.com'}
+          additionalLIst={[{ content: 'extra Item', divider: true }]}
+          profilePic={'http://msaadvertising.com/wp-content/uploads/2014/06/Larry-cartoon-headshot.jpg'}
+        />
         <ToggleButtonGroup segmented={true} helpText="Test Help Text">
           <Button>On</Button>
           <Button>Off</Button>

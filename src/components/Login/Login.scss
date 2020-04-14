@@ -1,0 +1,34 @@
+@mixin floatRight($top, $right) {
+  position: absolute;
+  right: $right;
+  top: $top;
+}
+
+.loginButton {
+  color: white !important;
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  @include floatRight(20px, 20px)
+}
+
+.loginUser {
+  border-radius: 50% !important;
+}
+
+.profilePic {
+  @extend .loginUser;
+  height: 48px;
+  width: 48px;
+}
+
+.signOut {
+  color: theme-color(m-grey, 900) !important;
+}
+
+.loginContainer {
+  @include floatRight(8px, 12px)
+}
