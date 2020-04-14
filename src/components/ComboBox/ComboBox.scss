@@ -1,47 +1,43 @@
 $border-color: #eceeef;
 $backrgound-color: #F9FAFB;
-
 .comboboxContainer {
-  position: relative;
+    position: relative;
 }
 
 .accordionItemHeader {
-  display: flex;
-  background: $backrgound-color;
-  padding: 14px 27px;
-  border-bottom: 1px solid $border-color;
-  color: #616161;
-
-  .headerText {
-    margin-left: 16px;
-  }
+    display: flex;
+    background: $backrgound-color;
+    padding: 14px 27px;
+    border-bottom: 1px solid $border-color;
+    color: #616161;
+    .headerText {
+        margin-left: 16px;
+    }
 }
 
 .itemContainer {
-  padding: 0 11px;
+    padding: 0 11px;
 }
 
-.comboboxItem, .accordionItem {
-  padding: 14px 16px;
-  border-bottom: 1px solid $border-color;
-
-  &.accordionItem {
-    margin: 0 11px;
-
-    &:last-child {
-      padding: 14px 27px;
-      margin: 0;
+.comboboxItem,
+.accordionItem {
+    padding: 14px 16px;
+    border-bottom: 1px solid $border-color;
+    &.accordionItem {
+        margin: 0 11px;
+        &:last-child {
+            padding: 14px 27px;
+            margin: 0;
+        }
     }
-  }
-
-  &.comboboxItem:last-child {
-    border-bottom: none;
-  }
+    &.comboboxItem:last-child {
+        border-bottom: none;
+    }
 }
 
-.comboboxContainer .comboboxArrow{
-  position: absolute;
-  right:14px;
-  top: 14px;
-  z-index: 999;
+.comboboxContainer .comboboxArrow {
+    position: absolute;
+    right: 14px;
+    top: 14px;
+    z-index: 30;
 }
