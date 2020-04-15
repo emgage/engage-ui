@@ -1,5 +1,6 @@
 $border-color: #eceeef;
 $backrgound-color: #F9FAFB;
+$stacking-order: ( input: 20, backdrop: 10, spinner: 30, icons: 30);
 .comboboxContainer {
     position: relative;
 }
@@ -39,5 +40,5 @@ $backrgound-color: #F9FAFB;
     position: absolute;
     right: 14px;
     top: 14px;
-    z-index: 30;
+    z-index: z-index(icons, $stacking-order);
 }
