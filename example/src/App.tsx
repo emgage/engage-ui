@@ -5,6 +5,7 @@ import { INavigationData } from '../../src/components/SideNavigation/SideNavigat
 
 import {
   Alert,
+  AppBar,
   Banner,
   Badge,
   Button,
@@ -29,7 +30,6 @@ import {
   Heading,
   Link,
   List,
-  Login,
   Item,
   DescriptionList,
   Term,
@@ -841,14 +841,20 @@ class App extends React.Component<{}, State> {
 
     return (
       <div style={{ width: '60%' }}>
-        <Login
-          isLogin
+        <AppBar
+          enableGlobalGo
+          enableGlobalElement={<Button icon="list" />}
+          isLoggedIn
+          logo={'https://emgage.com/SiteAssets/Emgage-logo.png'}
           loginUrl={'loginUrl'}
           logoutUrl={'logoutUrl'}
+          profilePic={'http://msaadvertising.com/wp-content/uploads/2014/06/Larry-cartoon-headshot.jpg'}
           userName={'test@emgage.com'}
           additionalLIst={[{ content: 'extra Item', divider: true }]}
-          profilePic={'http://msaadvertising.com/wp-content/uploads/2014/06/Larry-cartoon-headshot.jpg'}
+          enableSearch
+          rightChildren={[<Button icon="notes" />, <Button icon="userCog" />, <Button icon="infoCircle" />]}
         />
+
         <ToggleButtonGroup segmented={true} helpText="Test Help Text">
           <Button>On</Button>
           <Button>Off</Button>
