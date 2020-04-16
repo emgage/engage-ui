@@ -9,7 +9,7 @@ export interface Props {
   /**
    * Check login status for user
    */
-  isLogin: boolean;
+  isLoggedIn: boolean;
   /**
    * LogIn user name or email
    */
@@ -27,7 +27,7 @@ export interface Props {
    */
   loginUrl: string;
   /**
-   * Login Img src
+   * Login User profile pic
    */
   profilePic?: string;
 }
@@ -74,7 +74,7 @@ export default (props: Props) => {
   },              [props.additionalLIst]);
 
   return (
-      props.isLogin ?  <div className={baseTheme.loginContainer}>
+      props.isLoggedIn ?  <div className={baseTheme.loginContainer}>
         {!props.profilePic ? <Button icon="user" componentClass={baseTheme.loginUser} onClick={e => toggle(e)} />
         : <Image onClick={e => toggle(e)} className={baseTheme.profilePic} alt="User profile pic" source={props.profilePic} />}
         <Dropdown

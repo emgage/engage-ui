@@ -382,3 +382,7 @@ export {
   default as Login,
   Props as LoginProps,
 } from './Login';
+
+export {
+  default as AppBar
+} from './AppBar';
