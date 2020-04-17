@@ -514,6 +514,26 @@ class App extends React.Component<{}, State> {
       }, {
         id: 2,
         name: 'Dheeraj',
+        renderBanner: {
+          bannerTitle: 'Hello Please Check All Data',
+          bannerType: 'critical',
+          placeholder: 'Related Content',
+          items: [
+            {
+              content: 'Item 1',
+              contentId: 1,
+              onClick: (value: any) => { console.log(value); }
+            }, {
+              content: 'Item 2',
+              contentId: 2,
+              onClick: (value: any) => { console.log(value); }
+            }, {
+              content: 'Item 3',
+              contentId: 3,
+              onClick: (value: any) => { console.log(value); }
+            }
+          ]
+        },
         description: 'Test description2',
         status: { itemID: 2, itemName: 'Deleted' },
         type: 'admin',
@@ -838,6 +858,8 @@ class App extends React.Component<{}, State> {
       //   onToggle: status => console.log('Tree node open:', status),
       // }
     ];
+
+    const dummyArray= [{text: 'hello', icon: 'alert'},{text:'How are you?', icon: 'alert'}];
 
     return (
       <div style={{ width: '60%' }}>
@@ -1164,7 +1186,7 @@ class App extends React.Component<{}, State> {
         <Checkbox checked label="Hidden Label Checkbox" labelHidden />
         </div>
         <Heading>Banner</Heading>
-        <Banner componentTitle={'banner'} status={'success'} />
+        <Banner componentTitle={'banner'} status={'success'} secondaryText={dummyArray} />
         <Banner componentTitle={'banner'} status={'info'} />
         <Banner componentTitle={'banner'} status={'warning'} />
         <Banner componentTitle={'banner'} status={'critical'} />

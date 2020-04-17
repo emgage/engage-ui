@@ -12,6 +12,7 @@ import TableHead from './TableHead';
 import TableBody from './TableBody';
 import TableRow from './TableRow';
 import TableData from './TableData';
+import BannerRow  from './BannerRow';
 
 import { ColumnConfig, FilterConfig, NestedChild, SortState, ServerSort } from './interface';
 import * as baseTheme from './Table.scss';
@@ -332,41 +333,66 @@ class Table extends React.Component<Props, State> {
 
   // Render the main table row
   renderTbodyRows = (item: any, index: number | string) => {
-    const { actionInProgress, column, expandingRowId = [], hideExpandedIcon, rowAction, theme, rowActionLeft, onRowClick, rowCallbackValue } = this.props;
+    const { actionInProgress, column, expandingRowId = [], hideExpandedIcon, onRowClick, rowActionLeft, rowCallbackValue, rowAction, selectRow, theme } = this.props;
     const { nestedChildData } = this.state;
+    const { renderBanner } = item;
+    let totalColumn = column && column.length;
+    if (renderBanner) {
+      if (rowAction) totalColumn++;
+      if (selectRow) totalColumn++;
+    }
+    return(
+      <React.Fragment>
+        <TableRow key={index} theme={theme}>
+          { this.renderRowSelection(item, 'body') }
+          {
+            column.map((colItem: any, index: number) => {
+              const renderCheckbox = (!index && nestedChildData && nestedChildData.length && !hideExpandedIcon && (!expandingRowId.length || expandingRowId.indexOf(item.id) >= 0));
+              const tableDataClick = colItem.key !== 'rowAction' && !renderCheckbox && onRowClick && !item['isRowClickDisable'] ? theme.tableDataClick : '';
 
-    return (
-      <TableRow key={index} theme={theme}>
-        { this.renderRowSelection(item, 'body') }
-        {
-          column.map((colItem: any, index: number) => {
-            const renderCheckbox = (!index && nestedChildData && nestedChildData.length && !hideExpandedIcon && (!expandingRowId.length || expandingRowId.indexOf(item.id) >= 0));
-            const tableDataClick = colItem.key !== 'rowAction' && !renderCheckbox && onRowClick && !item['isRowClickDisable'] ? theme.tableDataClick : '';
+              return (
+                <TableData
+                  key={colItem.key}
+                  callbackValue={rowCallbackValue && item[rowCallbackValue]}
+                  componentStyle={ colItem.style }
+                  componentClass={tableDataClick}
+                  dataLabel={colItem.label}
+                  theme={theme}
+                  onClick={((colItem.key !== 'rowAction' && !renderCheckbox) && !item['isRowClickDisable']) ? onRowClick : undefined}
+                >
+                  {/*
+                    Here injectBody helps to inject any custom component to td,
+                    we also return the specifc value, which then can be used in injected component
+                  */}
+                  { colItem.key === 'rowAction' ? <RowAction theme={theme} actionInProgress={actionInProgress} actionConfig={rowAction} data={item} rowActionLeft /> : '' }
+                  { renderCheckbox ? this.renderCheckColumn(item, false) : ''}
+                  { colItem.injectBody ? colItem.injectBody(item) : renderCheckbox ? <span style={{ paddingLeft: '16px' }}>{item[colItem.key]}</span> : <span className={theme.tableDataWrap}>{item[colItem.key]}</span> }
+                </TableData>
+              );
+            })
+          }
 
-            return (
-              <TableData
-                key={colItem.key}
-                callbackValue={rowCallbackValue && item[rowCallbackValue]}
-                componentStyle={ colItem.style }
-                componentClass={tableDataClick}
-                dataLabel={colItem.label}
-                theme={theme}
-                onClick={((colItem.key !== 'rowAction' && !renderCheckbox) && !item['isRowClickDisable']) ? onRowClick : undefined}
-              >
-                {/* 
-                  Here injectBody helps to inject any custom component to td,
-                  we also return the specifc value, which then can be used in injected component
-                */}
-                { colItem.key === 'rowAction' ? <RowAction theme={theme} actionInProgress={actionInProgress} actionConfig={rowAction} data={item} rowActionLeft /> : '' }
-                { renderCheckbox ? this.renderCheckColumn(item, false) : ''}
-                { colItem.injectBody ? colItem.injectBody(item) : renderCheckbox ? <span style={{ paddingLeft: '16px' }}>{item[colItem.key]}</span> : <span className={theme.tableDataWrap}>{item[colItem.key]}</span> }
-              </TableData>
-            );
-          })
-        }
-
-        { rowAction && !rowActionLeft ? <TableData componentStyle={{ float: 'right' }}> <RowAction actionInProgress={actionInProgress} actionConfig={rowAction} data={item} theme={theme} /> </TableData> : '' }
-      </TableRow>
+          { rowAction && !rowActionLeft ? <TableData componentStyle={{ float: 'right' }}> <RowAction actionInProgress={actionInProgress} actionConfig={rowAction} data={item} theme={theme} /> </TableData> : '' }
+        </TableRow>
+        { renderBanner &&
+        <TableRow>
+          <TableData colSpan={totalColumn} componentClass={baseTheme.bannerRow}>
+            <BannerRow
+              bannerTitle={renderBanner.bannerTitle}
+              bannerType={renderBanner.bannerType}
+              bannerIcon={renderBanner.bannerIcon}
+              dropdownItems={renderBanner.items}
+              disabled={renderBanner.disabled}
+              rowItem={item}
+              loading={renderBanner.loading}
+              onChange={renderBanner.onChange}
+              onFocus={renderBanner.onFocus}
+              selectPlaceholder={renderBanner.placeholder}
+              selectedValue={renderBanner.selectedValue}
+            />
+          </TableData>
+        </TableRow> }
+      </React.Fragment>
     );
   }
 
