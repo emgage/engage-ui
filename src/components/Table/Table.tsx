@@ -374,7 +374,8 @@ class Table extends React.Component<Props, State> {
 
           { rowAction && !rowActionLeft ? <TableData componentStyle={{ float: 'right' }}> <RowAction actionInProgress={actionInProgress} actionConfig={rowAction} data={item} theme={theme} /> </TableData> : '' }
         </TableRow>
-        { renderBanner && <TableRow>
+        { renderBanner &&
+        <TableRow>
           <TableData colSpan={totalColumn} componentClass={baseTheme.bannerRow}>
             <BannerRow
               bannerTitle={renderBanner.bannerTitle}
@@ -392,8 +393,8 @@ class Table extends React.Component<Props, State> {
           </TableData>
         </TableRow> }
       </React.Fragment>
-      )
-    }
+    );
+  }
 
   callBackSelectedRows(selectedRows: any) {
     callBackSelectedRows = selectedRows;

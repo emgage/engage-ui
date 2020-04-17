@@ -39,8 +39,8 @@ export interface Props {
   theme?: any;
   // Callback when banner is dismissed
   onDismiss?(): void;
-  //Secondary Text below componentText
-  secondaryText?: ISecondaryItems[]
+  // Secondary Text below componentText
+  secondaryText?: ISecondaryItems[];
 }
 
 interface ISecondaryItems {
@@ -114,15 +114,15 @@ const banner = ({
 
   if (secondaryText && secondaryText.length) {
     textMarkUp = secondaryText.map((item, index) => {
-        return (
-          <div key={`option_${index}`} className={baseTheme.bannerBox}>
-            <Icon source = {item.icon as keyof typeof IconList} />
-            <p className={baseTheme.bannerContent}>
-              {item.text}
-            </p>
-          </div>
-        )
-    })
+      return (
+        <div key={`option_${index}`} className={baseTheme.bannerBox}>
+          <Icon source = {item.icon as keyof typeof IconList} />
+          <p className={baseTheme.bannerContent}>
+            {item.text}
+          </p>
+        </div>
+      );
+    });
   }
 
   const secondaryActionMarkup = secondaryAction
@@ -161,7 +161,7 @@ const banner = ({
     )
     : null;
 
-  const bannerStyle = {justifyContent: 'flex-start', width: '100%'};
+  const bannerStyle = { justifyContent: 'flex-start', width: '100%' };
 
   return (
     <div

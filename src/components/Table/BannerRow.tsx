@@ -1,27 +1,27 @@
 import * as React from 'react';
-import * as baseTheme from "./Table.scss";
+import * as baseTheme from './Table.scss';
 import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
-import { Banner, Select } from "../index";
-import { Status } from "../Banner/Banner"
-import {TABLE} from "../ThemeIdentifiers";
-import {IconList} from "../Icon";
+import { Banner, Select } from '../index';
+import { Status } from '../Banner/Banner';
+import { TABLE } from '../ThemeIdentifiers';
+import { IconList } from '../Icon';
 
 export interface Props {
-  bannerTitle: string,
-  bannerType: Status,
-  bannerIcon?: string,
-  disabled?: boolean,
-  dropdownItems: any,
-  rowItem?: any,
-  loading?: boolean,
+  bannerTitle: string;
+  bannerType: Status;
+  bannerIcon?: string;
+  disabled?: boolean;
+  dropdownItems: any;
+  rowItem?: any;
+  loading?: boolean;
   onChange?(rowItem: any, selectedValue: number): void;
   onFocus?(rowItem: any): void;
-  selectPlaceholder: string,
-  selectedValue?: string,
+  selectPlaceholder: string;
+  selectedValue?: string;
 }
 
 export interface State {
-  selectedValue?: string
+  selectedValue?: string;
 }
 
 class BannerRow extends React.Component<Props, State> {
@@ -30,22 +30,22 @@ class BannerRow extends React.Component<Props, State> {
     super(props);
     this.state = ({
       selectedValue: ''
-    })
+    });
   }
 
   onChangeHandler = (selectedValue: string) => {
-    const { onChange,rowItem } = this.props;
-    this.setState({ selectedValue: selectedValue });
+    const { onChange, rowItem } = this.props;
+    this.setState({ selectedValue });
     onChange && onChange(rowItem, +selectedValue);
   }
 
   onFocusHandle = () => {
-    const { onFocus,rowItem } = this.props;
+    const { onFocus, rowItem } = this.props;
     onFocus && onFocus(rowItem);
   }
 
   render () {
-    const {bannerTitle, bannerType, bannerIcon, disabled, dropdownItems, loading, rowItem, selectPlaceholder, selectedValue} = this.props;
+    const { bannerTitle, bannerType, bannerIcon, disabled, dropdownItems, loading, rowItem, selectPlaceholder, selectedValue } = this.props;
     return(
       <Banner key={rowItem.id} componentTitle={bannerTitle} status={bannerType} icon={bannerIcon as keyof typeof IconList}>
         <Select
@@ -60,7 +60,7 @@ class BannerRow extends React.Component<Props, State> {
           value={this.state.selectedValue ? this.state.selectedValue : selectedValue}
         />
       </Banner>
-    )
+    );
   }
 
 }
