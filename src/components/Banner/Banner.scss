@@ -8,7 +8,7 @@
 @import 'shared/buttons';
 @import 'shared/links';
 
-$accent-height: 3px;
+$accent-height: 4px;
 $dismiss-size: rem(16px);
 $ribbon-flex-basis: rem(32px);
 $secondary-action-vertical-padding: 0.5 * (control-height() - line-height(body));
@@ -17,13 +17,13 @@ $secondary-action-horizontal-padding: 1.5 * spacing(tight);
 @mixin banner-colors($highlight, $background) {
   background-color: $background;
   box-shadow:
-    inset 0 $accent-height 0 0 $highlight,
+    inset $accent-height 0 0 0 $highlight,
     inset shadow(transparent),
     shadow();
 
   &:focus {
     box-shadow:
-      inset 0 $accent-height 0 0 $highlight,
+      inset $accent-height 0 0 0 $highlight,
       inset 0 0 0 $accent-height $highlight,
       shadow();
   }
@@ -148,3 +148,21 @@ $secondary-action-horizontal-padding: 1.5 * spacing(tight);
   right: 0;
   padding: (spacing(tight) * 1.5);
 }
+
+.bannerStyle {
+  justify-content: flex-start;
+  width: 100%
+}
+
+.bannerHading {
+  white-space: normal;
+}
+
+.bannerContent {
+  width: 100%;
+  padding: 0px 5px;
+}
+.bannerBox {
+  display: flex;
+}
+
