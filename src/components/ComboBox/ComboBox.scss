@@ -40,5 +40,5 @@ $stacking-order: ( input: 20, backdrop: 10, spinner: 30, icons: 30);
     position: absolute;
     right: 14px;
     top: 14px;
-    z-index: z-index(icons, $stacking-order); // this is added
+    z-index: z-index(icons, $stacking-order);
 }
