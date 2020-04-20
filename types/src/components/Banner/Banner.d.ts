@@ -13,6 +13,7 @@ export interface Props {
     children?: React.ReactNode;
     theme?: any;
     onDismiss?(): void;
+    secondaryText?: string[];
 }
 declare const _default: ThemedComponentClass<Props, {}>;
 export default _default;
