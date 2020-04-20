@@ -2,7 +2,7 @@ import * as React from 'react';
 import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 import { PICKER } from '../ThemeIdentifiers';
 import TextField from '../TextField';
-import Icon from '../Icon';
+import Icon, { IconList } from '../Icon';
 import { DisplayMoreInfo } from './PickerEnum';
 import * as Autosuggest from 'react-autosuggest';
 import * as baseTheme from './Picker.scss';
@@ -100,6 +100,7 @@ export interface Props {
   onSelect?(item: any): void;
   onRemove?(item: any): void;
   onMoreInfo?(): void;
+  suffix?: string;
 }
 
 class Picker extends React.Component<Props, State> {
@@ -302,6 +303,13 @@ class Picker extends React.Component<Props, State> {
     } else {
       className = theme.pickerResultShow;
     }
+
+    let suffixIcon: React.ReactNode = null;
+    if (this.props.suffix) {
+      const { suffix } = this.props;
+      suffixIcon = <Icon componentColor="inkLightest" source= {suffix as keyof typeof IconList} />;
+    }
+
     return (
       <div>
         <div>
@@ -324,7 +332,7 @@ class Picker extends React.Component<Props, State> {
             onChange={searchBehavior}
             stateProps={stateProps}
             theme={theme}
-            suffix={<Icon componentColor="inkLightest" source="users" />}
+            suffix={suffixIcon}
             isFocused={isFocused}
             hasValue={hasValue}
           />
