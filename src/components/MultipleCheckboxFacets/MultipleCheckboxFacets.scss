@@ -1,0 +1,70 @@
+
+.facets-container {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.facets-title {
+    text-transform: uppercase;
+    font-size: 12px;
+    color: #8b9bad;
+    letter-spacing: 1px;
+    padding: 0;
+}
+
+.facet-search {
+    margin: 6px 0 0;
+}
+
+.facet-search-input {
+    width: 100%;
+    height: 100%;
+    padding: 6px;
+    margin: 0;
+    font-family: inherit;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+}
+
+.facet-checkbox-container {
+    color: #4f4f4f;
+    font-size: 13px;
+    margin: 8px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.facet-option-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.facet-option-input-wrapper {
+    flex: 1;
+}
+
+.facet-option-count {
+    color: #888888;
+    font-size: 0.85em;
+    margin-left: 24px;
+}
+
+.facet-view-more {
+    display: block;
+    cursor: pointer;
+    color: #3a56e4;
+    font-size: 13px;
+    font-family: inherit;
+    line-height: inherit;
+    text-align: left;
+    border: unset;
+    padding: unset;
+    background: unset;
+}
