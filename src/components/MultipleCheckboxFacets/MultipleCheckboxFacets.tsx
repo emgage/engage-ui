@@ -1,28 +1,43 @@
-import PropTypes from "prop-types";
 import * as React from 'react';
 
-// import { FacetValue } from "./types";
-
 function getNewClassName(newClassName: string) {
-    if (!Array.isArray(newClassName)) return newClassName;
-  
-    return newClassName.filter(name => name).join(" ");
-  }
-  
-  export function appendClassName(baseClassName: string, newClassName: string) {
-    if (!newClassName) return baseClassName || "";
-    if (!baseClassName) return getNewClassName(newClassName) || "";
-    return `${baseClassName} ${getNewClassName(newClassName)}`;
-  }
+  if (!Array.isArray(newClassName)) return newClassName;
+  return newClassName.filter(name => name).join(' ');
+}
+
+export function appendClassName(baseClassName: string, newClassName: string) {
+  if (!newClassName) return baseClassName || '';
+  if (!baseClassName) return getNewClassName(newClassName) || '';
+  return `${baseClassName} ${getNewClassName(newClassName)}`;
+}
 
 export function getFilterValueDisplay(filterValue: any) {
-    if (filterValue === undefined || filterValue === null) return "";
-    if (filterValue.hasOwnProperty("name")) return filterValue.name;
-    return String(filterValue);
-  }
+  if (filterValue === undefined || filterValue === null) return '';
+  if (filterValue.hasOwnProperty('name')) return filterValue.name;
+  return String(filterValue);
+}
 
-function MultiCheckboxFacet({
-  className,
+interface IOptions {
+  name: string;
+  value: string | number;
+  selected: boolean;
+}
+
+interface IProps {
+  className?: string;
+  label?: string;
+  onMoreClick?(events: React.MouseEvent<HTMLButtonElement, MouseEvent>): void;
+  onRemove(value?: string): void;
+  onSelect(value?: string): void;
+  onSearch?(value?: string): void;
+  options: IOptions[];
+  searchPlaceholder?: string;
+  showMore?: boolean;
+  showSearch?: boolean;
+}
+
+function multiCheckboxFacet({
+  className = '',
   label,
   onMoreClick,
   onRemove,
@@ -32,9 +47,9 @@ function MultiCheckboxFacet({
   showSearch,
   onSearch,
   searchPlaceholder
-}: any) {
+}: IProps) {
   return (
-    <fieldset className={appendClassName("facets-container", className)}>
+    <fieldset className={appendClassName('facets-container', className)}>
       <legend className="facets-title">{label}</legend>
 
       {showSearch && (
@@ -42,9 +57,11 @@ function MultiCheckboxFacet({
           <input
             className="facet-search-input"
             type="search"
-            placeholder={searchPlaceholder || "Search"}
-            onChange={e => {
-              onSearch(e.target.value);
+            placeholder={searchPlaceholder || 'Search'}
+            onChange={(e) => {
+              if (onSearch) {
+                onSearch(e.target.value);
+              }
             }}
           />
         </div>
@@ -78,7 +95,7 @@ function MultiCheckboxFacet({
                 </span>
               </div>
               <span className="facet-option-count">
-                {option.count && option.count.toLocaleString("en")}
+                {option.count && option.count.toLocaleString('en')}
               </span>
             </label>
           );
@@ -89,7 +106,7 @@ function MultiCheckboxFacet({
         <button
           type="button"
           className="facet-view-more"
-          onClick={onMoreClick}
+          onClick={onMoreClick ? onMoreClick : undefined}
           aria-label="Show more options"
         >
           + More
@@ -99,24 +116,4 @@ function MultiCheckboxFacet({
   );
 }
 
-MultiCheckboxFacet.propTypes = {
-  label: PropTypes.string.isRequired,
-  onMoreClick: PropTypes.func.isRequired,
-  onRemove: PropTypes.func.isRequired,
-  onSelect: PropTypes.func.isRequired,
-  onSearch: PropTypes.func.isRequired,
-  options: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    value: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number
-    ]).isRequired,
-    selected: PropTypes.bool.isRequired
-  })).isRequired,
-  showMore: PropTypes.bool.isRequired,
-  className: PropTypes.string,
-  showSearch: PropTypes.bool,
-  searchPlaceholder: PropTypes.string
-};
-
-export default MultiCheckboxFacet;
+export default multiCheckboxFacet;
