@@ -342,8 +342,8 @@ class Table extends React.Component<Props, State> {
       if (selectRow) totalColumn++;
     }
     return(
-      <React.Fragment>
-        <TableRow key={index} theme={theme}>
+      <React.Fragment key={index}>
+        <TableRow theme={theme}>
           { this.renderRowSelection(item, 'body') }
           {
             column.map((colItem: any, index: number) => {
