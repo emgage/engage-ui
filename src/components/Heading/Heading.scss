@@ -1,5 +1,33 @@
+@import 'foundation/colors';
+
+$color-custom-gray-normal: theme-color(m-grey, 900);
+$color-custom-gray-darker: theme-color(m-grey, 700);
+$color-custom-gray-darkest: theme-color(m-grey, 800);
+$color-custom-gray-mid: theme-color(m-grey, 500);
+$color-custom-gray-reverse: #fff;
+$color-custom-gray-danger: theme-color(m-red, 800);
+
 .heading {
   @include text-style-heading;
   margin: 0;
   user-select: none;
+}
+.colorText {
+  color:$color-custom-gray-normal;
+}
+.colorDarker {
+  color:$color-custom-gray-darker;
+}
+.colorDarkest {
+  color:$color-custom-gray-darkest;
+}
+.colorMid {
+  color:$color-custom-gray-mid;
+}
+.colorReverse {
+  color:$color-custom-gray-reverse;
+  background:#212b36;
+}
+.colorDanger {
+  color:$color-custom-gray-danger;
 }

@@ -1,3 +1,8 @@
+
+@mixin font-size {
+  font-size: rem(12px);
+  font-weight: 700;
+}
 .accordionItem {
   transition: height 0.3s ease-in-out 0s;
   box-shadow: 0 1px 3px rgba(0,0,0,.12), 0 1px 2px rgba(0,0,0,.24);
@@ -9,8 +14,9 @@
 
 .accordionItem > .header {
   width: 100%;
-  font-size: 12px!important;
-  font-weight: 700!important;
+  @include font-size;
+  //font-size: 12px!important;
+  //font-weight: 700!important;
   padding: 10px 12px;
   position: relative;
   &:after {
@@ -28,8 +34,9 @@
 
 .accordionItem > .headerCollapsed {
   width: 100%;
-  font-size: 12px!important;
-  font-weight: 700!important;
+  @include font-size;
+  //font-size: 12px!important;
+  //font-weight: 700!important;
   padding: 10px 12px;
   position: relative;
   &:after {

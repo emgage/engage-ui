@@ -8,6 +8,8 @@ import * as baseTheme from './DisplayText.scss';
 
 export type Size = 'small' | 'medium' | 'large' | 'extraLarge';
 
+export type Color = 'text' | 'darker' | 'darkest' | 'mid' | 'reverse' | 'danger';
+
 export interface Props {
   // Name of element to use for text from H1 to H6 and p
   element?: HeadingTagName;
@@ -15,20 +17,29 @@ export interface Props {
   children?: React.ReactNode;
   // Size of the text small, medium, large or extralarge
   componentSize?: Size;
+  // Color of component
+  componentColor?: Color;
   // Theme to be injected via css-themr
   theme?: any;
-}
+} 
 
 const displayText = ({
   children,
   theme,
   componentSize = 'medium',
+  componentColor = 'text',
   element: ELEMENT = 'p',
 }: Props) => {
-  const className = classNames(
+  
+ const className = classNames(
   theme.displayText,
-  componentSize && theme[variationName('size', componentSize)]
+  componentSize && theme[variationName('size', componentSize)],
+  //theme.componentColor,
+  componentColor && theme[variationName('color', componentColor)],
+  
+    
 );
+  
   return <ELEMENT className={className}>{children}</ELEMENT>;
 };
 

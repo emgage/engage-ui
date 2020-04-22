@@ -43,6 +43,30 @@ $line-height-data: (
   display-small: (
     base: rem(24px),
     large-screen: rem(24px)
+  ),
+  heading-h1:(
+    base:rem(40px)
+  ),
+  heading-h2:(
+    base:rem(36px)
+  ),
+  heading-h3:(
+    base:rem(28px)
+  ),
+  heading-h4:(
+    base:rem(24px)
+  ),
+  heading-subheading:(
+    base:rem(24px)
+  ),
+  textbody-largetext:(
+    base:rem(24px)
+  ),
+textbody-medtext:(
+    base:rem(20px)
+  ),
+  textbody-smalltext:(
+    base:rem(16px)
   )
 );
 
@@ -90,8 +114,47 @@ $font-size-data: (
   display-small: (
     base: rem(16px),
     large-screen: rem(20px)
+  ),
+  heading-h1:(
+    base:rem(40px)
+  ),
+  heading-h2:(
+    base:rem(32px)
+  ),
+  heading-h3:(
+    base:rem(24px)
+  ),
+  heading-h4:(
+    base:rem(16px)
+  ),
+  heading-subheading:(
+    base:rem(16px)
+  ),
+  textbody-largetext:(
+    base:rem(16px)
+  ),
+  textbody-medtext:(
+    base:rem(14px)
+  ),
+  textbody-smalltext:(
+    base:rem(13px)
+  )
+
+);
+ 
+
+$font-weight-data: (
+  bold:(
+    base:700
+  ),
+  semi-bold:(
+    base:600
+  ),
+  regular:(
+    base:400
   )
 );
+
 
 /// Returns the font stack for a given family.
 ///
@@ -113,6 +176,7 @@ $font-size-data: (
 /// @param {String} $style - The font style.
 /// @param {String} $variant [base] - The variant on the font-size.
 /// @return {Number} The line-height for the text-style.
+
 
 @function line-height($style, $variant: base) {
   $fetched-line-height: map-get(map-get($line-height-data, $style), $variant);
@@ -137,5 +201,22 @@ $font-size-data: (
     @return $fetched-font-size;
   } @else {
     @error 'Line height `#{$style} - #{$variant}` not found. Available font sizes: #{available-names($line-height-data)}';
+  }
+}
+
+
+/// Returns the font size for a given text style and variant.
+///
+/// @param {String} $style - The font style.
+/// @param {String} $variant [base] - The variant on the font-size.
+/// @return {Number} The font-size for the text-style.
+
+@function font-weight($style, $variant: base) {
+  $fetched-font-weight: map-get(map-get($font-weight-data, $style), $variant);
+
+  @if type-of($fetched-font-weight) != null {
+    @return $fetched-font-weight;
+  } @else {
+    @error 'Line height `#{$style} - #{$variant}` not found. Available font sizes: #{available-names($font-weight-data)}';
   }
 }

@@ -162,3 +162,94 @@ $typography-condensed: em(640px);
   font-weight: 400;
   color: color(ink, $for-background: $for-background);
 }
+
+/*--------------------------------------------------------------------------*/
+@mixin text-style-bold {
+font-weight: font-weight(bold);
+}
+@mixin text-style-semi-bold {
+font-weight: font-weight(semi-bold);
+}
+@mixin text-style-regular {
+font-weight: font-weight(regular);
+}
+
+@mixin text-style-heading-h1 {
+  font-size: font-size(heading-h1);
+  line-height: line-height(heading-h1);
+
+  @include when-typography-not-condensed {
+    font-size: font-size(heading-h1, heading-h1);
+    line-height: line-height(heading-h1, heading-h1);
+  }
+}
+
+@mixin text-style-heading-h2 {
+  font-size: font-size(heading-h2);
+  line-height: line-height(heading-h2);
+
+  @include when-typography-not-condensed {
+    font-size: font-size(heading-h2, heading-h2);
+    line-height: line-height(heading-h2, heading-h2);
+  }
+}
+
+@mixin text-style-heading-h3 {
+  font-size: font-size(heading-h3);
+  line-height: line-height(heading-h3);
+
+  @include when-typography-not-condensed {
+    font-size: font-size(heading-h3, heading-h3);
+    line-height: line-height(heading-h3, heading-h3);
+  }
+}
+@mixin text-style-heading-h4 {
+  font-size: font-size(heading-h4);
+  line-height: line-height(heading-h4);
+
+  @include when-typography-not-condensed {
+    font-size: font-size(heading-h4, heading-h4);
+    line-height: line-height(heading-h4, heading-h4);
+  }
+}
+
+@mixin text-style-heading-subheading {
+  font-size: font-size(heading-subheading);
+  line-height: line-height(heading-subheading);
+
+  @include when-typography-not-condensed {
+    font-size: font-size(heading-subheading);
+    line-height: line-height(heading-subheading);
+  }
+}
+
+
+@mixin text-style-textbody-largetext {
+  font-size: font-size(textbody-largetext);
+  line-height: line-height(textbody-largetext);
+
+  @include when-typography-not-condensed {
+    font-size: font-size(textbody-largetext);
+    line-height: line-height(textbody-largetext);
+  }
+}
+
+@mixin text-style-textbody-medtext {
+  font-size: font-size(textbody-medtext);
+  line-height: line-height(textbody-medtext);
+
+  @include when-typography-not-condensed {
+    font-size: font-size(textbody-medtext);
+    line-height: line-height(textbody-medtext);
+  }
+}
+
+@mixin text-style-textbody-smalltext {
+  font-size: font-size(textbody-smalltext);
+  line-height: line-height(textbody-smalltext);
+
+  @include when-typography-not-condensed {
+    font-size: font-size(textbody-smalltext);
+    line-height: line-height(textbody-smalltext);
+  }
+}

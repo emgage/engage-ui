@@ -7,6 +7,8 @@
 @import 'shared/controls';
 @import 'shared/buttons';
 @import 'shared/links';
+//@import '../../../themes/Delicious/Button.scss';
+
 
 $accent-height: 3px;
 $dismiss-size: rem(16px);
@@ -147,4 +149,40 @@ $secondary-action-horizontal-padding: 1.5 * spacing(tight);
   top: $accent-height;
   right: 0;
   padding: (spacing(tight) * 1.5);
+}
+
+
+$default-button-text-color: theme-color(m-grey, 900);
+h1 {
+  @include text-style-heading-h1;
+  @include text-style-semi-bold;
+  color: $default-button-text-color;
+}
+$primary-button-default-color: theme-color(m-blue, 700);
+h2 {
+  @include text-style-heading-h2;
+  @include text-style-bold;
+  color: $primary-button-default-color;
+}
+$destructive-button-text-color: theme-color(m-red, A700);
+h3 {
+  @include text-style-heading-h3;
+  @include text-style-semi-bold;
+  color: $destructive-button-text-color;
+}
+$disabled-button-text-color: theme-color(m-grey, 500);
+h4 {
+  @include text-style-heading-h4;
+  @include text-style-regular;
+  color: $disabled-button-text-color;
+}
+
+h5 {
+  @include text-style-textbody-largetext;
+}
+h6 {
+  @include text-style-textbody-medtext;
+}
+i {
+  @include text-style-textbody-smalltext;
 }

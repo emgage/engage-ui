@@ -12,4 +12,5 @@ export const DeliciousThemeContext = {
   PSpinner: require('./Spinner.scss'),
   PTextField: require('./TextField.scss'),
   PPicker: require('./Picker.scss'),
+  PPagination: require('./Pagination.scss'),
 };

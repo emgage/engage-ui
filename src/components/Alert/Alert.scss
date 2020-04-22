@@ -1,15 +1,27 @@
 @import 'foundation/spacing';
 @import 'shared/typography';
+@import 'foundation/colors';
+
+$color-custom-gray: color(custom, custom_gray);
+$color-custom-gray_bg: color(custom, custom_gray_bg);
+$alert_primary_bg:color(custom, primaryBg);
+$alert_success_bg:color(custom, sucdcessBg);
+$alert_warning_bg:color(custom, warningBg);
+$alert_danger_bg:color(custom, dangerBg);
+$alert_primary_color:color(custom, alertPrimary);
+$alert_success_color:color(custom, alertSuccess);
+$alert_warning_color:color(custom, alertWarning);
+$alert_danger_color:color(custom, alertDanger);
 
 .alert {
     position:relative;
     margin-bottom:20px;
     padding:15px 30px 15px 15px;
-    background:#f8f8f8;
-    color:#666
+    background:$color-custom-gray_bg;
+    color:$color-custom-gray
 }
 *+alert {
-    margin-top:20px
+    margin-top:20px 
 }
 .alert>:last-child {
     margin-bottom:0
@@ -44,20 +56,20 @@
     opacity:.8
 }
 .alertPrimary {
-    background:#d8eafc;
-    color:#1e87f0
+    background:$alert_primary_bg;
+    color:$alert_primary_color
 }
 .alertSuccess {
-    background:#edfbf6;
-    color:#32d296
+    background:$alert_success_bg;
+    color:$alert_success_color
 }
 .alertWarning {
-    background:#fff6ee;
-    color:#faa05a
+    background:$alert_warning_bg;
+    color:$alert_warning_color
 }
 .alertDanger {
-    background:#fef4f6;
-    color:#f0506e
+    background:$alert_danger_bg;
+    color:$alert_danger_color
 }
 .alert h1,.alert h2,.alert h3,.alert h4,.alert h5,.alert h6 {
     color:inherit

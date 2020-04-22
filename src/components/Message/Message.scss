@@ -1,3 +1,8 @@
+@mixin fonts {
+    font-size: .8125em;
+    line-height: 1.2em;
+}
+
 .messageBlock {
     margin: 0 0 13px;
 }
@@ -9,8 +14,7 @@
     padding: 5px 8px;
     background: color(red, dark);
     color: color(white);
-    font-size: .8125em;
-    line-height: 1.2em;
+    @include fonts;
     text-align: center;
 }
 .messagePrompt:after {
