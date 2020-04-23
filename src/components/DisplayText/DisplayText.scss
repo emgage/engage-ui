@@ -1,11 +1,12 @@
 @import 'foundation/colors';
+@import '../../styles/foundation/colors.scss';
 
-$color-custom-gray-normal: theme-color(m-grey, 900);
-$color-custom-gray-darker: theme-color(m-grey, 700);
-$color-custom-gray-darkest: theme-color(m-grey, 800);
-$color-custom-gray-mid: theme-color(m-grey, 500);
-$color-custom-gray-reverse: #fff;
-$color-custom-gray-danger: theme-color(m-red, 800);
+$color-text: color(grey, base);
+$color-darker: color(grey, darker);
+$color-darkest: color(grey, darkest);
+$color-mid: color(grey, light);
+$color-reverse:#fff;
+$color-danger: color(red, dark);
 .displayText {
   margin: 0;
 }
@@ -26,21 +27,21 @@ $color-custom-gray-danger: theme-color(m-red, 800);
   @include text-style-display-x-large;
 }
 .colorText {
-  color:$color-custom-gray-normal;
+  color:$color-text;
 }
 .colorDarker {
-  color:$color-custom-gray-darker;
+  color:$color-darker;
 }
 .colorDarkest {
-  color:$color-custom-gray-darkest;
+  color:$color-darkest;
 }
 .colorMid {
-  color:$color-custom-gray-mid;
+  color:$color-mid;
 }
 .colorReverse {
-  color:$color-custom-gray-reverse;
+  color:$color-reverse;
   background:#212b36;
 }
 .colorDanger {
-  color:$color-custom-gray-danger;
+  color:$color-danger;
 }

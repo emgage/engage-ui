@@ -1,7 +1,7 @@
 
 @mixin font-size {
-  font-size: rem(12px);
-  font-weight: 700;
+  font-size: font-size(caption);
+  font-weight: font-weight(bold);
 }
 .accordionItem {
   transition: height 0.3s ease-in-out 0s;
@@ -12,59 +12,54 @@
   width: calc(100% - 24px);
 }
 
-.accordionItem > .header {
-  width: 100%;
-  @include font-size;
-  //font-size: 12px!important;
-  //font-weight: 700!important;
-  padding: 10px 12px;
-  position: relative;
-  &:after {
-    content: '\f107';
-    font-family: FontAwesome;
-    font-size: 15px;
-    position: absolute;
-    right: 13px;
-    top: 50%;
-    opacity: .8;
-    transition: all .2s ease-in-out;
-    transform: translateY(-50%) rotate(180deg);
+.accordionItem { 
+  > .header {
+    width: 100%;
+    @include font-size;
+    padding: 10px 12px;
+    position: relative;
+    &:after {
+      content: '\f107';
+      font-family: FontAwesome;
+      font-size: 15px;
+      position: absolute;
+      right: 13px;
+      top: 50%;
+      opacity: .8;
+      transition: all .2s ease-in-out;
+      transform: translateY(-50%) rotate(180deg);
+    }
   }
-}
-
-.accordionItem > .headerCollapsed {
-  width: 100%;
-  @include font-size;
-  //font-size: 12px!important;
-  //font-weight: 700!important;
-  padding: 10px 12px;
-  position: relative;
-  &:after {
-    content: '\f107';
-    font-family: FontAwesome;
-    font-size: 15px;
-    position: absolute;
-    right: 13px;
-    top: 50%;
-    opacity: .8;
-    transition: all .2s ease-in-out;
-    transform: translateY(-50%) rotate(0);
+  > .headerCollapsed {
+    width: 100%;
+    @include font-size;
+    padding: 10px 12px;
+    position: relative;
+    &:after {
+      content: '\f107';
+      font-family: FontAwesome;
+      font-size: 15px;
+      position: absolute;
+      right: 13px;
+      top: 50%;
+      opacity: .8;
+      transition: all .2s ease-in-out;
+      transform: translateY(-50%) rotate(0);
+    }
   }
-}
-
-.accordionItem > .body {
-  opacity: 1;
-  overflow-y: hidden;
-  overflow-x: auto;
-  transition: all 0.2s;
-}
-
-.accordionItem> .bodyCollapsed {
-  height: 0;
-  opacity: 0;
-  transition: all 0.2s;
+  > .body {
+    opacity: 1;
+    overflow-y: hidden;
+    overflow-x: auto;
+    transition: all 0.2s;
+  }
+  > .bodyCollapsed {
+    height: 0;
+    opacity: 0;
+    transition: all 0.2s;
+  }
 }
 
 .accordionItem label {
-  margin-bottom: 0;
+  margin-bottom: 0
 }

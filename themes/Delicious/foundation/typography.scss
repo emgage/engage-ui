@@ -59,13 +59,13 @@ $line-height-data: (
   heading-subheading:(
     base:rem(24px)
   ),
-  textbody-largetext:(
+  text-body-large:(
     base:rem(24px)
   ),
-textbody-medtext:(
+text-body-mid:(
     base:rem(20px)
   ),
-  textbody-smalltext:(
+  text-body-small:(
     base:rem(16px)
   )
 );
@@ -130,13 +130,13 @@ $font-size-data: (
   heading-subheading:(
     base:rem(16px)
   ),
-  textbody-largetext:(
+  text-body-large:(
     base:rem(16px)
   ),
-  textbody-medtext:(
+  text-body-mid:(
     base:rem(14px)
   ),
-  textbody-smalltext:(
+  text-body-small:(
     base:rem(13px)
   )
 
@@ -150,7 +150,7 @@ $font-weight-data: (
   semi-bold:(
     base:600
   ),
-  regular:(
+  normal:(
     base:400
   )
 );

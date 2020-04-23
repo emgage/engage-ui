@@ -170,8 +170,8 @@ font-weight: font-weight(bold);
 @mixin text-style-semi-bold {
 font-weight: font-weight(semi-bold);
 }
-@mixin text-style-regular {
-font-weight: font-weight(regular);
+@mixin text-style-normal {
+font-weight: font-weight(normal);
 }
 
 @mixin text-style-heading-h1 {
@@ -224,32 +224,32 @@ font-weight: font-weight(regular);
 }
 
 
-@mixin text-style-textbody-largetext {
-  font-size: font-size(textbody-largetext);
-  line-height: line-height(textbody-largetext);
+@mixin text-style-text-body-large {
+  font-size: font-size(text-body-large);
+  line-height: line-height(text-body-large);
 
   @include when-typography-not-condensed {
-    font-size: font-size(textbody-largetext);
-    line-height: line-height(textbody-largetext);
+    font-size: font-size(text-body-large);
+    line-height: line-height(text-body-large);
   }
 }
 
-@mixin text-style-textbody-medtext {
-  font-size: font-size(textbody-medtext);
-  line-height: line-height(textbody-medtext);
+@mixin text-style-text-body-mid {
+  font-size: font-size(text-body-mid);
+  line-height: line-height(text-body-mid);
 
   @include when-typography-not-condensed {
-    font-size: font-size(textbody-medtext);
-    line-height: line-height(textbody-medtext);
+    font-size: font-size(text-body-mid);
+    line-height: line-height(text-body-mid);
   }
 }
 
-@mixin text-style-textbody-smalltext {
-  font-size: font-size(textbody-smalltext);
-  line-height: line-height(textbody-smalltext);
+@mixin text-style-text-body-small {
+  font-size: font-size(text-body-small);
+  line-height: line-height(text-body-small);
 
   @include when-typography-not-condensed {
-    font-size: font-size(textbody-smalltext);
-    line-height: line-height(textbody-smalltext);
+    font-size: font-size(text-body-small);
+    line-height: line-height(text-body-small);
   }
 }

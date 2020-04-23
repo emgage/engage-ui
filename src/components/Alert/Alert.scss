@@ -2,23 +2,27 @@
 @import 'shared/typography';
 @import 'foundation/colors';
 
-$color-custom-gray: color(custom, custom_gray);
-$color-custom-gray_bg: color(custom, custom_gray_bg);
-$alert_primary_bg:color(custom, primaryBg);
-$alert_success_bg:color(custom, sucdcessBg);
-$alert_warning_bg:color(custom, warningBg);
-$alert_danger_bg:color(custom, dangerBg);
-$alert_primary_color:color(custom, alertPrimary);
-$alert_success_color:color(custom, alertSuccess);
-$alert_warning_color:color(custom, alertWarning);
-$alert_danger_color:color(custom, alertDanger);
+$color-base-color: color(black);
+$color-base_bg: color(sky, lighter);
+
+$alert_primary_bg:color(blue, lighter);
+$alert_primary_color:color(blue, base);
+
+$alert_success_bg:color(green, lighter);
+$alert_success_color:color(green, darker);
+
+$alert_warning_bg:color(orange, lighter);
+$alert_warning_color:color(orange, dark);
+
+$alert_danger_bg:color(red, lighter);
+$alert_danger_color:color(red, dark);
 
 .alert {
     position:relative;
     margin-bottom:20px;
     padding:15px 30px 15px 15px;
-    background:$color-custom-gray_bg;
-    color:$color-custom-gray
+    background:$color-base_bg;
+    color:$color-base-color
 }
 *+alert {
     margin-top:20px 

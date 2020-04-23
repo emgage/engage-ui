@@ -95,19 +95,12 @@ $color-palette-data: (
     darker: #000639,
     text: #3e4155
   ),
-
-  custom:(
-    custom_gray_bg:#f8f8f8,
-    custom_gray:#666,
-    alertPrimary:#1e87f0,
-    alertSuccess:#32d296,
-    alertWarning:#faa05a,
-    alertDanger:#f0506e,
-    primaryBg:#d8eafc,
-    sucdcessBg:#edfbf6,
-    warningBg:#fff6ee,
-    dangerBg:#fef4f6,
-    
+  grey:(
+    base: #212121,
+    darkest:#424242,
+    darker:#616161,
+    light:#9e9e9e,
+    reverse:#fff
   )
 );
 

@@ -152,37 +152,28 @@ $secondary-action-horizontal-padding: 1.5 * spacing(tight);
 }
 
 
-$default-button-text-color: theme-color(m-grey, 900);
 h1 {
   @include text-style-heading-h1;
   @include text-style-semi-bold;
-  color: $default-button-text-color;
 }
-$primary-button-default-color: theme-color(m-blue, 700);
 h2 {
   @include text-style-heading-h2;
   @include text-style-bold;
-  color: $primary-button-default-color;
 }
-$destructive-button-text-color: theme-color(m-red, A700);
 h3 {
   @include text-style-heading-h3;
   @include text-style-semi-bold;
-  color: $destructive-button-text-color;
 }
-$disabled-button-text-color: theme-color(m-grey, 500);
 h4 {
   @include text-style-heading-h4;
-  @include text-style-regular;
-  color: $disabled-button-text-color;
+  @include text-style-normal;
 }
-
 h5 {
-  @include text-style-textbody-largetext;
+  @include text-style-text-body-large;
 }
 h6 {
-  @include text-style-textbody-medtext;
+  @include text-style-text-body-mid;
 }
 i {
-  @include text-style-textbody-smalltext;
+  @include text-style-text-body-small;
 }

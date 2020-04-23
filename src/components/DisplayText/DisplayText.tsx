@@ -27,14 +27,13 @@ const displayText = ({
   children,
   theme,
   componentSize = 'medium',
-  componentColor = 'text',
+  componentColor = 'darkest',
   element: ELEMENT = 'p',
 }: Props) => {
   
  const className = classNames(
   theme.displayText,
   componentSize && theme[variationName('size', componentSize)],
-  //theme.componentColor,
   componentColor && theme[variationName('color', componentColor)],
   
     

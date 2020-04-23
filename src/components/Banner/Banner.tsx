@@ -93,16 +93,7 @@ const banner = ({
     headingID = `${id}Heading`;
     headingMarkup = (
       <div className={theme.heading} id={headingID}>
-        <Heading element="h6" theme={theme}>
-          {/*<h1>this is h1</h1>
-          <h2>this is h2</h2>
-          <h3>this is h3</h3>
-          <h4>this is h4</h4>
-          <h5>Large text</h5>
-          <h6>Med text</h6>
-          <i>Small text</i><br></br>*/}
-          {componentTitle}
-        </Heading>
+        <Heading element="h6" theme={theme}>{componentTitle}</Heading>
       </div>
     );
   }
