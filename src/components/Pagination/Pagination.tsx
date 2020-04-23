@@ -1,13 +1,16 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 import { classNames } from '@shopify/react-utilities/styles';
+
+import Button from '../Button';
 import Pager from './Pager';
 import Options from './Options';
 import { default as KEYCODE }  from './KeyCode';
 import { default as LOCALE } from './locale/en_US';
 import { polyfill } from 'react-lifecycles-compat';
+import { PAGINATION } from '../ThemeIdentifiers';
+
 import * as baseTheme from './Pagination.scss';
-import Button from '../Button';
 
 interface IProps {
   disabled?: boolean;
@@ -736,4 +739,4 @@ class Pagination extends React.Component<IProps, IState> {
 
 polyfill(Pagination);
 
-export default themr('ThPagination', baseTheme)(Pagination) as ThemedComponentClass<IProps, IState>;
+export default themr(PAGINATION, baseTheme)(Pagination) as ThemedComponentClass<IProps, IState>;

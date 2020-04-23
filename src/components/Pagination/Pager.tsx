@@ -1,8 +1,11 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 import { classNames } from '@shopify/react-utilities/styles';
-import * as baseTheme from './Pagination.scss';
+
 import Button from '../Button';
+import { PAGER } from '../ThemeIdentifiers';
+
+import * as baseTheme from './Pagination.scss';
 
 interface IProps {
   page: any;
@@ -55,4 +58,4 @@ class Pager extends React.Component<IProps, {}> {
   }
 }
 
-export default themr('ThPaginationPager', baseTheme)(Pager) as ThemedComponentClass<IProps, {}>;
+export default themr(PAGER, baseTheme)(Pager) as ThemedComponentClass<IProps, {}>;
