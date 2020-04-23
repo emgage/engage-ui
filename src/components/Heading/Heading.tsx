@@ -24,7 +24,7 @@ const heading = ({
 }: Props) => {
   const headingClass = classNames(
     componentClass,
-    theme.heading,
+    theme.heading
   );
 
   return <ELEMENT className={headingClass} style={componentStyle}>{children}</ELEMENT>;

@@ -21,7 +21,7 @@ export interface Props {
   componentColor?: Color;
   // Theme to be injected via css-themr
   theme?: any;
-} 
+}
 
 const displayText = ({
   children,
@@ -30,15 +30,14 @@ const displayText = ({
   componentColor = 'darkest',
   element: ELEMENT = 'p',
 }: Props) => {
-  
- const className = classNames(
+
+  const className = classNames(
   theme.displayText,
   componentSize && theme[variationName('size', componentSize)],
-  componentColor && theme[variationName('color', componentColor)],
-  
-    
+  componentColor && theme[variationName('color', componentColor)]
+
 );
-  
+
   return <ELEMENT className={className}>{children}</ELEMENT>;
 };
 
