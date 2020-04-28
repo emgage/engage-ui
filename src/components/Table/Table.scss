@@ -1,7 +1,9 @@
 @import '../../styles/foundation/colors.scss';
-$table-head-vertical-spacing: spacing(tight) * 1.5;
+
 $table-vertical-spacing: spacing(base);
 $table-horizontal-spacing: spacing(tight);
+$table-vertical-head-spacing: spacing(tighter);
+
 $color-grey-dark: color(grey, darker);
 $color-grey-base: color(grey, base);
 
@@ -23,7 +25,7 @@ $border-bottom:#d0d0d0;
     border: none;
     border-radius: 2px;
     display: table-cell;
-    padding: $table-vertical-spacing $table-horizontal-spacing;
+    padding: $table-vertical-head-spacing $table-horizontal-spacing;
     vertical-align: middle;
     white-space: nowrap; 
     text-overflow: ellipsis;
@@ -48,6 +50,7 @@ $border-bottom:#d0d0d0;
     @include text-style-text-body-small;
     text-transform:uppercase;
     color: $color-grey-dark;
+    @include text-style-semi-bold;
   }
   td {
     @include text-style-text-body-mid;
