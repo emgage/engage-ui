@@ -1,3 +1,13 @@
+@import '../../styles/foundation/colors.scss';
+$table-head-vertical-spacing: spacing(tight) * 1.5;
+$table-vertical-spacing: spacing(base);
+$table-horizontal-spacing: spacing(tight);
+$color-grey-dark: color(grey, darker);
+$color-grey-base: color(grey, base);
+
+$border-left: #eceeef;
+$border-bottom:#d0d0d0;
+
 .table {
   border: none;
   border-collapse: collapse;
@@ -13,14 +23,15 @@
     border: none;
     border-radius: 2px;
     display: table-cell;
-    padding: 0;
+    padding: $table-vertical-spacing $table-horizontal-spacing;
     vertical-align: middle;
     white-space: nowrap; 
     text-overflow: ellipsis;
     text-align: left;
 
     .tableDataWrap {
-      display: inline-block;
+      //display: inline-block;
+      display: block;
       width: inherit;
       white-space: nowrap;
       text-overflow: ellipsis;
@@ -34,10 +45,17 @@
 
   th {
     background-color: #f4f6f8;
+    @include text-style-text-body-small;
+    text-transform:uppercase;
+    color: $color-grey-dark;
+  }
+  td {
+    @include text-style-text-body-mid;
+    color: $color-grey-base;
   }
 
   thead {
-    border-bottom: 1px solid #d0d0d0;
+    border-bottom: 1px solid $border-bottom;
   }
 
   tr {
@@ -48,7 +66,7 @@
 
   &.nestedTable {
     margin-left: 29px;
-    border-left: 3px solid #eceeef;
+    border-left: 3px solid $border-left;
 
     tr:last-child {
       border-bottom: none;
@@ -64,12 +82,12 @@
 
 .parentChildTable {
   margin-left: 29px;
-  border-left: 3px solid #eceeef;
+  border-left: 3px solid $border-left;
 }
 
 .bordered {
   > thead > tr, > tbody > tr {
-    border-bottom: 1px solid #d0d0d0;
+    border-bottom: 1px solid $border-bottom;
   }
 }
 
@@ -134,7 +152,7 @@
     padding: .375rem .75rem;
     font-size: 1rem;
     line-height: 1.5;
-    color: #495057;
+    color: $color-grey-dark;
     background-color: #fff;
     background-clip: padding-box;
     border: 1px solid #ced4da;
@@ -172,6 +190,8 @@
   border: none !important;
   min-height: auto;
   padding: 0;
+  box-shadow: none!important;
+  border-radius: 0px!important;
 }
 
 @media screen and (max-width: 40em) {

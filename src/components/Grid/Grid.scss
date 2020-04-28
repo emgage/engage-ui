@@ -20,6 +20,10 @@ $border-color: #dbdbdb;
     min-width: 100px;
     margin-right: 1rem;
     border: 1px solid $border-color;
+    width:170px;
+    border-radius:4px;
+    background:#fff;
+    margin-top: 1rem;
 
     .gridImage, .gridTitle, .gridDescription {
       display: flex;
