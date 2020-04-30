@@ -138,7 +138,7 @@ interface State {
   treeAnchor?: any;
   ChoiceListSelected: any[];
   paginationCurrent: number;
-  multipleCheckboxFacetsOptions: anu[];
+  multipleCheckboxFacetsOptions: any[];
 }
 
 class App extends React.Component<{}, State> {
