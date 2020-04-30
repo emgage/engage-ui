@@ -224,32 +224,4 @@ font-weight: font-weight(normal);
 }
 
 
-@mixin text-style-text-body-large {
-  font-size: font-size(text-body-large);
-  line-height: line-height(text-body-large);
 
-  @include when-typography-not-condensed {
-    font-size: font-size(text-body-large);
-    line-height: line-height(text-body-large);
-  }
-}
-
-@mixin text-style-text-body-mid {
-  font-size: font-size(text-body-mid);
-  line-height: line-height(text-body-mid);
-
-  @include when-typography-not-condensed {
-    font-size: font-size(text-body-mid);
-    line-height: line-height(text-body-mid);
-  }
-}
-
-@mixin text-style-text-body-small {
-  font-size: font-size(text-body-small);
-  line-height: line-height(text-body-small);
-
-  @include when-typography-not-condensed {
-    font-size: font-size(text-body-small);
-    line-height: line-height(text-body-small);
-  }
-}

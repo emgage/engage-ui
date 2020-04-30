@@ -45,3 +45,25 @@ $color-danger: color(red, dark);
 .colorDanger {
   color:$color-danger;
 }
+h1 {
+  @include text-style-heading-h1;
+  @include text-style-semi-bold;
+}
+h2 {
+  @include text-style-heading-h2;
+  @include text-style-bold;
+}
+h3 {
+  @include text-style-heading-h3;
+  @include text-style-semi-bold;
+}
+h4 {
+  @include text-style-heading-h4;
+  @include text-style-normal;
+}
+h5 {
+  @include text-style-body-large;
+}
+h6 {
+  @include text-style-body;
+}

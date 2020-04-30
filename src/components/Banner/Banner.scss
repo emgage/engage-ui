@@ -152,28 +152,3 @@ $secondary-action-horizontal-padding: 1.5 * spacing(tight);
 }
 
 
-h1 {
-  @include text-style-heading-h1;
-  @include text-style-semi-bold;
-}
-h2 {
-  @include text-style-heading-h2;
-  @include text-style-bold;
-}
-h3 {
-  @include text-style-heading-h3;
-  @include text-style-semi-bold;
-}
-h4 {
-  @include text-style-heading-h4;
-  @include text-style-normal;
-}
-h5 {
-  @include text-style-text-body-large;
-}
-h6 {
-  @include text-style-text-body-mid;
-}
-i {
-  @include text-style-text-body-small;
-}

@@ -47,13 +47,13 @@ $border-bottom:#d0d0d0;
 
   th {
     background-color: #f4f6f8;
-    @include text-style-text-body-small;
+    @include text-style-body-small;
     text-transform:uppercase;
     color: $color-grey-dark;
     @include text-style-semi-bold;
   }
   td {
-    @include text-style-text-body-mid;
+    @include text-style-body;
     color: $color-grey-base;
   }
 
