@@ -31,6 +31,7 @@ import {
   Link,
   List,
   Item,
+  MultipleCheckboxFacets,
   DescriptionList,
   Term,
   Description,
@@ -137,6 +138,7 @@ interface State {
   treeAnchor?: any;
   ChoiceListSelected: any[];
   paginationCurrent: number;
+  multipleCheckboxFacetsOptions: any[];
 }
 
 class App extends React.Component<{}, State> {
@@ -206,7 +208,18 @@ class App extends React.Component<{}, State> {
       showError: false,
       treeAnchor: {},
       ChoiceListSelected:[1],
-      paginationCurrent: 3
+      paginationCurrent: 3,
+      multipleCheckboxFacetsOptions: [{
+        "name": "New",
+        "value": "1",
+        "count": 10,
+        "selected": false 
+      }, {
+        "name": "Published",
+        "value": "2",
+        "count": 10,
+        "selected": false 
+      }]
     };
 
     this.popovertoggle = this.popovertoggle.bind(this);
@@ -2568,8 +2581,36 @@ class App extends React.Component<{}, State> {
 
         <div>ComboBox</div>
         <div style={{ width: '50%' }}><ComboBox items={this.getComboBoxItems()} label="Select" currentValue="item1" /></div>
+
+        <div>Multiple checkbox Facets</div>
+        <MultipleCheckboxFacets
+          label="Facets"
+          onMoreClick={(event) => { console.log("Facets More clicked", event); }}
+          onRemove={(value) => { this.handleFacetsSelection(value); }}
+          onSelect={(value) => { this.handleFacetsSelection(value); }}
+          onSearch={(value) => { console.log("Facets More clicked", value); }}
+          options={this.state.multipleCheckboxFacetsOptions}
+          showMore={true}
+          showSearch={true}
+          searchPlaceholder="Search"
+        />
       </div>
     );
+  }
+
+  handleFacetsSelection = (value) => {
+    const { multipleCheckboxFacetsOptions } = this.state;
+    const configClone = [...multipleCheckboxFacetsOptions];
+    configClone.forEach((cc) => {
+        if (cc.value === value) {
+            cc.selected = ! cc.selected
+        }
+    });
+    // const selected = configClone.filter((cc) => cc.selected).map((cc) => cc.value);
+
+    this.setState({
+      multipleCheckboxFacetsOptions: configClone
+    });
   }
 
   // valueUpdater(field: any) {
