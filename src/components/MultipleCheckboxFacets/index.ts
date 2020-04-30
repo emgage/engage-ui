@@ -1,3 +1,2 @@
-export {
-    default as MultipleCheckboxFacets,
-} from './MultipleCheckboxFacets';
+import MultipleCheckboxFacets from './MultipleCheckboxFacets';
+export default MultipleCheckboxFacets;

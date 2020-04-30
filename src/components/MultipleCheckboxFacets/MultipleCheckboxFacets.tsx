@@ -1,4 +1,7 @@
 import * as React from 'react';
+import Button from '../Button';
+import Checkbox from '../Checkbox';
+import TextField from '../TextField';
 
 function getNewClassName(newClassName: string) {
   if (!Array.isArray(newClassName)) return newClassName;
@@ -20,6 +23,7 @@ export function getFilterValueDisplay(filterValue: any) {
 interface IOptions {
   name: string;
   value: string | number;
+  count?: number;
   selected: boolean;
 }
 
@@ -54,13 +58,11 @@ function multiCheckboxFacet({
 
       {showSearch && (
         <div className="facet-search">
-          <input
-            className="facet-search-input"
-            type="search"
+          <TextField
             placeholder={searchPlaceholder || 'Search'}
-            onChange={(e) => {
+            onChange={(value) => {
               if (onSearch) {
-                onSearch(e.target.value);
+                onSearch(value);
               }
             }}
           />
@@ -72,45 +74,33 @@ function multiCheckboxFacet({
         {options.map((option: any) => {
           const checked = option.selected;
           return (
-            <label
-              key={`${getFilterValueDisplay(option.value)}`}
-              htmlFor={`example_facet_${label}${getFilterValueDisplay(
-                option.value
-              )}`}
-              className="facet-option-label"
-            >
-              <div className="facet-option-input-wrapper">
-                <input
-                  id={`example_facet_${label}${getFilterValueDisplay(
+            <div style={{ display:'flex', flex: 1 }}>
+              <div style={{ flex: 0.3 }}>
+                <Checkbox
+                  checked={checked}
+                  componentId={`example_facet_${label}${getFilterValueDisplay(
                     option.value
                   )}`}
-                  type="checkbox"
-                  checked={checked}
+                  label={getFilterValueDisplay(option.name)}
                   onChange={() =>
                     checked ? onRemove(option.value) : onSelect(option.value)
                   }
                 />
-                <span>
-                  {getFilterValueDisplay(option.name)}
-                </span>
               </div>
-              <span className="facet-option-count">
+              <div style={{ display: 'flex', alignItems: 'center' }} className="facet-option-count">
                 {option.count && option.count.toLocaleString('en')}
-              </span>
-            </label>
+              </div>
+            </div>
           );
         })}
       </div>
-
       {showMore && (
-        <button
-          type="button"
-          className="facet-view-more"
-          onClick={onMoreClick ? onMoreClick : undefined}
-          aria-label="Show more options"
+        <Button
+        plain
+        onClick={onMoreClick}
         >
           + More
-        </button>
+        </Button>
       )}
     </fieldset>
   );

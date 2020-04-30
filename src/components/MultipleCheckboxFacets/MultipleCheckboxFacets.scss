@@ -17,26 +17,13 @@
 }
 
 .facet-search {
-    margin: 6px 0 0;
-}
-
-.facet-search-input {
-    width: 100%;
-    height: 100%;
-    padding: 6px;
-    margin: 0;
-    font-family: inherit;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    outline: none;
+    margin: 12px 0 12px;
 }
 
 .facet-checkbox-container {
     color: #4f4f4f;
     font-size: 13px;
     margin: 8px 0;
-    display: flex;
-    flex-direction: column;
 }
 
 .facet-option-label {
@@ -54,17 +41,4 @@
     color: #888888;
     font-size: 0.85em;
     margin-left: 24px;
-}
-
-.facet-view-more {
-    display: block;
-    cursor: pointer;
-    color: #3a56e4;
-    font-size: 13px;
-    font-family: inherit;
-    line-height: inherit;
-    text-align: left;
-    border: unset;
-    padding: unset;
-    background: unset;
 }
