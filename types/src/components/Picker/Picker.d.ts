@@ -81,6 +81,7 @@ export interface Props {
     onSelect?(item: any): void;
     onRemove?(item: any): void;
     onMoreInfo?(): void;
+    suffix?: string;
 }
 declare class Picker extends React.Component<Props, State> {
     constructor(props: Props);

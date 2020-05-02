@@ -1,8 +1,9 @@
 import { ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
-import { Status } from "../Banner/Banner";
+import { Status } from '../Banner/Banner';
 export interface Props {
     bannerTitle: string;
     bannerType: Status;
+    bannerIcon?: string;
     disabled?: boolean;
     dropdownItems: any;
     rowItem?: any;

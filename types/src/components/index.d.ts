@@ -68,3 +68,4 @@ export { default as Process, Props as ProcessProps, } from './Process';
 export { default as DateTimePicker, Props as DateTimePickerProps } from './DateTimePicker';
 export { default as Login, Props as LoginProps, } from './Login';
 export { default as AppBar } from './AppBar';
+export { default as MultipleCheckboxFacets } from './MultipleCheckboxFacets';
