@@ -210,15 +210,15 @@ class App extends React.Component<{}, State> {
       ChoiceListSelected:[1],
       paginationCurrent: 3,
       multipleCheckboxFacetsOptions: [{
-        "name": "New",
-        "value": "1",
-        "count": 10,
-        "selected": false 
+        name: 'New',
+        value: '1',
+        count: 10,
+        selected: false
       }, {
-        "name": "Published",
-        "value": "2",
-        "count": 10,
-        "selected": false 
+        name: 'Published',
+        value: '2',
+        count: 10,
+        selected: false
       }]
     };
 
@@ -872,7 +872,7 @@ class App extends React.Component<{}, State> {
       // }
     ];
 
-    const dummyArray= [{text: 'hello', icon: 'alert'},{text:'How are you?', icon: 'alert'}];
+    const dummyArray = [{ text: 'hello', icon: 'alert' }, { text:'How are you?', icon: 'alert' }];
 
     return (
       <div style={{ width: '60%' }}>
@@ -2585,10 +2585,10 @@ class App extends React.Component<{}, State> {
         <div>Multiple checkbox Facets</div>
         <MultipleCheckboxFacets
           label="Facets"
-          onMoreClick={(event) => { console.log("Facets More clicked", event); }}
-          onRemove={(value) => { this.handleFacetsSelection(value); }}
-          onSelect={(value) => { this.handleFacetsSelection(value); }}
-          onSearch={(value) => { console.log("Facets More clicked", value); }}
+          onMoreClick={(event) => { console.log('Facets More clicked', event); }}
+          onRemove={(value: string) => { this.handleFacetsSelection(value); }}
+          onSelect={(value: string) => { this.handleFacetsSelection(value); }}
+          onSearch={(value) => { console.log('Facets More clicked', value); }}
           options={this.state.multipleCheckboxFacetsOptions}
           showMore={true}
           showSearch={true}
@@ -2598,13 +2598,13 @@ class App extends React.Component<{}, State> {
     );
   }
 
-  handleFacetsSelection = (value) => {
+  handleFacetsSelection = (value: string) => {
     const { multipleCheckboxFacetsOptions } = this.state;
     const configClone = [...multipleCheckboxFacetsOptions];
     configClone.forEach((cc) => {
-        if (cc.value === value) {
-            cc.selected = ! cc.selected
-        }
+      if (cc.value === value) {
+        cc.selected = ! cc.selected;
+      }
     });
     // const selected = configClone.filter((cc) => cc.selected).map((cc) => cc.value);
 
