@@ -1,6 +1,6 @@
 // Increased to account for chip height
 $controlHeight: control-height() + rem(8px);
-$backdrop-horizontal-spacing: spacing(tight) * 1.5;
+$backdrop-horizontal-spacing: spacing(tighter) * 1.5;
 
 $stacking-order: (
   suggestions: 30,

@@ -27,7 +27,7 @@
 }
 
 .spacingTight {
-  @include stack-spacing(tight);
+  @include stack-spacing(tighter);
 }
 
 .spacingLoose {
@@ -35,7 +35,7 @@
 }
 
 .spacingExtraLoose {
-  @include stack-spacing(extra-loose);
+  @include stack-spacing(looser);
 }
 
 .distributionLeading {

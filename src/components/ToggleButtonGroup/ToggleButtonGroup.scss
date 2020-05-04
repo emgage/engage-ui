@@ -3,8 +3,8 @@ $stacking-order: (
   focused: 20,
 );
 
-$plain-horizontal-spacing: spacing(tight);
-$item-spacing: spacing(tight);
+$plain-horizontal-spacing: spacing(tighter);
+$item-spacing: spacing(tighter);
 
 .ToggleButtonGroup {
   display: flex;

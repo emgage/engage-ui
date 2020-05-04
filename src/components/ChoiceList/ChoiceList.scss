@@ -30,7 +30,7 @@
 .title {
   @include text-style-body;
   display: block;
-  margin: 0 0 spacing(extra-tight);
+  margin: 0 0 spacing(tight);
   padding: 0;
   font-weight: 600;
 }
@@ -38,5 +38,5 @@
 .helpText {
   @include text-style-body;
   @include text-emphasis-subdued;
-  margin-bottom: spacing(extra-tight);
+  margin-bottom: spacing(tight);
 }

@@ -184,8 +184,8 @@ $large-vertical-padding: ($large-min-height - line-height(body) - rem(2px)) / 2;
 // stylelint-enable selector-max-specificity
 
 .iconOnly {
-  padding-left: spacing(tight);
-  padding-right: spacing(tight);
+  padding-left: spacing(tighter);
+  padding-right: spacing(tighter);
 }
 
 .sizeSlim {
@@ -227,11 +227,11 @@ $large-vertical-padding: ($large-min-height - line-height(body) - rem(2px)) / 2;
     // This compensates for the typical icon used in buttons being
     // inset within its bounding box.
     margin-left: -2px;
-    margin-right: spacing(extra-tight);
+    margin-right: spacing(tight);
   }
 
   &:last-child {
-    margin-left: spacing(extra-tight);
+    margin-left: spacing(tight);
 
     // This compensates for the disclosure icon, which is substantially
     // inset within the viewbox (and makes it look like there is too much

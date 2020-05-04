@@ -83,7 +83,7 @@ $content-max-width: rem(200px);
 
 .content {
   position: relative;
-  margin-top: spacing(extra-tight);
+  margin-top: spacing(tight);
   border-radius: border-radius();
   max-width: $content-max-width;
   max-height: $content-max-height;
@@ -99,5 +99,5 @@ $content-max-width: rem(200px);
 }
 
 .label {
-  padding: 0 spacing(tight) spacing(extra-tight);
+  padding: 0 spacing(tighter) spacing(tight);
 }

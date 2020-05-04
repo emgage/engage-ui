@@ -1,3 +1,13 @@
+@import '../../styles/foundation/colors.scss';
+
+$table-vertical-spacing: spacing(base);
+$table-horizontal-spacing: spacing(tighter);
+$table-vertical-head-spacing: spacing(tightest);
+
+$color-grey-dark: color(ink, base);
+$color-grey-base: color(sky, base);
+
+$border-color: color(sky, base);
 .table {
   border: none;
   border-collapse: collapse;
@@ -13,7 +23,7 @@
     border: none;
     border-radius: 2px;
     display: table-cell;
-    padding: 0;
+    padding: $table-vertical-head-spacing $table-horizontal-spacing;
     vertical-align: middle;
     white-space: nowrap; 
     text-overflow: ellipsis;
@@ -34,10 +44,12 @@
 
   th {
     background-color: #f4f6f8;
+    color: $color-grey-dark;
   }
 
   thead {
-    border-bottom: 1px solid #d0d0d0;
+    border-bottom: 1px solid $border-color;
+    color: $color-grey-base;
   }
 
   tr {
@@ -48,7 +60,7 @@
 
   &.nestedTable {
     margin-left: 29px;
-    border-left: 3px solid #eceeef;
+    border-left: 3px solid $border-color;
 
     tr:last-child {
       border-bottom: none;
@@ -64,12 +76,12 @@
 
 .parentChildTable {
   margin-left: 29px;
-  border-left: 3px solid #eceeef;
+  border-left: 3px solid $border-color;
 }
 
 .bordered {
   > thead > tr, > tbody > tr {
-    border-bottom: 1px solid #d0d0d0;
+    border-bottom: 1px solid $border-color;
   }
 }
 

@@ -15,7 +15,7 @@ $breakpoint: 550px;
 
 .term {
   @include text-emphasis-strong;
-  padding: spacing() 0 spacing(tight);
+  padding: spacing() 0 spacing(tighter);
 
   @include page-content-breakpoint-after($breakpoint) {
     flex: 0 1 25%;
