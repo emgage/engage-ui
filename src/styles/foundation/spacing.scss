@@ -1,12 +1,12 @@
 $unit: 4px;
 
 $spacing-data: (
-  tight: rem($unit),
+  tightest: rem($unit),
   tighter: rem($unit * 2),
-  tightest: rem($unit * 3),
+  tight: rem($unit * 3),
   base: rem($unit * 4),
   loose: rem($unit * 5),
-  looser: rem($unit * 8)
+  loosest: rem($unit * 8)
 );
 
 /*
@@ -14,6 +14,8 @@ extra-tight = tight
 tight = tighter
 tightest
 extra-loose = looser
+looser should be loosest
+tight will be tightest
 */
 
 /// Returns the spacing value for a given variant.

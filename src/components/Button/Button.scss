@@ -227,11 +227,11 @@ $large-vertical-padding: ($large-min-height - line-height(body) - rem(2px)) / 2;
     // This compensates for the typical icon used in buttons being
     // inset within its bounding box.
     margin-left: -2px;
-    margin-right: spacing(tight);
+    margin-right: spacing(tightest);
   }
 
   &:last-child {
-    margin-left: spacing(tight);
+    margin-left: spacing(tightest);
 
     // This compensates for the disclosure icon, which is substantially
     // inset within the viewbox (and makes it look like there is too much

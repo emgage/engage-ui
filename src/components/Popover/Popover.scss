@@ -9,7 +9,7 @@
 $arrow-size: rem(14px);
 
 .abovePopover {
-  margin: spacing(tight) spacing() spacing();
+  margin: spacing(tightest) spacing() spacing();
   opacity: 1;
   box-shadow: shadow(deep);
   border-radius: border-radius();
@@ -17,7 +17,7 @@ $arrow-size: rem(14px);
   transition: opacity duration() easing(in);
 }
 .rightPopover {
-  margin: spacing(tight) spacing();
+  margin: spacing(tightest) spacing();
   opacity: 1;
   box-shadow: shadow(deep);
   border-radius: border-radius();
@@ -25,14 +25,14 @@ $arrow-size: rem(14px);
   transition: opacity duration() easing(in);
 }
 .belowPopover {
-  margin: spacing(tight) spacing() spacing();
+  margin: spacing(tightest) spacing() spacing();
   opacity: 1;
   box-shadow: shadow(deep);
   border-radius: border-radius();
   will-change: opacity, left, top;
 }
 .leftPopover {
-  margin: spacing() spacing() spacing() spacing(tight);
+  margin: spacing() spacing() spacing() spacing(tightest);
   opacity: 1;
   box-shadow: shadow(deep);
   border-radius: border-radius();
@@ -45,7 +45,7 @@ $arrow-size: rem(14px);
 }
 
 .positionedAbove {
-  margin: spacing() spacing() spacing(tight);
+  margin: spacing() spacing() spacing(tightest);
 
   .tip {
     top: inherit;
@@ -75,7 +75,7 @@ $arrow-size: rem(14px);
 
 .content {
   position: relative;
-  margin-top: spacing(tight);
+  margin-top: spacing(tightest);
   border-radius: border-radius();
 }
 
@@ -90,5 +90,5 @@ $arrow-size: rem(14px);
 }
 
 .label {
-  padding: 0 spacing(tighter) spacing(tight);
+  padding: 0 spacing(tighter) spacing(tightest);
 }

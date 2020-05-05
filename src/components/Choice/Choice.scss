@@ -17,7 +17,7 @@ $icon-horizontal-adjustment: 2px;
 .choice {
   display: flex;
   align-items: flex-start;
-  padding: spacing(tight) 0;
+  padding: spacing(tightest) 0;
 }
 
 .labelHidden {
@@ -66,16 +66,16 @@ $icon-horizontal-adjustment: 2px;
 .helpText {
   @include text-style-body;
   @include text-emphasis-subdued;
-  margin-bottom: spacing(tight);
+  margin-bottom: spacing(tightest);
 }
 
 .error {
   display: flex;
-  margin-bottom: spacing(tight);
+  margin-bottom: spacing(tightest);
   color: color(red, dark);
 }
 
 .errorIcon {
   @include recolor-icon(color(red));
-  margin: 0 spacing(tight) 0 (-1 * $icon-horizontal-adjustment);
+  margin: 0 spacing(tightest) 0 (-1 * $icon-horizontal-adjustment);
 }

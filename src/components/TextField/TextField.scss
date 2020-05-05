@@ -266,7 +266,7 @@ $stacking-order: (
 .counterText {
   @include text-style-body;
   @include text-emphasis-subdued;
-  margin-top: spacing(tight);
+  margin-top: spacing(tightest);
   float: right;
 }
 

@@ -6,16 +6,8 @@ $spacing-data: (
   tightest: rem($unit * 3),
   base: rem($unit * 4),
   loose: rem($unit * 5),
-  looser: rem($unit * 8)
+  loosest: rem($unit * 8)
 );
-
-/*
-extra-tight = tight
-tight = tighter
-tightest
-extra-loose = looser
-*/
-
 /// Returns the spacing value for a given variant.
 ///
 /// @param {String} $variant - The key for the given variant.

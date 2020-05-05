@@ -83,7 +83,7 @@ $content-max-width: rem(200px);
 
 .content {
   position: relative;
-  margin-top: spacing(tight);
+  margin-top: spacing(tightest);
   border-radius: border-radius();
   max-width: $content-max-width;
   max-height: $content-max-height;
