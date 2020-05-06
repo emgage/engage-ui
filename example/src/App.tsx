@@ -905,6 +905,7 @@ class App extends React.Component<{}, State> {
         <Icon source="event" />
         <Icon source="enumList" />
         <Icon source="user" />
+        <Icon source="imageIco" />
         <br></br>
         <span>Small change for test Change 3</span>
         <Badge children={'Badge'} working />

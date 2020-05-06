@@ -82,3 +82,4 @@ export { default as users } from './users.svg';
 export { default as usersCog } from './users-cog.svg';
 export { default as userTie } from './user-tie.svg';
 export { default as view } from './view.svg';
+export { default as imageIco } from './image.svg';

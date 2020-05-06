@@ -84,6 +84,7 @@ import {
   usersCog,
   userTie,
   view,
+  imageIco,
 } from '../../icons';
 
 import { ICON } from '../ThemeIdentifiers';
@@ -182,6 +183,7 @@ export const BUNDLED_ICONS = {
   usersCog,
   userTie,
   view,
+  imageIco,
   delete: deleteIcon,
   export: exportIcon,
   import: importIcon,
