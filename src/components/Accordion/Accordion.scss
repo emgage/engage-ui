@@ -15,7 +15,8 @@
 .accordionItem { 
   > .header {
     width: 100%;
-    @include font-size;
+    font-size: font-size(caption);
+    font-weight: font-weight(bold);
     padding: 10px 12px;
     position: relative;
     &:after {
@@ -27,24 +28,12 @@
       top: 50%;
       opacity: .8;
       transition: all .2s ease-in-out;
-      transform: translateY(-50%) rotate(180deg);
+      transform: translateY(-50%) rotate(0deg);
     }
-  }
-  > .headerCollapsed {
-    width: 100%;
-    @include font-size;
-    padding: 10px 12px;
-    position: relative;
-    &:after {
-      content: '\f107';
-      font-family: FontAwesome;
-      font-size: 15px;
-      position: absolute;
-      right: 13px;
-      top: 50%;
-      opacity: .8;
-      transition: all .2s ease-in-out;
-      transform: translateY(-50%) rotate(0);
+      .active {
+        &:after {
+          transform: translateY(-50%) rotate(180deg);
+        }
     }
   }
   > .body {

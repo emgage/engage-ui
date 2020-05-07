@@ -44,9 +44,15 @@ class AccordionItem extends React.PureComponent<Props, never> {
       theme.accordionItem
     );
 
+    const headerClass = classNames(
+      theme.header,
+      active && theme.active,
+
+    );
+
     return (
       <div className={containerClass} style={ active ? { overflow: 'visible', height: 'auto' } : { overflow: 'hidden', height: 38 } }>
-        <div className={active ? theme.header : theme.headerCollapsed} style={style} onClick={this.clickHandler}>
+        <div className={headerClass} style={style} onClick={this.clickHandler}>
           {header}
         </div>
 
