@@ -159,10 +159,6 @@ $stacking-order: (
 
 .colorGreenDark {
   fill: color(green, dark);
-
-  &::after {
-    background-color: color(green, light);
-  }
 }
 
 .colorYellowLighter {
@@ -176,9 +172,6 @@ $stacking-order: (
 .colorYellowDark {
   fill: color(yellow, dark);
 
-  &::after {
-    background-color: color(yellow, light);
-  }
 }
 
 .colorOrange {

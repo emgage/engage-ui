@@ -5,6 +5,7 @@ import { INavigationData } from '../../src/components/SideNavigation/SideNavigat
 
 import {
   Alert,
+  AppBar,
   Banner,
   Badge,
   Button,
@@ -30,6 +31,7 @@ import {
   Link,
   List,
   Item,
+  MultipleCheckboxFacets,
   DescriptionList,
   Term,
   Description,
@@ -136,6 +138,7 @@ interface State {
   treeAnchor?: any;
   ChoiceListSelected: any[];
   paginationCurrent: number;
+  multipleCheckboxFacetsOptions: any[];
 }
 
 class App extends React.Component<{}, State> {
@@ -205,7 +208,18 @@ class App extends React.Component<{}, State> {
       showError: false,
       treeAnchor: {},
       ChoiceListSelected:[1],
-      paginationCurrent: 3
+      paginationCurrent: 3,
+      multipleCheckboxFacetsOptions: [{
+        name: 'New',
+        value: '1',
+        count: 10,
+        selected: false
+      }, {
+        name: 'Published',
+        value: '2',
+        count: 10,
+        selected: false
+      }]
     };
 
     this.popovertoggle = this.popovertoggle.bind(this);
@@ -513,6 +527,26 @@ class App extends React.Component<{}, State> {
       }, {
         id: 2,
         name: 'Dheeraj',
+        renderBanner: {
+          bannerTitle: 'Hello Please Check All Data',
+          bannerType: 'critical',
+          placeholder: 'Related Content',
+          items: [
+            {
+              content: 'Item 1',
+              contentId: 1,
+              onClick: (value: any) => { console.log(value); }
+            }, {
+              content: 'Item 2',
+              contentId: 2,
+              onClick: (value: any) => { console.log(value); }
+            }, {
+              content: 'Item 3',
+              contentId: 3,
+              onClick: (value: any) => { console.log(value); }
+            }
+          ]
+        },
         description: 'Test description2',
         status: { itemID: 2, itemName: 'Deleted' },
         type: 'admin',
@@ -838,8 +872,23 @@ class App extends React.Component<{}, State> {
       // }
     ];
 
+    const dummyArray = [{ text: 'hello', icon: 'alert' }, { text:'How are you?', icon: 'alert' }];
+
     return (
       <div style={{ width: '60%' }}>
+        <AppBar
+          enableGlobalGo
+          enableGlobalElement={<Button icon="list" />}
+          isLoggedIn
+          logo={'https://emgage.com/SiteAssets/Emgage-logo.png'}
+          loginUrl={'loginUrl'}
+          logoutUrl={'logoutUrl'}
+          profilePic={'http://msaadvertising.com/wp-content/uploads/2014/06/Larry-cartoon-headshot.jpg'}
+          userName={'test@emgage.com'}
+          additionalLIst={[{ content: 'extra Item', divider: true }]}
+          enableSearch
+          rightChildren={[<Button icon="notes" />, <Button icon="userCog" />, <Button icon="infoCircle" />]}
+        />
 
         <ToggleButtonGroup segmented={true} helpText="Test Help Text">
           <Button>On</Button>
@@ -1150,7 +1199,7 @@ class App extends React.Component<{}, State> {
         <Checkbox checked label="Hidden Label Checkbox" labelHidden />
         </div>
         <Heading>Banner</Heading>
-        <Banner componentTitle={'banner'} status={'success'} />
+        <Banner componentTitle={'banner'} status={'success'} secondaryText={dummyArray} />
         <Banner componentTitle={'banner'} status={'info'} />
         <Banner componentTitle={'banner'} status={'warning'} />
         <Banner componentTitle={'banner'} status={'critical'} />
@@ -2532,8 +2581,36 @@ class App extends React.Component<{}, State> {
 
         <div>ComboBox</div>
         <div style={{ width: '50%' }}><ComboBox items={this.getComboBoxItems()} label="Select" currentValue="item1" /></div>
+
+        <div>Multiple checkbox Facets</div>
+        <MultipleCheckboxFacets
+          label="Facets"
+          onMoreClick={(event) => { console.log('Facets More clicked', event); }}
+          onRemove={(value: string) => { this.handleFacetsSelection(value); }}
+          onSelect={(value: string) => { this.handleFacetsSelection(value); }}
+          onSearch={(value) => { console.log('Facets More clicked', value); }}
+          options={this.state.multipleCheckboxFacetsOptions}
+          showMore={true}
+          showSearch={true}
+          searchPlaceholder="Search"
+        />
       </div>
     );
+  }
+
+  handleFacetsSelection = (value: string) => {
+    const { multipleCheckboxFacetsOptions } = this.state;
+    const configClone = [...multipleCheckboxFacetsOptions];
+    configClone.forEach((cc) => {
+      if (cc.value === value) {
+        cc.selected = ! cc.selected;
+      }
+    });
+    // const selected = configClone.filter((cc) => cc.selected).map((cc) => cc.value);
+
+    this.setState({
+      multipleCheckboxFacetsOptions: configClone
+    });
   }
 
   // valueUpdater(field: any) {

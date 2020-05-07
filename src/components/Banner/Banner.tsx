@@ -7,7 +7,7 @@ import Button, { buttonFrom } from '../Button';
 import Heading from '../Heading';
 import ButtonGroup from '../ButtonGroup';
 import UnstyledLink from '../UnstyledLink';
-import Icon, { Props as IconProps } from '../Icon';
+import Icon, { Props as IconProps, IconList } from '../Icon';
 import { BANNER } from '../ThemeIdentifiers';
 
 import * as baseTheme from './Banner.scss';
@@ -39,6 +39,13 @@ export interface Props {
   theme?: any;
   // Callback when banner is dismissed
   onDismiss?(): void;
+  // Secondary Text below componentText
+  secondaryText?: ISecondaryItems[];
+}
+
+interface ISecondaryItems {
+  text: string;
+  icon: string;
 }
 
 const banner = ({
@@ -51,6 +58,7 @@ const banner = ({
   status,
   onDismiss,
   theme,
+  secondaryText,
 }: Props) => {
   let color: IconProps['componentColor'];
   let defaultIcon: IconProps['source'];
@@ -87,15 +95,34 @@ const banner = ({
   const iconName = icon || defaultIcon;
 
   let headingMarkup: React.ReactNode = null;
+  let textMarkUp: React.ReactNode = null;
   let headingID: string | undefined;
 
   if (componentTitle) {
     headingID = `${id}Heading`;
     headingMarkup = (
       <div className={theme.heading} id={headingID}>
-        <Heading element="h6" theme={theme}>{componentTitle}</Heading>
+        <Heading
+          element="h6"
+          componentClass={baseTheme.bannerHading}
+          theme={theme}>
+            {componentTitle}
+        </Heading>
       </div>
     );
+  }
+
+  if (secondaryText && secondaryText.length) {
+    textMarkUp = secondaryText.map((item, index) => {
+      return (
+        <div key={`option_${index}`} className={baseTheme.bannerBox}>
+          <Icon source = {item.icon as keyof typeof IconList} />
+          <p className={baseTheme.bannerContent}>
+            {item.text}
+          </p>
+        </div>
+      );
+    });
   }
 
   const secondaryActionMarkup = secondaryAction
@@ -134,9 +161,12 @@ const banner = ({
     )
     : null;
 
+  const bannerStyle = { justifyContent: 'flex-start', width: '100%' };
+
   return (
     <div
       className={className}
+      style={bannerStyle}
       tabIndex={0}
       role={`banner ${status}`}
       aria-labelledby={headingID}
@@ -146,9 +176,10 @@ const banner = ({
       <div className={theme.ribbon}>
         <Icon source={iconName} componentColor={color} backdrop theme={theme} />
       </div>
-      <div>
+      <div className={baseTheme.bannerContent}>
         {headingMarkup}
         {contentMarkup}
+        {textMarkUp}
       </div>
     </div>
   );

@@ -13,6 +13,11 @@ export interface Props {
     children?: React.ReactNode;
     theme?: any;
     onDismiss?(): void;
+    secondaryText?: ISecondaryItems[];
+}
+interface ISecondaryItems {
+    text: string;
+    icon: string;
 }
 declare const _default: ThemedComponentClass<Props, {}>;
 export default _default;
