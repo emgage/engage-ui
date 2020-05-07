@@ -46,7 +46,7 @@ class AccordionItem extends React.PureComponent<Props, never> {
 
     const headerClass = classNames(
       theme.header,
-      active && theme.active,
+      active && theme.active
 
     );
 
