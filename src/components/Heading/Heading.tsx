@@ -1,11 +1,9 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
-import { classNames } from '@shopify/react-utilities/styles';
 import { HeadingTagName } from '../../types';
-
+import { classNames } from '@shopify/react-utilities/styles';
 import { HEADING } from '../ThemeIdentifiers';
 import * as baseTheme from './Heading.scss';
-
 export interface Props {
   componentClass?: string;
   componentStyle?: any;
