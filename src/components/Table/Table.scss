@@ -4,8 +4,7 @@ $table-vertical-spacing: spacing(base);
 $table-horizontal-spacing: spacing(tight);
 $table-vertical-head-spacing: spacing(tighter);
 
-$color-grey-dark: color(grey, darker);
-$color-grey-base: color(grey, base);
+$color-grey-dark: color(ink, base);
 
 $border-color: color(sky, base);
 
@@ -49,10 +48,11 @@ $border-color: color(sky, base);
     @include text-style-body-small;
     text-transform:uppercase;
     color: $color-grey-dark;
+    font-weight:600;
   }
   td {
     @include text-style-body;
-    color: $color-grey-base;
+    color: $color-grey-dark;
   }
 
   thead {
