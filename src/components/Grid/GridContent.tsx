@@ -30,7 +30,7 @@ const GridContent = ({
   componentClass,
   componentStyle,
   gridType = 'block',
-  gridStyle = 'mordan',
+  gridStyle = 'lift',
   onClick,
   returnValue,
   theme,

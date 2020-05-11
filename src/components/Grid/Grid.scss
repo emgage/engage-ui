@@ -18,9 +18,6 @@ $border-color: #dbdbdb;
   &.block {
     flex-direction: column;
     min-width: 180px;
-    margin-right: 1rem;
-    margin-bottom:1rem;
-    border: 1px solid $border-color;
     border-radius:.4rem;
     background-color:#fff;
     text-align:center;
@@ -69,24 +66,24 @@ $border-color: #dbdbdb;
       transition:all .3s ease-in-out;
     }
   }
-  &.basic {
+  /*&.plain {
     transition:all .3s ease-in-out;
+    border:0px;
+    box-shadow:none;
    &:hover {
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.15);
     transition:all .3s ease-in-out;
    }
-  }
-  &.normal {
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.15);
+  }*/
+  &.basic, &.lift {
     transition:all .3s ease-in-out;
+    margin-right: 1rem;
+    margin-bottom:1rem;
+    border: 1px solid $border-color;
     &:hover {
-      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.25);
       transition:all .3s ease-in-out;
      }
   }
-  &.mordan {
-    //box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.15);
-    transition:all .3s ease-in-out;
+  &.lift {
     position: relative;
     top:0px;
     &:hover {

@@ -5,7 +5,7 @@ import { GRID } from '../ThemeIdentifiers';
 import * as baseTheme from './Grid.scss';
 
 export type GridType = 'block' | 'list';
-export type GridStyle = 'basic' | 'normal' | 'mordan';
+export type GridStyle = 'plain' | 'basic' | 'lift';
 
 // All prototypes type
 export interface Props {
@@ -29,7 +29,7 @@ const Grid = ({
   componentClass,
   componentStyle,
   gridType = 'block',
-  gridStyle = 'mordan',
+  gridStyle = 'lift',
   theme,
 }: Props) => {
   const gridClass = classNames(
