@@ -5,6 +5,7 @@ import { GRID } from '../ThemeIdentifiers';
 import * as baseTheme from './Grid.scss';
 
 export type GridType = 'block' | 'list';
+export type GridStyle = 'basic' | 'normal' | 'mordan';
 
 // All prototypes type
 export interface Props {
@@ -15,6 +16,10 @@ export interface Props {
   componentClass?: string;
   // Prop to select the grid type, currently there are two block & list
   gridType?: GridType;
+
+  //Prop to select Grid style
+  gridStyle?:GridStyle;
+
   // Theme to be injected via css-themr
   theme?: any;
 }
@@ -24,11 +29,13 @@ const Grid = ({
   componentClass,
   componentStyle,
   gridType = 'block',
+  gridStyle = 'mordan',
   theme,
 }: Props) => {
   const gridClass = classNames(
     theme.grid,
     theme[`grid_${gridType}`],
+    theme[`grid_${gridStyle}`],
     componentClass
   );
 

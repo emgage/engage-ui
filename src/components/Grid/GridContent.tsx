@@ -4,7 +4,7 @@ import { classNames } from '@shopify/react-utilities/styles';
 import { GRID } from '../ThemeIdentifiers';
 import * as baseTheme from './Grid.scss';
 
-import { GridType } from './Grid';
+import { GridType, GridStyle } from './Grid';
 
 // All prototypes type
 export interface Props {
@@ -15,6 +15,8 @@ export interface Props {
   componentClass?: string;
   // Prop to select the grid type, currently there are two block & list
   gridType?: GridType;
+  //Prop to select Grid style
+  gridStyle?:GridStyle;
   // Prop to handle callback function
   onClick?(returnValue?: any): any;
   // Prop to decide what value needs to be returned with callback
@@ -28,6 +30,7 @@ const GridContent = ({
   componentClass,
   componentStyle,
   gridType = 'block',
+  gridStyle = 'mordan',
   onClick,
   returnValue,
   theme,
@@ -35,6 +38,7 @@ const GridContent = ({
   const gridContentClass = classNames(
     theme.gridContent,
     theme[gridType],
+    theme[gridStyle],
     componentClass
   );
 
