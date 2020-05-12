@@ -1,3 +1,8 @@
+
+@mixin font-size {
+  font-size: font-size(caption);
+  font-weight: font-weight(bold);
+}
 .accordionItem {
   transition: height 0.3s ease-in-out 0s;
   box-shadow: 0 1px 3px rgba(0,0,0,.12), 0 1px 2px rgba(0,0,0,.24);
@@ -7,57 +12,43 @@
   width: calc(100% - 24px);
 }
 
-.accordionItem > .header {
-  width: 100%;
-  font-size: 12px!important;
-  font-weight: 700!important;
-  padding: 10px 12px;
-  position: relative;
-  &:after {
-    content: '\f107';
-    font-family: FontAwesome;
-    font-size: 15px;
-    position: absolute;
-    right: 13px;
-    top: 50%;
-    opacity: .8;
-    transition: all .2s ease-in-out;
-    transform: translateY(-50%) rotate(180deg);
+.accordionItem { 
+  > .header {
+    width: 100%;
+    font-size: font-size(caption);
+    font-weight: font-weight(bold);
+    padding: 10px 12px;
+    position: relative;
+    &:after {
+      content: '\f107';
+      font-family: FontAwesome;
+      font-size: 15px;
+      position: absolute;
+      right: 13px;
+      top: 50%;
+      opacity: .8;
+      transition: all .2s ease-in-out;
+      transform: translateY(-50%) rotate(0deg);
+    }
+      .active {
+        &:after {
+          transform: translateY(-50%) rotate(180deg);
+        }
+    }
   }
-}
-
-.accordionItem > .headerCollapsed {
-  width: 100%;
-  font-size: 12px!important;
-  font-weight: 700!important;
-  padding: 10px 12px;
-  position: relative;
-  &:after {
-    content: '\f107';
-    font-family: FontAwesome;
-    font-size: 15px;
-    position: absolute;
-    right: 13px;
-    top: 50%;
-    opacity: .8;
-    transition: all .2s ease-in-out;
-    transform: translateY(-50%) rotate(0);
+  > .body {
+    opacity: 1;
+    overflow-y: hidden;
+    overflow-x: auto;
+    transition: all 0.2s;
   }
-}
-
-.accordionItem > .body {
-  opacity: 1;
-  overflow-y: hidden;
-  overflow-x: auto;
-  transition: all 0.2s;
-}
-
-.accordionItem> .bodyCollapsed {
-  height: 0;
-  opacity: 0;
-  transition: all 0.2s;
+  > .bodyCollapsed {
+    height: 0;
+    opacity: 0;
+    transition: all 0.2s;
+  }
 }
 
 .accordionItem label {
-  margin-bottom: 0;
+  margin-bottom: 0
 }

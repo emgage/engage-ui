@@ -193,6 +193,10 @@ $border-color: color(sky, base);
   padding: 0;
 }
 
+.bannerRow {
+  padding: 0px !important;
+}
+
 @media screen and (max-width: 40em) {
 
     .table {
