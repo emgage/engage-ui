@@ -35,7 +35,7 @@ class BannerRow extends React.Component<Props, State> {
 
   onChangeHandler = (selectedValue: string) => {
     const { onChange, rowItem } = this.props;
-    this.setState({ selectedValue });
+    parseInt(selectedValue, 10) && this.setState({ selectedValue });
     onChange && onChange(rowItem, +selectedValue);
   }
 

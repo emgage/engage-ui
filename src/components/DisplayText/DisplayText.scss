@@ -1,3 +1,12 @@
+@import 'foundation/colors';
+@import '../../styles/foundation/colors.scss';
+
+$color-text: color(grey, base);
+$color-darker: color(grey, darker);
+$color-darkest: color(grey, darkest);
+$color-mid: color(grey, light);
+$color-reverse:#fff;
+$color-danger: color(red, dark);
 .displayText {
   margin: 0;
 }
@@ -16,4 +25,23 @@
 
 .sizeExtraLarge {
   @include text-style-display-x-large;
+}
+.colorText {
+  color:$color-text;
+}
+.colorDarker {
+  color:$color-darker;
+}
+.colorDarkest {
+  color:$color-darkest;
+}
+.colorMid {
+  color:$color-mid;
+}
+.colorReverse {
+  color:$color-reverse;
+  background:#212b36;
+}
+.colorDanger {
+  color:$color-danger;
 }

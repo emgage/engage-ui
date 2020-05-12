@@ -1,4 +1,6 @@
-$prefixClass: rc-pagination;
+/*
+TODO : Should we be specifying font size here and in button component?  seems to work fine without it
+*/
 
 @mixin disabled-item(){
   cursor: not-allowed;
@@ -12,11 +14,11 @@ $prefixClass: rc-pagination;
 }
 
 .rc-pagination {
-  font-size: 12px;
+  //font-size: $font-size;
   font-family: 'Arial';
   user-select: none;
   padding: 0;
-  display: flex;
+  display: flex; 
 
   > li {
     list-style: none;
@@ -96,7 +98,7 @@ $prefixClass: rc-pagination;
       display: block;
       letter-spacing: 2px;
       color: #ccc;
-      font-size: 12px;
+      //font-size: $font-size;
       margin-top: 1px;
     }
 
@@ -142,7 +144,7 @@ $prefixClass: rc-pagination;
       display: block;
       letter-spacing: 2px;
       color: #ccc;
-      font-size: 12px;
+      //font-size: $font-size;
       margin-top: 1px;
     }
 
@@ -259,7 +261,7 @@ $prefixClass: rc-pagination;
         border: 1px solid transparent;
         white-space: nowrap;
         padding: 0 15px;
-        font-size: 12px;
+        //font-size: $font-size;
         border-radius: 6px;
         height: 28px;
         user-select: none;
@@ -322,7 +324,7 @@ $prefixClass: rc-pagination;
         border: 1px solid transparent;
         white-space: nowrap;
         padding: 0 8px;
-        font-size: 12px;
+        //font-size: $font-size;
         border-radius: 6px;
         height: 26px;
         user-select: none;

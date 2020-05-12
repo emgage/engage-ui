@@ -8,6 +8,7 @@ $color-grey-dark: color(ink, base);
 $color-grey-base: color(sky, base);
 
 $border-color: color(sky, base);
+
 .table {
   border: none;
   border-collapse: collapse;
@@ -146,7 +147,7 @@ $border-color: color(sky, base);
     padding: .375rem .75rem;
     font-size: 1rem;
     line-height: 1.5;
-    color: #495057;
+    color: $color-grey-dark;
     background-color: #fff;
     background-clip: padding-box;
     border: 1px solid #ced4da;
