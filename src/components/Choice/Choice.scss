@@ -17,7 +17,7 @@ $icon-horizontal-adjustment: 2px;
 .choice {
   display: flex;
   align-items: flex-start;
-  padding: spacing(extra-tight) 0;
+  padding: spacing(tightest) 0;
 }
 
 .labelHidden {
@@ -46,7 +46,7 @@ $icon-horizontal-adjustment: 2px;
   height: $control-size;
   width: $control-size;
   margin-top: $control-vertical-adjustment;
-  margin-right: spacing(tight);
+  margin-right: spacing(tighter);
 
   > * {
     width: 100%;
@@ -60,22 +60,22 @@ $icon-horizontal-adjustment: 2px;
 }
 
 .descriptions {
-  padding-left: spacing(tight) + $control-size;
+  padding-left: spacing(tighter) + $control-size;
 }
 
 .helpText {
   @include text-style-body;
   @include text-emphasis-subdued;
-  margin-bottom: spacing(extra-tight);
+  margin-bottom: spacing(tightest);
 }
 
 .error {
   display: flex;
-  margin-bottom: spacing(extra-tight);
+  margin-bottom: spacing(tightest);
   color: color(red, dark);
 }
 
 .errorIcon {
   @include recolor-icon(color(red));
-  margin: 0 spacing(extra-tight) 0 (-1 * $icon-horizontal-adjustment);
+  margin: 0 spacing(tightest) 0 (-1 * $icon-horizontal-adjustment);
 }

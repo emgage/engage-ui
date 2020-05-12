@@ -1,13 +1,13 @@
 @import '../../styles/foundation/colors.scss';
 
 $table-vertical-spacing: spacing(base);
-$table-horizontal-spacing: spacing(tight);
+$table-horizontal-spacing: spacing(tightest);
 $table-vertical-head-spacing: spacing(tighter);
 
 $color-grey-dark: color(ink, base);
+$color-grey-base: color(sky, base);
 
 $border-color: color(sky, base);
-
 
 .table {
   border: none;
@@ -45,18 +45,12 @@ $border-color: color(sky, base);
 
   th {
     background-color: #f4f6f8;
-    @include text-style-body-small;
-    text-transform:uppercase;
-    color: $color-grey-dark;
-    font-weight:600;
-  }
-  td {
-    @include text-style-body;
     color: $color-grey-dark;
   }
 
   thead {
     border-bottom: 1px solid $border-color;
+    color: $color-grey-base;
   }
 
   tr {

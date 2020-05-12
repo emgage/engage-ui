@@ -14,7 +14,7 @@ $accent-height: 4px;
 $dismiss-size: rem(16px);
 $ribbon-flex-basis: rem(32px);
 $secondary-action-vertical-padding: 0.5 * (control-height() - line-height(body));
-$secondary-action-horizontal-padding: 1.5 * spacing(tight);
+$secondary-action-horizontal-padding: 1.5 * spacing(tightest);
 
 @mixin banner-colors($highlight, $background) {
   background-color: $background;
@@ -74,7 +74,7 @@ $secondary-action-horizontal-padding: 1.5 * spacing(tight);
 }
 
 .heading {
-  margin-top: spacing(extra-tight);
+  margin-top: spacing(tightest);
 }
 
 .actions {
@@ -82,7 +82,7 @@ $secondary-action-horizontal-padding: 1.5 * spacing(tight);
 }
 
 .content {
-  margin: spacing(tight) 0;
+  margin: spacing(tightest) 0;
 }
 
 // We need pretty high specificity to do the descendant selectors
@@ -148,7 +148,7 @@ $secondary-action-horizontal-padding: 1.5 * spacing(tight);
   position: absolute;
   top: $accent-height;
   right: 0;
-  padding: (spacing(tight) * 1.5);
+  padding: (spacing(tightest) * 1.5);
 }
 
 .bannerStyle {

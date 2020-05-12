@@ -17,7 +17,7 @@ $stacking-order: (
 
 $icon-size: rem(16px);
 $spinner-size: rem(20px);
-$input-horizontal-padding: spacing(tight) * 1.5;
+$input-horizontal-padding: spacing(tighter) * 1.5;
 
 // Without a small amount of vertical adjustment, the text
 // in the Select does not appear vertically centered.

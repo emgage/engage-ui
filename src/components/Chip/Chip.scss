@@ -1,5 +1,5 @@
 $height: rem(32px);
-$horizontal-padding: spacing(tight) * 1.5;
+$horizontal-padding: spacing(tighter) * 1.5;
 
 $min-height: control-height();
 $vertical-padding: ($min-height - line-height(body) - rem(2px)) / 2;

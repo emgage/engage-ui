@@ -11,7 +11,7 @@ $item-min-size: rem(220px);
 }
 
 .title {
-  margin-bottom: -1 * spacing(tight);
+  margin-bottom: -1 * spacing(tighter);
   padding: spacing() spacing(loose) 0;
 }
 
@@ -23,7 +23,7 @@ $item-min-size: rem(220px);
 
 .helpText {
   @include text-emphasis-subdued;
-  padding: spacing(tight) spacing(loose) 0;
+  padding: spacing(tighter) spacing(loose) 0;
 }
 
 .item {

@@ -3,7 +3,7 @@
 }
 
 .labelWrapper {
-  margin-bottom: spacing(extra-tight);
+  margin-bottom: spacing(tightest);
   white-space: nowrap;
   text-overflow: ellipsis;
 }
@@ -11,7 +11,7 @@
 .helpText {
   @include text-style-body;
   @include text-emphasis-subdued;
-  margin-top: spacing(extra-tight);
+  margin-top: spacing(tightest);
 }
 
 // .required {}
