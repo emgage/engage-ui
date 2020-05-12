@@ -28,22 +28,22 @@
 .sizeExtraLarge {
   @include text-style-display-x-large;
 }
-.colorText {
-  color:$color-text;
-}
-.colorDarker {
-  color:$color-darker;
-}
-.colorDarkest {
-  color:$color-darkest;
-}
-.colorMid {
-  color:$color-mid;
-}
-.colorReverse {
-  color:$color-reverse;
-  background:#212b36;
-}
-.colorDanger {
-  color:$color-danger;
-}
+
+// .colorText {
+//   color:$color-text;
+// }
+// .colorDarker {
+//   color:$color-darker;
+// }
+// .colorDarkest {
+//   color:$color-darkest;
+// }
+// .colorMid {
+//   color:$color-mid;
+// }
+// .colorReverse {
+//   color:$color-reverse;
+// }
+// .colorDanger {
+//   color:$color-danger;
+// }
