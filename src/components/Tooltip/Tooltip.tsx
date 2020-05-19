@@ -80,7 +80,7 @@ class Tooltip extends React.PureComponent<Props, State> {
   }
 
   render() {
-    const { activatorWrapper: WRAPPERCOMPONENT = 'span' } = this.props;
+    const { activatorWrapper: WRAPPERCOMPONENT = 'span' }: any = this.props;
 
     return (
       <WRAPPERCOMPONENT

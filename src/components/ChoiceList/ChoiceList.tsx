@@ -72,7 +72,7 @@ class ChoiceList extends React.PureComponent<Props, {}> {
       componentName = getUniqueID(),
     } = this.props;
 
-    const CONTROLCOMPONENT = allowMultiple ? Checkbox : RadioButton;
+    const CONTROLCOMPONENT: any = allowMultiple ? Checkbox : RadioButton;
     const finalName = allowMultiple ? `${componentName}[]` : componentName;
     const className = classNames(theme.choiceList, titleHidden && theme.titleHidden);
     const titleMarkup = componentTitle
