@@ -15,7 +15,7 @@ export interface Props {
   componentClass?: string;
   // Prop to select the grid type, currently there are two block & list
   gridType?: GridType;
-  //Prop to select Grid style
+  // Prop to select Grid style
   gridStyle?:GridStyle;
   // Prop to handle callback function
   onClick?(returnValue?: any): any;

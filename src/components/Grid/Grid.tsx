@@ -17,7 +17,7 @@ export interface Props {
   // Prop to select the grid type, currently there are two block & list
   gridType?: GridType;
 
-  //Prop to select Grid style
+  // Prop to select Grid style
   gridStyle?:GridStyle;
 
   // Theme to be injected via css-themr
