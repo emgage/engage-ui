@@ -17,14 +17,35 @@ $border-color: #dbdbdb;
   
   &.block {
     flex-direction: column;
-    min-width: 100px;
-    margin-right: 1rem;
-    border: 1px solid $border-color;
+    min-width: 180px;
+    border-radius:.4rem;
+    background-color:#fff;
+    text-align:center;
+    transition:all .3s ease-in-out;
 
     .gridImage, .gridTitle, .gridDescription {
       display: flex;
       justify-content: center;
       margin-bottom: 0.8rem;
+    }
+    .gridImage {
+      width: 50px;
+      height: 50px;
+      background: #000;
+      border-radius: 100%;
+      justify-content: center;
+      align-items: center;
+      margin: .8em auto .8em;
+      transition:all .3s ease-in-out;
+      span {
+        width:3rem;
+        height:3rem;
+      }
+      svg {
+        fill:#fff;
+        width:3rem;
+
+      }
     }
 
     .gridDescription {
@@ -40,6 +61,36 @@ $border-color: #dbdbdb;
       border-top: 1px solid $border-color;
       padding: 0.5rem 1rem;
     }
+    &:hover .gridImage {
+      background-color: #0375d8;
+      transition:all .3s ease-in-out;
+    }
+  }
+  /*&.plain {
+    transition:all .3s ease-in-out;
+    border:0px;
+    box-shadow:none;
+   &:hover {
+    transition:all .3s ease-in-out;
+   }
+  }*/
+  &.basic, &.lift {
+    transition:all .3s ease-in-out;
+    margin-right: 1rem;
+    margin-bottom:1rem;
+    border: 1px solid $border-color;
+    &:hover {
+      transition:all .3s ease-in-out;
+     }
+  }
+  &.lift {
+    position: relative;
+    top:0px;
+    &:hover {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.25);
+      transition:all .3s ease-in-out;
+      top:-3px;
+     }
   }
   
   &.list {

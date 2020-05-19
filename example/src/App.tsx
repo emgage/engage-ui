@@ -79,6 +79,7 @@ import {
   GridImage,
   GridTitle,
   GridType,
+  GridStyle,
   Sticky,
   Process,
   ToggleButtonGroup,
@@ -126,6 +127,7 @@ interface State {
   activeTabId: string;
   nestedChildData: TableNestedData[];
   gridView: GridType;
+  gridStyle: GridStyle;
   [key: string]: any;
   processComponentState: number;
   processLength: number;
@@ -200,6 +202,7 @@ class App extends React.Component<{}, State> {
       activeTabId: 'tab3',
       nestedChildData: [],
       gridView: 'block',
+      gridStyle: 'basic',
       processComponentState: 0,
       processLength: 2,
       callChildCallback: false,
@@ -2070,10 +2073,10 @@ class App extends React.Component<{}, State> {
         </ButtonGroup>
 
           <br />
-        <Grid gridType={this.state.gridView}>
+        <Grid gridType={this.state.gridView} gridStyle={this.state.gridStyle}>
           <GridContent onClick={event => console.log('event:', event)}>
             <GridHeader disableClick={true}>Grid Header</GridHeader>
-            <GridImage>Image</GridImage>
+            <GridImage><Icon source="folder" /></GridImage>
             <GridTitle>Grid Title</GridTitle>
             <GridDescription>Grid Description</GridDescription>
             <GridFooter>Grid Footer</GridFooter>
@@ -2081,7 +2084,7 @@ class App extends React.Component<{}, State> {
 
           <GridContent>
             <GridHeader>Grid Header</GridHeader>
-            <GridImage>Image</GridImage>
+            <GridImage><Icon source="folder" /></GridImage>
             <GridTitle>Grid Title</GridTitle>
             <GridDescription>Grid Description</GridDescription>
             <GridFooter>Grid Footer</GridFooter>
@@ -2089,7 +2092,7 @@ class App extends React.Component<{}, State> {
 
           <GridContent>
             <GridHeader>Grid Header</GridHeader>
-            <GridImage>Image</GridImage>
+            <GridImage><Icon source="folder" /></GridImage>
             <GridTitle>Grid Title</GridTitle>
             <GridDescription>Grid Description</GridDescription>
             <GridFooter>Grid Footer</GridFooter>
@@ -2097,7 +2100,7 @@ class App extends React.Component<{}, State> {
 
           <GridContent>
             <GridHeader>Grid Header</GridHeader>
-            <GridImage>Image</GridImage>
+            <GridImage><Icon source="folder" /></GridImage>
             <GridTitle>Grid Title</GridTitle>
             <GridDescription>Grid Description</GridDescription>
             <GridFooter>Grid Footer</GridFooter>
@@ -2105,7 +2108,7 @@ class App extends React.Component<{}, State> {
 
           <GridContent>
             <GridHeader>Grid Header</GridHeader>
-            <GridImage>Image</GridImage>
+            <GridImage><Icon source="folder" /></GridImage>
             <GridTitle>Grid Title</GridTitle>
             <GridDescription>Grid Description</GridDescription>
             <GridFooter>Grid Footer</GridFooter>

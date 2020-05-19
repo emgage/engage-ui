@@ -256,6 +256,7 @@ export {
   GridTitle,
   Props as GridProps,
   GridType,
+  GridStyle,
 } from './Grid';
 
 export {

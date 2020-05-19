@@ -6,7 +6,7 @@ import GridHeader from './GridHeader';
 import GridImage from './GridImage';
 import GridTitle from './GridTitle';
 
-export { Props, GridType } from './Grid';
+export { Props, GridType, GridStyle } from './Grid';
 
 export {
     Grid,
