@@ -20,6 +20,7 @@ export declare const BUNDLED_ICONS: {
     chartArea: any;
     chartBar: any;
     chartPie: any;
+    check: any;
     checkCircle: any;
     checkSquare: any;
     chevronDown: any;
@@ -52,6 +53,7 @@ export declare const BUNDLED_ICONS: {
     handsHelping: any;
     hierarchy: any;
     horizontalDots: any;
+    image: any;
     infoCircle: any;
     inbox: any;
     lightbulb: any;
