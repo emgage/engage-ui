@@ -1,5 +1,15 @@
 $typography-condensed: em(640px);
 
+// font weight properties
+// normal
+//   Same as 400.
+// bold
+//   Same as 700.
+// lighter
+//   One font weight lighter than the parent element (among the available weights of the font).
+// bolder
+//   One font weight heavier than the parent element (among the available weights of the font).
+
 @mixin when-typography-not-condensed {
   @include breakpoint-after($typography-condensed) { @content; }
 }
@@ -66,6 +76,32 @@ $typography-condensed: em(640px);
   }
 }
 
+@mixin text-style-body-large {
+  font-size: font-size(body-large);
+  font-weight: 400;
+  line-height: line-height(body-large);
+
+  text-transform: initial;
+  letter-spacing: initial;
+
+  @include when-typography-not-condensed {
+    font-size: font-size(body-large, large-screen);
+  }
+}
+
+@mixin text-style-body-small {
+  font-size: font-size(body-small);
+  font-weight: 400;
+  line-height: line-height(body-small);
+
+  text-transform: initial;
+  letter-spacing: initial;
+
+  @include when-typography-not-condensed {
+    font-size: font-size(body-small, large-screen);
+  }
+}
+
 @mixin text-style-display-x-large {
   font-size: font-size(display-x-large);
   font-weight: 600;
@@ -125,4 +161,95 @@ $typography-condensed: em(640px);
 @mixin text-emphasis-normal($for-background: null) {
   font-weight: 400;
   color: color(ink, $for-background: $for-background);
+}
+
+/*--------------------------------------------------------------------------*/
+@mixin text-style-bold {
+font-weight: font-weight(bold);
+}
+@mixin text-style-semi-bold {
+font-weight: font-weight(semi-bold);
+}
+@mixin text-style-normal {
+font-weight: font-weight(normal);
+}
+
+@mixin text-style-heading-h1 {
+  font-size: font-size(heading-h1);
+  line-height: line-height(heading-h1);
+
+  @include when-typography-not-condensed {
+    font-size: font-size(heading-h1, heading-h1);
+    line-height: line-height(heading-h1, heading-h1);
+  }
+}
+
+@mixin text-style-heading-h2 {
+  font-size: font-size(heading-h2);
+  line-height: line-height(heading-h2);
+
+  @include when-typography-not-condensed {
+    font-size: font-size(heading-h2, heading-h2);
+    line-height: line-height(heading-h2, heading-h2);
+  }
+}
+
+@mixin text-style-heading-h3 {
+  font-size: font-size(heading-h3);
+  line-height: line-height(heading-h3);
+
+  @include when-typography-not-condensed {
+    font-size: font-size(heading-h3, heading-h3);
+    line-height: line-height(heading-h3, heading-h3);
+  }
+}
+@mixin text-style-heading-h4 {
+  font-size: font-size(heading-h4);
+  line-height: line-height(heading-h4);
+
+  @include when-typography-not-condensed {
+    font-size: font-size(heading-h4, heading-h4);
+    line-height: line-height(heading-h4, heading-h4);
+  }
+}
+
+@mixin text-style-heading-subheading {
+  font-size: font-size(heading-subheading);
+  line-height: line-height(heading-subheading);
+
+  @include when-typography-not-condensed {
+    font-size: font-size(heading-subheading);
+    line-height: line-height(heading-subheading);
+  }
+}
+
+
+@mixin text-style-text-body-large {
+  font-size: font-size(text-body-large);
+  line-height: line-height(text-body-large);
+
+  @include when-typography-not-condensed {
+    font-size: font-size(text-body-large);
+    line-height: line-height(text-body-large);
+  }
+}
+
+@mixin text-style-text-body-mid {
+  font-size: font-size(text-body-mid);
+  line-height: line-height(text-body-mid);
+
+  @include when-typography-not-condensed {
+    font-size: font-size(text-body-mid);
+    line-height: line-height(text-body-mid);
+  }
+}
+
+@mixin text-style-text-body-small {
+  font-size: font-size(text-body-small);
+  line-height: line-height(text-body-small);
+
+  @include when-typography-not-condensed {
+    font-size: font-size(text-body-small);
+    line-height: line-height(text-body-small);
+  }
 }
