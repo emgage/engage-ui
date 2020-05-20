@@ -144,11 +144,11 @@ class Table extends React.Component<Props, State> {
 
     if (newProps.data.length !== this.props.data.length && JSON.stringify(newProps.data) !== JSON.stringify(this.props.data)) {
       let { selectedRows } = this.state;
-      if(selectedRows.length) {
+      if (selectedRows.length) {
         const allItemId = newProps.data.map(item => item.id);
-        selectedRows = selectedRows.filter( selectedItem => allItemId.includes(selectedItem));
+        selectedRows = selectedRows.filter(selectedItem => allItemId.includes(selectedItem));
       }
-      this.setState( { selectedRows, data: newProps.data });
+      this.setState({ selectedRows, data: newProps.data });
 
     }
 
