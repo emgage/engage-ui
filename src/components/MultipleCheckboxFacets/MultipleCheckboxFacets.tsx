@@ -6,7 +6,7 @@ import TextField from '../TextField';
 function getNewClassName(newClassName: string) {
   if (!Array.isArray(newClassName)) return newClassName;
   return newClassName.filter(name => name).join(' ');
-}
+} 
 
 export function appendClassName(baseClassName: string, newClassName: string) {
   if (!newClassName) return baseClassName || '';
@@ -55,7 +55,6 @@ function multiCheckboxFacet({
   return (
     <fieldset className={appendClassName('facets-container', className)}>
       <legend className="facets-title">{label}</legend>
-
       {showSearch && (
         <div className="facet-search">
           <TextField
@@ -75,7 +74,7 @@ function multiCheckboxFacet({
           const checked = option.selected;
           return (
             <div style={{ display:'flex', flex: 1 }}>
-              <div style={{ flex: 0.3 }}>
+              <div style={{ flex: 1 }}>
                 <Checkbox
                   checked={checked}
                   componentId={`example_facet_${label}${getFilterValueDisplay(
@@ -87,7 +86,7 @@ function multiCheckboxFacet({
                   }
                 />
               </div>
-              <div style={{ display: 'flex', alignItems: 'center' }} className="facet-option-count">
+              <div style={{ display: 'flex', alignItems: 'center', color: '#9e9e9e' }} className="facet-option-count">
                 {option.count && option.count.toLocaleString('en')}
               </div>
             </div>

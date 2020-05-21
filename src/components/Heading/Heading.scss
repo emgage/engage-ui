@@ -6,3 +6,19 @@
   margin: 0;
   user-select: none;
 }
+
+.sizeH1 {
+  @include text-style-heading-h1;
+}
+.sizeH2 {
+  @include text-style-heading-h2;
+}
+.sizeH3 {
+  @include text-style-heading-h3;
+}
+.sizeH4 {
+  @include text-style-heading-h4;
+}
+.sizeSubtitle {
+  @include text-style-heading-subheading;
+}
