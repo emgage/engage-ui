@@ -45,6 +45,7 @@ export { default as export } from './export.svg';
 export { default as external } from './external.svg';
 export { default as file } from './file.svg';
 export { default as fileSolid } from './file-solid.svg';
+export { default as filter } from './filter.svg';
 export { default as folder } from './folder.svg';
 export { default as grid } from './grid.svg';
 export { default as handsHelping } from './hands-helping.svg';
