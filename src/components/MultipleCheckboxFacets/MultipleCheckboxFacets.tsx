@@ -6,7 +6,7 @@ import TextField from '../TextField';
 function getNewClassName(newClassName: string) {
   if (!Array.isArray(newClassName)) return newClassName;
   return newClassName.filter(name => name).join(' ');
-} 
+}
 
 export function appendClassName(baseClassName: string, newClassName: string) {
   if (!newClassName) return baseClassName || '';
