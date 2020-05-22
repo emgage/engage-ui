@@ -26,6 +26,8 @@ export interface Props {
   onChange(dataTime: any): void;
   // return date time
   onBlur?(dateTime: any): void;
+  // Component Id for validation form
+  componentId?: string;
 }
 
 export interface State {
