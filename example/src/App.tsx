@@ -85,6 +85,7 @@ import {
   ToggleButtonGroup,
   Pagination,
   PaginationDefaultProps,
+  PageSize
 } from '../../src/components';
 
 interface State {
@@ -100,6 +101,7 @@ interface State {
   appTextCounter1: string;
   columns: object[];
   checkboxState: boolean;
+  currentPageSize: number;
   rows: object[];
   isMenuOpened: boolean;
   popoverActive: boolean;
@@ -167,6 +169,7 @@ class App extends React.Component<{}, State> {
         { key: 'title', name: 'Title' },
         { key: 'count', name: 'Count' },
       ],
+      currentPageSize: 10,
       rows: [
         { id: 1, title: 'Title 1', count: 1 },
         { id: 2, title: 'Title 2', count: 2 },
@@ -510,7 +513,7 @@ class App extends React.Component<{}, State> {
     ];
 
     const pickerdata = [
-      { key: 1, image: 'http://msaadvertising.com/wp-content/uploads/2014/06/Larry-cartoon-headshot.jpg', name: 'John Doe', description: 'John Doe', email: 'test@gmail.com' },
+      { key: 1, image: 'http://msaadvertising.com/wp-content/uploads/2014/06/Larry-cartoon-headshot.jpg', name: 'John Doe', description: 'John Doe', email: 'test@gmail.com', icon: 'filter' },
       { key: 2, image: 'http://cdn.photographyproject.com.au/wp-content/uploads/2013/04/corporate-headshot.jpg', name: 'Pedro Sanchez', description: 'Pedro Sanchez', email: 'pedrosanchez@gmail.com' },
       { key: 3, image: 'https://media.licdn.com/mpr/mpr/p/5/005/08f/04d/02df10d.jpg', name: 'Jane Doe', description: 'Jane Doe', email: 'jane@gmail.com' },
       { key: 4, image: 'http://www.roanokecreditrepair.com/wp-content/uploads/2016/06/Headshot-1.png', name: 'Person McPerson', description: 'Person McPerson', email: 'yahoogmail@gmail.com' },
@@ -950,6 +953,8 @@ class App extends React.Component<{}, State> {
         <div>
           Pagination:
           <Pagination {...PaginationDefaultProps} onChange={(page: number) => this.setState({ paginationCurrent: page })} current={this.state.paginationCurrent} total={25} pageSize={3} />
+          PageSize:
+          <PageSize onKeyPress={() => {}} currentPageSize={this.state.currentPageSize} onClick={(currentPageSize: number) =>  this.setState({ currentPageSize })} pageSizeList={[10, 50, 100]} className="cl" />
         </div>
         <div>
           <TabPanel defaultTabId="tab1" position={'top'} alignment={'center'}>

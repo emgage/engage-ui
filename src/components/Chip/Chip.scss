@@ -6,7 +6,7 @@ $vertical-padding: ($min-height - line-height(body) - rem(2px)) / 2;
 
 .Chip {
     @include text-style-input;
-    display: inline-block;
+    display: flex;
     color: rgba(0, 0, 0, 0.54);
     line-height: $height;
     min-height: $height;
@@ -51,4 +51,13 @@ $vertical-padding: ($min-height - line-height(body) - rem(2px)) / 2;
 
 .transparent{
     background-color: transparent;
+}
+
+.chipContent {
+    align-self: center;
+    display: flex;
+    span {
+        margin-left: 15px;
+        align-self: center;
+    }
 }

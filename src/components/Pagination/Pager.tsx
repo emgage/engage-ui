@@ -7,7 +7,7 @@ import { PAGER } from '../ThemeIdentifiers';
 
 import * as baseTheme from './Pagination.scss';
 
-interface IProps {
+export interface IProps {
   page: any;
   active?: boolean;
   last?: boolean;
@@ -19,6 +19,8 @@ interface IProps {
   onKeyPress(event: any, callback: any, value: number): void;
   itemRender(param1: number, param2: string, param3: any): any;
   theme?: any;
+  plain?: boolean;
+  componentStyle?: any;
 }
 
 class Pager extends React.Component<IProps, {}> {
@@ -27,7 +29,7 @@ class Pager extends React.Component<IProps, {}> {
   }
 
   render() {
-    const { active, className = '', itemRender, onClick, onKeyPress, showTitle, page, theme } = this.props;
+    const { active, className = '', itemRender, onClick, onKeyPress, showTitle, page, theme, plain, componentStyle } = this.props;
 
     const prefixCls = theme['rc-pagination-item'];
     const cls = classNames(prefixCls, `${prefixCls}-${page}`, {
@@ -52,7 +54,7 @@ class Pager extends React.Component<IProps, {}> {
         onKeyPress={handleKeyPress}
         tabIndex={0}
       >
-        {itemRender(page, 'page', <Button componentClass={theme.button} primary={active}>{page}</Button>)}
+        {itemRender(page, 'page', <Button componentStyle={componentStyle} plain={plain} componentClass={theme.button} primary={active}>{page}</Button>)}
       </li>
     );
   }

@@ -177,7 +177,11 @@ export {
 
 export {
   Pagination,
-  DefaultProps as PaginationDefaultProps
+  Pager,
+  DefaultProps as PaginationDefaultProps,
+  IProps as PagerProps,
+  PageSize,
+  IPageSizeProps,
 } from './Pagination';
 
 export {
