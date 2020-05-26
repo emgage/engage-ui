@@ -3,7 +3,7 @@ import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 import { classNames } from '@shopify/react-utilities/styles';
 import { CHIP } from '../ThemeIdentifiers';
 import * as baseTheme from './Chip.scss';
-import Icon from '../Icon';
+import Icon, { IconList } from '../Icon';
 
 export interface Props {
   // Makes the chips body area clickable.
@@ -25,6 +25,10 @@ export interface Props {
   onClick?(event: React.FormEvent<HTMLElement>): void;
   // The content to display inside chip.
   children?: string;
+  // Icon replace default cancel icon
+  icon?: keyof typeof IconList;
+  // Icon click handler
+  onIconClick?(): void;
 }
 
 class Chip extends React.PureComponent<Props, any> {
@@ -45,6 +49,8 @@ class Chip extends React.PureComponent<Props, any> {
       onRemove,
       onClick,
       children,
+      icon,
+      onIconClick
     } = this.props;
 
     const className = classNames(
@@ -57,8 +63,9 @@ class Chip extends React.PureComponent<Props, any> {
         <img className={theme.Image} src={image.url} alt={image.alt} key="1" aria-hidden />
         : ''
     ),
-      <span key="2">
+      <span className={theme.chipContent} key="2">
       {children}
+      { icon && <span > <Icon onClick={onIconClick} source={icon} theme={theme} /> </span> }
     </span>,
     ];
     const isClickable = clickable ?
