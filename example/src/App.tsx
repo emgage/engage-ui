@@ -2146,6 +2146,8 @@ class App extends React.Component<{}, State> {
             helpText="Helper Text"
             searchResultComponent={Chip}
             source={pickerdata}
+            defaultSelectedItems={[{ key: 1, image: 'http://msaadvertising.com/wp-content/uploads/2014/06/Larry-cartoon-headshot.jpg', text: 'John Doe', email: 'test@gmail.com', icon: 'filter' },
+            ]}
             maxSelectedItems={5}
             minSelectedItems={2}
             autoSuggest

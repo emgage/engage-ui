@@ -10,11 +10,12 @@ import * as baseTheme from './Picker.scss';
 import Card from './Card';
 
 export interface IPickerInfo {
-  id?: number;
+  id?: string;
   image?: string;
   name: string;
   description: string;
   email?: string;
+  icon?: string;
 }
 
 export interface IStateProps {
@@ -31,6 +32,8 @@ export interface IItemList {
   email?: string;
   tabIndex?: number;
   alt?: string;
+  icon?: string;
+  text?: string;
 }
 
 export interface IRenderSuggestionProp {
@@ -101,6 +104,8 @@ export interface Props {
   onRemove?(item: any): void;
   onMoreInfo?(): void;
   suffix?: string;
+  // defaultSelectedItems for picker
+  defaultSelectedItems?: IItemList[];
 }
 
 class Picker extends React.Component<Props, State> {
@@ -114,7 +119,7 @@ class Picker extends React.Component<Props, State> {
       value: '',
       input: [],
       suggestions: [],
-      chipListState: [],
+      chipListState: props.defaultSelectedItems || [],
       focusArr: [],
       itemsList: this.props.source,
       isFocused: false,
