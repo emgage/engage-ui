@@ -10,7 +10,7 @@ import * as baseTheme from './Picker.scss';
 import Card from './Card';
 
 export interface IPickerInfo {
-  id?: string;
+  id?: number;
   image?: string;
   name: string;
   description: string;
