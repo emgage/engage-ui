@@ -11,6 +11,7 @@ import Card from './Card';
 
 export interface IPickerInfo {
   id?: number;
+  key?: number;
   image?: string;
   name: string;
   description: string;
@@ -130,8 +131,16 @@ class Picker extends React.Component<Props, State> {
   }
 
   componentWillReceiveProps(newProps: Props) {
-    if (newProps.source.length !== this.props.source.length) {
-      this.setState({ itemsList: newProps.source });
+    if (JSON.stringify(newProps.source) !== JSON.stringify(this.props.source)) {
+      const { chipListState } = this.state;
+      if (newProps.source.length && chipListState.length) {
+        chipListState.forEach((chip) => {
+          const currentText = newProps.source.find((source: IPickerInfo) => source.id === chip.key || source.key === chip.key);
+          chip.text = currentText ? currentText.name : chip.text;
+        });
+      }
+
+      this.setState({ chipListState, itemsList: newProps.source });
     }
   }
   render() {
