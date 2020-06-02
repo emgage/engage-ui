@@ -33,7 +33,7 @@ $border-color: color(sky, base);
     .tableDataWrap {
       display: inline-block;
       width: inherit;
-      white-space: nowrap;
+      white-space: break-spaces;
       text-overflow: ellipsis;
       overflow: hidden;
     }
