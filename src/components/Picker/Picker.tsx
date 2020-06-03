@@ -134,9 +134,11 @@ class Picker extends React.Component<Props, State> {
     if (JSON.stringify(newProps.source) !== JSON.stringify(this.props.source)) {
       const { chipListState } = this.state;
       if (newProps.source.length && chipListState.length) {
-        chipListState.forEach((chip) => {
-          const currentText = newProps.source.find((source: IPickerInfo) => source.id === chip.key || source.key === chip.key);
-          chip.text = currentText ? currentText.name : chip.text;
+        chipListState.forEach((chip: any) => {
+          const currentText = newProps.source.find((source: IPickerInfo) => source.id === (chip.id || chip.key) || source.key === (chip.id || chip.key));
+          if (currentText) {
+            chip.text = currentText.name;
+          }
         });
       }
 
