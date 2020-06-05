@@ -90,6 +90,8 @@ export interface Props {
   labelHidden?: boolean;
   // Display loading indicator
   loading?: boolean;
+  // Disable Picker
+  disabled: boolean;
   maxSelectedItems?: number;
   minSelectedItems?: number;
   chipComponent?: React.ReactNode;
@@ -292,6 +294,7 @@ class Picker extends React.Component<Props, State> {
         label,
         labelHidden,
         loading,
+        disabled,
         selectedResultsBehavior,
         moreInfoComponent,
         chipComponent,
@@ -337,7 +340,7 @@ class Picker extends React.Component<Props, State> {
             }
           </div>
           <TextField
-            autoSuggest={autoSuggest}
+            autoSuggest={autoSuggest && !disabled}
             autoSuggestMethods={autoSuggestMethods}
             helpText={helpText}
             itemSelected={!!chipListState.length}
@@ -351,6 +354,7 @@ class Picker extends React.Component<Props, State> {
             suffix={suffixIcon}
             isFocused={isFocused}
             hasValue={hasValue}
+            disabled={disabled}
           />
         </div>
         <div>
