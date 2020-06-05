@@ -91,7 +91,7 @@ export interface Props {
   // Display loading indicator
   loading?: boolean;
   // Disable Picker
-  disabled: boolean;
+  disabled?: boolean;
   maxSelectedItems?: number;
   minSelectedItems?: number;
   chipComponent?: React.ReactNode;
