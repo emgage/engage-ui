@@ -31,8 +31,5 @@
 
 .loginContainer {
  // @include floatRight(8px, 12px);
-  //justify-self: flex-end;
-  position: absolute;
-    right: 12px;
-    top: 8px;
+  justify-self: flex-end;
 }
