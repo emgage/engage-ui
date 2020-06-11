@@ -6,7 +6,7 @@ const ClickableChipExample = () => (
   <div className={styles.example}>
     <ClickableChip chip={<Chip>Batman</Chip>}>
       <Card>
-        <CardHeader>More about Batman></CardHeader>
+        <CardHeader>More about Batman{'>'}</CardHeader>
         <CardBody>
         </CardBody>
       </Card>

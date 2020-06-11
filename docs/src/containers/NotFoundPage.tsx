@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Link } from 'react-router';
+import { NavLink } from 'react-router-dom';
 
 import * as styles from '../styles/global-styles.scss';
 
@@ -7,7 +7,7 @@ import * as styles from '../styles/global-styles.scss';
 const NotFoundPage = () => (
   <div className={styles.component_container}>
     <h1>404 Page Not Found</h1>
-    <Link to="/">Go back to homepage</Link>
+    <NavLink to="/">Go back to homepage</NavLink>
   </div>
 );
 

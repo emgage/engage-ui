@@ -59,3 +59,6 @@ export declare const BREADCRUMB = "PBreadcrumb";
 export declare const COMBOBOX = "PComboBox";
 export declare const STICKY = "PSticky";
 export declare const PROCESS = "PProcess";
+export declare const PAGINATION = "PPagination";
+export declare const PAGER = "PPager";
+export declare const PAGESIZE = "PPageSize";

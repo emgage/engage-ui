@@ -10,6 +10,7 @@ export interface Props {
     style?: any;
     fixedCloseButton?: boolean;
     toggleDrawer?(): void;
+    children?: any;
 }
 declare const _default: ThemedComponentClass<Props, {}>;
 export default _default;

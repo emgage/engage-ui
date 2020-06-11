@@ -35,7 +35,7 @@ class ValidatedCheckboxComponent extends React.PureComponent<Props, {}> {
     if (value) {
       callback();
     } else if (value !== undefined) {
-      callback(validateRules[0].message);
+      callback(validateRules[0]!.message);
     } else {
       callback();
     }

@@ -36,7 +36,7 @@ declare class ComboBox extends React.Component<Props, State> {
     addRenderer: (items: any, cloneItems: any) => any;
     onChange: (value: string, event: React.FormEvent<HTMLElement>) => void;
     onArrowClick: (event: React.FormEvent<HTMLElement>) => void;
-    handleClick: (value: any, key: any) => void;
+    handleClick: (value: string | any, key: any) => void;
     render(): JSX.Element;
 }
 export { ComboBox as UnthemedComboBox };

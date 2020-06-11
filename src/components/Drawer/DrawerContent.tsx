@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 import { classNames } from '@shopify/react-utilities/styles';
-import { Mode } from './Drawer';
+import { DrawerContext, Mode } from './Drawer';
 
 import { DRAWER } from '../ThemeIdentifiers';
 
@@ -22,10 +22,13 @@ export interface Props {
   fixedCloseButton?: boolean;
   // Callback function to close or open the drawer
   toggleDrawer?(): void;
+
+  children?: any;
 }
 
 // Drawer Content component, in here wrap all other required components or DOM for the Drawer
-class DrawerContent extends React.Component<Props, never> {
+class DrawerContent extends React.Component<Props> {
+
   getContainerClassName() {
     const {
       flip,
@@ -56,28 +59,28 @@ class DrawerContent extends React.Component<Props, never> {
   }
 
   render() {
-    const { active, children, closeButton, fixedCloseButton, theme, toggleDrawer } = this.props;
+    const { componentId, children, theme } = this.props;
     const dcStyle = Object.assign(
       {},
       {  },
       this.props.style
     );
     return (
-      <div style={dcStyle}>
-        {
-          closeButton ?
-          <span className={  fixedCloseButton ? theme.fixedClose : theme.close}>
-            <Button onClick={toggleDrawer} icon="cancel" plain theme={theme} />
-          </span> :
-          null
+      <DrawerContext.Consumer>
+        {({ activeContentId, closeButton, fixedCloseButton, toggleDrawer }: any) =>
+          <div style={dcStyle}>
+            {closeButton
+              ? (
+                <span className={fixedCloseButton ? theme.fixedClose : theme.close}>
+                  <Button onClick={toggleDrawer} icon="cancel" plain theme={theme}/>
+                </span>
+              )
+              : null
+            }
+            {activeContentId === componentId ? children : ''}
+          </div>
         }
-
-        {
-          active ?
-          children :
-          ''
-        }
-      </div>
+      </DrawerContext.Consumer>
     );
   }
 }
