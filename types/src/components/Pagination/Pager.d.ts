@@ -1,5 +1,5 @@
 import { ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
-interface IProps {
+export interface IProps {
     page: any;
     active?: boolean;
     last?: boolean;
@@ -11,6 +11,8 @@ interface IProps {
     onKeyPress(event: any, callback: any, value: number): void;
     itemRender(param1: number, param2: string, param3: any): any;
     theme?: any;
+    plain?: boolean;
+    componentStyle?: any;
 }
 declare const _default: ThemedComponentClass<IProps, {}>;
 export default _default;

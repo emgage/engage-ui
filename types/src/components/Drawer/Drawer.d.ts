@@ -1,4 +1,6 @@
+import * as React from 'react';
 import { ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
+export declare const DrawerContext: React.Context<{}>;
 export declare type Mode = 'slide' | 'push' | 'reveal';
 declare const widthType: ("small" | "medium" | "large" | "collapsed")[];
 export declare type Width = (typeof widthType)[number];
