@@ -73,6 +73,7 @@ const AppBar: React.FC<Props> = (props) => {
       { enableGlobalGo && enableGlobalElement }
       { logo && <Image alt="Logo" source={logo} /> }
       { enableSearch && <TextField /> }
+      <div className={baseTheme.rChild}>
       { rightChildren && <div>{renderRightChildren()}</div> }
       <Login
         isLoggedIn={isLoggedIn}
@@ -82,6 +83,7 @@ const AppBar: React.FC<Props> = (props) => {
         additionalLIst={additionalLIst}
         profilePic={profilePic}
       />
+      </div>
     </FlexBox>
   </header>;
 };
