@@ -84,10 +84,12 @@ const select = ({
 }: Props) => {
   let optionsMarkup: React.ReactNode;
 
-  if (options != null) {
+  if (options && options.length !== 0) {
     optionsMarkup = options.map(renderOption);
-  } else if (groups != null) {
+  } else if (groups && groups.length !== 0) {
     optionsMarkup = groups.map(renderGroup);
+  } else if (value) {
+    optionsMarkup = renderOption(value);
   }
 
   const isPlaceholder = value === '' && placeholder != null;
