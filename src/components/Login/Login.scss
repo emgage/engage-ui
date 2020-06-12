@@ -30,5 +30,7 @@
 }
 
 .loginContainer {
-  @include floatRight(8px, 12px)
+ // @include floatRight(8px, 12px);
+  justify-content: flex-end;
+  margin-left: auto;
 }

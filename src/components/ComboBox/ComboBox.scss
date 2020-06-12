@@ -47,5 +47,5 @@ $stacking-order: (
     position: absolute;
     right: 14px;
     top: 14px;
-    z-index: z-index(icons, $stacking-order);
+   z-index: z-index(backdrop, $stacking-order);
 }
