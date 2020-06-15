@@ -236,7 +236,7 @@ class Picker extends React.Component<Props, State> {
         const addedItem = this.state.chipListState.slice(number, number + 1);
         const addedItemObj = Object.assign({}, addedItem[0], { tabIndex: -1 });
         const chipListState = existingChipList.slice(0, number).concat(existingChipList.slice(number + 1));
-        const itemsList = this.state.itemsList.concat([addedItemObj]);
+        const itemsList = [addedItemObj, ...this.state.itemsList];
         const focusArr = this.state.focusArr.slice(0, number).concat(this.state.focusArr.slice(number + 1));
         if (chipListState.length) chipListState[0].tabIndex = 0;
         let focused = 0;
