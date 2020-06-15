@@ -19,25 +19,25 @@ export interface Props {
   // Change the size of the button. It can be slim or large
   componentSize?: Size;
   // Allows the button to grow to the width of its container
-  fullWidth?: boolean;
+  fullWidth: boolean;
   // Display as primary button.
-  primary?: boolean;
+  primary: boolean;
   // Display an outlined button.
-  outline?: boolean;
+  outline: boolean;
   // Display as destructive button.
-  destructive?: boolean;
+  destructive: boolean;
   // Display button as disable.
-  disabled?: boolean;
+  disabled: boolean;
   // Use plain button style.
-  plain?: boolean;
+  plain: boolean;
   // name of button
   name?: string;
   // Force url to open in a new tab.
-  external?: boolean;
+  external: boolean;
   // Button will submit a form.
-  submit?: boolean;
+  submit: boolean;
   // Display button with a disclosure icon.
-  disclosure?: boolean;
+  disclosure: boolean;
   // Visually hidden text for screen readers.
   accessibilityLabel?: string;
   // Icon to display in the banner.
@@ -93,11 +93,11 @@ const button = ({
   );
 
   const disclosureIconMarkup = disclosure
-    ? <span className={theme.customIcon}><Icon source="caretDown" /></span>
+    ? <span className={theme.customIcon}><Icon source="caretDown" backdrop={false} /></span>
     : null;
 
   const iconMarkup = icon
-    ? <span className={theme.customIcon}><Icon source={icon} /></span>
+    ? <span className={theme.customIcon}><Icon source={icon} backdrop={false} /></span>
     : null;
 
   const childMarkup = children ? <span>{children}</span> : null;
@@ -179,6 +179,15 @@ export function buttonFrom(
       onClick={onAction}
       {...action}
       {...overrides}
+      disabled={false}
+      destructive={false}
+      fullWidth={false}
+      primary={false}
+      outline={false}
+      plain={false}
+      external={false}
+      submit={false}
+      disclosure={false}
     />
   );
 }

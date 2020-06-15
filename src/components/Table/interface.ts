@@ -17,7 +17,7 @@ export interface ColumnConfig {
   className?: string;
   style?: any;
   noSort?: boolean;
-  sort?: boolean;
+  sort: boolean;
   sortBy?: string;
   injectBody?(value?: any): void;
   injectHeader?(value?: any): void;
@@ -30,7 +30,7 @@ export interface NestedChild {
 
 export interface FilterConfig {
   searchKey: string;
-  search?: boolean;
+  search: boolean;
   field: string;
 }
 

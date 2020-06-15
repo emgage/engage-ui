@@ -14,14 +14,14 @@ export interface Props {
     groups?: (Group | Option)[];
     label: string;
     labelAction?: Action;
-    labelHidden?: boolean;
-    loading?: boolean;
+    labelHidden: boolean;
+    loading: boolean;
     helpText?: React.ReactNode;
     componentId?: string;
     name?: string;
     errors?: [Error];
-    disabled?: boolean;
-    required?: boolean;
+    disabled: boolean;
+    required: boolean;
     value?: string;
     placeholder?: string;
     theme?: any;

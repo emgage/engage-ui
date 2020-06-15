@@ -10,7 +10,7 @@ export interface Props extends TextFieldProps {
     formatChars?: any;
     maskChar?: string;
     defaultValue?: string;
-    alwaysShowMask?: boolean;
+    alwaysShowMask: boolean;
     onPaste?(e: any): void;
     onKeyPress?(e: any): void;
     onKeyDown?(e: any): void;

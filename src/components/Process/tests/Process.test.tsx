@@ -14,7 +14,7 @@ describe('<Process />', () => {
   describe('when default props are provided', () => {
     it('should have default process elements', () => {
       const subject = mount(
-      <Process steps={steps}></Process>);
+      <Process steps={steps} showNavigation={false} allowBackStepping={false} />);
       expect(subject.find('ul').exists()).toBeTruthy();
       expect(subject.find('li').exists()).toBeTruthy();
       expect(subject.find('div').exists()).toBeTruthy();
@@ -25,7 +25,7 @@ describe('<Process />', () => {
   describe('when allowBackStepping props are provided', () => {
     it('should have allowBackStepping true process elements', () => {
       const subject = mount(
-      <Process steps={steps} allowBackStepping></Process>);
+      <Process steps={steps} allowBackStepping showNavigation={false} />);
       expect(subject.find('ul').exists()).toBeTruthy();
       expect(subject.find('li').exists()).toBeTruthy();
       expect(subject.find('div').exists()).toBeTruthy();
@@ -37,7 +37,7 @@ describe('<Process />', () => {
     it('should have callbackfunction as props in process elements', () => {
       const spy = jest.fn();
       const subject = mount(
-      <Process steps={steps} allowBackStepping onClick={spy}></Process>);
+      <Process steps={steps} allowBackStepping onClick={spy} showNavigation={false} />);
       expect(subject.find('ul').exists()).toBeTruthy();
       expect(subject.find('li').exists()).toBeTruthy();
       expect(subject.find('div').exists()).toBeTruthy();
@@ -49,7 +49,7 @@ describe('<Process />', () => {
     it('should have callbackfunction for updating state of next and previous as props in process elements', () => {
       const spy = jest.fn();
       const subject = mount(
-      <Process steps={steps} allowBackStepping onClick={spy} onComponentStateUpdate={spy}></Process>);
+      <Process steps={steps} allowBackStepping onClick={spy} onComponentStateUpdate={spy} showNavigation={false} />);
       expect(subject.find('ul').exists()).toBeTruthy();
       expect(subject.find('li').exists()).toBeTruthy();
       expect(subject.find('div').exists()).toBeTruthy();

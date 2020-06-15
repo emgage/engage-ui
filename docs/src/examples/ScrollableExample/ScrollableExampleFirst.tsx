@@ -4,7 +4,7 @@ import * as styles from '../../styles/components-page.scss';
 
 const ScrollableExampleFirst = () => (
   <div className={styles.example}>
-    <Scrollable>
+    <Scrollable vertical={false} horizontal={false} shadow={false}>
       <p>
         By signing up for the Shopify service (“Service”) or
         any of the services of Shopify Inc. (“Shopify”) you are agreeing to be bound by

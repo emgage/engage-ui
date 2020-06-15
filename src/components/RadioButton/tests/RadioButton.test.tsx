@@ -14,7 +14,7 @@ describe('<RadioButton />', () => {
   describe('when default props are provided', () => {
     it('basic radiobutton should be rendered with default props', () => {
       const radiobuttonWrapper = mount(
-                                      <RadioButton label="RadioButton" theme={theme} />
+                                      <RadioButton label="RadioButton" theme={theme} labelHidden={false} checked={false} disabled={false} />
                                   );
       expect(radiobuttonWrapper.find('label')).toHaveLength(1);
       expect(radiobuttonWrapper.find('div')).toHaveLength(4);
@@ -33,7 +33,7 @@ describe('<RadioButton />', () => {
       it('should verify radiobutton when onchange() is set', () => {
         const spy = jest.fn();
         const radiobuttonWrapper = mount(
-                                        <RadioButton label="RadioButton" onChange={spy} theme={theme} />
+                                        <RadioButton label="RadioButton" onChange={spy} theme={theme} labelHidden={false} checked={false} disabled={false} />
                                     );
         (radiobuttonWrapper.find('input') as any).instance().checked = true;
         radiobuttonWrapper.find('input').simulate('change');
@@ -54,7 +54,7 @@ describe('<RadioButton />', () => {
       it('should verify radiobutton when onchange() is not set', () => {
 
         const radiobuttonWrapper = mount(
-                                        <RadioButton label="RadioButton" theme={theme} />
+                                        <RadioButton label="RadioButton" theme={theme} labelHidden={false} checked={false} disabled={false} />
                                   );
         expect(radiobuttonWrapper.find('label')).toHaveLength(1);
         expect(radiobuttonWrapper.find('div')).toHaveLength(4);
@@ -74,7 +74,7 @@ describe('<RadioButton />', () => {
       it('should verify radiobutton when onFocus() is set', () => {
         const spy = jest.fn();
         const radiobuttonWrapper = mount(
-                                        <RadioButton label="RadioButton" onFocus={spy} theme={theme} />
+                                        <RadioButton label="RadioButton" onFocus={spy} theme={theme} labelHidden={false} checked={false} disabled={false} />
                                   );
         radiobuttonWrapper.find('input').simulate('focus');
         expect(spy).toHaveBeenCalled();
@@ -93,7 +93,7 @@ describe('<RadioButton />', () => {
     describe('when not set', () => {
       it('should verify radiobutton when onFocus() is not set', () => {
         const radiobuttonWrapper = mount(
-                                        <RadioButton label="RadioButton" theme={theme} />
+                                        <RadioButton label="RadioButton" theme={theme} labelHidden={false} checked={false} disabled={false} />
                                   );
         expect(radiobuttonWrapper.find('label')).toHaveLength(1);
         expect(radiobuttonWrapper.find('div')).toHaveLength(4);
@@ -113,7 +113,7 @@ describe('<RadioButton />', () => {
       it('should verify radiobutton when onBlur() is set', () => {
         const spy = jest.fn();
         const radiobuttonWrapper = mount(
-                                        <RadioButton label="RadioButton" onBlur={spy} theme={theme} />
+                                        <RadioButton label="RadioButton" onBlur={spy} theme={theme} labelHidden={false} checked={false} disabled={false} />
                                   );
         radiobuttonWrapper.find('input').simulate('blur');
         expect(spy).toHaveBeenCalled();
@@ -132,7 +132,7 @@ describe('<RadioButton />', () => {
     describe('when not set', () => {
       it('should verify radiobutton when onBlur() is not set', () => {
         const radiobuttonWrapper = mount(
-                                        <RadioButton label="RadioButton" theme={theme} />
+                                        <RadioButton label="RadioButton" theme={theme} labelHidden={false} checked={false} disabled={false} />
                                     );
         expect(radiobuttonWrapper.find('label')).toHaveLength(1);
         expect(radiobuttonWrapper.find('div')).toHaveLength(4);
@@ -151,7 +151,7 @@ describe('<RadioButton />', () => {
     describe('when set', () => {
       it('should verify radiobutton when id is set', () => {
         const radiobuttonWrapper = mount(
-                                        <RadioButton label="RadioButton" componentId="MyRadioButton" theme={theme} />
+                                        <RadioButton label="RadioButton" componentId="MyRadioButton" theme={theme} labelHidden={false} checked={false} disabled={false} />
                                     );
         expect(radiobuttonWrapper.find('label')).toHaveLength(1);
         expect(radiobuttonWrapper.find('div')).toHaveLength(4);
@@ -171,7 +171,7 @@ describe('<RadioButton />', () => {
     describe('when not set', () => {
       it('should verify radiobutton when id is not set', () => {
         const radiobuttonWrapper = mount(
-                                        <RadioButton label="RadioButton" theme={theme} />
+                                        <RadioButton label="RadioButton" theme={theme} labelHidden={false} checked={false} disabled={false} />
                                     );
         expect(radiobuttonWrapper.find('label')).toHaveLength(1);
         expect(radiobuttonWrapper.find('div')).toHaveLength(4);
@@ -192,7 +192,7 @@ describe('<RadioButton />', () => {
     describe('when set', () => {
       it('should verify radiobutton when label is set', () => {
         const radiobuttonWrapper = mount(
-                                        <RadioButton label="RadioButton" theme={theme} />
+                                        <RadioButton label="RadioButton" theme={theme} labelHidden={false} checked={false} disabled={false} />
                                     );
         expect(radiobuttonWrapper.find('label')).toHaveLength(1);
         expect(radiobuttonWrapper.find('div')).toHaveLength(4);
@@ -211,7 +211,7 @@ describe('<RadioButton />', () => {
     describe('when set to true', () => {
       it('should verify radiobutton when labelHidden is set to true', () => {
         const radiobuttonWrapper = mount(
-                                        <RadioButton label="RadioButton" labelHidden theme={theme} />
+                                        <RadioButton label="RadioButton" labelHidden theme={theme} checked={false} disabled={false} />
                                     );
         expect(radiobuttonWrapper.find('label')).toHaveLength(1);
         expect(radiobuttonWrapper.find('div')).toHaveLength(4);
@@ -229,7 +229,7 @@ describe('<RadioButton />', () => {
     describe('when set to false', () => {
       it('should verify radiobutton when labelHidden is set to false', () => {
         const radiobuttonWrapper = mount(
-                                        <RadioButton label="RadioButton" labelHidden={false} theme={theme} />
+                                        <RadioButton label="RadioButton" labelHidden={false} theme={theme} checked={false} disabled={false} />
                                     );
         expect(radiobuttonWrapper.find('label')).toHaveLength(1);
         expect(radiobuttonWrapper.find('div')).toHaveLength(4);
@@ -243,32 +243,13 @@ describe('<RadioButton />', () => {
         expect(radiobuttonWrapper.prop('labelHidden')).toBe(false);
       });
     });
-
-    describe('when not set', () => {
-      it('should verify radiobutton when labelHidden is not set', () => {
-        const radiobuttonWrapper = mount(
-                                        <RadioButton label="RadioButton" theme={theme} />
-                                    );
-        expect(radiobuttonWrapper.find('label')).toHaveLength(1);
-        expect(radiobuttonWrapper.find('div')).toHaveLength(4);
-        expect(radiobuttonWrapper.find('input')).toHaveLength(1);
-        expect(radiobuttonWrapper.find('label').hasClass(''));
-        expect(radiobuttonWrapper.find('div').at(1).hasClass('radioButton'));
-        expect(radiobuttonWrapper.find('input').prop('type')).toBe('radio');
-        expect(radiobuttonWrapper.find('input').hasClass('input'));
-        expect(radiobuttonWrapper.find('div').at(2).hasClass('backdrop'));
-        expect(radiobuttonWrapper.find('div').at(3).hasClass('icon'));
-        expect(radiobuttonWrapper.prop('labelHidden')).toBeUndefined();
-        expect(radiobuttonWrapper.find('labelHidden')).toHaveLength(0);
-      });
-    });
   });
 
   describe('helpText property', () => {
     describe('when set', () => {
       it('should verify radiobutton when helpText is set', () => {
         const radiobuttonWrapper = mount(
-                                        <RadioButton label="RadioButton" helpText="Some help" theme={theme} />
+                                        <RadioButton label="RadioButton" helpText="Some help" theme={theme} labelHidden={false} checked={false} disabled={false} />
                                      );
         const helpTextID = radiobuttonWrapper.find('input').prop<string>('aria-describedby');
         expect(radiobuttonWrapper.find('label')).toHaveLength(1);
@@ -287,7 +268,7 @@ describe('<RadioButton />', () => {
     describe('when not set', () => {
       it('should verify radiobutton when helpText is not set', () => {
         const radiobuttonWrapper = mount(
-                                        <RadioButton label="RadioButton" theme={theme} />
+                                        <RadioButton label="RadioButton" theme={theme} labelHidden={false} checked={false} disabled={false} />
                                      );
         expect(radiobuttonWrapper.find('label')).toHaveLength(1);
         expect(radiobuttonWrapper.find('div')).toHaveLength(4);
@@ -308,7 +289,7 @@ describe('<RadioButton />', () => {
     describe('when set to true', () => {
       it('should verify radiobutton when disabled is set to true', () => {
         const radiobuttonWrapper = mount(
-                                        <RadioButton label="RadioButton" disabled theme={theme} />
+                                        <RadioButton label="RadioButton" disabled theme={theme} labelHidden={false} checked={false} />
                                      );
         expect(radiobuttonWrapper.find('label')).toHaveLength(1);
         expect(radiobuttonWrapper.find('div')).toHaveLength(4);
@@ -326,7 +307,7 @@ describe('<RadioButton />', () => {
     describe('when set to false', () => {
       it('should verify radiobutton when disabled is set to false', () => {
         const radiobuttonWrapper = mount(
-                                        <RadioButton label="RadioButton" disabled={false} theme={theme} />
+                                        <RadioButton label="RadioButton" disabled={false} theme={theme} labelHidden={false} checked={false} />
                                      );
         expect(radiobuttonWrapper.find('label')).toHaveLength(1);
         expect(radiobuttonWrapper.find('div')).toHaveLength(4);
@@ -340,32 +321,13 @@ describe('<RadioButton />', () => {
         expect(radiobuttonWrapper.prop('disabled')).toBe(false);
       });
     });
-
-    describe('when not set', () => {
-      it('should verify radiobutton when disabled is not set', () => {
-        const radiobuttonWrapper = mount(
-                                        <RadioButton label="RadioButton" theme={theme} />
-                                     );
-        expect(radiobuttonWrapper.find('label')).toHaveLength(1);
-        expect(radiobuttonWrapper.find('div')).toHaveLength(4);
-        expect(radiobuttonWrapper.find('input')).toHaveLength(1);
-        expect(radiobuttonWrapper.find('label').hasClass(''));
-        expect(radiobuttonWrapper.find('div').at(1).hasClass('radioButton'));
-        expect(radiobuttonWrapper.find('input').prop('type')).toBe('radio');
-        expect(radiobuttonWrapper.find('input').hasClass('input'));
-        expect(radiobuttonWrapper.find('div').at(2).hasClass('backdrop'));
-        expect(radiobuttonWrapper.find('div').at(3).hasClass('icon'));
-        expect(radiobuttonWrapper.prop('disabled')).toBeUndefined();
-        expect(radiobuttonWrapper.find('disabled')).toHaveLength(0);
-      });
-    });
   });
 
   describe('name property', () => {
     describe('when set', () => {
       it('should verify radiobutton when name is set', () => {
         const radiobuttonWrapper = mount(
-                                        <RadioButton label="RadioButton" name="MyRadioButton" theme={theme} />
+                                        <RadioButton label="RadioButton" name="MyRadioButton" theme={theme} labelHidden={false} checked={false} disabled={false} />
                                     );
         expect(radiobuttonWrapper.find('label')).toHaveLength(1);
         expect(radiobuttonWrapper.find('div')).toHaveLength(4);
@@ -383,7 +345,7 @@ describe('<RadioButton />', () => {
     describe('when not set', () => {
       it('should verify radiobutton when name is not set', () => {
         const radiobuttonWrapper = mount(
-                                        <RadioButton label="RadioButton" theme={theme} />
+                                        <RadioButton label="RadioButton" theme={theme} labelHidden={false} checked={false} disabled={false} />
                                     );
         expect(radiobuttonWrapper.find('label')).toHaveLength(1);
         expect(radiobuttonWrapper.find('div')).toHaveLength(4);
@@ -404,7 +366,7 @@ describe('<RadioButton />', () => {
     describe('when set', () => {
       it('should verify radiobutton when value is set', () => {
         const radiobuttonWrapper = mount(
-                                        <RadioButton label="RadioButton" value="MyRadioButton" theme={theme} />
+                                        <RadioButton label="RadioButton" value="MyRadioButton" theme={theme} labelHidden={false} checked={false} disabled={false} />
                                     );
         expect(radiobuttonWrapper.find('label')).toHaveLength(1);
         expect(radiobuttonWrapper.find('div')).toHaveLength(4);
@@ -422,7 +384,7 @@ describe('<RadioButton />', () => {
     describe('when not set', () => {
       it('should verify radiobutton when value is not set', () => {
         const radiobuttonWrapper = mount(
-                                        <RadioButton label="RadioButton" theme={theme} />
+                                        <RadioButton label="RadioButton" theme={theme} labelHidden={false} checked={false} disabled={false} />
                                     );
         expect(radiobuttonWrapper.find('label')).toHaveLength(1);
         expect(radiobuttonWrapper.find('div')).toHaveLength(4);
@@ -443,7 +405,7 @@ describe('<RadioButton />', () => {
     describe('when set to true', () => {
       it('should verify radiobutton when checked is set to true', () => {
         const radiobuttonWrapper = mount(
-                                        <RadioButton label="RadioButton" checked theme={theme} />
+                                        <RadioButton label="RadioButton" checked theme={theme} labelHidden={false} disabled={false} />
                                      );
         expect(radiobuttonWrapper.find('label')).toHaveLength(1);
         expect(radiobuttonWrapper.find('div')).toHaveLength(4);
@@ -461,7 +423,7 @@ describe('<RadioButton />', () => {
     describe('when set to false', () => {
       it('should verify radiobutton when checked is set to false', () => {
         const radiobuttonWrapper = mount(
-                                        <RadioButton label="RadioButton" checked={false} theme={theme} />
+                                        <RadioButton label="RadioButton" checked={false} theme={theme} labelHidden={false} disabled={false} />
                                      );
         expect(radiobuttonWrapper.find('label')).toHaveLength(1);
         expect(radiobuttonWrapper.find('div')).toHaveLength(4);
@@ -473,25 +435,6 @@ describe('<RadioButton />', () => {
         expect(radiobuttonWrapper.find('div').at(2).hasClass('backdrop'));
         expect(radiobuttonWrapper.find('div').at(3).hasClass('icon'));
         expect(radiobuttonWrapper.prop('checked')).toBe(false);
-      });
-    });
-
-    describe('when not set', () => {
-      it('should verify radiobutton when checked is not set', () => {
-        const radiobuttonWrapper = mount(
-                                        <RadioButton label="RadioButton" theme={theme} />
-                                     );
-        expect(radiobuttonWrapper.find('label')).toHaveLength(1);
-        expect(radiobuttonWrapper.find('div')).toHaveLength(4);
-        expect(radiobuttonWrapper.find('input')).toHaveLength(1);
-        expect(radiobuttonWrapper.find('label').hasClass(''));
-        expect(radiobuttonWrapper.find('div').at(1).hasClass('radioButton'));
-        expect(radiobuttonWrapper.find('input').prop('type')).toBe('radio');
-        expect(radiobuttonWrapper.find('input').hasClass('input'));
-        expect(radiobuttonWrapper.find('div').at(2).hasClass('backdrop'));
-        expect(radiobuttonWrapper.find('div').at(3).hasClass('icon'));
-        expect(radiobuttonWrapper.prop('checked')).toBeUndefined();
-        expect(radiobuttonWrapper.find('checked')).toHaveLength(0);
       });
     });
   });
@@ -534,7 +477,7 @@ describe('<RadioButton />', () => {
     describe('when set', () => {
       it('should verify radiobutton when theme is set', () => {
         const radiobuttonWrapper = mount(
-                                      <RadioButton label="RadioButton" theme={theme} />
+                                      <RadioButton label="RadioButton" theme={theme} labelHidden={false} checked={false} disabled={false} />
                                   );
         expect(radiobuttonWrapper.find('label')).toHaveLength(1);
         expect(radiobuttonWrapper.find('div')).toHaveLength(4);
@@ -551,7 +494,7 @@ describe('<RadioButton />', () => {
     describe('when not set', () => {
       it('should verify radiobutton when theme is not set', () => {
         const radiobuttonWrapper = mount(
-                                      <RadioButton label="RadioButton" />
+                                      <RadioButton label="RadioButton" labelHidden={false} checked={false} disabled={false} />
                                   );
         expect(radiobuttonWrapper.find('label')).toHaveLength(1);
         expect(radiobuttonWrapper.find('div')).toHaveLength(4);

@@ -22,7 +22,7 @@ export interface Props {
   /**
    * Enable search
    */
-  enableSearch?: boolean;
+  enableSearch: boolean;
   /**
    * Right side children
    */
@@ -69,10 +69,31 @@ const AppBar: React.FC<Props> = (props) => {
   };
 
   return <header className={baseTheme.appHeader}>
-    <FlexBox>
+    <FlexBox inline={false}>
       { enableGlobalGo && enableGlobalElement }
       { logo && <Image alt="Logo" source={logo} /> }
-      { enableSearch && <TextField /> }
+      { enableSearch &&
+        <TextField
+          alphanumeric={false}
+          autoComplete={false}
+          autoFocus={false}
+          backdropHidden={false}
+          capital={false}
+          required={false}
+          enableTextCounter={false}
+          readOnly={false}
+          resizable={false}
+          showNumberIcon={false}
+          spellCheck={false}
+          autoSuggest={false}
+          disabled={false}
+          hasValue={false}
+          isFocused={false}
+          itemSelected={false}
+          labelHidden={false}
+          loading={false}
+        />
+      }
       <div className={baseTheme.rChild}>
       { rightChildren && <div>{renderRightChildren()}</div> }
       <Login

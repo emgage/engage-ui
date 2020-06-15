@@ -20,7 +20,7 @@ export interface Props {
   // Title of choice list.
   componentTitle?: string;
   // Display title or not
-  titleHidden?: boolean;
+  titleHidden: boolean;
   // Array of choices to be displayed. Choice is object of { value: string, label: string }.
   choices: Choice[];
   // Selected values
@@ -28,13 +28,13 @@ export interface Props {
   // Name of the chicelist
   componentName?: string;
   // Allow multiple selection
-  allowMultiple?: boolean;
+  allowMultiple: boolean;
   // Theme to be injected via css-themr
   theme?: any;
   // Function to handle on change of choice list.
   onChange?(selected: string[]): void;
   // Set choice list position
-  horizontal?: boolean;
+  horizontal: boolean;
   // set helper text
   helpText?: string;
 }

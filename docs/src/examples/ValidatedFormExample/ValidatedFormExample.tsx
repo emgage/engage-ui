@@ -17,6 +17,23 @@ const ValidatedFormExample = () => (
           validateRules={[
             { required: true, message: 'App Name is required.' },
           ]}
+          alphanumeric={false}
+          autoComplete={false}
+          autoFocus={false}
+          autoSuggest={false}
+          backdropHidden={false}
+          capital={false}
+          disabled={false}
+          enableTextCounter={false}
+          hasValue={false}
+          isFocused={false}
+          itemSelected={false}
+          labelHidden={false}
+          loading={false}
+          readOnly={false}
+          resizable={false}
+          showNumberIcon={false}
+          spellCheck={false}
         />
         <ValidatedTextField
           multiline
@@ -30,9 +47,38 @@ const ValidatedFormExample = () => (
           validateRules={[
             { required: true, message: 'App Description is required.' },
           ]}
+          alphanumeric={false}
+          autoComplete={false}
+          autoFocus={false}
+          autoSuggest={false}
+          backdropHidden={false}
+          capital={false}
+          disabled={false}
+          enableTextCounter={false}
+          hasValue={false}
+          isFocused={false}
+          itemSelected={false}
+          labelHidden={false}
+          loading={false}
+          readOnly={false}
+          resizable={false}
+          showNumberIcon={false}
+          spellCheck={false}
         />
-        <ButtonGroup>
-          <Button submit primary>Submit</Button>
+        <ButtonGroup segmented={false}>
+          <Button
+            submit
+            primary
+            disabled={false}
+            destructive={false}
+            disclosure={false}
+            external={false}
+            fullWidth={false}
+            outline={false}
+            plain={false}
+          >
+            Submit
+          </Button>
         </ButtonGroup>
       </FormLayout>
     </ValidatedForm>

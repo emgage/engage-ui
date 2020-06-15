@@ -25,7 +25,7 @@ const tag = ({ children, onRemove, theme }: Props) => {
         onClick={onRemove}
         onMouseUp={handleMouseUp}
       >
-        <Icon source="cancelSmall" theme={theme} />
+        <Icon source="cancelSmall" theme={theme} backdrop={false} />
       </button>
     </span>
   );

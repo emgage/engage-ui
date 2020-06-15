@@ -8,7 +8,7 @@ export interface Props {
   // Text or any react component to render inside message component.
   children?: React.ReactNode;
   // To display, if message is visible or not
-  isVisible?: boolean;
+  isVisible: boolean;
   // To maintain identity for message.
   componentId: string;
   // To apply style externally for this component

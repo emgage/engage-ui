@@ -4,9 +4,33 @@ import * as styles from '../../styles/components-page.scss';
 
 const ButtonGroupExampleFirst = () => (
   <div className={styles.example}>
-    <ButtonGroup>
-      <Button>Button 1</Button>
-      <Button>Button 2</Button>
+    <ButtonGroup segmented={false}>
+      <Button
+        disabled={false}
+        disclosure={false}
+        destructive={false}
+        external={false}
+        fullWidth={false}
+        outline={false}
+        primary={false}
+        submit={false}
+        plain={false}
+      >
+        Button 1
+      </Button>
+      <Button
+        disabled={false}
+        disclosure={false}
+        destructive={false}
+        external={false}
+        fullWidth={false}
+        outline={false}
+        primary={false}
+        submit={false}
+        plain={false}
+      >
+        Button 2
+      </Button>
     </ButtonGroup>
   </div>
 );

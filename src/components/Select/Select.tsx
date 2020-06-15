@@ -31,9 +31,9 @@ export interface Props {
   // Adds an action to the label
   labelAction?: Action;
   // Visually hide the label
-  labelHidden?: boolean;
+  labelHidden: boolean;
   // Display loading indicator
-  loading?: boolean;
+  loading: boolean;
   // Additional text to aide in use
   helpText?: React.ReactNode;
   // ID for form input
@@ -43,8 +43,8 @@ export interface Props {
   // Display an error state
   errors?: [Error];
   // Disable input
-  disabled?: boolean;
-  required?: boolean;
+  disabled: boolean;
+  required: boolean;
   // Value for form input
   value?: string;
   // Content to display when component render.
@@ -136,6 +136,8 @@ const select = ({
       required={required}
       componentClass={labelStyle}
       theme={theme}
+      autoSuggest={false}
+      focused={false}
     >
       <div className={className}>
         <select
@@ -155,7 +157,7 @@ const select = ({
           {loading && <option label="Loading..." value="LOADING" disabled />}
           {optionsMarkup}
         </select>
-        <div className={theme.customIcon}><Icon source="triangleDown" theme={theme} /></div>
+        <div className={theme.customIcon}><Icon source="triangleDown" theme={theme} backdrop={false} /></div>
         {loading && <div className={theme.spinnerWrapper}><Spinner componentSize="small" componentColor="disabled" theme={theme} /></div>}
         <div className={theme.backdrop} />
       </div>

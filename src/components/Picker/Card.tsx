@@ -9,7 +9,7 @@ export interface Props {
   bold?: string;
   nameAfter?: string;
   email?: string;
-  isHighlighted?: boolean;
+  isHighlighted: boolean;
   alt?: string;
 }
 
@@ -22,7 +22,7 @@ class Card extends React.PureComponent<Props, {}> {
     return (
       <div>
         <div className={cardBackground}>
-        <FlexBox align="Center">
+        <FlexBox align="Center" inline={false}>
           {
             this.props.image ?
               <span><img className={style.avatarImage} src={this.props.image} alt={this.props.alt} aria-hidden={!this.props.nameAfter || !this.props.nameBefore} /></span>

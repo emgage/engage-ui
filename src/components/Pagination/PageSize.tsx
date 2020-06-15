@@ -58,6 +58,8 @@ class PageSize extends React.PureComponent<IPageSizeProps, any>{
                     showTitle
                     page={page}
                     locale={LOCALE}
+                    active={false}
+                    last={false}
                 />;
         })
       }     </ul>;

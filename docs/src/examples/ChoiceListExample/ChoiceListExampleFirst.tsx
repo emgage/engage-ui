@@ -21,6 +21,8 @@ const ChoiceListExample = () => (
       selected={['required']}
       horizontal
       helpText="Allow recipient to dismiss a message from their notifications."
+      titleHidden={false}
+      allowMultiple={false}
     />
   </div>
 );

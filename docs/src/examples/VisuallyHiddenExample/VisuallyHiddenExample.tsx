@@ -6,7 +6,7 @@ const VisuallyHiddenExample = () => (
   <div className={styles.example}>
     <br />
     <Card>
-      <CardBody>
+      <CardBody sectioned={false}>
       <VisuallyHidden>
         <Heading>Title and description</Heading>
       </VisuallyHidden>
@@ -14,10 +14,46 @@ const VisuallyHiddenExample = () => (
         <TextField
           label="Title"
           value="Artisanal Wooden Spoon"
+          alphanumeric={false}
+          autoComplete={false}
+          autoFocus={false}
+          autoSuggest={false}
+          backdropHidden={false}
+          capital={false}
+          disabled={false}
+          enableTextCounter={false}
+          hasValue={false}
+          isFocused={false}
+          itemSelected={false}
+          labelHidden={false}
+          loading={false}
+          readOnly={false}
+          required={false}
+          resizable={false}
+          showNumberIcon={false}
+          spellCheck={false}
         />
         <TextField
           label="Description"
           multiline
+          alphanumeric={false}
+          autoComplete={false}
+          autoFocus={false}
+          autoSuggest={false}
+          backdropHidden={false}
+          capital={false}
+          disabled={false}
+          enableTextCounter={false}
+          hasValue={false}
+          isFocused={false}
+          itemSelected={false}
+          labelHidden={false}
+          loading={false}
+          readOnly={false}
+          required={false}
+          resizable={false}
+          showNumberIcon={false}
+          spellCheck={false}
         />
       </FormLayout>
       </CardBody>

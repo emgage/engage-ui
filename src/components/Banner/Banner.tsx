@@ -116,7 +116,7 @@ const banner = ({
     textMarkUp = secondaryText.map((item, index) => {
       return (
         <div key={`option_${index}`} className={baseTheme.bannerBox}>
-          <Icon source = {item.icon as keyof typeof IconList} />
+          <Icon source = {item.icon as keyof typeof IconList} backdrop={false} />
           <p className={baseTheme.bannerContent}>
             {item.text}
           </p>
@@ -132,7 +132,7 @@ const banner = ({
   const actionMarkup = action
     ? (
       <div className={theme.actions}>
-        <ButtonGroup theme={theme}>
+        <ButtonGroup theme={theme} segmented={false} >
           {buttonFrom(action, { outline: true })}
           {secondaryActionMarkup}
         </ButtonGroup>
@@ -156,7 +156,20 @@ const banner = ({
   const dismissButton = onDismiss
     ? (
       <div className={theme.dismiss}>
-        <Button plain icon="cancelSmall" accessibilityLabel="Dismiss notification" onClick={onDismiss} theme={theme} />
+        <Button
+          plain icon="cancelSmall"
+          accessibilityLabel="Dismiss notification"
+          onClick={onDismiss}
+          theme={theme}
+          fullWidth={false}
+          destructive={false}
+          primary={false}
+          outline={false}
+          disabled={false}
+          external={false}
+          submit={false}
+          disclosure={false}
+        />
       </div>
     )
     : null;
@@ -193,7 +206,7 @@ function uniqueID() {
 function secondaryActionFrom(action: Action, theme: any) {
   if (action.url) {
     return (
-      <UnstyledLink className={theme.secondaryAction} url={action.url}>
+      <UnstyledLink className={theme.secondaryAction} url={action.url} external={false}>
         <span className={theme.text}>{action.content}</span>
       </UnstyledLink>
     );

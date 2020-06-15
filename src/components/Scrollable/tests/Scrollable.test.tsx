@@ -12,11 +12,11 @@ const theme = {
 describe('<Scrollable />', () => {
   describe('when default props are provided', () => {
     it('should have rendered 1 div elements', () => {
-      const subject = mount(<Scrollable theme={theme} />);
+      const subject = mount(<Scrollable theme={theme} vertical={false} horizontal={false} shadow={false} />);
       expect(subject.find('div')).toHaveLength(1);
     });
     it('should have default scrollable css class on div', () => {
-      const subject = mount(<Scrollable theme={theme} />);
+      const subject = mount(<Scrollable theme={theme} vertical={false} horizontal={false} shadow={false} />);
       expect(subject.find('div').at(0).hasClass('Scrollable')).toBe(true);
     });
   });
@@ -24,60 +24,41 @@ describe('<Scrollable />', () => {
   describe(' property', () => {
     describe('when not set', () => {
       it('should have rendered 1 div elements', () => {
-        const subject = mount(<Scrollable theme={theme} />);
+        const subject = mount(<Scrollable theme={theme} vertical={false} horizontal={false} shadow={false} />);
         expect(subject.find('div')).toHaveLength(1);
       });
       it('should have default scrollable css class on div', () => {
-        const subject = mount(<Scrollable theme={theme} />);
+        const subject = mount(<Scrollable theme={theme} vertical={false} horizontal={false} shadow={false} />);
         expect(subject.find('div').at(0).hasClass('Scrollable')).toBe(true);
       });
     });
 
     describe('when set to vertical', () => {
       it('should have rendered 1 div element', () => {
-        const subject = mount(<Scrollable vertical theme={theme} />);
+        const subject = mount(<Scrollable vertical theme={theme} horizontal={false} shadow={false} />);
         expect(subject.find('div')).toHaveLength(1);
       });
       it('should have default scrollable css class on div', () => {
-        const subject = mount(<Scrollable vertical theme={theme} />);
+        const subject = mount(<Scrollable vertical theme={theme} horizontal={false} shadow={false} />);
         expect(subject.find('div').at(0).hasClass('vertical')).toBe(true);
       });
       it('should verify set the vertical is true', () => {
-        const scrollableWrapper = mount(<Scrollable vertical={true} theme={theme} />);
+        const scrollableWrapper = mount(<Scrollable vertical={true} theme={theme} horizontal={false} shadow={false} />);
         expect(scrollableWrapper.prop('vertical')).toBe(true);
-      });
-    });
-
-    describe('when set to undefined for vertical', () => {
-      it('should have rendered 1 div elements', () => {
-        const subject = mount(<Scrollable theme={theme} />);
-        expect(subject.find('div')).toHaveLength(1);
-      });
-      it('should have default scrollable css class on div', () => {
-        const subject = mount(<Scrollable theme={theme} />);
-        expect(subject.find('div').at(0).hasClass('Scrollable')).toBe(true);
-      });
-      it('should not have Vertical element', () => {
-        const subject = mount(<Scrollable theme={theme} />);
-        expect(subject.find('vertical')).toHaveLength(0);
-      });
-      it('should vertical element is undfine', () => {
-        const subject = mount(<Scrollable theme={theme} />);
-        expect(subject.prop('vertical')).toBeUndefined();
       });
     });
 
     describe('when set to false for vertical', () => {
       it('should have rendered 1 div elements', () => {
-        const subject = mount(<Scrollable vertical={false} theme={theme} />);
+        const subject = mount(<Scrollable vertical={false} theme={theme} horizontal={false} shadow={false} />);
         expect(subject.find('div')).toHaveLength(1);
       });
       it('should have default Scrollable css class on div', () => {
-        const subject = mount(<Scrollable vertical={false} theme={theme} />);
+        const subject = mount(<Scrollable vertical={false} theme={theme} horizontal={false} shadow={false} />);
         expect(subject.find('div').at(0).hasClass('vertical')).toBe(false);
       });
       it('should verify set the vertical is false', () => {
-        const scrollableWrapper = mount(<Scrollable vertical={false}/>);
+        const scrollableWrapper = mount(<Scrollable vertical={false} horizontal={false} shadow={false} />);
         expect(scrollableWrapper.prop('vertical')).toBe(false);
       });
     });
@@ -85,60 +66,41 @@ describe('<Scrollable />', () => {
     describe('horizontal property', () => {
       describe('when not set', () => {
         it('should have rendered 1 div elements', () => {
-          const subject = mount(<Scrollable theme={theme} />);
+          const subject = mount(<Scrollable theme={theme} vertical={false} horizontal={false} shadow={false} />);
           expect(subject.find('div')).toHaveLength(1);
         });
         it('should have default scrollable css class on div', () => {
-          const subject = mount(<Scrollable theme={theme} />);
+          const subject = mount(<Scrollable theme={theme} vertical={false} horizontal={false} shadow={false} />);
           expect(subject.find('div').at(0).hasClass('Scrollable')).toBe(true);
         });
       });
 
       describe('when set to horizontal', () => {
         it('should have rendered 1 div element', () => {
-          const subject = mount(<Scrollable horizontal theme={theme} />);
+          const subject = mount(<Scrollable horizontal theme={theme} vertical={false} shadow={false} />);
           expect(subject.find('div')).toHaveLength(1);
         });
         it('should have default scrollable css class on div', () => {
-          const subject = mount(<Scrollable horizontal theme={theme} />);
+          const subject = mount(<Scrollable horizontal theme={theme} vertical={false} shadow={false} />);
           expect(subject.find('div').at(0).hasClass('horizontal')).toBe(true);
         });
         it('should verify set the horizontal is true', () => {
-          const scrollableWrapper = mount(<Scrollable horizontal theme={theme} />);
+          const scrollableWrapper = mount(<Scrollable horizontal theme={theme} vertical={false} shadow={false} />);
           expect(scrollableWrapper.prop('horizontal')).toBe(true);
-        });
-      });
-
-      describe('when set to undefined for horizontal', () => {
-        it('should have rendered 1 div elements', () => {
-          const subject = mount(<Scrollable theme={theme} />);
-          expect(subject.find('div')).toHaveLength(1);
-        });
-        it('should have default scrollable css class on div', () => {
-          const subject = mount(<Scrollable theme={theme} />);
-          expect(subject.find('div').at(0).hasClass('Scrollable')).toBe(true);
-        });
-        it('should not have horizontal element', () => {
-          const subject = mount(<Scrollable theme={theme} />);
-          expect(subject.find('horizontal')).toHaveLength(0);
-        });
-        it('should horizontal element is undfine', () => {
-          const subject = mount(<Scrollable theme={theme} />);
-          expect(subject.prop('horizontal')).toBeUndefined();
         });
       });
 
       describe('when set to false for horizontal', () => {
         it('should have rendered 1 div elements', () => {
-          const subject = mount(<Scrollable horizontal={false} theme={theme} />);
+          const subject = mount(<Scrollable horizontal={false} theme={theme} vertical={false} shadow={false} />);
           expect(subject.find('div')).toHaveLength(1);
         });
         it('should have default Scrollable css class on div', () => {
-          const subject = mount(<Scrollable horizontal={false} theme={theme} />);
+          const subject = mount(<Scrollable horizontal={false} theme={theme} vertical={false} shadow={false} />);
           expect(subject.find('div').at(0).hasClass('horizontal')).toBe(false);
         });
         it('should verify set the horizontal is false', () => {
-          const scrollableWrapper = mount(<Scrollable horizontal={false}/>);
+          const scrollableWrapper = mount(<Scrollable horizontal={false} vertical={false} shadow={false} />);
           expect(scrollableWrapper.prop('horizontal')).toBe(false);
         });
       });
@@ -147,60 +109,41 @@ describe('<Scrollable />', () => {
     describe('shadow property', () => {
       describe('when not set', () => {
         it('should have rendered 1 div elements', () => {
-          const subject = mount(<Scrollable theme={theme} />);
+          const subject = mount(<Scrollable theme={theme} vertical={false} horizontal={false} shadow={false} />);
           expect(subject.find('div')).toHaveLength(1);
         });
         it('should have default scrollable css class on div', () => {
-          const subject = mount(<Scrollable theme={theme} />);
+          const subject = mount(<Scrollable theme={theme} vertical={false} horizontal={false} shadow={false} />);
           expect(subject.find('div').at(0).hasClass('Scrollable')).toBe(true);
         });
       });
 
       describe('when set to shadow', () => {
         it('should have rendered 1 div element', () => {
-          const subject = mount(<Scrollable shadow theme={theme} />);
+          const subject = mount(<Scrollable shadow theme={theme} vertical={false} horizontal={false} />);
           expect(subject.find('div')).toHaveLength(1);
         });
         it('should have default scrollable css class on div', () => {
-          const subject = mount(<Scrollable shadow theme={theme} />);
+          const subject = mount(<Scrollable shadow theme={theme} vertical={false} horizontal={false} />);
           expect(subject.find('div').at(0).hasClass('Scrollable')).toBe(true);
         });
         it('should verify set the shadow is true', () => {
-          const scrollableWrapper = mount(<Scrollable shadow theme={theme} />);
+          const scrollableWrapper = mount(<Scrollable shadow theme={theme} vertical={false} horizontal={false} />);
           expect(scrollableWrapper.prop('shadow')).toBe(true);
-        });
-      });
-
-      describe('when set to undefined for shadow', () => {
-        it('should have rendered 1 div elements', () => {
-          const subject = mount(<Scrollable theme={theme} />);
-          expect(subject.find('div')).toHaveLength(1);
-        });
-        it('should have default scrollable css class on div', () => {
-          const subject = mount(<Scrollable theme={theme} />);
-          expect(subject.find('div').at(0).hasClass('Scrollable')).toBe(true);
-        });
-        it('should not have shadow element', () => {
-          const subject = mount(<Scrollable theme={theme} />);
-          expect(subject.find('shadow')).toHaveLength(0);
-        });
-        it('should shadow element is undfine', () => {
-          const subject = mount(<Scrollable theme={theme} />);
-          expect(subject.prop('shadow')).toBeUndefined();
         });
       });
 
       describe('when set to false for shadow', () => {
         it('should have rendered 1 div elements', () => {
-          const subject = mount(<Scrollable shadow={false} theme={theme} />);
+          const subject = mount(<Scrollable shadow={false} theme={theme} vertical={false} horizontal={false} />);
           expect(subject.find('div')).toHaveLength(1);
         });
         it('should have default Scrollable css class on div', () => {
-          const subject = mount(<Scrollable shadow={false} theme={theme} />);
+          const subject = mount(<Scrollable shadow={false} theme={theme} vertical={false} horizontal={false} />);
           expect(subject.find('div').at(0).hasClass('shadow')).toBe(false);
         });
         it('should verify set the shadow is false', () => {
-          const scrollableWrapper = mount(<Scrollable shadow={false}/>);
+          const scrollableWrapper = mount(<Scrollable shadow={false} vertical={false} horizontal={false} />);
           expect(scrollableWrapper.prop('shadow')).toBe(false);
         });
       });
@@ -210,7 +153,7 @@ describe('<Scrollable />', () => {
   describe('set children property', () => {
     it('should verify children is defined as paragraph', () => {
       const scrollableWrapper = mount(
-                                  <Scrollable>
+                                  <Scrollable vertical={false} horizontal={false} shadow={false}>
                                     <p>
                                       By signing up for the Shopify service (“Service”)
                                     </p>

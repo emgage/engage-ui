@@ -8,6 +8,7 @@ const UnstyliedLinkExample = () => (
     <UnstyledLink
       url="https://emgage.com/"
       children="child"
+      external={false}
     />
   </div>
 );

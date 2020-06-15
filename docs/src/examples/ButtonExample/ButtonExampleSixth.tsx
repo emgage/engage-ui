@@ -4,7 +4,20 @@ import * as styles from '../../styles/components-page.scss';
 
 const ButtonExample = () => (
   <div className={styles.example}>
-    <Button componentSize="large" disclosure={true}>Large Button</Button>
+    <Button
+      componentSize="large"
+      disclosure={true}
+      disabled={false}
+      destructive={false}
+      external={false}
+      fullWidth={false}
+      outline={false}
+      primary={false}
+      submit={false}
+      plain={false}
+    >
+      Large Button
+    </Button>
   </div>
 );
 

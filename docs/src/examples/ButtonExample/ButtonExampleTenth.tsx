@@ -4,7 +4,18 @@ import * as styles from '../../styles/components-page.scss';
 
 const ButtonExample = () => (
   <div className={styles.example}>
-    <Button icon="calendar"></Button>
+    <Button
+      icon="calendar"
+      disabled={false}
+      disclosure={false}
+      destructive={false}
+      external={false}
+      fullWidth={false}
+      outline={false}
+      primary={false}
+      submit={false}
+      plain={false}
+    />
   </div>
 );
 

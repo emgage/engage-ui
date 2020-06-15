@@ -53,6 +53,8 @@ export default class PopoverOverlay extends React.PureComponent<Props, never> {
         preferredAlignment={preferredAlignment}
         render={this.renderPopover.bind(this)}
         preloadedPopover={true}
+        fullWidth={false}
+        fixed={false}
       />
     );
   }

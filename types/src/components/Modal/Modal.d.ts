@@ -1,13 +1,13 @@
 import { ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 export declare type Width = 'small' | 'medium' | 'large' | string;
 export interface Props {
-    active?: boolean;
+    active: boolean;
     accessibilityLabel?: string;
     activeContentId?: string;
-    closeButton?: boolean;
+    closeButton: boolean;
     className?: string;
-    closeOnBackgroud?: boolean;
-    closeOnEsc?: boolean;
+    closeOnBackgroud: boolean;
+    closeOnEsc: boolean;
     onClose?(): void;
     onOpen?(): void;
     theme?: any;

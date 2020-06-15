@@ -2,7 +2,7 @@ import * as React from 'react';
 import { ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 export interface Props {
     children?: React.ReactNode;
-    sectioned?: boolean;
+    sectioned: boolean;
     componentStyle?: any;
     componentClass?: string;
     theme?: any;

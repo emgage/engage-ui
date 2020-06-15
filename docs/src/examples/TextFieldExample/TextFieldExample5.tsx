@@ -7,6 +7,24 @@ const TextFieldExample5 = () => (
     <TextField
       label="Zone name"
       labelAction={{ content: 'Look up codes' }}
+      alphanumeric={false}
+      autoComplete={false}
+      autoFocus={false}
+      autoSuggest={false}
+      backdropHidden={false}
+      capital={false}
+      disabled={false}
+      enableTextCounter={false}
+      hasValue={false}
+      isFocused={false}
+      itemSelected={false}
+      labelHidden={false}
+      loading={false}
+      readOnly={false}
+      required={false}
+      resizable={false}
+      showNumberIcon={false}
+      spellCheck={false}
     />
   </div>
 );

@@ -101,9 +101,9 @@ class TreeView extends React.PureComponent<Props, State> {
         {
           item.children ?
           <div onClick={() => this.toggleNode(item.id)} className={theme.nodeicon}>
-            {item.active ? <Icon componentColor={iconColor} source="circleChevronDown" theme={theme} /> : <Icon componentColor={iconColor} source="circleChevronRight" theme={theme} />}
+            {item.active ? <Icon componentColor={iconColor} source="circleChevronDown" theme={theme} backdrop={false} /> : <Icon componentColor={iconColor} source="circleChevronRight" theme={theme} backdrop={false} />}
           </div> :
-          <div className={theme.nodeicon}> <Icon componentStyle={iconStyle} componentColor={iconColor} source="circle" theme={theme} /> </div>
+          <div className={theme.nodeicon}> <Icon componentStyle={iconStyle} componentColor={iconColor} source="circle" theme={theme} backdrop={false} /> </div>
         }
 
         <div className={theme.nodecontent}>
@@ -119,7 +119,7 @@ class TreeView extends React.PureComponent<Props, State> {
       return (
         <li key={item.id} className={theme.haschildren}>
           <div onClick={() => this.toggleNode(item.id)} className={theme.nodeicon}>
-            {item.active ? <Icon componentColor={iconColor} source="circleChevronDown" theme={theme} /> : <Icon componentColor={iconColor} source="circleChevronRight" theme={theme} />}
+            {item.active ? <Icon componentColor={iconColor} source="circleChevronDown" theme={theme} backdrop={false} /> : <Icon componentColor={iconColor} source="circleChevronRight" theme={theme} backdrop={false} />}
           </div>
           <div className={theme.nodecontent}>
             <div className={theme.nodecontentwrapper}><TreeNode { ...item } /></div>

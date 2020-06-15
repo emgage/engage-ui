@@ -11,7 +11,7 @@ import * as baseTheme from './FormLayout.scss';
 
 export interface Props {
   children?: React.ReactNode;
-  condensed?: boolean;
+  condensed: boolean;
   componentTitle?: string;
   helpText?: React.ReactNode;
   componentStyle?: React.CSSProperties;

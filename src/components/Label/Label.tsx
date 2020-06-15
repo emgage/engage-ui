@@ -17,7 +17,7 @@ export interface Props {
   // Adds an action to the label.
   action?: Action;
   // Visually hide the label.
-  hidden?: boolean;
+  hidden: boolean;
   // To provide styling for label.
   componentStyle?: React.CSSProperties;
   // Extra class passed as a prop
@@ -25,11 +25,11 @@ export interface Props {
   // Theme to be injected via css-themr.
   theme?: any;
   // To make it required or not.
-  required?: boolean;
+  required: boolean;
   // To display label focused.
-  focused?: boolean;
+  focused: boolean;
   // To display Initial value for the label.
-  hasValue?: boolean;
+  hasValue: boolean;
 }
 
 export function labelID(id: string) {

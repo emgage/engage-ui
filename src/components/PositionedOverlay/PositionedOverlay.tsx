@@ -40,10 +40,10 @@ export interface Props {
   preferredPosition?: PreferredPosition;
   // Define overlay alignment
   preferredAlignment?: PreferredAlignment;
-  fullWidth?: boolean;
-  fixed?: boolean;
+  fullWidth: boolean;
+  fixed: boolean;
   // To identify when popover is preloaded when its a tooltip
-  preloadedPopover?: boolean;
+  preloadedPopover: boolean;
   // Theme to be injected via css-themr.
   theme?: any;
   render(overlayDetails: OverlayDetails): React.ReactNode;

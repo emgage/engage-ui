@@ -87,17 +87,17 @@ export interface Props {
   // Label for the input.
   label?: string;
   // Visually hide the label.
-  labelHidden?: boolean;
+  labelHidden: boolean;
   // Display loading indicator
-  loading?: boolean;
+  loading: boolean;
   // Disable Picker
-  disabled?: boolean;
+  disabled: boolean;
   maxSelectedItems?: number;
   minSelectedItems?: number;
   chipComponent?: React.ReactNode;
   searchResultComponent?: React.ReactNode;
   moreInfoComponent?: React.ReactNode;
-  autoSuggest?: boolean;
+  autoSuggest: boolean;
   source: IPickerInfo[];
   moreInfoComponentShowOn?: DisplayMoreInfo;
   style?: React.CSSProperties;
@@ -283,7 +283,7 @@ class Picker extends React.PureComponent<Props, State> {
         }
 
         return (
-          <Card image={suggestion.image} nameBefore={nameBefore} bold={queryData} nameAfter={nameAfter} email={suggestion.email} alt={suggestion.alt} />
+          <Card image={suggestion.image} nameBefore={nameBefore} bold={queryData} nameAfter={nameAfter} email={suggestion.email} alt={suggestion.alt} isHighlighted={false} />
         );
       },
     };
@@ -326,7 +326,7 @@ class Picker extends React.PureComponent<Props, State> {
     let suffixIcon: React.ReactNode = null;
     if (this.props.suffix) {
       const { suffix } = this.props;
-      suffixIcon = <Icon componentColor="inkLightest" source= {suffix as keyof typeof IconList} />;
+      suffixIcon = <Icon componentColor="inkLightest" source= {suffix as keyof typeof IconList} backdrop={false} />;
     }
 
     return (
@@ -355,6 +355,17 @@ class Picker extends React.PureComponent<Props, State> {
             isFocused={isFocused}
             hasValue={hasValue}
             disabled={disabled}
+            alphanumeric={false}
+            autoComplete={false}
+            autoFocus={false}
+            backdropHidden={false}
+            capital={false}
+            required={false}
+            enableTextCounter={false}
+            readOnly={false}
+            resizable={false}
+            showNumberIcon={false}
+            spellCheck={false}
           />
         </div>
         <div>

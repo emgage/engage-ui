@@ -6,7 +6,7 @@ export interface SourceData {
   label?: string;
   component?(): ReactElement<any>;
   active: boolean;
-  disable?: boolean;
-  onToggle?(status?: boolean): void;
+  disable: boolean;
+  onToggle?(status: boolean): void;
   children?: SourceData[];
 }

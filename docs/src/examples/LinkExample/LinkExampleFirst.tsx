@@ -4,7 +4,7 @@ import * as styles from '../../styles/components-page.scss';
 
 const LinkExampleFirst = () => (
   <div className={styles.example}>
-    <Link url="http://www.lipsum.com/">
+    <Link url="http://www.lipsum.com/" external={false}>
       Click on lipsum Link
     </Link>
   </div>

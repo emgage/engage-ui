@@ -1,14 +1,14 @@
 import { ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 import { Mode } from './Drawer';
 export interface Props {
-    active?: boolean;
-    closeButton?: boolean;
-    flip?: boolean;
+    active: boolean;
+    closeButton: boolean;
+    flip: boolean;
     componentId?: string;
     mode?: Mode;
     theme?: any;
     style?: any;
-    fixedCloseButton?: boolean;
+    fixedCloseButton: boolean;
     toggleDrawer?(): void;
     children?: any;
 }

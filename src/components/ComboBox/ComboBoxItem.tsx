@@ -50,8 +50,16 @@ class ComboBoxItem extends React.PureComponent<Props, never> {
 
           accordianItems.push({
             header: renderer ? renderer(val, 'header') :
-              <Label componentClass={theme.accordionItemHeader} componentId={indexStr} theme={theme}>
-                <Icon source="chevronRight" theme={theme} />
+              <Label
+                componentClass={theme.accordionItemHeader}
+                componentId={indexStr}
+                theme={theme}
+                hasValue={false}
+                hidden={false}
+                focused={false}
+                required={false}
+              >
+                <Icon source="chevronRight" theme={theme} backdrop={false} />
                 <span className={theme.headerText}>{val.header}</span>
               </Label>,
             children: val.children.map((child: any, index: number) => {

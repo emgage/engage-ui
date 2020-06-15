@@ -16,7 +16,7 @@ export interface Props {
   // Elements to display inside stack.
   children?: any;
   // Stack the elements vertically.
-  vertical?: boolean;
+  vertical: boolean;
   // Adjust spacing between elements. Available options: extraTight | tight | loose | extraLoose | none
   spacing?: Spacing;
   // Adjust vertical alignment of elements.Available options: leading | trailing | center | fill | baseline
@@ -48,7 +48,7 @@ class Stack extends React.PureComponent<Props, never> {
     );
 
     const itemMarkup = elementChildren(children)
-      .map((child, index) => wrapWithComponent(child, Item, { key: index } as ItemProps));
+      .map((child, index) => wrapWithComponent(child, Item, { key: index, fill: false } as ItemProps));
 
     return <div className={className}>{itemMarkup}</div>;
   }

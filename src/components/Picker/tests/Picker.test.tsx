@@ -24,17 +24,36 @@ const data: IPickerInfo[] = [
 ];
 describe('when default props are provided', () => {
   it('div should have default picker elements', () => {
-    const subject = mount(<Picker
-      source={data}
-      chipComponent={Chip}
-      searchResultComponent={Chip}
-      maxSelectedItems={3}
-      minSelectedItems={2}
-      moreInfoComponent={<Button children="More Info about picker" />}
-      moreInfoComponentShowOn={DisplayMoreInfo.onHover}
-      selectedResultsBehavior="mark"
-      theme={theme}
-    />);
+    const subject = mount(
+      <Picker
+        source={data}
+        chipComponent={Chip}
+        searchResultComponent={Chip}
+        maxSelectedItems={3}
+        minSelectedItems={2}
+        moreInfoComponent={
+          <Button
+            children="More Info about picker"
+            disclosure={false}
+            disabled={false}
+            destructive={false}
+            external={false}
+            submit={false}
+            outline={false}
+            fullWidth={false}
+            plain={false}
+            primary={false}
+          />
+        }
+        moreInfoComponentShowOn={DisplayMoreInfo.onHover}
+        selectedResultsBehavior="mark"
+        theme={theme}
+        labelHidden={false}
+        disabled={false}
+        autoSuggest={false}
+        loading={false}
+      />
+    );
     // expect(subject.find('label').length).toBe(2);
     expect(subject.find('input').length).toBe(1);
   });

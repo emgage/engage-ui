@@ -8,8 +8,11 @@ const TooltipExample3 = () => (
       <Tooltip
         content="This order has shipping labels."
         preferredPosition="above"
-        activatorWrapper="Test">
-        <Link>Order #1001</Link>
+        activatorWrapper="Test"
+        active={false}
+        light={false}
+      >
+        <Link external={false}>Order #1001</Link>
       </Tooltip>
     </div>
   </div>

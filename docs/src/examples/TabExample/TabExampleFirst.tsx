@@ -24,12 +24,25 @@ class TabExample extends React.Component {
     return (
       <div className={styles.example}>
         <TabPanel position={'top'} alignment={'center'} defaultTabId={this.state.activeTabId} >
-          <Tab tabDescription={<Badge children={'Home'} status={'success'} />} tabId={'tab1'}>
+          <Tab tabDescription={<Badge children={'Home'} status={'success'} working={false} icon={false} />} tabId={'tab1'}>
             <p>content 0</p>
           </Tab>
           <Tab tabDescription="User" tabId={'tab2'}>
             <div>
-              <Button onClick={this.toggleModal}>Medium buttonas</Button>
+              <Button
+                onClick={this.toggleModal}
+                disabled={false}
+                disclosure={false}
+                destructive={false}
+                external={false}
+                fullWidth={false}
+                outline={false}
+                primary={false}
+                submit={false}
+                plain={false}
+              >
+                Medium buttons
+              </Button>
             </div>
           </Tab>
           <Tab tabDescription="User1" tabId={'tab3'}>

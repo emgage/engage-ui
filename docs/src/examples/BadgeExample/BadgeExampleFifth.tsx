@@ -6,6 +6,8 @@ const BadgeExample = () => (
   <div className={styles.example}>
     <Badge
       status="warning"
+      working={false}
+      icon={false}
     >
       Badge Example 5
     </Badge>

@@ -1,6 +1,6 @@
 import { ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 interface IProps {
-    disabled?: boolean;
+    disabled: boolean;
     prefixCls?: string;
     className?: string;
     current: number;
@@ -9,15 +9,15 @@ interface IProps {
     pageSize: number;
     defaultPageSize?: number;
     onChange?(page: number, pageSize: number): void;
-    hideOnSinglePage?: boolean;
-    showSizeChanger?: boolean;
-    showLessItems?: boolean;
+    hideOnSinglePage: boolean;
+    showSizeChanger: boolean;
+    showLessItems: boolean;
     onShowSizeChange?(current: any, size: any): void;
     selectComponentClass?(): void;
     selectPrefixCls?: string;
-    showPrevNextJumpers?: boolean;
+    showPrevNextJumpers: boolean;
     showQuickJumper?: any;
-    showTitle?: boolean;
+    showTitle: boolean;
     pageSizeOptions?: string[];
     showTotal?(param1: any, param2: any): any;
     locale?: any;

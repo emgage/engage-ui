@@ -13,7 +13,7 @@ export { Action, labelID };
 export type Error = string;
 
 export interface Props {
-  autoSuggest?: boolean;
+  autoSuggest: boolean;
   // ID for the input.
   componentId: LabelProps['componentId'];
   // Label for labelled component
@@ -23,17 +23,17 @@ export interface Props {
   // Adds an action to the label.
   action: LabelProps['action'];
   helpText?: React.ReactNode;
-  disabled?: boolean;
+  disabled: boolean;
   // The content to display inside labelled.
   children?: React.ReactNode;
   // Visually hide the labelled.
-  labelHidden?: boolean;
+  labelHidden: boolean;
   // To make it required or not.
-  required?: boolean;
+  required: boolean;
   // To display labelled focused.
-  focused?: boolean;
+  focused: boolean;
   // To display Initial value for the labelled.
-  hasValue?: boolean;
+  hasValue: boolean;
   // To provide styling for labelled.
   componentStyle?: React.CSSProperties;
   // Add external class

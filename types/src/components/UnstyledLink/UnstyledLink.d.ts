@@ -2,7 +2,7 @@ import * as React from 'react';
 import { ReactComponent } from '@shopify/react-utilities/types';
 export interface Props extends React.HTMLProps<HTMLAnchorElement> {
     url: string;
-    external?: boolean;
+    external: boolean;
     children?: React.ReactNode;
     [key: string]: any;
     componentStyle?: React.CSSProperties;

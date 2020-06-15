@@ -5,7 +5,7 @@ export interface Props {
     bold?: string;
     nameAfter?: string;
     email?: string;
-    isHighlighted?: boolean;
+    isHighlighted: boolean;
     alt?: string;
 }
 declare class Card extends React.PureComponent<Props, {}> {

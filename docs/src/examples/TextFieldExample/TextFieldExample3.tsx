@@ -18,12 +18,32 @@ const TextFieldExample3 = () => (
           },
         ]}
         selected={['yes']}
+        allowMultiple={false}
+        horizontal={false}
+        titleHidden={false}
       />
       <TextField
         label="Gift cards expire after"
         labelHidden
         value="12"
-        connectedRight={<Select label="Unit of time" labelHidden options={['months after purchase']} />}
+        connectedRight={<Select label="Unit of time" labelHidden options={['months after purchase']} loading={false} disabled={false} required={false} />}
+        alphanumeric={false}
+        autoComplete={false}
+        autoFocus={false}
+        autoSuggest={false}
+        backdropHidden={false}
+        capital={false}
+        disabled={false}
+        enableTextCounter={false}
+        hasValue={false}
+        isFocused={false}
+        itemSelected={false}
+        loading={false}
+        readOnly={false}
+        required={false}
+        resizable={false}
+        showNumberIcon={false}
+        spellCheck={false}
       />
     </FormLayout>
   </div>

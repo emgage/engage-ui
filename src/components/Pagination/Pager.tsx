@@ -9,8 +9,8 @@ import * as baseTheme from './Pagination.scss';
 
 export interface IProps {
   page: any;
-  active?: boolean;
-  last?: boolean;
+  active: boolean;
+  last: boolean;
   locale: any;
   className?: string;
   showTitle: boolean;
@@ -19,7 +19,7 @@ export interface IProps {
   onKeyPress(event: any, callback: any, value: number): void;
   itemRender(param1: number, param2: string, param3: any): any;
   theme?: any;
-  plain?: boolean;
+  plain: boolean;
   componentStyle?: any;
 }
 
@@ -54,7 +54,25 @@ class Pager extends React.PureComponent<IProps, {}> {
         onKeyPress={handleKeyPress}
         tabIndex={0}
       >
-        {itemRender(page, 'page', <Button componentStyle={componentStyle} plain={plain} componentClass={theme.button} primary={active}>{page}</Button>)}
+        {itemRender(
+          page,
+          'page',
+          <Button
+            componentStyle={componentStyle}
+            plain={plain}
+            componentClass={theme.button}
+            primary={active}
+            disclosure={false}
+            disabled={false}
+            destructive={false}
+            external={false}
+            submit={false}
+            outline={false}
+            fullWidth={false}
+          >
+            {page}
+          </Button>)
+        }
       </li>
     );
   }

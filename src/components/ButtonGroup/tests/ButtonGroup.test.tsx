@@ -11,7 +11,7 @@ describe('<ButtonGroup />', () => {
 
   describe('when default props are provided', () => {
     it('buttongroup should be rendered with default props', () => {
-      const buttonWrapper = mount(<ButtonGroup theme={theme} />);
+      const buttonWrapper = mount(<ButtonGroup theme={theme} segmented={false} />);
       expect(buttonWrapper.find('div')).toHaveLength(1);
       expect(buttonWrapper.find('div').hasClass('ButtonGroup'));
     });
@@ -57,23 +57,13 @@ describe('<ButtonGroup />', () => {
         });
       });
     });
-
-    describe('when not set', () => {
-      it('buttongroup should not have segmented property', () => {
-        const buttonWrapper = mount(<ButtonGroup theme={theme} />);
-        expect(buttonWrapper.find('div')).toHaveLength(1);
-        expect(buttonWrapper.find('div').hasClass('ButtonGroup'));
-        expect(buttonWrapper.find('segmented')).toHaveLength(0);
-        expect(buttonWrapper.prop('segmented')).toBeUndefined();
-      });
-    });
   });
 
   describe('children property', () => {
     describe('when set', () => {
       it('buttongroup should have children property', () => {
         const buttonWrapper = mount(
-                                       <ButtonGroup theme={theme}>
+                                       <ButtonGroup theme={theme} segmented={false}>
                                           <button>Button 1</button>
                                           <button>Button 2</button>
                                         </ButtonGroup>
@@ -93,7 +83,7 @@ describe('<ButtonGroup />', () => {
     describe('when not set', () => {
       it('buttongroup should have children property', () => {
 
-        const buttonWrapper = mount(<ButtonGroup theme={theme} />);
+        const buttonWrapper = mount(<ButtonGroup theme={theme} segmented={false} />);
         expect(buttonWrapper.find('div')).toHaveLength(1);
         expect(buttonWrapper.find('div').hasClass('ButtonGroup'));
         expect(buttonWrapper.find('children')).toHaveLength(0);

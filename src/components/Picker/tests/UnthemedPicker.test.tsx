@@ -38,14 +38,19 @@ describe('when default props are provided', () => {
   describe('onSelect()', () => {
     it('is called with the select', () => {
       const spyClick = jest.fn();
-      const subject = mount(<UnthemedPicker
+      const subject = mount(
+      <UnthemedPicker
         source={Data}
         autoSuggest
         chipComponent={Chip}
         searchResultComponent={Chip}
         onSelect={spyClick}
         theme={theme}
-      />).setState({ ['searchItems']: searchData });
+        labelHidden={false}
+        loading={false}
+        disabled={false}
+      />
+      ).setState({ ['searchItems']: searchData });
 
       expect(subject.find('input').length).toBe(1);
     });

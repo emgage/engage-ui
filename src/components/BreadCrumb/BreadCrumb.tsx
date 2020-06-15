@@ -47,9 +47,9 @@ class BreadCrumb extends React.PureComponent<Props, {}> {
           className={classnames}
           onClick={child.type === 'disabled' ? undefined : child.onBreadcrumbClick}
           style={child.style}>
-          <FlexBox>
+          <FlexBox inline={false}>
             <span className={theme.breadcrumbtext} aria-label={`navigate on ${child.name}`}>{child.name}</span>
-            { (index + 1) < source.length ? <Icon componentColor="inkLightest" source="chevronRight" /> : null}
+            { (index + 1) < source.length ? <Icon componentColor="inkLightest" source="chevronRight"  backdrop={false} /> : null}
           </FlexBox>
         </li>
       );

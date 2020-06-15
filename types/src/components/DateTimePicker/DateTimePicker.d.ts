@@ -2,11 +2,11 @@ import * as React from 'react';
 import { ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 import 'react-datetime/css/react-datetime.css';
 export interface Props {
-    dateFormat?: boolean | string;
+    dateFormat: boolean | string;
     defaultDateTime?: string;
     label: string;
     theme?: any;
-    timePicker?: boolean;
+    timePicker: boolean;
     onChange(dataTime: any): void;
     onBlur?(dateTime: any): void;
     componentId?: string;

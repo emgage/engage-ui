@@ -11,7 +11,7 @@ import { PreferredAlignment } from '../PositionedOverlay/math';
 // All prototypes type
 export interface Props {
   // Set disabled
-  disabled?: boolean;
+  disabled: boolean;
   // Set direction to be applied. Available options: up | down | left | right.
   preferredPosition?: PreferredPosition;
   // Set anchor element 
@@ -19,7 +19,7 @@ export interface Props {
   // Set to true if you want to close dropdown when click anywhere in body
   closeOnClickOutside?: any;
   // Prop to close the dropdown when click on its option
-  closeOnClickOption?: boolean;
+  closeOnClickOption: boolean;
   // Set items to be displayed in dropdown wrapper
   dropdownItems: DropdownItemProps[];
   // Value to be return when clicked on item, this could be anythig string number or component or  any other value
@@ -89,6 +89,7 @@ export class Dropdown extends React.PureComponent<Props, State> {
         returnValue={returnValue}
         toggleDropdown={this.innerToggleDropdown}
         theme={theme}
+        active={false}
       />
     );
 
@@ -102,6 +103,8 @@ export class Dropdown extends React.PureComponent<Props, State> {
         onClose={() => this.setState({ manualInActive: false })}
         theme={theme}
         preferredAlignment={preferredAlignment}
+        addArrow={false}
+        open={false}
       >
         {DropdownItemComponents}
       </Popover>

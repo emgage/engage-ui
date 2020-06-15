@@ -10,7 +10,7 @@ export interface Props {
   // Card section related components to render inside this card section.
   children?: React.ReactNode;
   // A less prominent card section
-  subdued?: boolean;
+  subdued: boolean;
   // Theme to be injected via css-themr.
   theme?: any;
   // Callback when clicked.

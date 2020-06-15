@@ -12,7 +12,11 @@ describe('<ClickableChip />', () => {
     it('basic clickablechip should be rendered with default props', () => {
       const onChipClick = jest.fn();
       const clickablechipWrapper = mount(
-                                        <ClickableChip chip={<Chip>Batman</Chip>} onClick={onChipClick} theme={theme} />
+                                        <ClickableChip
+                                          chip={<Chip clickable={false} removable={false} transparent={false}>Batman</Chip>}
+                                          onClick={onChipClick}
+                                          theme={theme}
+                                        />
                                     );
       expect(clickablechipWrapper.find('div')).toHaveLength(2);
       expect(clickablechipWrapper.find('span')).toHaveLength(1);
@@ -25,7 +29,11 @@ describe('<ClickableChip />', () => {
       it('should verify clickablechip when chip is set', () => {
         const onChipClick = jest.fn();
         const clickablechipWrapper = mount(
-                                        <ClickableChip chip={<Chip>Batman</Chip>} onClick={onChipClick} theme={theme} />
+                                        <ClickableChip
+                                          chip={<Chip clickable={false} removable={false} transparent={false}>Batman</Chip>}
+                                          onClick={onChipClick}
+                                          theme={theme}
+                                        />
                                     );
         expect(clickablechipWrapper.find('div')).toHaveLength(2);
         expect(clickablechipWrapper.find('span')).toHaveLength(1);
@@ -39,7 +47,11 @@ describe('<ClickableChip />', () => {
       it('should verify clickablechip when all props are set', () => {
         const onChipClick = jest.fn();
         const clickablechipWrapper = mount(
-                                        <ClickableChip chip={<Chip>Batman</Chip>} onClick={onChipClick} theme={theme} />
+                                        <ClickableChip
+                                          chip={<Chip clickable={false} removable={false} transparent={false}>Batman</Chip>}
+                                          onClick={onChipClick}
+                                          theme={theme}
+                                        />
                                     );
         expect(clickablechipWrapper.find('div')).toHaveLength(2);
         expect(clickablechipWrapper.find('span')).toHaveLength(1);
@@ -53,7 +65,10 @@ describe('<ClickableChip />', () => {
       it('should verify choice when theme is not set', () => {
         const onChipClick = jest.fn();
         const clickablechipWrapper = mount(
-                                        <ClickableChip chip={<Chip>Batman</Chip>} onClick={onChipClick} />
+                                        <ClickableChip
+                                          chip={<Chip clickable={false} removable={false} transparent={false}>Batman</Chip>}
+                                          onClick={onChipClick}
+                                        />
                                     );
         expect(clickablechipWrapper.find('div')).toHaveLength(2);
         expect(clickablechipWrapper.find('span')).toHaveLength(1);
@@ -65,7 +80,11 @@ describe('<ClickableChip />', () => {
       it('should verify choice when theme is set', () => {
         const onChipClick = jest.fn();
         const clickablechipWrapper = mount(
-                                        <ClickableChip chip={<Chip>Batman</Chip>} onClick={onChipClick} theme={theme} />
+                                        <ClickableChip
+                                          chip={<Chip clickable={false} removable={false} transparent={false}>Batman</Chip>}
+                                          onClick={onChipClick}
+                                          theme={theme}
+                                        />
                                     );
         expect(clickablechipWrapper.find('div')).toHaveLength(2);
         expect(clickablechipWrapper.find('span')).toHaveLength(1);

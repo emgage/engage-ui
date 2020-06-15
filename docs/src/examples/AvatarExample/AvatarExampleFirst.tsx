@@ -6,6 +6,7 @@ const AvatarExample = () => (
   <div className={styles.example}>
     <Avatar
       componentSize="medium"
+      customer={false}
     />
   </div>
 );

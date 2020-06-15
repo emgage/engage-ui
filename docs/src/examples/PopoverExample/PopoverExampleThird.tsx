@@ -31,11 +31,42 @@ class PopoverExampleThird extends React.Component<IProps, IState> {
   render() {
     return (
       <div className={styles.example}>
-        <Button onClick={e => this.toggle(e)}>Popover3</Button>
+        <Button
+          onClick={e => this.toggle(e)}
+          disabled={false}
+          disclosure={false}
+          destructive={false}
+          external={false}
+          fullWidth={false}
+          outline={false}
+          primary={false}
+          submit={false}
+          plain={false}
+        >
+          Popover3
+        </Button>
         <Popover
           anchorEl={this.state.anchorEl}
-          preferredPosition="left">
-          I am popover <Button>Hello popover</Button>
+          preferredPosition="left"
+          addArrow={false}
+          closeOnClickInside={false}
+          manualInActive={false}
+          open={false}
+        >
+          I am popover
+          <Button
+            disabled={false}
+            disclosure={false}
+            destructive={false}
+            external={false}
+            fullWidth={false}
+            outline={false}
+            primary={false}
+            submit={false}
+            plain={false}
+          >
+            Hello popover
+          </Button>
         </Popover>
       </div>
     );

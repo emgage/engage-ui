@@ -22,7 +22,7 @@ const theme = {
 
 describe('when default props are provided', () => {
   it('div should have default flex inline style', () => {
-    const subject = mount(<FlexBox theme={theme} />);
+    const subject = mount(<FlexBox theme={theme} inline={false} />);
 
     expect(subject.find('div').hasClass('flex')).toBe(true);
     expect(subject.find('div').hasClass('row')).toBe(true);
@@ -34,7 +34,7 @@ describe('when default props are provided', () => {
 describe('inline property', () => {
   describe('when not set', () => {
     it('div should have default flex style', () => {
-      const subject = mount(<FlexBox theme={theme} />);
+      const subject = mount(<FlexBox theme={theme} inline={false} />);
       expect(subject.find('div').hasClass('flex')).toBe(true);
       expect(subject.find('div').hasClass('inline')).toBe(false);
     });
@@ -60,14 +60,14 @@ describe('inline property', () => {
 describe('direction property', () => {
   describe('when not set', () => {
     it('div should have default flex direction row style', () => {
-      const subject = mount(<FlexBox theme={theme}/>);
+      const subject = mount(<FlexBox theme={theme} inline={false} />);
       expect(subject.find('div').hasClass('row')).toBe(true);
     });
   });
 
   describe('when set to column', () => {
     it('div should have flex direction column style', () => {
-      const subject = mount(<FlexBox direction="Column" theme={theme}/>);
+      const subject = mount(<FlexBox direction="Column" theme={theme} inline={false} />);
       expect(subject.find('div').hasClass('column')).toBe(true);
       expect(subject.find('div').hasClass('row')).toBe(false);
     });
@@ -75,7 +75,7 @@ describe('direction property', () => {
 
   describe('when set to column-reverse', () => {
     it('div should have flex direction column reverse style', () => {
-      const subject = mount(<FlexBox direction="ColumnReverse" theme={theme}/>);
+      const subject = mount(<FlexBox direction="ColumnReverse" theme={theme} inline={false} />);
       expect(subject.find('div').hasClass('columnReverse')).toBe(true);
       expect(subject.find('div').hasClass('column')).toBe(false);
     });
@@ -83,7 +83,7 @@ describe('direction property', () => {
 
   describe('when set to row', () => {
     it('div should have flex direction row style', () => {
-      const subject = mount(<FlexBox direction="Row" theme={theme} />);
+      const subject = mount(<FlexBox direction="Row" theme={theme} inline={false} />);
       expect(subject.find('div').hasClass('row')).toBe(true);
       expect(subject.find('div').hasClass('columnReverse')).toBe(false);
     });
@@ -91,7 +91,7 @@ describe('direction property', () => {
 
   describe('when set to row-reverse', () => {
     it('div should have flex direction row reverse style', () => {
-      const subject = mount(<FlexBox direction="RowReverse" theme={theme} />);
+      const subject = mount(<FlexBox direction="RowReverse" theme={theme} inline={false} />);
       expect(subject.find('div').hasClass('rowReverse')).toBe(true);
       expect(subject.find('div').hasClass('row')).toBe(false);
     });
@@ -101,21 +101,21 @@ describe('direction property', () => {
 describe('justify property', () => {
   describe('when not set', () => {
     it('div should have default flex justify start style', () => {
-      const subject = mount(<FlexBox theme={theme}/>);
+      const subject = mount(<FlexBox theme={theme} inline={false} />);
       expect(subject.find('div').hasClass('contentStart')).toBe(true);
     });
   });
 
   describe('when set to start', () => {
     it('div should have flex justify start style', () => {
-      const subject = mount(<FlexBox justify="Start" theme={theme}/>);
+      const subject = mount(<FlexBox justify="Start" theme={theme} inline={false} />);
       expect(subject.find('div').hasClass('contentStart')).toBe(true);
     });
   });
 
   describe('when set to center', () => {
     it('div should have flex justify center style', () => {
-      const subject = mount(<FlexBox justify="Center" theme={theme}/>);
+      const subject = mount(<FlexBox justify="Center" theme={theme} inline={false} />);
       expect(subject.find('div').hasClass('contentCenter')).toBe(true);
       expect(subject.find('div').hasClass('contentStart')).toBe(false);
     });
@@ -123,7 +123,7 @@ describe('justify property', () => {
 
   describe('when set to end', () => {
     it('div should have flex justify end style', () => {
-      const subject = mount(<FlexBox justify="End" theme={theme}/>);
+      const subject = mount(<FlexBox justify="End" theme={theme} inline={false} />);
       expect(subject.find('div').hasClass('contentEnd')).toBe(true);
       expect(subject.find('div').hasClass('contentCenter')).toBe(false);
     });
@@ -131,7 +131,7 @@ describe('justify property', () => {
 
   describe('when set to space around', () => {
     it('div should have flex justify space around style', () => {
-      const subject = mount(<FlexBox justify="SpaceAround" theme={theme}/>);
+      const subject = mount(<FlexBox justify="SpaceAround" theme={theme} inline={false} />);
       expect(subject.find('div').hasClass('contentAround')).toBe(true);
       expect(subject.find('div').hasClass('contentEnd')).toBe(false);
     });
@@ -139,7 +139,7 @@ describe('justify property', () => {
 
   describe('when set to space between', () => {
     it('div should have flex justify space between style', () => {
-      const subject = mount(<FlexBox justify="SpaceBetween" theme={theme}/>);
+      const subject = mount(<FlexBox justify="SpaceBetween" theme={theme} inline={false} />);
       expect(subject.find('div').hasClass('contentBetween')).toBe(true);
       expect(subject.find('div').hasClass('contentAround')).toBe(false);
     });
@@ -149,14 +149,14 @@ describe('justify property', () => {
 describe('align property', () => {
   describe('when not set', () => {
     it('div should have default flex align stretch style', () => {
-      const subject = mount(<FlexBox theme={theme}/>);
+      const subject = mount(<FlexBox theme={theme} inline={false} />);
       expect(subject.find('div').hasClass('alignStretch')).toBe(true);
     });
   });
 
   describe('when set to start', () => {
     it('div should have flex align start style', () => {
-      const subject = mount(<FlexBox align="Start" theme={theme}/>);
+      const subject = mount(<FlexBox align="Start" theme={theme} inline={false} />);
       expect(subject.find('div').hasClass('alignStart')).toBe(true);
       expect(subject.find('div').hasClass('alignStretch')).toBe(false);
     });
@@ -164,7 +164,7 @@ describe('align property', () => {
 
   describe('when set to center', () => {
     it('div should have flex align center style', () => {
-      const subject = mount(<FlexBox align="Center" theme={theme}/>);
+      const subject = mount(<FlexBox align="Center" theme={theme} inline={false} />);
       expect(subject.find('div').hasClass('alignCenter')).toBe(true);
       expect(subject.find('div').hasClass('alignStart')).toBe(false);
     });
@@ -172,7 +172,7 @@ describe('align property', () => {
 
   describe('when set to end', () => {
     it('div should have flex align end style', () => {
-      const subject = mount(<FlexBox align="End" theme={theme}/>);
+      const subject = mount(<FlexBox align="End" theme={theme} inline={false} />);
       expect(subject.find('div').hasClass('alignEnd')).toBe(true);
       expect(subject.find('div').hasClass('alignCenter')).toBe(false);
     });
@@ -180,7 +180,7 @@ describe('align property', () => {
 
   describe('when set to stretch', () => {
     it('div should have flex align stretch style', () => {
-      const subject = mount(<FlexBox align="Stretch" theme={theme}/>);
+      const subject = mount(<FlexBox align="Stretch" theme={theme} inline={false} />);
       expect(subject.find('div').hasClass('alignStretch')).toBe(true);
       expect(subject.find('div').hasClass('alignEnd')).toBe(false);
     });
@@ -188,7 +188,7 @@ describe('align property', () => {
 });
 
 describe('when direction and alignment are set', () => {
-  const subject = mount(<FlexBox align="Stretch" direction="RowReverse" theme={theme}/>);
+  const subject = mount(<FlexBox align="Stretch" direction="RowReverse" theme={theme} inline={false} />);
   it('div should have default flex inline style', () => {
     expect(subject.find('div').hasClass('flex')).toBe(true);
     expect(subject.find('div').hasClass('inline')).toBe(false);
@@ -207,7 +207,7 @@ describe('when direction and alignment are set', () => {
 });
 
 describe('when direction, justify and alignment are set', () => {
-  const subject = mount(<FlexBox justify="SpaceBetween" align="Start" direction="RowReverse" theme={theme}/>);
+  const subject = mount(<FlexBox justify="SpaceBetween" align="Start" direction="RowReverse" theme={theme} inline={false} />);
   it('div should have default flex inline style', () => {
     expect(subject.find('div').hasClass('flex')).toBe(true);
     expect(subject.find('div').hasClass('inline')).toBe(false);

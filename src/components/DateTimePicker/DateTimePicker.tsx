@@ -13,7 +13,7 @@ export interface Props {
   If true the date will be displayed using the defaults for the current locale.
   If false the datepicker is disabled and the component can be used as timepicker.
   */
-  dateFormat?: boolean | string;
+  dateFormat: boolean | string;
   // set default Date time
   defaultDateTime?: string;
   // label for dateTime picker input
@@ -21,7 +21,7 @@ export interface Props {
   // Theme to be injected via css-themr.
   theme?: any;
   // enable time in picker
-  timePicker?: boolean;
+  timePicker: boolean;
   // return on Change
   onChange(dataTime: any): void;
   // return date time
@@ -77,21 +77,39 @@ class DateTimePicker extends React.PureComponent<Props, State>{
     return (
         <div>
             <TextField
-                label={label}
-                value={dateTime.format(this.timeFormat)}
-                onFocus={() => { this.setState({ open: true }); }}
-                onChange={(dateTimeString: string) => { this.onTextInputChange(dateTimeString); }}
-                suffix={<Icon source="event" />}
+              label={label}
+              value={dateTime.format(this.timeFormat)}
+              onFocus={() => { this.setState({ open: true }); }}
+              onChange={(dateTimeString: string) => { this.onTextInputChange(dateTimeString); }}
+              suffix={<Icon source="event" backdrop={false} />}
+              autoComplete={false}
+              autoFocus={false}
+              autoSuggest={false}
+              alphanumeric={false}
+              backdropHidden={false}
+              capital={false}
+              disabled={false}
+              enableTextCounter={false}
+              hasValue={false}
+              isFocused={false}
+              itemSelected={false}
+              labelHidden={false}
+              loading={false}
+              readOnly={false}
+              required={false}
+              resizable={false}
+              showNumberIcon={false}
+              spellCheck={false}
             />
             <DateTime
-                value={dateTime}
-                onBlur={() => { this.setState({ open: false }); }}
-                open={open}
-                closeOnSelect
-                className={theme.dateTimeInput}
-                onChange={(dateTime: any) => { this.setDateTime(dateTime); }}
-                timeFormat={timePicker}
-                dateFormat={dateFormat}
+              value={dateTime}
+              onBlur={() => { this.setState({ open: false }); }}
+              open={open}
+              closeOnSelect
+              className={theme.dateTimeInput}
+              onChange={(dateTime: any) => { this.setDateTime(dateTime); }}
+              timeFormat={timePicker}
+              dateFormat={dateFormat}
             />
         </div>
     );

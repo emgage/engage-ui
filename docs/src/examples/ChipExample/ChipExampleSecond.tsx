@@ -11,6 +11,9 @@ const ChipExample = () => (
   <div className={styles.example}>
     <Chip
       image={imgForChip}
+      clickable={false}
+      removable={false}
+      transparent={false}
     >
       Trevor Hansen
     </Chip>

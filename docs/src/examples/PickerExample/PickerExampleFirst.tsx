@@ -37,7 +37,24 @@ class PickerExample extends React.Component<IProps, IState> {
             filterPlaceHolder="!People!!"
             searchResultComponent={Chip}
             source={pickerdata}
-            moreInfoComponent={<Button children="ranmal" />}
+            moreInfoComponent={
+              <Button
+                children="ranmal"
+                disabled={false}
+                disclosure={false}
+                destructive={false}
+                external={false}
+                fullWidth={false}
+                outline={false}
+                primary={false}
+                submit={false}
+                plain={false}
+              />
+            }
+            autoSuggest={false}
+            disabled={false}
+            labelHidden={false}
+            loading={false}
           />
         <br/>
         <h3>2. Picker with limited selection:</h3>
@@ -50,7 +67,24 @@ class PickerExample extends React.Component<IProps, IState> {
             source={pickerdata}
             maxSelectedItems={5}
             minSelectedItems={2}
-            moreInfoComponent={<Button children="ranmal" />}
+            moreInfoComponent={
+              <Button
+                children="ranmal"
+                disabled={false}
+                disclosure={false}
+                destructive={false}
+                external={false}
+                fullWidth={false}
+                outline={false}
+                primary={false}
+                submit={false}
+                plain={false}
+              />
+            }
+            autoSuggest={false}
+            disabled={false}
+            loading={false}
+            labelHidden={false}
           />
         <br/>
       </div>

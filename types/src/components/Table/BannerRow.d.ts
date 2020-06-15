@@ -4,10 +4,10 @@ export interface Props {
     bannerTitle: string;
     bannerType: Status;
     bannerIcon?: string;
-    disabled?: boolean;
+    disabled: boolean;
     dropdownItems: any;
     rowItem?: any;
-    loading?: boolean;
+    loading: boolean;
     onChange?(rowItem: any, selectedValue: number): void;
     onFocus?(rowItem: any): void;
     selectPlaceholder: string;

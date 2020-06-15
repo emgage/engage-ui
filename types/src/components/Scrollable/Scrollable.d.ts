@@ -2,9 +2,9 @@ import * as React from 'react';
 import { ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 export interface Props extends React.HTMLProps<HTMLDivElement> {
     children?: React.ReactNode;
-    vertical?: boolean;
-    horizontal?: boolean;
-    shadow?: boolean;
+    vertical: boolean;
+    horizontal: boolean;
+    shadow: boolean;
     theme?: any;
 }
 export interface State {

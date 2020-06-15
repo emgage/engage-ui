@@ -14,7 +14,7 @@ describe('<Checkbox />', () => {
   describe('when default props are provided', () => {
     it('basic checkbox should have rendere label, div, input,span element and class on it', () => {
       const checkboxWrapper = mount(
-                                    <Checkbox label="Checkbox" theme={theme} />
+                                    <Checkbox label="Checkbox" theme={theme} disabled={false} labelHidden={false} />
                                    );
       expect(checkboxWrapper.find('label')).toHaveLength(1);
       expect(checkboxWrapper.find('div')).toHaveLength(1);
@@ -25,7 +25,7 @@ describe('<Checkbox />', () => {
   describe('onChange()', () => {
     it('is called with the new checked value of the input on change', () => {
       const spy = jest.fn();
-      const checkboxWrapper = mount(<Checkbox label="Checkbox" onChange={spy} theme={theme} />);
+      const checkboxWrapper = mount(<Checkbox label="Checkbox" onChange={spy} theme={theme} disabled={false} labelHidden={false} />);
 
       (checkboxWrapper.find('input') as any).instance().checked = true;
       checkboxWrapper.find('div').at(0).simulate('click');
@@ -35,21 +35,21 @@ describe('<Checkbox />', () => {
   describe('checked property', () => {
     describe('when not set', () => {
       it('should verify checkbox when checked is not set', () => {
-        const checkboxWrapper = mount(<Checkbox label="Checkbox" theme={theme} />);
+        const checkboxWrapper = mount(<Checkbox label="Checkbox" theme={theme} disabled={false} labelHidden={false} />);
 
         expect(checkboxWrapper.prop('checked')).toBeUndefined();
       });
     });
     describe('when set as true', () => {
       it('should verify checkbox when checked is set as true', () => {
-        const checkboxWrapper = mount(<Checkbox label="Checkbox" checked theme={theme} />);
+        const checkboxWrapper = mount(<Checkbox label="Checkbox" checked theme={theme} disabled={false} labelHidden={false} />);
 
         expect(checkboxWrapper.prop('checked')).toBe(true);
       });
     });
     describe('when set as false', () => {
       it('should verify checkbox when checked is set as false', () => {
-        const checkboxWrapper = mount(<Checkbox label="Checkbox" checked={false} theme={theme} />);
+        const checkboxWrapper = mount(<Checkbox label="Checkbox" checked={false} theme={theme} disabled={false} labelHidden={false} />);
 
         expect(checkboxWrapper.prop('checked')).toBe(false);
       });
@@ -59,7 +59,7 @@ describe('<Checkbox />', () => {
   describe('name property', () => {
     describe('when set', () => {
       it('should verify checkbox when name is set', () => {
-        const checkboxWrapper = mount(<Checkbox label="Checkbox" name="Soccer" theme={theme} />);
+        const checkboxWrapper = mount(<Checkbox label="Checkbox" name="Soccer" theme={theme} disabled={false} labelHidden={false} />);
 
         expect(checkboxWrapper.prop('name')).toBe('Soccer');
       });
@@ -69,14 +69,14 @@ describe('<Checkbox />', () => {
   describe('id property', () => {
     describe('when not set', () => {
       it('should verify render a random id for the checkbox when id is not set', () => {
-        const checkboxWrapper = mount(<Checkbox label="Checkbox" theme={theme}/>);
+        const checkboxWrapper = mount(<Checkbox label="Checkbox" theme={theme} disabled={false} labelHidden={false} />);
 
         expect(checkboxWrapper.find('input').prop('id')).toBeTruthy();
       });
     });
     describe('when set', () => {
       it('should verify checkbox when id is set', () => {
-        const checkboxWrapper = mount(<Checkbox label="Checkbox" componentId="MyCheckbox" theme={theme} />);
+        const checkboxWrapper = mount(<Checkbox label="Checkbox" componentId="MyCheckbox" theme={theme} disabled={false} labelHidden={false} />);
 
         expect(checkboxWrapper.find('input').prop('id')).toBe('MyCheckbox');
       });
@@ -86,14 +86,14 @@ describe('<Checkbox />', () => {
   describe('disabled property', () => {
     describe('when set as true', () => {
       it('should verify checkbox when disbaled is set as true', () => {
-        const checkboxWrapper = mount(<Checkbox label="Checkbox" disabled theme={theme} />);
+        const checkboxWrapper = mount(<Checkbox label="Checkbox" disabled theme={theme} labelHidden={false} />);
 
         expect(checkboxWrapper.find('input').prop('disabled')).toBe(true);
       });
     });
     describe('when set as false', () => {
       it('should verify checkbox when disbaled is set as false', () => {
-        const checkboxWrapper = mount(<Checkbox label="Checkbox" disabled={false} theme={theme} />);
+        const checkboxWrapper = mount(<Checkbox label="Checkbox" disabled={false} labelHidden={false} theme={theme} />);
 
         expect(checkboxWrapper.find('input').prop('disabled')).toBe(false);
       });
@@ -103,14 +103,14 @@ describe('<Checkbox />', () => {
   describe('helpText property', () => {
     describe('when not set', () => {
       it('should verify checkbox when helpText is not set', () => {
-        const checkboxWrapper = mount(<Checkbox label="Checkbox" theme={theme} />);
+        const checkboxWrapper = mount(<Checkbox label="Checkbox" theme={theme} disabled={false} labelHidden={false} />);
 
         expect(checkboxWrapper.prop('helpText')).toBeUndefined();
       });
     });
     describe('when set', () => {
       it('should verify checkbox when helpText is set', () => {
-        const checkboxWrapper = mount(<Checkbox label="Checkbox" helpText="Some help" theme={theme} />);
+        const checkboxWrapper = mount(<Checkbox label="Checkbox" helpText="Some help" theme={theme} disabled={false} labelHidden={false} />);
 
         expect(checkboxWrapper.prop('helpText')).toBe('Some help');
       });

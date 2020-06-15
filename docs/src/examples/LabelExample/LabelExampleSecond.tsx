@@ -8,8 +8,11 @@ const LabelExampleSecond = () => (
       componentId="lblid"
       hidden={false}
       action={{ content: 'Click Here', onAction:() => { alert('You have performed Click Action.'); } }}
-      required focused hasValue >
-        Testing Label
+      required
+      focused
+      hasValue
+    >
+      Testing Label
     </Label>
 </div>
 );

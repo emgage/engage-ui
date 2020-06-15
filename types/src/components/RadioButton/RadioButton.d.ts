@@ -2,14 +2,14 @@ import * as React from 'react';
 import { ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 export interface Props {
     label: string;
-    labelHidden?: boolean;
+    labelHidden: boolean;
     helpText?: React.ReactNode;
-    checked?: boolean;
+    checked: boolean;
     componentId?: string;
     name?: string;
     errors?: [string];
     value?: any;
-    disabled?: boolean;
+    disabled: boolean;
     theme?: any;
     onChange?(newValue: boolean): void;
     onFocus?(): void;

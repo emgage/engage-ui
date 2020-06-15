@@ -3,7 +3,7 @@ import { ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 export interface Props {
     componentStyle?: any;
     componentClass?: string;
-    segmented?: boolean;
+    segmented: boolean;
     children?: React.ReactNode;
     theme?: any;
 }

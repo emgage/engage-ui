@@ -19,24 +19,24 @@ export type Type = 'text' | 'email' | 'number' | 'password' | 'search' | 'tel' |
 
 export interface State {
   height?: number | null;
-  focused?: boolean;
+  focused: boolean;
   value?: string | undefined;
 }
 
 export interface Props {
-  autoSuggest?: boolean;
+  autoSuggest: boolean;
   autoSuggestMethods?: IAutoSuggestMethods;
   stateProps?: IStateProps;
   // Check alphanumeric value
-  alphanumeric?: boolean;
+  alphanumeric: boolean;
   // Enable automatic completion by the browser.
-  autoComplete?: boolean;
+  autoComplete: boolean;
   // Automatically focus the input.
-  autoFocus?: boolean;
+  autoFocus: boolean;
   // Visually hide the border.
-  backdropHidden?: boolean;
+  backdropHidden: boolean;
   // Check alphanumeric value and convert into capital
-  capital?: boolean;
+  capital: boolean;
   componentClass?: string;
   // ID for the input.
   componentId?: string;
@@ -47,26 +47,26 @@ export interface Props {
   // An element connected to the left of the input
   connectedLeft?: React.ReactNode;
   // Disable the input.
-  disabled?: boolean;
+  disabled: boolean;
   // display the TextCounter.
-  enableTextCounter?: boolean;
+  enableTextCounter: boolean;
   // Error to display beneath the label.
   errors?: [string];
   // Function return all errors
   getErrors?(errors:any, name?:string): void;
-  hasValue?: boolean;
+  hasValue: boolean;
   // Additional hint text to display.
   helpText?: React.ReactNode;
-  itemSelected?: boolean;
-  isFocused?: boolean;
+  itemSelected: boolean;
+  isFocused: boolean;
   // Label for the input.
   label?: string;
   // Adds an action to the label.
   labelAction?: Action;
   // Visually hide the label.
-  labelHidden?: boolean;
+  labelHidden: boolean;
   // Display loading indicator
-  loading?: boolean;
+  loading: boolean;
   // Maximum value for a numeric or date-time input.
   max?: number;
   // Maximum character length for an input.
@@ -94,19 +94,19 @@ export interface Props {
   // Text to display before value.
   prefix?: React.ReactNode;
   // To make it required or not.
-  required?: boolean;
+  required: boolean;
   // Disable editing of the input.
-  readOnly?: boolean;
+  readOnly: boolean;
   // To make it resizable or not.
-  resizable?: boolean;
+  resizable: boolean;
   // Show or hide increment / decrement icon
-  showNumberIcon?: boolean;
+  showNumberIcon: boolean;
   // Text to display after value.
   suffix?: React.ReactNode;
   // Limit increment value for numeric and date-time inputs.
   step?: number;
   // Indicate whether value should have spelling checked.
-  spellCheck?: boolean;
+  spellCheck: boolean;
   // Theme to be injected via css-themr.
   theme?: any;
   // Determine type of input. Available options: text | email | number | password | search | tel | url | date | datetime-local | month | time | week
@@ -120,7 +120,7 @@ export interface Props {
 const getUniqueID = createUniqueIDFactory('TextField');
 
 class TextField extends React.PureComponent<Props, State> {
-  state: State = { height: null, value: '' };
+  state: State = { height: null, value: '', focused: false };
 
   private input: HTMLElement;
 
@@ -128,7 +128,8 @@ class TextField extends React.PureComponent<Props, State> {
     super(props);
     this.state = {
       height: null,
-      value: props.value ? props.value : ''
+      value: props.value ? props.value : '',
+      focused: false,
     };
   }
 
@@ -177,14 +178,14 @@ class TextField extends React.PureComponent<Props, State> {
       readOnly,
       resizable,
       required,
-      showNumberIcon = true,
+      // showNumberIcon = true,
       suffix,
       theme,
       type,
       value = '',
       ...rest
     } = this.props;
-
+    const showNumberIcon = true;
     const { height } = this.state;
 
     const className = classNames(
@@ -403,7 +404,7 @@ class TextField extends React.PureComponent<Props, State> {
   }
 }
 
-function normalizeAutoComplete(autoComplete?: boolean) {
+function normalizeAutoComplete(autoComplete: boolean) {
   if (autoComplete == null) { return autoComplete; }
   return autoComplete ? 'on' : 'off';
 }

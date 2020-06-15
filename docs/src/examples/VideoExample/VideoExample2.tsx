@@ -21,7 +21,10 @@ const VideoExample2 = () => (
       src={multiVideoSource}
       autoplay={false}
       controls={true}
-      componentStyle={{ height: 400, width: 400 }} />
+      componentStyle={{ height: 400, width: 400 }}
+      muted={false}
+      loop={false}
+    />
   </div>
 );
 

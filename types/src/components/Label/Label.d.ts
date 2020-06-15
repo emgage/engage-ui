@@ -6,13 +6,13 @@ export interface Props {
     children?: any;
     componentId: string;
     action?: Action;
-    hidden?: boolean;
+    hidden: boolean;
     componentStyle?: React.CSSProperties;
     componentClass?: string;
     theme?: any;
-    required?: boolean;
-    focused?: boolean;
-    hasValue?: boolean;
+    required: boolean;
+    focused: boolean;
+    hasValue: boolean;
 }
 export declare function labelID(id: string): string;
 declare const _default: ThemedComponentClass<Props, {}>;

@@ -13,9 +13,28 @@ describe('<ValidatedForm / >', () => {
                                               formFields={['AppName']}
                                             >
                                                 <ValidatedTextField
-                                                componentId="AppName"
-                                                label="App Name"
-                                                name ="App Name" />
+                                                  componentId="AppName"
+                                                  label="App Name"
+                                                  name ="App Name"
+                                                  alphanumeric={false}
+                                                  autoComplete={false}
+                                                  autoFocus={false}
+                                                  autoSuggest={false}
+                                                  backdropHidden={false}
+                                                  capital={false}
+                                                  disabled={false}
+                                                  enableTextCounter={false}
+                                                  hasValue={false}
+                                                  isFocused={false}
+                                                  itemSelected={false}
+                                                  labelHidden={false}
+                                                  loading={false}
+                                                  readOnly={false}
+                                                  required={false}
+                                                  resizable={false}
+                                                  showNumberIcon={false}
+                                                  spellCheck={false}
+                                                />
                                             </ValidatedForm>);
         expect(validatedFormWrapper.find('form')).toHaveLength(1);
         // expect(validatedFormWrapper.prop('children')).toBeDefined();
@@ -117,10 +136,28 @@ describe('<ValidatedForm / >', () => {
                                             <ValidatedForm
                                                 componentStyle={style} onSubmit={submit} onSubmitError={submitError} form={form} formFields={['AppName']}>
                                                 <ValidatedTextField
-                                                componentId="AppName"
-                                                label="App Name"
-                                                name="App Name"
-                                                value="test"
+                                                  componentId="AppName"
+                                                  label="App Name"
+                                                  name="App Name"
+                                                  value="test"
+                                                  alphanumeric={false}
+                                                  autoComplete={false}
+                                                  autoFocus={false}
+                                                  autoSuggest={false}
+                                                  backdropHidden={false}
+                                                  capital={false}
+                                                  disabled={false}
+                                                  enableTextCounter={false}
+                                                  hasValue={false}
+                                                  isFocused={false}
+                                                  itemSelected={false}
+                                                  labelHidden={false}
+                                                  loading={false}
+                                                  readOnly={false}
+                                                  required={false}
+                                                  resizable={false}
+                                                  showNumberIcon={false}
+                                                  spellCheck={false}
                                                 />
                                             </ValidatedForm>);
         expect(validatedFormWrapper.find('form')).toHaveLength(1);

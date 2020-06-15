@@ -24,15 +24,15 @@ export interface Props {
   // Provide source of any video.
   src: VideoSource[];
   // To autoplay or not.
-  autoplay?: boolean;
+  autoplay: boolean;
   // See controls i.e.Play/Pause,Volume etc.
-  controls?: boolean;
+  controls: boolean;
   // Give cross origine to video. Availabel options: anonymous | use-credentials
   crossorigin?: CrossOrigin;
   // If true, upon reaching the end, the video will automatically replay.
-  loop?: boolean;
+  loop: boolean;
   // To mute video or not.
-  muted?: boolean;
+  muted: boolean;
   // Provide preload. Available options: none | metadata | auto
   preload?: Preload;
   // Theme to be injected via css-themr.

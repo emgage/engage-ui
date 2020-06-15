@@ -22,7 +22,7 @@ describe('<Card /> Test Suit', () => {
     const cardWrapper = mount(
         <Card>
             <CardHeader>Online store dashboard - Card</CardHeader>
-            <CardBody>
+            <CardBody sectioned={false}>
                 <p>View a summary of your online store’s performance.</p>
             </CardBody>
         </Card>

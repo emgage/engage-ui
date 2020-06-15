@@ -4,11 +4,11 @@ import { Props as DropdownItemProps } from './DropdownItem';
 import { PreferredPosition } from '../PositionedOverlay';
 import { PreferredAlignment } from '../PositionedOverlay/math';
 export interface Props {
-    disabled?: boolean;
+    disabled: boolean;
     preferredPosition?: PreferredPosition;
     anchorEl?: any;
     closeOnClickOutside?: any;
-    closeOnClickOption?: boolean;
+    closeOnClickOption: boolean;
     dropdownItems: DropdownItemProps[];
     returnValue?: any;
     preferredAlignment?: PreferredAlignment;

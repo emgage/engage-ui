@@ -22,25 +22,25 @@ describe('<Avatar />', () => {
   describe('when default props are provided', () => {
     it('basic avatar should have rendered one div clss element', () => {
       const avatarWrapper = mount(
-                                  <Avatar theme = {theme} />
+                                  <Avatar theme = {theme} customer={false}/>
                             );
       expect(avatarWrapper.find('div')).toHaveLength(1);
     });
     it('basic avatar should have default avatar css clss on div', () => {
       const avatarWrapper = mount(
-                                  <Avatar theme={theme} />
+                                  <Avatar theme={theme} customer={false}/>
                             );
       expect(avatarWrapper.find('div').at(0).hasClass('Avatar')).toBe(true);
     });
     it('basic avatar should have default styleOne css clss on div', () => {
       const avatarWrapper = mount(
-                                  <Avatar theme={theme} />
+                                  <Avatar theme={theme} customer={false}/>
                             );
       expect(avatarWrapper.find('div').at(0).hasClass('styleOne')).toBe(true);
     });
     it('basic avatar should have default sizeMedium css clss on div', () => {
       const avatarWrapper = mount(
-                                  <Avatar theme={theme} />
+                                  <Avatar theme={theme} customer={false}/>
                             );
       expect(avatarWrapper.find('div').at(0).hasClass('sizeMedium')).toBe(true);
     });
@@ -273,31 +273,31 @@ describe('<Avatar />', () => {
     describe('when not set', () => {
       it('basic avatar should have rendered one div clss element', () => {
         const avatarWrapper = mount(
-                                    <Avatar theme={theme} />
+                                    <Avatar theme={theme} customer={false}/>
                               );
         expect(avatarWrapper.find('div')).toHaveLength(1);
       });
       it('basic avatar should have default avatar css clss on div', () => {
         const avatarWrapper = mount(
-                                    <Avatar theme={theme} />
+                                    <Avatar theme={theme} customer={false}/>
                               );
         expect(avatarWrapper.find('div').at(0).hasClass('Avatar')).toBe(true);
       });
       it('basic avatar should have default styleOne css clss on div', () => {
         const avatarWrapper = mount(
-                                    <Avatar theme={theme} />
+                                    <Avatar theme={theme} customer={false}/>
                               );
         expect(avatarWrapper.find('div').at(0).hasClass('styleOne')).toBe(true);
       });
       it('basic avatar should have default sizeMedium css clss on div', () => {
         const avatarWrapper = mount(
-                                    <Avatar theme={theme} />
+                                    <Avatar theme={theme} customer={false}/>
                               );
         expect(avatarWrapper.find('div').at(0).hasClass('sizeMedium')).toBe(true);
       });
       it('should verify customer property when not set', () => {
         const avatarWrapper = mount(
-                                    <Avatar theme={theme} />
+                                    <Avatar theme={theme} customer={false}/>
                               );
         expect(avatarWrapper.prop('customer')).toBeFalsy();
       });

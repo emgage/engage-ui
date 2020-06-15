@@ -4,12 +4,12 @@ import { Error } from '../Choice';
 export interface Props {
     checked?: boolean | 'indeterminate';
     componentId?: string;
-    disabled?: boolean;
+    disabled: boolean;
     error?: Error;
     errors?: [string];
     helpText?: React.ReactNode;
     label: string;
-    labelHidden?: boolean;
+    labelHidden: boolean;
     name?: string;
     onBlur?(): void;
     onChange?(newValue: boolean): void;

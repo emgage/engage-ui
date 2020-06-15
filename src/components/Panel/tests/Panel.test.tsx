@@ -11,13 +11,18 @@ describe('<Panel />', () => {
     body: 'thm-body',
   };
 
-  const videoCmp = <Video
-        poster={new URL('https://www.testimage.com/imgage.png')}
-        src={[{
-          src: 'http://www.yahoo.com/video3',
-          type: VideoType.MP4,
-        }]}
-        />;
+  const videoCmp =
+    <Video
+      poster={new URL('https://www.testimage.com/imgage.png')}
+      src={[{
+        src: 'http://www.yahoo.com/video3',
+        type: VideoType.MP4,
+      }]}
+      autoplay={false}
+      muted={false}
+      controls={false}
+      loop={false}
+    />;
 
   describe('when default props are provided', () => {
     it('panel should be rendered with default props', () => {

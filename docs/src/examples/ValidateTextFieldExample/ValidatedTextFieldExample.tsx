@@ -16,6 +16,23 @@ const ValidateTextFieldExample = () => (
         validateTrigger={['onBlur']}
         validateRules={[{ required: true, message: 'App Name is required.' },
         ]}
+        alphanumeric={false}
+        autoComplete={false}
+        autoFocus={false}
+        autoSuggest={false}
+        backdropHidden={false}
+        capital={false}
+        disabled={false}
+        enableTextCounter={false}
+        hasValue={false}
+        isFocused={false}
+        itemSelected={false}
+        labelHidden={false}
+        loading={false}
+        readOnly={false}
+        resizable={false}
+        showNumberIcon={false}
+        spellCheck={false}
       />
       <ValidatedTextField
         componentId="AppDescription"
@@ -28,6 +45,23 @@ const ValidateTextFieldExample = () => (
         validateTrigger={['onBlur']}
         validateRules={[{ required: true, message: 'App Description is required.' }]}
         multiline
+        alphanumeric={false}
+        autoComplete={false}
+        autoFocus={false}
+        autoSuggest={false}
+        backdropHidden={false}
+        capital={false}
+        disabled={false}
+        enableTextCounter={false}
+        hasValue={false}
+        isFocused={false}
+        itemSelected={false}
+        labelHidden={false}
+        loading={false}
+        readOnly={false}
+        resizable={false}
+        showNumberIcon={false}
+        spellCheck={false}
       />
     </ValidatedForm>
   </div>

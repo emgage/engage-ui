@@ -15,6 +15,9 @@ const SelectExample1 = () => (
       disabled
       componentId="SelectId"
       name="Select Name"
+      labelHidden={false}
+      loading={false}
+      required={false}
     />
   </div>
 );

@@ -32,7 +32,7 @@ describe('<Accordion />', () => {
 
   it('Call toggle on click header', () => {
     const spy = jest.fn();
-    const accordionItemWrapper = mount(<AccordionItem index={1} header={<h2>item 1</h2>} children={<h4>this is the item 1 desc</h4>} toggle={spy} />);
+    const accordionItemWrapper = mount(<AccordionItem index={1} header={<h2>item 1</h2>} children={<h4>this is the item 1 desc</h4>} toggle={spy} active={false}/>);
     accordionItemWrapper.find('div').at(1).simulate('click');
     expect(accordionItemWrapper.find('div')).toHaveLength(3);
     expect(accordionItemWrapper.find('h4')).toHaveLength(1);

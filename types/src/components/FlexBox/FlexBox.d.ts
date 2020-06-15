@@ -5,7 +5,7 @@ export declare type FlexJustify = 'Start' | 'Center' | 'End' | 'SpaceAround' | '
 export declare type FlexDirection = 'Row' | 'RowReverse' | 'Column' | 'ColumnReverse';
 export declare type FlexWrap = 'NoWrap' | 'Wrap' | 'WrapReverse';
 export interface Props {
-    inline?: boolean;
+    inline: boolean;
     direction?: FlexDirection;
     justify?: FlexJustify;
     align?: FlexAlign;

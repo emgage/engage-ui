@@ -5,7 +5,7 @@ export interface Props {
     children?: React.ReactNode;
     componentStyle?: any;
     componentClass?: string;
-    disableClick?: boolean;
+    disableClick: boolean;
     onClick?(returnValue?: any): any;
     returnValue?: any;
     theme?: any;

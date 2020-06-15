@@ -6,12 +6,24 @@ const CardExample = () => (
   <div className={styles.example}>
   <Card>
     <CardHeader>Online store dashboard</CardHeader>
-    <CardBody>
-    <CardSection>
+    <CardBody sectioned={false}>
+    <CardSection subdued={false}>
         <p>View a summary of your online store’s performance.</p>
       </CardSection>
     <CardFooter>
-      <Button>Ok</Button>
+      <Button
+        disabled={false}
+        disclosure={false}
+        destructive={false}
+        external={false}
+        fullWidth={false}
+        outline={false}
+        primary={false}
+        submit={false}
+        plain={false}
+      >
+        Ok
+      </Button>
     </CardFooter>
     </CardBody>
     </Card>

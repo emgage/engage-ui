@@ -14,7 +14,7 @@ export interface Props {
   // Set a custom class
   componentClass?: string;
   // Prop to disable onClick method
-  disableClick?: boolean;
+  disableClick: boolean;
   // Prop to handle callback function
   onClick?(returnValue?: any): any;
   // Prop to decide what value needs to be returned with callback

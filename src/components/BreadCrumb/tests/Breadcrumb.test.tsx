@@ -30,7 +30,7 @@ const breadcrumbData: ISourceData[] = [
       console.log('Home is clicked');
     }
   }, {
-    name: <Badge children={'Home1'} status={'success'} />,
+    name: <Badge children={'Home1'} status={'success'} working={false} icon={false} />,
     type: 'active',
     onBreadcrumbClick: () => {
       console.log('Badge is clicked');

@@ -92,13 +92,13 @@ export declare const BUNDLED_ICONS: {
 export interface Props {
     source: SVGSource | 'placeholder' | keyof typeof BUNDLED_ICONS;
     componentColor?: Color;
-    backdrop?: boolean;
+    backdrop: boolean;
     accessibilityLabel?: string;
     componentStyle?: React.CSSProperties;
     componentClass?: string;
     theme?: any;
     callbackValue?: any;
-    onClick?(id: number | string, additionalParam?: boolean): void;
+    onClick?(id: number | string, additionalParam: boolean): void;
 }
 declare const _default: ThemedComponentClass<Props, {}>;
 export default _default;

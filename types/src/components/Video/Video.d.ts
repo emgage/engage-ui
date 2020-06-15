@@ -14,11 +14,11 @@ export interface VideoSource {
 export interface Props {
     poster: URL;
     src: VideoSource[];
-    autoplay?: boolean;
-    controls?: boolean;
+    autoplay: boolean;
+    controls: boolean;
     crossorigin?: CrossOrigin;
-    loop?: boolean;
-    muted?: boolean;
+    loop: boolean;
+    muted: boolean;
     preload?: Preload;
     theme?: any;
     componentStyle?: React.CSSProperties;

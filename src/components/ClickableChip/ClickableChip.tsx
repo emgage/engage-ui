@@ -41,7 +41,12 @@ class ClickableChip extends React.PureComponent<Props, State> {
     const { chip, theme } = this.props;
 
     const Items: DropdownItemProps[] = [{
-      content: this.props.children
+      content: this.props.children,
+      active: false,
+      divider: false,
+      disabled: false,
+      header: false,
+      closeOnClickOption: false,
     }];
 
     return (
@@ -49,7 +54,15 @@ class ClickableChip extends React.PureComponent<Props, State> {
         <div onClick={this.handleClick} id={this.id}>
           {chip}
         </div>
-        <Dropdown anchorEl={this.state.anchorEl} onClose={this.onClose} toggle={this.handleClick} dropdownItems={Items} theme={theme}></Dropdown>
+        <Dropdown
+          anchorEl={this.state.anchorEl}
+          onClose={this.onClose}
+          toggle={this.handleClick}
+          dropdownItems={Items}
+          theme={theme}
+          disabled={false}
+          closeOnClickOption={false}
+        />
       </div>
     );
   }

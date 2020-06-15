@@ -43,15 +43,18 @@ const columnConfig = [
     label: 'Description',
     key: 'description',
     style: { width: 'auto' },
+    sort: false,
   }, {
     label: 'Status',
     key: 'status',
     sort: true,
     style: { width: '150px' },
+
   }, {
     label: 'Type',
     key: 'type',
     style: { width: '100px' },
+    sort: false,
   },
 ];
 
@@ -62,7 +65,22 @@ const TableExample = () => (
       column={columnConfig}
       defaultSortField="name"
       defaultSortOrder="asc"
-      bordered highlight sorting />
+      bordered
+      highlight
+      sorting
+      actionInProgress={false}
+      callChildCallback={false}
+      hideExpandedIcon={false}
+      hideHeader={false}
+      hideSelectAll={false}
+      isChildParentConfigSame={false}
+      parentSelectedRow={false}
+      renderHeaderCheckbox={false}
+      responsive={false}
+      rowActionLeft={false}
+      rowExpandOnLoad={false}
+      striped={false}
+    />
   </div>
 );
 

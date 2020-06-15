@@ -14,8 +14,8 @@ export interface Step {
 }
 export interface Props {
     steps: Step[];
-    showNavigation?: boolean;
-    allowBackStepping?: boolean;
+    showNavigation: boolean;
+    allowBackStepping: boolean;
     theme?: any;
     componentStyle?: React.CSSProperties;
     componentClass?: string;

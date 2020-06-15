@@ -31,24 +31,55 @@ class DropdownExampleFirst extends React.Component<IProps, IState> {
       {
         content: 'Item 1',
         disabled: true,
+        active: false,
+        divider: false,
+        header: false,
+        closeOnClickOption: false,
       }, {
         content: 'Item 2',
         divider: true,
         disabled: true,
+        active: false,
+        header: false,
+        closeOnClickOption: false,
       }, {
         content: 'Item 3',
+        active: false,
+        divider: false,
+        disabled: false,
+        header: false,
+        closeOnClickOption: false,
       }, {
         content: 'Item 4',
         header: true,
+        active: false,
+        divider: false,
+        disabled: false,
+        closeOnClickOption: false,
       },
     ];
 
     return (
       <div className={styles.example}>
-        <Button onClick={e => this.toggle(e)}>Dropdown1</Button>
+        <Button
+          onClick={e => this.toggle(e)}
+          disabled={false}
+          disclosure={false}
+          destructive={false}
+          external={false}
+          fullWidth={false}
+          outline={false}
+          submit={false}
+          plain={false}
+          primary={false}
+        >
+          Dropdown1
+        </Button>
         <Dropdown
           dropdownItems={items}
           anchorEl={this.state.anchorEl}
+          disabled={false}
+          closeOnClickOption={false}
         />
       </div>
     );

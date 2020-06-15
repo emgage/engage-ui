@@ -3,7 +3,7 @@ import { PreferredPosition } from '../PositionedOverlay';
 export interface Props {
     componentId: string;
     active: boolean;
-    light?: boolean;
+    light: boolean;
     preferredPosition?: PreferredPosition;
     children?: React.ReactNode;
     activator: HTMLElement;

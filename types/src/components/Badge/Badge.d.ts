@@ -7,8 +7,8 @@ export interface Props {
     children?: React.ReactNode;
     status?: Status;
     progress?: Progress;
-    working?: boolean;
-    icon?: boolean;
+    working: boolean;
+    icon: boolean;
     iconSource?: keyof typeof IconList;
     iconColor?: IconColor;
     componentStyle?: React.CSSProperties;

@@ -15,7 +15,12 @@ const ModalExample = () => (
       {childBody}
     </Modal> */}
 
-    <Modal></Modal>
+    <Modal
+      active={false}
+      closeButton={false}
+      closeOnBackgroud={false}
+      closeOnEsc={false}
+    />
   </div>
 );
 

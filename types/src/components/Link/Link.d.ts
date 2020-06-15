@@ -3,7 +3,7 @@ import { ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 export interface Props {
     url?: string;
     children?: React.ReactNode;
-    external?: boolean;
+    external: boolean;
     theme?: any;
     onClick?(): void;
 }

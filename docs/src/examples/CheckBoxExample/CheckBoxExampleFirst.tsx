@@ -6,6 +6,8 @@ const CheckBoxExample = () => (
   <div className={styles.example}>
     <Checkbox
       label="Default"
+      disabled={false}
+      labelHidden={false}
     />
   </div>
 );

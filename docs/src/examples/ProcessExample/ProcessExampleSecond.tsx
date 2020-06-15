@@ -24,7 +24,14 @@ class ProcessExampleSecond extends React.Component {
   render() {
     return (
       <div>
-        <Process steps={steps} allowBackStepping onClick={(processComponentState: number) => this.updateProcessStateonClick(processComponentState)} onComponentStateUpdate={(currentState: number, processComponentState: number) => this.updateProcessState(currentState, processComponentState) }  processComponentState = {this.state.processComponentState}></Process>
+        <Process
+          steps={steps}
+          allowBackStepping
+          onClick={(processComponentState: number) => this.updateProcessStateonClick(processComponentState)}
+          onComponentStateUpdate={(currentState: number, processComponentState: number) => this.updateProcessState(currentState, processComponentState) }
+          processComponentState = {this.state.processComponentState}
+          showNavigation={false}
+        />
       </div>
     );
   }

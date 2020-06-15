@@ -10,10 +10,10 @@ export interface Props {
   bannerTitle: string;
   bannerType: Status;
   bannerIcon?: string;
-  disabled?: boolean;
+  disabled: boolean;
   dropdownItems: any;
   rowItem?: any;
-  loading?: boolean;
+  loading: boolean;
   onChange?(rowItem: any, selectedValue: number): void;
   onFocus?(rowItem: any): void;
   selectPlaceholder: string;
@@ -58,6 +58,7 @@ class BannerRow extends React.PureComponent<Props, State> {
           onFocus={this.onFocusHandle}
           onChange={this.onChangeHandler}
           value={this.state.selectedValue ? this.state.selectedValue : selectedValue}
+          required={false}
         />
       </Banner>
     );

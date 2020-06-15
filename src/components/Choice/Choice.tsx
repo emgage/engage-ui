@@ -15,11 +15,11 @@ export interface Props {
   // Set label text.
   label: string;
   // Whether the associated form control is disabled
-  disabled?: Boolean;
+  disabled: boolean;
   // To give error as boolean or string.
   error?: Error;
   // Display label or not.
-  labelHidden?: boolean;
+  labelHidden: boolean;
   // To provide child text.
   children?: React.ReactNode;
   // Text to understand in detail.
@@ -57,7 +57,7 @@ const choice = ({
   const errorMarkup = typeof error === 'string'
     ? (
       <div className={theme.error} id={errorID(componentId)}>
-        <div className={theme.errorIcon}><Icon source="alert" /></div>
+        <div className={theme.errorIcon}><Icon source="alert" backdrop={false} /></div>
         {error}
       </div>
     )

@@ -37,7 +37,22 @@ class AutoSuggestText extends React.PureComponent<Props, {}> {
 
     return (
       <div className={className}>
-        {this.props.stateProps ? this.props.stateProps.chipListState.map((input: any) => <Chip icon={input.icon} onIconClick={input.onIconClick} theme={theme} image={{ url: input.image }} removable={true} onRemove={() => this.props.autoSuggestMethods ? this.props.autoSuggestMethods.chipRemove(input) : null} key={input.key}>{input.text}</Chip>) : null}
+        {this.props.stateProps ? this.props.stateProps.chipListState.map((input: any) =>
+          <Chip
+            icon={input.icon}
+            onIconClick={input.onIconClick}
+            theme={theme}
+            image={{ url: input.image }}
+            removable={true}
+            onRemove={() => this.props.autoSuggestMethods ? this.props.autoSuggestMethods.chipRemove(input) : null}
+            key={input.key}
+            clickable={false}
+            transparent={false}
+          >
+            {input.text}
+          </Chip>
+          ) : null
+        }
         <Autosuggest
           className={theme.suggestionsContainer}
           suggestions={this.props.stateProps ? this.props.stateProps.suggestions : null}

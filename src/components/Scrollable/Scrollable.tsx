@@ -14,11 +14,11 @@ export interface Props extends React.HTMLProps<HTMLDivElement> {
   // Content to display in scrollable area.
   children?: React.ReactNode;
   // Scroll content vertically.
-  vertical?: boolean;
+  vertical: boolean;
   // Scroll content horizontally.
-  horizontal?: boolean;
+  horizontal: boolean;
   // Add a shadow when content is scrollable.
-  shadow?: boolean;
+  shadow: boolean;
   // Theme to be injected via css-themr.
   theme?: any;
 }

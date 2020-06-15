@@ -16,6 +16,8 @@ const singleVideo =
           height: 100,
           width: 100,
         }}
+        muted={false}
+        loop={false}
     />;
 
 const PanelExampleSecond = () => (

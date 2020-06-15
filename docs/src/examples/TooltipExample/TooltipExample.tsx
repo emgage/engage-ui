@@ -4,8 +4,8 @@ import * as styles from '../../styles/components-page.scss';
 
 const TooltipExample = () => (
   <div className={styles.example}>
-    <Tooltip content="This order has shipping labels.">
-      <Link>Order #1001</Link>
+    <Tooltip content="This order has shipping labels." active={false} light={false}>
+      <Link external={false}>Order #1001</Link>
     </Tooltip>
   </div>
 );

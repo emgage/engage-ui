@@ -91,11 +91,11 @@ class TableHead extends React.PureComponent<Props, never> {
               <div className={theme.sortIcon}>
                 {
                   order ?
-                    order === 'asc' ? <Icon componentClass={theme.iconStyle} source="caretUp" /> : <Icon componentClass={theme.iconStyle} source="caretDown" />
+                    order === 'asc' ? <Icon componentClass={theme.iconStyle} source="caretUp" backdrop={false} /> : <Icon componentClass={theme.iconStyle} source="caretDown" backdrop={false} />
                     :
                     <div>
-                      <Icon componentClass={theme.iconGroupStyle} componentColor="skyDark" source="caretUp" />
-                      <Icon componentClass={theme.iconGroupStyle} componentColor="skyDark" source="caretDown" />
+                      <Icon componentClass={theme.iconGroupStyle} componentColor="skyDark" source="caretUp" backdrop={false} />
+                      <Icon componentClass={theme.iconGroupStyle} componentColor="skyDark" source="caretDown" backdrop={false} />
                     </div>
                 }
               </div>

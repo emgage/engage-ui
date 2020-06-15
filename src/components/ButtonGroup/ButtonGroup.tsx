@@ -13,7 +13,7 @@ export interface Props {
   // Set a custom class
   componentClass?: string;
   // Display true or false value. Join buttons as segmented group.
-  segmented?: boolean;
+  segmented: boolean;
   // Name of button, Button components.
   children?: React.ReactNode;
   // Theme to be injected via css-themr.
@@ -34,7 +34,7 @@ const buttonGroup = ({
   );
 
   const contents = elementChildren(children)
-    .map((child, index) => <Item button={child} key={index} theme={theme} />);
+    .map((child: any, index) => <Item button={child} key={index} theme={theme} />);
 
   return <div className={className} style={componentStyle}>{contents}</div>;
 };

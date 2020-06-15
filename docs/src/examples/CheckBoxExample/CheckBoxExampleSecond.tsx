@@ -9,6 +9,8 @@ const CheckBoxExample = () => (
       checked
       name="checkbox"
       value="Some value"
+      disabled={false}
+      labelHidden={false}
     />
   </div>
 );

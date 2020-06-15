@@ -4,9 +4,9 @@ export declare type Error = boolean | string;
 export interface Props {
     componentId: string;
     label: string;
-    disabled?: Boolean;
+    disabled: boolean;
     error?: Error;
-    labelHidden?: boolean;
+    labelHidden: boolean;
     children?: React.ReactNode;
     helpText?: React.ReactNode;
     theme?: any;

@@ -12,8 +12,8 @@ export interface Props {
     render?: RenderProps;
     actionConfig: any;
     theme?: any;
-    rowActionLeft?: boolean;
-    actionInProgress?: boolean;
+    rowActionLeft: boolean;
+    actionInProgress: boolean;
 }
 export interface State {
     active: boolean;

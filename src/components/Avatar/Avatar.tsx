@@ -22,7 +22,7 @@ export interface Props {
   // Initials of person to display
   initials?: string;
   // Weather avatar is for customer
-  customer?: boolean;
+  customer: boolean;
   // URL of the avatar image
   source?: string;
   // Accessible label for the avatar image

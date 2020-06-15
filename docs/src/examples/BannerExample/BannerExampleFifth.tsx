@@ -11,7 +11,7 @@ const BannerExample = () =>  (
     >
       <p>
         Before fulfilling this order or capturing payment, please
-          <Link url="http://www.googl.com">
+          <Link url="http://www.googl.com" external={false}>
             Review the Risk Analysis
           </Link>
         and determine if this order is fraudulent.

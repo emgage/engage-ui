@@ -4,10 +4,10 @@ import * as styles from '../../styles/components-page.scss';
 
 const ClickableChipExample = () => (
   <div className={styles.example}>
-    <ClickableChip chip={<Chip>Batman</Chip>}>
+    <ClickableChip chip={<Chip clickable={false} removable={false} transparent={false}>Batman</Chip>}>
       <Card>
         <CardHeader>More about Batman{'>'}</CardHeader>
-        <CardBody>
+        <CardBody sectioned={false}>
         </CardBody>
       </Card>
     </ClickableChip>

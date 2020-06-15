@@ -51,7 +51,7 @@ class Resizer extends React.PureComponent<Props, never> {
 
     return (
       <div aria-hidden className={this.props.theme.resizer}>
-        <EventListener event="resize" handler={this.handleHeightCheck} />
+        <EventListener event="resize" handler={this.handleHeightCheck} capture={false} passive={false} />
         <div
           ref={(input) => { this.setContentNode(input as HTMLElement); }}
           className={this.props.theme.dummyInput}

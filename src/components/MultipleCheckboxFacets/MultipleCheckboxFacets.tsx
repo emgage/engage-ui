@@ -36,8 +36,8 @@ interface IProps {
   onSearch?(value?: string): void;
   options: IOptions[];
   searchPlaceholder?: string;
-  showMore?: boolean;
-  showSearch?: boolean;
+  showMore: boolean;
+  showSearch: boolean;
 }
 
 function multiCheckboxFacet({
@@ -64,6 +64,24 @@ function multiCheckboxFacet({
                 onSearch(value);
               }
             }}
+            autoComplete={false}
+            autoFocus={false}
+            autoSuggest={false}
+            alphanumeric={false}
+            backdropHidden={false}
+            capital={false}
+            disabled={false}
+            enableTextCounter={false}
+            hasValue={false}
+            isFocused={false}
+            itemSelected={false}
+            labelHidden={false}
+            loading={false}
+            readOnly={false}
+            required={false}
+            resizable={false}
+            showNumberIcon={false}
+            spellCheck={false}
           />
         </div>
       )}
@@ -84,6 +102,8 @@ function multiCheckboxFacet({
                   onChange={() =>
                     checked ? onRemove(option.value) : onSelect(option.value)
                   }
+                  disabled={false}
+                  labelHidden={false}
                 />
               </div>
               <div style={{ display: 'flex', alignItems: 'center', color: '#9e9e9e' }} className="facet-option-count">
@@ -95,8 +115,16 @@ function multiCheckboxFacet({
       </div>
       {showMore && (
         <Button
-        plain
-        onClick={onMoreClick}
+          plain
+          onClick={onMoreClick}
+          fullWidth={false}
+          primary={false}
+          outline={false}
+          destructive={false}
+          disabled={false}
+          disclosure={false}
+          submit={false}
+          external={false}
         >
           + More
         </Button>

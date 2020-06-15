@@ -10,6 +10,11 @@ const LabelledExampleSecond = () => (
       action={{ content: 'Click Here', onAction:() => { alert('You have performed Click Action.'); } }}
       required={false}
       helpText="HelpText"
+      autoSuggest={false}
+      hasValue={false}
+      disabled={false}
+      labelHidden={false}
+      focused={false}
     />
   </div>
 );

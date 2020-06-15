@@ -23,10 +23,10 @@ export type SortOrder = 'asc' | 'desc';
 
 export interface Props {
   // Use for disabled or enable selected Row checkbox and RowAction button
-  actionInProgress?: boolean;
+  actionInProgress: boolean;
   // To make table bordered
-  bordered?: boolean;
-  callChildCallback?: boolean;
+  bordered: boolean;
+  callChildCallback: boolean;
   // Column config, which renders the header
   column: ColumnConfig[];
   columnFirstChildWidth?: string;
@@ -49,17 +49,17 @@ export interface Props {
   // Filter config, if data needs to be filtered by any mode like search
   filterData?: FilterConfig;
   // This will hide the expanding row if passed
-  hideExpandedIcon?: boolean;
+  hideExpandedIcon: boolean;
   // Hide header: Its mainly used for nested table, but user can also hide it for main table
-  hideHeader?: boolean;
+  hideHeader: boolean;
   // Hide specific row & show them when its being asked to show
   hideRow?: any;
   // hide header checkbox for selected row
-  hideSelectAll?: boolean;
+  hideSelectAll: boolean;
   // Highlight rows on hover
-  highlight?: boolean;
+  highlight: boolean;
   // Used when same table component is nested as child component
-  isChildParentConfigSame?: boolean;
+  isChildParentConfigSame: boolean;
   // Use when you need multuple call back values
   multipleCallBackValue?: any[];
   // Nested data callback, when rows been clicked, rows id sent to parent and nested child data gets updated
@@ -73,19 +73,19 @@ export interface Props {
   // This will help to know if the current component is child component & what's its parent id is
   parentRowId?: number | string;
   // This array is to store parent selected row id
-  parentSelectedRow?: boolean;
+  parentSelectedRow: boolean;
   // Make table responsive
-  responsive?: boolean;
+  responsive: boolean;
   // Prop to define if we want to add header checkbox or not
-  renderHeaderCheckbox?: boolean;
+  renderHeaderCheckbox: boolean;
   // Put more action button as first column
-  rowActionLeft?: boolean;
+  rowActionLeft: boolean;
   // Use this key to fetch the unique id from data & send it back to clickedrow
   rowCallbackValue?: string;
   // Individual row action, if available add it in last of the column
   rowAction?: any;
   // Pass this if row should be expanded bydefault on page load
-  rowExpandOnLoad?: boolean;
+  rowExpandOnLoad: boolean;
   // This helps to add checkbox or radio to select the row & do bulk actions
   selectRow?: RowSelection;
   // Use this key to fetch the unique id from data & send it back to selectedrow
@@ -101,7 +101,7 @@ export interface Props {
   // Flag to indentify if table is sortable, if passed "all" then add sorting to all the columns
   sorting?: boolean | string;
   // Set greyed background for odd rows
-  striped?: boolean;
+  striped: boolean;
   theme?: any;
 }
 
@@ -379,7 +379,7 @@ class Table extends React.PureComponent<Props, State> {
             })
           }
 
-          { rowAction && !rowActionLeft ? <TableData componentStyle={{ float: 'right' }}>{item.isRowLoading && <Spinner componentSize="small" componentColor="disabled" />} <RowAction actionInProgress={actionInProgress} isRowLoading={item.isRowLoading} actionConfig={rowAction} data={item} theme={theme} /> </TableData> : '' }
+          { rowAction && !rowActionLeft ? <TableData componentStyle={{ float: 'right' }}>{item.isRowLoading && <Spinner componentSize="small" componentColor="disabled" />} <RowAction actionInProgress={actionInProgress} isRowLoading={item.isRowLoading} actionConfig={rowAction} data={item} theme={theme} rowActionLeft={false} /> </TableData> : '' }
         </TableRow>
         { renderBanner &&
         <TableRow>
@@ -483,7 +483,9 @@ class Table extends React.PureComponent<Props, State> {
           onClick={this.openNestedRow}
           callbackValue={rowId}
           source="chevronDown"
-          componentStyle={{ margin: 0 }} />
+          componentStyle={{ margin: 0 }}
+          backdrop={false}
+        />
       </TableData>
     );
   }
@@ -527,7 +529,9 @@ class Table extends React.PureComponent<Props, State> {
                 if (disableAllRowCallback) {
                   disableAllRowCallback(checked);
                 }
-              })}/>
+              })}
+              disabled={false}
+            />
         </TableHead>);
   }
 
@@ -561,7 +565,7 @@ class Table extends React.PureComponent<Props, State> {
   renderRadio = (rowData: any): React.ReactElement<any> => {
     const { theme } = this.props;
 
-    return <TableData theme={theme}><Checkbox label={`Check ${rowData.name}`} labelHidden theme={theme} value={rowData.id} checked={rowData.checked ? true : false} /></TableData>;
+    return <TableData theme={theme}><Checkbox label={`Check ${rowData.name}`} labelHidden theme={theme} value={rowData.id} checked={rowData.checked ? true : false} disabled={false} /></TableData>;
   }
 
   reRenderRow = () => {

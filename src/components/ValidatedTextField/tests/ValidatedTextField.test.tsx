@@ -10,9 +10,28 @@ describe('<ValidatedTextField / >', () => {
     const validatedTextFieldWrapper = mount(
                                             <ValidatedForm formFields={['AppName']}>
                                                 <ValidatedTextField
-                                                componentId="AppName"
-                                                label="App Name"
-                                                name="App Name" />
+                                                  componentId="AppName"
+                                                  label="App Name"
+                                                  name="App Name"
+                                                  alphanumeric={false}
+                                                  autoComplete={false}
+                                                  autoFocus={false}
+                                                  autoSuggest={false}
+                                                  backdropHidden={false}
+                                                  capital={false}
+                                                  disabled={false}
+                                                  enableTextCounter={false}
+                                                  hasValue={false}
+                                                  isFocused={false}
+                                                  itemSelected={false}
+                                                  labelHidden={false}
+                                                  loading={false}
+                                                  readOnly={false}
+                                                  required={false}
+                                                  resizable={false}
+                                                  showNumberIcon={false}
+                                                  spellCheck={false}
+                                                />
                                             </ValidatedForm>);
   expect(validatedTextFieldWrapper.find('form')).toHaveLength(1);
   expect(validatedTextFieldWrapper.find('div')).toHaveLength(8);
@@ -33,9 +52,28 @@ describe('<ValidatedTextField / >', () => {
         const validatedTextFieldWrapper = mount(
                                             <ValidatedForm formFields={['AppName']}>
                                                 <ValidatedTextField
-                                                componentId="AppName"
-                                                label="App Name"
-                                                name="App Name" />
+                                                  componentId="AppName"
+                                                  label="App Name"
+                                                  name="App Name"
+                                                  alphanumeric={false}
+                                                  autoComplete={false}
+                                                  autoFocus={false}
+                                                  autoSuggest={false}
+                                                  backdropHidden={false}
+                                                  capital={false}
+                                                  disabled={false}
+                                                  enableTextCounter={false}
+                                                  hasValue={false}
+                                                  isFocused={false}
+                                                  itemSelected={false}
+                                                  labelHidden={false}
+                                                  loading={false}
+                                                  readOnly={false}
+                                                  required={false}
+                                                  resizable={false}
+                                                  showNumberIcon={false}
+                                                  spellCheck={false}
+                                                />
                                             </ValidatedForm>);
         expect(validatedTextFieldWrapper.find('form')).toHaveLength(1);
         expect(validatedTextFieldWrapper.find('div')).toHaveLength(8);
@@ -57,9 +95,28 @@ describe('<ValidatedTextField / >', () => {
         const validatedTextFieldWrapper = mount(
                                             <ValidatedForm formFields={['AppName']}>
                                                 <ValidatedTextField
-                                                componentId="AppName"
-                                                label="App Name"
-                                                name ="App Name" />
+                                                  componentId="AppName"
+                                                  label="App Name"
+                                                  name ="App Name"
+                                                  alphanumeric={false}
+                                                  autoComplete={false}
+                                                  autoFocus={false}
+                                                  autoSuggest={false}
+                                                  backdropHidden={false}
+                                                  capital={false}
+                                                  disabled={false}
+                                                  enableTextCounter={false}
+                                                  hasValue={false}
+                                                  isFocused={false}
+                                                  itemSelected={false}
+                                                  labelHidden={false}
+                                                  loading={false}
+                                                  readOnly={false}
+                                                  required={false}
+                                                  resizable={false}
+                                                  showNumberIcon={false}
+                                                  spellCheck={false}
+                                                />
                                             </ValidatedForm>);
         expect(validatedTextFieldWrapper.find('form')).toHaveLength(1);
         expect(validatedTextFieldWrapper.find('div')).toHaveLength(8);
@@ -82,15 +139,33 @@ describe('<ValidatedTextField / >', () => {
         const validatedTextFieldWrapper = mount(
                                             <ValidatedForm formFields={['AppName']}>
                                                 <ValidatedTextField
-                                                componentId="AppName"
-                                                label="App Name"
-                                                name="App Name"
-                                                value="Test"
-                                                required={true}
-                                                onBlur={ () => spy()}
-                                                validateTrigger={['onBlur']}
-                                                validateRules={[{ required: true, message: 'App Name is required.' },
-                                                ]} />
+                                                  componentId="AppName"
+                                                  label="App Name"
+                                                  name="App Name"
+                                                  value="Test"
+                                                  required={true}
+                                                  onBlur={ () => spy()}
+                                                  validateTrigger={['onBlur']}
+                                                  validateRules={[{ required: true, message: 'App Name is required.' },
+                                                  ]}
+                                                  alphanumeric={false}
+                                                  autoComplete={false}
+                                                  autoFocus={false}
+                                                  autoSuggest={false}
+                                                  backdropHidden={false}
+                                                  capital={false}
+                                                  disabled={false}
+                                                  enableTextCounter={false}
+                                                  hasValue={false}
+                                                  isFocused={false}
+                                                  itemSelected={false}
+                                                  labelHidden={false}
+                                                  loading={false}
+                                                  readOnly={false}
+                                                  resizable={false}
+                                                  showNumberIcon={false}
+                                                  spellCheck={false}
+                                                />
                                             </ValidatedForm>);
         expect(validatedTextFieldWrapper.find('form')).toHaveLength(1);
         expect(validatedTextFieldWrapper.find('div')).toHaveLength(8);
@@ -114,15 +189,33 @@ describe('<ValidatedTextField / >', () => {
         const validatedTextFieldWrapper = mount(
                                             <ValidatedForm formFields={['AppName']}>
                                                 <ValidatedTextField
-                                                componentId="AppName"
-                                                label="App Name"
-                                                name="App Name"
-                                                value=""
-                                                required={true}
-                                                onBlur={ () => spy()}
-                                                validateTrigger={['onBlur']}
-                                                validateRules={[{ required: true, message: 'App Name is required.' },
-                                                ]} />
+                                                  componentId="AppName"
+                                                  label="App Name"
+                                                  name="App Name"
+                                                  value=""
+                                                  required={true}
+                                                  onBlur={ () => spy()}
+                                                  validateTrigger={['onBlur']}
+                                                  validateRules={[{ required: true, message: 'App Name is required.' },
+                                                  ]}
+                                                  alphanumeric={false}
+                                                  autoComplete={false}
+                                                  autoFocus={false}
+                                                  autoSuggest={false}
+                                                  backdropHidden={false}
+                                                  capital={false}
+                                                  disabled={false}
+                                                  enableTextCounter={false}
+                                                  hasValue={false}
+                                                  isFocused={false}
+                                                  itemSelected={false}
+                                                  labelHidden={false}
+                                                  loading={false}
+                                                  readOnly={false}
+                                                  resizable={false}
+                                                  showNumberIcon={false}
+                                                  spellCheck={false}
+                                                />
                                             </ValidatedForm>);
         expect(validatedTextFieldWrapper.find('form')).toHaveLength(1);
         expect(validatedTextFieldWrapper.find('div')).toHaveLength(8);
@@ -145,13 +238,31 @@ describe('<ValidatedTextField / >', () => {
         const validatedTextFieldWrapper = mount(
                                             <ValidatedForm formFields={['AppName']}>
                                                 <ValidatedTextField
-                                                componentId="AppName"
-                                                label="App Name"
-                                                name="App Name"
-                                                value="Test"
-                                                required={true}
-                                                validateRules={[{ required: true, message: 'App Name is required.' },
-                                                ]} />
+                                                  componentId="AppName"
+                                                  label="App Name"
+                                                  name="App Name"
+                                                  value="Test"
+                                                  required={true}
+                                                  validateRules={[{ required: true, message: 'App Name is required.' },
+                                                  ]}
+                                                  alphanumeric={false}
+                                                  autoComplete={false}
+                                                  autoFocus={false}
+                                                  autoSuggest={false}
+                                                  backdropHidden={false}
+                                                  capital={false}
+                                                  disabled={false}
+                                                  enableTextCounter={false}
+                                                  hasValue={false}
+                                                  isFocused={false}
+                                                  itemSelected={false}
+                                                  labelHidden={false}
+                                                  loading={false}
+                                                  readOnly={false}
+                                                  resizable={false}
+                                                  showNumberIcon={false}
+                                                  spellCheck={false}
+                                                />
                                             </ValidatedForm>);
         expect(validatedTextFieldWrapper.find('form')).toHaveLength(1);
         expect(validatedTextFieldWrapper.find('div')).toHaveLength(8);
@@ -175,15 +286,33 @@ describe('<ValidatedTextField / >', () => {
         const validatedTextFieldWrapper = mount(
                                             <ValidatedForm formFields={['AppName']}>
                                                 <ValidatedTextField
-                                                componentId="AppName"
-                                                label="App Name"
-                                                required={true}
-                                                onBlur={ () => spy()}
-                                                name="App Name"
-                                                value=""
-                                                validateTrigger={['onBlur']}
-                                                validateRules={[{ required: true, message: 'App Name is required.' },
-                                                ]} />
+                                                  componentId="AppName"
+                                                  label="App Name"
+                                                  required={true}
+                                                  onBlur={ () => spy()}
+                                                  name="App Name"
+                                                  value=""
+                                                  validateTrigger={['onBlur']}
+                                                  validateRules={[{ required: true, message: 'App Name is required.' },
+                                                  ]}
+                                                  alphanumeric={false}
+                                                  autoComplete={false}
+                                                  autoFocus={false}
+                                                  autoSuggest={false}
+                                                  backdropHidden={false}
+                                                  capital={false}
+                                                  disabled={false}
+                                                  enableTextCounter={false}
+                                                  hasValue={false}
+                                                  isFocused={false}
+                                                  itemSelected={false}
+                                                  labelHidden={false}
+                                                  loading={false}
+                                                  readOnly={false}
+                                                  resizable={false}
+                                                  showNumberIcon={false}
+                                                  spellCheck={false}
+                                                />
                                             </ValidatedForm>);
         expect(validatedTextFieldWrapper.find('form')).toHaveLength(1);
         expect(validatedTextFieldWrapper.find('div')).toHaveLength(8);
@@ -207,13 +336,31 @@ describe('<ValidatedTextField / >', () => {
         const validatedTextFieldWrapper = mount(
                                             <ValidatedForm formFields={['AppName']}>
                                                 <ValidatedTextField
-                                                componentId="AppName"
-                                                label="App Name"
-                                                required={true}
-                                                onBlur={ () => spy()}
-                                                name="App Name"
-                                                value=""
-                                                validateTrigger={['onBlur']} />
+                                                  componentId="AppName"
+                                                  label="App Name"
+                                                  required={true}
+                                                  onBlur={ () => spy()}
+                                                  name="App Name"
+                                                  value=""
+                                                  validateTrigger={['onBlur']}
+                                                  alphanumeric={false}
+                                                  autoComplete={false}
+                                                  autoFocus={false}
+                                                  autoSuggest={false}
+                                                  backdropHidden={false}
+                                                  capital={false}
+                                                  disabled={false}
+                                                  enableTextCounter={false}
+                                                  hasValue={false}
+                                                  isFocused={false}
+                                                  itemSelected={false}
+                                                  labelHidden={false}
+                                                  loading={false}
+                                                  readOnly={false}
+                                                  resizable={false}
+                                                  showNumberIcon={false}
+                                                  spellCheck={false}
+                                                />
                                             </ValidatedForm>);
         expect(validatedTextFieldWrapper.find('form')).toHaveLength(1);
         expect(validatedTextFieldWrapper.find('div')).toHaveLength(8);
@@ -238,17 +385,35 @@ describe('<ValidatedTextField / >', () => {
         const validatedTextFieldWrapper = mount(
                                             <ValidatedForm formFields={['AppName']}>
                                                 <ValidatedTextField
-                                                componentId="AppName"
-                                                required={true}
-                                                label="App Name"
-                                                placeholder=""
-                                                helpText="We recommend keeping your app name under 23 characters."
-                                                onChange={() => spy()}
-                                                name="App Name"
-                                                value="Text Value"
-                                                validateTrigger={['onBlur']}
-                                                validateRules={[{ required: true, message: 'App Name is required.' },
-                                                ]} />
+                                                  componentId="AppName"
+                                                  required={true}
+                                                  label="App Name"
+                                                  placeholder=""
+                                                  helpText="We recommend keeping your app name under 23 characters."
+                                                  onChange={() => spy()}
+                                                  name="App Name"
+                                                  value="Text Value"
+                                                  validateTrigger={['onBlur']}
+                                                  validateRules={[{ required: true, message: 'App Name is required.' },
+  ]}
+                                                  alphanumeric={false}
+                                                  autoComplete={false}
+                                                  autoFocus={false}
+                                                  autoSuggest={false}
+                                                  backdropHidden={false}
+                                                  capital={false}
+                                                  disabled={false}
+                                                  enableTextCounter={false}
+                                                  hasValue={false}
+                                                  isFocused={false}
+                                                  itemSelected={false}
+                                                  labelHidden={false}
+                                                  loading={false}
+                                                  readOnly={false}
+                                                  resizable={false}
+                                                  showNumberIcon={false}
+                                                  spellCheck={false}
+                                                />
                                             </ValidatedForm>);
         expect(validatedTextFieldWrapper.find('form')).toHaveLength(1);
         expect(validatedTextFieldWrapper.find('div')).toHaveLength(9);

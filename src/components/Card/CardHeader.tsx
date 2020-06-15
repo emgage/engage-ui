@@ -30,7 +30,7 @@ export interface Props {
 const cardHeader = ({ children, actions, theme, componentStyle, componentClass, onClick }: Props) => {
   const actionMarkup = actions
     ? (
-      <ButtonGroup theme={theme}>
+      <ButtonGroup theme={theme} segmented={false}>
         {buttonsFrom(actions, { plain: true })}
       </ButtonGroup>
     )
@@ -38,7 +38,7 @@ const cardHeader = ({ children, actions, theme, componentStyle, componentClass, 
 
   const headingMarkup = actionMarkup
     ? (
-      <Stack alignment="baseline" theme={theme}>
+      <Stack alignment="baseline" theme={theme} vertical={false}>
         <StackItem theme={theme} fill>
           <Heading>{children}</Heading>
         </StackItem>

@@ -6,9 +6,9 @@ const StackExample = () => (
   <div className={styles.example}>
     <br />
     <br />
-    <Stack>
-      <Badge>Paid</Badge>
-      <Badge>Fulfilled</Badge>
+    <Stack vertical={false}>
+      <Badge working={false} icon={false}>Paid</Badge>
+      <Badge working={false} icon={false}>Fulfilled</Badge>
     </Stack>
   </div>
 );

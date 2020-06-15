@@ -4,7 +4,19 @@ import * as styles from '../../styles/components-page.scss';
 
 const ButtonExample = () => (
   <div className={styles.example}>
-    <Button disabled>Disabled Button</Button>
+    <Button
+      disabled
+      disclosure={false}
+      destructive={false}
+      external={false}
+      fullWidth={false}
+      outline={false}
+      primary={false}
+      submit={false}
+      plain={false}
+    >
+      Disabled Button
+    </Button>
   </div>
 );
 

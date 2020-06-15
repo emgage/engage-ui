@@ -17,7 +17,7 @@ export interface Props {
   // ID for form input
   componentId?: string;
   // Disabled checkbox name
-  disabled?: boolean;
+  disabled: boolean;
   // Display an error state
   error?: Error;
   errors?: [string];
@@ -26,7 +26,7 @@ export interface Props {
   // Label for the checkbox
   label: string;
   // Visually hide the label
-  labelHidden?: boolean;
+  labelHidden: boolean;
   // Name for form input
   name?: string;
   // Callback when focus is removed
@@ -165,7 +165,7 @@ class Checkbox extends React.PureComponent<Props, State> {
 
             <span className={theme.backdrop} />
             <span className={theme.icon}>
-              <Icon source={iconSource} />
+              <Icon source={iconSource} backdrop={false} />
             </span>
           </span>
         </Choice>

@@ -4,7 +4,15 @@ import * as styles from '../../styles/components-page.scss';
 
 const LabelExampleFirst = () => (
   <div className={styles.example}>
-    <Label componentId="lblid">Test</Label>
+    <Label
+      componentId="lblid"
+      hidden={false}
+      required={false}
+      focused={false}
+      hasValue={false}
+    >
+        Test
+      </Label>
   </div>
 );
 

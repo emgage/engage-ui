@@ -16,6 +16,10 @@ const SelectExample = () => (
       helpText="Please Select City"
       componentId="SelectId"
       name="Select Name"
+      disabled={false}
+      labelHidden={false}
+      loading={false}
+      required={false}
     />
   </div>
 );

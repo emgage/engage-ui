@@ -17,9 +17,9 @@ export interface Props {
   // The content to display within the tooltip.
   content: string;
   // Toggle whether the tooltip is visible.
-  active?: boolean;
+  active: boolean;
   // Display tooltip with a light background.
-  light?: boolean;
+  light: boolean;
   // The direction the tooltip tries to display Availabel options: above | below | mostSpace
   preferredPosition?: PreferredPosition;
   // The element type to wrap the activator in.

@@ -42,9 +42,30 @@ export default (props: Props) => {
    * Handle dropdown list state
   */
   const [dropDownList, setDropdownList] = React.useState<DropdownItemProps[]>([
-    { content: props.userName, divider: true },
-    { content: 'User Properties', divider: true },
-    { content: <a className={baseTheme.signOut} href={props.logoutUrl}>Sign Out</a> },
+    {
+      content: props.userName,
+      divider: true,
+      active: false,
+      disabled: false,
+      header: false,
+      closeOnClickOption: false,
+    },
+    {
+      content: 'User Properties',
+      divider: true,
+      active: false,
+      disabled: false,
+      header: false,
+      closeOnClickOption: false,
+    },
+    {
+      content: <a className={baseTheme.signOut} href={props.logoutUrl}>Sign Out</a>,
+      divider: false,
+      active: false,
+      disabled: false,
+      header: false,
+      closeOnClickOption: false,
+    },
   ]);
 
   /**
@@ -57,32 +78,106 @@ export default (props: Props) => {
 
   React.useEffect(() => {
     setDropdownList([
-      { content: props.userName, divider: true },
-      { content: 'User Properties', divider: true },
-      { content: <a className={baseTheme.signOut} href={props.logoutUrl}>Sign Out</a> }
+      {
+        content: props.userName,
+        divider: true,
+        active: false,
+        disabled: false,
+        header: false,
+        closeOnClickOption: false,
+      },
+      {
+        content: 'User Properties',
+        divider: true,
+        active: false,
+        disabled: false,
+        header: false,
+        closeOnClickOption: false,
+      },
+      {
+        content: <a className={baseTheme.signOut} href={props.logoutUrl}>Sign Out</a>,
+        divider: false,
+        active: false,
+        disabled: false,
+        header: false,
+        closeOnClickOption: false,
+      }
     ]);
   },              [props.userName, props.logoutUrl]);
 
   React.useEffect(() => {
     if (props.additionalLIst) {
       setDropdownList([
-        { content: props.userName, divider: true },
-        { content: 'User Properties', divider: true },
+        {
+          content: props.userName,
+          divider: true,
+          active: false,
+          disabled: false,
+          header: false,
+          closeOnClickOption: false,
+        },
+        {
+          content: 'User Properties',
+          divider: true,
+          active: false,
+          disabled: false,
+          header: false,
+          closeOnClickOption: false,
+        },
         ...props.additionalLIst,
-        { content: <a className={baseTheme.signOut} href={props.logoutUrl}>Sign Out</a> }]);
+        {
+          content: <a className={baseTheme.signOut} href={props.logoutUrl}>Sign Out</a>,
+          divider: false,
+          active: false,
+          disabled: false,
+          header: false,
+          closeOnClickOption: false,
+        }]);
     }
   },              [props.additionalLIst]);
 
   return (
-      props.isLoggedIn ?  <div className={baseTheme.loginContainer}>
-        {!props.profilePic ? <Button icon="user" componentClass={baseTheme.loginUser} onClick={e => toggle(e)} />
+      props.isLoggedIn ?
+      <div className={baseTheme.loginContainer}>
+        {!props.profilePic ?
+          <Button
+            icon="user"
+            componentClass={baseTheme.loginUser}
+            onClick={e => toggle(e)}
+            fullWidth={false}
+            primary={false}
+            outline={false}
+            destructive={false}
+            disabled={false}
+            external={false}
+            submit={false}
+            plain={false}
+            disclosure={false}
+          />
         : <Image onClick={e => toggle(e)} className={baseTheme.profilePic} alt="User profile pic" source={props.profilePic} />}
         <Dropdown
           dropdownItems={dropDownList}
           anchorEl={anchorEl}
           preferredAlignment="right"
+          disabled={false}
+          closeOnClickOption={false}
         />
-      </div> : <Button url={props.loginUrl} componentClass={baseTheme.loginButton} plain >Login</Button>
+      </div> :
+      <Button
+        url={props.loginUrl}
+        componentClass={baseTheme.loginButton}
+        plain
+        fullWidth={false}
+        primary={false}
+        outline={false}
+        destructive={false}
+        disabled={false}
+        external={false}
+        disclosure={false}
+        submit={false}
+      >
+        Login
+      </Button>
   );
 
 };

@@ -26,9 +26,9 @@ export interface Props {
   // Individual row action, if available add it in last of the column
   actionConfig: any;
   theme?: any;
-  rowActionLeft?: boolean;
-  actionInProgress?: boolean;
-  isRowLoading?: boolean;
+  rowActionLeft: boolean;
+  actionInProgress: boolean;
+  isRowLoading: boolean;
 }
 
 export interface State {
@@ -81,7 +81,21 @@ class RowAction extends React.PureComponent<Props, State> {
     return (
       <React.Fragment>
         <div>
-        <Button theme={theme} componentClass={theme.rowActionButton} disabled={actionInProgress} icon="horizontalDots" onClick={(e: React.FormEvent<HTMLElement>) => this.dropdownToggle(e)} />
+        <Button
+          theme={theme}
+          componentClass={theme.rowActionButton}
+          disabled={actionInProgress}
+          icon="horizontalDots"
+          onClick={(e: React.FormEvent<HTMLElement>) => this.dropdownToggle(e)}
+          destructive={false}
+          disclosure={false}
+          outline={false}
+          submit={false}
+          fullWidth={false}
+          plain={false}
+          primary={false}
+          external={false}
+        />
           <Dropdown
             dropdownItems={validActionConfigs}
             toggle={() => this.dropdownToggle}
@@ -90,6 +104,8 @@ class RowAction extends React.PureComponent<Props, State> {
             closeOnClickOutside
             preferredAlignment={ rowActionLeft ? 'left' : 'right' }
             theme={theme}
+            disabled={false}
+            closeOnClickOption={false}
           />
         </div>
       </React.Fragment>

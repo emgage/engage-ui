@@ -205,7 +205,7 @@ export interface Props {
   // To give colors for icons.
   componentColor?: Color;
   // Show a backdrop behind the icon.
-  backdrop?: boolean;
+  backdrop: boolean;
   // Descriptive text to be read to screenreaders.
   accessibilityLabel?: string;
   // To provide styling.
@@ -215,7 +215,7 @@ export interface Props {
   // Theme to be injected via css-themr.
   theme?: any;
   callbackValue?: any;
-  onClick?(id: number | string, additionalParam?: boolean): void;
+  onClick?(id: number | string, additionalParam: boolean): void;
 }
 
 const icon = ({
@@ -262,7 +262,7 @@ const icon = ({
   }
 
   return (
-    <span className={className} style={componentStyle} aria-label={accessibilityLabel} onClick={(event) => { onClick ? onClick((callbackValue ? callbackValue : event)) : ''; }}>
+    <span className={className} style={componentStyle} aria-label={accessibilityLabel} onClick={(event) => { onClick ? onClick((callbackValue ? callbackValue : event), false) : ''; }}>
       {contentMarkup}
     </span>
   );

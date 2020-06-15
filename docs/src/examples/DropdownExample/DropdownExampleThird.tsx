@@ -30,25 +30,57 @@ class DropdownExampleThird extends React.Component<IProps, IState> {
     const items : DropdownItemProps[] = [
       {
         content: 'Item 1',
+        divider: true,
+        disabled: true,
+        active: false,
+        header: false,
+        closeOnClickOption: false,
       }, {
         content: 'Item 2',
         divider: true,
         disabled: true,
+        active: false,
+        header: false,
+        closeOnClickOption: false,
       }, {
         content: 'Item 3',
+        divider: true,
+        disabled: true,
+        active: false,
+        header: false,
+        closeOnClickOption: false,
       }, {
         content: 'Item 4',
         header: true,
+        divider: true,
+        disabled: true,
+        active: false,
+        closeOnClickOption: false,
       }
     ];
 
     return (
       <div className={styles.example}>
-        <Button onClick={e => this.toggle(e)}>Dropdown3</Button>
+        <Button
+          onClick={e => this.toggle(e)}
+          disabled={false}
+          disclosure={false}
+          destructive={false}
+          external={false}
+          fullWidth={false}
+          outline={false}
+          submit={false}
+          plain={false}
+          primary={false}
+        >
+          Dropdown3
+        </Button>
         <Dropdown
           dropdownItems={items}
           anchorEl={this.state.anchorEl}
           preferredPosition="left"
+          disabled={false}
+          closeOnClickOption={false}
         />
       </div>
     );

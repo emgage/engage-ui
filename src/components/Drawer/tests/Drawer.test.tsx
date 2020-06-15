@@ -8,7 +8,18 @@ describe('<Drawer />', () => {
 
   describe('when default props are provided', () => {
     it('default OffCanvas with default props', () => {
-      const drawerMenu = mount(<Drawer>{children}</Drawer>);
+      const drawerMenu = mount(
+        <Drawer
+          active={false}
+          closeButton={false}
+          fixedCloseButton={false}
+          flip={false}
+          overlay={false}
+          master={false}
+        >
+          {children}
+        </Drawer>
+      );
 
       expect(drawerMenu.prop('mode')).toBeUndefined;
       expect(drawerMenu.prop('overlay')).toBeUndefined;

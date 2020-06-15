@@ -4,7 +4,20 @@ import * as styles from '../../styles/components-page.scss';
 
 const ButtonExample = () => (
   <div className={styles.example}>
-    <Button componentSize="slim">Slim Button</Button>
+    <Button
+      componentSize="slim"
+      disabled={false}
+      disclosure={false}
+      destructive={false}
+      external={false}
+      fullWidth={false}
+      outline={false}
+      primary={false}
+      submit={false}
+      plain={false}
+    >
+      Slim Button
+    </Button>
   </div>
 );
 

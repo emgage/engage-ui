@@ -16,6 +16,8 @@ const singleVideoAutoplay =
       height: 300,
       width: 300,
     }}
+    loop={false}
+    muted={false}
   />;
 
 const PanelExampleThird = () => (

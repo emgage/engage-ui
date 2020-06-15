@@ -19,9 +19,9 @@ export interface Props {
   // Show the progress of badge using round indicator. It can be incomplete, partiallyComplete or complete
   progress?: Progress;
   // Show the working status of badge using spinning indicator.
-  working?: boolean;
+  working: boolean;
   // Add an icon to the badge.
-  icon?: boolean;
+  icon: boolean;
   // Component can show any icon by passing the source
   iconSource?: keyof typeof IconList;
   // Change the icon color
@@ -79,7 +79,7 @@ const badge = ({ children, status, progress, working, theme, icon, iconSource = 
   const iconMarkup = icon
     ? (
     <span className={theme.iconWrapper}>
-      <Icon componentColor={iconColor} source={iconSource} />
+      <Icon componentColor={iconColor} source={iconSource} backdrop={false}/>
     </span>
   )
   : null;
@@ -87,7 +87,7 @@ const badge = ({ children, status, progress, working, theme, icon, iconSource = 
   const workingMarkup = working
   ? (
     <span className={theme.working}>
-      <Icon source="refresh" componentColor="inkLighter" theme={theme} />
+      <Icon source="refresh" componentColor="inkLighter" theme={theme} backdrop={false}/>
     </span>
   )
   : null;

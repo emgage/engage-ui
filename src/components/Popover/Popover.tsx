@@ -14,13 +14,13 @@ import * as baseTheme from './Popover.scss';
 
 export interface Props {
   // This will help to set popover active or inactive when required from parent component
-  manualInActive?: boolean;
-  addArrow?: boolean;
+  manualInActive: boolean;
+  addArrow: boolean;
   // Set anchor element 
   anchorEl?: any;
   // The children that activate the popover.
   children?: React.ReactNode;
-  closeOnClickInside?: boolean;
+  closeOnClickInside: boolean;
   componentClass?: string;
   componentStyle?: any;
   onClose?(): void;
@@ -29,7 +29,7 @@ export interface Props {
   preferredAlignment?: PreferredAlignment;
   // Theme to be injected via css-themr.
   theme?: any;
-  open?: boolean;
+  open: boolean;
 }
 
 export interface State {

@@ -19,9 +19,9 @@ export interface Props {
     componentStyle?: any;
     preferredPosition?: PreferredPosition;
     preferredAlignment?: PreferredAlignment;
-    fullWidth?: boolean;
-    fixed?: boolean;
-    preloadedPopover?: boolean;
+    fullWidth: boolean;
+    fixed: boolean;
+    preloadedPopover: boolean;
     theme?: any;
     render(overlayDetails: OverlayDetails): React.ReactNode;
     onScrollOut?(): void;

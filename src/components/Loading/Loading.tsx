@@ -36,7 +36,14 @@ class Loading extends React.PureComponent<Props, {}> {
     return (
       <div className={theme.loadingContainer} style={componentStyle}>
           <span className={theme.loading}>
-            <Icon componentClass={iconClass} componentStyle={iconStyle} componentColor={iconColor} source={iconSource} theme={theme} />
+            <Icon
+              componentClass={iconClass}
+              componentStyle={iconStyle}
+              componentColor={iconColor}
+              source={iconSource}
+              theme={theme}
+              backdrop={false}
+            />
           </span>
 
           <VisuallyHidden theme={theme}>Loading...</VisuallyHidden>

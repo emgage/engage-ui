@@ -9,16 +9,16 @@ import * as baseTheme from './Dropdown.scss';
 export interface Props {
   content?: React.ReactNode;
   // Show or hide the Dropdown.
-  active?: boolean;
+  active: boolean;
   // Disable the dropdown
-  disabled?: boolean;
+  disabled: boolean;
   // To differentiate items in dropdown
-  divider?: boolean;
+  divider: boolean;
   // Header of item to render in dropdown
-  header?: boolean;
+  header: boolean;
   // Callback function to be called when dropdown gets clicked
   onClick?(data: any): void;
-  closeOnClickOption?: boolean;
+  closeOnClickOption: boolean;
   // Return this value in callback function
   returnValue?: any;
   toggleDropdown?(): void;

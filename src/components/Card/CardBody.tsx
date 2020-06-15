@@ -11,7 +11,7 @@ export interface Props {
   // Card section related components to render inside this card section.
   children?: React.ReactNode;
   // Auto wrap content in section
-  sectioned?: boolean;
+  sectioned: boolean;
   // Custom style
   componentStyle?: any;
   // Set a custom class
@@ -24,7 +24,7 @@ export interface Props {
 
 const cardBody = ({ children, sectioned, theme, componentStyle, componentClass, onClick }: Props) => {
   const bodyContent = sectioned
-    ? <CardSection>{children}</CardSection>
+    ? <CardSection subdued={false}>{children}</CardSection>
     : children;
 
   const className = classNames(

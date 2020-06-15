@@ -12,11 +12,11 @@ export interface Props {
   // Label for the radio button.
   label: string;
   // Visually hide the label.
-  labelHidden?: boolean;
+  labelHidden: boolean;
   // Additional text to aid in use.
   helpText?: React.ReactNode;
   // Radio button is selected.
-  checked?: boolean;
+  checked: boolean;
   // ID for form input.
   componentId?: string;
   // Name for form input.
@@ -25,7 +25,7 @@ export interface Props {
   // Value for form input.
   value?: any;
   // Set as disabled or not.
-  disabled?: boolean;
+  disabled: boolean;
   // Theme to be injected via css-themr.
   theme?: any;
   // Callback when the radio button is toggled.
@@ -103,7 +103,7 @@ const radioButton = ({
   return (
     <div>
       {errorMarkup}
-      <Choice label={label} labelHidden={labelHidden} componentId={componentId} helpText={helpText} theme={theme}>
+      <Choice label={label} labelHidden={labelHidden} componentId={componentId} helpText={helpText} theme={theme} disabled={false} >
         <div className={theme.radioButton}>
           {input}
           <div className={theme.backdrop} />

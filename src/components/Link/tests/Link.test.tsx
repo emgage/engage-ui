@@ -13,7 +13,7 @@ describe('<Link />', () => {
     it('should verify the Link is clicked', () => {
       const spy = jest.fn();
       const linkWrapper = shallow(
-                                <Link onClick={spy}>
+                                <Link onClick={spy} external={false}>
                                     Test
                                 </Link>
                                 );
@@ -24,15 +24,15 @@ describe('<Link />', () => {
     describe('when not set', () => {
       it('should not have external element', () => {
         const linkWrapper = mount(
-                                <Link />
+                                <Link external={false} />
                             );
         expect(linkWrapper.find('external')).toHaveLength(0);
       });
-      it('should external element is undfine', () => {
+      it('external element should be false', () => {
         const linkWrapper = mount(
-                                <Link />
+                                <Link external={false} />
                             );
-        expect(linkWrapper.prop('external')).toBeUndefined();
+        expect(linkWrapper.prop('external')).toBe(false);
       });
     });
     describe('when set to true', () => {
@@ -56,7 +56,7 @@ describe('<Link />', () => {
     describe('when set', () => {
       it('should verify the url', () => {
         const linkWrapper = mount(
-                                        <Link url={theme.url}/>
+                                        <Link url={theme.url} external={false} />
                                      );
         expect(linkWrapper.prop('url')).toBe(theme.url);
       });
@@ -64,13 +64,13 @@ describe('<Link />', () => {
     describe('when not set', () => {
       it('should verify the url', () => {
         const linkWrapper = mount(
-                                        <Link />
+                                        <Link external={false} />
                                      );
         expect(linkWrapper.prop('url')).toBeUndefined();
       });
       it('should not have url element', () => {
         const linkWrapper = mount(
-                                        <Link />
+                                        <Link external={false} />
                                      );
         expect(linkWrapper.find('url')).toHaveLength(0);
       });
@@ -79,7 +79,7 @@ describe('<Link />', () => {
   describe('set children property', () => {
     it('should verify children text', () => {
       const linkWrapper = mount(
-                                <Link>
+                                <Link external={false} >
                                   Please click here
                                 </Link>);
       expect(linkWrapper.prop('children')).toBe('Please click here');

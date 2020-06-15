@@ -7,10 +7,36 @@ const TextFieldExample8 = () => (
     <TextField
       label="Weight"
       type="number"
-      connectedRight={<Select label="Weight unit" labelHidden options={[
-        'kg',
-        'lb',
-      ]} />}
+      connectedRight={
+        <Select
+          label="Weight unit"
+          labelHidden options={[
+            'kg',
+            'lb',
+          ]}
+          loading={false}
+          disabled={false}
+          required={false}
+        />
+      }
+      alphanumeric={false}
+      autoComplete={false}
+      autoFocus={false}
+      autoSuggest={false}
+      backdropHidden={false}
+      capital={false}
+      disabled={false}
+      enableTextCounter={false}
+      hasValue={false}
+      isFocused={false}
+      itemSelected={false}
+      labelHidden={false}
+      loading={false}
+      readOnly={false}
+      required={false}
+      resizable={false}
+      showNumberIcon={false}
+      spellCheck={false}
     />
   </div>
 );

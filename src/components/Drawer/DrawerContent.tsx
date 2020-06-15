@@ -11,15 +11,15 @@ import * as baseTheme from './Drawer.scss';
 
 // All prototypes type
 export interface Props {
-  active?: boolean;
+  active: boolean;
   // Show or hide close button (X) to close drawer
-  closeButton?: boolean;
-  flip?: boolean;
+  closeButton: boolean;
+  flip: boolean;
   componentId?: string;
   mode?: Mode;
   theme?: any;
   style?: any;
-  fixedCloseButton?: boolean;
+  fixedCloseButton: boolean;
   // Callback function to close or open the drawer
   toggleDrawer?(): void;
 
@@ -72,7 +72,20 @@ class DrawerContent extends React.PureComponent<Props> {
             {closeButton
               ? (
                 <span className={fixedCloseButton ? theme.fixedClose : theme.close}>
-                  <Button onClick={toggleDrawer} icon="cancel" plain theme={theme}/>
+                  <Button
+                    onClick={toggleDrawer}
+                    icon="cancel"
+                    plain
+                    theme={theme}
+                    fullWidth={false}
+                    primary={false}
+                    outline={false}
+                    destructive={false}
+                    disabled={false}
+                    external={false}
+                    submit={false}
+                    disclosure={false}
+                  />
                 </span>
               )
               : null

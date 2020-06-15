@@ -29,14 +29,14 @@ export type Width = (typeof widthType)[number];
 // All prototypes type
 export interface Props {
   // Defines the drawer open or close state
-  active?: boolean;
+  active: boolean;
   accessibilityLabel?: string;
   // Store the id of active drawer content
   activeContentId?: string | string[];
   // Show or hide close button (X) to close drawer
-  closeButton?: boolean;
+  closeButton: boolean;
   // set fixed position close button (X) to close drawer
-  fixedCloseButton?: boolean;
+  fixedCloseButton: boolean;
   // This will help to show the label to side of the drawer when there is a stacking of drawers
   componentLabel?: string;
   // If there are multiple theme for drawer then you can pass theme required here
@@ -44,7 +44,7 @@ export interface Props {
   // This helps to define specifc theme from the parent component
   themeClass?: string;
   // Open drawer in flip direction (i.e. right)
-  flip?: boolean;
+  flip: boolean;
   // Open drawer in slide, push or reveal mode
   mode?: Mode;
   // onClose callback function to be called when drawer gets closed
@@ -52,7 +52,7 @@ export interface Props {
   // onOpen callback function to be called when drawer gets opened
   onOpen?(): void;
   // Show overlay / backdrop
-  overlay?: boolean;
+  overlay: boolean;
   // Define width of drawer
   componentWidth?: Width | string;
   // Define custom zIndex for Drawer
@@ -66,7 +66,7 @@ export interface Props {
   componentClass?: string;
   id?: string;
   // props for master drawer
-  master?: boolean;
+  master: boolean;
 }
 
 const getUniqueID = createUniqueIDFactory('DrawerWrapper');

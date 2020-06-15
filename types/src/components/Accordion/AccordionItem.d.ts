@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 export interface Props {
-    active?: boolean;
+    active: boolean;
     clickHandler?(event: React.FormEvent<HTMLElement>): void;
     children: React.ReactElement<any>;
     componentClass?: string;

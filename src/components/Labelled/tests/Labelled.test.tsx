@@ -22,7 +22,17 @@ describe('<Labelled /> - Test Suit', () => {
   describe('should verify default props', () => {
     it('should verify that it contains 3 <div> elements', () => {
       const labelledWrapper = mount(
-        <Labelled componentId="Id" label="Click Here" action={action}>
+        <Labelled
+          componentId="Id"
+          label="Click Here"
+          action={action}
+          autoSuggest={false}
+          disabled={false}
+          labelHidden={false}
+          focused={false}
+          hasValue={false}
+          required={false}
+        >
           Hello World
         </Labelled>
       );
@@ -30,7 +40,17 @@ describe('<Labelled /> - Test Suit', () => {
     });
     it('should verify that it contains 1 <span> element', () => {
       const labelledWrapper = mount(
-        <Labelled componentId="Id" label="Click Here" action={action}>
+        <Labelled
+          componentId="Id"
+          label="Click Here"
+          action={action}
+          autoSuggest={false}
+          disabled={false}
+          labelHidden={false}
+          focused={false}
+          hasValue={false}
+          required={false}
+        >
           Hello World
         </Labelled>
       );
@@ -38,7 +58,17 @@ describe('<Labelled /> - Test Suit', () => {
     });
     it('should verify value of id property', () => {
       const labelledWrapper = mount(
-        <Labelled componentId="Id" label="Click Here" action={action}>
+        <Labelled
+          componentId="Id"
+          label="Click Here"
+          action={action}
+          autoSuggest={false}
+          disabled={false}
+          labelHidden={false}
+          focused={false}
+          hasValue={false}
+          required={false}
+        >
           Hello World
         </Labelled>
       );
@@ -46,7 +76,17 @@ describe('<Labelled /> - Test Suit', () => {
     });
     it('should verify value of label property', () => {
       const labelledWrapper = mount(
-        <Labelled componentId="Id" label="Click Here" action={action}>
+        <Labelled
+          componentId="Id"
+          label="Click Here"
+          action={action}
+          autoSuggest={false}
+          disabled={false}
+          labelHidden={false}
+          focused={false}
+          hasValue={false}
+          required={false}
+        >
           Hello World
         </Labelled>
       );
@@ -54,7 +94,17 @@ describe('<Labelled /> - Test Suit', () => {
     });
     it('should verify Labelled text set as children of Labelled', () => {
       const labelledWrapper = mount(
-        <Labelled componentId="Id" label="Click Here" action={action}>
+        <Labelled
+          componentId="Id"
+          label="Click Here"
+          action={action}
+          autoSuggest={false}
+          disabled={false}
+          labelHidden={false}
+          focused={false}
+          hasValue={false}
+          required={false}
+        >
           Hello World
         </Labelled>
       );
@@ -64,23 +114,35 @@ describe('<Labelled /> - Test Suit', () => {
   describe('should verify required property', () => {
     it('should verify required property when it is set as true', () => {
       const labelledWrapper = mount(
-        <Labelled componentId="Id" label="Click Here" action={action} required>
+        <Labelled
+          componentId="Id"
+          label="Click Here"
+          action={action}
+          required
+          autoSuggest={false}
+          disabled={false}
+          labelHidden={false}
+          focused={false}
+          hasValue={false}
+        >
           Hello World
         </Labelled>
       );
       expect(labelledWrapper.prop('required')).toBe(true);
     });
-    it('should verify required property when it is not set', () => {
+    it('should verify required property when it is set to false', () => {
       const labelledWrapper = mount(
-        <Labelled componentId="Id" label="Click Here" action={action}>
-          Hello World
-        </Labelled>
-      );
-      expect(labelledWrapper.prop('required')).toBe(undefined);
-    });
-    it('should verify required property when it is set as false', () => {
-      const labelledWrapper = mount(
-        <Labelled componentId="Id" label="Click Here" action={action} required={false}>
+        <Labelled
+          componentId="Id"
+          label="Click Here"
+          action={action}
+          autoSuggest={false}
+          disabled={false}
+          labelHidden={false}
+          focused={false}
+          hasValue={false}
+          required={false}
+        >
           Hello World
         </Labelled>
       );
@@ -88,7 +150,17 @@ describe('<Labelled /> - Test Suit', () => {
     });
     it('should verify default props with required property set', () => {
       const labelledWrapper = mount(
-        <Labelled componentId="Id" label="Click Here" action={action} required>
+        <Labelled
+          componentId="Id"
+          label="Click Here"
+          action={action}
+          required
+          autoSuggest={false}
+          disabled={false}
+          labelHidden={false}
+          focused={false}
+          hasValue={false}
+        >
           Hello World
         </Labelled>
       );
@@ -102,7 +174,18 @@ describe('<Labelled /> - Test Suit', () => {
   describe('should verify helptext property', () => {
     it('should verify helptext property value', () => {
       const labelledWrapper = mount(
-        <Labelled componentId="Id" label="Click Here" action={action} helpText="HelpText">
+        <Labelled
+          componentId="Id"
+          label="Click Here"
+          action={action}
+          helpText="HelpText"
+          autoSuggest={false}
+          disabled={false}
+          labelHidden={false}
+          focused={false}
+          hasValue={false}
+          required={false}
+        >
           Hello World
         </Labelled>
       );
@@ -110,7 +193,18 @@ describe('<Labelled /> - Test Suit', () => {
     });
     it('should verify default props with helpText property set', () => {
       const labelledWrapper = mount(
-        <Labelled componentId="Id" label="Click Here" action={action} helpText="HelpText">
+        <Labelled
+          componentId="Id"
+          label="Click Here"
+          action={action}
+          helpText="HelpText"
+          autoSuggest={false}
+          disabled={false}
+          labelHidden={false}
+          focused={false}
+          hasValue={false}
+          required={false}
+        >
           Hello World
         </Labelled>
       );
@@ -124,7 +218,17 @@ describe('<Labelled /> - Test Suit', () => {
   describe('should verify labelHidden property', () => {
     it('should verify labelHidden property when set', () => {
       const labelledWrapper = mount(
-        <Labelled componentId="Id" label="Click Here" action={action} labelHidden>
+        <Labelled
+          componentId="Id"
+          label="Click Here"
+          action={action}
+          labelHidden
+          autoSuggest={false}
+          disabled={false}
+          focused={false}
+          hasValue={false}
+          required={false}
+        >
           Hello World
         </Labelled>
       );
@@ -132,7 +236,17 @@ describe('<Labelled /> - Test Suit', () => {
     });
     it('should verify labelHidden property when set as false', () => {
       const labelledWrapper = mount(
-        <Labelled componentId="Id" label="Click Here" action={action} labelHidden={false}>
+        <Labelled
+          componentId="Id"
+          label="Click Here"
+          action={action}
+          labelHidden={false}
+          autoSuggest={false}
+          disabled={false}
+          focused={false}
+          hasValue={false}
+          required={false}
+        >
           Hello World
         </Labelled>
       );
@@ -140,7 +254,17 @@ describe('<Labelled /> - Test Suit', () => {
     });
     it('should verify labelHidden property when not set', () => {
       const labelledWrapper = mount(
-        <Labelled componentId="Id" label="Click Here" action={action}>
+        <Labelled
+          componentId="Id"
+          label="Click Here"
+          action={action}
+          autoSuggest={false}
+          disabled={false}
+          labelHidden={false}
+          focused={false}
+          hasValue={false}
+          required={false}
+        >
           Hello World
         </Labelled>
       );
@@ -148,7 +272,17 @@ describe('<Labelled /> - Test Suit', () => {
     });
     it('should verify default props with labelHidden property set', () => {
       const labelledWrapper = mount(
-        <Labelled componentId="Id" label="Click Here" action={action} labelHidden>
+        <Labelled
+          componentId="Id"
+          label="Click Here"
+          action={action}
+          labelHidden
+          autoSuggest={false}
+          disabled={false}
+          focused={false}
+          hasValue={false}
+          required={false}
+        >
           Hello World
         </Labelled>
       );
@@ -162,7 +296,17 @@ describe('<Labelled /> - Test Suit', () => {
   describe('should verify focused property', () => {
     it('should verify focused property set', () => {
       const labelledWrapper = mount(
-        <Labelled componentId="Id" label="Click Here" action={action} focused>
+        <Labelled
+          componentId="Id"
+          label="Click Here"
+          action={action}
+          focused
+          autoSuggest={false}
+          disabled={false}
+          labelHidden={false}
+          hasValue={false}
+          required={false}
+        >
           Hello World
         </Labelled>
       );
@@ -170,7 +314,17 @@ describe('<Labelled /> - Test Suit', () => {
     });
     it('should verify focused property when set as false', () => {
       const labelledWrapper = mount(
-        <Labelled componentId="Id" label="Click Here" action={action} focused={false}>
+        <Labelled
+          componentId="Id"
+          label="Click Here"
+          action={action}
+          focused={false}
+          autoSuggest={false}
+          disabled={false}
+          labelHidden={false}
+          hasValue={false}
+          required={false}
+        >
           Hello World
         </Labelled>
       );
@@ -178,7 +332,17 @@ describe('<Labelled /> - Test Suit', () => {
     });
     it('should verify focused property when not set', () => {
       const labelledWrapper = mount(
-        <Labelled componentId="Id" label="Click Here" action={action}>
+        <Labelled
+          componentId="Id"
+          label="Click Here"
+          action={action}
+          autoSuggest={false}
+          disabled={false}
+          labelHidden={false}
+          focused={false}
+          hasValue={false}
+          required={false}
+        >
           Hello World
         </Labelled>
       );
@@ -186,7 +350,17 @@ describe('<Labelled /> - Test Suit', () => {
     });
     it('should verify default props with focused property set', () => {
       const labelledWrapper = mount(
-        <Labelled componentId="Id" label="Click Here" action={action} focused>
+        <Labelled
+          componentId="Id"
+          label="Click Here"
+          action={action}
+          focused
+          autoSuggest={false}
+          disabled={false}
+          labelHidden={false}
+          hasValue={false}
+          required={false}
+        >
           Hello World
         </Labelled>
       );
@@ -200,7 +374,17 @@ describe('<Labelled /> - Test Suit', () => {
   describe('should verify hasValue property', () => {
     it('should verify hasValue property set', () => {
       const labelledWrapper = mount(
-        <Labelled componentId="Id" label="Click Here" action={action} hasValue>
+        <Labelled
+          componentId="Id"
+          label="Click Here"
+          action={action}
+          hasValue
+          autoSuggest={false}
+          disabled={false}
+          labelHidden={false}
+          focused={false}
+          required={false}
+        >
           Hello World
         </Labelled>
       );
@@ -208,7 +392,17 @@ describe('<Labelled /> - Test Suit', () => {
     });
     it('should verify hasValue property when set as false', () => {
       const labelledWrapper = mount(
-        <Labelled componentId="Id" label="Click Here" action={action} hasValue={false}>
+        <Labelled
+          componentId="Id"
+          label="Click Here"
+          action={action}
+          hasValue={false}
+          autoSuggest={false}
+          disabled={false}
+          labelHidden={false}
+          focused={false}
+          required={false}
+        >
           Hello World
         </Labelled>
       );
@@ -216,7 +410,17 @@ describe('<Labelled /> - Test Suit', () => {
     });
     it('should verify hasValue property when not set', () => {
       const labelledWrapper = mount(
-        <Labelled componentId="Id" label="Click Here" action={action}>
+        <Labelled
+          componentId="Id"
+          label="Click Here"
+          action={action}
+          autoSuggest={false}
+          disabled={false}
+          labelHidden={false}
+          focused={false}
+          hasValue={false}
+          required={false}
+        >
           Hello World
         </Labelled>
       );
@@ -224,7 +428,17 @@ describe('<Labelled /> - Test Suit', () => {
     });
     it('should verify default props with hasValue property set', () => {
       const labelledWrapper = mount(
-        <Labelled componentId="Id" label="Click Here" action={action} hasValue>
+        <Labelled
+          componentId="Id"
+          label="Click Here"
+          action={action}
+          hasValue
+          autoSuggest={false}
+          disabled={false}
+          labelHidden={false}
+          focused={false}
+          required={false}
+        >
           Hello World
         </Labelled>
       );
@@ -238,7 +452,19 @@ describe('<Labelled /> - Test Suit', () => {
   describe('should verify labelled component with all properties set', () => {
     it('should verify hasValue property set', () => {
       const labelledWrapper = mount(
-        <Labelled componentId="Id" label="Click Here" action={action} theme={theme} required helpText="HelpText" labelHidden focused hasValue>
+        <Labelled
+          componentId="Id"
+          label="Click Here"
+          action={action}
+          theme={theme}
+          required
+          helpText="HelpText"
+          labelHidden
+          focused
+          hasValue
+          autoSuggest={false}
+          disabled={false}
+        >
           Hello World
         </Labelled>
       );

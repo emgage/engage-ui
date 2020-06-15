@@ -8,6 +8,7 @@ const FlexBoxExample = () => (
       direction="Row"
       align="End"
       justify="Center"
+      inline={false}
     >
       <div>Demo 1</div>
       <div>Demo 2</div>

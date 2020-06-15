@@ -11,7 +11,7 @@ export type FlexWrap = 'NoWrap' | 'Wrap' | 'WrapReverse';
 
 export interface Props {
   // Set display of flex container.
-  inline?: boolean;
+  inline: boolean;
   // Sets the direction of flex items in a flex container. Value of direction can be one from this list : "Row", "RowReverse", "Column", "ColumnReverse"
   direction?: FlexDirection ;
   // Sets the alignment of flex items on the main axis. Value of justify can be one from this list : "Start", "Center", "End", "SpaceAround", "SpaceBetween"

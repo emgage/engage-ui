@@ -19,13 +19,13 @@ describe('<Badge />', () => {
   describe('when default props are provided', () => {
     it('basic badge should have rendered 1 span clss element', () => {
       const badgeWrapper = mount(
-                                 <Badge  theme = {theme} />
+                                 <Badge  theme = {theme} working={false} icon={false} />
                            );
       expect(badgeWrapper.find('span')).toHaveLength(1);
     });
     it('basic badge should have default Badge css clss on span', () => {
       const badgeWrapper = mount(
-                                 <Badge  theme = {theme} />
+                                 <Badge  theme = {theme} working={false} icon={false} />
                            );
       console.log(badgeWrapper.html());
       expect(badgeWrapper.find('span').at(0).hasClass('Badge')).toBe(true);
@@ -36,7 +36,7 @@ describe('<Badge />', () => {
     describe('when not set', () => {
       it('basic badge should have rendered one span clss element', () => {
         const badgeWrapper = mount(
-                                   <Badge  theme = {theme} >
+                                   <Badge  theme = {theme} working={false} icon={false} >
                                        Not set status of badge.
                                    </Badge>
                              );
@@ -44,7 +44,7 @@ describe('<Badge />', () => {
       });
       it('basic badge should have default Badge css clss on span', () => {
         const badgeWrapper = mount(
-                                   <Badge  theme = {theme} >
+                                   <Badge  theme = {theme} working={false} icon={false} >
                                        Not set status of badge.
                                    </Badge>
                              );
@@ -52,7 +52,7 @@ describe('<Badge />', () => {
       });
       it('should verify the status when not set or consider default', () => {
         const badgeWrapper = mount(
-                                   <Badge  theme = {theme} >
+                                   <Badge  theme = {theme} working={false} icon={false} >
                                        Not set status of badge.
                                    </Badge>
                              );
@@ -63,7 +63,7 @@ describe('<Badge />', () => {
     describe('when set', () => {
       it('basic badge should have rendered 2 span element', () => {
         const badgeWrapper = mount(
-                                   <Badge  status="success" theme = {theme} >
+                                   <Badge  status="success" theme = {theme} working={false} icon={false} >
                                        Set status of badge.
                                    </Badge>
                              );
@@ -71,7 +71,7 @@ describe('<Badge />', () => {
       });
       it('basic badge should have default Badge css clss on span', () => {
         const badgeWrapper = mount(
-                                   <Badge  status="success" theme = {theme} >
+                                   <Badge  status="success" theme = {theme} working={false} icon={false} >
                                        Set status of badge.
                                    </Badge>
                              );
@@ -80,7 +80,7 @@ describe('<Badge />', () => {
 
       it('should verify status set as success', () => {
         const badgeWrapper = mount(
-                                   <Badge  status="success" theme = {theme} >
+                                   <Badge  status="success" theme = {theme} working={false} icon={false} >
                                        Set status of badge.
                                    </Badge>
                              );
@@ -88,7 +88,7 @@ describe('<Badge />', () => {
       });
       it('should verify statusSuccess css clss on span as per stuats', () => {
         const badgeWrapper = mount(
-                                   <Badge  status="success" theme = {theme} >
+                                   <Badge  status="success" theme = {theme} working={false} icon={false} >
                                        Set status of badge.
                                    </Badge>
                              );
@@ -97,7 +97,7 @@ describe('<Badge />', () => {
       it('should verify text on span as per status', () => {
         const text = 'Set status of badge.';
         const badgeWrapper = mount(
-                                   <Badge  status="success" theme = {theme} >
+                                   <Badge  status="success" theme = {theme} working={false} icon={false} >
                                        {text}
                                    </Badge>
                              );
@@ -106,7 +106,7 @@ describe('<Badge />', () => {
 
       it('should verify status set as info', () => {
         const badgeWrapper = mount(
-                                   <Badge status="info" theme={theme} >
+                                   <Badge status="info" theme={theme} working={false} icon={false} >
                                       Set status of badge.
                                    </Badge>
                              );
@@ -114,7 +114,7 @@ describe('<Badge />', () => {
       });
       it('should verify statusInfo css clss on span as per stuats', () => {
         const badgeWrapper = mount(
-                                   <Badge status="info" theme={theme} >
+                                   <Badge status="info" theme={theme} working={false} icon={false} >
                                        Set status of badge.
                                    </Badge>
                              );
@@ -123,7 +123,7 @@ describe('<Badge />', () => {
       it('should verify text on span as per status', () => {
         const text = 'Set status of badge.';
         const badgeWrapper = mount(
-                                   <Badge status="info" theme={theme} >
+                                   <Badge status="info" theme={theme} working={false} icon={false} >
                                        {text}
                                    </Badge>
                              );
@@ -132,7 +132,7 @@ describe('<Badge />', () => {
 
       it('should verify stauts set as attention', () => {
         const badgeWrapper = mount(
-                                   <Badge status="attention" theme={theme} >
+                                   <Badge status="attention" theme={theme} working={false} icon={false} >
                                        Set status of badge.
                                    </Badge>
                              );
@@ -140,7 +140,7 @@ describe('<Badge />', () => {
       });
       it('should verify statusAttention css clss on span as per stuats', () => {
         const badgeWrapper = mount(
-                                   <Badge status="attention" theme={theme} >
+                                   <Badge status="attention" theme={theme} working={false} icon={false} >
                                       Set status of badge.
                                    </Badge>
                              );
@@ -149,7 +149,7 @@ describe('<Badge />', () => {
       it('should verify text on span as per status', () => {
         const text = 'Set status of badge.';
         const badgeWrapper = mount(
-                                   <Badge status="attention" theme={theme} >
+                                   <Badge status="attention" theme={theme} working={false} icon={false} >
                                       {text}
                                    </Badge>
                              );
@@ -158,7 +158,7 @@ describe('<Badge />', () => {
 
       it('should verify stauts set as warning', () => {
         const badgeWrapper = mount(
-                                   <Badge status="warning" theme={theme} >
+                                   <Badge status="warning" theme={theme} working={false} icon={false} >
                                       Set status of badge.
                                    </Badge>
                              );
@@ -166,7 +166,7 @@ describe('<Badge />', () => {
       });
       it('should verify statusWarning css clss on span as per stuats', () => {
         const badgeWrapper = mount(
-                                   <Badge status="warning" theme={theme} >
+                                   <Badge status="warning" theme={theme} working={false} icon={false} >
                                       Set status of badge.
                                    </Badge>
                              );
@@ -175,7 +175,7 @@ describe('<Badge />', () => {
       it('should verify text on span as per status', () => {
         const text = 'Set status of badge.';
         const badgeWrapper = mount(
-                                   <Badge status="warning" theme={theme} >
+                                   <Badge status="warning" theme={theme} working={false} icon={false} >
                                       {text}
                                    </Badge>
                              );
@@ -188,19 +188,19 @@ describe('<Badge />', () => {
     describe('when not set' , () => {
       it('basic badge should have rendered 1 span clss element', () => {
         const badgeWrapper = mount(
-                                  <Badge  theme = {theme} />
+                                  <Badge  theme = {theme} working={false} icon={false} />
                             );
         expect(badgeWrapper.find('span')).toHaveLength(1);
       });
       it('basic badge should have default Badge css clss on span', () => {
         const badgeWrapper = mount(
-                                  <Badge  theme = {theme} />
+                                  <Badge  theme = {theme} working={false} icon={false} />
                             );
         expect(badgeWrapper.find('span').at(0).hasClass('Badge')).toBe(true);
       });
       it('should verify the children when not set', () => {
         const badgeWrapper = mount(
-                                   <Badge  theme = {theme} />
+                                   <Badge  theme = {theme} working={false} icon={false} />
                              );
         expect(badgeWrapper.prop('children')).toBeFalsy();
       });
@@ -209,7 +209,7 @@ describe('<Badge />', () => {
     describe('when set' , () => {
       it('basic badge should have rendered 1 span clss element', () => {
         const badgeWrapper = mount(
-                                   <Badge theme={theme} >
+                                   <Badge theme={theme} working={false} icon={false} >
                                        Sample Badge
                                    </Badge>
                              );
@@ -217,7 +217,7 @@ describe('<Badge />', () => {
       });
       it('basic badge should have default Badge css clss on span', () => {
         const badgeWrapper = mount(
-                                   <Badge theme={theme} >
+                                   <Badge theme={theme} working={false} icon={false} >
                                        Sample Badge
                                    </Badge>
                              );
@@ -225,7 +225,7 @@ describe('<Badge />', () => {
       });
       it('should verify the children property of badge', () => {
         const badgeWrapper = mount(
-                                   <Badge theme={theme} >
+                                   <Badge theme={theme} working={false} icon={false} >
                                        Sample Badge
                                    </Badge>
                              );
@@ -234,14 +234,14 @@ describe('<Badge />', () => {
       });
       it('should verify the children property of badge in same tag', () => {
         const badgeWrapper = mount(
-                                   <Badge children="Sample Badge" theme={theme} />
+                                   <Badge children="Sample Badge" theme={theme} working={false} icon={false} />
                              );
         expect(badgeWrapper.prop('children')).toBe('Sample Badge');
         expect(badgeWrapper.prop('children')).toBeDefined();
       });
       it('should verify the children property of badge when set as blank', () => {
         const badgeWrapper = mount(
-                                   <Badge children="" theme={theme} />
+                                   <Badge children="" theme={theme} working={false} icon={false} />
                              );
         expect(badgeWrapper.prop('children')).toBeDefined();
       });
@@ -252,7 +252,7 @@ describe('<Badge />', () => {
     describe('when not set' , () => {
       it('basic badge should have rendered 1 span clss element', () => {
         const badgeWrapper = mount(
-                                   <Badge  theme = {theme} >,
+                                   <Badge  theme = {theme} working={false} icon={false} >,
                                        Not set progress of badge.
                                    </Badge>
                              );
@@ -260,7 +260,7 @@ describe('<Badge />', () => {
       });
       it('basic badge should have default Badge css clss on span', () => {
         const badgeWrapper = mount(
-                                   <Badge  theme = {theme} >,
+                                   <Badge  theme = {theme} working={false} icon={false} >,
                                        Not set progress of badge.
                                    </Badge>
                              );
@@ -268,7 +268,7 @@ describe('<Badge />', () => {
       });
       it('should verify the progress when not set', () => {
         const badgeWrapper = mount(
-                                   <Badge  theme = {theme} />
+                                   <Badge  theme = {theme} working={false} icon={false} />
                              );
         expect(badgeWrapper.prop('progress')).toBeFalsy();
       });
@@ -277,7 +277,7 @@ describe('<Badge />', () => {
     describe('when set' , () => {
       it('basic badge should have rendered 3 span clss element', () => {
         const badgeWrapper = mount(
-                                   <Badge progress="incomplete" theme={theme} >
+                                   <Badge progress="incomplete" theme={theme} working={false} icon={false} >
                                        Not set progress of badge.
                                    </Badge>
                              );
@@ -285,7 +285,7 @@ describe('<Badge />', () => {
       });
       it('basic badge should have default Badge css clss on span', () => {
         const badgeWrapper = mount(
-                                   <Badge progress="incomplete" theme={theme} >
+                                   <Badge progress="incomplete" theme={theme} working={false} icon={false} >
                                        Not set progress of badge.
                                    </Badge>
                              );
@@ -293,7 +293,7 @@ describe('<Badge />', () => {
       });
       it('basic badge should have Pip css clss on span', () => {
         const badgeWrapper = mount(
-                                   <Badge progress="incomplete" theme={theme} >
+                                   <Badge progress="incomplete" theme={theme} working={false} icon={false} >
                                        Not set progress of badge.
                                    </Badge>
                              );
@@ -302,7 +302,7 @@ describe('<Badge />', () => {
 
       it('should verify progress set as incomplete', () => {
         const badgeWrapper = mount(
-                                   <Badge progress="incomplete" theme={theme} >
+                                   <Badge progress="incomplete" theme={theme} working={false} icon={false} >
                                        Set progress of badge.
                                    </Badge>
                              );
@@ -310,7 +310,7 @@ describe('<Badge />', () => {
       });
       it('should verify progressIncomplete css clss on span as per progress', () => {
         const badgeWrapper = mount(
-                                   <Badge progress="incomplete" theme={theme} >
+                                   <Badge progress="incomplete" theme={theme} working={false} icon={false} >
                                        Set progress of badge.
                                    </Badge>
                              );
@@ -319,7 +319,7 @@ describe('<Badge />', () => {
       it('should verify text on span as per progress', () => {
         const text = 'Set progress of badge.';
         const badgeWrapper = mount(
-                                   <Badge progress="incomplete" theme={theme} >
+                                   <Badge progress="incomplete" theme={theme} working={false} icon={false} >
                                        {text}
                                    </Badge>
                              );
@@ -328,7 +328,7 @@ describe('<Badge />', () => {
 
       it('should verify progress set as partiallyComplete', () => {
         const badgeWrapper = mount(
-                                   <Badge progress="partiallyComplete" theme={theme} >
+                                   <Badge progress="partiallyComplete" theme={theme} working={false} icon={false} >
                                        Set progress of badge.
                                    </Badge>
                              );
@@ -336,7 +336,7 @@ describe('<Badge />', () => {
       });
       it('should verify progressPartiallyComplete css clss on span as per progress', () => {
         const badgeWrapper = mount(
-                                   <Badge progress="partiallyComplete" theme={theme} >
+                                   <Badge progress="partiallyComplete" theme={theme} working={false} icon={false} >
                                        Set progress of badge.
                                    </Badge>
                              );
@@ -345,7 +345,7 @@ describe('<Badge />', () => {
       it('should verify text on span as per progress', () => {
         const text = 'Set progress of badge.';
         const badgeWrapper = mount(
-                                   <Badge progress="partiallyComplete" theme={theme} >
+                                   <Badge progress="partiallyComplete" theme={theme} working={false} icon={false} >
                                        {text}
                                    </Badge>
                              );
@@ -354,13 +354,13 @@ describe('<Badge />', () => {
 
       it('should verify progress set as complete', () => {
         const badgeWrapper = mount(
-                                  <Badge progress="complete" theme={theme} />
+                                  <Badge progress="complete" theme={theme} working={false} icon={false} />
                             );
         expect(badgeWrapper.prop('progress')).toBe('complete');
       });
       it('should verify progressComplete css clss on span as per progress', () => {
         const badgeWrapper = mount(
-                                   <Badge progress="complete" theme={theme} >
+                                   <Badge progress="complete" theme={theme} working={false} icon={false} >
                                        Set progress of badge.
                                    </Badge>
                              );
@@ -369,7 +369,7 @@ describe('<Badge />', () => {
       it('should verify text on span as per progress', () => {
         const text = 'Set progress of badge.';
         const badgeWrapper = mount(
-                                   <Badge progress="complete" theme={theme} >
+                                   <Badge progress="complete" theme={theme} working={false} icon={false} >
                                        {text}
                                    </Badge>
                              );
@@ -380,7 +380,7 @@ describe('<Badge />', () => {
   describe('verify all property together', () => {
     it('basic badge should have rendered 4 span clss element', () => {
       const badgeWrapper = mount(
-                                  <Badge progress="complete" status="info" theme={theme}  >
+                                  <Badge progress="complete" status="info" theme={theme} working={false} icon={false}  >
                                       All properties are set for Badge.
                                   </Badge>
                             );
@@ -388,7 +388,7 @@ describe('<Badge />', () => {
     });
     it('should verify default Badge css clss on span', () => {
       const badgeWrapper = mount(
-                                  <Badge progress="complete" status="info" theme={theme}  >
+                                  <Badge progress="complete" status="info" theme={theme} working={false} icon={false} >
                                       All properties are set for Badge.
                                   </Badge>
                             );
@@ -396,7 +396,7 @@ describe('<Badge />', () => {
     });
     it('should verify statusInfo css clss on span as per stuats', () => {
       const badgeWrapper = mount(
-                                  <Badge status="info" theme={theme} >
+                                  <Badge status="info" theme={theme} working={false} icon={false} >
                                       Set status of badge.
                                   </Badge>
                             );
@@ -404,7 +404,7 @@ describe('<Badge />', () => {
     });
     it('should verify progressComplete css clss on span as per progress', () => {
       const badgeWrapper = mount(
-                                  <Badge progress="complete" theme={theme} >
+                                  <Badge progress="complete" theme={theme} working={false} icon={false} >
                                       Set progress of badge.
                                   </Badge>
                             );
@@ -412,7 +412,7 @@ describe('<Badge />', () => {
     });
     it('should verify have Pip css clss on span', () => {
       const badgeWrapper = mount(
-                                  <Badge progress="complete" status="info" theme={theme} >
+                                  <Badge progress="complete" status="info" theme={theme} working={false} icon={false} >
                                       All properties are set for Badge.
                                   </Badge>
                             );
@@ -421,7 +421,7 @@ describe('<Badge />', () => {
     it('should verify text on span as per status', () => {
       const text = 'All properties are set for Badge.';
       const badgeWrapper = mount(
-                                  <Badge progress="complete" status="info" theme={theme} >
+                                  <Badge progress="complete" status="info" theme={theme} working={false} icon={false} >
                                       {text}
                                   </Badge>
                             );
@@ -430,7 +430,7 @@ describe('<Badge />', () => {
     it('should verify text on span as per progress', () => {
       const text = 'All properties are set for Badge.';
       const badgeWrapper = mount(
-                                  <Badge progress="complete" status="info" theme={theme} >
+                                  <Badge progress="complete" status="info" theme={theme} working={false} icon={false} >
                                       {text}
                                   </Badge>
                             );
@@ -438,7 +438,7 @@ describe('<Badge />', () => {
     });
     it('should verify all properties are set', () => {
       const badgeWrapper = mount(
-                                  <Badge progress="complete" status="info" theme={theme} >
+                                  <Badge progress="complete" status="info" theme={theme} working={false} icon={false} >
                                       All properties are set for Badge.
                                   </Badge>
                             );

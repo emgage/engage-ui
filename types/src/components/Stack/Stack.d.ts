@@ -4,7 +4,7 @@ export declare type Alignment = 'leading' | 'trailing' | 'center' | 'fill' | 'ba
 export declare type Distribution = 'equalSpacing' | 'leading' | 'trailing' | 'center' | 'fill' | 'fillEvenly';
 export interface Props {
     children?: any;
-    vertical?: boolean;
+    vertical: boolean;
     spacing?: Spacing;
     alignment?: Alignment;
     distribution?: Distribution;

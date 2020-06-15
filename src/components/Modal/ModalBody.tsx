@@ -7,8 +7,8 @@ import { MODAL } from '../ThemeIdentifiers';
 import * as baseTheme from './Modal.scss';
 
 export interface Props {
-  active?: boolean;
-  modalOverflow?: boolean;
+  active: boolean;
+  modalOverflow: boolean;
   theme?: any;
 }
 

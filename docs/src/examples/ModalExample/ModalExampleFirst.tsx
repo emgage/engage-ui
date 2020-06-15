@@ -22,7 +22,20 @@ class ModalExample extends React.Component {
   render() {
     return (
       <div className={styles.example}>
-        <Button onClick={this.toggleModal}>Medium button</Button>
+        <Button
+          onClick={this.toggleModal}
+          disabled={false}
+          disclosure={false}
+          destructive={false}
+          external={false}
+          fullWidth={false}
+          outline={false}
+          primary={false}
+          submit={false}
+          plain={false}
+        >
+          Medium button
+        </Button>
           <Modal
             active={this.state.modalOpen}
             toggle={this.toggleModal}
@@ -32,14 +45,27 @@ class ModalExample extends React.Component {
             closeOnBackgroud
             closeOnEsc
             closeButton>
-            <ModalHeader>Modal title</ModalHeader>
-            <ModalBody modalOverflow>
+            <ModalHeader active={false} >Modal title</ModalHeader>
+            <ModalBody modalOverflow active={false}>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae ex pellentesque, pretium lorem vel, tempor ipsum. Phasellus suscipit lacus in velit malesuada, at bibendum mi gravida. Sed cursus nisi sem, non pellentesque ligula euismod eget. Sed quis fringilla nibh, at vestibulum turpis. Donec sed sagittis sapien. Nam quis ex quis nulla porta molestie. Vestibulum eu lorem porta, facilisis orci a, tempor quam. Suspendisse et sollicitudin nulla. Aenean consectetur imperdiet leo nec condimentum. Aliquam scelerisque magna ut tortor accumsan condimentum.
 
               Nulla quis ante sit amet leo lobortis rhoncus. Cras mollis quis leo nec tincidunt. Aliquam blandit est vitae leo ultrices, ut egestas sapien pharetra. Suspendisse nec aliquet orci. Suspendisse rutrum odio sed neque scelerisque, ut consectetur erat tincidunt. Duis ultrices metus eget ante posuere eleifend. Ut luctus felis neque, sit amet efficitur neque maximus id. Aliquam porta, tellus ut pellentesque facilisis, odio neque maximus erat, venenatis semper nisi metus id augue. Cras vel sem eu elit blandit laoreet id vitae tortor. Morbi sit amet mi rutrum, sagittis enim lacinia, dictum turpis.
             </ModalBody>
-            <ModalFooter>
-              <Button onClick={this.toggleModal}>Close</Button>
+            <ModalFooter active={false}>
+              <Button
+                onClick={this.toggleModal}
+                disabled={false}
+                disclosure={false}
+                destructive={false}
+                external={false}
+                fullWidth={false}
+                outline={false}
+                primary={false}
+                submit={false}
+                plain={false}
+              >
+                Close
+              </Button>
             </ModalFooter>
           </Modal>
       </div>

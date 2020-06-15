@@ -3,9 +3,9 @@ import { ColumnConfig, FilterConfig, NestedChild, SortState, ServerSort } from '
 export declare type RowSelection = 'checkbox' | 'radio';
 export declare type SortOrder = 'asc' | 'desc';
 export interface Props {
-    actionInProgress?: boolean;
-    bordered?: boolean;
-    callChildCallback?: boolean;
+    actionInProgress: boolean;
+    bordered: boolean;
+    callChildCallback: boolean;
     column: ColumnConfig[];
     columnFirstChildWidth?: string;
     componentStyle?: any;
@@ -17,25 +17,25 @@ export interface Props {
     defaultSortOrder?: string;
     expandingRowId?: number[];
     filterData?: FilterConfig;
-    hideExpandedIcon?: boolean;
-    hideHeader?: boolean;
+    hideExpandedIcon: boolean;
+    hideHeader: boolean;
     hideRow?: any;
-    hideSelectAll?: boolean;
-    highlight?: boolean;
-    isChildParentConfigSame?: boolean;
+    hideSelectAll: boolean;
+    highlight: boolean;
+    isChildParentConfigSame: boolean;
     multipleCallBackValue?: any[];
     nestedChildCallback?(id: number | string, toggleStatus: boolean): void;
     nestedChildData?: NestedChild[];
     onRowClick?(value: any): void;
     parentCallback?(parentId: number | string, otherParam?: any): void;
     parentRowId?: number | string;
-    parentSelectedRow?: boolean;
-    responsive?: boolean;
-    renderHeaderCheckbox?: boolean;
-    rowActionLeft?: boolean;
+    parentSelectedRow: boolean;
+    responsive: boolean;
+    renderHeaderCheckbox: boolean;
+    rowActionLeft: boolean;
     rowCallbackValue?: string;
     rowAction?: any;
-    rowExpandOnLoad?: boolean;
+    rowExpandOnLoad: boolean;
     selectRow?: RowSelection;
     selectCallbackValue?: string;
     selectRowCallback?(rows: number[] | string[]): void;
@@ -43,7 +43,7 @@ export interface Props {
     singleSelectRowCallback?(row: number | string | any, checked: boolean, rows: number[] | string[], rowData: any): void;
     disableAllRowCallback?(checked: boolean): void;
     sorting?: boolean | string;
-    striped?: boolean;
+    striped: boolean;
     theme?: any;
 }
 export interface State {

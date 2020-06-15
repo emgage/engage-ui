@@ -6,7 +6,7 @@ export interface Props extends React.HTMLProps<HTMLAnchorElement> {
   // The url to link to.
   url: string;
   // Use for a links that open a different site
-  external?: boolean;
+  external: boolean;
   // The content to display inside link.  
   children?: React.ReactNode;
   [key: string]: any;

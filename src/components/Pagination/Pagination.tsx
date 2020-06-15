@@ -13,7 +13,7 @@ import { PAGINATION } from '../ThemeIdentifiers';
 import * as baseTheme from './Pagination.scss';
 
 interface IProps {
-  disabled?: boolean;
+  disabled: boolean;
   prefixCls?: string;
   className?: string;
   current: number;
@@ -22,15 +22,15 @@ interface IProps {
   pageSize: number;
   defaultPageSize?: number;
   onChange?(page: number, pageSize: number): void;
-  hideOnSinglePage?: boolean;
-  showSizeChanger?: boolean;
-  showLessItems?: boolean;
+  hideOnSinglePage: boolean;
+  showSizeChanger: boolean;
+  showLessItems: boolean;
   onShowSizeChange?(current: any, size: any): void;
   selectComponentClass?(): void;
   selectPrefixCls?: string;
-  showPrevNextJumpers?: boolean;
+  showPrevNextJumpers: boolean;
   showQuickJumper?: any;
-  showTitle?: boolean;
+  showTitle: boolean;
   pageSizeOptions?: string[];
   showTotal?(param1: any, param2: any): any;
   locale?: any;
@@ -185,14 +185,40 @@ class Pagination extends React.PureComponent<IProps, IState> {
    * @param {React.ReactNode | React.PureComponentType<PaginationProps>} icon received icon.
    * @returns {React.ReactNode}
    */
-  getItemIcon = (icon: any, iconType: string, disableProp?: boolean) => {
+  getItemIcon = (icon: any, iconType: string, disableProp: boolean) => {
     const { theme } = this.props;
     let iconButton;
 
     if (iconType === 'prev') {
-      iconButton = <Button icon="chevronLeft" componentClass={theme.button} disabled={disableProp} />;
+      iconButton =
+        <Button
+          icon="chevronLeft"
+          componentClass={theme.button}
+          disabled={disableProp}
+          disclosure={false}
+          destructive={false}
+          external={false}
+          submit={false}
+          outline={false}
+          fullWidth={false}
+          primary={false}
+          plain={false}
+        />;
     } else if (iconType === 'next') {
-      iconButton = <Button icon="chevronRight" componentClass={theme.button} disabled={disableProp} />;
+      iconButton =
+        <Button
+          icon="chevronRight"
+          componentClass={theme.button}
+          disabled={disableProp}
+          disclosure={false}
+          destructive={false}
+          external={false}
+          submit={false}
+          outline={false}
+          fullWidth={false}
+          primary={false}
+          plain={false}
+        />;
     }
 
     let iconNode = icon || iconButton;
@@ -467,7 +493,7 @@ class Pagination extends React.PureComponent<IProps, IState> {
             className={className2}
             aria-disabled={!this.hasPrev()}
           >
-            {props.itemRender(prevPage, 'prev', this.getItemIcon(props.prevIcon, 'prev'))}
+            {props.itemRender(prevPage, 'prev', this.getItemIcon(props.prevIcon, 'prev', false))}
           </li>
           <li
             title={props.showTitle ? `${this.state.current}/${allPages}` : undefined}
@@ -492,7 +518,7 @@ class Pagination extends React.PureComponent<IProps, IState> {
             className={className3}
             aria-disabled={!this.hasNext()}
           >
-            {props.itemRender(nextPage, 'next', this.getItemIcon(props.nextIcon, 'next'))}
+            {props.itemRender(nextPage, 'next', this.getItemIcon(props.nextIcon, 'next', false))}
           </li>
           {gotoButton}
         </ul>
@@ -515,6 +541,9 @@ class Pagination extends React.PureComponent<IProps, IState> {
             key="noPager"
             page={allPages}
             className={theme['rc-pagination-disabled']}
+            last={false}
+            plain={false}
+            active={false}
           />
         );
       }
@@ -526,6 +555,8 @@ class Pagination extends React.PureComponent<IProps, IState> {
             key={i}
             page={i}
             active={active}
+            last={false}
+            plain={false}
           />
         );
       }
@@ -550,7 +581,7 @@ class Pagination extends React.PureComponent<IProps, IState> {
             {props.itemRender(
               this.getJumpPrevPage(),
               'jump-prev',
-              this.getItemIcon(props.jumpPrevIcon, 'jump-prev')
+              this.getItemIcon(props.jumpPrevIcon, 'jump-prev', false)
             )}
           </li>
         );
@@ -572,7 +603,7 @@ class Pagination extends React.PureComponent<IProps, IState> {
             {props.itemRender(
               this.getJumpNextPage(),
               'jump-next',
-              this.getItemIcon(props.jumpNextIcon, 'jump-next')
+              this.getItemIcon(props.jumpNextIcon, 'jump-next', false)
             )}
           </li>
         );
@@ -589,6 +620,7 @@ class Pagination extends React.PureComponent<IProps, IState> {
           active={false}
           showTitle={props.showTitle}
           itemRender={props.itemRender}
+          plain={false}
         />
       );
       firstPager = (
@@ -602,6 +634,8 @@ class Pagination extends React.PureComponent<IProps, IState> {
           active={false}
           showTitle={props.showTitle}
           itemRender={props.itemRender}
+          plain={false}
+          last={false}
         />
       );
 
@@ -629,6 +663,8 @@ class Pagination extends React.PureComponent<IProps, IState> {
             active={active}
             showTitle={props.showTitle}
             itemRender={props.itemRender}
+            last={false}
+            plain={false}
           />
         );
       }

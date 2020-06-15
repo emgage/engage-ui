@@ -5,7 +5,7 @@ export interface Props {
     label?: string;
     componentStyle?: any;
     componentClass?: string;
-    segmented?: boolean;
+    segmented: boolean;
     children?: React.ReactNode;
     componentId?: string;
     theme?: any;

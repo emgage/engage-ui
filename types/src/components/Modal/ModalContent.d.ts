@@ -1,6 +1,6 @@
 import { ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 export interface Props {
-    active?: boolean;
+    active: boolean;
     componentId?: string;
     theme?: any;
 }

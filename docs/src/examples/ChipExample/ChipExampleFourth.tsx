@@ -7,6 +7,8 @@ const ChipExample = () => (
     <Chip
       removable
       onRemove={() => { alert('You clicked to remove Chip'); }}
+      clickable={false}
+      transparent={false}
     >
       Trevor Hansen
     </Chip>

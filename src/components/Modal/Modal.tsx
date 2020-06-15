@@ -17,18 +17,18 @@ export type Width = 'small' | 'medium' | 'large' | string;
 
 export interface Props {
   // Define the open or close state of modal
-  active?: boolean;
+  active: boolean;
   accessibilityLabel?: string;
   // Store the id of active drawer content
   activeContentId?: string;
   // Show or hide close button for modal
-  closeButton?: boolean;
+  closeButton: boolean;
   // Can define any extra class for modal to style it if needed
   className?: string;
   // Flag to define if modal should be closed when clicked outside
-  closeOnBackgroud?: boolean;
+  closeOnBackgroud: boolean;
   // Flag to define if modal should get closed on pressing escape key
-  closeOnEsc?: boolean;
+  closeOnEsc: boolean;
   // onClose callback function to be called when drawer gets closed
   onClose?(): void;
   // onOpen callback function to be called when drawer gets opened
@@ -120,7 +120,24 @@ class Modal extends React.PureComponent<Props, never> {
   renderCloseButton = () => {
     const { closeButton, theme } = this.props;
 
-    return closeButton ? (<div className={theme.close}><Button plain onClick={this.closeModal} icon="cancel" theme={theme} /></div>) : null;
+    return closeButton ? (
+      <div className={theme.close}>
+        <Button
+          plain
+          onClick={this.closeModal}
+          icon="cancel"
+          theme={theme}
+          fullWidth={false}
+          primary={false}
+          destructive={false}
+          disabled={false}
+          disclosure={false}
+          outline={false}
+          external={false}
+          submit={false}
+        />
+      </div>
+    ) : null;
   }
 
   // Import keylistener if modal needs to be closed on pressing escape key
@@ -162,7 +179,7 @@ class Modal extends React.PureComponent<Props, never> {
     }
   }
 
-  /* 
+  /*
     Function to be called when closing modal event is triggered
     Here we will check for all 3 possible triggers which can close the modal
     If any of them gets true will fire modal close trigger

@@ -8,7 +8,7 @@ import * as baseTheme from './Accordion.scss';
 
 export interface Props {
   // Define accordion item is active or not
-  active?: boolean;
+  active: boolean;
   clickHandler?(event: React.FormEvent<HTMLElement>) : void;
   // Item of accordion component to be displayed
   children: React.ReactElement<any>;

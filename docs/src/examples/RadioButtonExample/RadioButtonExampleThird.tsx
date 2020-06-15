@@ -17,12 +17,14 @@ const RadioButtonExampleThird = () => (
             label="Medium"
             disabled
             labelHidden
+            checked={false}
         />
         <RadioButton
             name="size"
             label="Small"
             disabled
             labelHidden
+            checked={false}
         />
     </div>
 );

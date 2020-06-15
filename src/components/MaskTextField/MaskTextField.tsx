@@ -35,7 +35,7 @@ export interface Props extends TextFieldProps {
   // default mask
   defaultValue?: string;
   // Show mask when input is empty and has no focus
-  alwaysShowMask?: boolean;
+  alwaysShowMask: boolean;
   // Callback when paste data into textfield
   onPaste?(e: any): void;
   // Callback when keypress in textfield
@@ -73,6 +73,7 @@ class MaskTextField extends React.PureComponent<Props, State> {
     }
     this.state = {
       value,
+      focused: false
     };
   }
   componentDidMount() {

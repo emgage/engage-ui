@@ -16,7 +16,7 @@ describe('<Chip />', () => {
   describe('image property', () => {
     describe('when not set', () => {
       it('should not have image element', () => {
-        const subject = mount(<Chip theme={theme} />);
+        const subject = mount(<Chip theme={theme} clickable={false} removable={false} transparent={false} />);
         expect(subject.find('img')).toHaveLength(0);
       });
     });
@@ -28,7 +28,7 @@ describe('<Chip />', () => {
         url: imageUrl,
         alt: altText,
       };
-      const subject = mount(<Chip image={image} theme={theme}/>);
+      const subject = mount(<Chip image={image} theme={theme} clickable={false} removable={false} transparent={false} />);
 
       it('should have rendered 2 span element', () => {
         expect(subject.find('span')).toHaveLength(1);
@@ -48,7 +48,7 @@ describe('<Chip />', () => {
     });
 
     describe('when set to undefined', () => {
-      const subject = mount(<Chip image={undefined} theme={theme} />);
+      const subject = mount(<Chip image={undefined} theme={theme} clickable={false} removable={false} transparent={false} />);
       it('should have rendered 2 span element', () => {
         expect(subject.find('span')).toHaveLength(1);
       });
@@ -63,7 +63,7 @@ describe('<Chip />', () => {
 
   describe('clickable property', () => {
     describe('when not set', () => {
-      const subject = mount(<Chip theme={theme} />);
+      const subject = mount(<Chip theme={theme} clickable={false} removable={false} transparent={false} />);
       it('should have rendered 2 span element', () => {
         expect(subject.find('span')).toHaveLength(1);
       });
@@ -80,15 +80,15 @@ describe('<Chip />', () => {
 
     describe('when set to true', () => {
       it('should have rendered 2 span elements', () => {
-        const subject = mount(<Chip clickable={true} theme={theme}/>);
+        const subject = mount(<Chip clickable={true} theme={theme} removable={false} transparent={false} />);
         expect(subject.find('span')).toHaveLength(1);
       });
       it('should have default chip css class on span', () => {
-        const subject = mount(<Chip clickable={true} theme={theme} />);
+        const subject = mount(<Chip clickable={true} theme={theme} removable={false} transparent={false} />);
         expect(subject.find('button').at(0).hasClass('chip')).toBe(true);
       });
       it('should have <a> element', () => {
-        const subject = mount(<Chip clickable={true} theme={theme} />);
+        const subject = mount(<Chip clickable={true} theme={theme} removable={false} transparent={false} />);
         expect(subject.find('a')).toHaveLength(1);
       });
       it('simulate chip click event', () => {
@@ -103,19 +103,19 @@ describe('<Chip />', () => {
 
     describe('when set to false', () => {
       it('should have rendered 2 span element', () => {
-        const subject = mount(<Chip clickable={false} theme={theme} />);
+        const subject = mount(<Chip clickable={false} theme={theme} removable={false} transparent={false} />);
         expect(subject.find('span')).toHaveLength(1);
       });
       it('should have default chip css class on span', () => {
-        const subject = mount(<Chip clickable={false} theme={theme} />);
+        const subject = mount(<Chip clickable={false} theme={theme} removable={false} transparent={false} />);
         expect(subject.find('button').at(0).hasClass('chip')).toBe(true);
       });
       it('should not have <a> element', () => {
-        const subject = mount(<Chip clickable={false} theme={theme} />);
+        const subject = mount(<Chip clickable={false} theme={theme} removable={false} transparent={false} />);
         expect(subject.find('a')).toHaveLength(0);
       });
       it('should not have clickable chip css class on span', () => {
-        const subject = mount(<Chip clickable={false} theme={theme} />);
+        const subject = mount(<Chip clickable={false} theme={theme} removable={false} transparent={false} />);
         expect(subject.find('span').at(0).hasClass('chipClickable')).toBe(false);
       });
     });
@@ -123,7 +123,7 @@ describe('<Chip />', () => {
 
   describe('removable property', () => {
     describe('when not set', () => {
-      const subject = mount(<Chip theme={theme} />);
+      const subject = mount(<Chip theme={theme} clickable={false} removable={false} transparent={false} />);
       it('should have rendered 2 span element', () => {
         expect(subject.find('span')).toHaveLength(1);
       });
@@ -141,22 +141,22 @@ describe('<Chip />', () => {
     describe('when set to true', () => {
       it('should have rendered 3 span elements', () => {
   const onRemoveClick = jest.fn();
-        const subject = mount(<Chip removable={true} theme={theme} onRemove={onRemoveClick}/>);
+        const subject = mount(<Chip removable={true} clickable={false} transparent={false} theme={theme} onRemove={onRemoveClick} />);
         expect(subject.find('span')).toHaveLength(2);
       });
       it('should have default chip css class on span', () => {
   const onRemoveClick = jest.fn();
-        const subject = mount(<Chip removable={true} theme={theme} onRemove={onRemoveClick}/>);
+        const subject = mount(<Chip removable={true} clickable={false} transparent={false} theme={theme} onRemove={onRemoveClick} />);
         expect(subject.find('button').hasClass('chip')).toBe(true);
       });
       it('should have <button> element', () => {
   const onRemoveClick = jest.fn();
-        const subject = mount(<Chip removable={true} theme={theme} onRemove={onRemoveClick}/>);
+        const subject = mount(<Chip removable={true} clickable={false} transparent={false} theme={theme} onRemove={onRemoveClick} />);
         expect(subject.find('button')).toHaveLength(1);
       });
       it('should have button remove css style', () => {
   const onRemoveClick = jest.fn();
-        const subject = mount(<Chip removable={true} theme={theme} onRemove={onRemoveClick}/>);
+        const subject = mount(<Chip removable={true} clickable={false} transparent={false} theme={theme} onRemove={onRemoveClick} />);
         expect(subject.find('a').hasClass('chipRemove')).toBe(true);
       });
       it('simulate remove button click event', () => {
@@ -170,7 +170,7 @@ describe('<Chip />', () => {
     });
 
     describe('when set to false', () => {
-      const subject = mount(<Chip removable={false} theme={theme} />);
+      const subject = mount(<Chip removable={false} clickable={false} transparent={false} theme={theme} />);
       it('should have rendered 2 span elements', () => {
         expect(subject.find('span')).toHaveLength(1);
       });
@@ -188,7 +188,7 @@ describe('<Chip />', () => {
 
   describe('transparent property', () => {
     describe('when not set', () => {
-      const subject = mount(<Chip theme={theme} />);
+      const subject = mount(<Chip theme={theme} clickable={false} removable={false} transparent={false} />);
       it('should have rendered 2 span elements', () => {
         expect(subject.find('span')).toHaveLength(1);
       });
@@ -201,7 +201,7 @@ describe('<Chip />', () => {
     });
 
     describe('when set to true', () => {
-      const subject = mount(<Chip transparent={true} theme={theme} />);
+      const subject = mount(<Chip transparent={true} clickable={false} removable={false} theme={theme} />);
       it('should have rendered 2 span elements', () => {
         expect(subject.find('span')).toHaveLength(1);
       });
@@ -214,7 +214,7 @@ describe('<Chip />', () => {
     });
 
     describe('when set to false', () => {
-      const subject = mount(<Chip transparent={false} theme={theme} />);
+      const subject = mount(<Chip transparent={false} clickable={false} removable={false} theme={theme} />);
       it('should have rendered 2 span elements', () => {
         expect(subject.find('span')).toHaveLength(1);
       });

@@ -2,12 +2,12 @@ import * as React from 'react';
 import { ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 export interface Props {
     content?: React.ReactNode;
-    active?: boolean;
-    disabled?: boolean;
-    divider?: boolean;
-    header?: boolean;
+    active: boolean;
+    disabled: boolean;
+    divider: boolean;
+    header: boolean;
     onClick?(data: any): void;
-    closeOnClickOption?: boolean;
+    closeOnClickOption: boolean;
     returnValue?: any;
     toggleDropdown?(): void;
     theme?: any;

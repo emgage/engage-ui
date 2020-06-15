@@ -6,15 +6,15 @@ import * as styles from '../../styles/components-page.scss';
 const StackExample5 = () => (
   <div className={styles.example}>
     <br />
-    <Stack >
+    <Stack vertical={false}>
       <Item fill>
         <Heading>Order #1136</Heading>
       </Item>
-      <Item >
-        <Badge>Paid</Badge>
+      <Item fill={false}>
+        <Badge working={false} icon={false}>Paid</Badge>
       </Item>
-      <Item >
-        <Badge>Fulfilled</Badge>
+      <Item fill={false}>
+        <Badge working={false} icon={false}>Fulfilled</Badge>
       </Item>
     </Stack>
     <br />

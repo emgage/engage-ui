@@ -4,7 +4,10 @@ import * as styles from '../../styles/components-page.scss';
 
 const BadgeExample = () => (
   <div className={styles.example}>
-    <Badge>
+    <Badge
+      working={false}
+      icon={false}
+    >
       Badge Example 1
     </Badge>
   </div>

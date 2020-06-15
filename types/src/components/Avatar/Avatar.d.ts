@@ -4,7 +4,7 @@ export interface Props {
     componentSize?: Size;
     componentName?: string;
     initials?: string;
-    customer?: boolean;
+    customer: boolean;
     source?: string;
     accessibilityLabel?: string;
     theme?: any;

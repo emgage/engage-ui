@@ -5,9 +5,9 @@ export interface Props {
   // A particular event that occured.
   event: string;
   // Event that occured is captured or not.
-  capture?: boolean;
+  capture: boolean;
   // Is a passive event
-  passive?: boolean;
+  passive: boolean;
   // Handler for handling particular event.
   handler(event: Event): void;
 }

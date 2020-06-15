@@ -20,6 +20,8 @@ const ChoiceListExample = () => (
         },
       ]}
       selected={['optional', 'required']}
+      titleHidden={false}
+      horizontal={false}
     />
   </div>
 );

@@ -10,7 +10,7 @@ const BannerExample = () =>  (
     >
       <p>
         Use your finance report.
-        <Link url="http://www.google.com">
+        <Link url="http://www.google.com" external={false}>
           Let us know what you think.
         </Link>
       </p>

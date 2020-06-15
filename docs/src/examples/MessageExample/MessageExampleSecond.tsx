@@ -27,7 +27,18 @@ class MessageExampleSecond extends React.Component<IProps, IState> {
         >
           This is your message
         </Message>
-        <Button onClick={() => this.setState({ isvisibled: !this.state.isvisibled })} >
+        <Button
+          onClick={() => this.setState({ isvisibled: !this.state.isvisibled })}
+          disabled={false}
+          disclosure={false}
+          destructive={false}
+          external={false}
+          fullWidth={false}
+          outline={false}
+          primary={false}
+          submit={false}
+          plain={false}
+        >
           Show/Hide Message
         </Button>
         <br/>

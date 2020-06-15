@@ -20,6 +20,20 @@ describe('<TextField />', () => {
         minLength={2}
         spellCheck={false}
         pattern={pattern}
+        autoComplete={false}
+        autoSuggest={false}
+        alphanumeric={false}
+        backdropHidden={false}
+        capital={false}
+        enableTextCounter={false}
+        hasValue={false}
+        isFocused={false}
+        itemSelected={false}
+        labelHidden={false}
+        loading={false}
+        required={false}
+        resizable={false}
+        showNumberIcon={false}
       />
     ).find('input');
     expect(input.prop('disabled')).toBe(true);
@@ -38,7 +52,30 @@ describe('<TextField />', () => {
   describe('onChange()', () => {
     it('is called with the new value', () => {
       const spy = jest.fn();
-      const element = mount(<TextField label="TextField" onChange={spy} />);
+      const element = mount(
+        <TextField
+          label="TextField"
+          onChange={spy}
+          autoComplete={false}
+          autoSuggest={false}
+          alphanumeric={false}
+          backdropHidden={false}
+          capital={false}
+          enableTextCounter={false}
+          hasValue={false}
+          isFocused={false}
+          itemSelected={false}
+          labelHidden={false}
+          loading={false}
+          required={false}
+          resizable={false}
+          showNumberIcon={false}
+          autoFocus={false}
+          disabled={false}
+          readOnly={false}
+          spellCheck={false}
+        />
+      );
       (element.find('input') as any).instance().value = 'two';
       element.find('input').simulate('change');
       expect(spy).toHaveBeenCalled();
@@ -48,7 +85,30 @@ describe('<TextField />', () => {
   describe('onFocus()', () => {
     it('is called when the input is focused', () => {
       const spy = jest.fn();
-      mount(<TextField label="TextField" onFocus={spy} />).find('input').simulate('focus');
+      mount(
+        <TextField
+          label="TextField"
+          onFocus={spy}
+          autoComplete={false}
+          autoSuggest={false}
+          alphanumeric={false}
+          backdropHidden={false}
+          capital={false}
+          enableTextCounter={false}
+          hasValue={false}
+          isFocused={false}
+          itemSelected={false}
+          labelHidden={false}
+          loading={false}
+          required={false}
+          resizable={false}
+          showNumberIcon={false}
+          autoFocus={false}
+          disabled={false}
+          readOnly={false}
+          spellCheck={false}
+        />
+      ).find('input').simulate('focus');
       expect(spy).toHaveBeenCalled();
     });
   });
@@ -56,7 +116,30 @@ describe('<TextField />', () => {
   describe('onBlur()', () => {
     it('is called when the input is blurred', () => {
       const spy = jest.fn();
-      const element = mount(<TextField label="TextField" onBlur={spy} />);
+      const element = mount(
+        <TextField
+          label="TextField"
+          onBlur={spy}
+          autoComplete={false}
+          autoSuggest={false}
+          alphanumeric={false}
+          backdropHidden={false}
+          capital={false}
+          enableTextCounter={false}
+          hasValue={false}
+          isFocused={false}
+          itemSelected={false}
+          labelHidden={false}
+          loading={false}
+          required={false}
+          resizable={false}
+          showNumberIcon={false}
+          autoFocus={false}
+          disabled={false}
+          readOnly={false}
+          spellCheck={false}
+        />
+      );
       element.find('input').simulate('focus').simulate('blur');
       expect(spy).toHaveBeenCalled();
     });
@@ -64,37 +147,144 @@ describe('<TextField />', () => {
 
   describe('id', () => {
     it('sets the id on the input', () => {
-      const id = mount(<TextField label="TextField" componentId="MyField" />).find('input').prop('id');
+      const id = mount(
+        <TextField
+          label="TextField"
+          componentId="MyField"
+          autoComplete={false}
+          autoSuggest={false}
+          alphanumeric={false}
+          backdropHidden={false}
+          capital={false}
+          enableTextCounter={false}
+          hasValue={false}
+          isFocused={false}
+          itemSelected={false}
+          labelHidden={false}
+          loading={false}
+          required={false}
+          resizable={false}
+          showNumberIcon={false}
+          autoFocus={false}
+          disabled={false}
+          readOnly={false}
+          spellCheck={false}
+        />
+      ).find('input').prop('id');
       expect(id).toBe('MyField');
     });
 
     it('sets a random id on the input when none is passed', () => {
-      const id = mount(<TextField label="TextField" />).find('input').prop('id');
+      const id = mount(
+        <TextField
+          label="TextField"
+          autoComplete={false}
+          autoSuggest={false}
+          alphanumeric={false}
+          backdropHidden={false}
+          capital={false}
+          enableTextCounter={false}
+          hasValue={false}
+          isFocused={false}
+          itemSelected={false}
+          labelHidden={false}
+          loading={false}
+          required={false}
+          resizable={false}
+          showNumberIcon={false}
+          autoFocus={false}
+          disabled={false}
+          readOnly={false}
+          spellCheck={false}
+        />
+      ).find('input').prop('id');
       expect(typeof id).toBe('string');
       expect(id).toBeTruthy();
     });
   });
 
   describe('autoComplete', () => {
-    it('defaults to no autoComplete attribute', () => {
-      const textField = mount(<TextField label="TextField" />);
-      expect(textField.find('input').prop('autoComplete')).toBeUndefined();
-    });
-
     it('sets autoComplete to "off" when false', () => {
-      const textField = mount(<TextField label="TextField" autoComplete={false} />);
+      const textField = mount(
+        <TextField
+          label="TextField"
+          autoComplete={false}
+          autoSuggest={false}
+          alphanumeric={false}
+          backdropHidden={false}
+          capital={false}
+          enableTextCounter={false}
+          hasValue={false}
+          isFocused={false}
+          itemSelected={false}
+          labelHidden={false}
+          loading={false}
+          required={false}
+          resizable={false}
+          showNumberIcon={false}
+          autoFocus={false}
+          disabled={false}
+          readOnly={false}
+          spellCheck={false}
+        />
+      );
       expect(textField.find('input').prop('autoComplete')).toBe('off');
     });
 
     it('sets autoComplete to "on" when false', () => {
-      const textField = mount(<TextField label="TextField" autoComplete />);
+      const textField = mount(
+        <TextField
+          label="TextField"
+          autoComplete
+          autoSuggest={false}
+          alphanumeric={false}
+          backdropHidden={false}
+          capital={false}
+          enableTextCounter={false}
+          hasValue={false}
+          isFocused={false}
+          itemSelected={false}
+          labelHidden={false}
+          loading={false}
+          required={false}
+          resizable={false}
+          showNumberIcon={false}
+          autoFocus={false}
+          disabled={false}
+          readOnly={false}
+          spellCheck={false}
+        />
+      );
       expect(textField.find('input').prop('autoComplete')).toBe('on');
     });
   });
 
   describe('helpText', () => {
     it('connects the input to the help text', () => {
-      const textField = mount(<TextField label="TextField" helpText="Some help" />);
+      const textField = mount(
+        <TextField
+          label="TextField"
+          helpText="Some help"
+          autoComplete={false}
+          autoSuggest={false}
+          alphanumeric={false}
+          backdropHidden={false}
+          capital={false}
+          enableTextCounter={false}
+          hasValue={false}
+          isFocused={false}
+          itemSelected={false}
+          labelHidden={false}
+          loading={false}
+          required={false}
+          resizable={false}
+          showNumberIcon={false}
+          autoFocus={false}
+          disabled={false}
+          readOnly={false}
+          spellCheck={false}
+        />
+      );
       const helpTextID = textField.find('input').prop<string>('aria-describedby');
       expect(typeof helpTextID).toBe('string');
       expect(textField.find(`#${helpTextID}`).text()).toBe('Some help');
@@ -102,27 +292,138 @@ describe('<TextField />', () => {
   });
 
   describe('enableTextCounter', () => {
-    it('defaults to no enableTextCounter attribute', () => {
-      const textField = mount(<TextField label="TextField" />);
-      expect(textField.prop('enableTextCounter')).toBeUndefined();
+    it('defaults to enableTextCounter attribute set to false', () => {
+      const textField = mount(
+        <TextField
+          label="TextField"
+          autoComplete={false}
+          autoSuggest={false}
+          alphanumeric={false}
+          backdropHidden={false}
+          capital={false}
+          enableTextCounter={false}
+          hasValue={false}
+          isFocused={false}
+          itemSelected={false}
+          labelHidden={false}
+          loading={false}
+          required={false}
+          resizable={false}
+          showNumberIcon={false}
+          autoFocus={false}
+          disabled={false}
+          readOnly={false}
+          spellCheck={false}
+        />
+      );
+      expect(textField.prop('enableTextCounter')).toBe(false);
     });
     it('sets enableTextCounter to "off" when false', () => {
-      const textField = mount(<TextField label="TextField" enableTextCounter={false} />);
+      const textField = mount(
+        <TextField
+          label="TextField"
+          enableTextCounter={false}
+          autoComplete={false}
+          autoSuggest={false}
+          alphanumeric={false}
+          backdropHidden={false}
+          capital={false}
+          hasValue={false}
+          isFocused={false}
+          itemSelected={false}
+          labelHidden={false}
+          loading={false}
+          required={false}
+          resizable={false}
+          showNumberIcon={false}
+          autoFocus={false}
+          disabled={false}
+          readOnly={false}
+          spellCheck={false}
+        />
+      );
       expect(textField.prop('enableTextCounter')).toBe(false);
     });
     it('sets enableTextCounter to "on" when true', () => {
-      const textField = mount(<TextField label="TextField" enableTextCounter={true} />);
+      const textField = mount(
+        <TextField
+          label="TextField"
+          enableTextCounter={true}
+          autoComplete={false}
+          autoSuggest={false}
+          alphanumeric={false}
+          backdropHidden={false}
+          capital={false}
+          hasValue={false}
+          isFocused={false}
+          itemSelected={false}
+          labelHidden={false}
+          loading={false}
+          required={false}
+          resizable={false}
+          showNumberIcon={false}
+          autoFocus={false}
+          disabled={false}
+          readOnly={false}
+          spellCheck={false}
+        />
+      );
       expect(textField.prop('enableTextCounter')).toBe(true);
     });
   });
 
   describe('mexLenght', () => {
     it('defaults to no maxLength attribute', () => {
-      const textField = mount(<TextField label="TextField"/>);
+      const textField = mount(
+        <TextField
+          label="TextField"
+          autoComplete={false}
+          autoSuggest={false}
+          alphanumeric={false}
+          backdropHidden={false}
+          capital={false}
+          enableTextCounter={false}
+          hasValue={false}
+          isFocused={false}
+          itemSelected={false}
+          labelHidden={false}
+          loading={false}
+          required={false}
+          resizable={false}
+          showNumberIcon={false}
+          autoFocus={false}
+          disabled={false}
+          readOnly={false}
+          spellCheck={false}
+        />
+      );
       expect(textField.prop('maxLength')).toBeUndefined();
     });
     it('connects the input to the max length', () => {
-      const textField = mount(<TextField label="TextField" maxLength={100} />);
+      const textField = mount(
+        <TextField
+          label="TextField"
+          maxLength={100}
+          autoComplete={false}
+          autoSuggest={false}
+          alphanumeric={false}
+          backdropHidden={false}
+          capital={false}
+          enableTextCounter={false}
+          hasValue={false}
+          isFocused={false}
+          itemSelected={false}
+          labelHidden={false}
+          loading={false}
+          required={false}
+          resizable={false}
+          showNumberIcon={false}
+          autoFocus={false}
+          disabled={false}
+          readOnly={false}
+          spellCheck={false}
+        />
+      );
       expect(textField.prop('maxLength')).toBe(100);
     });
   });
@@ -130,19 +431,89 @@ describe('<TextField />', () => {
   describe('counterTextMarkup', () => {
     it('display counter text while no maxLength', () => {
       const counterTextMarkup = mount(<div>{9}</div>);
-      const textField = mount(<TextField label="TextField" value="Some Text" />);
+      const textField = mount(
+        <TextField
+          label="TextField"
+          value="Some Text"
+          autoComplete={false}
+          autoSuggest={false}
+          alphanumeric={false}
+          backdropHidden={false}
+          capital={false}
+          enableTextCounter={false}
+          hasValue={false}
+          isFocused={false}
+          itemSelected={false}
+          labelHidden={false}
+          loading={false}
+          required={false}
+          resizable={false}
+          showNumberIcon={false}
+          autoFocus={false}
+          disabled={false}
+          readOnly={false}
+          spellCheck={false}
+        />
+      );
       expect(counterTextMarkup.text()).toBe(textField.prop('value').length.toString());
     });
     it('display counter text and maxLength', () => {
       const counterTextMarkup = mount(<div>{9}/{100}</div>);
-      const textField = mount(<TextField label="TextField" maxLength={100} value="Some Text" />);
+      const textField = mount(
+        <TextField
+          label="TextField"
+          maxLength={100}
+          value="Some Text"
+          autoComplete={false}
+          autoSuggest={false}
+          alphanumeric={false}
+          backdropHidden={false}
+          capital={false}
+          enableTextCounter={false}
+          hasValue={false}
+          isFocused={false}
+          itemSelected={false}
+          labelHidden={false}
+          loading={false}
+          required={false}
+          resizable={false}
+          showNumberIcon={false}
+          autoFocus={false}
+          disabled={false}
+          readOnly={false}
+          spellCheck={false}
+        />
+      );
       expect(counterTextMarkup.text()).toBe(textField.prop('value').length.toString() + '/' + textField.prop('maxLength').toString());
     });
   });
 
   describe('error', () => {
     it('marks the input as invalid', () => {
-      const textField = mount(<TextField errors={['error']} label="TextField" />);
+      const textField = mount(
+        <TextField
+          errors={['error']}
+          label="TextField"
+          autoComplete={false}
+          autoSuggest={false}
+          alphanumeric={false}
+          backdropHidden={false}
+          capital={false}
+          enableTextCounter={false}
+          hasValue={false}
+          isFocused={false}
+          itemSelected={false}
+          labelHidden={false}
+          loading={false}
+          required={false}
+          resizable={false}
+          showNumberIcon={false}
+          autoFocus={false}
+          disabled={false}
+          readOnly={false}
+          spellCheck={false}
+        />
+      );
       expect(textField.find('input').prop<string>('aria-invalid')).toBe(true);
 
       textField.setProps({ error: 'Some error' });
@@ -150,7 +521,30 @@ describe('<TextField />', () => {
     });
 
     it('connects the input to the error', () => {
-      const textField = mount(<TextField label="TextField" errors={['Some error']} />);
+      const textField = mount(
+        <TextField
+          label="TextField"
+          errors={['Some error']}
+          autoComplete={false}
+          autoSuggest={false}
+          alphanumeric={false}
+          backdropHidden={false}
+          capital={false}
+          enableTextCounter={false}
+          hasValue={false}
+          isFocused={false}
+          itemSelected={false}
+          labelHidden={false}
+          loading={false}
+          required={false}
+          resizable={false}
+          showNumberIcon={false}
+          autoFocus={false}
+          disabled={false}
+          readOnly={false}
+          spellCheck={false}
+        />
+      );
       const errorID = textField.find('input').prop<string>('aria-describedby');
 
       expect(typeof errorID).toBe('string');
@@ -158,7 +552,31 @@ describe('<TextField />', () => {
     });
 
     it('connects the input to both an error and help text', () => {
-      const textField = mount(<TextField label="TextField" errors={['Some error']} helpText="Some help" />);
+      const textField = mount(
+        <TextField
+          label="TextField"
+          errors={['Some error']}
+          helpText="Some help"
+          autoComplete={false}
+          autoSuggest={false}
+          alphanumeric={false}
+          backdropHidden={false}
+          capital={false}
+          enableTextCounter={false}
+          hasValue={false}
+          isFocused={false}
+          itemSelected={false}
+          labelHidden={false}
+          loading={false}
+          required={false}
+          resizable={false}
+          showNumberIcon={false}
+          autoFocus={false}
+          disabled={false}
+          readOnly={false}
+          spellCheck={false}
+        />
+      );
       const descriptions = textField.find('input').prop<string>('aria-describedby').split(' ');
       expect(descriptions.length).toBe(2);
       expect(textField.find(`#${descriptions[0]}`).at(0).text()).toBe('Some error');
@@ -168,7 +586,30 @@ describe('<TextField />', () => {
 
   describe('prefix', () => {
     it('connects the input to the prefix and label', () => {
-      const textField = mount(<TextField label="TextField" prefix="$" />);
+      const textField = mount(
+        <TextField
+          label="TextField"
+          prefix="$"
+          autoComplete={false}
+          autoSuggest={false}
+          alphanumeric={false}
+          backdropHidden={false}
+          capital={false}
+          enableTextCounter={false}
+          hasValue={false}
+          isFocused={false}
+          itemSelected={false}
+          labelHidden={false}
+          loading={false}
+          required={false}
+          resizable={false}
+          showNumberIcon={false}
+          autoFocus={false}
+          disabled={false}
+          readOnly={false}
+          spellCheck={false}
+        />
+      );
       const labels = textField.find('input').prop<string>('aria-labelledby').split(' ');
       expect(labels.length).toBe(2);
       expect(textField.find(`#${labels[0]}`).text()).toBe('TextField');
@@ -176,7 +617,32 @@ describe('<TextField />', () => {
     });
 
     it('connects the input to the prefix, suffix, and label', () => {
-      const textField = mount(<TextField label="TextField" value="test" prefix="$" suffix=".00" />);
+      const textField = mount(
+        <TextField
+          label="TextField"
+          value="test"
+          prefix="$"
+          suffix=".00"
+          autoComplete={false}
+          autoSuggest={false}
+          alphanumeric={false}
+          backdropHidden={false}
+          capital={false}
+          enableTextCounter={false}
+          hasValue={false}
+          isFocused={false}
+          itemSelected={false}
+          labelHidden={false}
+          loading={false}
+          required={false}
+          resizable={false}
+          showNumberIcon={false}
+          autoFocus={false}
+          disabled={false}
+          readOnly={false}
+          spellCheck={false}
+        />
+      );
       const labels = textField.find('input').prop<string>('aria-labelledby').split(' ');
       expect(labels.length).toBe(3);
       expect(textField.find(`#${labels[0]}`).text()).toBe('TextField');
@@ -187,7 +653,31 @@ describe('<TextField />', () => {
 
   describe('suffix', () => {
     it('connects the input to the suffix and label', () => {
-      const textField = mount(<TextField label="TextField" value="test" suffix="kg" />);
+      const textField = mount(
+        <TextField
+          label="TextField"
+          value="test"
+          suffix="kg"
+          autoComplete={false}
+          autoSuggest={false}
+          alphanumeric={false}
+          backdropHidden={false}
+          capital={false}
+          enableTextCounter={false}
+          hasValue={false}
+          isFocused={false}
+          itemSelected={false}
+          labelHidden={false}
+          loading={false}
+          required={false}
+          resizable={false}
+          showNumberIcon={false}
+          autoFocus={false}
+          disabled={false}
+          readOnly={false}
+          spellCheck={false}
+        />
+      );
       const labels = textField.find('input').prop<string>('aria-labelledby').split(' ');
       expect(labels.length).toBe(2);
       expect(textField.find('label').at(0).text());
@@ -199,52 +689,245 @@ describe('<TextField />', () => {
 
   describe('type', () => {
     it('sets the type on the input', () => {
-      const type = mount(<TextField label="TextField" type="email" />).find('input').prop('type');
+      const type = mount(
+        <TextField
+          label="TextField"
+          type="email"
+          autoComplete={false}
+          autoSuggest={false}
+          alphanumeric={false}
+          backdropHidden={false}
+          capital={false}
+          enableTextCounter={false}
+          hasValue={false}
+          isFocused={false}
+          itemSelected={false}
+          labelHidden={false}
+          loading={false}
+          required={false}
+          resizable={false}
+          showNumberIcon={false}
+          autoFocus={false}
+          disabled={false}
+          readOnly={false}
+          spellCheck={false}
+        />
+      ).find('input').prop('type');
       expect(type).toBe('email');
     });
 
     it('sets the enableTextCounter on the input', () => {
-      const enableTextCounter = mount(<TextField label="TextField" enableTextCounter={true} />).prop('enableTextCounter');
+      const enableTextCounter = mount(
+        <TextField
+          label="TextField"
+          enableTextCounter={true}
+          autoComplete={false}
+          autoSuggest={false}
+          alphanumeric={false}
+          backdropHidden={false}
+          capital={false}
+          hasValue={false}
+          isFocused={false}
+          itemSelected={false}
+          labelHidden={false}
+          loading={false}
+          required={false}
+          resizable={false}
+          showNumberIcon={false}
+          autoFocus={false}
+          disabled={false}
+          readOnly={false}
+          spellCheck={false}
+        />
+      ).prop('enableTextCounter');
       expect(typeof enableTextCounter).toBe('boolean');
     });
 
     it('sets the maxLength on the input', () => {
-      const maxLength = mount(<TextField label="TextField" maxLength={100} />).prop('maxLength');
+      const maxLength = mount(
+        <TextField
+          label="TextField"
+          maxLength={100}
+          autoComplete={false}
+          autoSuggest={false}
+          alphanumeric={false}
+          backdropHidden={false}
+          capital={false}
+          enableTextCounter={false}
+          hasValue={false}
+          isFocused={false}
+          itemSelected={false}
+          labelHidden={false}
+          loading={false}
+          required={false}
+          resizable={false}
+          showNumberIcon={false}
+          autoFocus={false}
+          disabled={false}
+          readOnly={false}
+          spellCheck={false}
+        />
+      ).prop('maxLength');
       expect(typeof maxLength).toBe('number');
     });
 
     describe('number', () => {
       it('adds an increment button that increases the value', () => {
         const spy = jest.fn();
-        const element = mount(<TextField label="TextField" type="number" value="3" onChange={spy} />);
+        const element = mount(
+          <TextField
+            label="TextField"
+            type="number"
+            value="3"
+            onChange={spy}
+            autoComplete={false}
+            autoSuggest={false}
+            alphanumeric={false}
+            backdropHidden={false}
+            capital={false}
+            enableTextCounter={false}
+            hasValue={false}
+            isFocused={false}
+            itemSelected={false}
+            labelHidden={false}
+            loading={false}
+            required={false}
+            resizable={false}
+            showNumberIcon={false}
+            autoFocus={false}
+            disabled={false}
+            readOnly={false}
+            spellCheck={false}
+          />
+        );
         element.find('[role="button"]').first().simulate('click');
         expect(spy).toHaveBeenCalledWith('4');
       });
 
       it('adds a decrement button that increases the value', () => {
         const spy = jest.fn();
-        const element = mount(<TextField label="TextField" type="number" value="3" onChange={spy} />);
+        const element = mount(
+          <TextField
+            label="TextField"
+            type="number"
+            value="3"
+            onChange={spy}
+            autoComplete={false}
+            autoSuggest={false}
+            alphanumeric={false}
+            backdropHidden={false}
+            capital={false}
+            enableTextCounter={false}
+            hasValue={false}
+            isFocused={false}
+            itemSelected={false}
+            labelHidden={false}
+            loading={false}
+            required={false}
+            resizable={false}
+            showNumberIcon={false}
+            autoFocus={false}
+            disabled={false}
+            readOnly={false}
+            spellCheck={false}
+          />);
         element.find('[role="button"]').last().simulate('click');
         expect(spy).toHaveBeenCalledWith('2');
       });
 
       it('handles incrementing from no value', () => {
         const spy = jest.fn();
-        const element = mount(<TextField label="TextField" type="number" onChange={spy} />);
+        const element = mount(
+          <TextField
+            label="TextField"
+            type="number"
+            onChange={spy}
+            autoComplete={false}
+            autoSuggest={false}
+            alphanumeric={false}
+            backdropHidden={false}
+            capital={false}
+            enableTextCounter={false}
+            hasValue={false}
+            isFocused={false}
+            itemSelected={false}
+            labelHidden={false}
+            loading={false}
+            required={false}
+            resizable={false}
+            showNumberIcon={false}
+            autoFocus={false}
+            disabled={false}
+            readOnly={false}
+            spellCheck={false}
+          />
+        );
         element.find('[role="button"]').first().simulate('click');
         expect(spy).toHaveBeenCalledWith('1');
       });
 
       it('uses the step prop when incrementing', () => {
         const spy = jest.fn();
-        const element = mount(<TextField label="TextField" type="number" step={0.5} value="1.25" onChange={spy} />);
+        const element = mount(
+          <TextField
+            label="TextField"
+            type="number"
+            step={0.5}
+            value="1.25"
+            onChange={spy}
+            autoComplete={false}
+            autoSuggest={false}
+            alphanumeric={false}
+            backdropHidden={false}
+            capital={false}
+            enableTextCounter={false}
+            hasValue={false}
+            isFocused={false}
+            itemSelected={false}
+            labelHidden={false}
+            loading={false}
+            required={false}
+            resizable={false}
+            showNumberIcon={false}
+            autoFocus={false}
+            disabled={false}
+            readOnly={false}
+            spellCheck={false}
+          />
+        );
         element.find('[role="button"]').first().simulate('click');
         expect(spy).toHaveBeenCalledWith('1.75');
       });
 
       it('respects a min value', () => {
         const spy = jest.fn();
-        const element = mount(<TextField label="TextField" type="number" min={2} value="2" onChange={spy} />);
+        const element = mount(
+          <TextField
+            label="TextField"
+            type="number"
+            min={2}
+            value="2"
+            onChange={spy}
+            autoComplete={false}
+            autoSuggest={false}
+            alphanumeric={false}
+            backdropHidden={false}
+            capital={false}
+            enableTextCounter={false}
+            hasValue={false}
+            isFocused={false}
+            itemSelected={false}
+            labelHidden={false}
+            loading={false}
+            required={false}
+            resizable={false}
+            showNumberIcon={false}
+            autoFocus={false}
+            disabled={false}
+            readOnly={false}
+            spellCheck={false}
+          />
+        );
 
         element.find('[role="button"]').last().simulate('click');
         expect(spy).toHaveBeenLastCalledWith('2');
@@ -255,7 +938,33 @@ describe('<TextField />', () => {
 
       it('respects a max value', () => {
         const spy = jest.fn();
-        const element = mount(<TextField label="TextField" type="number" max={2} value="2" onChange={spy} />);
+        const element = mount(
+          <TextField
+            label="TextField"
+            type="number"
+            max={2}
+            value="2"
+            onChange={spy}
+            autoComplete={false}
+            autoSuggest={false}
+            alphanumeric={false}
+            backdropHidden={false}
+            capital={false}
+            enableTextCounter={false}
+            hasValue={false}
+            isFocused={false}
+            itemSelected={false}
+            labelHidden={false}
+            loading={false}
+            required={false}
+            resizable={false}
+            showNumberIcon={false}
+            autoFocus={false}
+            disabled={false}
+            readOnly={false}
+            spellCheck={false}
+          />
+        );
 
         element.find('[role="button"]').first().simulate('click');
         expect(spy).toHaveBeenLastCalledWith('2');
@@ -266,7 +975,33 @@ describe('<TextField />', () => {
 
       it('brings an invalid value up to the min', () => {
         const spy = jest.fn();
-        const element = mount(<TextField label="TextField" type="number" min={2} value="-1" onChange={spy} />);
+        const element = mount(
+          <TextField
+            label="TextField"
+            type="number"
+            min={2}
+            value="-1"
+            onChange={spy}
+            autoComplete={false}
+            autoSuggest={false}
+            alphanumeric={false}
+            backdropHidden={false}
+            capital={false}
+            enableTextCounter={false}
+            hasValue={false}
+            isFocused={false}
+            itemSelected={false}
+            labelHidden={false}
+            loading={false}
+            required={false}
+            resizable={false}
+            showNumberIcon={false}
+            autoFocus={false}
+            disabled={false}
+            readOnly={false}
+            spellCheck={false}
+          />
+        );
 
         element.find('[role="button"]').first().simulate('click');
         expect(spy).toHaveBeenLastCalledWith('2');
@@ -277,7 +1012,33 @@ describe('<TextField />', () => {
 
       it('brings an invalid value down to the max', () => {
         const spy = jest.fn();
-        const element = mount(<TextField label="TextField" type="number" max={2} value="12" onChange={spy} />);
+        const element = mount(
+          <TextField
+            label="TextField"
+            type="number"
+            max={2}
+            value="12"
+            onChange={spy}
+            autoComplete={false}
+            autoSuggest={false}
+            alphanumeric={false}
+            backdropHidden={false}
+            capital={false}
+            enableTextCounter={false}
+            hasValue={false}
+            isFocused={false}
+            itemSelected={false}
+            labelHidden={false}
+            loading={false}
+            required={false}
+            resizable={false}
+            showNumberIcon={false}
+            autoFocus={false}
+            disabled={false}
+            readOnly={false}
+            spellCheck={false}
+          />
+        );
 
         element.find('[role="button"]').first().simulate('click');
         expect(spy).toHaveBeenLastCalledWith('2');
@@ -287,22 +1048,110 @@ describe('<TextField />', () => {
       });
 
       describe('resizable', () => {
-        it('defaults to no resizable attribute', () => {
-          const textField = mount(<TextField label="TextField" />);
-          expect(textField.prop('resizable')).toBeUndefined();
+        it('defaults resizable attribute to be false', () => {
+          const textField = mount(
+            <TextField
+              label="TextField"
+              autoComplete={false}
+              autoSuggest={false}
+              alphanumeric={false}
+              backdropHidden={false}
+              capital={false}
+              enableTextCounter={false}
+              hasValue={false}
+              isFocused={false}
+              itemSelected={false}
+              labelHidden={false}
+              loading={false}
+              required={false}
+              resizable={false}
+              showNumberIcon={false}
+              autoFocus={false}
+              disabled={false}
+              readOnly={false}
+              spellCheck={false}
+            />
+          );
+          expect(textField.prop('resizable')).toBe(false);
         });
         it('sets resizable to "off" when false', () => {
-          const textField = mount(<TextField label="TextField" resizable={false} />);
+          const textField = mount(
+            <TextField
+              label="TextField"
+              resizable={false}
+              autoComplete={false}
+              autoSuggest={false}
+              alphanumeric={false}
+              backdropHidden={false}
+              capital={false}
+              enableTextCounter={false}
+              hasValue={false}
+              isFocused={false}
+              itemSelected={false}
+              labelHidden={false}
+              loading={false}
+              required={false}
+              showNumberIcon={false}
+              autoFocus={false}
+              disabled={false}
+              readOnly={false}
+              spellCheck={false}
+            />
+          );
           expect(textField.prop('resizable')).toBe(false);
         });
         it('sets resizable to "on" when true', () => {
-          const textField = mount(<TextField label="TextField" resizable={true} />);
+          const textField = mount(
+            <TextField
+              label="TextField"
+              resizable={true}
+              autoComplete={false}
+              autoSuggest={false}
+              alphanumeric={false}
+              backdropHidden={false}
+              capital={false}
+              enableTextCounter={false}
+              hasValue={false}
+              isFocused={false}
+              itemSelected={false}
+              labelHidden={false}
+              loading={false}
+              required={false}
+              showNumberIcon={false}
+              autoFocus={false}
+              disabled={false}
+              readOnly={false}
+              spellCheck={false}
+            />
+          );
           expect(textField.prop('resizable')).toBe(true);
         });
       });
 
       it('sets the resizable on the input', () => {
-        const resizable = mount(<TextField label="TextField" resizable={true} />).prop('resizable');
+        const resizable = mount(
+          <TextField
+            label="TextField"
+            resizable={true}
+            autoComplete={false}
+              autoSuggest={false}
+              alphanumeric={false}
+              backdropHidden={false}
+              capital={false}
+              enableTextCounter={false}
+              hasValue={false}
+              isFocused={false}
+              itemSelected={false}
+              labelHidden={false}
+              loading={false}
+              required={false}
+              showNumberIcon={false}
+              autoFocus={false}
+              disabled={false}
+              readOnly={false}
+              spellCheck={false}
+          />
+        ).prop('resizable');
         expect(typeof resizable).toBe('boolean');
       });
     });

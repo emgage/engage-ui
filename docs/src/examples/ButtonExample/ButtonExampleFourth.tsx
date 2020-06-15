@@ -4,7 +4,20 @@ import * as styles from '../../styles/components-page.scss';
 
 const ButtonExample = () => (
   <div className={styles.example}>
-    <Button destructive accessibilityLabel="No Label">Destructive Button</Button>
+    <Button
+      destructive
+      accessibilityLabel="No Label"
+      disabled={false}
+      disclosure={false}
+      external={false}
+      fullWidth={false}
+      outline={false}
+      primary={false}
+      submit={false}
+      plain={false}
+    >
+      Destructive Button
+    </Button>
   </div>
 );
 

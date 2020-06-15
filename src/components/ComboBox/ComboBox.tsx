@@ -183,21 +183,43 @@ class ComboBox extends React.PureComponent<Props, State> {
           onChange={this.onChange}
           value={this.state.selectedValue}
           theme={theme}
+          autoComplete={false}
+          autoFocus={false}
+          autoSuggest={false}
+          alphanumeric={false}
+          backdropHidden={false}
+          capital={false}
+          disabled={false}
+          enableTextCounter={false}
+          hasValue={false}
+          isFocused={false}
+          itemSelected={false}
+          labelHidden={false}
+          loading={false}
+          readOnly={false}
+          required={false}
+          resizable={false}
+          showNumberIcon={false}
+          spellCheck={false}
         />
 
         <div className={theme.comboboxArrow}>
-          <Icon source={arrowSvg} theme={theme} />
+          <Icon source={arrowSvg} theme={theme} backdrop={false} />
         </div>
 
-        {open && <Popover
-          addArrow={false}
-          componentStyle={{ maxHeight: 800, overflow: 'auto', width: popoverWidth }}
-          anchorEl={this.state.anchorEl}
-          open={open}
-          theme={theme}
-        >
+        {open &&
+          <Popover
+            addArrow={false}
+            componentStyle={{ maxHeight: 800, overflow: 'auto', width: popoverWidth }}
+            anchorEl={this.state.anchorEl}
+            open={open}
+            theme={theme}
+            manualInActive={false}
+            closeOnClickInside={false}
+          >
             {itemsComponent}
-        </Popover>}
+          </Popover>
+        }
       </div>
     );
   }

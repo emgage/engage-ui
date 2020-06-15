@@ -7,16 +7,16 @@ import Icon, { IconList } from '../Icon';
 
 export interface Props {
   // Makes the chips body area clickable.
-  clickable?: boolean;
+  clickable: boolean;
   // Enables the deletion of chips through the remove icon or the Delete/Backspace key.
-  removable?: boolean;
+  removable: boolean;
   // The image url and alt tag that will be shown in the chip.
   image?: {
     url: string,
     alt?: string,
   };
   // Make the chip transparent.
-  transparent?: boolean;
+  transparent: boolean;
   // Theme to be injected via css-themr
   theme?: any;
   // Fired when remove button on chip is clicked.
@@ -65,7 +65,7 @@ class Chip extends React.PureComponent<Props, any> {
     ),
       <span className={theme.chipContent} key="2">
       {children}
-      { icon && <span > <Icon onClick={onIconClick} source={icon} theme={theme} /> </span> }
+      { icon && <span > <Icon onClick={onIconClick} source={icon} theme={theme} backdrop={false} /> </span> }
     </span>,
     ];
     const isClickable = clickable ?
@@ -75,7 +75,7 @@ class Chip extends React.PureComponent<Props, any> {
       : chipContents;
     const isRemovable = removable ?
       <a className={theme.Remove} aria-label={'Remove ' + children} onClick={onRemove} tabIndex={-1}>
-        <Icon source="cancel" theme={theme} />
+        <Icon source="cancel" theme={theme} backdrop={false} />
       </a>
       : '';
 

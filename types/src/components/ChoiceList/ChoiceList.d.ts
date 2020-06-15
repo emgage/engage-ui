@@ -6,14 +6,14 @@ export interface ChoiceDescriptor {
 export declare type Choice = ChoiceDescriptor;
 export interface Props {
     componentTitle?: string;
-    titleHidden?: boolean;
+    titleHidden: boolean;
     choices: Choice[];
     selected: any[];
     componentName?: string;
-    allowMultiple?: boolean;
+    allowMultiple: boolean;
     theme?: any;
     onChange?(selected: string[]): void;
-    horizontal?: boolean;
+    horizontal: boolean;
     helpText?: string;
 }
 declare const _default: ThemedComponentClass<Props, {}>;

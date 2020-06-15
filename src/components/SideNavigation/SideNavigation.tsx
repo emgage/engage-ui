@@ -106,7 +106,7 @@ class SideNavigation extends React.PureComponent<Props, State> {
         return (
           <div key={index}>
             <a className={childLiClass} onClick={child.action} aria-disabled={false}>
-              <Icon source={child.icon} componentColor="white" componentClass={theme.customIcon} theme={theme} />
+              <Icon source={child.icon} componentColor="white" componentClass={theme.customIcon} theme={theme} backdrop={false} />
               {child.label}
             </a>
           </div>
@@ -122,7 +122,7 @@ class SideNavigation extends React.PureComponent<Props, State> {
             className={liClass}
           >
             <div className={liClass} onClick={full.action} aria-disabled={false}>
-              <Icon source={full.icon} componentColor={activeItem === full.id ? 'black' : 'white'} componentClass={theme.customIcon} theme={theme} />
+              <Icon source={full.icon} componentColor={activeItem === full.id ? 'black' : 'white'} componentClass={theme.customIcon} theme={theme} backdrop={false} />
               {full.label}
             </div>
           </div>
@@ -136,7 +136,7 @@ class SideNavigation extends React.PureComponent<Props, State> {
             <div className={liClass} onClick={full.action} aria-disabled={false}>
             {full.label}
               <div className={theme.currentAppIcon}>
-                <Icon source={full.icon} componentColor={activeItem === full.id ? 'black' : 'white'} componentClass={theme.customIcon} theme={theme} />
+                <Icon source={full.icon} componentColor={activeItem === full.id ? 'black' : 'white'} componentClass={theme.customIcon} theme={theme} backdrop={false} />
               </div>
             </div>
 
@@ -146,7 +146,7 @@ class SideNavigation extends React.PureComponent<Props, State> {
         (
           <div key={index}>
             <div className={liClass} onClick={full.action} aria-disabled={false}>
-              <Icon source={full.icon} componentColor={activeItem === full.id ? 'black' : 'white'} componentClass={theme.customIcon} theme={theme} />
+              <Icon source={full.icon} componentColor={activeItem === full.id ? 'black' : 'white'} componentClass={theme.customIcon} theme={theme} backdrop={false} />
               {full.label}
             </div>
 
@@ -156,7 +156,7 @@ class SideNavigation extends React.PureComponent<Props, State> {
         (
           <div key={index}>
             <div className={liClass} onClick={full.action} aria-disabled={false}>
-              <Icon source={full.icon} componentColor={activeItem === full.id ? 'black' :'white'} componentClass={theme.customIcon} theme={theme} />
+              <Icon source={full.icon} componentColor={activeItem === full.id ? 'black' :'white'} componentClass={theme.customIcon} theme={theme} backdrop={false} />
               {full.label}
             </div>
 
@@ -189,9 +189,9 @@ class SideNavigation extends React.PureComponent<Props, State> {
 
       return (
         <div key={col.id} className={singleItem}>
-          <Tooltip content={col.label} preferredPosition="right" theme={theme}>
+          <Tooltip content={col.label} preferredPosition="right" theme={theme} active={false} light={false}>
             <div className={liClass} onClick={col.action} aria-disabled={false}>
-              <Icon source={col.icon} componentColor={activeItem === col.id ? 'black' : 'white'} componentClass={theme.collapseIcon} theme={theme} />
+              <Icon source={col.icon} componentColor={activeItem === col.id ? 'black' : 'white'} componentClass={theme.collapseIcon} theme={theme} backdrop={false} />
             </div>
           </Tooltip>
         </div>
@@ -204,8 +204,8 @@ class SideNavigation extends React.PureComponent<Props, State> {
         className={collapseLink}
         onClick={this.toggleDrawerContent}
       >
-        <FlexBox>
-          <Icon source={collapseIcon} componentColor="white" componentClass={theme.customIcon}/>
+        <FlexBox inline={false} >
+          <Icon source={collapseIcon} componentColor="white" componentClass={theme.customIcon} backdrop={false} />
           { activeDrawerId === 'fullContent' ? 'Collapse' : ''}
         </FlexBox>
       </div>
@@ -221,11 +221,21 @@ class SideNavigation extends React.PureComponent<Props, State> {
           mode="push"
           componentWidth={activeDrawerId === 'collapsedContent' ? 'collapsed' : 'small'}
           componentStyle={drawerStyle}
-          theme={theme}>
+          theme={theme}
+          fixedCloseButton={false}
+          flip={false}
+          overlay={false}
+          closeButton={false}
+          master={false}
+        >
           <DrawerContent
             componentId="fullContent"
             mode="slide"
             theme={theme}
+            active={false}
+            closeButton={false}
+            flip={false}
+            fixedCloseButton={false}
           >
             <div className={this.props.theme.list}>
               {fullContentMarkup}
@@ -239,6 +249,10 @@ class SideNavigation extends React.PureComponent<Props, State> {
             componentId="collapsedContent"
             mode="slide"
             theme={theme}
+            active={false}
+            closeButton={false}
+            flip={false}
+            fixedCloseButton={false}
           >
             <div className={this.props.theme.list} >
               {collapsedContentMarkup}

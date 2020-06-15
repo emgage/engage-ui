@@ -7,6 +7,24 @@ const TextFieldExample2 = () => (
     <TextField
       label="Shipping address"
       multiline
+      alphanumeric={false}
+      autoComplete={false}
+      autoFocus={false}
+      autoSuggest={false}
+      backdropHidden={false}
+      capital={false}
+      disabled={false}
+      enableTextCounter={false}
+      hasValue={false}
+      isFocused={false}
+      itemSelected={false}
+      labelHidden={false}
+      loading={false}
+      readOnly={false}
+      required={false}
+      resizable={false}
+      showNumberIcon={false}
+      spellCheck={false}
     />
   </div>
 );

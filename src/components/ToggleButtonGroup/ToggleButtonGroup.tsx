@@ -16,7 +16,7 @@ export interface Props {
   // Set a custom class
   componentClass?: string;
   // Display true or false value. Join buttons as segmented group.
-  segmented?: boolean;
+  segmented: boolean;
   // Name of button, Button components.
   children?: React.ReactNode;
   // ID for the input.
@@ -53,7 +53,7 @@ const ToggleButtonGroup = ({
   );
 
   const contents = elementChildren(children)
-    .map((child, index) => <Item button={child} key={index} theme={theme}  />);
+    .map((child: any, index) => <Item button={child} key={index} theme={theme}  />);
 
   return (
     <Labelled
@@ -63,6 +63,12 @@ const ToggleButtonGroup = ({
       helpText={helpText}
       componentClass={labelStyle}
       theme={theme}
+      autoSuggest={false}
+      disabled={false}
+      labelHidden={false}
+      required={false}
+      focused={false}
+      hasValue={false}
     >
 
       <div className={className} style={componentStyle}>{contents}</div>

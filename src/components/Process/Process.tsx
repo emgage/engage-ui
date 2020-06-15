@@ -21,9 +21,9 @@ export interface Step {
 export interface Props {
   // JSON data source of which we need to indicate process for.
   steps: Step[];
-  showNavigation?: boolean;
+  showNavigation: boolean;
   // To allow user to enable / disable backstepping on process indicator for navigation.
-  allowBackStepping?: boolean;
+  allowBackStepping: boolean;
   // To apply any theme to component via themer.
   theme?: any;
   // To apply custom styling.

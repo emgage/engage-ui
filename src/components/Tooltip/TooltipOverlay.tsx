@@ -14,7 +14,7 @@ export interface Props {
   // Toggle whether the tooltip is visible.
   active: boolean;
   // Display tooltip with a light background.
-  light?: boolean;
+  light: boolean;
   // The direction the tooltip tries to display Availabel options: above | below | mostSpace
   preferredPosition?: PreferredPosition;
   // The children that activate the tooltip.
@@ -49,6 +49,8 @@ export default class TooltipOverlay extends React.PureComponent<Props, never> {
         preferredPosition={preferredPosition}
         render={this.renderTooltip.bind(this)}
         preloadedPopover={true}
+        fullWidth={false}
+        fixed={false}
       />
     );
   }

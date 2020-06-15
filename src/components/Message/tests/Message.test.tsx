@@ -11,7 +11,7 @@ describe('<Message />', () => {
   describe('when default props are provided', () => {
     it('basic message should have rendered 1 noscript element', () => {
       const messageWrapper = mount(
-                                    <Message componentId="10101" theme={theme} />
+                                    <Message componentId="10101" theme={theme} isVisible={false} />
                                );
       expect(messageWrapper.find('noscript')).toHaveLength(1);
     });
@@ -21,14 +21,14 @@ describe('<Message />', () => {
     describe('when set', () => {
       it('basic message should have rendered 1 noscript element', () => {
         const messageWrapper = mount(
-                                      <Message componentId="10101" theme={theme} />
+                                      <Message componentId="10101" theme={theme} isVisible={false} />
                                );
         expect(messageWrapper.find('noscript')).toHaveLength(1);
       });
 
       it('should verify id when set', () => {
         const messageWrapper = mount(
-                                      <Message componentId="10101" theme={theme} />
+                                      <Message componentId="10101" theme={theme} isVisible={false} />
                                );
         expect(messageWrapper.prop('componentId')).toBe('10101');
       });
@@ -39,13 +39,13 @@ describe('<Message />', () => {
     describe('when not set', () => {
       it('basic message should have rendered 1 noscript element', () => {
         const messageWrapper = mount(
-                                      <Message componentId="10101" theme={theme} />
+                                      <Message componentId="10101" theme={theme} isVisible={false} />
                                    );
         expect(messageWrapper.find('noscript')).toHaveLength(1);
       });
       it('should verify children when is not set/defined', () => {
         const messageWrapper = mount(
-                                      <Message componentId="10101" theme={theme} />
+                                      <Message componentId="10101" theme={theme} isVisible={false} />
                                );
         expect(messageWrapper.prop('children')).toBeUndefined();
         expect(messageWrapper.find('children')).toHaveLength(0);
@@ -54,7 +54,7 @@ describe('<Message />', () => {
     describe('when set', () => {
       it('basic message should have rendered 1 noscript element', () => {
         const messageWrapper = mount(
-                                      <Message componentId="10101" theme={theme} >
+                                      <Message componentId="10101" theme={theme} isVisible={false} >
                                           Click Here
                                       </Message>
                                );
@@ -63,7 +63,7 @@ describe('<Message />', () => {
       });
       it('should verify children when is set', () => {
         const messageWrapper = mount(
-                                      <Message componentId="10101" theme={theme} >
+                                      <Message componentId="10101" theme={theme} isVisible={false} >
                                           Click Here
                                       </Message>
                                );
@@ -76,7 +76,7 @@ describe('<Message />', () => {
     describe('when not set', () => {
       it('basic message should have rendered 1 noscript element', () => {
         const messageWrapper = mount(
-                                      <Message componentId = "10101" theme={theme}>
+                                      <Message componentId = "10101" theme={theme} isVisible={false}>
                                         Click Here
                                       </Message>
                                );
