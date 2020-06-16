@@ -60,7 +60,6 @@ const TableExample = () => (
     <Table
       data={tableData}
       column={columnConfig}
-      filterData={this.state.filterConfig}
       defaultSortField="name"
       defaultSortOrder="asc"
       bordered highlight sorting />
