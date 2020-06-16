@@ -68,7 +68,8 @@
       "@semantic-release/npm"
     ],
     "npmPublish": true,
-    "branches": ["master", "next"]
+    "branches": ["master", "next"],
+    "branch": "next"
   },
   "sgc": {
     "lowercaseTypes": true
