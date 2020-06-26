@@ -28,7 +28,7 @@ export interface State {
   bottomShadow: boolean;
 }
 
-class Scrollable extends React.Component<Props, State> {
+class Scrollable extends React.PureComponent<Props, State> {
 
   state: State = {
     topShadow: false,

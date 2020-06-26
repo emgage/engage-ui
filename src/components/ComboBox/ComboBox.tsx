@@ -37,7 +37,7 @@ interface State {
   popoverWidth: string;
 }
 
-class ComboBox extends React.Component<Props, State> {
+class ComboBox extends React.PureComponent<Props, State> {
   private getUniqueID = createUniqueIDFactory('ComboBox');
   private id = this.getUniqueID();
   private wrapperRef: HTMLDivElement;

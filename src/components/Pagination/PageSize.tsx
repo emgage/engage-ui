@@ -39,7 +39,7 @@ export interface IPageSizeProps {
   onKeyPress(event: any, callback: any, value: number): void;
 }
 
-class PageSize extends React.Component<IPageSizeProps, any>{
+class PageSize extends React.PureComponent<IPageSizeProps, any>{
   render() {
     const { currentPageSize, theme, className, pageSizeList, onClick, onKeyPress } = this.props;
     return <ul

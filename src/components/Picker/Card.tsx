@@ -13,7 +13,7 @@ export interface Props {
   alt?: string;
 }
 
-class Card extends React.Component<Props, {}> {
+class Card extends React.PureComponent<Props, {}> {
   constructor(props: Props) {
     super(props);
   }

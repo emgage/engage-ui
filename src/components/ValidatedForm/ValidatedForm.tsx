@@ -23,7 +23,7 @@ export interface Props {
   showError: boolean;
 }
 
-class ValidatedForm extends React.Component<Props, {}> {
+class ValidatedForm extends React.PureComponent<Props, {}> {
   componentWillReceiveProps(nextProps: Props) {
     if (this.props.showError !== nextProps.showError && nextProps.showError) {
       const { form , onSubmitError } = this.props;

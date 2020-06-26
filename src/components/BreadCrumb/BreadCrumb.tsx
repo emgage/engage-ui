@@ -31,7 +31,7 @@ export interface Props {
 }
 
 // Breadcrumb component bind items from sourcedata.
-class BreadCrumb extends React.Component<Props, {}> {
+class BreadCrumb extends React.PureComponent<Props, {}> {
 
   renderBreadcrumbItems() {
     const { direction = 'left', theme, source } = this.props;

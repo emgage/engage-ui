@@ -111,7 +111,7 @@ export interface Props {
   defaultSelectedItems?: IItemList[];
 }
 
-class Picker extends React.Component<Props, State> {
+class Picker extends React.PureComponent<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {

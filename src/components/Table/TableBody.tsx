@@ -9,7 +9,7 @@ export interface Props {
   theme?: any;
 }
 
-class TableBody extends React.Component<Props, never> {
+class TableBody extends React.PureComponent<Props, never> {
   static displayName = 'TableBody';
   constructor(props: Props) {
     super(props);

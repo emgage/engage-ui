@@ -12,7 +12,7 @@ export interface Props {
   theme?: any;
 }
 
-class ModalBody extends React.Component<Props, never> {
+class ModalBody extends React.PureComponent<Props, never> {
   constructor(props: Props) {
     super(props);
   }

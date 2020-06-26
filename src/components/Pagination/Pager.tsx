@@ -23,7 +23,7 @@ export interface IProps {
   componentStyle?: any;
 }
 
-class Pager extends React.Component<IProps, {}> {
+class Pager extends React.PureComponent<IProps, {}> {
   constructor(props: IProps) {
     super(props);
   }

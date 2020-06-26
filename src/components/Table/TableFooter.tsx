@@ -7,7 +7,7 @@ import * as baseTheme from './Table.scss';
 
 export interface Props {}
 
-class TableFooter extends React.Component<Props, never> {
+class TableFooter extends React.PureComponent<Props, never> {
   constructor(props: Props) {
     super(props);
   }

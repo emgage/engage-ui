@@ -17,7 +17,7 @@ export interface Props {
   theme?: any;
 }
 
-class Message extends React.Component<Props, {}> {
+class Message extends React.PureComponent<Props, {}> {
   render() {
     const { children, isVisible, componentId, componentStyle, theme } = this.props;
 
