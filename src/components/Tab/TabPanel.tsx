@@ -40,7 +40,7 @@ export interface State {
 }
 
 // TabPanel component bind multiple/single tab and it's content in it.
-class TabPanel extends React.Component<Props, State> {
+class TabPanel extends React.PureComponent<Props, State> {
 
   componentWillReceiveProps(newProps: any) {
     // Call the callback function if available

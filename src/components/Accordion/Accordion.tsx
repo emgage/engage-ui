@@ -33,7 +33,7 @@ interface State {
   active: boolean[];
 }
 
-class Accordion extends React.Component<Props, State> {
+class Accordion extends React.PureComponent<Props, State> {
   private getUniqueID = createUniqueIDFactory('Accordion');
   private getItemUniqueID = createUniqueIDFactory('AccordionItems');
   private id = this.getUniqueID();

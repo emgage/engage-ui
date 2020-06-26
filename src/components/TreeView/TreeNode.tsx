@@ -6,7 +6,7 @@ import { TREEVIEW } from '../ThemeIdentifiers';
 
 import * as baseTheme from './TreeView.scss';
 
-class TreeNode extends React.Component<Props, never> {
+class TreeNode extends React.PureComponent<Props, never> {
   constructor(props: Props) {
     super(props);
   }

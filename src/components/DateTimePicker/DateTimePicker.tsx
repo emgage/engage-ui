@@ -37,7 +37,7 @@ export interface State {
   open: boolean;
 }
 
-class DateTimePicker extends React.Component<Props, State>{
+class DateTimePicker extends React.PureComponent<Props, State>{
   // set time format for Date picker base on timePicker props
   private timeFormat = this.props.timePicker && this.props.dateFormat ? 'MM/DD/YYYY [at] h:mm A' : this.props.timePicker ? 'h:mm A' : 'MM/DD/YYYY';
   // set dateTime for moment string

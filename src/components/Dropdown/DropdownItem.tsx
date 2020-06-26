@@ -27,7 +27,7 @@ export interface Props {
 
 const getUniqueID = createUniqueIDFactory('DropdownItem');
 
-class DropdownItem extends React.Component<Props, never> {
+class DropdownItem extends React.PureComponent<Props, never> {
   public id = getUniqueID();
 
   clickCallback = (event: any) => {

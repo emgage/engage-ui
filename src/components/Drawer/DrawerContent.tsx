@@ -27,7 +27,7 @@ export interface Props {
 }
 
 // Drawer Content component, in here wrap all other required components or DOM for the Drawer
-class DrawerContent extends React.Component<Props> {
+class DrawerContent extends React.PureComponent<Props> {
 
   getContainerClassName() {
     const {

@@ -28,7 +28,7 @@ const IconClose = (props:any) => {
 };
 
 // Alert component, in here wrap all other required components or DOM for the Alert
-class Alert extends React.Component<Props, State> {
+class Alert extends React.PureComponent<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {

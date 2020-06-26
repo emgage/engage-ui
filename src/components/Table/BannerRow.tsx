@@ -24,7 +24,7 @@ export interface State {
   selectedValue?: string;
 }
 
-class BannerRow extends React.Component<Props, State> {
+class BannerRow extends React.PureComponent<Props, State> {
 
   constructor(props: Props) {
     super(props);
