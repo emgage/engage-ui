@@ -38,7 +38,7 @@ export interface Props {
   theme?: any;
 }
 
-class TableHead extends React.Component<Props, never> {
+class TableHead extends React.PureComponent<Props, never> {
   constructor(props: Props) {
     super(props);
   }

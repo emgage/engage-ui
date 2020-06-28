@@ -43,7 +43,7 @@ export interface Props {
 const getUniqueID = createUniqueIDFactory('ModalContent');
 
 @layeredComponent({ idPrefix: 'Modal' })
-class Modal extends React.Component<Props, never> {
+class Modal extends React.PureComponent<Props, never> {
   constructor(props: Props) {
     super(props);
   }

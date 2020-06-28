@@ -415,7 +415,7 @@ class MaskTextField extends React.PureComponent<Props, State> {
       }
     }
     const passProps = copyProps ? copyProps : props;
-    return <TextField value={this.state.value} ref={(ref: React.Component<TextFieldProps>) => this.input = ref} {...passProps} theme={theme} />;
+    return <TextField value={this.state.value} ref={(ref: React.PureComponent<TextFieldProps>) => this.input = ref} {...passProps} theme={theme} />;
   }
 }
 export default themr(MASK_TEXT_FIELD, baseTheme)(MaskTextField) as ThemedComponentClass<Props, State>;
