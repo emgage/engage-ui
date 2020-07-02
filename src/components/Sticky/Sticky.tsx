@@ -5,6 +5,7 @@ import { classNames } from '@shopify/react-utilities/styles';
 import * as baseTheme from './Sticky.scss';
 
 export type Position = 'top' | 'bottom';
+export type fotType = 'inline' | 'fixed' | 'inline';
 
 export interface Props {
   children?: React.ReactNode;
@@ -13,14 +14,16 @@ export interface Props {
   // Set a custom class
   componentClass?: string;
   // Theme to be injected via css-themr.
+  footerType:fotType;
   theme?: any;
 }
 
-const Sticky = ({ position, theme, componentClass, componentStyle, children }:Props) => {
+const Sticky = ({ position, theme, componentClass, componentStyle, children, footerType }:Props) => {
 
   const classes = classNames(
     position === 'top' ? theme.headerSticky : theme.footerSticky,
     theme.stickyStyle,
+    footerType === 'inline' ? theme.footerInline : (footerType === 'fixed' ? theme.footerFixed : theme.footerAuto),
     componentClass
   );
 
