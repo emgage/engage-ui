@@ -1144,7 +1144,7 @@ class App extends React.Component<{}, State> {
       <br />
       <br />
       <br />
-      <Sticky position={'bottom'}>
+      <Sticky position={'bottom'} footerType="inline">
                 <span>footer content</span>
       </Sticky>
       You can scroll and see me!</div>
@@ -1298,7 +1298,7 @@ class App extends React.Component<{}, State> {
             }}
             bordered highlight />
         </div>
-            <Sticky position={'top'} componentStyle={{ backgroundColor: '#FFF', color: 'inherit' }}>
+            <Sticky position={'top'} componentStyle={{ backgroundColor: '#FFF', color: 'inherit' }} footerType="inline">
               <span>footer content</span>
               <Button onClick={this.toggleModal}>Medium buttonas</Button>
             </Sticky>
@@ -1632,7 +1632,7 @@ class App extends React.Component<{}, State> {
             componentWidth="large"
             overlay
             closeButton>
-            <Sticky position={'top'}>
+            <Sticky position={'top'} footerType="inline">
               <span>Header content</span>
             </Sticky>
             <DrawerContent componentId="content1" mode="slide">
@@ -1799,7 +1799,7 @@ class App extends React.Component<{}, State> {
             <br />
             <br />
             You can scroll and see me!</div>
-            <Sticky position={'bottom'}>
+            <Sticky position={'bottom'} footerType="inline">
             <span>footer content</span>
             </Sticky>
             </DrawerContent>
