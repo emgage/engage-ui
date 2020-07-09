@@ -35,7 +35,7 @@ export interface State {
   anchorEl?: HTMLElement;
 }
 
-class RowAction extends React.Component<Props, State> {
+class RowAction extends React.PureComponent<Props, State> {
   constructor(props: Props) {
     super(props);
 

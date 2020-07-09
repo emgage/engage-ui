@@ -11,7 +11,7 @@ export interface Props {
   theme?: any;
 }
 
-class ModalContent extends React.Component<Props, never> {
+class ModalContent extends React.PureComponent<Props, never> {
   constructor(props: Props) {
     super(props);
   }

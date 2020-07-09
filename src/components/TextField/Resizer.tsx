@@ -64,8 +64,8 @@ class Resizer extends React.PureComponent<Props, never> {
 
   @autobind
   private handleHeightCheck() {
-    const contentHeight = this.contentNode.offsetHeight;
-    const minimumHeight = this.setMinimumLinesNode ? this.minimumLinesNode.offsetHeight : 0;
+    const contentHeight = this.contentNode ? this.contentNode.offsetHeight : window.innerHeight;
+    const minimumHeight = this.minimumLinesNode ? this.minimumLinesNode.offsetHeight : 0;
     const newHeight = Math.max(contentHeight, minimumHeight);
 
     const { currentHeight, onHeightChange } = this.props;

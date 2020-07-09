@@ -15,7 +15,7 @@ export interface Props {
   theme?: any;
 }
 
-class TableRow extends React.Component<Props, never> {
+class TableRow extends React.PureComponent<Props, never> {
   constructor(props: Props) {
     super(props);
     this.props.callBackSelectedRows ? this.props.callBackSelectedRows(this.props.selectRow) : null;

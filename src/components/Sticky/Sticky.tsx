@@ -14,7 +14,7 @@ export interface Props {
   // Set a custom class
   componentClass?: string;
   // Theme to be injected via css-themr.
-  footerType:fotType;
+  footerType?:fotType;
   theme?: any;
 }
 

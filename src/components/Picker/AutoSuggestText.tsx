@@ -25,7 +25,7 @@ export interface Props {
   stateProps?: IStateProps;
 }
 
-class AutoSuggestText extends React.Component<Props, {}> {
+class AutoSuggestText extends React.PureComponent<Props, {}> {
   private refHolder: any;
   render() {
     const { theme }: any = this.props;

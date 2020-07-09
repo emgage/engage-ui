@@ -1,6 +1,6 @@
 import * as React from 'react';
-import * as Redux from 'react-redux';
-import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { bindActionCreators, Dispatch } from 'redux';
 import * as actions from '../actions/ComponentActions';
 import { IDocumentAppState, IDocument } from '../Types';
 
@@ -52,13 +52,13 @@ function mapStateToProps(state: IDocumentAppState) {
   };
 }
 
-function mapDispatchToProps(dispatch: Redux.Dispatch<{}>) {
+function mapDispatchToProps(dispatch: Dispatch) {
   return {
     actions: bindActionCreators(actions.requestComponents, dispatch),
   };
 }
 
-export default Redux.connect(
+export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(ComponentsPage);

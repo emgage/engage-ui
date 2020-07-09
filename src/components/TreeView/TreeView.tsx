@@ -24,7 +24,7 @@ export interface State {
   source: SourceData[];
 }
 
-class TreeView extends React.Component<Props, State> {
+class TreeView extends React.PureComponent<Props, State> {
   constructor(props: Props) {
     super(props);
 

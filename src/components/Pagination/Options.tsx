@@ -24,7 +24,7 @@ interface IState {
   current?: any;
 }
 
-class Options extends React.Component<IProps, IState> {
+class Options extends React.PureComponent<IProps, IState> {
   static defaultProps = {
     pageSizeOptions: ['10', '20', '30', '40'],
   };

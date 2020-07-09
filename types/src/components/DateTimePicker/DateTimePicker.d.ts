@@ -9,6 +9,7 @@ export interface Props {
     timePicker?: boolean;
     onChange(dataTime: any): void;
     onBlur?(dateTime: any): void;
+    componentId?: string;
 }
 export interface State {
     dateTime: any;

@@ -1,16 +1,27 @@
+import { routerMiddleware } from 'connected-react-router';
+import { createBrowserHistory } from 'history';
 import { createStore, compose, applyMiddleware } from 'redux';
 import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
 import reduxThunk from 'redux-thunk';
 import reducers from '../reducers';
 import InitialState from '../reducers/InitialState';
 
+export const history = createBrowserHistory();
+
 function configureStoreProd() {
   const middlewares: any[] = [
     reduxThunk,
   ];
+  const rootReducer = reducers(history);
 
-  return createStore(reducers, InitialState, compose(
-    applyMiddleware(...middlewares)
+  return createStore(
+    rootReducer,
+    InitialState,
+    compose(
+      applyMiddleware(
+        routerMiddleware(history),
+        ...middlewares
+      )
     )
   );
 }
@@ -39,6 +50,6 @@ function configureStoreDev() {
   return store;
 }
 
-const configureStore = process.env.NODE_ENV === 'production' ? configureStoreProd : configureStoreDev;
+export const configureStore = process.env.NODE_ENV === 'production' ? configureStoreProd : configureStoreDev;
 
 export default configureStore;

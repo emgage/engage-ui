@@ -4,10 +4,12 @@ import { DisplayMoreInfo } from './PickerEnum';
 import * as Autosuggest from 'react-autosuggest';
 export interface IPickerInfo {
     id?: number;
+    key?: number;
     image?: string;
     name: string;
     description: string;
     email?: string;
+    icon?: string;
 }
 export interface IStateProps {
     chipListState: IItemList[];
@@ -22,6 +24,8 @@ export interface IItemList {
     email?: string;
     tabIndex?: number;
     alt?: string;
+    icon?: string;
+    text?: string;
 }
 export interface IRenderSuggestionProp {
     isHighlighted: string;
@@ -67,6 +71,7 @@ export interface Props {
     label?: string;
     labelHidden?: boolean;
     loading?: boolean;
+    disabled?: boolean;
     maxSelectedItems?: number;
     minSelectedItems?: number;
     chipComponent?: React.ReactNode;
@@ -82,6 +87,7 @@ export interface Props {
     onRemove?(item: any): void;
     onMoreInfo?(): void;
     suffix?: string;
+    defaultSelectedItems?: IItemList[];
 }
 declare class Picker extends React.Component<Props, State> {
     constructor(props: Props);
