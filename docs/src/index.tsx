@@ -9,6 +9,7 @@ import { history, configureStore } from './store/configureStore';
 require('../assets/favicon.ico');
 
 const store = configureStore();
+
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
