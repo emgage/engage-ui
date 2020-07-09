@@ -68,7 +68,7 @@
       "@semantic-release/npm"
     ],
     "npmPublish": true,
-    "branches": ["master", "next"],
+    "branches": ["master", { "name": "next", "prerelease": true }],
     "branch": "next"
   },
   "sgc": {
