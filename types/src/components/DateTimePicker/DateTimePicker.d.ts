@@ -15,7 +15,7 @@ export interface State {
     dateTime: any;
     open: boolean;
 }
-declare class DateTimePicker extends React.Component<Props, State> {
+declare class DateTimePicker extends React.PureComponent<Props, State> {
     private timeFormat;
     private dateTimeString;
     constructor(props: Props);

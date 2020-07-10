@@ -18,7 +18,7 @@ export interface Props {
 interface State {
     active: boolean[];
 }
-declare class Accordion extends React.Component<Props, State> {
+declare class Accordion extends React.PureComponent<Props, State> {
     private getUniqueID;
     private getItemUniqueID;
     private id;

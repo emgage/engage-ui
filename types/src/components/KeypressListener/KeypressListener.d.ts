@@ -4,7 +4,7 @@ export interface Props {
     keyCode: Keys;
     handler(event: KeyboardEvent): void;
 }
-export default class KeypressListener extends React.Component<Props, never> {
+export default class KeypressListener extends React.PureComponent<Props, never> {
     componentDidMount(): void;
     componentWillUnmount(): void;
     render(): null;

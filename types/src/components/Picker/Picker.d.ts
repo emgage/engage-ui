@@ -89,7 +89,7 @@ export interface Props {
     suffix?: string;
     defaultSelectedItems?: IItemList[];
 }
-declare class Picker extends React.Component<Props, State> {
+declare class Picker extends React.PureComponent<Props, State> {
     constructor(props: Props);
     componentWillReceiveProps(newProps: Props): void;
     render(): JSX.Element;
