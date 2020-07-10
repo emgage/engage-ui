@@ -39,7 +39,6 @@
     "docs": "webpack-dev-server --config webpack.docs.config",
     "precommit-msg": "echo 'Running linting and testing checks...' && exit 0",
     "travis-deploy-once": "travis-deploy-once",
-    "semantic-release": "semantic-release --debug",
     "commit": "node node_modules/semantic-git-commit-cli/dest/cli.js",
     "commitmsg": "commitlint -E GIT_PARAMS"
   },
@@ -57,26 +56,6 @@
     "themes",
     "types"
   ],
-  "release": {
-    "verifyConditions": [
-      "@semantic-release/npm"
-    ],
-    "prepare": [
-      "@semantic-release/npm"
-    ],
-    "publish": [
-      "@semantic-release/npm"
-    ],
-    "npmPublish": true,
-    "branches": [
-      "master",
-      {
-        "name": "next",
-        "prerelease": true
-      }
-    ],
-    "branch": "next"
-  },
   "sgc": {
     "lowercaseTypes": true
   },
