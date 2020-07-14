@@ -16,6 +16,7 @@ import BannerRow  from './BannerRow';
 
 import { ColumnConfig, FilterConfig, NestedChild, SortState, ServerSort } from './interface';
 import * as baseTheme from './Table.scss';
+import Spinner from '../Spinner';
 
 export type RowSelection = 'checkbox' | 'radio';
 export type SortOrder = 'asc' | 'desc';
@@ -348,7 +349,7 @@ class Table extends React.PureComponent<Props, State> {
     }
     return(
       <React.Fragment key={index}>
-        <TableRow theme={theme} isRowLoading={item.isRowLoading}>
+        <TableRow theme={theme}>
           { this.renderRowSelection(item, 'body') }
           {
             column.map((colItem: any, index: number) => {
@@ -372,12 +373,13 @@ class Table extends React.PureComponent<Props, State> {
                   { colItem.key === 'rowAction' ? <RowAction theme={theme} actionInProgress={actionInProgress} isRowLoading={item.isRowLoading} actionConfig={rowAction}  data={item} rowActionLeft /> : '' }
                   { renderCheckbox ? this.renderCheckColumn(item, false) : ''}
                   { colItem.injectBody ? colItem.injectBody(item) : renderCheckbox ? <span style={{ paddingLeft: '16px' }}>{item[colItem.key]}</span> : <span className={theme.tableDataWrap}>{item[colItem.key]}</span> }
+                  {item.isRowLoading && <Spinner componentSize="small" componentColor="disabled" />}
                 </TableData>
               );
             })
           }
 
-          { rowAction && !rowActionLeft ? <TableData componentStyle={{ float: 'right' }}> <RowAction actionInProgress={actionInProgress} isRowLoading={item.isRowLoading} actionConfig={rowAction} data={item} theme={theme} /> </TableData> : '' }
+          { rowAction && !rowActionLeft ? <TableData componentStyle={{ float: 'right' }}>{item.isRowLoading && <Spinner componentSize="small" componentColor="disabled" />} <RowAction actionInProgress={actionInProgress} isRowLoading={item.isRowLoading} actionConfig={rowAction} data={item} theme={theme} /> </TableData> : '' }
         </TableRow>
         { renderBanner &&
         <TableRow>
