@@ -8,6 +8,7 @@ import Stack, { Item as StackItem } from '../Stack';
 import Heading from '../Heading';
 import { CARD } from '../ThemeIdentifiers';
 import { classNames } from '@shopify/react-utilities/styles';
+import Context from './Context';
 
 import * as baseTheme from './Card.scss';
 
@@ -22,9 +23,11 @@ export interface Props {
   componentClass?: string;
   // Theme to be injected via css-themr.
   theme?: any;
+  // Callback when clicked.
+  onClick?(e: React.FormEvent<HTMLElement>): void;
 }
 
-const cardHeader = ({ children, actions, theme, componentStyle, componentClass }: Props) => {
+const cardHeader = ({ children, actions, theme, componentStyle, componentClass, onClick }: Props) => {
   const actionMarkup = actions
     ? (
       <ButtonGroup theme={theme}>
@@ -50,8 +53,19 @@ const cardHeader = ({ children, actions, theme, componentStyle, componentClass }
     componentClass
   );
 
+  const context = React.useContext(Context);
+
+  const onClickHandler = (e: React.FormEvent<HTMLElement>) => {
+    (context.cardHasOnClick && onClick) && e.stopPropagation();
+    onClick && onClick(e);
+  };
+
   return (
-    <div style={componentStyle} className={headerClass}>
+    <div
+      style={componentStyle}
+      className={headerClass}
+      onClick={onClickHandler}
+    >
       {headingMarkup}
     </div>
   );
