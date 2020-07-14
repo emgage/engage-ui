@@ -20,9 +20,6 @@ $stacking-order: (
   .footerInline {
     z-index: auto!important;
   }
-  .footerFixed {
+  .footerFixed, .footerAuto  {
     z-index: z-index(overlay, $stacking-order);
-  }
-  .footerAuto {
-    z-index: 1;
   }
