@@ -16,6 +16,7 @@ import BannerRow  from './BannerRow';
 
 import { ColumnConfig, FilterConfig, NestedChild, SortState, ServerSort } from './interface';
 import * as baseTheme from './Table.scss';
+import Spinner from '../Spinner';
 
 export type RowSelection = 'checkbox' | 'radio';
 export type SortOrder = 'asc' | 'desc';
@@ -369,15 +370,16 @@ class Table extends React.PureComponent<Props, State> {
                     Here injectBody helps to inject any custom component to td,
                     we also return the specifc value, which then can be used in injected component
                   */}
-                  { colItem.key === 'rowAction' ? <RowAction theme={theme} actionInProgress={actionInProgress} actionConfig={rowAction} data={item} rowActionLeft /> : '' }
+                  { colItem.key === 'rowAction' ? <RowAction theme={theme} actionInProgress={actionInProgress} isRowLoading={item.isRowLoading} actionConfig={rowAction}  data={item} rowActionLeft /> : '' }
                   { renderCheckbox ? this.renderCheckColumn(item, false) : ''}
                   { colItem.injectBody ? colItem.injectBody(item) : renderCheckbox ? <span style={{ paddingLeft: '16px' }}>{item[colItem.key]}</span> : <span className={theme.tableDataWrap}>{item[colItem.key]}</span> }
+                  {item.isRowLoading && <Spinner componentSize="small" componentColor="disabled" />}
                 </TableData>
               );
             })
           }
 
-          { rowAction && !rowActionLeft ? <TableData componentStyle={{ float: 'right' }}> <RowAction actionInProgress={actionInProgress} actionConfig={rowAction} data={item} theme={theme} /> </TableData> : '' }
+          { rowAction && !rowActionLeft ? <TableData componentStyle={{ float: 'right' }}>{item.isRowLoading && <Spinner componentSize="small" componentColor="disabled" />} <RowAction actionInProgress={actionInProgress} isRowLoading={item.isRowLoading} actionConfig={rowAction} data={item} theme={theme} /> </TableData> : '' }
         </TableRow>
         { renderBanner &&
         <TableRow>
@@ -537,7 +539,7 @@ class Table extends React.PureComponent<Props, State> {
   // Function to render table row checkboxes
   renderCheckbox(rowData: any) {
     const { disableAllRow, intermediateRow, selectedRows = [] } = this.state;
-    const { selectCallbackValue, actionInProgress, theme,  } = this.props;
+    const { selectCallbackValue, actionInProgress, theme  } = this.props;
     const uniqueId = selectCallbackValue ? rowData[selectCallbackValue] : rowData.id;
     const rowCheckedStatus = selectedRows.indexOf(uniqueId) !== -1 ? true : intermediateRow.indexOf(uniqueId) !== -1 ? 'indeterminate' : false;
 
@@ -546,7 +548,7 @@ class Table extends React.PureComponent<Props, State> {
         label={`Check ${rowData.name}`}
         labelHidden
         theme={theme}
-        disabled={disableAllRow ? disableAllRow : actionInProgress}
+        disabled={(disableAllRow ? disableAllRow : actionInProgress) || rowData.isRowLoading}
         checked={rowCheckedStatus}
         onChange={(checkedStatus: boolean) => {
           this.toggleSingleRowSelection(rowData, checkedStatus);
