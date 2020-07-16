@@ -36,7 +36,7 @@ $stacking-order: (
   line-height: ($height - rem(4px));
   color: color(ink);
   z-index: z-index(icon, $stacking-order); 
-  width: 2rem;
+  width: initial;
   height: 2rem;
 }
 
