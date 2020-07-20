@@ -262,6 +262,8 @@ class TextField extends React.PureComponent<Props, State> {
       required,
       maxLength,
       placeholder,
+      max: type === 'date' ? '9999-12-31' : null,
+      min: type === 'date' ? '0000-01-01' : null,
       id: componentId,
       value: this.state.value,
       onFocus: this.handleInputOnFocus,
