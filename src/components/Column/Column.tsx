@@ -50,7 +50,10 @@ export type ResponsiveWidth =
     '7-10' |
     '8-9' |
     '8-10' |
-    '9-10';
+    '8-25-15' |
+    '9-10' |
+    '9-25-15' |
+    '9-75-15';
 
 export interface Props {
   // Column set with small width size

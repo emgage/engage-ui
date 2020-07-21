@@ -14,6 +14,11 @@ $spinner-spacing: ($height - $spinner-size - rem(4px)) / 2;
 $icon-size: rem(14px);
 $icon-spacing: ($height - $icon-size - rem(4px)) / 2;
 
+$stacking-order: (
+  icon: 1,
+);
+
+
 @mixin pip-color($color) {
   .pip {
     color: $color;
@@ -30,6 +35,9 @@ $icon-spacing: ($height - $icon-size - rem(4px)) / 2;
   font-size: rem(13px);
   line-height: ($height - rem(4px));
   color: color(ink);
+  z-index: z-index(icon, $stacking-order); 
+  width: initial;
+  height: 2rem;
 }
 
 .statusSuccess {

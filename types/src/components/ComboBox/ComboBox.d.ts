@@ -24,7 +24,7 @@ interface State {
     selectedValue: string;
     popoverWidth: string;
 }
-declare class ComboBox extends React.Component<Props, State> {
+declare class ComboBox extends React.PureComponent<Props, State> {
     private getUniqueID;
     private id;
     private wrapperRef;

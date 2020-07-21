@@ -6,7 +6,7 @@ const StickyExample1 = () => (
   <div className={styles.example}>
     <br />
     <br />
-    <Sticky position="bottom">
+    <Sticky position="bottom" footerType="inline">
         Batman is a <br/>
         fictional<br/>
         superhero<br/>

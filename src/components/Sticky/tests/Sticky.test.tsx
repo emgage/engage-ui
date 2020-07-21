@@ -18,6 +18,7 @@ describe('<Sticky />', () => {
         <Sticky
           position={'top'}
           theme={theme}
+          footerType="inline"
         >
         Batman is a <br/>
         fictional<br/>
@@ -47,6 +48,7 @@ describe('<Sticky />', () => {
         <Sticky
           position={'bottom'}
           theme={theme}
+          footerType="inline"
         >
         Batman is a <br/>
         fictional<br/>
