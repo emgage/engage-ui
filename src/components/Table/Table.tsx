@@ -172,6 +172,8 @@ class Table extends React.PureComponent<Props, State> {
         newProps.selectRowCallback(defaultCheckedDataId);
       }
     }
+
+    this.forceUpdate();
   }
 
   getInitialState() {
