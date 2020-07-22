@@ -10,6 +10,16 @@ $spinner-size: rem(20px);
 
 .hasValue {
 
+  .prefix {
+    padding-top: (control-vertical-padding() * 2) - 0.3rem; // total padding - padding-bottom
+    padding-bottom: 0.3rem;
+  }
+
+  .suffix {
+    padding-top: (control-vertical-padding() * 2) - 0.3rem; // total padding - padding-bottom
+    padding-bottom: 0.3rem;
+  }
+
   .input{
     color: theme-color(m-grey, 900);
     padding-top: (control-vertical-padding() * 2) - 0.3rem; // total padding - padding-bottom
@@ -22,12 +32,22 @@ $spinner-size: rem(20px);
   }
 
   &.labelHidden {
+    
+    > .prefix {
+      padding-top: control-vertical-padding();
+      padding-bottom: control-vertical-padding();
+    }
   
-    > .input {
+    > .suffix {
       padding-top: control-vertical-padding();
       padding-bottom: control-vertical-padding();
     }
 
+    > .input {
+      padding-top: control-vertical-padding();
+      padding-bottom: control-vertical-padding();
+    }
+    
     &.multiline > .input {
       margin-top: control-vertical-padding();
       padding-top: 0;
