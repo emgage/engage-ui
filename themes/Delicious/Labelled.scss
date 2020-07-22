@@ -16,7 +16,7 @@ $stacking-order: (
 
   &.focused,
   &:not(.empty) {
-    transform: translate3D(0,0.3rem,0);
+    transform: translate3D(0, 0.1rem, 0);
   }
 
 }
