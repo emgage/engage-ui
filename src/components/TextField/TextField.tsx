@@ -289,7 +289,7 @@ class TextField extends React.PureComponent<Props, State> {
 
     const labelStyle = classNames(
       theme.labelStyle,
-      (hasValue || this.state.focused) && theme.labelHasValue,
+      (hasValue || this.state.focused || prefix) && theme.labelHasValue,
       disabled && theme.labelDisabled
     );
 
@@ -304,7 +304,7 @@ class TextField extends React.PureComponent<Props, State> {
         helpText={helpText}
         disabled={disabled}
         focused={this.state.focused || isFocused}
-        hasValue={hasValue || propHasValue}
+        hasValue={Boolean(hasValue || propHasValue || prefix)}
         required={required}
         componentClass={labelStyle}
         theme={theme}
