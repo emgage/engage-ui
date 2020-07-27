@@ -37,6 +37,7 @@ $stacking-order: (
 }
 
 .container {
+  width: 100%;
   display: inline-block;
   //overflow: hidden;
   text-overflow: ellipsis;
