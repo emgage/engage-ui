@@ -118,7 +118,7 @@ export interface State {
 
 let callBackSelectedRows: any;
 
-class Table extends React.PureComponent<Props, State> {
+class Table extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = this.getInitialState();
@@ -172,8 +172,6 @@ class Table extends React.PureComponent<Props, State> {
         newProps.selectRowCallback(defaultCheckedDataId);
       }
     }
-
-    this.forceUpdate();
   }
 
   getInitialState() {
