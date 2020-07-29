@@ -76,7 +76,7 @@ class RowAction extends React.PureComponent<Props, State> {
   }
 
   render () {
-    const { actionConfig, data, rowActionLeft, actionInProgress, theme } = this.props;
+    const { actionConfig, data, rowActionLeft = false, actionInProgress = false, theme } = this.props;
     const validActionConfigs = this.getActions(actionConfig, data);
     return (
       <React.Fragment>

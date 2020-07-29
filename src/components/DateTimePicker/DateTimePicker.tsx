@@ -72,7 +72,7 @@ class DateTimePicker extends React.PureComponent<Props, State>{
   }
 
   render() {
-    const { dateFormat, label, theme, timePicker } = this.props;
+    const { dateFormat = false, label, theme, timePicker = false } = this.props;
     const { dateTime, open } = this.state;
     return (
         <div>

@@ -38,13 +38,15 @@ class Scrollable extends React.PureComponent<Props, State> {
   private scrollArea: HTMLElement;
 
   componentDidMount() {
-    if (this.scrollArea == null || !this.props.shadow) { return; }
+    const { shadow = false } = this.props;
+    if (this.scrollArea == null || !shadow) { return; }
     addEventListener(this.scrollArea, 'scroll', this.handleScroll);
     this.handleScroll();
   }
 
   componentWillUnmount() {
-    if (this.scrollArea == null || !this.props.shadow) { return; }
+    const { shadow = false } = this.props;
+    if (this.scrollArea == null || !shadow) { return; }
     removeEventListener(this.scrollArea, 'scroll', this.handleScroll);
   }
 
@@ -53,9 +55,9 @@ class Scrollable extends React.PureComponent<Props, State> {
     const {
       children,
       className,
-      horizontal,
+      horizontal = false,
       vertical = true,
-      shadow,
+      shadow = false,
       theme,
       ...rest
     } = this.props;
@@ -89,7 +91,8 @@ class Scrollable extends React.PureComponent<Props, State> {
   @autobind
   private handleScroll() {
     const { scrollArea } = this;
-    if (scrollArea == null || !this.props.shadow) { return; }
+    const { shadow = false } = this.props;
+    if (scrollArea == null || !shadow) { return; }
 
     const { scrollTop, clientHeight, scrollHeight } = scrollArea;
     const shouldBottomShadow = !(scrollTop + clientHeight >= scrollHeight);

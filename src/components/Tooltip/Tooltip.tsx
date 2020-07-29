@@ -57,8 +57,8 @@ class Tooltip extends React.PureComponent<Props, State> {
 
     const {
       preferredPosition = 'below',
-      active,
-      light,
+      active = false,
+      light = false,
       content,
       theme,
     } = this.props;

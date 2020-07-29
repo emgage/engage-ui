@@ -19,7 +19,7 @@ export interface Props {
 
 class Message extends React.PureComponent<Props, {}> {
   render() {
-    const { children, isVisible, componentId, componentStyle, theme } = this.props;
+    const { children, isVisible = false, componentId, componentStyle, theme } = this.props;
 
     if (!isVisible) {
       // TODO This seems to be a bug. We want to return null.

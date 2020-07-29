@@ -31,8 +31,8 @@ class DrawerContent extends React.PureComponent<Props> {
 
   getContainerClassName() {
     const {
-      flip,
-      active,
+      flip = false,
+      active = false,
       theme,
     } = this.props;
 

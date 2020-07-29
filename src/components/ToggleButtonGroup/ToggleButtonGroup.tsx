@@ -35,7 +35,7 @@ const ToggleButtonGroup = ({
   componentStyle,
   componentClass,
   children,
-  segmented,
+  segmented = false,
   theme,
   label = '',
   labelAction,

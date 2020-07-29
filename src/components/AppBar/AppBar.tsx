@@ -57,7 +57,19 @@ const AppBar: React.FC<Props> = (props) => {
   /**
    * Destructure props here
    */
-  const { additionalLIst, enableGlobalGo, enableSearch, isLoggedIn, loginUrl, logoutUrl, profilePic, userName, logo, rightChildren, enableGlobalElement } = props;
+  const {
+    additionalLIst,
+    enableGlobalGo,
+    enableSearch = false,
+    isLoggedIn,
+    loginUrl,
+    logoutUrl,
+    profilePic,
+    userName,
+    logo,
+    rightChildren,
+    enableGlobalElement
+  } = props;
 
   /**
    * Render Right side children

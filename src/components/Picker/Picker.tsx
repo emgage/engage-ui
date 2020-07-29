@@ -289,12 +289,12 @@ class Picker extends React.PureComponent<Props, State> {
     };
 
     const {
-        autoSuggest,
+        autoSuggest = false,
         helpText,
         label,
-        labelHidden,
-        loading,
-        disabled,
+        labelHidden = false,
+        loading = false,
+        disabled = false,
         selectedResultsBehavior,
         moreInfoComponent,
         chipComponent,
