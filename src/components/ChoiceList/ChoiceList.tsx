@@ -62,11 +62,11 @@ class ChoiceList extends React.PureComponent<Props, {}> {
   render() {
     const {
       componentTitle,
-      titleHidden,
-      allowMultiple,
+      titleHidden = false,
+      allowMultiple = false,
       choices,
       selected,
-      horizontal,
+      horizontal = false,
       theme,
       helpText,
       componentName = getUniqueID(),

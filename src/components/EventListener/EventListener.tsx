@@ -36,12 +36,12 @@ export default class EventListener extends React.PureComponent<Props, never> {
   }
 
   private attachListener() {
-    const { event, handler, capture, passive } = this.props;
+    const { event, handler, capture = false, passive = false } = this.props;
     addEventListener(window, event, handler, { capture, passive });
   }
 
   private detachListener() {
-    const { event, handler, capture } = this.props;
+    const { event, handler, capture = false } = this.props;
     removeEventListener(window, event, handler, capture);
   }
 }

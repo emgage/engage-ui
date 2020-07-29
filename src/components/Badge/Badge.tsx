@@ -56,7 +56,18 @@ const STATUS_LABELS = {
   locked: 'Locked',
 };
 
-const badge = ({ children, status, progress, working, theme, icon, iconSource = 'lock', iconColor = 'inkLighter', componentClass = '', componentStyle }: Props) => {
+const badge = ({
+  children,
+  status,
+  progress,
+  working = false,
+  theme,
+  icon = false,
+  iconSource = 'lock',
+  iconColor = 'inkLighter',
+  componentClass = '',
+  componentStyle,
+}: Props) => {
   const className = classNames(
     componentClass,
     theme.badge,

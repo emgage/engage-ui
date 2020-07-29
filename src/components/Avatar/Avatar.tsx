@@ -37,7 +37,7 @@ class Avatar extends React.PureComponent<Props, {}> {
       componentName,
       source,
       initials,
-      customer,
+      customer = false,
       componentSize = 'medium',
       accessibilityLabel,
       theme,

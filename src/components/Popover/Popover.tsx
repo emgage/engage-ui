@@ -70,7 +70,7 @@ class Popover extends React.PureComponent<Props, State> {
 
   componentWillReceiveProps(newProps: Props) {
     const { anchorEl, manualInActive = false } = newProps;
-    const { anchorEl: oldAnchorEle, manualInActive: oldManualActive } = this.props;
+    const { anchorEl: oldAnchorEle, manualInActive: oldManualActive = false } = this.props;
 
     if (anchorEl && anchorEl !== oldAnchorEle) {
       this.setState({ active: true });
@@ -142,7 +142,7 @@ class Popover extends React.PureComponent<Props, State> {
       componentStyle = {},
       preferredPosition = 'below',
       preferredAlignment = 'center',
-      open,
+      open = false,
     } = this.props;
 
     const themeClass = classNames(

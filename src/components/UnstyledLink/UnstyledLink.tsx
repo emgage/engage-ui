@@ -28,7 +28,7 @@ export default class UnstyledLink extends React.PureComponent<Props, never> {
       return <LINKCOMPONENT {...this.props} {...unstyled.props} />;
     }
 
-    const { external, url, ...rest } = this.props;
+    const { external = false, url, ...rest } = this.props;
     const target = external ? '_blank' : undefined;
     const rel = external ? 'noopener noreferrer' : undefined;
     return <a style={this.props.componentStyle} target={target} {...rest} href={url} rel={rel} {...unstyled.props} />;

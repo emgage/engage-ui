@@ -31,7 +31,7 @@ export interface Props {
 class FlexBox extends React.PureComponent<Props, {}> {
   render() {
     const {
-      inline,
+      inline = false,
       direction ,
       justify,
       align,

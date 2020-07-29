@@ -45,7 +45,18 @@ class BannerRow extends React.PureComponent<Props, State> {
   }
 
   render () {
-    const { bannerTitle, bannerType, bannerIcon, disabled, dropdownItems, loading, rowItem, selectPlaceholder, selectedValue } = this.props;
+    const {
+      bannerTitle,
+      bannerType,
+      bannerIcon,
+      disabled = false,
+      dropdownItems,
+      loading = false,
+      rowItem,
+      selectPlaceholder,
+      selectedValue
+    } = this.props;
+
     return(
       <Banner key={rowItem.id} componentTitle={bannerTitle} status={bannerType} icon={bannerIcon as keyof typeof IconList}>
         <Select

@@ -40,11 +40,11 @@ const getUniqueID = createUniqueIDFactory('RadioButton');
 
 const radioButton = ({
   label,
-  labelHidden,
+  labelHidden = false,
   helpText,
-  checked,
+  checked = false,
   errors,
-  disabled,
+  disabled = false,
   onChange,
   onFocus,
   onBlur,

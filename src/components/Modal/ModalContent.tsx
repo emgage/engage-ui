@@ -17,7 +17,7 @@ class ModalContent extends React.PureComponent<Props, never> {
   }
 
   render() {
-    const { active, children } = this.props;
+    const { active = false, children } = this.props;
 
     return (
       <div>
