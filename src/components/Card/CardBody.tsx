@@ -22,7 +22,7 @@ export interface Props {
   onClick?(e: React.FormEvent<HTMLElement>): void;
 }
 
-const cardBody = ({ children, sectioned, theme, componentStyle, componentClass, onClick }: Props) => {
+const cardBody = ({ children, sectioned = false, theme, componentStyle, componentClass, onClick }: Props) => {
   const bodyContent = sectioned
     ? <CardSection>{children}</CardSection>
     : children;

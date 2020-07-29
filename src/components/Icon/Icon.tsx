@@ -222,7 +222,7 @@ const icon = ({
   callbackValue,
   source,
   componentColor,
-  backdrop,
+  backdrop = false,
   accessibilityLabel,
   componentStyle,
   componentClass,

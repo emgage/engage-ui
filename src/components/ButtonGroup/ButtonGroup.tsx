@@ -24,7 +24,7 @@ const buttonGroup = ({
   componentStyle,
   componentClass,
   children,
-  segmented,
+  segmented = false,
   theme,
 }: Props) => {
   const className = classNames(

@@ -16,7 +16,7 @@ export interface Props {
   onClick?(): void;
 }
 
-const link = ({ url, children, onClick, external, theme }: Props) => {
+const link = ({ url, children, onClick, external = false, theme }: Props) => {
   return url
     ? (
       <UnstyledLink className={theme.link} url={url} external={external}>

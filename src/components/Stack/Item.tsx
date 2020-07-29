@@ -14,7 +14,7 @@ export interface Props {
   theme?: any;
 }
 
-const item = ({ children, fill, theme }: Props) => {
+const item = ({ children, fill = false, theme }: Props) => {
   const className = classNames(
     theme.item,
     fill && theme['item-fill']

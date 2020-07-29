@@ -84,7 +84,7 @@ export interface Props {
   rowCallbackValue?: string;
   // Individual row action, if available add it in last of the column
   rowAction?: any;
-  // Pass this if row should be expanded bydefault on page load
+  // Pass this if row should be expanded by default on page load
   rowExpandOnLoad?: boolean;
   // This helps to add checkbox or radio to select the row & do bulk actions
   selectRow?: RowSelection;
@@ -136,7 +136,7 @@ class Table extends React.Component<Props, State> {
     const { defaultCheckedDataId } = newProps;
 
     if (newProps.filterData) {
-      const { field, searchKey, search } = newProps.filterData;
+      const { field, searchKey, search = false } = newProps.filterData;
 
       if (search && (this.props.filterData)) {
         this.triggerSearch(searchKey, field);
@@ -211,9 +211,9 @@ class Table extends React.Component<Props, State> {
   // Get class names for table
   getTableClassName = () => {
     const {
-      bordered,
-      highlight,
-      striped,
+      bordered = false,
+      highlight = false,
+      striped = false,
       theme,
       componentClass = '',
     } = this.props;
@@ -243,7 +243,7 @@ class Table extends React.Component<Props, State> {
   // Render the thead with th & contain specific header label
   // Used certain flags which will help to add sorting for any specific fields
   renderHeader = () => {
-    const { column, sorting, rowAction, rowActionLeft, theme } = this.props;
+    const { column, sorting, rowAction, rowActionLeft = false, theme } = this.props;
     const { field, order } = this.state.sort;
 
     return (
@@ -283,7 +283,7 @@ class Table extends React.Component<Props, State> {
 
   // Function to render tbody & td with specifc data & if user passed any custom component that can also get rendered
   renderBody = () => {
-    const { children, column, expandingRowId = [], hideRow, rowAction, rowExpandOnLoad, selectRow, theme } = this.props;
+    const { children, column, expandingRowId = [], hideRow, rowAction, rowExpandOnLoad = false, selectRow, theme } = this.props;
     const { data, expandedRow } = this.state;
 
     if (!children) {
@@ -339,7 +339,18 @@ class Table extends React.Component<Props, State> {
 
   // Render the main table row
   renderTbodyRows = (item: any, index: number | string) => {
-    const { actionInProgress, column, expandingRowId = [], hideExpandedIcon, onRowClick, rowActionLeft, rowCallbackValue, rowAction, selectRow, theme } = this.props;
+    const {
+      actionInProgress = false,
+      column,
+      expandingRowId = [],
+      hideExpandedIcon = false,
+      onRowClick,
+      rowActionLeft = false,
+      rowCallbackValue,
+      rowAction,
+      selectRow,
+      theme
+    } = this.props;
     const { nestedChildData } = this.state;
     const { renderBanner } = item;
     let totalColumn = column && column.length;
@@ -441,7 +452,16 @@ class Table extends React.Component<Props, State> {
 
   // Add checkbox or radio component to select the row, depending on `selectrow` flag
   renderRowSelection = (rowData: any, rowType: string) => {
-    const { columnFirstChildWidth = '30px', disableAllRowCallback, expandingRowId = [], hideExpandedIcon, renderHeaderCheckbox, selectRow, nestedChildData, theme } = this.props;
+    const {
+      columnFirstChildWidth = '30px',
+      disableAllRowCallback,
+      expandingRowId = [],
+      hideExpandedIcon = false,
+      renderHeaderCheckbox = false,
+      selectRow,
+      nestedChildData,
+      theme
+    } = this.props;
 
     if (selectRow) {
       if (rowType === 'body') {
@@ -491,7 +511,7 @@ class Table extends React.Component<Props, State> {
   // Function to add checkbox in header as well
   addHeaderCheckbox = (): React.ReactElement<any> => {
     const { data = [], intermediateRow = [], selectedRows = [] } = this.state;
-    const { columnFirstChildWidth = '30px', theme, hideSelectAll  , actionInProgress } = this.props;
+    const { columnFirstChildWidth = '30px', theme, hideSelectAll = false, actionInProgress = false } = this.props;
 
     // This gives the checked status: true means all child are checked, intermediate atlease one child is checked, false means nothing is checked
     const rowCheckedStatus = !intermediateRow.length ?
@@ -539,7 +559,7 @@ class Table extends React.Component<Props, State> {
   // Function to render table row checkboxes
   renderCheckbox(rowData: any) {
     const { disableAllRow, intermediateRow, selectedRows = [] } = this.state;
-    const { selectCallbackValue, actionInProgress, theme  } = this.props;
+    const { selectCallbackValue, actionInProgress = false, theme  } = this.props;
     const uniqueId = selectCallbackValue ? rowData[selectCallbackValue] : rowData.id;
     const rowCheckedStatus = selectedRows.indexOf(uniqueId) !== -1 ? true : intermediateRow.indexOf(uniqueId) !== -1 ? 'indeterminate' : false;
 
@@ -583,9 +603,9 @@ class Table extends React.Component<Props, State> {
   }
 
   render () {
-    const { componentStyle = {} } = this.props;
+    const { componentStyle = {}, hideHeader = false } = this.props;
     const tableClass = this.getTableClassName();
-    const renderedHeader = !this.props.hideHeader ? this.renderHeader() : null;
+    const renderedHeader = !hideHeader ? this.renderHeader() : null;
     const renderedBody = this.renderBody();
 
     return (

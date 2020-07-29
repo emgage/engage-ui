@@ -86,11 +86,11 @@ class Checkbox extends React.PureComponent<Props, State> {
     const {
       // checked = false,
       componentId = getUniqueID(),
-      disabled,
+      disabled = false,
       errors,
       helpText,
       label,
-      labelHidden,
+      labelHidden = false,
       name,
       onFocus,
       onBlur,

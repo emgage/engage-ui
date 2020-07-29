@@ -17,7 +17,7 @@ export interface Props {
   onClick?(e: React.FormEvent<HTMLElement>): void;
 }
 
-const CardSection = ({ children, subdued, theme, onClick }: Props) => {
+const CardSection = ({ children, subdued = false, theme, onClick }: Props) => {
 
   const className = classNames(
     theme.section,

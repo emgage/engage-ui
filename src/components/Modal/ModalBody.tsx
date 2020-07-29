@@ -18,7 +18,7 @@ class ModalBody extends React.PureComponent<Props, never> {
   }
 
   getBodyClassName() {
-    const { modalOverflow, theme } = this.props;
+    const { modalOverflow = false, theme } = this.props;
 
     return classNames(
       theme.body,

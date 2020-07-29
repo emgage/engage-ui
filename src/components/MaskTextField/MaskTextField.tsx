@@ -57,7 +57,7 @@ class MaskTextField extends React.PureComponent<Props, State> {
   paste: any;
   constructor(props: any) {
     super(props);
-    const { mask, maskChar, formatChars, alwaysShowMask } = props;
+    const { mask, maskChar, formatChars, alwaysShowMask = false } = props;
     let { defaultValue, value } = props;
     this.hasValue = value != null;
     this.maskOptions = parseMask(mask, maskChar, formatChars);
@@ -92,7 +92,8 @@ class MaskTextField extends React.PureComponent<Props, State> {
       return;
     }
     const isMaskChanged = this.maskOptions.mask && this.maskOptions.mask !== oldMaskOptions.mask;
-    const showEmpty = nextProps.alwaysShowMask || this.isFocused();
+    const { alwaysShowMask = false } = nextProps;
+    const showEmpty = alwaysShowMask || this.isFocused();
     let newValue = this.hasValue
       ? this.getStringValue(nextProps.value)
       : this.state.value;
@@ -347,7 +348,8 @@ class MaskTextField extends React.PureComponent<Props, State> {
     }
   }
   onBlur = (event: any) => {
-    if (!this.props.alwaysShowMask && isEmpty(this.maskOptions, this.state.value)) {
+    const { alwaysShowMask = false } = this.props;
+    if (!alwaysShowMask && isEmpty(this.maskOptions, this.state.value)) {
       const inputValue = '';
       const isInputValueChanged = inputValue !== this.getInputValue();
       if (isInputValueChanged) {
@@ -394,7 +396,7 @@ class MaskTextField extends React.PureComponent<Props, State> {
   render() {
     const {
       mask,
-      alwaysShowMask,
+      alwaysShowMask = false,
       maskChar,
       formatChars,
       theme,
