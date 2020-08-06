@@ -86,4 +86,5 @@ export { default as userNinja } from './user-ninja.svg';
 export { default as users } from './users.svg';
 export { default as usersCog } from './users-cog.svg';
 export { default as userTie } from './user-tie.svg';
+export { default as video } from './video.svg';
 export { default as view } from './view.svg';
