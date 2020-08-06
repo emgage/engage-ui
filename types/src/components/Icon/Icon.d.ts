@@ -84,6 +84,7 @@ export declare const BUNDLED_ICONS: {
     users: any;
     usersCog: any;
     userTie: any;
+    video: any;
     view: any;
     delete: any;
     export: any;
