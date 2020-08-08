@@ -2,6 +2,7 @@ import * as React from 'react';
 import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 import { default as KEYCODE }  from './KeyCode';
 import * as baseTheme from './Pagination.scss';
+import Select from '../Select'
 
 interface IProps {
   disabled: boolean;
@@ -17,10 +18,12 @@ interface IProps {
   selectPrefixCls: string;
   goButton: any;
   theme?: any;
+  selectValue?: string
 }
 
 interface IState {
   goInputText: any;
+  selectValue?: string;
   current?: any;
 }
 
@@ -34,7 +37,17 @@ class Options extends React.Component<IProps, IState> {
 
     this.state = {
       goInputText: '',
+      selectValue: props.selectValue || (props.pageSize || props.pageSizeOptions[0]).toString()
     };
+  }
+
+  static getDerivedStateFromProps(props: IProps, state: IState) {
+    const newState = {...state};
+    if (props.selectValue !== state.selectValue) {
+      newState["selectValue"] = props.selectValue;
+    }
+
+    return newState;
   }
 
   getValidValue() {
@@ -48,7 +61,11 @@ class Options extends React.Component<IProps, IState> {
 
   changeSize = (value: any) => {
     if (this.props.changeSize) {
-      this.props.changeSize(Number(value));
+      this.setState({
+        selectValue: value
+      }, () => {
+        this.props.changeSize!(Number(value));
+      })
     }
   }
 
@@ -96,12 +113,11 @@ class Options extends React.Component<IProps, IState> {
 
   render() {
     const {
-      pageSize, pageSizeOptions, locale, changeSize,
-      quickGo, goButton, selectComponentClass, buildOptionText,
-      selectPrefixCls, disabled, theme
+      pageSizeOptions, locale, changeSize,
+      quickGo, goButton, 
+      disabled, theme
     } = this.props;
     const { goInputText } = this.state;
-    const Select = selectComponentClass;
     let changeSelect = null;
     let goInput = null;
     let gotoButton = null;
@@ -111,25 +127,17 @@ class Options extends React.Component<IProps, IState> {
     }
 
     if (changeSize && Select) {
-      const options = pageSizeOptions.map((opt, i) => (
-        <Select.Option key={i} value={opt}>
-          {(buildOptionText || this.buildOptionText)(opt)}
-        </Select.Option>
-      ));
 
       changeSelect = (
         <Select
           disabled={disabled}
-          prefixCls={selectPrefixCls}
-          showSearch={false}
-          className={theme['rc-pagination-options-size-changer']}
-          optionLabelProp="children"
-          dropdownMatchSelectWidth={false}
-          value={(pageSize || pageSizeOptions[0]).toString()}
+          label=""
+          labelHidden={true}
+          options={pageSizeOptions}
+          value={this.state.selectValue}
           onChange={this.changeSize}
-          getPopupContainer={(triggerNode: any) => triggerNode.parentNode}
         >
-          {options}
+          
        </Select>
       );
     }
