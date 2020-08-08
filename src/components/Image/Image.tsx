@@ -13,7 +13,7 @@ export interface Props extends React.DetailedHTMLProps<React.ImgHTMLAttributes<H
   sourceSet?: SourceSet[];
 }
 
-class Image extends React.Component<Props, {}> {
+class Image extends React.PureComponent<Props, {}> {
   render() {
     const { sourceSet, source, ...rest } = this.props;
     const finalSourceSet = sourceSet

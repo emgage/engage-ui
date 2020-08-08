@@ -28,6 +28,7 @@ export interface Props {
   theme?: any;
   rowActionLeft?: boolean;
   actionInProgress?: boolean;
+  isRowLoading?: boolean;
 }
 
 export interface State {
@@ -35,7 +36,7 @@ export interface State {
   anchorEl?: HTMLElement;
 }
 
-class RowAction extends React.Component<Props, State> {
+class RowAction extends React.PureComponent<Props, State> {
   constructor(props: Props) {
     super(props);
 
@@ -75,7 +76,7 @@ class RowAction extends React.Component<Props, State> {
   }
 
   render () {
-    const { actionConfig, data, rowActionLeft, actionInProgress, theme } = this.props;
+    const { actionConfig, data, rowActionLeft = false, actionInProgress = false, theme } = this.props;
     const validActionConfigs = this.getActions(actionConfig, data);
     return (
       <React.Fragment>

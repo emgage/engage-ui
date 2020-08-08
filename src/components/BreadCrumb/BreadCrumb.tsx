@@ -31,7 +31,7 @@ export interface Props {
 }
 
 // Breadcrumb component bind items from sourcedata.
-class BreadCrumb extends React.Component<Props, {}> {
+class BreadCrumb extends React.PureComponent<Props, {}> {
 
   renderBreadcrumbItems() {
     const { direction = 'left', theme, source } = this.props;
@@ -48,8 +48,7 @@ class BreadCrumb extends React.Component<Props, {}> {
           onClick={child.type === 'disabled' ? undefined : child.onBreadcrumbClick}
           style={child.style}>
           <FlexBox>
-            <span>{child.name}</span>
-
+            <span className={theme.breadcrumbtext} aria-label={`navigate on ${child.name}`}>{child.name}</span>
             { (index + 1) < source.length ? <Icon componentColor="inkLightest" source="chevronRight" /> : null}
           </FlexBox>
         </li>

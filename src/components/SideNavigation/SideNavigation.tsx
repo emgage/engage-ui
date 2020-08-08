@@ -54,7 +54,7 @@ export interface State {
 }
 
 // SideNavigation component, in here wrap all other required components or DOM for the SideNavigation
-class SideNavigation extends React.Component<Props, State> {
+class SideNavigation extends React.PureComponent<Props, State> {
   constructor(props: Props) {
     super(props);
 

@@ -147,25 +147,25 @@ class TextField extends React.PureComponent<Props, State> {
   render() {
     const {
       autoComplete,
-      autoFocus,
-      autoSuggest,
+      autoFocus = false,
+      autoSuggest = false,
       autoSuggestMethods,
-      backdropHidden,
+      backdropHidden = false,
       componentId = getUniqueID(),
       componentClass = '',
       componentStyle = {},
       connectedRight,
       connectedLeft,
-      disabled,
-      enableTextCounter,
+      disabled = false,
+      enableTextCounter = false,
       errors,
-      hasValue: propHasValue,
+      hasValue: propHasValue = false,
       helpText,
-      isFocused,
+      isFocused = false,
       label = '',
       labelAction,
-      labelHidden,
-      loading,
+      labelHidden = false,
+      loading = false,
       maxLength,
       multiline,
       name,
@@ -174,9 +174,9 @@ class TextField extends React.PureComponent<Props, State> {
       onFocus,
       onBlur,
       onInput,
-      readOnly,
-      resizable,
-      required,
+      readOnly = false,
+      resizable = false,
+      required = false,
       showNumberIcon = true,
       suffix,
       theme,
@@ -262,6 +262,8 @@ class TextField extends React.PureComponent<Props, State> {
       required,
       maxLength,
       placeholder,
+      max: type === 'date' ? '9999-12-31' : type === 'datetime-local' ? '9999-12-31T00:00' : null,
+      min: type === 'date' ? '0000-01-01' : type === 'datetime-local' ? '0000-01-01T00:00' : null,
       id: componentId,
       value: this.state.value,
       onFocus: this.handleInputOnFocus,
@@ -289,7 +291,7 @@ class TextField extends React.PureComponent<Props, State> {
 
     const labelStyle = classNames(
       theme.labelStyle,
-      (hasValue || this.state.focused) && theme.labelHasValue,
+      (hasValue || this.state.focused || prefix) && theme.labelHasValue,
       disabled && theme.labelDisabled
     );
 
@@ -304,7 +306,7 @@ class TextField extends React.PureComponent<Props, State> {
         helpText={helpText}
         disabled={disabled}
         focused={this.state.focused || isFocused}
-        hasValue={hasValue || propHasValue}
+        hasValue={Boolean(hasValue || propHasValue || prefix)}
         required={required}
         componentClass={labelStyle}
         theme={theme}

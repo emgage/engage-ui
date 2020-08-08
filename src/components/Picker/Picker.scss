@@ -16,6 +16,9 @@ $stacking-order: (
   cursor: text;
   min-height: 25px;
   z-index: z-index(input, $stacking-order);
+  display: flex;
+  flex-wrap: wrap;
+
   
   &.empty {
     min-width: 100px;
@@ -34,6 +37,7 @@ $stacking-order: (
 }
 
 .container {
+  width: 100%;
   display: inline-block;
   //overflow: hidden;
   text-overflow: ellipsis;

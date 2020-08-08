@@ -12,13 +12,13 @@ export interface Props {
   theme?: any;
 }
 
-class ModalBody extends React.Component<Props, never> {
+class ModalBody extends React.PureComponent<Props, never> {
   constructor(props: Props) {
     super(props);
   }
 
   getBodyClassName() {
-    const { modalOverflow, theme } = this.props;
+    const { modalOverflow = false, theme } = this.props;
 
     return classNames(
       theme.body,

@@ -3,6 +3,7 @@ import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 import { classNames } from '@shopify/react-utilities/styles';
 import { CARD } from '../ThemeIdentifiers';
 import CardSection from './CardSection';
+import Context from './Context';
 
 import * as baseTheme from './Card.scss';
 
@@ -17,9 +18,11 @@ export interface Props {
   componentClass?: string;
   // Theme to be injected via css-themr.
   theme?: any;
+  // Callback when clicked.
+  onClick?(e: React.FormEvent<HTMLElement>): void;
 }
 
-const cardBody = ({ children, sectioned, theme, componentStyle, componentClass }: Props) => {
+const cardBody = ({ children, sectioned = false, theme, componentStyle, componentClass, onClick }: Props) => {
   const bodyContent = sectioned
     ? <CardSection>{children}</CardSection>
     : children;
@@ -29,8 +32,19 @@ const cardBody = ({ children, sectioned, theme, componentStyle, componentClass }
     componentClass
   );
 
+  const context = React.useContext(Context);
+
+  const onClickHandler = (e: React.FormEvent<HTMLElement>) => {
+    (context.cardHasOnClick && onClick) && e.stopPropagation();
+    onClick && onClick(e);
+  };
+
   return (
-    <div className={className} style={componentStyle}>
+    <div
+      className={className}
+      style={componentStyle}
+      onClick={onClickHandler}
+    >
       {bodyContent}
     </div>
   );

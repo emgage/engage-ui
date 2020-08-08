@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Link, IndexLink } from 'react-router';
+import { NavLink } from 'react-router-dom';
 import * as styles from '../../styles/nav.scss';
 
 const Nav = () => {
@@ -7,62 +7,62 @@ const Nav = () => {
     <nav className={styles.nav}>
       <h1>Components</h1>
       <ul>
-        <li><IndexLink to="/" activeClassName={styles.active}>Home</IndexLink></li>
-        <li><Link to="/component/accordion" activeClassName={styles.active} >Accordion</Link></li>
-        <li><Link to="/component/alert" activeClassName={styles.active} >Alert</Link></li>
-        <li><Link to="/component/avatar" activeClassName={styles.active} >Avatar</Link></li>
-        <li><Link to="/component/badge" activeClassName={styles.active}>Badge</Link></li>
-        <li><Link to="/component/banner" activeClassName={styles.active}>Banner</Link></li>
-        <li><Link to="/component/Breadcrumb" activeClassName={styles.active}>Breadcrumb</Link></li>
-        <li><Link to="/component/Button" activeClassName={styles.active}>Button</Link></li>
-        <li><Link to="/component/ButtonGroup" activeClassName={styles.active}>ButtonGroup</Link></li>
-        <li><Link to="/component/caption" activeClassName={styles.active}>Caption</Link></li>
-        <li><Link to="/component/card" activeClassName={styles.active}>Card</Link></li>
-        <li><Link to="/component/checkbox" activeClassName={styles.active}>Checkbox</Link></li>
-        <li><Link to="/component/chip" activeClassName={styles.active}>Chip</Link></li>
-        <li><Link to="/component/choice" activeClassName={styles.active}>Choice</Link></li>
-        <li><Link to="/component/choicelist" activeClassName={styles.active}>Choice List</Link></li>
-        <li><Link to="/component/clickablechip" activeClassName={styles.active}>ClickableChip</Link></li>
-        <li><Link to="/component/column" activeClassName={styles.active}>Column</Link></li>
-        <li><Link to="/component/combobox" activeClassName={styles.active}>ComboBox</Link></li>
-        <li><Link to="/component/connected" activeClassName={styles.active}>Connected</Link></li>
-        <li><Link to="/component/displaytext" activeClassName={styles.active}>DisplayText</Link></li>
-        <li><Link to="/component/Drawer" activeClassName={styles.active}>Drawer</Link></li>
-        <li><Link to="/component/dropdown" activeClassName={styles.active}>Dropdown</Link></li>
-        <li><Link to="/component/descriptionlist" activeClassName={styles.active}>Description List</Link></li>
-        <li><Link to="/component/FlexBox" activeClassName={styles.active}>FlexBox</Link></li>
-        <li><Link to="/component/FormLayout" activeClassName={styles.active}>FormLayout</Link></li>
-        <li><Link to="/component/heading" activeClassName={styles.active}>Heading</Link></li>
-        <li><Link to="/component/icon" activeClassName={styles.active}>Icon</Link></li>
-        <li><Link to="/component/Image" activeClassName={styles.active}>Image</Link></li>
-        <li><Link to="/component/label" activeClassName={styles.active}>Label</Link></li>
-        <li><Link to="/component/labelled" activeClassName={styles.active}>Labelled</Link></li>
-        <li><Link to="/component/Link" activeClassName={styles.active}>Link</Link></li>
-        <li><Link to="/component/list" activeClassName={styles.active}>List</Link></li>
-        <li><Link to="/component/loading" activeClassName={styles.active}>Loading</Link></li>
-        <li><Link to="/component/message" activeClassName={styles.active}>Message</Link></li>
-        <li><Link to="/component/modal" activeClassName={styles.active}>Modal</Link></li>
-        {/*<li><Link to="/component/panel" activeClassName={styles.active}>Panel</Link></li>*/}
-        <li><Link to="/component/popover" activeClassName={styles.active}>Popover</Link></li>
-        <li><Link to="/component/positionedoverlay" activeClassName={styles.active}>Positioned Overlay</Link></li>
-        <li><Link to="/component/radiobutton" activeClassName={styles.active}>RadioButton</Link></li>
-        <li><Link to="/component/Scrollable" activeClassName={styles.active}>Scrollable</Link></li>
-        <li><Link to="/component/select" activeClassName={styles.active}>Select</Link></li>
-        <li><Link to="/component/sidenavigation" activeClassName={styles.active}>Side Navigation</Link></li>
-        <li><Link to="/component/spinner" activeClassName={styles.active}>Spinner</Link></li>
-        <li><Link to="/component/stack" activeClassName={styles.active}>Stack</Link></li>
-        <li><Link to="/component/sticky" activeClassName={styles.active}>Sticky</Link></li>
-        <li><Link to="/component/subheading" activeClassName={styles.active}>SubHeading</Link></li>
-        <li><Link to="/component/Table" activeClassName={styles.active}>Table</Link></li>
-        <li><Link to="/component/Tab" activeClassName={styles.active}>Tab</Link></li>
-        <li><Link to="/component/tag" activeClassName={styles.active}>Tag</Link></li>
-        <li><Link to="/component/TextField" activeClassName={styles.active}>TextField</Link></li>
-        <li><Link to="/component/tooltip" activeClassName={styles.active}>Tooltip</Link></li>
-        <li><Link to="/component/UnstyledLink" activeClassName={styles.active}>UnstyledLink</Link></li>
-        <li><Link to="/component/validatedform" activeClassName={styles.active}>ValidatedForm</Link></li>
-        <li><Link to="/component/validatedtextfield" activeClassName={styles.active}>Validated TextField</Link></li>
-        <li><Link to="/component/video" activeClassName={styles.active}>Video</Link></li>
-        <li><Link to="/component/visuallyhidden" activeClassName={styles.active}>VisuallyHidden</Link></li>
+        <li><NavLink to="/" activeClassName={styles.active}>Home</NavLink></li>
+        <li><NavLink to="/component/accordion" activeClassName={styles.active} >Accordion</NavLink></li>
+        <li><NavLink to="/component/alert" activeClassName={styles.active} >Alert</NavLink></li>
+        <li><NavLink to="/component/avatar" activeClassName={styles.active} >Avatar</NavLink></li>
+        <li><NavLink to="/component/badge" activeClassName={styles.active}>Badge</NavLink></li>
+        <li><NavLink to="/component/banner" activeClassName={styles.active}>Banner</NavLink></li>
+        <li><NavLink to="/component/Breadcrumb" activeClassName={styles.active}>Breadcrumb</NavLink></li>
+        <li><NavLink to="/component/Button" activeClassName={styles.active}>Button</NavLink></li>
+        <li><NavLink to="/component/ButtonGroup" activeClassName={styles.active}>ButtonGroup</NavLink></li>
+        <li><NavLink to="/component/caption" activeClassName={styles.active}>Caption</NavLink></li>
+        <li><NavLink to="/component/card" activeClassName={styles.active}>Card</NavLink></li>
+        <li><NavLink to="/component/checkbox" activeClassName={styles.active}>Checkbox</NavLink></li>
+        <li><NavLink to="/component/chip" activeClassName={styles.active}>Chip</NavLink></li>
+        <li><NavLink to="/component/choice" activeClassName={styles.active}>Choice</NavLink></li>
+        <li><NavLink to="/component/choicelist" activeClassName={styles.active}>Choice List</NavLink></li>
+        <li><NavLink to="/component/clickablechip" activeClassName={styles.active}>ClickableChip</NavLink></li>
+        <li><NavLink to="/component/column" activeClassName={styles.active}>Column</NavLink></li>
+        <li><NavLink to="/component/combobox" activeClassName={styles.active}>ComboBox</NavLink></li>
+        <li><NavLink to="/component/connected" activeClassName={styles.active}>Connected</NavLink></li>
+        <li><NavLink to="/component/displaytext" activeClassName={styles.active}>DisplayText</NavLink></li>
+        <li><NavLink to="/component/Drawer" activeClassName={styles.active}>Drawer</NavLink></li>
+        <li><NavLink to="/component/dropdown" activeClassName={styles.active}>Dropdown</NavLink></li>
+        <li><NavLink to="/component/descriptionlist" activeClassName={styles.active}>Description List</NavLink></li>
+        <li><NavLink to="/component/FlexBox" activeClassName={styles.active}>FlexBox</NavLink></li>
+        <li><NavLink to="/component/FormLayout" activeClassName={styles.active}>FormLayout</NavLink></li>
+        <li><NavLink to="/component/heading" activeClassName={styles.active}>Heading</NavLink></li>
+        <li><NavLink to="/component/icon" activeClassName={styles.active}>Icon</NavLink></li>
+        <li><NavLink to="/component/Image" activeClassName={styles.active}>Image</NavLink></li>
+        <li><NavLink to="/component/label" activeClassName={styles.active}>Label</NavLink></li>
+        <li><NavLink to="/component/labelled" activeClassName={styles.active}>Labelled</NavLink></li>
+        <li><NavLink to="/component/NavLink" activeClassName={styles.active}>NavLink</NavLink></li>
+        <li><NavLink to="/component/list" activeClassName={styles.active}>List</NavLink></li>
+        <li><NavLink to="/component/loading" activeClassName={styles.active}>Loading</NavLink></li>
+        <li><NavLink to="/component/message" activeClassName={styles.active}>Message</NavLink></li>
+        <li><NavLink to="/component/modal" activeClassName={styles.active}>Modal</NavLink></li>
+        {/*<li><NavLink to="/component/panel" activeClassName={styles.active}>Panel</NavLink></li>*/}
+        <li><NavLink to="/component/popover" activeClassName={styles.active}>Popover</NavLink></li>
+        <li><NavLink to="/component/positionedoverlay" activeClassName={styles.active}>Positioned Overlay</NavLink></li>
+        <li><NavLink to="/component/radiobutton" activeClassName={styles.active}>RadioButton</NavLink></li>
+        <li><NavLink to="/component/Scrollable" activeClassName={styles.active}>Scrollable</NavLink></li>
+        <li><NavLink to="/component/select" activeClassName={styles.active}>Select</NavLink></li>
+        <li><NavLink to="/component/sidenavigation" activeClassName={styles.active}>Side Navigation</NavLink></li>
+        <li><NavLink to="/component/spinner" activeClassName={styles.active}>Spinner</NavLink></li>
+        <li><NavLink to="/component/stack" activeClassName={styles.active}>Stack</NavLink></li>
+        <li><NavLink to="/component/sticky" activeClassName={styles.active}>Sticky</NavLink></li>
+        <li><NavLink to="/component/subheading" activeClassName={styles.active}>SubHeading</NavLink></li>
+        <li><NavLink to="/component/Table" activeClassName={styles.active}>Table</NavLink></li>
+        <li><NavLink to="/component/Tab" activeClassName={styles.active}>Tab</NavLink></li>
+        <li><NavLink to="/component/tag" activeClassName={styles.active}>Tag</NavLink></li>
+        <li><NavLink to="/component/TextField" activeClassName={styles.active}>TextField</NavLink></li>
+        <li><NavLink to="/component/tooltip" activeClassName={styles.active}>Tooltip</NavLink></li>
+        <li><NavLink to="/component/UnstyledNavLink" activeClassName={styles.active}>UnstyledNavLink</NavLink></li>
+        <li><NavLink to="/component/validatedform" activeClassName={styles.active}>ValidatedForm</NavLink></li>
+        <li><NavLink to="/component/validatedtextfield" activeClassName={styles.active}>Validated TextField</NavLink></li>
+        <li><NavLink to="/component/video" activeClassName={styles.active}>Video</NavLink></li>
+        <li><NavLink to="/component/visuallyhidden" activeClassName={styles.active}>VisuallyHidden</NavLink></li>
       </ul>
     </nav>
   );

@@ -17,3 +17,9 @@ $stacking-order: (
   .footerSticky {
     bottom: 0;
   }
+  .footerInline {
+    z-index: auto!important;
+  }
+  .footerFixed, .footerAuto  {
+    z-index: z-index(overlay, $stacking-order);
+  }

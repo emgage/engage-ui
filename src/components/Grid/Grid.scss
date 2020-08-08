@@ -17,11 +17,14 @@ $border-color: #dbdbdb;
   
   &.block {
     flex-direction: column;
-    min-width: 180px;
     border-radius:.4rem;
     background-color:#fff;
     text-align:center;
     transition:all .3s ease-in-out;
+
+    &:nth-child(4n) {
+      margin-right:0px;
+    }
 
     .gridImage, .gridTitle, .gridDescription {
       display: flex;
@@ -91,6 +94,9 @@ $border-color: #dbdbdb;
       transition:all .3s ease-in-out;
       top:-3px;
      }
+     &:nth-child(4n) {
+      margin-right:0px;
+    }
   }
   
   &.list {

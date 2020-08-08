@@ -20,9 +20,9 @@ export interface Props {
 
 const getUniqueID = createUniqueIDFactory('FormLayoutGroup');
 
-class Group extends React.Component<Props, {}> {
+class Group extends React.PureComponent<Props, {}> {
   render() {
-    const { children, condensed, componentTitle, helpText, componentStyle, theme } = this.props;
+    const { children, condensed = false, componentTitle, helpText, componentStyle, theme } = this.props;
     const className = classNames(
       condensed && theme.condensed
     );

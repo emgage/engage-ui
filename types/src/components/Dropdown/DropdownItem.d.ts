@@ -12,7 +12,7 @@ export interface Props {
     toggleDropdown?(): void;
     theme?: any;
 }
-declare class DropdownItem extends React.Component<Props, never> {
+declare class DropdownItem extends React.PureComponent<Props, never> {
     id: string;
     clickCallback: (event: any) => void;
     render(): JSX.Element;

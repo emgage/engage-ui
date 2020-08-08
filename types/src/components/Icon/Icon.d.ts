@@ -36,6 +36,7 @@ export declare const BUNDLED_ICONS: {
     circlePlus: any;
     clip: any;
     comments: any;
+    container: any;
     conversation: any;
     database: any;
     disable: any;
@@ -48,6 +49,7 @@ export declare const BUNDLED_ICONS: {
     external: any;
     file: any;
     fileSolid: any;
+    filter: any;
     folder: any;
     grid: any;
     handsHelping: any;
@@ -72,6 +74,7 @@ export declare const BUNDLED_ICONS: {
     spinnerDots: any;
     table: any;
     tachometer: any;
+    text: any;
     triangleDown: any;
     user: any;
     userCog: any;
@@ -81,6 +84,7 @@ export declare const BUNDLED_ICONS: {
     users: any;
     usersCog: any;
     userTie: any;
+    video: any;
     view: any;
     delete: any;
     export: any;

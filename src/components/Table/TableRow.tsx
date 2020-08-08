@@ -4,6 +4,7 @@ import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 import { TABLE } from '../ThemeIdentifiers';
 
 import * as baseTheme from './Table.scss';
+import Spinner from '../Spinner';
 
 export interface Props {
   callbackValue?: any;
@@ -12,10 +13,11 @@ export interface Props {
   selectRow?: any;
   componentStyle?: any;
   componentClass?: string;
+  isRowLoading?: boolean;
   theme?: any;
 }
 
-class TableRow extends React.Component<Props, never> {
+class TableRow extends React.PureComponent<Props, never> {
   constructor(props: Props) {
     super(props);
     this.props.callBackSelectedRows ? this.props.callBackSelectedRows(this.props.selectRow) : null;
@@ -28,9 +30,10 @@ class TableRow extends React.Component<Props, never> {
   }
 
   render () {
+    const { componentClass, isRowLoading = false } = this.props;
     return (
-      <tr onClick={this.rowClickCallback} className={this.props.componentClass} style ={this.props.componentStyle}>
-        { this.props.children }
+      <tr onClick={this.rowClickCallback} className={componentClass} style ={this.props.componentStyle} aria-disabled={true}>
+        { this.props.children } {isRowLoading && <td><Spinner componentSize="small" componentColor="disabled" /></td>}
       </tr>
     );
   }

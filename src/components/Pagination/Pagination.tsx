@@ -104,7 +104,7 @@ function calculatePage(p: any, state: any, props: IProps) {
   return Math.floor((props.total - 1) / pageSize) + 1;
 }
 
-class Pagination extends React.Component<IProps, IState> {
+class Pagination extends React.PureComponent<IProps, IState> {
   paginationNode: any;
   static defaultProps = DefaultProps;
 
@@ -168,7 +168,7 @@ class Pagination extends React.Component<IProps, IState> {
 
   /**
    * computed icon node that need to be rendered.
-   * @param {React.ReactNode | React.ComponentType<PaginationProps>} icon received icon.
+   * @param {React.ReactNode | React.PureComponentType<PaginationProps>} icon received icon.
    * @returns {React.ReactNode}
    */
   getItemIcon = (icon: any, iconType: string, disableProp?: boolean) => {

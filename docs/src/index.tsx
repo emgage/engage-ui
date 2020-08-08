@@ -1,18 +1,20 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { Router, browserHistory } from 'react-router';
-import { syncHistoryWithStore } from 'react-router-redux';
+import { Router } from 'react-router';
 import Routes from './Routes';
-import configureStore from './store/configureStore';
+
+import { history, configureStore } from './store/configureStore';
 
 require('../assets/favicon.ico');
 
 const store = configureStore();
-const history = syncHistoryWithStore(browserHistory, store);
+
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={history} routes={Routes} />
+    <Router history={history}>
+      <Routes />
+    </Router>
   </Provider>,
   document.getElementById('app')
 );

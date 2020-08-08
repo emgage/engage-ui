@@ -31,10 +31,10 @@ export interface Props {
 const choice = ({
   componentId,
   label,
-  disabled,
+  disabled = false,
   error,
   children,
-  labelHidden,
+  labelHidden = false,
   helpText,
   theme,
 }: Props) => {

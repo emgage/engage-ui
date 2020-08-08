@@ -6,6 +6,7 @@ export interface Props {
     selectRow?: any;
     componentStyle?: any;
     componentClass?: string;
+    isRowLoading?: boolean;
     theme?: any;
 }
 declare const _default: ThemedComponentClass<Props, {}>;

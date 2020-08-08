@@ -24,7 +24,7 @@ interface State {
     selectedValue: string;
     popoverWidth: string;
 }
-declare class ComboBox extends React.Component<Props, State> {
+declare class ComboBox extends React.PureComponent<Props, State> {
     private getUniqueID;
     private id;
     private wrapperRef;
@@ -36,7 +36,7 @@ declare class ComboBox extends React.Component<Props, State> {
     addRenderer: (items: any, cloneItems: any) => any;
     onChange: (value: string, event: React.FormEvent<HTMLElement>) => void;
     onArrowClick: (event: React.FormEvent<HTMLElement>) => void;
-    handleClick: (value: any, key: any) => void;
+    handleClick: (value: string | any, key: any) => void;
     render(): JSX.Element;
 }
 export { ComboBox as UnthemedComboBox };

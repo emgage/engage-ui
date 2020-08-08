@@ -31,13 +31,13 @@ export interface Props {
   theme?: any;
 }
 
-class Avatar extends React.Component<Props, {}> {
+class Avatar extends React.PureComponent<Props, {}> {
   render() {
     const {
       componentName,
       source,
       initials,
-      customer,
+      customer = false,
       componentSize = 'medium',
       accessibilityLabel,
       theme,

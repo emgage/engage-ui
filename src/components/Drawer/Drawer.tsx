@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
-import { layeredComponent } from '@shopify/react-utilities/components';
-import { autobind } from '@shopify/javascript-utilities/decorators';
 import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
 import { classNames } from '@shopify/react-utilities/styles';
 
 import { DRAWER } from '../ThemeIdentifiers';
 
 import * as baseTheme from './Drawer.scss';
+
+export const DrawerContext = React.createContext({});
 
 /* Type for mode of drawer
   // Slide helps to make the drawer slide from left or right, over the content
@@ -71,19 +71,20 @@ export interface Props {
 
 const getUniqueID = createUniqueIDFactory('DrawerWrapper');
 
-@layeredComponent({ idPrefix: 'Drawer' })
 // Main Drawer component, its a wrapper for its content
 class Drawer extends React.PureComponent<Props, never> {
   public id = getUniqueID();
   private activatorContainer: HTMLElement | null;
 
   componentWillReceiveProps(newProps: Props) {
+    const { active = false } = this.props;
+    const { active: newActive = false } = newProps;
     // Call the callback function if available
     // onOpen: when drawer open
     // onClose: when drawer close
-    if (!this.props.active && newProps.active && typeof newProps.onOpen !== 'undefined') {
+    if (!active && newActive && typeof newProps.onOpen !== 'undefined') {
       newProps.onOpen();
-    } else if (this.props.active && !newProps.active && typeof newProps.onClose !== 'undefined') {
+    } else if (active && !newActive && typeof newProps.onClose !== 'undefined') {
       newProps.onClose();
     }
   }
@@ -105,12 +106,12 @@ class Drawer extends React.PureComponent<Props, never> {
   // Function to get the drawer container class names
   getContainerClassName() {
     const {
-      flip,
-      active,
-      overlay,
+      flip = false,
+      active = false,
+      overlay = false,
       componentWidth = 'medium',
       theme,
-      master
+      master = false
     } = this.props;
 
     return classNames(
@@ -149,9 +150,9 @@ class Drawer extends React.PureComponent<Props, never> {
   // Set body styles to render drawer properly in root layer
   setBodyStyle() {
     const {
-      flip,
+      flip =  false,
       mode,
-      overlay,
+      overlay = false,
       componentWidth = 'medium',
       theme,
     } = this.props;
@@ -180,29 +181,20 @@ class Drawer extends React.PureComponent<Props, never> {
     }
   }
 
-  // Function to get the current active drawer content from props.children & set that as active & render that component only
-  renderActivechildren() {
-    const { activeContentId, children, closeButton, fixedCloseButton, toggleDrawer } = this.props;
-
-    // Iterate through all the children content component & find active component
-    // Match activeContentId with children's id & mark that as active: true
-    return React.Children.map(children, (child: React.ReactElement<any>) => {
-      if (child.props && child.props.componentId) {
-        const { componentId } = child.props;
-        const cloneElemnt = (typeof activeContentId === 'string' && activeContentId === componentId) || (typeof activeContentId === 'object' && activeContentId.indexOf(componentId) !== componentId);
-
-        // Clone active component & return it
-        if (cloneElemnt) {
-          return React.cloneElement(child, { closeButton, fixedCloseButton, toggleDrawer, active: true, });
-        }
-      }
-
-      return React.cloneElement(child);
-    });
+  renderDrawer() {
+    const { activeContentId, children, closeButton = false, fixedCloseButton = false, toggleDrawer } = this.props;
+    return <DrawerContext.Provider value={{
+      activeContentId,
+      closeButton,
+      fixedCloseButton,
+      toggleDrawer,
+    }}>
+      {children}
+    </DrawerContext.Provider>;
   }
 
-  renderLayer() {
-    const { active, mode, componentLabel, componentWidth, theme, zIndex, id  } = this.props;
+  render() {
+    const { active = false, mode, componentLabel, componentWidth, theme, zIndex, id  } = this.props;
     const containerClassName = this.getContainerClassName();
     const barClassName = this.getBarClassName();
 
@@ -210,7 +202,6 @@ class Drawer extends React.PureComponent<Props, never> {
       this.setBodyStyle();
     }
 
-    const activeContent = this.renderActivechildren();
     const dStyle = Object.assign(
       {},
       { width: componentWidth && !this.isWidthPreDefine(componentWidth) ? `${componentWidth}` : undefined },
@@ -230,7 +221,7 @@ class Drawer extends React.PureComponent<Props, never> {
         {
           active ?
           <div className={theme.label} aria-live={'assertive'} >
-            {activeContent}
+            {this.renderDrawer()}
           </div>
            :
           null
@@ -253,34 +244,17 @@ class Drawer extends React.PureComponent<Props, never> {
     );
   }
 
-  // Get activator node i.e. trigger which opened up drawer
-  // This node will be used to set accessibility attributes
-  @autobind
-  private setActivator(node: HTMLElement | null) {
-    if (node == null) {
-      this.activatorContainer = null;
-      return;
-    }
-
-    this.activatorContainer = node.previousSibling as HTMLElement;
-  }
-
   private setAccessibilityAttributes() {
     const { activatorContainer, id } = this;
     if (activatorContainer == null) { return; }
-
+    const { active = false } = this.props;
     const accessibilityNode = activatorContainer;
 
     accessibilityNode.setAttribute('aria-describedby', id);
-    accessibilityNode.setAttribute('aria-expanded', (this.props.active || false).toString());
+    accessibilityNode.setAttribute('aria-expanded', (active || false).toString());
     accessibilityNode.setAttribute('aria-label', this.props.accessibilityLabel ? this.props.accessibilityLabel : '');
   }
 
-  render() {
-    return (
-      <div ref={this.setActivator}></div>
-    );
-  }
 }
 
 export default themr(DRAWER, baseTheme)(Drawer) as ThemedComponentClass<Props, {}>;

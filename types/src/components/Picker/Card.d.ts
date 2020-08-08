@@ -8,7 +8,7 @@ export interface Props {
     isHighlighted?: boolean;
     alt?: string;
 }
-declare class Card extends React.Component<Props, {}> {
+declare class Card extends React.PureComponent<Props, {}> {
     constructor(props: Props);
     render(): JSX.Element;
 }

@@ -84,8 +84,8 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
 
   componentDidMount() {
     this.scrollableContainer = ScrollableForNode(this.props.activator);
-
-    if (this.scrollableContainer && !this.props.fixed) {
+    const { fixed = true } = this.props;
+    if (this.scrollableContainer && !fixed) {
       this.scrollableContainer.addEventListener(
         'scroll',
         this.handleMeasurement
@@ -97,7 +97,7 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
 
   componentDidUpdate() {
     const { outsideScrollableContainer, top } = this.state;
-    const { onScrollOut, active } = this.props;
+    const { onScrollOut, active = false } = this.props;
 
     if (
       active &&
@@ -113,7 +113,8 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
   }
 
   componentWillUnmount() {
-    if (this.scrollableContainer && !this.props.fixed) {
+    const { fixed = false } = this.props;
+    if (this.scrollableContainer && !fixed) {
       this.scrollableContainer.removeEventListener(
         'scroll',
         this.handleMeasurement
@@ -128,7 +129,7 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
 
   render() {
     const { left, zIndex, top, width } = this.state;
-    const { componentStyle = {}, render, fixed, theme } = this.props;
+    const { componentStyle = {}, render, fixed = false, theme } = this.props;
 
     const style = {
       ...componentStyle,
@@ -198,8 +199,8 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
           preferredAlignment = 'center',
           onScrollOut,
           fullWidth,
-          fixed,
-          preloadedPopover
+          fixed = false,
+          preloadedPopover = false
         } = this.props;
 
         const textFieldActivator = activator.querySelector('input');

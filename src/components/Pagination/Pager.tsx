@@ -23,13 +23,13 @@ export interface IProps {
   componentStyle?: any;
 }
 
-class Pager extends React.Component<IProps, {}> {
+class Pager extends React.PureComponent<IProps, {}> {
   constructor(props: IProps) {
     super(props);
   }
 
   render() {
-    const { active, className = '', itemRender, onClick, onKeyPress, showTitle, page, theme, plain, componentStyle } = this.props;
+    const { active = false, className = '', itemRender, onClick, onKeyPress, showTitle, page, theme, plain = false, componentStyle } = this.props;
 
     const prefixCls = theme['rc-pagination-item'];
     const cls = classNames(prefixCls, `${prefixCls}-${page}`, {

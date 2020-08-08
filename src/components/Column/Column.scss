@@ -435,6 +435,19 @@ $grid-divider-border-width: 1px;
     width: 90%;
 }
 
+/* Fifteenths */
+.column-width-8-25-15 {
+    width: 55%;
+}
+
+.column-width-9-25-15 {
+    width: 61.67%;
+}
+
+.column-width-9-75-15 {
+    width: 65%;
+}
+
 
 /* Phone landscape and bigger */
 
@@ -558,6 +571,18 @@ $grid-divider-border-width: 1px;
     }
     .column-width-small-9-10 {
         width: 90%;
+    }
+    /* Fifteenths */
+    .column-width-small-8-25-15 {
+        width: 55%;
+    }
+
+    .column-width-small-9-25-15 {
+        width: 61.67%;
+    }
+
+    .column-width-small-9-75-15 {
+        width: 65%;
     }
 }
 
@@ -685,6 +710,18 @@ $grid-divider-border-width: 1px;
     .column-width-medium-9-10 {
         width: 90%;
     }
+    /* Fifteenths */
+    .column-width-medium-8-25-15 {
+        width: 55%;
+    }
+
+    .column-width-medium-9-25-15 {
+        width: 61.67%;
+    }
+
+    .column-width-medium-9-75-15 {
+        width: 65%;
+    }
 }
 
 
@@ -810,6 +847,18 @@ $grid-divider-border-width: 1px;
     }
     .column-width-large-9-10 {
         width: 90%;
+    }
+    /* Fifteenths */
+    .column-width-large-8-25-15 {
+        width: 55%;
+    }
+
+    .column-width-large-9-25-15 {
+        width: 61.67%;
+    }
+
+    .column-width-large-9-75-15 {
+        width: 65%;
     }
 }
 

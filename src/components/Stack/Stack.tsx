@@ -32,7 +32,7 @@ class Stack extends React.PureComponent<Props, never> {
   render() {
     const {
       children,
-      vertical,
+      vertical = false,
       spacing,
       distribution,
       alignment,

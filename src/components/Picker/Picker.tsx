@@ -111,7 +111,7 @@ export interface Props {
   defaultSelectedItems?: IItemList[];
 }
 
-class Picker extends React.Component<Props, State> {
+class Picker extends React.PureComponent<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
@@ -289,12 +289,12 @@ class Picker extends React.Component<Props, State> {
     };
 
     const {
-        autoSuggest,
+        autoSuggest = false,
         helpText,
         label,
-        labelHidden,
-        loading,
-        disabled,
+        labelHidden = false,
+        loading = false,
+        disabled = false,
         selectedResultsBehavior,
         moreInfoComponent,
         chipComponent,
