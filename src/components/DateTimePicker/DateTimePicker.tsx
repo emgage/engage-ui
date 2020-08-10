@@ -2,7 +2,7 @@ import * as React from 'react';
 import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 import * as DateTime from 'react-datetime';
 import { Icon, TextField } from '../index';
-import 'react-datetime/css/react-datetime.css';
+import './ReactDatetime.css';
 import * as moment from 'moment';
 import { DATETIMEPICKER } from '../ThemeIdentifiers';
 import * as baseTheme from './DateTimePicker.scss';
@@ -72,7 +72,7 @@ class DateTimePicker extends React.PureComponent<Props, State>{
   }
 
   render() {
-    const { dateFormat = false, label, theme, timePicker = false } = this.props;
+    const { dateFormat, label, theme, timePicker } = this.props;
     const { dateTime, open } = this.state;
     return (
         <div>
