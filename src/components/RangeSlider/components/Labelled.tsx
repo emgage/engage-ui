@@ -1,6 +1,7 @@
 import *as React from 'react';
 import { buttonFrom } from '../../Button';
 import Label, { labelID } from '../../Label';
+import { InlineError } from './InlineError';
 
 export { labelID };
 
@@ -27,6 +28,7 @@ export interface LabelledProps {
   action?: any;
   helpText?: React.ReactNode;
   children?: React.ReactNode;
+  /** Visually hide the label */
   labelHidden?: boolean;
 }
 
@@ -55,7 +57,7 @@ export function Labelled({
 
   const errorMarkup = error && typeof error !== 'boolean' && (
     <div >
-      {/* <InlineError message={error} fieldID={id} /> */}
+      <InlineError message={error} fieldID={id} />
     </div>
   );
 
