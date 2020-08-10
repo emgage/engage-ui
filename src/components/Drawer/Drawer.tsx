@@ -77,12 +77,14 @@ class Drawer extends React.PureComponent<Props, never> {
   private activatorContainer: HTMLElement | null;
 
   componentWillReceiveProps(newProps: Props) {
+    const { active = false } = this.props;
+    const { active: newActive = false } = newProps;
     // Call the callback function if available
     // onOpen: when drawer open
     // onClose: when drawer close
-    if (!this.props.active && newProps.active && typeof newProps.onOpen !== 'undefined') {
+    if (!active && newActive && typeof newProps.onOpen !== 'undefined') {
       newProps.onOpen();
-    } else if (this.props.active && !newProps.active && typeof newProps.onClose !== 'undefined') {
+    } else if (active && !newActive && typeof newProps.onClose !== 'undefined') {
       newProps.onClose();
     }
   }
@@ -104,12 +106,12 @@ class Drawer extends React.PureComponent<Props, never> {
   // Function to get the drawer container class names
   getContainerClassName() {
     const {
-      flip,
-      active,
-      overlay,
+      flip = false,
+      active = false,
+      overlay = false,
       componentWidth = 'medium',
       theme,
-      master
+      master = false
     } = this.props;
 
     return classNames(
@@ -148,9 +150,9 @@ class Drawer extends React.PureComponent<Props, never> {
   // Set body styles to render drawer properly in root layer
   setBodyStyle() {
     const {
-      flip,
+      flip =  false,
       mode,
-      overlay,
+      overlay = false,
       componentWidth = 'medium',
       theme,
     } = this.props;
@@ -180,7 +182,7 @@ class Drawer extends React.PureComponent<Props, never> {
   }
 
   renderDrawer() {
-    const { activeContentId, children, closeButton, fixedCloseButton, toggleDrawer } = this.props;
+    const { activeContentId, children, closeButton = false, fixedCloseButton = false, toggleDrawer } = this.props;
     return <DrawerContext.Provider value={{
       activeContentId,
       closeButton,
@@ -192,7 +194,7 @@ class Drawer extends React.PureComponent<Props, never> {
   }
 
   render() {
-    const { active, mode, componentLabel, componentWidth, theme, zIndex, id  } = this.props;
+    const { active = false, mode, componentLabel, componentWidth, theme, zIndex, id  } = this.props;
     const containerClassName = this.getContainerClassName();
     const barClassName = this.getBarClassName();
 
@@ -245,11 +247,11 @@ class Drawer extends React.PureComponent<Props, never> {
   private setAccessibilityAttributes() {
     const { activatorContainer, id } = this;
     if (activatorContainer == null) { return; }
-
+    const { active = false } = this.props;
     const accessibilityNode = activatorContainer;
 
     accessibilityNode.setAttribute('aria-describedby', id);
-    accessibilityNode.setAttribute('aria-expanded', (this.props.active || false).toString());
+    accessibilityNode.setAttribute('aria-expanded', (active || false).toString());
     accessibilityNode.setAttribute('aria-label', this.props.accessibilityLabel ? this.props.accessibilityLabel : '');
   }
 

@@ -88,6 +88,7 @@ import {
   users,
   usersCog,
   userTie,
+  video,
   view,
 } from '../../icons';
 
@@ -191,6 +192,7 @@ export const BUNDLED_ICONS = {
   users,
   usersCog,
   userTie,
+  video,
   view,
   delete: deleteIcon,
   export: exportIcon,
@@ -222,7 +224,7 @@ const icon = ({
   callbackValue,
   source,
   componentColor,
-  backdrop,
+  backdrop = false,
   accessibilityLabel,
   componentStyle,
   componentClass,

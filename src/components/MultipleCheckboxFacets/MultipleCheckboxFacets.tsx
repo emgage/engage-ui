@@ -47,8 +47,8 @@ function multiCheckboxFacet({
   onRemove,
   onSelect,
   options,
-  showMore,
-  showSearch,
+  showMore = false,
+  showSearch = false,
   onSearch,
   searchPlaceholder
 }: IProps) {

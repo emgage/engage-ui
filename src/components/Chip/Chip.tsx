@@ -41,10 +41,10 @@ class Chip extends React.PureComponent<Props, any> {
 
   render() {
     const {
-      clickable,
-      removable,
+      clickable = false,
+      removable = false,
       image,
-      transparent,
+      transparent = false,
       theme,
       onRemove,
       onClick,

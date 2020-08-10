@@ -83,11 +83,12 @@ class Process extends React.PureComponent<Props, State> {
   }
 
   setNavigationState = (next: number) => {
+    const { allowBackStepping = false } = this.props;
     if (next < this.props.steps.length && next > -1) {
       this.setState({
         navigationState: getNavigationStates(next, this.props.steps.length)
       });
-      if (next === (this.state.processComponentState + 1) || (next === (this.state.processComponentState - 1) && this.props.allowBackStepping)) {
+      if (next === (this.state.processComponentState + 1) || (next === (this.state.processComponentState - 1) && allowBackStepping)) {
         this.setState({ processComponentState: next });
         if (this.props.onComponentStateUpdate) {
           this.props.onComponentStateUpdate(this.props.steps.length, next);
@@ -97,7 +98,7 @@ class Process extends React.PureComponent<Props, State> {
   }
 
   handleOnClick = (evt: React.FormEvent<any>) => {
-    const { onClick, steps, allowBackStepping } = this.props;
+    const { onClick, steps, allowBackStepping = false } = this.props;
     if (
       evt.currentTarget.value === (this.state.processComponentState + 1) - 1 &&
       this.state.processComponentState === steps.length - 1 &&

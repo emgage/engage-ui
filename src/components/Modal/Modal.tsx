@@ -60,13 +60,14 @@ class Modal extends React.PureComponent<Props, never> {
   }
 
   componentWillReceiveProps(newProps: Props) {
-    const { active } = this.props;
+    const { active = false } = this.props;
+    const { active: newActive = false } = newProps;
     // Call the callback function if available
     // onOpen: when drawer open
     // onClose: when drawer close
-    if (!active && newProps.active && typeof newProps.onOpen !== 'undefined') {
+    if (!active && newActive && typeof newProps.onOpen !== 'undefined') {
       newProps.onOpen();
-    } else if (active && !newProps.active && typeof newProps.onClose !== 'undefined') {
+    } else if (active && !newActive && typeof newProps.onClose !== 'undefined') {
       newProps.onClose();
     }
   }
@@ -87,7 +88,7 @@ class Modal extends React.PureComponent<Props, never> {
   }
 
   getModalWrapperClassName = () => {
-    const { active, className, theme } = this.props;
+    const { active = false, className, theme } = this.props;
 
     return classNames(
       theme.overlay,
@@ -102,7 +103,7 @@ class Modal extends React.PureComponent<Props, never> {
 
     // Function to get the current active modal content from props.children & set that as active & render that component only
   renderActivechildren() {
-    const { activeContentId, children, closeButton, toggle } = this.props;
+    const { activeContentId, children, closeButton = false, toggle } = this.props;
 
     // Iterate through all the children content component & find active component
     // Match activeContentId with children's id & mark that as active: true
@@ -118,18 +119,19 @@ class Modal extends React.PureComponent<Props, never> {
 
   // Render close button if its set true
   renderCloseButton = () => {
-    const { closeButton, theme } = this.props;
+    const { closeButton = false, theme } = this.props;
 
     return closeButton ? (<div className={theme.close}><Button plain onClick={this.closeModal} icon="cancel" theme={theme} /></div>) : null;
   }
 
   // Import keylistener if modal needs to be closed on pressing escape key
   renderKeyListener = () => {
-    return (this.props.closeOnEsc && this.props.active) ? (<KeypressListener keyCode={Keys.ESCAPE} handler={this.triggerCloseEvent} />) : null;
+    const { active = false, closeOnEsc = false } =  this.props;
+    return (closeOnEsc && active) ? (<KeypressListener keyCode={Keys.ESCAPE} handler={this.triggerCloseEvent} />) : null;
   }
 
   renderLayer = () => {
-    const { closeOnBackgroud } = this.props;
+    const { closeOnBackgroud = false } = this.props;
     const modalWrapperClassName = this.getModalWrapperClassName();
     const modalContainerClass = this.getModalContainerClassName();
     const escapeKeyListener = this.renderKeyListener();
@@ -155,7 +157,7 @@ class Modal extends React.PureComponent<Props, never> {
   // This just set overflow: hidden style to body tag, so there will be no scrollbar
   setBodyTagStyle = () => {
     const bodyElement = document.body;
-    const { active, theme } = this.props;
+    const { active = false, theme } = this.props;
 
     if (bodyElement !== null) {
       bodyElement.className = active ? (theme.page) : '';
@@ -169,7 +171,7 @@ class Modal extends React.PureComponent<Props, never> {
   */
   triggerCloseEvent = (event: React.SyntheticEvent<HTMLElement> | KeyboardEvent) => {
     const target = event.target as HTMLInputElement;
-    const { closeOnBackgroud } = this.props;
+    const { closeOnBackgroud = false } = this.props;
 
     switch (event.type) {
       case 'keyup':
@@ -200,11 +202,11 @@ class Modal extends React.PureComponent<Props, never> {
   private setAccessibilityAttributes() {
     const { activatorContainer, id } = this;
     if (activatorContainer == null) { return; }
-
+    const { active = false } = this.props;
     const accessibilityNode = activatorContainer;
 
     accessibilityNode.setAttribute('aria-describedby', id);
-    accessibilityNode.setAttribute('aria-expanded', (this.props.active || false).toString());
+    accessibilityNode.setAttribute('aria-expanded', (active || false).toString());
     accessibilityNode.setAttribute('aria-label', this.props.accessibilityLabel ? this.props.accessibilityLabel : '');
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "engage-ui",
-  "version": "1.13.0",
+  "version": "1.16.0",
   "description": "Emgage's UI Component Library for React.",
   "license": "MIT",
   "author": "Emgage <work@emgage.com>",
@@ -23,7 +23,7 @@
   "types": "./types/src/components/index.d.ts",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
-    "tag": "latest"
+    "tag": "next"
   },
   "scripts": {
     "lint": "node node_modules/tslint/bin/tslint 'src/**/*.{ts,tsx}' --config tslint.json --exclude \"src/**/*.{js,jsx}\" --project tsconfig.json",
