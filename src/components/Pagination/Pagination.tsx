@@ -4,6 +4,7 @@ import { classNames } from '@shopify/react-utilities/styles';
 
 import Button from '../Button';
 import Pager from './Pager';
+import PageSize from './PageSize';
 import Options from './Options';
 import { default as KEYCODE }  from './KeyCode';
 import { default as LOCALE } from './locale/en_US';
@@ -11,6 +12,7 @@ import { polyfill } from 'react-lifecycles-compat';
 import { PAGINATION } from '../ThemeIdentifiers';
 
 import * as baseTheme from './Pagination.scss';
+import Label from '../Label';
 
 interface IProps {
   disabled?: boolean;
@@ -31,7 +33,7 @@ interface IProps {
   showPrevNextJumpers?: boolean;
   showQuickJumper?: any;
   showTitle?: boolean;
-  pageSizeOptions?: string[];
+  pageSizeOptions?: any;//string[];
   showTotal?(param1: any, param2: any): any;
   locale?: any;
   style?: any;
@@ -42,12 +44,15 @@ interface IProps {
   jumpNextIcon?: any;
   simple?: any;
   theme?: any;
+  pageSizeList?: number[];
+  lazyLoading?: boolean;
 }
 
 interface IState {
   current: number;
   currentInputValue: number;
   pageSize: number;
+  pageSizeList: number[];
 }
 
 export const DefaultProps = {
@@ -65,15 +70,17 @@ export const DefaultProps = {
   selectComponentClass: noop,
   hideOnSinglePage: false,
   showPrevNextJumpers: true,
-  showQuickJumper: false,
-  showSizeChanger: false,
-  showLessItems: false,
+  showQuickJumper: {goButton : true},
+  showSizeChanger: true,
+  showLessItems: true,
   showTitle: true,
   locale: LOCALE,
   style: {},
   itemRender: defaultItemRender,
   pageSizeOptions: [],
   showTotal: noop,
+  pageSizeList: [],
+  lazyLoading: false
 };
 
 function noop() {
@@ -115,16 +122,21 @@ class Pagination extends React.PureComponent<IProps, IState> {
       current = props.current;
     }
 
+
     let pageSize = props.defaultPageSize || 10;
     if ('pageSize' in props) {
       pageSize = props.pageSize;
     }
 
+    let pageSizeList: number[] = props.pageSizeList && props.pageSizeList.length > 0 ? props.pageSizeList  : [10, 50, 100];
+    pageSize = pageSizeList[0];
+    
     current = Math.min(current, calculatePage(pageSize, undefined, props));
 
     this.state = {
       current,
       pageSize,
+      pageSizeList,
       currentInputValue: current,
     };
   }
@@ -141,32 +153,6 @@ class Pagination extends React.PureComponent<IProps, IState> {
         lastCurrentNode.blur();
       }
     }
-  }
-
-  static getDerivedStateFromProps(props: IProps, prevState: IState) {
-    const newState: any = {};
-
-    if ('current' in props) {
-      newState.current = props.current;
-
-      if (props.current !== prevState.current) {
-        newState.currentInputValue = newState.current;
-      }
-    }
-
-    if ('pageSize' in props && props.pageSize !== prevState.pageSize) {
-      let current = prevState.current;
-      const newCurrent = calculatePage(props.pageSize, prevState, props);
-      current = current > newCurrent ? newCurrent : current;
-
-      if (!('current' in props)) {
-        newState.current = current;
-        newState.currentInputValue = current;
-      }
-      newState.pageSize = props.pageSize;
-    }
-
-    return newState;
   }
 
   getJumpPrevPage = () => {
@@ -269,20 +255,17 @@ class Pagination extends React.PureComponent<IProps, IState> {
     }
 
     if (typeof size === 'number') {
-      if (!('pageSize' in this.props)) {
-        this.setState({
-          pageSize: size,
-        });
-      }
-      if (!('current' in this.props)) {
-        this.setState({
-          current,
-          currentInputValue: current,
-        });
-      }
+      this.setState({
+        pageSize: size,
+        current,
+        currentInputValue: current,
+      });
     }
     if (this.props.onShowSizeChange) {
       this.props.onShowSizeChange(current, size);
+    }
+    if (this.props.onChange) {
+      this.props.onChange(current, size);
     }
   }
 
@@ -298,12 +281,11 @@ class Pagination extends React.PureComponent<IProps, IState> {
         page = 1;
       }
 
-      if (!('current' in this.props)) {
-        this.setState({
-          current: page,
-          currentInputValue: page,
-        });
-      }
+
+      this.setState({
+        current: page,
+        currentInputValue: page,
+      });
 
       const pageSize = this.state.pageSize;
       if (this.props.onChange) {
@@ -372,8 +354,20 @@ class Pagination extends React.PureComponent<IProps, IState> {
     }
   }
 
+  getPageNumberOptions = (pagerList: any) => {
+    const options: any = [];
+    const lastKey = pagerList[pagerList.length - 1].key
+    for (let i = 1; i <= parseInt(lastKey); i++) {
+      options.push({
+        value: i,
+        label: i
+      })
+    }
+    return options;
+  }
+
   render() {
-    const { className, disabled = false, theme } = this.props;
+    const { className, disabled = false, theme, lazyLoading } = this.props;
 
     // When hideOnSinglePage is true and there is only 1 page, hide the pager
     if (this.props.hideOnSinglePage && this.props.total <= this.state.pageSize) {
@@ -719,19 +713,40 @@ class Pagination extends React.PureComponent<IProps, IState> {
             this.getItemIcon(props.nextIcon, 'next', nextDisabled)
           )}
         </li>
+        <Label componentId={"rc-pagination"}>Jump To:</Label>
         <Options
           disabled={disabled}
           locale={props.locale}
           rootPrefixCls={theme['rc-pagination']}
-          selectComponentClass={props.selectComponentClass}
+          selectComponentClass={() => {
+            return <select>{props.children}</select>
+          }}
           selectPrefixCls={props.selectPrefixCls}
-          changeSize={this.props.showSizeChanger ? this.changePageSize : undefined}
+          selectValue={current.toString()}
+          changeSize={this.props.showSizeChanger ? this.handleChange : undefined}
           current={this.state.current}
           pageSize={this.state.pageSize}
-          pageSizeOptions={this.props.pageSizeOptions || []}
+          pageSizeOptions={this.getPageNumberOptions(pagerList)}
           quickGo={this.shouldDisplayQuickJumper() ? this.handleChange : undefined}
           goButton={goButton}
         />
+        <Label componentId={"rc-pagination"}>Items per page: </Label>
+        <PageSize
+          onKeyPress={() => {}}
+          currentPageSize={this.state.pageSize}
+          onClick={(currentPageSize: number) =>  this.setState({ pageSize: currentPageSize }, () => {
+            this.changePageSize(currentPageSize);
+          })}
+          pageSizeList={this.state.pageSizeList}
+          className="cl"
+        />
+        { lazyLoading && pagerList.length !== 1 ? <Button onClick={() => {
+          const prevPageSize = this.state.pageSize;
+          const newPageSize = prevPageSize + this.props.pageSize;
+          this.setState({ pageSize: newPageSize }, () => {
+            this.changePageSize(newPageSize);
+          })
+        }}>Show More Results</Button> : null }
       </ul>
     );
   }

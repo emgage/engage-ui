@@ -952,7 +952,7 @@ class App extends React.Component<{}, State> {
 
         <div>
           Pagination:
-          <Pagination {...PaginationDefaultProps} onChange={(page: number) => this.setState({ paginationCurrent: page })} current={this.state.paginationCurrent} total={25} pageSize={3} />
+          <Pagination {...PaginationDefaultProps} pageSizeList={[3,6,9]} showSizeChanger={true} onChange={(page: number) => this.setState({ paginationCurrent: page })} current={this.state.paginationCurrent} total={25} />
           PageSize:
           <PageSize onKeyPress={() => {}} currentPageSize={this.state.currentPageSize} onClick={(currentPageSize: number) =>  this.setState({ currentPageSize })} pageSizeList={[10, 50, 100]} className="cl" />
         </div>
