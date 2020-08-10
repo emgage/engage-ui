@@ -85,7 +85,8 @@ import {
   ToggleButtonGroup,
   Pagination,
   PaginationDefaultProps,
-  PageSize
+  PageSize,
+  RangeSlider,
 } from '../../src/components';
 
 interface State {
@@ -143,6 +144,7 @@ interface State {
   ChoiceListSelected: any[];
   paginationCurrent: number;
   multipleCheckboxFacetsOptions: any[];
+  rangeSliderValue?: any;
 }
 
 class App extends React.Component<{}, State> {
@@ -210,22 +212,26 @@ class App extends React.Component<{}, State> {
       processLength: 2,
       callChildCallback: false,
       popoverActiveState: false,
-      error:{},
+      error: {},
       showError: false,
       treeAnchor: {},
-      ChoiceListSelected:[1],
+      ChoiceListSelected: [1],
       paginationCurrent: 3,
-      multipleCheckboxFacetsOptions: [{
-        name: 'New',
-        value: '1',
-        count: 10,
-        selected: false
-      }, {
-        name: 'Published',
-        value: '2',
-        count: 10,
-        selected: false
-      }]
+      multipleCheckboxFacetsOptions: [
+        {
+          name: 'New',
+          value: '1',
+          count: 10,
+          selected: false,
+        },
+        {
+          name: 'Published',
+          value: '2',
+          count: 10,
+          selected: false,
+        },
+      ],
+      rangeSliderValue:[5, 10]
     };
 
     this.popovertoggle = this.popovertoggle.bind(this);
@@ -249,13 +255,20 @@ class App extends React.Component<{}, State> {
 
   processNext = () => {
     if (this.state.processComponentState < this.state.processLength - 1) {
-      this.setState({ processComponentState: this.state.processComponentState + 1 });
+      this.setState({
+        processComponentState: this.state.processComponentState + 1,
+      });
     }
   }
 
   processPrevious = () => {
-    if (this.state.processComponentState > 0 && this.state.processComponentState < this.state.processLength + 1) {
-      this.setState({ processComponentState: this.state.processComponentState - 1 });
+    if (
+      this.state.processComponentState > 0 &&
+      this.state.processComponentState < this.state.processLength + 1
+    ) {
+      this.setState({
+        processComponentState: this.state.processComponentState - 1,
+      });
     }
   }
 
@@ -332,13 +345,14 @@ class App extends React.Component<{}, State> {
         description: 'Test description',
         status: { itemID: 1, itemName: 'New' },
         type: 'admin',
-      }, {
+      },
+      {
         id: 13 + rowId,
         name: `DheePat${rowId}`,
         description: 'Test description3',
         status: { itemID: 3, itemName: 'Draft' },
         type: 'admin',
-      }
+      },
     ];
 
     childtableData.push({
@@ -351,16 +365,27 @@ class App extends React.Component<{}, State> {
     const childrowActionConfig = [
       {
         content: 'View',
-        onClick: (value: any) => { console.log('View:', value); },
-      }, {
+        onClick: (value: any) => {
+          console.log('View:', value);
+        },
+      },
+      {
         content: 'Delete',
-        onClick: (value: any) => { console.log('Delete:', value); },
-      }, {
+        onClick: (value: any) => {
+          console.log('Delete:', value);
+        },
+      },
+      {
         content: 'Archive',
-        onClick: (value: any) => { console.log('Archive:', value); },
-      }, {
+        onClick: (value: any) => {
+          console.log('Archive:', value);
+        },
+      },
+      {
         content: 'Version History',
-        onClick: (value: any) => { console.log('Version:', value); },
+        onClick: (value: any) => {
+          console.log('Version:', value);
+        },
       },
     ];
 
@@ -370,35 +395,45 @@ class App extends React.Component<{}, State> {
         key: 'name',
         className: '',
         sort: true,
-      }, {
+      },
+      {
         label: 'Description',
         key: 'description',
         sort: true,
-      }, {
+      },
+      {
         label: 'Status',
         key: 'status',
         sort: true,
         sortBy: 'itemName',
-        injectBody: (value: any) => <Badge status={value.status.itemID === 1 ? 'success' : 'warning'}>{value.status.itemName}</Badge>,
-      }, {
+        injectBody: (value: any) => (
+          <Badge status={value.status.itemID === 1 ? 'success' : 'warning'}>
+            {value.status.itemName}
+          </Badge>
+        ),
+      },
+      {
         label: 'Type',
         key: 'type',
       },
     ];
     const newData: TableNestedData = {
       rowId,
-      component: <Table
-      highlight={true}
-      sorting="all"
-      data={childtableData}
-      column={childcolumnConfig}
-      selectRow="checkbox"
-      selectRowCallback={(val: any) => console.log('nested table callback:', val)}
-      rowAction={childrowActionConfig}
-      bordered
-      renderHeaderCheckbox={false}
-    />,
-
+      component: (
+        <Table
+          highlight={true}
+          sorting="all"
+          data={childtableData}
+          column={childcolumnConfig}
+          selectRow="checkbox"
+          selectRowCallback={(val: any) =>
+            console.log('nested table callback:', val)
+          }
+          rowAction={childrowActionConfig}
+          bordered
+          renderHeaderCheckbox={false}
+        />
+      ),
     };
 
     nestedChildData.some((item: TableNestedData, index: number): boolean => {
@@ -415,13 +450,15 @@ class App extends React.Component<{}, State> {
     this.setState({ nestedChildData, callChildCallback: false });
   }
 
-  getErrors = (error:any, name:string) => {
-    this.setState({ error: {  ...this.state.error, [name]: error || [] } });
+  getErrors = (error: any, name: string) => {
+    this.setState({ error: { ...this.state.error, [name]: error || [] } });
   }
 
   isValidate = (): boolean => {
     let allErrors: any[] = [];
-    Object.values(this.state.error).forEach(value => allErrors = allErrors.concat(value));
+    Object.values(this.state.error).forEach(
+      (value) => (allErrors = allErrors.concat(value))
+    );
     return !!allErrors.length;
   }
 
@@ -438,29 +475,41 @@ class App extends React.Component<{}, State> {
 
     return (
       <span>
-        <Button plain icon="horizontalDots"
-          onClick={(event: React.FormEvent<HTMLElement>) => this.setState({ treeAnchor: { [thisId]: event.currentTarget as HTMLElement } })} />
-            <Dropdown
-              dropdownItems={dropdownItems}
-              anchorEl={this.state.treeAnchor[thisId]}
-              preferredAlignment="left"/>
+        <Button
+          plain
+          icon="horizontalDots"
+          onClick={(event: React.FormEvent<HTMLElement>) =>
+            this.setState({
+              treeAnchor: { [thisId]: event.currentTarget as HTMLElement },
+            })
+          }
+        />
+        <Dropdown
+          dropdownItems={dropdownItems}
+          anchorEl={this.state.treeAnchor[thisId]}
+          preferredAlignment="left"
+        />
       </span>
     );
   }
 
   render() {
-    const Accordionitems : AccordionItemProps[] = [{
-      children: <Banner componentTitle={'banner'} status={'success'} />,
-      header: <Button>sk</Button>
-    }, {
-      children: <Banner componentTitle={'banner11'} status={'warning'} />,
-      header: <Button>sk1</Button>
-    }, {
-      children: <Banner componentTitle={'banner13'} status={'warning'} />,
-      header: <Button>sk3</Button>
-    }];
+    const Accordionitems: AccordionItemProps[] = [
+      {
+        children: <Banner componentTitle={'banner'} status={'success'} />,
+        header: <Button>sk</Button>,
+      },
+      {
+        children: <Banner componentTitle={'banner11'} status={'warning'} />,
+        header: <Button>sk1</Button>,
+      },
+      {
+        children: <Banner componentTitle={'banner13'} status={'warning'} />,
+        header: <Button>sk3</Button>,
+      },
+    ];
 
-    const items : DropdownItemProps[] = [
+    const items: DropdownItemProps[] = [
       {
         content: 'Item 1',
         onClick: this.closed1,
@@ -471,66 +520,127 @@ class App extends React.Component<{}, State> {
       },
       {
         content: 'Itemasdadmmm 3',
-        disabled: true
+        disabled: true,
       },
       {
         content: 'Item 4',
         header: true,
-      }
+      },
     ];
 
-    const posterUrl = new URL('http://4.bp.blogspot.com/_JSR8IC77Ub4/TKB-XAWXmhI/AAAAAAAABJA/MqOpdFTOaHo/w1200-' +
-      'h630-p-k-no-nu/C:%5Cfakepath%5Cbird1.jpg');
+    const posterUrl = new URL(
+      'http://4.bp.blogspot.com/_JSR8IC77Ub4/TKB-XAWXmhI/AAAAAAAABJA/MqOpdFTOaHo/w1200-' +
+        'h630-p-k-no-nu/C:%5Cfakepath%5Cbird1.jpg'
+    );
     const singleVideoSource = [
       {
-        src: 'http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_1mb.mp4',
+        src:
+          'http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_1mb.mp4',
         type: VideoType.MP4,
-      }];
+      },
+    ];
     const multiVideoSource = [
       {
-        src: 'http://www.sample-videos.com/video/mp4/480/big_buck_bunny_480p_30mb.mp4',
+        src:
+          'http://www.sample-videos.com/video/mp4/480/big_buck_bunny_480p_30mb.mp4',
         type: VideoType.MP4,
       },
       {
-        src: 'http://www.sample-videos.com/video/mp4/240/big_buck_bunny_240p_30mb.mp4',
+        src:
+          'http://www.sample-videos.com/video/mp4/240/big_buck_bunny_240p_30mb.mp4',
         type: VideoType.MP4,
-      }];
+      },
+    ];
 
-    const sampleVideoCmp = <Video
-      poster={posterUrl}
-      src={singleVideoSource}
-      autoplay={false}
-      controls={false}
-      componentStyle={{
-        height: 100,
-        width: 100,
-      }} />;
+    const sampleVideoCmp = (
+      <Video
+        poster={posterUrl}
+        src={singleVideoSource}
+        autoplay={false}
+        controls={false}
+        componentStyle={{
+          height: 100,
+          width: 100,
+        }}
+      />
+    );
 
     const steps = [
       { name: 'Completed', status: 'completed' },
       { name: 'Active', status: 'active' },
-      { name: 'Upcoming' }
+      { name: 'Upcoming' },
     ];
 
     const pickerdata = [
-      { key: 1, image: 'http://msaadvertising.com/wp-content/uploads/2014/06/Larry-cartoon-headshot.jpg', name: 'John Doe', description: 'John Doe', email: 'test@gmail.com', icon: 'filter' },
-      { key: 2, image: 'http://cdn.photographyproject.com.au/wp-content/uploads/2013/04/corporate-headshot.jpg', name: 'Pedro Sanchez', description: 'Pedro Sanchez', email: 'pedrosanchez@gmail.com' },
-      { key: 3, image: 'https://media.licdn.com/mpr/mpr/p/5/005/08f/04d/02df10d.jpg', name: 'Jane Doe', description: 'Jane Doe', email: 'jane@gmail.com' },
-      { key: 4, image: 'http://www.roanokecreditrepair.com/wp-content/uploads/2016/06/Headshot-1.png', name: 'Person McPerson', description: 'Person McPerson', email: 'yahoogmail@gmail.com' },
-      { key: 5, image: 'https://d38zhw9ti31loc.cloudfront.net/wp-content/uploads/2013/07/Crystal-headshot-new.jpg', name: 'Laura Person', description: 'Laura Person', email: 'yahooldjadslkjgmail@gmail.com' },
-      { key: 6, image: 'https://d38zhw9ti31loc.cloudfront.net/wp-content/uploads/2013/07/Crystal-headshot-new.jpg', name: 'LauraPerson', description: 'Laura Person', email: 'slkjgmail@gmail.com' },
-      { key: 7, image: '', name: 'HirenHirenHirenHirenHirenHirenHirenHirenHirenHirenHirenHirenHirenHirenHirenHirenHirenHirenHirenHiren ', description: 'Hiren descHiren descHiren descHiren desc', email: 'hiren@test.com' }
+      {
+        key: 1,
+        image:
+          'http://msaadvertising.com/wp-content/uploads/2014/06/Larry-cartoon-headshot.jpg',
+        name: 'John Doe',
+        description: 'John Doe',
+        email: 'test@gmail.com',
+        icon: 'filter',
+      },
+      {
+        key: 2,
+        image:
+          'http://cdn.photographyproject.com.au/wp-content/uploads/2013/04/corporate-headshot.jpg',
+        name: 'Pedro Sanchez',
+        description: 'Pedro Sanchez',
+        email: 'pedrosanchez@gmail.com',
+      },
+      {
+        key: 3,
+        image: 'https://media.licdn.com/mpr/mpr/p/5/005/08f/04d/02df10d.jpg',
+        name: 'Jane Doe',
+        description: 'Jane Doe',
+        email: 'jane@gmail.com',
+      },
+      {
+        key: 4,
+        image:
+          'http://www.roanokecreditrepair.com/wp-content/uploads/2016/06/Headshot-1.png',
+        name: 'Person McPerson',
+        description: 'Person McPerson',
+        email: 'yahoogmail@gmail.com',
+      },
+      {
+        key: 5,
+        image:
+          'https://d38zhw9ti31loc.cloudfront.net/wp-content/uploads/2013/07/Crystal-headshot-new.jpg',
+        name: 'Laura Person',
+        description: 'Laura Person',
+        email: 'yahooldjadslkjgmail@gmail.com',
+      },
+      {
+        key: 6,
+        image:
+          'https://d38zhw9ti31loc.cloudfront.net/wp-content/uploads/2013/07/Crystal-headshot-new.jpg',
+        name: 'LauraPerson',
+        description: 'Laura Person',
+        email: 'slkjgmail@gmail.com',
+      },
+      {
+        key: 7,
+        image: '',
+        name:
+          'HirenHirenHirenHirenHirenHirenHirenHirenHirenHirenHirenHirenHirenHirenHirenHirenHirenHirenHirenHiren ',
+        description: 'Hiren descHiren descHiren descHiren desc',
+        email: 'hiren@test.com',
+      },
     ];
 
     const tableData = [
       {
         id: 1,
         name: 'Hiren',
-        description: 'Test description Test description Test description Test description',
+        description:
+          'Test description Test description Test description Test description',
         status: { itemID: 1, itemName: 'New' },
         type: 'admin',
-        isRowClickDisable: true
-      }, {
+        isRowClickDisable: true,
+      },
+      {
         id: 2,
         name: 'Dheeraj',
         renderBanner: {
@@ -541,28 +651,38 @@ class App extends React.Component<{}, State> {
             {
               content: 'Item 1',
               contentId: 1,
-              onClick: (value: any) => { console.log(value); }
-            }, {
+              onClick: (value: any) => {
+                console.log(value);
+              },
+            },
+            {
               content: 'Item 2',
               contentId: 2,
-              onClick: (value: any) => { console.log(value); }
-            }, {
+              onClick: (value: any) => {
+                console.log(value);
+              },
+            },
+            {
               content: 'Item 3',
               contentId: 3,
-              onClick: (value: any) => { console.log(value); }
-            }
-          ]
+              onClick: (value: any) => {
+                console.log(value);
+              },
+            },
+          ],
         },
         description: 'Test description2',
         status: { itemID: 2, itemName: 'Deleted' },
         type: 'admin',
-      }, {
+      },
+      {
         id: 3,
         name: 'Patel',
         description: 'Test description3',
         status: { itemID: 3, itemName: 'Draft' },
         type: 'admin',
-      }, {
+      },
+      {
         id: 4,
         name: 'Raj',
         description: 'Test description2',
@@ -575,18 +695,21 @@ class App extends React.Component<{}, State> {
       {
         name: 'Home',
         type: 'default',
-        onBreadcrumbClick: () => console.log('Home is clicked')
-      }, {
+        onBreadcrumbClick: () => console.log('Home is clicked'),
+      },
+      {
         name: <Badge children={'Home1'} status={'success'} />,
         type: 'active',
-        onBreadcrumbClick: () => console.log('Badge is clicked')
-      }, {
+        onBreadcrumbClick: () => console.log('Badge is clicked'),
+      },
+      {
         name: 'Home2',
-        type: 'disabled'
-      }, {
+        type: 'disabled',
+      },
+      {
         name: 'Home3',
         type: 'active',
-        onBreadcrumbClick: () => console.log('Home3 is clicked')
+        onBreadcrumbClick: () => console.log('Home3 is clicked'),
       },
     ];
     const sideNavigationData: INavigationData[] = [
@@ -595,104 +718,122 @@ class App extends React.Component<{}, State> {
         label: 'Show All Apps',
         icon: 'chevronLeft',
         parentDivider: true,
-        action: () => console.log('Basics is clicked!')
-      }, {
+        action: () => console.log('Basics is clicked!'),
+      },
+      {
         id: 0.2,
         label: 'Global Application',
         icon: 'external',
         currentApp: true,
         parentDivider: true,
-        action: () => console.log('Basics is clicked!')
-      }, {
+        action: () => console.log('Basics is clicked!'),
+      },
+      {
         id: 0.3,
         label: 'Features',
         icon: 'lightbulb',
         divider: true,
-        action: () => console.log('Basics is clicked!')
-      }, {
+        action: () => console.log('Basics is clicked!'),
+      },
+      {
         id: 1,
         label: 'Dashboard',
         icon: 'tachometer',
-        action: () => console.log('Basics is clicked!')
-      }, {
+        action: () => console.log('Basics is clicked!'),
+      },
+      {
         id: 2,
         label: 'Basics',
         icon: 'infoCircle',
         divider: true,
-        action: () => console.log('Basics is clicked!')
-      }, {
+        action: () => console.log('Basics is clicked!'),
+      },
+      {
         id: 3,
         label: 'Content',
         icon: 'database',
         divider: true,
-        action: () => console.log('Basics is clicked!')
-      }, {
+        action: () => console.log('Basics is clicked!'),
+      },
+      {
         id: 3.2,
         label: 'Content Definitions',
         icon: 'database',
         divider: true,
-        action: () => console.log('Basics is clicked!')
-      }, {
+        action: () => console.log('Basics is clicked!'),
+      },
+      {
         id: 5.1,
         label: 'Value Definitions',
         icon: 'database',
         divider: true,
-        action: () => console.log('Basics is clicked!')
-      }, {
+        action: () => console.log('Basics is clicked!'),
+      },
+      {
         id: 3.1,
         label: 'User',
         icon: 'user',
-        action: () => console.log('Basics is clicked!')
-      }, {
+        action: () => console.log('Basics is clicked!'),
+      },
+      {
         id: 4,
         label: 'Groups',
         icon: 'users',
-        action: () => console.log('Basics is clicked!')
-      }, {
+        action: () => console.log('Basics is clicked!'),
+      },
+      {
         id: 5,
         label: 'Roles',
         icon: 'userMd',
-        action: () => console.log('Basics is clicked!')
-      }, {
+        action: () => console.log('Basics is clicked!'),
+      },
+      {
         id: 6,
         label: 'Permissions',
         icon: 'lock',
         divider: true,
         action: () => console.log('Permissions Item is clicked!'),
-      }, {
+      },
+      {
         id: 7,
         label: 'Pages',
         icon: 'file',
-        action: () => console.log('Basics is clicked!')
-      }, {
+        action: () => console.log('Basics is clicked!'),
+      },
+      {
         id: 8,
         label: 'Forms',
         icon: 'checkSquare',
-        action: () => console.log('Basics is clicked!')
-      }, {
+        action: () => console.log('Basics is clicked!'),
+      },
+      {
         id: 9,
         label: 'Workflow',
         icon: 'puzzlePiece',
         action: () => console.log('Workflow Item is clicked!'),
-      }, {
+      },
+      {
         id: 10,
         label: 'Themes',
         icon: 'paintBrush',
         divider: true,
         action: () => console.log('Themes Item is clicked!'),
-      }, {
+      },
+      {
         id: 11,
         label: 'Publishing',
         icon: 'refresh',
         divider: true,
         action: () => console.log('Publishing is clicked!'),
-      }, {
+      },
+      {
         id: 12,
         label: 'App Analytics',
         icon: 'chartBar',
         divider: true,
         action: () => console.log('App Analytics is clicked!'),
-      }, {
+      },
+      {
         id: 13,
         label: 'Sherpa',
         icon: 'handsHelping',
@@ -719,19 +860,26 @@ class App extends React.Component<{}, State> {
         sort: true,
         sortBy: 'keyword',
         style: { width: '100px' },
-      }, {
+      },
+      {
         label: 'Description',
         key: 'description',
         noSort: true,
         style: { width: '250px' },
-      }, {
+      },
+      {
         label: 'Status',
         key: 'status',
         sort: true,
         sortBy: 'itemName',
-        injectBody: (value: any) => <Badge status={value.status.itemID === 1 ? 'success' : 'warning'}>{value.status.itemName}</Badge>,
+        injectBody: (value: any) => (
+          <Badge status={value.status.itemID === 1 ? 'success' : 'warning'}>
+            {value.status.itemName}
+          </Badge>
+        ),
         style: { width: '100px' },
-      }, {
+      },
+      {
         label: 'Type',
         key: 'type',
         style: { width: '100px' },
@@ -751,25 +899,32 @@ class App extends React.Component<{}, State> {
         key: 'name',
         className: '',
         sort: true,
-        style: { width: '80px' }
-      }, {
+        style: { width: '80px' },
+      },
+      {
         label: 'Description',
         key: 'description',
         style: { width: '250px' },
-      }, {
+      },
+      {
         label: 'Status',
         key: 'status',
         sort: true,
         sortBy: 'itemName',
         style: { width: '100px' },
-        injectBody: (value: any) => <Badge status={value.status.itemID === 1 ? 'success' : 'warning'}>{value.status.itemName}</Badge>,
-      }, {
+        injectBody: (value: any) => (
+          <Badge status={value.status.itemID === 1 ? 'success' : 'warning'}>
+            {value.status.itemName}
+          </Badge>
+        ),
+      },
+      {
         label: 'Type',
         key: 'type',
       },
     ];
 
-      /*
+    /*
         Filtering table data
         mode: Mode of filteration, right now we have only one which is search
         search: If mode is search then it holds search config
@@ -782,51 +937,96 @@ class App extends React.Component<{}, State> {
     const rowActionConfig = [
       {
         content: 'View',
-        onClick: (value: any) => { console.log('View:', value); },
-      }, {
+        onClick: (value: any) => {
+          console.log('View:', value);
+        },
+      },
+      {
         content: 'Delete',
-        onClick: (value: any) => { console.log('Delete:', value); },
-      }, {
+        onClick: (value: any) => {
+          console.log('Delete:', value);
+        },
+      },
+      {
         content: 'Archive',
-        onClick: (value: any) => { console.log('Archive:', value); },
-      }, {
+        onClick: (value: any) => {
+          console.log('Archive:', value);
+        },
+      },
+      {
         content: 'Version History',
-        onClick: (value: any) => { console.log('Version:', value); },
+        onClick: (value: any) => {
+          console.log('Version:', value);
+        },
       },
     ];
 
     const treeSource: TreeSource[] = [
       {
         id: 1,
-        component: () => <span>I am component1<br />I am component1<br />I am component1</span>,
+        component: () => (
+          <span>
+            I am component1
+            <br />I am component1
+            <br />I am component1
+          </span>
+        ),
         active: true,
-        onToggle: status => console.log('Tree node open:', status),
+        onToggle: (status) => console.log('Tree node open:', status),
         children: [
           {
             id: 11,
-            component: () => <span>I am child component1<br/>I am child component1<br/>I am child component1<br/>
-            I am child component1<br/>I am child component1<br/>I am child component1<br/>I am child component1 - {this.getDropdown(11)}
-            </span>,
+            component: () => (
+              <span>
+                I am child component1
+                <br />I am child component1
+                <br />I am child component1
+                <br />
+                I am child component1
+                <br />I am child component1
+                <br />I am child component1
+                <br />I am child component1 - {this.getDropdown(11)}
+              </span>
+            ),
             active: false,
           },
           {
             id: 12,
-            component: () => <span>I am child component2<br />I am child component2<br />I am child component2 {this.getDropdown(12)}</span>,
+            component: () => (
+              <span>
+                I am child component2
+                <br />I am child component2
+                <br />I am child component2 {this.getDropdown(12)}
+              </span>
+            ),
             active: false,
             children: [
               {
                 id: 121,
-                component: () => <Card>
-                <p>Batman is a fictional superhero who appears in American comic books published by DC Comics. The character was created by artist Bob Kane and writer Bill Finger, and first appeared in Detective Comics #27</p>
-              </Card>,
-              // component: () => <span>I am child child component1</span>,
+                component: () => (
+                  <Card>
+                    <p>
+                      Batman is a fictional superhero who appears in American
+                      comic books published by DC Comics. The character was
+                      created by artist Bob Kane and writer Bill Finger, and
+                      first appeared in Detective Comics #27
+                    </p>
+                  </Card>
+                ),
+                // component: () => <span>I am child child component1</span>,
                 active: false,
                 children: [
                   {
                     id: 1211,
-                    component: () => <Card>
-                <p>The American robin (Turdus migratorius) is a migratory songbird of the true thrush genus and Turdidae, the wider thrush family.</p>
-              </Card>,
+                    component: () => (
+                      <Card>
+                        <p>
+                          The American robin (Turdus migratorius) is a migratory
+                          songbird of the true thrush genus and Turdidae, the
+                          wider thrush family.
+                        </p>
+                      </Card>
+                    ),
                     // component: () => <span>child component1</span>,
                     active: false,
                   },
@@ -845,16 +1045,16 @@ class App extends React.Component<{}, State> {
                         component: () => <span>child component2</span>,
                         active: false,
                       },
-                    ]
+                    ],
                   },
-                ]
+                ],
               },
               {
                 id: 122,
                 component: () => <span>I am child component2</span>,
                 active: false,
-              }
-            ]
+              },
+            ],
           },
           {
             id: 13,
@@ -863,13 +1063,22 @@ class App extends React.Component<{}, State> {
           },
           {
             id: 14,
-            component: () => <span>I am child component1<br/>I am child component1<br/>I am child component1<br/>
-            I am child component1<br/>I am child component1<br/>I am child component1<br/>I am child component1
-            </span>,
+            component: () => (
+              <span>
+                I am child component1
+                <br />I am child component1
+                <br />I am child component1
+                <br />
+                I am child component1
+                <br />I am child component1
+                <br />I am child component1
+                <br />I am child component1
+              </span>
+            ),
             active: false,
-          }
-        ]
-      }
+          },
+        ],
+      },
       // , {
       //   id: 2,
       //   component: () => <span>I am component2</span>,
@@ -878,7 +1087,10 @@ class App extends React.Component<{}, State> {
       // }
     ];
 
-    const dummyArray = [{ text: 'hello', icon: 'alert' }, { text:'How are you?', icon: 'alert' }];
+    const dummyArray = [
+      { text: 'hello', icon: 'alert' },
+      { text: 'How are you?', icon: 'alert' },
+    ];
 
     return (
       <div style={{ width: '60%' }}>
@@ -889,18 +1101,22 @@ class App extends React.Component<{}, State> {
           logo={'https://emgage.com/SiteAssets/Emgage-logo.png'}
           loginUrl={'loginUrl'}
           logoutUrl={'logoutUrl'}
-          profilePic={'http://msaadvertising.com/wp-content/uploads/2014/06/Larry-cartoon-headshot.jpg'}
+          profilePic={
+            'http://msaadvertising.com/wp-content/uploads/2014/06/Larry-cartoon-headshot.jpg'
+          }
           userName={'test@emgage.com'}
           additionalLIst={[{ content: 'extra Item', divider: true }]}
           enableSearch
-          rightChildren={[<Button icon="notes" />, <Button icon="userCog" />, <Button icon="infoCircle" />]}
+          rightChildren={[
+            <Button icon="notes" />,
+            <Button icon="userCog" />,
+            <Button icon="infoCircle" />,
+          ]}
         />
-
         <ToggleButtonGroup segmented={true} helpText="Test Help Text">
           <Button>On</Button>
           <Button>Off</Button>
         </ToggleButtonGroup>
-
         <Icon source="checkCircle" />
         <Icon source="grid" />
         <Icon source="list" />
@@ -919,7 +1135,6 @@ class App extends React.Component<{}, State> {
         <Badge children={'Badge'} status={'info'} />
         <Badge children={'Badge'} status={'attention'} />
         <Badge children={'Badge'} status={'warning'} />
-
         <Badge children={'New'} status={'new'} />
         <Badge children={'Draft'} status={'draft'} />
         <Badge children={'Published'} status={'published'} />
@@ -928,18 +1143,35 @@ class App extends React.Component<{}, State> {
         <Badge children={'Archived'} status={'archived'} />
         <Badge children={'Delete'} status={'delete'} />
         <Badge children={'Deleted'} status={'deleted'} />
-        <Badge status={'locked'} icon >Locked</Badge>
-
+        <Badge status={'locked'} icon>
+          Locked
+        </Badge>
         <Badge children={''} icon />
-        <Badge children={'Draft'} status={'draft'} icon iconSource = {'user'} iconColor = {'orange'} />
-
+        <Badge
+          children={'Draft'}
+          status={'draft'}
+          icon
+          iconSource={'user'}
+          iconColor={'orange'}
+        />
         <Badge children={'Badge'} progress={'incomplete'} />
         <Badge children={'Badge'} progress={'partiallyComplete'} />
         <Badge children={'Badge'} progress={'complete'} />
         <Badge children={'Publishing'} status={'info'} working />
-        <Badge status={'info'} working >Publishing</Badge>
-        <Badge><Spinner componentSize="small" componentStyle={{ width: '1.1rem', height: '1.1rem', marginLeft: '-.5rem' }} /> Badge</Badge>
-
+        <Badge status={'info'} working>
+          Publishing
+        </Badge>
+        <Badge>
+          <Spinner
+            componentSize="small"
+            componentStyle={{
+              width: '1.1rem',
+              height: '1.1rem',
+              marginLeft: '-.5rem',
+            }}
+          />{' '}
+          Badge
+        </Badge>
         {/* <div>
           <Button onClick={(e: any) => this.newPopoverUpdate(e)}>Popover</Button>
           <Popover
@@ -949,21 +1181,30 @@ class App extends React.Component<{}, State> {
             This is popover component
           </Popover>
         </div> */}
-
         <div>
           Pagination:
-          <Pagination {...PaginationDefaultProps} pageSizeList={[3,6,9]} showSizeChanger={true} onChange={(page: number) => this.setState({ paginationCurrent: page })} current={this.state.paginationCurrent} total={25} />
+          <Pagination {...PaginationDefaultProps} pageSizeList={[3, 6, 9]} showSizeChanger={true} onChange={(page: number) => this.setState({ paginationCurrent: page })} current={this.state.paginationCurrent} total={25} />
           PageSize:
-          <PageSize onKeyPress={() => {}} currentPageSize={this.state.currentPageSize} onClick={(currentPageSize: number) =>  this.setState({ currentPageSize })} pageSizeList={[10, 50, 100]} className="cl" />
+          <PageSize
+            onKeyPress={() => {}}
+            currentPageSize={this.state.currentPageSize}
+            onClick={(currentPageSize: number) =>
+              this.setState({ currentPageSize })
+            }
+            pageSizeList={[10, 50, 100]}
+            className="cl"
+          />
         </div>
         <div>
           <TabPanel defaultTabId="tab1" position={'top'} alignment={'center'}>
-            <Tab tabDescription={<Badge children={'Home'} status={'success'} />} tabId={'tab1'}>
+            <Tab
+              tabDescription={<Badge children={'Home'} status={'success'} />}
+              tabId={'tab1'}
+            >
               <p>content 0</p>
             </Tab>
             <Tab tabDescription="User" tabId={'tab2'}>
-              <div>
-              </div>
+              <div></div>
             </Tab>
             <Tab tabDescription="User1" tabId={'tab3'}>
               <p>content user1</p>
@@ -975,10 +1216,12 @@ class App extends React.Component<{}, State> {
               <p>content user3</p>
             </Tab>
           </TabPanel>
-          <Button onClick={() => this.setState({ activeTabId: 'tab2' })}>Trigger User from here</Button>
+          <Button onClick={() => this.setState({ activeTabId: 'tab2' })}>
+            Trigger User from here
+          </Button>
         </div>
         <div>
-        <Button onClick={this.toggleModal}>Medium button</Button>
+          <Button onClick={this.toggleModal}>Medium button</Button>
           <Modal
             active={this.state.modalOpen}
             toggle={this.toggleModal}
@@ -987,254 +1230,350 @@ class App extends React.Component<{}, State> {
             componentWidth="medium"
             closeOnBackgroud
             closeOnEsc
-            closeButton>
+            closeButton
+          >
             <ModalHeader>Modal title</ModalHeader>
             <ModalBody modalOverflow>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae ex pellentesque, pretium lorem vel, tempor ipsum. Phasellus suscipit lacus in velit malesuada, at bibendum mi gravida. Sed cursus nisi sem, non pellentesque ligula euismod eget. Sed quis fringilla nibh, at vestibulum turpis. Donec sed sagittis sapien. Nam quis ex quis nulla porta molestie. Vestibulum eu lorem porta, facilisis orci a, tempor quam. Suspendisse et sollicitudin nulla. Aenean consectetur imperdiet leo nec condimentum. Aliquam scelerisque magna ut tortor accumsan condimentum.
-
-              Nulla quis ante sit amet leo lobortis rhoncus. Cras mollis quis leo nec tincidunt. Aliquam blandit est vitae leo ultrices, ut egestas sapien pharetra. Suspendisse nec aliquet orci. Suspendisse rutrum odio sed neque scelerisque, ut consectetur erat tincidunt. Duis ultrices metus eget ante posuere eleifend. Ut luctus felis neque, sit amet efficitur neque maximus id. Aliquam porta, tellus ut pellentesque facilisis, odio neque maximus erat, venenatis semper nisi metus id augue. Cras vel sem eu elit blandit laoreet id vitae tortor. Morbi sit amet mi rutrum, sagittis enim lacinia, dictum turpis.
-      <div>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <div>Sandwich: Keep Scrolling!</div>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <div>You can scroll and see me!</div>
-      <div>Top Content!</div>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <div>Sandwich: Keep Scrolling!</div>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <div>You can scroll and see me!</div>
-      <div>Top Content!</div>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <div>Sandwich: Keep Scrolling!</div>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <Sticky position={'bottom'} footerType="inline">
-                <span>footer content</span>
-      </Sticky>
-      You can scroll and see me!</div>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+              vitae ex pellentesque, pretium lorem vel, tempor ipsum. Phasellus
+              suscipit lacus in velit malesuada, at bibendum mi gravida. Sed
+              cursus nisi sem, non pellentesque ligula euismod eget. Sed quis
+              fringilla nibh, at vestibulum turpis. Donec sed sagittis sapien.
+              Nam quis ex quis nulla porta molestie. Vestibulum eu lorem porta,
+              facilisis orci a, tempor quam. Suspendisse et sollicitudin nulla.
+              Aenean consectetur imperdiet leo nec condimentum. Aliquam
+              scelerisque magna ut tortor accumsan condimentum. Nulla quis ante
+              sit amet leo lobortis rhoncus. Cras mollis quis leo nec tincidunt.
+              Aliquam blandit est vitae leo ultrices, ut egestas sapien
+              pharetra. Suspendisse nec aliquet orci. Suspendisse rutrum odio
+              sed neque scelerisque, ut consectetur erat tincidunt. Duis
+              ultrices metus eget ante posuere eleifend. Ut luctus felis neque,
+              sit amet efficitur neque maximus id. Aliquam porta, tellus ut
+              pellentesque facilisis, odio neque maximus erat, venenatis semper
+              nisi metus id augue. Cras vel sem eu elit blandit laoreet id vitae
+              tortor. Morbi sit amet mi rutrum, sagittis enim lacinia, dictum
+              turpis.
+              <div>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <div>Sandwich: Keep Scrolling!</div>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <div>You can scroll and see me!</div>
+                <div>Top Content!</div>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <div>Sandwich: Keep Scrolling!</div>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <div>You can scroll and see me!</div>
+                <div>Top Content!</div>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <div>Sandwich: Keep Scrolling!</div>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <Sticky position={'bottom'} footerType="inline">
+                  <span>footer content</span>
+                </Sticky>
+                You can scroll and see me!
+              </div>
             </ModalBody>
-            <ModalFooter>
-            </ModalFooter>
+            <ModalFooter></ModalFooter>
           </Modal>
           <Caption componentStyle={{ color: 'red' }}>This is modal</Caption>
         </div>
-        { /* this is treeview */ }
+        {/* this is treeview */}
         <div style={{ padding: '20px' }}>
           <label>This is treeview </label>
 
-          <TreeView
-            source={treeSource}
-          />
+          <TreeView source={treeSource} />
         </div>
         <br />
         <div>
           <p>This is my Breadcrumbs!!</p>
-          <BreadCrumb direction={'left'} source={breadcrumbData} displayStyle="primary" />
-       </div>
-       <div> This is my process indicator
-       <Button onClick={() => this.processNext()}>Next Process</Button>
-       <Button onClick={() => this.processPrevious()}>Previous Process</Button>
-         <Process
-          steps={steps}
-          allowBackStepping
-          onClick={(processComponentState: number) => this.updateProcessStateonClick(processComponentState)}
-          onComponentStateUpdate={(currentState: number, processComponentState: number) => this.updateProcessState(currentState, processComponentState) }
-          processComponentState = {this.state.processComponentState} />
-         </div>
+          <BreadCrumb
+            direction={'left'}
+            source={breadcrumbData}
+            displayStyle="primary"
+          />
+        </div>
+        <div>
+          {' '}
+          This is my process indicator
+          <Button onClick={() => this.processNext()}>Next Process</Button>
+          <Button onClick={() => this.processPrevious()}>
+            Previous Process
+          </Button>
+          <Process
+            steps={steps}
+            allowBackStepping
+            onClick={(processComponentState: number) =>
+              this.updateProcessStateonClick(processComponentState)
+            }
+            onComponentStateUpdate={(
+              currentState: number,
+              processComponentState: number
+            ) => this.updateProcessState(currentState, processComponentState)}
+            processComponentState={this.state.processComponentState}
+          />
+        </div>
         <br />
         <Caption componentStyle={{ color: 'red' }}>This is Caption</Caption>
         <br />
         <Heading>Alert</Heading>
         <Alert>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt.
         </Alert>
-        <Alert componentType="primary" >
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
+        <Alert componentType="primary">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt.
         </Alert>
         <Alert componentType="success">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt.
         </Alert>
         <Alert componentType="warning">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt.
         </Alert>
         <Alert componentType="danger">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt.
         </Alert>
         <Heading>Checkbox</Heading>
         <div style={{ padding: '20px' }}>
-        <Checkbox helpText="Help Text" checked={this.state.checkboxState} label="Checkbox" onChange={(newValue: boolean) => console.log('I am here:', newValue) } />
-        <Checkbox helpText="Help Text" checked label="Checked Checkbox" />
-        <Checkbox checked label="Checked Checkbox" />
-        <Checkbox checked="indeterminate" label="Indeterminate Checkbox" />
-        <Checkbox helpText="Help Text" disabled checked={this.state.checkboxState} label="Disabled Checkbox" onChange={(newValue: boolean) => console.log('I am here:', newValue) } />
-        <Checkbox helpText="Help Text" checked label="Hidden Label Checkbox" labelHidden />
-        <Checkbox checked label="Hidden Label Checkbox" labelHidden />
+          <Checkbox
+            helpText="Help Text"
+            checked={this.state.checkboxState}
+            label="Checkbox"
+            onChange={(newValue: boolean) =>
+              console.log('I am here:', newValue)
+            }
+          />
+          <Checkbox helpText="Help Text" checked label="Checked Checkbox" />
+          <Checkbox checked label="Checked Checkbox" />
+          <Checkbox checked="indeterminate" label="Indeterminate Checkbox" />
+          <Checkbox
+            helpText="Help Text"
+            disabled
+            checked={this.state.checkboxState}
+            label="Disabled Checkbox"
+            onChange={(newValue: boolean) =>
+              console.log('I am here:', newValue)
+            }
+          />
+          <Checkbox
+            helpText="Help Text"
+            checked
+            label="Hidden Label Checkbox"
+            labelHidden
+          />
+          <Checkbox checked label="Hidden Label Checkbox" labelHidden />
         </div>
         <Heading>Banner</Heading>
-        <Banner componentTitle={'banner'} status={'success'} secondaryText={dummyArray} />
+        <Banner
+          componentTitle={'banner'}
+          status={'success'}
+          secondaryText={dummyArray}
+        />
         <Banner componentTitle={'banner'} status={'info'} />
         <Banner componentTitle={'banner'} status={'warning'} />
         <Banner componentTitle={'banner'} status={'critical'} />
+        <Heading>Range Slider</Heading>
+        <RangeSlider
+          output
+          label="Logo offset"
+          min={0}
+          max={100}
+          value={this.state.rangeSliderValue}
+          onChange={this.setRangeSliderValue}
+        />
         <Heading>Picker</Heading>
         <PickerAutoSuggestExample />
         <Heading>Date Picker</Heading>
-
         <DateTimePicker
           defaultDateTime="2019-09-30T01:07:00.000Z"
           label="Expiration"
           timePicker
-          onChange={(dateTime: any) => console.log(dateTime.add(5.5, 'h').toISOString())}
-          onBlur={(dateTime: string) => console.log(dateTime)} />
-
+          onChange={(dateTime: any) =>
+            console.log(dateTime.add(5.5, 'h').toISOString())
+          }
+          onBlur={(dateTime: string) => console.log(dateTime)}
+        />
         <div style={{ marginTop: '20px', marginBottom: '20px' }}>
-          <Caption componentStyle={{ color: 'red' }}>This is Table field</Caption>
+          <Caption componentStyle={{ color: 'red' }}>
+            This is Table field
+          </Caption>
           <Button>
-            {`Delete ${this.state.bulkAction.selectedRow.length ? `(${this.state.bulkAction.selectedRow.length})` : ''}`}
+            {`Delete ${
+              this.state.bulkAction.selectedRow.length
+                ? `(${this.state.bulkAction.selectedRow.length})`
+                : ''
+            }`}
           </Button>
 
           <div className="fieldGroup">
-            <input type="text" value={this.state.filterConfig.searchKey} onChange={(event: any) => this.setState({ filterConfig: { ...this.state.filterConfig, searchKey: event.target.value, search: true } })} />
+            <input
+              type="text"
+              value={this.state.filterConfig.searchKey}
+              onChange={(event: any) =>
+                this.setState({
+                  filterConfig: {
+                    ...this.state.filterConfig,
+                    searchKey: event.target.value,
+                    search: true,
+                  },
+                })
+              }
+            />
             <div className="fieldGroupAddon">
-              <Button onClick={(val: any) => this.setState({ filterConfig: { ...this.state.filterConfig, search: true } })}>Search</Button>
+              <Button
+                onClick={(val: any) =>
+                  this.setState({
+                    filterConfig: { ...this.state.filterConfig, search: true },
+                  })
+                }
+              >
+                Search
+              </Button>
             </div>
 
-            <Button onClick={() => this.setState({ callChildCallback: true })}>Update child</Button>
+            <Button onClick={() => this.setState({ callChildCallback: true })}>
+              Update child
+            </Button>
           </div>
           <Table
             nestedChildData={this.state.nestedChildData}
@@ -1250,35 +1589,51 @@ class App extends React.Component<{}, State> {
             defaultSortField="name"
             defaultSortOrder="asc"
             selectRow="checkbox"
-            onRowClick={(name: any) => { console.log('Selected name ' + name); }}
+            onRowClick={(name: any) => {
+              console.log('Selected name ' + name);
+            }}
             rowCallbackValue="id"
             rowAction={rowActionConfig}
             selectCallbackValue="id"
             isChildParentConfigSame
-            selectRowCallback={(val: any) => this.setState({ bulkAction: { selectedRow: val } })}
-            bordered highlight sorting>
-              Loading
-            </Table>
-            <Table
-              actionInProgress={false}
-              data={tableData}
-              column={columnConfig1}
-              filterData={this.state.filterConfig}
-              defaultSortField="name"
-              defaultSortOrder="asc"
-              onRowClick={(name: any) => { console.log('Selected name ' + name); }}
-              rowCallbackValue="name"
-              rowAction={rowActionConfig}
-              rowActionLeft
-              selectCallbackValue="id"
-              isChildParentConfigSame
-              selectRowCallback={(val: any) => this.setState({ bulkAction: { selectedRow: val } })}
-              bordered highlight sorting>
-              Loading
-            </Table>
+            selectRowCallback={(val: any) =>
+              this.setState({ bulkAction: { selectedRow: val } })
+            }
+            bordered
+            highlight
+            sorting
+          >
+            Loading
+          </Table>
+          <Table
+            actionInProgress={false}
+            data={tableData}
+            column={columnConfig1}
+            filterData={this.state.filterConfig}
+            defaultSortField="name"
+            defaultSortOrder="asc"
+            onRowClick={(name: any) => {
+              console.log('Selected name ' + name);
+            }}
+            rowCallbackValue="name"
+            rowAction={rowActionConfig}
+            rowActionLeft
+            selectCallbackValue="id"
+            isChildParentConfigSame
+            selectRowCallback={(val: any) =>
+              this.setState({ bulkAction: { selectedRow: val } })
+            }
+            bordered
+            highlight
+            sorting
+          >
+            Loading
+          </Table>
 
-            <div><strong>New table test</strong></div>
-            <Table
+          <div>
+            <strong>New table test</strong>
+          </div>
+          <Table
             data={tableData}
             column={columnConfig}
             filterData={this.state.filterConfig}
@@ -1290,32 +1645,54 @@ class App extends React.Component<{}, State> {
             }}
             rowAction={rowActionConfig}
             selectCallbackValue="id"
-            selectRowCallback={(val: any) => this.setState({ bulkAction: { selectedRow: val } })}
+            selectRowCallback={(val: any) =>
+              this.setState({ bulkAction: { selectedRow: val } })
+            }
             serverSort={{
               field: 'name',
               order: 'asc',
-              callback: (field, order, sortBy) => console.log('field:', field, 'order:', order, 'sortBy:', sortBy)
+              callback: (field, order, sortBy) =>
+                console.log(
+                  'field:',
+                  field,
+                  'order:',
+                  order,
+                  'sortBy:',
+                  sortBy
+                ),
             }}
-            bordered highlight />
+            bordered
+            highlight
+          />
         </div>
-            <Sticky position={'top'} componentStyle={{ backgroundColor: '#FFF', color: 'inherit' }} footerType="inline">
-              <span>footer content</span>
-              <Button onClick={this.toggleModal}>Medium buttonas</Button>
-            </Sticky>
-        <div>
-        <Button onClick={(e: any) => {
-          this.setState({
-            dPopoverActive : true,
-            dAnchorEle: e ? e.currentTarget as HTMLElement : this.state.dAnchorEle
-          });
-        }}>DPopover</Button>
-        <Popover
-          anchorEl={this.state.dAnchorEle}
+        <Sticky
+          position={'top'}
+          componentStyle={{ backgroundColor: '#FFF', color: 'inherit' }}
+          footerType="inline"
         >
-          <span>Popover check</span>
-        </Popover>
+          <span>footer content</span>
+          <Button onClick={this.toggleModal}>Medium buttonas</Button>
+        </Sticky>
+        <div>
+          <Button
+            onClick={(e: any) => {
+              this.setState({
+                dPopoverActive: true,
+                dAnchorEle: e
+                  ? (e.currentTarget as HTMLElement)
+                  : this.state.dAnchorEle,
+              });
+            }}
+          >
+            DPopover
+          </Button>
+          <Popover anchorEl={this.state.dAnchorEle}>
+            <span>Popover check</span>
+          </Popover>
 
-          <Button onClick={() => this.toggleDrawerOuter('outterDrawer')}>Drawer 1</Button>
+          <Button onClick={() => this.toggleDrawerOuter('outterDrawer')}>
+            Drawer 1
+          </Button>
           <Drawer
             toggleDrawer={() => this.toggleDrawerOuter('outterDrawer')}
             active={this.state.outterDrawer}
@@ -1330,7 +1707,9 @@ class App extends React.Component<{}, State> {
             master
           >
             <DrawerContent componentId="dcontent1" mode="slide">
-              <Button onClick={() => this.toggleDrawerInner('innerDrawer')}>Inner Drawer</Button>
+              <Button onClick={() => this.toggleDrawerInner('innerDrawer')}>
+                Inner Drawer
+              </Button>
               <Drawer
                 toggleDrawer={() => this.toggleDrawerInner('innerDrawer')}
                 active={this.state.innerDrawer}
@@ -1341,235 +1720,11 @@ class App extends React.Component<{}, State> {
                 overlay
                 fixedCloseButton
                 closeButton
-                flip>
-                  <DrawerContent componentId="innerDrContent" mode="slide">
-                    I am inner
-                    <div>
-                      <h1>test</h1>
-
-                      <h1>test</h1>
-
-                      <h1>test</h1>
-
-                      <h1>test</h1>
-
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-
-                      <h1>test</h1>
-
-                      <h1>test</h1>
-
-                      <h1>test</h1>
-
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-
-                      <h1>test</h1>
-
-                      <h1>test</h1>
-
-                      <h1>test</h1>
-
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-
-                      <h1>test</h1>
-
-                      <h1>test</h1>
-
-                      <h1>test</h1>
-
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-
-                      <h1>test</h1>
-
-                      <h1>test</h1>
-
-                      <h1>test</h1>
-
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
-                      <h1>test</h1>
+                flip
+              >
+                <DrawerContent componentId="innerDrContent" mode="slide">
+                  I am inner
+                  <div>
                     <h1>test</h1>
 
                     <h1>test</h1>
@@ -1615,13 +1770,240 @@ class App extends React.Component<{}, State> {
                     <h1>test</h1>
                     <h1>test</h1>
                     <h1>test</h1>
-                    </div>
-                  </DrawerContent>
+                    <h1>test</h1>
+
+                    <h1>test</h1>
+
+                    <h1>test</h1>
+
+                    <h1>test</h1>
+
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+
+                    <h1>test</h1>
+
+                    <h1>test</h1>
+
+                    <h1>test</h1>
+
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+
+                    <h1>test</h1>
+
+                    <h1>test</h1>
+
+                    <h1>test</h1>
+
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+
+                    <h1>test</h1>
+
+                    <h1>test</h1>
+
+                    <h1>test</h1>
+
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+
+                    <h1>test</h1>
+
+                    <h1>test</h1>
+
+                    <h1>test</h1>
+
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                    <h1>test</h1>
+                  </div>
+                </DrawerContent>
               </Drawer>
             </DrawerContent>
           </Drawer>
 
-          <Button onClick={() => this.toggleDrawer('drawer')}>Drawer open</Button>
+          <Button onClick={() => this.toggleDrawer('drawer')}>
+            Drawer open
+          </Button>
           <Drawer
             toggleDrawer={() => this.toggleDrawer('drawer')}
             active={this.state.drawer}
@@ -1631,7 +2013,8 @@ class App extends React.Component<{}, State> {
             mode="push"
             componentWidth="large"
             overlay
-            closeButton>
+            closeButton
+          >
             <Sticky position={'top'} footerType="inline">
               <span>Header content</span>
             </Sticky>
@@ -1645,200 +2028,229 @@ class App extends React.Component<{}, State> {
                 <li>Link 5</li>
               </ul>
 
-              <Button onClick={() => this.setState({ activeDrawerId: 'content2' })}>Content2 open</Button>
-              <div>Top Content!
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <div>Sandwich: Keep Scrolling!</div>
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <div>You can scroll and see me!</div>
-            <div>Top Content!</div>
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <div>Sandwich: Keep Scrolling!</div>
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <div>You can scroll and see me!</div>
-            <div>Top Content!</div>
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <div>Sandwich: Keep Scrolling!</div>
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            You can scroll and see me!</div>
-            <Sticky position={'bottom'} footerType="inline">
-            <span>footer content</span>
-            </Sticky>
+              <Button
+                onClick={() => this.setState({ activeDrawerId: 'content2' })}
+              >
+                Content2 open
+              </Button>
+              <div>
+                Top Content!
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <div>Sandwich: Keep Scrolling!</div>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <div>You can scroll and see me!</div>
+                <div>Top Content!</div>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <div>Sandwich: Keep Scrolling!</div>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <div>You can scroll and see me!</div>
+                <div>Top Content!</div>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <div>Sandwich: Keep Scrolling!</div>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                You can scroll and see me!
+              </div>
+              <Sticky position={'bottom'} footerType="inline">
+                <span>footer content</span>
+              </Sticky>
             </DrawerContent>
 
             <DrawerContent componentId="content2" mode="slide">
               I am inside drawer content 2
-
-              <Button onClick={() => this.setState({ activeDrawerId: 'content1' })}>Content1 open</Button>
-              <Button onClick={() => this.setState({ drawer: false })}>Close</Button>
-
+              <Button
+                onClick={() => this.setState({ activeDrawerId: 'content1' })}
+              >
+                Content1 open
+              </Button>
+              <Button onClick={() => this.setState({ drawer: false })}>
+                Close
+              </Button>
             </DrawerContent>
           </Drawer>
-
         </div>
-
-        <p> Some text with a
+        <p>
+          {' '}
+          Some text with a
           <Tooltip content="This order has shipping labels.sdfsdfg">
             <Link>Tooltip 1</Link>
-          </Tooltip> in it
+          </Tooltip>{' '}
+          in it
         </p>
-        <Tooltip
-          content="This order has shipping."
-        >
+        <Tooltip content="This order has shipping.">
           <Link>Tooltip 2</Link>
         </Tooltip>
         <div>
           <h1>{this.state.AccordionItemClose}</h1>
           <h1>{this.state.AccordionItemOpen}</h1>
-        <Accordion items={Accordionitems} closeIndex={this.state.AccordionItemClose} openIndex={this.state.AccordionItemOpen} />
+          <Accordion
+            items={Accordionitems}
+            closeIndex={this.state.AccordionItemClose}
+            openIndex={this.state.AccordionItemOpen}
+          />
 
-          <Button onClick={() => this.toggleAccordionOpen(0)}>item1 toggle open</Button>
-          <Button onClick={() => this.toggleAccordionOpen(1)}>item2 toggle open</Button>
-          <Button onClick={() => this.toggleAccordionOpen(2)}>item3 toggle open</Button>
-          <Button onClick={() => this.toggleAccordionOpen(undefined)}>undefined toggle open</Button>
+          <Button onClick={() => this.toggleAccordionOpen(0)}>
+            item1 toggle open
+          </Button>
+          <Button onClick={() => this.toggleAccordionOpen(1)}>
+            item2 toggle open
+          </Button>
+          <Button onClick={() => this.toggleAccordionOpen(2)}>
+            item3 toggle open
+          </Button>
+          <Button onClick={() => this.toggleAccordionOpen(undefined)}>
+            undefined toggle open
+          </Button>
 
-          <Button onClick={() => this.toggleAccordionClose(0)}>item1 toggle close</Button>
-          <Button onClick={() => this.toggleAccordionClose(1)}>item2 toggle close</Button>
-          <Button onClick={() => this.toggleAccordionClose(2)}>item3 toggle close</Button>
-          <Button onClick={() => this.toggleAccordionClose(undefined)}>undefined toggle close</Button>
+          <Button onClick={() => this.toggleAccordionClose(0)}>
+            item1 toggle close
+          </Button>
+          <Button onClick={() => this.toggleAccordionClose(1)}>
+            item2 toggle close
+          </Button>
+          <Button onClick={() => this.toggleAccordionClose(2)}>
+            item3 toggle close
+          </Button>
+          <Button onClick={() => this.toggleAccordionClose(undefined)}>
+            undefined toggle close
+          </Button>
 
           <Heading>Popover</Heading>
           {/* <div style={{ marginLeft: '100px' }}>
@@ -1847,13 +2259,12 @@ class App extends React.Component<{}, State> {
               I am popover <Button>Hello popover</Button>
             </Popover>
           </div> */}
-          <br/>
+          <br />
           <div style={{ marginLeft: '100px' }}>
-            <Button onClick={(e: any) => this.popoverUpdate(e)}>Dropdown active</Button>
-            <Dropdown
-              dropdownItems={items}
-              anchorEl={this.state.anchorEl}
-            />
+            <Button onClick={(e: any) => this.popoverUpdate(e)}>
+              Dropdown active
+            </Button>
+            <Dropdown dropdownItems={items} anchorEl={this.state.anchorEl} />
           </div>
           <div style={{ marginLeft: '100px' }}>
             <Button onClick={(e: any) => this.popoverUpdate2(e)}>Dro</Button>
@@ -1866,161 +2277,202 @@ class App extends React.Component<{}, State> {
             />
           </div>
 
-          <br/>
-          <br/>
-          <br/>
-          <br/>
-          <br/>
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
 
           <Column small="2-4" medium="2-4" large="2-4">
+            <TextField
+              disabled
+              placeholder="Find Content Definition..."
+              suffix={<Icon source="search" />}
+            />
 
-          <TextField
-            disabled
-            placeholder="Find Content Definition..."
-            suffix={<Icon source="search" />}
-          />
+            <TextField
+              label="Number field"
+              type="number"
+              placeholder="placeholder"
+              value={this.state.appNumberCounter}
+              onChange={this.valueUpdater('appNumberCounter')}
+              // showNumberIcon={false}
+            />
 
-          <TextField
-            label="Number field"
-            type="number"
-            placeholder="placeholder"
-            value={this.state.appNumberCounter}
-            onChange={this.valueUpdater('appNumberCounter')}
-            // showNumberIcon={false}
-          />
+            <TextField
+              capital
+              componentId="TestName"
+              label="Text Counter"
+              placeholder="test-placeholder"
+              value={this.state.appTextCounter1}
+              // value="Value"
+              helpText="Helper Text"
+              enableTextCounter
+              maxLength={5}
+              minLength={5}
+              onChange={this.valueUpdater('appTextCounter1')}
+              // disabled
+              loading
+              labelHidden
+              // suffix={<Icon componentColor="inkLightest" source="users" />}
+            />
+            <TextField
+              componentId="TestName1"
+              label="Text Counter"
+              placeholder="test-placeholder"
+              value={this.state.appTextCounter}
+              // value="Value"
+              helpText="Helper Text"
+              maxLength={101}
+              minLength={5}
+              multiline
+              resizable
+              onChange={this.valueUpdater('appTextCounter')}
+              // disabled
+              loading
+              // labelHidden
+              // suffix={<Icon componentColor="inkLightest" source="users" />}
+            />
+            <TextField
+              componentId="TestName2"
+              label="Read Only Text Field"
+              value="Value"
+              helpText="Helper Text"
+              maxLength={101}
+              minLength={5}
+              enableTextCounter
+              // disabled
+              readOnly
+              loading
+              backdropHidden
+              // multiline
+              // labelHidden
+            />
+            <Select
+              componentId="appCity1"
+              name="Select city 2"
+              label="Label"
+              options={[
+                { value: '', label: '' },
+                { value: 'pasadena', label: 'Pasadena' },
+                { value: 'altadena', label: 'Altadena' },
+              ]}
+              value={this.state.appCity1}
+              // value="Value"
+              onChange={this.valueUpdater('appCity1')}
+              placeholder="Some stuff"
+              helpText="Help Text"
+              // disabled
+              loading
+              // labelHidden
+            />
+          </Column>
 
+          <Card>
+            <CardHeader>Online store dashboard - Card</CardHeader>
+            <CardBody sectioned>
+              <CardSection>
+                <CardHeader>Reports</CardHeader>
+                <p>View a summary of your online store’s performance.</p>
+              </CardSection>
+              <CardSection>
+                <CardHeader>Summary Reports</CardHeader>
+                <p>
+                  View a summary of your online store’s performance, including
+                  sales, visitors, top products, and referrals.
+                </p>
+              </CardSection>
+            </CardBody>
+          </Card>
+          <div>this is card sep</div>
+          <Card>
+            <CardHeader>Grid Header1</CardHeader>
+            <CardBody>
+              <CardSection>This is card Section</CardSection>
+            </CardBody>
+            <CardFooter>
+              <Button onClick={(e: any) => this.popoverUpdate2(e)}>
+                Dropdown2 active
+              </Button>
+            </CardFooter>
+          </Card>
+          <p>
+            {' '}
+            Some text with a
+            <Tooltip content="Order" preferredPosition="left" active>
+              <Link>Tooltipss</Link>
+            </Tooltip>{' '}
+            in it
+          </p>
+          <p>
+            {' '}
+            Some text with a
+            <Tooltip content="This order has" preferredPosition="above">
+              <Link>Tooltip 1</Link>
+            </Tooltip>{' '}
+            in it
+          </p>
+          <Tooltip content="This order has shipping.">
+            <Link>Tooltip 2</Link>
+          </Tooltip>
           <TextField
-            capital
             componentId="TestName"
             label="Text Counter"
             placeholder="test-placeholder"
-            value={this.state.appTextCounter1}
-            // value="Value"
-            helpText="Helper Text"
-            enableTextCounter
-            maxLength={5}
-            minLength={5}
-            onChange={this.valueUpdater('appTextCounter1')}
-            // disabled
-            loading
-            labelHidden
-            // suffix={<Icon componentColor="inkLightest" source="users" />}
-          />
-          <TextField
-            componentId="TestName1"
-            label="Text Counter"
-            placeholder="test-placeholder"
             value={this.state.appTextCounter}
-            // value="Value"
             helpText="Helper Text"
-            maxLength={101}
-            minLength={5}
-            multiline
-            resizable
-            onChange={this.valueUpdater('appTextCounter')}
-            // disabled
-            loading
-            // labelHidden
-            // suffix={<Icon componentColor="inkLightest" source="users" />}
+            enableTextCounter={true}
+            maxLength={100} /* onChange={this.valueUpdater('appTextCounter')} */
           />
-          <TextField
-            componentId="TestName2"
-            label="Read Only Text Field"
-            value="Value"
-            helpText="Helper Text"
-            maxLength={101}
-            minLength={5}
-            enableTextCounter
-            // disabled
-            readOnly
-            loading
-            backdropHidden
-            // multiline
-            // labelHidden
-          />
-          <Select
-            componentId="appCity1"
-            name="Select city 2"
-            label="Label"
-            options={[{ value: '', label: '' }, { value: 'pasadena', label: 'Pasadena' }, { value: 'altadena', label: 'Altadena' }]}
-            value={this.state.appCity1}
-            // value="Value"
-            onChange={this.valueUpdater('appCity1')}
-            placeholder="Some stuff"
-            helpText="Help Text"
-            // disabled
-            loading
-            // labelHidden
-          />
-          </Column>
-
-                                <Card>
-                                <CardHeader>Online store dashboard - Card</CardHeader>
-                                    <CardBody sectioned>
-                                        <CardSection>
-                                        <CardHeader>Reports</CardHeader>
-                                            <p>View a summary of your online store’s performance.</p>
-                                        </CardSection>
-                                        <CardSection>
-                                        <CardHeader>Summary Reports</CardHeader>
-                                            <p>View a summary of your online store’s performance, including sales, visitors, top products, and referrals.</p>
-                                        </CardSection>
-                                    </CardBody>
-                                </Card>
-                                <div>this is card sep</div>
-         <Card>
-            <CardHeader>Grid Header1</CardHeader>
-            <CardBody>
-            <CardSection>This is card Section</CardSection>
-            </CardBody>
-            <CardFooter><Button onClick={(e: any) => this.popoverUpdate2(e)}>Dropdown2 active</Button></CardFooter>
-         </Card>
-          <p> Some text with a
-          <Tooltip content="Order" preferredPosition="left" active>
-              <Link>Tooltipss</Link>
-            </Tooltip> in it
-        </p>
-          <p> Some text with a
-          <Tooltip content="This order has" preferredPosition="above">
-              <Link>Tooltip 1</Link>
-            </Tooltip> in it
-        </p>
-          <Tooltip
-            content="This order has shipping."
-          >
-            <Link>Tooltip 2</Link>
-          </Tooltip>
-          <TextField componentId="TestName" label="Text Counter" placeholder="test-placeholder" value={this.state.appTextCounter} helpText="Helper Text" enableTextCounter={true} maxLength={100} /* onChange={this.valueUpdater('appTextCounter')} */ />
           <ClickableChip chip={<Chip>Batman</Chip>}>
             <Card>
-              <p>Batman is a fictional superhero who appears in American comic books published by DC Comics. The character was created by artist Bob Kane and writer Bill Finger, and first appeared in Detective Comics #27</p>
+              <p>
+                Batman is a fictional superhero who appears in American comic
+                books published by DC Comics. The character was created by
+                artist Bob Kane and writer Bill Finger, and first appeared in
+                Detective Comics #27
+              </p>
             </Card>
           </ClickableChip>
           <Card>
-          <CardHeader>More about Batman</CardHeader>
-              <p>Batman is a fictional superhero who appears in American comic books published by DC Comics. The character was created by artist Bob Kane and writer Bill Finger, and first appeared in Detective Comics #27</p>
-            </Card>
-          <p> Some text with a
-          <Tooltip content="This order has shipping labels.">
+            <CardHeader>More about Batman</CardHeader>
+            <p>
+              Batman is a fictional superhero who appears in American comic
+              books published by DC Comics. The character was created by artist
+              Bob Kane and writer Bill Finger, and first appeared in Detective
+              Comics #27
+            </p>
+          </Card>
+          <p>
+            {' '}
+            Some text with a
+            <Tooltip content="This order has shipping labels.">
               <Link>Tooltipba 1</Link>
-            </Tooltip> in it
-        </p>
-          <Tooltip
-            content="This order has shipping."
-          >
+            </Tooltip>{' '}
+            in it
+          </p>
+          <Tooltip content="This order has shipping.">
             <Link>Tooltip 2</Link>
           </Tooltip>
-          <p> Some text with a
-          <Tooltip content="This order has shipping labels.">
+          <p>
+            {' '}
+            Some text with a
+            <Tooltip content="This order has shipping labels.">
               <Link>Tooltip 1</Link>
-          </Tooltip> in it
-        </p>
-          <Tooltip
-            content="This order has shipping."
-          >
+            </Tooltip>{' '}
+            in it
+          </p>
+          <Tooltip content="This order has shipping.">
             <Link>Tooltip 2</Link>
           </Tooltip>
-          <SideNavigation accordian={true} source={sideNavigationData} activeItem={1} drawerOpen hideCollapse={false} drawerExpand ={true}/>
+          <SideNavigation
+            accordian={true}
+            source={sideNavigationData}
+            activeItem={1}
+            drawerOpen
+            hideCollapse={false}
+            drawerExpand={true}
+          />
           <Heading>List</Heading>
           <List componentType="bullet">
             <Item>Yellow shirt</Item>
@@ -2046,79 +2498,122 @@ class App extends React.Component<{}, State> {
           </List>
           <Heading>Description List</Heading>
           <DescriptionList componentType="default" componentStyle="Inline">
-              <Term>Logistics</Term>
-              <Description>The management of products or other resources as they travel between a point of origin and a destination.</Description>
-              <Term>Sole proprietorship</Term>
-              <Description>A business structure where a single individual both owns and runs the company.</Description>
-              <Term>Discount code</Term>
-              <Description>A series of numbers and/or letters that an online shopper may enter at checkout to get a discount or special offer.</Description>
+            <Term>Logistics</Term>
+            <Description>
+              The management of products or other resources as they travel
+              between a point of origin and a destination.
+            </Description>
+            <Term>Sole proprietorship</Term>
+            <Description>
+              A business structure where a single individual both owns and runs
+              the company.
+            </Description>
+            <Term>Discount code</Term>
+            <Description>
+              A series of numbers and/or letters that an online shopper may
+              enter at checkout to get a discount or special offer.
+            </Description>
           </DescriptionList>
           <DescriptionList componentType="default" componentStyle="Stacked">
             <Term>Logistics</Term>
-            <Description>The management of products or other resources as they travel between a point of origin and a destination.</Description>
+            <Description>
+              The management of products or other resources as they travel
+              between a point of origin and a destination.
+            </Description>
             <Term>Sole proprietorship</Term>
-            <Description>A business structure where a single individual both owns and runs the company.</Description>
+            <Description>
+              A business structure where a single individual both owns and runs
+              the company.
+            </Description>
             <Term>Discount code</Term>
-            <Description>A series of numbers and/or letters that an online shopper may enter at checkout to get a discount or special offer.</Description>
-        </DescriptionList>
+            <Description>
+              A series of numbers and/or letters that an online shopper may
+              enter at checkout to get a discount or special offer.
+            </Description>
+          </DescriptionList>
           <DescriptionList componentType="divider" componentStyle="Stacked">
-           <Term>Logistics</Term>
-           <Description>The management of products or other resources as they travel between a point of origin and a destination.</Description>
-           <Term>Sole proprietorship</Term>
-           <Description>A business structure where a single individual both owns and runs the company.</Description>
-           <Term>Discount code</Term>
-           <Description>A series of numbers and/or letters that an online shopper may enter at checkout to get a discount or special offer.</Description>
-       </DescriptionList>
+            <Term>Logistics</Term>
+            <Description>
+              The management of products or other resources as they travel
+              between a point of origin and a destination.
+            </Description>
+            <Term>Sole proprietorship</Term>
+            <Description>
+              A business structure where a single individual both owns and runs
+              the company.
+            </Description>
+            <Term>Discount code</Term>
+            <Description>
+              A series of numbers and/or letters that an online shopper may
+              enter at checkout to get a discount or special offer.
+            </Description>
+          </DescriptionList>
 
-        <Heading>Grid Block</Heading>
-        <ButtonGroup segmented={true}>
-          <Button onClick={() => this.setState({ gridView: 'block' })}>Block view</Button>
-          <Button onClick={() => this.setState({ gridView: 'list' })}>List view</Button>
-          <Button onClick={() => this.setState({ gridView: 'list' })}>List view</Button>
-        </ButtonGroup>
+          <Heading>Grid Block</Heading>
+          <ButtonGroup segmented={true}>
+            <Button onClick={() => this.setState({ gridView: 'block' })}>
+              Block view
+            </Button>
+            <Button onClick={() => this.setState({ gridView: 'list' })}>
+              List view
+            </Button>
+            <Button onClick={() => this.setState({ gridView: 'list' })}>
+              List view
+            </Button>
+          </ButtonGroup>
 
           <br />
-        <Grid gridType={this.state.gridView} gridStyle={this.state.gridStyle}>
-          <GridContent onClick={event => console.log('event:', event)}>
-            <GridHeader disableClick={true}>Grid Header</GridHeader>
-            <GridImage><Icon source="folder" /></GridImage>
-            <GridTitle>Grid Title</GridTitle>
-            <GridDescription>Grid Description</GridDescription>
-            <GridFooter>Grid Footer</GridFooter>
-          </GridContent>
+          <Grid gridType={this.state.gridView} gridStyle={this.state.gridStyle}>
+            <GridContent onClick={(event) => console.log('event:', event)}>
+              <GridHeader disableClick={true}>Grid Header</GridHeader>
+              <GridImage>
+                <Icon source="folder" />
+              </GridImage>
+              <GridTitle>Grid Title</GridTitle>
+              <GridDescription>Grid Description</GridDescription>
+              <GridFooter>Grid Footer</GridFooter>
+            </GridContent>
 
-          <GridContent>
-            <GridHeader>Grid Header</GridHeader>
-            <GridImage><Icon source="folder" /></GridImage>
-            <GridTitle>Grid Title</GridTitle>
-            <GridDescription>Grid Description</GridDescription>
-            <GridFooter>Grid Footer</GridFooter>
-          </GridContent>
+            <GridContent>
+              <GridHeader>Grid Header</GridHeader>
+              <GridImage>
+                <Icon source="folder" />
+              </GridImage>
+              <GridTitle>Grid Title</GridTitle>
+              <GridDescription>Grid Description</GridDescription>
+              <GridFooter>Grid Footer</GridFooter>
+            </GridContent>
 
-          <GridContent>
-            <GridHeader>Grid Header</GridHeader>
-            <GridImage><Icon source="folder" /></GridImage>
-            <GridTitle>Grid Title</GridTitle>
-            <GridDescription>Grid Description</GridDescription>
-            <GridFooter>Grid Footer</GridFooter>
-          </GridContent>
+            <GridContent>
+              <GridHeader>Grid Header</GridHeader>
+              <GridImage>
+                <Icon source="folder" />
+              </GridImage>
+              <GridTitle>Grid Title</GridTitle>
+              <GridDescription>Grid Description</GridDescription>
+              <GridFooter>Grid Footer</GridFooter>
+            </GridContent>
 
-          <GridContent>
-            <GridHeader>Grid Header</GridHeader>
-            <GridImage><Icon source="folder" /></GridImage>
-            <GridTitle>Grid Title</GridTitle>
-            <GridDescription>Grid Description</GridDescription>
-            <GridFooter>Grid Footer</GridFooter>
-          </GridContent>
+            <GridContent>
+              <GridHeader>Grid Header</GridHeader>
+              <GridImage>
+                <Icon source="folder" />
+              </GridImage>
+              <GridTitle>Grid Title</GridTitle>
+              <GridDescription>Grid Description</GridDescription>
+              <GridFooter>Grid Footer</GridFooter>
+            </GridContent>
 
-          <GridContent>
-            <GridHeader>Grid Header</GridHeader>
-            <GridImage><Icon source="folder" /></GridImage>
-            <GridTitle>Grid Title</GridTitle>
-            <GridDescription>Grid Description</GridDescription>
-            <GridFooter>Grid Footer</GridFooter>
-          </GridContent>
-        </Grid>
+            <GridContent>
+              <GridHeader>Grid Header</GridHeader>
+              <GridImage>
+                <Icon source="folder" />
+              </GridImage>
+              <GridTitle>Grid Title</GridTitle>
+              <GridDescription>Grid Description</GridDescription>
+              <GridFooter>Grid Footer</GridFooter>
+            </GridContent>
+          </Grid>
           <ChoiceList
             componentTitle="Company name"
             choices={[
@@ -2136,7 +2631,9 @@ class App extends React.Component<{}, State> {
               },
             ]}
             selected={this.state.ChoiceListSelected}
-            onChange={selected => this.setState({ ChoiceListSelected: selected })}
+            onChange={(selected) =>
+              this.setState({ ChoiceListSelected: selected })
+            }
             horizontal
           />
           <Picker
@@ -2146,7 +2643,15 @@ class App extends React.Component<{}, State> {
             helpText="Helper Text"
             searchResultComponent={Chip}
             source={pickerdata}
-            defaultSelectedItems={[{ key: 1, image: 'http://msaadvertising.com/wp-content/uploads/2014/06/Larry-cartoon-headshot.jpg', text: 'John Doe', email: 'test@gmail.com', icon: 'filter' },
+            defaultSelectedItems={[
+              {
+                key: 1,
+                image:
+                  'http://msaadvertising.com/wp-content/uploads/2014/06/Larry-cartoon-headshot.jpg',
+                text: 'John Doe',
+                email: 'test@gmail.com',
+                icon: 'filter',
+              },
             ]}
             maxSelectedItems={5}
             minSelectedItems={2}
@@ -2156,96 +2661,126 @@ class App extends React.Component<{}, State> {
           />
           <ValidatedForm
             showError={this.state.showError}
-            onSubmitError={(value: [any], error: Error) => console.log('value:', value, 'error:', error)}
+            onSubmitError={(value: [any], error: Error) =>
+              console.log('value:', value, 'error:', error)
+            }
             onSubmit={(value: [any]) => console.log('Submit Value:', value)}
-            formFields={['AppName', 'AppUri', 'appDescription', 'appCity', 'appActive', 'appRadioAction']}
+            formFields={[
+              'AppName',
+              'AppUri',
+              'appDescription',
+              'appCity',
+              'appActive',
+              'appRadioAction',
+            ]}
           >
-
             <Heading>App Basics</Heading>
 
-            <DisplayText componentSize="large">This is Display Text, which is used to make a bold visual statement.</DisplayText>
+            <DisplayText componentSize="large">
+              This is Display Text, which is used to make a bold visual
+              statement.
+            </DisplayText>
             <p>This is just some fun regular text.</p>
 
             {/* <FormLayout> */}
 
-              <ValidatedTextField
-                  getErrors={this.getErrors}
-                  componentId="AppUri"
-                  label="App Uri"
-                  placeholder="App Uri"
-                  onChange={this.valueUpdater('appUri')}
-                  value={this.state.appUri}
-                  name="App Uri"
-                  validateTrigger={['onBlur']}
-                  validateRules={[
-                    { minLength: 2, message: 'AtList 2 character needed' },
-                    { required: true, message: 'App Uri is required' },
-                  ]}
-              />
-              <div style={{ width: '100px' }}>
-                <ValidatedTextField
-                  getErrors={this.getErrors}
-                  componentId="AppName"
-                  label="App Name"
-                  placeholder="App Name"
-                  type="number"
-                  helpText="We recommend keeping your app name under 23 characters."
-                  onChange={this.valueUpdater('appName')}
-                  value={this.state.appName}
-                  name="App Name"
-                  validateTrigger={['onBlur']}
-                  validateRules={[
-                     { minRange: 2, maxRange: 32760, message: 'Range is between 2 & 32760' },
-                    { required: true, message: 'App Description is required' },
-                  ]}
-                />
-              </div>
+            <ValidatedTextField
+              getErrors={this.getErrors}
+              componentId="AppUri"
+              label="App Uri"
+              placeholder="App Uri"
+              onChange={this.valueUpdater('appUri')}
+              value={this.state.appUri}
+              name="App Uri"
+              validateTrigger={['onBlur']}
+              validateRules={[
+                { minLength: 2, message: 'AtList 2 character needed' },
+                { required: true, message: 'App Uri is required' },
+              ]}
+            />
+            <div style={{ width: '100px' }}>
               <ValidatedTextField
                 getErrors={this.getErrors}
-                multiline
-                componentId="appDescription"
-                name="App Description"
-                value={this.state.appDescription}
-                label="App Description"
-                placeholder=""
-                helpText="Provide an engaging description that highlights the features and functionality of your app. Let potential users know what makes your app unique and why they will love it."
-                onChange={this.valueUpdater('appDescription')}
+                componentId="AppName"
+                label="App Name"
+                placeholder="App Name"
+                type="number"
+                helpText="We recommend keeping your app name under 23 characters."
+                onChange={this.valueUpdater('appName')}
+                value={this.state.appName}
+                name="App Name"
                 validateTrigger={['onBlur']}
                 validateRules={[
-                  { required: true, message: 'App Description is required.' },
+                  {
+                    minRange: 2,
+                    maxRange: 32760,
+                    message: 'Range is between 2 & 32760',
+                  },
+                  { required: true, message: 'App Description is required' },
                 ]}
               />
+            </div>
+            <ValidatedTextField
+              getErrors={this.getErrors}
+              multiline
+              componentId="appDescription"
+              name="App Description"
+              value={this.state.appDescription}
+              label="App Description"
+              placeholder=""
+              helpText="Provide an engaging description that highlights the features and functionality of your app. Let potential users know what makes your app unique and why they will love it."
+              onChange={this.valueUpdater('appDescription')}
+              validateTrigger={['onBlur']}
+              validateRules={[
+                { required: true, message: 'App Description is required.' },
+              ]}
+            />
 
-              <ValidatedSelectField
-                componentId="appCity"
-                required={true}
-                name="Select city"
-                label="Select city"
-                options={[{ value: '', label: '' }, { value: 'xyz', label: 'xyz' }, { value: 'abc', label: 'abc' }]}
-                value={this.state.appCity}
-                onChange={this.valueUpdater('appCity')}
-                validateTrigger={['onBlur']}
-                validateRules={[
-                  { required: true, message: 'City is required.' },
-                ]}
-              />
+            <ValidatedSelectField
+              componentId="appCity"
+              required={true}
+              name="Select city"
+              label="Select city"
+              options={[
+                { value: '', label: '' },
+                { value: 'xyz', label: 'xyz' },
+                { value: 'abc', label: 'abc' },
+              ]}
+              value={this.state.appCity}
+              onChange={this.valueUpdater('appCity')}
+              validateTrigger={['onBlur']}
+              validateRules={[{ required: true, message: 'City is required.' }]}
+            />
 
-              <div><p>child<span>child 2</span></p></div>
-              <div>
-                <FlexBox>
-                  <ButtonGroup segmented={true}>
-                    <Button componentSize="large" disabled={this.isValidate()} primary={true} submit={true}>
-                      Save Draft
-                    </Button>
+            <div>
+              <p>
+                child<span>child 2</span>
+              </p>
+            </div>
+            <div>
+              <FlexBox>
+                <ButtonGroup segmented={true}>
+                  <Button
+                    componentSize="large"
+                    disabled={this.isValidate()}
+                    primary={true}
+                    submit={true}
+                  >
+                    Save Draft
+                  </Button>
 
-                    <Button componentSize="large" onClick={this.onPublish} primary={true}>
-                      Publish
-                    </Button>
-                  </ButtonGroup>
+                  <Button
+                    componentSize="large"
+                    onClick={this.onPublish}
+                    primary={true}
+                  >
+                    Publish
+                  </Button>
+                </ButtonGroup>
 
-                  <div style={{ marginLeft: '10px' }}>
-                    <Button>Cancel</Button>
-                  </div>
+                <div style={{ marginLeft: '10px' }}>
+                  <Button>Cancel</Button>
+                </div>
               </FlexBox>
             </div>
 
@@ -2258,24 +2793,22 @@ class App extends React.Component<{}, State> {
               />
             </div>
 
-              <ValidatedCheckbox
-                getErrors={this.getErrors}
-                componentId="appActive"
-                name="appActive"
-                label="Validated Active"
-                helpText="Uncheck to disable this users account"
-                validateTrigger={['onChange', 'onClick']}
-                validateRules={[
-                  { required: true, message: 'Active is required.' },
-                ]}
-              />
+            <ValidatedCheckbox
+              getErrors={this.getErrors}
+              componentId="appActive"
+              name="appActive"
+              label="Validated Active"
+              helpText="Uncheck to disable this users account"
+              validateTrigger={['onChange', 'onClick']}
+              validateRules={[
+                { required: true, message: 'Active is required.' },
+              ]}
+            />
 
             <div style={{ marginTop: '10px' }}>
               <h5>Invite Email</h5>
 
-              <Checkbox
-                label="Send an invite email to this user"
-              />
+              <Checkbox label="Send an invite email to this user" />
             </div>
             {/* </FormLayout> */}
           </ValidatedForm>
@@ -2288,21 +2821,45 @@ class App extends React.Component<{}, State> {
             value={this.state.appTextCounter}
             helpText="Helper Text"
             maxLength={100}
-            connectedRight={<Select label="Weight unit" value="" labelHidden options={[
-              'kg',
-              'lb',
-            ]} />}
+            connectedRight={
+              <Select
+                label="Weight unit"
+                value=""
+                labelHidden
+                options={['kg', 'lb']}
+              />
+            }
           />
           <Card>
             <CardHeader> Coming Events </CardHeader>
             <List componentType="divider">
-              <Item><span>JUN 1</span><span>Women's Basketball Elite Camp</span></Item>
-              <Item><span>JUN 22</span><span>Spring Classes End</span></Item>
-              <Item><span>JUN 23</span><span>Summer Classes Begin</span></Item>
-              <Item><div>SVSU STEM program inspires computer coding curriculum in Freeland schools</div><div>More than 1,000 students in the Freeland Community School District were inspired to learn about computer coding…</div></Item>
+              <Item>
+                <span>JUN 1</span>
+                <span>Women's Basketball Elite Camp</span>
+              </Item>
+              <Item>
+                <span>JUN 22</span>
+                <span>Spring Classes End</span>
+              </Item>
+              <Item>
+                <span>JUN 23</span>
+                <span>Summer Classes Begin</span>
+              </Item>
+              <Item>
+                <div>
+                  SVSU STEM program inspires computer coding curriculum in
+                  Freeland schools
+                </div>
+                <div>
+                  More than 1,000 students in the Freeland Community School
+                  District were inspired to learn about computer coding…
+                </div>
+              </Item>
               <Item>World</Item>
             </List>
-            <div><Button> All News </Button></div>
+            <div>
+              <Button> All News </Button>
+            </div>
           </Card>
 
           <Heading>Flexbox</Heading>
@@ -2318,24 +2875,35 @@ class App extends React.Component<{}, State> {
             <div style={{ backgroundColor: 'lime' }}>Demo 3</div>
           </FlexBox>
 
-          <p> Some text with a
-          <Tooltip content="This order has shipping labels.">
+          <p>
+            {' '}
+            Some text with a
+            <Tooltip content="This order has shipping labels.">
               <Link>Tooltip 1</Link>
-            </Tooltip> in it
-        </p>
-          <Tooltip
-            content="This order has shipping."
-          >
+            </Tooltip>{' '}
+            in it
+          </p>
+          <Tooltip content="This order has shipping.">
             <Link>Tooltip 2</Link>
           </Tooltip>
 
-          <FlexBox direction="Row" align="Stretch" justify="SpaceAround" wrap="Wrap">
+          <FlexBox
+            direction="Row"
+            align="Stretch"
+            justify="SpaceAround"
+            wrap="Wrap"
+          >
             <div style={{ backgroundColor: 'aqua' }}>Demo 1</div>
             <div style={{ backgroundColor: 'pink' }}>Demo 2</div>
             <div style={{ backgroundColor: 'lime' }}>Demo 3</div>
           </FlexBox>
 
-          <FlexBox inline={true} direction="Column" align="Stretch" justify="Center">
+          <FlexBox
+            inline={true}
+            direction="Column"
+            align="Stretch"
+            justify="Center"
+          >
             <div style={{ backgroundColor: 'aqua' }}>Demo 1</div>
             <div style={{ backgroundColor: 'pink' }}>Demo 2</div>
             <div style={{ backgroundColor: 'lime' }}>Demo 3</div>
@@ -2343,9 +2911,7 @@ class App extends React.Component<{}, State> {
 
           <Heading>Chip</Heading>
           <div>
-            <Chip>
-              Basic Chip
-          </Chip>
+            <Chip>Basic Chip</Chip>
             <Chip
               image={{
                 url: 'example/src/images/netguru-cartoon-characters3.png',
@@ -2355,55 +2921,55 @@ class App extends React.Component<{}, State> {
               onRemove={this.chipRemove}
             >
               Image Chip
-          </Chip>
+            </Chip>
             <Chip onClick={this.chipClick} clickable={true}>
               Clickable Chip
-          </Chip>
+            </Chip>
             <Chip onRemove={this.chipRemove} removable={true}>
               Removable Chip
-          </Chip>
-            <Chip transparent>
-              Transparent Chip
-          </Chip>
+            </Chip>
+            <Chip transparent>Transparent Chip</Chip>
           </div>
 
           <div>
             <h4>Single source video</h4>
             <Video
               poster={posterUrl}
-              src={
-                [{
-                  src: 'http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_1mb.mp4',
+              src={[
+                {
+                  src:
+                    'http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_1mb.mp4',
                   type: VideoType.MP4,
-                }]
-              }
+                },
+              ]}
               autoplay={false}
               controls={true}
               componentStyle={{ height: 400, width: 400 }}
             />
             <h4>Multi source video</h4>
-            <Video poster={posterUrl} src={multiVideoSource} autoplay={false} controls={true} componentStyle={{ height: 400, width: 400 }} />
+            <Video
+              poster={posterUrl}
+              src={multiVideoSource}
+              autoplay={false}
+              controls={true}
+              componentStyle={{ height: 400, width: 400 }}
+            />
           </div>
           <h4>Panel Component</h4>
           <Panel heading="BASIC PANEL">
-            <div>
-              Lorem ipsum lorem ipsum
-        </div>
+            <div>Lorem ipsum lorem ipsum</div>
           </Panel>
           <Panel heading="BASIC PANEL WITH VIDEO" video={sampleVideoCmp}>
-            <div>
-              Lorem ipsum lorem ipsum
-        </div>
+            <div>Lorem ipsum lorem ipsum</div>
           </Panel>
           <Panel heading={<div>Custom Panel</div>}>
-            <div>
-              Lorem ipsum lorem ipsum
-        </div>
+            <div>Lorem ipsum lorem ipsum</div>
           </Panel>
-          <Panel heading={<div>Custom Panel with Video</div>} video={sampleVideoCmp}>
-            <div>
-              Lorem ipsum lorem ipsum
-        </div>
+          <Panel
+            heading={<div>Custom Panel with Video</div>}
+            video={sampleVideoCmp}
+          >
+            <div>Lorem ipsum lorem ipsum</div>
           </Panel>
           <h2>Column Component Demo</h2>
           <div>
@@ -2411,26 +2977,26 @@ class App extends React.Component<{}, State> {
               <p>Small 1-1!</p>
             </Column>
           </div>
-          <p> Some text with a
-          <Tooltip content="This order has shipping labels.">
+          <p>
+            {' '}
+            Some text with a
+            <Tooltip content="This order has shipping labels.">
               <Link>Tooltip 1</Link>
-            </Tooltip> in it
-        </p>
-          <Tooltip
-            preferredPosition="below"
-            content="This order has shipping."
-          >
+            </Tooltip>{' '}
+            in it
+          </p>
+          <Tooltip preferredPosition="below" content="This order has shipping.">
             <Link>Tooltip 2</Link>
           </Tooltip>
-          <p> Some text with a
-          <Tooltip content="This order has shipping labels.">
+          <p>
+            {' '}
+            Some text with a
+            <Tooltip content="This order has shipping labels.">
               <Link>Tooltip 1</Link>
-            </Tooltip> in it
-        </p>
-          <Tooltip
-            preferredPosition="below"
-            content="This order has shipping."
-          >
+            </Tooltip>{' '}
+            in it
+          </p>
+          <Tooltip preferredPosition="below" content="This order has shipping.">
             <Link>Tooltip 2</Link>
           </Tooltip>
           <Heading>Grid</Heading>
@@ -2443,119 +3009,129 @@ class App extends React.Component<{}, State> {
             </Column>
           </FlexBox>
         </div>
-        <p> Some text with a
-        <Tooltip content="This order has shipping labels.">
+        <p>
+          {' '}
+          Some text with a
+          <Tooltip content="This order has shipping labels.">
             <Link>Tooltip 1</Link>
-          </Tooltip> in it
-      </p>
-        <Tooltip
-          content="This order has shipping."
-        >
+          </Tooltip>{' '}
+          in it
+        </p>
+        <Tooltip content="This order has shipping.">
           <Link>Tooltip 2</Link>
         </Tooltip>
         <br />
-        <p> Some text with a
-        <Tooltip content="This order has shipping labels.">
+        <p>
+          {' '}
+          Some text with a
+          <Tooltip content="This order has shipping labels.">
             <Link>Tooltip 1</Link>
-          </Tooltip> in it
-      </p>
-        <Tooltip
-          content="This order has shipping."
-        >
+          </Tooltip>{' '}
+          in it
+        </p>
+        <Tooltip content="This order has shipping.">
           <Link>Tooltip 2</Link>
         </Tooltip>
         <br />
-        <p> Some text with a
-        <Tooltip content="This order has shipping labels.">
+        <p>
+          {' '}
+          Some text with a
+          <Tooltip content="This order has shipping labels.">
             <Link>Tooltip 1</Link>
-          </Tooltip> in it
-      </p>
-        <Tooltip
-          content="This order has shipping."
-        >
+          </Tooltip>{' '}
+          in it
+        </p>
+        <Tooltip content="This order has shipping.">
           <Link>Tooltip 2</Link>
         </Tooltip>
         <br />
-        <p> Some text with a
-        <Tooltip content="This order has shipping labels.">
+        <p>
+          {' '}
+          Some text with a
+          <Tooltip content="This order has shipping labels.">
             <Link>Tooltip 1</Link>
-          </Tooltip> in it
-      </p>
-        <Tooltip
-          content="This order has shipping."
-        >
+          </Tooltip>{' '}
+          in it
+        </p>
+        <Tooltip content="This order has shipping.">
           <Link>Tooltip 2</Link>
         </Tooltip>
         <br />
-        <p> Some text with a
-        <Tooltip content="This order has shipping labels.">
+        <p>
+          {' '}
+          Some text with a
+          <Tooltip content="This order has shipping labels.">
             <Link>Tooltip 1</Link>
-          </Tooltip> in it
-      </p>
-        <Tooltip
-          content="This order has shipping."
-        >
+          </Tooltip>{' '}
+          in it
+        </p>
+        <Tooltip content="This order has shipping.">
           <Link>Tooltip 2</Link>
         </Tooltip>
         <br />
-        <p> Some text with a
-        <Tooltip content="This order has shipping labels.">
+        <p>
+          {' '}
+          Some text with a
+          <Tooltip content="This order has shipping labels.">
             <Link>Tooltip 1</Link>
-          </Tooltip> in it
-      </p>
-        <Tooltip
-          content="This order has shipping."
-        >
+          </Tooltip>{' '}
+          in it
+        </p>
+        <Tooltip content="This order has shipping.">
           <Link>Tooltip 2</Link>
         </Tooltip>
         <br />
-        <p> Some text with a
-        <Tooltip content="This order has shipping labels.">
+        <p>
+          {' '}
+          Some text with a
+          <Tooltip content="This order has shipping labels.">
             <Link>Tooltip 1</Link>
-          </Tooltip> in it
-      </p>
-        <Tooltip
-          content="This order has shipping."
-        >
+          </Tooltip>{' '}
+          in it
+        </p>
+        <Tooltip content="This order has shipping.">
           <Link>Tooltip 2</Link>
         </Tooltip>
         <br />
-        <p> Some text with a
-        <Tooltip content="This order has shipping labels.">
+        <p>
+          {' '}
+          Some text with a
+          <Tooltip content="This order has shipping labels.">
             <Link>Tooltip 1</Link>
-          </Tooltip> in it
-      </p>
-        <Tooltip
-          content="This order has shipping."
-        >
+          </Tooltip>{' '}
+          in it
+        </p>
+        <Tooltip content="This order has shipping.">
           <Link>Tooltip 2</Link>
         </Tooltip>
         <br />
-        <p> Some text with a
-        <Tooltip content="This order has shipping labels.">
+        <p>
+          {' '}
+          Some text with a
+          <Tooltip content="This order has shipping labels.">
             <Link>Tooltip 1</Link>
-          </Tooltip> in it
-      </p>
-        <Tooltip
-          content="This order has shipping."
-        >
+          </Tooltip>{' '}
+          in it
+        </p>
+        <Tooltip content="This order has shipping.">
           <Link>Tooltip 2</Link>
         </Tooltip>
         <br />
-        <p> Some text with a
-        <Tooltip content="This order has shipping labels.">
+        <p>
+          {' '}
+          Some text with a
+          <Tooltip content="This order has shipping labels.">
             <Link>Tooltip 1</Link>
-          </Tooltip> in it
-      </p>
-        <Tooltip
-          content="This order has shipping."
-        >
+          </Tooltip>{' '}
+          in it
+        </p>
+        <Tooltip content="This order has shipping.">
           <Link>Tooltip 2</Link>
         </Tooltip>
         <br />
         <Button icon="add" primary>
           Create Role
-      </Button>
+        </Button>
         <br />
         <Spinner accessibilityLabel="Loading" />
         <Spinner componentColor="reverse" />
@@ -2571,34 +3147,70 @@ class App extends React.Component<{}, State> {
           <Button primary>Save Draft</Button>
           <Button primary>Publish</Button>
         </ButtonGroup>
-        <br /><br />
+        <br />
+        <br />
         <Button plain>Plain</Button>&nbsp;
-        <Button plain disabled>Plain Disabled</Button>&nbsp;
+        <Button plain disabled>
+          Plain Disabled
+        </Button>
+        &nbsp;
         <Button>Button</Button>&nbsp;
         <Button disabled>Disabled</Button>&nbsp;
-        <br /><br />
-        <Button primary>Primary</Button>&nbsp;
-        <Button primary disabled>Primary Disabled</Button>&nbsp;
-        <Button primary outline>Primary Outline</Button>&nbsp;
-        <Button outline>Outline</Button>&nbsp;
-        <Button outline disabled>Outline Disabled</Button>&nbsp;
-        <br /><br />
-        <Button destructive>Destructive</Button>&nbsp;
-        <Button destructive disabled>Destructive Disabled</Button>&nbsp;
-        <Button destructive outline>Destructive Outline</Button>&nbsp;
-        <Button destructive outline disabled>Destructive Outline Disabled</Button>&nbsp;
         <br />
-
+        <br />
+        <Button primary>Primary</Button>&nbsp;
+        <Button primary disabled>
+          Primary Disabled
+        </Button>
+        &nbsp;
+        <Button primary outline>
+          Primary Outline
+        </Button>
+        &nbsp;
+        <Button outline>Outline</Button>&nbsp;
+        <Button outline disabled>
+          Outline Disabled
+        </Button>
+        &nbsp;
+        <br />
+        <br />
+        <Button destructive>Destructive</Button>&nbsp;
+        <Button destructive disabled>
+          Destructive Disabled
+        </Button>
+        &nbsp;
+        <Button destructive outline>
+          Destructive Outline
+        </Button>
+        &nbsp;
+        <Button destructive outline disabled>
+          Destructive Outline Disabled
+        </Button>
+        &nbsp;
+        <br />
         <div>ComboBox</div>
-        <div style={{ width: '50%' }}><ComboBox items={this.getComboBoxItems()} label="Select" currentValue="item1" /></div>
-
+        <div style={{ width: '50%' }}>
+          <ComboBox
+            items={this.getComboBoxItems()}
+            label="Select"
+            currentValue="item1"
+          />
+        </div>
         <div>Multiple checkbox Facets</div>
         <MultipleCheckboxFacets
           label="Facets"
-          onMoreClick={(event) => { console.log('Facets More clicked', event); }}
-          onRemove={(value: string) => { this.handleFacetsSelection(value); }}
-          onSelect={(value: string) => { this.handleFacetsSelection(value); }}
-          onSearch={(value) => { console.log('Facets More clicked', value); }}
+          onMoreClick={(event) => {
+            console.log('Facets More clicked', event);
+          }}
+          onRemove={(value: string) => {
+            this.handleFacetsSelection(value);
+          }}
+          onSelect={(value: string) => {
+            this.handleFacetsSelection(value);
+          }}
+          onSearch={(value) => {
+            console.log('Facets More clicked', value);
+          }}
           options={this.state.multipleCheckboxFacetsOptions}
           showMore={true}
           showSearch={true}
@@ -2613,13 +3225,13 @@ class App extends React.Component<{}, State> {
     const configClone = [...multipleCheckboxFacetsOptions];
     configClone.forEach((cc) => {
       if (cc.value === value) {
-        cc.selected = ! cc.selected;
+        cc.selected = !cc.selected;
       }
     });
     // const selected = configClone.filter((cc) => cc.selected).map((cc) => cc.value);
 
     this.setState({
-      multipleCheckboxFacetsOptions: configClone
+      multipleCheckboxFacetsOptions: configClone,
     });
   }
 
@@ -2637,47 +3249,208 @@ class App extends React.Component<{}, State> {
         key: 'name',
         renderer: this.renderItems,
         value: [
-          { description: 'This field stores simple text. It cannot be rich text or HTML. Limited to 50 characters', name: 'Short Text', id: 1048586, uri: 'ShortText' },
-          { description: 'This field stores simple text. It cannot be rich text or HTML. Limited to 512 characters', name: 'Simple Text', id: 2097162, uri: 'SimpleText' },
-          { description: 'This field stores rich text. It may contain simple… contents. Limited to 1,024 characters in length.', name: 'Rich Text', id: 3145738, uri: 'RichText' },
-          { description: 'This field stores rich text. It may contain simple…ng this field could adversely impact performance!', name: 'Rich Text (Long)', id: 4194314, uri: 'RichTextLong' },
-          { description: 'This is "True" or "False".', name: 'True or False', id: 5242890, uri: 'TrueFalse' },
-          { description: 'This field stores a URL or URI. It is either pure …ontain URL label. It contains a Label and URL/URI', name: 'Link or URI', id: 6291466, uri: 'Link' },
-          { description: 'This field stores a valid email address.', name: 'Email Address', id: 7340042, uri: 'Email' },
-          { description: 'This field stores a valid phone number.', name: 'Phone Number', id: 8388618, uri: 'Phone' },
-          { description: 'This field stores whole numbers. lower limit -9,22…854,775,808 upper limit 9,223,372,036,854,775,807', name: 'Whole Number', id: 9437194, uri: 'Number' },
-          { description: 'This field represents a decimal value that can acc…te 19.5 places, such as nnnnnnnnnnnnnnnnnnn.ddddd', name: 'Number with decimal', id: 10485770, uri: 'Decimal' },
-          { description: 'This field represents currency. Both value and Cur…,477.5808 upper limit is 922,337,203,685,477.5807', name: 'Money', id: 11534346, uri: 'Money' },
-          { description: 'This is a date and time field. Value is stored a U…:00:00.000 upper limit is 9999-12-31,23:59:59:999', name: 'Date and Time', id: 12582922, uri: 'DateTime' },
-          { description: 'This is a date field. Value is stored a Universal …mit is 0001-01-01 upper limit is 9999-12-31,23:59', name: 'Date', id: 13631498, uri: 'Date' },
-          { description: 'This is a time field. Value is stored a Universal …limit is 00:00:00.001 upper limit is 23:59:59.999', name: 'Time', id: 14680074, uri: 'Time' },
-          { description: 'This field represents duration. The smallest incri…ticks upper limit 9,223,372,036,854,775,807 ticks', name: 'Duration', id: 15728650, uri: 'Duration' },
-          { description: 'Represents a duration of time between two date/tim…Date and Time End Date and Time', name: 'Date Time Span', id: 16777226, uri: 'DateTimeSpan' },
-          { description: 'Gemotry and Geography data representing a single 0…may contain Z (elevation) and M (measure) values.', name: 'Geo Point', id: 17825802, uri: 'GeoPoint' },
-          { description: 'Gemotry and Geography data representing a zero or …may contain Z (elevation) and M (measure) values.', name: 'Geo Points', id: 18874378, uri: 'GeoPoints' },
-          { description: 'Geomtry and Geography data representing a single o… of points and the line segments connecting them.', name: 'Geo Line', id: 19922954, uri: 'GeoLineString' },
-          { description: 'Geomtry and Geography data representing a zero or … of points and the line segments connecting them.', name: 'Geo Lines', id: 20971530, uri: 'GeoLineStrings' },
-          { description: 'Geomtry and Geography data representing a single t…or bounding ring and zero or more interior rings.', name: 'Geo Polygon', id: 22020106, uri: 'GeoPolygon' },
-          { description: 'Geomtry and Geography data representing a zero or …or bounding ring and zero or more interior rings.', name: 'Geo Polygons', id: 23068682, uri: 'GeoPolygons' },
-          { description: 'Represents a country or entity as specified by ISO 3166 standards.', name: 'Country', id: 24117258, uri: 'Country' },
-          { description: 'Represents states, provinces, territories, emirate…r countries as specified by ISO 3166-2 standards.', name: 'Country Subdivision', id: 25165834, uri: 'CountrySub' },
-          { description: 'Name for a person. Contains First Name, Middle Name and Last Name.', name: 'Person Name', id: 26214410, uri: 'PersonName' },
-          { description: 'Physical address, such as mailing or postal address.', name: 'Physical Address', id: 27262986, uri: 'PhysicalAddress' }
-        ]
-      }];
+          {
+            description:
+              'This field stores simple text. It cannot be rich text or HTML. Limited to 50 characters',
+            name: 'Short Text',
+            id: 1048586,
+            uri: 'ShortText',
+          },
+          {
+            description:
+              'This field stores simple text. It cannot be rich text or HTML. Limited to 512 characters',
+            name: 'Simple Text',
+            id: 2097162,
+            uri: 'SimpleText',
+          },
+          {
+            description:
+              'This field stores rich text. It may contain simple… contents. Limited to 1,024 characters in length.',
+            name: 'Rich Text',
+            id: 3145738,
+            uri: 'RichText',
+          },
+          {
+            description:
+              'This field stores rich text. It may contain simple…ng this field could adversely impact performance!',
+            name: 'Rich Text (Long)',
+            id: 4194314,
+            uri: 'RichTextLong',
+          },
+          {
+            description: 'This is "True" or "False".',
+            name: 'True or False',
+            id: 5242890,
+            uri: 'TrueFalse',
+          },
+          {
+            description:
+              'This field stores a URL or URI. It is either pure …ontain URL label. It contains a Label and URL/URI',
+            name: 'Link or URI',
+            id: 6291466,
+            uri: 'Link',
+          },
+          {
+            description: 'This field stores a valid email address.',
+            name: 'Email Address',
+            id: 7340042,
+            uri: 'Email',
+          },
+          {
+            description: 'This field stores a valid phone number.',
+            name: 'Phone Number',
+            id: 8388618,
+            uri: 'Phone',
+          },
+          {
+            description:
+              'This field stores whole numbers. lower limit -9,22…854,775,808 upper limit 9,223,372,036,854,775,807',
+            name: 'Whole Number',
+            id: 9437194,
+            uri: 'Number',
+          },
+          {
+            description:
+              'This field represents a decimal value that can acc…te 19.5 places, such as nnnnnnnnnnnnnnnnnnn.ddddd',
+            name: 'Number with decimal',
+            id: 10485770,
+            uri: 'Decimal',
+          },
+          {
+            description:
+              'This field represents currency. Both value and Cur…,477.5808 upper limit is 922,337,203,685,477.5807',
+            name: 'Money',
+            id: 11534346,
+            uri: 'Money',
+          },
+          {
+            description:
+              'This is a date and time field. Value is stored a U…:00:00.000 upper limit is 9999-12-31,23:59:59:999',
+            name: 'Date and Time',
+            id: 12582922,
+            uri: 'DateTime',
+          },
+          {
+            description:
+              'This is a date field. Value is stored a Universal …mit is 0001-01-01 upper limit is 9999-12-31,23:59',
+            name: 'Date',
+            id: 13631498,
+            uri: 'Date',
+          },
+          {
+            description:
+              'This is a time field. Value is stored a Universal …limit is 00:00:00.001 upper limit is 23:59:59.999',
+            name: 'Time',
+            id: 14680074,
+            uri: 'Time',
+          },
+          {
+            description:
+              'This field represents duration. The smallest incri…ticks upper limit 9,223,372,036,854,775,807 ticks',
+            name: 'Duration',
+            id: 15728650,
+            uri: 'Duration',
+          },
+          {
+            description:
+              'Represents a duration of time between two date/tim…Date and Time End Date and Time',
+            name: 'Date Time Span',
+            id: 16777226,
+            uri: 'DateTimeSpan',
+          },
+          {
+            description:
+              'Gemotry and Geography data representing a single 0…may contain Z (elevation) and M (measure) values.',
+            name: 'Geo Point',
+            id: 17825802,
+            uri: 'GeoPoint',
+          },
+          {
+            description:
+              'Gemotry and Geography data representing a zero or …may contain Z (elevation) and M (measure) values.',
+            name: 'Geo Points',
+            id: 18874378,
+            uri: 'GeoPoints',
+          },
+          {
+            description:
+              'Geomtry and Geography data representing a single o… of points and the line segments connecting them.',
+            name: 'Geo Line',
+            id: 19922954,
+            uri: 'GeoLineString',
+          },
+          {
+            description:
+              'Geomtry and Geography data representing a zero or … of points and the line segments connecting them.',
+            name: 'Geo Lines',
+            id: 20971530,
+            uri: 'GeoLineStrings',
+          },
+          {
+            description:
+              'Geomtry and Geography data representing a single t…or bounding ring and zero or more interior rings.',
+            name: 'Geo Polygon',
+            id: 22020106,
+            uri: 'GeoPolygon',
+          },
+          {
+            description:
+              'Geomtry and Geography data representing a zero or …or bounding ring and zero or more interior rings.',
+            name: 'Geo Polygons',
+            id: 23068682,
+            uri: 'GeoPolygons',
+          },
+          {
+            description:
+              'Represents a country or entity as specified by ISO 3166 standards.',
+            name: 'Country',
+            id: 24117258,
+            uri: 'Country',
+          },
+          {
+            description:
+              'Represents states, provinces, territories, emirate…r countries as specified by ISO 3166-2 standards.',
+            name: 'Country Subdivision',
+            id: 25165834,
+            uri: 'CountrySub',
+          },
+          {
+            description:
+              'Name for a person. Contains First Name, Middle Name and Last Name.',
+            name: 'Person Name',
+            id: 26214410,
+            uri: 'PersonName',
+          },
+          {
+            description: 'Physical address, such as mailing or postal address.',
+            name: 'Physical Address',
+            id: 27262986,
+            uri: 'PhysicalAddress',
+          },
+        ],
+      },
+    ];
 
     return data;
   }
 
+  setRangeSliderValue = (value: any) => {
+    debugger;
+    this.setState({ rangeSliderValue:value });
+  }
+
   renderItems(item: any) {
     return (
-      <div key={item.id} style={{ display: 'flex', justifyContent: 'space-around' }}>
-          <div style={{ flexBasis: '30%' }}>
-              <span>{item.name}</span>
-          </div>
-          <div style={{ flexBasis: '60%' }}>
-              <span>{item.description}</span>
-          </div>
+      <div
+        key={item.id}
+        style={{ display: 'flex', justifyContent: 'space-around' }}
+      >
+        <div style={{ flexBasis: '30%' }}>
+          <span>{item.name}</span>
+        </div>
+        <div style={{ flexBasis: '60%' }}>
+          <span>{item.description}</span>
+        </div>
       </div>
     );
   }
@@ -2687,28 +3460,29 @@ class App extends React.Component<{}, State> {
     updatedPopoverActive[index] = !updatedPopoverActive[index];
 
     this.setState({
-      popoverActive: updatedPopoverActive
+      popoverActive: updatedPopoverActive,
     });
   }
 
   popoverToggleContainer(index: number) {
-    const updatedPopoverActiveContainer: any = this.state.popoverActiveContainer;
+    const updatedPopoverActiveContainer: any = this.state
+      .popoverActiveContainer;
     updatedPopoverActiveContainer[index] = !updatedPopoverActiveContainer[index];
 
     this.setState({
-      popoverActiveContainer: updatedPopoverActiveContainer
+      popoverActiveContainer: updatedPopoverActiveContainer,
     });
   }
 
   toggleAccordionOpen(index?: number) {
     this.setState({
-      AccordionItemOpen: index
+      AccordionItemOpen: index,
     });
   }
 
   toggleAccordionClose(index?: number) {
     this.setState({
-      AccordionItemClose: index
+      AccordionItemClose: index,
     });
   }
   // valueUpdater(field: any) {
@@ -2729,29 +3503,31 @@ class App extends React.Component<{}, State> {
 
   newPopoverUpdate(e: any) {
     this.setState({
-      popoverActive : !this.state.popoverActiveState,
-      popoverAnchorEl: e ? e.currentTarget as HTMLElement : this.state.popoverAnchorEl
+      popoverActive: !this.state.popoverActiveState,
+      popoverAnchorEl: e
+        ? (e.currentTarget as HTMLElement)
+        : this.state.popoverAnchorEl,
     });
   }
 
   popoverUpdate(e: any) {
     this.setState({
-      popoverActive : !this.state.popoverActive,
-      anchorEl: e ? e.currentTarget as HTMLElement : this.state.anchorEl
+      popoverActive: !this.state.popoverActive,
+      anchorEl: e ? (e.currentTarget as HTMLElement) : this.state.anchorEl,
     });
   }
 
   popoverUpdate2 = (e: any) => {
     this.setState({
-      popoverActive2 : !this.state.popoverActive2,
-      anchorEl2: e ? e.currentTarget as HTMLElement : this.state.anchorEl2
+      popoverActive2: !this.state.popoverActive2,
+      anchorEl2: e ? (e.currentTarget as HTMLElement) : this.state.anchorEl2,
     });
   }
 
   popoverUpdateContainer(e: any) {
     this.setState({
-      popoverActiveContainer : !this.state.popoverActiveContainer,
-      anchorEl: e.target as HTMLElement
+      popoverActiveContainer: !this.state.popoverActiveContainer,
+      anchorEl: e.target as HTMLElement,
     });
   }
   onChildChanged(newState: boolean) {

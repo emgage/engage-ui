@@ -69,3 +69,4 @@ export { default as DateTimePicker, Props as DateTimePickerProps } from './DateT
 export { default as Login, Props as LoginProps, } from './Login';
 export { default as AppBar } from './AppBar';
 export { default as MultipleCheckboxFacets } from './MultipleCheckboxFacets';
+export { default as RangeSlider } from './RangeSlider';
