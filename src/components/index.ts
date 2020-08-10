@@ -395,3 +395,7 @@ export {
 export {
   default as MultipleCheckboxFacets
 } from './MultipleCheckboxFacets';
+
+export {
+  default as RangeSlider
+} from './RangeSlider';
