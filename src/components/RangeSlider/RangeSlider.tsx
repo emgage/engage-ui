@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { DualThumb, SingleThumb } from './components';
 import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
-import type { RangeSliderProps, RangeSliderValue, DualValue } from './types';
+import { RangeSliderProps, RangeSliderValue, DualValue } from './types';
 
 const getUniqueID = createUniqueIDFactory('RangeSlider');
 interface Props extends RangeSliderProps {}
@@ -25,9 +25,9 @@ export function RangeSlider({
   };
 
   return isDualThumb(value) ? (
-    <DualThumb value={value} {...sharedProps} output/>
+    <DualThumb value={value} {...sharedProps} />
   ) : (
-    <SingleThumb value={value} {...sharedProps} output />
+    <SingleThumb value={value} {...sharedProps}  />
   );
 }
 
