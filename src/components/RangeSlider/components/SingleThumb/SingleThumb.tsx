@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Labelled, helpTextID } from '../Labelled';
-import type { RangeSliderProps } from '../../types';
+import  { RangeSliderProps } from '../../types';
 export const CSS_VAR_PREFIX = 'RangeSlider';
 
 export function clamp(number: number, min: number, max: number) {
