@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import Icon from '../../../Icon';
-import type { Error } from '../../types';
+import { Error } from '../../types';
 
 import * as styles from './InlineError.scss';
 
