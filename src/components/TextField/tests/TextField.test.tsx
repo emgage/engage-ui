@@ -14,8 +14,6 @@ describe('<TextField />', () => {
         name="TextField"
         placeholder="A placeholder"
         value="Some value"
-        min={20}
-        max={50}
         maxLength={2}
         minLength={2}
         spellCheck={false}
@@ -28,8 +26,6 @@ describe('<TextField />', () => {
     expect(input.prop('name')).toBe('TextField');
     expect(input.prop('placeholder')).toBe('A placeholder');
     expect(input.prop('value')).toBe('Some value');
-    expect(input.prop('min')).toBe(20);
-    expect(input.prop('max')).toBe(50);
     expect(input.prop('minLength')).toBe(2);
     expect(input.prop('spellCheck')).toBe(false);
     expect(input.prop('pattern')).toBe(pattern);

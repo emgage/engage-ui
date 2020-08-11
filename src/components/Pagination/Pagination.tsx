@@ -33,7 +33,7 @@ interface IProps {
   showPrevNextJumpers?: boolean;
   showQuickJumper?: any;
   showTitle?: boolean;
-  pageSizeOptions?: any;//string[];
+  pageSizeOptions?: any; // string[];
   showTotal?(param1: any, param2: any): any;
   locale?: any;
   style?: any;
@@ -70,7 +70,7 @@ export const DefaultProps = {
   selectComponentClass: noop,
   hideOnSinglePage: false,
   showPrevNextJumpers: true,
-  showQuickJumper: {goButton : true},
+  showQuickJumper: { goButton : true },
   showSizeChanger: true,
   showLessItems: true,
   showTitle: true,
@@ -122,15 +122,14 @@ class Pagination extends React.PureComponent<IProps, IState> {
       current = props.current;
     }
 
-
     let pageSize = props.defaultPageSize || 10;
     if ('pageSize' in props) {
       pageSize = props.pageSize;
     }
 
-    let pageSizeList: number[] = props.pageSizeList && props.pageSizeList.length > 0 ? props.pageSizeList  : [10, 50, 100];
+    const pageSizeList: number[] = props.pageSizeList && props.pageSizeList.length > 0 ? props.pageSizeList  : [10, 50, 100];
     pageSize = pageSizeList[0];
-    
+
     current = Math.min(current, calculatePage(pageSize, undefined, props));
 
     this.state = {
@@ -256,8 +255,8 @@ class Pagination extends React.PureComponent<IProps, IState> {
 
     if (typeof size === 'number') {
       this.setState({
-        pageSize: size,
         current,
+        pageSize: size,
         currentInputValue: current,
       });
     }
@@ -280,7 +279,6 @@ class Pagination extends React.PureComponent<IProps, IState> {
       } else if (page < 1) {
         page = 1;
       }
-
 
       this.setState({
         current: page,
@@ -356,12 +354,12 @@ class Pagination extends React.PureComponent<IProps, IState> {
 
   getPageNumberOptions = (pagerList: any) => {
     const options: any = [];
-    const lastKey = pagerList[pagerList.length - 1].key
-    for (let i = 1; i <= parseInt(lastKey); i++) {
+    const lastKey = pagerList[pagerList.length - 1].key;
+    for (let i = 1; i <= parseInt(lastKey, 10); i++) {
       options.push({
         value: i,
         label: i
-      })
+      });
     }
     return options;
   }
@@ -713,13 +711,13 @@ class Pagination extends React.PureComponent<IProps, IState> {
             this.getItemIcon(props.nextIcon, 'next', nextDisabled)
           )}
         </li>
-        <Label componentId={"rc-pagination"}>Jump To:</Label>
+        <Label componentId={'rc-pagination'}>Jump To:</Label>
         <Options
           disabled={disabled}
           locale={props.locale}
           rootPrefixCls={theme['rc-pagination']}
           selectComponentClass={() => {
-            return <select>{props.children}</select>
+            return <select>{props.children}</select>;
           }}
           selectPrefixCls={props.selectPrefixCls}
           selectValue={current.toString()}
@@ -730,7 +728,7 @@ class Pagination extends React.PureComponent<IProps, IState> {
           quickGo={this.shouldDisplayQuickJumper() ? this.handleChange : undefined}
           goButton={goButton}
         />
-        <Label componentId={"rc-pagination"}>Items per page: </Label>
+        <Label componentId={'rc-pagination'}>Items per page: </Label>
         <PageSize
           onKeyPress={() => {}}
           currentPageSize={this.state.pageSize}
@@ -745,7 +743,7 @@ class Pagination extends React.PureComponent<IProps, IState> {
           const newPageSize = prevPageSize + this.props.pageSize;
           this.setState({ pageSize: newPageSize }, () => {
             this.changePageSize(newPageSize);
-          })
+          });
         }}>Show More Results</Button> : null }
       </ul>
     );
