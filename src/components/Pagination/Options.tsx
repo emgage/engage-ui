@@ -2,7 +2,7 @@ import * as React from 'react';
 import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 import { default as KEYCODE }  from './KeyCode';
 import * as baseTheme from './Pagination.scss';
-import Select from '../Select'
+import Select from '../Select';
 
 interface IProps {
   disabled: boolean;
@@ -18,7 +18,7 @@ interface IProps {
   selectPrefixCls: string;
   goButton: any;
   theme?: any;
-  selectValue?: string
+  selectValue?: string;
 }
 
 interface IState {
@@ -42,9 +42,9 @@ class Options extends React.PureComponent<IProps, IState> {
   }
 
   static getDerivedStateFromProps(props: IProps, state: IState) {
-    const newState = {...state};
+    const newState = { ...state };
     if (props.selectValue !== state.selectValue) {
-      newState["selectValue"] = props.selectValue;
+      newState['selectValue'] = props.selectValue;
     }
 
     return newState;
@@ -63,9 +63,9 @@ class Options extends React.PureComponent<IProps, IState> {
     if (this.props.changeSize) {
       this.setState({
         selectValue: value
-      }, () => {
+      },            () => {
         this.props.changeSize!(Number(value));
-      })
+      });
     }
   }
 
@@ -114,7 +114,7 @@ class Options extends React.PureComponent<IProps, IState> {
   render() {
     const {
       pageSizeOptions, locale, changeSize,
-      quickGo, goButton, 
+      quickGo, goButton,
       disabled, theme
     } = this.props;
     const { goInputText } = this.state;
@@ -137,7 +137,7 @@ class Options extends React.PureComponent<IProps, IState> {
           value={this.state.selectValue}
           onChange={this.changeSize}
         >
-          
+
        </Select>
       );
     }
