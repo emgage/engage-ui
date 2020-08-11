@@ -8,7 +8,7 @@ import { debounce, isEqual } from 'lodash';
 import { classNames } from '@shopify/react-utilities/styles';
 
 import { FeaturesContext } from './features';
-import type { RangeSliderProps, DualValue } from '../../types';
+import  { RangeSliderProps, DualValue } from '../../types';
 import { Labelled, labelID } from '../Labelled';
 import { EventListener } from './EventListener';
 import { Keys } from '../../../../types';
