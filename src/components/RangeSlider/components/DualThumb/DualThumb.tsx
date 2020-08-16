@@ -8,7 +8,6 @@ import { debounce, isEqual } from 'lodash';
 import { classNames } from '@shopify/react-utilities/styles';
 
 import { FeaturesContext } from './features';
-import { RangeSliderProps, DualValue } from '../../types';
 import { Labelled, labelID } from '../Labelled';
 import { EventListener } from './EventListener';
 import { Keys } from '../../../../types';
@@ -17,19 +16,31 @@ import * as styles from './DualThumb.scss';
 
 const CSS_VAR_PREFIX = 'RangeSlider';
 
-interface State {
-  value: DualValue;
+export interface State {
+  value: [number, number];
   trackWidth: number;
   trackLeft: number;
-  prevValue?: DualValue;
+  prevValue?: [number, number];
 }
 
-export interface DualThumbProps extends RangeSliderProps {
-  value: DualValue;
+export interface DualThumbProps {
+  value: [number, number];
   id: string;
   min: number;
   max: number;
   step: number;
+  label: string;
+  labelAction?: any;
+  labelHidden?: boolean;
+  output?: boolean;
+  helpText?: React.ReactNode;
+  error?: Error;
+  disabled?: boolean;
+  prefix?: React.ReactNode;
+  suffix?: React.ReactNode;
+  onChange(value: [number, number], id: string): void;
+  onFocus?(): void;
+  onBlur?(): void;
 }
 
 interface KeyHandlers {
@@ -447,7 +458,7 @@ export class DualThumb extends Component<DualThumbProps, State> {
     onChange(value, id);
   }
 
-  private setValue = (dirtyValue: DualValue, control: Control) => {
+  private setValue = (dirtyValue: [number, number], control: Control) => {
     const {
       props: { min, max, step },
       state: { value },
@@ -553,12 +564,12 @@ function registerTouchMoveHandler(handler: (event: TouchEvent) => void) {
 }
 
 function sanitizeValue(
-  value: DualValue,
+  value: [number, number],
   min: number,
   max: number,
   step: number,
   control = Control.Upper
-): DualValue {
+): [number, number] {
   let upperValue = inBoundsUpper(roundedToStep(value[1]));
   let lowerValue = inBoundsLower(roundedToStep(value[0]));
 
