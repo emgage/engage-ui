@@ -4,7 +4,7 @@ import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
 import { RangeSliderProps, RangeSliderValue, DualValue } from './types';
 
 const getUniqueID = createUniqueIDFactory('RangeSlider');
-interface Props extends RangeSliderProps {}
+export interface Props extends RangeSliderProps {}
 
 // tslint:disable-next-line: function-name
 export function RangeSlider({
