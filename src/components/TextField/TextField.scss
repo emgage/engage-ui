@@ -278,3 +278,17 @@ $stacking-order: (
   margin-left: $addon-horizontal-spacing;
   pointer-events: none;
 }
+.label {
+  display: table;
+  table-layout: fixed;
+  width: calc(100% - 20px);
+}
+.labelStyle {
+  @include text-style-body-large;
+  color: theme-color(m-grey, 500);
+  transition: 0.3s all ease;
+  display: table-cell;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
