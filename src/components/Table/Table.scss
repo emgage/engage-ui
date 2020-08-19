@@ -40,6 +40,9 @@ $border-color: color(sky, base);
 
     &.tableDataClick {
       cursor: pointer;
+      span {
+        display: inline-block;
+      }
     }
   }
 
@@ -57,6 +60,11 @@ $border-color: color(sky, base);
     display: table-row;
     vertical-align: inherit;
     border-color: inherit;
+    &:after {
+      clear:both;
+      content:'';
+      display: block;
+    }
   }
 
   &.nestedTable {
@@ -212,7 +220,7 @@ $border-color: color(sky, base);
 
     .table td {
         border-bottom: 1px dotted #ccc;
-        text-align: center;
+        text-align: left;
     }
 
     .table td:last-child {
@@ -224,5 +232,6 @@ $border-color: color(sky, base);
         content: attr(data-label);
         float: left;
         font-weight: bold;
+        width:92px;
     }
 }
