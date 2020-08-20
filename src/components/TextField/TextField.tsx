@@ -210,7 +210,7 @@ class TextField extends React.PureComponent<Props, State> {
       ? <div onClick={this.handleInputFocus} className={theme.suffix} id={`${componentId}suffix`}>{suffix}</div>
       : null;
 
-    const spinnerButtonsMarkup = type === 'number' && showNumberIcon
+    const spinnerButtonsMarkup = type === 'number' && !disabled && !readOnly && showNumberIcon
       ? <SpinnerButtons onClick={this.handleInputFocus} onChange={this.handleNumberChange} theme={theme} />
       : null;
 
