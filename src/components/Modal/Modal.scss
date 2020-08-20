@@ -102,7 +102,7 @@ $modal-footer-background:                        #fff !default; //add $global-ba
 }
 
 .autoHeight {
-  height: calc(100vh - 400px);
+  height: auto;
   overflow: auto;
 }
 
