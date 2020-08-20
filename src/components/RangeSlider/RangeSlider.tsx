@@ -1,10 +1,27 @@
 import * as React from 'react';
 import { DualThumb, SingleThumb } from './components';
 import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
-import { RangeSliderProps, RangeSliderValue, DualValue } from './types';
 
 const getUniqueID = createUniqueIDFactory('RangeSlider');
-interface Props extends RangeSliderProps {}
+export interface Props {
+  label: string;
+  labelAction?: any;
+  labelHidden?: boolean;
+  id?: string;
+  value: number | [number, number];
+  min?: number;
+  max?: number;
+  step?: number;
+  output?: boolean;
+  helpText?: React.ReactNode;
+  error?: Error;
+  disabled?: boolean;
+  prefix?: React.ReactNode;
+  suffix?: React.ReactNode;
+  onChange(value: number | [number, number], id: string): void;
+  onFocus?(): void;
+  onBlur?(): void;
+}
 
 // tslint:disable-next-line: function-name
 export function RangeSlider({
@@ -25,12 +42,12 @@ export function RangeSlider({
   };
 
   return isDualThumb(value) ? (
-    <DualThumb value={value} {...sharedProps} />
+    <DualThumb value={value} {...sharedProps} output/>
   ) : (
-    <SingleThumb value={value} {...sharedProps}  />
+    <SingleThumb value={value} {...sharedProps} output />
   );
 }
 
-function isDualThumb(value: RangeSliderValue): value is DualValue {
+function isDualThumb(value: number | [number, number]): value is [number, number] {
   return Array.isArray(value);
 }

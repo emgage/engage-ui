@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Labelled, helpTextID } from '../Labelled';
-import  { RangeSliderProps } from '../../types';
 export const CSS_VAR_PREFIX = 'RangeSlider';
 
 export function clamp(number: number, min: number, max: number) {
@@ -9,12 +8,24 @@ export function clamp(number: number, min: number, max: number) {
   return number;
 }
 
-export interface SingleThumbProps extends RangeSliderProps {
-  value: number;
+export interface SingleThumbProps  {
+  label: string;
+  labelAction?: any;
+  labelHidden?: boolean;
   id: string;
+  value: number;
   min: number;
   max: number;
-  step: number;
+  step?: number;
+  output?: boolean;
+  helpText?: React.ReactNode;
+  error?: Error;
+  disabled?: boolean;
+  prefix?: React.ReactNode;
+  suffix?: React.ReactNode;
+  onChange(value: number, id: string): void;
+  onFocus?(): void;
+  onBlur?(): void;
 }
 
 // tslint:disable-next-line: function-name
