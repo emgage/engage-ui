@@ -7,7 +7,7 @@ import Button, { buttonFrom } from '../Button';
 import Heading from '../Heading';
 import ButtonGroup from '../ButtonGroup';
 import UnstyledLink from '../UnstyledLink';
-import Icon, { Props as IconProps, IconList } from '../Icon';
+import Icon, { Props as IconProps, IconList, IconColor } from '../Icon';
 import { BANNER } from '../ThemeIdentifiers';
 
 import * as baseTheme from './Banner.scss';
@@ -46,6 +46,7 @@ export interface Props {
 interface ISecondaryItems {
   text: string;
   icon: string;
+  componentColor?: string;
 }
 
 const banner = ({
@@ -116,7 +117,7 @@ const banner = ({
     textMarkUp = secondaryText.map((item, index) => {
       return (
         <div key={`option_${index}`} className={baseTheme.bannerBox}>
-          <Icon source = {item.icon as keyof typeof IconList} />
+          <Icon source = {item.icon as keyof typeof IconList} componentColor = {item.componentColor ? item.componentColor as IconColor : undefined} />
           <p className={baseTheme.bannerContent}>
             {item.text}
           </p>
