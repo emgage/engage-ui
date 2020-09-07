@@ -219,7 +219,7 @@ $border-color: color(sky, base);
     }
 
     .table td {
-        border-bottom: 1px dotted #ccc;
+        border-bottom: none;
         text-align: left;
     }
 
@@ -233,5 +233,13 @@ $border-color: color(sky, base);
         float: left;
         font-weight: bold;
         width:92px;
+    }
+    .table td.lastData {
+      text-align:center;
+      float:none!important;
+      display: flex;
+      .PositionedOverlay {
+        margin-left:0px!important
+      }
     }
 }
