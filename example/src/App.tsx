@@ -1113,7 +1113,6 @@ class App extends React.Component<{}, State> {
             <Button icon="infoCircle" />,
           ]}
         />
-        <div style={{padding:30, marginTop:50}}>
         <ToggleButtonGroup segmented={true} helpText="Test Help Text">
           <Button>On</Button>
           <Button>Off</Button>
@@ -3219,7 +3218,6 @@ class App extends React.Component<{}, State> {
           showSearch={true}
           searchPlaceholder="Search"
         />
-        </div>
       </div>
     );
   }
