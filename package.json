@@ -38,7 +38,7 @@
     "docs": "webpack-dev-server --config webpack.docs.config",
     "precommit-msg": "echo 'Running linting and testing checks...' && exit 0",
     "travis-deploy-once": "travis-deploy-once",
-    "commit": "node node_modules/semantic-git-commit-cli/dest/cli.js",
+    "commit": "node node_modules/semantic-git-commit-cli/dest/index.js",
     "commitmsg": "commitlint -E GIT_PARAMS"
   },
   "babel": {
@@ -106,7 +106,7 @@
     "react-test-renderer": "^16.0.0",
     "sass-loader": "^7.3.1",
     "sass-resources-loader": "^2.0.1",
-    "semantic-git-commit-cli": "^3.5.0",
+    "semantic-git-commit-cli": "^3.7.0",
     "semantic-release": "^15.9.8",
     "style-loader": "^1.1.2",
     "svgo": "^0.7.2",
