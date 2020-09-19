@@ -3194,6 +3194,8 @@ class App extends React.Component<{}, State> {
             items={this.getComboBoxItems()}
             label="Select"
             currentValue="item1"
+            suffix="user"
+            loading={false}
           />
         </div>
         <div>Multiple checkbox Facets</div>
