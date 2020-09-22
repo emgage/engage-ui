@@ -32,6 +32,8 @@ export interface Props {
   onClose?(): void;
   // Call toggle method on click 
   onOpen?(): void;
+  // Unique ID
+  componentId?: string;
   theme?: any;
 }
 
@@ -73,6 +75,7 @@ export class Dropdown extends React.PureComponent<Props, State> {
       anchorEl,
       closeOnClickOption = true,
       returnValue,
+      componentId = '',
       theme,
     } = this.props;
 
@@ -80,6 +83,7 @@ export class Dropdown extends React.PureComponent<Props, State> {
     const DropdownItemComponents = dropdownItems.map((item, index) =>
       <DropdownItem
         key={index}
+        componentId={item.componentId}
         disabled={item.disabled}
         divider={item.divider}
         header={item.header}
@@ -102,6 +106,7 @@ export class Dropdown extends React.PureComponent<Props, State> {
         onClose={() => this.setState({ manualInActive: false })}
         theme={theme}
         preferredAlignment={preferredAlignment}
+        componentId={componentId}
       >
         {DropdownItemComponents}
       </Popover>

@@ -7,6 +7,8 @@ import { DROPDOWNITEM } from '../ThemeIdentifiers';
 import * as baseTheme from './Dropdown.scss';
 
 export interface Props {
+  // Unique ID
+  componentId?: string;
   content?: React.ReactNode;
   // Show or hide the Dropdown.
   active?: boolean;
@@ -50,6 +52,7 @@ class DropdownItem extends React.PureComponent<Props, never> {
       header,
       content,
       theme,
+      componentId = '',
     } = this.props;
 
     let className = null;
@@ -57,7 +60,7 @@ class DropdownItem extends React.PureComponent<Props, never> {
     if (header) {
       className = theme.dropdownHeader;
       return (
-        <div id={this.id} className={className}>{content}</div>
+        <div id={componentId ? componentId : this.id} className={className}>{content}</div>
       );
     }
     className = classNames(
@@ -69,7 +72,7 @@ class DropdownItem extends React.PureComponent<Props, never> {
 
     return (
       <div
-        id={this.id}
+        id={componentId ? componentId : this.id}
         className={className}
         onClick={this.clickCallback}
       >
