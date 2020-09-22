@@ -109,6 +109,8 @@ export interface Props {
   suffix?: string;
   // defaultSelectedItems for picker
   defaultSelectedItems?: IItemList[];
+  // Unique ID
+  componentId?: string;
 }
 
 class Picker extends React.PureComponent<Props, State> {
@@ -304,6 +306,7 @@ class Picker extends React.PureComponent<Props, State> {
         onSelect = this.handleSelect,
         onRemove = this.handleRemove,
         onMoreInfo = this.handleMoreInfo,
+        componentId = '',
         theme,
     } = this.props;
     const { isFocused, hasValue, value, suggestions, chipListState, selectedItems } = this.state;
@@ -330,7 +333,7 @@ class Picker extends React.PureComponent<Props, State> {
     }
 
     return (
-      <div>
+      <div id={componentId}>
         <div>
           <div className={className}>
             {

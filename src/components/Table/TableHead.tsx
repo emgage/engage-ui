@@ -15,6 +15,8 @@ export type Scope = 'col' | 'row';
 export interface Props {
   // Accessibility id attribute, this will match with header attribute added in td
   accessibilityId?: string;
+  // Unique ID
+  componentId?: string;
   // Accessibility scope attribute, this can be used instead of id
   accessibilityScope?: Scope;
   // Any custom class that user wants to add which could be for setting width or any custom styling
@@ -72,14 +74,14 @@ class TableHead extends React.PureComponent<Props, never> {
   }
 
   render () {
-    const { accessibilityId, accessibilityScope, children, colSpan, order, rowSpan, sort, componentStyle, theme } = this.props;
+    const { accessibilityId = '', componentId = '', accessibilityScope, children, colSpan, order, rowSpan, sort, componentStyle, theme } = this.props;
     const customClassName = this.getClassName();
 
     return (
       <th
         className={customClassName}
         scope={accessibilityScope}
-        id={accessibilityId}
+        id={accessibilityId ? accessibilityId : componentId ? `${componentId}` : ''}
         colSpan={colSpan}
         rowSpan={rowSpan}
         style={componentStyle}

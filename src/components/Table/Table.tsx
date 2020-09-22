@@ -34,6 +34,8 @@ export interface Props {
   componentStyle?: any;
   // Set a custom class
   componentClass?: string;
+  // Unique ID
+  componentId?: string;
   //   temp & we need to use the defaultCheckedDataId prop in future
   checkedRowsId?: number[];
   // Get the data & use it to populate tds
@@ -243,7 +245,7 @@ class Table extends React.Component<Props, State> {
   // Render the thead with th & contain specific header label
   // Used certain flags which will help to add sorting for any specific fields
   renderHeader = () => {
-    const { column, sorting, rowAction, rowActionLeft = false, theme } = this.props;
+    const { column, sorting, rowAction, rowActionLeft = false, theme, componentId = '' } = this.props;
     const { field, order } = this.state.sort;
 
     return (
@@ -252,7 +254,7 @@ class Table extends React.Component<Props, State> {
           { this.renderRowSelection(null, 'head') }
           {
             column.map((item: ColumnConfig) => {
-              const { key, sort, noSort, sortBy } = item;
+              const { key, sort, noSort, sortBy, id = '' } = item;
               const thisSort: string = (sorting === 'all' || sort) && !noSort ? key : '';
 
               return (
@@ -261,6 +263,8 @@ class Table extends React.Component<Props, State> {
                   sort={thisSort}
                   sortBy={sortBy}
                   componentStyle={item.style}
+                  accessibilityId={id}
+                  componentId={componentId ? `${componentId}Col${item.label}` : ''}
                   className={item.className}
                   order={field === item.key ? order.current : ''}
                   clickHandler={this.sortData}
@@ -603,13 +607,13 @@ class Table extends React.Component<Props, State> {
   }
 
   render () {
-    const { componentStyle = {}, hideHeader = false } = this.props;
+    const { componentStyle = {}, componentId = '', hideHeader = false } = this.props;
     const tableClass = this.getTableClassName();
     const renderedHeader = !hideHeader ? this.renderHeader() : null;
     const renderedBody = this.renderBody();
 
     return (
-      <table className={tableClass} style={componentStyle}>
+      <table className={tableClass} style={componentStyle} id={componentId} >
         { renderedHeader }
         { renderedBody }
       </table>
