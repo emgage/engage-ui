@@ -16,7 +16,7 @@ export interface Props {
   // This will help to set popover active or inactive when required from parent component
   manualInActive?: boolean;
   addArrow?: boolean;
-  // Set anchor element 
+  // Set anchor element
   anchorEl?: any;
   // The children that activate the popover.
   children?: React.ReactNode;
@@ -24,7 +24,7 @@ export interface Props {
   componentClass?: string;
   componentStyle?: any;
   // Unique ID
-  componentId?: string; 
+  componentId?: string;
   onClose?(): void;
   // The direction the popover tries to display Availabel options: above | below | mostSpace
   preferredPosition?: PreferredPosition;
