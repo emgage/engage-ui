@@ -264,7 +264,7 @@ class Table extends React.Component<Props, State> {
                   sortBy={sortBy}
                   componentStyle={item.style}
                   accessibilityId={id}
-                  componentId={componentId ? `${componentId}Col${item.label}` : ''}
+                  componentId={componentId ? `${componentId}Col${item.label?.replace(/ /g, '')}` : ''}
                   className={item.className}
                   order={field === item.key ? order.current : ''}
                   clickHandler={this.sortData}
@@ -353,6 +353,7 @@ class Table extends React.Component<Props, State> {
       rowCallbackValue,
       rowAction,
       selectRow,
+      componentId = '',
       theme
     } = this.props;
     const { nestedChildData } = this.state;
@@ -385,7 +386,7 @@ class Table extends React.Component<Props, State> {
                     Here injectBody helps to inject any custom component to td,
                     we also return the specifc value, which then can be used in injected component
                   */}
-                  { colItem.key === 'rowAction' ? <RowAction theme={theme} actionInProgress={actionInProgress} isRowLoading={item.isRowLoading} actionConfig={rowAction}  data={item} rowActionLeft /> : '' }
+                  { colItem.key === 'rowAction' ? <RowAction componentId={componentId} theme={theme} actionInProgress={actionInProgress} isRowLoading={item.isRowLoading} actionConfig={rowAction}  data={item} rowActionLeft /> : '' }
                   { renderCheckbox ? this.renderCheckColumn(item, false) : ''}
                   { colItem.injectBody ? colItem.injectBody(item) : renderCheckbox ? <span style={{ paddingLeft: '16px' }}>{item[colItem.key]}</span> : <span className={theme.tableDataWrap}>{item[colItem.key]}</span> }
                   {item.isRowLoading && <Spinner componentSize="small" componentColor="disabled" />}
@@ -394,7 +395,7 @@ class Table extends React.Component<Props, State> {
             })
           }
 
-          { rowAction && !rowActionLeft ? <TableData componentClass={theme.lastData} componentStyle={{ float: 'right' }}>{item.isRowLoading && <Spinner componentSize="small" componentColor="disabled" />} <RowAction actionInProgress={actionInProgress && !!item.processing} isRowLoading={item.isRowLoading} actionConfig={rowAction} data={item} theme={theme} /> </TableData> : '' }
+          { rowAction && !rowActionLeft ? <TableData componentClass={theme.lastData} componentStyle={{ float: 'right' }}>{item.isRowLoading && <Spinner componentSize="small" componentColor="disabled" />} <RowAction componentId={componentId} actionInProgress={actionInProgress && !!item.processing} isRowLoading={item.isRowLoading} actionConfig={rowAction} data={item} theme={theme} /> </TableData> : '' }
         </TableRow>
         { renderBanner &&
         <TableRow>
