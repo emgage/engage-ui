@@ -10,6 +10,7 @@ import {
   Badge,
   Button,
   ButtonGroup,
+  Calendar,
   Card,
   CardHeader,
   CardFooter,
@@ -1195,6 +1196,12 @@ class App extends React.Component<{}, State> {
             className="cl"
           />
         </div>
+
+        <div>
+          <Calendar/>
+        </div>
+        <br/>
+        <br/>
         <div>
           <TabPanel defaultTabId="tab1" position={'top'} alignment={'center'}>
             <Tab
