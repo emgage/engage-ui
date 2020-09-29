@@ -42,6 +42,7 @@ export {
 export {
   default as Calendar,
   Props as CalendarProps,
+  CalendarEvent
 } from './Calendar';
 
 export {
