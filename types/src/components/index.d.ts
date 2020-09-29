@@ -6,6 +6,7 @@ export { default as Banner, Props as BannerProps, } from './Banner';
 export { default as Button, Props as ButtonProps, } from './Button';
 export { default as ButtonGroup, Props as ButtonGroupProps, } from './ButtonGroup';
 export { default as ToggleButtonGroup, Props as ToggleButtonGroupProps, } from './ToggleButtonGroup';
+export { default as Calendar, Props as CalendarProps, CalendarEvent } from './Calendar';
 export { Card, CardHeader, CardFooter, CardBody, CardSection, Props as CardProps, } from './Card';
 export { default as Checkbox, Props as CheckboxProps, } from './Checkbox';
 export { default as Chip, Props as ChipProps, } from './Chip';

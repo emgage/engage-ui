@@ -40,6 +40,12 @@ export {
 } from './ToggleButtonGroup';
 
 export {
+  default as Calendar,
+  Props as CalendarProps,
+  CalendarEvent
+} from './Calendar';
+
+export {
   Card,
   CardHeader,
   CardFooter,

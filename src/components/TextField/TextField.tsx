@@ -318,7 +318,7 @@ class TextField extends React.PureComponent<Props, State> {
           <div className={className}>
             {prefixMarkup}
             {inputValue}
-            {loading && <div className={theme.spinnerWrapper}><Spinner componentSize="small" componentColor="disabled" /></div>}
+            {loading && <div className={theme.spinnerWrapper} id={`${componentId}Spinner`}><Spinner componentSize="small" componentColor="disabled" /></div>}
             {suffixMarkup}
             {spinnerButtonsMarkup}
             <div className={theme.backdrop} />
