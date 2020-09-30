@@ -79,3 +79,7 @@ li.haschildren > .nodecontent::before {
 .treeview li:not(.haschildren):last-child::before {
     height: calc(1em/2 + 0.7em);
 }
+
+.nodeicon span:focus, .nodeicon:focus span {
+  fill:#007ace;
+}

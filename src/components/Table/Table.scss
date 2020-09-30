@@ -243,3 +243,7 @@ $border-color: color(sky, base);
       }
     }
 }
+
+.table td span:focus {
+  fill:#007ace
+}

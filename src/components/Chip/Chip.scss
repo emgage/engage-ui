@@ -47,6 +47,9 @@ $vertical-padding: ($min-height - line-height(body) - rem(2px)) / 2;
     text-align: center;
     margin: ($horizontal-padding / 2) (-1 * $horizontal-padding / 2) ($horizontal-padding / 2) ($horizontal-padding / 2);
     display: block;
+    &:focus {
+        fill:#f5f5f5
+    }
 }
 
 .transparent{

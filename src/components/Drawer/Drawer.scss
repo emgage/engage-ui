@@ -280,7 +280,7 @@ body.overlay {
 }
 
 body.container {
-  overflow: auto !important;
+  overflow: visible !important;
 }
 
 :global #root {

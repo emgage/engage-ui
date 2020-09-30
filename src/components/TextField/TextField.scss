@@ -226,7 +226,6 @@ $stacking-order: (
   display: flex;
   flex: 1 1 0%;
   justify-content: center;
-  align-items: center;
   appearance: none;
   background: linear-gradient(to bottom, color(white), color(sky, lighter));
   border: none;
@@ -238,6 +237,7 @@ $stacking-order: (
 
   &:focus {
     outline: none;
+    background:#f5f5f5;
   }
 
   &:active {

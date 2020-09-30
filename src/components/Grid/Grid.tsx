@@ -40,7 +40,7 @@ const Grid = ({
   );
 
   return (
-    <div style={componentStyle} className={gridClass}>
+    <div style={componentStyle} className={gridClass} tabIndex={1}>
       {
         React.Children.map(children, (child: React.ReactElement<any>) => {
           return React.cloneElement(child, { gridType });

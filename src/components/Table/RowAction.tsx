@@ -81,7 +81,7 @@ class RowAction extends React.PureComponent<Props, State> {
     return (
       <React.Fragment>
         <div>
-        <Button theme={theme} componentClass={theme.rowActionButton} disabled={actionInProgress} icon="horizontalDots" onClick={(e: React.FormEvent<HTMLElement>) => this.dropdownToggle(e)} />
+        <Button theme={theme} componentClass={theme.rowActionButton} disabled={actionInProgress} icon="horizontalDots" onClick={(e: React.FormEvent<HTMLElement>) => this.dropdownToggle(e)} accessibilityLabel="More Actions"/>
           <Dropdown
             dropdownItems={validActionConfigs}
             toggle={() => this.dropdownToggle}

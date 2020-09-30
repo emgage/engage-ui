@@ -3,6 +3,7 @@ $label-horizontal-spacing: spacing(tighter) * 1.5;
 $stacking-order: (
   // TODO : previously it was 25. but input and select component have z-index of 20. so it was creating issue on click at component
   label: 19,
+  
 );
 
 

@@ -218,6 +218,9 @@ export interface Props {
   theme?: any;
   callbackValue?: any;
   onClick?(id: number | string, additionalParam?: boolean): void;
+
+  tabIndex?:number;
+  role?:string;
 }
 
 const icon = ({
@@ -226,6 +229,8 @@ const icon = ({
   componentColor,
   backdrop = false,
   accessibilityLabel,
+  tabIndex,
+  role,
   componentStyle,
   componentClass,
   theme,
@@ -264,7 +269,7 @@ const icon = ({
   }
 
   return (
-    <span className={className} style={componentStyle} aria-label={accessibilityLabel} onClick={(event) => { onClick ? onClick((callbackValue ? callbackValue : event)) : ''; }}>
+    <span role={role} tabIndex={tabIndex} className={className} style={componentStyle} aria-label={accessibilityLabel} aria-hidden="false" onClick={(event) => { onClick ? onClick((callbackValue ? callbackValue : event)) : ''; }}>
       {contentMarkup}
     </span>
   );

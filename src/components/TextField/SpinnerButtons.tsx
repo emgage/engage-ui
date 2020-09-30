@@ -25,8 +25,9 @@ const spinnerButtons = ({ theme, onChange, onClick }: Props)  => {
       <div
         role="button"
         className={theme.segment}
-        tabIndex={-1}
+        tabIndex={0}
         onClick={handleStep(1)}
+        aria-label="Increase Number"
       >
         <div className={theme.spinnerButtonsIcon}>
           <Icon source="caretUp" theme={theme} />
@@ -36,8 +37,9 @@ const spinnerButtons = ({ theme, onChange, onClick }: Props)  => {
       <div
         role="button"
         className={theme.segment}
-        tabIndex={-1}
+        tabIndex={0}
         onClick={handleStep(-1)}
+        aria-label="Deacrease Number"
       >
         <div className={theme.spinnerButtonsIcon}>
           <Icon source="caretDown" theme={theme} />

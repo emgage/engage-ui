@@ -101,7 +101,7 @@ class TreeView extends React.Component<Props, State> {
         {
           item.children ?
           <div onClick={() => this.toggleNode(item.id)} className={theme.nodeicon}>
-            {item.active ? <Icon componentColor={iconColor} source="circleChevronDown" theme={theme} /> : <Icon componentColor={iconColor} source="circleChevronRight" theme={theme} />}
+            {item.active ? <Icon componentColor={iconColor} source="circleChevronDown" theme={theme} tabIndex={0} accessibilityLabel='Child List open' role="button"/> : <Icon componentColor={iconColor} source="circleChevronRight" theme={theme} tabIndex={0} accessibilityLabel='Open Child List' role="button"/>}
           </div> :
           <div className={theme.nodeicon}> <Icon componentStyle={iconStyle} componentColor={iconColor} source="circle" theme={theme} /> </div>
         }
@@ -119,7 +119,7 @@ class TreeView extends React.Component<Props, State> {
       return (
         <li key={item.id} className={theme.haschildren}>
           <div onClick={() => this.toggleNode(item.id)} className={theme.nodeicon}>
-            {item.active ? <Icon componentColor={iconColor} source="circleChevronDown" theme={theme} /> : <Icon componentColor={iconColor} source="circleChevronRight" theme={theme} />}
+            {item.active ? <Icon componentColor={iconColor} source="circleChevronDown" theme={theme} tabIndex={0} accessibilityLabel='Child List open' role="button"/> : <Icon componentColor={iconColor} source="circleChevronRight" theme={theme} tabIndex={0} accessibilityLabel='Open Child List' role="button"/>}
           </div>
           <div className={theme.nodecontent}>
             <div className={theme.nodecontentwrapper}><TreeNode { ...item } /></div>
