@@ -6,6 +6,7 @@ export declare const BANNER = "PBanner";
 export declare const BUTTON = "PButton";
 export declare const BUTTON_GROUP = "PButtonGroup";
 export declare const TOGGLEBUTTON_GROUP = "PToggleButtonGroup";
+export declare const CALENDAR = "PCalendar";
 export declare const CARD = "PCard";
 export declare const CHECKBOX = "PCheckbox";
 export declare const CHIP = "PChip";

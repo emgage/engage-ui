@@ -7,11 +7,17 @@ import {
 } from 'react-big-calendar';
 import * as moment from 'moment';
 import './Calendar.css';
+import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
+import { CALENDAR } from '../ThemeIdentifiers';
+import * as baseTheme from './Calendar.scss';
 
 export interface CalendarEvent extends Event {}
 
 export interface Props extends Partial<CalendarProps> {
+  // Events to be shown in the calendar
   events?: CalendarEvent[];
+  // Theme to be injected via css-themr
+  theme?: any;
 }
 export interface State {
   hasError: boolean;
@@ -35,7 +41,7 @@ class Calendar extends React.PureComponent<Props, State> {
   }
 
   render() {
-    const { style = {}, events = [], ...rest } = this.props;
+    const { style = {}, events = [], theme, ...rest } = this.props;
     const { hasError } = this.state;
 
     if (hasError) {
@@ -43,6 +49,7 @@ class Calendar extends React.PureComponent<Props, State> {
     }
     return (
       <BigCalendar
+        className={theme.engage_calendar}
         style={{ height: 500, ...style }}
         events={events}
         localizer={this.calendarLocalizer}
@@ -52,4 +59,8 @@ class Calendar extends React.PureComponent<Props, State> {
   }
 }
 
-export default Calendar;
+export { Calendar as UnthemedCalendar };
+export default themr(CALENDAR, baseTheme)(Calendar) as ThemedComponentClass<
+  Props,
+  {}
+>;
