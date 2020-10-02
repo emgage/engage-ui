@@ -256,6 +256,11 @@ class Table extends React.Component<Props, State> {
             column.map((item: ColumnConfig) => {
               const { key, sort, noSort, sortBy, id = '' } = item;
               const thisSort: string = (sorting === 'all' || sort) && !noSort ? key : '';
+              let trimmedComponentId = '';
+
+              if (item && item.label) {
+                trimmedComponentId = item.label.replace(/ /g, '');
+              }
 
               return (
                 <TableHead
@@ -264,7 +269,7 @@ class Table extends React.Component<Props, State> {
                   sortBy={sortBy}
                   componentStyle={item.style}
                   accessibilityId={id}
-                  componentId={componentId ? `${componentId}Col${item.label?.replace(/ /g, '')}` : ''}
+                  componentId={componentId ? trimmedComponentId : ''}
                   className={item.className}
                   order={field === item.key ? order.current : ''}
                   clickHandler={this.sortData}
