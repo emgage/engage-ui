@@ -3,6 +3,7 @@ import { SourceData } from './interface';
 import { IconColor } from '../Icon';
 declare type Themes = 'basic';
 export interface Props {
+    componentId?: string;
     iconColor?: IconColor;
     selectedTheme?: Themes;
     source: SourceData[];

@@ -49,7 +49,7 @@ class Calendar extends React.PureComponent<Props, State> {
     };
   };
 
-  ColoredDateCellWrapper = ({ children, value }: any) => {
+  withAddEventDateCellWrapper = ({ children, value }: any) => {
     const { showCreateIcon, theme } = this.props;
     return React.cloneElement(React.Children.only(children), {
       children: showCreateIcon ? (
@@ -78,7 +78,7 @@ class Calendar extends React.PureComponent<Props, State> {
         events={events}
         localizer={this.calendarLocalizer}
         components={{
-          dateCellWrapper: this.ColoredDateCellWrapper,
+          dateCellWrapper: this.withAddEventDateCellWrapper,
         }}
         {...rest}
       />

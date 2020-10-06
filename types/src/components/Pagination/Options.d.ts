@@ -13,9 +13,11 @@ interface IProps {
     selectPrefixCls: string;
     goButton: any;
     theme?: any;
+    selectValue?: string;
 }
 interface IState {
     goInputText: any;
+    selectValue?: string;
     current?: any;
 }
 declare const _default: ThemedComponentClass<IProps, IState>;

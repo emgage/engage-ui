@@ -13,6 +13,7 @@ export interface Props {
     iconColor?: IconColor;
     componentStyle?: React.CSSProperties;
     componentClass?: string;
+    componentId?: string;
     theme?: any;
 }
 declare const _default: ThemedComponentClass<Props, {}>;

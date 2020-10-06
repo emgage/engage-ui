@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
-import 'react-datetime/css/react-datetime.css';
+import './ReactDatetime.css';
 export interface Props {
     dateFormat?: boolean | string;
     defaultDateTime?: string;

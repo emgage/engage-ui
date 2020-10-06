@@ -18,6 +18,7 @@ export interface Props {
 interface ISecondaryItems {
     text: string;
     icon: string;
+    componentColor?: string;
 }
 declare const _default: ThemedComponentClass<Props, {}>;
 export default _default;

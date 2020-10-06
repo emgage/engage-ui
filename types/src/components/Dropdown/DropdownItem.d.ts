@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 export interface Props {
+    componentId?: string;
     content?: React.ReactNode;
     active?: boolean;
     disabled?: boolean;
