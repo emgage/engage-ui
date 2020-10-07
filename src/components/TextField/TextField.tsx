@@ -110,7 +110,7 @@ export interface Props {
   // Theme to be injected via css-themr.
   theme?: any;
   // Determine type of input. Available options: text | email | number | password | search | tel | url | date | datetime-local | month | time | week
-  type?: Type;
+  type: Type;
   // Initial value for the input.
   value?: string;
   // number of rows for textarea
@@ -121,6 +121,10 @@ const getUniqueID = createUniqueIDFactory('TextField');
 
 class TextField extends React.PureComponent<Props, State> {
   state: State = { height: null, value: '' };
+
+  static defaultProps: any = {
+    type: 'text'
+  };
 
   private input: HTMLElement;
 
