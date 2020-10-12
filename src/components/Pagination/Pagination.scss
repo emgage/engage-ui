@@ -26,9 +26,21 @@ TODO : Should we be specifying font size here and in button component?  seems to
 
     &:last-child {
         margin-right: 0;
+        
     }
-  }
 
+  }
+ 
+  .ItemPerPage {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+
+    .rc-pagination {
+      margin:0px 10px;
+    }
+
+  }
   &-total-text {
     // float: left;
     height: 30px;
