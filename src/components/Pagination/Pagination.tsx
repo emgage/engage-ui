@@ -5,7 +5,7 @@ import { classNames } from '@shopify/react-utilities/styles';
 import Button from '../Button';
 import Pager from './Pager';
 import PageSize from './PageSize';
-import Options from './Options';
+// import Options from './Options';
 import { default as KEYCODE }  from './KeyCode';
 import { default as LOCALE } from './locale/en_US';
 import { polyfill } from 'react-lifecycles-compat';
@@ -365,7 +365,7 @@ class Pagination extends React.PureComponent<IProps, IState> {
   }
 
   render() {
-    const { className, disabled = false, theme, lazyLoading } = this.props;
+    const { className/*, disabled*/ = false, theme, lazyLoading } = this.props;
 
     // When hideOnSinglePage is true and there is only 1 page, hide the pager
     if (this.props.hideOnSinglePage && this.props.total <= this.state.pageSize) {
@@ -711,7 +711,7 @@ class Pagination extends React.PureComponent<IProps, IState> {
             this.getItemIcon(props.nextIcon, 'next', nextDisabled)
           )}
         </li>
-        <Label componentId={'rc-pagination'}>Jump To:</Label>
+        {/* <Label componentId={'rc-pagination'}>Jump To:</Label>
         <Options
           disabled={disabled}
           locale={props.locale}
@@ -727,8 +727,10 @@ class Pagination extends React.PureComponent<IProps, IState> {
           pageSizeOptions={this.getPageNumberOptions(pagerList)}
           quickGo={this.shouldDisplayQuickJumper() ? this.handleChange : undefined}
           goButton={goButton}
-        />
-        <Label componentId={'rc-pagination'}>Items per page: </Label>
+        />*/}
+        
+        <li className={theme.ItemPerPage}>
+          <Label componentId={'rc-pagination'}>Items per page: </Label>
         <PageSize
           onKeyPress={() => {}}
           currentPageSize={this.state.pageSize}
@@ -737,7 +739,7 @@ class Pagination extends React.PureComponent<IProps, IState> {
           })}
           pageSizeList={this.state.pageSizeList}
           className="cl"
-        />
+        /> </li>
         { lazyLoading && pagerList.length !== 1 ? <Button onClick={() => {
           const prevPageSize = this.state.pageSize;
           const newPageSize = prevPageSize + this.props.pageSize;
