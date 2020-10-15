@@ -24,8 +24,8 @@ describe('<FormLayout />', () => {
         it('should verify number of components and keys respect to the position', () => {
         const formlayoutWrapper = mount(
                                         <FormLayout>
-                                            <TextField label="Store name" />
-                                            <TextField label="Account email"/>
+                                            <TextField type="text" label="Store name" />
+                                            <TextField type="text" label="Account email"/>
                                         </FormLayout>
                                     );
 
@@ -36,8 +36,8 @@ describe('<FormLayout />', () => {
         it('should verify that it has 2 Textfields as children', () => {
         const formlayoutWrapper = mount(
                                         <FormLayout>
-                                            <TextField label="Store name" />
-                                            <TextField label="Account email"/>
+                                            <TextField type="text" label="Store name" />
+                                            <TextField type="text" label="Account email"/>
                                         </FormLayout>
                                     );
         expect(formlayoutWrapper.find('TextField').length).toBe(2);
@@ -95,10 +95,10 @@ describe('<FormLayout />', () => {
         const formlayoutWrapper = mount(
                                         <FormLayout>
                                             <Group condensed>
-                                            <TextField label="Length" />
-                                            <TextField label="Width" />
-                                            <TextField label="Height" />
-                                            <TextField label="Unit" />
+                                            <TextField type="text" label="Length" />
+                                            <TextField type="text" label="Width" />
+                                            <TextField type="text" label="Height" />
+                                            <TextField type="text" label="Unit" />
                                             </Group>
                                         </FormLayout>
                                     );
@@ -113,10 +113,10 @@ describe('<FormLayout />', () => {
         const formlayoutWrapper = mount(
                                         <FormLayout>
                                             <Group componentTitle="groupTitle">
-                                            <TextField label="Length" />
-                                            <TextField label="Width" />
-                                            <TextField label="Height" />
-                                            <TextField label="Unit" />
+                                            <TextField type="text" label="Length" />
+                                            <TextField type="text" label="Width" />
+                                            <TextField type="text" label="Height" />
+                                            <TextField type="text" label="Unit" />
                                             </Group>
                                         </FormLayout>
                                     );
@@ -125,10 +125,10 @@ describe('<FormLayout />', () => {
         it('should verify form layout when condensed is false', () => {
         const formlayoutWrapper = mount(<FormLayout>
                                     <Group componentTitle="groupTitle" condensed={false}>
-                                        <TextField label="Length" />
-                                        <TextField label="Width" />
-                                        <TextField label="Height" />
-                                        <TextField label="Unit" />
+                                        <TextField type="text" label="Length" />
+                                        <TextField type="text" label="Width" />
+                                        <TextField type="text" label="Height" />
+                                        <TextField type="text" label="Unit" />
                                         </Group>
                                     </FormLayout>
                                     );
@@ -141,8 +141,8 @@ describe('<FormLayout />', () => {
             const formlayoutWrapper = mount(
                                             <FormLayout theme={theme}>
                                                 <Group theme={theme} condensed>
-                                                    <TextField label="Length" />
-                                                    <TextField label="Height" />
+                                                    <TextField type="text" label="Length" />
+                                                    <TextField type="text" label="Height" />
                                                 </Group>
                                             </FormLayout>
                                         );
@@ -152,8 +152,8 @@ describe('<FormLayout />', () => {
             const formlayoutWrapper = mount(
                                             <FormLayout theme={theme}>
                                                 <Group theme={theme} condensed>
-                                                    <TextField label="Length" />
-                                                    <TextField label="Height" />
+                                                    <TextField type="text" label="Length" />
+                                                    <TextField type="text" label="Height" />
                                                 </Group>
                                             </FormLayout>
                                         );
@@ -163,8 +163,8 @@ describe('<FormLayout />', () => {
             const formlayoutWrapper = mount(
                                             <FormLayout theme={theme}>
                                                 <Group theme={theme} condensed>
-                                                    <TextField label="Length" />
-                                                    <TextField label="Height" />
+                                                    <TextField type="text" label="Length" />
+                                                    <TextField type="text" label="Height" />
                                                 </Group>
                                             </FormLayout>
                                         );

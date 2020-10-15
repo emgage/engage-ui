@@ -5,6 +5,7 @@ import * as styles from '../../styles/components-page.scss';
 const TextFieldExample = () => (
   <div className={styles.example}>
     <TextField
+      type="text"
       label="TextField Label"
     />
   </div>

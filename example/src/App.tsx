@@ -2292,6 +2292,7 @@ class App extends React.Component<{}, State> {
 
           <Column small="2-4" medium="2-4" large="2-4">
             <TextField
+              type="text"
               disabled
               placeholder="Find Content Definition..."
               suffix={<Icon source="search" />}
@@ -2307,6 +2308,7 @@ class App extends React.Component<{}, State> {
             />
 
             <TextField
+              type="text"
               capital
               componentId="TestName"
               label="Text Counter"
@@ -2324,6 +2326,7 @@ class App extends React.Component<{}, State> {
               // suffix={<Icon componentColor="inkLightest" source="users" />}
             />
             <TextField
+              type="text"
               componentId="TestName1"
               label="Text Counter"
               placeholder="test-placeholder"
@@ -2341,6 +2344,7 @@ class App extends React.Component<{}, State> {
               // suffix={<Icon componentColor="inkLightest" source="users" />}
             />
             <TextField
+              type="text"
               componentId="TestName2"
               label="Read Only Text Field"
               value="Value"
@@ -2423,6 +2427,7 @@ class App extends React.Component<{}, State> {
             <Link>Tooltip 2</Link>
           </Tooltip>
           <TextField
+            type="text"
             componentId="TestName"
             label="Text Counter"
             placeholder="test-placeholder"
@@ -2692,6 +2697,7 @@ class App extends React.Component<{}, State> {
             {/* <FormLayout> */}
 
             <ValidatedTextField
+              type="text"
               getErrors={this.getErrors}
               componentId="AppUri"
               label="App Uri"
@@ -2728,6 +2734,7 @@ class App extends React.Component<{}, State> {
               />
             </div>
             <ValidatedTextField
+              type="text"
               getErrors={this.getErrors}
               multiline
               componentId="appDescription"
