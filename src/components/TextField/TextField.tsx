@@ -122,10 +122,6 @@ const getUniqueID = createUniqueIDFactory('TextField');
 class TextField extends React.PureComponent<Props, State> {
   state: State = { height: null, value: '' };
 
-  static defaultProps: any = {
-    type: 'text'
-  };
-
   private input: HTMLElement;
 
   constructor(props: Props) {
