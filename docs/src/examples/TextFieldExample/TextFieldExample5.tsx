@@ -5,6 +5,7 @@ import * as styles from '../../styles/components-page.scss';
 const TextFieldExample5 = () => (
   <div className={styles.example}>
     <TextField
+      type="text"
       label="Zone name"
       labelAction={{ content: 'Look up codes' }}
     />

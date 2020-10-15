@@ -77,6 +77,7 @@ class DateTimePicker extends React.PureComponent<Props, State>{
     return (
         <div>
             <TextField
+                type="text"
                 label={label}
                 value={dateTime.format(this.timeFormat)}
                 onFocus={() => { this.setState({ open: true }); }}

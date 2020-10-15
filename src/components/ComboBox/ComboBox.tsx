@@ -183,6 +183,7 @@ class ComboBox extends React.PureComponent<Props, State> {
     return (
       <div key={this.id} className={theme.comboboxContainer} onClick={this.onArrowClick} ref={node => this.setWrapperRef(node)} >
         <TextField
+          type="text"
           label={label}
           onChange={this.onChange}
           value={this.state.selectedValue}

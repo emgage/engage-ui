@@ -20,6 +20,7 @@ const TextFieldExample3 = () => (
         selected={['yes']}
       />
       <TextField
+        type="text"
         label="Gift cards expire after"
         labelHidden
         value="12"

@@ -35,6 +35,7 @@ class DrawerExample extends React.Component<Props, State> {
             mode="slide">
             <FormLayout>
               <TextField
+                type="text"
                 label="Full name"
               />
               <TextField
@@ -55,9 +56,11 @@ class DrawerExample extends React.Component<Props, State> {
             flip>
             <FormLayout>
               <TextField
+                type="text"
                 label="City"
               />
               <TextField
+                type="text"
                 label="Country"
               />
 

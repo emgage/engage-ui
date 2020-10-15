@@ -12,10 +12,12 @@ const VisuallyHiddenExample = () => (
       </VisuallyHidden>
       <FormLayout>
         <TextField
+          type="text"
           label="Title"
           value="Artisanal Wooden Spoon"
         />
         <TextField
+          type="text"
           label="Description"
           multiline
         />
