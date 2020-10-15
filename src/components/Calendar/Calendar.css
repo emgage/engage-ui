@@ -47,7 +47,7 @@ button.rbc-input::-moz-focus-inner {
   direction: rtl; }
 
 .rbc-off-range {
-  color: #999999; }
+  color: #616161; }
 
 .rbc-off-range-bg {
   background: #e6e6e6; }
@@ -80,7 +80,7 @@ button.rbc-input::-moz-focus-inner {
   z-index: 4; }
 
 .rbc-today {
-  background-color: #eaf6ff; }
+  background-color: #2276d2; }
 
 .rbc-toolbar {
   display: flex;
@@ -92,37 +92,51 @@ button.rbc-input::-moz-focus-inner {
   .rbc-toolbar .rbc-toolbar-label {
     flex-grow: 1;
     padding: 0 10px;
-    text-align: center; }
+    text-align: center; 
+    font-size: 1.6rem;
+    line-height:2.4rem;
+    font-weight:600;
+    color:#212b36;
+  }
   .rbc-toolbar button {
-    color: #373a3c;
+    color: #fff;
     display: inline-block;
     margin: 0;
     text-align: center;
     vertical-align: middle;
     background: none;
     background-image: none;
-    border: 1px solid #ccc;
+    border: 1px solid #f4f6f8;
     padding: .375rem 1rem;
     border-radius: 4px;
     line-height: normal;
-    white-space: nowrap; }
+    white-space: nowrap; 
+  background:#1976d2;
+  padding: 1.3rem 1.6rem;}
     .rbc-toolbar button:active, .rbc-toolbar button.rbc-active {
       background-image: none;
-      box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-      background-color: #e6e6e6;
-      border-color: #adadad; }
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    background-color: #2276d2;
+    border-color: #f4f6f8;
+    opacity: .8;}
       .rbc-toolbar button:active:hover, .rbc-toolbar button:active:focus, .rbc-toolbar button.rbc-active:hover, .rbc-toolbar button.rbc-active:focus {
-        color: #373a3c;
-        background-color: #d4d4d4;
-        border-color: #8c8c8c; }
+        background-image: none;
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    background-color: #2276d2;
+    border-color: #f4f6f8;
+    opacity: .8; }
     .rbc-toolbar button:focus {
-      color: #373a3c;
-      background-color: #e6e6e6;
-      border-color: #adadad; }
+      background-image: none;
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    background-color: #2276d2;
+    border-color: #f4f6f8;
+    opacity: .8; }
     .rbc-toolbar button:hover {
-      color: #373a3c;
-      background-color: #e6e6e6;
-      border-color: #adadad; }
+      background-image: none;
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    background-color: #2276d2;
+    border-color: #f4f6f8;
+    opacity: .8; }
 
 .rbc-btn-group {
   display: inline-block;
@@ -158,7 +172,7 @@ button.rbc-input::-moz-focus-inner {
   box-shadow: none;
   margin: 0;
   padding: 2px 5px;
-  background-color: #3174ad;
+  background-color: #18981a;
   border-radius: 5px;
   color: #fff;
   cursor: pointer;
@@ -244,11 +258,24 @@ button.rbc-input::-moz-focus-inner {
   padding-right: 5px;
   text-align: right; }
   .rbc-date-cell.rbc-now {
-    font-weight: bold; }
+    font-weight: bold; 
+    color:#fff;
+  }
   .rbc-date-cell > a, .rbc-date-cell > a:active, .rbc-date-cell > a:visited {
     color: inherit;
-    text-decoration: none; }
-
+    text-decoration: none; 
+    transition: all .3s ease-in-out;
+      -moz-transition: all .3s ease-in-out;
+      -webkit-transition: all .3s ease-in-out;
+  }
+    .rbc-date-cell > a:focus {
+      color:#418fda;
+      font-weight:600;
+      font-size:20px;
+      transition: all .3s ease-in-out;
+      -moz-transition: all .3s ease-in-out;
+      -webkit-transition: all .3s ease-in-out;
+    }
 .rbc-row-bg {
   display: flex;
   flex-direction: row;
@@ -437,6 +464,9 @@ button.rbc-input::-moz-focus-inner {
   width: 100%;
   border: 1px solid #DDD;
   min-height: 0; }
+  .rbc-time-view .rbc-today {
+    background-color: #e9f4ff;
+}
   .rbc-time-view .rbc-time-gutter {
     white-space: nowrap; }
   .rbc-time-view .rbc-allday-cell {
