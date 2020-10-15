@@ -110,7 +110,7 @@ export interface Props {
   // Theme to be injected via css-themr.
   theme?: any;
   // Determine type of input. Available options: text | email | number | password | search | tel | url | date | datetime-local | month | time | week
-  type?: Type;
+  type: Type;
   // Initial value for the input.
   value?: string;
   // number of rows for textarea
