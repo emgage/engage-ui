@@ -58,6 +58,7 @@ function multiCheckboxFacet({
       {showSearch && (
         <div className="facet-search">
           <TextField
+            type="text"
             placeholder={searchPlaceholder || 'Search'}
             onChange={(value) => {
               if (onSearch) {

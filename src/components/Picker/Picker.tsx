@@ -343,6 +343,7 @@ class Picker extends React.PureComponent<Props, State> {
             }
           </div>
           <TextField
+            type="text"
             autoSuggest={autoSuggest && !disabled}
             autoSuggestMethods={autoSuggestMethods}
             helpText={helpText}
