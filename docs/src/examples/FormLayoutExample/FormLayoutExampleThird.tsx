@@ -7,10 +7,10 @@ const FormLayoutExampleThird = () => (
   <div className={styles.example}>
     <FormLayout>
       <Group condensed>
-        <TextField label="Length" />
-        <TextField label="Width" />
-        <TextField label="Height" />
-        <TextField label="Unit" />
+        <TextField type="text" label="Length" />
+        <TextField type="text" label="Width" />
+        <TextField type="text" label="Height" />
+        <TextField type="text" label="Unit" />
       </Group>
     </FormLayout>
 </div>

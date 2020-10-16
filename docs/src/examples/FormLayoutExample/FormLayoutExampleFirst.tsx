@@ -6,6 +6,7 @@ const FormLayoutExampleFirst = () => (
   <div className={styles.example}>
     <FormLayout>
       <TextField
+        type="text"
         label="Store name"
       />
       <TextField

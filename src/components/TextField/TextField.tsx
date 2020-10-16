@@ -110,7 +110,7 @@ export interface Props {
   // Theme to be injected via css-themr.
   theme?: any;
   // Determine type of input. Available options: text | email | number | password | search | tel | url | date | datetime-local | month | time | week
-  type?: Type;
+  type: Type;
   // Initial value for the input.
   value?: string;
   // number of rows for textarea
@@ -318,7 +318,7 @@ class TextField extends React.PureComponent<Props, State> {
           <div className={className}>
             {prefixMarkup}
             {inputValue}
-            {loading && <div className={theme.spinnerWrapper}><Spinner componentSize="small" componentColor="disabled" /></div>}
+            {loading && <div className={theme.spinnerWrapper} id={`${componentId}Spinner`}><Spinner componentSize="small" componentColor="disabled" /></div>}
             {suffixMarkup}
             {spinnerButtonsMarkup}
             <div className={theme.backdrop} />

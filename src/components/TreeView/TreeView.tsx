@@ -11,6 +11,8 @@ import * as baseTheme from './TreeView.scss';
 type Themes = 'basic';
 
 export interface Props {
+  // Unique ID
+  componentId?: string;
   iconColor?: IconColor;
   // To set defult theme for Treeview.
   selectedTheme?: Themes;
@@ -90,7 +92,7 @@ class TreeView extends React.Component<Props, State> {
 
   // Render single node, also iterate through its children & render those as well if its parent active status is true
   renderNode = (item: SourceData): React.ReactNode => {
-    const { iconColor = 'black', theme } = this.props;
+    const { iconColor = 'black', theme, componentId = '' } = this.props;
     const iconStyle = {
       padding: '0.25em 0.5em 0.25em 0',
     };
@@ -106,7 +108,7 @@ class TreeView extends React.Component<Props, State> {
           <div className={theme.nodeicon}> <Icon componentStyle={iconStyle} componentColor={iconColor} source="circle" theme={theme} /> </div>
         }
 
-        <div className={theme.nodecontent}>
+        <div className={theme.nodecontent} id={componentId ? `${componentId}${item.label}` : ''}>
           <div className={theme.nodecontentwrapper}><TreeNode { ...item } /></div>
         </div>
       </li>
@@ -121,7 +123,7 @@ class TreeView extends React.Component<Props, State> {
           <div onClick={() => this.toggleNode(item.id)} className={theme.nodeicon}>
             {item.active ? <Icon componentColor={iconColor} source="circleChevronDown" theme={theme} tabIndex={0} accessibilityLabel='Child List open' role="button"/> : <Icon componentColor={iconColor} source="circleChevronRight" theme={theme} tabIndex={0} accessibilityLabel='Open Child List' role="button"/>}
           </div>
-          <div className={theme.nodecontent}>
+          <div className={theme.nodecontent} id={componentId ? `${componentId}${item.label}` : ''}>
             <div className={theme.nodecontentwrapper}><TreeNode { ...item } /></div>
           </div>
 

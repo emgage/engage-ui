@@ -42,6 +42,8 @@ export interface Props {
   drawerExpand: boolean;
   // Custom drawer style
   drawerStyle?: any;
+  // Unique ID
+  componentId?: string;
   // Handle Collapse of sidebar
   onCollapse?(value: boolean): void;
 }
@@ -96,7 +98,7 @@ class SideNavigation extends React.PureComponent<Props, State> {
   }
 
   render() {
-    const { source, theme, accordian, drawerOpen, hideCollapse, activeItem, drawerStyle } = this.props;
+    const { source, theme, accordian, drawerOpen, hideCollapse, activeItem, drawerStyle, componentId = '' } = this.props;
     const { collapseLink, li: liClass, childLi: childLiClass } = theme;
     const { activeDrawerId } = this.state;
 
@@ -105,7 +107,7 @@ class SideNavigation extends React.PureComponent<Props, State> {
       const childrenMarkup = full.children !== undefined || null ? full.children.map((child: any, index: number) => {
         return (
           <div key={index}>
-            <a className={childLiClass} onClick={child.action} aria-disabled={false}>
+            <a className={childLiClass} onClick={child.action} aria-disabled={false} id={componentId ? `${componentId}${child.label}` : ''}>
               <Icon source={child.icon} componentColor="white" componentClass={theme.customIcon} theme={theme} />
               {child.label}
             </a>
@@ -121,7 +123,7 @@ class SideNavigation extends React.PureComponent<Props, State> {
             key={index}
             className={liClass}
           >
-            <div className={liClass} onClick={full.action} aria-disabled={false}>
+            <div className={liClass} onClick={full.action} aria-disabled={false} id={componentId ? `${componentId}${full.label}` : ''}>
               <Icon source={full.icon} componentColor={activeItem === full.id ? 'black' : 'white'} componentClass={theme.customIcon} theme={theme} />
               {full.label}
             </div>
@@ -133,7 +135,7 @@ class SideNavigation extends React.PureComponent<Props, State> {
         full.currentApp ?
         (
           <div key={index}>
-            <div className={liClass} onClick={full.action} aria-disabled={false}>
+            <div className={liClass} onClick={full.action} aria-disabled={false} id={componentId ? `${componentId}${full.label}` : ''}>
             {full.label}
               <div className={theme.currentAppIcon}>
                 <Icon source={full.icon} componentColor={activeItem === full.id ? 'black' : 'white'} componentClass={theme.customIcon} theme={theme} />
@@ -145,7 +147,7 @@ class SideNavigation extends React.PureComponent<Props, State> {
         ) :
         (
           <div key={index}>
-            <div className={liClass} onClick={full.action} aria-disabled={false}>
+            <div className={liClass} onClick={full.action} aria-disabled={false} id={componentId ? `${componentId}${full.label}` : ''}>
               <Icon source={full.icon} componentColor={activeItem === full.id ? 'black' : 'white'} componentClass={theme.customIcon} theme={theme} />
               {full.label}
             </div>
@@ -188,7 +190,7 @@ class SideNavigation extends React.PureComponent<Props, State> {
       );
 
       return (
-        <div key={col.id} className={singleItem}>
+        <div key={col.id} className={singleItem} id={componentId !== '' ? `${componentId}${col.label}` : ''}>
           <Tooltip content={col.label} preferredPosition="right" theme={theme}>
             <div className={liClass} onClick={col.action} aria-disabled={false}>
               <Icon source={col.icon} componentColor={activeItem === col.id ? 'black' : 'white'} componentClass={theme.collapseIcon} theme={theme} />

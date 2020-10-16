@@ -34,6 +34,8 @@ export interface Props {
   componentStyle?: any;
   // Set a custom class
   componentClass?: string;
+  // Unique ID
+  componentId?: string;
   //   temp & we need to use the defaultCheckedDataId prop in future
   checkedRowsId?: number[];
   // Get the data & use it to populate tds
@@ -243,7 +245,7 @@ class Table extends React.Component<Props, State> {
   // Render the thead with th & contain specific header label
   // Used certain flags which will help to add sorting for any specific fields
   renderHeader = () => {
-    const { column, sorting, rowAction, rowActionLeft = false, theme } = this.props;
+    const { column, sorting, rowAction, rowActionLeft = false, theme, componentId = '' } = this.props;
     const { field, order } = this.state.sort;
 
     return (
@@ -252,8 +254,13 @@ class Table extends React.Component<Props, State> {
           { this.renderRowSelection(null, 'head') }
           {
             column.map((item: ColumnConfig) => {
-              const { key, sort, noSort, sortBy } = item;
+              const { key, sort, noSort, sortBy, id = '' } = item;
               const thisSort: string = (sorting === 'all' || sort) && !noSort ? key : '';
+              let trimmedComponentId = '';
+
+              if (item && item.label) {
+                trimmedComponentId = item.label.replace(/ /g, '');
+              }
 
               return (
                 <TableHead
@@ -261,6 +268,8 @@ class Table extends React.Component<Props, State> {
                   sort={thisSort}
                   sortBy={sortBy}
                   componentStyle={item.style}
+                  accessibilityId={id}
+                  componentId={componentId ? trimmedComponentId : ''}
                   className={item.className}
                   order={field === item.key ? order.current : ''}
                   clickHandler={this.sortData}
@@ -349,6 +358,7 @@ class Table extends React.Component<Props, State> {
       rowCallbackValue,
       rowAction,
       selectRow,
+      componentId = '',
       theme
     } = this.props;
     const { nestedChildData } = this.state;
@@ -381,7 +391,7 @@ class Table extends React.Component<Props, State> {
                     Here injectBody helps to inject any custom component to td,
                     we also return the specifc value, which then can be used in injected component
                   */}
-                  { colItem.key === 'rowAction' ? <RowAction theme={theme} actionInProgress={actionInProgress} isRowLoading={item.isRowLoading} actionConfig={rowAction}  data={item} rowActionLeft /> : '' }
+                  { colItem.key === 'rowAction' ? <RowAction componentId={componentId} theme={theme} actionInProgress={actionInProgress} isRowLoading={item.isRowLoading} actionConfig={rowAction}  data={item} rowActionLeft /> : '' }
                   { renderCheckbox ? this.renderCheckColumn(item, false) : ''}
                   { colItem.injectBody ? colItem.injectBody(item) : renderCheckbox ? <span style={{ paddingLeft: '16px' }}>{item[colItem.key]}</span> : <span className={theme.tableDataWrap}>{item[colItem.key]}</span> }
                   {item.isRowLoading && <Spinner componentSize="small" componentColor="disabled" />}
@@ -390,7 +400,7 @@ class Table extends React.Component<Props, State> {
             })
           }
 
-          { rowAction && !rowActionLeft ? <TableData componentClass={theme.lastData} componentStyle={{ float: 'right' }}>{item.isRowLoading && <Spinner componentSize="small" componentColor="disabled" />} <RowAction actionInProgress={actionInProgress && !!item.processing} isRowLoading={item.isRowLoading} actionConfig={rowAction} data={item} theme={theme} /> </TableData> : '' }
+          { rowAction && !rowActionLeft ? <TableData componentClass={theme.lastData} componentStyle={{ float: 'right' }}>{item.isRowLoading && <Spinner componentSize="small" componentColor="disabled" />} <RowAction componentId={componentId} actionInProgress={actionInProgress && !!item.processing} isRowLoading={item.isRowLoading} actionConfig={rowAction} data={item} theme={theme} /> </TableData> : '' }
         </TableRow>
         { renderBanner &&
         <TableRow>
@@ -605,13 +615,13 @@ class Table extends React.Component<Props, State> {
   }
 
   render () {
-    const { componentStyle = {}, hideHeader = false } = this.props;
+    const { componentStyle = {}, componentId = '', hideHeader = false } = this.props;
     const tableClass = this.getTableClassName();
     const renderedHeader = !hideHeader ? this.renderHeader() : null;
     const renderedBody = this.renderBody();
 
     return (
-      <table className={tableClass} style={componentStyle}>
+      <table className={tableClass} style={componentStyle} id={componentId} >
         { renderedHeader }
         { renderedBody }
       </table>

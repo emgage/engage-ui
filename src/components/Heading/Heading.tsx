@@ -12,6 +12,8 @@ export type Color = 'text';
 export interface Props {
   componentClass?: string;
   componentStyle?: any;
+  // Unique Id
+  componentId?: string;
   // The element name to use for the heading. Available options: h1 | h2 | h3 | h4 | h5 | h6
   element?: HeadingTagName;
   // The content to display inside the heading.
@@ -27,6 +29,7 @@ export interface Props {
 const heading = ({
   componentClass = '',
   componentStyle = {},
+  componentId = '',
   element: ELEMENT = 'h2',
   headingSize = 'subtitle',
   headingColor = 'text',
@@ -40,7 +43,7 @@ const heading = ({
     headingColor && theme[variationName('color', headingColor)]
   );
 
-  return <ELEMENT className={headingClass} style={componentStyle}>{children}</ELEMENT>;
+  return <ELEMENT className={headingClass} style={componentStyle} id={componentId} >{children}</ELEMENT>;
 };
 
 export default themr(HEADING, baseTheme)(heading) as ThemedComponentClass<Props, {}>;

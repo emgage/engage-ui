@@ -7,6 +7,7 @@ const ValidatedFormExample = () => (
     <ValidatedForm>
       <FormLayout>
         <ValidatedTextField
+          type="text"
           componentId="AppName"
           required={true}
           label="App Name"
@@ -19,6 +20,7 @@ const ValidatedFormExample = () => (
           ]}
         />
         <ValidatedTextField
+          type="text"
           multiline
           componentId="appDescription"
           required={true}

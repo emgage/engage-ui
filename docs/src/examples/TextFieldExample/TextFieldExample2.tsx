@@ -5,6 +5,7 @@ import * as styles from '../../styles/components-page.scss';
 const TextFieldExample2 = () => (
   <div className={styles.example}>
     <TextField
+      type="text"
       label="Shipping address"
       multiline
     />

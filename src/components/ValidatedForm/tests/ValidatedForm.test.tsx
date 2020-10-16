@@ -13,6 +13,7 @@ describe('<ValidatedForm / >', () => {
                                               formFields={['AppName']}
                                             >
                                                 <ValidatedTextField
+                                                type="text"
                                                 componentId="AppName"
                                                 label="App Name"
                                                 name ="App Name" />
@@ -117,6 +118,7 @@ describe('<ValidatedForm / >', () => {
                                             <ValidatedForm
                                                 componentStyle={style} onSubmit={submit} onSubmitError={submitError} form={form} formFields={['AppName']}>
                                                 <ValidatedTextField
+                                                type="text"
                                                 componentId="AppName"
                                                 label="App Name"
                                                 name="App Name"

@@ -5,6 +5,7 @@ import * as styles from '../../styles/components-page.scss';
 const TextFieldExample4 = () => (
   <div className={styles.example}>
     <TextField
+      type="text"
       label="Zone name"
       placeholder="e.g. North America, Europe"
     />

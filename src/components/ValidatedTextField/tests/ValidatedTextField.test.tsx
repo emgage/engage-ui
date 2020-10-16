@@ -10,6 +10,7 @@ describe('<ValidatedTextField / >', () => {
     const validatedTextFieldWrapper = mount(
                                             <ValidatedForm formFields={['AppName']}>
                                                 <ValidatedTextField
+                                                type="text"
                                                 componentId="AppName"
                                                 label="App Name"
                                                 name="App Name" />
@@ -33,6 +34,7 @@ describe('<ValidatedTextField / >', () => {
         const validatedTextFieldWrapper = mount(
                                             <ValidatedForm formFields={['AppName']}>
                                                 <ValidatedTextField
+                                                type="text"
                                                 componentId="AppName"
                                                 label="App Name"
                                                 name="App Name" />
@@ -57,6 +59,7 @@ describe('<ValidatedTextField / >', () => {
         const validatedTextFieldWrapper = mount(
                                             <ValidatedForm formFields={['AppName']}>
                                                 <ValidatedTextField
+                                                type="text"
                                                 componentId="AppName"
                                                 label="App Name"
                                                 name ="App Name" />
@@ -82,6 +85,7 @@ describe('<ValidatedTextField / >', () => {
         const validatedTextFieldWrapper = mount(
                                             <ValidatedForm formFields={['AppName']}>
                                                 <ValidatedTextField
+                                                type="text"
                                                 componentId="AppName"
                                                 label="App Name"
                                                 name="App Name"
@@ -114,6 +118,7 @@ describe('<ValidatedTextField / >', () => {
         const validatedTextFieldWrapper = mount(
                                             <ValidatedForm formFields={['AppName']}>
                                                 <ValidatedTextField
+                                                type="text"
                                                 componentId="AppName"
                                                 label="App Name"
                                                 name="App Name"
@@ -145,6 +150,7 @@ describe('<ValidatedTextField / >', () => {
         const validatedTextFieldWrapper = mount(
                                             <ValidatedForm formFields={['AppName']}>
                                                 <ValidatedTextField
+                                                type="text"
                                                 componentId="AppName"
                                                 label="App Name"
                                                 name="App Name"
@@ -175,6 +181,7 @@ describe('<ValidatedTextField / >', () => {
         const validatedTextFieldWrapper = mount(
                                             <ValidatedForm formFields={['AppName']}>
                                                 <ValidatedTextField
+                                                type="text"
                                                 componentId="AppName"
                                                 label="App Name"
                                                 required={true}
@@ -207,6 +214,7 @@ describe('<ValidatedTextField / >', () => {
         const validatedTextFieldWrapper = mount(
                                             <ValidatedForm formFields={['AppName']}>
                                                 <ValidatedTextField
+                                                type="text"
                                                 componentId="AppName"
                                                 label="App Name"
                                                 required={true}
@@ -238,6 +246,7 @@ describe('<ValidatedTextField / >', () => {
         const validatedTextFieldWrapper = mount(
                                             <ValidatedForm formFields={['AppName']}>
                                                 <ValidatedTextField
+                                                type="text"
                                                 componentId="AppName"
                                                 required={true}
                                                 label="App Name"
