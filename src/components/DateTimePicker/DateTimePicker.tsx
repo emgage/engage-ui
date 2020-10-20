@@ -28,6 +28,8 @@ export interface Props {
   onBlur?(dateTime: any): void;
   // Component Id for validation form
   componentId?: string;
+  // Unset Default date Time
+  unsetDefaultDateTime?: boolean;
 }
 
 export interface State {
@@ -46,7 +48,7 @@ class DateTimePicker extends React.PureComponent<Props, State>{
   constructor(props: Props) {
     super(props);
     this.state = {
-      dateTime: props.defaultDateTime ? moment(props.defaultDateTime) : moment(),
+      dateTime: props.unsetDefaultDateTime ? '' : props.defaultDateTime ? moment(props.defaultDateTime) : moment(),
       open: false
     };
     document.addEventListener('click', (e) => {
@@ -79,7 +81,7 @@ class DateTimePicker extends React.PureComponent<Props, State>{
             <TextField
                 type="text"
                 label={label}
-                value={dateTime.format(this.timeFormat)}
+                value={dateTime ? dateTime.format(this.timeFormat) : null}
                 onFocus={() => { this.setState({ open: true }); }}
                 onChange={(dateTimeString: string) => { this.onTextInputChange(dateTimeString); }}
                 suffix={<Icon source="event" />}
