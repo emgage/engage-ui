@@ -74,7 +74,7 @@ class Alert extends React.PureComponent<Props, State> {
     return (
       <React.Fragment>
       { this.state.isActive && <div className={classes}>
-        <p>{children}</p><button type="button" className={theme.alertClose} onClick={() => this.closeAlert()}><IconClose color={color}/></button>
+        <p>{children}</p><button type="button" className={theme.alertClose} onClick={() => this.closeAlert()} aria-label={`Dismiss Alert`}><IconClose color={color}/></button>
       </div>}
       </React.Fragment>
     );

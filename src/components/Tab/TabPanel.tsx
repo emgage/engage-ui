@@ -32,6 +32,8 @@ export interface Props {
   componentStyle?: React.CSSProperties;
   // Set theme for TabPanel
   theme?: any;
+  tabIndex?:number;
+  Role?:string;
 }
 
 export interface State {
@@ -82,7 +84,7 @@ class TabPanel extends React.PureComponent<Props, State> {
 
   // Render Tab and TabContent togeather in TabPanel
   render() {
-    const { theme, position, alignment, componentStyle } = this.props;
+    const { theme, position, alignment, componentStyle, tabIndex, Role } = this.props;
 
     // Combination of classes required to bind for location prop
     const locationClassName = classNames(
@@ -102,7 +104,7 @@ class TabPanel extends React.PureComponent<Props, State> {
     );
 
     return (
-      <div className={locationClassName} style={componentStyle}>
+      <div className={locationClassName} style={componentStyle} tabIndex={tabIndex} role={Role}>
         <div className={alignmentClassName}>
           {this.renderTabs()}
         </div>

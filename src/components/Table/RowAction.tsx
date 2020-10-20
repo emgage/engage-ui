@@ -5,6 +5,7 @@ import { TABLE } from '../ThemeIdentifiers';
 
 import Button from '../Button';
 import Dropdown from '../Dropdown';
+import VisuallyHidden from '../VisuallyHidden';
 
 // import { DropdownItemProps } from '../';
 
@@ -82,7 +83,7 @@ class RowAction extends React.PureComponent<Props, State> {
     return (
       <React.Fragment>
         <div>
-        <Button componentId={`${componentId}BtnMoreActions`} theme={theme} componentClass={theme.rowActionButton} disabled={actionInProgress} icon="horizontalDots" onClick={(e: React.FormEvent<HTMLElement>) => this.dropdownToggle(e)} />
+        <Button componentId={`${componentId}BtnMoreActions`} theme={theme} componentClass={theme.rowActionButton} disabled={actionInProgress} icon="horizontalDots" onClick={(e: React.FormEvent<HTMLElement>) => this.dropdownToggle(e)} accessibilityLabel="More Actions"><VisuallyHidden>More Actions</VisuallyHidden></Button>
           <Dropdown
             dropdownItems={validActionConfigs}
             toggle={() => this.dropdownToggle}

@@ -14,20 +14,25 @@ export interface Props {
   activeTabId?: string;
   // Callback function to be called when tab is clicked/selected
   onClick?(): void;
+  onFocus?(): void;
   // User can Set style for Tab component
   componentStyle?: React.CSSProperties;
   // Set theme for tab
   theme?: any;
+  tabIndex?:number;
+  Role?:string;
+  // Descriptive text to be read to screenreaders.
+  accessibilityLabel?: string;
 }
 
 // return a Single tab component to be render into tabpanel
-const tab = ({ tabId, tabDescription, activeTabId, onClick, theme, componentStyle }: Props) => {
+const tab = ({ tabId, tabDescription, activeTabId, onClick, theme, componentStyle, tabIndex, Role, onFocus, accessibilityLabel}: Props) => {
   const tabClassName = classNames(
     theme.tab,
     tabId === activeTabId ? theme.active : ''
   );
   return (
-    <div className={tabClassName} style={componentStyle} onClick={onClick}>
+    <div className={tabClassName} style={componentStyle} onClick={onClick} onFocus={onFocus} tabIndex={tabIndex} role={Role} aria-label={accessibilityLabel}>
       {tabDescription}
     </div>
   );
