@@ -186,6 +186,9 @@ class Picker extends React.PureComponent<Props, State> {
             chipListState,
             itemsList,
           });
+          if (this.props.onRemove) {
+            this.props.onRemove(selectedChip);
+          }
         }
       },
 
