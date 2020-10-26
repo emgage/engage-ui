@@ -261,10 +261,10 @@ class Pagination extends React.PureComponent<IProps, IState> {
       });
     }
     if (this.props.onShowSizeChange) {
-      this.props.onShowSizeChange(current, size);
+      this.props.onShowSizeChange(current || 1, size);
     }
     if (this.props.onChange) {
-      this.props.onChange(current, size);
+      this.props.onChange(current || 1, size);
     }
   }
 
@@ -728,7 +728,7 @@ class Pagination extends React.PureComponent<IProps, IState> {
           quickGo={this.shouldDisplayQuickJumper() ? this.handleChange : undefined}
           goButton={goButton}
         />*/}
-        
+
         <li className={theme.ItemPerPage}>
           <Label componentId={'rc-pagination'}>Items per page: </Label>
         <PageSize
