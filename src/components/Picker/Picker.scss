@@ -15,7 +15,7 @@ $stacking-order: (
   border-radius: 5px;
   cursor: text;
   min-height: 25px;
-  z-index: z-index(input, $stacking-order);
+  z-index: z-index(suggestions, $stacking-order);
   display: flex;
   flex-wrap: wrap;
 
