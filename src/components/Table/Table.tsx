@@ -121,7 +121,7 @@ export interface State {
 
 let callBackSelectedRows: any;
 
-class Table extends React.Component<Props, State> {
+class Table extends React.PureComponent<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = this.getInitialState();
