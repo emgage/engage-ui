@@ -128,7 +128,7 @@ class Picker extends React.PureComponent<Props, State> {
       focusArr: [],
       itemsList: this.props.source,
       isFocused: false,
-      hasValue: false,
+      hasValue: Boolean(props.defaultSelectedItems && props.defaultSelectedItems.length),
       focused: 0,
       number: 0,
     };
