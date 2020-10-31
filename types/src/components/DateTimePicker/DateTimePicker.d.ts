@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
-import 'react-datetime/css/react-datetime.css';
+import './ReactDatetime.css';
 export interface Props {
     dateFormat?: boolean | string;
     defaultDateTime?: string;
@@ -10,6 +10,7 @@ export interface Props {
     onChange(dataTime: any): void;
     onBlur?(dateTime: any): void;
     componentId?: string;
+    unsetDefaultDateTime?: boolean;
 }
 export interface State {
     dateTime: any;

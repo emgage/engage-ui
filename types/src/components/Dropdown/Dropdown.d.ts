@@ -15,6 +15,7 @@ export interface Props {
     toggle?(event?: any): void;
     onClose?(): void;
     onOpen?(): void;
+    componentId?: string;
     theme?: any;
 }
 export interface State {

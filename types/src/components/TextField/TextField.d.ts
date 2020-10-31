@@ -56,7 +56,7 @@ export interface Props {
     step?: number;
     spellCheck?: boolean;
     theme?: any;
-    type?: Type;
+    type: Type;
     value?: string;
     rows?: number;
 }

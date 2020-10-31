@@ -6,6 +6,7 @@ export declare type Color = 'text';
 export interface Props {
     componentClass?: string;
     componentStyle?: any;
+    componentId?: string;
     element?: HeadingTagName;
     children?: React.ReactNode;
     headingSize?: Size;

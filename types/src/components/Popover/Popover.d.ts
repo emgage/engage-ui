@@ -9,6 +9,7 @@ export interface Props {
     closeOnClickInside?: boolean;
     componentClass?: string;
     componentStyle?: any;
+    componentId?: string;
     onClose?(): void;
     preferredPosition?: PreferredPosition;
     preferredAlignment?: PreferredAlignment;

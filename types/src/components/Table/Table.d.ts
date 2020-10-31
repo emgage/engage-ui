@@ -10,6 +10,7 @@ export interface Props {
     columnFirstChildWidth?: string;
     componentStyle?: any;
     componentClass?: string;
+    componentId?: string;
     checkedRowsId?: number[];
     data?: any;
     defaultCheckedDataId?: any;

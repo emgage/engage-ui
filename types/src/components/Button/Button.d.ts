@@ -21,6 +21,7 @@ export interface Props {
     icon?: IconProps['source'];
     componentStyle?: React.CSSProperties;
     componentClass?: string;
+    componentId?: string;
     theme?: any;
     onClick?(e: React.FormEvent<HTMLElement>): void;
     onFocus?(): void;

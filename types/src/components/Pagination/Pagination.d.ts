@@ -18,7 +18,7 @@ interface IProps {
     showPrevNextJumpers?: boolean;
     showQuickJumper?: any;
     showTitle?: boolean;
-    pageSizeOptions?: string[];
+    pageSizeOptions?: any;
     showTotal?(param1: any, param2: any): any;
     locale?: any;
     style?: any;
@@ -29,11 +29,14 @@ interface IProps {
     jumpNextIcon?: any;
     simple?: any;
     theme?: any;
+    pageSizeList?: number[];
+    lazyLoading?: boolean;
 }
 interface IState {
     current: number;
     currentInputValue: number;
     pageSize: number;
+    pageSizeList: number[];
 }
 export declare const DefaultProps: {
     disabled: boolean;
@@ -50,7 +53,9 @@ export declare const DefaultProps: {
     selectComponentClass: typeof noop;
     hideOnSinglePage: boolean;
     showPrevNextJumpers: boolean;
-    showQuickJumper: boolean;
+    showQuickJumper: {
+        goButton: boolean;
+    };
     showSizeChanger: boolean;
     showLessItems: boolean;
     showTitle: boolean;
@@ -70,6 +75,8 @@ export declare const DefaultProps: {
     itemRender: typeof defaultItemRender;
     pageSizeOptions: never[];
     showTotal: typeof noop;
+    pageSizeList: never[];
+    lazyLoading: boolean;
 };
 declare function noop(): void;
 declare function defaultItemRender(page: any, type: any, element: any): any;
