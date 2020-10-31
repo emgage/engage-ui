@@ -19,6 +19,7 @@ export interface Props {
     hideCollapse: boolean;
     drawerExpand: boolean;
     drawerStyle?: any;
+    componentId?: string;
     onCollapse?(value: boolean): void;
 }
 export interface State {

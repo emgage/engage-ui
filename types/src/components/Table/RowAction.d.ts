@@ -8,6 +8,7 @@ interface RenderProps {
     key?: string;
 }
 export interface Props {
+    componentId?: string;
     data?: any;
     render?: RenderProps;
     actionConfig: any;

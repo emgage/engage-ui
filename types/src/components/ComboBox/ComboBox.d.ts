@@ -13,6 +13,8 @@ export interface Props {
     items: ComboBoxItemProps[];
     label: string;
     style?: any;
+    suffix?: any;
+    loading?: boolean;
     onSelect?(item: any): void;
     theme?: any;
 }

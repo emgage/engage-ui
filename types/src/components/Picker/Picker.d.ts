@@ -88,6 +88,7 @@ export interface Props {
     onMoreInfo?(): void;
     suffix?: string;
     defaultSelectedItems?: IItemList[];
+    componentId?: string;
 }
 declare class Picker extends React.PureComponent<Props, State> {
     constructor(props: Props);

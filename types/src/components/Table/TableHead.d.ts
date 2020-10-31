@@ -2,6 +2,7 @@ import { ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 export declare type Scope = 'col' | 'row';
 export interface Props {
     accessibilityId?: string;
+    componentId?: string;
     accessibilityScope?: Scope;
     className?: string;
     clickHandler?(field: string, sortBy: string): void;
