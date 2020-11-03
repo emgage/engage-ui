@@ -3,7 +3,7 @@ $controlHeight: control-height() + rem(8px);
 $backdrop-horizontal-spacing: spacing(tighter) * 1.5;
 
 $stacking-order: (
-  suggestions: 30,
+  suggestions: 200,
   input: 20,
   backdrop: 10,
 );
