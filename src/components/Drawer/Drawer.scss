@@ -70,10 +70,16 @@ $stacking-order: (
   -webkit-overflow-scrolling: touch;
   -webkit-transform: translateX(-100%);
   transform: translateX(-100%);
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  &::-webkit-scrollbar {
+    display: none; 
+  }
 
   &.dark {
     background: #212b36;
-    color: #fff;
+    color: #fff; 
   }
 
   &.overflowDisable {
@@ -277,10 +283,6 @@ $stacking-order: (
 body.overlay {
   width: 100vw;
   touch-action: none;
-}
-
-body.container {
-  overflow: auto !important;
 }
 
 :global #root {
