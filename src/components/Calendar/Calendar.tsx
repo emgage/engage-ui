@@ -47,7 +47,7 @@ class Calendar extends React.PureComponent<Props, State> {
     return {
       className: theme.calendarDay,
     };
-  };
+  }
 
   withCreateEventDateCellWrapper = ({ children, value }: any) => {
     const { showCreateIcon, theme } = this.props;
@@ -61,7 +61,7 @@ class Calendar extends React.PureComponent<Props, State> {
       ) : null,
       ...children,
     });
-  };
+  }
 
   render() {
     const { style = {}, events = [], theme, ...rest } = this.props;
