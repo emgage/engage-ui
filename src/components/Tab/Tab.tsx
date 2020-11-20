@@ -18,6 +18,7 @@ export interface Props {
   componentStyle?: React.CSSProperties;
   // Set theme for tab
   theme?: any;
+  tabIndex?:number;
 }
 
 // return a Single tab component to be render into tabpanel
@@ -27,7 +28,7 @@ const tab = ({ tabId, tabDescription, activeTabId, onClick, theme, componentStyl
     tabId === activeTabId ? theme.active : ''
   );
   return (
-    <div className={tabClassName} style={componentStyle} onClick={onClick}>
+    <div className={tabClassName} style={componentStyle} onClick={onClick} tabIndex={0}>
       {tabDescription}
     </div>
   );
