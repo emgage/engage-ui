@@ -277,7 +277,8 @@ button.rbc-input::-moz-focus-inner {
       -webkit-transition: all .3s ease-in-out;
     }
 
-    .rbc-date-cell.rbc-now > a:focus, .rbc-date-cell.rbc-now.rbc-current > a:focus {
+    .rbc-date-cell.rbc-now > a:focus,
+    .rbc-date-cell.rbc-now.rbc-current > a:focus {
       color:#fff;
     }
 
