@@ -15,7 +15,7 @@ $outline-button-color: color(ink, lighter);
 
 $min-height: control-height();
 $vertical-padding: ($min-height - line-height(body) - rem(2px)) / 2;
-$slim-min-height: rem(30px);
+$slim-min-height: rem(32px);
 $slim-vertical-padding: ($slim-min-height - line-height(body) - rem(2px)) / 2;
 $large-min-height: rem(48px);
 $large-vertical-padding: ($large-min-height - line-height(body) - rem(2px)) / 2;
@@ -149,7 +149,7 @@ $large-vertical-padding: ($large-min-height - line-height(body) - rem(2px)) / 2;
   &.sizeLarge {
     margin: (-1 * $large-vertical-padding) (-1 * spacing(base));
   }
-
+  
   > .content::after {
     @include plain-button-backdrop;
     content: '';

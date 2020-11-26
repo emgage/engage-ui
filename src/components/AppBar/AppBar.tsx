@@ -84,7 +84,7 @@ const AppBar: React.FC<Props> = (props) => {
     <FlexBox>
       { enableGlobalGo && enableGlobalElement }
       { logo && <Image alt="Logo" source={logo} /> }
-      { enableSearch && <TextField type="text" /> }
+      { enableSearch && <TextField type="text" componentHeight="slim"/> }
       <div className={baseTheme.rChild}>
       { rightChildren && <div>{renderRightChildren()}</div> }
       <Login

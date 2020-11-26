@@ -2,7 +2,7 @@ import * as React from 'react';
 import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 import { autobind } from '@shopify/javascript-utilities/decorators';
 import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
-import { classNames } from '@shopify/react-utilities/styles';
+import { classNames, variationName } from '@shopify/react-utilities/styles';
 
 import Labelled, { Action, helpTextID, errorID, labelID } from '../Labelled';
 import Spinner from '../Spinner';
@@ -16,6 +16,7 @@ import Resizer from './Resizer';
 import SpinnerButtons from './SpinnerButtons';
 
 export type Type = 'text' | 'email' | 'number' | 'password' | 'search' | 'tel' | 'url' | 'date' | 'datetime-local' | 'month' | 'time' | 'week';
+export type ComponentHeight = 'slim' | 'large';
 
 export interface State {
   height?: number | null;
@@ -115,6 +116,7 @@ export interface Props {
   value?: string;
   // number of rows for textarea
   rows?: number;
+  componentHeight?: ComponentHeight;
 }
 
 const getUniqueID = createUniqueIDFactory('TextField');
@@ -182,6 +184,7 @@ class TextField extends React.PureComponent<Props, State> {
       theme,
       type,
       value = '',
+      componentHeight = 'large',
       ...rest
     } = this.props;
 
@@ -199,7 +202,8 @@ class TextField extends React.PureComponent<Props, State> {
       multiline && theme.multiline,
       resizable && theme.resizable,
       loading && theme.loading,
-      isFocused && theme.focused
+      isFocused && theme.focused,
+      componentHeight && theme[variationName('Height', componentHeight)]
     );
 
     const prefixMarkup = prefix
@@ -249,7 +253,8 @@ class TextField extends React.PureComponent<Props, State> {
     const inputEleClass = classNames(
       theme.input,
       !label && theme.noLabel,
-      this.state.value && theme.notEmpty
+      this.state.value && theme.notEmpty,
+      componentHeight && theme[variationName('Height', componentHeight)]
     );
 
     const input = React.createElement(multiline ? 'textarea' : 'input', {
