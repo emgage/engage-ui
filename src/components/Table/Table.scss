@@ -243,3 +243,16 @@ $border-color: color(sky, base);
       }
     }
 }
+.button:focus svg,
+.button:focus,
+.button:hover svg,
+.button:hover {
+  color:#007ace;
+  fill: #007ace;
+}
+
+.icon:focus,
+.icon:hover {
+  color:#007ace;
+  fill: #007ace;
+}

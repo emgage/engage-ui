@@ -513,7 +513,9 @@ class Table extends React.PureComponent<Props, State> {
           onClick={this.openNestedRow}
           callbackValue={rowId}
           source="chevronDown"
-          componentStyle={{ margin: 0 }} />
+          componentStyle={{ margin: 0 }}
+          tabIndex={0}
+          />
       </TableData>
     );
   }
