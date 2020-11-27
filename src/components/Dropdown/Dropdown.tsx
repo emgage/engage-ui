@@ -93,6 +93,7 @@ export class Dropdown extends React.PureComponent<Props, State> {
         returnValue={returnValue}
         toggleDropdown={this.innerToggleDropdown}
         theme={theme}
+        tabIndex={0}
       />
     );
 

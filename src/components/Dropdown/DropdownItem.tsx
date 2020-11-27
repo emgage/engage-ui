@@ -25,6 +25,7 @@ export interface Props {
   returnValue?: any;
   toggleDropdown?(): void;
   theme?: any;
+  tabIndex?:number;
 }
 
 const getUniqueID = createUniqueIDFactory('DropdownItem');
@@ -53,6 +54,7 @@ class DropdownItem extends React.PureComponent<Props, never> {
       content,
       theme,
       componentId = '',
+      tabIndex
     } = this.props;
 
     let className = null;
@@ -75,6 +77,7 @@ class DropdownItem extends React.PureComponent<Props, never> {
         id={componentId ? componentId : this.id}
         className={className}
         onClick={this.clickCallback}
+        tabIndex={tabIndex}
       >
         {content}
       </div>
