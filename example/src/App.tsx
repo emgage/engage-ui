@@ -1097,7 +1097,7 @@ class App extends React.Component<{}, State> {
       <div style={{ width: '60%' }}>
         <AppBar
           enableGlobalGo
-          enableGlobalElement={<Button icon="list" />}
+          enableGlobalElement={<Button icon="list" componentSize="slim"/>}
           isLoggedIn
           logo={'https://emgage.com/SiteAssets/Emgage-logo.png'}
           loginUrl={'loginUrl'}
@@ -1109,9 +1109,9 @@ class App extends React.Component<{}, State> {
           additionalLIst={[{ content: 'extra Item', divider: true }]}
           enableSearch
           rightChildren={[
-            <Button icon="notes" />,
-            <Button icon="userCog" />,
-            <Button icon="infoCircle" />,
+            <Button icon="notes" componentSize="slim"/>,
+            <Button icon="userCog" componentSize="slim"/>,
+            <Button icon="infoCircle" componentSize="slim"/>,
           ]}
         />
         <ToggleButtonGroup segmented={true} helpText="Test Help Text">
@@ -2296,6 +2296,7 @@ class App extends React.Component<{}, State> {
               disabled
               placeholder="Find Content Definition..."
               suffix={<Icon source="search" />}
+              
             />
 
             <TextField
@@ -2305,6 +2306,7 @@ class App extends React.Component<{}, State> {
               value={this.state.appNumberCounter}
               onChange={this.valueUpdater('appNumberCounter')}
               // showNumberIcon={false}
+              
             />
 
             <TextField

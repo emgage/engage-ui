@@ -292,3 +292,9 @@ $stacking-order: (
   text-overflow: ellipsis;
   overflow: hidden;
 }
+
+body .HeightSlim {
+  height:3.2rem;
+  min-height: 3.2rem;
+  padding:0px;
+}

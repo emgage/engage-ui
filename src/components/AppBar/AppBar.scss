@@ -1,12 +1,13 @@
 .appHeader {
   background: #212B36;
   position: fixed;
-  padding: 10px;
+  padding: 8px;
   color: #FFF;
-  width: 100%;
+  width: inherit;
   top: 0;
   z-index: 400;
-  min-height: 68px;
+  // min-height: 68px;
+  height: 52px;
 }
 .rChild {
   margin-left: auto;
