@@ -233,7 +233,7 @@ class TextField extends React.PureComponent<Props, State> {
       const minLengthTest = this.props.minLength ? this.props.minLength : 0;
       counterTextMarkup =
         <div className={theme.counterText} id={`${componentId}counter`}>
-          <span className={minLengthTest > textCount ? theme.invalid : ''}>{minLengthTest}</span>
+          <span className={minLengthTest > textCount ? theme.invalid : ''}>{textCount === 0 ? minLengthTest : textCount}</span>
           {maxLengthString}
         </div>;
     }
