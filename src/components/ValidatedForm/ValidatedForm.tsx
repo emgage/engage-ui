@@ -71,8 +71,12 @@ class ValidatedForm extends React.PureComponent<Props, {}> {
       // If there are more than one children iterate through it
       if (children.constructor === Array) {
         const childClone = React.Children.map(children, (thisChild: React.ReactElement<any>) => {
+          // If child is dynamic and currently it is null then render as null 
+          if (thisChild === null) {
+            return thisChild;
+          }
           // This could be blank string as well thats why used this condition
-          if (thisChild.props && thisChild.props.children === undefined) {
+          if (thisChild && thisChild.props && thisChild.props.children === undefined) {
             return React.cloneElement(thisChild);
           }
 
