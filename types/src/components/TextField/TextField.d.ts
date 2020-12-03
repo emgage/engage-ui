@@ -4,6 +4,7 @@ import { Action } from '../Labelled';
 import { IStateProps } from '../Picker/AutoSuggestText';
 import { IAutoSuggestMethods } from '../Picker/Picker';
 export declare type Type = 'text' | 'email' | 'number' | 'password' | 'search' | 'tel' | 'url' | 'date' | 'datetime-local' | 'month' | 'time' | 'week';
+export declare type ComponentHeight = 'slim' | 'large';
 export interface State {
     height?: number | null;
     focused?: boolean;
@@ -59,6 +60,7 @@ export interface Props {
     type: Type;
     value?: string;
     rows?: number;
+    componentHeight?: ComponentHeight;
 }
 declare class TextField extends React.PureComponent<Props, State> {
     state: State;
