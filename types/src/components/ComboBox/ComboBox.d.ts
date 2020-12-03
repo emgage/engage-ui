@@ -17,6 +17,7 @@ export interface Props {
     loading?: boolean;
     onSelect?(item: any): void;
     theme?: any;
+    disabled?: boolean;
 }
 interface State {
     open: boolean;
@@ -33,6 +34,7 @@ declare class ComboBox extends React.PureComponent<Props, State> {
     constructor(props: Props);
     componentDidMount(): void;
     componentWillUnmount(): void;
+    componentDidUpdate(): void;
     handleClickOutside: (event: any) => void;
     setWrapperRef: (node: any) => void;
     addRenderer: (items: any, cloneItems: any) => any;
