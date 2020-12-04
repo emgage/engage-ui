@@ -168,8 +168,7 @@ class ComboBox extends React.PureComponent<Props, State> {
       label,
       theme,
       suffix,
-      loading,
-      disabled
+      loading
     } = this.props;
 
     const {
@@ -187,24 +186,26 @@ class ComboBox extends React.PureComponent<Props, State> {
         />
       );
 
+    let isEmpty: boolean = items && items[0] && items[0].value && items[0].value.length === 0 || false;
+    
     return (
       <div key={this.id} className={theme.comboboxContainer} onClick={this.onArrowClick} ref={node => this.setWrapperRef(node)} >
         <TextField
           type="text"
           label={label}
           onChange={this.onChange}
-          value={disabled? "No options available" : this.state.selectedValue}
+          value={isEmpty? "No options available" : this.state.selectedValue}
           theme={theme}
           suffix={<Icon source={suffix} componentColor="inkLighter" />}
           loading={loading}
-          disabled={disabled}
+          disabled={isEmpty}
         />
 
         {!suffix && <div className={theme.comboboxArrow}>
           <Icon source={arrowSvg} theme={theme} />
         </div>}
 
-        {open && !disabled && <Popover
+        {open && !isEmpty && <Popover
           addArrow={false}
           componentStyle={{ maxHeight: 800, overflow: 'auto', width: popoverWidth }}
           anchorEl={this.state.anchorEl}
