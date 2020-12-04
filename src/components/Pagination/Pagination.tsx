@@ -368,9 +368,7 @@ class Pagination extends React.PureComponent<IProps, IState> {
     const { className/*, disabled*/ = false, theme, lazyLoading } = this.props;
 
     // When hideOnSinglePage is true and there is only 1 page, hide the pager
-    if (this.props.hideOnSinglePage && this.props.total <= this.state.pageSize) {
-      return null;
-    }
+    const isHideOnSinglePage = this.props.hideOnSinglePage && this.props.total <= this.state.pageSize;
 
     const props: any = this.props;
     const locale = props.locale;
@@ -681,36 +679,39 @@ class Pagination extends React.PureComponent<IProps, IState> {
         ref={this.savePaginationNode}
         {...dataOrAriaAttributeProps}
       >
-        {totalText}
-        <li
-          title={props.showTitle ? locale.prev_page : null}
-          onClick={this.prev}
-          tabIndex={prevDisabled ? undefined : 0}
-          onKeyPress={this.runIfEnterPrev}
-          className={className6}
-          aria-disabled={prevDisabled}
-        >
-          {props.itemRender(
-            prevPage,
-            'prev',
-            this.getItemIcon(props.prevIcon, 'prev', prevDisabled)
-          )}
-        </li>
-        {pagerList}
-        <li
-          title={props.showTitle ? locale.next_page : null}
-          onClick={this.next}
-          tabIndex={nextDisabled ? undefined : 0}
-          onKeyPress={this.runIfEnterNext}
-          className={className7}
-          aria-disabled={nextDisabled}
-        >
-          {props.itemRender(
-            nextPage,
-            'next',
-            this.getItemIcon(props.nextIcon, 'next', nextDisabled)
-          )}
-        </li>
+        {!isHideOnSinglePage &&
+          <>
+            {totalText}
+            <li
+              title={props.showTitle ? locale.prev_page : null}
+              onClick={this.prev}
+              tabIndex={prevDisabled ? undefined : 0}
+              onKeyPress={this.runIfEnterPrev}
+              className={className6}
+              aria-disabled={prevDisabled}
+            >
+              {props.itemRender(
+                prevPage,
+                'prev',
+                this.getItemIcon(props.prevIcon, 'prev', prevDisabled)
+              )}
+            </li>
+            {pagerList}
+            <li
+              title={props.showTitle ? locale.next_page : null}
+              onClick={this.next}
+              tabIndex={nextDisabled ? undefined : 0}
+              onKeyPress={this.runIfEnterNext}
+              className={className7}
+              aria-disabled={nextDisabled}
+            >
+              {props.itemRender(
+                nextPage,
+                'next',
+                this.getItemIcon(props.nextIcon, 'next', nextDisabled)
+              )}
+            </li>
+          </>}
         {/* <Label componentId={'rc-pagination'}>Jump To:</Label>
         <Options
           disabled={disabled}
