@@ -17,7 +17,6 @@ export interface Props {
     loading?: boolean;
     onSelect?(item: any): void;
     theme?: any;
-    disabled?: boolean;
 }
 interface State {
     open: boolean;
