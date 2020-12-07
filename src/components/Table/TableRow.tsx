@@ -33,7 +33,7 @@ class TableRow extends React.PureComponent<Props, never> {
     const { componentClass, isRowLoading = false } = this.props;
     return (
       <tr onClick={this.rowClickCallback} className={componentClass} style ={this.props.componentStyle} aria-disabled={true}>
-        { this.props.children } {isRowLoading && <td><Spinner componentSize="small" componentColor="disabled" /></td>}
+        { this.props.children }{isRowLoading && <td><Spinner componentSize="small" componentColor="disabled" /></td>}
       </tr>
     );
   }
