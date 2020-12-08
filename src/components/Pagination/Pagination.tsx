@@ -122,13 +122,13 @@ class Pagination extends React.PureComponent<IProps, IState> {
       current = props.current;
     }
 
-    let pageSize = props.defaultPageSize || 10;
+    const pageSizeList: number[] = props.pageSizeList && props.pageSizeList.length > 0 ? props.pageSizeList  : [10, 50, 100];
+    let pageSize = pageSizeList[0];
+    pageSize = props.defaultPageSize || pageSize || 10;
+
     if ('pageSize' in props) {
       pageSize = props.pageSize;
     }
-
-    const pageSizeList: number[] = props.pageSizeList && props.pageSizeList.length > 0 ? props.pageSizeList  : [10, 50, 100];
-    pageSize = pageSizeList[0];
 
     current = Math.min(current, calculatePage(pageSize, undefined, props));
 
