@@ -3,7 +3,7 @@ import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 import { classNames } from '@shopify/react-utilities/styles';
 import { TAB } from '../ThemeIdentifiers';
 import * as baseTheme from './Tab.scss';
-
+import Button from '../Button';
 // All prototypes type
 export interface Props {
   // Description of tab (like title only, title with icon, or any other react component)
@@ -27,9 +27,9 @@ const tab = ({ tabId, tabDescription, activeTabId, onClick, theme, componentStyl
     tabId === activeTabId ? theme.active : ''
   );
   return (
-    <div className={tabClassName} style={componentStyle} onClick={onClick}>
-      {tabDescription}
-    </div>
+    <li className={tabClassName} style={componentStyle}>
+      <Button componentSize="slim" plain onClick={onClick}>{tabDescription}</Button>
+    </li>
   );
 };
 

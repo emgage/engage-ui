@@ -12,7 +12,8 @@
   border: 2px solid transparent;
 }
 .tab:hover {
-  background-color: #d8d8d8;
+  // background-color: #d8d8d8;
+  border-bottom-color: #DFE3E8;
 }
 .tab.active:hover {
   background-color: transparent;
@@ -21,6 +22,13 @@
   margin-right: 8px;
 }
 
+.tab button {
+  color:#616161;
+}
+.tab button:hover,
+.tab button:focus {
+  color: #212121;
+}
 .tabpanel {
   display: flex;
 }
@@ -28,6 +36,16 @@
 .tabpanel{
   &.top {
   flex-direction: column;
+  }
+  & ul {
+    margin:0px;
+    list-style: none;
+    li {
+      margin-right:32px;
+      &:last-child {
+        margin-right:0px;
+      }
+    }
   }
 }
 
@@ -47,8 +65,9 @@
 }
  
 .tabstrip {
-  background-color: #e8e8e8;
+  // background-color: #e8e8e8;
   display: flex;
+  border-bottom: 1px solid #DFE3E8
 }
 
 .tabstrip.start {
@@ -82,6 +101,10 @@
 }
 .tabpanel.top .tab.active {
   border-bottom-color: #1e8bfb;
+  color:#212121;
+}
+.tabpanel.top .tab:focus-within {
+  border-bottom-color: #DFE3E8;
 }
 .tabpanel.left .tab.active {
   border-right-color: #1e8bfb;
