@@ -146,7 +146,18 @@ class Table extends React.PureComponent<Props, State> {
     }
 
     if (newProps.data.length !== this.props.data.length && JSON.stringify(newProps.data) !== JSON.stringify(this.props.data)) {
-      this.setState({ data: newProps.data });
+      let updateData = {};
+      if (!defaultCheckedDataId) {
+        let { selectedRows } = this.state;
+        if (selectedRows.length) {
+          const allItemId = newProps.data.map((item: any) => item.id);
+          selectedRows = selectedRows.filter(selectedItem => allItemId.includes(selectedItem));
+        }
+        updateData = {
+          selectedRows,
+        }
+      }
+      this.setState({ ...updateData, data: newProps.data });
     }
 
     if (JSON.stringify(newProps.nestedChildData) !== JSON.stringify(this.props.nestedChildData)) {
