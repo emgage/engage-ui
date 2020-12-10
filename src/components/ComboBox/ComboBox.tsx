@@ -185,15 +185,15 @@ class ComboBox extends React.PureComponent<Props, State> {
         />
       );
 
-    let isEmpty: boolean = items && items[0] && items[0].value && items[0].value.length === 0 || false;
-    
+    const isEmpty: boolean = items && items[0] && items[0].value && items[0].value.length === 0 || false;
+
     return (
       <div key={this.id} className={theme.comboboxContainer} onClick={this.onArrowClick} ref={node => this.setWrapperRef(node)} >
         <TextField
           type="text"
           label={label}
           onChange={this.onChange}
-          value={isEmpty? "No options available" : this.state.selectedValue}
+          value={isEmpty ? 'No options available' : this.state.selectedValue}
           theme={theme}
           suffix={<Icon source={suffix} componentColor="inkLighter" />}
           loading={loading}

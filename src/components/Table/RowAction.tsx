@@ -80,6 +80,7 @@ class RowAction extends React.PureComponent<Props, State> {
     const { actionConfig, data, rowActionLeft = false, actionInProgress = false, componentId = '', theme } = this.props;
     const validActionConfigs = this.getActions(actionConfig, data);
     return (
+      validActionConfigs && validActionConfigs.length > 0 ?
       <React.Fragment>
         <div>
         <Button componentId={`${componentId}BtnMoreActions`} theme={theme} componentClass={theme.rowActionButton} disabled={actionInProgress} icon="horizontalDots" onClick={(e: React.FormEvent<HTMLElement>) => this.dropdownToggle(e)} />
@@ -93,7 +94,7 @@ class RowAction extends React.PureComponent<Props, State> {
             theme={theme}
           />
         </div>
-      </React.Fragment>
+      </React.Fragment> : null
     );
   }
 }
