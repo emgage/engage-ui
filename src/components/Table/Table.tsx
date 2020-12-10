@@ -155,7 +155,7 @@ class Table extends React.PureComponent<Props, State> {
         }
         updateData = {
           selectedRows,
-        }
+        };
       }
       this.setState({ ...updateData, data: newProps.data });
     }
