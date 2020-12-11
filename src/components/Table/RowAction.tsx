@@ -21,6 +21,7 @@ interface RenderProps {
 }
 
 export interface Props {
+  componentId?: string;
   data?: any;
   render?: RenderProps;
   // Individual row action, if available add it in last of the column
@@ -76,12 +77,12 @@ class RowAction extends React.PureComponent<Props, State> {
   }
 
   render () {
-    const { actionConfig, data, rowActionLeft = false, actionInProgress = false, theme } = this.props;
+    const { actionConfig, data, rowActionLeft = false, actionInProgress = false, componentId = '', theme } = this.props;
     const validActionConfigs = this.getActions(actionConfig, data);
     return (
       <React.Fragment>
         <div>
-        <Button theme={theme} componentClass={theme.rowActionButton} disabled={actionInProgress} icon="horizontalDots" onClick={(e: React.FormEvent<HTMLElement>) => this.dropdownToggle(e)} />
+        <Button componentId={`${componentId}BtnMoreActions`} theme={theme} componentClass={theme.rowActionButton} disabled={actionInProgress} icon="horizontalDots" onClick={(e: React.FormEvent<HTMLElement>) => this.dropdownToggle(e)} />
           <Dropdown
             dropdownItems={validActionConfigs}
             toggle={() => this.dropdownToggle}

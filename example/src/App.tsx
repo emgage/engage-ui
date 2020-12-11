@@ -2,6 +2,7 @@ import * as React from 'react';
 import PickerAutoSuggestExample from './PickerAutoSuggestExample';
 import { ISourceData } from '../../src/components/BreadCrumb/BreadCrumb';
 import { INavigationData } from '../../src/components/SideNavigation/SideNavigation';
+import { CalendarEvent } from '../../src/components/Calendar/Calendar';
 
 import {
   Alert,
@@ -10,6 +11,7 @@ import {
   Badge,
   Button,
   ButtonGroup,
+  Calendar,
   Card,
   CardHeader,
   CardFooter,
@@ -1092,6 +1094,14 @@ class App extends React.Component<{}, State> {
       { text: 'How are you?', icon: 'alert' },
     ];
 
+    const events: CalendarEvent[] = [
+      {
+        title: 'Birthday',
+        start: new Date(2020, 9, 6),
+        end: new Date(2020, 9, 7),
+      },
+    ];
+
     return (
       <div style={{ width: '60%' }}>
         <AppBar
@@ -1183,7 +1193,16 @@ class App extends React.Component<{}, State> {
         </div> */}
         <div>
           Pagination:
-          <Pagination {...PaginationDefaultProps} pageSizeList={[3, 6, 9]} showSizeChanger={true} onChange={(page: number) => this.setState({ paginationCurrent: page })} current={this.state.paginationCurrent} total={25} />
+          <Pagination
+            {...PaginationDefaultProps}
+            pageSizeList={[3, 6, 9]}
+            showSizeChanger={true}
+            onChange={(page: number) =>
+              this.setState({ paginationCurrent: page })
+            }
+            current={this.state.paginationCurrent}
+            total={25}
+          />
           PageSize:
           <PageSize
             onKeyPress={() => {}}
@@ -1195,6 +1214,11 @@ class App extends React.Component<{}, State> {
             className="cl"
           />
         </div>
+        <div>
+          <Calendar events={events} showCreateIcon />
+        </div>
+        <br />
+        <br />
         <div>
           <TabPanel defaultTabId="tab1" position={'top'} alignment={'center'}>
             <Tab
@@ -3194,6 +3218,8 @@ class App extends React.Component<{}, State> {
             items={this.getComboBoxItems()}
             label="Select"
             currentValue="item1"
+            suffix="user"
+            loading={false}
           />
         </div>
         <div>Multiple checkbox Facets</div>
@@ -3467,7 +3493,9 @@ class App extends React.Component<{}, State> {
   popoverToggleContainer(index: number) {
     const updatedPopoverActiveContainer: any = this.state
       .popoverActiveContainer;
-    updatedPopoverActiveContainer[index] = !updatedPopoverActiveContainer[index];
+    updatedPopoverActiveContainer[index] = !updatedPopoverActiveContainer[
+     index
+    ]
 
     this.setState({
       popoverActiveContainer: updatedPopoverActiveContainer,

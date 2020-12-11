@@ -46,6 +46,8 @@ export interface Props {
   componentStyle?: React.CSSProperties;
   // Set a custom class
   componentClass?: string;
+  // Unique ID
+  componentId?: string;
   // Theme to be injected via css-themr.
   theme?: any;
   // Callback when clicked.
@@ -77,6 +79,7 @@ const button = ({
   fullWidth = false,
   componentStyle,
   componentClass,
+  componentId = '',
   theme,
 }: Props) => {
   const className = classNames(
@@ -144,6 +147,7 @@ const button = ({
           name={name}
           aria-label={accessibilityLabel}
           style={componentStyle}
+          id={componentId}
         >
           {content}
         </button>

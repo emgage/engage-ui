@@ -30,6 +30,8 @@ export interface Props {
   componentStyle?: React.CSSProperties;
   // Set a custom class
   componentClass?: string;
+  // Unique Id
+  componentId?: string;
   // Theme to be injected via css-themr
   theme?: any;
 }
@@ -67,6 +69,7 @@ const badge = ({
   iconColor = 'inkLighter',
   componentClass = '',
   componentStyle,
+  componentId = '',
 }: Props) => {
   const className = classNames(
     componentClass,
@@ -104,7 +107,7 @@ const badge = ({
   : null;
 
   return (
-    <span className={className} style={componentStyle}>
+    <span className={className} style={componentStyle} id={componentId} >
       {statusLabelMarkup}
       {workingMarkup}
       {pipMarkup}

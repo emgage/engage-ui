@@ -24,6 +24,8 @@ export interface Props {
   items: ComboBoxItemProps[];
   label: string;
   style?:any;
+  suffix?: any;
+  loading?:boolean;
   onSelect?(item: any): void;
   theme?: any;
 }
@@ -158,7 +160,9 @@ class ComboBox extends React.PureComponent<Props, State> {
   render() {
     const {
       label,
-      theme
+      theme,
+      suffix,
+      loading
     } = this.props;
 
     const {
@@ -183,11 +187,13 @@ class ComboBox extends React.PureComponent<Props, State> {
           onChange={this.onChange}
           value={this.state.selectedValue}
           theme={theme}
+          suffix={<Icon source={suffix} componentColor="inkLighter" />}
+          loading={loading}
         />
 
-        <div className={theme.comboboxArrow}>
+        {!suffix && <div className={theme.comboboxArrow}>
           <Icon source={arrowSvg} theme={theme} />
-        </div>
+        </div>}
 
         {open && <Popover
           addArrow={false}
