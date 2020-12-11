@@ -49,7 +49,7 @@ class PageSize extends React.PureComponent<IPageSizeProps, any>{
         pageSizeList.map((page: number) => {
           const plain = page !== currentPageSize;
           return <Pager
-                    componentStyle={plain ? { padding: '20px' } : {}}
+                    componentStyle={plain ? { /*padding: '20px'*/ } : {}}
                     plain={plain}
                     itemRender={(page: any, type: any, element: any) => element}
                     onKeyPress={onKeyPress}
