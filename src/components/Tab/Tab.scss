@@ -13,7 +13,7 @@
 }
 .tab:hover {
   // background-color: #d8d8d8;
-  border-bottom-color: #DFE3E8;
+  border-bottom-color: theme-color(m-grey, 300);
 }
 .tab.active:hover {
   background-color: transparent;
@@ -23,11 +23,11 @@
 }
 
 .tab button {
-  color:#616161;
+  color:theme-color(m-grey, 700);
 }
 .tab button:hover,
 .tab button:focus {
-  color: #212121;
+  color: theme-color(m-grey, 900);
 }
 .tabpanel {
   display: flex;
@@ -67,7 +67,7 @@
 .tabstrip {
   // background-color: #e8e8e8;
   display: flex;
-  border-bottom: 1px solid #DFE3E8
+  border-bottom: 1px solid theme-color(m-grey, 300)
 }
 
 .tabstrip.start {
@@ -101,10 +101,10 @@
 }
 .tabpanel.top .tab.active {
   border-bottom-color: #1e8bfb;
-  color:#212121;
+  color:theme-color(m-grey, 900);
 }
 .tabpanel.top .tab:focus-within {
-  border-bottom-color: #DFE3E8;
+  border-bottom-color: theme-color(m-grey, 400);
 }
 .tabpanel.left .tab.active {
   border-right-color: #1e8bfb;
