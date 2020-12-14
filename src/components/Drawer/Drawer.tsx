@@ -200,6 +200,8 @@ class Drawer extends React.PureComponent<Props, never> {
 
     if (active && (mode === 'push' || mode === 'reveal')) {
       this.setBodyStyle();
+    } else {
+      document.body.className = '';
     }
 
     const dStyle = Object.assign(
