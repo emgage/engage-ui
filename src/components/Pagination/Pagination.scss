@@ -18,11 +18,15 @@ TODO : Should we be specifying font size here and in button component?  seems to
   font-family: 'Arial';
   user-select: none;
   padding: 0;
-  display: flex; 
+  display: flex;
+  align-items: center;
 
   > li {
     list-style: none;
     margin-right: 8px;
+    min-width: 3.5rem;
+    align-items: center;
+    text-align:center;
 
     &:last-child {
         margin-right: 0;
