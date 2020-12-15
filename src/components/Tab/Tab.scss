@@ -13,7 +13,7 @@
 }
 .tab:hover {
   // background-color: #d8d8d8;
-  border-bottom-color: theme-color(m-grey, 300);
+  border-bottom-color: color(grey, lighter);
 }
 .tab.active:hover {
   background-color: transparent;
@@ -23,11 +23,11 @@
 }
 
 .tab button {
-  color:theme-color(m-grey, 700);
+  color:color(grey, light);
 }
 .tab button:hover,
 .tab button:focus {
-  color: theme-color(m-grey, 900);
+  color: color(grey, dark);
 }
 .tabpanel {
   display: flex;
@@ -101,10 +101,13 @@
 }
 .tabpanel.top .tab.active {
   border-bottom-color: #1e8bfb;
-  color:theme-color(m-grey, 900);
+  color:color(grey, dark);
+}
+.tabpanel.top .tab.active button {
+  color:color(grey, dark);
 }
 .tabpanel.top .tab:focus-within {
-  border-bottom-color: theme-color(m-grey, 400);
+  border-bottom-color: color(grey, lighter);
 }
 .tabpanel.left .tab.active {
   border-right-color: #1e8bfb;
