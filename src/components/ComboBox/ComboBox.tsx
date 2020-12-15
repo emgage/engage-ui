@@ -206,7 +206,7 @@ class ComboBox extends React.PureComponent<Props, State> {
 
         {open && !isEmpty && <Popover
           addArrow={false}
-          componentStyle={{ maxHeight: window.outerHeight < 600 ? 500 : 800, overflow: 'auto', width: popoverWidth }}
+          componentStyle={{ maxHeight: window.outerHeight < 768 ? 500 : 800, overflow: 'auto', width: popoverWidth }}
           anchorEl={this.state.anchorEl}
           open={open}
           theme={theme}
