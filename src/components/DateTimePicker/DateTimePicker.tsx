@@ -61,12 +61,12 @@ class DateTimePicker extends React.PureComponent<Props, State>{
 
   static getDerivedStateFromProps(props: Props, state: State) {
     if (props.unsetDefaultDateTime !== true && props.defaultDateTime) {
-        return {
-            dateTime: moment(props.defaultDateTime),
-        };
-    } 
+      return {
+        dateTime: moment(props.defaultDateTime),
+      };
+    }
     return null;
-}
+  }
 
   setDateTime = (dateTime: any) => {
     this.setState({ dateTime });
