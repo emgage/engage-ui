@@ -45,9 +45,11 @@ class TabPanel extends React.PureComponent<Props, State> {
   componentWillReceiveProps(newProps: any) {
     // Call the callback function if available
     // Maintain state while trigger active tab, calling from outside's component (like triggered from external button click)
-    this.setState({
-      activeTabId: newProps.defaultTabId
-    });
+    if (newProps.defaultTabId !== this.props.defaultTabId) {
+      this.setState({
+        activeTabId: newProps.defaultTabId
+      });
+    }
   }
 
   constructor(props: Props) {
@@ -103,9 +105,9 @@ class TabPanel extends React.PureComponent<Props, State> {
 
     return (
       <div className={locationClassName} style={componentStyle}>
-        <div className={alignmentClassName}>
+        <ul className={alignmentClassName}>
           {this.renderTabs()}
-        </div>
+        </ul>
         <div className={theme.cardct}>
           {this.renderActivetabContent()}
         </div>
