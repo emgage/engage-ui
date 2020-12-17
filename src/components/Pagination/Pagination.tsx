@@ -154,6 +154,13 @@ class Pagination extends React.PureComponent<IProps, IState> {
     }
   }
 
+  componentWillReceiveProps(newProps: IProps) {
+    const { current } = newProps;
+    if (this.props.current !== current) {
+      this.setState({ current });
+    }
+  }
+
   getJumpPrevPage = () => {
     return Math.max(1, this.state.current - (this.props.showLessItems ? 3 : 5));
   }
@@ -364,11 +371,29 @@ class Pagination extends React.PureComponent<IProps, IState> {
     return options;
   }
 
+  getLowPageSize = () => {
+    const { pageSizeList = [] } = this.state;
+    let lowPageSize = 0;
+    if (pageSizeList.length > 0) {
+      lowPageSize = pageSizeList[0];
+      pageSizeList.forEach(size => {
+        if (size < lowPageSize) {
+          lowPageSize = size;
+        }
+      });
+    }
+    return lowPageSize;
+  }
+
   render() {
     const { className/*, disabled*/ = false, theme, lazyLoading } = this.props;
 
     // When hideOnSinglePage is true and there is only 1 page, hide the pager
     const isHideOnSinglePage = this.props.hideOnSinglePage && this.props.total <= this.state.pageSize;
+    const isHidePageSizer = this.props.total <= this.getLowPageSize();
+    if (isHidePageSizer) {
+      return null;
+    }
 
     const props: any = this.props;
     const locale = props.locale;
