@@ -25,6 +25,8 @@ export interface Props {
   mode?: Mode;
   // Index of item which you want to be active
   openIndex?: number;
+  // Indexs of item which you want to be active for initial level
+  defaultOpenIndexs?: number[] | 'all';
   theme?: any;
 }
 
@@ -48,6 +50,19 @@ class Accordion extends React.PureComponent<Props, State> {
 
     if (props.openIndex !== undefined) {
       initialState[props.openIndex] = true;
+    }
+
+    const { defaultOpenIndexs, items } = props;
+    if (defaultOpenIndexs !== undefined) {
+      if (defaultOpenIndexs === 'all') {
+        items.forEach((element, index) => {
+          initialState[index] = true;
+        });
+      } else {
+        defaultOpenIndexs.forEach((openIndex) => {
+          initialState[openIndex] = true;
+        });
+      }
     }
 
     this.state = {
