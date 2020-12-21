@@ -99,13 +99,13 @@ class FlexBox extends React.PureComponent<Props, {}> {
     // set wrap property css
     switch (wrap) {
       case 'Wrap':
-        default:
         className = classNames(this.props.theme.wrap, className);
         break;
       case 'WrapReverse':
         className = classNames(this.props.theme.WrapReverse, className);
         break;
       case 'NoWrap':
+      default:
         className = classNames(this.props.theme.noWrap, className);
         break;
     }
