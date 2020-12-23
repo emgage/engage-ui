@@ -41,7 +41,7 @@ const SwitchCheckbox = (props: Props) => {
                 />
                 <span className={theme.InnerSpan}></span>
             </span>
-            {children && <label htmlFor={componentId} className=""            >
+            {children && <label htmlFor={componentId}>
                 {children}
             </label>}
         </div>);
