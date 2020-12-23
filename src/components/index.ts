@@ -405,3 +405,8 @@ export {
 export {
   default as RangeSlider
 } from './RangeSlider';
+
+export {
+  default as SwitchCheckbox,
+  Props as SwitchCheckboxProps,
+} from './SwitchCheckbox';

@@ -376,7 +376,7 @@ class Pagination extends React.PureComponent<IProps, IState> {
     let lowPageSize = 0;
     if (pageSizeList.length > 0) {
       lowPageSize = pageSizeList[0];
-      pageSizeList.forEach(size => {
+      pageSizeList.forEach((size) => {
         if (size < lowPageSize) {
           lowPageSize = size;
         }

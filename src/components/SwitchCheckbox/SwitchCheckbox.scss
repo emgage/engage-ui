@@ -1,0 +1,52 @@
+@import 'foundation/colors';
+.switchCheckbox {
+    transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -webkit-transition: all .3s ease-in-out;
+    .OuterSpan {
+        position: relative;
+        margin-right: 0.8rem;
+        .InnerSpan {
+            width: 3.4rem;
+            background: rgba(0, 0, 0, .3);
+            display: inline-block;
+            position: relative;
+            border-radius: 3rem;
+            height: 1.4rem;
+            vertical-align: middle;
+            &:before{
+                content: "";
+                display: block;
+                width: 2rem;
+                height: 2rem;
+                border-radius: 100%;
+                position: absolute;
+                right: -1px;
+                background-color: rgba(0, 0, 0, 1);
+                top: -3px;
+                border:1px solid rgba(0, 0, 0, 1);
+                transition: all .3s ease-in-out;
+                -moz-transition: all .3s ease-in-out;
+                -webkit-transition: all .3s ease-in-out;
+                z-index: 1;
+            }
+        }
+        input {
+            width: 100%;
+            opacity: 0;
+            position: absolute;
+            z-index: 2;
+            &:checked + .InnerSpan {
+                background-color: rgba(2, 117, 216, .5);
+            &:before {
+                left:-3px;
+                transition: all .3s ease-in-out;
+                -moz-transition: all .3s ease-in-out;
+                -webkit-transition: all .3s ease-in-out;
+                background: color(blue, base);
+                border: 1px solid color(blue, base);
+            }
+        }
+    }
+}
+}
