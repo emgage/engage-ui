@@ -88,6 +88,7 @@ import {
   PaginationDefaultProps,
   PageSize,
   RangeSlider,
+  SwitchCheckbox,
 } from '../../src/components';
 
 interface State {
@@ -146,6 +147,7 @@ interface State {
   paginationCurrent: number;
   multipleCheckboxFacetsOptions: any[];
   rangeSliderValue?: any;
+  isOpen: boolean; // for SwitchCheckbox
 }
 
 class App extends React.Component<{}, State> {
@@ -232,7 +234,8 @@ class App extends React.Component<{}, State> {
           selected: false,
         },
       ],
-      rangeSliderValue:[5, 10]
+      rangeSliderValue:[5, 10],
+      isOpen: false,
     };
 
     this.popovertoggle = this.popovertoggle.bind(this);
@@ -242,6 +245,11 @@ class App extends React.Component<{}, State> {
     this.popoverUpdate = this.popoverUpdate.bind(this);
     this.popoverUpdateContainer = this.popoverUpdateContainer.bind(this);
     this.closed1 = this.closed1.bind(this);
+  }
+
+  handleSwitchCheckboxToggle = (isOpen: boolean) => {
+    this.setState({ isOpen });
+    console.log('SwitchCheckbox toggle...');
   }
 
   rowGetter = (index: number) => this.state.rows[index];
@@ -1114,6 +1122,9 @@ class App extends React.Component<{}, State> {
             <Button icon="infoCircle" componentSize="slim"/>,
           ]}
         />
+        <SwitchCheckbox isOpen={this.state.isOpen} handleToggle={this.handleSwitchCheckboxToggle}>
+          SwitchCheckbox
+        </SwitchCheckbox>
         <ToggleButtonGroup segmented={true} helpText="Test Help Text">
           <Button>On</Button>
           <Button>Off</Button>
