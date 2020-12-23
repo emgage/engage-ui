@@ -44,6 +44,7 @@ $stacking-order: (
   // Master modifier
   &.master {
     z-index: z-index(master, $stacking-order);
+    //Hide Scrollbar in drawer
     .bar {
       overflow-x: hidden;
       -ms-overflow-style: none;  /* IE and Edge */
