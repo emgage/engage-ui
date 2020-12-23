@@ -30,8 +30,7 @@ const SwitchCheckbox = (props: Props) => {
         componentClass,
         theme.switchCheckbox
     );
-  return (
-        <div style={componentStyle}  className={className}>
+  return (<div style={componentStyle}  className={className}>
             <span className={theme.OuterSpan}>
                 <input
                     id={componentId}

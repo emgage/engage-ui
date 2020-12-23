@@ -1,6 +1,4 @@
 @import 'foundation/colors';
-
-
 .switchCheckbox {
     transition: all .3s ease-in-out;
     -moz-transition: all .3s ease-in-out;
@@ -24,10 +22,8 @@
                 border-radius: 100%;
                 position: absolute;
                 right: -1px;
-                // background: color(blue, base);
                 background-color: rgba(0, 0, 0, 1);
                 top: -3px;
-                // border: 1px solid color(blue, base);
                 border:1px solid rgba(0, 0, 0, 1);
                 transition: all .3s ease-in-out;
                 -moz-transition: all .3s ease-in-out;
