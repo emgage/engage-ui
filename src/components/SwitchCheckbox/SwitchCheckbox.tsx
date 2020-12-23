@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ThemedComponentClass, themr } from "@friendsofreactjs/react-css-themr";
+import { ThemedComponentClass, themr } from '@friendsofreactjs/react-css-themr';
 import { SWITCHCHECKBOX } from '../ThemeIdentifiers';
 import * as baseTheme from './SwitchCheckbox.scss';
 import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
@@ -7,32 +7,32 @@ import { classNames } from '@shopify/react-utilities/styles';
 
 export interface Props {
     // Set theme for SwitchCheckbox
-    theme?: any;
+  theme?: any;
     // To apply custom styling.
-    componentStyle?: React.CSSProperties;
+  componentStyle?: React.CSSProperties;
     // Set a custom class
-    componentClass?: string;
-    componentId?: string;
-    children?: React.ReactNode;
+  componentClass?: string;
+  componentId?: string;
+  children?: React.ReactNode;
     // component props to handle toggle
-    disabled?: boolean;
-    isOpen: boolean;
-    handleToggle: (value: boolean) => void;
+  disabled?: boolean;
+  isOpen: boolean;
+  handleToggle: (value: boolean) => void;
 }
 
 const getUniqueID = createUniqueIDFactory('SwitchCheckbox');
 
 const SwitchCheckbox = (props: Props) => {
-    const { theme, componentClass, componentStyle, componentId = getUniqueID() } = props;
-    const { children, isOpen, disabled, handleToggle } = props;
+  const { theme, componentClass, componentStyle, componentId = getUniqueID() } = props;
+  const { children, isOpen, disabled, handleToggle } = props;
 
-    const className = classNames(
+  const className = classNames(
         componentClass,
-        theme.switchCheckbox,
+        theme.switchCheckbox
     );
-    return (
+  return (
         <div style={componentStyle}  className={className}>
-            <span>
+            <span className={theme.OuterSpan}>
                 <input
                     id={componentId}
                     disabled={disabled}
@@ -40,13 +40,12 @@ const SwitchCheckbox = (props: Props) => {
                     onChange={() => handleToggle(!isOpen)}
                     type="checkbox"
                 />
+                <span className={theme.InnerSpan}></span>
             </span>
             {children && <label htmlFor={componentId} className=""            >
                 {children}
             </label>}
-        </div>
-    );
-}
-
+        </div>);
+};
 
 export default themr(SWITCHCHECKBOX, baseTheme)(SwitchCheckbox) as ThemedComponentClass<Props, {}>;
