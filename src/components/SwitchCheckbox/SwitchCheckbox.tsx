@@ -32,7 +32,7 @@ const SwitchCheckbox = (props: Props) => {
     );
     return (
         <div style={componentStyle}  className={className}>
-            <div>
+            <span>
                 <input
                     id={componentId}
                     disabled={disabled}
@@ -40,7 +40,7 @@ const SwitchCheckbox = (props: Props) => {
                     onChange={() => handleToggle(!isOpen)}
                     type="checkbox"
                 />
-            </div>
+            </span>
             {children && <label htmlFor={componentId} className=""            >
                 {children}
             </label>}
