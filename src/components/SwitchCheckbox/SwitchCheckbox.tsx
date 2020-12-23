@@ -31,14 +31,17 @@ const SwitchCheckbox = (props: Props) => {
         theme.switchCheckbox,
     );
     return (
-        <div style={componentStyle} id={componentId} className={className}>
-            <input
-                disabled={disabled}
-                checked={isOpen}
-                onChange={() => handleToggle(!isOpen)}
-                type="checkbox"
-            />
-            {children && <label className=""            >
+        <div style={componentStyle}  className={className}>
+            <div>
+                <input
+                    id={componentId}
+                    disabled={disabled}
+                    checked={isOpen}
+                    onChange={() => handleToggle(!isOpen)}
+                    type="checkbox"
+                />
+            </div>
+            {children && <label htmlFor={componentId} className=""            >
                 {children}
             </label>}
         </div>
