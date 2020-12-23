@@ -7,17 +7,17 @@ import { classNames } from '@shopify/react-utilities/styles';
 
 export interface Props {
     // Set theme for SwitchCheckbox
-  theme?: any;
+    theme?: any;
     // To apply custom styling.
-  componentStyle?: React.CSSProperties;
+    componentStyle?: React.CSSProperties;
     // Set a custom class
-  componentClass?: string;
-  componentId?: string;
-  children?: React.ReactNode;
+    componentClass?: string;
+    componentId?: string;
+    children?: React.ReactNode;
     // component props to handle toggle
-  disabled?: boolean;
-  isOpen: boolean;
-  handleToggle: (value: boolean) => void;
+    disabled?: boolean;
+    isOpen: boolean;
+    handleToggle: (value: boolean) => void;
 }
 
 const getUniqueID = createUniqueIDFactory('SwitchCheckbox');
