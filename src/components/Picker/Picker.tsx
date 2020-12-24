@@ -313,12 +313,13 @@ class Picker extends React.PureComponent<Props, State> {
         theme,
     } = this.props;
     const { isFocused, hasValue, value, suggestions, chipListState, selectedItems } = this.state;
-    const inputProps: Autosuggest.InputProps = {
+    const inputProps: Autosuggest.InputProps & { disabled: boolean } = {
       value,
       onChange: autoSuggestMethods.onChange,
       onKeyDown: autoSuggestMethods.onKeyDown,
       onFocus: autoSuggestMethods.onFocus,
       onBlur: autoSuggestMethods.onBlur,
+      disabled: disabled || (!!this.props.maxSelectedItems && this.props.maxSelectedItems <= chipListState.length),
     };
     const stateProps: IStateProps = { value, suggestions, chipListState, inputProps };
 
