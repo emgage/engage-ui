@@ -21,7 +21,8 @@
                 height: 2rem;
                 border-radius: 100%;
                 position: absolute;
-                right: -1px;
+                left: -1px;
+                right:auto;
                 background-color: rgba(0, 0, 0, 1);
                 top: -3px;
                 border:1px solid rgba(0, 0, 0, 1);
@@ -39,7 +40,8 @@
             &:checked + .InnerSpan {
                 background-color: rgba(2, 117, 216, .5);
             &:before {
-                left:-3px;
+                right:-3px;
+                left: auto;
                 transition: all .3s ease-in-out;
                 -moz-transition: all .3s ease-in-out;
                 -webkit-transition: all .3s ease-in-out;
