@@ -44,6 +44,12 @@ class BannerRow extends React.PureComponent<Props, State> {
     onFocus && onFocus(rowItem);
   }
 
+  componentWillReceiveProps(nextProps: Readonly<Props>, nextContext: any) {
+    if (!nextProps.selectedValue) {
+      this.setState({ selectedValue: '' });
+    }
+  }
+
   render () {
     const {
       bannerTitle,
