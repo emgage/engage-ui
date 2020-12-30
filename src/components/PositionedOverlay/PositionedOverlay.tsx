@@ -257,7 +257,7 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
           measuring: false,
           activatorRect: getRectForNode(activator),
           left: horizontalPosition,
-          top: this.getTopHeight(preferredPosition, activatorRect, overlayRect),
+          top: verticalPosition.top,
           anchorPosition: overlayRect.width - activatorRect.width - overlayMargins.horizontal,
           lockPosition: Boolean(fixed),
           height: verticalPosition.height || 0,

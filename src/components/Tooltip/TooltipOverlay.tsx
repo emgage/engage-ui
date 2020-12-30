@@ -64,7 +64,7 @@ export default class TooltipOverlay extends React.PureComponent<Props, never> {
     } = overlayDetails;
     const { componentId, children, light = false, preferredPosition } = this.props;
 
-    const tipStyle = calculateTipPosition(activatorRect.center.x, left, preferredPosition);
+    const tipStyle = calculateTipPosition(activatorRect.center.x, left, preferredPosition, 'center');
 
     const containerClassName = classNames(
       preferredPosition === 'below' && styles.belowTooltip,
