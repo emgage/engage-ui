@@ -44,6 +44,8 @@ export interface Props {
   fixed?: boolean;
   // To identify when popover is preloaded when its a tooltip
   preloadedPopover?: boolean;
+  // To identify when the component is used as overlay for tooltip
+  tooltipOverlay?: boolean;
   // Theme to be injected via css-themr.
   theme?: any;
   render(overlayDetails: OverlayDetails): React.ReactNode;
@@ -200,7 +202,8 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
           onScrollOut,
           fullWidth,
           fixed = false,
-          preloadedPopover = false
+          preloadedPopover = false,
+          tooltipOverlay = false,
         } = this.props;
 
         const textFieldActivator = activator.querySelector('input');
@@ -257,7 +260,7 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
           measuring: false,
           activatorRect: getRectForNode(activator),
           left: horizontalPosition,
-          top: preloadedPopover ? verticalPosition.top : this.getTopHeight(preferredPosition, activatorRect, overlayRect),
+          top: tooltipOverlay ? verticalPosition.top : this.getTopHeight(preferredPosition, activatorRect, overlayRect),
           anchorPosition: overlayRect.width - activatorRect.width - overlayMargins.horizontal,
           lockPosition: Boolean(fixed),
           height: verticalPosition.height || 0,
