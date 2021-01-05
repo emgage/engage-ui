@@ -91,6 +91,7 @@ import {
   userTie,
   video,
   view,
+  minusMinor
 } from '../../icons';
 
 import { ICON } from '../ThemeIdentifiers';
@@ -199,6 +200,7 @@ export const BUNDLED_ICONS = {
   delete: deleteIcon,
   export: exportIcon,
   import: importIcon,
+  minusMinor,
 };
 
 const COLORS_WITH_BACKDROPS = ['teal', 'tealDark', 'greenDark', 'redDark', 'yellowDark', 'ink'];
