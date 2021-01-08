@@ -91,7 +91,7 @@ import {
   userTie,
   video,
   view,
-  minusMinor,
+  minusMinor
 } from '../../icons';
 
 import { ICON } from '../ThemeIdentifiers';
