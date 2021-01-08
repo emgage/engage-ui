@@ -109,7 +109,7 @@ export type Color = (
   'yellowLighter' | 'yellow' | 'yellowDark' |
   'orange' |
   'redLighter' | 'red' | 'redDark' |
-  'purple' | 'darkGrey'
+  'purple'
 );
 
 export const BUNDLED_ICONS = {
