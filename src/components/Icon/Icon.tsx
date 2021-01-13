@@ -197,10 +197,10 @@ export const BUNDLED_ICONS = {
   userTie,
   video,
   view,
+  minusMinor,
   delete: deleteIcon,
   export: exportIcon,
   import: importIcon,
-  minusMinor,
 };
 
 const COLORS_WITH_BACKDROPS = ['teal', 'tealDark', 'greenDark', 'redDark', 'yellowDark', 'ink'];

@@ -68,7 +68,7 @@ export function calculateTipPosition(activatorRectXAxisCenter: number, left: num
     return { marginLeft: activatorRectXAxisCenter, marginTop: '-4px' };
   }
   if (preferredAlignment === 'center' && (preferredPosition === 'below' || preferredPosition === 'above')) {
-    return { marginLeft: (activatorRectXAxisCenter / 2) + 8, marginTop: '-4px' };
+    return { marginLeft: activatorRectXAxisCenter - left - 16, marginTop: '-4px' };
   }
   if (preferredAlignment === 'left' && preferredPosition === 'below') {
     return { marginLeft: 16, marginTop: '-4px' };
