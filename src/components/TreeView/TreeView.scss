@@ -16,6 +16,17 @@
   position: absolute;
   left: 1em;
   cursor:pointer;
+  .TreeButton {
+    padding:0px;
+    width:auto;
+    min-height: auto;
+    &:hover svg {
+      fill:color(blue, base);
+    }
+    &:focus svg {
+      fill:color(blue, base);
+    }
+  }
 }
 
 .active {
@@ -79,3 +90,4 @@ li.haschildren > .nodecontent::before {
 .treeview li:not(.haschildren):last-child::before {
     height: calc(1em/2 + 0.7em);
 }
+

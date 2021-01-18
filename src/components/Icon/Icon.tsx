@@ -173,6 +173,7 @@ export const BUNDLED_ICONS = {
   listAlt,
   listingPage,
   lock,
+  minusMinor,
   notes,
   paintBrush,
   plus,
