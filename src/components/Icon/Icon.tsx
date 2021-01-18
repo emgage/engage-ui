@@ -67,6 +67,7 @@ import {
   listAlt,
   listingPage,
   lock,
+  minusMinor,
   notes,
   paintBrush,
   plus,
@@ -91,7 +92,6 @@ import {
   userTie,
   video,
   view,
-  minusMinor,
 } from '../../icons';
 
 import { ICON } from '../ThemeIdentifiers';
@@ -198,7 +198,6 @@ export const BUNDLED_ICONS = {
   userTie,
   video,
   view,
-  minusMinor,
   delete: deleteIcon,
   export: exportIcon,
   import: importIcon,
