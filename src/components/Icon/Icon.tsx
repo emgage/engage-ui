@@ -173,6 +173,7 @@ export const BUNDLED_ICONS = {
   listAlt,
   listingPage,
   lock,
+  minusMinor,
   notes,
   paintBrush,
   plus,
@@ -200,7 +201,6 @@ export const BUNDLED_ICONS = {
   delete: deleteIcon,
   export: exportIcon,
   import: importIcon,
-  minusMinor,
 };
 
 const COLORS_WITH_BACKDROPS = ['teal', 'tealDark', 'greenDark', 'redDark', 'yellowDark', 'ink'];

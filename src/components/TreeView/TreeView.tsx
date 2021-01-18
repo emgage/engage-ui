@@ -6,7 +6,8 @@ import TreeNode from './TreeNode';
 import { TREEVIEW } from '../ThemeIdentifiers';
 import Icon, { IconColor }  from '../Icon';
 import * as baseTheme from './TreeView.scss';
-
+import Button from '../Button';
+import VisuallyHidden from '../VisuallyHidden';
 // There could be multiple themes, but right now lets take only a basic theme
 type Themes = 'basic';
 
@@ -103,7 +104,7 @@ class TreeView extends React.Component<Props, State> {
         {
           item.children ?
           <div onClick={() => this.toggleNode(item.id)} className={theme.nodeicon}>
-            {item.active ? <Icon componentColor={iconColor} source="circleChevronDown" theme={theme} /> : <Icon componentColor={iconColor} source="circleChevronRight" theme={theme} />}
+            {item.active ? <Button plain componentClass={theme.TreeButton}><Icon componentColor={iconColor} source="circleChevronDown" theme={theme} /><VisuallyHidden>Close Tree</VisuallyHidden></Button> : <Button plain componentClass={theme.TreeButton}><Icon componentColor={iconColor} source="circleChevronRight" theme={theme} /><VisuallyHidden>Open Tree</VisuallyHidden></Button>}
           </div> :
           <div className={theme.nodeicon}> <Icon componentStyle={iconStyle} componentColor={iconColor} source="circle" theme={theme} /> </div>
         }
@@ -121,7 +122,7 @@ class TreeView extends React.Component<Props, State> {
       return (
         <li key={item.id} className={theme.haschildren}>
           <div onClick={() => this.toggleNode(item.id)} className={theme.nodeicon}>
-            {item.active ? <Icon componentColor={iconColor} source="circleChevronDown" theme={theme} /> : <Icon componentColor={iconColor} source="circleChevronRight" theme={theme} />}
+            {item.active ? <Button plain componentClass={theme.TreeButton}><Icon componentColor={iconColor} source="circleChevronDown" theme={theme} /><VisuallyHidden>Close Tree</VisuallyHidden></Button> : <Button plain><Icon componentColor={iconColor} source="circleChevronRight" theme={theme} /><VisuallyHidden>Open Tree</VisuallyHidden></Button>}
           </div>
           <div className={theme.nodecontent} id={componentId ? `${componentId}${item.label}` : ''}>
             <div className={theme.nodecontentwrapper}><TreeNode { ...item } /></div>
