@@ -60,7 +60,7 @@ class Chip extends React.PureComponent<Props, any> {
     const chipContents = [(
       image && image.url
         ?
-        (typeof image.url === "object" ?
+        (typeof image.url === 'object' ?
           <Icon source={image.url} theme={theme} />
           : <img className={theme.Image} src={image.url} alt={image.alt} key="1" aria-hidden />
         )
