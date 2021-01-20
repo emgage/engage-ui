@@ -37,6 +37,7 @@ interface State {
   anchorEl?: HTMLElement;
   selectedValue: string;
   popoverWidth: string;
+  isEmpty: boolean;
 }
 
 class ComboBox extends React.PureComponent<Props, State> {
@@ -55,6 +56,7 @@ class ComboBox extends React.PureComponent<Props, State> {
       initialItems: this.addRenderer(items, JSON.parse(JSON.stringify(items))),
       popoverWidth: '',
       selectedValue: '' || currentValue,
+      isEmpty: false
     };
   }
 
@@ -66,9 +68,13 @@ class ComboBox extends React.PureComponent<Props, State> {
     document.removeEventListener('click', this.handleClickOutside);
   }
 
-  componentDidUpdate() {
-    const { items } = this.props;
-    this.setState({ items });
+  componentWillReceiveProps(nextProps: any) {
+    const { items } = nextProps;
+    const { items: oldItems } = this.props;
+    if (JSON.stringify(oldItems) !== JSON.stringify(items)) {
+      const isEmpty: boolean = items && items[0] && items[0].value && items[0].value.length === 0 || false;
+      this.setState({ items: items, isEmpty });
+    }
   }
 
   handleClickOutside = (event: any) => {
@@ -173,7 +179,8 @@ class ComboBox extends React.PureComponent<Props, State> {
     const {
       items,
       open,
-      popoverWidth
+      popoverWidth,
+      isEmpty
     } = this.state;
 
     const itemsComponent = items.map((item, index) =>
@@ -184,8 +191,6 @@ class ComboBox extends React.PureComponent<Props, State> {
           theme={theme}
         />
       );
-
-    const isEmpty: boolean = items && items[0] && items[0].value && items[0].value.length === 0 || false;
 
     return (
       <div key={this.id} className={theme.comboboxContainer} onClick={this.onArrowClick} ref={node => this.setWrapperRef(node)} >
