@@ -215,6 +215,7 @@ class ComboBox extends React.PureComponent<Props, State> {
           anchorEl={this.state.anchorEl}
           open={open}
           theme={theme}
+          preferredAlignment="left"
         >
             {itemsComponent}
         </Popover>}
