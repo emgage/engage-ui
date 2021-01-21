@@ -16,6 +16,7 @@ export interface Props {
     suffix?: any;
     loading?: boolean;
     onSelect?(item: any): void;
+    onChangeText?(value: string): void;
     theme?: any;
 }
 interface State {
@@ -25,6 +26,7 @@ interface State {
     anchorEl?: HTMLElement;
     selectedValue: string;
     popoverWidth: string;
+    isEmpty: boolean;
 }
 declare class ComboBox extends React.PureComponent<Props, State> {
     private getUniqueID;
@@ -33,7 +35,7 @@ declare class ComboBox extends React.PureComponent<Props, State> {
     constructor(props: Props);
     componentDidMount(): void;
     componentWillUnmount(): void;
-    componentDidUpdate(): void;
+    componentWillReceiveProps(nextProps: any): void;
     handleClickOutside: (event: any) => void;
     setWrapperRef: (node: any) => void;
     addRenderer: (items: any, cloneItems: any) => any;
