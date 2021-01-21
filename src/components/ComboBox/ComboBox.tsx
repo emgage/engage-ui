@@ -27,6 +27,7 @@ export interface Props {
   suffix?: any;
   loading?:boolean;
   onSelect?(item: any): void;
+  onChangeText?(value: string): void;
   theme?: any;
 }
 
@@ -149,6 +150,10 @@ class ComboBox extends React.PureComponent<Props, State> {
       selectedValue: value,
       items: newItems,
     });
+    
+    if (this.props.onChangeText) {
+      this.props.onChangeText(value);
+    }
   }
 
   onArrowClick = (event: React.FormEvent<HTMLElement>) => {

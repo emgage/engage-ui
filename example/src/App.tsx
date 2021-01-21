@@ -3223,6 +3223,7 @@ class App extends React.Component<{}, State> {
             currentValue="item1"
             suffix="user"
             loading={false}
+            onChangeText={(value) => console.log(value)}
           />
         </div>
         <div>Multiple checkbox Facets</div>
