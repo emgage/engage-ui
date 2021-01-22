@@ -5,6 +5,7 @@ export const BADGE = 'PBadge';
 export const BANNER = 'PBanner';
 export const BUTTON = 'PButton';
 export const BUTTON_GROUP = 'PButtonGroup';
+export const BODY_TEXT = 'PBodyText';
 export const TOGGLEBUTTON_GROUP = 'PToggleButtonGroup';
 export const CARD = 'PCard';
 export const CHECKBOX = 'PCheckbox';
