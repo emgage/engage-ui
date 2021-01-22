@@ -19,6 +19,10 @@
     font-weight: font-weight(bold);
     padding: 10px 12px;
     position: relative;
+    margin:0px;
+    display: flex;
+    justify-content: left;
+    color: #212121;
     &:after {
       content: '\f107';
       font-family: FontAwesome;
@@ -30,7 +34,8 @@
       transition: all .2s ease-in-out;
       transform: translateY(-50%) rotate(0deg);
     }
-      .active {
+      &.active {
+        color: #007ace;
         &:after {
           transform: translateY(-50%) rotate(180deg);
         }
@@ -47,6 +52,7 @@
     height: 0;
     opacity: 0;
     transition: all 0.2s;
+    display: none;
   }
 }
 

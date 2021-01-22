@@ -5,6 +5,7 @@ import { classNames } from '@shopify/react-utilities/styles';
 
 import { ACCORDION } from '../ThemeIdentifiers';
 import * as baseTheme from './Accordion.scss';
+import Button from '../Button';
 
 export interface Props {
   // Define accordion item is active or not
@@ -51,10 +52,10 @@ class AccordionItem extends React.PureComponent<Props, never> {
     );
 
     return (
-      <div className={containerClass} style={ active ? { overflow: 'visible', height: 'auto' } : { overflow: 'hidden', height: 38 } }>
-        <div className={headerClass} style={style} onClick={this.clickHandler}>
+      <div className={containerClass}>
+        <Button componentClass={headerClass} componentStyle={style} onClick={this.clickHandler} plain>
           {header}
-        </div>
+        </Button>
 
         <div className={active ? theme.body : theme.bodyCollapsed} onClick={this.handleClick}>
           {children}

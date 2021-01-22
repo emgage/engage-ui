@@ -506,15 +506,15 @@ class App extends React.Component<{}, State> {
     const Accordionitems: AccordionItemProps[] = [
       {
         children: <Banner componentTitle={'banner'} status={'success'} />,
-        header: <Button>sk</Button>,
+        header: <DisplayText componentSize="small">Sk</DisplayText>,
       },
       {
         children: <Banner componentTitle={'banner11'} status={'warning'} />,
-        header: <Button>sk1</Button>,
+        header: <DisplayText componentSize="small">Sk1</DisplayText>,
       },
       {
         children: <Banner componentTitle={'banner13'} status={'warning'} />,
-        header: <Button>sk3</Button>,
+        header: <DisplayText componentSize="small">Sk2</DisplayText>,
       },
     ];
 
@@ -1122,6 +1122,7 @@ class App extends React.Component<{}, State> {
             <Button icon="infoCircle" componentSize="slim"/>,
           ]}
         />
+
         <SwitchCheckbox isOpen={this.state.isOpen} handleToggle={this.handleSwitchCheckboxToggle}>
           SwitchCheckbox
         </SwitchCheckbox>
