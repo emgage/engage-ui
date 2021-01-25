@@ -35,6 +35,11 @@ export {
 } from './ButtonGroup';
 
 export {
+  default as BodyText,
+  Props as BodyTextProps,
+} from './BodyText';
+
+export {
   default as ToggleButtonGroup,
   Props as ToggleButtonGroupProps,
 } from './ToggleButtonGroup';
