@@ -25,6 +25,7 @@ export interface AccordianItem {
 
 export interface Props {
   item: ComboItemProps;
+  serverSort?: any;
   clickHandler?(value: string | null | boolean, key?: string): void;
   theme?: any;
 }
@@ -32,6 +33,7 @@ export interface Props {
 class ComboBoxItem extends React.PureComponent<Props, never> {
   render() {
     const {
+      serverSort,
       item,
       theme,
     } = this.props;
@@ -80,13 +82,14 @@ class ComboBoxItem extends React.PureComponent<Props, never> {
         );
       case 'Tabuler':
           return (
-            <div key={new Date().getUTCMilliseconds()} data-isparent={true}>
+            <div key={new Date().getUTCMilliseconds()} data-isparent={true} data-key={key ? key : false} className={theme.itemContainer}>
               <Table
                 sorting="all"
                 data={value}
                 column={columnConfig}
                 onRowClick={this.handleRowClick}
                 rowCallbackValue="id"
+                serverSort={serverSort}
               />
             </div>
           );  

@@ -19,15 +19,21 @@ export interface ComboBoxItemProps {
   renderer?(value: any, type?: string): React.ReactElement<any>;
 }
 
+export interface ServerSort {
+  field: string;
+  order: string;
+  callback?(field: string, order: string, sortBy: string): void;
+}
 export interface Props {
   currentValue?: string;
   items: ComboBoxItemProps[];
   label: string;
   style?:any;
   suffix?: any;
-  loading?:boolean;
+  loading?: boolean;
   onSelect?(item: any): void;
   onChangeText?(value: string): void;
+  sortEntity?(field: string, order: string, sortBy: string): void;
   theme?: any;
 }
 
@@ -39,6 +45,7 @@ interface State {
   selectedValue: string;
   popoverWidth: string;
   isEmpty: boolean;
+  serverSort: ServerSort;
 }
 
 class ComboBox extends React.PureComponent<Props, State> {
@@ -57,10 +64,21 @@ class ComboBox extends React.PureComponent<Props, State> {
       initialItems: this.addRenderer(items, JSON.parse(JSON.stringify(items))),
       popoverWidth: '',
       selectedValue: '' || currentValue,
-      isEmpty: false
+      isEmpty: false,
+      serverSort: {
+        field: '',
+        order: '',
+        callback: this.sortEntity
+      },
     };
   }
 
+  sortEntity = (field: string, order: string, sortBy: string) => {
+    if (this.props.sortEntity) {
+      this.props.sortEntity(field, order, sortBy);
+    }
+  };
+  
   componentDidMount() {
     const { items } = this.props;
     const { type = "" } = items[0];
@@ -191,7 +209,8 @@ class ComboBox extends React.PureComponent<Props, State> {
       items,
       open,
       popoverWidth,
-      isEmpty
+      isEmpty,
+      serverSort
     } = this.state;
 
     const itemsComponent = items.map((item, index) =>
@@ -200,6 +219,7 @@ class ComboBox extends React.PureComponent<Props, State> {
           item={item}
           clickHandler={this.handleClick}
           theme={theme}
+          serverSort={serverSort}
         />
       );
 
