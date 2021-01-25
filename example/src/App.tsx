@@ -3223,6 +3223,20 @@ class App extends React.Component<{}, State> {
             currentValue="item1"
             suffix="user"
             loading={false}
+            onSelect={(value) => console.log(value)}
+            onChangeText={(value) => console.log(value)}
+          />
+        </div>
+        <br />
+        <div>ComboBox Table</div>
+        <div style={{ width: '50%' }}>
+          <ComboBox
+            items={this.getComboBoxTableItems()}
+            label="Select"
+            currentValue="item1"
+            suffix="user"
+            loading={false}
+            onSelect={(value) => console.log(value)}
             onChangeText={(value) => console.log(value)}
           />
         </div>
@@ -3277,6 +3291,214 @@ class App extends React.Component<{}, State> {
     const data = [
       {
         key: 'name',
+        renderer: this.renderItems,
+        value: [
+          {
+            description:
+              'This field stores simple text. It cannot be rich text or HTML. Limited to 50 characters',
+            name: 'Short Text',
+            id: 1048586,
+            uri: 'ShortText',
+          },
+          {
+            description:
+              'This field stores simple text. It cannot be rich text or HTML. Limited to 512 characters',
+            name: 'Simple Text',
+            id: 2097162,
+            uri: 'SimpleText',
+          },
+          {
+            description:
+              'This field stores rich text. It may contain simple… contents. Limited to 1,024 characters in length.',
+            name: 'Rich Text',
+            id: 3145738,
+            uri: 'RichText',
+          },
+          {
+            description:
+              'This field stores rich text. It may contain simple…ng this field could adversely impact performance!',
+            name: 'Rich Text (Long)',
+            id: 4194314,
+            uri: 'RichTextLong',
+          },
+          {
+            description: 'This is "True" or "False".',
+            name: 'True or False',
+            id: 5242890,
+            uri: 'TrueFalse',
+          },
+          {
+            description:
+              'This field stores a URL or URI. It is either pure …ontain URL label. It contains a Label and URL/URI',
+            name: 'Link or URI',
+            id: 6291466,
+            uri: 'Link',
+          },
+          {
+            description: 'This field stores a valid email address.',
+            name: 'Email Address',
+            id: 7340042,
+            uri: 'Email',
+          },
+          {
+            description: 'This field stores a valid phone number.',
+            name: 'Phone Number',
+            id: 8388618,
+            uri: 'Phone',
+          },
+          {
+            description:
+              'This field stores whole numbers. lower limit -9,22…854,775,808 upper limit 9,223,372,036,854,775,807',
+            name: 'Whole Number',
+            id: 9437194,
+            uri: 'Number',
+          },
+          {
+            description:
+              'This field represents a decimal value that can acc…te 19.5 places, such as nnnnnnnnnnnnnnnnnnn.ddddd',
+            name: 'Number with decimal',
+            id: 10485770,
+            uri: 'Decimal',
+          },
+          {
+            description:
+              'This field represents currency. Both value and Cur…,477.5808 upper limit is 922,337,203,685,477.5807',
+            name: 'Money',
+            id: 11534346,
+            uri: 'Money',
+          },
+          {
+            description:
+              'This is a date and time field. Value is stored a U…:00:00.000 upper limit is 9999-12-31,23:59:59:999',
+            name: 'Date and Time',
+            id: 12582922,
+            uri: 'DateTime',
+          },
+          {
+            description:
+              'This is a date field. Value is stored a Universal …mit is 0001-01-01 upper limit is 9999-12-31,23:59',
+            name: 'Date',
+            id: 13631498,
+            uri: 'Date',
+          },
+          {
+            description:
+              'This is a time field. Value is stored a Universal …limit is 00:00:00.001 upper limit is 23:59:59.999',
+            name: 'Time',
+            id: 14680074,
+            uri: 'Time',
+          },
+          {
+            description:
+              'This field represents duration. The smallest incri…ticks upper limit 9,223,372,036,854,775,807 ticks',
+            name: 'Duration',
+            id: 15728650,
+            uri: 'Duration',
+          },
+          {
+            description:
+              'Represents a duration of time between two date/tim…Date and Time End Date and Time',
+            name: 'Date Time Span',
+            id: 16777226,
+            uri: 'DateTimeSpan',
+          },
+          {
+            description:
+              'Gemotry and Geography data representing a single 0…may contain Z (elevation) and M (measure) values.',
+            name: 'Geo Point',
+            id: 17825802,
+            uri: 'GeoPoint',
+          },
+          {
+            description:
+              'Gemotry and Geography data representing a zero or …may contain Z (elevation) and M (measure) values.',
+            name: 'Geo Points',
+            id: 18874378,
+            uri: 'GeoPoints',
+          },
+          {
+            description:
+              'Geomtry and Geography data representing a single o… of points and the line segments connecting them.',
+            name: 'Geo Line',
+            id: 19922954,
+            uri: 'GeoLineString',
+          },
+          {
+            description:
+              'Geomtry and Geography data representing a zero or … of points and the line segments connecting them.',
+            name: 'Geo Lines',
+            id: 20971530,
+            uri: 'GeoLineStrings',
+          },
+          {
+            description:
+              'Geomtry and Geography data representing a single t…or bounding ring and zero or more interior rings.',
+            name: 'Geo Polygon',
+            id: 22020106,
+            uri: 'GeoPolygon',
+          },
+          {
+            description:
+              'Geomtry and Geography data representing a zero or …or bounding ring and zero or more interior rings.',
+            name: 'Geo Polygons',
+            id: 23068682,
+            uri: 'GeoPolygons',
+          },
+          {
+            description:
+              'Represents a country or entity as specified by ISO 3166 standards.',
+            name: 'Country',
+            id: 24117258,
+            uri: 'Country',
+          },
+          {
+            description:
+              'Represents states, provinces, territories, emirate…r countries as specified by ISO 3166-2 standards.',
+            name: 'Country Subdivision',
+            id: 25165834,
+            uri: 'CountrySub',
+          },
+          {
+            description:
+              'Name for a person. Contains First Name, Middle Name and Last Name.',
+            name: 'Person Name',
+            id: 26214410,
+            uri: 'PersonName',
+          },
+          {
+            description: 'Physical address, such as mailing or postal address.',
+            name: 'Physical Address',
+            id: 27262986,
+            uri: 'PhysicalAddress',
+          },
+        ],
+      },
+    ];
+
+    return data;
+  }
+
+  getComboBoxTableItems() {
+    const columnConfig: TableColumnConfig[] = [
+      {
+        label: 'Name',
+        key: 'name',
+        sort: true,
+        sortBy: 'name'
+      },
+      {
+        label: 'Description',
+        key: 'description',
+        sort: true,
+        sortBy: 'description',
+      },
+    ];
+
+    const data = [
+      {
+        key: 'name',
+        type: 'Tabuler',
+        column: columnConfig,
         renderer: this.renderItems,
         value: [
           {

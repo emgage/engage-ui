@@ -10,12 +10,12 @@ import arrowSvg from './icons/arrow.svg';
 import * as baseTheme from './ComboBox.scss';
 
 export type Mode = 'collapsible' | 'multiple';
-export type ItemType = 'Accordian';
-
+export type ItemType = 'Accordian' | 'Tabuler';
 export interface ComboBoxItemProps {
-  type?: ItemType;
+  type?: any;
   key?: string;
   value: any;
+  column?: any;
   renderer?(value: any, type?: string): React.ReactElement<any>;
 }
 
@@ -62,11 +62,19 @@ class ComboBox extends React.PureComponent<Props, State> {
   }
 
   componentDidMount() {
-    document.addEventListener('click', this.handleClickOutside);
+    const { items } = this.props;
+    const { type = "" } = items[0];
+    if (type !== "Tabuler") {
+      document.addEventListener('click', this.handleClickOutside);
+    }
   }
 
   componentWillUnmount() {
-    document.removeEventListener('click', this.handleClickOutside);
+    const { items } = this.props;
+    const { type = "" } = items[0];
+    if (type !== "Tabuler") { 
+      document.removeEventListener('click', this.handleClickOutside);
+    }
   }
 
   componentWillReceiveProps(nextProps: any) {
@@ -93,7 +101,7 @@ class ComboBox extends React.PureComponent<Props, State> {
     }
   }
 
-  addRenderer = (items: any , cloneItems: any) => {
+  addRenderer = (items: any, cloneItems: any) => {
     items.forEach((item: any, index: number) => {
       if (item.renderer) {
         cloneItems[index]['renderer'] = item.renderer;
@@ -165,11 +173,9 @@ class ComboBox extends React.PureComponent<Props, State> {
 
   handleClick = (value: string | any, key: any) => {
     const selectedValue = typeof value === 'string' ? JSON.parse(value) : value;
-
     if (this.props.onSelect) {
       this.props.onSelect(selectedValue);
     }
-
     this.setState({ selectedValue: typeof(selectedValue) === 'object' ? selectedValue[key] : selectedValue, open: false });
   }
 
@@ -198,6 +204,7 @@ class ComboBox extends React.PureComponent<Props, State> {
       );
 
     return (
+      <>
       <div key={this.id} className={theme.comboboxContainer} onClick={this.onArrowClick} ref={node => this.setWrapperRef(node)} >
         <TextField
           type="text"
@@ -213,6 +220,7 @@ class ComboBox extends React.PureComponent<Props, State> {
         {!suffix && <div className={theme.comboboxArrow}>
           <Icon source={arrowSvg} theme={theme} />
         </div>}
+      </div>
 
         {open && !isEmpty && <Popover
           addArrow={false}
@@ -224,7 +232,7 @@ class ComboBox extends React.PureComponent<Props, State> {
         >
             {itemsComponent}
         </Popover>}
-      </div>
+      </>
     );
   }
 }

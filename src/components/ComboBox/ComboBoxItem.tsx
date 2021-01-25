@@ -8,11 +8,13 @@ import { COMBOBOX } from '../ThemeIdentifiers';
 
 import * as baseTheme from './ComboBox.scss';
 import Icon from '../Icon';
+import { Table } from '..//Table';
 
 export interface ComboItemProps {
   type?: ItemType;
   key?: string;
   value: any;
+  column?: any;
   renderer?(value: any, type?: string): React.ReactElement<any>;
 }
 
@@ -34,7 +36,7 @@ class ComboBoxItem extends React.PureComponent<Props, never> {
       theme,
     } = this.props;
 
-    const { key, type, value, renderer } = item;
+    const { key, type, value, renderer, column: columnConfig } = item;
 
     switch (type) {
       case 'Accordian' :
@@ -76,11 +78,26 @@ class ComboBoxItem extends React.PureComponent<Props, never> {
             <Accordion items={accordianItems} theme={theme} />
           </div>
         );
+      case 'Tabuler':
+          return (
+            <div key={new Date().getUTCMilliseconds()} data-isparent={true}>
+              <Table
+                sorting="all"
+                data={value}
+                column={columnConfig}
+                onRowClick={this.handleRowClick}
+                rowCallbackValue="id"
+              />
+            </div>
+          );  
       default:
         return (
-          <div key={new Date().getUTCMilliseconds()} data-key={key ? key : false} onClick={this.handleClick} className={theme.itemContainer}>
-            {this.getItem(value, key, renderer)}
+          <div>
+            <div key={new Date().getUTCMilliseconds()} data-key={key ? key : false} onClick={this.handleClick} className={theme.itemContainer}>
+              {this.getItem(value, key, renderer)}
+            </div>
           </div>
+            
         );
     }
   }
@@ -118,7 +135,20 @@ class ComboBoxItem extends React.PureComponent<Props, never> {
       const hasKey = this.getDataKey(target, event);
       const valueToPass = hasKey ?  JSON.parse(dataValue) : dataValue;
 
+      console.log(valueToPass, hasKey);
+      
       this.props.clickHandler(valueToPass, hasKey as string);
+    }
+  }
+
+  private handleRowClick = (data: any) => {
+    const dataId: number = data;
+    const { item : { value, key }} = this.props;
+    const findIndex = value.findIndex((i: any) => i.id === dataId);
+
+    if (findIndex !== -1 && this.props.clickHandler) {
+      console.log(findIndex);
+      this.props.clickHandler(value[findIndex], key as string);
     }
   }
 
