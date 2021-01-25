@@ -11,7 +11,7 @@
     color: color(text, mid);
 }
 @mixin color-reverse() {
-    color: color(text, reverse);
+    color: color(white, base);
 }
 @mixin color-danger() {
     color: color(text, danger);

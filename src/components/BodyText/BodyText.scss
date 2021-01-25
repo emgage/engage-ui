@@ -30,9 +30,9 @@
 .colorMid {
   @include color-mid;
 }
-// .colorReverse {
-//   @include color-reverse;
-// }
+.colorReverse {
+  @include color-reverse;
+}
 .colorDanger {
   @include color-danger;
 }
