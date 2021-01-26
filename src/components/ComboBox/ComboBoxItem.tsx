@@ -8,7 +8,7 @@ import { COMBOBOX } from '../ThemeIdentifiers';
 
 import * as baseTheme from './ComboBox.scss';
 import Icon from '../Icon';
-import { Table } from '..//Table';
+import { Table } from '../Table';
 
 export interface ComboItemProps {
   type?: ItemType;
@@ -82,7 +82,7 @@ class ComboBoxItem extends React.PureComponent<Props, never> {
         );
       case 'Tabuler':
           return (
-            <div key={new Date().getUTCMilliseconds()} data-isparent={true} data-key={key ? key : false} className={theme.itemContainer}>
+            <div data-isparent={true} data-key={key ? key : false} className={theme.itemContainer}>
               <Table
                 sorting="all"
                 data={value}

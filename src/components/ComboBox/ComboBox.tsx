@@ -74,6 +74,15 @@ class ComboBox extends React.PureComponent<Props, State> {
   }
 
   sortEntity = (field: string, order: string, sortBy: string) => {
+    
+    this.setState({
+      serverSort: {
+        ...this.state.serverSort,
+        field,
+        order,
+      }
+    });
+
     if (this.props.sortEntity) {
       this.props.sortEntity(field, order, sortBy);
     }
