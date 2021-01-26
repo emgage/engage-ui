@@ -201,7 +201,6 @@ export const BUNDLED_ICONS = {
   delete: deleteIcon,
   export: exportIcon,
   import: importIcon,
-  minusIcon: minusMinor,
 };
 
 const COLORS_WITH_BACKDROPS = ['teal', 'tealDark', 'greenDark', 'redDark', 'yellowDark', 'ink'];
