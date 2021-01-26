@@ -1,0 +1,21 @@
+@mixin color-text() {
+    color: color(text, text);
+}
+@mixin color-darkest() {
+    color: color(text, darkest);
+}
+@mixin color-darker() {
+    color: color(text, darker);
+}
+@mixin color-mid() {
+    color: color(text, mid);
+}
+@mixin color-reverse() {
+    color: color(white, base);
+}
+@mixin color-danger() {
+    color: color(text, danger);
+}
+@mixin color-link() {
+    color: color(text, link );
+}
