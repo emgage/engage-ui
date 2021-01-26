@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 import { SVGSource } from '@shopify/images';
-import {minusMinor} from "../../../../src/icons";
 export declare type Color = ('white' | 'black' | 'skyLighter' | 'skyLight' | 'sky' | 'skyDark' | 'inkLightest' | 'inkLighter' | 'inkLight' | 'ink' | 'blueLighter' | 'blueLight' | 'blue' | 'blueDark' | 'blueDarker' | 'indigoLighter' | 'indigoLight' | 'indigo' | 'indigoDark' | 'indigoDarker' | 'tealLighter' | 'tealLight' | 'teal' | 'tealDark' | 'tealDarker' | 'greenLighter' | 'green' | 'greenDark' | 'yellowLighter' | 'yellow' | 'yellowDark' | 'orange' | 'redLighter' | 'red' | 'redDark' | 'purple');
 export declare const BUNDLED_ICONS: {
     add: any;
