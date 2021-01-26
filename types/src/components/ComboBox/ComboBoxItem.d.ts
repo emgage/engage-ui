@@ -5,6 +5,7 @@ export interface ComboItemProps {
     type?: ItemType;
     key?: string;
     value: any;
+    column?: any;
     renderer?(value: any, type?: string): React.ReactElement<any>;
 }
 export interface AccordianItem {
@@ -13,6 +14,7 @@ export interface AccordianItem {
 }
 export interface Props {
     item: ComboItemProps;
+    serverSort?: any;
     clickHandler?(value: string | null | boolean, key?: string): void;
     theme?: any;
 }

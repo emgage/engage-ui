@@ -10,24 +10,30 @@ import arrowSvg from './icons/arrow.svg';
 import * as baseTheme from './ComboBox.scss';
 
 export type Mode = 'collapsible' | 'multiple';
-export type ItemType = 'Accordian';
-
+export type ItemType = 'Accordian' | 'Tabuler';
 export interface ComboBoxItemProps {
-  type?: ItemType;
+  type?: any;
   key?: string;
   value: any;
+  column?: any;
   renderer?(value: any, type?: string): React.ReactElement<any>;
 }
 
+export interface ServerSort {
+  field: string;
+  order: string;
+  callback?(field: string, order: string, sortBy: string): void;
+}
 export interface Props {
   currentValue?: string;
   items: ComboBoxItemProps[];
   label: string;
   style?:any;
   suffix?: any;
-  loading?:boolean;
+  loading?: boolean;
   onSelect?(item: any): void;
   onChangeText?(value: string): void;
+  sortEntity?(field: string, order: string, sortBy: string): void;
   theme?: any;
 }
 
@@ -39,6 +45,7 @@ interface State {
   selectedValue: string;
   popoverWidth: string;
   isEmpty: boolean;
+  serverSort: ServerSort;
 }
 
 class ComboBox extends React.PureComponent<Props, State> {
@@ -57,16 +64,44 @@ class ComboBox extends React.PureComponent<Props, State> {
       initialItems: this.addRenderer(items, JSON.parse(JSON.stringify(items))),
       popoverWidth: '',
       selectedValue: '' || currentValue,
-      isEmpty: false
+      isEmpty: false,
+      serverSort: {
+        field: '',
+        order: '',
+        callback: this.sortEntity
+      },
     };
   }
 
+  sortEntity = (field: string, order: string, sortBy: string) => {
+    
+    this.setState({
+      serverSort: {
+        ...this.state.serverSort,
+        field,
+        order,
+      }
+    });
+
+    if (this.props.sortEntity) {
+      this.props.sortEntity(field, order, sortBy);
+    }
+  };
+  
   componentDidMount() {
-    document.addEventListener('click', this.handleClickOutside);
+    const { items } = this.props;
+    const { type = "" } = items[0];
+    if (type !== "Tabuler") {
+      document.addEventListener('click', this.handleClickOutside);
+    }
   }
 
   componentWillUnmount() {
-    document.removeEventListener('click', this.handleClickOutside);
+    const { items } = this.props;
+    const { type = "" } = items[0];
+    if (type !== "Tabuler") { 
+      document.removeEventListener('click', this.handleClickOutside);
+    }
   }
 
   componentWillReceiveProps(nextProps: any) {
@@ -93,7 +128,7 @@ class ComboBox extends React.PureComponent<Props, State> {
     }
   }
 
-  addRenderer = (items: any , cloneItems: any) => {
+  addRenderer = (items: any, cloneItems: any) => {
     items.forEach((item: any, index: number) => {
       if (item.renderer) {
         cloneItems[index]['renderer'] = item.renderer;
@@ -165,11 +200,9 @@ class ComboBox extends React.PureComponent<Props, State> {
 
   handleClick = (value: string | any, key: any) => {
     const selectedValue = typeof value === 'string' ? JSON.parse(value) : value;
-
     if (this.props.onSelect) {
       this.props.onSelect(selectedValue);
     }
-
     this.setState({ selectedValue: typeof(selectedValue) === 'object' ? selectedValue[key] : selectedValue, open: false });
   }
 
@@ -185,7 +218,8 @@ class ComboBox extends React.PureComponent<Props, State> {
       items,
       open,
       popoverWidth,
-      isEmpty
+      isEmpty,
+      serverSort
     } = this.state;
 
     const itemsComponent = items.map((item, index) =>
@@ -194,10 +228,12 @@ class ComboBox extends React.PureComponent<Props, State> {
           item={item}
           clickHandler={this.handleClick}
           theme={theme}
+          serverSort={serverSort}
         />
       );
 
     return (
+      <>
       <div key={this.id} className={theme.comboboxContainer} onClick={this.onArrowClick} ref={node => this.setWrapperRef(node)} >
         <TextField
           type="text"
@@ -213,6 +249,7 @@ class ComboBox extends React.PureComponent<Props, State> {
         {!suffix && <div className={theme.comboboxArrow}>
           <Icon source={arrowSvg} theme={theme} />
         </div>}
+      </div>
 
         {open && !isEmpty && <Popover
           addArrow={false}
@@ -224,7 +261,7 @@ class ComboBox extends React.PureComponent<Props, State> {
         >
             {itemsComponent}
         </Popover>}
-      </div>
+      </>
     );
   }
 }

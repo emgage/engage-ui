@@ -1,12 +1,18 @@
 import * as React from 'react';
 import { ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 export declare type Mode = 'collapsible' | 'multiple';
-export declare type ItemType = 'Accordian';
+export declare type ItemType = 'Accordian' | 'Tabuler';
 export interface ComboBoxItemProps {
-    type?: ItemType;
+    type?: any;
     key?: string;
     value: any;
+    column?: any;
     renderer?(value: any, type?: string): React.ReactElement<any>;
+}
+export interface ServerSort {
+    field: string;
+    order: string;
+    callback?(field: string, order: string, sortBy: string): void;
 }
 export interface Props {
     currentValue?: string;
@@ -17,6 +23,7 @@ export interface Props {
     loading?: boolean;
     onSelect?(item: any): void;
     onChangeText?(value: string): void;
+    sortEntity?(field: string, order: string, sortBy: string): void;
     theme?: any;
 }
 interface State {
@@ -27,12 +34,14 @@ interface State {
     selectedValue: string;
     popoverWidth: string;
     isEmpty: boolean;
+    serverSort: ServerSort;
 }
 declare class ComboBox extends React.PureComponent<Props, State> {
     private getUniqueID;
     private id;
     private wrapperRef;
     constructor(props: Props);
+    sortEntity: (field: string, order: string, sortBy: string) => void;
     componentDidMount(): void;
     componentWillUnmount(): void;
     componentWillReceiveProps(nextProps: any): void;
