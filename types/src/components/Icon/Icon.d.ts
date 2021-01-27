@@ -62,6 +62,7 @@ export declare const BUNDLED_ICONS: {
     list: any;
     listAlt: any;
     lock: any;
+    minusMinor: any;
     notes: any;
     paintBrush: any;
     plus: any;
