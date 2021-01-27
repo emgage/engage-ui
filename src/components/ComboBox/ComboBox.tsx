@@ -90,17 +90,21 @@ class ComboBox extends React.PureComponent<Props, State> {
   
   componentDidMount() {
     const { items } = this.props;
-    const { type = "" } = items[0];
-    if (type !== "Tabuler") {
-      document.addEventListener('click', this.handleClickOutside);
+    if (items && items[0]) {
+      const { type = "" } = items && items[0];
+      if (type !== "Tabuler") {
+        document.addEventListener('click', this.handleClickOutside);
+      }
     }
   }
 
   componentWillUnmount() {
     const { items } = this.props;
-    const { type = "" } = items[0];
-    if (type !== "Tabuler") { 
-      document.removeEventListener('click', this.handleClickOutside);
+    if (items && items[0]) {
+      const { type = "" } = items && items[0];
+      if (type !== "Tabuler") {
+        document.removeEventListener('click', this.handleClickOutside);
+      }
     }
   }
 
