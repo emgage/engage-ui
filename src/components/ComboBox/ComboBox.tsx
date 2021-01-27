@@ -103,7 +103,7 @@ class ComboBox extends React.PureComponent<Props, State> {
     if (items && items[0]) {
       const { type = "" } = items && items[0];
       if (type !== "Tabuler") {
-        document.addEventListener('click', this.handleClickOutside);
+        document.removeEventListener('click', this.handleClickOutside);
       }
     }
   }
