@@ -94,6 +94,7 @@ class DateTimePicker extends React.PureComponent<Props, State>{
                 onFocus={() => { this.setState({ open: true }); }}
                 onChange={(dateTimeString: string) => { this.onTextInputChange(dateTimeString); }}
                 suffix={<Icon source="event" />}
+                onBlur={() => { this.setState({ open: false }); }}
             />
             <DateTime
                 value={dateTime}
