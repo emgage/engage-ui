@@ -42,6 +42,7 @@ import {
   Panel,
   Popover,
   Picker,
+  PopoverPicker,
   Dropdown,
   DateTimePicker,
   Select,
@@ -817,6 +818,24 @@ class App extends React.Component<{}, State> {
           'HirenHirenHirenHirenHirenHirenHirenHirenHirenHirenHirenHirenHirenHirenHirenHirenHirenHirenHirenHiren ',
         description: 'Hiren descHiren descHiren descHiren desc',
         email: 'hiren@test.com',
+      },
+    ];
+
+    const pickerdata1 = [{ "id": 1532945, "name": "Bright", "text": "Bright", "key": 1532945, "description": "" }, { "id": 1532948, "name": "Blue", "text": "Blue", "key": 1532948, "description": "" }, { "id": 1531924, "name": "Green", "text": "Green", "key": 1531924, "description": "" }, { "id": 1528852, "name": "Red", "text": "Red", "key": 1528852, "description": "" }, { "id": 1529876, "name": "White", "text": "White", "key": 1529876, "description": "" }, { "id": 1527828, "name": "Yellow", "text": "Yellow", "key": 1527828, "description": "" }]
+    const selectedPickerdata = [{ "id": 1534996, "name": "Black", "text": "Black", "key": 1534996, "description": "" }];
+    
+    const columnConfigPicker: TableColumnConfig[] = [
+      {
+        label: 'Name',
+        key: 'name',
+        sort: true,
+        sortBy: 'name'
+      },
+      {
+        label: 'Description',
+        key: 'description',
+        sort: true,
+        sortBy: 'description',
       },
     ];
 
@@ -2859,6 +2878,65 @@ class App extends React.Component<{}, State> {
             }
             horizontal
           />
+
+      <div>ComboBox Table</div>
+        <div style={{ width: '50%' }}>
+          <ComboBox
+            items={this.getComboBoxTableItems()}
+            label="Select"
+            currentValue="item1"
+            suffix="user"
+            loading={false}
+            onSelect={(value: any) => console.log(value)}
+            onChangeText={(value: any) => console.log(value)}
+            sortEntity={(field, order, sortBy)=> this.handleSortComboBox(field, order, sortBy)}
+          />
+        </div>
+     
+        <div>Popover Picker</div>
+          <PopoverPicker
+            label="Popover Picker Component "
+            chipComponent={Chip}
+            filterPlaceHolder="placeholder"
+            helpText="Helper Text"
+            searchResultComponent={Chip}
+            source={pickerdata1}
+            defaultSelectedItems={selectedPickerdata}
+            listType={{key: "name", type: 'Tabuler', columnConfig: columnConfigPicker}}
+            maxSelectedItems={5}
+            minSelectedItems={2}
+            autoSuggest
+            onSelect={(value) => console.log(value)}
+            onRemove={(value) => console.log(value)}
+            onChangeText={(value: any) => console.log(value)}
+            sortEntity={(field: string, order: string, sortBy: string) => console.log(field, order, sortBy)}
+          />
+
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+
+        <div>Popover Picker Normal</div>
+          <PopoverPicker
+            label="Popover Picker Component "
+            chipComponent={Chip}
+            filterPlaceHolder="placeholder"
+            helpText="Helper Text"
+            searchResultComponent={Chip}
+            source={pickerdata1}
+            defaultSelectedItems={selectedPickerdata}
+            maxSelectedItems={5}
+            minSelectedItems={2}
+            autoSuggest
+            onSelect={(value) => console.log(value)}
+            onRemove={(value) => console.log(value)}
+          />
+
+        <br/>
+        <br/>
+        <br/>
+          
           <Picker
             label="Picker Component"
             chipComponent={Chip}

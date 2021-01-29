@@ -13,6 +13,7 @@ export interface Props {
     items: AccordionItemProps[];
     mode?: Mode;
     openIndex?: number;
+    defaultOpenIndexs?: number[] | 'all';
     theme?: any;
 }
 interface State {

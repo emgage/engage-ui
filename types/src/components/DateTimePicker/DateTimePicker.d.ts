@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 import './ReactDatetime.css';
+import * as moment from 'moment';
 export interface Props {
     dateFormat?: boolean | string;
     defaultDateTime?: string;
@@ -20,6 +21,9 @@ declare class DateTimePicker extends React.PureComponent<Props, State> {
     private timeFormat;
     private dateTimeString;
     constructor(props: Props);
+    static getDerivedStateFromProps(props: Props, state: State): {
+        dateTime: moment.Moment;
+    } | null;
     setDateTime: (dateTime: any) => void;
     onTextInputChange: (dateTimeString: string) => void;
     render(): JSX.Element;

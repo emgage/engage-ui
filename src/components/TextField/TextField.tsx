@@ -8,6 +8,7 @@ import Labelled, { Action, helpTextID, errorID, labelID } from '../Labelled';
 import Spinner from '../Spinner';
 import Connected from '../Connected';
 import AutoSuggestText, { IStateProps } from '../Picker/AutoSuggestText';
+// import AutoSuggestText, { IStateProps } from '../PopoverPicker/AutoSuggestText';
 import { IAutoSuggestMethods } from '../Picker/Picker';
 import { TEXT_FIELD } from '../ThemeIdentifiers';
 
@@ -289,6 +290,7 @@ class TextField extends React.PureComponent<Props, State> {
       <AutoSuggestText
         autoSuggestMethods={autoSuggestMethods}
         stateProps={this.props.stateProps}
+        disabled={this.props.disabled}
       />
       : input;
 

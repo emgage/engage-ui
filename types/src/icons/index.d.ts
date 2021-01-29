@@ -59,6 +59,7 @@ export { default as infoCircle } from './info-circle.svg';
 export { default as lightbulb } from './lightbulb.svg';
 export { default as list } from './list.svg';
 export { default as listAlt } from './list-alt.svg';
+export { default as listingPage } from './listing-page.svg';
 export { default as lock } from './lock.svg';
 export { default as minusMinor } from './minusMinor.svg';
 export { default as notes } from './notes.svg';
