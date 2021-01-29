@@ -290,7 +290,6 @@ class TextField extends React.PureComponent<Props, State> {
       <AutoSuggestText
         autoSuggestMethods={autoSuggestMethods}
         stateProps={this.props.stateProps}
-        disabled={this.props.disabled}
       />
       : input;
 

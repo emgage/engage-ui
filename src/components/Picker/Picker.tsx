@@ -24,6 +24,7 @@ export interface IStateProps {
   suggestions: Autosuggest[];
   inputProps: Autosuggest.InputProps;
   value?: string;
+  listType?: any;
 }
 
 export interface IItemList {
@@ -51,12 +52,14 @@ export interface IAutoSuggestMethods {
   onFocus(event: React.FormEvent<any>): void;
   onKeyDown(e: React.FormEvent<Element> | KeyboardEvent): void;
   onSuggestionsFetchRequested({ value }: Autosuggest.SuggestionsFetchRequest): void;
-  onSuggestionSelected(event: React.FormEvent<Element>, { suggestion }: Autosuggest.SuggestionSelectedEventData<Autosuggest>): void;
+  onSuggestionSelected(event: any, { suggestion }: Autosuggest.SuggestionSelectedEventData<Autosuggest>): void;
   chipRemove(item: IItemList | number): void;
   renderSuggestion(suggestion: IItemList, { isHighlighted, query }: IRenderSuggestionProp): JSX.Element;
   storeInputReference(autosuggest: Autosuggest): void;
   updateList(input: HTMLElement): void;
   storeFocus(e: HTMLElement): void;
+  onChangeText?(valaue: string): void;
+  sortEntity?(field: string, order: string, sortBy: string): void;
 }
 
 export type Type = 'hide' | 'mark';
@@ -111,6 +114,9 @@ export interface Props {
   defaultSelectedItems?: IItemList[];
   // Unique ID
   componentId?: string;
+  listType?: any;
+  onChangeText?(valaue: string): void;
+  sortEntity?(field: string, order: string, sortBy: string): void;
 }
 
 class Picker extends React.PureComponent<Props, State> {
@@ -218,10 +224,11 @@ class Picker extends React.PureComponent<Props, State> {
         });
       },
 
-      onSuggestionSelected: (event: React.FormEvent<Element>, { suggestion }: Autosuggest.SuggestionSelectedEventData<any>) => {
-        suggestion.text = suggestion.name;
-        autoSuggestMethods.updateList(suggestion);
-        const chipListState = this.state.chipListState.concat(suggestion);
+      onSuggestionSelected: (event: any, { suggestion = null }: Autosuggest.SuggestionSelectedEventData<any>) => {
+        let suggestionData = suggestion || event;
+        suggestionData.text = suggestionData.name;
+        autoSuggestMethods.updateList(suggestionData);
+        const chipListState = this.state.chipListState.concat(suggestionData);
         const item = Object.assign({}, chipListState[0], { tabIndex: 0 });
         chipListState[0] = item;
         this.setState({
@@ -231,7 +238,7 @@ class Picker extends React.PureComponent<Props, State> {
         });
 
         if (this.props.onSelect) {
-          this.props.onSelect(suggestion);
+          this.props.onSelect(suggestionData);
         }
       },
 
@@ -311,6 +318,7 @@ class Picker extends React.PureComponent<Props, State> {
         onMoreInfo = this.handleMoreInfo,
         componentId = '',
         theme,
+        listType = { }
     } = this.props;
     const { isFocused, hasValue, value, suggestions, chipListState, selectedItems } = this.state;
     const inputProps: Autosuggest.InputProps & { disabled: boolean } = {
@@ -321,7 +329,7 @@ class Picker extends React.PureComponent<Props, State> {
       onBlur: autoSuggestMethods.onBlur,
       disabled: disabled || (!!this.props.maxSelectedItems && this.props.maxSelectedItems <= chipListState.length),
     };
-    const stateProps: IStateProps = { value, suggestions, chipListState, inputProps };
+    const stateProps: IStateProps = { value, suggestions, chipListState, inputProps, listType };
 
     let className = '';
     if (selectedResultsBehavior === 'hide') {

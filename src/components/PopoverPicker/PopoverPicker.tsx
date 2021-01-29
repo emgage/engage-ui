@@ -1,12 +1,17 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
+import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
 import { POPOVERPICKER } from '../ThemeIdentifiers';
-import TextField from '../TextField';
-import Icon, { IconList } from '../Icon';
+// import TextField from '../TextField';
+// import Icon, { IconList } from '../Icon';
 import { DisplayMoreInfoPopover } from './PopoverPickerEnum';
 import * as Autosuggest from 'react-autosuggest';
 import * as baseTheme from './PopoverPicker.scss';
 import Card from '../Picker/Card';
+import Chip from '../Chip';
+import { classNames } from '@shopify/react-utilities/styles';
+import TabulerSuggest from './TabulerSuggest';
+import Icon, { IconList } from '../Icon';
 
 export interface IStateProps {
   chipListState: any[];
@@ -97,6 +102,8 @@ export interface Props {
 }
 
 class PopoverPicker extends React.PureComponent<Props, State> {
+  private getUniqueID = createUniqueIDFactory('PopoverPicker');
+  private id = this.getUniqueID();
   constructor(props: Props) {
     super(props);
     this.state = {
@@ -289,19 +296,19 @@ class PopoverPicker extends React.PureComponent<Props, State> {
       },
     };
 
-    const {
-        autoSuggest = false,
+      const {
+        // autoSuggest = false,
         helpText,
         label,
         labelHidden = false,
         loading = false,
         disabled = false,
         searchBehavior = this.handleChange,
-        componentId = '',
         theme,
         listType = { }
     } = this.props;
     const { isFocused, hasValue, value, suggestions, chipListState } = this.state;
+
     const inputProps: Autosuggest.InputProps & { disabled: boolean } = {
       value,
       onChange: autoSuggestMethods.onChange,
@@ -311,7 +318,7 @@ class PopoverPicker extends React.PureComponent<Props, State> {
       disabled: disabled || (!!this.props.maxSelectedItems && this.props.maxSelectedItems <= chipListState.length),
     };
 
-    const stateProps: IStateProps = { value, suggestions, chipListState, inputProps, listType };
+    const stateProps: IStateProps = { value, suggestions, chipListState, inputProps };
 
     let suffixIcon: React.ReactNode = null;
     if (this.props.suffix) {
@@ -319,26 +326,41 @@ class PopoverPicker extends React.PureComponent<Props, State> {
       suffixIcon = <Icon componentColor="inkLightest" source= {suffix as keyof typeof IconList} />;
     }
 
+    const classNameChip = classNames(
+      theme.containerWrapper,
+      stateProps ? stateProps.chipListState.length ? null : theme.empty : null
+    );
+
+    let tabularData = 
+      {
+        key: listType && listType.key || '' ,
+        type: listType && listType.type || '',
+        column: listType && listType.columnConfig || [],
+        value: suggestions || []
+      }
+    ; 
+
+    console.log(listType);
+
     return (
-      <div id={componentId}>
+      <div id={this.id}>
+        <div className={classNameChip}>
+          {stateProps ? stateProps.chipListState.map((input: any) => <Chip icon={input.icon} onIconClick={input.onIconClick} theme={theme} image={{ url: input.image }} removable={!disabled} onRemove={() => autoSuggestMethods ? autoSuggestMethods.chipRemove(input) : null} key={input.key}>{input.text}</Chip>) : null}
+        </div>
         <div>
-          <TextField
-            type="text"
-            autoSuggest={autoSuggest && !disabled}
-            autoSuggestMethods={autoSuggestMethods}
+          <TabulerSuggest
+            items={tabularData}
+            autoSuggestMethods={autoSuggestMethods}  
+            disabled={disabled}
             helpText={helpText}
-            itemSelected={!!chipListState.length}
             label={label ? label : ''}
             labelHidden={labelHidden}
             loading={loading}
-            value={this.state.people}
             onChange={searchBehavior}
-            stateProps={stateProps}
             theme={theme}
             suffix={suffixIcon}
-            isFocused={isFocused}
             hasValue={hasValue}
-            disabled={disabled}
+            isFocused={isFocused}
           />
         </div>
       </div>
