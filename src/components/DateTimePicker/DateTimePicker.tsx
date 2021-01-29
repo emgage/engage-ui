@@ -32,6 +32,8 @@ export interface Props {
   unsetDefaultDateTime?: boolean;
   // Hint text to display.
   placeholder?: string;
+  // To provide styling.
+  componentStyle?: React.CSSProperties;
 }
 
 export interface State {
@@ -85,7 +87,7 @@ class DateTimePicker extends React.PureComponent<Props, State>{
   }
 
   render() {
-    const { dateFormat, label, theme, timePicker, placeholder } = this.props;
+    const { dateFormat, label, theme, timePicker, placeholder, componentStyle } = this.props;
     const { dateTime, open } = this.state;
     return (
         <div>
@@ -97,6 +99,7 @@ class DateTimePicker extends React.PureComponent<Props, State>{
                 onChange={(dateTimeString: string) => { this.onTextInputChange(dateTimeString); }}
                 suffix={<Icon source="event" />}
                 placeholder={placeholder}
+                componentStyle={componentStyle}
             />
             <DateTime
                 value={dateTime}
