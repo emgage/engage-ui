@@ -28,6 +28,12 @@ export interface Props {
   onBlur?(dateTime: any): void;
   // Component Id for validation form
   componentId?: string;
+  // Unset Default date Time
+  unsetDefaultDateTime?: boolean;
+  // Hint text to display.
+  placeholder?: string;
+  // To provide styling.
+  componentStyle?: React.CSSProperties;
 }
 
 export interface State {
@@ -46,7 +52,7 @@ class DateTimePicker extends React.PureComponent<Props, State>{
   constructor(props: Props) {
     super(props);
     this.state = {
-      dateTime: props.defaultDateTime ? moment(props.defaultDateTime) : moment(),
+      dateTime: props.unsetDefaultDateTime ? '' : props.defaultDateTime ? moment(props.defaultDateTime) : moment(),
       open: false
     };
     document.addEventListener('click', (e) => {
@@ -55,6 +61,15 @@ class DateTimePicker extends React.PureComponent<Props, State>{
         this.setState({ open: false });
       }
     });
+  }
+
+  static getDerivedStateFromProps(props: Props, state: State) {
+    if (props.unsetDefaultDateTime !== true && props.defaultDateTime) {
+      return {
+        dateTime: moment(props.defaultDateTime),
+      };
+    }
+    return null;
   }
 
   setDateTime = (dateTime: any) => {
@@ -72,16 +87,19 @@ class DateTimePicker extends React.PureComponent<Props, State>{
   }
 
   render() {
-    const { dateFormat, label, theme, timePicker } = this.props;
+    const { dateFormat, label, theme, timePicker, placeholder, componentStyle } = this.props;
     const { dateTime, open } = this.state;
     return (
         <div>
             <TextField
+                type="text"
                 label={label}
-                value={dateTime.format(this.timeFormat)}
+                value={dateTime ? dateTime.format(this.timeFormat) : null}
                 onFocus={() => { this.setState({ open: true }); }}
                 onChange={(dateTimeString: string) => { this.onTextInputChange(dateTimeString); }}
                 suffix={<Icon source="event" />}
+                placeholder={placeholder}
+                componentStyle={componentStyle}
             />
             <DateTime
                 value={dateTime}
