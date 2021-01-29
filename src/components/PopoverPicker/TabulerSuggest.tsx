@@ -237,6 +237,7 @@ class TabulerSuggest extends React.PureComponent<Props, State> {
           suffix={suffixIcon}
           hasValue={hasValue}
           isFocused={isFocused}
+          backdropHidden={true}
         />
         {open && !isEmpty && <Popover
           addArrow={false}

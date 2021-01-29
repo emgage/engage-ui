@@ -340,14 +340,10 @@ class PopoverPicker extends React.PureComponent<Props, State> {
       }
     ; 
 
-    console.log(listType);
-
     return (
       <div id={this.id}>
         <div className={classNameChip}>
           {stateProps ? stateProps.chipListState.map((input: any) => <Chip icon={input.icon} onIconClick={input.onIconClick} theme={theme} image={{ url: input.image }} removable={!disabled} onRemove={() => autoSuggestMethods ? autoSuggestMethods.chipRemove(input) : null} key={input.key}>{input.text}</Chip>) : null}
-        </div>
-        <div>
           <TabulerSuggest
             items={tabularData}
             autoSuggestMethods={autoSuggestMethods}  
