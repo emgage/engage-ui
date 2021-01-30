@@ -90,11 +90,11 @@ class TabulerSuggest extends React.PureComponent<Props, State> {
   };
   
   componentDidMount() {
-    // document.addEventListener('click', this.handleClickOutside);
+    document.addEventListener('click', this.handleClickOutside);
   }
 
   componentWillUnmount() {
-    // document.removeEventListener('click', this.handleClickOutside);
+    document.removeEventListener('click', this.handleClickOutside);
   }
 
   componentWillReceiveProps(nextProps: any) {
