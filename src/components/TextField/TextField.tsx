@@ -84,6 +84,8 @@ export interface Props {
   onChange?(value: string, e?: React.FormEvent<HTMLElement>): void;
   // Callback when input is focused.
   onFocus?(e?: React.FormEvent<HTMLElement>): void;
+  // Callback when input is Key.
+  onKeyDown?(e: React.FormEvent<Element> | KeyboardEvent): void;
   // Callback when focus is removed	.
   onBlur?(e?: React.FormEvent<HTMLElement>): void;
   // Callback when value is inserted in Input.
@@ -173,6 +175,7 @@ class TextField extends React.PureComponent<Props, State> {
       name,
       placeholder,
       prefix,
+      onKeyDown,
       onFocus,
       onBlur,
       onInput,
@@ -272,6 +275,7 @@ class TextField extends React.PureComponent<Props, State> {
       id: componentId,
       value: this.state.value,
       onFocus: this.handleInputOnFocus,
+      onKeyDown: this.handleInputOnKeyDown,
       onBlur: this.handleInputOnBlur,
       style: newComponentStyle,
       formNoValidate: true,
@@ -390,6 +394,18 @@ class TextField extends React.PureComponent<Props, State> {
 
     if (onFocus == null) { return; }
     onFocus(e);
+  }
+
+  @autobind
+  private handleInputOnKeyDown(e: React.FormEvent<HTMLElement> | KeyboardEvent) {
+    const { onKeyDown } = this.props;
+    this.setState((prevState: State) => ({
+      ...prevState,
+      focused: true,
+    }));
+
+    if (onKeyDown == null) { return; }
+    onKeyDown(e);
   }
 
   @autobind

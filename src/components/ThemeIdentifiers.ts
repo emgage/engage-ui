@@ -33,6 +33,7 @@ export const MASK_TEXT_FIELD = 'PMaskTextField';
 export const MESSAGE = 'PMessage';
 export const PANEL = 'PPanel';
 export const PICKER = 'PPicker';
+export const POPOVERPICKER = 'PPopoverPicker';
 export const DROPDOWN = 'PDropdown';
 export const DROPDOWNITEM = 'PDropdownItem';
 export const POSITIONED_OVERLAY = 'PPositionedOverlay';

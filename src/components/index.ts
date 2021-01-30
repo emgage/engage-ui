@@ -212,6 +212,12 @@ export {
 } from './Picker';
 
 export {
+  default as PopoverPicker,
+  Props as PopoverPickerProps,
+} from './PopoverPicker';
+
+
+export {
   default as Dropdown,
   Props as DropdownProps,
   DropdownItemProps

@@ -61,6 +61,7 @@ export declare const BUNDLED_ICONS: {
     lightbulb: any;
     list: any;
     listAlt: any;
+    listingPage: any;
     lock: any;
     minusMinor: any;
     notes: any;
@@ -90,6 +91,7 @@ export declare const BUNDLED_ICONS: {
     delete: any;
     export: any;
     import: any;
+    minusIcon: any;
 };
 export interface Props {
     source: SVGSource | 'placeholder' | keyof typeof BUNDLED_ICONS;

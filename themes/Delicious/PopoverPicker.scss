@@ -1,0 +1,73 @@
+$control-height: rem(64px);
+$control-vertical-padding: (($control-height - rem(44px)) / 2);
+$backdrop-horizontal-spacing: spacing(tighter) * 1.5;
+
+// Lable Styling
+
+.labelWrapper {
+  transform: translate3D(0, 2rem, 0);
+ 
+  &.focused,
+  &:not(.empty) {
+    transform: translate3D(0,0.3rem,0);
+
+    .labelStyle {
+      @include text-style-body-small;
+      color: theme-color(m-grey, 700);
+    }  
+  }
+}
+
+// Picker Styling
+
+.textField {
+  @include text-style-input;
+  height: auto;
+  min-height: control-height();
+  padding: $control-vertical-padding $backdrop-horizontal-spacing;
+  transition: 0.3s all ease;
+
+  &.focused {
+    padding-top: calc((#{$control-vertical-padding} * 2) - 0.3rem);
+    padding-bottom: 0.3rem;
+
+    > .backdrop {
+      border-color: theme-color(m-blue, 300);
+      box-shadow: 0 0 0 1px theme-color(m-blue, 300);
+    }
+  }
+
+  &.hasValue {
+    padding-top: calc((#{$control-vertical-padding} * 2) - 0.3rem);
+    padding-bottom: 0.3rem;
+  }
+
+  &.labelHidden {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+}
+
+.containerWrapper {
+
+  .input {
+    @include text-style-input;
+  
+    &:disabled {
+      color: theme-color(m-grey, 700);
+    }
+  
+    &::placeholder {
+      color: theme-color(m-grey, 500);
+    }
+  
+  }
+
+  &.empty {
+    .input {
+      &::placeholder {
+        text-align: right;
+      }
+    }
+  }
+}

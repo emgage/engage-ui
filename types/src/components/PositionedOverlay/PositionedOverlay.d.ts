@@ -22,6 +22,7 @@ export interface Props {
     fullWidth?: boolean;
     fixed?: boolean;
     preloadedPopover?: boolean;
+    tooltipOverlay?: boolean;
     theme?: any;
     render(overlayDetails: OverlayDetails): React.ReactNode;
     onScrollOut?(): void;
