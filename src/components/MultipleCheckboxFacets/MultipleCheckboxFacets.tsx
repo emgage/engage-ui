@@ -38,6 +38,7 @@ interface IProps {
   searchPlaceholder?: string;
   showMore?: boolean;
   showSearch?: boolean;
+  hideLabel?: boolean;
 }
 
 function multiCheckboxFacet({
@@ -50,11 +51,12 @@ function multiCheckboxFacet({
   showMore = false,
   showSearch = false,
   onSearch,
-  searchPlaceholder
+  searchPlaceholder,
+  hideLabel
 }: IProps) {
   return (
     <fieldset className={appendClassName('facets-container', className)}>
-      <legend className="facets-title">{label}</legend>
+      {!hideLabel && <legend className="facets-title">{label}</legend>}
       {showSearch && (
         <div className="facet-search">
           <TextField
