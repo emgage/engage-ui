@@ -56,7 +56,9 @@ function multiCheckboxFacet({
 }: IProps) {
   return (
     <fieldset className={appendClassName('facets-container', className)}>
-      {!hideLabel && <legend className="facets-title">{label}</legend>}
+       <legend className="facets-title" style={{
+         display: hideLabel ? 'none' : ''
+       }}>{label}</legend>
       {showSearch && (
         <div className="facet-search">
           <TextField
