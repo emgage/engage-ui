@@ -46,7 +46,11 @@ $stacking-order: (
     margin-top: control-vertical-padding() + rem(1px);
     margin-right: control-vertical-padding() + rem(1px);
     vertical-align: top;
-    max-height: 32px;
+    max-height: 3.2rem;
+  }
+
+  > div:last-child  {
+    margin-left: -(control-vertical-padding() + rem(1px));
   }
 }
 
