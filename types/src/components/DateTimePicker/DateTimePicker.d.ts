@@ -10,6 +10,9 @@ export interface Props {
     onChange(dataTime: any): void;
     onBlur?(dateTime: any): void;
     componentId?: string;
+    unsetDefaultDateTime?: boolean;
+    placeholder?: string;
+    componentStyle?: React.CSSProperties;
 }
 export interface State {
     dateTime: any;
