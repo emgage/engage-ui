@@ -175,14 +175,26 @@ class PopoverPicker extends React.PureComponent<Props, State> {
       },
 
       onKeyDown: (e: KeyboardEvent, focusArr?: any, chipListState?: any[]) => {
-
         if ((e.keyCode === 8) && this.state.chipListState.length && !this.state.value.length) {
+
+          const number = this.state.chipListState.length;
           const chipListState = this.state.chipListState.slice(0, this.state.chipListState.length - 1);
           const selectedChip = this.state.chipListState.slice(this.state.chipListState.length - 1)[0];
           const itemsList = this.state.itemsList.concat(selectedChip);
+          const focusArr = this.state.focusArr.slice(0, number).concat(this.state.focusArr.slice(number + 1));
+          
+          let focused = 0;
+          if (number === chipListState.length) focused = number - 1;
+          else if (number === chipListState.length && number > 0) focused = number;
+          else focused = 0;
+
           this.setState({
             chipListState,
             itemsList,
+            focusArr,
+            number,
+            focused,
+            hasValue: chipListState.length ? true : false
           });
           if (this.props.onRemove) {
             this.props.onRemove(selectedChip);

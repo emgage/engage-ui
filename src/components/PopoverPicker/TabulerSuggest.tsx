@@ -224,12 +224,17 @@ class TabulerSuggest extends React.PureComponent<Props, State> {
 
     const { key, value, column: columnConfig } = items;
     
+    console.log("this.state.selectedValue", this.state.selectedValue);
+    
+
     return (
       <div key={this.id} className={theme.tabulerSuggestContainer} ref={node => this.setWrapperRef(node)} >
         <TextField
           type="text"
           onChange={this.onChange}
           onKeyDown={autoSuggestMethods.onKeyDown}
+          onBlur={autoSuggestMethods.onBlur}
+          onFocus={autoSuggestMethods.onFocus}
           value={this.state.selectedValue}
           theme={theme}
           loading={loading}
