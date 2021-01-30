@@ -180,6 +180,7 @@ class PopoverPicker extends React.PureComponent<Props, State> {
       },
 
       onKeyDown: (e: KeyboardEvent, focusArr?: any, chipListState?: any[]) => {
+
         if ((e.keyCode === 8) && this.state.chipListState.length && !this.state.value.length) {
           const chipListState = this.state.chipListState.slice(0, this.state.chipListState.length - 1);
           const selectedChip = this.state.chipListState.slice(this.state.chipListState.length - 1)[0];
@@ -189,7 +190,7 @@ class PopoverPicker extends React.PureComponent<Props, State> {
             itemsList,
           });
           if (this.props.onRemove) {
-            this.props.onRemove(selectedChip);
+            // this.props.onRemove(selectedChip);
           }
         }
       },
