@@ -38,6 +38,7 @@ export interface Props {
   suffixIcon?: React.ReactNode;
   hasValue?: boolean;
   isFocused?: boolean;
+  noOptionsMessage?: string;
 }
 
 interface State {
@@ -207,6 +208,7 @@ class TabulerSuggest extends React.PureComponent<Props, State> {
       hasValue,
       isFocused,
       autoSuggestMethods,
+      noOptionsMessage = ''
     } = this.props;
 
     const {
@@ -264,7 +266,7 @@ class TabulerSuggest extends React.PureComponent<Props, State> {
           </Popover>}
 
           {
-            isEmptyResult &&
+            isEmptyResult && noOptionsMessage &&
               <Popover
                 addArrow={false}
                 anchorEl={this.state.anchorEl}
@@ -272,7 +274,7 @@ class TabulerSuggest extends React.PureComponent<Props, State> {
                 theme={theme}
                 preferredAlignment="left"
               >
-                <div className={theme.NoOptionMessage}>No options available</div>
+                <div className={theme.NoOptionMessage}>{noOptionsMessage}</div>
               </Popover>
           }
       </div>

@@ -213,7 +213,6 @@ export {
 
 export {
   default as PopoverPicker,
-  DisplayMoreInfoPopover,
   Props as PopoverPickerProps,
 } from './PopoverPicker';
 

@@ -2905,7 +2905,7 @@ class App extends React.Component<{}, State> {
             listType={{key: "name", type: 'Tabuler', columnConfig: columnConfigPicker}}
             maxSelectedItems={5}
             minSelectedItems={2}
-            autoSuggest
+            noOptionsMessage={"No options available"}
             onSelect={(value) => console.log(value)}
             onRemove={(value) => console.log(value)}
             onChangeText={(value: any) => console.log(value)}

@@ -2,9 +2,6 @@ import * as React from 'react';
 import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
 import { POPOVERPICKER } from '../ThemeIdentifiers';
-// import TextField from '../TextField';
-// import Icon, { IconList } from '../Icon';
-import { DisplayMoreInfoPopover } from './PopoverPickerEnum';
 import * as Autosuggest from 'react-autosuggest';
 import * as baseTheme from './PopoverPicker.scss';
 import Card from '../Picker/Card';
@@ -81,10 +78,8 @@ export interface Props {
   minSelectedItems?: number;
   chipComponent?: React.ReactNode;
   searchResultComponent?: React.ReactNode;
-  moreInfoComponent?: React.ReactNode;
-  autoSuggest?: boolean;
+  noOptionsMessage?: string;
   source: any[];
-  moreInfoComponentShowOn?: DisplayMoreInfoPopover;
   style?: React.CSSProperties;
   theme?: any;
   searchBehavior?(): void;
@@ -190,7 +185,7 @@ class PopoverPicker extends React.PureComponent<Props, State> {
             itemsList,
           });
           if (this.props.onRemove) {
-            // this.props.onRemove(selectedChip);
+            this.props.onRemove(selectedChip);
           }
         }
       },
@@ -298,7 +293,6 @@ class PopoverPicker extends React.PureComponent<Props, State> {
     };
 
       const {
-        // autoSuggest = false,
         helpText,
         label,
         labelHidden = false,
@@ -306,7 +300,8 @@ class PopoverPicker extends React.PureComponent<Props, State> {
         disabled = false,
         searchBehavior = this.handleChange,
         theme,
-        listType = { }
+        listType = {},
+        noOptionsMessage = ''
     } = this.props;
     const { isFocused, hasValue, value, suggestions, chipListState } = this.state;
 
@@ -358,6 +353,7 @@ class PopoverPicker extends React.PureComponent<Props, State> {
             suffix={suffixIcon}
             hasValue={hasValue}
             isFocused={isFocused}
+            noOptionsMessage={noOptionsMessage}
           />
         </div>
       </div>
