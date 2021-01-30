@@ -90,11 +90,11 @@ class TabulerSuggest extends React.PureComponent<Props, State> {
   };
   
   componentDidMount() {
-    document.addEventListener('click', this.handleClickOutside);
+    // document.addEventListener('click', this.handleClickOutside);
   }
 
   componentWillUnmount() {
-    document.removeEventListener('click', this.handleClickOutside);
+    // document.removeEventListener('click', this.handleClickOutside);
   }
 
   componentWillReceiveProps(nextProps: any) {
@@ -120,6 +120,7 @@ class TabulerSuggest extends React.PureComponent<Props, State> {
   setWrapperRef = (node: any) => {
     if (node && !this.state.popoverWidth) {
       this.setState({ popoverWidth: node.offsetWidth });
+      this.wrapperRef = node;
     }
   }
 
@@ -247,7 +248,7 @@ class TabulerSuggest extends React.PureComponent<Props, State> {
           theme={theme}
           preferredAlignment="left"
         >
-          <div  data-isparent={true} data-key={key ? key : false} className={theme.itemContainer} ref={node => this.setWrapperTableRef(node)} >
+          <div  data-isparent={true} data-key={key ? key : false} className={theme.itemContainer} >
             <Table
               sorting="all"
               data={value}
@@ -255,7 +256,6 @@ class TabulerSuggest extends React.PureComponent<Props, State> {
               onRowClick={this.handleRowClick}
               rowCallbackValue="id"
               serverSort={serverSort}
-              ref={node => this.setWrapperTableRef(node)}
             />
           </div>
         </Popover>}
