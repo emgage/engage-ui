@@ -90,11 +90,11 @@ class TabulerSuggest extends React.PureComponent<Props, State> {
   };
   
   componentDidMount() {
-    // document.addEventListener('click', this.handleClickOutside);
+    document.addEventListener('click', this.handleClickOutside);
   }
 
   componentWillUnmount() {
-    // document.removeEventListener('click', this.handleClickOutside);
+    document.removeEventListener('click', this.handleClickOutside);
   }
 
   componentWillReceiveProps(nextProps: any) {
@@ -247,7 +247,7 @@ class TabulerSuggest extends React.PureComponent<Props, State> {
           theme={theme}
           preferredAlignment="left"
         >
-          <div  data-isparent={true} data-key={key ? key : false} className={theme.itemContainer}>
+          <div  data-isparent={true} data-key={key ? key : false} className={theme.itemContainer} ref={node => this.setWrapperTableRef(node)} >
             <Table
               sorting="all"
               data={value}

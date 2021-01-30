@@ -2914,28 +2914,6 @@ class App extends React.Component<{}, State> {
 
         <br/>
         <br/>
-        <br/>
-        <br/>
-
-        <div>Popover Picker Normal</div>
-          <PopoverPicker
-            label="Popover Picker Component "
-            chipComponent={Chip}
-            filterPlaceHolder="placeholder"
-            helpText="Helper Text"
-            searchResultComponent={Chip}
-            source={pickerdata1}
-            defaultSelectedItems={selectedPickerdata}
-            maxSelectedItems={5}
-            minSelectedItems={2}
-            autoSuggest
-            onSelect={(value) => console.log(value)}
-            onRemove={(value) => console.log(value)}
-          />
-
-        <br/>
-        <br/>
-        <br/>
           
           <Picker
             label="Picker Component"

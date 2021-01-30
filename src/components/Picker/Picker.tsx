@@ -55,6 +55,8 @@ export interface IAutoSuggestMethods {
   onSuggestionSelected(event: any, { suggestion }: Autosuggest.SuggestionSelectedEventData<Autosuggest>): void;
   chipRemove(item: IItemList | number): void;
   renderSuggestion(suggestion: IItemList, { isHighlighted, query }: IRenderSuggestionProp): JSX.Element;
+  renderSectionTitle?(columns: any): JSX.Element;
+  getSectionSuggestions?(columns: any): JSX.Element;
   storeInputReference(autosuggest: Autosuggest): void;
   updateList(input: HTMLElement): void;
   storeFocus(e: HTMLElement): void;
