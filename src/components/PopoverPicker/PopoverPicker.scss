@@ -28,7 +28,10 @@ $stacking-order: (
   z-index: z-index(suggestions, $stacking-order);
   display: flex;
   flex-wrap: wrap;
-
+  background-color: #fff;
+  border:1px solid #bdbdbd;
+  position: relative;
+  padding-top:1.5rem;
   
   &.empty {
     min-width: 100px;
@@ -43,6 +46,7 @@ $stacking-order: (
     margin-top: control-vertical-padding() + rem(1px);
     margin-right: control-vertical-padding() + rem(1px);
     vertical-align: top;
+    max-height: 32px;
   }
 }
 
@@ -133,3 +137,23 @@ $stacking-order: (
 // TODO: Do we need these? Should display be none, or hidden?
 .pickerResultShow{display:block;}
 .pickerResultHide{display:none;}
+
+
+.labelWrapper {
+  left:0px;
+  top:0px;
+}
+body .input {
+  padding: 0!important;
+  line-height: normal!important;
+  min-height: initial;
+  margin-top: -1rem;
+}
+.NoOptionMessage {
+  padding: .3rem .6rem;
+  margin-top: -.4rem;
+}
+.helpText {
+  position: absolute;
+  left: 0px;
+}

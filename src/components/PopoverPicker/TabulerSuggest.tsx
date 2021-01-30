@@ -264,13 +264,12 @@ class TabulerSuggest extends React.PureComponent<Props, State> {
           isEmptyResult &&
             <Popover
               addArrow={false}
-              componentStyle={{ maxHeight: window.outerHeight < 768 ? 500 : 800, overflow: 'auto', width: popoverWidth }}
               anchorEl={this.state.anchorEl}
               open={isEmptyResult}
               theme={theme}
               preferredAlignment="left"
             >
-              <span>No options available</span>
+              <div className={theme.NoOptionMessage}>No options available</div>
             </Popover>
         }
       </div>
