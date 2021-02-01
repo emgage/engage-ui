@@ -121,16 +121,7 @@ class PopoverPicker extends React.PureComponent<Props, State> {
 
   componentWillReceiveProps(newProps: Props) {
     if (JSON.stringify(newProps.source) !== JSON.stringify(this.props.source)) {
-      const { chipListState } = this.state;
-      if (newProps.source.length && chipListState.length) {
-        chipListState.forEach((chip: any) => {
-          const currentText = newProps.source.find((source: any) => source.id === (chip.id || chip.key) || source.key === (chip.id || chip.key));
-          if (currentText) {
-            chip.text = currentText.name;
-          }
-        });
-      }
-      this.setState({ chipListState, itemsList: newProps.source });
+      this.setState({ itemsList: newProps.source });
     }
   }
   render() {
@@ -345,7 +336,8 @@ class PopoverPicker extends React.PureComponent<Props, State> {
         key: listType && listType.key || '' ,
         type: listType && listType.type || '',
         column: listType && listType.columnConfig || [],
-        value: itemsList || []
+        value: itemsList || [],
+        suggestions
       }
     ; 
 

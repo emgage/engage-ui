@@ -14,6 +14,7 @@ export interface ComboBoxItemProps {
   key?: string;
   value: any;
   column?: any;
+  suggestions?: any;
   renderer?(value: any, type?: string): React.ReactElement<any>;
 }
 
@@ -105,6 +106,12 @@ class TabulerSuggest extends React.PureComponent<Props, State> {
       const isEmpty: boolean = items && items.value && items.value.length === 0 || false;
       this.setState({ items: items, isEmpty });
     }
+    
+    if (JSON.stringify(oldItems.suggestions) !== JSON.stringify(items.suggestions)) {
+      const isEmpty: boolean = items && items.suggestions && items.suggestions.length === 0 || false;
+      this.setState({ isEmpty });
+    }
+    
   }
 
   handleClickOutside = (event: any) => {
@@ -218,12 +225,12 @@ class TabulerSuggest extends React.PureComponent<Props, State> {
       serverSort
     } = this.state;
 
-    let open: boolean = items && items.value && items.value.length !== 0 || false;
+    let open: boolean = ((items && items.value && items.value.length !== 0) && ( this.state.selectedValue.length !== 0) )|| false;
 
-    const isEmptyResult: boolean = this.state.selectedValue.length !== 0 && isEmpty;
+    const isEmptyResult: boolean = this.state.selectedValue.length !== 0 && isEmpty || false;
 
     const { key, value, column: columnConfig } = items;
-    
+
     return (
       <div key={this.id} className={theme.tabulerSuggestContainer} ref={node => this.setWrapperRef(node)} >
         <TextField
@@ -268,7 +275,7 @@ class TabulerSuggest extends React.PureComponent<Props, State> {
           </Popover>}
 
           {
-            isEmptyResult && noOptionsMessage &&
+            isEmptyResult &&
               <Popover
                 addArrow={false}
                 anchorEl={this.state.anchorEl}
