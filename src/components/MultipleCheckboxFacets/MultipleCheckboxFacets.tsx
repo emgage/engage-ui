@@ -25,6 +25,7 @@ interface IOptions {
   value: string | number;
   count?: number;
   selected: boolean;
+  key?: string | number
 }
 
 interface IProps {
@@ -82,7 +83,7 @@ function multiCheckboxFacet({
                 <Checkbox
                   checked={checked}
                   componentId={`example_facet_${label}${getFilterValueDisplay(
-                    option.value
+                    option.key || option.value
                   )}`}
                   label={getFilterValueDisplay(option.name)}
                   onChange={() =>
