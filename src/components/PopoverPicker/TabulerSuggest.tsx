@@ -121,7 +121,7 @@ class TabulerSuggest extends React.PureComponent<Props, State> {
   setWrapperRef = (node: any) => {
     if (node && !this.state.popoverWidth) {
       this.setState({ popoverWidth: node.offsetWidth });
-      // this.wrapperRef = node;
+      this.wrapperRef = node;
     }
   }
 
@@ -224,9 +224,6 @@ class TabulerSuggest extends React.PureComponent<Props, State> {
 
     const { key, value, column: columnConfig } = items;
     
-    console.log("this.state.selectedValue", this.state.selectedValue);
-    
-
     return (
       <div key={this.id} className={theme.tabulerSuggestContainer} ref={node => this.setWrapperRef(node)} >
         <TextField
@@ -257,7 +254,7 @@ class TabulerSuggest extends React.PureComponent<Props, State> {
             theme={theme}
             preferredAlignment="left"
           >
-            <div  data-isparent={true} data-key={key ? key : false} className={theme.itemContainer} ref={node => this.setWrapperTableRef(node)}>
+            <div  data-isparent={true} data-key={key ? key : false} className={theme.itemContainer}>
               <Table
                 sorting="all"
                 data={value}

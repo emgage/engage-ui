@@ -130,7 +130,6 @@ class PopoverPicker extends React.PureComponent<Props, State> {
           }
         });
       }
-
       this.setState({ chipListState, itemsList: newProps.source });
     }
   }
@@ -339,12 +338,14 @@ class PopoverPicker extends React.PureComponent<Props, State> {
       stateProps ? stateProps.chipListState.length ? null : theme.empty : null
     );
 
+    const { itemsList } = this.state;
+
     let tabularData = 
       {
         key: listType && listType.key || '' ,
         type: listType && listType.type || '',
         column: listType && listType.columnConfig || [],
-        value: suggestions || []
+        value: itemsList || []
       }
     ; 
 
