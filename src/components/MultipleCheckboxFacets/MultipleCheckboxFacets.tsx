@@ -40,6 +40,7 @@ interface IProps {
   showMore?: boolean;
   showSearch?: boolean;
   hideLabel?: boolean;
+  labelId?: string;
 }
 
 function multiCheckboxFacet({
@@ -53,13 +54,11 @@ function multiCheckboxFacet({
   showSearch = false,
   onSearch,
   searchPlaceholder,
-  hideLabel
+  labelId
 }: IProps) {
   return (
     <fieldset className={appendClassName('facets-container', className)}>
-       <legend className="facets-title" style={{
-         display: hideLabel ? 'none' : ''
-       }}>{label}</legend>
+       <legend className="facets-title">{label}</legend>
       {showSearch && (
         <div className="facet-search">
           <TextField
@@ -82,7 +81,7 @@ function multiCheckboxFacet({
               <div style={{ flex: 1 }}>
                 <Checkbox
                   checked={checked}
-                  componentId={`example_facet_${label}${getFilterValueDisplay(
+                  componentId={`example_facet_${labelId ? labelId : label}${getFilterValueDisplay(
                     option.key || option.value
                   )}`}
                   label={getFilterValueDisplay(option.name)}
