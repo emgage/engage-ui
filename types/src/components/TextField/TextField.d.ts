@@ -44,6 +44,7 @@ export interface Props {
     name?: string;
     onChange?(value: string, e?: React.FormEvent<HTMLElement>): void;
     onFocus?(e?: React.FormEvent<HTMLElement>): void;
+    onKeyDown?(e: React.FormEvent<Element> | KeyboardEvent): void;
     onBlur?(e?: React.FormEvent<HTMLElement>): void;
     onInput?(e?: React.ChangeEvent<HTMLSelectElement>): void;
     pattern?: string;
@@ -72,6 +73,7 @@ declare class TextField extends React.PureComponent<Props, State> {
     private handleNumberChange;
     private onChange;
     private handleInputOnFocus;
+    private handleInputOnKeyDown;
     private handleInputOnBlur;
     private handleInputFocus;
 }

@@ -44,13 +44,14 @@ $stacking-order: (
   //TODO: Consider using Stack component instead of adding margin.
   .Chip {
     margin-top: control-vertical-padding() + rem(1px);
-    margin-right: control-vertical-padding() + rem(1px);
+    margin-left: control-vertical-padding() + rem(1px);
     vertical-align: top;
     max-height: 3.2rem;
   }
 
   > div:last-child  {
     margin-left: -(control-vertical-padding() + rem(1px));
+    flex-grow: 1;
   }
 }
 
@@ -148,10 +149,11 @@ $stacking-order: (
   top:0px;
 }
 body .input {
-  padding: 0!important;
-  line-height: normal!important;
-  min-height: initial;
-  margin-top: -1rem;
+    padding: 0px 12px!important;
+    line-height: 4rem!important;
+    min-height: 0;
+    height: 3.4rem;
+    margin-top: -14px;
 }
 .NoOptionMessage {
   padding: .3rem .6rem;
