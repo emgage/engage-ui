@@ -23,7 +23,6 @@ export function getFilterValueDisplay(filterValue: any) {
 interface IOptions {
   name: string;
   value: string | number;
-  key: string | number;
   count?: number;
   selected: boolean;
 }
@@ -83,7 +82,7 @@ function multiCheckboxFacet({
                 <Checkbox
                   checked={checked}
                   componentId={`example_facet_${label}${getFilterValueDisplay(
-                    option.key || option.value
+                    option.value
                   )}`}
                   label={getFilterValueDisplay(option.name)}
                   onChange={() =>
