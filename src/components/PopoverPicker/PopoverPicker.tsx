@@ -123,6 +123,19 @@ class PopoverPicker extends React.PureComponent<Props, State> {
     if (JSON.stringify(newProps.source) !== JSON.stringify(this.props.source)) {
       this.setState({ itemsList: newProps.source });
     }
+
+    if (JSON.stringify(newProps.defaultSelectedItems) !== JSON.stringify(this.props.defaultSelectedItems)) {
+      const { defaultSelectedItems = [] } = newProps;
+      if (newProps.source.length && defaultSelectedItems.length) {
+        defaultSelectedItems.forEach((chip: any) => {
+          const currentText = newProps.source.find((source: any) => source.id === (chip.id || chip.key) || source.key === (chip.id || chip.key));
+          if (currentText) {
+            chip.text = currentText.name;
+          }
+        });
+      }
+      this.setState({ chipListState: defaultSelectedItems, hasValue: Boolean(defaultSelectedItems && defaultSelectedItems.length)});
+    }
   }
   render() {
 
