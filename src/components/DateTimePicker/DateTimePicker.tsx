@@ -34,6 +34,8 @@ export interface Props {
   placeholder?: string;
   // To provide styling.
   componentStyle?: React.CSSProperties;
+  // To set value
+  value?: string;
 }
 
 export interface State {
@@ -87,14 +89,14 @@ class DateTimePicker extends React.PureComponent<Props, State>{
   }
 
   render() {
-    const { dateFormat, label, theme, timePicker, placeholder, componentStyle } = this.props;
-    const { dateTime, open } = this.state;
+    const { dateFormat, label, theme, timePicker, placeholder, componentStyle, value } = this.props;
+    const { open } = this.state;
     return (
         <div>
             <TextField
                 type="text"
                 label={label}
-                value={dateTime ? dateTime.format(this.timeFormat) : null}
+                value={value ? moment(value).format(this.timeFormat) : ''}
                 onFocus={() => { this.setState({ open: true }); }}
                 onChange={(dateTimeString: string) => { this.onTextInputChange(dateTimeString); }}
                 suffix={<Icon source="event" />}
@@ -102,7 +104,7 @@ class DateTimePicker extends React.PureComponent<Props, State>{
                 componentStyle={componentStyle}
             />
             <DateTime
-                value={dateTime}
+                value={value}
                 onBlur={() => { this.setState({ open: false }); }}
                 open={open}
                 closeOnSelect

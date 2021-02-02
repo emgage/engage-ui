@@ -14,6 +14,7 @@ export interface Props {
     unsetDefaultDateTime?: boolean;
     placeholder?: string;
     componentStyle?: React.CSSProperties;
+    value?: string;
 }
 export interface State {
     dateTime: any;
