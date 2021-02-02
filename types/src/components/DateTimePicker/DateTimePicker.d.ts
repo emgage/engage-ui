@@ -15,6 +15,7 @@ export interface Props {
     placeholder?: string;
     componentStyle?: React.CSSProperties;
     value?: string;
+    getFromValue?: boolean;
 }
 export interface State {
     dateTime: any;
