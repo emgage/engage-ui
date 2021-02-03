@@ -11,7 +11,6 @@ import arrowSvg from './icons/arrow.svg';
 import PopoverPikerItem from './PopoverPikerItem';
 import Chip from '../Chip';
 
-export type Mode = 'collapsible' | 'multiple';
 export type ItemType = 'Accordian' | 'Tabuler';
 export interface PopoverItemProps {
   type?: any;
@@ -111,12 +110,7 @@ class PopoverPicker extends React.PureComponent<Props, State> {
           }
         });
       }
-      const { items } = this.state
-      const { value: valueState } = items[0];
-      let chips = defaultSelectedItems.map((data: any) => data.text);
-      let resultValue = valueState.filter((data: any) => !chips.includes(data.text))
-      items[0].value = resultValue
-      this.setState({ items, chipListState: defaultSelectedItems });
+      this.setState({ chipListState: defaultSelectedItems });
     }
   }
 
@@ -295,6 +289,11 @@ class PopoverPicker extends React.PureComponent<Props, State> {
     );
     
     let hasValue: boolean = chipListState.length !== 0;
+
+    const { value: valueState } = items[0];
+    let chips = chipListState.map((data: any) => data.text);
+    let resultValue = valueState.filter((data: any) => !chips.includes(data.text))
+    items[0].value = resultValue;
 
     return (
       <div id={this.id}>
