@@ -821,23 +821,24 @@ class App extends React.Component<{}, State> {
       },
     ];
 
-    const pickerdata1 = [{ "id": 1532945, "name": "Bright", "text": "Bright", "key": 1532945, "description": "" }, { "id": 1532948, "name": "Blue", "text": "Blue", "key": 1532948, "description": "" }, { "id": 1531924, "name": "Green", "text": "Green", "key": 1531924, "description": "" }, { "id": 1528852, "name": "Red", "text": "Red", "key": 1528852, "description": "" }, { "id": 1529876, "name": "White", "text": "White", "key": 1529876, "description": "" }, { "id": 1527828, "name": "Yellow", "text": "Yellow", "key": 1527828, "description": "" }]
     const selectedPickerdata = [{ "id": 1534996, "name": "Black", "text": "Black", "key": 1534996, "description": "" }];
-    
-    const columnConfigPicker: TableColumnConfig[] = [
-      {
-        label: 'Name',
-        key: 'name',
-        sort: true,
-        sortBy: 'name'
-      },
-      {
-        label: 'Description',
-        key: 'description',
-        sort: true,
-        sortBy: 'description',
-      },
-    ];
+
+  
+
+    // const columnConfigPicker: TableColumnConfig[] = [
+    //   {
+    //     label: 'Name',
+    //     key: 'name',
+    //     sort: true,
+    //     sortBy: 'name'
+    //   },
+    //   {
+    //     label: 'Description',
+    //     key: 'description',
+    //     sort: true,
+    //     sortBy: 'description',
+    //   },
+    // ];
 
     const tableData = [
       {
@@ -2892,14 +2893,22 @@ class App extends React.Component<{}, State> {
             sortEntity={(field, order, sortBy)=> this.handleSortComboBox(field, order, sortBy)}
           />
         </div>
-     
+        
         <div>Popover Picker</div>
           <PopoverPicker
+            items={this.getPopoverPickerItems()}
             label="Popover Picker Component "
-            chipComponent={Chip}
-            filterPlaceHolder="placeholder"
+            currentValue="item1"
+            suffix="user"
+            loading={false}
+            onSelect={(value: any) => console.log(value)}
+            onChangeText={(value: any) => console.log(value)}
+            sortEntity={(field, order, sortBy) => this.handleSortComboBox(field, order, sortBy)}
+            defaultSelectedItems={selectedPickerdata}
+            noOptionsMessage={"No options available"}
+          />
+          {/* <PopoverPicker
             helpText="Helper Text"
-            searchResultComponent={Chip}
             source={pickerdata1}
             defaultSelectedItems={selectedPickerdata}
             listType={{key: "name", type: 'Tabuler', columnConfig: columnConfigPicker}}
@@ -2910,7 +2919,7 @@ class App extends React.Component<{}, State> {
             onRemove={(value) => console.log(value)}
             onChangeText={(value: any) => console.log(value)}
             sortEntity={(field: string, order: string, sortBy: string) => console.log(field, order, sortBy)}
-          />
+          /> */}
 
         <br/>
         <br/>
@@ -3728,6 +3737,37 @@ class App extends React.Component<{}, State> {
             uri: 'PhysicalAddress',
           },
         ],
+      },
+    ];
+
+    return data;
+  }
+
+  getPopoverPickerItems = () => {
+    const pickerdata1 = [{ "id": 1532945, "name": "Bright", "text": "Bright", "key": 1532945, "description": "" }, { "id": 1532948, "name": "Blue", "text": "Blue", "key": 1532948, "description": "" }, { "id": 1531924, "name": "Green", "text": "Green", "key": 1531924, "description": "" }, { "id": 1528852, "name": "Red", "text": "Red", "key": 1528852, "description": "" }, { "id": 1529876, "name": "White", "text": "White", "key": 1529876, "description": "" }, { "id": 1527828, "name": "Yellow", "text": "Yellow", "key": 1527828, "description": "" }]
+    // const { comboBoxItems } = this.state;
+    const columnConfig: TableColumnConfig[] = [
+      {
+        label: 'Name',
+        key: 'name',
+        sort: true,
+        sortBy: 'name'
+      },
+      {
+        label: 'Description',
+        key: 'description',
+        sort: true,
+        sortBy: 'description',
+      },
+    ];
+
+    const data = [
+      {
+        key: 'name',
+        type: 'Tabuler',
+        column: columnConfig,
+        renderer: this.renderItems,
+        value: pickerdata1
       },
     ];
 

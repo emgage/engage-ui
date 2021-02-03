@@ -253,7 +253,6 @@ class ComboBox extends React.PureComponent<Props, State> {
         {!suffix && <div className={theme.comboboxArrow}>
           <Icon source={arrowSvg} theme={theme} />
         </div>}
-      </div>
 
         {open && !isEmpty && <Popover
           addArrow={false}
@@ -264,7 +263,9 @@ class ComboBox extends React.PureComponent<Props, State> {
           preferredAlignment="left"
         >
             {itemsComponent}
-        </Popover>}
+          </Popover>}
+      </div>
+          
       </>
     );
   }

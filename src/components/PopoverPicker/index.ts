@@ -1,4 +1,4 @@
-import Picker from './PopoverPicker';
+import PopoverPicker from './PopoverPicker';
 export { Props } from './PopoverPicker';
 export { UnthemedPopoverPicker } from './PopoverPicker';
-export default Picker;
+export default PopoverPicker;

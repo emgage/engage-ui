@@ -1,386 +1,350 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
-import { POPOVERPICKER } from '../ThemeIdentifiers';
-import * as Autosuggest from 'react-autosuggest';
-import * as baseTheme from './PopoverPicker.scss';
-import Card from '../Picker/Card';
-import Chip from '../Chip';
 import { classNames } from '@shopify/react-utilities/styles';
-import TabulerSuggest from './TabulerSuggest';
-import Icon, { IconList } from '../Icon';
+import { POPOVERPICKER } from '../ThemeIdentifiers';
+import * as baseTheme from './PopoverPicker.scss';
+import Icon from '../Icon';
+import TextField from '../TextField';
+import Popover from '../Popover';
+import arrowSvg from './icons/arrow.svg';
+import PopoverPikerItem from './PopoverPikerItem';
+// import { Table } from '../Table';
+// import Icon, { IconList } from '../Icon';
+import Chip from '../Chip';
 
-export interface IStateProps {
-  chipListState: any[];
-  suggestions: Autosuggest[];
-  inputProps: Autosuggest.InputProps;
-  value?: string;
-  listType?: any;
+export type Mode = 'collapsible' | 'multiple';
+export type ItemType = 'Accordian' | 'Tabuler';
+export interface PopoverItemProps {
+  type?: any;
+  key?: string;
+  value: any;
+  column?: any;
+  renderer?(value: any, type?: string): React.ReactElement<any>;
 }
 
-export interface IRenderSuggestionProp {
-  isHighlighted: string;
-  query: string;
+export interface ServerSort {
+  field: string;
+  order: string;
+  callback?(field: string, order: string, sortBy: string): void;
 }
-
-export interface IAutoSuggestMethods {
-  onSuggestionsClearRequested(item: object): void;
-  getSuggestions(value: string): any[];
-  getSuggestionValue(suggestion: object): void;
-  onBlur(event: React.FormEvent<any>): void;
-  onChange(event: React.FormEvent<any>, { newValue, method }: Autosuggest.ChangeEvent): void;
-  onFocus(event: React.FormEvent<any>): void;
-  onKeyDown(e: React.FormEvent<Element> | KeyboardEvent): void;
-  onSuggestionsFetchRequested({ value }: Autosuggest.SuggestionsFetchRequest): void;
-  onSuggestionSelected(event: any, { suggestion }: Autosuggest.SuggestionSelectedEventData<Autosuggest>): void;
-  chipRemove(item: any | number): void;
-  renderSuggestion(suggestion: any, { isHighlighted, query }: IRenderSuggestionProp): JSX.Element;
-  storeInputReference(autosuggest: Autosuggest): void;
-  updateList(input: HTMLElement): void;
-  storeFocus(e: HTMLElement): void;
-  onChangeText?(valaue: string): void;
-  sortEntity?(field: string, order: string, sortBy: string): void;
-}
-
-export type Type = 'hide' | 'mark';
-
-export interface State {
-  people: string;
-  searchItems: any[];
-  selectedItems: any[];
-  moreInfo: boolean;
-  value: string;
-  input: HTMLElement[];
-  suggestions: Autosuggest[];
-  chipListState: any[];
-  focusArr: HTMLElement[];
-  itemsList: any[];
-  focused: number;
-  number: number;
-  isFocused: boolean;
-  hasValue: boolean;
-}
-
 export interface Props {
-  // Hint text to display.
-  filterPlaceHolder?: string;
-  // Additional hint text to display.
-  helpText?: React.ReactNode;
-  // Label for the input.
-  label?: string;
-  // Visually hide the label.
-  labelHidden?: boolean;
-  // Display loading indicator
+  currentValue?: string;
+  items: PopoverItemProps[];
+  label: string;
+  style?:any;
+  suffix?: any;
   loading?: boolean;
-  // Disable Picker
-  disabled?: boolean;
-  maxSelectedItems?: number;
-  minSelectedItems?: number;
-  chipComponent?: React.ReactNode;
-  searchResultComponent?: React.ReactNode;
-  noOptionsMessage?: string;
-  source: any[];
-  style?: React.CSSProperties;
-  theme?: any;
-  searchBehavior?(): void;
   onSelect?(item: any): void;
-  onChangeText?(valaue: string): void;
+  onChangeText?(value: string): void;
+  onRemove?(value: string): void;
   sortEntity?(field: string, order: string, sortBy: string): void;
-  onRemove?(item: any): void;
-  onMoreInfo?(): void;
-  suffix?: string;
-  // defaultSelectedItems for picker
-  defaultSelectedItems?: any[];
-  // Unique ID
-  componentId?: string;
-  listType?: any;
+  theme?: any;
+  defaultSelectedItems?: any;
+  noOptionsMessage?: string;
+  disabled?: boolean;
+}
+
+interface State {
+  chipListState: any[];
+  items: PopoverItemProps[];
+  initialItems: PopoverItemProps[];
+  anchorEl?: HTMLElement;
+  selectedValue: string;
+  popoverWidth: string;
+  isEmpty: boolean;
+  serverSort: ServerSort;
 }
 
 class PopoverPicker extends React.PureComponent<Props, State> {
   private getUniqueID = createUniqueIDFactory('PopoverPicker');
   private id = this.getUniqueID();
+  public wrapperRef: HTMLDivElement;
   constructor(props: Props) {
     super(props);
+    const { items, currentValue = '' } = props;
+
     this.state = {
-      people: '',
-      searchItems: [],
-      selectedItems: [],
-      moreInfo: false,
-      value: '',
-      input: [],
-      suggestions: [],
+      items,
+      // In case use is searching something, and then removes its search text, PopoverPicker shud list the initialItem
+      // Therefore, keeping copy of it so that its not lose, as items is changed depending on search and selection.
+      initialItems: this.addRenderer(items, JSON.parse(JSON.stringify(items))),
+      popoverWidth: '',
+      selectedValue: '' || currentValue,
+      isEmpty: false,
       chipListState: props.defaultSelectedItems || [],
-      focusArr: [],
-      itemsList: this.props.source,
-      isFocused: false,
-      hasValue: Boolean(props.defaultSelectedItems && props.defaultSelectedItems.length),
-      focused: 0,
-      number: 0,
+      serverSort: {
+        field: '',
+        order: '',
+        callback: this.sortEntity
+      },
     };
   }
 
-  componentWillReceiveProps(newProps: Props) {
-    if (JSON.stringify(newProps.source) !== JSON.stringify(this.props.source)) {
-      this.setState({ itemsList: newProps.source });
-    }
+  sortEntity = (field: string, order: string, sortBy: string) => {
+    this.setState({
+      serverSort: {
+        ...this.state.serverSort,
+        field,
+        order,
+      }
+    });
 
-    if (JSON.stringify(newProps.defaultSelectedItems) !== JSON.stringify(this.props.defaultSelectedItems)) {
-      const { defaultSelectedItems = [] } = newProps;
-      if (newProps.source.length && defaultSelectedItems.length) {
+    if (this.props.sortEntity) {
+      this.props.sortEntity(field, order, sortBy);
+    }
+  };
+  
+  componentDidMount() {
+  }
+
+  componentWillUnmount() {
+  }
+
+  componentWillReceiveProps(nextProps: any) {
+    const { items } = nextProps;
+    const { items: oldItems } = this.props;
+    if (JSON.stringify(oldItems) !== JSON.stringify(items)) {
+      const isEmpty: boolean = items && items[0] && items[0].value && items[0].value.length === 0 || false;
+      this.setState({ items: items, isEmpty });
+    }
+    if (JSON.stringify(nextProps.defaultSelectedItems) !== JSON.stringify(this.props.defaultSelectedItems)) {
+      const { defaultSelectedItems = [] } = nextProps;
+      if (nextProps.source.length && defaultSelectedItems.length) {
         defaultSelectedItems.forEach((chip: any) => {
-          const currentText = newProps.source.find((source: any) => source.id === (chip.id || chip.key) || source.key === (chip.id || chip.key));
+          const currentText = nextProps.source.find((source: any) => source.id === (chip.id || chip.key) || source.key === (chip.id || chip.key));
           if (currentText) {
             chip.text = currentText.name;
           }
         });
       }
-      this.setState({ chipListState: defaultSelectedItems, hasValue: Boolean(defaultSelectedItems && defaultSelectedItems.length)});
+      this.setState({ items, chipListState: defaultSelectedItems });
     }
   }
+
+  setWrapperRef = (node: any) => {
+    if (node && !this.state.popoverWidth) {
+      this.setState({ popoverWidth: node.offsetWidth });
+      this.wrapperRef = node;
+    }
+  }
+
+  addRenderer = (items: any, cloneItems: any) => {
+    items.forEach((item: any, index: number) => {
+      if (item.renderer) {
+        cloneItems[index]['renderer'] = item.renderer;
+      }
+    });
+
+    return cloneItems;
+  }
+
+  /*
+     on Change of PopoverPicker item, cloning the initial Items which was added to PopoverPicker,
+     and then search the value on those items, and list it in popover.
+     In case if its Accordian, then check for values with key specified and filter them out.
+  */
+
+  onChange = (value: string, event: React.FormEvent<HTMLElement>) => {
+    let newItems = this.state.initialItems;
+
+    if (value && value !== '') {
+      let cloneItems = JSON.parse(JSON.stringify(this.state.initialItems));
+      cloneItems = this.addRenderer(this.state.items, cloneItems);
+
+      newItems = cloneItems.map((it: any) => {
+        const itemValues = it.value;
+        const key = it.key;
+        let data;
+
+        if (it.type === 'Accordian') {
+          data = itemValues.map((itv: any) => {
+            itv.children = itv.children.filter((child: any) => {
+              const flag = key ? ((child[key].toLowerCase()).includes(value.toLowerCase())) : (child.toLowerCase()).includes(value.toLowerCase());
+
+              return flag;
+            });
+
+            return itv;
+          });
+        } else {
+          data = itemValues.filter((itv: any) => {
+            const smallVal = value.toLowerCase();
+            const flag = key ? ((itv[key].toLowerCase()).includes(smallVal)) : (itv.toLowerCase()).includes(smallVal);
+
+            return flag;
+          });
+        }
+
+        it.value = data;
+        return it;
+      });
+    }
+
+    this.setState({
+      anchorEl: event.target as HTMLElement,
+      selectedValue: value,
+      items: newItems,
+    });
+    
+    if (this.props.onChangeText) {
+      this.props.onChangeText(value);
+    }
+  }
+
+  handleClick = (value: string | any, key: any) => {
+    const selectedValue = typeof value === 'string' ? JSON.parse(value) : value;
+    if (this.props.onSelect) {
+      this.props.onSelect(selectedValue);
+    }
+
+    this.updateList(value);
+    const chipListState = this.state.chipListState.concat(value);
+    const item = Object.assign({}, chipListState[0], { tabIndex: 0 });
+    chipListState[0] = item;
+    this.setState({
+      chipListState,
+      selectedValue: '',
+    });
+  }
+  
+  updateList = (input: any) => {
+    const { items } = this.state;
+    const { value } = items[0];
+    const langIndex = value.indexOf(input);
+    const itemsListLength = value;
+    const newLangState = itemsListLength.slice(0, langIndex).concat(itemsListLength.slice(langIndex + 1, itemsListLength.length));
+    console.log(newLangState);
+    
+    items[0].value = newLangState;
+    this.setState({ items });
+  }
+
+  chipRemove = (item: any) => {
+    const number = typeof item === 'number' ? item : this.state.chipListState.indexOf(item);
+    const existingChipList = this.state.chipListState;
+    const addedItem = this.state.chipListState.slice(number, number + 1);
+    const addedItemObj = Object.assign({}, addedItem[0], { tabIndex: -1 });
+    const chipListState = existingChipList.slice(0, number).concat(existingChipList.slice(number + 1));
+    const { items } = this.state;
+    const { value } = items[0];
+    const itemsList = [addedItemObj, ...value];
+    items[0].value = itemsList;
+    
+    this.setState({
+      items,
+      chipListState,
+    });
+
+    if (this.props.onRemove) {
+      this.props.onRemove(item);
+    }
+  }
+
+  onKeyDown = (e: KeyboardEvent) => {
+    if ((e.keyCode === 8) && this.state.chipListState.length && !this.state.selectedValue.length) {
+      const chipListState = this.state.chipListState.slice(0, this.state.chipListState.length - 1);
+      const selectedChip = this.state.chipListState.slice(this.state.chipListState.length - 1)[0];
+      const { items } = this.state;
+      const value = items[0].value;
+      const itemsList = value.concat(selectedChip);
+      items[0].value = itemsList;
+      this.setState({
+        chipListState,
+        items
+      });
+      if (this.props.onRemove) {
+        this.props.onRemove(selectedChip);
+      }
+    }
+  }
+
   render() {
-
-    function escapeRegexCharacters(str: string) {
-      return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    }
-
-    const autoSuggestMethods: IAutoSuggestMethods = {
-      onSuggestionsClearRequested: () => this.setState({ suggestions: [] }),
-
-      onChangeText: (value: string) => {
-        if (this.props.onChangeText) {
-          this.props.onChangeText(value);
-        }
-      },
-
-      sortEntity: (field: string, order: string, sortBy: string) => {
-        if (this.props.sortEntity) {
-          this.props.sortEntity(field, order, sortBy);
-        }
-      },
-
-      getSuggestions: (value: string) => {
-        const escapedValue = escapeRegexCharacters(value.trim());
-        if (escapedValue === '') {
-          return [];
-        }
-        const regex = new RegExp(escapedValue, 'i');
-        return this.state.itemsList.filter((language: any) => regex.test(language.name ? language.name : ''));
-      },
-
-      getSuggestionValue: (suggestion: any) => {
-        return suggestion.name;
-      },
-
-      onChange: (event: React.FormEvent<any>, { newValue, method }: Autosuggest.ChangeEvent) => {
-        this.setState({
-          value: newValue,
-        });
-      },
-
-      onKeyDown: (e: KeyboardEvent, focusArr?: any, chipListState?: any[]) => {
-        if ((e.keyCode === 8) && this.state.chipListState.length && !this.state.value.length) {
-
-          const number = this.state.chipListState.length;
-          const chipListState = this.state.chipListState.slice(0, this.state.chipListState.length - 1);
-          const selectedChip = this.state.chipListState.slice(this.state.chipListState.length - 1)[0];
-          const itemsList = this.state.itemsList.concat(selectedChip);
-          const focusArr = this.state.focusArr.slice(0, number).concat(this.state.focusArr.slice(number + 1));
-          
-          let focused = 0;
-          if (number === chipListState.length) focused = number - 1;
-          else if (number === chipListState.length && number > 0) focused = number;
-          else focused = 0;
-
-          this.setState({
-            chipListState,
-            itemsList,
-            focusArr,
-            number,
-            focused,
-            hasValue: chipListState.length ? true : false
-          });
-          if (this.props.onRemove) {
-            this.props.onRemove(selectedChip);
-          }
-        }
-      },
-
-      onFocus: (event: React.FormEvent<any>) => {
-        this.setState({ isFocused: true });
-      },
-
-      onBlur: (event: React.FormEvent<any>) => {
-        this.setState({ isFocused: false,
-          value: '' });
-      },
-
-      onSuggestionsFetchRequested: ({ value }: Autosuggest.SuggestionsFetchRequest) => {
-        if (value) {
-          this.setState({
-            suggestions: autoSuggestMethods.getSuggestions(value),
-          });
-        }
-      },
-
-      updateList: (input: HTMLElement) => {
-        const langIndex = this.state.itemsList.indexOf(input);
-        const itemsListLength = this.state.itemsList;
-        const newLangState = itemsListLength.slice(0, langIndex).concat(itemsListLength.slice(langIndex + 1, itemsListLength.length));
-        this.setState({
-          itemsList: newLangState,
-        });
-      },
-
-      onSuggestionSelected: (event: any, { suggestion = null }: Autosuggest.SuggestionSelectedEventData<any>) => {
-        let suggestionData = suggestion || event;
-        suggestionData.text = suggestionData.name;
-        autoSuggestMethods.updateList(suggestionData);
-        const chipListState = this.state.chipListState.concat(suggestionData);
-        const item = Object.assign({}, chipListState[0], { tabIndex: 0 });
-        chipListState[0] = item;
-        this.setState({
-          chipListState,
-          value: '',
-          hasValue: true,
-        });
-
-        if (this.props.onSelect) {
-          this.props.onSelect(suggestionData);
-        }
-      },
-
-      chipRemove: (item: any) => {
-        const number = typeof item === 'number' ? item : this.state.chipListState.indexOf(item);
-        const existingChipList = this.state.chipListState;
-        const addedItem = this.state.chipListState.slice(number, number + 1);
-        const addedItemObj = Object.assign({}, addedItem[0], { tabIndex: -1 });
-        const chipListState = existingChipList.slice(0, number).concat(existingChipList.slice(number + 1));
-        const itemsList = [addedItemObj, ...this.state.itemsList];
-        const focusArr = this.state.focusArr.slice(0, number).concat(this.state.focusArr.slice(number + 1));
-        if (chipListState.length) chipListState[0].tabIndex = 0;
-        let focused = 0;
-        if (number === chipListState.length) focused = number - 1;
-        else if (number === chipListState.length && number > 0) focused = number;
-        else focused = 0;
-        this.setState({
-          itemsList,
-          chipListState,
-          focusArr,
-          number,
-          focused,
-          hasValue: chipListState.length ? true : false
-        });
-
-        if (this.props.onRemove) {
-          this.props.onRemove(item);
-        }
-      },
-
-      storeInputReference: (autosuggest: Autosuggest) => {
-        if (autosuggest !== null) {
-          if (this.state.input !== autosuggest.props.inputProps.value) {
-            this.setState({ input: autosuggest.props.inputProps.value });
-          }
-        }
-      },
-
-      storeFocus: (e: HTMLElement) => {
-        if (!this.state.focusArr.includes(e) && e !== null) {
-          const focusArr = this.state.focusArr.length ? this.state.focusArr.concat([e]) : [e];
-          this.setState({ focusArr });
-        }
-      },
-
-      renderSuggestion: (suggestion: any, { isHighlighted, query }: IRenderSuggestionProp) => {
-        const index = (suggestion.name ? suggestion.name.toLowerCase().indexOf(query.toLowerCase()) : 0);
-        const nameBefore = (suggestion.name ? suggestion.name.slice(0, index) : '');
-        const queryData = (suggestion.name ? suggestion.name.slice(index, index + query.length) : '');
-        const nameAfter = (suggestion.name ? suggestion.name.slice(index + query.length) : '');
-
-        if (isHighlighted) {
-          return <Card isHighlighted={true} image={suggestion.image} nameBefore={nameBefore} bold={queryData} nameAfter={nameAfter} email={suggestion.email} alt={suggestion.alt} />;
-        }
-
-        return (
-          <Card image={suggestion.image} nameBefore={nameBefore} bold={queryData} nameAfter={nameAfter} email={suggestion.email} alt={suggestion.alt} />
-        );
-      },
-    };
-
-      const {
-        helpText,
-        label,
-        labelHidden = false,
-        loading = false,
-        disabled = false,
-        searchBehavior = this.handleChange,
-        theme,
-        listType = {},
-        noOptionsMessage = ''
+    const {
+      label,
+      theme,
+      suffix,
+      loading,
+      noOptionsMessage,
+      disabled
     } = this.props;
-    const { isFocused, hasValue, value, suggestions, chipListState } = this.state;
 
-    const inputProps: Autosuggest.InputProps & { disabled: boolean } = {
-      value,
-      onChange: autoSuggestMethods.onChange,
-      onKeyDown: autoSuggestMethods.onKeyDown,
-      onFocus: autoSuggestMethods.onFocus,
-      onBlur: autoSuggestMethods.onBlur,
-      disabled: disabled || (!!this.props.maxSelectedItems && this.props.maxSelectedItems <= chipListState.length),
-    };
+    const {
+      items,
+      popoverWidth,
+      isEmpty,
+      serverSort,
+      chipListState
+    } = this.state;
 
-    const stateProps: IStateProps = { value, suggestions, chipListState, inputProps };
-
-    let suffixIcon: React.ReactNode = null;
-    if (this.props.suffix) {
-      const { suffix } = this.props;
-      suffixIcon = <Icon componentColor="inkLightest" source= {suffix as keyof typeof IconList} />;
-    }
+    const itemsComponent = items.map((item, index) =>
+      <PopoverPikerItem
+          key={index}
+          item={item}
+          clickHandler={this.handleClick}
+          theme={theme}
+          serverSort={serverSort}
+        />
+    );
+    
+    const { value = []} = items[0];
+    let open: boolean = this.state.selectedValue.length !== 0 && value.length !== 0 || false;
+    const isEmptyResult: boolean = this.state.selectedValue.length !== 0 && value.length === 0 || false;
 
     const classNameChip = classNames(
       theme.containerWrapper,
-      stateProps ? stateProps.chipListState.length ? null : theme.empty : null
+      chipListState.length !== 0 ? null : theme.empty
     );
-
-    const { itemsList } = this.state;
-
-    let tabularData = 
-      {
-        key: listType && listType.key || '' ,
-        type: listType && listType.type || '',
-        column: listType && listType.columnConfig || [],
-        value: itemsList || [],
-        suggestions
-      }
-    ; 
+    
+    let hasValue: boolean = chipListState.length !== 0;
 
     return (
       <div id={this.id}>
         <div className={classNameChip}>
-          {stateProps ? stateProps.chipListState.map((input: any) => <Chip icon={input.icon} onIconClick={input.onIconClick} theme={theme} image={{ url: input.image }} removable={!disabled} onRemove={() => autoSuggestMethods ? autoSuggestMethods.chipRemove(input) : null} key={input.key}>{input.text}</Chip>) : null}
-          <TabulerSuggest
-            items={tabularData}
-            autoSuggestMethods={autoSuggestMethods}  
-            disabled={disabled}
-            helpText={helpText}
-            label={label ? label : ''}
-            labelHidden={labelHidden}
-            loading={loading}
-            onChange={searchBehavior}
+        {chipListState.length !== 0 ? chipListState.map((input: any) => <Chip icon={input.icon} onIconClick={input.onIconClick} theme={theme} image={{ url: input.image }} removable={!disabled} onRemove={() => this.chipRemove(input)} key={input.key}>{input.text}</Chip>) : null}
+        <div key={this.id} className={theme.tabulerSuggestContainer} ref={node => this.setWrapperRef(node)} >
+          <TextField
+            type="text"
+            label={label}
+            onChange={this.onChange}
+            onKeyDown={this.onKeyDown}
+            value={this.state.selectedValue}
             theme={theme}
-            suffix={suffixIcon}
+            suffix={<Icon source={suffix} componentColor="inkLighter" />}
+            loading={loading}
+            disabled={disabled}
+            backdropHidden={true}
+            isFocused={false}
             hasValue={hasValue}
-            isFocused={isFocused}
-            noOptionsMessage={noOptionsMessage}
           />
+          {!suffix && <div className={theme.comboboxArrow}>
+            <Icon source={arrowSvg} theme={theme} />
+          </div>}
+          {open && !isEmpty && <Popover
+            addArrow={false}
+            componentStyle={{ maxHeight: window.outerHeight < 768 ? 500 : 800, overflow: 'auto', width: popoverWidth }}
+            anchorEl={this.state.anchorEl}
+            open={open}
+            theme={theme}
+            preferredAlignment="left"
+          >
+              {itemsComponent}
+            </Popover>}
+
+          {isEmptyResult && <Popover
+            addArrow={false}
+            componentStyle={{ maxHeight: window.outerHeight < 768 ? 500 : 800, overflow: 'auto', width: popoverWidth }}
+            anchorEl={this.state.anchorEl}
+            open={isEmptyResult}
+            theme={theme}
+            preferredAlignment="left"
+          >
+              {noOptionsMessage}
+            </Popover>}
+          </div>
         </div>
       </div>
     );
-  }
-
-  private handleChange = (value: string) => {
-    this.setState({ ['people']: value });
-    this.setState({ ['searchItems']: value ? this.props.source.filter(x => x.name.startsWith(value)) : [] });
   }
 }
 
