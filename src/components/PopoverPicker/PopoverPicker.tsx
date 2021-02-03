@@ -11,7 +11,6 @@ import arrowSvg from './icons/arrow.svg';
 import PopoverPikerItem from './PopoverPikerItem';
 import Chip from '../Chip';
 
-export type Mode = 'collapsible' | 'multiple';
 export type ItemType = 'Accordian' | 'Tabuler';
 export interface PopoverItemProps {
   type?: any;
