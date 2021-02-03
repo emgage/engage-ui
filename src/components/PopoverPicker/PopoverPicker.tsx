@@ -9,8 +9,6 @@ import TextField from '../TextField';
 import Popover from '../Popover';
 import arrowSvg from './icons/arrow.svg';
 import PopoverPikerItem from './PopoverPikerItem';
-// import { Table } from '../Table';
-// import Icon, { IconList } from '../Icon';
 import Chip from '../Chip';
 
 export type Mode = 'collapsible' | 'multiple';
@@ -110,9 +108,10 @@ class PopoverPicker extends React.PureComponent<Props, State> {
     }
     if (JSON.stringify(nextProps.defaultSelectedItems) !== JSON.stringify(this.props.defaultSelectedItems)) {
       const { defaultSelectedItems = [] } = nextProps;
-      if (nextProps.source.length && defaultSelectedItems.length) {
+      const { value } = nextProps.items[0];
+      if (defaultSelectedItems.length !== 0) {
         defaultSelectedItems.forEach((chip: any) => {
-          const currentText = nextProps.source.find((source: any) => source.id === (chip.id || chip.key) || source.key === (chip.id || chip.key));
+          const currentText = value.find((source: any) => source.id === (chip.id || chip.key) || source.key === (chip.id || chip.key));
           if (currentText) {
             chip.text = currentText.name;
           }
@@ -192,7 +191,7 @@ class PopoverPicker extends React.PureComponent<Props, State> {
     }
   }
 
-  handleClick = (value: string | any, key: any) => {
+  handleClick = (value: string | any) => {
     const selectedValue = typeof value === 'string' ? JSON.parse(value) : value;
     if (this.props.onSelect) {
       this.props.onSelect(selectedValue);
