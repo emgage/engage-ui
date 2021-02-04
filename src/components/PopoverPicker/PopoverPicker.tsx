@@ -262,8 +262,8 @@ class PopoverPicker extends React.PureComponent<Props, State> {
     let resultValue = valueState.filter((data: any) => !chips.includes(data.text))
     items[0].value = resultValue;
 
-    let open: boolean = this.state.selectedValue.length !== 0 && items[0].value !== 0 || false;
-    const isEmptyResult: boolean = this.state.selectedValue.length !== 0 && items[0].value === 0 || false;
+    let open: boolean = this.state.selectedValue.length !== 0 && items[0].value.length !== 0 || false;
+    const isEmptyResult: boolean = this.state.selectedValue.length !== 0 && items[0].value.length === 0 || false;
     
     return (
       <div id={this.id}>
@@ -286,7 +286,7 @@ class PopoverPicker extends React.PureComponent<Props, State> {
             autoComplete={false}
           />
           {!suffix && <div className={theme.comboboxArrow}>
-            {/* <Icon source={arrowSvg} theme={theme} /> */}
+            <Icon source={arrowSvg} theme={theme} />
           </div>}
           {open && !isEmpty && <Popover
             addArrow={false}
