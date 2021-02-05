@@ -54,7 +54,6 @@ class PopoverPikerItem extends React.PureComponent<Props, never> {
     const findIndex = value.findIndex((i: any) => i.id === dataId);
 
     if (findIndex !== -1 && this.props.clickHandler) {
-      console.log(findIndex);
       this.props.clickHandler(value[findIndex]);
     }
   }
