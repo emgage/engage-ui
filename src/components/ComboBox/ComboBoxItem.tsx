@@ -81,7 +81,7 @@ class ComboBoxItem extends React.PureComponent<Props, never> {
           </div>
         );
       case 'Tabuler':
-          return (
+        return (
             <div data-isparent={true} data-key={key ? key : false} className={theme.itemContainer}>
               <Table
                 sorting="all"
@@ -92,7 +92,7 @@ class ComboBoxItem extends React.PureComponent<Props, never> {
                 serverSort={serverSort}
               />
             </div>
-          );  
+        );
       default:
         return (
           <div>
@@ -100,7 +100,7 @@ class ComboBoxItem extends React.PureComponent<Props, never> {
               {this.getItem(value, key, renderer)}
             </div>
           </div>
-            
+
         );
     }
   }
@@ -139,14 +139,14 @@ class ComboBoxItem extends React.PureComponent<Props, never> {
       const valueToPass = hasKey ?  JSON.parse(dataValue) : dataValue;
 
       console.log(valueToPass, hasKey);
-      
+
       this.props.clickHandler(valueToPass, hasKey as string);
     }
   }
 
   private handleRowClick = (data: any) => {
     const dataId: number = data;
-    const { item : { value, key }} = this.props;
+    const { item : { value, key } } = this.props;
     const findIndex = value.findIndex((i: any) => i.id === dataId);
 
     if (findIndex !== -1 && this.props.clickHandler) {

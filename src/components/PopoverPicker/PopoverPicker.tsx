@@ -90,14 +90,14 @@ class PopoverPicker extends React.PureComponent<Props, State> {
     if (this.props.sortEntity) {
       this.props.sortEntity(field, order, sortBy);
     }
-  };
-  
+  }
+
   componentWillReceiveProps(nextProps: any) {
     const { items } = nextProps;
     const { items: oldItems } = this.props;
     if (JSON.stringify(oldItems) !== JSON.stringify(items)) {
       const isEmpty: boolean = items && items[0] && items[0].value && items[0].value.length === 0 || false;
-      this.setState({ items: items, isEmpty });
+      this.setState({ items, isEmpty });
     }
     if (JSON.stringify(nextProps.defaultSelectedItems) !== JSON.stringify(this.props.defaultSelectedItems)) {
       const { defaultSelectedItems = [] } = nextProps;
@@ -178,7 +178,7 @@ class PopoverPicker extends React.PureComponent<Props, State> {
       selectedValue: value,
       items: newItems,
     });
-    
+
     if (this.props.onChangeText) {
       this.props.onChangeText(value);
     }
@@ -199,7 +199,7 @@ class PopoverPicker extends React.PureComponent<Props, State> {
       selectedValue: '',
     });
   }
-  
+
   updateList = (input: any) => {
     const { items } = this.state;
     const { value } = items[0];
@@ -207,7 +207,7 @@ class PopoverPicker extends React.PureComponent<Props, State> {
     const itemsListLength = value;
     const newLangState = itemsListLength.slice(0, langIndex).concat(itemsListLength.slice(langIndex + 1, itemsListLength.length));
     console.log(newLangState);
-    
+
     items[0].value = newLangState;
     this.setState({ items });
   }
@@ -222,7 +222,7 @@ class PopoverPicker extends React.PureComponent<Props, State> {
     const { value } = items[0];
     const itemsList = [addedItemObj, ...value];
     items[0].value = itemsList;
-    
+
     this.setState({
       items,
       chipListState,
@@ -278,21 +278,21 @@ class PopoverPicker extends React.PureComponent<Props, State> {
           serverSort={serverSort}
         />
     );
-    
-    const { value = []} = items[0];
-    let open: boolean = this.state.selectedValue.length !== 0 && value.length !== 0 || false;
+
+    const { value = [] } = items[0];
+    const open: boolean = this.state.selectedValue.length !== 0 && value.length !== 0 || false;
     const isEmptyResult: boolean = this.state.selectedValue.length !== 0 && value.length === 0 || false;
 
     const classNameChip = classNames(
       theme.containerWrapper,
       chipListState.length !== 0 ? null : theme.empty
     );
-    
-    let hasValue: boolean = chipListState.length !== 0;
+
+    const hasValue: boolean = chipListState.length !== 0;
 
     const { value: valueState } = items[0];
-    let chips = chipListState.map((data: any) => data.text);
-    let resultValue = valueState.filter((data: any) => !chips.includes(data.text))
+    const chips = chipListState.map((data: any) => data.text);
+    const resultValue = valueState.filter((data: any) => !chips.includes(data.text));
     items[0].value = resultValue;
 
     return (

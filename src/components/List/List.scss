@@ -66,26 +66,6 @@ $border-color: #dbdbdb;
 .list-divider > li {
    padding: 15px;
    margin: 0;
-   span {
-    &:first-child {
-      @include fontStyle(1.3rem, normal);
-      color: $font-color;
-      min-width: 4.5rem;
-      display: inline-block;
-    }
-    &:nth-child(2) {
-      @include fontStyle(1.4rem, bold);
-      margin-left: 2.5rem;
-    }
-  }
-  div {
-    &:first-child {
-      @include fontStyle(1.4rem, bold);
-    }
-    &:nth-child(2) {
-      color: $font-color;
-    }
-  }
   &:last-child {
     border-bottom: 1px solid $border-color;
   }
