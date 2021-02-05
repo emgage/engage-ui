@@ -11,13 +11,12 @@ import arrowSvg from './icons/arrow.svg';
 import PopoverPikerItem from './PopoverPikerItem';
 import Chip from '../Chip';
 
-export type ItemType = 'Accordian' | 'Tabuler';
+export type ItemType = 'Tabuler';
 export interface PopoverItemProps {
   type?: any;
   key?: string;
   value: any;
   column?: any;
-  renderer?(value: any, type?: string): React.ReactElement<any>;
 }
 
 export interface ServerSort {
@@ -45,7 +44,6 @@ export interface Props {
 interface State {
   chipListState: any[];
   items: PopoverItemProps[];
-  initialItems: PopoverItemProps[];
   anchorEl?: HTMLElement;
   selectedValue: string;
   popoverWidth: string;
@@ -65,7 +63,6 @@ class PopoverPicker extends React.PureComponent<Props, State> {
       items,
       // In case use is searching something, and then removes its search text, PopoverPicker shud list the initialItem
       // Therefore, keeping copy of it so that its not lose, as items is changed depending on search and selection.
-      initialItems: this.addRenderer(items, JSON.parse(JSON.stringify(items))),
       popoverWidth: '',
       selectedValue: '' || currentValue,
       isEmpty: false,
@@ -121,16 +118,6 @@ class PopoverPicker extends React.PureComponent<Props, State> {
     }
   }
 
-  addRenderer = (items: any, cloneItems: any) => {
-    items.forEach((item: any, index: number) => {
-      if (item.renderer) {
-        cloneItems[index]['renderer'] = item.renderer;
-      }
-    });
-
-    return cloneItems;
-  }
-
   /*
      on Change of PopoverPicker item, cloning the initial Items which was added to PopoverPicker,
      and then search the value on those items, and list it in popover.
@@ -138,35 +125,21 @@ class PopoverPicker extends React.PureComponent<Props, State> {
   */
 
   onChange = (value: string, event: React.FormEvent<HTMLElement>) => {
-    let newItems = this.state.initialItems;
+    let newItems = this.state.items;
 
     if (value && value !== '') {
-      let cloneItems = JSON.parse(JSON.stringify(this.state.initialItems));
-      cloneItems = this.addRenderer(this.state.items, cloneItems);
+      let cloneItems = this.state.items;
 
       newItems = cloneItems.map((it: any) => {
         const itemValues = it.value;
         const key = it.key;
         let data;
+        data = itemValues.filter((itv: any) => {
+          const smallVal = value.toLowerCase();
+          const flag = key ? ((itv[key].toLowerCase()).includes(smallVal)) : (itv.toLowerCase()).includes(smallVal);
 
-        if (it.type === 'Accordian') {
-          data = itemValues.map((itv: any) => {
-            itv.children = itv.children.filter((child: any) => {
-              const flag = key ? ((child[key].toLowerCase()).includes(value.toLowerCase())) : (child.toLowerCase()).includes(value.toLowerCase());
-
-              return flag;
-            });
-
-            return itv;
-          });
-        } else {
-          data = itemValues.filter((itv: any) => {
-            const smallVal = value.toLowerCase();
-            const flag = key ? ((itv[key].toLowerCase()).includes(smallVal)) : (itv.toLowerCase()).includes(smallVal);
-
-            return flag;
-          });
-        }
+          return flag;
+        });
 
         it.value = data;
         return it;
@@ -278,10 +251,13 @@ class PopoverPicker extends React.PureComponent<Props, State> {
           serverSort={serverSort}
         />
     );
+<<<<<<< HEAD
 
     const { value = [] } = items[0];
     const open: boolean = this.state.selectedValue.length !== 0 && value.length !== 0 || false;
     const isEmptyResult: boolean = this.state.selectedValue.length !== 0 && value.length === 0 || false;
+=======
+>>>>>>> 3a9f30041b5dc25818e4a9e8b07da62f81ac7ff5
 
     const classNameChip = classNames(
       theme.containerWrapper,
@@ -295,6 +271,9 @@ class PopoverPicker extends React.PureComponent<Props, State> {
     const resultValue = valueState.filter((data: any) => !chips.includes(data.text));
     items[0].value = resultValue;
 
+    let open: boolean = this.state.selectedValue.length !== 0 && items[0].value.length !== 0 || false;
+    const isEmptyResult: boolean = this.state.selectedValue.length !== 0 && items[0].value.length === 0 || false;
+    
     return (
       <div id={this.id}>
         <div className={classNameChip}>
@@ -345,6 +324,7 @@ class PopoverPicker extends React.PureComponent<Props, State> {
     );
   }
 }
+
 
 export { PopoverPicker as UnthemedPopoverPicker };
 export default themr(POPOVERPICKER, baseTheme)(PopoverPicker) as ThemedComponentClass<Props, State>;
