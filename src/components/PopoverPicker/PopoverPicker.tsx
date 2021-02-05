@@ -4,10 +4,8 @@ import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
 import { classNames } from '@shopify/react-utilities/styles';
 import { POPOVERPICKER } from '../ThemeIdentifiers';
 import * as baseTheme from './PopoverPicker.scss';
-import Icon from '../Icon';
 import TextField from '../TextField';
 import Popover from '../Popover';
-import arrowSvg from './icons/arrow.svg';
 import PopoverPikerItem from './PopoverPikerItem';
 import Chip from '../Chip';
 
@@ -29,7 +27,6 @@ export interface Props {
   items: PopoverItemProps[];
   label: string;
   style?:any;
-  suffix?: any;
   loading?: boolean;
   onSelect?(item: any): void;
   onChangeText?(value: string): void;
@@ -38,6 +35,7 @@ export interface Props {
   theme?: any;
   defaultSelectedItems?: any;
   noOptionsMessage?: string;
+  helpText?: React.ReactNode;
   disabled?: boolean;
 }
 
@@ -226,9 +224,9 @@ class PopoverPicker extends React.PureComponent<Props, State> {
     const {
       label,
       theme,
-      suffix,
       loading,
       noOptionsMessage,
+      helpText,
       disabled
     } = this.props;
 
@@ -277,17 +275,14 @@ class PopoverPicker extends React.PureComponent<Props, State> {
             onKeyDown={this.onKeyDown}
             value={this.state.selectedValue}
             theme={theme}
-            suffix={<Icon source={suffix} componentColor="inkLighter" />}
             loading={loading}
             disabled={disabled}
             backdropHidden={true}
             isFocused={false}
             hasValue={hasValue}
+            helpText={helpText}
             autoComplete={false}
           />
-          {!suffix && <div className={theme.comboboxArrow}>
-            <Icon source={arrowSvg} theme={theme} />
-          </div>}
           {open && !isEmpty && <Popover
             addArrow={false}
             componentStyle={{ maxHeight: window.outerHeight < 768 ? 500 : 800, overflow: 'auto', width: popoverWidth }}

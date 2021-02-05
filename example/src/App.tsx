@@ -2899,13 +2899,13 @@ class App extends React.Component<{}, State> {
             items={this.getPopoverPickerItems()}
             label="Popover Picker Component "
             currentValue="item1"
-            suffix="user"
             loading={false}
             onSelect={(value: any) => console.log(value)}
             onChangeText={(value: any) => console.log(value)}
             sortEntity={(field, order, sortBy) => this.handleSortComboBox(field, order, sortBy)}
             defaultSelectedItems={selectedPickerdata}
             noOptionsMessage={"No options available"}
+            helpText={"This is HelpText Example"}
           />
           {/* <PopoverPicker
             helpText="Helper Text"
