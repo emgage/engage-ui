@@ -45,12 +45,12 @@ class PopoverPikerItem extends React.PureComponent<Props, never> {
           serverSort={serverSort}
         />
       </div>
-    );  
+    );
   }
 
   private handleRowClick = (data: any) => {
     const dataId: number = data;
-    const { item : { value }} = this.props;
+    const { item : { value } } = this.props;
     const findIndex = value.findIndex((i: any) => i.id === dataId);
 
     if (findIndex !== -1 && this.props.clickHandler) {
