@@ -43,7 +43,8 @@ export default (props: Props) => {
   */
   const [dropDownList, setDropdownList] = React.useState<DropdownItemProps[]>([
     { content: props.userName, divider: true },
-    { content: 'User Properties', divider: true },
+    // Will be implemented later
+    // { content: 'User Properties', divider: true },
     { content: <a className={baseTheme.signOut} href={props.logoutUrl}>Sign Out</a> },
   ]);
 
@@ -58,7 +59,8 @@ export default (props: Props) => {
   React.useEffect(() => {
     setDropdownList([
       { content: props.userName, divider: true },
-      { content: 'User Properties', divider: true },
+      // Will be implemented later
+      // { content: 'User Properties', divider: true },
       { content: <a className={baseTheme.signOut} href={props.logoutUrl}>Sign Out</a> }
     ]);
   },              [props.userName, props.logoutUrl]);
@@ -67,7 +69,8 @@ export default (props: Props) => {
     if (props.additionalLIst) {
       setDropdownList([
         { content: props.userName, divider: true },
-        { content: 'User Properties', divider: true },
+         // Will be implemented later
+        // { content: 'User Properties', divider: true },
         ...props.additionalLIst,
         { content: <a className={baseTheme.signOut} href={props.logoutUrl}>Sign Out</a> }]);
     }
