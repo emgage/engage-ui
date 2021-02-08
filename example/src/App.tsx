@@ -2911,7 +2911,7 @@ class App extends React.Component<{}, State> {
             helpText="Helper Text"
             source={pickerdata1}
             defaultSelectedItems={selectedPickerdata}
-            listType={{key: "name", type: 'Tabuler', columnConfig: columnConfigPicker}}
+            listType={{key: "name", type: 'Tabular', columnConfig: columnConfigPicker}}
             maxSelectedItems={5}
             minSelectedItems={2}
             noOptionsMessage={"No options available"}
@@ -3764,7 +3764,7 @@ class App extends React.Component<{}, State> {
     const data = [
       {
         key: 'name',
-        type: 'Tabuler',
+        type: 'Tabular',
         column: columnConfig,
         renderer: this.renderItems,
         value: pickerdata1
@@ -3794,7 +3794,7 @@ class App extends React.Component<{}, State> {
     const data = [
       {
         key: 'name',
-        type: 'Tabuler',
+        type: 'Tabular',
         column: columnConfig,
         renderer: this.renderItems,
         value: comboBoxItems
