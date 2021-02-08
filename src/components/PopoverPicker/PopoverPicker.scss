@@ -12,6 +12,9 @@ $stacking-order: (
 
 // AutoSuggest Container Styles
 
+.TopPopoverPicker {
+  margin-bottom:26px;
+}
 .tableBoxPopoverContainer {
   position: relative;
 }
@@ -149,11 +152,11 @@ $stacking-order: (
   top:0px;
 }
 body .input {
-    padding: 0px 12px!important;
-    line-height: 4rem!important;
-    min-height: 0;
-    height: 3.4rem;
-    margin-top: -14px;
+  padding: 0 12px!important;
+  line-height: 4rem!important;
+  min-height: 0;
+  height: 9.4rem;
+  margin-top: -22px;
 }
 .NoOptionMessage {
   padding: .3rem .6rem;
@@ -162,4 +165,10 @@ body .input {
 .helpText {
   position: absolute;
   left: 0px;
+}
+
+.textField {
+  padding:0px 1.2rem!important;
+  min-height: 6.4rem!important;
+  line-height: 6.4rem!important;
 }
