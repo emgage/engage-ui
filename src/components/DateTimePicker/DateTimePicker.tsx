@@ -89,9 +89,18 @@ class DateTimePicker extends React.PureComponent<Props, State>{
     const newDate = moment(dateTimeArray.join(' '));
     this.setState({ dateTime: newDate.isValid() ? newDate : this.state.dateTime });
   }
+  textFieldFocusHandler = () => {
+    const divs = document.getElementsByClassName('rdt');
+    for (const element of divs) {
+      element.classList.remove('rdtOpen');
+    }
+    // @ts-ignore
+    document.getElementById(document.activeElement.id).parentElement.parentElement.nextElementSibling.classList.add('rdtOpen');
+    this.setState({ open: true });
+  }
 
   render() {
-    const { dateFormat, label, theme, timePicker, placeholder, componentStyle, value, getFromValue } = this.props;
+    const { dateFormat, label, theme, timePicker, placeholder, componentStyle, value, getFromValue, componentId } = this.props;
     const { dateTime, open } = this.state;
     let dateTimeValue;
     if (getFromValue) {
@@ -105,11 +114,12 @@ class DateTimePicker extends React.PureComponent<Props, State>{
                 type="text"
                 label={label}
                 value={dateTimeValue}
-                onFocus={() => { this.setState({ open: true }); }}
+                onFocus={this.textFieldFocusHandler}
                 onChange={(dateTimeString: string) => { this.onTextInputChange(dateTimeString); }}
                 suffix={<Icon source="event" />}
                 placeholder={placeholder}
                 componentStyle={componentStyle}
+                componentId={componentId}
             />
             <DateTime
                 value={value ? value : dateTime}
