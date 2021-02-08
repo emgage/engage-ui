@@ -2899,6 +2899,7 @@ class App extends React.Component<{}, State> {
             items={this.getPopoverPickerItems()}
             label="Popover Picker Component "
             currentValue="item1"
+            // suffix="user"
             loading={false}
             onSelect={(value: any) => console.log(value)}
             onChangeText={(value: any) => console.log(value)}
@@ -2907,19 +2908,6 @@ class App extends React.Component<{}, State> {
             noOptionsMessage={"No options available"}
             helpText={"This is HelpText Example"}
           />
-          {/* <PopoverPicker
-            helpText="Helper Text"
-            source={pickerdata1}
-            defaultSelectedItems={selectedPickerdata}
-            listType={{key: "name", type: 'Tabuler', columnConfig: columnConfigPicker}}
-            maxSelectedItems={5}
-            minSelectedItems={2}
-            noOptionsMessage={"No options available"}
-            onSelect={(value) => console.log(value)}
-            onRemove={(value) => console.log(value)}
-            onChangeText={(value: any) => console.log(value)}
-            sortEntity={(field: string, order: string, sortBy: string) => console.log(field, order, sortBy)}
-          /> */}
 
         <br/>
         <br/>

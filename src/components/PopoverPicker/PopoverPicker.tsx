@@ -4,6 +4,7 @@ import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
 import { classNames } from '@shopify/react-utilities/styles';
 import { POPOVERPICKER } from '../ThemeIdentifiers';
 import * as baseTheme from './PopoverPicker.scss';
+import Icon from '../Icon';
 import TextField from '../TextField';
 import Popover from '../Popover';
 import PopoverPikerItem from './PopoverPikerItem';
@@ -27,6 +28,7 @@ export interface Props {
   items: PopoverItemProps[];
   label: string;
   style?:any;
+  suffix?: any;
   loading?: boolean;
   onSelect?(item: any): void;
   onChangeText?(value: string): void;
@@ -224,6 +226,7 @@ class PopoverPicker extends React.PureComponent<Props, State> {
     const {
       label,
       theme,
+      suffix,
       loading,
       noOptionsMessage,
       helpText,
@@ -275,6 +278,7 @@ class PopoverPicker extends React.PureComponent<Props, State> {
             onKeyDown={this.onKeyDown}
             value={this.state.selectedValue}
             theme={theme}
+            suffix={<Icon source={suffix} componentColor="inkLighter" />}
             loading={loading}
             disabled={disabled}
             backdropHidden={true}
