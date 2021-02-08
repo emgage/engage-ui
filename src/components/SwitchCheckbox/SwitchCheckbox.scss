@@ -8,7 +8,7 @@
         margin-right: 0.8rem;
         .InnerSpan {
             width: 3.4rem;
-            background: rgba(0, 0, 0, .3);
+            background:color(ink, lighter);
             display: inline-block;
             position: relative;
             border-radius: 3rem;
@@ -23,13 +23,13 @@
                 position: absolute;
                 left: -1px;
                 right:auto;
-                background-color: rgba(0, 0, 0, 1);
-                top: -3px;
-                border:1px solid rgba(0, 0, 0, 1);
+                background-color: color(sky, base);
+                top: -4px;
                 transition: all .3s ease-in-out;
                 -moz-transition: all .3s ease-in-out;
                 -webkit-transition: all .3s ease-in-out;
                 z-index: 1;
+                box-shadow: 1px 2px 3px 1px rgba(0,0,0,.3);
             }
         }
         input {
@@ -38,7 +38,7 @@
             position: absolute;
             z-index: 2;
             &:checked + .InnerSpan {
-                background-color: rgba(2, 117, 216, .5);
+                background-color: color(blue, light);
             &:before {
                 right:-3px;
                 left: auto;
@@ -46,7 +46,6 @@
                 -moz-transition: all .3s ease-in-out;
                 -webkit-transition: all .3s ease-in-out;
                 background: color(blue, base);
-                border: 1px solid color(blue, base);
             }
         }
     }
