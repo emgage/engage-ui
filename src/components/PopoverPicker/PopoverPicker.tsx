@@ -87,14 +87,14 @@ class PopoverPicker extends React.PureComponent<Props, State> {
     if (this.props.sortEntity) {
       this.props.sortEntity(field, order, sortBy);
     }
-  };
-  
+  }
+
   componentWillReceiveProps(nextProps: any) {
     const { items } = nextProps;
     const { items: oldItems } = this.props;
     if (JSON.stringify(oldItems) !== JSON.stringify(items)) {
       const isEmpty: boolean = items && items[0] && items[0].value && items[0].value.length === 0 || false;
-      this.setState({ items: items, isEmpty });
+      this.setState({ items, isEmpty });
     }
     if (JSON.stringify(nextProps.defaultSelectedItems) !== JSON.stringify(this.props.defaultSelectedItems)) {
       const { defaultSelectedItems = [] } = nextProps;
@@ -128,7 +128,7 @@ class PopoverPicker extends React.PureComponent<Props, State> {
     let newItems = this.state.items;
 
     if (value && value !== '') {
-      let cloneItems = this.state.items;
+      const cloneItems = this.state.items;
 
       newItems = cloneItems.map((it: any) => {
         const itemValues = it.value;
@@ -151,7 +151,7 @@ class PopoverPicker extends React.PureComponent<Props, State> {
       selectedValue: value,
       items: newItems,
     });
-    
+
     if (this.props.onChangeText) {
       this.props.onChangeText(value);
     }
@@ -172,7 +172,7 @@ class PopoverPicker extends React.PureComponent<Props, State> {
       selectedValue: '',
     });
   }
-  
+
   updateList = (input: any) => {
     const { items } = this.state;
     const { value } = items[0];
@@ -193,7 +193,7 @@ class PopoverPicker extends React.PureComponent<Props, State> {
     const { value } = items[0];
     const itemsList = [addedItemObj, ...value];
     items[0].value = itemsList;
-    
+
     this.setState({
       items,
       chipListState,
@@ -255,17 +255,17 @@ class PopoverPicker extends React.PureComponent<Props, State> {
       theme.containerWrapper,
       chipListState.length !== 0 ? null : theme.empty
     );
-    
-    let hasValue: boolean = chipListState.length !== 0;
+
+    const hasValue: boolean = chipListState.length !== 0;
 
     const { value: valueState } = items[0];
-    let chips = chipListState.map((data: any) => data.text);
-    let resultValue = valueState.filter((data: any) => !chips.includes(data.text))
+    const chips = chipListState.map((data: any) => data.text);
+    const resultValue = valueState.filter((data: any) => !chips.includes(data.text));
     items[0].value = resultValue;
 
-    let open: boolean = this.state.selectedValue.length !== 0 && items[0].value.length !== 0 || false;
+    const open: boolean = this.state.selectedValue.length !== 0 && items[0].value.length !== 0 || false;
     const isEmptyResult: boolean = this.state.selectedValue.length !== 0 && items[0].value.length === 0 || false;
-    
+
     return (
       <div id={this.id}>
         <div className={classNameChip}>
@@ -314,7 +314,6 @@ class PopoverPicker extends React.PureComponent<Props, State> {
     );
   }
 }
-
 
 export { PopoverPicker as UnthemedPopoverPicker };
 export default themr(POPOVERPICKER, baseTheme)(PopoverPicker) as ThemedComponentClass<Props, State>;

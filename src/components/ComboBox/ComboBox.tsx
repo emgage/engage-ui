@@ -74,7 +74,7 @@ class ComboBox extends React.PureComponent<Props, State> {
   }
 
   sortEntity = (field: string, order: string, sortBy: string) => {
-    
+
     this.setState({
       serverSort: {
         ...this.state.serverSort,
@@ -86,13 +86,13 @@ class ComboBox extends React.PureComponent<Props, State> {
     if (this.props.sortEntity) {
       this.props.sortEntity(field, order, sortBy);
     }
-  };
-  
+  }
+
   componentDidMount() {
     const { items } = this.props;
     if (items && items[0]) {
-      const { type = "" } = items && items[0];
-      if (type !== "Tabuler") {
+      const { type = '' } = items && items[0];
+      if (type !== 'Tabuler') {
         document.addEventListener('click', this.handleClickOutside);
       }
     }
@@ -101,8 +101,8 @@ class ComboBox extends React.PureComponent<Props, State> {
   componentWillUnmount() {
     const { items } = this.props;
     if (items && items[0]) {
-      const { type = "" } = items && items[0];
-      if (type !== "Tabuler") {
+      const { type = '' } = items && items[0];
+      if (type !== 'Tabuler') {
         document.removeEventListener('click', this.handleClickOutside);
       }
     }
@@ -113,7 +113,7 @@ class ComboBox extends React.PureComponent<Props, State> {
     const { items: oldItems } = this.props;
     if (JSON.stringify(oldItems) !== JSON.stringify(items)) {
       const isEmpty: boolean = items && items[0] && items[0].value && items[0].value.length === 0 || false;
-      this.setState({ items: items, isEmpty });
+      this.setState({ items, isEmpty });
     }
   }
 
@@ -189,7 +189,7 @@ class ComboBox extends React.PureComponent<Props, State> {
       selectedValue: value,
       items: newItems,
     });
-    
+
     if (this.props.onChangeText) {
       this.props.onChangeText(value);
     }
@@ -265,7 +265,7 @@ class ComboBox extends React.PureComponent<Props, State> {
             {itemsComponent}
           </Popover>}
       </div>
-          
+
       </>
     );
   }
