@@ -2907,20 +2907,6 @@ class App extends React.Component<{}, State> {
             noOptionsMessage={"No options available"}
             helpText={"This is HelpText Example"}
           />
-          {/* <PopoverPicker
-            helpText="Helper Text"
-            source={pickerdata1}
-            defaultSelectedItems={selectedPickerdata}
-            listType={{key: "name", type: 'Tabular', columnConfig: columnConfigPicker}}
-            maxSelectedItems={5}
-            minSelectedItems={2}
-            noOptionsMessage={"No options available"}
-            onSelect={(value) => console.log(value)}
-            onRemove={(value) => console.log(value)}
-            onChangeText={(value: any) => console.log(value)}
-            sortEntity={(field: string, order: string, sortBy: string) => console.log(field, order, sortBy)}
-          /> */}
-
         <br/>
         <br/>
         <br/>
