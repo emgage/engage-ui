@@ -4,6 +4,7 @@ import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
 import { classNames } from '@shopify/react-utilities/styles';
 import { POPOVERPICKER } from '../ThemeIdentifiers';
 import * as baseTheme from './PopoverPicker.scss';
+import Icon from '../Icon';
 import TextField from '../TextField';
 import Popover from '../Popover';
 import PopoverPikerItem from './PopoverPikerItem';
@@ -27,6 +28,7 @@ export interface Props {
   items: PopoverItemProps[];
   label: string;
   style?:any;
+  suffix?: any;
   loading?: boolean;
   onSelect?(item: any): void;
   onChangeText?(value: string): void;
@@ -224,6 +226,7 @@ class PopoverPicker extends React.PureComponent<Props, State> {
     const {
       label,
       theme,
+      suffix,
       loading,
       noOptionsMessage,
       helpText,
@@ -264,7 +267,7 @@ class PopoverPicker extends React.PureComponent<Props, State> {
     const isEmptyResult: boolean = this.state.selectedValue.length !== 0 && items[0].value.length === 0 || false;
 
     return (
-      <div id={this.id}>
+      <div id={this.id} className={theme.TopPopoverPicker}>
         <div className={classNameChip}>
         {chipListState.length !== 0 ? chipListState.map((input: any) => <Chip icon={input.icon} onIconClick={input.onIconClick} theme={theme} image={{ url: input.image }} removable={!disabled} onRemove={() => this.chipRemove(input)} key={input.key}>{input.text}</Chip>) : null}
         <div key={this.id} className={theme.tabulerSuggestContainer} ref={node => this.setWrapperRef(node)} >
@@ -275,6 +278,7 @@ class PopoverPicker extends React.PureComponent<Props, State> {
             onKeyDown={this.onKeyDown}
             value={this.state.selectedValue}
             theme={theme}
+            suffix={<Icon source={suffix} componentColor="inkLighter" />}
             loading={loading}
             disabled={disabled}
             backdropHidden={true}

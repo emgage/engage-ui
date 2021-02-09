@@ -2899,6 +2899,7 @@ class App extends React.Component<{}, State> {
             items={this.getPopoverPickerItems()}
             label="Popover Picker Component "
             currentValue="item1"
+            // suffix="user"
             loading={false}
             onSelect={(value: any) => console.log(value)}
             onChangeText={(value: any) => console.log(value)}
