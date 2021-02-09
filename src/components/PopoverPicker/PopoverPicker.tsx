@@ -10,7 +10,7 @@ import Popover from '../Popover';
 import PopoverPikerItem from './PopoverPikerItem';
 import Chip from '../Chip';
 
-export type ItemType = 'Tabuler';
+export type ItemType = 'Tabular';
 export interface PopoverItemProps {
   type?: any;
   key?: string;
