@@ -292,6 +292,7 @@ class PopoverPicker extends React.PureComponent<Props, State> {
             label={label}
             onChange={this.onChange}
             onKeyDown={this.onKeyDown}
+            onFocus={this.onFocus}
             value={this.state.selectedValue}
             theme={theme}
             suffix={<Icon source={suffix} componentColor="inkLighter" />}
