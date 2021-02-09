@@ -34,6 +34,7 @@ export interface Props {
   onChangeText?(value: string): void;
   onRemove?(value: string): void;
   sortEntity?(field: string, order: string, sortBy: string): void;
+  onFocus?(event: React.FormEvent<HTMLElement>): void;
   theme?: any;
   defaultSelectedItems?: any;
   noOptionsMessage?: string;
@@ -49,6 +50,7 @@ interface State {
   popoverWidth: string;
   isEmpty: boolean;
   serverSort: ServerSort;
+  isFocus: boolean;
 }
 
 class PopoverPicker extends React.PureComponent<Props, State> {
@@ -66,6 +68,7 @@ class PopoverPicker extends React.PureComponent<Props, State> {
       popoverWidth: '',
       selectedValue: '' || currentValue,
       isEmpty: false,
+      isFocus: false,
       chipListState: props.defaultSelectedItems || [],
       serverSort: {
         field: '',
@@ -222,6 +225,15 @@ class PopoverPicker extends React.PureComponent<Props, State> {
     }
   }
 
+  onFocus = (event: React.FormEvent<HTMLElement>) => {
+    if (!this.state.isFocus) {
+      if (this.props.onFocus) {
+        this.setState({ anchorEl: event.target as HTMLElement, isFocus: true });
+        this.props.onFocus(event);
+      }
+    }
+  }
+
   render() {
     const {
       label,
@@ -264,8 +276,14 @@ class PopoverPicker extends React.PureComponent<Props, State> {
     items[0].value = resultValue;
 
     const open: boolean = this.state.selectedValue.length !== 0 && items[0].value.length !== 0 || false;
-    const isEmptyResult: boolean = this.state.selectedValue.length !== 0 && items[0].value.length === 0 || false;
+    let isEmptyResult: boolean = this.state.selectedValue.length !== 0 && items[0].value.length === 0 || false;
 
+    if (this.state.selectedValue.length === 0 && items[0].value.length === 0 && noOptionsMessage === "No Item available") {
+      isEmptyResult = true;
+    }
+    
+    console.log(items[0].value);
+    
     return (
       <div id={this.id} className={theme.TopPopoverPicker}>
         <div className={classNameChip}>
@@ -289,7 +307,7 @@ class PopoverPicker extends React.PureComponent<Props, State> {
           />
           {open && !isEmpty && <Popover
             addArrow={false}
-            componentStyle={{ maxHeight: window.outerHeight < 768 ? 500 : 800, overflow: 'auto', width: popoverWidth }}
+            componentStyle={{ maxHeight: window.outerHeight < 768 ? 500 : 800, overflow: 'auto', maxWidth: popoverWidth, marginTop: "-.4rem", width: '49.2rem' }}
             anchorEl={this.state.anchorEl}
             open={open}
             theme={theme}
@@ -300,7 +318,7 @@ class PopoverPicker extends React.PureComponent<Props, State> {
 
           {isEmptyResult && <Popover
             addArrow={false}
-            componentStyle={{ maxHeight: window.outerHeight < 768 ? 500 : 800, overflow: 'auto', width: popoverWidth }}
+            componentStyle={{ maxHeight: window.outerHeight < 768 ? 500 : 800, overflow: 'auto', maxWidth: popoverWidth, width: '49.2rem', padding: '1.3rem', marginTop: "-.4rem" }}
             anchorEl={this.state.anchorEl}
             open={isEmptyResult}
             theme={theme}
