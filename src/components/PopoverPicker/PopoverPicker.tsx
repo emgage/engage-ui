@@ -289,7 +289,7 @@ class PopoverPicker extends React.PureComponent<Props, State> {
           />
           {open && !isEmpty && <Popover
             addArrow={false}
-            componentStyle={{ maxHeight: window.outerHeight < 768 ? 500 : 800, overflow: 'auto', width: popoverWidth }}
+            componentStyle={{ maxHeight: window.outerHeight < 768 ? 500 : 800, overflow: 'auto', maxWidth: popoverWidth, marginTop: "-.4rem", width: '49.2rem' }}
             anchorEl={this.state.anchorEl}
             open={open}
             theme={theme}
@@ -300,7 +300,7 @@ class PopoverPicker extends React.PureComponent<Props, State> {
 
           {isEmptyResult && <Popover
             addArrow={false}
-            componentStyle={{ maxHeight: window.outerHeight < 768 ? 500 : 800, overflow: 'auto', width: popoverWidth }}
+            componentStyle={{ maxHeight: window.outerHeight < 768 ? 500 : 800, overflow: 'auto', maxWidth: popoverWidth, width: '49.2rem', padding: '1.3rem', marginTop: "-.4rem" }}
             anchorEl={this.state.anchorEl}
             open={isEmptyResult}
             theme={theme}
