@@ -2908,7 +2908,6 @@ class App extends React.Component<{}, State> {
             noOptionsMessage={"No options available"}
             helpText={"This is HelpText Example"}
           />
-
         <br/>
         <br/>
         <br/>
@@ -3752,7 +3751,7 @@ class App extends React.Component<{}, State> {
     const data = [
       {
         key: 'name',
-        type: 'Tabuler',
+        type: 'Tabular',
         column: columnConfig,
         renderer: this.renderItems,
         value: pickerdata1
@@ -3782,7 +3781,7 @@ class App extends React.Component<{}, State> {
     const data = [
       {
         key: 'name',
-        type: 'Tabuler',
+        type: 'Tabular',
         column: columnConfig,
         renderer: this.renderItems,
         value: comboBoxItems

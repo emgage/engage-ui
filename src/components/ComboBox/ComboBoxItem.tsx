@@ -80,7 +80,7 @@ class ComboBoxItem extends React.PureComponent<Props, never> {
             <Accordion items={accordianItems} theme={theme} />
           </div>
         );
-      case 'Tabuler':
+      case 'Tabular':
         return (
           <div data-isparent={true} data-key={key ? key : false} className={theme.itemContainer}>
             <Table

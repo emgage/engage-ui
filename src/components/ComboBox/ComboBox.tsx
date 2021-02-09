@@ -10,7 +10,7 @@ import arrowSvg from './icons/arrow.svg';
 import * as baseTheme from './ComboBox.scss';
 
 export type Mode = 'collapsible' | 'multiple';
-export type ItemType = 'Accordian' | 'Tabuler';
+export type ItemType = 'Accordian' | 'Tabular';
 export interface ComboBoxItemProps {
   type?: any;
   key?: string;
@@ -92,7 +92,7 @@ class ComboBox extends React.PureComponent<Props, State> {
     const { items } = this.props;
     if (items && items[0]) {
       const { type = '' } = items && items[0];
-      if (type !== 'Tabuler') {
+      if (type !== 'Tabular') {
         document.addEventListener('click', this.handleClickOutside);
       }
     }
@@ -102,7 +102,7 @@ class ComboBox extends React.PureComponent<Props, State> {
     const { items } = this.props;
     if (items && items[0]) {
       const { type = '' } = items && items[0];
-      if (type !== 'Tabuler') {
+      if (type !== 'Tabular') {
         document.removeEventListener('click', this.handleClickOutside);
       }
     }
