@@ -282,8 +282,6 @@ class PopoverPicker extends React.PureComponent<Props, State> {
       isEmptyResult = true;
     }
     
-    console.log(items[0].value);
-    
     return (
       <div id={this.id} className={theme.TopPopoverPicker}>
         <div className={classNameChip}>
@@ -294,6 +292,7 @@ class PopoverPicker extends React.PureComponent<Props, State> {
             label={label}
             onChange={this.onChange}
             onKeyDown={this.onKeyDown}
+            onFocus={this.onFocus}
             value={this.state.selectedValue}
             theme={theme}
             suffix={<Icon source={suffix} componentColor="inkLighter" />}
