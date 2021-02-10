@@ -14,6 +14,7 @@ $stacking-order: (
 
 .TopPopoverPicker {
   margin-bottom:26px;
+  z-index: z-index(suggestions, $stacking-order);
 }
 .tableBoxPopoverContainer {
   position: relative;
@@ -28,7 +29,6 @@ $stacking-order: (
   border-radius: 5px;
   cursor: text;
   min-height: 25px;
-  z-index: z-index(suggestions, $stacking-order);
   display: flex;
   flex-wrap: wrap;
   background-color: #fff;
@@ -152,11 +152,11 @@ $stacking-order: (
   top:0px;
 }
 body .input {
-  padding: 0 12px!important;
-  line-height: 4rem!important;
-  min-height: 0;
-  height: 9.4rem;
-  margin-top: -22px;
+  padding: 0 1.2rem!important;
+    line-height: 4rem!important;
+    min-height: 0;
+    height: 8rem;
+    margin-top: -1.9rem;
 }
 .NoOptionMessage {
   padding: .3rem .6rem;
