@@ -90,7 +90,7 @@ class DateTimePicker extends React.PureComponent<Props, State>{
     this.setState({ dateTime: newDate.isValid() ? newDate : this.state.dateTime });
   }
   textFieldFocusHandler = () => {
-    const divs = document.getElementsByClassName('rdt');
+    const divs: any = document.getElementsByClassName('rdt');
     if (divs.length) {
       for (const element of divs) {
         element.classList.remove('rdtOpen');
