@@ -34,6 +34,10 @@ export interface Props {
   placeholder?: string;
   // To provide styling.
   componentStyle?: React.CSSProperties;
+  // To set value
+  value?: string;
+  // allow you to take value from only value prop
+  getFromValue?: boolean;
 }
 
 export interface State {
@@ -85,24 +89,42 @@ class DateTimePicker extends React.PureComponent<Props, State>{
     const newDate = moment(dateTimeArray.join(' '));
     this.setState({ dateTime: newDate.isValid() ? newDate : this.state.dateTime });
   }
+  textFieldFocusHandler = () => {
+    const divs: any = document.getElementsByClassName('rdt');
+    if (divs.length) {
+      for (const element of divs) {
+        element.classList.remove('rdtOpen');
+      }
+      // @ts-ignore
+      document.getElementById(document.activeElement.id).parentElement.parentElement.nextElementSibling.classList.add('rdtOpen');
+      this.setState({ open: true });
+    }
+  }
 
   render() {
-    const { dateFormat, label, theme, timePicker, placeholder, componentStyle } = this.props;
+    const { dateFormat, label, theme, timePicker, placeholder, componentStyle, value, getFromValue, componentId } = this.props;
     const { dateTime, open } = this.state;
+    let dateTimeValue;
+    if (getFromValue) {
+      dateTimeValue = value ? moment(value).format(this.timeFormat) : '';
+    } else {
+      dateTimeValue = dateTime ? dateTime.format(this.timeFormat) : null;
+    }
     return (
         <div>
             <TextField
                 type="text"
                 label={label}
-                value={dateTime ? dateTime.format(this.timeFormat) : null}
-                onFocus={() => { this.setState({ open: true }); }}
+                value={dateTimeValue}
+                onFocus={this.textFieldFocusHandler}
                 onChange={(dateTimeString: string) => { this.onTextInputChange(dateTimeString); }}
                 suffix={<Icon source="event" />}
                 placeholder={placeholder}
                 componentStyle={componentStyle}
+                componentId={componentId}
             />
             <DateTime
-                value={dateTime}
+                value={value ? value : dateTime}
                 onBlur={() => { this.setState({ open: false }); }}
                 open={open}
                 closeOnSelect
