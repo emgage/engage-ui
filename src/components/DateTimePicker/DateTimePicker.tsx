@@ -91,12 +91,14 @@ class DateTimePicker extends React.PureComponent<Props, State>{
   }
   textFieldFocusHandler = () => {
     const divs = document.getElementsByClassName('rdt');
-    for (const element of divs) {
-      element.classList.remove('rdtOpen');
+    if (divs.length) {
+      for (const element of divs) {
+        element.classList.remove('rdtOpen');
+      }
+      // @ts-ignore
+      document.getElementById(document.activeElement.id).parentElement.parentElement.nextElementSibling.classList.add('rdtOpen');
+      this.setState({ open: true });
     }
-    // @ts-ignore
-    document.getElementById(document.activeElement.id).parentElement.parentElement.nextElementSibling.classList.add('rdtOpen');
-    this.setState({ open: true });
   }
 
   render() {
