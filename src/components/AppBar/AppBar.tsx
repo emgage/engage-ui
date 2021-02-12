@@ -5,6 +5,7 @@ import { DropdownItemProps } from '../Dropdown';
 import Image from '../Image';
 import TextField from '../TextField';
 import FlexBox from '../FlexBox';
+import Icon from '../Icon';
 
 export interface Props {
   /**
@@ -23,6 +24,10 @@ export interface Props {
    * Enable search
    */
   enableSearch?: boolean;
+  /**
+   * Callback when search input is Key.
+   */
+  searchOnKeyDown?(e: React.FormEvent<HTMLElement> | KeyboardEvent): void;
   /**
    * Right side children
    */
@@ -68,7 +73,8 @@ const AppBar: React.FC<Props> = (props) => {
     userName,
     logo,
     rightChildren,
-    enableGlobalElement
+    enableGlobalElement,
+    searchOnKeyDown,
   } = props;
 
   /**
@@ -84,7 +90,17 @@ const AppBar: React.FC<Props> = (props) => {
     <FlexBox>
       { enableGlobalGo && enableGlobalElement }
       { logo && <Image alt="Logo" source={logo} /> }
-      { enableSearch && <TextField type="text" componentHeight="slim"/> }
+      { enableSearch &&
+        <div className={baseTheme.searchBar}>
+          <TextField
+            type="search"
+            componentHeight="slim"
+            suffix={<Icon source="search" componentColor="inkLighter"/>}
+            label="Search"
+            onKeyDown={searchOnKeyDown}
+          />
+        </div>
+      }
       <div className={baseTheme.rChild}>
       { rightChildren && <div>{renderRightChildren()}</div> }
       <Login

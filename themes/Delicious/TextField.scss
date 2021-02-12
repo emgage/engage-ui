@@ -152,6 +152,11 @@ $spinner-size: rem(20px);
   overflow: hidden;
 }
 
+.labelStyleSlim {
+  line-height: 1rem;
+  font-size: 1.4rem;
+}
+
 .labelHasValue {
   @include text-style-body-small;
   color: theme-color(m-grey, 700);

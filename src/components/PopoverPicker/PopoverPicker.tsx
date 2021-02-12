@@ -278,10 +278,10 @@ class PopoverPicker extends React.PureComponent<Props, State> {
     const open: boolean = this.state.selectedValue.length !== 0 && items[0].value.length !== 0 || false;
     let isEmptyResult: boolean = this.state.selectedValue.length !== 0 && items[0].value.length === 0 || false;
 
-    if (this.state.selectedValue.length === 0 && items[0].value.length === 0 && noOptionsMessage === "No Item available") {
+    if (this.state.selectedValue.length === 0 && items[0].value.length === 0 && noOptionsMessage === 'No Item available') {
       isEmptyResult = true;
     }
-    
+
     return (
       <div id={this.id} className={theme.TopPopoverPicker}>
         <div className={classNameChip}>
@@ -306,7 +306,7 @@ class PopoverPicker extends React.PureComponent<Props, State> {
           />
           {open && !isEmpty && <Popover
             addArrow={false}
-            componentStyle={{ maxHeight: window.outerHeight < 768 ? 500 : 800, overflow: 'auto', maxWidth: popoverWidth, marginTop: "-.4rem", width: '49.2rem' }}
+            componentStyle={{ maxHeight: window.outerHeight < 768 ? 500 : 800, overflow: 'auto', maxWidth: popoverWidth, marginTop: '-.4rem', width: '49.2rem' }}
             anchorEl={this.state.anchorEl}
             open={open}
             theme={theme}
@@ -317,7 +317,7 @@ class PopoverPicker extends React.PureComponent<Props, State> {
 
           {isEmptyResult && <Popover
             addArrow={false}
-            componentStyle={{ maxHeight: window.outerHeight < 768 ? 500 : 800, overflow: 'auto', maxWidth: popoverWidth, width: '49.2rem', padding: '1.3rem', marginTop: "-.4rem" }}
+            componentStyle={{ maxHeight: window.outerHeight < 768 ? 500 : 800, overflow: 'auto', maxWidth: popoverWidth, width: '49.2rem', padding: '1.3rem', marginTop: '-.4rem' }}
             anchorEl={this.state.anchorEl}
             open={isEmptyResult}
             theme={theme}

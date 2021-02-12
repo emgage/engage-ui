@@ -85,7 +85,7 @@ export interface Props {
   // Callback when input is focused.
   onFocus?(e?: React.FormEvent<HTMLElement>): void;
   // Callback when input is Key.
-  onKeyDown?(e: React.FormEvent<Element> | KeyboardEvent): void;
+  onKeyDown?(e: React.FormEvent<HTMLElement> | KeyboardEvent): void;
   // Callback when focus is removed	.
   onBlur?(e?: React.FormEvent<HTMLElement>): void;
   // Callback when value is inserted in Input.
@@ -300,6 +300,7 @@ class TextField extends React.PureComponent<Props, State> {
 
     const labelStyle = classNames(
       theme.labelStyle,
+      componentHeight === 'slim' && theme.labelStyleSlim,
       (hasValue || this.state.focused || prefix) && theme.labelHasValue,
       disabled && theme.labelDisabled
     );
@@ -399,6 +400,7 @@ class TextField extends React.PureComponent<Props, State> {
   @autobind
   private handleInputOnKeyDown(e: React.FormEvent<HTMLElement> | KeyboardEvent) {
     const { onKeyDown } = this.props;
+
     this.setState((prevState: State) => ({
       ...prevState,
       focused: true,
