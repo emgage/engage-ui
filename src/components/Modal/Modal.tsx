@@ -13,7 +13,7 @@ import { MODAL } from '../ThemeIdentifiers';
 
 import * as baseTheme from './Modal.scss';
 
-export type Width = 'small' | 'medium' | 'large' | string;
+export type Width = 'small' | 'medium' | 'large' | 'xlarge' | string;
 
 export interface Props {
   // Define the open or close state of modal
@@ -83,7 +83,8 @@ class Modal extends React.PureComponent<Props, never> {
       theme.dialog,
       componentWidth === 'small' && theme.small,
       componentWidth === 'medium' && theme.medium,
-      componentWidth === 'large' && theme.large
+      componentWidth === 'large' && theme.large,
+      componentWidth === 'xlarge' && theme.xlarge,
     );
   }
 
