@@ -193,6 +193,14 @@ $border-color: color(sky, base);
   border: none !important;
   min-height: auto;
   padding: 0;
+  &:hover {
+    fill: color(text, link);
+    color: color(text, link);
+  }
+  &:focus {
+    fill: color(text, link);
+    color: color(text, link);
+  }
 }
 
 .bannerRow {
