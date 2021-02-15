@@ -70,12 +70,28 @@ $font-weight-normal: 400 !default;
   white-space: nowrap;
   background-color: transparent;
   font-size: 14px;
+  .DropdownButton {
+    color: color(text, text)
+  }
 
   &:hover {
     color: $dropdown-link-active-color;
     text-decoration: none;
     @include gradient-bg($dropdown-link-active-bg);
     cursor: pointer;
+    .DropdownButton {
+      color: color(text, text)
+    }
+  }
+
+  &:focus-within {
+    color: $dropdown-link-active-color;
+    text-decoration: none;
+    @include gradient-bg($dropdown-link-active-bg);
+    cursor: pointer;
+    .DropdownButton {
+      color: color(text, text)
+    }
   }
 
   &.active,

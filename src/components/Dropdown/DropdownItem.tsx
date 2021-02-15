@@ -5,7 +5,7 @@ import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
 
 import { DROPDOWNITEM } from '../ThemeIdentifiers';
 import * as baseTheme from './Dropdown.scss';
-
+import Button from '../Button';
 export interface Props {
   // Unique ID
   componentId?: string;
@@ -76,7 +76,7 @@ class DropdownItem extends React.PureComponent<Props, never> {
         className={className}
         onClick={this.clickCallback}
       >
-        {content}
+        <Button plain componentClass={theme.DropdownButton} componentSize="slim">{content}</Button>
       </div>
     );
   }
