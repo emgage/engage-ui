@@ -8,6 +8,7 @@ $modal-dialog-margin-vertical:                  50px !default;
 $modal-dialog-width-small:                      300px !default;
 $modal-dialog-width-medium:                     600px !default;
 $modal-dialog-width-large:                      800px !default;
+$modal-dialog-width-xlarge:                     1200px !default;
 $modal-dialog-background:                       #fff !default; //add $global-backgrouind
 
 $modal-body-padding-horizontal:                  30px !default; //add $global-gutter
@@ -69,6 +70,9 @@ $modal-footer-background:                        #fff !default; //add $global-ba
   }
   &.large {
     width: $modal-dialog-width-large;
+  }
+  &.xlarge {
+    width: $modal-dialog-width-xlarge;
   }
 
 }
