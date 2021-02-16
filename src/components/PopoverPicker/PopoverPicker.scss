@@ -58,6 +58,38 @@ $stacking-order: (
   }
 }
 
+.containerWrapperRead {
+  width: 100%;
+  border-radius: 5px;
+  cursor: text;
+  min-height: 25px;
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  padding-top:1.5rem;
+  
+  &.empty {
+    min-width: 100px;
+
+    > .container {
+      width:100%;
+    }
+  }
+
+  //TODO: Consider using Stack component instead of adding margin.
+  .Chip {
+    margin-top: control-vertical-padding() + rem(1px);
+    margin-left: control-vertical-padding() + rem(1px);
+    vertical-align: top;
+    max-height: 3.2rem;
+  }
+
+  > div:last-child  {
+    margin-left: -(control-vertical-padding() + rem(1px));
+    flex-grow: 1;
+  }
+}
+
 .container {
   width: 100%;
   display: inline-block;
