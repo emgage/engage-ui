@@ -2907,6 +2907,8 @@ class App extends React.Component<{}, State> {
             defaultSelectedItems={selectedPickerdata}
             noOptionsMessage={"No options available"}
             helpText={"This is HelpText Example"}
+            readOnly={true}
+            disabled
           />
         <br/>
         <br/>

@@ -14,6 +14,7 @@ export type ItemType = 'Tabular';
 export interface PopoverItemProps {
   type?: any;
   key?: string;
+  isInitial?: boolean;
   value: any;
   column?: any;
 }
@@ -40,6 +41,7 @@ export interface Props {
   noOptionsMessage?: string;
   helpText?: React.ReactNode;
   disabled?: boolean;
+  readOnly?: boolean;
 }
 
 interface State {
@@ -92,6 +94,14 @@ class PopoverPicker extends React.PureComponent<Props, State> {
     }
   }
 
+  componentDidMount() {
+    document.addEventListener('click', this.handleClickOutside);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('click', this.handleClickOutside);
+  }
+
   componentWillReceiveProps(nextProps: any) {
     const { items } = nextProps;
     const { items: oldItems } = this.props;
@@ -118,6 +128,13 @@ class PopoverPicker extends React.PureComponent<Props, State> {
     if (node && !this.state.popoverWidth) {
       this.setState({ popoverWidth: node.offsetWidth });
       this.wrapperRef = node;
+    }
+  }
+
+  
+  handleClickOutside = (event: any) => {
+    if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
+      this.setState({ isFocus: false });
     }
   }
 
@@ -173,6 +190,7 @@ class PopoverPicker extends React.PureComponent<Props, State> {
     this.setState({
       chipListState,
       selectedValue: '',
+      isFocus: false
     });
   }
 
@@ -242,7 +260,8 @@ class PopoverPicker extends React.PureComponent<Props, State> {
       loading,
       noOptionsMessage,
       helpText,
-      disabled
+      disabled,
+      readOnly
     } = this.props;
 
     const {
@@ -250,7 +269,8 @@ class PopoverPicker extends React.PureComponent<Props, State> {
       popoverWidth,
       isEmpty,
       serverSort,
-      chipListState
+      chipListState,
+      isFocus,
     } = this.state;
 
     const itemsComponent = items.map((item, index) =>
@@ -264,7 +284,7 @@ class PopoverPicker extends React.PureComponent<Props, State> {
     );
 
     const classNameChip = classNames(
-      theme.containerWrapper,
+      readOnly? theme.containerWrapperRead : theme.containerWrapper,
       chipListState.length !== 0 ? null : theme.empty
     );
 
@@ -275,11 +295,15 @@ class PopoverPicker extends React.PureComponent<Props, State> {
     const resultValue = valueState.filter((data: any) => !chips.includes(data.text));
     items[0].value = resultValue;
 
-    const open: boolean = this.state.selectedValue.length !== 0 && items[0].value.length !== 0 || false;
+    let open: boolean = this.state.selectedValue.length !== 0 && items[0].value.length !== 0 || false;
     let isEmptyResult: boolean = this.state.selectedValue.length !== 0 && items[0].value.length === 0 || false;
 
     if (this.state.selectedValue.length === 0 && items[0].value.length === 0 && noOptionsMessage === 'No Item available') {
       isEmptyResult = true;
+    }
+
+    if (items[0].isInitial) {
+      open = items[0].isInitial && items[0].value.length !== 0 && isFocus || false;
     }
 
     return (
@@ -331,6 +355,7 @@ class PopoverPicker extends React.PureComponent<Props, State> {
     );
   }
 }
+
 
 export { PopoverPicker as UnthemedPopoverPicker };
 export default themr(POPOVERPICKER, baseTheme)(PopoverPicker) as ThemedComponentClass<Props, State>;
