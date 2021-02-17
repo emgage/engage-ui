@@ -59,7 +59,7 @@ export interface IAutoSuggestMethods {
   updateList(input: HTMLElement): void;
   storeFocus(e: HTMLElement): void;
   shouldRenderSuggestions?(): void;
-  renderSuggestionsContainer?({ containerProps, children, query }: any): void
+  renderSuggestionsContainer?({ containerProps, children, query }: any): void;
 }
 
 export type Type = 'hide' | 'mark';
@@ -179,8 +179,8 @@ class Picker extends React.PureComponent<Props, State> {
           </div>
         }
       </div>
-    )
-  };
+    );
+  }
 
   shouldRenderSuggestions = () => {
     return true;
@@ -242,7 +242,7 @@ class Picker extends React.PureComponent<Props, State> {
         const suggestions = autoSuggestMethods.getSuggestions(value);
         const isInputBlank = value.trim() === '';
         const noSuggestions = !isInputBlank && suggestions.length === 0;
-        
+
         this.setState({
           suggestions,
           noSuggestions
@@ -257,7 +257,7 @@ class Picker extends React.PureComponent<Props, State> {
           itemsList: newLangState,
         });
       },
-      
+
       onSuggestionSelected: (event: React.FormEvent<Element>, { suggestion }: Autosuggest.SuggestionSelectedEventData<any>) => {
         suggestion.text = suggestion.name;
         autoSuggestMethods.updateList(suggestion);
@@ -384,7 +384,7 @@ class Picker extends React.PureComponent<Props, State> {
     }
 
     if (moreInfoComponent) {
-      autoSuggestMethods.renderSuggestionsContainer = this.renderSuggestionsContainer;  
+      autoSuggestMethods.renderSuggestionsContainer = this.renderSuggestionsContainer;
     }
 
     return (

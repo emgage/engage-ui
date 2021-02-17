@@ -5,20 +5,20 @@ $min-height: control-height();
 $vertical-padding: ($min-height - line-height(body) - rem(2px)) / 2;
 
 .Chip {
-    @include text-style-input;
-    display: flex;
+    display: inline-flex;
     color: rgba(0, 0, 0, 0.54);
     line-height: $height;
-    min-height: $height;
+    height: $height;
     min-width: $height;
     margin: 0;
     padding: 0 $horizontal-padding;
+    align-items: center;
     border: none;
     border-radius: $height / 2;
     background-color: rgba(153, 153, 153, 0.2);
     overflow: hidden;
-    text-overflow: ellipsis;
-    // vertical-align: top;
+    white-space: nowrap;
+    vertical-align: middle;
 }
 
 :focus {
@@ -34,19 +34,17 @@ $vertical-padding: ($min-height - line-height(body) - rem(2px)) / 2;
 }
 
 .Image {
-    float: left;
+    flex-shrink: 0;
     margin: 0 ($height / 4) 0 (-1 * $horizontal-padding);
     height: $height;
     width: $height;
-    border-radius: 50%;
+    border-radius: 50%;    
 }
 
 .Remove {
     cursor: pointer;
-    float: right;
-    text-align: center;
+    flex-shrink: 0;
     margin: ($horizontal-padding / 2) (-1 * $horizontal-padding / 2) ($horizontal-padding / 2) ($horizontal-padding / 2);
-    display: block;
 }
 
 .transparent{
@@ -54,10 +52,8 @@ $vertical-padding: ($min-height - line-height(body) - rem(2px)) / 2;
 }
 
 .chipContent {
-    align-self: center;
-    display: flex;
-    span {
-        margin-left: 15px;
-        align-self: center;
-    }
+  @include text-style-input;
+  flex: 1 1 auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

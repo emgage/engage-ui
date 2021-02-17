@@ -1,9 +1,9 @@
 // Increased to account for chip height
-$controlHeight: control-height() + rem(8px);
+$control-height: control-height() + rem(8px);
 $backdrop-horizontal-spacing: spacing(tighter) * 1.5;
 
 $stacking-order: (
-  suggestions: 20,
+  suggestions: 50,
   input: 20,
   backdrop: 10,
 );
@@ -15,7 +15,7 @@ $stacking-order: (
   border-radius: 5px;
   cursor: text;
   min-height: 25px;
-  z-index: z-index(suggestions, $stacking-order);
+  // z-index: z-index(suggestions, $stacking-order);
   display: flex;
   flex-wrap: wrap;
 
@@ -30,17 +30,19 @@ $stacking-order: (
 
   //TODO: Consider using Stack component instead of adding margin.
   .Chip {
-    margin-top: control-vertical-padding() + rem(1px);
-    margin-right: control-vertical-padding() + rem(1px);
+    z-index: z-index(input, $stacking-order);
+    margin-top: control-vertical-padding();
+    margin-right: control-vertical-padding();
     vertical-align: top;
   }
 }
 
 .container {
-  width: 100%;
+  flex: 1 0 auto;
+  z-index: z-index(suggestions, $stacking-order);
   display: inline-block;
   //overflow: hidden;
-  text-overflow: ellipsis;
+  // text-overflow: ellipsis;
 }
 
 .input {
@@ -49,7 +51,7 @@ $stacking-order: (
   display: block;
   flex: 1 1 0%;
   width: 100%;
-  min-height: $controlHeight;
+  min-height: $control-height;
   margin: 0;
   padding: control-vertical-padding() 0;
   background: none;
