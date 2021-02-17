@@ -1,0 +1,41 @@
+@import 'shared/typography';
+@import 'foundation/colors';
+
+
+.bodyText {
+  margin: 0;
+}
+
+.sizeSmall {
+  @include text-style-body-small;
+}
+
+.sizeDefault{
+  @include text-style-body;
+}
+
+.sizeLarge {
+  @include text-style-body-large;
+}
+
+.colorText {
+  @include color-text;
+}
+.colorDarkest{
+  @include color-darkest;
+}
+.colorDarker{
+  @include color-darker;
+}
+.colorMid {
+  @include color-mid;
+}
+.colorReverse {
+  @include color-reverse;
+}
+.colorDanger {
+  @include color-danger;
+}
+.colorLink {
+  @include color-link;
+}
