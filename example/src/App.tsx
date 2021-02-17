@@ -762,65 +762,66 @@ class App extends React.Component<{}, State> {
       { name: 'Upcoming' },
     ];
 
-    const pickerdata = [
-      {
-        key: 1,
-        image:
-          'http://msaadvertising.com/wp-content/uploads/2014/06/Larry-cartoon-headshot.jpg',
-        name: 'John Doe',
-        description: 'John Doe',
-        email: 'test@gmail.com',
-        icon: 'filter',
-      },
-      {
-        key: 2,
-        image:
-          'http://cdn.photographyproject.com.au/wp-content/uploads/2013/04/corporate-headshot.jpg',
-        name: 'Pedro Sanchez',
-        description: 'Pedro Sanchez',
-        email: 'pedrosanchez@gmail.com',
-      },
-      {
-        key: 3,
-        image: 'https://media.licdn.com/mpr/mpr/p/5/005/08f/04d/02df10d.jpg',
-        name: 'Jane Doe',
-        description: 'Jane Doe',
-        email: 'jane@gmail.com',
-      },
-      {
-        key: 4,
-        image:
-          'http://www.roanokecreditrepair.com/wp-content/uploads/2016/06/Headshot-1.png',
-        name: 'Person McPerson',
-        description: 'Person McPerson',
-        email: 'yahoogmail@gmail.com',
-      },
-      {
-        key: 5,
-        image:
-          'https://d38zhw9ti31loc.cloudfront.net/wp-content/uploads/2013/07/Crystal-headshot-new.jpg',
-        name: 'Laura Person',
-        description: 'Laura Person',
-        email: 'yahooldjadslkjgmail@gmail.com',
-      },
-      {
-        key: 6,
-        image:
-          'https://d38zhw9ti31loc.cloudfront.net/wp-content/uploads/2013/07/Crystal-headshot-new.jpg',
-        name: 'LauraPerson',
-        description: 'Laura Person',
-        email: 'slkjgmail@gmail.com',
-      },
-      {
-        key: 7,
-        image: '',
-        name:
-          'HirenHirenHirenHirenHirenHirenHirenHirenHirenHirenHirenHirenHirenHirenHirenHirenHirenHirenHirenHiren ',
-        description: 'Hiren descHiren descHiren descHiren desc',
-        email: 'hiren@test.com',
-      },
-    ];
+    // const pickerdata = [
+    //   {
+    //     key: 1,
+    //     image:
+    //       'http://msaadvertising.com/wp-content/uploads/2014/06/Larry-cartoon-headshot.jpg',
+    //     name: 'John Doe',
+    //     description: 'John Doe',
+    //     email: 'test@gmail.com',
+    //     icon: 'filter',
+    //   },
+    //   {
+    //     key: 2,
+    //     image:
+    //       'http://cdn.photographyproject.com.au/wp-content/uploads/2013/04/corporate-headshot.jpg',
+    //     name: 'Pedro Sanchez',
+    //     description: 'Pedro Sanchez',
+    //     email: 'pedrosanchez@gmail.com',
+    //   },
+    //   {
+    //     key: 3,
+    //     image: 'https://media.licdn.com/mpr/mpr/p/5/005/08f/04d/02df10d.jpg',
+    //     name: 'Jane Doe',
+    //     description: 'Jane Doe',
+    //     email: 'jane@gmail.com',
+    //   },
+    //   {
+    //     key: 4,
+    //     image:
+    //       'http://www.roanokecreditrepair.com/wp-content/uploads/2016/06/Headshot-1.png',
+    //     name: 'Person McPerson',
+    //     description: 'Person McPerson',
+    //     email: 'yahoogmail@gmail.com',
+    //   },
+    //   {
+    //     key: 5,
+    //     image:
+    //       'https://d38zhw9ti31loc.cloudfront.net/wp-content/uploads/2013/07/Crystal-headshot-new.jpg',
+    //     name: 'Laura Person',
+    //     description: 'Laura Person',
+    //     email: 'yahooldjadslkjgmail@gmail.com',
+    //   },
+    //   {
+    //     key: 6,
+    //     image:
+    //       'https://d38zhw9ti31loc.cloudfront.net/wp-content/uploads/2013/07/Crystal-headshot-new.jpg',
+    //     name: 'LauraPerson',
+    //     description: 'Laura Person',
+    //     email: 'slkjgmail@gmail.com',
+    //   },
+    //   {
+    //     key: 7,
+    //     image: '',
+    //     name:
+    //       'HirenHirenHirenHirenHirenHirenHirenHirenHirenHirenHirenHirenHirenHirenHirenHirenHirenHirenHirenHiren ',
+    //     description: 'Hiren descHiren descHiren descHiren desc',
+    //     email: 'hiren@test.com',
+    //   },
+    // ];
 
+    const pickerdata = [{ "id": 1532945, "name": "Bright", "text": "Bright", "key": 1532945, "description": "" }, { "id": 1532948, "name": "Blue", "text": "Blue", "key": 1532948, "description": "" }, { "id": 1531924, "name": "Green", "text": "Green", "key": 1531924, "description": "" }, { "id": 1528852, "name": "Red", "text": "Red", "key": 1528852, "description": "" }, { "id": 1529876, "name": "White", "text": "White", "key": 1529876, "description": "" }, { "id": 1527828, "name": "Yellow", "text": "Yellow", "key": 1527828, "description": "" }]
     const selectedPickerdata = [{ "id": 1534996, "name": "Black", "text": "Black", "key": 1534996, "description": "" }];
 
   
@@ -2893,7 +2894,9 @@ class App extends React.Component<{}, State> {
             sortEntity={(field, order, sortBy)=> this.handleSortComboBox(field, order, sortBy)}
           />
         </div>
-        
+            <br/>
+            <br/>
+          
         <div>Popover Picker</div>
           <PopoverPicker
             items={this.getPopoverPickerItems()}
@@ -2907,35 +2910,26 @@ class App extends React.Component<{}, State> {
             defaultSelectedItems={selectedPickerdata}
             noOptionsMessage={"No options available"}
             helpText={"This is HelpText Example"}
-            readOnly={true}
-            disabled
           />
         <br/>
         <br/>
         <br/>
           
           <Picker
-            label="Picker Component"
+            label="Picker Component More"
             chipComponent={Chip}
             filterPlaceHolder="placeholder"
             helpText="Helper Text"
             searchResultComponent={Chip}
             source={pickerdata}
-            defaultSelectedItems={[
-              {
-                key: 1,
-                image:
-                  'http://msaadvertising.com/wp-content/uploads/2014/06/Larry-cartoon-headshot.jpg',
-                text: 'John Doe',
-                email: 'test@gmail.com',
-                icon: 'filter',
-              },
-            ]}
+            defaultSelectedItems={selectedPickerdata}
             maxSelectedItems={5}
             minSelectedItems={2}
             autoSuggest
             loading
+            noOptionsMessage={"No items Available"}
             // moreInfoComponent={<Button>More Info</Button>}
+            shouldRenderSuggestions={true}
           />
           <ValidatedForm
             showError={this.state.showError}
@@ -3754,6 +3748,7 @@ class App extends React.Component<{}, State> {
       {
         key: 'name',
         type: 'Tabular',
+        isInitial: true,
         column: columnConfig,
         renderer: this.renderItems,
         value: pickerdata1
