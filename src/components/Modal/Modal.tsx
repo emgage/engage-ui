@@ -84,7 +84,7 @@ class Modal extends React.PureComponent<Props, never> {
       componentWidth === 'small' && theme.small,
       componentWidth === 'medium' && theme.medium,
       componentWidth === 'large' && theme.large,
-      componentWidth === 'xlarge' && theme.xlarge,
+      componentWidth === 'xlarge' && theme.xlarge
     );
   }
 

@@ -189,7 +189,7 @@ $stacking-order: (
 }
 
 .spinnerButtons {
-  z-index: 50;
+  z-index: z-index(spinner, $stacking-order);
   display: flex;
   align-self: stretch;
   flex-direction: column;

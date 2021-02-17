@@ -131,7 +131,6 @@ class PopoverPicker extends React.PureComponent<Props, State> {
     }
   }
 
-  
   handleClickOutside = (event: any) => {
     if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
       this.setState({ isFocus: false });
@@ -284,7 +283,7 @@ class PopoverPicker extends React.PureComponent<Props, State> {
     );
 
     const classNameChip = classNames(
-      readOnly? theme.containerWrapperRead : theme.containerWrapper,
+      readOnly ? theme.containerWrapperRead : theme.containerWrapper,
       chipListState.length !== 0 ? null : theme.empty
     );
 
@@ -355,7 +354,6 @@ class PopoverPicker extends React.PureComponent<Props, State> {
     );
   }
 }
-
 
 export { PopoverPicker as UnthemedPopoverPicker };
 export default themr(POPOVERPICKER, baseTheme)(PopoverPicker) as ThemedComponentClass<Props, State>;
