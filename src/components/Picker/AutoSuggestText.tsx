@@ -16,6 +16,7 @@ export interface IStateProps {
   suggestions: Autosuggest[];
   inputProps: any;
   value?: string;
+  removable?: boolean;
 }
 
 export interface Props {
@@ -37,7 +38,7 @@ class AutoSuggestText extends React.PureComponent<Props, {}> {
 
     return (
       <div className={className}>
-        {this.props.stateProps ? this.props.stateProps.chipListState.map((input: any) => <Chip icon={input.icon} onIconClick={input.onIconClick} theme={theme} image={{ url: input.image }} removable={true} onRemove={() => this.props.autoSuggestMethods ? this.props.autoSuggestMethods.chipRemove(input) : null} key={input.key}>{input.text}</Chip>) : null}
+        {this.props.stateProps ? this.props.stateProps.chipListState.map((input: any) => <Chip icon={input.icon} onIconClick={input.onIconClick} theme={theme} image={{ url: input.image }} removable={this.props.stateProps?.removable} onRemove={() => this.props.autoSuggestMethods ? this.props.autoSuggestMethods.chipRemove(input) : null} key={input.key}>{input.text}</Chip>) : null}
 
         {
           this.props.autoSuggestMethods && this.props.autoSuggestMethods.shouldRenderSuggestions ?

@@ -25,6 +25,7 @@ export interface IStateProps {
   suggestions: Autosuggest[];
   inputProps: any;
   value?: string;
+  removable?: boolean;
 }
 
 export interface IItemList {
@@ -104,11 +105,12 @@ export interface Props {
   searchResultComponent?: React.ReactNode;
   moreInfoComponent?: React.ReactNode;
   autoSuggest?: boolean;
-  source: IPickerInfo[];
+  source: any[];
   moreInfoComponentShowOn?: DisplayMoreInfo;
   style?: React.CSSProperties;
   theme?: any;
-  searchBehavior?(): void;
+  onFocus?(event: React.FormEvent<HTMLElement>): void;
+  searchBehavior?(value: string): void;
   onSelect?(item: any): void;
   onRemove?(item: any): void;
   onMoreInfo?(): void;
@@ -119,6 +121,7 @@ export interface Props {
   componentId?: string;
   shouldRenderSuggestions?: boolean;
   noOptionsMessage?: string;
+  readOnly?: boolean;
 }
 class Picker extends React.PureComponent<Props, State> {
   public wrapperRef: HTMLDivElement;
@@ -164,7 +167,16 @@ class Picker extends React.PureComponent<Props, State> {
         });
       }
 
-      this.setState({ chipListState, itemsList: newProps.source });
+      this.setState({ chipListState, suggestions: newProps.source || [], itemsList: newProps.source });
+    }
+    if (JSON.stringify(newProps.defaultSelectedItems) !== JSON.stringify(this.props.defaultSelectedItems)) {
+      this.setState({ chipListState: newProps.defaultSelectedItems || []});
+    }
+    
+    if (!newProps.shouldRenderSuggestions) {
+      if (newProps.noOptionsMessage === 'No Item available') {
+        this.setState({noSuggestions: true})
+      }
     }
   }
 
@@ -209,6 +221,9 @@ class Picker extends React.PureComponent<Props, State> {
         this.setState({
           value: newValue,
         });
+        if (this.props.searchBehavior) {
+          this.props.searchBehavior(newValue);
+        }
       },
 
       onKeyDown: (e: KeyboardEvent, focusArr?: any, chipListState?: IItemList[]) => {
@@ -231,11 +246,13 @@ class Picker extends React.PureComponent<Props, State> {
           anchorEl: event.target as HTMLElement,
           isFocused: true
         });
+        if (this.props.onFocus) {
+          this.props.onFocus(event);
+        }
       },
 
       onBlur: (event: React.FormEvent<any>) => {
-        this.setState({ isFocused: false,
-          value: '' });
+        this.setState({ isFocused: false, noSuggestions: false, value: '' });
       },
 
       onSuggestionsFetchRequested: ({ value }: any) => {
@@ -340,6 +357,7 @@ class Picker extends React.PureComponent<Props, State> {
         labelHidden = false,
         loading = false,
         disabled = false,
+        readOnly = false,
         selectedResultsBehavior,
         moreInfoComponent,
         chipComponent,
@@ -361,9 +379,9 @@ class Picker extends React.PureComponent<Props, State> {
       onKeyDown: autoSuggestMethods.onKeyDown,
       onFocus: autoSuggestMethods.onFocus,
       onBlur: autoSuggestMethods.onBlur,
-      disabled: disabled || (!!this.props.maxSelectedItems && this.props.maxSelectedItems <= chipListState.length),
+      disabled: readOnly || disabled || (!!this.props.maxSelectedItems && this.props.maxSelectedItems <= chipListState.length),
     };
-    const stateProps: IStateProps = { value, suggestions, chipListState, inputProps };
+    const stateProps: IStateProps = { value, suggestions, chipListState, inputProps, removable: readOnly? false : true };
 
     let className = '';
     if (selectedResultsBehavior === 'hide') {
@@ -414,10 +432,11 @@ class Picker extends React.PureComponent<Props, State> {
             isFocused={isFocused}
             hasValue={hasValue}
             disabled={disabled}
+            readOnly={readOnly}
           />
         </div>
         {
-          noSuggestions &&
+          noSuggestions && noOptionsMessage !== "" &&
             <Popover
               addArrow={false}
               componentStyle={{ maxHeight: window.outerHeight < 768 ? 500 : 800, overflow: 'auto', maxWidth: popoverWidth, width: '49.2rem', padding: '1.3rem', marginTop: '-.4rem' }}

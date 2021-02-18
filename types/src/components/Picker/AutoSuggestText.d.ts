@@ -6,6 +6,7 @@ export interface IStateProps {
     suggestions: Autosuggest[];
     inputProps: any;
     value?: string;
+    removable?: boolean;
 }
 export interface Props {
     theme?: any;
