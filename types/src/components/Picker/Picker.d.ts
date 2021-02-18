@@ -16,6 +16,7 @@ export interface IStateProps {
     suggestions: Autosuggest[];
     inputProps: any;
     value?: string;
+    removable?: boolean;
 }
 export interface IItemList {
     key?: number;
@@ -83,11 +84,12 @@ export interface Props {
     searchResultComponent?: React.ReactNode;
     moreInfoComponent?: React.ReactNode;
     autoSuggest?: boolean;
-    source: IPickerInfo[];
+    source: any[];
     moreInfoComponentShowOn?: DisplayMoreInfo;
     style?: React.CSSProperties;
     theme?: any;
-    searchBehavior?(): void;
+    onFocus?(event: React.FormEvent<HTMLElement>): void;
+    searchBehavior?(value: string): void;
     onSelect?(item: any): void;
     onRemove?(item: any): void;
     onMoreInfo?(): void;
@@ -96,6 +98,7 @@ export interface Props {
     componentId?: string;
     shouldRenderSuggestions?: boolean;
     noOptionsMessage?: string;
+    readOnly?: boolean;
 }
 declare class Picker extends React.PureComponent<Props, State> {
     wrapperRef: HTMLDivElement;
