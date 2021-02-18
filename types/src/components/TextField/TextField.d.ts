@@ -44,7 +44,7 @@ export interface Props {
     name?: string;
     onChange?(value: string, e?: React.FormEvent<HTMLElement>): void;
     onFocus?(e?: React.FormEvent<HTMLElement>): void;
-    onKeyDown?(e: React.FormEvent<Element> | KeyboardEvent): void;
+    onKeyDown?(e: React.FormEvent<HTMLElement> | KeyboardEvent): void;
     onBlur?(e?: React.FormEvent<HTMLElement>): void;
     onInput?(e?: React.ChangeEvent<HTMLSelectElement>): void;
     pattern?: string;

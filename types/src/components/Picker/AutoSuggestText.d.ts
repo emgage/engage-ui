@@ -4,7 +4,7 @@ import { IAutoSuggestMethods, IItemList } from './Picker';
 export interface IStateProps {
     chipListState: IItemList[];
     suggestions: Autosuggest[];
-    inputProps: Autosuggest.InputProps;
+    inputProps: any;
     value?: string;
 }
 export interface Props {
