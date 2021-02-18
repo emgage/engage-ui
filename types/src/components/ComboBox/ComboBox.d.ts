@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 export declare type Mode = 'collapsible' | 'multiple';
-export declare type ItemType = 'Accordian' | 'Tabuler';
+export declare type ItemType = 'Accordian' | 'Tabular';
 export interface ComboBoxItemProps {
     type?: any;
     key?: string;
