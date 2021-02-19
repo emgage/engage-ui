@@ -10,6 +10,7 @@ import {
   Banner,
   Badge,
   Button,
+  BodyText,
   ButtonGroup,
   Calendar,
   Card,
@@ -1103,7 +1104,7 @@ class App extends React.Component<{}, State> {
     ];
 
     return (
-      <div style={{ width: '60%' }}>
+      <div style={{ width: 'calc(100% - 270px)', float: 'right', padding: '90px 0px 0px' }}>
         <AppBar
           enableGlobalGo
           enableGlobalElement={<Button icon="list" />}
@@ -1123,6 +1124,22 @@ class App extends React.Component<{}, State> {
             <Button icon="infoCircle" />,
           ]}
         />
+
+<BodyText componentSize="small">This is Small Body Text</BodyText>
+        <BodyText>This is Default Body Text</BodyText>
+        <BodyText componentSize="large">This is Large Body Text</BodyText>
+        <br/>
+        <br/>
+        <BodyText componentColor="text">Text Color of Body text</BodyText>
+        <BodyText componentColor="danger">danger Color of Body text</BodyText>
+        <BodyText componentColor="darker">darker Color of Body text</BodyText>
+        <BodyText componentColor="darkest">darkest Color of Body text</BodyText>
+        <BodyText componentColor="link">link Color of Body text</BodyText>
+        <BodyText componentColor="mid">mid Color of Body text</BodyText>
+        <BodyText componentColor="reverse">reverse Color of Body text</BodyText>
+        <br/>
+        <br/>
+
         <ToggleButtonGroup segmented={true} helpText="Test Help Text">
           <Button>On</Button>
           <Button>Off</Button>

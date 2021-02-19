@@ -28,7 +28,10 @@ export {
   default as Button,
   Props as ButtonProps,
 } from './Button';
-
+export {
+  default as BodyText,
+  Props as BodyTextProps,
+} from './BodyText';
 export {
   default as ButtonGroup,
   Props as ButtonGroupProps,

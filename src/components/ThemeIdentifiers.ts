@@ -4,6 +4,7 @@ export const AVATAR = 'PAvatar';
 export const BADGE = 'PBadge';
 export const BANNER = 'PBanner';
 export const BUTTON = 'PButton';
+export const BODY_TEXT = 'PBodyText';
 export const BUTTON_GROUP = 'PButtonGroup';
 export const TOGGLEBUTTON_GROUP = 'PToggleButtonGroup';
 export const CALENDAR = 'PCalendar';
