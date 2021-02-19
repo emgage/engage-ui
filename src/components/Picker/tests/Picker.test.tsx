@@ -2,7 +2,6 @@ import * as React from 'react';
 import { mount } from 'enzyme';
 import Button from '../../Button/Button';
 import Chip from '../../Chip/Chip';
-import { DisplayMoreInfo } from '../PickerEnum';
 import Picker from '../Picker';
 
 const theme = {
@@ -27,12 +26,9 @@ describe('when default props are provided', () => {
     const subject = mount(<Picker
       source={data}
       chipComponent={Chip}
-      searchResultComponent={Chip}
       maxSelectedItems={3}
       minSelectedItems={2}
       moreInfoComponent={<Button children="More Info about picker" />}
-      moreInfoComponentShowOn={DisplayMoreInfo.onHover}
-      selectedResultsBehavior="mark"
       theme={theme}
     />);
     // expect(subject.find('label').length).toBe(2);

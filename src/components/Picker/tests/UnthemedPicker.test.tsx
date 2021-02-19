@@ -42,7 +42,6 @@ describe('when default props are provided', () => {
         source={Data}
         autoSuggest
         chipComponent={Chip}
-        searchResultComponent={Chip}
         onSelect={spyClick}
         theme={theme}
       />).setState({ ['searchItems']: searchData });

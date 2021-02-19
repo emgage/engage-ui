@@ -16,7 +16,8 @@ export interface IStateProps {
   suggestions: Autosuggest[];
   inputProps: any;
   value?: string;
-  removable?: boolean;
+  removable: boolean;
+  multiSection: boolean;
 }
 
 export interface Props {
@@ -51,6 +52,9 @@ class AutoSuggestText extends React.PureComponent<Props, {}> {
                 input: theme.input,
                 suggestionsContainer: theme.suggestionsContainer
               }}
+              multiSection={this.props.stateProps && this.props.stateProps.multiSection}
+              renderSectionTitle={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.renderSectionTitle : (() => { }) as any}
+              getSectionSuggestions={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.getSectionSuggestions : (() => { }) as any}
               onSuggestionSelected={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.onSuggestionSelected : () => {} }
               suggestions={this.props.stateProps ? this.props.stateProps.suggestions : []}
               onSuggestionsFetchRequested={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.onSuggestionsFetchRequested : () => {}}
@@ -73,6 +77,9 @@ class AutoSuggestText extends React.PureComponent<Props, {}> {
                 input: theme.input,
                 suggestionsContainer: theme.suggestionsContainer
               }}
+              multiSection={this.props.stateProps && this.props.stateProps.multiSection}
+              renderSectionTitle={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.renderSectionTitle : (() => { }) as any}
+              getSectionSuggestions={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.getSectionSuggestions : (() => { }) as any}
               onSuggestionSelected={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.onSuggestionSelected : () => {} }
               suggestions={this.props.stateProps ? this.props.stateProps.suggestions : []}
               onSuggestionsFetchRequested={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.onSuggestionsFetchRequested : () => {}}

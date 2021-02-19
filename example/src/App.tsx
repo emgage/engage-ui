@@ -824,8 +824,46 @@ class App extends React.Component<{}, State> {
     const pickerdata = [{ "id": 1532945, "name": "Bright", "text": "Bright", "key": 1532945, "description": "" }, { "id": 1532948, "name": "Blue", "text": "Blue", "key": 1532948, "description": "" }, { "id": 1531924, "name": "Green", "text": "Green", "key": 1531924, "description": "" }, { "id": 1528852, "name": "Red", "text": "Red", "key": 1528852, "description": "" }, { "id": 1529876, "name": "White", "text": "White", "key": 1529876, "description": "" }, { "id": 1527828, "name": "Yellow", "text": "Yellow", "key": 1527828, "description": "" }]
     const selectedPickerdata = [{ "id": 1534996, "name": "Black", "text": "Black", "key": 1534996, "description": "" }];
 
-  
+    const columnConfigPicker: TableColumnConfig[] = [
+      {
+        label: 'Name',
+        key: 'name',
+        sort: true,
+        sortBy: 'name'
+      },
+      {
+        label: 'Description',
+        key: 'description',
+        sort: true,
+        sortBy: 'description',
+      },
+    ];
 
+    const renderPickerHeader = (column: any) => {
+      return (<div>
+                <div>
+                  <FlexBox align="Center">
+                    {
+                      column.map((c: any) => <span>{c.label}</span>)
+                    }
+                  </FlexBox>
+                </div>
+              </div>
+      );
+    }
+
+    const renderPickerItem = (suggestion: any, isHighlighted?: string, query?: string) => {
+      let name = suggestion.name;
+      return (<div>
+          <div>
+            <FlexBox align="Center">
+              <span>{name}</span>
+              <span>{name}</span>
+            </FlexBox>
+          </div>
+        </div>
+      )
+    }
     // const columnConfigPicker: TableColumnConfig[] = [
     //   {
     //     label: 'Name',
@@ -2912,26 +2950,107 @@ class App extends React.Component<{}, State> {
             helpText={"This is HelpText Example"}
           />
         <br/>
-        <br/>
-        <br/>
-          
-          <Picker
-            label="Picker Component More"
+        <br />
+
+        <Picker
+            label="Picker Component with render header"
             chipComponent={Chip}
-            filterPlaceHolder="placeholder"
             helpText="Helper Text"
-            searchResultComponent={Chip}
+            source={pickerdata}
+            defaultSelectedItems={selectedPickerdata}
+            columns={columnConfigPicker}
+            maxSelectedItems={5}
+            minSelectedItems={2}
+            autoSuggest
+            loading
+            renderPickerHeader={renderPickerHeader}
+            renderPickerItem={renderPickerItem}
+            noOptionsMessage={"No items Available"}
+            shouldRenderSuggestions={false}
+          />
+        
+        <br />
+        <br />
+
+        <Picker
+            label="Picker Component with More"
+            chipComponent={Chip}
+            helpText="Helper Text"
             source={pickerdata}
             defaultSelectedItems={selectedPickerdata}
             maxSelectedItems={5}
             minSelectedItems={2}
             autoSuggest
             loading
+            moreInfoComponent={<Button children="More Info" />}
             // disabled
             // readOnly
             noOptionsMessage={"No items Available"}
             // moreInfoComponent={<Button>More Info</Button>}
             shouldRenderSuggestions={false}
+            // readOnly
+          />
+        <br/>
+
+          <Picker
+            label="Picker Component without render"
+            chipComponent={Chip}
+            helpText="Helper Text"
+            source={pickerdata}
+            defaultSelectedItems={selectedPickerdata}
+            maxSelectedItems={5}
+            minSelectedItems={2}
+            autoSuggest
+            loading
+            // moreInfoComponent={<Button children="More Info" />}
+            // disabled
+            // readOnly
+            noOptionsMessage={"No items Available"}
+            // moreInfoComponent={<Button>More Info</Button>}
+            shouldRenderSuggestions={false}
+            // readOnly
+          />
+        <br/>
+          
+          <Picker
+            label="Picker Component with render"
+            chipComponent={Chip}
+            helpText="Helper Text"
+            source={pickerdata}
+            defaultSelectedItems={selectedPickerdata}
+            maxSelectedItems={5}
+            minSelectedItems={2}
+            autoSuggest
+            loading
+            renderPickerItem={renderPickerItem}
+            // moreInfoComponent={<Button children="More Info" />}
+            // disabled
+            // readOnly
+            noOptionsMessage={"No items Available"}
+            // moreInfoComponent={<Button>More Info</Button>}
+            shouldRenderSuggestions={false}
+            // readOnly
+          />
+
+          <br />
+          
+          <Picker
+            label="Picker Component with Focuse"
+            chipComponent={Chip}
+            helpText="Helper Text"
+            source={pickerdata}
+            defaultSelectedItems={selectedPickerdata}
+            maxSelectedItems={5}
+            minSelectedItems={2}
+            autoSuggest
+            loading
+            renderPickerItem={renderPickerItem}
+            // moreInfoComponent={<Button children="More Info" />}
+            // disabled
+            // readOnly
+            noOptionsMessage={"No items Available"}
+            // moreInfoComponent={<Button>More Info</Button>}
+            shouldRenderSuggestions={true}
             // readOnly
           />
           <ValidatedForm
