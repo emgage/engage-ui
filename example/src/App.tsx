@@ -2927,9 +2927,11 @@ class App extends React.Component<{}, State> {
             minSelectedItems={2}
             autoSuggest
             loading
+            // disabled
+            // readOnly
             noOptionsMessage={"No items Available"}
             // moreInfoComponent={<Button>More Info</Button>}
-            shouldRenderSuggestions={true}
+            shouldRenderSuggestions={false}
             // readOnly
           />
           <ValidatedForm

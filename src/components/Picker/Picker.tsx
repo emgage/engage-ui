@@ -170,7 +170,8 @@ class Picker extends React.PureComponent<Props, State> {
       this.setState({ chipListState, suggestions: newProps.source || [], itemsList: newProps.source });
     }
     if (JSON.stringify(newProps.defaultSelectedItems) !== JSON.stringify(this.props.defaultSelectedItems)) {
-      this.setState({ chipListState: newProps.defaultSelectedItems || []});
+      let hasValue: boolean = Boolean(newProps.defaultSelectedItems && newProps.defaultSelectedItems.length);
+      this.setState({ chipListState: newProps.defaultSelectedItems || [], hasValue});
     }
     
     if (!newProps.shouldRenderSuggestions) {
@@ -417,7 +418,7 @@ class Picker extends React.PureComponent<Props, State> {
           </div>
           <TextField
             type="text"
-            autoSuggest={autoSuggest && !disabled}
+            autoSuggest={autoSuggest}
             autoSuggestMethods={autoSuggestMethods}
             helpText={helpText}
             itemSelected={!!chipListState.length}
