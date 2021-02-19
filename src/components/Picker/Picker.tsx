@@ -170,13 +170,13 @@ class Picker extends React.PureComponent<Props, State> {
       this.setState({ chipListState, suggestions: newProps.source || [], itemsList: newProps.source });
     }
     if (JSON.stringify(newProps.defaultSelectedItems) !== JSON.stringify(this.props.defaultSelectedItems)) {
-      let hasValue: boolean = Boolean(newProps.defaultSelectedItems && newProps.defaultSelectedItems.length);
-      this.setState({ chipListState: newProps.defaultSelectedItems || [], hasValue});
+      const hasValue: boolean = Boolean(newProps.defaultSelectedItems && newProps.defaultSelectedItems.length);
+      this.setState({ hasValue, chipListState: newProps.defaultSelectedItems || [] });
     }
-    
+
     if (!newProps.shouldRenderSuggestions) {
       if (newProps.noOptionsMessage === 'No Item available') {
-        this.setState({noSuggestions: true})
+        this.setState({ noSuggestions: true });
       }
     }
   }
@@ -382,7 +382,7 @@ class Picker extends React.PureComponent<Props, State> {
       onBlur: autoSuggestMethods.onBlur,
       disabled: readOnly || disabled || (!!this.props.maxSelectedItems && this.props.maxSelectedItems <= chipListState.length),
     };
-    const stateProps: IStateProps = { value, suggestions, chipListState, inputProps, removable: readOnly? false : true };
+    const stateProps: IStateProps = { value, suggestions, chipListState, inputProps, removable: readOnly ? false : true };
 
     let className = '';
     if (selectedResultsBehavior === 'hide') {
@@ -437,7 +437,7 @@ class Picker extends React.PureComponent<Props, State> {
           />
         </div>
         {
-          noSuggestions && noOptionsMessage !== "" &&
+          noSuggestions && noOptionsMessage !== '' &&
             <Popover
               addArrow={false}
               componentStyle={{ maxHeight: window.outerHeight < 768 ? 500 : 800, overflow: 'auto', maxWidth: popoverWidth, width: '49.2rem', padding: '1.3rem', marginTop: '-.4rem' }}
