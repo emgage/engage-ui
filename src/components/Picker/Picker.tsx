@@ -406,9 +406,6 @@ class Picker extends React.PureComponent<Props, State> {
       autoSuggestMethods.renderSuggestionsContainer = this.renderSuggestionsContainer;
     }
 
-    console.log("stateProps", stateProps);
-    
-
     return (
       <div id={componentId}>
         <div ref={node => this.setWrapperRef(node)}>
