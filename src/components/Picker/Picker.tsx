@@ -5,9 +5,12 @@ import TextField from '../TextField';
 import Icon, { IconList } from '../Icon';
 import * as Autosuggest from 'react-autosuggest';
 import * as baseTheme from './Picker.scss';
+import * as style from './Picker.scss';
 // TODO: Why are we using this custom card and not the Card component?
-import Card from './Card';
 import Popover from '../Popover';
+import FlexBox from '../FlexBox';
+
+
 
 
 let resultsBehaviorOpen: boolean = false;
@@ -105,6 +108,32 @@ export interface Props {
   noOptionsMessage?: string;
   readOnly?: boolean;
 }
+
+
+const DefaultCard = (props: any) => {
+  const { isHighlighted = false } = props;
+  const cardBackground = (isHighlighted) ? style.cardItem + ' ' + style.highlighted : style.cardItem;
+  return (
+    <div>
+      <div className={cardBackground}>
+      <FlexBox align="Center">
+        {
+          props.image ?
+            <span><img className={style.avatarImage} src={props.image} alt={props.alt} aria-hidden={!props.nameAfter || !props.nameBefore} /></span>
+            : null
+        }
+        <span className={style.nameStyle}>
+          <span>{props.nameBefore}</span>
+          <span className={style.hinting}>{props.bold}</span>
+          <span>{props.nameAfter}</span>
+        </span>
+        <span className={style.emailStyle} aria-hidden>{props.email}</span>
+        </FlexBox>
+      </div>
+    </div>
+  );
+}
+
 class Picker extends React.PureComponent<Props, State> {
   public wrapperRef: HTMLDivElement;
 
@@ -352,10 +381,10 @@ class Picker extends React.PureComponent<Props, State> {
           const nameAfter = (suggestion.name ? suggestion.name.slice(index + query.length) : '');
   
           if (isHighlighted) {
-            return <Card isHighlighted={true}  nameBefore={nameBefore} bold={queryData} nameAfter={nameAfter} />;
+            return <DefaultCard isHighlighted={true}  nameBefore={nameBefore} bold={queryData} nameAfter={nameAfter} />;
           }
           return (
-            <Card nameBefore={nameBefore} bold={queryData} nameAfter={nameAfter} />
+            <DefaultCard nameBefore={nameBefore} bold={queryData} nameAfter={nameAfter} />
           );
         }
       },
