@@ -128,19 +128,21 @@ $stacking-order: (
 
 
 .PopoverButtonWrap {
-  min-height: 150px;
+  min-height: 30px;
   position: absolute;
   min-width: 42rem;
+  height: 100%;
   .suggestionsList {
     width:100%;
     padding-bottom: 30px;
+    position: relative;
   }
   .pickerResultHide,
   .pickerResultShow{
     width: 100%;
     background: #fff;
-    bottom: 13px;
-    position: absolute;
+    bottom: 35px;
+    position: relative;
     text-align: center;
     z-index: 21;
     height: 35px;
