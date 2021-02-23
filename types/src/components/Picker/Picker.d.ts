@@ -1,32 +1,17 @@
 import * as React from 'react';
 import { ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
-import { DisplayMoreInfo } from './PickerEnum';
 import * as Autosuggest from 'react-autosuggest';
-export interface IPickerInfo {
-    id?: number;
-    key?: number;
-    image?: string;
-    name: string;
-    description: string;
-    email?: string;
-    icon?: string;
-}
 export interface IStateProps {
     chipListState: IItemList[];
     suggestions: Autosuggest[];
     inputProps: any;
     value?: string;
-    removable?: boolean;
+    removable: boolean;
+    multiSection: boolean;
 }
 export interface IItemList {
-    key?: number;
-    image?: string;
-    name?: string;
-    email?: string;
+    name: string;
     tabIndex?: number;
-    alt?: string;
-    icon?: string;
-    text?: string;
 }
 export interface IRenderSuggestionProp {
     isHighlighted: string;
@@ -49,12 +34,10 @@ export interface IAutoSuggestMethods {
     storeFocus(e: HTMLElement): void;
     shouldRenderSuggestions?(): void;
     renderSuggestionsContainer?({ containerProps, children, query }: any): void;
+    renderSectionTitle?(section: any): void;
+    getSectionSuggestions?(section: any): void;
 }
-export declare type Type = 'hide' | 'mark';
 export interface State {
-    people: string;
-    searchItems: IPickerInfo[];
-    selectedItems: IPickerInfo[];
     moreInfo: boolean;
     value: string;
     input: HTMLElement[];
@@ -71,8 +54,6 @@ export interface State {
     popoverWidth: string;
 }
 export interface Props {
-    selectedResultsBehavior?: Type;
-    filterPlaceHolder?: string;
     helpText?: React.ReactNode;
     label?: string;
     labelHidden?: boolean;
@@ -81,11 +62,9 @@ export interface Props {
     maxSelectedItems?: number;
     minSelectedItems?: number;
     chipComponent?: React.ReactNode;
-    searchResultComponent?: React.ReactNode;
     moreInfoComponent?: React.ReactNode;
     autoSuggest?: boolean;
     source: any[];
-    moreInfoComponentShowOn?: DisplayMoreInfo;
     style?: React.CSSProperties;
     theme?: any;
     onFocus?(event: React.FormEvent<HTMLElement>): void;
@@ -93,6 +72,9 @@ export interface Props {
     onSelect?(item: any): void;
     onRemove?(item: any): void;
     onMoreInfo?(): void;
+    renderPickerHeader?(section: any): React.ReactElement<any>;
+    renderPickerItem?(suggestion: any, isHighlighted?: string, query?: string): React.ReactElement<any>;
+    columns?: any[];
     suffix?: string;
     defaultSelectedItems?: IItemList[];
     componentId?: string;
@@ -106,10 +88,10 @@ declare class Picker extends React.PureComponent<Props, State> {
     setWrapperRef: (node: any) => void;
     componentWillReceiveProps(newProps: Props): void;
     renderSuggestionsContainer: ({ containerProps, children }: any) => JSX.Element;
+    getSectionSuggestions: (section: any) => any;
+    renderSectionTitle: (section: any) => any;
     shouldRenderSuggestions: () => boolean;
     render(): JSX.Element;
-    private handleChange;
-    private handleRemove;
 }
 export { Picker as UnthemedPicker };
 declare const _default: ThemedComponentClass<Props, State>;
