@@ -198,7 +198,7 @@ class Picker extends React.PureComponent<Props, State> {
     }
 
     return (
-      <div {...containerProps}>
+      <div {...containerProps} className={theme.PopoverButtonWrap}>
         {children}
         {
           <div className={className}>

@@ -840,29 +840,32 @@ class App extends React.Component<{}, State> {
     ];
 
     const renderPickerHeader = (column: any) => {
-      return (<div>
-                <div>
+      return (<div style={{marginBottom: '.5rem', minWidth: '12rem', maxWidth: '100rem', position: 'relative', zIndex: 22, padding: '1rem', backgroundColor: '#f5f5f5', boxSizing: 'border-box'}}>
                   <FlexBox align="Center">
                     {
-                      column.map((c: any) => <span>{c.label}</span>)
-                    }
+                      column.map((c: any) => <div style={{flex: '1'}}>
+                        <b>{c.label}</b>
+                        <span style={{verticalAlign: 'middle', display: 'inline-block', marginLeft: '.3rem'}}>
+                        <Icon source="caretUp" componentStyle={{fill: '#212121',width: '1.3rem', height: '1.3rem'}}/>
+                        <Icon source="caretDown"  componentStyle={{fill: '#212121',width: '1.3rem', height: '1.3rem', marginTop: '-7px'}}/>
+                        </span>
+                      </div>
+                      )}
                   </FlexBox>
                 </div>
-              </div>
-      );
+                );
     }
 
     const renderPickerItem = (suggestion: any, isHighlighted?: string, query?: string) => {
       let name = suggestion.name;
-      return (<div>
-          <div>
+      // let highlightedStyle = {backgroundColor: '#ebebeb'};
+      return (<div style={{minWidth: '100rem', maxWidth: '100rem'}} >
             <FlexBox align="Center">
-              <span>{name}</span>
-              <span>{name}</span>
+              <div style={{flex: '1', width: '50%', padding: '1rem', boxSizing: 'border-box'}}>{name}</div>
+              <div style={{flex: '1', width: '50%', padding: '1rem', boxSizing: 'border-box', marginLeft: '-2rem'}}>{name}</div>
             </FlexBox>
           </div>
-        </div>
-      )
+        )
     }
     // const columnConfigPicker: TableColumnConfig[] = [
     //   {
@@ -2982,7 +2985,7 @@ class App extends React.Component<{}, State> {
             minSelectedItems={2}
             autoSuggest
             loading
-            moreInfoComponent={<Button children="More Info" />}
+            moreInfoComponent={<Button children="More Info" plain componentSize="slim"/>}
             // disabled
             // readOnly
             noOptionsMessage={"No items Available"}
