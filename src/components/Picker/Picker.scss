@@ -125,3 +125,26 @@ $stacking-order: (
 // TODO: Do we need these? Should display be none, or hidden?
 .pickerResultShow{display:block;}
 .pickerResultHide{display:none;}
+
+
+.PopoverButtonWrap {
+  min-height: 150px;
+  position: absolute;
+  min-width: 42rem;
+  .suggestionsList {
+    width:100%;
+    padding-bottom: 30px;
+  }
+  .pickerResultHide,
+  .pickerResultShow{
+    width: 100%;
+    background: #fff;
+    bottom: 13px;
+    position: absolute;
+    text-align: center;
+    z-index: 21;
+    height: 35px;
+    line-height: 30px;
+  }
+
+}
