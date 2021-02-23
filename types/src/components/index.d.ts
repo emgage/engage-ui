@@ -36,7 +36,7 @@ export { default as Message, Props as MessageProps, } from './Message';
 export { Pagination, Pager, DefaultProps as PaginationDefaultProps, IProps as PagerProps, PageSize, IPageSizeProps, } from './Pagination';
 export { default as Panel, Props as PanelProps, } from './Panel';
 export { default as Popover, Props as PopoverProps, } from './Popover';
-export { default as Picker, DisplayMoreInfo, Props as PickerProps, } from './Picker';
+export { default as Picker, Props as PickerProps, } from './Picker';
 export { default as PopoverPicker, Props as PopoverPickerProps, } from './PopoverPicker';
 export { default as Dropdown, Props as DropdownProps, DropdownItemProps } from './Dropdown';
 export { default as PositionedOverlay, Props as PositionedOverlayProps, } from './PositionedOverlay';
