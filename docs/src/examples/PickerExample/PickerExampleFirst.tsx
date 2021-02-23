@@ -34,8 +34,6 @@ class PickerExample extends React.Component<IProps, IState> {
         <br/>
          <Picker
             chipComponent={Chip}
-            filterPlaceHolder="!People!!"
-            searchResultComponent={Chip}
             source={pickerdata}
             moreInfoComponent={<Button children="ranmal" />}
           />
@@ -45,8 +43,6 @@ class PickerExample extends React.Component<IProps, IState> {
         <br/>
          <Picker
             chipComponent={Chip}
-            filterPlaceHolder="!People!!"
-            searchResultComponent={Chip}
             source={pickerdata}
             maxSelectedItems={5}
             minSelectedItems={2}

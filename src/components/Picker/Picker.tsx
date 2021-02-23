@@ -3,40 +3,27 @@ import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 import { PICKER } from '../ThemeIdentifiers';
 import TextField from '../TextField';
 import Icon, { IconList } from '../Icon';
-import { DisplayMoreInfo } from './PickerEnum';
 import * as Autosuggest from 'react-autosuggest';
 import * as baseTheme from './Picker.scss';
+import * as style from './Picker.scss';
 // TODO: Why are we using this custom card and not the Card component?
-import Card from './Card';
 import Popover from '../Popover';
+import FlexBox from '../FlexBox';
 
-export interface IPickerInfo {
-  id?: number;
-  key?: number;
-  image?: string;
-  name: string;
-  description: string;
-  email?: string;
-  icon?: string;
-}
+let resultsBehaviorOpen: boolean = false;
 
 export interface IStateProps {
   chipListState: IItemList[];
   suggestions: Autosuggest[];
   inputProps: any;
   value?: string;
-  removable?: boolean;
+  removable: boolean;
+  multiSection: boolean;
 }
 
 export interface IItemList {
-  key?: number;
-  image?: string;
-  name?: string;
-  email?: string;
+  name: string;
   tabIndex?: number;
-  alt?: string;
-  icon?: string;
-  text?: string;
 }
 
 export interface IRenderSuggestionProp {
@@ -61,14 +48,11 @@ export interface IAutoSuggestMethods {
   storeFocus(e: HTMLElement): void;
   shouldRenderSuggestions?(): void;
   renderSuggestionsContainer?({ containerProps, children, query }: any): void;
+  renderSectionTitle?(section: any): void;
+  getSectionSuggestions?(section: any): void;
 }
 
-export type Type = 'hide' | 'mark';
-
 export interface State {
-  people: string;
-  searchItems: IPickerInfo[];
-  selectedItems: IPickerInfo[];
   moreInfo: boolean;
   value: string;
   input: HTMLElement[];
@@ -86,9 +70,6 @@ export interface State {
 }
 
 export interface Props {
-  selectedResultsBehavior?: Type;
-  // Hint text to display.
-  filterPlaceHolder?: string;
   // Additional hint text to display.
   helpText?: React.ReactNode;
   // Label for the input.
@@ -102,11 +83,9 @@ export interface Props {
   maxSelectedItems?: number;
   minSelectedItems?: number;
   chipComponent?: React.ReactNode;
-  searchResultComponent?: React.ReactNode;
   moreInfoComponent?: React.ReactNode;
   autoSuggest?: boolean;
   source: any[];
-  moreInfoComponentShowOn?: DisplayMoreInfo;
   style?: React.CSSProperties;
   theme?: any;
   onFocus?(event: React.FormEvent<HTMLElement>): void;
@@ -114,6 +93,9 @@ export interface Props {
   onSelect?(item: any): void;
   onRemove?(item: any): void;
   onMoreInfo?(): void;
+  renderPickerHeader?(section: any): React.ReactElement<any>;
+  renderPickerItem?(suggestion: any, isHighlighted?: string, query?: string): React.ReactElement<any>;
+  columns?: any[];
   suffix?: string;
   // defaultSelectedItems for picker
   defaultSelectedItems?: IItemList[];
@@ -123,6 +105,32 @@ export interface Props {
   noOptionsMessage?: string;
   readOnly?: boolean;
 }
+
+
+const DefaultCard = (props: any) => {
+  const { isHighlighted = false } = props;
+  const cardBackground = (isHighlighted) ? style.cardItem + ' ' + style.highlighted : style.cardItem;
+  return (
+    <div>
+      <div className={cardBackground}>
+      <FlexBox align="Center">
+        {
+          props.image ?
+            <span><img className={style.avatarImage} src={props.image} alt={props.alt} aria-hidden={!props.nameAfter || !props.nameBefore} /></span>
+            : null
+        }
+        <span className={style.nameStyle}>
+          <span>{props.nameBefore}</span>
+          <span className={style.hinting}>{props.bold}</span>
+          <span>{props.nameAfter}</span>
+        </span>
+        <span className={style.emailStyle} aria-hidden>{props.email}</span>
+        </FlexBox>
+      </div>
+    </div>
+  );
+}
+
 class Picker extends React.PureComponent<Props, State> {
   public wrapperRef: HTMLDivElement;
 
@@ -130,9 +138,6 @@ class Picker extends React.PureComponent<Props, State> {
     super(props);
     this.state = {
       popoverWidth: '',
-      people: '',
-      searchItems: [],
-      selectedItems: [],
       moreInfo: false,
       value: '',
       input: [],
@@ -160,13 +165,12 @@ class Picker extends React.PureComponent<Props, State> {
       const { chipListState } = this.state;
       if (newProps.source.length && chipListState.length) {
         chipListState.forEach((chip: any) => {
-          const currentText = newProps.source.find((source: IPickerInfo) => source.id === (chip.id || chip.key) || source.key === (chip.id || chip.key));
+          const currentText = newProps.source.find((source: any) => source.id === (chip.id || chip.key) || source.key === (chip.id || chip.key));
           if (currentText) {
             chip.text = currentText.name;
           }
         });
       }
-
       this.setState({ chipListState, suggestions: newProps.source || [], itemsList: newProps.source });
     }
     if (JSON.stringify(newProps.defaultSelectedItems) !== JSON.stringify(this.props.defaultSelectedItems)) {
@@ -174,20 +178,27 @@ class Picker extends React.PureComponent<Props, State> {
       this.setState({ hasValue, chipListState: newProps.defaultSelectedItems || [] });
     }
 
-    if (!newProps.shouldRenderSuggestions) {
-      if (newProps.noOptionsMessage === 'No Item available') {
-        this.setState({ noSuggestions: true });
-      }
+    if (newProps.noOptionsMessage !== '') {
+      this.setState({ noSuggestions: true });
     }
   }
 
   renderSuggestionsContainer = ({ containerProps, children }: any) => {
     const { moreInfoComponent, theme } = this.props;
+    let className = '';
+    if (!resultsBehaviorOpen) {
+      className = theme.pickerResultHide;
+    } else {
+      className = theme.pickerResultShow;
+    }
+
+    console.log("suggestionsList", containerProps);
+
     return (
-      <div {...containerProps}>
+      <div {...containerProps} className={theme.PopoverButtonWrap}>
         {children}
         {
-          <div className={theme.footer}>
+          <div className={className}>
             {moreInfoComponent}
           </div>
         }
@@ -195,11 +206,26 @@ class Picker extends React.PureComponent<Props, State> {
     );
   }
 
+  getSectionSuggestions = (section: any) => {
+    return section.items;
+  }
+
+  renderSectionTitle = (section: any) => {
+    if (this.props.renderPickerHeader) {
+      return this.props.renderPickerHeader(section.title);
+    }
+    else {
+      return section.title.map((s: any) => <strong>{s.label}</strong>);
+    }
+  }
+
   shouldRenderSuggestions = () => {
     return true;
   }
 
   render() {
+
+    const { columns = [] } = this.props;
 
     function escapeRegexCharacters(str: string) {
       return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -211,7 +237,12 @@ class Picker extends React.PureComponent<Props, State> {
       getSuggestions: (value: string) => {
         const escapedValue = escapeRegexCharacters(value.trim());
         const regex = new RegExp(escapedValue, 'i');
-        return this.state.itemsList.filter((language: IItemList) => regex.test(language.name ? language.name : ''));
+        if (columns.length !== 0) {
+          return [{title: columns, items: this.state.itemsList.filter((language: IItemList) => regex.test(language.name ? language.name : ''))}];
+        }
+        else {
+          return this.state.itemsList.filter((language: IItemList) => regex.test(language.name ? language.name : ''));
+        }
       },
 
       getSuggestionValue: (suggestion: IItemList) => {
@@ -268,7 +299,7 @@ class Picker extends React.PureComponent<Props, State> {
       },
 
       updateList: (input: HTMLElement) => {
-        const langIndex = this.state.itemsList.indexOf(input);
+        const langIndex = this.state.itemsList.indexOf(input as any);
         const itemsListLength = this.state.itemsList;
         const newLangState = itemsListLength.slice(0, langIndex).concat(itemsListLength.slice(langIndex + 1, itemsListLength.length));
         this.setState({
@@ -336,18 +367,23 @@ class Picker extends React.PureComponent<Props, State> {
       },
 
       renderSuggestion: (suggestion: IItemList, { isHighlighted, query }: IRenderSuggestionProp) => {
-        const index = (suggestion.name ? suggestion.name.toLowerCase().indexOf(query.toLowerCase()) : 0);
-        const nameBefore = (suggestion.name ? suggestion.name.slice(0, index) : '');
-        const queryData = (suggestion.name ? suggestion.name.slice(index, index + query.length) : '');
-        const nameAfter = (suggestion.name ? suggestion.name.slice(index + query.length) : '');
 
-        if (isHighlighted) {
-          return <Card isHighlighted={true} image={suggestion.image} nameBefore={nameBefore} bold={queryData} nameAfter={nameAfter} email={suggestion.email} alt={suggestion.alt} />;
+        if (this.props.renderPickerItem) {
+          return this.props.renderPickerItem(suggestion, isHighlighted, query);
         }
-
-        return (
-          <Card image={suggestion.image} nameBefore={nameBefore} bold={queryData} nameAfter={nameAfter} email={suggestion.email} alt={suggestion.alt} />
-        );
+        else {
+          const index = (suggestion.name ? suggestion.name.toLowerCase().indexOf(query.toLowerCase()) : 0);
+          const nameBefore = (suggestion.name ? suggestion.name.slice(0, index) : '');
+          const queryData = (suggestion.name ? suggestion.name.slice(index, index + query.length) : '');
+          const nameAfter = (suggestion.name ? suggestion.name.slice(index + query.length) : '');
+  
+          if (isHighlighted) {
+            return <DefaultCard isHighlighted={true}  nameBefore={nameBefore} bold={queryData} nameAfter={nameAfter} />;
+          }
+          return (
+            <DefaultCard nameBefore={nameBefore} bold={queryData} nameAfter={nameAfter} />
+          );
+        }
       },
     };
 
@@ -359,21 +395,13 @@ class Picker extends React.PureComponent<Props, State> {
         loading = false,
         disabled = false,
         readOnly = false,
-        selectedResultsBehavior,
         moreInfoComponent,
-        chipComponent,
-        // searchResultComponent,
-        searchBehavior = this.handleChange,
-        // moreInfoComponentShowOn = DisplayMoreInfo.onClick,
-        // onSelect = this.handleSelect,
-        onRemove = this.handleRemove,
-        // onMoreInfo = this.handleMoreInfo,
         componentId = '',
         theme,
         shouldRenderSuggestions,
         noOptionsMessage
     } = this.props;
-    const { isFocused, hasValue, value, suggestions, chipListState, selectedItems, noSuggestions, anchorEl, popoverWidth } = this.state;
+    const { isFocused, hasValue, value, suggestions, chipListState, noSuggestions, anchorEl, popoverWidth } = this.state;
     const inputProps: any & { disabled: boolean } = {
       value,
       onChange: autoSuggestMethods.onChange,
@@ -382,15 +410,8 @@ class Picker extends React.PureComponent<Props, State> {
       onBlur: autoSuggestMethods.onBlur,
       disabled: readOnly || disabled || (!!this.props.maxSelectedItems && this.props.maxSelectedItems <= chipListState.length),
     };
-    const stateProps: IStateProps = { value, suggestions, chipListState, inputProps, removable: readOnly ? false : true };
-
-    let className = '';
-    if (selectedResultsBehavior === 'hide') {
-      className = theme.pickerResultHide;
-    } else {
-      className = theme.pickerResultShow;
-    }
-
+    const stateProps: IStateProps = { value, suggestions, chipListState, inputProps, removable: readOnly ? false : true, multiSection: columns.length !== 0 };
+    
     let suffixIcon: React.ReactNode = null;
     if (this.props.suffix) {
       const { suffix } = this.props;
@@ -406,16 +427,16 @@ class Picker extends React.PureComponent<Props, State> {
       autoSuggestMethods.renderSuggestionsContainer = this.renderSuggestionsContainer;
     }
 
+    if (columns.length !== 0) {
+      autoSuggestMethods.renderSectionTitle = this.renderSectionTitle;
+      autoSuggestMethods.getSectionSuggestions = this.getSectionSuggestions;
+    }
+
+    resultsBehaviorOpen = stateProps.suggestions.length !== 0;
+
     return (
       <div id={componentId}>
         <div ref={node => this.setWrapperRef(node)}>
-          <div className={className}>
-            {
-              selectedItems.map((i) => {
-                return React.createElement(chipComponent as React.ComponentClass<{ clickable: boolean, removable: boolean, onRemove(item: React.FormEvent<HTMLElement>): void }>, { onRemove, key: i.id, clickable: false, removable: true }, [i.name]);
-              })
-            }
-          </div>
           <TextField
             type="text"
             autoSuggest={autoSuggest}
@@ -425,8 +446,8 @@ class Picker extends React.PureComponent<Props, State> {
             label={label ? label : ''}
             labelHidden={labelHidden}
             loading={loading}
-            value={this.state.people}
-            onChange={searchBehavior}
+            value={value}
+            onChange={(autoSuggestMethods.onChange) as any}
             stateProps={stateProps}
             theme={theme}
             suffix={suffixIcon}
@@ -452,48 +473,6 @@ class Picker extends React.PureComponent<Props, State> {
       </div>
     );
   }
-
-  private handleChange = (value: string) => {
-    this.setState({ ['people']: value });
-    this.setState({ ['searchItems']: value ? this.props.source.filter(x => x.name.startsWith(value)) : [] });
-  }
-
-  private handleRemove = (event: React.SyntheticEvent<any>) => {
-    const item = this.state.selectedItems.find(x => x.name === event.currentTarget.previousElementSibling.innerText);
-    const items = this.state.selectedItems;
-    if (this.props.minSelectedItems !== undefined && this.props.minSelectedItems === items.length) {
-      return;
-    }
-    if (item !== undefined) {
-      const index: number = items.indexOf(item);
-      if (index !== -1) {
-        items.splice(index, 1);
-      }
-    }
-    this.setState({ ['selectedItems']: items });
-    return;
-  }
-
-  // private handleSelect = (event: React.FormEvent<HTMLFormElement>) => {
-  //   const item = this.state.searchItems.find(x => x.name === event.currentTarget.text);
-  //   const items = this.state.selectedItems;
-  //   if (this.props.maxSelectedItems !== undefined && this.props.maxSelectedItems === items.length) {
-  //     return;
-  //   }
-  //   if (item !== undefined) {
-  //     if (!items.some(x => x.name === item.name)) {
-  //       items.push(item);
-  //     }
-  //   }
-  //   this.setState({ ['selectedItems']: items });
-  //   this.setState({ ['searchItems']: [] });
-  //   return;
-  // }
-
-  // private handleMoreInfo = () => {
-  //   this.setState({ ['moreInfo']: !this.state.moreInfo });
-  //   return;
-  // }
 }
 
 export { Picker as UnthemedPicker };
