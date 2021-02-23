@@ -118,6 +118,10 @@ $stacking-order: (
     color: color(ink, lightest);
   }
 
+  &.placeholderAlignRight::placeholder {
+    text-align: right !important;
+  }
+
   // These properties are used to remove the default "SpinnerButtons" controls
   // for number fields, since we add our own, custom versions instead.
   &[type='number'] {
@@ -298,11 +302,11 @@ $stacking-order: (
 body .HeightSlim {
   height: 3.2rem;
   min-height: 3.2rem;
-  padding: 0.5rem 0.5rem 0 0.5rem;
+  padding: 0.5rem 0.5rem;
 
   > .input {
     &:focus {
-      padding: 0.5rem 0.5rem 0 0.5rem;
+      padding: 0.5rem 0.5rem;
     }
   }
 }

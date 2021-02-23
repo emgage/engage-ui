@@ -17,6 +17,7 @@ import SpinnerButtons from './SpinnerButtons';
 
 export type Type = 'text' | 'email' | 'number' | 'password' | 'search' | 'tel' | 'url' | 'date' | 'datetime-local' | 'month' | 'time' | 'week';
 export type ComponentHeight = 'slim' | 'large';
+export type PlaceholderAlign = 'left' | 'right';
 
 export interface State {
   height?: number | null;
@@ -94,6 +95,8 @@ export interface Props {
   pattern?: string;
   // Hint text to display.
   placeholder?: string;
+  // Placeholder text alignment
+  placeholderAlign?: PlaceholderAlign;
   // Text to display before value.
   prefix?: React.ReactNode;
   // To make it required or not.
@@ -174,6 +177,7 @@ class TextField extends React.PureComponent<Props, State> {
       multiline,
       name,
       placeholder,
+      placeholderAlign = 'right',
       prefix,
       onKeyDown,
       onFocus,
@@ -257,7 +261,8 @@ class TextField extends React.PureComponent<Props, State> {
       theme.input,
       !label && theme.noLabel,
       this.state.value && theme.notEmpty,
-      componentHeight && theme[variationName('Height', componentHeight)]
+      componentHeight && theme[variationName('Height', componentHeight)],
+      placeholder && String(placeholderAlign) === 'right' && theme.placeholderAlignRight,
     );
 
     const input = React.createElement(multiline ? 'textarea' : 'input', {

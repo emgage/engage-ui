@@ -96,7 +96,9 @@ const AppBar: React.FC<Props> = (props) => {
             type="search"
             componentHeight="slim"
             suffix={<Icon source="search" componentColor="inkLighter"/>}
-            label="Search"
+            labelHidden
+            placeholder="Search"
+            placeholderAlign="left"
             onKeyDown={searchOnKeyDown}
           />
         </div>
