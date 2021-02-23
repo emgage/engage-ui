@@ -10,9 +10,6 @@ import * as style from './Picker.scss';
 import Popover from '../Popover';
 import FlexBox from '../FlexBox';
 
-
-
-
 let resultsBehaviorOpen: boolean = false;
 
 export interface IStateProps {
@@ -181,10 +178,8 @@ class Picker extends React.PureComponent<Props, State> {
       this.setState({ hasValue, chipListState: newProps.defaultSelectedItems || [] });
     }
 
-    if (!newProps.shouldRenderSuggestions) {
-      if (newProps.noOptionsMessage === 'No Item available') {
-        this.setState({ noSuggestions: true });
-      }
+    if (newProps.noOptionsMessage !== '') {
+      this.setState({ noSuggestions: true });
     }
   }
 
@@ -196,6 +191,8 @@ class Picker extends React.PureComponent<Props, State> {
     } else {
       className = theme.pickerResultShow;
     }
+
+    console.log("suggestionsList", containerProps);
 
     return (
       <div {...containerProps}>
