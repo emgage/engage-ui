@@ -48,6 +48,9 @@
                 background: color(blue, base);
             }
         }
+        &:focus + .InnerSpan:before {
+            background-color: color(blue, base);
+        }
     }
 }
 }
