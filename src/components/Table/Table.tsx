@@ -395,7 +395,7 @@ class Table extends React.Component<Props, State> {
             })
           }
 
-          { rowAction && !rowActionLeft ? <TableData componentClass={theme.lastData} componentStyle={{ float: 'right' }}>{item.isRowLoading && <Spinner componentSize="small" componentColor="disabled" />} <RowAction componentId={componentId} actionInProgress={actionInProgress && !!item.processing} isRowLoading={item.isRowLoading} actionConfig={rowAction} data={item} theme={theme} /> </TableData> : '' }
+          { rowAction && !rowActionLeft ? <TableData componentClass={theme.lastData} componentStyle={{ float: 'right', width: '72px', textAlign: 'center' }}>{item.isRowLoading && <Spinner componentSize="small" componentColor="disabled" />} <RowAction componentId={componentId} actionInProgress={actionInProgress && !!item.processing} isRowLoading={item.isRowLoading} actionConfig={rowAction} data={item} theme={theme} /> </TableData> : '' }
         </TableRow>
         { renderBanner &&
         <TableRow>
@@ -458,7 +458,7 @@ class Table extends React.Component<Props, State> {
   // Add checkbox or radio component to select the row, depending on `selectrow` flag
   renderRowSelection = (rowData: any, rowType: string) => {
     const {
-      columnFirstChildWidth = '30px',
+      columnFirstChildWidth = '40px',
       disableAllRowCallback,
       expandingRowId = [],
       hideExpandedIcon = false,
@@ -516,7 +516,7 @@ class Table extends React.Component<Props, State> {
   // Function to add checkbox in header as well
   addHeaderCheckbox = (): React.ReactElement<any> => {
     const { data = [], intermediateRow = [], selectedRows = [] } = this.state;
-    const { columnFirstChildWidth = '30px', theme, hideSelectAll = false, actionInProgress = false } = this.props;
+    const { columnFirstChildWidth = '40px', theme, hideSelectAll = false, actionInProgress = false } = this.props;
 
     // This gives the checked status: true means all child are checked, intermediate atlease one child is checked, false means nothing is checked
     const rowCheckedStatus = !intermediateRow.length ?
@@ -540,7 +540,7 @@ class Table extends React.Component<Props, State> {
 
   addHeaderDisableAllRowCheckbox = ():  React.ReactElement<any> => {
     const { disableAllRow } = this.state;
-    const { columnFirstChildWidth = '30px', theme, disableAllRowCallback } = this.props;
+    const { columnFirstChildWidth = '40px', theme, disableAllRowCallback } = this.props;
 
     return (<TableHead componentStyle={{ width: columnFirstChildWidth }} theme={theme}>
            <Checkbox
