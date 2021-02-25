@@ -7,7 +7,7 @@ export interface IStateProps {
     inputProps: any;
     value?: string;
     removable: boolean;
-    multiSection: boolean;
+    multiSection?: any;
 }
 export interface IItemList {
     name: string;
@@ -36,6 +36,7 @@ export interface IAutoSuggestMethods {
     renderSuggestionsContainer?({ containerProps, children, query }: any): void;
     renderSectionTitle?(section: any): void;
     getSectionSuggestions?(section: any): void;
+    isShouldRenderSuggestions?: boolean;
 }
 export interface State {
     moreInfo: boolean;
