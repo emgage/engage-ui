@@ -17,7 +17,7 @@ export interface IStateProps {
   inputProps: any;
   value?: string;
   removable: boolean;
-  multiSection?: boolean;
+  multiSection?: any;
 }
 
 export interface Props {
@@ -42,7 +42,7 @@ class AutoSuggestText extends React.PureComponent<Props, {}> {
         {this.props.stateProps ? this.props.stateProps.chipListState.map((input: any) => <Chip icon={input.icon} onIconClick={input.onIconClick} theme={theme} image={{ url: input.image }} removable={this.props.stateProps && this.props.stateProps.removable} onRemove={() => this.props.autoSuggestMethods ? this.props.autoSuggestMethods.chipRemove(input) : null} key={input.key}>{input.text}</Chip>) : null}
 
         {
-          this.props.autoSuggestMethods && this.props.autoSuggestMethods.shouldRenderSuggestions ?
+          this.props.autoSuggestMethods && this.props.autoSuggestMethods.isShouldRenderSuggestions ?
             <Autosuggest
               theme={{
                 ...theme,
@@ -52,7 +52,7 @@ class AutoSuggestText extends React.PureComponent<Props, {}> {
                 input: theme.input,
                 suggestionsContainer: theme.suggestionsContainer
               }}
-              multiSection={this.props.stateProps && this.props.stateProps.multiSection}
+              multiSection={this.props.stateProps && this.props.stateProps.multiSection ? this.props.stateProps.multiSection : false}
               renderSectionTitle={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.renderSectionTitle : (() => { }) as any}
               getSectionSuggestions={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.getSectionSuggestions : (() => { }) as any}
               onSuggestionSelected={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.onSuggestionSelected : () => {} }
@@ -77,7 +77,7 @@ class AutoSuggestText extends React.PureComponent<Props, {}> {
                 input: theme.input,
                 suggestionsContainer: theme.suggestionsContainer
               }}
-              multiSection={this.props.stateProps && this.props.stateProps.multiSection}
+              multiSection={this.props.stateProps && this.props.stateProps.multiSection ? this.props.stateProps.multiSection : false}
               renderSectionTitle={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.renderSectionTitle : (() => { }) as any}
               getSectionSuggestions={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.getSectionSuggestions : (() => { }) as any}
               onSuggestionSelected={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.onSuggestionSelected : () => {} }

@@ -5,6 +5,7 @@ import { IStateProps } from '../Picker/AutoSuggestText';
 import { IAutoSuggestMethods } from '../Picker/Picker';
 export declare type Type = 'text' | 'email' | 'number' | 'password' | 'search' | 'tel' | 'url' | 'date' | 'datetime-local' | 'month' | 'time' | 'week';
 export declare type ComponentHeight = 'slim' | 'large';
+export declare type PlaceholderAlign = 'left' | 'right';
 export interface State {
     height?: number | null;
     focused?: boolean;
@@ -49,6 +50,7 @@ export interface Props {
     onInput?(e?: React.ChangeEvent<HTMLSelectElement>): void;
     pattern?: string;
     placeholder?: string;
+    placeholderAlign?: PlaceholderAlign;
     prefix?: React.ReactNode;
     required?: boolean;
     readOnly?: boolean;
