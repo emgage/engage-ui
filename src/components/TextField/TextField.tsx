@@ -262,7 +262,7 @@ class TextField extends React.PureComponent<Props, State> {
       !label && theme.noLabel,
       this.state.value && theme.notEmpty,
       componentHeight && theme[variationName('Height', componentHeight)],
-      placeholder && String(placeholderAlign) === 'right' && theme.placeholderAlignRight,
+      placeholder && String(placeholderAlign) === 'right' && theme.placeholderAlignRight
     );
 
     const input = React.createElement(multiline ? 'textarea' : 'input', {
