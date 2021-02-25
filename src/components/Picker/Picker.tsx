@@ -5,7 +5,6 @@ import TextField from '../TextField';
 import Icon, { IconList } from '../Icon';
 import * as Autosuggest from 'react-autosuggest';
 import * as baseTheme from './Picker.scss';
-import * as style from './Picker.scss';
 // TODO: Why are we using this custom card and not the Card component?
 import Popover from '../Popover';
 import FlexBox from '../FlexBox';
@@ -106,30 +105,29 @@ export interface Props {
   readOnly?: boolean;
 }
 
-
 const DefaultCard = (props: any) => {
   const { isHighlighted = false } = props;
-  const cardBackground = (isHighlighted) ? style.cardItem + ' ' + style.highlighted : style.cardItem;
+  const cardBackground = (isHighlighted) ? baseTheme.cardItem + ' ' + baseTheme.highlighted : baseTheme.cardItem;
   return (
     <div>
       <div className={cardBackground}>
       <FlexBox align="Center">
         {
           props.image ?
-            <span><img className={style.avatarImage} src={props.image} alt={props.alt} aria-hidden={!props.nameAfter || !props.nameBefore} /></span>
+            <span><img className={baseTheme.avatarImage} src={props.image} alt={props.alt} aria-hidden={!props.nameAfter || !props.nameBefore} /></span>
             : null
         }
-        <span className={style.nameStyle}>
+        <span className={baseTheme.nameStyle}>
           <span>{props.nameBefore}</span>
-          <span className={style.hinting}>{props.bold}</span>
+          <span className={baseTheme.hinting}>{props.bold}</span>
           <span>{props.nameAfter}</span>
         </span>
-        <span className={style.emailStyle} aria-hidden>{props.email}</span>
+        <span className={baseTheme.emailStyle} aria-hidden>{props.email}</span>
         </FlexBox>
       </div>
     </div>
   );
-}
+};
 
 class Picker extends React.PureComponent<Props, State> {
   public wrapperRef: HTMLDivElement;
@@ -212,9 +210,9 @@ class Picker extends React.PureComponent<Props, State> {
     if (this.props.renderPickerHeader) {
       return this.props.renderPickerHeader(section.title);
     }
-    else {
-      return section.title.map((s: any) => <strong>{s.label}</strong>);
-    }
+
+    return section.title.map((s: any) => <strong>{s.label}</strong>);
+
   }
 
   shouldRenderSuggestions = () => {
@@ -236,11 +234,11 @@ class Picker extends React.PureComponent<Props, State> {
         const escapedValue = escapeRegexCharacters(value.trim());
         const regex = new RegExp(escapedValue, 'i');
         if (columns.length !== 0) {
-          return [{title: columns, items: this.state.itemsList.filter((language: IItemList) => regex.test(language.name ? language.name : ''))}];
+          return [{ title: columns, items: this.state.itemsList.filter((language: IItemList) => regex.test(language.name ? language.name : '')) }];
         }
-        else {
-          return this.state.itemsList.filter((language: IItemList) => regex.test(language.name ? language.name : ''));
-        }
+
+        return this.state.itemsList.filter((language: IItemList) => regex.test(language.name ? language.name : ''));
+
       },
 
       getSuggestionValue: (suggestion: IItemList) => {
@@ -369,12 +367,12 @@ class Picker extends React.PureComponent<Props, State> {
         if (this.props.renderPickerItem) {
           return this.props.renderPickerItem(suggestion, isHighlighted, query);
         }
-        else {
+        {
           const index = (suggestion.name ? suggestion.name.toLowerCase().indexOf(query.toLowerCase()) : 0);
           const nameBefore = (suggestion.name ? suggestion.name.slice(0, index) : '');
           const queryData = (suggestion.name ? suggestion.name.slice(index, index + query.length) : '');
           const nameAfter = (suggestion.name ? suggestion.name.slice(index + query.length) : '');
-  
+
           if (isHighlighted) {
             return <DefaultCard isHighlighted={true}  nameBefore={nameBefore} bold={queryData} nameAfter={nameAfter} />;
           }
@@ -409,7 +407,7 @@ class Picker extends React.PureComponent<Props, State> {
       disabled: readOnly || disabled || (!!this.props.maxSelectedItems && this.props.maxSelectedItems <= chipListState.length),
     };
     const stateProps: IStateProps = { value, suggestions, chipListState, inputProps, removable: readOnly ? false : true, multiSection: columns.length !== 0 ? true : false };
-    
+
     let suffixIcon: React.ReactNode = null;
     if (this.props.suffix) {
       const { suffix } = this.props;
