@@ -17,7 +17,7 @@ export interface IStateProps {
   inputProps: any;
   value?: string;
   removable: boolean;
-  multiSection: boolean;
+  multiSection?: boolean;
 }
 
 export interface Props {
