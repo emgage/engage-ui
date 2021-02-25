@@ -191,8 +191,11 @@ class Picker extends React.PureComponent<Props, State> {
       className = theme.pickerResultShow;
     }
 
+<<<<<<< HEAD
     console.log('suggestionsList', containerProps);
 
+=======
+>>>>>>> fce34f05aede3718aa7497bd54dcdbaf8c8f46d7
     return (
       <div {...containerProps} className={theme.PopoverButtonWrap}>
         {children}
@@ -409,8 +412,13 @@ class Picker extends React.PureComponent<Props, State> {
       onBlur: autoSuggestMethods.onBlur,
       disabled: readOnly || disabled || (!!this.props.maxSelectedItems && this.props.maxSelectedItems <= chipListState.length),
     };
+<<<<<<< HEAD
     const stateProps: IStateProps = { value, suggestions, chipListState, inputProps, removable: readOnly ? false : true, multiSection: columns.length !== 0 };
 
+=======
+    const stateProps: IStateProps = { value, suggestions, chipListState, inputProps, removable: readOnly ? false : true, multiSection: columns.length !== 0 ? true : false };
+    
+>>>>>>> fce34f05aede3718aa7497bd54dcdbaf8c8f46d7
     let suffixIcon: React.ReactNode = null;
     if (this.props.suffix) {
       const { suffix } = this.props;
