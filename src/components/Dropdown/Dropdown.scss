@@ -117,5 +117,11 @@ $font-weight-normal: 400 !default;
   margin-bottom: 0;
   font-size: $font-size-sm;
   color: $dropdown-header-color;
-  white-space: nowrap; 
+  white-space: nowrap;
+}
+
+
+.choice {
+  z-index: 20;
+  position: relative;
 }

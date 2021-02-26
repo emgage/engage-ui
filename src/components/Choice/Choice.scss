@@ -18,6 +18,8 @@ $icon-horizontal-adjustment: 2px;
   display: flex;
   align-items: flex-start;
   padding: spacing(tightest) 0;
+  position: relative;
+  z-index: 20;
 }
 
 .labelHidden {
