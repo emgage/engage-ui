@@ -251,3 +251,28 @@ $border-color: color(sky, base);
       }
     }
 }
+
+
+.ResponsiveTableWrap {
+  overflow:auto;
+  &::-webkit-scrollbar-track
+  {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: color(white, base);
+    height:5px;
+  }
+
+  &::-webkit-scrollbar
+  {
+    width: 10px;
+    background-color: color(white, base);
+    height:5px
+  }
+
+  &::-webkit-scrollbar-thumb
+  {
+    background-color: color(text, text);
+    border: 2px solid color(text, darker);
+    height:5px
+  }
+}

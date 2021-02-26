@@ -5,6 +5,7 @@ import TextField from '../TextField';
 import Icon, { IconList } from '../Icon';
 import * as Autosuggest from 'react-autosuggest';
 import * as baseTheme from './Picker.scss';
+// import * as style from './Picker.scss';
 // TODO: Why are we using this custom card and not the Card component?
 import Popover from '../Popover';
 import FlexBox from '../FlexBox';
@@ -190,6 +191,8 @@ class Picker extends React.PureComponent<Props, State> {
     } else {
       className = theme.pickerResultShow;
     }
+
+    console.log('suggestionsList', containerProps);
 
     return (
       <div {...containerProps} className={theme.PopoverButtonWrap}>
@@ -407,7 +410,7 @@ class Picker extends React.PureComponent<Props, State> {
       onBlur: autoSuggestMethods.onBlur,
       disabled: readOnly || disabled || (!!this.props.maxSelectedItems && this.props.maxSelectedItems <= chipListState.length),
     };
-    const stateProps: IStateProps = { value, suggestions, chipListState, inputProps, removable: readOnly ? false : true, multiSection: columns.length !== 0 ? true : false };
+     const stateProps: IStateProps = { value, suggestions, chipListState, inputProps, removable: readOnly ? false : true, multiSection: columns.length !== 0 ? true : false };
 
     let suffixIcon: React.ReactNode = null;
     if (this.props.suffix) {
