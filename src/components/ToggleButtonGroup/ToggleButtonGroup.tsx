@@ -6,7 +6,7 @@ import Item from './Item';
 
 import { TOGGLEBUTTON_GROUP } from '../ThemeIdentifiers';
 import * as baseTheme from './ToggleButtonGroup.scss';
-import Labelled, { Action } from '../Labelled';
+import Labelled, { Action, errorID } from '../Labelled';
 import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
 
 export interface Props {
@@ -65,7 +65,7 @@ const ToggleButtonGroup = ({
       theme={theme}
     >
 
-      <div className={className} style={componentStyle}>{contents}</div>
+<div className={className} style={componentStyle} id={errorID(componentId)} >{contents}</div>
     </Labelled>);
 };
 
