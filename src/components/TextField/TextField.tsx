@@ -330,7 +330,7 @@ class TextField extends React.PureComponent<Props, State> {
           left={connectedLeft}
           right={connectedRight}
         >
-          <div className={className}>
+          <div className={className} id={errorID(componentId)}>
             {prefixMarkup}
             {inputValue}
             {loading && <div className={theme.spinnerWrapper} id={`${componentId}Spinner`}><Spinner componentSize="small" componentColor="disabled" /></div>}
