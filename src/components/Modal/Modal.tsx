@@ -6,6 +6,7 @@ import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
 import { layeredComponent } from '@shopify/react-utilities/components';
 
 import Button from '../Button';
+import VisuallyHidden from '../VisuallyHidden';
 import KeypressListener from '../KeypressListener';
 
 import { Keys } from '../../types';
@@ -122,7 +123,7 @@ class Modal extends React.PureComponent<Props, never> {
   renderCloseButton = () => {
     const { closeButton = false, theme } = this.props;
 
-    return closeButton ? (<div className={theme.close}><Button plain onClick={this.closeModal} icon="cancel" theme={theme} /></div>) : null;
+    return closeButton ? (<div className={theme.close}><Button plain onClick={this.closeModal} icon="cancel" theme={theme}><VisuallyHidden>Close Modal</VisuallyHidden></Button></div>) : null;
   }
 
   // Import keylistener if modal needs to be closed on pressing escape key

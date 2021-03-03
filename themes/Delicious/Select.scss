@@ -65,10 +65,11 @@ $input-horizontal-padding: spacing(tighter) * 1.5;
 
 .input {
   @include text-style-input;
-  color: theme-color(m-grey, 900);
+  color: color(ink, lighter);
   min-height: control-height();
   padding: control-vertical-padding() ($input-horizontal-padding + $icon-size) control-vertical-padding() $input-horizontal-padding;
   transition: 0.3s all ease;
+  background:rgba(255,255,255,0);
 
   &:focus {
     outline: none;
@@ -115,8 +116,9 @@ $input-horizontal-padding: spacing(tighter) * 1.5;
 
 .labelStyle {
   @include text-style-body-large;
-  color: theme-color(m-grey, 500);
+  color: color(ink, lighter);
   transition: 0.3s all ease;
+  background:rgba(255,255,255,0);
 }
 
 .labelHasValue {
