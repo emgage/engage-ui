@@ -227,7 +227,7 @@ $large-vertical-padding: ($large-min-height - line-height(body) - rem(2px)) / 2;
     // This compensates for the typical icon used in buttons being
     // inset within its bounding box.
     margin-left: -2px;
-    margin-right: spacing(tightest);
+    // margin-right: spacing(tightest);
   }
 
   &:last-child {
