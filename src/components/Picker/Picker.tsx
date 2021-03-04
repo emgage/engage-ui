@@ -104,6 +104,8 @@ export interface Props {
   shouldRenderSuggestions?: boolean;
   noOptionsMessage?: string;
   readOnly?: boolean;
+  // Error to display beneath the label.
+  errors?: [string];
 }
 
 const DefaultCard = (props: any) => {
@@ -398,7 +400,8 @@ class Picker extends React.PureComponent<Props, State> {
         componentId = '',
         theme,
         shouldRenderSuggestions,
-        noOptionsMessage
+        noOptionsMessage,
+        errors,
     } = this.props;
     const { isFocused, hasValue, value, suggestions, chipListState, noSuggestions, anchorEl, popoverWidth } = this.state;
     const inputProps: any & { disabled: boolean } = {
@@ -437,6 +440,7 @@ class Picker extends React.PureComponent<Props, State> {
       <div id={componentId}>
         <div ref={node => this.setWrapperRef(node)}>
           <TextField
+            errors={errors}
             type="text"
             autoSuggest={autoSuggest}
             autoSuggestMethods={autoSuggestMethods}
