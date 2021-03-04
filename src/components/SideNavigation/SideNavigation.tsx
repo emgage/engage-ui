@@ -8,6 +8,7 @@ import { FlexBox } from '../';
 import { Drawer, DrawerContent } from '../Drawer';
 import Tooltip from '../Tooltip';
 import Accordion, { AccordionItemProps }from '../Accordion';
+import Button from '../Button';
 
 import { SIDENAVIGATION } from '../ThemeIdentifiers';
 import * as baseTheme from './SideNavigation.scss';
@@ -107,10 +108,19 @@ class SideNavigation extends React.PureComponent<Props, State> {
       const childrenMarkup = full.children !== undefined || null ? full.children.map((child: any, index: number) => {
         return (
           <div key={index}>
-            <a className={childLiClass} onClick={child.action} aria-disabled={false} id={componentId ? `${componentId}${child.label}` : ''}>
-              <Icon source={child.icon} componentColor="white" componentClass={theme.customIcon} theme={theme} />
-              {child.label}
-            </a>
+            { child.notActionable ?
+              (
+                <div className={childLiClass} style={{ cursor: 'default' }} aria-disabled={false} id={componentId ? `${componentId}${child.label}` : ''}>
+                  <Icon source={child.icon} componentColor="white" componentClass={theme.customIcon} theme={theme} />
+                  {child.label}
+                </div>
+              ) : (
+                <Button componentSize="slim" componentClass={childLiClass} onClick={child.action} aria-disabled={false} componentId={componentId ? `${componentId}${child.label}` : ''} plain fullWidth >
+                  <Icon source={child.icon} componentColor={'black'} componentClass={theme.customIcon} theme={theme} />
+                  {child.label}
+                </Button>
+              )
+            }
           </div>
         );
       }) : null;
@@ -118,16 +128,25 @@ class SideNavigation extends React.PureComponent<Props, State> {
       // Set Accordian Item properties
       const items : AccordionItemProps[] = [{
         children: childrenMarkup,
-        header:
-          <div
-            key={index}
-            className={liClass}
-          >
-            <div className={liClass} onClick={full.action} aria-disabled={false} id={componentId ? `${componentId}${full.label}` : ''}>
-              <Icon source={full.icon} componentColor={activeItem === full.id ? 'black' : 'white'} componentClass={theme.customIcon} theme={theme} />
+        header: (
+          childrenMarkup != null && childrenMarkup !== undefined && childrenMarkup.length > 0 ?
+          (
+            <Button componentSize="slim" componentClass={liClass} onClick={full.action} aria-disabled={false} componentId={componentId ? `${componentId}${full.label}` : ''} plain fullWidth >
+              <Icon source={full.icon} componentColor={'black'} componentClass={theme.customIcon} theme={theme} />
               {full.label}
+            </Button>
+          ) : (
+            <div
+              key={index}
+              className={liClass}
+            >
+              <div className={liClass} style={{ cursor: 'default', width: '100%' }} aria-disabled={false} id={componentId ? `${componentId}${full.label}` : ''}>
+                <Icon source={full.icon} componentColor={'black'} componentClass={theme.customIcon} theme={theme} />
+                {full.label}
+              </div>
             </div>
-          </div>
+          )
+        ),
       }];
 
       // Set markup based on the prop values
