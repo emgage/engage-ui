@@ -50,7 +50,6 @@ export interface IAutoSuggestMethods {
   renderSuggestionsContainer?({ containerProps, children, query }: any): void;
   renderSectionTitle?(section: any): void;
   getSectionSuggestions?(section: any): void;
-  isShouldRenderSuggestions?: boolean;
 }
 
 export interface State {
@@ -408,7 +407,7 @@ class Picker extends React.PureComponent<Props, State> {
       onKeyDown: autoSuggestMethods.onKeyDown,
       onFocus: autoSuggestMethods.onFocus,
       onBlur: autoSuggestMethods.onBlur,
-      disabled: readOnly || disabled || (!!this.props.maxSelectedItems && this.props.maxSelectedItems <= chipListState.length),
+      disabled: readOnly || disabled || (!!this.props.maxSelectedItems && this.props.maxSelectedItems > 0 && this.props.maxSelectedItems <= chipListState.length),
     };
     const stateProps: IStateProps = { value, suggestions, chipListState, inputProps, removable: readOnly ? false : true, multiSection: columns.length !== 0 ? true : false };
 
