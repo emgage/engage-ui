@@ -21,6 +21,9 @@ $large-min-height: rem(48px);
 $large-vertical-padding: ($large-min-height - line-height(body) - rem(2px)) / 2;
 
 
+$dropdown-item-padding-y: 1rem !default;
+$dropdown-item-padding-x: 1.6rem !default;
+
 .button {
   @include recolor-icon(color(ink, lighter));
   position: relative;
@@ -209,6 +212,15 @@ $large-vertical-padding: ($large-min-height - line-height(body) - rem(2px)) / 2;
 .fullWidth {
   display: block;
   width: 100%;
+  margin: 0px;
+  padding: 0px;
+  text-align: left;
+  min-width: 100%;
+  padding: $dropdown-item-padding-y $dropdown-item-padding-x;
+  span {
+    display: block;
+    text-align: left
+  }
 }
 
 .content {
