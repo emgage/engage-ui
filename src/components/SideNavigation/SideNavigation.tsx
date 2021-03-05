@@ -116,7 +116,7 @@ class SideNavigation extends React.PureComponent<Props, State> {
                 </div>
               ) : (
                 <Button componentSize="slim" componentClass={childLiClass} onClick={child.action} aria-disabled={false} componentId={componentId ? `${componentId}${child.label}` : ''} plain fullWidth >
-                  <Icon source={child.icon} componentColor={'black'} componentClass={theme.customIcon} theme={theme} />
+                  <Icon source={child.icon} componentColor={'white'} componentClass={theme.customIcon} theme={theme} />
                   {child.label}
                 </Button>
               )
