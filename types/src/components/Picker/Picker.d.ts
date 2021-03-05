@@ -82,6 +82,8 @@ export interface Props {
     shouldRenderSuggestions?: boolean;
     noOptionsMessage?: string;
     readOnly?: boolean;
+    // Error to display beneath the label.
+    errors?: [string];
 }
 declare class Picker extends React.PureComponent<Props, State> {
     wrapperRef: HTMLDivElement;
