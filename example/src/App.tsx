@@ -153,6 +153,8 @@ interface State {
 }
 
 class App extends React.Component<{}, State> {
+  private baseUrl = `/`;
+
   constructor(props: any) {
     super(props);
     this.state = {
@@ -967,130 +969,230 @@ class App extends React.Component<{}, State> {
     const sideNavigationData: INavigationData[] = [
       {
         id: 0.1,
-        label: 'Show All Apps',
+        label: 'Select App',
         icon: 'chevronLeft',
         parentDivider: true,
-        action: () => console.log('Basics is clicked!'),
-      },
-      {
+        action: () => null,
+      }, {
         id: 0.2,
-        label: 'Global Application',
-        icon: 'external',
-        currentApp: true,
+        label: 'Global',
         parentDivider: true,
-        action: () => console.log('Basics is clicked!'),
-      },
-      {
-        id: 0.3,
-        label: 'Features',
-        icon: 'lightbulb',
-        divider: true,
-        action: () => console.log('Basics is clicked!'),
-      },
-      {
+        currentApp: true,
+        icon: 'external'
+      }, {
         id: 1,
-        label: 'Dashboard',
-        icon: 'tachometer',
-        action: () => console.log('Basics is clicked!'),
-      },
-      {
+        label: 'Application',
+        header: <Button componentSize="slim" plain fullWidth >Application</Button>,
+        children: [
+          {
+            id: 1.1,
+            label: 'Basics',
+            icon: 'infoCircle',
+            action: () => {(this.props as any).fromPageB ? window.location.href = `${this.baseUrl}` : null },
+          }, {
+            id: 1.2,
+            label: 'Packaging',
+            icon: 'notes',
+            action: () => {(this.props as any).fromPageB ? window.location.href = `${this.baseUrl}/feature` : null },
+          }
+        ]
+      } , {
         id: 2,
-        label: 'Basics',
-        icon: 'infoCircle',
-        divider: true,
-        action: () => console.log('Basics is clicked!'),
-      },
-      {
-        id: 3,
         label: 'Content',
-        icon: 'database',
-        divider: true,
-        action: () => console.log('Basics is clicked!'),
-      },
-      {
-        id: 3.2,
-        label: 'Content Definitions',
-        icon: 'database',
-        divider: true,
-        action: () => console.log('Basics is clicked!'),
-      },
-      {
-        id: 5.1,
-        label: 'Value Definitions',
-        icon: 'database',
-        divider: true,
-        action: () => console.log('Basics is clicked!'),
-      },
-      {
-        id: 3.1,
-        label: 'User',
-        icon: 'user',
-        action: () => console.log('Basics is clicked!'),
-      },
-      {
+        header: <Button componentSize="slim" plain fullWidth >Content</Button>,
+        children: [
+          {
+            id: 2.1,
+            label: 'Content Stores',
+            icon: 'database',
+            action: () => {(this.props as any).fromPageB ? window.location.href = `${this.baseUrl}/contentStores` : null },
+          },{
+            id: 2.2,
+            label: 'Data Importer',
+            icon: 'database',
+            action: () => null,
+          }, {
+            id: 2.3,
+            label: 'Content Definitions',
+            icon: 'database',
+            action: () => {(this.props as any).fromPageB ? window.location.href = `${this.baseUrl}/contentTemplates` : null},
+          },{
+            id: 2.4,
+            label: 'Field Definitions',
+            icon: 'database',
+            action: () => {(this.props as any).fromPageB ? window.location.href = `${this.baseUrl}/fieldTemplates` : null},
+          }
+        ]
+      } , {
+        id: 3,
+        label: 'App Interfaces',
+        header: <Button componentSize="slim" plain fullWidth >App Interfaces</Button>,
+        children: [
+          {
+            id: 3.1,
+            label: 'Pages & Forms',
+            icon: 'file',
+            action:() => {(this.props as any).fromPageB ? window.location.href = `${this.baseUrl}/pages` : null }
+          }, {
+            id: 3.2,
+            label: 'Page Templates',
+            icon: 'checkSquare',
+            notActionable: true,
+            action: () => console.log('Page Templates Item is clicked!'),
+          }, {
+            id: 3.3,
+            label: 'Themes',
+            icon: 'paintBrush',
+            notActionable: true,
+            action: () => console.log('Themes Item is clicked!'),
+          }
+        ]
+      } , {
         id: 4,
-        label: 'Groups',
-        icon: 'users',
-        action: () => console.log('Basics is clicked!'),
-      },
-      {
+        label: 'User Management',
+        header: <Button componentSize="slim" plain fullWidth >User Management</Button>,
+        children: [
+          {
+            id: 4.1,
+            label: 'Users',
+            icon: 'user',
+            action: () => {(this.props as any).fromPageB ? window.location.href = `${this.baseUrl}/users` : null },
+          }, {
+            id: 4.2,
+            label: 'Groups',
+            icon: 'users',
+            action: () => {(this.props as any).fromPageB ? window.location.href = `${this.baseUrl}/groups` : null },
+          }, {
+            id: 4.3,
+            label: 'Roles',
+            icon: 'userMd',
+            action: () => {(this.props as any).fromPageB ? window.location.href = `${this.baseUrl}/roleDefs` : null },
+          }, {
+            id: 4.4,
+            label: 'Access Policies',
+            icon: 'lock',
+            action: () => {(this.props as any).fromPageB ? window.location.href = `${this.baseUrl}/accessPolicies` : null },
+          }, {
+            id: 4.5,
+            label: 'Identity Management',
+            icon: 'lock',
+            notActionable: true,
+            action: () => console.log('Identity Management Item is clicked!'),
+          }
+        ]
+      } , {
         id: 5,
-        label: 'Roles',
-        icon: 'userMd',
-        action: () => console.log('Basics is clicked!'),
-      },
-      {
+        label: 'Messaging',
+        header: <Button componentSize="slim" plain fullWidth >Messaging</Button>,
+        children: [
+          {
+            id: 5.1,
+            label: 'Sources',
+            icon: 'inbox',
+            action: () => {(this.props as any).fromPageB ? window.location.href = `${this.baseUrl}/contentStores` : null},
+          }, {
+            id: 5.2,
+            label: 'Channels',
+            icon: 'comments',
+            action: () => {(this.props as any).fromPageB ? window.location.href = `${this.baseUrl}/messageChannelDefs` : null},
+          }, {
+            id: 5.3,
+            label: 'Messages',
+            icon: 'envelope',
+            action: () => {(this.props as any).fromPageB ? window.location.href = `${this.baseUrl}/messageDefs` : null},
+          }
+        ]
+      } , {
         id: 6,
-        label: 'Permissions',
-        icon: 'lock',
-        divider: true,
-        action: () => console.log('Permissions Item is clicked!'),
-      },
-      {
+        label: 'Workflow & Automation',
+        header: <Button componentSize="slim" plain fullWidth >Workflow & Automation</Button>,
+        children: [
+          {
+            id: 6.1,
+            label: 'Workflows',
+            icon: 'puzzlePiece',
+            action: () => null,
+          }, {
+            id: 6.2,
+            label: 'Functions',
+            icon: 'puzzlePiece',
+            notActionable: true,
+            action: () => console.log('Functions Item is clicked!'),
+          }, {
+            id: 6.3,
+            label: 'Robots',
+            icon: 'puzzlePiece',
+            notActionable: true,
+            action: () => console.log('Robots Item is clicked!'),
+          }
+        ]
+      } , {
         id: 7,
-        label: 'Pages',
-        icon: 'file',
-        action: () => console.log('Basics is clicked!'),
-      },
-      {
+        label: 'Data Sync',
+        header: <Button componentSize="slim" plain fullWidth >Data Sync</Button>,
+        children: [
+          {
+            id: 7.1,
+            label: 'SQL Mapping',
+            icon: 'database',
+            notActionable: true,
+            action: () => console.log('SQL Mapping Item is clicked!'),
+          }
+        ]
+      } , {
         id: 8,
-        label: 'Forms',
-        icon: 'checkSquare',
-        action: () => console.log('Basics is clicked!'),
-      },
-      {
+        label: 'Media Management',
+        header: <Button componentSize="slim" plain fullWidth >Media Management</Button>,
+        children: [
+          {
+            id: 8.1,
+            label: 'File Policies',
+            icon: 'lock',
+            notActionable: true,
+            action: () => console.log('File Policies Item is clicked!'),
+          }, {
+            id: 8.2,
+            label: 'File Definitions',
+            icon: 'file',
+            notActionable: true,
+            action: () => console.log('File Definitions Item is clicked!'),
+          }
+        ]
+      } , {
         id: 9,
-        label: 'Workflow',
-        icon: 'puzzlePiece',
-        action: () => console.log('Workflow Item is clicked!'),
-      },
-      {
+        label: 'Analytics',
+        header: <Button componentSize="slim" plain fullWidth >Analytics</Button>,
+        children: [
+          {
+            id: 9.1,
+            label: "Dashboards",
+            icon: "tachometer",
+            notActionable: true,
+            action: () => console.log("Dashboards is clicked!")
+          }, {
+            id: 9.2,
+            label: "Reports",
+            icon: "chartBar",
+            notActionable: true,
+            action: () => console.log("Reports is clicked!")
+          }
+        ]
+      } , {
         id: 10,
-        label: 'Themes',
-        icon: 'paintBrush',
-        divider: true,
-        action: () => console.log('Themes Item is clicked!'),
-      },
-      {
+        label: 'Usage Analytics',
+        header: <Button componentSize="slim" plain fullWidth >Usage Analytics</Button>,
+        children: []
+      } , {
         id: 11,
-        label: 'Publishing',
-        icon: 'refresh',
-        divider: true,
-        action: () => console.log('Publishing is clicked!'),
-      },
-      {
+        label: 'Projects & Tasks',
+        header: <Button componentSize="slim" plain fullWidth >Projects & Tasks</Button>,
+        children: []
+      } , {
         id: 12,
-        label: 'App Analytics',
-        icon: 'chartBar',
-        divider: true,
-        action: () => console.log('App Analytics is clicked!'),
-      },
-      {
-        id: 13,
-        label: 'Sherpa',
-        icon: 'handsHelping',
-        action: () => console.log('Sherpa is clicked!'),
-      },
+        label: 'Support Sherpa',
+        header: <Button componentSize="slim" plain fullWidth >Support Sherpa</Button>,
+        children: []
+      }
     ];
 
     /*
