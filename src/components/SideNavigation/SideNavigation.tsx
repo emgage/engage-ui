@@ -22,6 +22,8 @@ export interface INavigationData {
   currentApp?:boolean | null;
   children?:React.ReactNode;
   action?(arg?:string|number|boolean|null):void | null;
+  notActionable?:boolean | null;
+  header?: any;
 }
 
 // All prototypes type
