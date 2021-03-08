@@ -254,8 +254,9 @@ class TextField extends React.PureComponent<Props, State> {
     if (helpText) { describedBy.push(helpTextID(componentId)); }
 
     const labelledBy = [labelID(componentId)];
-    if (prefix) { labelledBy.push(`${componentId}Prefix`); }
-    if (suffix) { labelledBy.push(`${componentId}Suffix`); }
+    // Do not apply suffix or prefix in textfield component. Should be done in its components respectively
+    // if (prefix) { labelledBy.push(`${componentId}Prefix`); }
+    // if (suffix) { labelledBy.push(`${componentId}Suffix`); }
 
     const inputEleClass = classNames(
       theme.input,
@@ -330,7 +331,7 @@ class TextField extends React.PureComponent<Props, State> {
           left={connectedLeft}
           right={connectedRight}
         >
-          <div className={className} id={errorID(componentId)}>
+          <div className={className}>
             {prefixMarkup}
             {inputValue}
             {loading && <div className={theme.spinnerWrapper} id={`${componentId}Spinner`}><Spinner componentSize="small" componentColor="disabled" /></div>}
