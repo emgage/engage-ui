@@ -113,12 +113,12 @@ class SideNavigation extends React.PureComponent<Props, State> {
             { child.notActionable ?
               (
                 <div className={childLiClass} style={{ cursor: 'default' }} aria-disabled={false} id={componentId ? `${componentId}${child.label}` : ''}>
-                  <Icon source={child.icon} componentColor="white" componentClass={theme.customIcon} theme={theme} />
+                  {/* <Icon source={child.icon} componentColor="white" componentClass={theme.customIcon} theme={theme} /> */}
                   {child.label}
                 </div>
               ) : (
                 <Button componentSize="slim" componentClass={childLiClass} onClick={child.action} aria-disabled={false} componentId={componentId ? `${componentId}${child.label}` : ''} plain fullWidth >
-                  <Icon source={child.icon} componentColor={'white'} componentClass={theme.customIcon} theme={theme} />
+                  {/* <Icon source={child.icon} componentColor={'white'} componentClass={theme.customIcon} theme={theme} /> */}
                   {child.label}
                 </Button>
               )
@@ -134,7 +134,7 @@ class SideNavigation extends React.PureComponent<Props, State> {
           childrenMarkup != null && childrenMarkup !== undefined && childrenMarkup.length > 0 ?
           (
             <Button componentSize="slim" componentClass={liClass} onClick={full.action} aria-disabled={false} componentId={componentId ? `${componentId}${full.label}` : ''} plain fullWidth >
-              <Icon source={full.icon} componentColor={'black'} componentClass={theme.customIcon} theme={theme} />
+              {/* <Icon source={full.icon} componentColor={'black'} componentClass={theme.customIcon} theme={theme} /> */}
               {full.label}
             </Button>
           ) : (
@@ -143,7 +143,7 @@ class SideNavigation extends React.PureComponent<Props, State> {
               className={liClass}
             >
               <div className={liClass} style={{ cursor: 'default', width: '100%' }} aria-disabled={false} id={componentId ? `${componentId}${full.label}` : ''}>
-                <Icon source={full.icon} componentColor={'black'} componentClass={theme.customIcon} theme={theme} />
+                {/* <Icon source={full.icon} componentColor={'black'} componentClass={theme.customIcon} theme={theme} /> */}
                 {full.label}
               </div>
             </div>
@@ -175,7 +175,7 @@ class SideNavigation extends React.PureComponent<Props, State> {
 
             {childrenMarkup}
           </div>
-        ) : <Accordion key={index} componentStyle={{ padding:'0px', height:'20px' }} mode="collapsible" items={items} theme={theme} />) :
+        ) : <Accordion key={index} mode="collapsible" items={items} theme={theme} />) :
         (
           <div key={index}>
             <div className={liClass} onClick={full.action} aria-disabled={false}>
