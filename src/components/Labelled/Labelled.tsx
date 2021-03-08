@@ -106,9 +106,9 @@ const labelled = ({
     )
     : null;
 
-    let htmlID: string = labelID(componentId);
-    if (errors) { htmlID += ' ' + errorID(componentId); }
-    if (helpText) { htmlID += ' ' + helpTextID(componentId); }
+  let htmlID: string = labelID(componentId);
+  if (errors) { htmlID += ' ' + errorID(componentId); }
+  if (helpText) { htmlID += ' ' + helpTextID(componentId); }
 
   return (
     <div className={wrapperClassName} id={htmlID} style={componentStyle}>

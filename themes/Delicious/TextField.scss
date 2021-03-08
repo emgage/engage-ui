@@ -115,8 +115,8 @@ $spinner-size: rem(20px);
 .dummyInput {
   @include text-style-input;
   padding: control-vertical-padding() $backdrop-horizontal-spacing;
-  color:color(black)!important;
-  background-color:color(white)!important;
+  color:color(black);
+  background-color:color(white);
 }
 
 
