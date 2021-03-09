@@ -966,6 +966,25 @@ class App extends React.Component<{}, State> {
         onBreadcrumbClick: () => console.log('Home3 is clicked'),
       },
     ];
+
+    const handleHeadingClick = (index: number) => {
+      const activeMenus: any = localStorage.getItem('active_navbar_menus');
+      if(activeMenus) {
+        let activeMenusObj: any = JSON.parse(activeMenus);
+        
+        if(activeMenusObj[index]) {
+          activeMenusObj = { ...activeMenusObj, [index]: !activeMenusObj[index] };
+        } else {
+          activeMenusObj = { ...activeMenusObj, [index]: true };
+        }
+
+        localStorage.setItem('active_navbar_menus', JSON.stringify(activeMenusObj));
+      } else {
+        const newObject: any = { [index]: true };
+        localStorage.setItem('active_navbar_menus', JSON.stringify(newObject));
+      }
+    }
+    
     const sideNavigationData: INavigationData[] = [
       {
         id: 0.1,
@@ -983,6 +1002,7 @@ class App extends React.Component<{}, State> {
         id: 1,
         label: 'Application',
         header: <Button componentSize="slim" plain fullWidth >Application</Button>,
+        action: () => handleHeadingClick(1),
         children: [
           {
             id: 1.1,
@@ -1000,6 +1020,7 @@ class App extends React.Component<{}, State> {
         id: 2,
         label: 'Content',
         header: <Button componentSize="slim" plain fullWidth >Content</Button>,
+        action: () => handleHeadingClick(2),
         children: [
           {
             id: 2.1,
@@ -1027,6 +1048,7 @@ class App extends React.Component<{}, State> {
         id: 3,
         label: 'App Interfaces',
         header: <Button componentSize="slim" plain fullWidth >App Interfaces</Button>,
+        action: () => handleHeadingClick(3),
         children: [
           {
             id: 3.1,
@@ -1051,6 +1073,7 @@ class App extends React.Component<{}, State> {
         id: 4,
         label: 'User Management',
         header: <Button componentSize="slim" plain fullWidth >User Management</Button>,
+        action: () => handleHeadingClick(4),
         children: [
           {
             id: 4.1,
@@ -1084,6 +1107,7 @@ class App extends React.Component<{}, State> {
         id: 5,
         label: 'Messaging',
         header: <Button componentSize="slim" plain fullWidth >Messaging</Button>,
+        action: () => handleHeadingClick(5),
         children: [
           {
             id: 5.1,
@@ -1106,6 +1130,7 @@ class App extends React.Component<{}, State> {
         id: 6,
         label: 'Workflow & Automation',
         header: <Button componentSize="slim" plain fullWidth >Workflow & Automation</Button>,
+        action: () => handleHeadingClick(6),
         children: [
           {
             id: 6.1,
@@ -1130,6 +1155,7 @@ class App extends React.Component<{}, State> {
         id: 7,
         label: 'Data Sync',
         header: <Button componentSize="slim" plain fullWidth >Data Sync</Button>,
+        action: () => handleHeadingClick(7),
         children: [
           {
             id: 7.1,
@@ -1143,6 +1169,7 @@ class App extends React.Component<{}, State> {
         id: 8,
         label: 'Media Management',
         header: <Button componentSize="slim" plain fullWidth >Media Management</Button>,
+        action: () => handleHeadingClick(8),
         children: [
           {
             id: 8.1,
@@ -1162,6 +1189,7 @@ class App extends React.Component<{}, State> {
         id: 9,
         label: 'Analytics',
         header: <Button componentSize="slim" plain fullWidth >Analytics</Button>,
+        action: () => handleHeadingClick(9),
         children: [
           {
             id: 9.1,
@@ -1181,16 +1209,19 @@ class App extends React.Component<{}, State> {
         id: 10,
         label: 'Usage Analytics',
         header: <Button componentSize="slim" plain fullWidth >Usage Analytics</Button>,
+        action: () => handleHeadingClick(10), // Has no effect right now as no child elements
         children: []
       } , {
         id: 11,
         label: 'Projects & Tasks',
         header: <Button componentSize="slim" plain fullWidth >Projects & Tasks</Button>,
+        action: () => handleHeadingClick(11), // Has no effect right now as no child elements
         children: []
       } , {
         id: 12,
         label: 'Support Sherpa',
         header: <Button componentSize="slim" plain fullWidth >Support Sherpa</Button>,
+        action: () => handleHeadingClick(12), // Has no effect right now as no child elements
         children: []
       }
     ];

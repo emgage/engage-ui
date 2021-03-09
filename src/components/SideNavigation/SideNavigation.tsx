@@ -105,6 +105,11 @@ class SideNavigation extends React.PureComponent<Props, State> {
     const { collapseLink, li: liClass, childLi: childLiClass } = theme;
     const { activeDrawerId } = this.state;
 
+    let activeMenus: any = localStorage.getItem('active_navbar_menus');
+    if(activeMenus) {
+      activeMenus = JSON.parse(activeMenus);
+    }
+
     // Iterate through source config items and set markup when full content is displayed
     const fullContentMarkup = source.map((full: any, index: number) => {
       const childrenMarkup = full.children !== undefined || null ? full.children.map((child: any, index: number) => {
@@ -175,7 +180,7 @@ class SideNavigation extends React.PureComponent<Props, State> {
 
             {childrenMarkup}
           </div>
-        ) : <Accordion key={index} mode="collapsible" items={items} theme={theme} />) :
+        ) : <Accordion key={index} defaultOpenIndexs={activeMenus && activeMenus[index-1] ? [0] : [] } mode="collapsible" items={items} theme={theme} />) :
         (
           <div key={index}>
             <div className={liClass} onClick={full.action} aria-disabled={false}>
