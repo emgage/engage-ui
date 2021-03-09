@@ -3,7 +3,7 @@ import { mount } from 'enzyme';
 import BodyText from '../BodyText';
 
 const theme = {
-  displayText: 'BodyText',
+  bodyText: 'BodyText',
   sizeSmall: 'sizeSmall',
   sizeDefault: 'sizeDefault',
   sizeLarge: 'sizeLarge',
@@ -21,13 +21,13 @@ describe('<BodyText />', () => {
       const bodytextWrapper = mount(
                                       <BodyText theme={theme} />
                                  );
-      expect(bodytextWrapper.find('p').at(0).hasClass('BodyText')).toBe(true);
+      expect(bodytextWrapper.find('p').hasClass('BodyText')).toBe(true);
     });
     it('basic bodytext should have default sizeDefault css class on div', () => {
       const bodytextWrapper = mount(
                                       <BodyText theme={theme} />
                                  );
-      expect(bodytextWrapper.find('p').at(0).hasClass('sizeDefault')).toBe(true);
+      expect(bodytextWrapper.find('p').hasClass('sizeDefault')).toBe(true);
     });
   });
 
@@ -47,7 +47,7 @@ describe('<BodyText />', () => {
                                              Good Morning.
                                          </BodyText>
                                    );
-        expect(bodytextWrapper.find('p').at(0).hasClass('BodyText')).toBe(true);
+        expect(bodytextWrapper.find('p').hasClass('BodyText')).toBe(true);
       });
       it('basic bodytext should have default sizeDefault css class on div', () => {
         const bodytextWrapper = mount(
@@ -55,7 +55,7 @@ describe('<BodyText />', () => {
                                              Good Morning.
                                          </BodyText>
                                    );
-        expect(bodytextWrapper.find('p').at(0).hasClass('sizeDefault')).toBe(true);
+        expect(bodytextWrapper.find('p').hasClass('sizeDefault')).toBe(true);
       });
       it('should verify element when not defined/set', () => {
         const bodytextWrapper = mount(
@@ -76,8 +76,8 @@ describe('<BodyText />', () => {
                                   );
         expect(bodytextWrapper.prop('element')).toBe('h1');
         expect(bodytextWrapper.find('h1')).toHaveLength(1);
-        expect(bodytextWrapper.find('h1').at(0).hasClass('BodyText')).toBe(true);
-        expect(bodytextWrapper.find('h1').at(0).hasClass('sizeDefault')).toBe(true);
+        expect(bodytextWrapper.find('h1').hasClass('BodyText')).toBe(true);
+        expect(bodytextWrapper.find('h1').hasClass('sizeDefault')).toBe(true);
       });
     });
   });
@@ -94,13 +94,13 @@ describe('<BodyText />', () => {
         const bodytextWrapper = mount(
                                          <BodyText theme={theme} />
                                    );
-        expect(bodytextWrapper.find('p').at(0).hasClass('BodyText')).toBe(true);
+        expect(bodytextWrapper.find('p').hasClass('BodyText')).toBe(true);
       });
       it('basic bodytext should have default sizeDefault css class on div', () => {
         const bodytextWrapper = mount(
                                          <BodyText theme={theme} />
                                    );
-        expect(bodytextWrapper.find('p').at(0).hasClass('sizeDefault')).toBe(true);
+        expect(bodytextWrapper.find('p').hasClass('sizeDefault')).toBe(true);
       });
       it('should verify size when not defined/set', () => {
         const bodytextWrapper = mount(
@@ -127,16 +127,7 @@ describe('<BodyText />', () => {
                                             Good Morning.
                                          </BodyText>
                                    );
-        expect(bodytextWrapper.find('p').at(0).hasClass('BodyText')).toBe(true);
-      });
-      it('should verify size when set as extraLarge with css class', () => {
-        const bodytextWrapper = mount(
-                                         <BodyText componentSize={'large'} theme={theme} >
-                                            Good Morning.
-                                         </BodyText>
-                                   );
-        expect(bodytextWrapper.prop('componentSize')).toBe('sizeLarge');
-        expect(bodytextWrapper.find('p').at(0).hasClass('sizeExtraLarge')).toBe(true);
+        expect(bodytextWrapper.find('p').hasClass('BodyText')).toBe(true);
       });
       it('should verify size when set as large with css class', () => {
         const bodytextWrapper = mount(
@@ -145,7 +136,7 @@ describe('<BodyText />', () => {
                                          </BodyText>
                                    );
         expect(bodytextWrapper.prop('componentSize')).toBe('large');
-        expect(bodytextWrapper.find('p').at(0).hasClass('sizeLarge')).toBe(true);
+        expect(bodytextWrapper.find('p').hasClass('sizeLarge')).toBe(true);
       });
       it('should verify size when set as medium with css class', () => {
         const bodytextWrapper = mount(
@@ -154,7 +145,7 @@ describe('<BodyText />', () => {
                                          </BodyText>
                                    );
         expect(bodytextWrapper.prop('componentSize')).toBe('default');
-        expect(bodytextWrapper.find('p').at(0).hasClass('sizeDefault')).toBe(true);
+        expect(bodytextWrapper.find('p').hasClass('sizeDefault')).toBe(true);
       });
       it('should verify size when set as medium with css class', () => {
         const bodytextWrapper = mount(
@@ -163,7 +154,7 @@ describe('<BodyText />', () => {
                                          </BodyText>
                                    );
         expect(bodytextWrapper.prop('componentSize')).toBe('small');
-        expect(bodytextWrapper.find('p').at(0).hasClass('sizeSmall')).toBe(true);
+        expect(bodytextWrapper.find('p').hasClass('sizeSmall')).toBe(true);
       });
     });
   });
@@ -180,13 +171,13 @@ describe('<BodyText />', () => {
         const bodytextWrapper = mount(
                                          <BodyText theme={theme} />
                                    );
-        expect(bodytextWrapper.find('p').at(0).hasClass('BodyText')).toBe(true);
+        expect(bodytextWrapper.find('p').hasClass('BodyText')).toBe(true);
       });
       it('basic bodytext should have default sizeDefault css class on div', () => {
         const bodytextWrapper = mount(
                                          <BodyText theme={theme} />
                                    );
-        expect(bodytextWrapper.find('p').at(0).hasClass('sizeDefault')).toBe(true);
+        expect(bodytextWrapper.find('p').hasClass('sizeDefault')).toBe(true);
       });
       it('should verify children not defined', () => {
         const bodytextWrapper = mount(
@@ -211,7 +202,7 @@ describe('<BodyText />', () => {
                                            Good Morning.
                                          </BodyText>
                                    );
-        expect(bodytextWrapper.find('p').at(0).hasClass('BodyText')).toBe(true);
+        expect(bodytextWrapper.find('p').hasClass('BodyText')).toBe(true);
       });
       it('basic bodytext should have default sizeDefault css class on div', () => {
         const bodytextWrapper = mount(
@@ -219,7 +210,7 @@ describe('<BodyText />', () => {
                                             Good Morning.
                                          </BodyText>
                                    );
-        expect(bodytextWrapper.find('p').at(0).hasClass('sizeDefault')).toBe(true);
+        expect(bodytextWrapper.find('p').hasClass('sizeDefault')).toBe(true);
       });
       it('should verify children when set', () => {
         const bodytextWrapper = mount(
@@ -260,7 +251,7 @@ describe('<BodyText />', () => {
                                           Good evening
                                        </BodyText>
                                  );
-      expect(bodytextWrapper.find('h3').at(0).hasClass('BodyText')).toBe(true);
+      expect(bodytextWrapper.find('h3').hasClass('BodyText')).toBe(true);
     });
     it('basic bodytext should have sizeSmall css class on div', () => {
       const bodytextWrapper = mount(
@@ -268,7 +259,7 @@ describe('<BodyText />', () => {
                                           Good evening
                                        </BodyText>
                                  );
-      expect(bodytextWrapper.find('h3').at(0).hasClass('sizeSmall')).toBe(true);
+      expect(bodytextWrapper.find('h3').hasClass('sizeSmall')).toBe(true);
     });
     it('should verify all properties are set', () => {
       const bodytextWrapper = mount(
