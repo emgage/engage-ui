@@ -2701,8 +2701,9 @@ class App extends React.Component<{}, State> {
               disabled
               placeholder="Find Content Definition..."
               suffix={<Icon source="search" />}
-              
             />
+
+            <TextField type="text" label="Text Field with Prefix" prefix="$" />
 
             <TextField
               label="Number field"
@@ -2711,7 +2712,6 @@ class App extends React.Component<{}, State> {
               value={this.state.appNumberCounter}
               onChange={this.valueUpdater('appNumberCounter')}
               // showNumberIcon={false}
-              
             />
 
             <TextField
