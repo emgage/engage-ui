@@ -27,6 +27,9 @@
 
 .signOut {
   color: theme-color(m-grey, 900) !important;
+  position: relative;
+  z-index: 20;
+  display:block;
 }
 
 .loginContainer {

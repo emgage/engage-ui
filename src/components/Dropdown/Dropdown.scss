@@ -63,7 +63,6 @@ $font-weight-normal: 400 !default;
 .dropdownItem {
   display: block;
   width: 100%;
-  padding: $dropdown-item-padding-y $dropdown-item-padding-x;
   font-weight: $font-weight-normal;
   color: $dropdown-link-color;
   text-align: justify;
@@ -117,5 +116,11 @@ $font-weight-normal: 400 !default;
   margin-bottom: 0;
   font-size: $font-size-sm;
   color: $dropdown-header-color;
-  white-space: nowrap; 
+  white-space: nowrap;
+}
+
+
+.choice {
+  z-index: 20;
+  position: relative;
 }

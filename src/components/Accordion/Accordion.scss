@@ -19,21 +19,24 @@
     font-weight: font-weight(bold);
     padding: 10px 12px;
     position: relative;
-    &:after {
-      content: '\f107';
-      font-family: FontAwesome;
-      font-size: 15px;
-      position: absolute;
-      right: 13px;
-      top: 50%;
-      opacity: .8;
-      transition: all .2s ease-in-out;
-      transform: translateY(-50%) rotate(0deg);
+    display: flex;
+    justify-content: space-between;
+
+    .AccordianIcon {
+      float:right;
+      transform: rotate(0deg);
+      transition: all .3s ease-in-out;
+        -moz-transition: all .3s ease-in-out;
+        -webkit-transition: all .3s ease-in-out;
     }
-      .active {
-        &:after {
-          transform: translateY(-50%) rotate(180deg);
-        }
+
+    &.active {
+      .AccordianIcon {
+        transform: rotate(180deg);
+        transition: all .3s ease-in-out;
+        -moz-transition: all .3s ease-in-out;
+        -webkit-transition: all .3s ease-in-out;
+      }
     }
   }
   > .body {

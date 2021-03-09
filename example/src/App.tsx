@@ -153,6 +153,8 @@ interface State {
 }
 
 class App extends React.Component<{}, State> {
+  private baseUrl = `/`;
+
   constructor(props: any) {
     super(props);
     this.state = {
@@ -824,8 +826,49 @@ class App extends React.Component<{}, State> {
     const pickerdata = [{ "id": 1532945, "name": "Bright", "text": "Bright", "key": 1532945, "description": "" }, { "id": 1532948, "name": "Blue", "text": "Blue", "key": 1532948, "description": "" }, { "id": 1531924, "name": "Green", "text": "Green", "key": 1531924, "description": "" }, { "id": 1528852, "name": "Red", "text": "Red", "key": 1528852, "description": "" }, { "id": 1529876, "name": "White", "text": "White", "key": 1529876, "description": "" }, { "id": 1527828, "name": "Yellow", "text": "Yellow", "key": 1527828, "description": "" }]
     const selectedPickerdata = [{ "id": 1534996, "name": "Black", "text": "Black", "key": 1534996, "description": "" }];
 
-  
+    const columnConfigPicker: TableColumnConfig[] = [
+      {
+        label: 'Name',
+        key: 'name',
+        sort: true,
+        sortBy: 'name'
+      },
+      {
+        label: 'Description',
+        key: 'description',
+        sort: true,
+        sortBy: 'description',
+      },
+    ];
 
+    const renderPickerHeader = (column: any) => {
+      return (<div style={{marginBottom: '.5rem', minWidth: '12rem', maxWidth: '100rem', position: 'relative', zIndex: 22, padding: '1rem', backgroundColor: '#f5f5f5', boxSizing: 'border-box'}}>
+                  <FlexBox align="Center">
+                    {
+                      column.map((c: any) => <div style={{flex: '1'}}>
+                        <b>{c.label}</b>
+                        <span style={{verticalAlign: 'middle', display: 'inline-block', marginLeft: '.3rem'}}>
+                        <Icon source="caretUp" componentStyle={{fill: '#212121',width: '1.3rem', height: '1.3rem'}}/>
+                        <Icon source="caretDown"  componentStyle={{fill: '#212121',width: '1.3rem', height: '1.3rem', marginTop: '-7px'}}/>
+                        </span>
+                      </div>
+                      )}
+                  </FlexBox>
+                </div>
+                );
+    }
+
+    const renderPickerItem = (suggestion: any, isHighlighted?: string, query?: string) => {
+      let name = suggestion.name;
+      // let highlightedStyle = {backgroundColor: '#ebebeb'};
+      return (<div style={{minWidth: '100rem', maxWidth: '100rem'}} >
+            <FlexBox align="Center">
+              <div style={{flex: '1', width: '50%', padding: '1rem', boxSizing: 'border-box'}}>{name}</div>
+              <div style={{flex: '1', width: '50%', padding: '1rem', boxSizing: 'border-box', marginLeft: '-2rem'}}>{name}</div>
+            </FlexBox>
+          </div>
+        )
+    }
     // const columnConfigPicker: TableColumnConfig[] = [
     //   {
     //     label: 'Name',
@@ -923,133 +966,264 @@ class App extends React.Component<{}, State> {
         onBreadcrumbClick: () => console.log('Home3 is clicked'),
       },
     ];
+
+    const handleHeadingClick = (index: number) => {
+      const activeMenus: any = localStorage.getItem('active_navbar_menus');
+      if(activeMenus) {
+        let activeMenusObj: any = JSON.parse(activeMenus);
+        
+        if(activeMenusObj[index]) {
+          activeMenusObj = { ...activeMenusObj, [index]: !activeMenusObj[index] };
+        } else {
+          activeMenusObj = { ...activeMenusObj, [index]: true };
+        }
+
+        localStorage.setItem('active_navbar_menus', JSON.stringify(activeMenusObj));
+      } else {
+        const newObject: any = { [index]: true };
+        localStorage.setItem('active_navbar_menus', JSON.stringify(newObject));
+      }
+    }
+    
     const sideNavigationData: INavigationData[] = [
       {
         id: 0.1,
-        label: 'Show All Apps',
+        label: 'Select App',
         icon: 'chevronLeft',
         parentDivider: true,
-        action: () => console.log('Basics is clicked!'),
-      },
-      {
+        action: () => null,
+      }, {
         id: 0.2,
-        label: 'Global Application',
-        icon: 'external',
-        currentApp: true,
+        label: 'Global',
         parentDivider: true,
-        action: () => console.log('Basics is clicked!'),
-      },
-      {
-        id: 0.3,
-        label: 'Features',
-        icon: 'lightbulb',
-        divider: true,
-        action: () => console.log('Basics is clicked!'),
-      },
-      {
+        currentApp: true,
+        icon: 'external'
+      }, {
         id: 1,
-        label: 'Dashboard',
-        icon: 'tachometer',
-        action: () => console.log('Basics is clicked!'),
-      },
-      {
+        label: 'Application',
+        header: <Button componentSize="slim" plain fullWidth >Application</Button>,
+        action: () => handleHeadingClick(1),
+        children: [
+          {
+            id: 1.1,
+            label: 'Basics',
+            icon: 'infoCircle',
+            action: () => {(this.props as any).fromPageB ? window.location.href = `${this.baseUrl}` : null },
+          }, {
+            id: 1.2,
+            label: 'Packaging',
+            icon: 'notes',
+            action: () => {(this.props as any).fromPageB ? window.location.href = `${this.baseUrl}/feature` : null },
+          }
+        ]
+      } , {
         id: 2,
-        label: 'Basics',
-        icon: 'infoCircle',
-        divider: true,
-        action: () => console.log('Basics is clicked!'),
-      },
-      {
-        id: 3,
         label: 'Content',
-        icon: 'database',
-        divider: true,
-        action: () => console.log('Basics is clicked!'),
-      },
-      {
-        id: 3.2,
-        label: 'Content Definitions',
-        icon: 'database',
-        divider: true,
-        action: () => console.log('Basics is clicked!'),
-      },
-      {
-        id: 5.1,
-        label: 'Value Definitions',
-        icon: 'database',
-        divider: true,
-        action: () => console.log('Basics is clicked!'),
-      },
-      {
-        id: 3.1,
-        label: 'User',
-        icon: 'user',
-        action: () => console.log('Basics is clicked!'),
-      },
-      {
+        header: <Button componentSize="slim" plain fullWidth >Content</Button>,
+        action: () => handleHeadingClick(2),
+        children: [
+          {
+            id: 2.1,
+            label: 'Content Stores',
+            icon: 'database',
+            action: () => {(this.props as any).fromPageB ? window.location.href = `${this.baseUrl}/contentStores` : null },
+          },{
+            id: 2.2,
+            label: 'Data Importer',
+            icon: 'database',
+            action: () => null,
+          }, {
+            id: 2.3,
+            label: 'Content Definitions',
+            icon: 'database',
+            action: () => {(this.props as any).fromPageB ? window.location.href = `${this.baseUrl}/contentTemplates` : null},
+          },{
+            id: 2.4,
+            label: 'Field Definitions',
+            icon: 'database',
+            action: () => {(this.props as any).fromPageB ? window.location.href = `${this.baseUrl}/fieldTemplates` : null},
+          }
+        ]
+      } , {
+        id: 3,
+        label: 'App Interfaces',
+        header: <Button componentSize="slim" plain fullWidth >App Interfaces</Button>,
+        action: () => handleHeadingClick(3),
+        children: [
+          {
+            id: 3.1,
+            label: 'Pages & Forms',
+            icon: 'file',
+            action:() => {(this.props as any).fromPageB ? window.location.href = `${this.baseUrl}/pages` : null }
+          }, {
+            id: 3.2,
+            label: 'Page Templates',
+            icon: 'checkSquare',
+            notActionable: true,
+            action: () => console.log('Page Templates Item is clicked!'),
+          }, {
+            id: 3.3,
+            label: 'Themes',
+            icon: 'paintBrush',
+            notActionable: true,
+            action: () => console.log('Themes Item is clicked!'),
+          }
+        ]
+      } , {
         id: 4,
-        label: 'Groups',
-        icon: 'users',
-        action: () => console.log('Basics is clicked!'),
-      },
-      {
+        label: 'User Management',
+        header: <Button componentSize="slim" plain fullWidth >User Management</Button>,
+        action: () => handleHeadingClick(4),
+        children: [
+          {
+            id: 4.1,
+            label: 'Users',
+            icon: 'user',
+            action: () => {(this.props as any).fromPageB ? window.location.href = `${this.baseUrl}/users` : null },
+          }, {
+            id: 4.2,
+            label: 'Groups',
+            icon: 'users',
+            action: () => {(this.props as any).fromPageB ? window.location.href = `${this.baseUrl}/groups` : null },
+          }, {
+            id: 4.3,
+            label: 'Roles',
+            icon: 'userMd',
+            action: () => {(this.props as any).fromPageB ? window.location.href = `${this.baseUrl}/roleDefs` : null },
+          }, {
+            id: 4.4,
+            label: 'Access Policies',
+            icon: 'lock',
+            action: () => {(this.props as any).fromPageB ? window.location.href = `${this.baseUrl}/accessPolicies` : null },
+          }, {
+            id: 4.5,
+            label: 'Identity Management',
+            icon: 'lock',
+            notActionable: true,
+            action: () => console.log('Identity Management Item is clicked!'),
+          }
+        ]
+      } , {
         id: 5,
-        label: 'Roles',
-        icon: 'userMd',
-        action: () => console.log('Basics is clicked!'),
-      },
-      {
+        label: 'Messaging',
+        header: <Button componentSize="slim" plain fullWidth >Messaging</Button>,
+        action: () => handleHeadingClick(5),
+        children: [
+          {
+            id: 5.1,
+            label: 'Sources',
+            icon: 'inbox',
+            action: () => {(this.props as any).fromPageB ? window.location.href = `${this.baseUrl}/contentStores` : null},
+          }, {
+            id: 5.2,
+            label: 'Channels',
+            icon: 'comments',
+            action: () => {(this.props as any).fromPageB ? window.location.href = `${this.baseUrl}/messageChannelDefs` : null},
+          }, {
+            id: 5.3,
+            label: 'Messages',
+            icon: 'envelope',
+            action: () => {(this.props as any).fromPageB ? window.location.href = `${this.baseUrl}/messageDefs` : null},
+          }
+        ]
+      } , {
         id: 6,
-        label: 'Permissions',
-        icon: 'lock',
-        divider: true,
-        action: () => console.log('Permissions Item is clicked!'),
-      },
-      {
+        label: 'Workflow & Automation',
+        header: <Button componentSize="slim" plain fullWidth >Workflow & Automation</Button>,
+        action: () => handleHeadingClick(6),
+        children: [
+          {
+            id: 6.1,
+            label: 'Workflows',
+            icon: 'puzzlePiece',
+            action: () => null,
+          }, {
+            id: 6.2,
+            label: 'Functions',
+            icon: 'puzzlePiece',
+            notActionable: true,
+            action: () => console.log('Functions Item is clicked!'),
+          }, {
+            id: 6.3,
+            label: 'Robots',
+            icon: 'puzzlePiece',
+            notActionable: true,
+            action: () => console.log('Robots Item is clicked!'),
+          }
+        ]
+      } , {
         id: 7,
-        label: 'Pages',
-        icon: 'file',
-        action: () => console.log('Basics is clicked!'),
-      },
-      {
+        label: 'Data Sync',
+        header: <Button componentSize="slim" plain fullWidth >Data Sync</Button>,
+        action: () => handleHeadingClick(7),
+        children: [
+          {
+            id: 7.1,
+            label: 'SQL Mapping',
+            icon: 'database',
+            notActionable: true,
+            action: () => console.log('SQL Mapping Item is clicked!'),
+          }
+        ]
+      } , {
         id: 8,
-        label: 'Forms',
-        icon: 'checkSquare',
-        action: () => console.log('Basics is clicked!'),
-      },
-      {
+        label: 'Media Management',
+        header: <Button componentSize="slim" plain fullWidth >Media Management</Button>,
+        action: () => handleHeadingClick(8),
+        children: [
+          {
+            id: 8.1,
+            label: 'File Policies',
+            icon: 'lock',
+            notActionable: true,
+            action: () => console.log('File Policies Item is clicked!'),
+          }, {
+            id: 8.2,
+            label: 'File Definitions',
+            icon: 'file',
+            notActionable: true,
+            action: () => console.log('File Definitions Item is clicked!'),
+          }
+        ]
+      } , {
         id: 9,
-        label: 'Workflow',
-        icon: 'puzzlePiece',
-        action: () => console.log('Workflow Item is clicked!'),
-      },
-      {
+        label: 'Analytics',
+        header: <Button componentSize="slim" plain fullWidth >Analytics</Button>,
+        action: () => handleHeadingClick(9),
+        children: [
+          {
+            id: 9.1,
+            label: "Dashboards",
+            icon: "tachometer",
+            notActionable: true,
+            action: () => console.log("Dashboards is clicked!")
+          }, {
+            id: 9.2,
+            label: "Reports",
+            icon: "chartBar",
+            notActionable: true,
+            action: () => console.log("Reports is clicked!")
+          }
+        ]
+      } , {
         id: 10,
-        label: 'Themes',
-        icon: 'paintBrush',
-        divider: true,
-        action: () => console.log('Themes Item is clicked!'),
-      },
-      {
+        label: 'Usage Analytics',
+        header: <Button componentSize="slim" plain fullWidth >Usage Analytics</Button>,
+        action: () => handleHeadingClick(10), // Has no effect right now as no child elements
+        children: []
+      } , {
         id: 11,
-        label: 'Publishing',
-        icon: 'refresh',
-        divider: true,
-        action: () => console.log('Publishing is clicked!'),
-      },
-      {
+        label: 'Projects & Tasks',
+        header: <Button componentSize="slim" plain fullWidth >Projects & Tasks</Button>,
+        action: () => handleHeadingClick(11), // Has no effect right now as no child elements
+        children: []
+      } , {
         id: 12,
-        label: 'App Analytics',
-        icon: 'chartBar',
-        divider: true,
-        action: () => console.log('App Analytics is clicked!'),
-      },
-      {
-        id: 13,
-        label: 'Sherpa',
-        icon: 'handsHelping',
-        action: () => console.log('Sherpa is clicked!'),
-      },
+        label: 'Support Sherpa',
+        header: <Button componentSize="slim" plain fullWidth >Support Sherpa</Button>,
+        action: () => handleHeadingClick(12), // Has no effect right now as no child elements
+        children: []
+      }
     ];
 
     /*
@@ -2913,21 +3087,104 @@ class App extends React.Component<{}, State> {
             helpText={"This is HelpText Example"}
           />
         <br/>
-        <br/>
-        <br/>
-          
-          <Picker
-            label="Picker Component More"
+        <br />
+
+        <Picker
+            label="Picker Component with render header"
             chipComponent={Chip}
-            filterPlaceHolder="placeholder"
             helpText="Helper Text"
-            searchResultComponent={Chip}
+            source={pickerdata}
+            defaultSelectedItems={selectedPickerdata}
+            columns={columnConfigPicker}
+            maxSelectedItems={5}
+            minSelectedItems={2}
+            autoSuggest
+            loading
+            renderPickerHeader={renderPickerHeader}
+            renderPickerItem={renderPickerItem}
+            noOptionsMessage={"No items Available"}
+            shouldRenderSuggestions={false}
+          />
+        
+        <br />
+        <br />
+
+        <Picker
+            label="Picker Component with More"
+            chipComponent={Chip}
+            helpText="Helper Text"
             source={pickerdata}
             defaultSelectedItems={selectedPickerdata}
             maxSelectedItems={5}
             minSelectedItems={2}
             autoSuggest
-            // loading
+            loading
+            moreInfoComponent={<Button children="More Info" plain componentSize="slim"/>}
+            // disabled
+            // readOnly
+            noOptionsMessage={"No items Available"}
+            // moreInfoComponent={<Button>More Info</Button>}
+            shouldRenderSuggestions={false}
+            // readOnly
+          />
+        <br/>
+
+          <Picker
+            label="Picker Component without render"
+            chipComponent={Chip}
+            helpText="Helper Text"
+            source={pickerdata}
+            defaultSelectedItems={selectedPickerdata}
+            maxSelectedItems={5}
+            minSelectedItems={2}
+            autoSuggest
+            loading
+            // moreInfoComponent={<Button children="More Info" />}
+            // disabled
+            // readOnly
+            noOptionsMessage={"No items Available"}
+            // moreInfoComponent={<Button>More Info</Button>}
+            shouldRenderSuggestions={false}
+            // readOnly
+          />
+        <br/>
+          
+          <Picker
+            label="Picker Component with render"
+            chipComponent={Chip}
+            helpText="Helper Text"
+            source={pickerdata}
+            defaultSelectedItems={selectedPickerdata}
+            maxSelectedItems={5}
+            minSelectedItems={2}
+            autoSuggest
+            loading
+            renderPickerItem={renderPickerItem}
+            // moreInfoComponent={<Button children="More Info" />}
+            // disabled
+            // readOnly
+            noOptionsMessage={"No items Available"}
+            // moreInfoComponent={<Button>More Info</Button>}
+            shouldRenderSuggestions={false}
+            // readOnly
+          />
+
+          <br />
+          
+          <Picker
+            label="Picker Component with Focuse"
+            chipComponent={Chip}
+            helpText="Helper Text"
+            source={pickerdata}
+            defaultSelectedItems={selectedPickerdata}
+            maxSelectedItems={5}
+            minSelectedItems={2}
+            autoSuggest
+            loading
+            renderPickerItem={renderPickerItem}
+            // moreInfoComponent={<Button children="More Info" />}
+            // disabled
+            // readOnly
             noOptionsMessage={"No items Available"}
             // moreInfoComponent={<Button>More Info</Button>}
             shouldRenderSuggestions={true}

@@ -20,11 +20,9 @@ class PickerAutoSuggestExample extends React.Component<{}, {}> {
       <Picker
         label="Picker Component"
         chipComponent={Chip}
-        filterPlaceHolder="placeholder"
         helpText="Helper Text"
         source={pickerdata}
         autoSuggest
-        searchResultComponent={Chip}
         onSelect={(value: any) => console.log('I am here:', value)}
         onRemove={(value: any) => console.log('I am removed:', value)}
         suffix={'users'}

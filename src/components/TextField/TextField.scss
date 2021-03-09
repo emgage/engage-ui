@@ -92,7 +92,7 @@ $stacking-order: (
   min-height: control-height();
   margin: 0;
   padding: control-vertical-padding() 0;
-  background: none;
+  background: rgba(255,255,255,0);
   border: border(transparent);
   font-family: inherit;
   font-size: inherit;
@@ -114,8 +114,20 @@ $stacking-order: (
     }
   }
 
-  &::placeholder {
-    color: color(ink, lightest);
+  &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: color(black) !important;
+  }
+  
+  &:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: color(black)!important;
+  }
+  
+  &::-ms-input-placeholder { /* Microsoft Edge */
+    color: color(black)!important;
+  }
+
+  &.placeholderAlignRight::placeholder {
+    text-align: right !important;
   }
 
   // These properties are used to remove the default "SpinnerButtons" controls
@@ -220,6 +232,8 @@ $stacking-order: (
   // strings wrap in the same way they do in textareas.
   white-space: pre-wrap;
   word-wrap: break-word;
+  color:color(black);
+  background-color:color(white);
 }
 
 .segment {
@@ -287,7 +301,7 @@ $stacking-order: (
 
 .labelStyle {
   @include text-style-body-large;
-  color: theme-color(m-grey, 500);
+  color: color(ink, lighter);
   transition: 0.3s all ease;
   display: table-cell;
   white-space: nowrap;
@@ -298,11 +312,11 @@ $stacking-order: (
 body .HeightSlim {
   height: 3.2rem;
   min-height: 3.2rem;
-  padding: 0.5rem 0.5rem 0 0.5rem;
+  padding: 0.5rem 0.5rem;
 
   > .input {
     &:focus {
-      padding: 0.5rem 0.5rem 0 0.5rem;
+      padding: 0.5rem 0.5rem;
     }
   }
 }

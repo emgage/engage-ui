@@ -2,6 +2,7 @@ import * as React from 'react';
 import Button from '../Button';
 import Dropdown from '../Dropdown';
 import Image from '../Image';
+import VisuallyHidden from '../VisuallyHidden';
 import * as baseTheme from './Login.scss';
 import { Props as DropdownItemProps } from '../Dropdown/DropdownItem';
 
@@ -78,7 +79,7 @@ export default (props: Props) => {
 
   return (
       props.isLoggedIn ?  <div className={baseTheme.loginContainer}>
-        {!props.profilePic ? <Button icon="user" componentClass={baseTheme.loginUser} onClick={e => toggle(e)} />
+        {!props.profilePic ? <Button icon="user" componentClass={baseTheme.loginUser} onClick={e => toggle(e)}><VisuallyHidden>Loged in</VisuallyHidden></Button>
         : <Image onClick={e => toggle(e)} className={baseTheme.profilePic} alt="User profile pic" source={props.profilePic} />}
         <Dropdown
           dropdownItems={dropDownList}

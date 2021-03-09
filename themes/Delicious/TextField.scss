@@ -96,7 +96,6 @@ $spinner-size: rem(20px);
 
   &::placeholder {
     color: theme-color(m-grey, 500);
-    text-align: right !important;
   }
 }
 
@@ -116,6 +115,8 @@ $spinner-size: rem(20px);
 .dummyInput {
   @include text-style-input;
   padding: control-vertical-padding() $backdrop-horizontal-spacing;
+  color:color(black);
+  background-color:color(white);
 }
 
 
@@ -144,7 +145,7 @@ $spinner-size: rem(20px);
 }
 .labelStyle {
   @include text-style-body-large;
-  color: theme-color(m-grey, 500);
+  color: color(ink, lighter);
   transition: 0.3s all ease;
   display: table-cell;
   white-space: nowrap;

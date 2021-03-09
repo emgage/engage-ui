@@ -76,7 +76,7 @@ class DropdownItem extends React.PureComponent<Props, never> {
         className={className}
         onClick={this.clickCallback}
       >
-        <Button plain componentClass={theme.DropdownButton} componentSize="slim">{content}</Button>
+        <Button plain componentClass={theme.DropdownButton} componentSize="slim" fullWidth>{content}</Button>
       </div>
     );
   }

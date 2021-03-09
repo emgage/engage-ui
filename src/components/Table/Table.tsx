@@ -619,16 +619,22 @@ class Table extends React.PureComponent<Props, State> {
   }
 
   render () {
+    const { theme } = this.props;
     const { componentStyle = {}, componentId = '', hideHeader = false } = this.props;
     const tableClass = this.getTableClassName();
     const renderedHeader = !hideHeader ? this.renderHeader() : null;
     const renderedBody = this.renderBody();
 
+    const className = classNames(
+      theme.ResponsiveTableWrap
+    );
     return (
+      <div className={className}>
       <table className={tableClass} style={componentStyle} id={componentId} >
         { renderedHeader }
         { renderedBody }
       </table>
+      </div>
     );
   }
 

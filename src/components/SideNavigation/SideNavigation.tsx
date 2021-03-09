@@ -8,6 +8,7 @@ import { FlexBox } from '../';
 import { Drawer, DrawerContent } from '../Drawer';
 import Tooltip from '../Tooltip';
 import Accordion, { AccordionItemProps }from '../Accordion';
+import Button from '../Button';
 
 import { SIDENAVIGATION } from '../ThemeIdentifiers';
 import * as baseTheme from './SideNavigation.scss';
@@ -22,6 +23,8 @@ export interface INavigationData {
   currentApp?:boolean | null;
   children?:React.ReactNode;
   action?(arg?:string|number|boolean|null):void | null;
+  notActionable?:boolean | null;
+  header?: any;
 }
 
 // All prototypes type
@@ -102,15 +105,29 @@ class SideNavigation extends React.PureComponent<Props, State> {
     const { collapseLink, li: liClass, childLi: childLiClass } = theme;
     const { activeDrawerId } = this.state;
 
+    let activeMenus: any = localStorage.getItem('active_navbar_menus');
+    if (activeMenus) {
+      activeMenus = JSON.parse(activeMenus);
+    }
+
     // Iterate through source config items and set markup when full content is displayed
     const fullContentMarkup = source.map((full: any, index: number) => {
       const childrenMarkup = full.children !== undefined || null ? full.children.map((child: any, index: number) => {
         return (
           <div key={index}>
-            <a className={childLiClass} onClick={child.action} aria-disabled={false} id={componentId ? `${componentId}${child.label}` : ''}>
-              <Icon source={child.icon} componentColor="white" componentClass={theme.customIcon} theme={theme} />
-              {child.label}
-            </a>
+            { child.notActionable ?
+              (
+                <div className={childLiClass} style={{ cursor: 'default' }} aria-disabled={false} id={componentId ? `${componentId}${child.label}` : ''}>
+                  {/* <Icon source={child.icon} componentColor="white" componentClass={theme.customIcon} theme={theme} /> */}
+                  {child.label}
+                </div>
+              ) : (
+                <Button componentSize="slim" componentClass={childLiClass} onClick={child.action} aria-disabled={false} componentId={componentId ? `${componentId}${child.label}` : ''} plain fullWidth >
+                  {/* <Icon source={child.icon} componentColor={'white'} componentClass={theme.customIcon} theme={theme} /> */}
+                  {child.label}
+                </Button>
+              )
+            }
           </div>
         );
       }) : null;
@@ -118,16 +135,25 @@ class SideNavigation extends React.PureComponent<Props, State> {
       // Set Accordian Item properties
       const items : AccordionItemProps[] = [{
         children: childrenMarkup,
-        header:
-          <div
-            key={index}
-            className={liClass}
-          >
-            <div className={liClass} onClick={full.action} aria-disabled={false} id={componentId ? `${componentId}${full.label}` : ''}>
-              <Icon source={full.icon} componentColor={activeItem === full.id ? 'black' : 'white'} componentClass={theme.customIcon} theme={theme} />
+        header: (
+          childrenMarkup != null && childrenMarkup !== undefined && childrenMarkup.length > 0 ?
+          (
+            <Button componentSize="slim" componentClass={liClass} onClick={full.action} aria-disabled={false} componentId={componentId ? `${componentId}${full.label}` : ''} plain fullWidth >
+              {/* <Icon source={full.icon} componentColor={'black'} componentClass={theme.customIcon} theme={theme} /> */}
               {full.label}
+            </Button>
+          ) : (
+            <div
+              key={index}
+              className={liClass}
+            >
+              <div className={liClass} style={{ cursor: 'default', width: '100%', paddingTop: '.6rem', marginLeft: '-1.6rem' }} aria-disabled={false} id={componentId ? `${componentId}${full.label}` : ''}>
+                {/* <Icon source={full.icon} componentColor={'black'} componentClass={theme.customIcon} theme={theme} /> */}
+                {full.label}
+              </div>
             </div>
-          </div>
+          )
+        ),
       }];
 
       // Set markup based on the prop values
@@ -154,7 +180,7 @@ class SideNavigation extends React.PureComponent<Props, State> {
 
             {childrenMarkup}
           </div>
-        ) : <Accordion key={index} componentStyle={{ padding:'0px', height:'20px' }} mode="collapsible" items={items} theme={theme} />) :
+        ) : <Accordion key={index} defaultOpenIndexs={activeMenus && activeMenus[index - 1] ? [0] : [] } mode="collapsible" items={items} theme={theme} />) :
         (
           <div key={index}>
             <div className={liClass} onClick={full.action} aria-disabled={false}>
