@@ -17,7 +17,7 @@
     max-width: 100%;
 }
 
-.currentAppIcon {
+body .currentAppIcon {
     margin-left:auto; 
     margin-right:0;
 }
@@ -27,25 +27,40 @@
     max-height: 100%;
     max-width: 100%;
 }
-.li {
+body .li {
     display: flex;
     cursor: pointer;
+    margin:0px;
+    color: color(text, mid);
+    &:hover,
+    &:focus {
+        color: color(text, mid);
+    }
+    >div {
+        margin-left:1.7rem;
+        font-weight: normal;
+    }
 }
 
-.childLi {
+body .childLi {
     display: inline-flex;
     margin-left: 10px; 
     margin-top: 10px;
+    color: color(white);
+    &:hover,
+    &:focus {
+        color: color(white);
+    }
 }
 
 .listItem {  
     padding: 6px 0px 6px 0px;
-    width: 75%;
+    width: 100%;
     float: right;
     position: relative;
     text-align: left;
-    left: -15%;
-
+    left: 0%;
+    border-bottom:1px solid #637381;
     &.divider {
         border-bottom: 1px solid #5f5f5f;
         padding: 12px 0px 12px 0px;
@@ -110,7 +125,32 @@
 .navDivider {
     border-bottom:1px solid #e5e5e5;  
 }
-.active {
-    background-color: white;
-    color: black;
+// .active {
+//     background-color: #637381;
+//     color: #fff;
+// }
+
+.accordionItem {
+    background-color: transparent;
+    box-shadow: none;
+    margin: 0px!important;
+    width: 100%;
+    .header {
+       padding: .8rem 1.2rem 0px;
+        &:after {
+            left:1.3rem;
+            right:auto;
+        }
+    }
+    .body {
+        padding:0px 0px;
+        overflow: visible;
+        &>div {
+            margin: .6rem 0px;
+            div {
+                margin-left:2.7rem;
+                margin-top: .3rem;
+            }
+        }
+    }
 }
