@@ -106,7 +106,7 @@ class SideNavigation extends React.PureComponent<Props, State> {
     const { activeDrawerId } = this.state;
 
     let activeMenus: any = localStorage.getItem('active_navbar_menus');
-    if(activeMenus) {
+    if (activeMenus) {
       activeMenus = JSON.parse(activeMenus);
     }
 
@@ -147,7 +147,7 @@ class SideNavigation extends React.PureComponent<Props, State> {
               key={index}
               className={liClass}
             >
-              <div className={liClass} style={{ cursor: 'default', width: '100%' }} aria-disabled={false} id={componentId ? `${componentId}${full.label}` : ''}>
+              <div className={liClass} style={{ cursor: 'default', width: '100%', paddingTop: '.6rem', marginLeft: '-1.6rem' }} aria-disabled={false} id={componentId ? `${componentId}${full.label}` : ''}>
                 {/* <Icon source={full.icon} componentColor={'black'} componentClass={theme.customIcon} theme={theme} /> */}
                 {full.label}
               </div>
@@ -180,7 +180,7 @@ class SideNavigation extends React.PureComponent<Props, State> {
 
             {childrenMarkup}
           </div>
-        ) : <Accordion key={index} defaultOpenIndexs={activeMenus && activeMenus[index-1] ? [0] : [] } mode="collapsible" items={items} theme={theme} />) :
+        ) : <Accordion key={index} defaultOpenIndexs={activeMenus && activeMenus[index - 1] ? [0] : [] } mode="collapsible" items={items} theme={theme} />) :
         (
           <div key={index}>
             <div className={liClass} onClick={full.action} aria-disabled={false}>

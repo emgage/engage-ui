@@ -32,19 +32,22 @@ body .li {
     cursor: pointer;
     margin:0px;
     color: color(text, mid);
+    min-width: 85%;
+    order:2;
+    padding-right:0px;
+    padding-left:0px;
     &:hover,
     &:focus {
         color: color(text, mid);
     }
     >div {
-        margin-left:1.7rem;
         font-weight: normal;
     }
 }
 
 body .childLi {
     display: inline-flex;
-    margin-left: 10px; 
+    margin-left: -4px; 
     margin-top: 10px;
     color: color(white);
     &:hover,
@@ -136,19 +139,30 @@ body .childLi {
     margin: 0px!important;
     width: 100%;
     .header {
-       padding: .8rem 1.2rem 0px;
-        &:after {
-            left:1.3rem;
-            right:auto;
+       padding: .3rem 1.2rem 0px;
+       align-items: center;
+        .AccordianIcon {
+            fill:color(text, mid);
+            order: 1;
+            transform: rotate(-90deg);
+            -moz-transform: rotate(-90deg);
+            -webkit-transform: rotate(-90deg);
+        }
+        &.active {
+            .AccordianIcon {
+                transform: rotate(0deg);
+            -moz-transform: rotate(0deg);
+            -webkit-transform: rotate(0deg);
+            }
         }
     }
     .body {
         padding:0px 0px;
         overflow: visible;
         &>div {
-            margin: .6rem 0px;
+            margin: .6rem 2.1rem;
             div {
-                margin-left:2.7rem;
+                margin-left:1.3rem;
                 margin-top: .3rem;
             }
         }
