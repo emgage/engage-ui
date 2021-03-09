@@ -1352,6 +1352,7 @@ class App extends React.Component<{}, State> {
         <Icon source="grid" />
         <Icon source="list" />
         <Icon source="listAlt" />
+        <Icon source="listHierarchy" />
         <Icon source="table" />
         <Icon source="hierarchy" />
         <Icon source="folder" />
@@ -2926,11 +2927,12 @@ class App extends React.Component<{}, State> {
             maxSelectedItems={5}
             minSelectedItems={2}
             autoSuggest
-            loading
+            // loading
             noOptionsMessage={"No items Available"}
             // moreInfoComponent={<Button>More Info</Button>}
             shouldRenderSuggestions={true}
-            // readOnly
+            readOnly
+            // disabled
           />
           <ValidatedForm
             showError={this.state.showError}
