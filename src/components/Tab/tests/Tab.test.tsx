@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { mount } from 'enzyme';
 import Badge from '../../Badge/Badge';
-import Button from '../../Button/Button';
 import Tab from '../Tab';
 import TabPanel from '../TabPanel';
 
