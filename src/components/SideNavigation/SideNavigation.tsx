@@ -247,7 +247,7 @@ class SideNavigation extends React.PureComponent<Props, State> {
           activeContentId={this.state.activeDrawerId}
           currentTheme="dark"
           mode="push"
-          componentWidth={activeDrawerId === 'collapsedContent' ? 'collapsed' : 'small'}
+          componentWidth={activeDrawerId === 'collapsedContent' ? 'collapsed' : '210px'}
           componentStyle={drawerStyle}
           theme={theme}>
           <DrawerContent
