@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
+import { debounce } from 'lodash';
+
 import Icon from '../Icon';
 
 import { TEXT_FIELD } from '../ThemeIdentifiers';
@@ -10,14 +12,17 @@ export interface Props {
   // Theme to be injected via css-themr.
   theme?: any;
   // Callback when value is changed.
-  onChange(delta: number): void;
+  onChange(delta: number): any;
   // Callback when Textfield is clicked
   onClick?(): void;
 }
 
 const spinnerButtons = ({ theme, onChange, onClick }: Props)  => {
-  function handleStep(step: number) {
-    return () => onChange(step);
+  
+  const handleStep = (step: number) => {
+    if (onChange !== null) {
+      onChange(step);
+    }
   }
 
   return (
@@ -26,7 +31,7 @@ const spinnerButtons = ({ theme, onChange, onClick }: Props)  => {
         role="button"
         className={theme.segment}
         tabIndex={-1}
-        onClick={handleStep(1)}
+        onClick={debounce(() => handleStep(1), 500, { leading: true, trailing: true, maxWait: 500 })}
       >
         <div className={theme.spinnerButtonsIcon}>
           <Icon source="caretUp" theme={theme} />
@@ -37,7 +42,7 @@ const spinnerButtons = ({ theme, onChange, onClick }: Props)  => {
         role="button"
         className={theme.segment}
         tabIndex={-1}
-        onClick={handleStep(-1)}
+        onClick={debounce(() => handleStep(-1), 500, { leading: true, trailing: true, maxWait: 500 })}
       >
         <div className={theme.spinnerButtonsIcon}>
           <Icon source="caretDown" theme={theme} />
