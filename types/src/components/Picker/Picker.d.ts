@@ -36,7 +36,6 @@ export interface IAutoSuggestMethods {
     renderSuggestionsContainer?({ containerProps, children, query }: any): void;
     renderSectionTitle?(section: any): void;
     getSectionSuggestions?(section: any): void;
-    isShouldRenderSuggestions?: boolean;
 }
 export interface State {
     moreInfo: boolean;
@@ -82,7 +81,6 @@ export interface Props {
     shouldRenderSuggestions?: boolean;
     noOptionsMessage?: string;
     readOnly?: boolean;
-    // Error to display beneath the label.
     errors?: [string];
 }
 declare class Picker extends React.PureComponent<Props, State> {
