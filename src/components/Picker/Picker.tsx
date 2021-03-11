@@ -396,7 +396,7 @@ class Picker extends React.PureComponent<Props, State> {
         label,
         labelHidden = false,
         loading = false,
-        backdropHidden=false,
+        backdropHidden= false,
         disabled = false,
         readOnly = false,
         moreInfoComponent,
