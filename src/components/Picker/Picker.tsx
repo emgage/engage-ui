@@ -78,6 +78,8 @@ export interface Props {
   labelHidden?: boolean;
   // Display loading indicator
   loading?: boolean;
+  // Visually hide the border.
+  backdropHidden?: boolean;
   // Disable Picker
   disabled?: boolean;
   maxSelectedItems?: number;
@@ -394,6 +396,7 @@ class Picker extends React.PureComponent<Props, State> {
         label,
         labelHidden = false,
         loading = false,
+        backdropHidden=false,
         disabled = false,
         readOnly = false,
         moreInfoComponent,
@@ -444,6 +447,7 @@ class Picker extends React.PureComponent<Props, State> {
             type="text"
             autoSuggest={autoSuggest}
             autoSuggestMethods={autoSuggestMethods}
+            backdropHidden={backdropHidden}
             helpText={helpText}
             itemSelected={!!chipListState.length}
             label={label ? label : ''}
