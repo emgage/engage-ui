@@ -35,7 +35,10 @@ export interface Props {
   onChangeText?(value: string): void;
   sortEntity?(field: string, order: string, sortBy: string): void;
   theme?: any;
-}
+  disabled?: boolean;
+  readOnly?: boolean;
+  errors?: [string];
+ }
 
 interface State {
   open: boolean;
@@ -109,12 +112,19 @@ class ComboBox extends React.PureComponent<Props, State> {
   }
 
   componentWillReceiveProps(nextProps: any) {
-    const { items } = nextProps;
-    const { items: oldItems } = this.props;
+    const { items, currentValue = '' } = nextProps;
+    const { items: oldItems, currentValue: currentValueOld } = this.props;
+    
     if (JSON.stringify(oldItems) !== JSON.stringify(items)) {
       const isEmpty: boolean = items && items[0] && items[0].value && items[0].value.length === 0 || false;
-      this.setState({ items, isEmpty });
+      let initialItems = this.addRenderer(items, JSON.parse(JSON.stringify(items)));
+      this.setState({ initialItems, items, isEmpty });
     }
+
+    if (currentValueOld !== currentValue) {
+      this.setState({ selectedValue: currentValue });
+    }
+   
   }
 
   handleClickOutside = (event: any) => {
@@ -215,7 +225,10 @@ class ComboBox extends React.PureComponent<Props, State> {
       label,
       theme,
       suffix,
-      loading
+      loading,
+      disabled,
+      readOnly,
+      errors
     } = this.props;
 
     const {
@@ -240,6 +253,7 @@ class ComboBox extends React.PureComponent<Props, State> {
       <>
       <div key={this.id} className={theme.comboboxContainer} onClick={this.onArrowClick} ref={node => this.setWrapperRef(node)} >
         <TextField
+          errors={errors}
           type="text"
           label={label}
           onChange={this.onChange}
@@ -247,7 +261,9 @@ class ComboBox extends React.PureComponent<Props, State> {
           theme={theme}
           suffix={<Icon source={suffix} componentColor="inkLighter" />}
           loading={loading}
-          disabled={isEmpty}
+          disabled={isEmpty || disabled}
+          autoComplete={false}
+          readOnly={readOnly}
         />
 
         {!suffix && <div className={theme.comboboxArrow}>
