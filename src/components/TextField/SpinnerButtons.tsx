@@ -18,12 +18,12 @@ export interface Props {
 }
 
 const spinnerButtons = ({ theme, onChange, onClick }: Props)  => {
-  
+
   const handleStep = (step: number) => {
     if (onChange !== null) {
       onChange(step);
     }
-  }
+  };
 
   return (
     <div className={theme.spinnerButtons} onClick={onClick} aria-hidden>
@@ -31,7 +31,7 @@ const spinnerButtons = ({ theme, onChange, onClick }: Props)  => {
         role="button"
         className={theme.segment}
         tabIndex={-1}
-        onClick={debounce(() => handleStep(1), 500, { leading: true, trailing: true, maxWait: 500 })}
+        onClick={debounce(() => handleStep(1), 500, { maxWait: 500 })}
       >
         <div className={theme.spinnerButtonsIcon}>
           <Icon source="caretUp" theme={theme} />
@@ -42,7 +42,7 @@ const spinnerButtons = ({ theme, onChange, onClick }: Props)  => {
         role="button"
         className={theme.segment}
         tabIndex={-1}
-        onClick={debounce(() => handleStep(-1), 500, { leading: true, trailing: true, maxWait: 500 })}
+        onClick={debounce(() => handleStep(-1), 500, { maxWait: 500 })}
       >
         <div className={theme.spinnerButtonsIcon}>
           <Icon source="caretDown" theme={theme} />
