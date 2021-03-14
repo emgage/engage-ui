@@ -82,6 +82,7 @@ export interface Props {
     noOptionsMessage?: string;
     readOnly?: boolean;
     errors?: [string];
+    backdropHidden?: boolean;
 }
 declare class Picker extends React.PureComponent<Props, State> {
     wrapperRef: HTMLDivElement;
