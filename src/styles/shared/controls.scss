@@ -55,5 +55,10 @@
     box-shadow: 0 0 0 1px color(indigo);
 
     &::after { background: color(red, lighter); }
+  } @else if $style == backdrop-hidden {
+    background: transparent;
+    box-shadow: none;
+
+    &::after { background: transparent; }
   }
 }

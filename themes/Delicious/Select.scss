@@ -84,6 +84,13 @@ $input-horizontal-padding: spacing(tighter) * 1.5;
   }
 }
 
+.readOnly {
+
+  &:not(.disabled) > .input:disabled {
+    color: theme-color(m-grey, 900);
+  }
+}
+
 .labelHidden {
   
   > .input {
