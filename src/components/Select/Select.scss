@@ -25,7 +25,6 @@ $input-vertical-adjust: rem(1px);
 
 .select {
   position: relative;
-  margin-bottom: 15px !important;
 
   // IE 11 fix to remove default dropdown arrow
   select::-ms-expand {
@@ -54,6 +53,18 @@ $input-vertical-adjust: rem(1px);
   .input:focus ~ .backdrop {
     @include control-backdrop(focused-error);
   }
+}
+
+.backdropHidden {
+
+  .backdrop {
+    @include control-backdrop(backdrop-hidden);
+  }
+
+  &.disabled > .backdrop {
+    @include control-backdrop(backdrop-hidden);
+  }
+
 }
 
 .placeholder {
@@ -112,6 +123,7 @@ $input-vertical-adjust: rem(1px);
 
   &:disabled {
     color: color(ink, lightest);
+    opacity: 1;
   }
 }
 
@@ -130,4 +142,20 @@ $input-vertical-adjust: rem(1px);
   width: $spinner-size;
   height: $spinner-size;
   pointer-events: none;
+}
+
+.readOnly {
+
+  .customIcon {
+    opacity: 0;
+  }
+
+  &:not(.disabled) > .input:disabled {
+    color: color(ink);
+    opacity: 1;
+  }
+
+  .spinnerWrapper {
+    right: ($input-horizontal-padding);
+  }
 }

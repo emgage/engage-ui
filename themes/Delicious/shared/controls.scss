@@ -55,5 +55,10 @@
     box-shadow: 0 0 0 1px theme-color(m-red, 600);
 
     &::after { background: theme-color(m-red, 50); }
+  } @else if $style == backdrop-hidden {
+    background: transparent;
+    box-shadow: none;
+
+    &::after { background: transparent; }
   }
 }

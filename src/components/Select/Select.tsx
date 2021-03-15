@@ -26,6 +26,8 @@ export interface Props {
   options?: Option[];
   // List of option groups to choose from
   groups?: (Group | Option)[];
+  // Visually hide the border.
+  backdropHidden?: boolean;
   // Label for the Select
   label: string;
   // Adds an action to the label
@@ -44,6 +46,9 @@ export interface Props {
   errors?: [Error];
   // Disable input
   disabled?: boolean;
+  // Disable editing of the input.
+  readOnly?: boolean;
+  // To make it required or not.
   required?: boolean;
   // Value for form input
   value?: string;
@@ -76,6 +81,8 @@ const select = ({
   value = PLACEHOLDER_VALUE,
   placeholder,
   disabled = false,
+  readOnly = false,
+  backdropHidden = false,
   required = false,
   onChange,
   onFocus,
@@ -99,6 +106,8 @@ const select = ({
     errors && theme.error,
     labelHidden && theme.labelHidden,
     disabled && theme.disabled,
+    readOnly && theme.readOnly,
+    backdropHidden && theme.backdropHidden,
     isPlaceholder && theme.placeholder,
     loading && theme.loading
   );
@@ -143,7 +152,7 @@ const select = ({
           name={name ? name : 'select'}
           value={value}
           className={theme.input}
-          disabled={disabled}
+          disabled={disabled || readOnly}
           required={required}
           onFocus={onFocus}
           onBlur={onBlur}
