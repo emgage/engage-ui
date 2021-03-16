@@ -168,3 +168,17 @@ body .childLi {
         }
     }
 }
+
+.accordionItem {
+    .header {
+        div {
+            display: inline-block;
+            margin-top:6px;
+            pointer-events: none;
+        }
+        div + span {
+            margin-top:4px;
+            pointer-events: none;
+        }
+    }
+}
