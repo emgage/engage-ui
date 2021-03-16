@@ -91,7 +91,7 @@ export interface Props {
   style?: React.CSSProperties;
   theme?: any;
   onFocus?(event: React.FormEvent<HTMLElement>): void;
-  searchBehavior?(value: string): void;
+  searchBehavior?(value: string, method?:string): void;
   onSelect?(item: any): void;
   onRemove?(item: any): void;
   onMoreInfo?(): void;
@@ -257,7 +257,7 @@ class Picker extends React.PureComponent<Props, State> {
           value: newValue,
         });
         if (this.props.searchBehavior) {
-          this.props.searchBehavior(newValue);
+          this.props.searchBehavior(newValue, method);
         }
       },
 
@@ -458,7 +458,7 @@ class Picker extends React.PureComponent<Props, State> {
             stateProps={stateProps}
             theme={theme}
             suffix={suffixIcon}
-            isFocused={isFocused}
+            isFocused={!inputProps.disabled && isFocused}
             hasValue={hasValue}
             disabled={disabled}
             readOnly={readOnly}
