@@ -178,7 +178,7 @@ class SideNavigation extends React.PureComponent<Props, State> {
           </div>
         ) : <Accordion key={index} defaultOpenIndexs={activeMenus && activeMenus[index - 1] ? [0] : [] } mode="collapsible" items={items} theme={theme} />) :
         (
-          <div key={index} style={{ color: 'red' }}>
+          <div key={index}>
             <div className={liClass} onClick={full.action} aria-disabled={false}>
               <Icon source={full.icon} componentColor={activeItem === full.id ? 'black' :'white'} componentClass={theme.customIcon} theme={theme} />
               {full.label}
