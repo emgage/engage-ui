@@ -376,9 +376,14 @@ class Picker extends React.PureComponent<Props, State> {
         }
         {
           const index = (suggestion.name ? suggestion.name.toLowerCase().indexOf(query.toLowerCase()) : 0);
-          const nameBefore = (suggestion.name ? suggestion.name.slice(0, index) : '');
-          const queryData = (suggestion.name ? suggestion.name.slice(index, index + query.length) : '');
-          const nameAfter = (suggestion.name ? suggestion.name.slice(index + query.length) : '');
+          let nameBefore = suggestion.name || '';
+          let queryData = '';
+          let nameAfter = '';
+          if (index !== -1){
+            nameBefore = (suggestion.name ? suggestion.name.slice(0, index) : '');
+            queryData = (suggestion.name ? suggestion.name.slice(index, index + query.length) : '');
+            nameAfter = (suggestion.name ? suggestion.name.slice(index + query.length) : '');
+          }
 
           if (isHighlighted) {
             return <DefaultCard isHighlighted={true}  nameBefore={nameBefore} bold={queryData} nameAfter={nameAfter} />;
