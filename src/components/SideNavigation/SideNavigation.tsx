@@ -143,15 +143,11 @@ class SideNavigation extends React.PureComponent<Props, State> {
               {full.label}
             </Button>
           ) : (
-            <div
-              key={index}
-              className={liClass}
-            >
-              <div className={liClass} style={{ cursor: 'default', width: '100%', paddingTop: '.6rem', marginLeft: '-.9rem' }} aria-disabled={false} id={componentId ? `${componentId}${full.label}` : ''}>
+
+              <div className={liClass} style={{ cursor: 'default', width: '100%', fontWeight: 'normal' }} aria-disabled={false} id={componentId ? `${componentId}${full.label}` : ''}>
                 {/* <Icon source={full.icon} componentColor={'black'} componentClass={theme.customIcon} theme={theme} /> */}
                 {full.label}
               </div>
-            </div>
           )
         ),
       }];

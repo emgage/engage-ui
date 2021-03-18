@@ -159,8 +159,8 @@ body .childLi {
     .body {
         padding:0px 0px;
         overflow: visible;
-        z-index: auto;
         position: relative;
+        display: block;
         &>div {
             margin: .6rem 2.1rem;
             div {
@@ -171,7 +171,7 @@ body .childLi {
     }
 
     .bodyCollapsed {
-        z-index: -10;
+        display:none;
         position: relative;
       }
 }

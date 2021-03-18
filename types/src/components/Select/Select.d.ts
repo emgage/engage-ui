@@ -12,6 +12,7 @@ export interface Group {
 export interface Props {
     options?: Option[];
     groups?: (Group | Option)[];
+    backdropHidden?: boolean;
     label: string;
     labelAction?: Action;
     labelHidden?: boolean;
@@ -21,6 +22,7 @@ export interface Props {
     name?: string;
     errors?: [Error];
     disabled?: boolean;
+    readOnly?: boolean;
     required?: boolean;
     value?: string;
     placeholder?: string;

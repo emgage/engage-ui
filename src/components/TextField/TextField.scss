@@ -72,10 +72,6 @@ $stacking-order: (
   }
 }
 
-.readOnly > .backdrop {
-  background-color: color(sky, lighter);
-}
-
 .disabled > .backdrop {
   background-color: color(sky, lighter);
   border: border();
