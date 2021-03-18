@@ -128,10 +128,6 @@ body .childLi {
 .navDivider {
     border-bottom:1px solid #e5e5e5;  
 }
-// .active {
-//     background-color: #637381;
-//     color: #fff;
-// }
 
 .accordionItem {
     background-color: transparent;
@@ -159,6 +155,8 @@ body .childLi {
     .body {
         padding:0px 0px;
         overflow: visible;
+        position: relative;
+        display: block;
         &>div {
             margin: .6rem 2.1rem;
             div {
@@ -167,8 +165,12 @@ body .childLi {
             }
         }
     }
-}
 
+    .bodyCollapsed {
+        display:none;
+        position: relative;
+      }
+}
 .accordionItem {
     .header {
         div {
