@@ -45,11 +45,13 @@
     overflow-y: hidden;
     overflow-x: auto;
     transition: all 0.2s;
+    display: block;
   }
   > .bodyCollapsed {
     height: 0;
     opacity: 0;
     transition: all 0.2s;
+    display: none;
   }
 }
 
