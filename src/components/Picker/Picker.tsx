@@ -430,7 +430,9 @@ class Picker extends React.PureComponent<Props, State> {
 
     // list popup -> used for Focus
     if (shouldRenderSuggestions) {
-      autoSuggestMethods.shouldRenderSuggestions = this.shouldRenderSuggestions;
+      autoSuggestMethods.shouldRenderSuggestions = () => {
+        return !inputProps.disabled;
+      };
     }
 
     if (moreInfoComponent) {
