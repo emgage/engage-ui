@@ -214,12 +214,14 @@ $dropdown-item-padding-x: 1.6rem !default;
   width: 100%;
   margin: 0px;
   padding: 0px;
-  text-align: left;
+  text-align: center;
   min-width: 100%;
   padding: $dropdown-item-padding-y $dropdown-item-padding-x;
   span {
     display: flex;
-    text-align: left
+    text-align: left;
+    align-items: center;
+    justify-content: start;
   }
 }
 
