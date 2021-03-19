@@ -218,7 +218,7 @@ $dropdown-item-padding-x: 1.6rem !default;
   min-width: 100%;
   padding: $dropdown-item-padding-y $dropdown-item-padding-x;
   span {
-    display: block;
+    display: flex;
     text-align: left
   }
 }
