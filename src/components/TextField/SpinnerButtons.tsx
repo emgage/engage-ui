@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
-import { debounce } from 'lodash';
 
 import Icon from '../Icon';
 
@@ -31,7 +30,7 @@ const spinnerButtons = ({ theme, onChange, onClick }: Props)  => {
         role="button"
         className={theme.segment}
         tabIndex={-1}
-        onClick={debounce(() => handleStep(1), 500, { maxWait: 500 })}
+        onClick={() => handleStep(1)}
       >
         <div className={theme.spinnerButtonsIcon}>
           <Icon source="caretUp" theme={theme} />
@@ -42,7 +41,7 @@ const spinnerButtons = ({ theme, onChange, onClick }: Props)  => {
         role="button"
         className={theme.segment}
         tabIndex={-1}
-        onClick={debounce(() => handleStep(-1), 500, { maxWait: 500 })}
+        onClick={() => handleStep(-1)}
       >
         <div className={theme.spinnerButtonsIcon}>
           <Icon source="caretDown" theme={theme} />
