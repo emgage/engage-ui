@@ -150,3 +150,18 @@ $stacking-order: (
   }
 
 }
+
+.error {
+  
+  .input::placeholder {
+    // This is the only place this color is used.
+    // stylelint-disable-next-line color-no-hex
+    color: #9c9798;
+  }
+
+  .backdrop {
+    background-color: color(error, light);
+    border-color: color(error, dark);
+    box-shadow: inset 0 0 0 0 transparent, 0 0 0 1px color(error, dark);
+  }
+}

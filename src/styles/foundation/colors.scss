@@ -103,7 +103,11 @@ $color-palette-data: (
     mid: #9e9e9e,
     danger: #d50000,
     link: #1976d2,
-  )
+  ),
+   error: (
+     light: #ffebee,
+     dark: #e53935,
+   )
 );
 
 
