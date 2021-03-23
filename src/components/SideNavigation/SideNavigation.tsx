@@ -92,7 +92,7 @@ class SideNavigation extends React.PureComponent<Props, State> {
       this.setState({ activeDrawerId: newProps.drawerExpand ? 'fullContent' : 'collapsedContent' });
     }
 
-    if(newProps.source[1] && this.props.source[1] && (newProps.source[1].label !== this.props.source[1].label) ) {
+    if (newProps.source[1] && this.props.source[1] && (newProps.source[1].label !== this.props.source[1].label)) {
       // Update state if text label for current app(on second index) changes
       this.setState({ sideNavigationData: newProps.source });
     }

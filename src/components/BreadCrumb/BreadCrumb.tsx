@@ -7,7 +7,7 @@ import Icon from '../Icon';
 import FlexBox from '../FlexBox';
 
 export type Direction = 'left' | 'right';
-export type Type = 'default' | 'disabled' | 'active';
+export type Type = 'default' | 'text' | 'link' | 'disabled' | 'active';
 export type DisplayStyle = 'yellow' | 'green' | 'blue' | 'primary';
 
 export interface ISourceData {
@@ -41,6 +41,13 @@ class BreadCrumb extends React.PureComponent<Props, {}> {
         theme[direction],
         theme[child.type]
       );
+
+      const spanEleClassNames = classNames(
+        child.type === 'default' && theme.typeDefault,
+        child.type === 'text' && theme.typeText,
+        child.type === 'link' && theme.typeLink
+      );
+
       return (
         <li
           key={index}
@@ -48,7 +55,7 @@ class BreadCrumb extends React.PureComponent<Props, {}> {
           onClick={child.type === 'disabled' ? undefined : child.onBreadcrumbClick}
           style={child.style}>
           <FlexBox>
-            <span className={theme.breadcrumbtext} aria-label={`navigate on ${child.name}`}>{child.name}</span>
+            <span className={spanEleClassNames} aria-label={`navigate on ${child.name}`}>{child.name}</span>
             { (index + 1) < source.length ? <Icon componentColor="inkLightest" source="chevronRight" /> : null}
           </FlexBox>
         </li>
