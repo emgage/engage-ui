@@ -3188,7 +3188,7 @@ class App extends React.Component<{}, State> {
             noOptionsMessage={"No items Available"}
             // moreInfoComponent={<Button>More Info</Button>}
             shouldRenderSuggestions={true}
-            // readOnly
+            readOnly
             // disabled
           />
           <ValidatedForm

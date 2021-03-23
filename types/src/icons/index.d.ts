@@ -30,7 +30,6 @@ export { default as circleChevronRight } from './circle-chevron-right.svg';
 export { default as circleChevronUp } from './circle-chevron-up.svg';
 export { default as circlePlus } from './circle-plus.svg';
 export { default as clip } from './clip.svg';
-export { default as clock } from './clock.svg';
 export { default as comments } from './comments.svg';
 export { default as container } from './container.svg';
 export { default as conversation } from './conversation.svg';

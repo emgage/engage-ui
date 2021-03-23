@@ -181,7 +181,7 @@ class Picker extends React.PureComponent<Props, State> {
       this.setState({ hasValue, chipListState: newProps.defaultSelectedItems || [] });
     }
 
-    if (newProps.noOptionsMessage) {
+    if (newProps.noOptionsMessage !== '') {
       this.setState({ noSuggestions: true });
     }
   }

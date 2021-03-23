@@ -35,7 +35,6 @@ export declare const BUNDLED_ICONS: {
     circleChevronUp: any;
     circlePlus: any;
     clip: any;
-    clock: any;
     comments: any;
     container: any;
     conversation: any;
