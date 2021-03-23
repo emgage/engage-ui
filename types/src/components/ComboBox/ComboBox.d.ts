@@ -25,9 +25,6 @@ export interface Props {
     onChangeText?(value: string): void;
     sortEntity?(field: string, order: string, sortBy: string): void;
     theme?: any;
-    disabled?: boolean;
-    readOnly?: boolean;
-    errors?: [string];
 }
 interface State {
     open: boolean;

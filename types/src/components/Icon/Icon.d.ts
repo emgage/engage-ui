@@ -61,7 +61,6 @@ export declare const BUNDLED_ICONS: {
     lightbulb: any;
     list: any;
     listAlt: any;
-    listHierarchy: any;
     listingPage: any;
     lock: any;
     minusMinor: any;
