@@ -58,6 +58,7 @@ export interface Props {
     label?: string;
     labelHidden?: boolean;
     loading?: boolean;
+    backdropHidden?: boolean;
     disabled?: boolean;
     maxSelectedItems?: number;
     minSelectedItems?: number;
@@ -68,7 +69,7 @@ export interface Props {
     style?: React.CSSProperties;
     theme?: any;
     onFocus?(event: React.FormEvent<HTMLElement>): void;
-    searchBehavior?(value: string): void;
+    searchBehavior?(value: string, method?: string): void;
     onSelect?(item: any): void;
     onRemove?(item: any): void;
     onMoreInfo?(): void;
@@ -82,7 +83,6 @@ export interface Props {
     noOptionsMessage?: string;
     readOnly?: boolean;
     errors?: [string];
-    backdropHidden?: boolean;
 }
 declare class Picker extends React.PureComponent<Props, State> {
     wrapperRef: HTMLDivElement;
