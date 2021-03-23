@@ -31,7 +31,7 @@ export interface Props {
     onFocus?(): void;
     onBlur?(): void;
 }
-declare const select: ({ componentId, name, groups, options, labelHidden, labelAction, loading, helpText, label, errors, value, placeholder, disabled, required, onChange, onFocus, onBlur, theme, }: Props) => JSX.Element;
+declare const select: ({ componentId, name, groups, options, labelHidden, labelAction, loading, helpText, label, errors, value, placeholder, disabled, readOnly, backdropHidden, required, onChange, onFocus, onBlur, theme, }: Props) => JSX.Element;
 export { select as UnthemedSelect };
 declare const _default: ThemedComponentClass<Props, {}>;
 export default _default;

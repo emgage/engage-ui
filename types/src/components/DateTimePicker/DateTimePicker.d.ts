@@ -2,8 +2,7 @@ import * as React from 'react';
 import { ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 import './ReactDatetime.css';
 import * as moment from 'moment';
-
-export type ViewMode = 'years' | 'months' | 'days' | 'time';
+export declare type ViewMode = 'years' | 'months' | 'days' | 'time';
 export interface Props {
     dateFormat?: boolean | string;
     defaultDateTime?: string;

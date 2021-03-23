@@ -28,6 +28,7 @@ export interface State {
     activeDrawerId: string;
     popoverActive2: boolean;
     anchorEl2?: HTMLElement;
+    sideNavigationData: INavigationData[];
 }
 declare const _default: ThemedComponentClass<Props, {}>;
 export default _default;
