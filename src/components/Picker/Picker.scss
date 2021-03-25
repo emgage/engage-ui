@@ -146,3 +146,29 @@ $stacking-order: (
   }
 
 }
+
+.PickerWrap {
+  position: relative;
+  .label {
+    position: absolute;
+    top: 2.1rem;
+      .text {
+        @include text-style-input;
+        z-index: auto;
+        padding: 0 $backdrop-horizontal-spacing;
+        color: color(ink, lighter);
+        position: relative;
+        top:0px;
+        transition: all .3s ease;
+      }
+      .focused {
+        position: relative;
+        top: -21px;
+        font-size: 1.3rem;
+        transition: all .3s ease;
+      }
+  }
+  .backdrop {
+    z-index: -1;
+  }
+}

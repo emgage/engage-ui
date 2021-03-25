@@ -453,7 +453,7 @@ class Picker extends React.PureComponent<Props, State> {
 
     return (
       <div id={componentId}>
-        <div ref={node => this.setWrapperRef(node)}>
+        <div ref={node => this.setWrapperRef(node)} className={theme.PickerWrap}>
           {/* <label>{label ? label : ''}</label> */}
 
           <Label
