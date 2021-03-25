@@ -181,7 +181,7 @@ class Picker extends React.PureComponent<Props, State> {
       this.setState({ hasValue, chipListState: newProps.defaultSelectedItems || [] });
     }
 
-    if (newProps.noOptionsMessage !== '') {
+    if (newProps.noOptionsMessage) {
       this.setState({ noSuggestions: true });
     }
   }
@@ -472,7 +472,7 @@ class Picker extends React.PureComponent<Props, State> {
           />
         </div>
         {
-          noSuggestions && noOptionsMessage !== '' &&
+          noSuggestions && noOptionsMessage !== '' && isFocused &&
             <Popover
               addArrow={false}
               componentStyle={{ maxHeight: window.outerHeight < 768 ? 500 : 800, overflow: 'auto', maxWidth: popoverWidth, width: '49.2rem', padding: '1.3rem', marginTop: '-.4rem' }}

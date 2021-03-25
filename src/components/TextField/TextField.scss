@@ -3,12 +3,6 @@ $addon-horizontal-spacing: 0.25em;
 $spinner-buttons-icon-size: rem(12px);
 $spinner-size: rem(20px);
 
-$stacking-order: (
-  input: 20,
-  backdrop: 10,
-  spinner: 30,
-);
-
 .textField {
   @include text-style-input;
   position: relative;
@@ -81,7 +75,6 @@ $stacking-order: (
 .input {
   @include text-style-input;
   position: relative;
-  z-index: z-index(input, $stacking-order);
   display: block;
   flex: 1 1 0%;
   width: 100%;
@@ -141,7 +134,6 @@ $stacking-order: (
 
 .backdrop {
   position: absolute;
-  z-index: z-index(backdrop, $stacking-order);
   top: 0;
   bottom: 0;
   left: 0;
@@ -182,7 +174,6 @@ $stacking-order: (
 
 .prefix {
   position: relative;
-  z-index: z-index(input, $stacking-order);
   flex: 0 0 auto;
   margin-right: $addon-horizontal-spacing;
   color: currentColor;
@@ -190,14 +181,12 @@ $stacking-order: (
 
 .suffix {
   position: relative;
-  z-index: z-index(input, $stacking-order);
   flex: 0 0 auto;
   margin-left: $addon-horizontal-spacing;
   color: currentColor;
 }
 
 .spinnerButtons {
-  z-index: z-index(spinner, $stacking-order);
   display: flex;
   align-self: stretch;
   flex-direction: column;
@@ -280,7 +269,6 @@ $stacking-order: (
 
 .spinnerWrapper {
   position: relative;
-  z-index: z-index(spinner, $stacking-order);
   top: 0;
   right: 0;
   width: $spinner-size;

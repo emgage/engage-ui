@@ -3,9 +3,7 @@ $control-height: control-height() + rem(8px);
 $backdrop-horizontal-spacing: spacing(tighter) * 1.5;
 
 $stacking-order: (
-  suggestions: 50,
-  input: 20,
-  backdrop: 10,
+  popover: 200,
 );
 
 // AutoSuggest Container Styles
@@ -15,9 +13,9 @@ $stacking-order: (
   border-radius: 5px;
   cursor: text;
   min-height: 25px;
-  // z-index: z-index(suggestions, $stacking-order);
   display: flex;
   flex-wrap: wrap;
+  position: relative;
 
   
   &.empty {
@@ -30,7 +28,6 @@ $stacking-order: (
 
   //TODO: Consider using Stack component instead of adding margin.
   .Chip {
-    z-index: z-index(input, $stacking-order);
     margin-top: control-vertical-padding();
     margin-right: control-vertical-padding();
     vertical-align: top;
@@ -39,7 +36,6 @@ $stacking-order: (
 
 .container {
   flex: 1 0 auto;
-  z-index: z-index(suggestions, $stacking-order);
   display: inline-block;
   //overflow: hidden;
   // text-overflow: ellipsis;
@@ -83,7 +79,7 @@ $stacking-order: (
   background: color(white);
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.25);
   list-style-type: none;
-  z-index: z-index(input, $stacking-order);
+  z-index: z-index(popover, $stacking-order);
 }
 
 
@@ -144,7 +140,7 @@ $stacking-order: (
     bottom: 35px;
     position: relative;
     text-align: center;
-    z-index: 21;
+    z-index: z-index(popover, $stacking-order);
     height: 35px;
     line-height: 30px;
   }
