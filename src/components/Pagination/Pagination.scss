@@ -2,7 +2,7 @@
 TODO : Should we be specifying font size here and in button component?  seems to work fine without it
 */
 
-@mixin disabled-item(){
+@mixin disabled-item() {
   cursor: not-allowed;
 
   &:hover {
@@ -15,10 +15,10 @@ TODO : Should we be specifying font size here and in button component?  seems to
 
 .rc-pagination {
   //font-size: $font-size;
-  font-family: 'Arial';
+  font-family: "Arial";
   user-select: none;
   padding: 0;
-  display: flex; 
+  display: flex;
   align-items: center;
 
   > li {
@@ -26,26 +26,24 @@ TODO : Should we be specifying font size here and in button component?  seems to
     margin-right: 8px;
     min-width: 3.5rem;
     align-items: center;
-    text-align:center;
+    text-align: center;
 
     &:last-child {
-        margin-right: 0;
+      margin-right: 0;
     }
     &:empty {
       display: none;
     }
-
   }
- 
+
   .ItemPerPage {
     display: flex;
     align-items: center;
     margin-left: auto;
 
     .rc-pagination {
-      margin:0px 10px;
+      margin: 0px 10px;
     }
-
   }
   &-total-text {
     // float: left;
@@ -56,14 +54,14 @@ TODO : Should we be specifying font size here and in button component?  seems to
     margin: 0 8px 0 0;
   }
 
-//   &:after {
-//     content: " ";
-//     display: block;
-//     height: 0;
-//     clear: both;
-//     overflow: hidden;
-//     visibility: hidden;
-//   }
+  //   &:after {
+  //     content: " ";
+  //     display: block;
+  //     height: 0;
+  //     clear: both;
+  //     overflow: hidden;
+  //     visibility: hidden;
+  //   }
 
   &-item {
     // cursor: pointer;
@@ -110,7 +108,8 @@ TODO : Should we be specifying font size here and in button component?  seems to
     }
   }
 
-  &-jump-prev, &-jump-next {
+  &-jump-prev,
+  &-jump-next {
     &:after {
       content: "•••";
       display: block;
@@ -125,7 +124,6 @@ TODO : Should we be specifying font size here and in button component?  seems to
         color: #2db7f5;
       }
     }
-
   }
 
   &-jump-prev {
@@ -143,7 +141,7 @@ TODO : Should we be specifying font size here and in button component?  seems to
       }
     }
   }
-  
+
   &-jump-prev-custom-icon,
   &-jump-next-custom-icon {
     position: relative;
@@ -155,7 +153,7 @@ TODO : Should we be specifying font size here and in button component?  seems to
       bottom: 0;
       left: 0;
       margin: auto;
-    //   transition: all @include 2s;
+      //   transition: all @include 2s;
 
       content: "•••";
       opacity: 1;
@@ -169,7 +167,7 @@ TODO : Should we be specifying font size here and in button component?  seems to
     .custom-icon-jump-prev,
     .custom-icon-jump-next {
       opacity: 0;
-    //   transition: all @include 2s;
+      //   transition: all @include 2s;
     }
 
     &:hover {
@@ -186,10 +184,40 @@ TODO : Should we be specifying font size here and in button component?  seems to
     }
   }
 
-  &-prev, &-jump-prev, &-jump-next {
+  &-spacer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: 8px;
+    min-width: 28px;
+    height: 38px;
+    line-height: 28px;
+    user-select: none;
+  }
+
+  &-spacer-icon {
+    fill: #637381;
+  }
+
+  &-simple-pagination {
+    display: flex;
+    flex: 1 0 100%;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 24px 0px;
+  }
+
+  &-prev,
+  &-jump-prev,
+  &-jump-next {
     margin-right: 8px;
   }
-  &-prev, &-next, &-jump-prev, &-jump-next {
+  &-prev,
+  &-next,
+  &-jump-prev,
+  &-jump-next {
     cursor: pointer;
     color: #666;
     font-size: 10px;
@@ -242,12 +270,12 @@ TODO : Should we be specifying font size here and in button component?  seems to
     // float: left;
     margin-left: 15px;
     &-size-changer {
-    //   float: left;
+      //   float: left;
       width: 80px;
     }
 
     &-quick-jumper {
-    //   float: left;
+      //   float: left;
       margin-left: 16px;
       height: 28px;
       line-height: 28px;
@@ -283,13 +311,15 @@ TODO : Should we be specifying font size here and in button component?  seems to
         border-radius: 6px;
         height: 28px;
         user-select: none;
-        transition: all .3s cubic-bezier(.645,.045,.355,1);
+        transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
         position: relative;
-        color: rgba(0,0,0,.65);
+        color: rgba(0, 0, 0, 0.65);
         background-color: #fff;
         border-color: #d9d9d9;
 
-        &:hover, &:active, &:focus {
+        &:hover,
+        &:active,
+        &:focus {
           color: #2db7f5;
           background-color: #fff;
           border-color: #2db7f5;
@@ -299,7 +329,8 @@ TODO : Should we be specifying font size here and in button component?  seems to
   }
 
   &-simple {
-    .rc-pagination-prev, .rc-pagination-next {
+    .rc-pagination-prev,
+    .rc-pagination-next {
       border: none;
       height: 24px;
       line-height: 24px;
@@ -308,7 +339,7 @@ TODO : Should we be specifying font size here and in button component?  seems to
     }
 
     .rc-pagination-simple-pager {
-    //   float: left;
+      //   float: left;
       margin-right: 8px;
       list-style: none;
 
@@ -346,19 +377,20 @@ TODO : Should we be specifying font size here and in button component?  seems to
         border-radius: 6px;
         height: 26px;
         user-select: none;
-        transition: all .3s cubic-bezier(.645,.045,.355,1);
+        transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
         position: relative;
-        color: rgba(0,0,0,.65);
+        color: rgba(0, 0, 0, 0.65);
         background-color: #fff;
         border-color: #d9d9d9;
 
-        &:hover, &:active, &:focus {
+        &:hover,
+        &:active,
+        &:focus {
           color: #2db7f5;
           background-color: #fff;
           border-color: #2db7f5;
         }
       }
-
     }
   }
 }
@@ -373,7 +405,8 @@ TODO : Should we be specifying font size here and in button component?  seems to
 }
 
 .button {
-    padding: 8px;
-    min-height: auto;
-    min-width: 3.5rem;
+  padding: 8px;
+  min-height: auto;
+  min-width: 3.5rem;
+  color: #212121;
 }
