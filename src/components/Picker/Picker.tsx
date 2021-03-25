@@ -9,6 +9,7 @@ import * as baseTheme from './Picker.scss';
 // TODO: Why are we using this custom card and not the Card component?
 import Popover from '../Popover';
 import FlexBox from '../FlexBox';
+import Label from '../Label';
 
 let resultsBehaviorOpen: boolean = false;
 
@@ -446,9 +447,28 @@ class Picker extends React.PureComponent<Props, State> {
 
     resultsBehaviorOpen = stateProps.suggestions.length !== 0;
 
+    console.log("label", label);
+    console.log("labelHidden", labelHidden);
+    
+
     return (
       <div id={componentId}>
         <div ref={node => this.setWrapperRef(node)}>
+          {/* <label>{label ? label : ''}</label> */}
+
+          <Label
+            componentId={componentId}
+            hidden={false}
+            hasValue={hasValue}
+            focused={isFocused}
+            // required={required}
+            // componentClass={componentClass}
+            // {...rest}
+            theme={theme}
+          >
+            {label ? label : ''}
+          </Label>
+          
           <TextField
             errors={errors}
             type="text"
@@ -457,8 +477,8 @@ class Picker extends React.PureComponent<Props, State> {
             backdropHidden={backdropHidden}
             helpText={helpText}
             itemSelected={!!chipListState.length}
-            label={label ? label : ''}
-            labelHidden={labelHidden}
+            // label={label ? label : ''}
+            // labelHidden={labelHidden}
             loading={loading}
             value={value}
             onChange={(autoSuggestMethods.onChange) as any}
