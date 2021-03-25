@@ -270,6 +270,7 @@ class Picker extends React.PureComponent<Props, State> {
           this.setState({
             chipListState,
             itemsList,
+            hasValue: chipListState.length ? true : false
           });
           if (this.props.onRemove) {
             this.props.onRemove(selectedChip);
@@ -341,6 +342,7 @@ class Picker extends React.PureComponent<Props, State> {
         if (number === chipListState.length) focused = number - 1;
         else if (number === chipListState.length && number > 0) focused = number;
         else focused = 0;
+        
         this.setState({
           itemsList,
           chipListState,
@@ -447,27 +449,19 @@ class Picker extends React.PureComponent<Props, State> {
 
     resultsBehaviorOpen = stateProps.suggestions.length !== 0;
 
-    console.log("label", label);
-    console.log("labelHidden", labelHidden);
-    
-
     return (
       <div id={componentId}>
         <div ref={node => this.setWrapperRef(node)} className={theme.PickerWrap}>
-          {/* <label>{label ? label : ''}</label> */}
 
-          <Label
+          {!labelHidden ? <Label
             componentId={componentId}
             hidden={false}
             hasValue={hasValue}
-            focused={isFocused}
-            // required={required}
-            // componentClass={componentClass}
-            // {...rest}
+            focused={isFocused || hasValue}
             theme={theme}
           >
             {label ? label : ''}
-          </Label>
+          </Label> : null}
           
           <TextField
             errors={errors}
@@ -477,8 +471,7 @@ class Picker extends React.PureComponent<Props, State> {
             backdropHidden={backdropHidden}
             helpText={helpText}
             itemSelected={!!chipListState.length}
-            // label={label ? label : ''}
-            // labelHidden={labelHidden}
+            labelHidden={true}
             loading={loading}
             value={value}
             onChange={(autoSuggestMethods.onChange) as any}
