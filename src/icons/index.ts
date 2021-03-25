@@ -67,6 +67,7 @@ export { default as lock } from './lock.svg';
 export { default as minusMinor } from './minusMinor.svg';
 export { default as notes } from './notes.svg';
 export { default as paintBrush } from './paint-brush.svg';
+export { default as pen } from './pen.svg';
 export { default as plus } from './plus.svg';
 export { default as print } from './print.svg';
 export { default as puzzlePiece } from './puzzle-piece.svg';
