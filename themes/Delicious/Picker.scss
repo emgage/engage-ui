@@ -74,3 +74,14 @@ $backdrop-horizontal-spacing: spacing(tighter) * 1.5;
     color: theme-color(m-grey, 500);
   }
 }
+
+
+.error {
+  .backdrop {
+    background-color: theme-color(m-red, 50);
+    border-color: theme-color(m-red, 600);
+    box-shadow:
+    inset shadow(transparent),
+    0 0 0 1px theme-color(m-red, 600);
+  }
+}

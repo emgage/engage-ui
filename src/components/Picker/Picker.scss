@@ -156,8 +156,8 @@ $stacking-order: (
   }
 
   .backdrop {
-    background-color: color(error, light);
-    border-color: color(error, dark);
-    box-shadow: inset 0 0 0 0 transparent, 0 0 0 1px color(error, dark);
+    background-color: color(red, lighter);
+    border-color: color(red);
+    box-shadow: none;
   }
 }
