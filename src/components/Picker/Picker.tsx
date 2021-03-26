@@ -440,6 +440,9 @@ class Picker extends React.PureComponent<Props, State> {
       autoSuggestMethods.renderSuggestionsContainer = this.renderSuggestionsContainer;
     }
 
+    console.log("moreInfoComponent", moreInfoComponent, isFocused);
+    
+
     if (columns.length !== 0) {
       autoSuggestMethods.renderSectionTitle = this.renderSectionTitle;
       autoSuggestMethods.getSectionSuggestions = this.getSectionSuggestions;
