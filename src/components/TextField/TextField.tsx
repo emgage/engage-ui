@@ -297,6 +297,7 @@ class TextField extends React.PureComponent<Props, State> {
 
     const inputValue = autoSuggest ?
       <AutoSuggestText
+        setRef={this.storeInputReference}
         autoSuggestMethods={autoSuggestMethods}
         stateProps={this.props.stateProps}
       />
@@ -313,6 +314,7 @@ class TextField extends React.PureComponent<Props, State> {
 
     return (
       <Labelled
+        onClick={this.handleInputFocus}
         autoSuggest={autoSuggest}
         label={label}
         componentId={componentId}
@@ -344,6 +346,13 @@ class TextField extends React.PureComponent<Props, State> {
         {counterTextMarkup}
       </Labelled>
     );
+  }
+
+  @autobind
+  private storeInputReference(autosuggest:any) {
+    if (autosuggest !== null) {
+      this.setInput(autosuggest.input)
+    }
   }
 
   @autobind

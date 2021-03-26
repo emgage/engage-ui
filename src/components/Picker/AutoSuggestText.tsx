@@ -25,10 +25,11 @@ export interface Props {
   placeholder?: string;
   autoSuggestMethods?: IAutoSuggestMethods;
   stateProps?: IStateProps;
+  setRef?: any;
 }
 
 class AutoSuggestText extends React.PureComponent<Props, {}> {
-  private refHolder: any;
+  // private refHolder: any;
   render() {
     const { theme }: any = this.props;
 
@@ -44,6 +45,7 @@ class AutoSuggestText extends React.PureComponent<Props, {}> {
         {
           this.props.autoSuggestMethods && this.props.autoSuggestMethods.shouldRenderSuggestions ?
             <Autosuggest
+              ref={this.props.setRef}
               theme={{
                 ...theme,
                 container: theme.container,
@@ -64,11 +66,12 @@ class AutoSuggestText extends React.PureComponent<Props, {}> {
               shouldRenderSuggestions={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.shouldRenderSuggestions : (() => { }) as any}
               renderSuggestion={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.renderSuggestion : (() => {}) as any}
               inputProps={this.props.stateProps ? this.props.stateProps.inputProps : null}
-              ref={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.storeInputReference : this.refHolder}
+              // ref={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.storeInputReference : this.refHolder}
               renderSuggestionsContainer={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.renderSuggestionsContainer : (() => {}) as any}
             />
             :
             <Autosuggest
+              ref={this.props.setRef}
               theme={{
                 ...theme,
                 container: theme.container,
@@ -87,7 +90,7 @@ class AutoSuggestText extends React.PureComponent<Props, {}> {
               getSuggestionValue={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.getSuggestionValue : (() => {}) as any}
               renderSuggestion={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.renderSuggestion : (() => {}) as any}
               inputProps={this.props.stateProps ? this.props.stateProps.inputProps : null}
-              ref={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.storeInputReference : this.refHolder}
+              // ref={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.storeInputReference : this.refHolder}
               renderSuggestionsContainer={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.renderSuggestionsContainer : (() => {}) as any}
             />
           }
