@@ -342,7 +342,7 @@ class Picker extends React.PureComponent<Props, State> {
         if (number === chipListState.length) focused = number - 1;
         else if (number === chipListState.length && number > 0) focused = number;
         else focused = 0;
-        
+
         this.setState({
           itemsList,
           chipListState,
@@ -462,7 +462,7 @@ class Picker extends React.PureComponent<Props, State> {
           >
             {label ? label : ''}
           </Label> : null}
-          
+
           <TextField
             errors={errors}
             type="text"
