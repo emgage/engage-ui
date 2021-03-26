@@ -70,8 +70,10 @@ $font-weight-normal: 400 !default;
   background-color: transparent;
   font-size: 14px;
   .DropdownButton {
-    color: color(text, text)
-  }
+    color: color(text, darkest);
+      padding:1.2rem 1.6rem;
+      margin:0px;
+    }
 
   &:hover {
     color: $dropdown-link-active-color;

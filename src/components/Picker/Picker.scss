@@ -172,3 +172,16 @@ $stacking-order: (
     z-index: -1;
   }
 }
+
+.error {
+  .input::placeholder {
+    // This is the only place this color is used.
+    // stylelint-disable-next-line color-no-hex
+    color: #9c9798;
+  }
+  .backdrop {
+    background-color: color(red, lighter);
+    border-color: color(red);
+    box-shadow: none;
+  }
+}
