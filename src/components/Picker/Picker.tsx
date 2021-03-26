@@ -9,7 +9,6 @@ import * as baseTheme from './Picker.scss';
 // TODO: Why are we using this custom card and not the Card component?
 import Popover from '../Popover';
 import FlexBox from '../FlexBox';
-import Label from '../Label';
 
 let resultsBehaviorOpen: boolean = false;
 
@@ -451,16 +450,6 @@ class Picker extends React.PureComponent<Props, State> {
       <div id={componentId}>
         <div ref={node => this.setWrapperRef(node)} className={theme.PickerWrap}>
 
-          {!labelHidden ? <Label
-            componentId={componentId}
-            hidden={false}
-            hasValue={hasValue}
-            focused={isFocused || hasValue}
-            theme={theme}
-          >
-            {label ? label : ''}
-          </Label> : null}
-
           <TextField
             errors={errors}
             type="text"
@@ -469,7 +458,7 @@ class Picker extends React.PureComponent<Props, State> {
             backdropHidden={backdropHidden}
             helpText={helpText}
             itemSelected={!!chipListState.length}
-            labelHidden={true}
+            labelHidden={labelHidden}
             loading={loading}
             value={value}
             onChange={(autoSuggestMethods.onChange) as any}
@@ -480,6 +469,7 @@ class Picker extends React.PureComponent<Props, State> {
             hasValue={hasValue}
             disabled={disabled}
             readOnly={readOnly}
+            label={label || 'test'}
           />
         </div>
         {

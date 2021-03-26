@@ -40,6 +40,7 @@ export interface Props {
   componentClass?: string;
   // Theme to be injected via css-themr.
   theme?: any;
+  onClick?: (event: React.FormEvent<any>);
 }
 
 const labelled = ({
@@ -56,6 +57,7 @@ const labelled = ({
   componentStyle,
   componentClass,
   theme,
+  onClick = (_:any) => { },
   ...rest
 }: Props) => {
   const wrapperClassName = classNames(
@@ -89,7 +91,7 @@ const labelled = ({
 
   const labelMarkup = label
     ? (
-      <div className={labelWrapperClassName}>
+      <div className={labelWrapperClassName} onClick={onClick}>
         <Label
           componentId={componentId}
           hidden={false}
