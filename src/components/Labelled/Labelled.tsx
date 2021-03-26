@@ -40,7 +40,7 @@ export interface Props {
   componentClass?: string;
   // Theme to be injected via css-themr.
   theme?: any;
-  onClick?: (event: React.FormEvent<any>);
+  onClick?: (event: React.FormEvent<any>) => void;
 }
 
 const labelled = ({
