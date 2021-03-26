@@ -9,6 +9,7 @@ import * as baseTheme from './Picker.scss';
 // TODO: Why are we using this custom card and not the Card component?
 import Popover from '../Popover';
 import FlexBox from '../FlexBox';
+import Label from '../Label';
 
 let resultsBehaviorOpen: boolean = false;
 
@@ -269,6 +270,7 @@ class Picker extends React.PureComponent<Props, State> {
           this.setState({
             chipListState,
             itemsList,
+            hasValue: chipListState.length ? true : false
           });
           if (this.props.onRemove) {
             this.props.onRemove(selectedChip);
@@ -340,6 +342,7 @@ class Picker extends React.PureComponent<Props, State> {
         if (number === chipListState.length) focused = number - 1;
         else if (number === chipListState.length && number > 0) focused = number;
         else focused = 0;
+        
         this.setState({
           itemsList,
           chipListState,
@@ -448,7 +451,18 @@ class Picker extends React.PureComponent<Props, State> {
 
     return (
       <div id={componentId}>
-        <div ref={node => this.setWrapperRef(node)}>
+        <div ref={node => this.setWrapperRef(node)} className={theme.PickerWrap}>
+
+          {!labelHidden ? <Label
+            componentId={componentId}
+            hidden={false}
+            hasValue={hasValue}
+            focused={isFocused || hasValue}
+            theme={theme}
+          >
+            {label ? label : ''}
+          </Label> : null}
+          
           <TextField
             errors={errors}
             type="text"
@@ -457,8 +471,7 @@ class Picker extends React.PureComponent<Props, State> {
             backdropHidden={backdropHidden}
             helpText={helpText}
             itemSelected={!!chipListState.length}
-            label={label ? label : ''}
-            labelHidden={labelHidden}
+            labelHidden={true}
             loading={loading}
             value={value}
             onChange={(autoSuggestMethods.onChange) as any}
