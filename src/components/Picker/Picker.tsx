@@ -196,8 +196,6 @@ class Picker extends React.PureComponent<Props, State> {
       className = theme.pickerResultShow;
     }
 
-    console.log('suggestionsList', containerProps);
-
     return (
       <div {...containerProps} className={theme.PopoverButtonWrap}>
         {children}
@@ -438,7 +436,7 @@ class Picker extends React.PureComponent<Props, State> {
       };
     }
 
-    if (moreInfoComponent) {
+    if (moreInfoComponent && isFocused) {
       autoSuggestMethods.renderSuggestionsContainer = this.renderSuggestionsContainer;
     }
 
