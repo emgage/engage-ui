@@ -72,6 +72,14 @@ class SideNavigation extends React.PureComponent<Props, State> {
     };
   }
 
+  static getDerivedStateFromProps(props: Props, state: State) {
+    if(props.source[1].label !== state.sideNavigationData[1].label ) {
+      // Update state if text label for current app(on second index) changes
+      return {sideNavigationData : props.source};
+    }
+    return null;
+  }
+
   popoverUpdate2 = (e: any) => {
     this.setState({
       popoverActive2 : !this.state.popoverActive2,
@@ -90,11 +98,6 @@ class SideNavigation extends React.PureComponent<Props, State> {
   componentWillReceiveProps(newProps: Props) {
     if (newProps.drawerExpand !== this.props.drawerExpand) {
       this.setState({ activeDrawerId: newProps.drawerExpand ? 'fullContent' : 'collapsedContent' });
-    }
-
-    if(newProps.source[1] && this.props.source[1] && (newProps.source[1].label !== this.props.source[1].label) ) {
-      // Update state if text label for current app(on second index) changes
-      this.setState({ sideNavigationData: newProps.source });
     }
   }
 
