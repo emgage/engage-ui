@@ -44,6 +44,7 @@ export interface IAutoSuggestMethods {
   chipRemove(item: IItemList | number): void;
   renderSuggestion(suggestion: IItemList, { isHighlighted, query }: IRenderSuggestionProp): JSX.Element;
   storeInputReference(autosuggest: Autosuggest): void;
+  getInputReference(): HTMLElement | undefined;
   updateList(input: HTMLElement): void;
   storeFocus(e: HTMLElement): void;
   shouldRenderSuggestions?(): void;
@@ -55,7 +56,7 @@ export interface IAutoSuggestMethods {
 export interface State {
   moreInfo: boolean;
   value: string;
-  input: HTMLElement[];
+  input?: HTMLElement;
   suggestions: Autosuggest[];
   chipListState: IItemList[];
   focusArr: HTMLElement[];
@@ -143,7 +144,6 @@ class Picker extends React.PureComponent<Props, State> {
       popoverWidth: '',
       moreInfo: false,
       value: '',
-      input: [],
       suggestions: [],
       chipListState: props.defaultSelectedItems || [],
       focusArr: [],
@@ -358,10 +358,14 @@ class Picker extends React.PureComponent<Props, State> {
 
       storeInputReference: (autosuggest: any) => {
         if (autosuggest !== null) {
-          if (this.state.input !== autosuggest.props.inputProps.value) {
-            this.setState({ input: autosuggest.props.inputProps.value });
+          if (this.state.input !== autosuggest.input) {
+            this.setState({ input: autosuggest.input });
           }
         }
+      },
+
+      getInputReference: () => {
+        return this.state.input;
       },
 
       storeFocus: (e: HTMLElement) => {
@@ -471,7 +475,7 @@ class Picker extends React.PureComponent<Props, State> {
             hasValue={hasValue}
             disabled={disabled}
             readOnly={readOnly}
-            label={label || 'test'}
+            label={label || ''}
           />
         </div>
         {
