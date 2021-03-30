@@ -57,7 +57,7 @@ $spinner-size: rem(20px);
 
 .error {
 
-  > .input ~ .backdrop {
+  .backdrop {
     background-color: theme-color(m-red, 50);
     border-color: theme-color(m-red, 600);
     box-shadow:
