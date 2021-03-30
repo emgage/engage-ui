@@ -50,7 +50,7 @@ $spinner-size: rem(20px);
     color: #9c9798;
   }
 
-  > .input ~ .backdrop {
+  .backdrop {
     background-color: color(red, lighter);
     border-color: color(red);
     box-shadow: none;
