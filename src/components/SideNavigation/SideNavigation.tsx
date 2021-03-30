@@ -73,9 +73,9 @@ class SideNavigation extends React.PureComponent<Props, State> {
   }
 
   static getDerivedStateFromProps(props: Props, state: State) {
-    if(props.source[1].label !== state.sideNavigationData[1].label ) {
+    if (props.source[1].label !== state.sideNavigationData[1].label) {
       // Update state if text label for current app(on second index) changes
-      return {sideNavigationData : props.source};
+      return { sideNavigationData : props.source };
     }
     return null;
   }
@@ -148,7 +148,7 @@ class SideNavigation extends React.PureComponent<Props, State> {
         header: (
           childrenMarkup != null && childrenMarkup !== undefined && childrenMarkup.length > 0 ?
           (
-            <Button componentSize="slim" componentClass={liClass} onClick={full.action} aria-disabled={false} componentId={componentId ? `${componentId}${full.label}` : ''} plain fullWidth >
+            <Button componentSize="slim" componentClass={liClass} aria-disabled={false} componentId={componentId ? `${componentId}${full.label}` : ''} plain fullWidth >
               {/* <Icon source={full.icon} componentColor={'black'} componentClass={theme.customIcon} theme={theme} /> */}
               {full.label}
             </Button>
@@ -186,7 +186,7 @@ class SideNavigation extends React.PureComponent<Props, State> {
 
             {childrenMarkup}
           </div>
-        ) : <Accordion key={index} defaultOpenIndexs={activeMenus && activeMenus[index - 1] ? [0] : [] } mode="collapsible" items={items} theme={theme} />) :
+        ) : <Accordion key={index} defaultOpenIndexs={activeMenus && activeMenus[index - 1] ? [0] : [] } mode="collapsible" items={items} theme={theme} clickHandler={full.action} />) :
         (
           <div key={index}>
             <div className={liClass} onClick={full.action} aria-disabled={false}>
