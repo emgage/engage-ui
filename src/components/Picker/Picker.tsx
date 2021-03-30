@@ -44,6 +44,7 @@ export interface IAutoSuggestMethods {
   chipRemove(item: IItemList | number): void;
   renderSuggestion(suggestion: IItemList, { isHighlighted, query }: IRenderSuggestionProp): JSX.Element;
   storeInputReference(autosuggest: Autosuggest): void;
+  getInputReference(): HTMLElement | undefined;
   updateList(input: HTMLElement): void;
   storeFocus(e: HTMLElement): void;
   shouldRenderSuggestions?(): void;
@@ -55,7 +56,7 @@ export interface IAutoSuggestMethods {
 export interface State {
   moreInfo: boolean;
   value: string;
-  input: HTMLElement[];
+  input?: HTMLElement;
   suggestions: Autosuggest[];
   chipListState: IItemList[];
   focusArr: HTMLElement[];
@@ -143,7 +144,6 @@ class Picker extends React.PureComponent<Props, State> {
       popoverWidth: '',
       moreInfo: false,
       value: '',
-      input: [],
       suggestions: [],
       chipListState: props.defaultSelectedItems || [],
       focusArr: [],
@@ -181,7 +181,7 @@ class Picker extends React.PureComponent<Props, State> {
       this.setState({ hasValue, chipListState: newProps.defaultSelectedItems || [] });
     }
 
-    if (newProps.noOptionsMessage !== '') {
+    if (newProps.noOptionsMessage) {
       this.setState({ noSuggestions: true });
     }
   }
@@ -195,15 +195,15 @@ class Picker extends React.PureComponent<Props, State> {
       className = theme.pickerResultShow;
     }
 
-    console.log('suggestionsList', containerProps);
-
     return (
       <div {...containerProps} className={theme.PopoverButtonWrap}>
         {children}
         {
-          <div className={className}>
-            {moreInfoComponent}
-          </div>
+          resultsBehaviorOpen? 
+            <div className={className}>
+              {moreInfoComponent}
+            </div>
+          : null
         }
       </div>
     );
@@ -269,6 +269,7 @@ class Picker extends React.PureComponent<Props, State> {
           this.setState({
             chipListState,
             itemsList,
+            hasValue: chipListState.length ? true : false
           });
           if (this.props.onRemove) {
             this.props.onRemove(selectedChip);
@@ -340,6 +341,7 @@ class Picker extends React.PureComponent<Props, State> {
         if (number === chipListState.length) focused = number - 1;
         else if (number === chipListState.length && number > 0) focused = number;
         else focused = 0;
+
         this.setState({
           itemsList,
           chipListState,
@@ -356,10 +358,14 @@ class Picker extends React.PureComponent<Props, State> {
 
       storeInputReference: (autosuggest: any) => {
         if (autosuggest !== null) {
-          if (this.state.input !== autosuggest.props.inputProps.value) {
-            this.setState({ input: autosuggest.props.inputProps.value });
+          if (this.state.input !== autosuggest.input) {
+            this.setState({ input: autosuggest.input });
           }
         }
+      },
+
+      getInputReference: () => {
+        return this.state.input;
       },
 
       storeFocus: (e: HTMLElement) => {
@@ -435,7 +441,7 @@ class Picker extends React.PureComponent<Props, State> {
       };
     }
 
-    if (moreInfoComponent) {
+    if (moreInfoComponent && resultsBehaviorOpen) {
       autoSuggestMethods.renderSuggestionsContainer = this.renderSuggestionsContainer;
     }
 
@@ -448,7 +454,8 @@ class Picker extends React.PureComponent<Props, State> {
 
     return (
       <div id={componentId}>
-        <div ref={node => this.setWrapperRef(node)}>
+        <div ref={node => this.setWrapperRef(node)} className={theme.PickerWrap}>
+
           <TextField
             errors={errors}
             type="text"
@@ -457,7 +464,6 @@ class Picker extends React.PureComponent<Props, State> {
             backdropHidden={backdropHidden}
             helpText={helpText}
             itemSelected={!!chipListState.length}
-            label={label ? label : ''}
             labelHidden={labelHidden}
             loading={loading}
             value={value}
@@ -469,10 +475,11 @@ class Picker extends React.PureComponent<Props, State> {
             hasValue={hasValue}
             disabled={disabled}
             readOnly={readOnly}
+            label={label || ''}
           />
         </div>
         {
-          noSuggestions && noOptionsMessage !== '' &&
+          noSuggestions && noOptionsMessage !== '' && isFocused &&
             <Popover
               addArrow={false}
               componentStyle={{ maxHeight: window.outerHeight < 768 ? 500 : 800, overflow: 'auto', maxWidth: popoverWidth, width: '49.2rem', padding: '1.3rem', marginTop: '-.4rem' }}

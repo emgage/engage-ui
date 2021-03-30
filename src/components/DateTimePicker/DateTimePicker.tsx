@@ -7,6 +7,7 @@ import * as moment from 'moment';
 import { DATETIMEPICKER } from '../ThemeIdentifiers';
 import * as baseTheme from './DateTimePicker.scss';
 
+export type ViewMode = 'years' | 'months' | 'days' | 'time';
 export interface Props {
   /*
   Defines the format for the date. It accepts any moment.js date format.
@@ -38,6 +39,8 @@ export interface Props {
   value?: string;
   // allow you to take value from only value prop
   getFromValue?: boolean;
+  // The default view to display when the picker is shown. ('years', 'months', 'days', 'time')
+  viewMode?: ViewMode;
 }
 
 export interface State {
@@ -102,7 +105,7 @@ class DateTimePicker extends React.PureComponent<Props, State>{
   }
 
   render() {
-    const { dateFormat, label, theme, timePicker, placeholder, componentStyle, value, getFromValue, componentId } = this.props;
+    const { dateFormat, label, theme, timePicker, placeholder, componentStyle, value, getFromValue, componentId, viewMode } = this.props;
     const { dateTime, open } = this.state;
     let dateTimeValue;
     if (getFromValue) {
@@ -132,6 +135,7 @@ class DateTimePicker extends React.PureComponent<Props, State>{
                 onChange={(dateTime: any) => { this.setDateTime(dateTime); }}
                 timeFormat={timePicker}
                 dateFormat={dateFormat}
+                viewMode={viewMode}
             />
         </div>
     );

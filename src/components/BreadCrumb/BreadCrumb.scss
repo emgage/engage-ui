@@ -341,6 +341,21 @@ ul.breadcrumb.right li.disabled:hover:after {
   color: grey;
 }
 
-.breadcrumbtext {
+.typeText {
+  cursor: text;
+}
+
+.typeDefault {
   cursor: pointer;
 }
+
+.typeLink {
+  color: #005698;
+  cursor: pointer;
+
+  &:hover {
+    color: $hovercolorblue;
+  }
+}
+
+
