@@ -113,7 +113,7 @@ class ComboBox extends React.PureComponent<Props, State> {
 
   componentWillReceiveProps(nextProps: any) {
     const { items, currentValue = '' } = nextProps;
-    const { items: oldItems, currentValue: currentValueOld } = this.props;
+    const { items: oldItems, currentValue: currentValueOld = '' } = this.props;
 
     if (JSON.stringify(oldItems) !== JSON.stringify(items)) {
       const isEmpty: boolean = items && items[0] && items[0].value && items[0].value.length === 0 || false;
