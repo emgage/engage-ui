@@ -95,7 +95,7 @@ const AppBar: React.FC<Props> = (props) => {
           <TextField
             type="search"
             componentHeight="slim"
-            suffix={<Icon source="search" componentColor="inkLighter"/>}
+            prefix={<Icon source="search" componentColor="inkLighter"/>}
             labelHidden
             placeholder="Search"
             placeholderAlign="left"
