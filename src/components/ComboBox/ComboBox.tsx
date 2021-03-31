@@ -206,10 +206,14 @@ class ComboBox extends React.PureComponent<Props, State> {
   }
 
   onArrowClick = (event: React.FormEvent<HTMLElement>) => {
-    this.setState({
-      open: !this.state.open,
-      anchorEl: event.target as HTMLElement
-    });
+    const eventTarget: any = event.target;
+    // triggering unwanted event for label click
+    if (eventTarget && eventTarget.nodeName !== 'LABEL') {
+      this.setState({
+        open: !this.state.open,
+        anchorEl: event.target as HTMLElement
+      });
+    }
   }
 
   handleClick = (value: string | any, key: any) => {
