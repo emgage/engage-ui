@@ -49,7 +49,7 @@ class PageSize extends React.PureComponent<IPageSizeProps, any>{
         pageSizeList.map((page: number) => {
           const plain = page !== currentPageSize;
           return <Pager
-                    plain={plain}
+          active={!plain}
                     itemRender={(page: any, type: any, element: any) => element}
                     onKeyPress={onKeyPress}
                     onClick={onClick}
