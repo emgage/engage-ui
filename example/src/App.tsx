@@ -1343,7 +1343,7 @@ class App extends React.Component<{}, State> {
         onClick: (value: any) => {
           console.log('Version:', value);
         },
-      },
+      },104
     ];
 
     const treeSource: TreeSource[] = [
@@ -1589,7 +1589,15 @@ class App extends React.Component<{}, State> {
         </div> */}
         <div>
           Pagination:
-          <Pagination {...PaginationDefaultProps} pageSizeList={[3, 6, 9]} showSizeChanger={true} onChange={(page: number) => this.setState({ paginationCurrent: page })} current={this.state.paginationCurrent} total={25} />
+          <Pagination {...PaginationDefaultProps} pageSizeList={[5, 10, 20, 50, 100]} showSizeChanger={true} onChange={(page: number) => this.setState({ paginationCurrent: page })} current={this.state.paginationCurrent} total={104}
+            showPrevNextJumpers={true}
+            showQuickJumper={true}
+            hideOnSinglePage={false}
+            showTitle={true}
+            simplePagination={false}
+            showJumpToPage={true}
+            // simple={false}
+          />
           PageSize:
           <PageSize
             onKeyPress={() => {}}
@@ -1597,7 +1605,7 @@ class App extends React.Component<{}, State> {
             onClick={(currentPageSize: number) =>
               this.setState({ currentPageSize })
             }
-            pageSizeList={[10, 50, 100]}
+            pageSizeList={[5, 10, 20, 50, 100]}
             className="cl"
           />
         </div>

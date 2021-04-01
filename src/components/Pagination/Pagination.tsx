@@ -14,6 +14,7 @@ import { PAGINATION } from '../ThemeIdentifiers';
 import * as baseTheme from './Pagination.scss';
 import Label from '../Label';
 import Icon from '../Icon';
+import Select from '../Select';
 
 interface IProps {
   disabled?: boolean;
@@ -49,6 +50,7 @@ interface IProps {
   pageSizeList?: number[];
   fixedSize?: boolean;
   simplePagination?: boolean;
+  showJumpToPage?: boolean;
 }
 
 interface IState {
@@ -84,9 +86,11 @@ export const DefaultProps = {
   pageSizeOptions: [],
   showTotal: noop,
   pageSizeList: [],
+  simple: false,
   lazyLoading: false,
   fixedSize: true,
   simplePagination: false,
+  showJumpToPage: true
 };
 
 function noop() {}
@@ -584,7 +588,7 @@ class Pagination extends React.PureComponent<IProps, IState> {
     if (fixedSize && current < 5) {
       left = minButtons;
       right = left + 2;
-    } else if (fixedSize && numPages - current < 5) {
+    } else if (fixedSize && numPages - current < 4) {
       right = numPages - 2;
       left = right - 2;
     }
@@ -895,6 +899,50 @@ class Pagination extends React.PureComponent<IProps, IState> {
     return null;
   }
 
+  renderJumpToPage = () => {
+
+    const {
+      theme,
+      showLessItems,
+    } = this.props;
+
+    const { current = 1, pageSize } = this.state;
+
+    const numPages = calculatePage(undefined, this.state, this.props);
+
+    const maxPageLimit = showLessItems ? 7 : 9;
+
+    if (numPages <= maxPageLimit) {
+      return null;
+    }
+
+    const options: any = [...Array(numPages).keys()].map(x => ({ label: x + 1, value: x + 1 }));
+
+    const onChange = (x: any) => {
+      this.setState({
+        current: parseInt(x, 10)
+      },            () => {
+        if (this.props.onChange) {
+          this.props.onChange(parseInt(x, 10) || 1, pageSize);
+        }
+      });
+    };
+
+    return (
+      <div className={theme['rc-pagination-jump-to-page-wrapper']}>
+        <span className={theme['rc-pagination-jump-to-page-label']}>Jump to page:</span>
+      <Select
+        componentId="rc-pagination"
+        label=""
+        options={options}
+        labelHidden={true}
+        value={current.toString()}
+        onChange={onChange}
+        theme={theme}
+      />
+      </div>);
+  }
+
   render() {
     const {
       className /*, disabled*/ = false,
@@ -903,7 +951,7 @@ class Pagination extends React.PureComponent<IProps, IState> {
       showLessItems,
       showTitle,
       itemRender = defaultItemRender,
-      showPrevNextJumpers,
+      showJumpToPage,
     } = this.props;
 
     // When hideOnSinglePage is true and there is only 1 page, hide the pager
@@ -967,7 +1015,7 @@ class Pagination extends React.PureComponent<IProps, IState> {
     } else {
       this.addPageButtons(pagerList);
 
-      showPrevNextJumpers && this.addPrevNextNavigation(pagerList);
+      // showPrevNextJumpers && this.addPrevNextNavigation(pagerList);
       this.addFirstLastNavigation(pagerList);
       this.addSpacer(pagerList);
     }
@@ -1038,6 +1086,8 @@ class Pagination extends React.PureComponent<IProps, IState> {
             </li>
           </>
         )}
+
+        {!simplePagination && showJumpToPage && this.renderJumpToPage()}
 
         {!simplePagination && (
           <li className={theme.ItemPerPage}>
