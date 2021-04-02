@@ -11,16 +11,16 @@ $stacking-order: (
 
 $range-wrapper: rem(28px);
 
-$range-thumb-border-error: rem(2px) solid red;
+$range-thumb-border-error: rem(2px) solid color(red, dark);
 $range-thumb-shadow: var(
   --p-override-none,
-  (0 0 0 rem(1px) black, shadow(faint))
+  (0 0 0 rem(1px) color(blue, base), shadow(faint))
 );
 $range-thumb-shadow-hover: var(
   --p-override-none,
-  (0 0 0 rem(1px) black, shadow(faint))
+  (0 0 0 rem(1px) color(blue, base), shadow(faint))
 );
-$range-thumb-shadow-error: var(--p-override-none, 0 0 0 rem(1px) red);
+$range-thumb-shadow-error: var(--p-override-none, 0 0 0 rem(1px) color(red, dark));
 $range-thumb-shadow-focus: var(
   --p-override-none,
   0 0 0 rem(1px) indigo
@@ -31,6 +31,8 @@ $range-thumb-shadow-focus: var(
   width: 100%;
   display: flex;
   align-items: center;
+  overflow-x:hidden;
+  padding-bottom:1.6rem;
 }
 
 .TrackWrapper {
@@ -60,7 +62,7 @@ $range-thumb-shadow-focus: var(
   background-image: linear-gradient(to right, var(--gradient-colors));
 
   .error & {
-    --selected-range: #{var(--p-action-critical, red)};
+    --selected-range: #{var(--p-action-critical, color(red, dark))};
       background-image: linear-gradient(to right, var(--gradient-colors));
   }
   
@@ -80,11 +82,11 @@ $range-thumb-shadow-focus: var(
     width: $range-thumb-size;
     height: $range-thumb-size;
     border-radius: 50%;
-    border: border-width() solid var(--p-interactive, color('sky', 'lighter'));
+    border: border-width() solid var(--p-interactive, color(blue, base));
     box-shadow: $range-thumb-shadow;
     background: linear-gradient(
-      var(--p-interactive, color('sky', 'lighter')),
-      var(--p-interactive, color('sky', 'light'))
+      var(--p-interactive, color(blue, base)),
+      var(--p-interactive, color(blue, base))
     );
     -webkit-tap-highlight-color: transparent;
     cursor: -webkit-grab;
@@ -116,13 +118,37 @@ $range-thumb-shadow-focus: var(
       }
 
       .error & {
-        border-color: var(--p-action-critical, red);
+        border-color: var(--p-action-critical, color(red, dark));
         background: linear-gradient(
           var(--p-action-critical, color('sky', 'lighter')),
           var(--p-action-critical, color('sky', 'light'))
         );
         box-shadow: $range-thumb-shadow-error;
       }
+      &:after {
+        content: "";
+        display: block;
+        position: absolute;
+        background-color: color(blue, base);
+        width: 5000px;
+        height: 2px;
+        left: 17px;
+        top: 7px;
+      }
+  }
+
+  
+ .Thumbs:nth-child(5) {
+    &:after {
+      content: "";
+    display: block;
+    position: absolute;
+    background-color: gray;
+    width: 5000px;
+    height: 2px;
+    left: 17px;
+    top: 7px;
+    }
   }
 
   $range-output-size: rem(32px);
@@ -141,33 +167,14 @@ $range-thumb-shadow-focus: var(
   .Output {
     position: absolute;
     z-index: z-index('output', $stacking-order);
-    bottom: var(--p-range-slider-thumb-size-active, $range-thumb-size);
-    opacity: 0;
-    visibility: hidden;
+    top: var(--p-range-slider-thumb-size-active, 2.6rem);
+    opacity: 1;
+    visibility: visible;
     pointer-events: none;
     transition-property: opacity, visibility, bottom;
     transition-duration: var(--p-duration-1-5-0, duration());
     transition-timing-function: var(--p-ease, easing());
     transform: translateX(calc(-50% + #{$range-thumb-size / 2}));
-  
-    .Thumbs:hover + &,
-    .Thumbs:focus + & {
-      opacity: var(--p-override-zero, 1);
-      visibility: var(--p-override-none, visible);
-    }
-   
-    .Thumbs:active + & {
-      $range-thumb-size-difference: var(
-          --p-range-slider-thumb-size-active,
-          $range-thumb-size
-        ) - var(--p-range-slider-thumb-size-base, $range-thumb-size);
-      opacity: 1;
-      visibility: visible;
-      bottom: calc(
-        #{var(--p-range-slider-thumb-size-active, $range-thumb-size)} + #{$range-thumb-size-difference}
-      );
-    }
-
   }
 
   .OutputBubble {
