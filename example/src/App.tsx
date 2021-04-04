@@ -1343,7 +1343,7 @@ class App extends React.Component<{}, State> {
         onClick: (value: any) => {
           console.log('Version:', value);
         },
-      },104
+      }
     ];
 
     const treeSource: TreeSource[] = [
@@ -1596,7 +1596,6 @@ class App extends React.Component<{}, State> {
             showTitle={true}
             simplePagination={false}
             showJumpToPage={true}
-            // simple={false}
           />
           PageSize:
           <PageSize

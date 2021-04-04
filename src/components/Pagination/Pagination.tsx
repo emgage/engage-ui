@@ -16,6 +16,8 @@ import Label from '../Label';
 import Icon from '../Icon';
 import Select from '../Select';
 
+const MAX_PAGER_BUTTONS = 7
+
 interface IProps {
   disabled?: boolean;
   prefixCls?: string;
@@ -90,7 +92,7 @@ export const DefaultProps = {
   lazyLoading: false,
   fixedSize: true,
   simplePagination: false,
-  showJumpToPage: true
+  showJumpToPage: false
 };
 
 function noop() {}
@@ -424,6 +426,23 @@ class Pagination extends React.PureComponent<IProps, IState> {
     });
   }
 
+  getDataOrAriaAttributeProps = (props: any) => {
+    return Object.keys(props).reduce(
+      (prev: any, key: any) => {
+        if (
+          key.substr(0, 5) === 'data-' ||
+          key.substr(0, 5) === 'aria-' ||
+          key === 'role'
+        ) {
+          prev[key] = (props as any)[key];
+        }
+        return prev;
+        // tslint:disable-next-line:align
+      },
+      {}
+    );
+  }
+
   renderTablePagination = () => {
     const {
       style,
@@ -444,20 +463,7 @@ class Pagination extends React.PureComponent<IProps, IState> {
     const prevPage = current - 1 > 0 ? current - 1 : 0;
     const nextPage = current + 1 < numPages ? current + 1 : numPages;
 
-    const dataOrAriaAttributeProps = Object.keys(this.props).reduce(
-      (prev: any, key: any) => {
-        if (
-          key.substr(0, 5) === 'data-' ||
-          key.substr(0, 5) === 'aria-' ||
-          key === 'role'
-        ) {
-          prev[key] = (this.props as any)[key];
-        }
-        return prev;
-        // tslint:disable-next-line:align
-      },
-      {}
-    );
+    const dataOrAriaAttributeProps = this.getDataOrAriaAttributeProps(this.props)
 
     const goButton = showQuickJumper && showQuickJumper.goButton;
 
@@ -566,7 +572,7 @@ class Pagination extends React.PureComponent<IProps, IState> {
     let left = Math.max(1, current - pageBufferSize);
     let right = Math.min(current + pageBufferSize, numPages);
 
-    const maxPageLimit = showLessItems ? 7 : 9;
+    const maxPageLimit = showLessItems ? MAX_PAGER_BUTTONS : MAX_PAGER_BUTTONS + 2;
 
     if (numPages <= maxPageLimit) {
       left = 1;
@@ -910,7 +916,7 @@ class Pagination extends React.PureComponent<IProps, IState> {
 
     const numPages = calculatePage(undefined, this.state, this.props);
 
-    const maxPageLimit = showLessItems ? 7 : 9;
+    const maxPageLimit = showLessItems ? MAX_PAGER_BUTTONS : MAX_PAGER_BUTTONS + 2;
 
     if (numPages <= maxPageLimit) {
       return null;
@@ -990,22 +996,9 @@ class Pagination extends React.PureComponent<IProps, IState> {
       );
     }
 
-    const dataOrAriaAttributeProps = Object.keys(props).reduce(
-      (prev: any, key: any) => {
-        if (
-          key.substr(0, 5) === 'data-' ||
-          key.substr(0, 5) === 'aria-' ||
-          key === 'role'
-        ) {
-          prev[key] = props[key];
-        }
-        return prev;
-        // tslint:disable-next-line:align
-      },
-      {}
-    );
+    const dataOrAriaAttributeProps = this.getDataOrAriaAttributeProps(props)
 
-    const maxPageLimit = showLessItems ? 7 : 9;
+    const maxPageLimit = showLessItems ? MAX_PAGER_BUTTONS : MAX_PAGER_BUTTONS + 2;
 
     if (props.simple) {
       return this.renderTablePagination();
