@@ -16,7 +16,7 @@ import Label from '../Label';
 import Icon from '../Icon';
 import Select from '../Select';
 
-const MAX_PAGER_BUTTONS = 7
+const MAX_PAGER_BUTTONS = 7;
 
 interface IProps {
   disabled?: boolean;
@@ -463,7 +463,7 @@ class Pagination extends React.PureComponent<IProps, IState> {
     const prevPage = current - 1 > 0 ? current - 1 : 0;
     const nextPage = current + 1 < numPages ? current + 1 : numPages;
 
-    const dataOrAriaAttributeProps = this.getDataOrAriaAttributeProps(this.props)
+    const dataOrAriaAttributeProps = this.getDataOrAriaAttributeProps(this.props);
 
     const goButton = showQuickJumper && showQuickJumper.goButton;
 
@@ -996,7 +996,7 @@ class Pagination extends React.PureComponent<IProps, IState> {
       );
     }
 
-    const dataOrAriaAttributeProps = this.getDataOrAriaAttributeProps(props)
+    const dataOrAriaAttributeProps = this.getDataOrAriaAttributeProps(props);
 
     const maxPageLimit = showLessItems ? MAX_PAGER_BUTTONS : MAX_PAGER_BUTTONS + 2;
 
