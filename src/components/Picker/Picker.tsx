@@ -188,7 +188,6 @@ class Picker extends React.PureComponent<Props, State> {
 
   renderSuggestionsContainer = ({ containerProps, children }: any) => {
     const { moreInfoComponent, theme } = this.props;
-    const { isFocused } = this.state;
     let className = '';
     if (!resultsBehaviorOpen) {
       className = theme.pickerResultHide;
@@ -200,7 +199,7 @@ class Picker extends React.PureComponent<Props, State> {
       <div {...containerProps} className={theme.PopoverButtonWrap}>
         {children}
         {
-          isFocused ?
+          resultsBehaviorOpen ?
             <div className={className}>
               {moreInfoComponent}
             </div>
@@ -442,7 +441,9 @@ class Picker extends React.PureComponent<Props, State> {
       };
     }
 
-    if (moreInfoComponent && isFocused) {
+    resultsBehaviorOpen = suggestions.length !== 0;
+
+    if (moreInfoComponent && resultsBehaviorOpen) {
       autoSuggestMethods.renderSuggestionsContainer = this.renderSuggestionsContainer;
     }
 
@@ -450,8 +451,6 @@ class Picker extends React.PureComponent<Props, State> {
       autoSuggestMethods.renderSectionTitle = this.renderSectionTitle;
       autoSuggestMethods.getSectionSuggestions = this.getSectionSuggestions;
     }
-
-    resultsBehaviorOpen = stateProps.suggestions.length !== 0;
 
     return (
       <div id={componentId}>
