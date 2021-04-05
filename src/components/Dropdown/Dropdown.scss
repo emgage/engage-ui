@@ -108,6 +108,10 @@ $font-weight-normal: 400 !default;
     background-color: transparent;
     &:hover{
       cursor: default;
+      
+      & > button {
+        color: color(ink, lightest);
+      }
     }
   }
 }
