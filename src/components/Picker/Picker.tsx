@@ -441,6 +441,8 @@ class Picker extends React.PureComponent<Props, State> {
       };
     }
 
+    resultsBehaviorOpen = suggestions.length !== 0;
+
     if (moreInfoComponent && resultsBehaviorOpen) {
       autoSuggestMethods.renderSuggestionsContainer = this.renderSuggestionsContainer;
     }
@@ -449,8 +451,6 @@ class Picker extends React.PureComponent<Props, State> {
       autoSuggestMethods.renderSectionTitle = this.renderSectionTitle;
       autoSuggestMethods.getSectionSuggestions = this.getSectionSuggestions;
     }
-
-    resultsBehaviorOpen = stateProps.suggestions.length !== 0;
 
     return (
       <div id={componentId}>
