@@ -27,8 +27,8 @@ $spinner-size: rem(20px);
   }
 
   &.multiline > .input {
-    margin-top: (control-vertical-padding() * 2) - 0.3rem;
-    padding-top: 0;
+    // margin-top: (control-vertical-padding() * 2) - 0.3rem;
+    padding-top: (control-vertical-padding() * 2) - 0.3rem;
   }
 
   &.labelHidden {
