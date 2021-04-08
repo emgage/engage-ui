@@ -126,7 +126,7 @@ $stacking-order: (
 .PopoverButtonWrap {
   min-height: 30px;
   position: absolute;
-  min-width: 42rem;
+  max-width: 42rem;
   height: 100%;
   .suggestionsList {
     width:100%;
