@@ -158,7 +158,11 @@ body .childLi {
         position: relative;
         display: block;
         &>div {
-            margin: .6rem 2.1rem;
+            padding: .6rem 2.1rem;
+            &:focus-within,
+            &:hover {
+                background-color: color(ink, light);
+            }
             div {
                 margin-left:1.3rem;
                 margin-top: .3rem;

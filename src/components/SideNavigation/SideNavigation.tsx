@@ -117,7 +117,7 @@ class SideNavigation extends React.PureComponent<Props, State> {
           <div key={index}>
             { child.notActionable ?
               (
-                <div className={childLiClass} style={{ cursor: 'default' }} aria-disabled={false} id={componentId ? `${componentId}${child.label}` : ''}>
+                <div className={childLiClass} style={{ cursor: 'default', paddingBottom: '.4rem' }} aria-disabled={false} id={componentId ? `${componentId}${child.label}` : ''}>
                   {/* <Icon source={child.icon} componentColor="white" componentClass={theme.customIcon} theme={theme} /> */}
                   {child.label}
                 </div>
