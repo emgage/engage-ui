@@ -188,23 +188,20 @@ class Picker extends React.PureComponent<Props, State> {
 
   renderSuggestionsContainer = ({ containerProps, children }: any) => {
     const { moreInfoComponent, theme } = this.props;
+    const { isFocused } = this.state;
     let className = '';
-    if (!resultsBehaviorOpen) {
-      className = theme.pickerResultHide;
-    } else {
+    if (moreInfoComponent && isFocused) {
       className = theme.pickerResultShow;
+    } else {
+      className = theme.pickerResultHide;
     }
 
     return (
       <div {...containerProps} className={theme.PopoverButtonWrap}>
         {children}
-        {
-          resultsBehaviorOpen ?
-            <div className={className}>
-              {moreInfoComponent}
-            </div>
-          : null
-        }
+        <div className={className}>
+          {moreInfoComponent}
+        </div>
       </div>
     );
   }
