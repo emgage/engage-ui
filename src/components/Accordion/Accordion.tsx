@@ -15,6 +15,8 @@ export interface AccordionItemProps {
 
 export interface Props {
   clickHandler?(event: React.FormEvent<HTMLElement>): void;
+  // Click handler for children items
+  childrenClickHandler?(event: React.FormEvent<HTMLElement>): void;
   // Index of item which you want to be in-active
   closeIndex?: number;
   componentClass?: string;
@@ -127,6 +129,7 @@ class Accordion extends React.PureComponent<Props, State> {
   render() {
     const {
       clickHandler,
+      childrenClickHandler,
       componentClass = '',
       componentStyle = {},
       items,
@@ -146,6 +149,7 @@ class Accordion extends React.PureComponent<Props, State> {
           active={active[index] ? true : false}
           header={item.header} style={componentStyle}
           clickHandler={clickHandler}
+          childrenClickHandler={childrenClickHandler}
           theme={theme}
         >
           {item.children}

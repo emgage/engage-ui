@@ -25,12 +25,6 @@ $spinner-size: rem(20px);
     padding-top: (control-vertical-padding() * 2) - 0.3rem; // total padding - padding-bottom
     padding-bottom: 0.3rem;
   }
-
-  &.multiline > .input {
-    margin-top: (control-vertical-padding() * 2) - 0.3rem;
-    padding-top: 0;
-  }
-
   &.labelHidden {
     
     > .prefix {
@@ -57,7 +51,7 @@ $spinner-size: rem(20px);
 
 .error {
 
-  > .input ~ .backdrop {
+  .backdrop {
     background-color: theme-color(m-red, 50);
     border-color: theme-color(m-red, 600);
     box-shadow:

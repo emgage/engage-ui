@@ -29,7 +29,7 @@ class Pager extends React.PureComponent<IProps, {}> {
   }
 
   render() {
-    const { active = false, className = '', itemRender, onClick, onKeyPress, showTitle, page, theme, plain = false, componentStyle } = this.props;
+    const { active = false, className = '', itemRender, onClick, onKeyPress, showTitle, page, theme, componentStyle } = this.props;
 
     const prefixCls = theme['rc-pagination-item'];
     const cls = classNames(prefixCls, `${prefixCls}-${page}`, {
@@ -54,7 +54,7 @@ class Pager extends React.PureComponent<IProps, {}> {
         onKeyPress={handleKeyPress}
         tabIndex={0}
       >
-        {itemRender(page, 'page', <Button componentStyle={componentStyle} plain={plain} componentClass={theme.button} primary={active}>{page}</Button>)}
+        {itemRender(page, 'page', <Button componentStyle={componentStyle} componentClass={theme.button} primary={active}>{page}</Button>)}
       </li>
     );
   }

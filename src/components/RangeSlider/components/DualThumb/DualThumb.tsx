@@ -11,6 +11,7 @@ import { FeaturesContext } from './features';
 import { Labelled, labelID } from '../Labelled';
 import { EventListener } from './EventListener';
 import { Keys } from '../../../../types';
+import BodyText from '../../../BodyText';
 
 import * as styles from './DualThumb.scss';
 
@@ -200,9 +201,10 @@ export class DualThumb extends Component<DualThumbProps, State> {
             left: `${leftPositionThumbLower}px`,
           }}
         >
-          <div className={styles.OutputBubble}>
+          {/* <div className={styles.OutputBubble}>
             <span className={styles.OutputText}>{value[0]}</span>
-          </div>
+          </div> */}
+          <BodyText componentSize="small" componentColor="darker">{value[0]}</BodyText>
         </output>
       ) : null;
 
@@ -216,9 +218,10 @@ export class DualThumb extends Component<DualThumbProps, State> {
             left: `${leftPositionThumbUpper}px`,
           }}
         >
-          <div className={styles.OutputBubble}>
+          {/* <div className={styles.OutputBubble}>
             <span className={styles.OutputText}>{value[1]}</span>
-          </div>
+          </div> */}
+          <BodyText componentSize="small" componentColor="darker">{value[1]}</BodyText>
         </output>
       ) : null;
 

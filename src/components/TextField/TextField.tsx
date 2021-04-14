@@ -313,6 +313,7 @@ class TextField extends React.PureComponent<Props, State> {
 
     return (
       <Labelled
+        onClick={this.handleInputFocus}
         autoSuggest={autoSuggest}
         label={label}
         componentId={componentId}
@@ -430,7 +431,12 @@ class TextField extends React.PureComponent<Props, State> {
 
   @autobind
   private handleInputFocus() {
-    this.input.focus();
+    if (this.props.autoSuggest && this.props.autoSuggestMethods) {
+      const inputRef = this.props.autoSuggestMethods.getInputReference();
+      inputRef && inputRef.focus();
+    } else {
+      this.input.focus();
+    }
   }
 }
 

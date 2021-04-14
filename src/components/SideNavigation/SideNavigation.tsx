@@ -56,7 +56,6 @@ export interface State {
   activeDrawerId: string;
   popoverActive2: boolean;
   anchorEl2?: HTMLElement;
-  sideNavigationData: INavigationData[];
 }
 
 // SideNavigation component, in here wrap all other required components or DOM for the SideNavigation
@@ -68,7 +67,6 @@ class SideNavigation extends React.PureComponent<Props, State> {
       // As per props value set the drawer id to be active
       popoverActive2: false,
       activeDrawerId: this.props.drawerExpand ? 'fullContent' : 'collapsedContent',
-      sideNavigationData: this.props.source,
     };
   }
 
@@ -91,11 +89,6 @@ class SideNavigation extends React.PureComponent<Props, State> {
     if (newProps.drawerExpand !== this.props.drawerExpand) {
       this.setState({ activeDrawerId: newProps.drawerExpand ? 'fullContent' : 'collapsedContent' });
     }
-
-    if (newProps.source[1] && this.props.source[1] && (newProps.source[1].label !== this.props.source[1].label)) {
-      // Update state if text label for current app(on second index) changes
-      this.setState({ sideNavigationData: newProps.source });
-    }
   }
 
   toggleDrawerContent = () => {
@@ -108,9 +101,9 @@ class SideNavigation extends React.PureComponent<Props, State> {
   }
 
   render() {
-    const { theme, accordian, drawerOpen, hideCollapse, activeItem, drawerStyle, componentId = '' } = this.props;
+    const { theme, accordian, drawerOpen, hideCollapse, activeItem, drawerStyle, componentId = '', source } = this.props;
     const { collapseLink, li: liClass, childLi: childLiClass } = theme;
-    const { activeDrawerId, sideNavigationData } = this.state;
+    const { activeDrawerId } = this.state;
 
     let activeMenus: any = localStorage.getItem('active_navbar_menus');
     if (activeMenus) {
@@ -118,13 +111,13 @@ class SideNavigation extends React.PureComponent<Props, State> {
     }
 
     // Iterate through sideNavigationData and set markup when full content is displayed
-    const fullContentMarkup = sideNavigationData.map((full: any, index: number) => {
+    const fullContentMarkup = source.map((full: any, index: number) => {
       const childrenMarkup = full.children !== undefined || null ? full.children.map((child: any, index: number) => {
         return (
           <div key={index}>
             { child.notActionable ?
               (
-                <div className={childLiClass} style={{ cursor: 'default' }} aria-disabled={false} id={componentId ? `${componentId}${child.label}` : ''}>
+                <div className={childLiClass} style={{ cursor: 'default', paddingBottom: '.4rem' }} aria-disabled={false} id={componentId ? `${componentId}${child.label}` : ''}>
                   {/* <Icon source={child.icon} componentColor="white" componentClass={theme.customIcon} theme={theme} /> */}
                   {child.label}
                 </div>
@@ -145,7 +138,7 @@ class SideNavigation extends React.PureComponent<Props, State> {
         header: (
           childrenMarkup != null && childrenMarkup !== undefined && childrenMarkup.length > 0 ?
           (
-            <Button componentSize="slim" componentClass={liClass} onClick={full.action} aria-disabled={false} componentId={componentId ? `${componentId}${full.label}` : ''} plain fullWidth >
+            <Button componentSize="slim" componentClass={liClass} aria-disabled={false} componentId={componentId ? `${componentId}${full.label}` : ''} plain fullWidth >
               {/* <Icon source={full.icon} componentColor={'black'} componentClass={theme.customIcon} theme={theme} /> */}
               {full.label}
             </Button>
@@ -183,7 +176,7 @@ class SideNavigation extends React.PureComponent<Props, State> {
 
             {childrenMarkup}
           </div>
-        ) : <Accordion key={index} defaultOpenIndexs={activeMenus && activeMenus[index - 1] ? [0] : [] } mode="collapsible" items={items} theme={theme} />) :
+        ) : <Accordion key={index} defaultOpenIndexs={activeMenus && activeMenus[index - 1] ? [0] : [] } mode="collapsible" items={items} theme={theme} clickHandler={full.action} />) :
         (
           <div key={index}>
             <div className={liClass} onClick={full.action} aria-disabled={false}>
@@ -210,7 +203,7 @@ class SideNavigation extends React.PureComponent<Props, State> {
     });
 
     // Set markup when only icons need to be shown in collapsed state
-    const collapsedContentMarkup = sideNavigationData.map((col:any) => {
+    const collapsedContentMarkup = source.map((col:any) => {
       const singleItem = classNames(
         theme.listItem,
         activeItem === col.id && theme.active,

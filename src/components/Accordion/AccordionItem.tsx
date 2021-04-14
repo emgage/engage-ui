@@ -11,6 +11,8 @@ export interface Props {
   // Define accordion item is active or not
   active?: boolean;
   clickHandler?(event: React.FormEvent<HTMLElement>) : void;
+  // Click handler for children items
+  childrenClickHandler?(event: React.FormEvent<HTMLElement>): void;
   // Item of accordion component to be displayed
   children: React.ReactElement<any>;
   componentClass?: string;
@@ -27,6 +29,12 @@ class AccordionItem extends React.PureComponent<Props, never> {
   handleClick = (event: React.FormEvent<HTMLElement>) => {
     if (this.props.clickHandler) {
       this.props.clickHandler(event);
+    }
+  }
+
+  handleClickChildren = (event: React.FormEvent<HTMLElement>) => {
+    if (this.props.childrenClickHandler) {
+      this.props.childrenClickHandler(event);
     }
   }
 
@@ -58,7 +66,7 @@ class AccordionItem extends React.PureComponent<Props, never> {
           <Icon source="chevronDown" componentColor="black" componentClass={theme.AccordianIcon}></Icon>
         </div>
 
-        <div className={active ? theme.body : theme.bodyCollapsed} onClick={this.handleClick}>
+        <div className={active ? theme.body : theme.bodyCollapsed} onClick={this.handleClickChildren}>
           {children}
         </div>
       </div>
@@ -66,10 +74,11 @@ class AccordionItem extends React.PureComponent<Props, never> {
   }
 
   @autobind
-  private clickHandler() {
+  private clickHandler(event: any) {
     if (typeof this.props.toggle !== 'undefined') {
       this.props.toggle(this.props.index);
     }
+    this.handleClick(event);
   }
 }
 export default themr(ACCORDION, baseTheme)(AccordionItem) as ThemedComponentClass<Props, never>;

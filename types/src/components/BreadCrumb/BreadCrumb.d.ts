@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 export declare type Direction = 'left' | 'right';
-export declare type Type = 'default' | 'disabled' | 'active';
+export declare type Type = 'default' | 'text' | 'link' | 'disabled' | 'active';
 export declare type DisplayStyle = 'yellow' | 'green' | 'blue' | 'primary';
 export interface ISourceData {
     name: React.ReactNode;
