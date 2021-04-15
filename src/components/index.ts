@@ -208,6 +208,7 @@ export {
 export {
   default as Picker,
   Props as PickerProps,
+  LazyPicker,
 } from './Picker';
 
 export {

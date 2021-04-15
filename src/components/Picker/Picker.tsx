@@ -9,6 +9,7 @@ import * as baseTheme from './Picker.scss';
 // TODO: Why are we using this custom card and not the Card component?
 import Popover from '../Popover';
 import FlexBox from '../FlexBox';
+import { cloneDeep, get } from 'lodash';
 
 let resultsBehaviorOpen: boolean = false;
 
@@ -165,23 +166,31 @@ class Picker extends React.PureComponent<Props, State> {
 
   componentWillReceiveProps(newProps: Props) {
     if (JSON.stringify(newProps.source) !== JSON.stringify(this.props.source)) {
-      const { chipListState } = this.state;
-      if (newProps.source.length && chipListState.length) {
-        chipListState.forEach((chip: any) => {
-          const currentText = newProps.source.find((source: any) => source.id === (chip.id || chip.key) || source.key === (chip.id || chip.key));
-          if (currentText) {
-            chip.text = currentText.name;
-          }
-        });
-      }
-      this.setState({ chipListState, suggestions: newProps.source || [], itemsList: newProps.source });
+      this.setState((prevState) => {
+        const { chipListState } = prevState;
+        const clonedChipListState = cloneDeep(chipListState);
+        if (newProps.source.length && clonedChipListState.length) {
+          clonedChipListState.forEach((chip: any) => {
+            const currentText = newProps.source.find((source: any) => source.id === (chip.id || chip.key) || source.key === (chip.id || chip.key));
+            if (currentText) {
+              chip.text = currentText.name;
+            }
+          });
+        }
+        return {
+          ...prevState,
+          chipListState: clonedChipListState,
+          suggestions: newProps.source || [],
+          itemsList: newProps.source
+        }
+      });
     }
     if (JSON.stringify(newProps.defaultSelectedItems) !== JSON.stringify(this.props.defaultSelectedItems)) {
       const hasValue: boolean = Boolean(newProps.defaultSelectedItems && newProps.defaultSelectedItems.length);
       this.setState({ hasValue, chipListState: newProps.defaultSelectedItems || [] });
     }
 
-    if (newProps.noOptionsMessage) {
+    if (newProps.noOptionsMessage && newProps.noOptionsMessage !== this.props.noOptionsMessage) {
       this.setState({ noSuggestions: true });
     }
   }
@@ -251,7 +260,7 @@ class Picker extends React.PureComponent<Props, State> {
 
       onChange: (event: React.FormEvent<any>, { newValue, method }: Autosuggest.ChangeEvent) => {
         this.setState({
-          value: newValue,
+          value: method === 'type' ? newValue : '',
         });
         if (this.props.searchBehavior) {
           this.props.searchBehavior(newValue, method);
@@ -311,18 +320,22 @@ class Picker extends React.PureComponent<Props, State> {
       onSuggestionSelected: (event: React.FormEvent<Element>, { suggestion }: Autosuggest.SuggestionSelectedEventData<any>) => {
         suggestion.text = suggestion.name;
         autoSuggestMethods.updateList(suggestion);
-        const chipListState = this.state.chipListState.concat(suggestion);
-        const item = Object.assign({}, chipListState[0], { tabIndex: 0 });
-        chipListState[0] = item;
-        this.setState({
-          chipListState,
-          value: '',
-          hasValue: true,
-        });
+        this.setState((prevState) => {
+          const chipListState = [...this.state.chipListState, suggestion];
+          const item = Object.assign({}, chipListState[0], { tabIndex: 0 });
+          chipListState[0] = item;
 
-        if (this.props.onSelect) {
-          this.props.onSelect(suggestion);
-        }
+          return {
+            ...prevState,
+            chipListState,
+            value: '',
+            hasValue: true,
+          }
+        }, () => {
+          if (this.props.onSelect) {
+            this.props.onSelect(suggestion);
+          }
+        });
       },
 
       chipRemove: (item: any) => {
@@ -373,7 +386,14 @@ class Picker extends React.PureComponent<Props, State> {
       },
 
       renderSuggestion: (suggestion: IItemList, { isHighlighted, query }: IRenderSuggestionProp) => {
-
+        // render custom option
+        if ((suggestion as any).customRender) {
+          return (suggestion as any).customRender(suggestion, {
+            isHighlighted,
+            query,
+            source: this.props.source,
+          });
+        }
         if (this.props.renderPickerItem) {
           return this.props.renderPickerItem(suggestion, isHighlighted, query);
         }
@@ -444,9 +464,16 @@ class Picker extends React.PureComponent<Props, State> {
       autoSuggestMethods.renderSuggestionsContainer = this.renderSuggestionsContainer;
     }
 
+    let suggestionList = get(stateProps, 'suggestions', []);
     if (columns.length !== 0) {
       autoSuggestMethods.renderSectionTitle = this.renderSectionTitle;
       autoSuggestMethods.getSectionSuggestions = this.getSectionSuggestions;
+      suggestionList = get(suggestionList, '0.items', []);
+    }
+
+    let isDataAvailable = suggestionList.length > 0;
+    if (!shouldRenderSuggestions) {
+      isDataAvailable = isDataAvailable || this.state.value === '';
     }
 
     return (
@@ -476,7 +503,7 @@ class Picker extends React.PureComponent<Props, State> {
           />
         </div>
         {
-          noSuggestions && noOptionsMessage !== '' && isFocused &&
+          noSuggestions && !isDataAvailable  && noOptionsMessage && isFocused && !loading &&
             <Popover
               addArrow={false}
               componentStyle={{ maxHeight: window.outerHeight < 768 ? 500 : 800, overflow: 'auto', maxWidth: popoverWidth, width: '49.2rem', padding: '1.3rem', marginTop: '-.4rem' }}

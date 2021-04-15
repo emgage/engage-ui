@@ -91,6 +91,7 @@ import {
   PageSize,
   RangeSlider,
   SwitchCheckbox,
+  LazyPicker,
 } from '../../src/components';
 
 interface State {
@@ -684,6 +685,14 @@ class App extends React.Component<{}, State> {
         />
       </span>
     );
+  }
+
+  lazyGetAll = (_config: any, _method: string) => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve({ currentPage: 1, pageCount: 2 });
+      }, 2000);
+    })
   }
 
   render() {
@@ -3095,6 +3104,22 @@ class App extends React.Component<{}, State> {
           />
         <br/>
         <br />
+
+          <LazyPicker
+            pickerProps={{
+              label: 'Lazy Picker',
+              helpText: 'Helper Text',
+              source: pickerdata,
+              defaultSelectedItems: [],
+              maxSelectedItems: 5,
+              minSelectedItems: 2,
+              autoSuggest: true,
+              loading: false,
+              noOptionsMessage: 'No items Available',
+              shouldRenderSuggestions: true,
+            }}
+            getAll={this.lazyGetAll}
+          />
 
         <Picker
             label="Picker Component with render header"
