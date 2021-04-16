@@ -182,7 +182,7 @@ class Picker extends React.PureComponent<Props, State> {
           chipListState: clonedChipListState,
           suggestions: newProps.source || [],
           itemsList: newProps.source
-        }
+        };
       });
     }
     if (JSON.stringify(newProps.defaultSelectedItems) !== JSON.stringify(this.props.defaultSelectedItems)) {
@@ -330,8 +330,8 @@ class Picker extends React.PureComponent<Props, State> {
             chipListState,
             value: '',
             hasValue: true,
-          }
-        }, () => {
+          };
+        },            () => {
           if (this.props.onSelect) {
             this.props.onSelect(suggestion);
           }

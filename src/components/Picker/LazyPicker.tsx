@@ -37,13 +37,13 @@ const LazyPicker = (props: ILazyPickerProps) => {
     if (shouldRenderSuggestions) {
       fetchFunction('initial');
     }
-  }, []);
+  },              []);
 
   React.useEffect(() => {
     if (initialSize !== size) {
       fetchFunction('size');
     }
-  }, [size]);
+  },              [size]);
 
   const lazySearch = debounce(
     (value: string, method: string) => {
@@ -95,9 +95,9 @@ const LazyPicker = (props: ILazyPickerProps) => {
           }
           return prevCount;
         });
-      }, 500);
+      },                           500);
     }
-  }
+  };
 
   const onFocus = () => {
     if ((searchString === '' && source.length === 0) || (searchString !== '')) {
