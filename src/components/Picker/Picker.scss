@@ -80,6 +80,7 @@ $stacking-order: (
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.25);
   list-style-type: none;
   z-index: z-index(popover, $stacking-order);
+  min-width: 13rem;
 }
 
 
@@ -126,7 +127,6 @@ $stacking-order: (
 .PopoverButtonWrap {
   min-height: 30px;
   position: absolute;
-  max-width: 42rem;
   height: 100%;
   .suggestionsList {
     width:100%;
