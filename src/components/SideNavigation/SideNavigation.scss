@@ -137,6 +137,11 @@ body .childLi {
     .header {
        padding: .3rem 1.2rem 0px;
        align-items: center;
+       &:focus-within .AccordianIcon{
+            transform: rotate( 0deg);
+            -moz-transform: rotate(0deg);
+            -webkit-transform: rotate(0deg);
+        }
         .AccordianIcon {
             fill:color(text, mid);
             order: 1;
