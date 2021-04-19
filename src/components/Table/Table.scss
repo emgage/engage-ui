@@ -60,11 +60,6 @@ $border-color: color(sky, base);
     display: table-row;
     vertical-align: inherit;
     border-color: inherit;
-    &:after {
-      clear:both;
-      content:'';
-      display: block;
-    }
   }
 
   &.nestedTable {
@@ -224,6 +219,12 @@ $border-color: color(sky, base);
 
     .table tr {
         margin-bottom: 0.5em;
+        
+      &:after {
+        clear:both;
+        content:'';
+        display: block;
+      }
     }
 
     .table td {
