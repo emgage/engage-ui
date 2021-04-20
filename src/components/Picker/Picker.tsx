@@ -259,11 +259,11 @@ class Picker extends React.PureComponent<Props, State> {
       },
 
       onChange: (event: React.FormEvent<any>, { newValue, method }: Autosuggest.ChangeEvent) => {
-        this.setState({
-          value: method === 'type' ? newValue : '',
-        });
-        if (this.props.searchBehavior) {
-          this.props.searchBehavior(newValue, method);
+        if (method === 'type') {
+          this.setState({ value: newValue });
+          if (this.props.searchBehavior) {
+            this.props.searchBehavior(newValue, method);
+          }
         }
       },
 
