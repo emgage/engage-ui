@@ -276,6 +276,12 @@ button.rbc-input::-moz-focus-inner {
       -moz-transition: all .3s ease-in-out;
       -webkit-transition: all .3s ease-in-out;
     }
+
+    .rbc-date-cell.rbc-now > a:focus,
+    .rbc-date-cell.rbc-now.rbc-current > a:focus {
+      color:#fff;
+    }
+
 .rbc-row-bg {
   display: flex;
   flex-direction: row;
