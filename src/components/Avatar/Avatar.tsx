@@ -29,6 +29,8 @@ export interface Props {
   accessibilityLabel?: string;
   // Theme to be injected via css-themr
   theme?: any;
+  // To provide styling.
+  imageComponentStyle?: React.CSSProperties;
 }
 
 class Avatar extends React.PureComponent<Props, {}> {
@@ -41,6 +43,7 @@ class Avatar extends React.PureComponent<Props, {}> {
       componentSize = 'medium',
       accessibilityLabel,
       theme,
+      imageComponentStyle
     } = this.props;
 
     const nameString = componentName || initials;
@@ -74,7 +77,7 @@ class Avatar extends React.PureComponent<Props, {}> {
     let content = null;
 
     if (finalSource) {
-      content = <Image className={theme.Image} source={finalSource} alt="" role="presentation" />;
+      content = <Image className={theme.Image} source={finalSource} alt="" role="presentation" style={imageComponentStyle}/>;
     } else if (initials) {
       content = <span aria-hidden className={theme.Initials}>{initials}</span>;
     }
