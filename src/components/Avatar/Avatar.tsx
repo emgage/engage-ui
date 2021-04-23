@@ -31,13 +31,26 @@ export interface Props {
   theme?: any;
   // To provide styling.
   imageComponentStyle?: React.CSSProperties;
+  // Loads default static image when source image fails to load
+  defaultSource?: string;
 }
 
-class Avatar extends React.PureComponent<Props, {}> {
+class Avatar extends React.PureComponent<Props, any> {
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      source: this.props.source,
+    };
+  }
+  onError = () => {
+    const { defaultSource } = this.props;
+    if (defaultSource) {
+      this.setState({ source: defaultSource });
+    }
+  }
   render() {
     const {
       componentName,
-      source,
       initials,
       customer = false,
       componentSize = 'medium',
@@ -45,7 +58,7 @@ class Avatar extends React.PureComponent<Props, {}> {
       theme,
       imageComponentStyle
     } = this.props;
-
+    const { source } = this.state;
     const nameString = componentName || initials;
 
     let finalSource: string | undefined;
@@ -77,7 +90,7 @@ class Avatar extends React.PureComponent<Props, {}> {
     let content = null;
 
     if (finalSource) {
-      content = <Image className={theme.Image} source={finalSource} alt="" role="presentation" style={imageComponentStyle}/>;
+      content = <Image className={theme.Image} source={finalSource} alt="" role="presentation" style={imageComponentStyle} onError={this.onError} />;
     } else if (initials) {
       content = <span aria-hidden className={theme.Initials}>{initials}</span>;
     }
