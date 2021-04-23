@@ -10,6 +10,7 @@ export interface Props {
     accessibilityLabel?: string;
     theme?: any;
     imageComponentStyle?: React.CSSProperties;
+    defaultSource?: string;
 }
 declare const _default: ThemedComponentClass<Props, {}>;
 export default _default;
