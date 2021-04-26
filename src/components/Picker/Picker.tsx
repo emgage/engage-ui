@@ -25,6 +25,7 @@ export interface IStateProps {
 export interface IItemList {
   name: string;
   tabIndex?: number;
+  image?: string;
 }
 
 export interface IRenderSuggestionProp {
@@ -407,12 +408,13 @@ class Picker extends React.PureComponent<Props, State> {
             queryData = (suggestion.name ? suggestion.name.slice(index, index + query.length) : '');
             nameAfter = (suggestion.name ? suggestion.name.slice(index + query.length) : '');
           }
+          const imgSrc = get(suggestion, 'image', null);
 
           if (isHighlighted) {
-            return <DefaultCard isHighlighted={true}  nameBefore={nameBefore} bold={queryData} nameAfter={nameAfter} />;
+            return <DefaultCard isHighlighted={true}  nameBefore={nameBefore} bold={queryData} nameAfter={nameAfter} image = {imgSrc} />;
           }
           return (
-            <DefaultCard nameBefore={nameBefore} bold={queryData} nameAfter={nameAfter} />
+            <DefaultCard nameBefore={nameBefore} bold={queryData} nameAfter={nameAfter} image = {imgSrc} />
           );
         }
       },
