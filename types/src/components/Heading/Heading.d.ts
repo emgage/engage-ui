@@ -12,6 +12,7 @@ export interface Props {
     headingSize?: Size;
     headingColor?: Color;
     theme?: any;
+    onClick?: (event: React.FormEvent<any>) => void;
 }
 declare const _default: ThemedComponentClass<Props, {}>;
 export default _default;
