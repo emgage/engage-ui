@@ -36,6 +36,7 @@ const heading = ({
   headingColor = 'text',
   children,
   theme,
+  onClick,
 }: Props) => {
   const headingClass = classNames(
     componentClass,
@@ -45,8 +46,8 @@ const heading = ({
   );
 
   const otherProps: any = {};
-  if (onclick) {
-    otherProps.onclick = onclick;
+  if (onClick) {
+    otherProps.onClick = onClick;
   }
 
   return <ELEMENT className={headingClass} style={componentStyle} id={componentId} {...otherProps}>{children}</ELEMENT>;
