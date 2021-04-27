@@ -51,6 +51,7 @@ const LazyPicker = (props: ILazyPickerProps) => {
       if (method === 'type') {
         fetchFunction('search', value);
       }
+    // tslint:disable-next-line
     }, 500);
 
   const fetchFunction = (type: string = '', searchVal = searchString) => {
