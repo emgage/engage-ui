@@ -78,15 +78,7 @@ $border-color: #dbdbdb;
       margin-left: 2.5rem;
     }
   }
-  div {
-    &:first-child {
-      @include fontStyle(1.4rem, bold);
-    }
-    &:nth-child(2) {
-      color: $font-color;
-    }
-  }
-  &:last-child {
+   &:last-child {
     border-bottom: 1px solid $border-color;
   }
 }
