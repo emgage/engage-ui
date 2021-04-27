@@ -20,6 +20,7 @@ export interface IStateProps {
   value?: string;
   removable: boolean;
   multiSection?: any;
+  reachedMax?: boolean;
 }
 
 export interface IItemList {
@@ -111,6 +112,7 @@ export interface Props {
   readOnly?: boolean;
   // Error to display beneath the label.
   errors?: [string];
+  placeholder?: string;
 }
 
 const DefaultCard = (props: any) => {
@@ -435,9 +437,11 @@ class Picker extends React.PureComponent<Props, State> {
         shouldRenderSuggestions,
         noOptionsMessage,
         errors,
+        placeholder,
     } = this.props;
     const { isFocused, hasValue, value, suggestions, chipListState, noSuggestions, anchorEl, popoverWidth } = this.state;
     const inputProps: any & { disabled: boolean } = {
+      placeholder,
       value,
       onChange: autoSuggestMethods.onChange,
       onKeyDown: autoSuggestMethods.onKeyDown,
@@ -445,7 +449,15 @@ class Picker extends React.PureComponent<Props, State> {
       onBlur: autoSuggestMethods.onBlur,
       disabled: readOnly || disabled || (!!this.props.maxSelectedItems && this.props.maxSelectedItems > 0 && this.props.maxSelectedItems <= chipListState.length),
     };
-    const stateProps: IStateProps = { value, suggestions, chipListState, inputProps, removable: readOnly ? false : true, multiSection: columns.length !== 0 ? true : false };
+    const stateProps: IStateProps = {
+      value,
+      suggestions,
+      chipListState,
+      inputProps,
+      removable: readOnly ? false : true,
+      multiSection: columns.length !== 0 ? true : false,
+      reachedMax: (!!this.props.maxSelectedItems && this.props.maxSelectedItems > 0 && this.props.maxSelectedItems <= chipListState.length)
+    };
 
     let suffixIcon: React.ReactNode = null;
     if (this.props.suffix) {
@@ -481,7 +493,6 @@ class Picker extends React.PureComponent<Props, State> {
     return (
       <div id={componentId}>
         <div ref={node => this.setWrapperRef(node)} className={theme.PickerWrap}>
-
           <TextField
             errors={errors}
             type="text"
