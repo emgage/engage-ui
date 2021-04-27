@@ -5,7 +5,7 @@ $modal-z-index:                                 1010 !default;
 $modal-overlay-background:                      rgba(0,0,0,0.6) !default;
 
 $modal-dialog-margin-vertical:                  50px !default;
-$modal-dialog-width-small:                      300px !default;
+$modal-dialog-width-small:                      360px !default;
 $modal-dialog-width-medium:                     600px !default;
 $modal-dialog-width-large:                      800px !default;
 $modal-dialog-width-xlarge:                     1200px !default;
@@ -108,5 +108,35 @@ $modal-footer-background:                        #fff !default; //add $global-ba
 .autoHeight {
   height: auto;
   overflow: auto;
+}
+
+.small {
+  table {
+    thead {
+      display: none;
+    }
+    td {
+      display:block;
+        &[data-label="Description"] {
+          span {
+            display: block;
+          }
+        }
+        &:before {
+          content: attr(data-label);
+          display: inline-block;
+          font-weight: 700;
+          vertical-align: middle;
+          margin-right: 10px;
+        }
+        span {
+          vertical-align: middle;
+        }
+        &:last-child {
+          float:none !important;
+          text-align: center;
+        }
+      }
+  }
 }
 
