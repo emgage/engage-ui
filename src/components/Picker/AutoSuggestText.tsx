@@ -18,6 +18,7 @@ export interface IStateProps {
   value?: string;
   removable: boolean;
   multiSection?: any;
+  reachedMax?: boolean;
 }
 
 export interface Props {
@@ -30,7 +31,7 @@ export interface Props {
 class AutoSuggestText extends React.PureComponent<Props, {}> {
   private refHolder: any;
   render() {
-    const { theme }: any = this.props;
+    const { theme, stateProps }: any = this.props;
 
     const className = classNames(
       theme.containerWrapper,
@@ -42,7 +43,8 @@ class AutoSuggestText extends React.PureComponent<Props, {}> {
         {this.props.stateProps ? this.props.stateProps.chipListState.map((input: any) => <Chip icon={input.icon} onIconClick={input.onIconClick} theme={theme} image={{ url: input.image }} removable={this.props.stateProps && this.props.stateProps.removable} onRemove={() => this.props.autoSuggestMethods ? this.props.autoSuggestMethods.chipRemove(input) : null} key={input.key}>{input.text}</Chip>) : null}
 
         {
-          this.props.autoSuggestMethods && this.props.autoSuggestMethods.shouldRenderSuggestions ?
+          !stateProps.reachedMax ?
+           this.props.autoSuggestMethods && this.props.autoSuggestMethods.shouldRenderSuggestions ?
             <Autosuggest
               theme={{
                 ...theme,
@@ -90,6 +92,7 @@ class AutoSuggestText extends React.PureComponent<Props, {}> {
               ref={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.storeInputReference : this.refHolder}
               renderSuggestionsContainer={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.renderSuggestionsContainer : (() => {}) as any}
             />
+            : null
           }
       </div>
     );

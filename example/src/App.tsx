@@ -3181,6 +3181,29 @@ class App extends React.Component<{}, State> {
           />
         <br/>
           
+
+        <Picker
+            label="Picker Component without render min max"
+            chipComponent={Chip}
+            helpText="Helper Text"
+            source={pickerdata}
+            defaultSelectedItems={selectedPickerdata}
+            maxSelectedItems={2}
+            minSelectedItems={1}
+            autoSuggest
+            // loading
+            placeholder="hint text"
+            // moreInfoComponent={<Button children="More Info" />}
+            // disabled
+            // readOnly
+            noOptionsMessage={"No items Available"}
+            // moreInfoComponent={<Button>More Info</Button>}
+            shouldRenderSuggestions={false}
+            // readOnly
+          />
+        <br/>
+
+
           <Picker
             label="Picker Component with render"
             chipComponent={Chip}
