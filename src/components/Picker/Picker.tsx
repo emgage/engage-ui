@@ -183,7 +183,7 @@ class Picker extends React.PureComponent<Props, State> {
         return {
           ...prevState,
           chipListState: clonedChipListState,
-          suggestions: this.getSuggestionsItems(newProps.source, newProps.columns),
+          suggestions: newProps.source || [],
           itemsList: newProps.source
         };
       });
@@ -196,13 +196,6 @@ class Picker extends React.PureComponent<Props, State> {
     if (newProps.noOptionsMessage && newProps.noOptionsMessage !== this.props.noOptionsMessage) {
       this.setState({ noSuggestions: true });
     }
-  }
-
-  getSuggestionsItems = (source: any, columns: any) => {
-    if (columns.length !== 0) {
-      return [{ title: columns, items: source }];
-    }
-    return source;
   }
 
   renderSuggestionsContainer = ({ containerProps, children }: any) => {
@@ -226,7 +219,7 @@ class Picker extends React.PureComponent<Props, State> {
   }
 
   getSectionSuggestions = (section: any) => {
-    return section.items || [];
+    return section.items;
   }
 
   renderSectionTitle = (section: any) => {
