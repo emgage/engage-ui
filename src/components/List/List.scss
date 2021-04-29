@@ -74,7 +74,7 @@ $border-color: #dbdbdb;
       display: inline-block;
     }
     &:nth-child(2) {
-      @include fontStyle(1.4rem, bold);
+      @include fontStyle(1.4rem, normal);
       margin-left: 2.5rem;
     }
   }
