@@ -1,5 +1,6 @@
 $height: rem(32px);
 $horizontal-padding: spacing(tighter) * 1.5;
+$maxWidth:rem(490px);
 
 $min-height: control-height();
 $vertical-padding: ($min-height - line-height(body) - rem(2px)) / 2;
@@ -19,6 +20,7 @@ $vertical-padding: ($min-height - line-height(body) - rem(2px)) / 2;
     overflow: hidden;
     white-space: nowrap;
     vertical-align: middle;
+    max-width: $maxWidth;
 }
 
 :focus {

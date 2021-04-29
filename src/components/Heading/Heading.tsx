@@ -24,6 +24,7 @@ export interface Props {
   headingColor?: Color;
   // Theme to be injected via css-themr.
   theme?: any;
+  onClick?: (event: React.FormEvent<any>) => void;
 }
 
 const heading = ({
@@ -35,6 +36,7 @@ const heading = ({
   headingColor = 'text',
   children,
   theme,
+  onClick,
 }: Props) => {
   const headingClass = classNames(
     componentClass,
@@ -43,7 +45,12 @@ const heading = ({
     headingColor && theme[variationName('color', headingColor)]
   );
 
-  return <ELEMENT className={headingClass} style={componentStyle} id={componentId} >{children}</ELEMENT>;
+  const otherProps: any = {};
+  if (onClick) {
+    otherProps.onClick = onClick;
+  }
+
+  return <ELEMENT className={headingClass} style={componentStyle} id={componentId} {...otherProps}>{children}</ELEMENT>;
 };
 
 export default themr(HEADING, baseTheme)(heading) as ThemedComponentClass<Props, {}>;

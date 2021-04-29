@@ -74,19 +74,11 @@ $border-color: #dbdbdb;
       display: inline-block;
     }
     &:nth-child(2) {
-      @include fontStyle(1.4rem, bold);
+      @include fontStyle(1.4rem, normal);
       margin-left: 2.5rem;
     }
   }
-  div {
-    &:first-child {
-      @include fontStyle(1.4rem, bold);
-    }
-    &:nth-child(2) {
-      color: $font-color;
-    }
-  }
-  &:last-child {
+   &:last-child {
     border-bottom: 1px solid $border-color;
   }
 }
