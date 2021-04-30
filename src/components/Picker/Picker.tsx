@@ -226,7 +226,7 @@ class Picker extends React.PureComponent<Props, State> {
   }
 
   getSectionSuggestions = (section: any) => {
-    return section.items || [];
+    return section && section.items || [];
   }
 
   renderSectionTitle = (section: any) => {
