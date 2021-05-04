@@ -3125,6 +3125,7 @@ class App extends React.Component<{}, State> {
             label="Picker Component with render header"
             chipComponent={Chip}
             helpText="Helper Text"
+            additionalText={'2 required'}
             source={pickerdata}
             defaultSelectedItems={selectedPickerdata}
             columns={columnConfigPicker}
