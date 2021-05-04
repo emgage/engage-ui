@@ -10,6 +10,7 @@ import * as baseTheme from './Picker.scss';
 import Popover from '../Popover';
 import FlexBox from '../FlexBox';
 import { cloneDeep, get } from 'lodash';
+import BodyText from '../BodyText';
 
 let resultsBehaviorOpen: boolean = false;
 
@@ -76,6 +77,8 @@ export interface State {
 export interface Props {
   // Additional hint text to display.
   helpText?: React.ReactNode;
+  // Additional text to display below helpertext.
+  additionalText?: React.ReactNode;
   // Label for the input.
   label?: string;
   // Visually hide the label.
@@ -432,6 +435,7 @@ class Picker extends React.PureComponent<Props, State> {
     const {
         autoSuggest = false,
         helpText,
+        additionalText,
         label,
         labelHidden = false,
         loading = false,
@@ -522,6 +526,9 @@ class Picker extends React.PureComponent<Props, State> {
             label={label || ''}
           />
         </div>
+        {
+          additionalText ? <BodyText componentSize="small" componentColor="darker">{additionalText}</BodyText> : null
+        }
         {
           noSuggestions && !isDataAvailable  && noOptionsMessage && isFocused && !loading &&
             <Popover
