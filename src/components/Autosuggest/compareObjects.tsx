@@ -11,6 +11,7 @@ export default function compareObjects(objA: any, objB: any, keys: any = []) {
   }
 
   const keysMap: any = {};
+  // tslint:disable:one-variable-per-declaration
   let i, len;
 
   for (i = 0, len = keys.length; i < len; i++) {
@@ -18,7 +19,7 @@ export default function compareObjects(objA: any, objB: any, keys: any = []) {
   }
 
   for (i = 0, len = aKeys.length; i < len; i++) {
-    let key = aKeys[i];
+    const key = aKeys[i];
     const aValue = objA[key];
     const bValue = objB[key];
 

@@ -65,3 +65,4 @@ export declare const PAGINATION = "PPagination";
 export declare const PAGER = "PPager";
 export declare const PAGESIZE = "PPageSize";
 export declare const SWITCHCHECKBOX = "PSwitchCheckbox";
+export declare const AUTOSUGGEST = "PAutosuggest";

@@ -19,6 +19,7 @@ export interface Props {
     componentStyle?: React.CSSProperties;
     componentClass?: string;
     theme?: any;
+    onClick?: (event: React.FormEvent<any>) => void;
 }
 export declare function errorID(id: string): string;
 export declare function helpTextID(id: string): string;

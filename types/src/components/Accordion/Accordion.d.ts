@@ -7,6 +7,7 @@ export interface AccordionItemProps {
 }
 export interface Props {
     clickHandler?(event: React.FormEvent<HTMLElement>): void;
+    childrenClickHandler?(event: React.FormEvent<HTMLElement>): void;
     closeIndex?: number;
     componentClass?: string;
     componentStyle?: any;

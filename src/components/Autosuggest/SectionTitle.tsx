@@ -2,10 +2,10 @@ import * as React from 'react';
 import compareObjects from './compareObjects';
 
 export interface Props {
-  section: any,
-  renderSectionTitle(): void,
-  theme(): void,
-  sectionKeyPrefix: string
+  section: any;
+  renderSectionTitle(): void;
+  theme(): void;
+  sectionKeyPrefix: string;
 }
 
 export interface State {

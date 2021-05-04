@@ -1,17 +1,18 @@
 import * as React from 'react';
 import { ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
-import * as Autosuggest from 'react-autosuggest';
 export interface IStateProps {
     chipListState: IItemList[];
-    suggestions: Autosuggest[];
+    suggestions: any[];
     inputProps: any;
     value?: string;
     removable: boolean;
     multiSection?: any;
+    reachedMax?: boolean;
 }
 export interface IItemList {
     name: string;
     tabIndex?: number;
+    image?: string;
 }
 export interface IRenderSuggestionProp {
     isHighlighted: string;
@@ -22,14 +23,15 @@ export interface IAutoSuggestMethods {
     getSuggestions(value: string): any[];
     getSuggestionValue(suggestion: object): void;
     onBlur(event: React.FormEvent<any>): void;
-    onChange(event: React.FormEvent<any>, { newValue, method }: Autosuggest.ChangeEvent): void;
+    onChange(event: React.FormEvent<any>, { newValue, method }: any): void;
     onFocus(event: React.FormEvent<any>): void;
     onKeyDown(e: React.FormEvent<Element> | KeyboardEvent): void;
     onSuggestionsFetchRequested({ value }: any): void;
-    onSuggestionSelected(event: React.FormEvent<Element>, { suggestion }: Autosuggest.SuggestionSelectedEventData<Autosuggest>): void;
+    onSuggestionSelected(event: React.FormEvent<Element>, { suggestion }: any): void;
     chipRemove(item: IItemList | number): void;
     renderSuggestion(suggestion: IItemList, { isHighlighted, query }: IRenderSuggestionProp): JSX.Element;
-    storeInputReference(autosuggest: Autosuggest): void;
+    storeInputReference(autosuggest: any): void;
+    getInputReference(): HTMLElement | undefined;
     updateList(input: HTMLElement): void;
     storeFocus(e: HTMLElement): void;
     shouldRenderSuggestions?(): void;
@@ -40,8 +42,8 @@ export interface IAutoSuggestMethods {
 export interface State {
     moreInfo: boolean;
     value: string;
-    input: HTMLElement[];
-    suggestions: Autosuggest[];
+    input?: HTMLElement;
+    suggestions: any[];
     chipListState: IItemList[];
     focusArr: HTMLElement[];
     itemsList: IItemList[];
@@ -55,6 +57,7 @@ export interface State {
 }
 export interface Props {
     helpText?: React.ReactNode;
+    additionalText?: React.ReactNode;
     label?: string;
     labelHidden?: boolean;
     loading?: boolean;
@@ -83,12 +86,14 @@ export interface Props {
     noOptionsMessage?: string;
     readOnly?: boolean;
     errors?: [string];
+    placeholder?: string;
 }
 declare class Picker extends React.PureComponent<Props, State> {
     wrapperRef: HTMLDivElement;
     constructor(props: Props);
     setWrapperRef: (node: any) => void;
     componentWillReceiveProps(newProps: Props): void;
+    getSuggestionsItems: (source: any, columns?: any) => any;
     renderSuggestionsContainer: ({ containerProps, children }: any) => JSX.Element;
     getSectionSuggestions: (section: any) => any;
     renderSectionTitle: (section: any) => any;

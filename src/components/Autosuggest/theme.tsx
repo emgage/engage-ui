@@ -16,7 +16,7 @@ export const defaultTheme = {
 };
 
 export const mapToAutowhateverTheme = (theme: any) => {
-  let result : any = {};
+  const result : any = {};
 
   for (const key in theme) {
     switch (key) {

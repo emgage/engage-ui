@@ -21,32 +21,31 @@ const REASON_INPUT_BLURRED = 'input-blurred';
 const REASON_ESCAPE_PRESSED = 'escape-pressed';
 
 export interface Props {
-  suggestions: any[],
+  suggestions: any[];
   onSuggestionsFetchRequested?(props?: any): void;
   onSuggestionsClearRequested?(item?: object): void;
-  shouldKeepSuggestionsOnSelect?(): void,
-  onSuggestionSelected?(): void,
-  onSuggestionHighlighted?(): void,
-  renderInputComponent?(): void,
-  renderSuggestionsContainer?(): void,
-  getSuggestionValue(): void,
-  renderSuggestion?: any,
-  inputProps?(props: any): void,
-  shouldRenderSuggestions?(): void,
-  alwaysRenderSuggestions?: boolean,
-  multiSection?: boolean,
-  getSectionSuggestions?: any,
-  focusInputOnSuggestionClick?: boolean,
-  highlightFirstSuggestion?: boolean,
-  theme?: any,
-  id?: string,
-  containerProps?: any, // Arb
+  shouldKeepSuggestionsOnSelect?(): void;
+  onSuggestionSelected?(): void;
+  onSuggestionHighlighted?(): void;
+  renderInputComponent?(): void;
+  renderSuggestionsContainer?(): void;
+  getSuggestionValue(): void;
+  renderSuggestion?: any;
+  inputProps?(props: any): void;
+  shouldRenderSuggestions?(): void;
+  alwaysRenderSuggestions?: boolean;
+  multiSection?: boolean;
+  getSectionSuggestions?: any;
+  focusInputOnSuggestionClick?: boolean;
+  highlightFirstSuggestion?: boolean;
+  theme?: any;
+  id?: string;
+  containerProps?: any; // Arb
 }
 
 export interface State {
 
 }
-
 
 class Autosuggest extends React.Component<Props, State> {
   blurEvent(blurEvent: any, arg1: { highlightedSuggestion: any; }) {
@@ -100,7 +99,7 @@ class Autosuggest extends React.Component<Props, State> {
     this.suggestionsContainer = this.autowhatever.itemsContainer;
   }
 
-  // eslint-disable-next-line camelcase, react/sort-comp
+  // tslint:disable-next-line:function-name
   UNSAFE_componentWillReceiveProps(nextProps: any) {
     // When highlightFirstSuggestion becomes deactivated, if the first suggestion was
     // set, we should reset the suggestion back to the unselected default state.
@@ -113,8 +112,8 @@ class Autosuggest extends React.Component<Props, State> {
       if (
         nextProps.highlightFirstSuggestion &&
         nextProps.suggestions.length > 0 &&
-        this.justPressedUpDown === false &&
-        this.justMouseEntered === false
+        !this.justPressedUpDown &&
+        !this.justMouseEntered
       ) {
         this.highlightFirstSuggestion();
       } else if (shouldResetHighlighting) {
@@ -155,7 +154,7 @@ class Autosuggest extends React.Component<Props, State> {
       const highlightedSuggestion = this.getHighlightedSuggestion();
       const prevHighlightedSuggestion = prevState.highlightedSuggestion;
 
-      if (highlightedSuggestion != prevHighlightedSuggestion) {
+      if (highlightedSuggestion !== prevHighlightedSuggestion) {
         onSuggestionHighlighted({
           suggestion: highlightedSuggestion,
         });
@@ -182,13 +181,13 @@ class Autosuggest extends React.Component<Props, State> {
       }
 
       return {
+        valueBeforeUpDown,
         highlightedSectionIndex: sectionIndex,
         highlightedSuggestionIndex: suggestionIndex,
         highlightedSuggestion:
           suggestionIndex === null
             ? null
             : this.getSuggestion(sectionIndex, suggestionIndex),
-        valueBeforeUpDown,
       };
     });
   }
@@ -292,7 +291,7 @@ class Autosuggest extends React.Component<Props, State> {
 
       node = node.parentNode;
     }
-  };
+  }
 
   findSuggestionElement(startNode: any) {
     let node = startNode;
@@ -331,7 +330,7 @@ class Autosuggest extends React.Component<Props, State> {
     if (autowhatever !== null) {
       this.autowhatever = autowhatever;
     }
-  };
+  }
 
   onSuggestionMouseEnter = (event: any, { sectionIndex, itemIndex }: any) => {
     this.updateHighlightedSuggestion(sectionIndex, itemIndex);
@@ -345,18 +344,18 @@ class Autosuggest extends React.Component<Props, State> {
     setTimeout(() => {
       this.justMouseEntered = false;
     });
-  };
+  }
 
   highlightFirstSuggestion = () => {
     this.updateHighlightedSuggestion((this as any).props.multiSection ? 0 : null, 0);
-  };
+  }
 
   onDocumentMouseUp = () => {
     if (this.pressedSuggestion && !this.justSelectedSuggestion) {
       this.input.focus();
     }
     this.pressedSuggestion = null;
-  };
+  }
 
   onSuggestionMouseDown = (event: any) => {
     // Checking if this.justSelectedSuggestion is already true to not duplicate touch events in chrome
@@ -365,13 +364,13 @@ class Autosuggest extends React.Component<Props, State> {
       this.justSelectedSuggestion = true;
       this.pressedSuggestion = event.target;
     }
-  };
+  }
 
   onSuggestionsClearRequested = () => {
     const { onSuggestionsClearRequested } = (this as any).props;
 
     onSuggestionsClearRequested && onSuggestionsClearRequested();
-  };
+  }
 
   onSuggestionSelected = (event: any, data: any) => {
     const {
@@ -396,7 +395,7 @@ class Autosuggest extends React.Component<Props, State> {
     }
 
     this.resetHighlightedSuggestion();
-  };
+  }
 
   onSuggestionClick = (event: any) => {
     const { alwaysRenderSuggestions, focusInputOnSuggestionClick } = (this as any).props;
@@ -410,10 +409,10 @@ class Autosuggest extends React.Component<Props, State> {
 
     this.maybeCallOnChange(event, clickedSuggestionValue, 'click');
     this.onSuggestionSelected(event, {
+      suggestionIndex,
+      sectionIndex,
       suggestion: clickedSuggestion,
       suggestionValue: clickedSuggestionValue,
-      suggestionIndex: suggestionIndex,
-      sectionIndex,
       method: 'click',
     });
 
@@ -434,7 +433,7 @@ class Autosuggest extends React.Component<Props, State> {
     setTimeout(() => {
       this.justSelectedSuggestion = false;
     });
-  };
+  }
 
   onBlur = () => {
     const { inputProps, shouldRenderSuggestions } = (this as any).props;
@@ -452,7 +451,7 @@ class Autosuggest extends React.Component<Props, State> {
     });
 
     onBlur && onBlur(this.blurEvent, { highlightedSuggestion });
-  };
+  }
 
   onSuggestionMouseLeave = (event: any) => {
     this.resetHighlightedSuggestion(false); // shouldResetValueBeforeUpDown
@@ -463,19 +462,19 @@ class Autosuggest extends React.Component<Props, State> {
     ) {
       this.justSelectedSuggestion = false;
     }
-  };
+  }
 
   onSuggestionTouchStart = () => {
     this.justSelectedSuggestion = true;
     // todo: event.preventDefault when https://github.com/facebook/react/issues/2043
     // todo: gets released so onSuggestionMouseDown won't fire in chrome
-  };
+  }
 
   onSuggestionTouchMove = () => {
     this.justSelectedSuggestion = false;
     this.pressedSuggestion = null;
     this.input.focus();
-  };
+  }
 
   itemProps = ({ sectionIndex, itemIndex }: any) => {
     return {
@@ -488,7 +487,7 @@ class Autosuggest extends React.Component<Props, State> {
       onTouchMove: this.onSuggestionTouchMove,
       onClick: this.onSuggestionClick,
     };
-  };
+  }
 
   getQuery() {
     const { inputProps } = (this as any).props;
@@ -506,7 +505,7 @@ class Autosuggest extends React.Component<Props, State> {
       children,
       query: this.getQuery(),
     });
-  };
+  }
 
   render() {
     const {
@@ -601,10 +600,10 @@ class Autosuggest extends React.Component<Props, State> {
           ...(highlightFirstSuggestion
             ? {}
             : {
-                highlightedSectionIndex: null,
-                highlightedSuggestionIndex: null,
-                highlightedSuggestion: null,
-              }),
+              highlightedSectionIndex: null,
+              highlightedSuggestionIndex: null,
+              highlightedSuggestion: null,
+            }),
           valueBeforeUpDown: null,
           isCollapsed: !shouldRender,
         });
@@ -782,7 +781,6 @@ class Autosuggest extends React.Component<Props, State> {
     );
   }
 }
-
 
 export { Autosuggest as UnthemedAutosuggest };
 export default themr(AUTOSUGGEST, baseTheme)(Autosuggest) as ThemedComponentClass<any, any>;

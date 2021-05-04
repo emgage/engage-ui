@@ -1,19 +1,16 @@
 
 import * as React from 'react';
-import * as Autosuggest from 'react-autosuggest';
 import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 import { classNames } from '@shopify/react-utilities/styles';
-
 import { PICKER } from '../ThemeIdentifiers';
 import Chip from '../Chip';
-// import * as style from './Picker.scss';
-
 import { IAutoSuggestMethods, IItemList } from './Picker';
 import * as baseTheme from './Picker.scss';
+import Autosuggest from '../Autosuggest';
 
 export interface IStateProps {
   chipListState: IItemList[];
-  suggestions: Autosuggest[];
+  suggestions: any[];
   inputProps: any;
   value?: string;
   removable: boolean;

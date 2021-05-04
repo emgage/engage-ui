@@ -1,7 +1,6 @@
 import * as React from 'react';
 import SectionTitle from './SectionTitle';
 import ItemList from './ItemList';
-import ItemsList from './ItemList';
 const createSectionIterator = require('section-iterator');
 const themeable = require('react-themeable');
 
@@ -28,25 +27,24 @@ const defaultTheme = {
 };
 
 export interface Props {
-  id?: string, // Used in aria-* attributes. If multiple Autowhatever's are rendered on a page, they must have unique ids.
-  multiSection?: boolean, // Indicates whether a multi section layout should be rendered.
-  renderInputComponent?(): void, // When specified, it is used to render the input element.
-  renderItemsContainer?(props: any): void, // Renders the items container.
-  items: any[], // Array of items or sections to render.
-  renderItem?(): void, // This function renders a single item.
-  renderItemData?: object, // Arbitrary data that will be passed to renderItem()
-  renderSectionTitle?(): void, // This function gets a section and renders its title.
-  getSectionItems?(): void, // This function gets a section and returns its items, which will be passed into `renderItem` for rendering.
-  containerProps?: object, // Arbitrary container props
-  inputProps?: object, // Arbitrary input props
-  itemProps?: any, // Arbitrary item props
-  highlightedSectionIndex?: number, // Section index of the highlighted item
-  highlightedItemIndex?: number, // Highlighted item index (within a section)
-  theme?: any, // Styles. See: https://github.com/markdalgleish/react-themeable
+  id?: string; // Used in aria-* attributes. If multiple Autowhatever's are rendered on a page, they must have unique ids.
+  multiSection?: boolean; // Indicates whether a multi section layout should be rendered.
+  renderInputComponent?(): void; // When specified, it is used to render the input element.
+  renderItemsContainer?(props: any): void; // Renders the items container.
+  items: any[]; // Array of items or sections to render.
+  renderItem?(): void; // This function renders a single item.
+  renderItemData?: object; // Arbitrary data that will be passed to renderItem()
+  renderSectionTitle?(): void; // This function gets a section and renders its title.
+  getSectionItems?(): void; // This function gets a section and returns its items, which will be passed into `renderItem` for rendering.
+  containerProps?: object; // Arbitrary container props
+  inputProps?: object; // Arbitrary input props
+  itemProps?: any; // Arbitrary item props
+  highlightedSectionIndex?: number; // Section index of the highlighted item
+  highlightedItemIndex?: number; // Highlighted item index (within a section)
+  theme?: any; // Styles. See: https://github.com/markdalgleish/react-themeable
 }
 export interface State {
 }
-
 
 export default class Autowhatever extends React.Component<Props, State>  {
   static defaultProps = {
@@ -99,7 +97,7 @@ export default class Autowhatever extends React.Component<Props, State>  {
     this.ensureHighlightedItemIsVisible();
   }
 
-  // eslint-disable-next-line camelcase, react/sort-comp
+  // tslint:disable-next-line:function-name
   UNSAFE_componentWillReceiveProps(nextProps: any) {
     if (nextProps.items !== (this as any).props.items) {
       this.setSectionsItems(nextProps);
@@ -161,17 +159,17 @@ export default class Autowhatever extends React.Component<Props, State>  {
         userRef.current = input;
       }
     }
-  };
+  }
 
   storeItemsContainerReference = (itemsContainer: any) => {
     if (itemsContainer !== null) {
       this.itemsContainer = itemsContainer;
     }
-  };
+  }
 
   onHighlightedItemChange = (highlightedItem: any) => {
     this.highlightedItem = highlightedItem;
-  };
+  }
 
   getItemId = (sectionIndex: any, itemIndex: any) => {
     if (itemIndex === null) {
@@ -182,7 +180,7 @@ export default class Autowhatever extends React.Component<Props, State>  {
     const section = sectionIndex === null ? '' : `section-${sectionIndex}`;
 
     return `react-autowhatever-${id}-${section}-item-${itemIndex}`;
-  };
+  }
 
   renderSections() {
     if (this.allSectionsAreEmpty) {
@@ -287,7 +285,7 @@ export default class Autowhatever extends React.Component<Props, State>  {
     });
 
     inputProps.onFocus && inputProps.onFocus(event);
-  };
+  }
 
   onBlur = (event: any) => {
     const { inputProps } = (this as any).props;
@@ -297,7 +295,7 @@ export default class Autowhatever extends React.Component<Props, State>  {
     });
 
     inputProps.onBlur && inputProps.onBlur(event);
-  };
+  }
 
   onKeyDown = (event: any) => {
     const {
@@ -333,7 +331,7 @@ export default class Autowhatever extends React.Component<Props, State>  {
           highlightedItemIndex,
         });
     }
-  };
+  }
 
   ensureHighlightedItemIsVisible() {
     const { highlightedItem } = (this as any);

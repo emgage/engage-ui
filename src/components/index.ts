@@ -217,6 +217,11 @@ export {
 } from './PopoverPicker';
 
 export {
+  default as Autosuggest,
+  Props as AutosuggestProps,
+} from './Autosuggest';
+
+export {
   default as Dropdown,
   Props as DropdownProps,
   DropdownItemProps

@@ -29,14 +29,18 @@ interface IProps {
     jumpNextIcon?: any;
     simple?: any;
     theme?: any;
+    lazyLoading?: any;
     pageSizeList?: number[];
-    lazyLoading?: boolean;
+    fixedSize?: boolean;
+    simplePagination?: boolean;
+    showJumpToPage?: boolean;
 }
 interface IState {
     current: number;
     currentInputValue: number;
     pageSize: number;
     pageSizeList: number[];
+    initialPageSize: number;
 }
 export declare const DefaultProps: {
     disabled: boolean;
@@ -76,7 +80,11 @@ export declare const DefaultProps: {
     pageSizeOptions: never[];
     showTotal: typeof noop;
     pageSizeList: never[];
+    simple: boolean;
     lazyLoading: boolean;
+    fixedSize: boolean;
+    simplePagination: boolean;
+    showJumpToPage: boolean;
 };
 declare function noop(): void;
 declare function defaultItemRender(page: any, type: any, element: any): any;

@@ -3,16 +3,16 @@ import Item from './Item';
 import compareObjects from './compareObjects';
 
 export interface Props {
-  items: any[],
-  itemProps?: any,
-  renderItem(): void,
-  renderItemData: object,
-  sectionIndex?: number,
-  highlightedItemIndex?: number,
-  onHighlightedItemChange(highlightedItem: any): void,
-  getItemId(sectionIndex: any, itemIndex: any): void,
-  theme(): void,
-  keyPrefix: string,
+  items: any[];
+  itemProps?: any;
+  renderItem(): void;
+  renderItemData: object;
+  sectionIndex?: number;
+  highlightedItemIndex?: number;
+  onHighlightedItemChange(highlightedItem: any): void;
+  getItemId(sectionIndex: any, itemIndex: any): void;
+  theme(): void;
+  keyPrefix: string;
 }
 
 export interface State {
@@ -31,7 +31,7 @@ export default class ItemsList extends React.Component<Props, State> {
     (this as any).props.onHighlightedItemChange(
       highlightedItem === null ? null : highlightedItem.item
     );
-  };
+  }
 
   render() {
     const {
