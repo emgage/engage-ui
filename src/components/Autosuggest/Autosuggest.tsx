@@ -41,6 +41,7 @@ export interface Props {
   theme?: any;
   id?: string;
   containerProps?: any; // Arb
+  justClickedOnSuggestionsContainer?: boolean;
 }
 
 export interface State {
@@ -268,6 +269,7 @@ class Autosuggest extends React.Component<Props, State> {
   }
 
   onDocumentMouseDown = (event: any) => {
+    const { justClickedOnSuggestionsContainer = true } = this.props;
     this.justClickedOnSuggestionsContainer = false;
 
     let node =
@@ -285,7 +287,7 @@ class Autosuggest extends React.Component<Props, State> {
 
       if (node === this.suggestionsContainer) {
         // Something else inside suggestions container was clicked
-        this.justClickedOnSuggestionsContainer = true;
+        this.justClickedOnSuggestionsContainer = justClickedOnSuggestionsContainer;
         return;
       }
 
