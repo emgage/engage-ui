@@ -21,6 +21,7 @@ export interface IStateProps {
   removable: boolean;
   multiSection?: any;
   reachedMax?: boolean;
+  justClickedOnSuggestionsContainer?: boolean;
 }
 
 export interface IItemList {
@@ -115,6 +116,8 @@ export interface Props {
   // Error to display beneath the label.
   errors?: [string];
   placeholder?: string;
+  // true|false as used for after selection focus reach to input or not
+  justClickedOnSuggestionsContainer?: boolean;
 }
 
 const DefaultCard = (props: any) => {
@@ -441,6 +444,7 @@ class Picker extends React.PureComponent<Props, State> {
         backdropHidden= false,
         disabled = false,
         readOnly = false,
+        justClickedOnSuggestionsContainer = true,
         moreInfoComponent,
         componentId = '',
         theme,
@@ -464,6 +468,7 @@ class Picker extends React.PureComponent<Props, State> {
       suggestions,
       chipListState,
       inputProps,
+      justClickedOnSuggestionsContainer,
       removable: readOnly ? false : true,
       multiSection: columns.length !== 0 ? true : false,
       reachedMax: (!!this.props.maxSelectedItems && this.props.maxSelectedItems > 0 && this.props.maxSelectedItems <= chipListState.length)

@@ -3153,6 +3153,7 @@ class App extends React.Component<{}, State> {
             autoSuggest
             loading
             moreInfoComponent={<Button children="More Info" plain componentSize="slim"/>}
+            justClickedOnSuggestionsContainer={false}
             // disabled
             // readOnly
             noOptionsMessage={"No items Available"}

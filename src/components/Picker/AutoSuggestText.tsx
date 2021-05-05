@@ -16,6 +16,7 @@ export interface IStateProps {
   removable: boolean;
   multiSection?: any;
   reachedMax?: boolean;
+  justClickedOnSuggestionsContainer?: boolean;
 }
 
 export interface Props {
@@ -65,6 +66,7 @@ class AutoSuggestText extends React.PureComponent<Props, {}> {
               inputProps={this.props.stateProps ? this.props.stateProps.inputProps : null}
               ref={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.storeInputReference : this.refHolder}
               renderSuggestionsContainer={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.renderSuggestionsContainer : (() => {}) as any}
+              justClickedOnSuggestionsContainer={this.props.stateProps && this.props.stateProps.justClickedOnSuggestionsContainer ? this.props.stateProps.justClickedOnSuggestionsContainer : false}
             />
             :
             <Autosuggest
@@ -88,6 +90,7 @@ class AutoSuggestText extends React.PureComponent<Props, {}> {
               inputProps={this.props.stateProps ? this.props.stateProps.inputProps : null}
               ref={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.storeInputReference : this.refHolder}
               renderSuggestionsContainer={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.renderSuggestionsContainer : (() => {}) as any}
+              justClickedOnSuggestionsContainer={this.props.stateProps && this.props.stateProps.justClickedOnSuggestionsContainer ? this.props.stateProps.justClickedOnSuggestionsContainer : false}
             />
             : null
           }
