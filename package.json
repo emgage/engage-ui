@@ -185,12 +185,15 @@
     "react-syntax-highlighter": "5.6.2",
     "react-table": "^6.7.6",
     "react-text-mask-hoc": "^0.3.0",
+    "react-themeable": "^1.1.0",
     "react-transition-group": "^2.3.0",
     "redux": "^4.0.5",
     "redux-actions": "^2.6.5",
     "redux-devtools-extension": "^2.13.8",
     "redux-immutable-state-invariant": "^2.0.0",
     "redux-thunk": "2.3.0",
+    "section-iterator": "^2.0.0",
+    "shallow-equal": "^1.2.1",
     "tslib": "^1.8.0"
   }
 }

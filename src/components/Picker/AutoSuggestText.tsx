@@ -1,24 +1,22 @@
 
 import * as React from 'react';
-import * as Autosuggest from 'react-autosuggest';
 import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 import { classNames } from '@shopify/react-utilities/styles';
-
 import { PICKER } from '../ThemeIdentifiers';
 import Chip from '../Chip';
-// import * as style from './Picker.scss';
-
 import { IAutoSuggestMethods, IItemList } from './Picker';
 import * as baseTheme from './Picker.scss';
+import Autosuggest from '../Autosuggest';
 
 export interface IStateProps {
   chipListState: IItemList[];
-  suggestions: Autosuggest[];
+  suggestions: any[];
   inputProps: any;
   value?: string;
   removable: boolean;
   multiSection?: any;
   reachedMax?: boolean;
+  justClickedOnSuggestionsContainer?: boolean;
 }
 
 export interface Props {
@@ -68,6 +66,7 @@ class AutoSuggestText extends React.PureComponent<Props, {}> {
               inputProps={this.props.stateProps ? this.props.stateProps.inputProps : null}
               ref={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.storeInputReference : this.refHolder}
               renderSuggestionsContainer={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.renderSuggestionsContainer : (() => {}) as any}
+              justClickedOnSuggestionsContainer={this.props.stateProps && this.props.stateProps.justClickedOnSuggestionsContainer ? this.props.stateProps.justClickedOnSuggestionsContainer : false}
             />
             :
             <Autosuggest
@@ -91,6 +90,7 @@ class AutoSuggestText extends React.PureComponent<Props, {}> {
               inputProps={this.props.stateProps ? this.props.stateProps.inputProps : null}
               ref={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.storeInputReference : this.refHolder}
               renderSuggestionsContainer={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.renderSuggestionsContainer : (() => {}) as any}
+              justClickedOnSuggestionsContainer={this.props.stateProps && this.props.stateProps.justClickedOnSuggestionsContainer ? this.props.stateProps.justClickedOnSuggestionsContainer : false}
             />
             : null
           }

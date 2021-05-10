@@ -3,7 +3,6 @@ import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 import { PICKER } from '../ThemeIdentifiers';
 import TextField from '../TextField';
 import Icon, { IconList } from '../Icon';
-import * as Autosuggest from 'react-autosuggest';
 import * as baseTheme from './Picker.scss';
 // import * as style from './Picker.scss';
 // TODO: Why are we using this custom card and not the Card component?
@@ -16,12 +15,13 @@ let resultsBehaviorOpen: boolean = false;
 
 export interface IStateProps {
   chipListState: IItemList[];
-  suggestions: Autosuggest[];
+  suggestions: any[];
   inputProps: any;
   value?: string;
   removable: boolean;
   multiSection?: any;
   reachedMax?: boolean;
+  justClickedOnSuggestionsContainer?: boolean;
 }
 
 export interface IItemList {
@@ -40,14 +40,14 @@ export interface IAutoSuggestMethods {
   getSuggestions(value: string): any[];
   getSuggestionValue(suggestion: object): void;
   onBlur(event: React.FormEvent<any>): void;
-  onChange(event: React.FormEvent<any>, { newValue, method }: Autosuggest.ChangeEvent): void;
+  onChange(event: React.FormEvent<any>, { newValue, method }: any): void;
   onFocus(event: React.FormEvent<any>): void;
   onKeyDown(e: React.FormEvent<Element> | KeyboardEvent): void;
   onSuggestionsFetchRequested({ value }: any): void;
-  onSuggestionSelected(event: React.FormEvent<Element>, { suggestion }: Autosuggest.SuggestionSelectedEventData<Autosuggest>): void;
+  onSuggestionSelected(event: React.FormEvent<Element>, { suggestion }: any): void;
   chipRemove(item: IItemList | number): void;
   renderSuggestion(suggestion: IItemList, { isHighlighted, query }: IRenderSuggestionProp): JSX.Element;
-  storeInputReference(autosuggest: Autosuggest): void;
+  storeInputReference(autosuggest: any): void;
   getInputReference(): HTMLElement | undefined;
   updateList(input: HTMLElement): void;
   storeFocus(e: HTMLElement): void;
@@ -61,7 +61,7 @@ export interface State {
   moreInfo: boolean;
   value: string;
   input?: HTMLElement;
-  suggestions: Autosuggest[];
+  suggestions: any[];
   chipListState: IItemList[];
   focusArr: HTMLElement[];
   itemsList: IItemList[];
@@ -116,6 +116,8 @@ export interface Props {
   // Error to display beneath the label.
   errors?: [string];
   placeholder?: string;
+  // true|false as used for after selection focus reach to input or not
+  justClickedOnSuggestionsContainer?: boolean;
 }
 
 const DefaultCard = (props: any) => {
@@ -271,7 +273,7 @@ class Picker extends React.PureComponent<Props, State> {
         return suggestion.name;
       },
 
-      onChange: (event: React.FormEvent<any>, { newValue, method }: Autosuggest.ChangeEvent) => {
+      onChange: (event: React.FormEvent<any>, { newValue, method }: any) => {
         if (method === 'type') {
           this.setState({ value: newValue });
           if (this.props.searchBehavior) {
@@ -330,7 +332,7 @@ class Picker extends React.PureComponent<Props, State> {
         });
       },
 
-      onSuggestionSelected: (event: React.FormEvent<Element>, { suggestion }: Autosuggest.SuggestionSelectedEventData<any>) => {
+      onSuggestionSelected: (event: React.FormEvent<Element>, { suggestion }: any) => {
         suggestion.text = suggestion.name;
         autoSuggestMethods.updateList(suggestion);
         this.setState((prevState) => {
@@ -442,6 +444,7 @@ class Picker extends React.PureComponent<Props, State> {
         backdropHidden= false,
         disabled = false,
         readOnly = false,
+        justClickedOnSuggestionsContainer = true,
         moreInfoComponent,
         componentId = '',
         theme,
@@ -465,6 +468,7 @@ class Picker extends React.PureComponent<Props, State> {
       suggestions,
       chipListState,
       inputProps,
+      justClickedOnSuggestionsContainer,
       removable: readOnly ? false : true,
       multiSection: columns.length !== 0 ? true : false,
       reachedMax: (!!this.props.maxSelectedItems && this.props.maxSelectedItems > 0 && this.props.maxSelectedItems <= chipListState.length)

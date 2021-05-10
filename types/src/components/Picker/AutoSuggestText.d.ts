@@ -1,13 +1,14 @@
-import * as Autosuggest from 'react-autosuggest';
 import { ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 import { IAutoSuggestMethods, IItemList } from './Picker';
 export interface IStateProps {
     chipListState: IItemList[];
-    suggestions: Autosuggest[];
+    suggestions: any[];
     inputProps: any;
     value?: string;
     removable: boolean;
     multiSection?: any;
+    reachedMax?: boolean;
+    justClickedOnSuggestionsContainer?: boolean;
 }
 export interface Props {
     theme?: any;

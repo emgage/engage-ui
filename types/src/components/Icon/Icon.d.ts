@@ -12,6 +12,7 @@ export declare const BUNDLED_ICONS: {
     arrowLeft: any;
     arrowRight: any;
     arrowUp: any;
+    bell: any;
     calendar: any;
     cancel: any;
     cancelSmall: any;
