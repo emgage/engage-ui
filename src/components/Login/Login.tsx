@@ -79,7 +79,7 @@ export default (props: Props) => {
 
   return (
       props.isLoggedIn ?  <div className={baseTheme.loginContainer}>
-        {!props.profilePic ? <Button icon="user" componentClass={baseTheme.loginUser} onClick={e => toggle(e)}><VisuallyHidden>Loged in</VisuallyHidden></Button>
+        {!props.profilePic ? <Button icon="user" componentSize="slim" componentClass={baseTheme.loginUser} onClick={e => toggle(e)}><VisuallyHidden>Loged in</VisuallyHidden></Button>
         : <Image onClick={e => toggle(e)} className={baseTheme.profilePic} alt="User profile pic" source={props.profilePic} />}
         <Dropdown
           dropdownItems={dropDownList}
