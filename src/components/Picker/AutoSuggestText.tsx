@@ -7,7 +7,6 @@ import Chip from '../Chip';
 import { IAutoSuggestMethods, IItemList } from './Picker';
 import * as baseTheme from './Picker.scss';
 import Autosuggest from '../Autosuggest';
-
 export interface IStateProps {
   chipListState: IItemList[];
   suggestions: any[];
@@ -27,7 +26,6 @@ export interface Props {
 }
 
 class AutoSuggestText extends React.PureComponent<Props, {}> {
-  private refHolder: any;
   render() {
     const { theme, stateProps }: any = this.props;
 
@@ -64,7 +62,6 @@ class AutoSuggestText extends React.PureComponent<Props, {}> {
               shouldRenderSuggestions={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.shouldRenderSuggestions : (() => { }) as any}
               renderSuggestion={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.renderSuggestion : (() => {}) as any}
               inputProps={this.props.stateProps ? this.props.stateProps.inputProps : null}
-              ref={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.storeInputReference : this.refHolder}
               renderSuggestionsContainer={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.renderSuggestionsContainer : (() => {}) as any}
               justClickedOnSuggestionsContainer={this.props.stateProps && this.props.stateProps.justClickedOnSuggestionsContainer ? this.props.stateProps.justClickedOnSuggestionsContainer : false}
             />
@@ -88,7 +85,6 @@ class AutoSuggestText extends React.PureComponent<Props, {}> {
               getSuggestionValue={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.getSuggestionValue : (() => {}) as any}
               renderSuggestion={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.renderSuggestion : (() => {}) as any}
               inputProps={this.props.stateProps ? this.props.stateProps.inputProps : null}
-              ref={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.storeInputReference : this.refHolder}
               renderSuggestionsContainer={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.renderSuggestionsContainer : (() => {}) as any}
               justClickedOnSuggestionsContainer={this.props.stateProps && this.props.stateProps.justClickedOnSuggestionsContainer ? this.props.stateProps.justClickedOnSuggestionsContainer : false}
             />

@@ -77,7 +77,7 @@ export default class Autowhatever extends React.Component<Props, State>  {
   theme: any;
   input: any;
   itemsContainer: any;
-  storeItemsListReference: React.LegacyRef<ItemList> | undefined;
+  storeItemsListReference: any;
 
   constructor(props: any) {
     super(props);
