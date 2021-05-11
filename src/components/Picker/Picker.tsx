@@ -47,7 +47,6 @@ export interface IAutoSuggestMethods {
   onSuggestionSelected(event: React.FormEvent<Element>, { suggestion }: any): void;
   chipRemove(item: IItemList | number): void;
   renderSuggestion(suggestion: IItemList, { isHighlighted, query }: IRenderSuggestionProp): JSX.Element;
-  storeInputReference(autosuggest: any): void;
   getInputReference(): HTMLElement | undefined;
   updateList(input: HTMLElement): void;
   storeFocus(e: HTMLElement): void;
@@ -247,6 +246,12 @@ class Picker extends React.PureComponent<Props, State> {
     return true;
   }
 
+  storeInputReference = (input: any) => {
+    if (this.state.input !== input) {
+      this.setState({ input });
+    }
+  }
+
   render() {
 
     const { columns = [] } = this.props;
@@ -381,14 +386,6 @@ class Picker extends React.PureComponent<Props, State> {
         }
       },
 
-      storeInputReference: (autosuggest: any) => {
-        if (autosuggest !== null) {
-          if (this.state.input !== autosuggest.input) {
-            this.setState({ input: autosuggest.input });
-          }
-        }
-      },
-
       getInputReference: () => {
         return this.state.input;
       },
@@ -457,6 +454,7 @@ class Picker extends React.PureComponent<Props, State> {
     const inputProps: any & { disabled: boolean } = {
       placeholder,
       value,
+      ref: this.storeInputReference,
       onChange: autoSuggestMethods.onChange,
       onKeyDown: autoSuggestMethods.onKeyDown,
       onFocus: autoSuggestMethods.onFocus,

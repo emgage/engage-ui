@@ -31,7 +31,6 @@ export interface IAutoSuggestMethods {
     onSuggestionSelected(event: React.FormEvent<Element>, { suggestion }: any): void;
     chipRemove(item: IItemList | number): void;
     renderSuggestion(suggestion: IItemList, { isHighlighted, query }: IRenderSuggestionProp): JSX.Element;
-    storeInputReference(autosuggest: any): void;
     getInputReference(): HTMLElement | undefined;
     updateList(input: HTMLElement): void;
     storeFocus(e: HTMLElement): void;
@@ -100,6 +99,7 @@ declare class Picker extends React.PureComponent<Props, State> {
     getSectionSuggestions: (section: any) => any;
     renderSectionTitle: (section: any) => any;
     shouldRenderSuggestions: () => boolean;
+    storeInputReference: (input: any) => void;
     render(): JSX.Element;
 }
 export { Picker as UnthemedPicker };
