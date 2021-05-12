@@ -1,0 +1,50 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- none
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: |
+      #!/bin/bash
+      set -eou pipefail
+      # source ./scripts/variables.sh
+      pipelinesIDs of dependant builds
+      buildID=(47 48 49 56)
+      
+      # save time to txt file
+      TIMEMODIFIED=$(npm view engage-ui time.modified)
+      EPOCHLASTDATE=$(date -d "$TIMEMODIFIED" +%s)
+      EPOCHYESTERDAY=$()
+      
+      if [ "$LASTLINE" = "$SECONDBEFORELASTLINE" ]; then
+          echo "Engage-UI at latest version no need to trigger Build Pipelines"
+      else
+      	for i in "${buildID[@]}"
+          do
+          	curl -XPOST -H 'Authorization: Basic Om51MmllYjUyMm4zZjczcmJybm8zbXJzaTJnYmhlZWIzd2J0bmJjNnFlbmxkNzRvN28zMmE=' -H "Content-type: application/json" -d '{
+          		"resources":{
+              		"repositories":{
+                  		"self":{
+                      		"refName":"develop"
+                  		}
+              		}
+          		}
+      		}' "https://dev.azure.com/ateraplat/Emgage%20Platform/_apis/pipelines/$i/runs?api-version=6.0-preview.1"
+      	done    
+      fi
+- task: TriggerPipeline@1
+  inputs:
+    serviceConnection: 'Trigger Builds'
+    project: '2072a0a1-0afd-42e6-895f-941998c2ccce'
+    Pipeline: 'Build'
+    buildDefinition: 'emgage.emgage-frontend'
+    Branch: 'develop'
