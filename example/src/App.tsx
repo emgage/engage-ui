@@ -3152,8 +3152,8 @@ class App extends React.Component<{}, State> {
             minSelectedItems={2}
             autoSuggest
             loading
-            moreInfoComponent={<Button children="More Info" plain componentSize="slim"/>}
-            justClickedOnSuggestionsContainer={false}
+            moreInfoComponent={<Button children="More Info" plain componentSize="slim" onClick={() => console.log('load more click')}/>}
+            moreInfoClick={true}
             // disabled
             // readOnly
             noOptionsMessage={"No items Available"}
