@@ -25,7 +25,7 @@ jobs:
       
         if [ "$EPOCHTIMEMODIFIED" -gt "$EPOCHYESTERDAY" ]; then
           echo "Engage-UI has been modified. Triggering build Pipelines"
-          exit
+          exit 1
         else
           echo "Engage-UI at latest version no need to trigger Build Pipelines"
         fi
