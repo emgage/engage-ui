@@ -9,6 +9,7 @@ schedules:
   branches:
     include:
     - feature/53119-engage-ui-trigger-dependant
+  always: true
 
 jobs:
 - job: time_modified_check
