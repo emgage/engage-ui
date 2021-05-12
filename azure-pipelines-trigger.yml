@@ -41,3 +41,24 @@ jobs:
       Pipeline: 'Build'
       buildDefinition: 'emgage.emgage-frontend'
       Branch: 'develop'
+  - task: TriggerPipeline@1
+    inputs:
+      serviceConnection: 'Trigger Builds'
+      project: '2072a0a1-0afd-42e6-895f-941998c2ccce'
+      Pipeline: 'Build'
+      buildDefinition: 'emgage.page-builder'
+      Branch: 'develop'
+  - task: TriggerPipeline@1
+    inputs:
+      serviceConnection: 'Trigger Builds'
+      project: '2072a0a1-0afd-42e6-895f-941998c2ccce'
+      Pipeline: 'Build'
+      buildDefinition: 'emgage.platform-widgets.deploy'
+      Branch: 'develop'
+  - task: TriggerPipeline@1
+    inputs:
+      serviceConnection: 'Trigger Builds'
+      project: '2072a0a1-0afd-42e6-895f-941998c2ccce'
+      Pipeline: 'Build'
+      buildDefinition: 'emgage.builder-shared-services'
+      Branch: 'develop'
