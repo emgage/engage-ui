@@ -23,7 +23,7 @@ jobs:
         EPOCHTIMEMODIFIED=$(date -d "$TIMEMODIFIED" +%s)
         EPOCHYESTERDAY=$(date -d "yesterday" +%s)
       
-        if [ "$EPOCHTIMEMODIFIED" = "$EPOCHYESTERDAY" ]; then
+        if [ "$EPOCHTIMEMODIFIED" -gt "$EPOCHYESTERDAY" ]; then
           echo "Engage-UI has been modified. Triggering build Pipelines"
           exit
         else
