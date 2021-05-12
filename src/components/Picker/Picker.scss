@@ -82,6 +82,8 @@ $stacking-order: (
   list-style-type: none;
   z-index: z-index(popover, $stacking-order);
   min-width: 13rem;
+  max-width: 100rem;
+  width: -webkit-fill-available;
 }
 
 
