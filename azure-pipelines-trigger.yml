@@ -6,12 +6,10 @@
 trigger:
 - none
 
-pool:
-  vmImage: ubuntu-latest
-
 jobs:
 - job: time_modified_check
-
+  pool:
+    vmImage: 'ubuntu-latest'
   steps:
   - task: Bash@3
     inputs:
@@ -31,6 +29,8 @@ jobs:
         fi
 
 - job: run_dependant_builds
+  pool:
+    vmImage: 'windows-latest'
   dependsOn: time_modified_check
   condition: failed()
   steps:
