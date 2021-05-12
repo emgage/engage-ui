@@ -41,7 +41,7 @@ export interface Props {
   theme?: any;
   id?: string;
   containerProps?: any; // Arb
-  justClickedOnSuggestionsContainer?: boolean;
+  moreInfoClick?: boolean;
 }
 
 export interface State {
@@ -269,7 +269,6 @@ class Autosuggest extends React.Component<Props, State> {
   }
 
   onDocumentMouseDown = (event: any) => {
-    const { justClickedOnSuggestionsContainer = true } = this.props;
     this.justClickedOnSuggestionsContainer = false;
 
     let node =
@@ -287,7 +286,7 @@ class Autosuggest extends React.Component<Props, State> {
 
       if (node === this.suggestionsContainer) {
         // Something else inside suggestions container was clicked
-        this.justClickedOnSuggestionsContainer = justClickedOnSuggestionsContainer;
+        this.justClickedOnSuggestionsContainer = true;
         return;
       }
 
@@ -573,8 +572,9 @@ class Autosuggest extends React.Component<Props, State> {
         }
       },
       onBlur: (event: any) => {
+        const { moreInfoClick = false } = this.props;
         if (this.justClickedOnSuggestionsContainer) {
-          this.input.focus();
+          if (!moreInfoClick) this.input.focus();
           return;
         }
 
