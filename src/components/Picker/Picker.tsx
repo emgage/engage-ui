@@ -261,7 +261,7 @@ class Picker extends React.PureComponent<Props, State> {
     }
 
     const autoSuggestMethods: IAutoSuggestMethods = {
-      onSuggestionsClearRequested: () => this.setState({ suggestions: [] }),
+      onSuggestionsClearRequested: () => this.setState({ suggestions: [], value: '' }),
 
       getSuggestions: (value: string) => {
         const escapedValue = escapeRegexCharacters(value.trim());
