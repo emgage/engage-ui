@@ -32,7 +32,7 @@ jobs:
       
         if [ "$EPOCHYESTERDAY" -gt "$EPOCHTIMEMODIFIED" ]; then
           echo "Engage-UI has been modified. Triggering build Pipelines"
-          echo '##vso[task.setvariable variable=proceed]true'
+          echo '##vso[task.setvariable variable=proceed;isOutput=true]true'
         else
           echo "Engage-UI at latest version no need to trigger Build Pipelines"
           # echo "##vso[task.setvariable variable=proceed;isOutput=true;]false"
@@ -42,7 +42,7 @@ jobs:
   pool:
     vmImage: 'windows-latest'
   dependsOn: time_modified_check
-  condition: and(succeeded(), eq(proceed, true))
+  condition: and(succeeded(), eq(variables.proceed, true))
   steps:
   - task: TriggerPipeline@1
     inputs:
