@@ -11,6 +11,10 @@ schedules:
     - feature/53119-engage-ui-trigger-dependant
   always: true
 
+variables:
+- name: proceed
+  value: false
+
 jobs:
 - job: time_modified_check
   pool:
@@ -31,7 +35,7 @@ jobs:
           echo "##vso[task.setvariable variable=proceed;isOutput=true;]true"
         else
           echo "Engage-UI at latest version no need to trigger Build Pipelines"
-          echo "##vso[task.setvariable variable=proceed;isOutput=true;]false"
+          # echo "##vso[task.setvariable variable=proceed;isOutput=true;]false"
         fi
 
 - job: run_dependant_builds
