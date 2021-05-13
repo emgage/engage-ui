@@ -11,10 +11,6 @@ schedules:
     - feature/53119-engage-ui-trigger-dependant
   always: true
 
-#variables:
-#- name: proceed
-#  value: false
-
 jobs:
 - job: time_modified_check
   pool:
