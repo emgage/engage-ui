@@ -43,7 +43,7 @@ jobs:
   pool:
     vmImage: 'windows-latest'
   dependsOn: time_modified_check
-  condition: dependencies.time_modified_check.outputs['compareJob.proceed']
+  condition: eq(dependencies.time_modified_check.outputs['compareJob.proceed'], true)
   steps:
   - task: TriggerPipeline@1
     inputs:
