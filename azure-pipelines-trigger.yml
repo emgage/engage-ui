@@ -21,6 +21,7 @@ jobs:
     vmImage: 'ubuntu-latest'
   steps:
   - task: Bash@3
+    name: "compareJob"
     inputs:
       targetType: 'inline'
       script: |
@@ -42,7 +43,7 @@ jobs:
   pool:
     vmImage: 'windows-latest'
   dependsOn: time_modified_check
-  condition: and(succeeded(), eq($(proceed), true))
+  condition: and(succeeded(), eq(dependencies.time_modified_check.outputs['compareJob.proceed'], true))
   steps:
   - task: TriggerPipeline@1
     inputs:
