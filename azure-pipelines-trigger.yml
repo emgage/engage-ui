@@ -42,7 +42,7 @@ jobs:
   pool:
     vmImage: 'windows-latest'
   dependsOn: time_modified_check
-  condition: and(succeeded(), eq(variables.proceed, true))
+  condition: and(succeeded(), eq(proceed, true))
   steps:
   - task: TriggerPipeline@1
     inputs:
