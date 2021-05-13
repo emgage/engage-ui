@@ -32,7 +32,7 @@ jobs:
       
         if [ "$EPOCHTIMEMODIFIED" -gt "$EPOCHYESTERDAY" ]; then
           echo "Engage-UI has been modified. Triggering build Pipelines"
-          echo "##vso[task.setvariable variable=proceed;isOutput=true;]true"
+          echo '##vso[task.setvariable variable=proceed]true'
         else
           echo "Engage-UI at latest version no need to trigger Build Pipelines"
           # echo "##vso[task.setvariable variable=proceed;isOutput=true;]false"
