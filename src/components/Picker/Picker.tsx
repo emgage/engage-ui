@@ -264,7 +264,7 @@ class Picker extends React.PureComponent<Props, State> {
       onSuggestionsClearRequested: () => this.setState({ suggestions: [], value: '' }),
 
       getSuggestions: (value: string) => {
-        const escapedValue = escapeRegexCharacters(value.trim());
+        const escapedValue = escapeRegexCharacters(value.trim().replace(/ +(?= )/g, ''));
         const regex = new RegExp(escapedValue, 'i');
         if (columns.length !== 0) {
           return [{ title: columns, items: this.state.itemsList.filter((language: IItemList) => regex.test(language.name ? language.name : '')) }];
@@ -398,7 +398,10 @@ class Picker extends React.PureComponent<Props, State> {
       },
 
       renderSuggestion: (suggestion: IItemList, { isHighlighted, query }: IRenderSuggestionProp) => {
-        // render custom option
+        // eslint-disable-next-line no-param-reassign
+        query.trim().replace(/ +(?= )/g, '');
+
+        // render custom option 
         if ((suggestion as any).customRender) {
           return (suggestion as any).customRender(suggestion, {
             isHighlighted,
