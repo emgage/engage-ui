@@ -41,6 +41,8 @@ export interface Props {
   getFromValue?: boolean;
   // The default view to display when the picker is shown. ('years', 'months', 'days', 'time')
   viewMode?: ViewMode;
+  // Set custom icon
+  icon?: any;
 }
 
 export interface State {
@@ -105,7 +107,7 @@ class DateTimePicker extends React.PureComponent<Props, State>{
   }
 
   render() {
-    const { dateFormat, label, theme, timePicker, placeholder, componentStyle, value, getFromValue, componentId, viewMode } = this.props;
+    const { dateFormat, label, theme, timePicker, placeholder, componentStyle, value, getFromValue, componentId, viewMode, icon } = this.props;
     const { dateTime, open } = this.state;
     let dateTimeValue;
     if (getFromValue) {
@@ -121,7 +123,7 @@ class DateTimePicker extends React.PureComponent<Props, State>{
                 value={dateTimeValue}
                 onFocus={this.textFieldFocusHandler}
                 onChange={(dateTimeString: string) => { this.onTextInputChange(dateTimeString); }}
-                suffix={<Icon source="event" />}
+                suffix={icon ? <Icon source={icon} /> : <Icon source="event" />}
                 placeholder={placeholder}
                 componentStyle={componentStyle}
                 componentId={componentId}
