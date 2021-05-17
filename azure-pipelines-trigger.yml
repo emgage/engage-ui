@@ -19,6 +19,8 @@ resources:
     ref: main #branch name
 
 jobs:
+- template: trigger.yml@Shared
+
 - job: time_modified_check
   pool:
     vmImage: 'ubuntu-latest'
