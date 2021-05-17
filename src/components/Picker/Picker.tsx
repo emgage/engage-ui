@@ -114,6 +114,7 @@ export interface Props {
   // Error to display beneath the label.
   errors?: [string];
   placeholder?: string;
+  shouldFilterSuggestions?: boolean;
 }
 
 const DefaultCard = (props: any) => {
@@ -315,14 +316,12 @@ class Picker extends React.PureComponent<Props, State> {
       },
 
       onSuggestionsFetchRequested: ({ value }: any) => {
-        const suggestions = autoSuggestMethods.getSuggestions(value);
+        const { shouldFilterSuggestions = true } = this.props;
+        const suggestions =  shouldFilterSuggestions ? autoSuggestMethods.getSuggestions(value) : this.state.suggestions;
         const isInputBlank = value.trim() === '';
         const noSuggestions = !isInputBlank && suggestions.length === 0;
 
-        this.setState({
-          suggestions,
-          noSuggestions
-        });
+        this.setState({ suggestions, noSuggestions });
       },
 
       updateList: (input: HTMLElement) => {
