@@ -11,11 +11,20 @@ schedules:
     - feature/53119-engage-ui-trigger-dependant
   always: true
 
+resources:      
+  repositories: 
+  - repository: Shared
+    name: Shared-Resources
+    type: git 
+    ref: main #branch name
+
 jobs:
 - job: time_modified_check
   pool:
     vmImage: 'ubuntu-latest'
   steps:
+  - template: trigger.yml@Shared
+
   - task: Bash@3
     name: "compareJob"
     inputs:
