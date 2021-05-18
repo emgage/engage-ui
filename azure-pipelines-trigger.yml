@@ -16,6 +16,7 @@ jobs:
   pool:
     vmImage: 'ubuntu-latest'
   steps:
+  - checkout: none
   - task: Bash@3
     name: "compareJob"
     inputs:
@@ -41,6 +42,7 @@ jobs:
   dependsOn: time_modified_check
   condition: eq(dependencies.time_modified_check.outputs['compareJob.proceed'], true)
   steps:
+  - checkout: none
   - task: TriggerPipeline@1
     inputs:
       serviceConnection: 'Trigger Builds'
