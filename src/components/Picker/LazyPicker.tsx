@@ -116,7 +116,7 @@ const LazyPicker = (props: ILazyPickerProps) => {
     loading={loading || fetchingCount > 0}
     onFocus={onFocus}
     searchBehavior={lazySearch}
-    shouldFilterSuggestions={shouldFilterSuggestions}
+    shouldFilterSuggestions={shouldFilterSuggestions || true}
   />;
 };
 
