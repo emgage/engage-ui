@@ -317,7 +317,7 @@ class Picker extends React.PureComponent<Props, State> {
 
       onSuggestionsFetchRequested: ({ value }: any) => {
         const { shouldFilterSuggestions = true } = this.props;
-        const suggestions =  shouldFilterSuggestions ? autoSuggestMethods.getSuggestions(value) : this.state.suggestions;
+        const suggestions =  shouldFilterSuggestions ? autoSuggestMethods.getSuggestions(value) : this.getSuggestionsItems(this.props.source, this.props.columns || []);
         const isInputBlank = value.trim() === '';
         const noSuggestions = !isInputBlank && suggestions.length === 0;
 
