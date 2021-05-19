@@ -22,7 +22,7 @@ const LazyPicker = (props: ILazyPickerProps) => {
   const [isShowMore, toggleShowMore] = React.useState<boolean>(true);
   const [size, setSize] = React.useState<number>(initialSize);
   const { pickerProps, getAll } = props;
-  const { source = [], defaultSelectedItems = [], loading, shouldRenderSuggestions, onSelect } = pickerProps;
+  const { source = [], defaultSelectedItems = [], loading, shouldRenderSuggestions, onSelect, shouldFilterSuggestions = false } = pickerProps;
 
   const ids = React.useMemo(() => defaultSelectedItems.map((item: any) => item.id), [defaultSelectedItems]);
   const filteredSource = React.useMemo(() => source.filter((item: any) => !ids.includes(item.id)), [ids, source]);
@@ -109,7 +109,15 @@ const LazyPicker = (props: ILazyPickerProps) => {
     setSearchString('');
   };
 
-  return <Picker {...pickerProps} onSelect={handleSelect} source={filteredSource} moreInfoComponent={moreInfoComponent} loading={loading || fetchingCount > 0} onFocus={onFocus} searchBehavior={lazySearch} />;
+  return <Picker {...pickerProps}
+    onSelect={handleSelect}
+    source={filteredSource}
+    moreInfoComponent={moreInfoComponent}
+    loading={loading || fetchingCount > 0}
+    onFocus={onFocus}
+    searchBehavior={lazySearch}
+    shouldFilterSuggestions={shouldFilterSuggestions}
+  />;
 };
 
 export default LazyPicker;
