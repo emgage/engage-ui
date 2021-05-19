@@ -529,7 +529,7 @@ class Picker extends React.PureComponent<Props, State> {
           additionalText ? <BodyText componentSize="small" componentColor="darker">{additionalText}</BodyText> : null
         }
         {
-          noSuggestions && !isDataAvailable  && noOptionsMessage && isFocused && !loading &&
+          noSuggestions && !isDataAvailable  && noOptionsMessage && !inputProps.disabled && isFocused && !loading &&
             <Popover
               addArrow={false}
               componentStyle={{ maxHeight: window.outerHeight < 768 ? 500 : 800, overflow: 'auto', maxWidth: popoverWidth, width: '49.2rem', padding: '1.3rem', marginTop: '-.4rem' }}
