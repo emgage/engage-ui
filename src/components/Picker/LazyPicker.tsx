@@ -32,8 +32,11 @@ const LazyPicker = (props: ILazyPickerProps) => {
     setSize(prevSize => prevSize + incrementSize);
   };
 
-  const moreInfoComponent = isFocused && source.length >= size && !loading && fetchingCount <= 0 && isShowMore && <Button plain componentSize="slim" onClick={handleShowMore}> Load More.. </Button>;
+  let moreInfoComponent:any = isFocused && source.length >= size && !loading && fetchingCount <= 0 && isShowMore && <Button plain componentSize="slim" onClick={handleShowMore}> Load More.. </Button>;
 
+  if (!shouldRenderSuggestions && (!searchString || searchString === '')) {
+    moreInfoComponent = null;
+  }
   React.useEffect(() => {
     if (shouldRenderSuggestions) {
       fetchFunction('initial');
@@ -48,10 +51,7 @@ const LazyPicker = (props: ILazyPickerProps) => {
 
   const lazySearch = debounce(
     (value: string, method: string) => {
-      setSearchString(value);
-      if (method === 'focus_out') {
-        toggleFocus(false);
-      } else if (method === 'type') {
+      if (method === 'type' || method === 'focus_out') {
         fetchFunction('search', value);
       }
     // tslint:disable-next-line
@@ -103,6 +103,14 @@ const LazyPicker = (props: ILazyPickerProps) => {
     }
   };
 
+  const handleSearch = (value: string, method: string) => {
+    setSearchString(value);
+    if (method === 'focus_out') {
+      toggleFocus(false);
+    }
+    lazySearch(value, method);
+  };
+
   const onFocus = () => {
     toggleFocus(true);
     if ((searchString === '' && source.length === 0) || (searchString !== '')) {
@@ -119,7 +127,7 @@ const LazyPicker = (props: ILazyPickerProps) => {
     moreInfoComponent={moreInfoComponent}
     loading={loading || fetchingCount > 0}
     onFocus={onFocus}
-    searchBehavior={lazySearch}
+    searchBehavior={handleSearch}
     shouldFilterSuggestions={shouldFilterSuggestions}
   />;
 };
