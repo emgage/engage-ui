@@ -20,6 +20,7 @@ const LazyPicker = (props: ILazyPickerProps) => {
   const [searchString, setSearchString] = React.useState<string | undefined>();
   const [fetchingCount, setFetchingCount] = React.useState<number>(0);
   const [isShowMore, toggleShowMore] = React.useState<boolean>(true);
+  const [isFocused, toggleFocus] = React.useState<boolean>(false);
   const [size, setSize] = React.useState<number>(initialSize);
   const { pickerProps, getAll } = props;
   const { source = [], defaultSelectedItems = [], loading, shouldRenderSuggestions, onSelect, shouldFilterSuggestions = false } = pickerProps;
@@ -31,7 +32,7 @@ const LazyPicker = (props: ILazyPickerProps) => {
     setSize(prevSize => prevSize + incrementSize);
   };
 
-  const moreInfoComponent = source.length >= size && !loading && fetchingCount <= 0 && isShowMore && <Button plain componentSize="slim" onClick={handleShowMore}> Load More.. </Button>;
+  const moreInfoComponent = isFocused && source.length >= size && !loading && fetchingCount <= 0 && isShowMore && <Button plain componentSize="slim" onClick={handleShowMore}> Load More.. </Button>;
 
   React.useEffect(() => {
     if (shouldRenderSuggestions) {
@@ -49,7 +50,7 @@ const LazyPicker = (props: ILazyPickerProps) => {
     (value: string, method: string) => {
       setSearchString(value);
       if (method === 'focus_out') {
-        toggleShowMore(false);
+        toggleFocus(false);
       } else if (method === 'type') {
         fetchFunction('search', value);
       }
@@ -103,6 +104,7 @@ const LazyPicker = (props: ILazyPickerProps) => {
   };
 
   const onFocus = () => {
+    toggleFocus(true);
     if ((searchString === '' && source.length === 0) || (searchString !== '')) {
       if (shouldRenderSuggestions) {
         fetchFunction('focus', '');
