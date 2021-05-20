@@ -31,7 +31,7 @@ const LazyPicker = (props: ILazyPickerProps) => {
     setSize(prevSize => prevSize + incrementSize);
   };
 
-  const moreInfoComponent = !loading && fetchingCount <= 0 && isShowMore && <Button plain componentSize="slim" onClick={handleShowMore}> Load More.. </Button>;
+  const moreInfoComponent = source.length >= size && !loading && fetchingCount <= 0 && isShowMore && <Button plain componentSize="slim" onClick={handleShowMore}> Load More.. </Button>;
 
   React.useEffect(() => {
     if (shouldRenderSuggestions) {
@@ -116,7 +116,7 @@ const LazyPicker = (props: ILazyPickerProps) => {
     loading={loading || fetchingCount > 0}
     onFocus={onFocus}
     searchBehavior={lazySearch}
-    shouldFilterSuggestions={shouldFilterSuggestions || true}
+    shouldFilterSuggestions={shouldFilterSuggestions}
   />;
 };
 
