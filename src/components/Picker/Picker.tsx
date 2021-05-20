@@ -312,7 +312,11 @@ class Picker extends React.PureComponent<Props, State> {
       },
 
       onBlur: (event: React.FormEvent<any>) => {
-        this.setState({ isFocused: false, noSuggestions: false, value: '' });
+        this.setState({ isFocused: false, noSuggestions: false, value: '' }, () => {
+          if (this.props.searchBehavior) {
+            this.props.searchBehavior('', 'focus_out');
+          }
+        });
       },
 
       onSuggestionsFetchRequested: ({ value }: any) => {

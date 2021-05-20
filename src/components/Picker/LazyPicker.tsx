@@ -48,7 +48,9 @@ const LazyPicker = (props: ILazyPickerProps) => {
   const lazySearch = debounce(
     (value: string, method: string) => {
       setSearchString(value);
-      if (method === 'type') {
+      if (method === 'focus_out') {
+        toggleShowMore(false);
+      } else if (method === 'type') {
         fetchFunction('search', value);
       }
     // tslint:disable-next-line
