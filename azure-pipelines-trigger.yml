@@ -5,7 +5,7 @@
 
 schedules:
 - cron: "0 0 * * *"
-  displayName: Daily midnight build
+  displayName: Daily Midnight build Coordinated Universal Time (UTC)
   branches:
     include:
     - master
