@@ -24,7 +24,7 @@ jobs:
       script: |
         #!/bin/bash
       
-        TIMEMODIFIED=$(npm view engage-ui time.modified)
+        TIMEMODIFIED=$(npm view engage-ui@latest time.modified)
         EPOCHTIMEMODIFIED=$(date -d "$TIMEMODIFIED" +%s)
         EPOCHYESTERDAY=$(date -d "yesterday" +%s)
       
