@@ -82,8 +82,6 @@ $stacking-order: (
   list-style-type: none;
   z-index: z-index(popover, $stacking-order);
   min-width: 13rem;
-  max-width: fit-content;
-  width: -webkit-fill-available;
 }
 
 
@@ -131,11 +129,11 @@ $stacking-order: (
   min-height: 30px;
   position: absolute;
   height: 100%;
+  min-width: 13rem;
   .suggestionsList {
     width:100%;
     padding-bottom: 30px;
     position: relative;
-    max-width: fit-content;
   }
   .pickerResultHide,
   .pickerResultShow{
