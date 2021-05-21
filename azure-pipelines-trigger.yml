@@ -43,6 +43,7 @@ jobs:
   condition: eq(dependencies.time_modified_check.outputs['compareJob.proceed'], true)
   steps:
   - checkout: none
+  # enabling dependant triggers only for master branch hence configuring release branches
   - task: TriggerPipeline@1
     inputs:
       serviceConnection: 'Trigger Builds'
