@@ -4,6 +4,7 @@ import { classNames } from '@shopify/react-utilities/styles';
 import { CHIP } from '../ThemeIdentifiers';
 import * as baseTheme from './Chip.scss';
 import Icon, { IconList } from '../Icon';
+import Button from '../Button';
 
 export interface Props {
   // Makes the chips body area clickable.
@@ -57,7 +58,7 @@ class Chip extends React.PureComponent<Props, any> {
       theme.Chip,
       transparent && theme.transparent);
 
-    const chipContents = [(
+    const firstIconComponent = (
       image && image.url
         ?
         (typeof image.url === 'object' ?
@@ -65,25 +66,29 @@ class Chip extends React.PureComponent<Props, any> {
           : <img className={theme.Image} src={image.url} alt={image.alt} key="1" aria-hidden />
         )
         : ''
-    ),
+    );
+
+    const chipTextComponent = (
       <span className={theme.chipContent} key="2">
-      {children}
-      { icon && <span > <Icon onClick={onIconClick} source={icon} theme={theme} /> </span> }
-    </span>,
-    ];
-    const isClickable = clickable ?
-      <a onClick={onClick} aria-disabled={false}>
-        {chipContents}
-      </a>
-      : chipContents;
-    const isRemovable = removable ?
-      <a className={theme.Remove} aria-label={'Remove ' + children} onClick={onRemove} tabIndex={-1}>
+        <Button onClick={clickable && onClick || (() => { })} componentSize="slim" plain componentClass={theme.chipButtonContent}>
+          {children}
+        </Button>
+        {icon && <Button componentSize="slim" plain componentClass={theme.chipIcon}> <Icon onClick={onIconClick} source={icon} theme={theme} /> </Button>}
+      </span>
+    );
+
+    const isRemovable = removable &&
+      (<Button componentClass={theme.Remove} aria-label={'Remove ' + children} onClick={onRemove} componentSize="slim" plain>
         <Icon source="cancel" theme={theme} />
-      </a>
-      : '';
+      </Button>
+      );
 
     return (
-        React.createElement('button', { className, onKeyDown: removable ? this.onKeyDown.bind(this, Event) : null }, isClickable, isRemovable)
+      <div className={className} onKeyDown={removable ? this.onKeyDown.bind(this, Event) : null}>
+        {firstIconComponent}
+        {chipTextComponent}
+        {isRemovable}
+      </div>
     );
   }
 }

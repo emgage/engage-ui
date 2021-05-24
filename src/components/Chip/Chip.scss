@@ -21,6 +21,38 @@ $vertical-padding: ($min-height - line-height(body) - rem(2px)) / 2;
     white-space: nowrap;
     vertical-align: middle;
     max-width: $maxWidth;
+
+    .chipButtonContent {
+        color: rgba(0,0,0,.54);
+        fill: rgba(0,0,0,.54);
+        padding: 0px;
+        min-width: auto;
+        min-height: auto;
+        margin:0px;
+        vertical-align: middle;
+        padding-top: 0.6rem;
+        padding-bottom: 0.5rem;
+        padding-left: 3.5rem;
+        position: relative;
+        z-index: 10;
+        &:hover {
+            color: rgba(0, 0, 0, 0.54);
+            fill: rgba(0, 0, 0, 0.54);
+        }
+    }
+    .chipIcon {
+        color: rgba(0,0,0,.54);
+        fill: rgba(0,0,0,.54);
+        padding: 0px;
+        min-width: auto;
+        min-height: auto;
+        margin:0px;
+        vertical-align: middle;
+        &:hover {
+            color: rgba(0, 0, 0, 0.54);
+            fill: rgba(0, 0, 0, 0.54);
+        }
+    }
 }
 
 :focus {
@@ -46,7 +78,17 @@ $vertical-padding: ($min-height - line-height(body) - rem(2px)) / 2;
 .Remove {
     cursor: pointer;
     flex-shrink: 0;
-    margin: ($horizontal-padding / 2) (-1 * $horizontal-padding / 2) ($horizontal-padding / 2) ($horizontal-padding / 2);
+    color: rgba(0, 0, 0, 0.54);
+    fill: rgba(0, 0, 0, 0.54);
+    padding:0px;
+    min-width: auto;
+    min-height: auto;
+    margin: 0px;
+    vertical-align: middle;
+    &:hover {
+        color: rgba(0, 0, 0, 0.54);
+        fill: rgba(0, 0, 0, 0.54); 
+    }
 }
 
 .transparent{
@@ -58,6 +100,7 @@ $vertical-padding: ($min-height - line-height(body) - rem(2px)) / 2;
   flex: 1 1 auto;
   overflow: hidden;
   text-overflow: ellipsis;
+  margin-left: -4rem;
   span {
       display: inline-block;
       vertical-align: middle;
