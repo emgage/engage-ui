@@ -49,13 +49,13 @@ const LazyPicker = (props: ILazyPickerProps) => {
     }
   },              [size]);
 
-  const lazySearch = debounce(
+  const lazySearch = React.useCallback(debounce(
     (value: string, method: string) => {
       if (method === 'type' || method === 'focus_out') {
         fetchFunction('search', value);
       }
-    // tslint:disable-next-line
-    }, 500);
+      // tslint:disable-next-line
+    }, 500), []);
 
   const fetchFunction = (type: string = '', searchVal = searchString) => {
     let newSize = size;
