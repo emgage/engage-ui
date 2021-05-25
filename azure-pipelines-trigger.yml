@@ -5,7 +5,7 @@
 
 schedules:
 - cron: "0 0 * * *"
-  displayName: Daily midnight build
+  displayName: Daily Midnight build Coordinated Universal Time (UTC)
   branches:
     include:
     - master
@@ -24,7 +24,7 @@ jobs:
       script: |
         #!/bin/bash
       
-        TIMEMODIFIED=$(npm view engage-ui time.modified)
+        TIMEMODIFIED=$(npm view engage-ui@latest time.modified)
         EPOCHTIMEMODIFIED=$(date -d "$TIMEMODIFIED" +%s)
         EPOCHYESTERDAY=$(date -d "yesterday" +%s)
       
@@ -43,31 +43,32 @@ jobs:
   condition: eq(dependencies.time_modified_check.outputs['compareJob.proceed'], true)
   steps:
   - checkout: none
+  # enabling dependant triggers only for master branch hence configuring release branches
   - task: TriggerPipeline@1
     inputs:
       serviceConnection: 'Trigger Builds'
       project: '2072a0a1-0afd-42e6-895f-941998c2ccce'
       Pipeline: 'Build'
       buildDefinition: 'emgage.emgage-frontend'
-      Branch: 'develop'
+      Branch: 'releases/r1-release'
   - task: TriggerPipeline@1
     inputs:
       serviceConnection: 'Trigger Builds'
       project: '2072a0a1-0afd-42e6-895f-941998c2ccce'
       Pipeline: 'Build'
       buildDefinition: 'emgage.page-builder'
-      Branch: 'develop'
+      Branch: 'releases/r1-release'
   - task: TriggerPipeline@1
     inputs:
       serviceConnection: 'Trigger Builds'
       project: '2072a0a1-0afd-42e6-895f-941998c2ccce'
       Pipeline: 'Build'
       buildDefinition: 'emgage.platform-widgets.deploy'
-      Branch: 'develop'
+      Branch: 'releases/r1-release'
   - task: TriggerPipeline@1
     inputs:
       serviceConnection: 'Trigger Builds'
       project: '2072a0a1-0afd-42e6-895f-941998c2ccce'
       Pipeline: 'Build'
       buildDefinition: 'emgage.builder-shared-services'
-      Branch: 'develop'
+      Branch: 'releases/r1-release'
