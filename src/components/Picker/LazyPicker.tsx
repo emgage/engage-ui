@@ -55,7 +55,7 @@ const LazyPicker = (props: ILazyPickerProps) => {
         fetchFunction('search', value);
       }
       // tslint:disable-next-line
-    }, 500), []);
+    }, 500), [size, initialSize]);
 
   const fetchFunction = (type: string = '', searchVal = searchString) => {
     let newSize = size;
