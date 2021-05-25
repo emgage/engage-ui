@@ -1,0 +1,74 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+schedules:
+- cron: "0 0 * * *"
+  displayName: Daily Midnight build Coordinated Universal Time (UTC)
+  branches:
+    include:
+    - master
+  always: true
+
+jobs:
+- job: time_modified_check
+  pool:
+    vmImage: 'ubuntu-latest'
+  steps:
+  - checkout: none
+  - task: Bash@3
+    name: "compareJob"
+    inputs:
+      targetType: 'inline'
+      script: |
+        #!/bin/bash
+      
+        TIMEMODIFIED=$(npm view engage-ui@latest time.modified)
+        EPOCHTIMEMODIFIED=$(date -d "$TIMEMODIFIED" +%s)
+        EPOCHYESTERDAY=$(date -d "yesterday" +%s)
+      
+        if [ "$EPOCHTIMEMODIFIED" -gt "$EPOCHYESTERDAY" ]; then
+          echo "Engage-UI has been modified. Triggering build Pipelines"
+          echo '##vso[task.setvariable variable=proceed;isOutput=true]true'
+        else
+          echo "Engage-UI at latest version no need to trigger Build Pipelines"
+          echo "##vso[task.setvariable variable=proceed;isOutput=true;]false"
+        fi
+
+- job: run_dependant_builds
+  pool:
+    vmImage: 'windows-latest'
+  dependsOn: time_modified_check
+  condition: eq(dependencies.time_modified_check.outputs['compareJob.proceed'], true)
+  steps:
+  - checkout: none
+  # enabling dependant triggers only for master branch hence configuring release branches
+  - task: TriggerPipeline@1
+    inputs:
+      serviceConnection: 'Trigger Builds'
+      project: '2072a0a1-0afd-42e6-895f-941998c2ccce'
+      Pipeline: 'Build'
+      buildDefinition: 'emgage.emgage-frontend'
+      Branch: 'releases/r1-release'
+  - task: TriggerPipeline@1
+    inputs:
+      serviceConnection: 'Trigger Builds'
+      project: '2072a0a1-0afd-42e6-895f-941998c2ccce'
+      Pipeline: 'Build'
+      buildDefinition: 'emgage.page-builder'
+      Branch: 'releases/r1-release'
+  - task: TriggerPipeline@1
+    inputs:
+      serviceConnection: 'Trigger Builds'
+      project: '2072a0a1-0afd-42e6-895f-941998c2ccce'
+      Pipeline: 'Build'
+      buildDefinition: 'emgage.platform-widgets.deploy'
+      Branch: 'releases/r1-release'
+  - task: TriggerPipeline@1
+    inputs:
+      serviceConnection: 'Trigger Builds'
+      project: '2072a0a1-0afd-42e6-895f-941998c2ccce'
+      Pipeline: 'Build'
+      buildDefinition: 'emgage.builder-shared-services'
+      Branch: 'releases/r1-release'
