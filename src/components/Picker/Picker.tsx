@@ -21,7 +21,6 @@ export interface IStateProps {
   removable: boolean;
   multiSection?: any;
   reachedMax?: boolean;
-  moreInfoClick?: boolean;
 }
 
 export interface IItemList {
@@ -115,8 +114,7 @@ export interface Props {
   // Error to display beneath the label.
   errors?: [string];
   placeholder?: string;
-  // true|false as used for after selection focus reach to input or not
-  moreInfoClick?: boolean;
+  shouldFilterSuggestions?: boolean;
 }
 
 const DefaultCard = (props: any) => {
@@ -264,7 +262,7 @@ class Picker extends React.PureComponent<Props, State> {
       onSuggestionsClearRequested: () => this.setState({ suggestions: [], value: '' }),
 
       getSuggestions: (value: string) => {
-        const escapedValue = escapeRegexCharacters(value.trim());
+        const escapedValue = escapeRegexCharacters(value.trim().replace(/ +(?= )/g, ''));
         const regex = new RegExp(escapedValue, 'i');
         if (columns.length !== 0) {
           return [{ title: columns, items: this.state.itemsList.filter((language: IItemList) => regex.test(language.name ? language.name : '')) }];
@@ -314,18 +312,20 @@ class Picker extends React.PureComponent<Props, State> {
       },
 
       onBlur: (event: React.FormEvent<any>) => {
-        this.setState({ isFocused: false, noSuggestions: false, value: '' });
+        this.setState({ isFocused: false, noSuggestions: false, value: '' }, () => {
+          if (this.props.searchBehavior) {
+            this.props.searchBehavior('', 'focus_out');
+          }
+        });
       },
 
       onSuggestionsFetchRequested: ({ value }: any) => {
-        const suggestions = autoSuggestMethods.getSuggestions(value);
+        const { shouldFilterSuggestions = true } = this.props;
+        const suggestions =  shouldFilterSuggestions ? autoSuggestMethods.getSuggestions(value) : this.getSuggestionsItems(this.props.source, this.props.columns || []);
         const isInputBlank = value.trim() === '';
         const noSuggestions = !isInputBlank && suggestions.length === 0;
 
-        this.setState({
-          suggestions,
-          noSuggestions
-        });
+        this.setState({ suggestions, noSuggestions });
       },
 
       updateList: (input: HTMLElement) => {
@@ -398,7 +398,10 @@ class Picker extends React.PureComponent<Props, State> {
       },
 
       renderSuggestion: (suggestion: IItemList, { isHighlighted, query }: IRenderSuggestionProp) => {
-        // render custom option
+        // eslint-disable-next-line no-param-reassign
+        query.trim().replace(/ +(?= )/g, '');
+
+        // render custom option 
         if ((suggestion as any).customRender) {
           return (suggestion as any).customRender(suggestion, {
             isHighlighted,
@@ -441,7 +444,6 @@ class Picker extends React.PureComponent<Props, State> {
         backdropHidden= false,
         disabled = false,
         readOnly = false,
-        moreInfoClick = false,
         moreInfoComponent,
         componentId = '',
         theme,
@@ -466,7 +468,6 @@ class Picker extends React.PureComponent<Props, State> {
       suggestions,
       chipListState,
       inputProps,
-      moreInfoClick,
       removable: readOnly ? false : true,
       multiSection: columns.length !== 0 ? true : false,
       reachedMax: (!!this.props.maxSelectedItems && this.props.maxSelectedItems > 0 && this.props.maxSelectedItems <= chipListState.length)
@@ -532,7 +533,7 @@ class Picker extends React.PureComponent<Props, State> {
           additionalText ? <BodyText componentSize="small" componentColor="darker">{additionalText}</BodyText> : null
         }
         {
-          noSuggestions && !isDataAvailable  && noOptionsMessage && isFocused && !loading &&
+          noSuggestions && !isDataAvailable  && noOptionsMessage && !inputProps.disabled && isFocused && !loading &&
             <Popover
               addArrow={false}
               componentStyle={{ maxHeight: window.outerHeight < 768 ? 500 : 800, overflow: 'auto', maxWidth: popoverWidth, width: '49.2rem', padding: '1.3rem', marginTop: '-.4rem' }}

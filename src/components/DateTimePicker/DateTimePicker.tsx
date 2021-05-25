@@ -41,6 +41,10 @@ export interface Props {
   getFromValue?: boolean;
   // The default view to display when the picker is shown. ('years', 'months', 'days', 'time')
   viewMode?: ViewMode;
+  /* Define the dates that can be selected. The function receives (currentDate, selectedDate)
+    and should return a true or false whether the currentDate is valid or not. See selectable dates.
+   */
+  isValidDate?: (currentDate: any, selectedDate: any) => boolean;
 }
 
 export interface State {
@@ -105,7 +109,7 @@ class DateTimePicker extends React.PureComponent<Props, State>{
   }
 
   render() {
-    const { dateFormat, label, theme, timePicker, placeholder, componentStyle, value, getFromValue, componentId, viewMode } = this.props;
+    const { dateFormat, label, theme, timePicker, placeholder, componentStyle, value, getFromValue, componentId, viewMode, isValidDate } = this.props;
     const { dateTime, open } = this.state;
     let dateTimeValue;
     if (getFromValue) {
@@ -136,6 +140,7 @@ class DateTimePicker extends React.PureComponent<Props, State>{
                 timeFormat={timePicker}
                 dateFormat={dateFormat}
                 viewMode={viewMode}
+                isValidDate={isValidDate}
             />
         </div>
     );

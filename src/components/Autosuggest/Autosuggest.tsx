@@ -41,7 +41,6 @@ export interface Props {
   theme?: any;
   id?: string;
   containerProps?: any; // Arb
-  moreInfoClick?: boolean;
 }
 
 export interface State {
@@ -95,7 +94,6 @@ class Autosuggest extends React.Component<Props, State> {
   componentDidMount() {
     document.addEventListener('mousedown', this.onDocumentMouseDown);
     document.addEventListener('mouseup', this.onDocumentMouseUp);
-    document.addEventListener('click', this.handleClickOutside);
 
     this.input = this.autowhatever.input;
     this.suggestionsContainer = this.autowhatever.itemsContainer;
@@ -167,29 +165,6 @@ class Autosuggest extends React.Component<Props, State> {
   componentWillUnmount() {
     document.removeEventListener('mousedown', this.onDocumentMouseDown);
     document.removeEventListener('mouseup', this.onDocumentMouseUp);
-    document.removeEventListener('click', this.handleClickOutside);
-  }
-
-  handleClickOutside = (event: any) => {
-    if (this.suggestionsContainer && !this.suggestionsContainer.contains(event.target)) {
-      const {
-        isFocused,
-        isCollapsed,
-      } = (this as any).state;
-      const {
-        alwaysRenderSuggestions
-      } = (this as any).props;
-      const willRenderSuggestions = this.willRenderSuggestions(
-        this.props,
-        'render'
-      );
-      const isOpen = alwaysRenderSuggestions || (isFocused && !isCollapsed && willRenderSuggestions);
-
-      if (isOpen) {
-        this.onSuggestionsClearRequested();
-        this.closeSuggestions();
-      }
-    }
   }
 
   updateHighlightedSuggestion(sectionIndex: any, suggestionIndex?: any, prevValue?: any) {
@@ -596,9 +571,9 @@ class Autosuggest extends React.Component<Props, State> {
         }
       },
       onBlur: (event: any) => {
-        const { moreInfoClick = false } = this.props;
         if (this.justClickedOnSuggestionsContainer) {
-          if (!moreInfoClick) this.input.focus();
+          this.input.select();
+          this.input.value = '';
           return;
         }
 

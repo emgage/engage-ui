@@ -15,7 +15,6 @@ export interface IStateProps {
   removable: boolean;
   multiSection?: any;
   reachedMax?: boolean;
-  moreInfoClick?: boolean;
 }
 
 export interface Props {
@@ -63,7 +62,6 @@ class AutoSuggestText extends React.PureComponent<Props, {}> {
               renderSuggestion={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.renderSuggestion : (() => {}) as any}
               inputProps={this.props.stateProps ? this.props.stateProps.inputProps : null}
               renderSuggestionsContainer={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.renderSuggestionsContainer : (() => {}) as any}
-              moreInfoClick={this.props.stateProps && this.props.stateProps.moreInfoClick ? this.props.stateProps.moreInfoClick : false}
             />
             :
             <Autosuggest
@@ -86,7 +84,6 @@ class AutoSuggestText extends React.PureComponent<Props, {}> {
               renderSuggestion={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.renderSuggestion : (() => {}) as any}
               inputProps={this.props.stateProps ? this.props.stateProps.inputProps : null}
               renderSuggestionsContainer={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.renderSuggestionsContainer : (() => {}) as any}
-              moreInfoClick={this.props.stateProps && this.props.stateProps.moreInfoClick ? this.props.stateProps.moreInfoClick : false}
             />
             : null
           }
