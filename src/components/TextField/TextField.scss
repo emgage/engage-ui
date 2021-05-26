@@ -231,6 +231,7 @@ $spinner-size: rem(20px);
   display: flex;
   flex: 1 1 0%;
   justify-content: center;
+  z-index: 20;
   align-items: center;
   appearance: none;
   background: linear-gradient(to bottom, color(white), color(sky, lighter));
