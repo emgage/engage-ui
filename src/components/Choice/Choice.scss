@@ -15,7 +15,7 @@ $control-vertical-adjustment: 2px;
 $icon-horizontal-adjustment: 2px;
 
 .choice {
-  display: flex;
+  display: inline-flex;
   align-items: flex-start;
   padding: spacing(tightest) 0;
   position: relative;
