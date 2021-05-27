@@ -3,6 +3,9 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
+trigger: none
+pr: none
+
 schedules:
 - cron: "0 0 * * *"
   displayName: Daily Midnight build Coordinated Universal Time (UTC)
