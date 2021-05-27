@@ -704,6 +704,8 @@ class Autosuggest extends React.Component<Props, State> {
               setTimeout(() => {
                 this.justSelectedSuggestion = false;
               });
+            } else {
+              this.onSuggestionsClearRequested();
             }
 
             break;
