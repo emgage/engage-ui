@@ -46,10 +46,11 @@ export interface Props {
     sorting?: boolean | string;
     striped?: boolean;
     theme?: any;
+    disableAllRow?: boolean;
 }
 export interface State {
     data: any;
-    disableAllRow: boolean;
+    disableAllRow: boolean | undefined;
     expandedRow: any;
     intermediateRow: any;
     sort: SortState;
