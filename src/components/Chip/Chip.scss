@@ -12,7 +12,7 @@ $vertical-padding: ($min-height - line-height(body) - rem(2px)) / 2;
     height: $height;
     min-width: $height;
     margin: 0;
-    padding: 0 $horizontal-padding;
+    padding: 0 ($horizontal-padding + .3) 0 0;
     align-items: center;
     border: none;
     border-radius: $height / 2;
@@ -32,9 +32,8 @@ $vertical-padding: ($min-height - line-height(body) - rem(2px)) / 2;
         vertical-align: middle;
         padding-top: 0.6rem;
         padding-bottom: 0.5rem;
-        padding-left: 3.5rem;
         position: relative;
-        z-index: 10;
+        padding-left: .5rem;
         &:hover {
             color: rgba(0, 0, 0, 0.54);
             fill: rgba(0, 0, 0, 0.54);
@@ -72,22 +71,27 @@ $vertical-padding: ($min-height - line-height(body) - rem(2px)) / 2;
     margin: 0 ($height / 4) 0 (-1 * $horizontal-padding);
     height: $height;
     width: $height;
-    border-radius: 50%;    
+    border-radius: 50%; 
+    display: inline-block;  
+    vertical-align: middle;
 }
 
-.Remove {
-    cursor: pointer;
-    flex-shrink: 0;
+body .Remove {
+    display: flex;
+    height: $height;
+    align-items: center;
+    justify-content: center;
+    border-left: 2px solid #f4f6f8;
+    border-radius: 0px;
+    margin-left: .5rem;
+    padding-left: .2rem;
+    padding-right: .5rem;
     color: rgba(0, 0, 0, 0.54);
     fill: rgba(0, 0, 0, 0.54);
-    padding:0px;
-    min-width: auto;
-    min-height: auto;
-    margin: 0px;
-    vertical-align: middle;
     &:hover {
         color: rgba(0, 0, 0, 0.54);
         fill: rgba(0, 0, 0, 0.54); 
+        border-left: 2px solid #f4f6f8;
     }
 }
 
@@ -100,7 +104,6 @@ $vertical-padding: ($min-height - line-height(body) - rem(2px)) / 2;
   flex: 1 1 auto;
   overflow: hidden;
   text-overflow: ellipsis;
-  margin-left: -4rem;
   span {
       display: inline-block;
       vertical-align: middle;

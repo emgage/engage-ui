@@ -30,6 +30,7 @@ export interface Props {
   icon?: keyof typeof IconList;
   // Icon click handler
   onIconClick?(): void;
+  label?: string;
 }
 
 class Chip extends React.PureComponent<Props, any> {
@@ -51,7 +52,8 @@ class Chip extends React.PureComponent<Props, any> {
       onClick,
       children,
       icon,
-      onIconClick
+      onIconClick,
+      label
     } = this.props;
 
     const className = classNames(
@@ -71,7 +73,8 @@ class Chip extends React.PureComponent<Props, any> {
     const chipTextComponent = (
       <span className={theme.chipContent} key="2">
         <Button onClick={clickable && onClick || (() => { })} componentSize="slim" plain componentClass={theme.chipButtonContent}>
-          {children}
+          {firstIconComponent}
+          <span>{label || children}</span>
         </Button>
         {icon && <Button componentSize="slim" plain componentClass={theme.chipIcon}> <Icon onClick={onIconClick} source={icon} theme={theme} /> </Button>}
       </span>
@@ -85,7 +88,7 @@ class Chip extends React.PureComponent<Props, any> {
 
     return (
       <div className={className} onKeyDown={removable ? this.onKeyDown.bind(this, Event) : null}>
-        {firstIconComponent}
+        {/* {firstIconComponent} */}
         {chipTextComponent}
         {isRemovable}
       </div>
