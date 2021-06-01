@@ -42,6 +42,8 @@ export interface Props {
   accessibilityLabel?: string;
   // Icon to display in the banner.
   icon?: IconProps['source'];
+  // put icon before or after label. sending iconPosition prop will set icon after label
+  iconPosition?: boolean;
   // To display the styling.
   componentStyle?: React.CSSProperties;
   // Set a custom class
@@ -81,6 +83,7 @@ const button = ({
   componentClass,
   componentId = '',
   theme,
+  iconPosition = false,
 }: Props) => {
   const className = classNames(
     theme.button,
@@ -106,14 +109,19 @@ const button = ({
   const childMarkup = children ? <span>{children}</span> : null;
 
   const content = iconMarkup || disclosureIconMarkup
-    ? (
+    ? !iconPosition ? (
       <span className={theme.content}>
         {iconMarkup}
         {childMarkup}
         {disclosureIconMarkup}
       </span>
-    )
-    : <span className={theme.content}>{childMarkup}</span>;
+    ) : (
+        <span className={theme.content}>
+          {childMarkup}
+          {iconMarkup}
+        </span>
+      )
+      : <span className={theme.content}>{childMarkup}</span>;
 
   const type = submit ? 'submit' : 'button';
 
