@@ -11,10 +11,11 @@ import KeypressListener from '../KeypressListener';
 
 import { Keys } from '../../types';
 import { MODAL } from '../ThemeIdentifiers';
-
+// import './Modal.css';
 import * as baseTheme from './Modal.scss';
 
-export type Width = 'small' | 'medium' | 'large' | 'xlarge' | string;
+
+export type Width = 'small' | 'medium' | 'large' | 'xlarge';
 
 export interface Props {
   // Define the open or close state of modal
@@ -39,6 +40,7 @@ export interface Props {
   toggle?(): void;
   // Define size of modal: small, medium, large or px value
   componentWidth?: Width;
+  Printable?: any;
 }
 
 const getUniqueID = createUniqueIDFactory('ModalContent');
@@ -102,8 +104,7 @@ class Modal extends React.PureComponent<Props, never> {
   render() {
     return <div ref={this.setActivator}></div>;
   }
-
-    // Function to get the current active modal content from props.children & set that as active & render that component only
+     // Function to get the current active modal content from props.children & set that as active & render that component only
   renderActivechildren() {
     const { activeContentId, children, closeButton = false, toggle } = this.props;
 
@@ -118,12 +119,14 @@ class Modal extends React.PureComponent<Props, never> {
       }
     });
   }
-
+  print = () => {
+    window.print();
+  }
   // Render close button if its set true
   renderCloseButton = () => {
     const { closeButton = false, theme } = this.props;
 
-    return closeButton ? (<div className={theme.close}><Button plain onClick={this.closeModal} icon="cancel" theme={theme}><VisuallyHidden>Close Modal</VisuallyHidden></Button></div>) : null;
+    return closeButton ? (<div className={theme.close}><Button onClick={this.print} componentId="printModal" icon="print" plain componentSize="slim" theme={theme} componentStyle={{marginRight: '.5rem'}}><VisuallyHidden>Ptint</VisuallyHidden></Button><Button plain onClick={this.closeModal} icon="cancel" theme={theme}><VisuallyHidden>Close Modal</VisuallyHidden></Button></div>) : null;
   }
 
   // Import keylistener if modal needs to be closed on pressing escape key
