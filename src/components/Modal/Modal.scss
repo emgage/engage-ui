@@ -140,3 +140,41 @@ $modal-footer-background:                        #fff !default; //add $global-ba
   }
 }
 
+@media print {
+  :global #app-root {
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+    overflow: hidden;
+    height:0px;
+  }
+  div[id^='TooltipLayer'] {
+      display: none;
+  }
+  .overlay.open {
+    position: relative;
+    display: block!important;
+    opacity: 1;
+    visibility: visible!important;
+    height: auto;
+    background-color:transparent;
+    .dialog {
+      width:100%;
+      box-shadow: none;
+      border:0px;
+      display: block!important;
+      opacity: 1;
+      visibility: visible!important;
+      height: auto;
+      .header {
+        padding: 15px 0px;
+      }
+      .body {
+        padding: 15px 0px;
+      }
+      .close {
+        display: none;
+      }
+    }
+  }
+}
