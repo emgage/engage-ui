@@ -25,6 +25,7 @@ interface IOptions {
   value: string | number;
   count?: number;
   selected: boolean;
+  visibleOptions?: boolean;
 }
 
 interface IProps {
@@ -72,12 +73,13 @@ function multiCheckboxFacet({
         </div>
       )}
 
-      <div className="facet-checkbox-container">
+       <div className="facet-checkbox-container">
         {options.length < 1 && <div>No matching options</div>}
         {options.map((option: any) => {
           const checked = option.selected;
           return (
-            <div style={{ display:'flex', flex: 1 }}>
+              <>
+                { option.visibleOptions || option.visibleOptions === undefined ? <div style={{ display:'flex', flex: 1 }}>
               <div style={{ flex: 1 }}>
                 <Checkbox
                   checked={checked}
@@ -93,7 +95,8 @@ function multiCheckboxFacet({
               <div style={{ display: 'flex', alignItems: 'center', color: '#9e9e9e' }} className="facet-option-count">
                 {option.count && option.count.toLocaleString('en')}
               </div>
-            </div>
+            </div> : <div/>}
+              </>
           );
         })}
       </div>
