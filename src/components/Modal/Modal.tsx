@@ -14,8 +14,7 @@ import { MODAL } from '../ThemeIdentifiers';
 // import './Modal.css';
 import * as baseTheme from './Modal.scss';
 
-
-export type Width = 'small' | 'medium' | 'large' | 'xlarge';
+export type Width = 'small' | 'medium' | 'large' | 'xlarge' | string;
 
 export interface Props {
   // Define the open or close state of modal
@@ -126,7 +125,7 @@ class Modal extends React.PureComponent<Props, never> {
   renderCloseButton = () => {
     const { closeButton = false, theme } = this.props;
 
-    return closeButton ? (<div className={theme.close}><Button onClick={this.print} componentId="printModal" icon="print" plain componentSize="slim" theme={theme} componentStyle={{marginRight: '.5rem'}}><VisuallyHidden>Ptint</VisuallyHidden></Button><Button plain onClick={this.closeModal} icon="cancel" theme={theme}><VisuallyHidden>Close Modal</VisuallyHidden></Button></div>) : null;
+    return closeButton ? (<div className={theme.close}><Button onClick={this.print} componentId="printModal" icon="print" plain componentSize="slim" theme={theme} componentStyle={{ marginRight: '.5rem' }}><VisuallyHidden>Ptint</VisuallyHidden></Button><Button plain onClick={this.closeModal} icon="cancel" theme={theme}><VisuallyHidden>Close Modal</VisuallyHidden></Button></div>) : null;
   }
 
   // Import keylistener if modal needs to be closed on pressing escape key
