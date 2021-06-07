@@ -14,7 +14,7 @@ import { MODAL } from '../ThemeIdentifiers';
 // import './Modal.css';
 import * as baseTheme from './Modal.scss';
 
-export type Width = 'small' | 'medium' | 'large' | 'xlarge';
+export type Width = 'small' | 'medium' | 'large' | 'xlarge' | string;
 
 export interface Props {
   // Define the open or close state of modal
