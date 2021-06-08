@@ -33,13 +33,14 @@ class DropdownItem extends React.PureComponent<Props, never> {
   public id = getUniqueID();
 
   clickCallback = (event: any) => {
+    const checkboxElement = event.currentTarget.querySelector('input[type="checkbox"]');
     const { closeOnClickOption, onClick, returnValue, toggleDropdown } = this.props;
 
     if (onClick) {
       onClick(returnValue ? returnValue : event);
     }
 
-    if (closeOnClickOption && toggleDropdown) {
+    if (closeOnClickOption && toggleDropdown && !checkboxElement) {
       toggleDropdown();
     }
   }
