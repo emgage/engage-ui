@@ -69,7 +69,7 @@ class Checkbox extends React.PureComponent<Props, State> {
   }
 
   handleChange = (event: any) => {
-    // event.preventDefault();
+    event.preventDefault();
     const { disabled, onChange } = this.props;
 
     if (!disabled) {
@@ -145,7 +145,7 @@ class Checkbox extends React.PureComponent<Props, State> {
           disabled={disabled}
           theme={theme}
         >
-          <span className={wrapperClassName}>
+          <span className={wrapperClassName} onClick={this.handleChange}>
             <input
               id={componentId}
               name={name}
@@ -154,7 +154,7 @@ class Checkbox extends React.PureComponent<Props, State> {
               checked={isChecked}
               disabled={disabled}
               className={inputClassName}
-              onChange={this.handleChange}
+              onChange={noop}
               onFocus={onFocus}
               onBlur={onBlur}
               aria-invalid={errors != null}
@@ -173,6 +173,8 @@ class Checkbox extends React.PureComponent<Props, State> {
     );
   }
 }
+
+function noop() {}
 
 export { Checkbox as UnthemedCheckbox };
 export default themr(CHECKBOX, baseTheme)(Checkbox) as ThemedComponentClass<Props, {}>;
