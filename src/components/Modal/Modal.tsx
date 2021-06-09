@@ -39,7 +39,7 @@ export interface Props {
   toggle?(): void;
   // Define size of modal: small, medium, large or px value
   componentWidth?: Width;
-  Printable?: any;
+  printable?: boolean;
 }
 
 const getUniqueID = createUniqueIDFactory('ModalContent');
@@ -123,9 +123,17 @@ class Modal extends React.PureComponent<Props, never> {
   }
   // Render close button if its set true
   renderCloseButton = () => {
-    const { closeButton = false, theme } = this.props;
+    const { closeButton = false, theme, printable = false } = this.props;
 
-    return closeButton ? (<div className={theme.close}><Button onClick={this.print} componentId="printModal" icon="print" plain componentSize="slim" theme={theme} componentStyle={{ marginRight: '.5rem' }}><VisuallyHidden>Ptint</VisuallyHidden></Button><Button plain onClick={this.closeModal} icon="cancel" theme={theme}><VisuallyHidden>Close Modal</VisuallyHidden></Button></div>) : null;
+    return closeButton ? (
+      <div className={theme.close}>
+        { printable && <Button onClick={this.print} componentId="printModal" icon="print" plain componentSize="slim" theme={theme} componentStyle={{ marginRight: '.5rem' }}>
+          <VisuallyHidden>Print</VisuallyHidden>
+        </Button>}
+        <Button plain onClick={this.closeModal} icon="cancel" theme={theme}>
+          <VisuallyHidden>Close Modal</VisuallyHidden>
+        </Button>
+      </div>) : null;
   }
 
   // Import keylistener if modal needs to be closed on pressing escape key
