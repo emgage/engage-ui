@@ -38,7 +38,6 @@
     "docs": "webpack-dev-server --config webpack.docs.config",
     "precommit-msg": "echo 'Running linting and testing checks...' && exit 0",
     "travis-deploy-once": "travis-deploy-once",
-    "commit": "node node_modules/semantic-git-commit-cli/dest/cli.js",
     "commitmsg": "commitlint -E GIT_PARAMS"
   },
   "babel": {
