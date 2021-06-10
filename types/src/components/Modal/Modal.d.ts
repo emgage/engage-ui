@@ -13,6 +13,7 @@ export interface Props {
     theme?: any;
     toggle?(): void;
     componentWidth?: Width;
+    printable?: boolean;
 }
 declare const _default: ThemedComponentClass<Props, {}>;
 export default _default;
