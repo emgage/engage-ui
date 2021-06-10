@@ -69,6 +69,8 @@ $icon-horizontal-adjustment: 2px;
   @include text-style-body;
   @include text-emphasis-subdued;
   margin-bottom: spacing(tightest);
+  font-size: 1.3rem !important;
+  line-height: 1.6rem !important;
 }
 
 .error {
