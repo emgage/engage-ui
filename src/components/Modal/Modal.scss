@@ -141,6 +141,11 @@ $modal-footer-background:                        #fff !default; //add $global-ba
 }
 
 @media print {
+  body {
+    transform: scale(.7);
+    -moz-transform: scale(.7);
+    -webkit-transform: scale(.7);
+  }
   :global #app-root {
     display: none;
     opacity: 0;
