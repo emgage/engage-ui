@@ -30,6 +30,14 @@ $input-vertical-adjust: rem(1px);
   select::-ms-expand {
     display: none;
   }
+
+  option {
+    color: #212121;
+    
+    &:disabled {
+      color: color(ink, lightest);
+    }
+  }
 }
 
 .disabled {
