@@ -14,6 +14,7 @@ import * as baseTheme from './Select.scss';
 export type Option = string | {
   value: string,
   label: string,
+  disabled?: boolean,
 };
 
 export interface Group {
@@ -177,7 +178,7 @@ function renderOption(option: Option) {
     return <option key={option} value={option}>{option}</option>;
   }
 
-  return <option key={option.value} value={option.value}>{option.label}</option>;
+  return <option key={option.value} value={option.value} disabled={!!option.disabled}>{option.label}</option>;
 }
 
 function renderGroup(groupOrOption: Group | Option) {
