@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
-import * as DateTime from 'react-datetime';
+// tslint:disable-next-line:import-name
+import DateTime from 'react-datetime';
 import { Icon, TextField } from '../index';
 import './ReactDatetime.css';
 import * as moment from 'moment';
@@ -109,14 +110,28 @@ class DateTimePicker extends React.PureComponent<Props, State>{
   }
 
   render() {
-    const { dateFormat, label, theme, timePicker, placeholder, componentStyle, value, getFromValue, componentId, viewMode, isValidDate } = this.props;
+    const {
+      dateFormat,
+      label,
+      theme,
+      timePicker,
+      placeholder,
+      componentStyle,
+      value,
+      getFromValue,
+      componentId,
+      viewMode,
+      isValidDate
+    } = this.props;
     const { dateTime, open } = this.state;
+
     let dateTimeValue;
     if (getFromValue) {
       dateTimeValue = value ? moment(value).format(this.timeFormat) : '';
     } else {
       dateTimeValue = dateTime ? dateTime.format(this.timeFormat) : null;
     }
+
     return (
         <div>
             <TextField
@@ -132,14 +147,14 @@ class DateTimePicker extends React.PureComponent<Props, State>{
             />
             <DateTime
                 value={value ? value : dateTime}
-                onBlur={() => { this.setState({ open: false }); }}
+                onClose={() => { this.setState({ open: false }); }}
                 open={open}
                 closeOnSelect
                 className={theme.dateTimeInput}
                 onChange={(dateTime: any) => { this.setDateTime(dateTime); }}
                 timeFormat={timePicker}
                 dateFormat={dateFormat}
-                viewMode={viewMode}
+                initialViewMode={viewMode}
                 isValidDate={isValidDate}
             />
         </div>
