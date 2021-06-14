@@ -302,7 +302,7 @@ class TextField extends React.PureComponent<Props, State> {
       />
       : input;
 
-    const hasValue = (!!this.props.value && this.props.value.length > 0) || this.state.value !== '';
+    const hasValue = (!!this.props.value && this.props.value.length > 0) || this.state.value;
 
     const labelStyle = classNames(
       theme.labelStyle,
