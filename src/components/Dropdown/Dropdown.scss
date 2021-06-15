@@ -73,6 +73,9 @@ $font-weight-normal: 400 !default;
     color: color(text, darkest);
       padding:1.2rem 1.6rem;
       margin:0px;
+      > span {
+        display: block;
+      }
     }
 
   &:hover {
