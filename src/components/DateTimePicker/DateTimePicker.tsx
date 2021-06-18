@@ -46,6 +46,8 @@ export interface Props {
     and should return a true or false whether the currentDate is valid or not. See selectable dates.
    */
   isValidDate?: (currentDate: any, selectedDate: any) => boolean;
+  // set custom icon
+  icon?: any;
 }
 
 export interface State {
@@ -121,7 +123,8 @@ class DateTimePicker extends React.PureComponent<Props, State>{
       getFromValue,
       componentId,
       viewMode,
-      isValidDate
+      isValidDate,
+      icon = 'event'
     } = this.props;
     const { dateTime, open } = this.state;
 
@@ -140,7 +143,7 @@ class DateTimePicker extends React.PureComponent<Props, State>{
                 value={dateTimeValue}
                 onFocus={this.textFieldFocusHandler}
                 onChange={(dateTimeString: string) => { this.onTextInputChange(dateTimeString); }}
-                suffix={<Icon source="event" />}
+                suffix={<Icon source={icon} />}
                 placeholder={placeholder}
                 componentStyle={componentStyle}
                 componentId={componentId}

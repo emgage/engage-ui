@@ -19,6 +19,7 @@ export interface Props {
     getFromValue?: boolean;
     viewMode?: ViewMode;
     isValidDate?: (currentDate: any, selectedDate: any) => boolean;
+    icon?: any;
 }
 export interface State {
     dateTime: any;
