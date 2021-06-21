@@ -19,6 +19,7 @@ export interface Props {
     disclosure?: boolean;
     accessibilityLabel?: string;
     icon?: IconProps['source'];
+    iconPosition?: boolean;
     componentStyle?: React.CSSProperties;
     componentClass?: string;
     componentId?: string;

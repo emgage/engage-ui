@@ -302,7 +302,7 @@ class TextField extends React.PureComponent<Props, State> {
       />
       : input;
 
-    const hasValue = (!!this.props.value && this.props.value.length > 0) || this.state.value !== '';
+    const hasValue = (!!this.props.value && this.props.value.length > 0) || this.state.value;
 
     const labelStyle = classNames(
       theme.labelStyle,
@@ -394,10 +394,10 @@ class TextField extends React.PureComponent<Props, State> {
 
   @autobind
   private handleInputOnFocus(e: React.FormEvent<HTMLElement>) {
-    const { onFocus } = this.props;
+    const { onFocus, readOnly } = this.props;
     this.setState((prevState: State) => ({
       ...prevState,
-      focused: true,
+      focused: readOnly ? false : true,
     }));
 
     if (onFocus == null) { return; }
@@ -406,11 +406,11 @@ class TextField extends React.PureComponent<Props, State> {
 
   @autobind
   private handleInputOnKeyDown(e: React.FormEvent<HTMLElement> | KeyboardEvent) {
-    const { onKeyDown } = this.props;
+    const { onKeyDown, readOnly } = this.props;
 
     this.setState((prevState: State) => ({
       ...prevState,
-      focused: true,
+      focused: readOnly ? false : true,
     }));
 
     if (onKeyDown == null) { return; }

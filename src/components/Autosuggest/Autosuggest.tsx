@@ -682,7 +682,7 @@ class Autosuggest extends React.Component<Props, State> {
             const highlightedSuggestion = this.getHighlightedSuggestion();
 
             if (isOpen && !alwaysRenderSuggestions) {
-              this.closeSuggestions();
+              // this.closeSuggestions();
             }
 
             if (highlightedSuggestion != null) {
@@ -699,6 +699,13 @@ class Autosuggest extends React.Component<Props, State> {
                 method: 'enter',
               });
 
+              this.justSelectedSuggestion = true;
+
+              setTimeout(() => {
+                this.justSelectedSuggestion = false;
+              });
+            } else {
+              this.pressedSuggestion = null;
               this.justSelectedSuggestion = true;
 
               setTimeout(() => {

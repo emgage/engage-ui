@@ -1,6 +1,6 @@
 {
   "name": "engage-ui",
-  "version": "1.256.0",
+  "version": "1.283.0",
   "description": "Emgage's UI Component Library for React.",
   "license": "MIT",
   "author": "Emgage <work@emgage.com>",
@@ -38,7 +38,6 @@
     "docs": "webpack-dev-server --config webpack.docs.config",
     "precommit-msg": "echo 'Running linting and testing checks...' && exit 0",
     "travis-deploy-once": "travis-deploy-once",
-    "commit": "node node_modules/semantic-git-commit-cli/dest/cli.js",
     "commitmsg": "commitlint -E GIT_PARAMS"
   },
   "babel": {
@@ -173,7 +172,7 @@
     "react-addons-shallow-compare": "^15.6.2",
     "react-autosuggest": "^10.1.0",
     "react-big-calendar": "^0.28.0",
-    "react-datetime": "^2.16.3",
+    "react-datetime": "^3.0.4",
     "react-dom": "^16.8.6",
     "react-lifecycles-compat": "^3.0.4",
     "react-moment-proptypes": "^1.5.0",

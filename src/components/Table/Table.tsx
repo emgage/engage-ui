@@ -105,11 +105,12 @@ export interface Props {
   // Set greyed background for odd rows
   striped?: boolean;
   theme?: any;
+  disableAllRow?: boolean;
 }
 
 export interface State {
   data: any;
-  disableAllRow: boolean;
+  disableAllRow: boolean | undefined;
   expandedRow: any;
   intermediateRow: any;
   sort: SortState;
@@ -136,7 +137,9 @@ class Table extends React.PureComponent<Props, State> {
 
   componentWillReceiveProps(newProps: Props) {
     const { defaultCheckedDataId } = newProps;
-
+    if (newProps.disableAllRow !== this.props.disableAllRow) {
+      this.setState({ disableAllRow: newProps.disableAllRow });
+    }
     if (newProps.filterData) {
       const { field, searchKey, search = false } = newProps.filterData;
 
@@ -211,7 +214,7 @@ class Table extends React.PureComponent<Props, State> {
       },
       searchKey: '',
       callChildCallback: false,
-      disableAllRow: false,
+      disableAllRow:  !!this.props.disableAllRow,
       nestedChildData: this.props.nestedChildData,
     };
   }
