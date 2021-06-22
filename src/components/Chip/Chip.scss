@@ -12,7 +12,7 @@ $vertical-padding: ($min-height - line-height(body) - rem(2px)) / 2;
     height: $height;
     min-width: $height;
     margin: 0;
-    padding: 0 ($horizontal-padding + .3) 0 0;
+    padding: 0 $horizontal-padding 0 0;
     align-items: center;
     border: none;
     border-radius: $height / 2;
@@ -29,9 +29,8 @@ $vertical-padding: ($min-height - line-height(body) - rem(2px)) / 2;
         min-width: auto;
         min-height: auto;
         margin:0px;
-        vertical-align: middle;
-        padding-top: 0.6rem;
-        padding-bottom: 0.5rem;
+        display: inline-block;
+         vertical-align: middle;
         position: relative;
         padding-left: .5rem;
         &:hover {
@@ -68,7 +67,7 @@ $vertical-padding: ($min-height - line-height(body) - rem(2px)) / 2;
 
 .Image {
     flex-shrink: 0;
-    margin: 0 ($height / 4) 0 (-1 * $horizontal-padding);
+    margin: 0 ($height / 4) 0 -.6rem;
     height: $height;
     width: $height;
     border-radius: 50%; 
@@ -107,6 +106,18 @@ body .Remove {
   span {
       display: inline-block;
       vertical-align: middle;
-      margin-left:.3rem;
+      &:empty {
+          display: none;
+      }
   }
+}
+
+.chipContent {
+    button + button {
+        padding:0px;
+        margin:0px!important;
+    }
+}
+.ChipLabel {
+    @include text-style-input;
 }

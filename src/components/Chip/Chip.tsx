@@ -25,7 +25,7 @@ export interface Props {
   // Makes the chips body area clickable.
   onClick?(event: React.FormEvent<HTMLElement>): void;
   // The content to display inside chip.
-  children?: string;
+  children?: string | React.ReactNode;
   // Icon replace default cancel icon
   icon?: keyof typeof IconList;
   // Icon click handler
@@ -51,8 +51,6 @@ class Chip extends React.PureComponent<Props, any> {
       onRemove,
       onClick,
       children,
-      icon,
-      onIconClick,
       label
     } = this.props;
 
@@ -74,9 +72,10 @@ class Chip extends React.PureComponent<Props, any> {
       <span className={theme.chipContent} key="2">
         <Button onClick={clickable && onClick || (() => { })} componentSize="slim" plain componentClass={theme.chipButtonContent}>
           {firstIconComponent}
-          <span>{label || children}</span>
+          <span className={theme.ChipLabel}>{label}</span>
         </Button>
-        {icon && <Button componentSize="slim" plain componentClass={theme.chipIcon}> <Icon onClick={onIconClick} source={icon} theme={theme} /> </Button>}
+        {children}
+        {/* {icon && <Button componentSize="slim" plain componentClass={theme.chipIcon}> <Icon onClick={onIconClick} source={icon} theme={theme} /> </Button>} */}
       </span>
     );
 
