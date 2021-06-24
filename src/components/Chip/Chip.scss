@@ -8,19 +8,39 @@ $vertical-padding: ($min-height - line-height(body) - rem(2px)) / 2;
 .Chip {
     display: inline-flex;
     color: rgba(0, 0, 0, 0.54);
-    line-height: $height;
-    height: $height;
-    min-width: $height;
     margin: 0;
-    padding: 0 $horizontal-padding 0 0;
     align-items: center;
     border: none;
     border-radius: $height / 2;
-    background-color: rgba(153, 153, 153, 0.2);
     overflow: hidden;
     white-space: nowrap;
     vertical-align: middle;
     max-width: $maxWidth;
+    position:relative;
+    .chipContent {
+        line-height: $height;
+        height: $height;
+        min-width: $height;
+        background-color: rgba(153, 153, 153, 0.2);
+        border-top-left-radius: $height / 2;
+        border-bottom-left-radius: $height / 2;
+        display: flex;
+        align-items: center;
+        .ChipChild {
+            padding: 0px $horizontal-padding;
+            &:nth-child(2) {
+                padding:0px;
+                margin-right: $horizontal-padding * .5;
+                margin-left:-$horizontal-padding * .5;
+            }
+            button {
+                padding: 0;
+                margin: 0!important;
+                display: inline-flex;
+                min-width: auto;
+            }
+        } 
+    }
 
     .chipButtonContent {
         color: rgba(0,0,0,.54);
@@ -32,10 +52,13 @@ $vertical-padding: ($min-height - line-height(body) - rem(2px)) / 2;
         display: inline-block;
          vertical-align: middle;
         position: relative;
-        padding-left: .5rem;
         &:hover {
             color: rgba(0, 0, 0, 0.54);
             fill: rgba(0, 0, 0, 0.54);
+        }
+        .icon {
+            margin-right:-$horizontal-padding * .5;
+            margin-left: $horizontal-padding;
         }
     }
     .chipIcon {
@@ -64,10 +87,11 @@ $vertical-padding: ($min-height - line-height(body) - rem(2px)) / 2;
   width: .01px;
   position: absolute;
 }
-
+.ChipImage {
+    margin: 0px;
+}
 .Image {
     flex-shrink: 0;
-    margin: 0 ($height / 4) 0 -.6rem;
     height: $height;
     width: $height;
     border-radius: 50%; 
@@ -80,22 +104,32 @@ body .Remove {
     height: $height;
     align-items: center;
     justify-content: center;
-    border-left: 2px solid #f4f6f8;
-    border-radius: 0px;
-    margin-left: .5rem;
-    padding-left: .2rem;
-    padding-right: .5rem;
+    border-radius:0px;
+    border-top-right-radius: $height / 2;
+    border-bottom-right-radius: $height / 2;
+    margin: 0rem 0rem 0rem ($horizontal-padding * .155);
+    padding-left: $horizontal-padding * .5;
+    padding-right: $horizontal-padding * .5;
+    min-width: auto;
+    min-height: auto;
+    width: auto;
     color: rgba(0, 0, 0, 0.54);
     fill: rgba(0, 0, 0, 0.54);
+    background-color: rgba(153, 153, 153, 0.2);
     &:hover {
         color: rgba(0, 0, 0, 0.54);
         fill: rgba(0, 0, 0, 0.54); 
-        border-left: 2px solid #f4f6f8;
+        background-color: rgba(153, 153, 153, 0.2);
     }
 }
 
 .transparent{
-    background-color: transparent;
+    .chipContent {
+        background-color: transparent;
+        .ChipChild {
+            padding: 0px ($horizontal-padding * .5);
+        }
+    }
 }
 
 .chipContent {
@@ -120,4 +154,6 @@ body .Remove {
 }
 .ChipLabel {
     @include text-style-input;
+    padding: 0px $horizontal-padding;
 }
+

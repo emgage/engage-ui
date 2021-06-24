@@ -93,6 +93,7 @@ import {
   SwitchCheckbox,
   LazyPicker,
 } from '../../src/components';
+import { IconList } from '../../src/components/Icon';
 
 interface State {
   appName?: string;
@@ -3519,6 +3520,43 @@ class App extends React.Component<{}, State> {
               Removable Chip
             </Chip>
             <Chip transparent>Transparent Chip</Chip>
+
+              <Chip><Button plain componentSize="slim" icon="filter"/><BodyText element="span" componentSize="large">only children</BodyText></Chip>
+              <Chip label="Only label"></Chip>
+              <Chip label="Label with remove" onRemove={this.chipRemove} removable={true}></Chip>
+              <Chip
+              image={{
+                url: 'example/src/images/netguru-cartoon-characters3.png',
+                alt: 'Your mom',
+              }}
+              removable={true}
+              onRemove={this.chipRemove}
+              label="Image label chip"
+            ></Chip>
+            <Chip
+              image={{
+                url: 'example/src/images/netguru-cartoon-characters3.png',
+                alt: 'Your mom',
+              }}
+            ></Chip>
+            <Chip><Button plain componentSize="slim" icon="filter"/></Chip>
+            <Chip label="Label with Icon"  image={{
+                url: IconList.bell,
+                alt: 'Your mom',
+              }}></Chip>
+              <Chip label="Label with Icon with remove"  image={{
+                url: IconList.bell,
+                alt: 'Your mom',
+              }} removable={true}
+              onRemove={this.chipRemove}></Chip>
+              <Chip removable={true}
+              onRemove={this.chipRemove}><Button plain componentSize="slim" icon="filter"/><BodyText element="span" componentSize="large">children with remove</BodyText></Chip>
+              <Chip label="All Subscribe" image={{
+                url: 'example/src/images/netguru-cartoon-characters3.png',
+                alt: 'Your mom',
+              }} removable={true}
+              onRemove={this.chipRemove}><Button plain componentSize="slim" icon="filter"></Button></Chip>
+
           </div>
 
           <div>

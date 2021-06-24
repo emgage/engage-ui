@@ -63,19 +63,22 @@ class Chip extends React.PureComponent<Props, any> {
         ?
         (typeof image.url === 'object' ?
           <Icon source={image.url} theme={theme} />
-          : <img className={theme.Image} src={image.url} alt={image.alt} key="1" aria-hidden />
+          : <span className={theme.ChipImage}><img className={theme.Image} src={image.url} alt={image.alt} key="1" aria-hidden /></span>
         )
         : ''
     );
 
     const chipTextComponent = (
       <span className={theme.chipContent} key="2">
+        {(firstIconComponent || label) &&
         <Button onClick={clickable && onClick || (() => { })} componentSize="slim" plain componentClass={theme.chipButtonContent}>
           {firstIconComponent}
           <span className={theme.ChipLabel}>{label}</span>
         </Button>
-        {children}
-        {/* {icon && <Button componentSize="slim" plain componentClass={theme.chipIcon}> <Icon onClick={onIconClick} source={icon} theme={theme} /> </Button>} */}
+  }
+  {children && 
+        <span className={theme.ChipChild}>{children}</span>
+  }
       </span>
     );
 
@@ -87,7 +90,6 @@ class Chip extends React.PureComponent<Props, any> {
 
     return (
       <div className={className} onKeyDown={removable ? this.onKeyDown.bind(this, Event) : null}>
-        {/* {firstIconComponent} */}
         {chipTextComponent}
         {isRemovable}
       </div>
