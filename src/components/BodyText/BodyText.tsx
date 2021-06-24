@@ -17,7 +17,7 @@ export type Color =
   | 'danger'
   | 'link';
 
-type TagName = HeadingTagName | 'div';
+type TagName = HeadingTagName | 'div' | 'span';
 
 export interface Props {
   // Name of element to use for text from H1 to H6, p and div
