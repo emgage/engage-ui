@@ -196,20 +196,20 @@ class TextField extends React.PureComponent<Props, State> {
     } = this.props;
 
     const { height } = this.state;
-
+    const hasValue =  (!!this.props.value && this.props.value.length > 0) || this.state.value;
     const className = classNames(
       componentClass,
       theme.textField,
-      (Boolean(value) || propHasValue) && theme.hasValue,
+      hasValue && theme.hasValue,
       disabled && theme.disabled,
       readOnly && theme.readOnly,
       backdropHidden && theme.backdropHidden,
       errors && theme.error,
-      labelHidden && theme.labelHidden,
+      (labelHidden || !this.props.label) && theme.labelHidden,
       multiline && theme.multiline,
       resizable && theme.resizable,
       loading && theme.loading,
-      isFocused && theme.focused,
+      (this.state.focused || isFocused) && theme.focused,
       componentHeight && theme[variationName('Height', componentHeight)]
     );
 
@@ -302,13 +302,12 @@ class TextField extends React.PureComponent<Props, State> {
       />
       : input;
 
-    const hasValue = (!!this.props.value && this.props.value.length > 0) || this.state.value;
-
     const labelStyle = classNames(
       theme.labelStyle,
       componentHeight === 'slim' && theme.labelStyleSlim,
-      (hasValue || this.state.focused || prefix) && theme.labelHasValue,
-      disabled && theme.labelDisabled
+      (hasValue || this.state.focused) && theme.labelHasValue,
+      disabled && theme.labelDisabled,
+      prefix && theme.prefix
     );
 
     return (
@@ -319,11 +318,11 @@ class TextField extends React.PureComponent<Props, State> {
         componentId={componentId}
         errors={errors}
         action={labelAction}
-        labelHidden={labelHidden}
+        labelHidden={(labelHidden || !this.props.label)}
         helpText={helpText}
         disabled={disabled}
         focused={this.state.focused || isFocused}
-        hasValue={Boolean(hasValue || propHasValue || prefix)}
+        hasValue={Boolean(hasValue || propHasValue)}
         required={required}
         componentClass={labelStyle}
         theme={theme}
