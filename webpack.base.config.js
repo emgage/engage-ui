@@ -35,7 +35,7 @@ const sharedCssLoaders = [{
         loader: 'sass-resources-loader',
         options: {
             resources: [
-                './src/styles/calendar.scss',
+                // './src/styles/calendar.scss',
                 './src/styles/foundation.scss',
                 './themes/Delicious/foundation.scss',
                 './src/styles/shared.scss',
