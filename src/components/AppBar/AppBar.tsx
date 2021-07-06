@@ -77,7 +77,7 @@ const AppBar: React.FC<Props> = (props) => {
     searchOnKeyDown,
   } = props;
   const [searchText, setSearchText] = React.useState('');
-
+  
   /**
    * Render Right side children
    */
@@ -102,7 +102,11 @@ const AppBar: React.FC<Props> = (props) => {
             labelHidden
             placeholder="Search"
             placeholderAlign="left"
-            onKeyDown={searchOnKeyDown}
+            onKeyDown={(event: any) => {
+              searchOnKeyDown && searchOnKeyDown(event);
+              setSearchText(event.target.value);
+            }
+          }
           />
         </div>
       }
