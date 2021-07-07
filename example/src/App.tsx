@@ -93,6 +93,7 @@ import {
   SwitchCheckbox,
   LazyPicker,
 } from '../../src/components';
+import { IconList } from '../../src/components/Icon';
 
 interface State {
   appName?: string;
@@ -836,7 +837,15 @@ class App extends React.Component<{}, State> {
     //   },
     // ];
 
-    const pickerdata = [{ "id": 1532945, "name": "Bright", "text": "Bright", "key": 1532945, "description": "" }, { "id": 1532948, "name": "Blue", "text": "Blue", "key": 1532948, "description": "" }, { "id": 1531924, "name": "Green", "text": "Green", "key": 1531924, "description": "" }, { "id": 1528852, "name": "Red", "text": "Red", "key": 1528852, "description": "" }, { "id": 1529876, "name": "White", "text": "White", "key": 1529876, "description": "" }, { "id": 1527828, "name": "Yellow", "text": "Yellow", "key": 1527828, "description": "" }]
+    const pickerdata = [
+      { "id": -1, "name": "All Subscribers", "icon": 'filter', "key": -1, onIconClick: () => { }, "image": IconList.users },
+      { "id": 1532945, "name": "Bright", "text": "Bright", "key": 1532945, "description": "" },
+      { "id": 1532948, "name": "Blue", "text": "Blue", "key": 1532948, "description": "" },
+      { "id": 1531924, "name": "Green", "text": "Green", "key": 1531924, "description": "" },
+      { "id": 1528852, "name": "Red", "text": "Red", "key": 1528852, "description": "" },
+      { "id": 1529876, "name": "White", "text": "White", "key": 1529876, "description": "" },
+      { "id": 1527828, "name": "Yellow", "text": "Yellow", "key": 1527828, "description": "" }
+    ];
     const selectedPickerdata = [{ "id": 1534996, "name": "Black", "text": "Black", "key": 1534996, "description": "" }];
 
     const columnConfigPicker: TableColumnConfig[] = [
@@ -3526,6 +3535,43 @@ class App extends React.Component<{}, State> {
               Removable Chip
             </Chip>
             <Chip transparent>Transparent Chip</Chip>
+
+              <Chip><Button plain componentSize="slim" icon="filter"/><BodyText element="span" componentSize="large">only children</BodyText></Chip>
+              <Chip label="Only label"></Chip>
+              <Chip label="Label with remove" onRemove={this.chipRemove} removable={true}></Chip>
+              <Chip
+              image={{
+                url: 'example/src/images/netguru-cartoon-characters3.png',
+                alt: 'Your mom',
+              }}
+              removable={true}
+              onRemove={this.chipRemove}
+              label="Image label chip"
+            ></Chip>
+            <Chip
+              image={{
+                url: 'example/src/images/netguru-cartoon-characters3.png',
+                alt: 'Your mom',
+              }}
+            ></Chip>
+            <Chip><Button plain componentSize="slim" icon="filter"/></Chip>
+            <Chip label="Label with Icon"  image={{
+                url: IconList.bell,
+                alt: 'Your mom',
+              }}></Chip>
+              <Chip label="Label with Icon with remove"  image={{
+                url: IconList.bell,
+                alt: 'Your mom',
+              }} removable={true}
+              onRemove={this.chipRemove}></Chip>
+              <Chip removable={true}
+              onRemove={this.chipRemove}><Button plain componentSize="slim" icon="filter"/><BodyText element="span" componentSize="large">children with remove</BodyText></Chip>
+              <Chip label="All Subscribe" image={{
+                url: 'example/src/images/netguru-cartoon-characters3.png',
+                alt: 'Your mom',
+              }} removable={true}
+              onRemove={this.chipRemove}><Button plain componentSize="slim" icon="filter"></Button></Chip>
+
           </div>
 
           <div>
