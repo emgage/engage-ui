@@ -77,7 +77,7 @@ const AppBar: React.FC<Props> = (props) => {
     searchOnKeyDown,
   } = props;
   const [searchText, setSearchText] = React.useState('');
-  
+
   /**
    * Render Right side children
    */
