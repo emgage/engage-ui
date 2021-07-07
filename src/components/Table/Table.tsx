@@ -17,6 +17,7 @@ import BannerRow  from './BannerRow';
 import { ColumnConfig, FilterConfig, NestedChild, SortState, ServerSort } from './interface';
 import * as baseTheme from './Table.scss';
 import Spinner from '../Spinner';
+import BodyText from '../BodyText';
 
 export type RowSelection = 'checkbox' | 'radio';
 export type SortOrder = 'asc' | 'desc';
@@ -402,7 +403,17 @@ class Table extends React.PureComponent<Props, State> {
                   */}
                   { colItem.key === 'rowAction' ? <RowAction componentId={componentId} theme={theme} actionInProgress={actionInProgress} isRowLoading={item.isRowLoading} actionConfig={rowAction}  data={item} rowActionLeft /> : '' }
                   { renderCheckbox ? this.renderCheckColumn(item, false) : ''}
-                  { colItem.injectBody ? colItem.injectBody(item) : renderCheckbox ? <span style={{ paddingLeft: '16px' }}>{item[colItem.key]}</span> : <span className={theme.tableDataWrap}>{item[colItem.key]}</span> }
+                  {colItem.injectBody ? colItem.injectBody(item) : renderCheckbox ?
+                    <span style={{ paddingLeft: '16px' }}>
+                      {item[colItem.key]}
+                      {colItem.subKey && <BodyText componentSize="small" componentColor="mid">{item[colItem.subKey]}</BodyText>}
+                    </span>
+                    :
+                    <span className={theme.tableDataWrap}>
+                      {item[colItem.key]}
+                      {colItem.subKey && <BodyText componentSize="small" componentColor="mid">{item[colItem.subKey]}</BodyText>}
+                    </span>
+                  }
                   {item.isRowLoading && <Spinner componentSize="small" componentColor="disabled" />}
                 </TableData>
               );
