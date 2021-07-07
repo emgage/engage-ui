@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
-import * as React from "react";
 export declare type Size = 'small' | 'medium' | 'large';
 export interface Props {
     componentSize?: Size;

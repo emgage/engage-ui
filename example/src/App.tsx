@@ -660,6 +660,10 @@ class App extends React.Component<{}, State> {
     this.setState({ showError: true });
   }
 
+  rowDisbled = (item: any) => {
+    return item.id === 2;
+  }
+
   getDropdown = (thisId: number) => {
     const dropdownItems = [];
 
@@ -2091,6 +2095,8 @@ class App extends React.Component<{}, State> {
             }}
             bordered
             highlight
+            isRowDisabled={this.rowDisbled}
+
           />
         </div>
         <Sticky
@@ -3244,7 +3250,8 @@ class App extends React.Component<{}, State> {
             noOptionsMessage={"No items Available"}
             // moreInfoComponent={<Button>More Info</Button>}
             shouldRenderSuggestions={true}
-            // readOnly
+            readOnly
+            backdropHidden
             // disabled
           />
           <ValidatedForm
