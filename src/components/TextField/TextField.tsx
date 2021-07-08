@@ -200,7 +200,7 @@ class TextField extends React.PureComponent<Props, State> {
     const className = classNames(
       componentClass,
       theme.textField,
-      hasValue && theme.hasValue,
+      (hasValue || propHasValue) && theme.hasValue,
       disabled && theme.disabled,
       readOnly && theme.readOnly,
       backdropHidden && theme.backdropHidden,
