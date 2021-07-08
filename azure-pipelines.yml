@@ -73,12 +73,14 @@ steps:
       #!/bin/bash
       lib_path='cdn/engage-ui@next/lib'
       git update-index --assume-unchanged .npmrc
+      cat package.json|head -n5
       if [ "$(Build.SourceBranchName)" == "master" ]
       then
           npm version --no-git-tag-version minor
           npm publish --tag latest
           lib_path='cdn/engage-ui@latest/lib'
       else
+          echo "publishing next version"
           npm version --no-git-tag-version prerelease
           npm publish --tag next
       fi
