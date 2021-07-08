@@ -63,8 +63,8 @@ $vertical-padding: ($min-height - line-height(body) - rem(2px)) / 2;
             fill: rgba(0, 0, 0, 0.54);
         }
         .icon {
-            margin-top: .35rem;
-            fill: #ffff;
+            margin-top: .45rem;
+            fill: color(white);
         }
     }
     .chipIcon {
@@ -160,5 +160,6 @@ body .Remove {
 }
 .ChipLabel {
     @include text-style-input;
-    padding: 0px $horizontal-padding;
+    padding: 0px $horizontal-padding 0px ($horizontal-padding * .5) ;
+    color: color(text, text);
 }
