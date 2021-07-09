@@ -1379,6 +1379,7 @@ class App extends React.Component<{}, State> {
           </span>
         ),
         active: true,
+        disable: true,
         onToggle: (status) => console.log('Tree node open:', status),
         children: [
           {
