@@ -99,6 +99,9 @@ class TreeView extends React.Component<Props, State> {
     const iconStyle = {
       padding: '0.25em 0.5em 0.25em 0',
     };
+    const parentIconStyle = {
+      padding: '0',
+    };
 
     // Current node aka parent node
     const node = (
@@ -153,7 +156,7 @@ class TreeView extends React.Component<Props, State> {
               }
             </div> :
             <div className={theme.nodeicon}>
-              <Icon componentStyle={iconStyle} componentColor={iconColor} source="circle" theme={theme} >
+              <Icon componentStyle={parentIconStyle} componentColor={iconColor} source="circle" theme={theme} >
                 <VisuallyHidden>Circle Image</VisuallyHidden>
               </Icon>
             </div>
