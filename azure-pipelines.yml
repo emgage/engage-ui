@@ -71,14 +71,14 @@ steps:
   inputs:
     script: |
       #!/bin/bash
-      lib_path='cdn/engage-ui@next/lib'
+      lib_path='engage-ui@next/lib'
       git update-index --assume-unchanged .npmrc
       cat package.json|head -n5
       if [ "$(Build.SourceBranchName)" == "master" ]
       then
           npm version --no-git-tag-version minor
           npm publish --tag latest
-          lib_path='cdn/engage-ui@latest/lib'
+          lib_path='engage-ui@latest/lib'
       else
           echo "publishing next version"
           npm version --no-git-tag-version prerelease
@@ -98,7 +98,7 @@ steps:
     bucketName: 'emgage.software'
     sourceFolder: '$(System.DefaultWorkingDirectory)'
     globExpressions: 'lib/+(EngageUI.js|DeliciousTheme.js)'
-    targetFolder: '$(engageui)'
+    targetFolder: 'cdn/$(engageui)'
     filesAcl: 'public-read'
     flattenFolders: true
   condition: or(eq(variables['Build.SourceBranch'], 'refs/heads/master'), eq(variables['Build.SourceBranch'], 'refs/heads/Next'))
