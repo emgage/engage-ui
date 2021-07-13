@@ -32,7 +32,7 @@ export interface Props {
   // Callback when focus is removed
   onBlur?(): void;
   // Callback when checkbox is toggled
-  onChange?(newValue: boolean, value?: any): void;
+  onChange?(newValue: boolean): void;
   // Callback when checkbox is focussed
   onFocus?(): void;
   // Theme to be injected via css-themr
@@ -70,13 +70,13 @@ class Checkbox extends React.PureComponent<Props, State> {
 
   handleChange = (event: any) => {
     // event.preventDefault();
-    const { disabled, onChange, value } = this.props;
+    const { disabled, onChange } = this.props;
 
     if (!disabled) {
       this.setState({ checked: !this.state.checked });
 
       if (onChange) {
-        onChange(!this.state.checked, value);
+        onChange(!this.state.checked);
       }
     }
   }
@@ -133,6 +133,7 @@ class Checkbox extends React.PureComponent<Props, State> {
       theme.input,
       isIndeterminate && theme.indeterminate
     );
+
     return (
       <div>
         {errorMarkup}

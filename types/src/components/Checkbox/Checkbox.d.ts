@@ -12,7 +12,7 @@ export interface Props {
     labelHidden?: boolean;
     name?: string;
     onBlur?(): void;
-    onChange?(newValue: boolean, value?: any): void;
+    onChange?(newValue: boolean): void;
     onFocus?(): void;
     theme?: any;
     value?: string;
