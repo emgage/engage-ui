@@ -15,7 +15,7 @@ export interface Props {
   // The children that activate the tooltip.
   children?: React.ReactNode;
   // The content to display within the tooltip.
-  content: string;
+  content: any;
   // Toggle whether the tooltip is visible.
   active?: boolean;
   // Display tooltip with a light background.
