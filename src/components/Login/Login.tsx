@@ -54,7 +54,7 @@ export default (props: Props) => {
    * @param e
    */
   const toggle = (e: any) => {
-    setAnchorEl(e.target as HTMLElement);
+    setAnchorEl(e.currentTarget as HTMLElement);
   };
 
   React.useEffect(() => {
@@ -85,6 +85,7 @@ export default (props: Props) => {
           dropdownItems={dropDownList}
           anchorEl={anchorEl}
           preferredAlignment="right"
+          preferredPosition="below"
         />
       </div> : <Button url={props.loginUrl} componentClass={baseTheme.loginButton} plain >Login</Button>
   );

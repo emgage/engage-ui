@@ -47,6 +47,7 @@ export interface Props {
     striped?: boolean;
     theme?: any;
     disableAllRow?: boolean;
+    isRowDisabled?(item: any): boolean;
 }
 export interface State {
     data: any;

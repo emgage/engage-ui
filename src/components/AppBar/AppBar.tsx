@@ -76,6 +76,7 @@ const AppBar: React.FC<Props> = (props) => {
     enableGlobalElement,
     searchOnKeyDown,
   } = props;
+  const [searchText, setSearchText] = React.useState('');
 
   /**
    * Render Right side children
@@ -93,13 +94,19 @@ const AppBar: React.FC<Props> = (props) => {
       { enableSearch &&
         <div className={baseTheme.searchBar}>
           <TextField
-            type="search"
+            type="text"
             componentHeight="slim"
             prefix={<Icon source="search" componentColor="inkLighter"/>}
+            suffix={searchText && <Icon source="cancelSmall" onClick={() => setSearchText('')} componentColor="inkLighter" />}
+            value={searchText}
             labelHidden
             placeholder="Search"
             placeholderAlign="left"
-            onKeyDown={searchOnKeyDown}
+            onKeyDown={(event: any) => {
+              searchOnKeyDown && searchOnKeyDown(event);
+              setSearchText(event.target.value);
+            }
+          }
           />
         </div>
       }

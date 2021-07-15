@@ -106,6 +106,7 @@ export interface Props {
   striped?: boolean;
   theme?: any;
   disableAllRow?: boolean;
+  isRowDisabled?(item: any): boolean;
 }
 
 export interface State {
@@ -368,7 +369,8 @@ class Table extends React.PureComponent<Props, State> {
       rowAction,
       selectRow,
       componentId = '',
-      theme
+      theme,
+      isRowDisabled,
     } = this.props;
     const { nestedChildData } = this.state;
     const { renderBanner } = item;
@@ -409,7 +411,7 @@ class Table extends React.PureComponent<Props, State> {
             })
           }
 
-          { rowAction && !rowActionLeft && <TableData componentClass={theme.lastData} componentStyle={{ float: 'right' }}>{item.isRowLoading && <Spinner componentSize="small" componentColor="disabled" />} <RowAction componentId={componentId} actionInProgress={actionInProgress && !!item.processing} isRowLoading={item.isRowLoading} actionConfig={rowAction} data={item} theme={theme} /> </TableData> }
+          { rowAction && !rowActionLeft && <TableData componentClass={theme.lastData} componentStyle={{ float: 'right' }}>{item.isRowLoading && <Spinner componentSize="small" componentColor="disabled" />} <RowAction componentId={componentId} actionInProgress={(actionInProgress && !!item.processing) || (isRowDisabled && isRowDisabled(item))} isRowLoading={item.isRowLoading} actionConfig={rowAction} data={item} theme={theme} /> </TableData> }
         </TableRow>
         { renderBanner &&
         <TableRow>

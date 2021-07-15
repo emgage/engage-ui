@@ -11,6 +11,40 @@ $spinner-size: rem(20px);
   padding: 0 $backdrop-horizontal-spacing;
   color: color(ink, lightest);
   align-items: center;
+  &.labelHidden{
+    &.focused {
+    .prefix {
+      padding-top:0rem;
+      padding-bottom: 0rem;
+      transition:all .3s ease-in-out;
+      -moz-transition:all .3s ease-in-out;
+      -webkit-transition:all .3s ease-in-out;
+    }
+    .suffix {
+      padding-top:0rem;
+      padding-bottom: 0rem;
+      transition:all .3s ease-in-out;
+      -moz-transition:all .3s ease-in-out;
+      -webkit-transition:all .3s ease-in-out;
+    }
+  }
+  }
+  &.focused {
+    .prefix {
+      padding-top:1.9rem;
+      padding-bottom: .3rem;
+      transition:all .3s ease-in-out;
+      -moz-transition:all .3s ease-in-out;
+      -webkit-transition:all .3s ease-in-out;
+    }
+    .suffix {
+      padding-top:1.9rem;
+      padding-bottom: .3rem;
+      transition:all .3s ease-in-out;
+      -moz-transition:all .3s ease-in-out;
+      -webkit-transition:all .3s ease-in-out;
+    }
+  }
 }
 
 .multiline {
@@ -183,6 +217,9 @@ $spinner-size: rem(20px);
   flex: 0 0 auto;
   margin-right: $addon-horizontal-spacing;
   color: currentColor;
+  transition:all .3s ease-in-out;
+  -moz-transition:all .3s ease-in-out;
+  -webkit-transition:all .3s ease-in-out;
 }
 
 .suffix {
@@ -190,6 +227,9 @@ $spinner-size: rem(20px);
   flex: 0 0 auto;
   margin-left: $addon-horizontal-spacing;
   color: currentColor;
+  transition:all .3s ease-in-out;
+  -moz-transition:all .3s ease-in-out;
+  -webkit-transition:all .3s ease-in-out;
 }
 
 .spinnerButtons {
@@ -310,4 +350,20 @@ body .HeightSlim {
       padding: 0.5rem 0.5rem;
     }
   }
+}
+.labelWrapper {
+  .prefix {
+   margin-left:30px;
+   display:block;
+ }
+ &.focused {
+   .prefix {
+     margin-left:0px;
+     display:block;
+   }
+ }
+ .prefix.labelHasValue {
+   margin-left:0px;
+     display:block;
+ }
 }

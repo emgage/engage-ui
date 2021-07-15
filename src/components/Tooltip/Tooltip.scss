@@ -78,7 +78,7 @@ $content-max-width: rem(600px);
   background-color: color(ink);
   border-radius: border-radius();
   color: color(white);
-  max-height: $content-max-height;
+  // max-height: $content-max-height;
 }
 
 .content {
@@ -86,7 +86,17 @@ $content-max-width: rem(600px);
   margin-top: spacing(tightest);
   border-radius: border-radius();
   max-width: $content-max-width;
-  max-height: $content-max-height;
+  // max-height: $content-max-height;
+  ul {
+    margin:0px;
+    li {
+      padding: 0px;
+      margin-bottom:8px;
+    }
+    &:last-child {
+      margin-bottom:0px;
+    }
+  }
 }
 
 .tip {

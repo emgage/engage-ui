@@ -1,5 +1,5 @@
 import { ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
-export declare type Width = 'small' | 'medium' | 'large' | 'xlarge' | string;
+export declare type Width = 'small' | 'medium' | 'large' | 'xlarge';
 export interface Props {
     active?: boolean;
     accessibilityLabel?: string;

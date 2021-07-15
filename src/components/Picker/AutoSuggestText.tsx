@@ -7,6 +7,8 @@ import Chip from '../Chip';
 import { IAutoSuggestMethods, IItemList } from './Picker';
 import * as baseTheme from './Picker.scss';
 import Autosuggest from '../Autosuggest';
+import Button from '../Button';
+
 export interface IStateProps {
   chipListState: IItemList[];
   suggestions: any[];
@@ -35,7 +37,17 @@ class AutoSuggestText extends React.PureComponent<Props, {}> {
 
     return (
       <div className={className}>
-        {this.props.stateProps ? this.props.stateProps.chipListState.map((input: any) => <Chip icon={input.icon} onIconClick={input.onIconClick} theme={theme} image={{ url: input.image }} removable={this.props.stateProps && this.props.stateProps.removable} onRemove={() => this.props.autoSuggestMethods ? this.props.autoSuggestMethods.chipRemove(input) : null} key={input.key}>{input.text}</Chip>) : null}
+        {this.props.stateProps ? this.props.stateProps.chipListState.map((input: any) =>
+          <Chip
+            icon={input.icon}
+            label={input.name}
+            theme={theme}
+            image={{ url: input.image }}
+            removable={this.props.stateProps && this.props.stateProps.removable}
+            onRemove={() => this.props.autoSuggestMethods ? this.props.autoSuggestMethods.chipRemove(input) : null} key={input.key}>
+              {input.icon && <Button plain componentSize="slim" icon={input.icon} onClick={input.onIconClick}></Button>}
+            </Chip>) : null
+        }
 
         {
           !stateProps.reachedMax ?

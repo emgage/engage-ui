@@ -1,0 +1,105 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+- Next
+variables:
+- group: 'Platform Release Variables'
+
+pool:
+  vmImage: ubuntu-latest
+workspace:
+  clean: all
+
+steps:
+- checkout: self
+  persistCredentials: true
+  clean: true
+
+- script: |
+    #!/bin/bash
+    COMMIT_ID=$(git ls-remote --head --exit-code origin Next | cut -f 1 | head -n 1)
+    if [ -z "$(git log | grep $COMMIT_ID)" ]
+    then
+        echo "false"
+        echo "CI failed, Your branch $(Build.SourceBranch) is behind of Next branch changes, Kindly merge the changes from Next branch and rerun the pipeline"
+        exit 1
+    else
+        echo "true"
+    fi
+  condition: not(or(eq(variables['Build.SourceBranch'], 'refs/heads/master'), eq(variables['Build.SourceBranch'], 'refs/heads/Next'), startsWith(variables['Build.SourceBranch'], 'refs/heads/hotfix')))
+  displayName: "Check if Branch is in Sync"
+
+- task: NodeTool@0
+  inputs:
+    versionSpec: '12.20.x'
+  displayName: 'Use Node 12'
+
+- task: CmdLine@2
+  inputs:
+    script: |
+      #!/bin/bash
+      git config --global user.email "buildagent@emgage.com"
+      git config --global user.name "Automated VSTS Build Server"
+      BRANCH=$(echo $(Build.SourceBranch) | sed 's/refs\/heads\///')
+      echo "Checking out $BRANCH"
+      git checkout $BRANCH
+  displayName: 'Attach branch'
+  condition: not(eq(variables['Build.SourceBranchName'], 'merge'))
+
+- script: |
+    echo "@emgage:=registry" > .npmrc
+    echo "//registry.npmjs.org/:_authToken=$(NPM_TOKEN)" >> .npmrc
+  displayName: "Write NPMRC"
+
+- task: CmdLine@2
+  inputs:
+    script: |
+      npm install
+      npm rebuild node-sass
+  displayName: 'Npm Install'
+
+- task: CmdLine@2
+  inputs:
+    script: 'npm run build-dev'
+  displayName: 'Npm Install'
+
+- task: CmdLine@2
+  inputs:
+    script: |
+      #!/bin/bash
+      lib_path='engage-ui@next/lib'
+      git update-index --assume-unchanged .npmrc
+      cat package.json|head -n5
+      if [ "$(Build.SourceBranchName)" == "master" ]
+      then
+          npm version --no-git-tag-version minor
+          npm publish --tag latest
+          lib_path='engage-ui@latest/lib'
+      else
+          echo "publishing next version"
+          npm version --no-git-tag-version prerelease
+          npm publish --tag next
+      fi
+      git add .
+      git commit -m "chore: Release [skip ci]" --no-verify
+      git push
+      echo "##vso[task.setvariable variable=engageui]$lib_path"
+  displayName: 'Tag and Publish'
+  condition: and(not(startsWith(variables['Build.SourceVersionMessage'], 'chore')), or(eq(variables['Build.SourceBranch'], 'refs/heads/master'), eq(variables['Build.SourceBranch'], 'refs/heads/Next')))
+
+- task: S3Upload@1
+  inputs:
+    awsCredentials: 'AWS Connection'
+    regionName: 'us-west-2'
+    bucketName: 'emgage.software'
+    sourceFolder: '$(System.DefaultWorkingDirectory)'
+    globExpressions: 'lib/+(EngageUI.js|DeliciousTheme.js)'
+    targetFolder: 'cdn/$(engageui)'
+    filesAcl: 'public-read'
+    flattenFolders: true
+  condition: or(eq(variables['Build.SourceBranch'], 'refs/heads/master'), eq(variables['Build.SourceBranch'], 'refs/heads/Next'))
+  displayName: 'Copy to S3'

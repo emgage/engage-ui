@@ -3,7 +3,7 @@ import { ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 import { PreferredPosition } from '../PositionedOverlay';
 export interface Props {
     children?: React.ReactNode;
-    content: string;
+    content: any;
     active?: boolean;
     light?: boolean;
     preferredPosition?: PreferredPosition;
