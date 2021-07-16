@@ -14,6 +14,7 @@ export interface ColumnConfig {
   label?: string;
   id?: string;
   key: string;
+  subKey?: string;
   headerValue?: any;
   className?: string;
   style?: any;
