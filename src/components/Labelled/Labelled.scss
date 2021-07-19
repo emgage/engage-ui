@@ -14,6 +14,9 @@
   @include text-emphasis-subdued;
   margin-top: spacing(tightest);
 }
+body .readOnly {
+  margin-left: 0px;
+}
 
 // .required {}
 
