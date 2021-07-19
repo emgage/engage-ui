@@ -37,6 +37,11 @@ $border-color: color(sky, base);
       text-overflow: ellipsis;
       overflow: hidden;
     }
+    &[data-label='Name'] {
+      .tableDataWrap {
+        width: inherit;
+      }
+    }
 
     &.tableDataClick {
       cursor: pointer;
