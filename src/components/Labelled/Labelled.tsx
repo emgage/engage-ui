@@ -41,6 +41,7 @@ export interface Props {
   // Theme to be injected via css-themr.
   theme?: any;
   onClick?: (event: React.FormEvent<any>) => void;
+  readOnly?:boolean;
 }
 
 const labelled = ({
@@ -54,6 +55,7 @@ const labelled = ({
   required = false,
   focused = false,
   hasValue = false,
+  readOnly = false,
   componentStyle,
   componentClass,
   theme,
@@ -68,7 +70,8 @@ const labelled = ({
     required && theme.required,
     focused && theme.focused,
     (errors && errors) && theme.invalid,
-    !hasValue && theme.empty
+    !hasValue && theme.empty,
+    readOnly && theme.readOnly
   );
 
   const helpTextClassName = classNames(

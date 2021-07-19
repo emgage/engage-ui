@@ -217,7 +217,7 @@ class TextField extends React.PureComponent<Props, State> {
       ? <div onClick={this.handleInputFocus} className={theme.prefix} id={`${componentId}prefix`}>{prefix}</div>
       : null;
 
-    const suffixMarkup = suffix
+    const suffixMarkup = (!readOnly && suffix)
       ? <div onClick={this.handleInputFocus} className={theme.suffix} id={`${componentId}suffix`}>{suffix}</div>
       : null;
 
@@ -326,6 +326,7 @@ class TextField extends React.PureComponent<Props, State> {
         required={required}
         componentClass={labelStyle}
         theme={theme}
+        readOnly={readOnly}
       >
         <Connected
           left={connectedLeft}

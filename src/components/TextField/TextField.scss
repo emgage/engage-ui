@@ -11,6 +11,9 @@ $spinner-size: rem(20px);
   padding: 0 $backdrop-horizontal-spacing;
   color: color(ink, lightest);
   align-items: center;
+  &.backdropHidden {
+    padding-left:0px;
+  }
   &.labelHidden{
     &.focused {
     .prefix {
@@ -187,7 +190,6 @@ $spinner-size: rem(20px);
 }
 
 .backdropHidden {
-
   & > .backdrop {
     background-color: transparent;
     border-color: transparent;
