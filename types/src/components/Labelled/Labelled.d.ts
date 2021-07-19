@@ -20,6 +20,7 @@ export interface Props {
     componentClass?: string;
     theme?: any;
     onClick?: (event: React.FormEvent<any>) => void;
+    readOnly?: boolean;
 }
 export declare function errorID(id: string): string;
 export declare function helpTextID(id: string): string;
