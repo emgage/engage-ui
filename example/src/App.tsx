@@ -91,6 +91,7 @@ import {
   PageSize,
   RangeSlider,
   SwitchCheckbox,
+  SwitchCheckboxIcon,
   LazyPicker,
 } from '../../src/components';
 import { IconList } from '../../src/components/Icon';
@@ -1538,6 +1539,14 @@ class App extends React.Component<{}, State> {
         <SwitchCheckbox isOpen={this.state.isOpen} handleToggle={this.handleSwitchCheckboxToggle}>
           SwitchCheckbox
         </SwitchCheckbox>
+        <br/>
+        <br/>
+
+
+          <SwitchCheckboxIcon isOpen={this.state.isOpen} handleToggle={this.handleSwitchCheckboxToggle}>
+          SwitchCheckboxIcon
+          </SwitchCheckboxIcon>
+
         <br/>
         <br/>
         <br/>
