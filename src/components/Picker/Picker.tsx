@@ -67,7 +67,6 @@ export interface State {
   number: number;
   isFocused: boolean;
   hasValue: boolean;
-  noSuggestions: boolean;
   anchorEl?: HTMLElement;
   popoverWidth: string;
 }
@@ -158,7 +157,6 @@ class Picker extends React.PureComponent<Props, State> {
       hasValue: Boolean(props.defaultSelectedItems && props.defaultSelectedItems.length),
       focused: 0,
       number: 0,
-      noSuggestions: false
     };
   }
 
@@ -193,10 +191,6 @@ class Picker extends React.PureComponent<Props, State> {
     if (JSON.stringify(newProps.defaultSelectedItems) !== JSON.stringify(this.props.defaultSelectedItems)) {
       const hasValue: boolean = Boolean(newProps.defaultSelectedItems && newProps.defaultSelectedItems.length);
       this.setState({ hasValue, chipListState: newProps.defaultSelectedItems || [] });
-    }
-
-    if (newProps.noOptionsMessage && newProps.noOptionsMessage !== this.props.noOptionsMessage) {
-      this.setState({ noSuggestions: true });
     }
   }
 
@@ -312,7 +306,7 @@ class Picker extends React.PureComponent<Props, State> {
       },
 
       onBlur: (event: React.FormEvent<any>) => {
-        this.setState({ isFocused: false, noSuggestions: false, value: '' }, () => {
+        this.setState({ isFocused: false, value: '' }, () => {
           if (this.props.searchBehavior) {
             this.props.searchBehavior('', 'focus_out');
           }
@@ -322,15 +316,7 @@ class Picker extends React.PureComponent<Props, State> {
       onSuggestionsFetchRequested: ({ value }: any) => {
         const { shouldFilterSuggestions = true } = this.props;
         const suggestions =  shouldFilterSuggestions ? autoSuggestMethods.getSuggestions(value) : this.getSuggestionsItems(this.props.source, this.props.columns || []);
-        const isInputBlank = value.trim() === '';
-        let columnSuggestions = [];
-        if (columns.length !== 0) {
-          columnSuggestions = get(suggestions, '0.items', []);
-        }
-        const isEmpty = columns.length !== 0 ? columnSuggestions.length === 0 : suggestions.length === 0;
-        const noSuggestions = !isInputBlank && isEmpty;
-
-        this.setState({ suggestions, noSuggestions });
+        this.setState({ suggestions });
       },
 
       updateList: (input: HTMLElement) => {
@@ -457,7 +443,7 @@ class Picker extends React.PureComponent<Props, State> {
         errors,
         placeholder,
     } = this.props;
-    const { isFocused, hasValue, value, suggestions, chipListState, noSuggestions, anchorEl, popoverWidth } = this.state;
+    const { isFocused, hasValue, value, suggestions, chipListState, anchorEl, popoverWidth } = this.state;
     const inputProps: any & { disabled: boolean } = {
       placeholder,
       value,
@@ -538,12 +524,12 @@ class Picker extends React.PureComponent<Props, State> {
           additionalText ? <BodyText componentSize="small" componentColor="darker">{additionalText}</BodyText> : null
         }
         {
-          noSuggestions && !isDataAvailable  && noOptionsMessage && !inputProps.disabled && isFocused && !loading &&
+          !isDataAvailable  && noOptionsMessage && !inputProps.disabled && isFocused && !loading &&
             <Popover
               addArrow={false}
               componentStyle={{ maxHeight: window.outerHeight < 768 ? 500 : 800, overflow: 'auto', maxWidth: popoverWidth, width: '49.2rem', padding: '1.3rem', marginTop: '-.4rem' }}
               anchorEl={anchorEl}
-              open={noSuggestions}
+              open={true}
               theme={theme}
               preferredAlignment="left"
             >
