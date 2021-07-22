@@ -420,10 +420,7 @@ class Pagination extends React.PureComponent<IProps, IState> {
   loadMore = () => {
     const prevPageSize = this.state.pageSize;
     const newPageSize = prevPageSize + this.props.pageSize;
-
-    this.setState({ pageSize: newPageSize }, () => {
-      this.changePageSize(newPageSize);
-    });
+    this.changePageSize(newPageSize);
   }
 
   getDataOrAriaAttributeProps = (props: any) => {
