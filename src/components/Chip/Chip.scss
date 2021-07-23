@@ -46,6 +46,17 @@ $vertical-padding: ($min-height - line-height(body) - rem(2px)) / 2;
             border-radius: 100%;
             background: color(ink,lightest);
         } 
+        &:hover {
+            background-color:color(blue, light);
+            .firstIcon {
+                background-color: color(blue);
+            }
+            .ChipChild {
+                button {
+                    fill: color(blue);
+                }
+            }
+        }
     }
 
     .chipButtonContent {
@@ -95,6 +106,7 @@ $vertical-padding: ($min-height - line-height(body) - rem(2px)) / 2;
 }
 .ChipImage {
     margin: 0px;
+    margin-left: -1px;
 }
 .Image {
     flex-shrink: 0;
