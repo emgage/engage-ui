@@ -36,6 +36,7 @@ export interface Props {
   hasValue?: boolean;
   // To provide styling for labelled.
   componentStyle?: React.CSSProperties;
+  labelComponentStyle?: React.CSSProperties;
   // Add external class
   componentClass?: string;
   // Theme to be injected via css-themr.
@@ -58,6 +59,7 @@ const labelled = ({
   readOnly = false,
   componentStyle,
   componentClass,
+  labelComponentStyle,
   theme,
   onClick = (_:any) => { },
   ...rest
@@ -102,6 +104,7 @@ const labelled = ({
           focused={focused}
           required={required}
           componentClass={componentClass}
+          componentStyle={labelComponentStyle}
           {...rest}
           theme={theme}
         >
