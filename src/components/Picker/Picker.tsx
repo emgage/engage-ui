@@ -494,7 +494,7 @@ class Picker extends React.PureComponent<Props, State> {
     if (!shouldRenderSuggestions) {
       isDataAvailable = isDataAvailable || this.state.value === '';
     }
-    const pickerWithHeader = this.props.renderPickerHeader ? theme.pickerWithHeader : '';
+    const pickerWithHeader = columns.length !== 0 ? theme.pickerWithHeader : '';
     return (
       <div id={componentId} className={pickerWithHeader}>
         <div ref={node => this.setWrapperRef(node)} className={theme.PickerWrap}>
