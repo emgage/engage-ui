@@ -167,6 +167,7 @@ $stacking-order: (
   div[role="listbox"] {
     position: absolute;
     width: 100%;
+    z-index: 999;
     &>div {
       position: relative;
       min-width: 13rem;
