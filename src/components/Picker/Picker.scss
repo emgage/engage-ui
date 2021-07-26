@@ -162,3 +162,27 @@ $stacking-order: (
     box-shadow: none;
   }
 }
+
+.pickerWithHeader {
+  div[role="listbox"] {
+    position: absolute;
+    width: 100%;
+    z-index: 999;
+    &>div {
+      position: relative;
+      min-width: 13rem;
+      max-width: 100rem;
+    }
+    .suggestionsList {
+      position: relative;
+    }
+  }
+  .PopoverButtonWrap {
+        min-width: 13rem;
+        max-width: 100rem;
+        .suggestionsList {
+          width: 100%;
+          position: absolute;
+        }
+      }
+}

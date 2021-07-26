@@ -91,6 +91,7 @@ import {
   PageSize,
   RangeSlider,
   SwitchCheckbox,
+  SwitchCheckboxIcon,
   LazyPicker,
 } from '../../src/components';
 import { IconList } from '../../src/components/Icon';
@@ -1540,6 +1541,14 @@ class App extends React.Component<{}, State> {
         </SwitchCheckbox>
         <br/>
         <br/>
+
+
+          <SwitchCheckboxIcon isOpen={this.state.isOpen} handleToggle={this.handleSwitchCheckboxToggle}>
+          SwitchCheckboxIcon
+          </SwitchCheckboxIcon>
+
+        <br/>
+        <br/>
         <br/>
         <FlexBox justify="Start" >Use special operators ( +, |, –, ", * ) to narrow your search.
 <Tooltip content={
@@ -2780,6 +2789,7 @@ class App extends React.Component<{}, State> {
             />
 
             <TextField type="text" label="Text Field with Prefix" prefix="$" />
+            <TextField type="text" label="Text Field with Prefix" prefix="$ long prefix" />
 
             <TextField
               label="Number field"

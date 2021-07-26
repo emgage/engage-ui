@@ -111,7 +111,7 @@ function getContentsForMinimumLines(minimumLines: number) {
 
 function getFinalContents(contents?: string) {
   return contents
-    ? `${contents.replace(REPLACE_REGEX, replaceEntity)}<br>`
+    ? `${contents.toString().replace(REPLACE_REGEX, replaceEntity)}<br>`
     : '<br>';
 }
 
