@@ -48,6 +48,8 @@ export interface Props {
   isValidDate?: (currentDate: any, selectedDate: any) => boolean;
   // set custom icon
   icon?: any;
+  // Enable automatic completion by the browser.
+  autoComplete?: boolean;
 }
 
 export interface State {
@@ -113,6 +115,7 @@ class DateTimePicker extends React.PureComponent<Props, State>{
 
   render() {
     const {
+      autoComplete = true,
       dateFormat,
       label,
       theme,
@@ -132,7 +135,7 @@ class DateTimePicker extends React.PureComponent<Props, State>{
     if (getFromValue) {
       dateTimeValue = value ? moment(value).format(this.timeFormat) : '';
     } else {
-      dateTimeValue = dateTime ? dateTime.format(this.timeFormat) : null;
+      dateTimeValue = dateTime ? dateTime.format(this.timeFormat) : '';
     }
 
     return (
@@ -147,6 +150,7 @@ class DateTimePicker extends React.PureComponent<Props, State>{
                 placeholder={placeholder}
                 componentStyle={componentStyle}
                 componentId={componentId}
+                autoComplete={autoComplete}
             />
             <DateTime
                 value={value ? value : dateTime}
