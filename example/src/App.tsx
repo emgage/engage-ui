@@ -2789,6 +2789,7 @@ class App extends React.Component<{}, State> {
             />
 
             <TextField type="text" label="Text Field with Prefix" prefix="$" />
+            <TextField type="text" label="Text Field with Prefix" prefix="$ long prefix" />
 
             <TextField
               label="Number field"

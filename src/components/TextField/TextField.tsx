@@ -23,6 +23,7 @@ export interface State {
   height?: number | null;
   focused?: boolean;
   value?: string | undefined;
+  labelComponentStyle?: any;
 }
 
 export interface Props {
@@ -130,13 +131,20 @@ class TextField extends React.PureComponent<Props, State> {
   state: State = { height: null, value: '' };
 
   private input: HTMLElement;
-
+  private prefixRef: any;
   constructor(props: Props) {
     super(props);
     this.state = {
       height: null,
       value: props.value ? props.value : ''
     };
+    this.prefixRef = React.createRef();
+  }
+
+  componentDidMount() {
+    this.setState({
+      labelComponentStyle: { marginLeft: (this.prefixRef?.current?.offsetWidth || 0) + 5 },
+    });
   }
 
   // tslint:disable-next-line:function-name
@@ -214,8 +222,8 @@ class TextField extends React.PureComponent<Props, State> {
     );
 
     const prefixMarkup = prefix
-      ? <div onClick={this.handleInputFocus} className={theme.prefix} id={`${componentId}prefix`}>{prefix}</div>
-      : null;
+    ? <div ref={this.prefixRef} onClick={this.handleInputFocus} className={theme.prefix} id={`${componentId}prefix`}>{prefix}</div>
+    : null;
 
     const suffixMarkup = (!readOnly && suffix)
       ? <div onClick={this.handleInputFocus} className={theme.suffix} id={`${componentId}suffix`}>{suffix}</div>
@@ -327,6 +335,7 @@ class TextField extends React.PureComponent<Props, State> {
         componentClass={labelStyle}
         theme={theme}
         readOnly={readOnly}
+        labelComponentStyle={!(this.state.focused || isFocused) && this.state.labelComponentStyle || {}}
       >
         <Connected
           left={connectedLeft}
