@@ -17,6 +17,7 @@ export interface Props {
     focused?: boolean;
     hasValue?: boolean;
     componentStyle?: React.CSSProperties;
+    labelComponentStyle?: React.CSSProperties;
     componentClass?: string;
     theme?: any;
     onClick?: (event: React.FormEvent<any>) => void;
