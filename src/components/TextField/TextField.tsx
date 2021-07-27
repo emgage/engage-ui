@@ -335,7 +335,7 @@ class TextField extends React.PureComponent<Props, State> {
         componentClass={labelStyle}
         theme={theme}
         readOnly={readOnly}
-        labelComponentStyle={!(this.state.focused || isFocused) && this.state.labelComponentStyle || {}}
+        labelComponentStyle={!(this.state.focused || isFocused) && (!Boolean(hasValue || propHasValue)) && this.state.labelComponentStyle || {}}
       >
         <Connected
           left={connectedLeft}

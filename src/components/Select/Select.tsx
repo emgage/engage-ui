@@ -146,6 +146,7 @@ const select = ({
       required={required}
       componentClass={labelStyle}
       theme={theme}
+      readOnly={readOnly}
     >
       <div className={className}>
         <select
