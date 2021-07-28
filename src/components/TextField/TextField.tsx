@@ -383,8 +383,10 @@ class TextField extends React.PureComponent<Props, State> {
     const newValue = event.currentTarget.value.length <= maxLength ? event.currentTarget.value : event.currentTarget.value.substr(0, maxLength);
     if (this.props.capital && alphaRegex.test(newValue)) {
       onChange(newValue.toUpperCase());
+      this.setState({ value: newValue.toUpperCase() });
     }else if (this.props.alphanumeric && alphaRegex.test(newValue)) {
       onChange(newValue);
+      this.setState({ value: newValue });
     }else {
       if ((this.props.capital || this.props.alphanumeric) && newValue.length > 0) {
         const oldValueArray = [...newValue];
@@ -395,9 +397,11 @@ class TextField extends React.PureComponent<Props, State> {
           }
         });
         onChange(newValueArray.join(''));
+        this.setState({ value: newValueArray.join('') });
         return ;
       }
       onChange(newValue, event);
+      this.setState({ value: newValue });
     }
   }
 
