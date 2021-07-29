@@ -12,9 +12,10 @@ export interface Props {
     theme?: any;
     onRemove?(event: React.FormEvent<HTMLElement>): void;
     onClick?(event: React.FormEvent<HTMLElement>): void;
-    children?: string;
+    children?: string | React.ReactNode;
     icon?: keyof typeof IconList;
     onIconClick?(): void;
+    label?: string;
 }
 declare const _default: ThemedComponentClass<Props, {}>;
 export default _default;

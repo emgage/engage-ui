@@ -50,7 +50,6 @@ export interface State {
     number: number;
     isFocused: boolean;
     hasValue: boolean;
-    noSuggestions: boolean;
     anchorEl?: HTMLElement;
     popoverWidth: string;
 }
