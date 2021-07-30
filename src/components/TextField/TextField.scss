@@ -11,6 +11,9 @@ $spinner-size: rem(20px);
   padding: 0 $backdrop-horizontal-spacing;
   color: color(ink, lightest);
   align-items: center;
+  &.numberField {
+    padding: 0 calc(2.5rem + 1px)  0 $backdrop-horizontal-spacing;
+  }
   &.backdropHidden {
     padding-left:0px;
   }
@@ -241,6 +244,11 @@ $spinner-size: rem(20px);
   width: rem(22px);
   margin: 1px calc(-#{$backdrop-horizontal-spacing} + 1px) 1px $backdrop-horizontal-spacing;
   color: color(ink);
+  position: absolute;
+  height:calc(100% - 2px);
+  right: 1.2rem;
+  top: 0px;
+
 }
 
 .spinnerButtonsIcon {

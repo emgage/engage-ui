@@ -218,7 +218,8 @@ class TextField extends React.PureComponent<Props, State> {
       resizable && theme.resizable,
       loading && theme.loading,
       (this.state.focused || isFocused) && theme.focused,
-      componentHeight && theme[variationName('Height', componentHeight)]
+      componentHeight && theme[variationName('Height', componentHeight)],
+      type === 'number' && !disabled && !readOnly && showNumberIcon && theme.numberField
     );
 
     const prefixMarkup = prefix
@@ -342,12 +343,12 @@ class TextField extends React.PureComponent<Props, State> {
           right={connectedRight}
         >
           <div className={className}>
+            {spinnerButtonsMarkup}
             <div className={theme.backdrop} />
             {prefixMarkup}
             {inputValue}
             {loading && <div className={theme.spinnerWrapper} id={`${componentId}Spinner`}><Spinner componentSize="small" componentColor="disabled" /></div>}
             {suffixMarkup}
-            {spinnerButtonsMarkup}
             {resizer}
           </div>
         </Connected>
