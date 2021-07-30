@@ -11,6 +11,8 @@ export type Mode = 'collapsible' | 'multiple';
 export interface AccordionItemProps {
   header: React.ReactElement<any>;
   children: React.ReactElement<any>;
+  // unique id for react
+  id?: any;
 }
 
 export interface Props {
@@ -39,7 +41,7 @@ interface State {
 
 class Accordion extends React.PureComponent<Props, State> {
   private getUniqueID = createUniqueIDFactory('Accordion');
-  private getItemUniqueID = createUniqueIDFactory('AccordionItems');
+  // private getItemUniqueID = createUniqueIDFactory('AccordionItems');
   private id = this.getUniqueID();
 
   constructor(props: Props) {
@@ -144,7 +146,7 @@ class Accordion extends React.PureComponent<Props, State> {
         <AccordionItem
           componentClass={componentClass}
           index={index}
-          key={this.getItemUniqueID()}
+          key={item?.id || index}
           toggle={this.toggleItem}
           active={active[index] ? true : false}
           header={item.header} style={componentStyle}
