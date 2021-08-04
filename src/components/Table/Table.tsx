@@ -580,7 +580,7 @@ class Table extends React.PureComponent<Props, State> {
   // Function to render table row checkboxes
   renderCheckbox(rowData: any) {
     const { disableAllRow, intermediateRow, selectedRows = [] } = this.state;
-    const { selectCallbackValue, actionInProgress = false, theme  } = this.props;
+    const { selectCallbackValue, actionInProgress = false, theme, isRowDisabled } = this.props;
     const uniqueId = selectCallbackValue ? rowData[selectCallbackValue] : rowData.id;
     const rowCheckedStatus = selectedRows.indexOf(uniqueId) !== -1 ? true : intermediateRow.indexOf(uniqueId) !== -1 ? 'indeterminate' : false;
 
@@ -589,7 +589,7 @@ class Table extends React.PureComponent<Props, State> {
         label={`Check ${rowData.name}`}
         labelHidden
         theme={theme}
-        disabled={(disableAllRow ? disableAllRow : actionInProgress) || rowData.isRowLoading}
+        disabled={(disableAllRow ? disableAllRow : actionInProgress) || rowData.isRowLoading || (isRowDisabled && isRowDisabled(rowData))}
         checked={rowCheckedStatus}
         onChange={(checkedStatus: boolean) => {
           this.toggleSingleRowSelection(rowData, checkedStatus);
