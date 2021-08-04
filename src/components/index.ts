@@ -430,3 +430,8 @@ export {
   default as SwitchCheckboxIcon,
   Props as SwitchCheckboxIconProps,
 } from './SwitchCheckboxIcon';
+
+export {
+  default as SearchHelper,
+  Props as SearchHelperProps,
+} from './SearchHelper';
