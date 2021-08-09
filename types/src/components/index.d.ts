@@ -76,3 +76,4 @@ export { default as MultipleCheckboxFacets } from './MultipleCheckboxFacets';
 export { default as RangeSlider } from './RangeSlider';
 export { default as SwitchCheckbox, Props as SwitchCheckboxProps, } from './SwitchCheckbox';
 export { default as SwitchCheckboxIcon, Props as SwitchCheckboxIconProps, } from './SwitchCheckboxIcon';
+export { default as SearchHelper, Props as SearchHelperProps, } from './SearchHelper';
