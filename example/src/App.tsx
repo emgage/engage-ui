@@ -94,6 +94,7 @@ import {
   SwitchCheckboxIcon,
   LazyPicker,
   SearchHelper,
+  NoData,
 } from '../../src/components';
 import { IconList } from '../../src/components/Icon';
 
@@ -1551,8 +1552,7 @@ class App extends React.Component<{}, State> {
         <br/>
         <br/>
         <br/>
-        
-
+          <NoData iconSource="search" label="No Data found"></NoData>
         <br/>
         <br/>
         <br/>
@@ -2064,7 +2064,7 @@ class App extends React.Component<{}, State> {
           </Table>
           <Table
             actionInProgress={false}
-            data={tableData}
+            data={[]}
             column={columnConfig1}
             filterData={this.state.filterConfig}
             defaultSortField="name"
