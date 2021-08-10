@@ -21,31 +21,31 @@ const SearchHelper = ({ componentClass = '' }: Props) => {
           <Item>
             <FlexBox justify="SpaceBetween" componentStyle={{ maxWidth: 350 }}>
               <BodyText componentSize="default" element="div" componentColor="reverse">+</BodyText>
-              <BodyText componentSize="default" element="div" componentColor="reverse" componentStyle={{ flex: 1, paddingLeft: '1rem' }}>Put + between words to search for matches including both words. Ex: both+words</BodyText>
+              <BodyText componentSize="default" element="div" componentColor="reverse" componentStyle={{ flex: 1, paddingLeft: '1rem' }}>Put + between words to search for matches including both words. For example: both+words</BodyText>
             </FlexBox>
           </Item>
           <Item>
             <FlexBox justify="SpaceBetween" componentStyle={{ maxWidth: 350 }}>
               <BodyText componentSize="default" element="div" componentColor="reverse">|</BodyText>
-              <BodyText componentSize="default" element="div" componentColor="reverse" componentStyle={{ flex: 1, paddingLeft: '1rem' }}>Put | between words to search for matches with at least one word included. Ex: either|word</BodyText>
+              <BodyText componentSize="default" element="div" componentColor="reverse" componentStyle={{ flex: 1, paddingLeft: '1rem' }}>Put | between words to search for matches with at least one word included. For example: either|word</BodyText>
             </FlexBox>
           </Item>
           <Item>
             <FlexBox justify="SpaceBetween" componentStyle={{ maxWidth: 350 }}>
               <BodyText componentSize="default" element="div" componentColor="reverse">-</BodyText>
-              <BodyText componentSize="default" element="div" componentColor="reverse" componentStyle={{ flex: 1, paddingLeft: '1rem' }}>Put - before a word to exclude that word from your search. Ex: cat -hat</BodyText>
+              <BodyText componentSize="default" element="div" componentColor="reverse" componentStyle={{ flex: 1, paddingLeft: '1rem' }}>Put - before a word to exclude that word from your search. For example: cat -hat</BodyText>
             </FlexBox>
           </Item>
           <Item>
             <FlexBox justify="SpaceBetween" componentStyle={{ maxWidth: 350 }}>
               <BodyText componentSize="default" element="div" componentColor="reverse">"</BodyText>
-              <BodyText componentSize="default" element="div" componentColor="reverse" componentStyle={{ flex: 1, paddingLeft: '1rem' }}>Use quotes to search for an exact phrase. Ex: “exact match”</BodyText>
+              <BodyText componentSize="default" element="div" componentColor="reverse" componentStyle={{ flex: 1, paddingLeft: '1rem' }}>Use quotes to search for an exact phrase. For example: “exact match”</BodyText>
             </FlexBox>
           </Item>
           <Item>
             <FlexBox justify="SpaceBetween" componentStyle={{ maxWidth: 350 }}>
               <BodyText componentSize="default" element="div" componentColor="reverse">*</BodyText>
-              <BodyText componentSize="default" element="div" componentColor="reverse" componentStyle={{ flex: 1, paddingLeft: '1rem' }}>Add * after a term to search for matches starting with that “term”. Ex: prefix*</BodyText>
+              <BodyText componentSize="default" element="div" componentColor="reverse" componentStyle={{ flex: 1, paddingLeft: '1rem' }}>Add * after a term to search for matches starting with that “term”. For example: prefix*</BodyText>
             </FlexBox>
           </Item>
           <Item>
