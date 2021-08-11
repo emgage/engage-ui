@@ -92,7 +92,7 @@ const AppBar: React.FC<Props> = (props) => {
     }
     return () => {
       element && window.removeEventListener('resize', listener);
-    }
+    };
   },              []);
 
   /**

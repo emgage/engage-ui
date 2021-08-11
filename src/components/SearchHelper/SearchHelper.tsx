@@ -14,8 +14,8 @@ export interface Props {
 const SearchHelper = ({ componentClass = '' }: Props) => {
 
   return (
-    <FlexBox componentClass={componentClass} justify="Start">
-      Use special operators ( +, |, –, ", * ) to narrow your search.
+    <FlexBox componentClass={componentClass} justify="Start" align="Center">
+     <BodyText element="span" componentSize="small" componentColor="text" componentStyle={{ marginRight: 4 }}> Use special operators ( +, |, –, ", * ) to narrow your search.</BodyText>
       <Tooltip content={
         <List componentType="default">
           <Item>
