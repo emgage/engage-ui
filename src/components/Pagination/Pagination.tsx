@@ -15,6 +15,7 @@ import * as baseTheme from './Pagination.scss';
 import Label from '../Label';
 import Icon from '../Icon';
 import Select from '../Select';
+import VisuallyHidden from '../VisuallyHidden';
 
 const MAX_PAGER_BUTTONS = 7;
 
@@ -204,7 +205,7 @@ class Pagination extends React.PureComponent<IProps, IState> {
           icon="chevronLeft"
           componentClass={theme.button}
           disabled={disableProp}
-        />
+        ><VisuallyHidden>go to Previous page</VisuallyHidden></Button>
       );
     } else if (iconType === 'next') {
       iconButton = (
@@ -212,7 +213,7 @@ class Pagination extends React.PureComponent<IProps, IState> {
           icon="chevronRight"
           componentClass={theme.button}
           disabled={disableProp}
-        />
+          ><VisuallyHidden>go to Next page</VisuallyHidden></Button>
       );
     }
 
