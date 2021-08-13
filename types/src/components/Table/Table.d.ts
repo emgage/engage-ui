@@ -50,6 +50,7 @@ export interface Props {
     isRowDisabled?(item: any): boolean;
     isSearching?: boolean;
     noDataLabel?: string;
+    noDataInSearchLabel?: string;
 }
 export interface State {
     data: any;

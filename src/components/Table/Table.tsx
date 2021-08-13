@@ -112,6 +112,8 @@ export interface Props {
   isSearching?: boolean;
   // Label to show when no data is available
   noDataLabel?: string;
+  // Label to show when no data on search is available.
+  noDataInSearchLabel?: string;
 }
 
 export interface State {
@@ -308,11 +310,12 @@ class Table extends React.PureComponent<Props, State> {
   renderNoDataBody = () => {
     const {
       isSearching,
-      noDataLabel = "No Data found"
+      noDataLabel = 'No data found',
+      noDataInSearchLabel = 'No matches found'
     } = this.props;
     if (isSearching) {
       return ( 
-        <NoData iconSource="search" label="No Data found"></NoData>
+        <NoData iconSource="search" label={noDataInSearchLabel}></NoData>
       )
     } else {
       return (
