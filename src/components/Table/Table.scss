@@ -32,10 +32,15 @@ $border-color: color(sky, base);
 
     .tableDataWrap {
       display: inline-block;
-      width: inherit;
+      width: -webkit-fill-available;
       white-space: break-spaces;
       text-overflow: ellipsis;
       overflow: hidden;
+    }
+    &[data-label='Name'] {
+      .tableDataWrap {
+        width: inherit;
+      }
     }
 
     &.tableDataClick {
@@ -200,6 +205,12 @@ $border-color: color(sky, base);
 
 .bannerRow {
   padding: 0px !important;
+}
+
+tbody > tr.tableRowNoData {
+  &:hover {
+    background-color: transparent;
+  }
 }
 
 @media screen and (max-width: 40em) {

@@ -419,7 +419,7 @@ class Pagination extends React.PureComponent<IProps, IState> {
 
   loadMore = () => {
     const prevPageSize = this.state.pageSize;
-    const newPageSize = prevPageSize + this.props.pageSize;
+    const newPageSize = prevPageSize + this.state.initialPageSize;
     this.changePageSize(newPageSize);
   }
 
