@@ -4,6 +4,7 @@ import { classNames } from '@shopify/react-utilities/styles';
 import { CHIP } from '../ThemeIdentifiers';
 import * as baseTheme from './Chip.scss';
 import Icon, { IconList } from '../Icon';
+import Button from '../Button';
 
 export interface Props {
   // Makes the chips body area clickable.
@@ -24,11 +25,12 @@ export interface Props {
   // Makes the chips body area clickable.
   onClick?(event: React.FormEvent<HTMLElement>): void;
   // The content to display inside chip.
-  children?: string;
+  children?: string | React.ReactNode;
   // Icon replace default cancel icon
   icon?: keyof typeof IconList;
   // Icon click handler
   onIconClick?(): void;
+  label?: string;
 }
 
 class Chip extends React.PureComponent<Props, any> {
@@ -49,41 +51,50 @@ class Chip extends React.PureComponent<Props, any> {
       onRemove,
       onClick,
       children,
-      icon,
-      onIconClick
+      label,
     } = this.props;
 
     const className = classNames(
       theme.Chip,
       transparent && theme.transparent);
 
-    const chipContents = [(
+    const firstIconComponent = (
       image && image.url
         ?
         (typeof image.url === 'object' ?
-          <Icon source={image.url} theme={theme} />
-          : <img className={theme.Image} src={image.url} alt={image.alt} key="1" aria-hidden />
+          <span className={theme.firstIcon}>
+            <Icon source={image.url} theme={theme} />
+          </span>
+          : <span className={theme.ChipImage}><img className={theme.Image} src={image.url} alt={image.alt} key="1" aria-hidden /></span>
         )
         : ''
-    ),
+    );
+
+    const chipTextComponent = (
       <span className={theme.chipContent} key="2">
-      {children}
-      { icon && <span > <Icon onClick={onIconClick} source={icon} theme={theme} /> </span> }
-    </span>,
-    ];
-    const isClickable = clickable ?
-      <a onClick={onClick} aria-disabled={false}>
-        {chipContents}
-      </a>
-      : chipContents;
-    const isRemovable = removable ?
-      <a className={theme.Remove} aria-label={'Remove ' + children} onClick={onRemove} tabIndex={-1}>
+        {(firstIconComponent || label) &&
+          <Button onClick={clickable && onClick || (() => { })} componentSize="slim" plain componentClass={theme.chipButtonContent}>
+            {firstIconComponent}
+            <span className={theme.ChipLabel}>{label}</span>
+          </Button>
+        }
+        {children &&
+          <span className={theme.ChipChild}>{children}</span>
+        }
+      </span>
+    );
+
+    const isRemovable = removable &&
+      (<Button componentClass={theme.Remove} aria-label={'Remove ' + children} onClick={onRemove} componentSize="slim" plain>
         <Icon source="cancel" theme={theme} />
-      </a>
-      : '';
+      </Button>
+      );
 
     return (
-        React.createElement('button', { className, onKeyDown: removable ? this.onKeyDown.bind(this, Event) : null }, isClickable, isRemovable)
+      <div className={className} onKeyDown={removable ? this.onKeyDown.bind(this, Event) : null}>
+        {chipTextComponent}
+        {isRemovable}
+      </div>
     );
   }
 }

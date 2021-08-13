@@ -48,6 +48,13 @@ class Avatar extends React.PureComponent<Props, any> {
       this.setState({ source: defaultSource });
     }
   }
+
+  componentWillReceiveProps(nextProps: Props) {
+    if (nextProps.source !== this.props.source) {
+      this.setState({ source: nextProps.source });
+    }
+  }
+
   render() {
     const {
       componentName,

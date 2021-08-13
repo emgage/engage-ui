@@ -4,6 +4,7 @@ export declare type Mode = 'collapsible' | 'multiple';
 export interface AccordionItemProps {
     header: React.ReactElement<any>;
     children: React.ReactElement<any>;
+    id?: any;
 }
 export interface Props {
     clickHandler?(event: React.FormEvent<HTMLElement>): void;
@@ -22,7 +23,6 @@ interface State {
 }
 declare class Accordion extends React.PureComponent<Props, State> {
     private getUniqueID;
-    private getItemUniqueID;
     private id;
     constructor(props: Props);
     UNSAFE_componentWillReceiveProps(nextProps: Props): null | undefined;

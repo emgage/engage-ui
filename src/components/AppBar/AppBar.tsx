@@ -56,9 +56,11 @@ export interface Props {
    * Login User profile pic
    */
   profilePic?: string;
+  onHeightChange?: (height: number) => void;
 }
 
 const AppBar: React.FC<Props> = (props) => {
+  const headerRef = React.useRef(null);
   /**
    * Destructure props here
    */
@@ -75,7 +77,23 @@ const AppBar: React.FC<Props> = (props) => {
     rightChildren,
     enableGlobalElement,
     searchOnKeyDown,
+    onHeightChange,
   } = props;
+  const [searchText, setSearchText] = React.useState('');
+
+  React.useEffect(() => {
+    const element: any = headerRef.current;
+    const listener = () => {
+      element && onHeightChange && onHeightChange(element.offsetHeight);
+    };
+    listener();
+    if (element) {
+      window.addEventListener('resize', listener);
+    }
+    return () => {
+      element && window.removeEventListener('resize', listener);
+    };
+  },              []);
 
   /**
    * Render Right side children
@@ -86,20 +104,26 @@ const AppBar: React.FC<Props> = (props) => {
     }
   };
 
-  return <header className={baseTheme.appHeader}>
+  return <header ref={headerRef} className={baseTheme.appHeader}>
     <FlexBox>
       { enableGlobalGo && enableGlobalElement }
       { logo && <Image alt="Logo" source={logo} /> }
       { enableSearch &&
         <div className={baseTheme.searchBar}>
           <TextField
-            type="search"
+            type="text"
             componentHeight="slim"
             prefix={<Icon source="search" componentColor="inkLighter"/>}
+            suffix={searchText && <Icon source="cancelSmall" onClick={() => setSearchText('')} componentColor="inkLighter" />}
+            value={searchText}
             labelHidden
             placeholder="Search"
             placeholderAlign="left"
-            onKeyDown={searchOnKeyDown}
+            onKeyDown={(event: any) => {
+              searchOnKeyDown && searchOnKeyDown(event);
+              setSearchText(event.target.value);
+            }
+          }
           />
         </div>
       }

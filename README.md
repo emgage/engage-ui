@@ -25,7 +25,7 @@ Additional commands can be found in package.json.
 `npm run docs`: This will run the documentation application which documents all the components.
 
 ## Licenses
-* Source code is licensed under [MIT](https://opensource.org/licenses/MIT)
+* Source code is licensed under [MIT](https://opensource.org/licenses/MIT).
 * All icons and images are licensed under [Creative Commons Attribution-NoDerivatives 4.0](http://creativecommons.org/licenses/by-nd/4.0/)
 
 ## Feedback

@@ -20,3 +20,14 @@
   margin-left: auto;
   display: flex;
 }
+
+@media (max-width: $breakpoint-medium) {
+  .appHeader {
+    height: 96px;
+    .searchBar {
+      position: absolute;
+      bottom:10px;
+      width: calc(100% - 16px)
+    }
+  }
+}

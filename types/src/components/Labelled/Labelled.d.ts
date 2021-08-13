@@ -17,9 +17,11 @@ export interface Props {
     focused?: boolean;
     hasValue?: boolean;
     componentStyle?: React.CSSProperties;
+    labelComponentStyle?: React.CSSProperties;
     componentClass?: string;
     theme?: any;
     onClick?: (event: React.FormEvent<any>) => void;
+    readOnly?: boolean;
 }
 export declare function errorID(id: string): string;
 export declare function helpTextID(id: string): string;

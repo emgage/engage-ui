@@ -166,4 +166,7 @@ $input-vertical-adjust: rem(1px);
   .spinnerWrapper {
     right: ($input-horizontal-padding);
   }
+  .input {
+      padding-left:0px;
+  }
 }
