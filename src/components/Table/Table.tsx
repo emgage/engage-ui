@@ -315,7 +315,7 @@ class Table extends React.PureComponent<Props, State> {
     } = this.props;
     if (isSearching) {
       return ( 
-        <NoData iconSource="search" label={noDataInSearchLabel}></NoData
+        <NoData iconSource="search" label={noDataInSearchLabel}></NoData>
       )
     } else {
       return (
