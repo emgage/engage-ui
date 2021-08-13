@@ -27,6 +27,7 @@ export interface Props {
     onClick?(e: React.FormEvent<HTMLElement>): void;
     onFocus?(): void;
     onBlur?(): void;
+    title?: string;
 }
 declare const THEMEDBUTTON: ThemedComponentClass<Props, {}>;
 export declare function buttonsFrom(action: ComplexAction, overrides?: Partial<Props>): React.ReactElement<Props>;
