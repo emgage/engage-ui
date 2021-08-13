@@ -47,6 +47,9 @@ export interface Props {
     striped?: boolean;
     theme?: any;
     disableAllRow?: boolean;
+    isRowDisabled?(item: any): boolean;
+    isSearching?: boolean;
+    noDataLabel?: string;
 }
 export interface State {
     data: any;

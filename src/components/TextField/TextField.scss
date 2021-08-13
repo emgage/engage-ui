@@ -11,6 +11,46 @@ $spinner-size: rem(20px);
   padding: 0 $backdrop-horizontal-spacing;
   color: color(ink, lightest);
   align-items: center;
+  &.numberField {
+    padding: 0 calc(2.5rem + 1px)  0 $backdrop-horizontal-spacing;
+  }
+  &.backdropHidden {
+    padding-left:0px;
+  }
+  &.labelHidden{
+    &.focused {
+    .prefix {
+      padding-top:0rem;
+      padding-bottom: 0rem;
+      transition:all .3s ease-in-out;
+      -moz-transition:all .3s ease-in-out;
+      -webkit-transition:all .3s ease-in-out;
+    }
+    .suffix {
+      padding-top:0rem;
+      padding-bottom: 0rem;
+      transition:all .3s ease-in-out;
+      -moz-transition:all .3s ease-in-out;
+      -webkit-transition:all .3s ease-in-out;
+    }
+  }
+  }
+  &.focused {
+    .prefix {
+      padding-top:1.9rem;
+      padding-bottom: .3rem;
+      transition:all .3s ease-in-out;
+      -moz-transition:all .3s ease-in-out;
+      -webkit-transition:all .3s ease-in-out;
+    }
+    .suffix {
+      padding-top:1.9rem;
+      padding-bottom: .3rem;
+      transition:all .3s ease-in-out;
+      -moz-transition:all .3s ease-in-out;
+      -webkit-transition:all .3s ease-in-out;
+    }
+  }
 }
 
 .multiline {
@@ -153,7 +193,6 @@ $spinner-size: rem(20px);
 }
 
 .backdropHidden {
-
   & > .backdrop {
     background-color: transparent;
     border-color: transparent;
@@ -183,6 +222,9 @@ $spinner-size: rem(20px);
   flex: 0 0 auto;
   margin-right: $addon-horizontal-spacing;
   color: currentColor;
+  transition:all .3s ease-in-out;
+  -moz-transition:all .3s ease-in-out;
+  -webkit-transition:all .3s ease-in-out;
 }
 
 .suffix {
@@ -190,6 +232,9 @@ $spinner-size: rem(20px);
   flex: 0 0 auto;
   margin-left: $addon-horizontal-spacing;
   color: currentColor;
+  transition:all .3s ease-in-out;
+  -moz-transition:all .3s ease-in-out;
+  -webkit-transition:all .3s ease-in-out;
 }
 
 .spinnerButtons {
@@ -199,6 +244,11 @@ $spinner-size: rem(20px);
   width: rem(22px);
   margin: 1px calc(-#{$backdrop-horizontal-spacing} + 1px) 1px $backdrop-horizontal-spacing;
   color: color(ink);
+  position: absolute;
+  height:calc(100% - 2px);
+  right: 1.2rem;
+  top: 0px;
+
 }
 
 .spinnerButtonsIcon {
@@ -310,4 +360,20 @@ body .HeightSlim {
       padding: 0.5rem 0.5rem;
     }
   }
+}
+.labelWrapper {
+  .prefix {
+   margin-left:30px;
+   display:block;
+ }
+ &.focused {
+   .prefix {
+     margin-left:0px;
+     display:block;
+   }
+ }
+ .prefix.labelHasValue {
+   margin-left:0px;
+     display:block;
+ }
 }

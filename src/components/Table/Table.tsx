@@ -315,7 +315,7 @@ class Table extends React.PureComponent<Props, State> {
     } = this.props;
     if (isSearching) {
       return ( 
-        <NoData iconSource="search" label={noDataInSearchLabel}></NoData>
+        <NoData iconSource="search" label={noDataInSearchLabel}></NoData
       )
     } else {
       return (
@@ -337,6 +337,9 @@ class Table extends React.PureComponent<Props, State> {
 
     if (!children) {
       return (
+        // data.length === 0 ?  <div style={{ width: '100%' }}>
+        //   { this.renderNoDataBody() }
+        // </div> :
         <TableBody theme={theme}>
           {
             

@@ -4,6 +4,7 @@ import { Action, Error } from '../Labelled';
 export declare type Option = string | {
     value: string;
     label: string;
+    disabled?: boolean;
 };
 export interface Group {
     title: string;

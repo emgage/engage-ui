@@ -78,10 +78,11 @@ $stacking-order: (
   margin: -5px 0 0;
   padding: 0;
   background: color(white);
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.25);
+  box-shadow: shadow(faint);
   list-style-type: none;
   z-index: z-index(popover, $stacking-order);
   min-width: 13rem;
+  max-width: 100rem;
 }
 
 
@@ -160,4 +161,28 @@ $stacking-order: (
     border-color: color(red);
     box-shadow: none;
   }
+}
+
+.pickerWithHeader {
+  div[role="listbox"] {
+    position: absolute;
+    width: 100%;
+    z-index: 999;
+    &>div {
+      position: relative;
+      min-width: 13rem;
+      max-width: 100rem;
+    }
+    .suggestionsList {
+      position: relative;
+    }
+  }
+  .PopoverButtonWrap {
+        min-width: 13rem;
+        max-width: 100rem;
+        .suggestionsList {
+          width: 100%;
+          position: absolute;
+        }
+      }
 }

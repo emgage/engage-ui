@@ -49,13 +49,15 @@ class TreeView extends React.Component<Props, State> {
 
     source.some((item: SourceData): boolean => {
       if (item.id === id) {
-        item.active = !item.active;
-        // Call the toggle callback if available
-        if (item.onToggle) {
-          item.onToggle(item.active);
-        }
+        if (!item.disable) {
+          item.active = !item.active;
+          // Call the toggle callback if available
+          if (item.onToggle) {
+            item.onToggle(item.active);
+          }
 
-        this.setState({ source });
+          this.setState({ source });
+        }
         return true;
       }
 
@@ -97,20 +99,35 @@ class TreeView extends React.Component<Props, State> {
     const iconStyle = {
       padding: '0.25em 0.5em 0.25em 0',
     };
+    const parentIconStyle = {
+      padding: '0',
+    };
 
     // Current node aka parent node
     const node = (
       <li key={item.id}>
         {
-          item.children ?
-          <div onClick={() => this.toggleNode(item.id)} className={theme.nodeicon}>
-            {item.active ? <Button plain componentClass={theme.TreeButton}><Icon componentColor={iconColor} source="circleChevronDown" theme={theme} /><VisuallyHidden>Close Tree</VisuallyHidden></Button> : <Button plain componentClass={theme.TreeButton}><Icon componentColor={iconColor} source="circleChevronRight" theme={theme} /><VisuallyHidden>Open Tree</VisuallyHidden></Button>}
-          </div> :
-          <div className={theme.nodeicon}> <Icon componentStyle={iconStyle} componentColor={iconColor} source="circle" theme={theme} /> </div>
+          item.children && !item.disable ?
+            <div onClick={() => this.toggleNode(item.id)} className={theme.nodeicon}>
+              {item.active ?
+                <Button plain componentClass={theme.TreeButton}>
+                  <Icon componentColor={iconColor} source="circleChevronDown" theme={theme} />
+                  <VisuallyHidden>Close Tree</VisuallyHidden>
+                </Button> :
+                <Button plain componentClass={theme.TreeButton}>
+                  <Icon componentColor={iconColor} source="circleChevronRight" theme={theme} />
+                  <VisuallyHidden>Open Tree</VisuallyHidden>
+                </Button>}
+            </div> :
+            <div className={theme.nodeicon}>
+              <Icon componentStyle={iconStyle} componentColor={iconColor} source="circle" theme={theme} >
+              <VisuallyHidden>Circle Image</VisuallyHidden>
+              </Icon>
+            </div>
         }
 
         <div className={theme.nodecontent} id={componentId ? `${componentId}${item.label}` : ''}>
-          <div className={theme.nodecontentwrapper}><TreeNode { ...item } /></div>
+          <div className={theme.nodecontentwrapper}><TreeNode {...item} /></div>
         </div>
       </li>
     );
@@ -121,15 +138,35 @@ class TreeView extends React.Component<Props, State> {
     if (item.children && item.active) {
       return (
         <li key={item.id} className={theme.haschildren}>
-          <div onClick={() => this.toggleNode(item.id)} className={theme.nodeicon}>
-            {item.active ? <Button plain componentClass={theme.TreeButton}><Icon componentColor={iconColor} source="circleChevronDown" theme={theme} /><VisuallyHidden>Close Tree</VisuallyHidden></Button> : <Button plain><Icon componentColor={iconColor} source="circleChevronRight" theme={theme} /><VisuallyHidden>Open Tree</VisuallyHidden></Button>}
-          </div>
+          {!item.disable ?
+            <div onClick={() => this.toggleNode(item.id)} className={theme.nodeicon}>
+              {item.active ?
+                (
+                  <Button plain componentClass={theme.TreeButton}>
+                    <Icon componentColor={iconColor} source="circleChevronDown" theme={theme} />
+                    <VisuallyHidden>Close Tree</VisuallyHidden>
+                  </Button>
+                ) :
+                (
+                  <Button plain>
+                    <Icon componentColor={iconColor} source="circleChevronRight" theme={theme} />
+                    <VisuallyHidden>Open Tree</VisuallyHidden>
+                  </Button>
+                )
+              }
+            </div> :
+            <div className={theme.nodeicon}>
+              <Icon componentStyle={parentIconStyle} componentColor={iconColor} source="circle" theme={theme} >
+                <VisuallyHidden>Circle Image</VisuallyHidden>
+              </Icon>
+            </div>
+          }
           <div className={theme.nodecontent} id={componentId ? `${componentId}${item.label}` : ''}>
-            <div className={theme.nodecontentwrapper}><TreeNode { ...item } /></div>
+            <div className={theme.nodecontentwrapper}><TreeNode {...item} /></div>
           </div>
 
           <ul>
-            { item.children.map((childItem: SourceData) => this.renderNode(childItem)) }
+            {item.children.map((childItem: SourceData) => this.renderNode(childItem))}
           </ul>
         </li>
       );
@@ -144,7 +181,7 @@ class TreeView extends React.Component<Props, State> {
 
     return (
       <ul className={theme.treeview}>
-        { source.map(item => this.renderNode(item)) }
+        { source.map(item => this.renderNode(item))}
       </ul>
     );
   }

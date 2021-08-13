@@ -91,8 +91,12 @@ import {
   PageSize,
   RangeSlider,
   SwitchCheckbox,
+  SwitchCheckboxIcon,
   LazyPicker,
+  SearchHelper,
+  NoData,
 } from '../../src/components';
+import { IconList } from '../../src/components/Icon';
 
 interface State {
   appName?: string;
@@ -660,6 +664,10 @@ class App extends React.Component<{}, State> {
     this.setState({ showError: true });
   }
 
+  rowDisbled = (item: any) => {
+    return item.id === 2;
+  }
+
   getDropdown = (thisId: number) => {
     const dropdownItems = [];
 
@@ -832,7 +840,15 @@ class App extends React.Component<{}, State> {
     //   },
     // ];
 
-    const pickerdata = [{ "id": 1532945, "name": "Bright", "text": "Bright", "key": 1532945, "description": "" }, { "id": 1532948, "name": "Blue", "text": "Blue", "key": 1532948, "description": "" }, { "id": 1531924, "name": "Green", "text": "Green", "key": 1531924, "description": "" }, { "id": 1528852, "name": "Red", "text": "Red", "key": 1528852, "description": "" }, { "id": 1529876, "name": "White", "text": "White", "key": 1529876, "description": "" }, { "id": 1527828, "name": "Yellow", "text": "Yellow", "key": 1527828, "description": "" }]
+    const pickerdata = [
+      { "id": -1, "name": "All Subscribers", "icon": 'filter', "key": -1, onIconClick: () => { }, "image": IconList.users },
+      { "id": 1532945, "name": "Bright", "text": "Bright", "key": 1532945, "description": "" },
+      { "id": 1532948, "name": "Blue", "text": "Blue", "key": 1532948, "description": "" },
+      { "id": 1531924, "name": "Green", "text": "Green", "key": 1531924, "description": "" },
+      { "id": 1528852, "name": "Red", "text": "Red", "key": 1528852, "description": "" },
+      { "id": 1529876, "name": "White", "text": "White", "key": 1529876, "description": "" },
+      { "id": 1527828, "name": "Yellow", "text": "Yellow", "key": 1527828, "description": "" }
+    ];
     const selectedPickerdata = [{ "id": 1534996, "name": "Black", "text": "Black", "key": 1534996, "description": "" }];
 
     const columnConfigPicker: TableColumnConfig[] = [
@@ -1366,6 +1382,7 @@ class App extends React.Component<{}, State> {
           </span>
         ),
         active: true,
+        disable: true,
         onToggle: (status) => console.log('Tree node open:', status),
         children: [
           {
@@ -1524,6 +1541,18 @@ class App extends React.Component<{}, State> {
         <SwitchCheckbox isOpen={this.state.isOpen} handleToggle={this.handleSwitchCheckboxToggle}>
           SwitchCheckbox
         </SwitchCheckbox>
+        <br/>
+        <br/>
+
+
+          <SwitchCheckboxIcon isOpen={this.state.isOpen} handleToggle={this.handleSwitchCheckboxToggle}>
+          SwitchCheckboxIcon
+          </SwitchCheckboxIcon>
+
+        <br/>
+        <br/>
+        <br/>
+          <NoData iconSource="search" label="No Data found"></NoData>
         <br/>
         <br/>
         <br/>
@@ -2035,7 +2064,7 @@ class App extends React.Component<{}, State> {
           </Table>
           <Table
             actionInProgress={false}
-            data={tableData}
+            data={[]}
             column={columnConfig1}
             filterData={this.state.filterConfig}
             defaultSortField="name"
@@ -2091,6 +2120,8 @@ class App extends React.Component<{}, State> {
             }}
             bordered
             highlight
+            isRowDisabled={this.rowDisbled}
+
           />
         </div>
         <Sticky
@@ -2720,6 +2751,7 @@ class App extends React.Component<{}, State> {
             />
 
             <TextField type="text" label="Text Field with Prefix" prefix="$" />
+            <TextField type="text" label="Text Field with Prefix" prefix="$ long prefix" />
 
             <TextField
               label="Number field"
@@ -2727,6 +2759,7 @@ class App extends React.Component<{}, State> {
               placeholder="placeholder"
               value={this.state.appNumberCounter}
               onChange={this.valueUpdater('appNumberCounter')}
+              helpText={<SearchHelper />}
               // showNumberIcon={false}
             />
 
@@ -3244,7 +3277,8 @@ class App extends React.Component<{}, State> {
             noOptionsMessage={"No items Available"}
             // moreInfoComponent={<Button>More Info</Button>}
             shouldRenderSuggestions={true}
-            // readOnly
+            readOnly
+            backdropHidden
             // disabled
           />
           <ValidatedForm
@@ -3519,6 +3553,43 @@ class App extends React.Component<{}, State> {
               Removable Chip
             </Chip>
             <Chip transparent>Transparent Chip</Chip>
+
+              <Chip><Button plain componentSize="slim" icon="filter"/><BodyText element="span" componentSize="large">only children</BodyText></Chip>
+              <Chip label="Only label"></Chip>
+              <Chip label="Label with remove" onRemove={this.chipRemove} removable={true}></Chip>
+              <Chip
+              image={{
+                url: 'example/src/images/netguru-cartoon-characters3.png',
+                alt: 'Your mom',
+              }}
+              removable={true}
+              onRemove={this.chipRemove}
+              label="Image label chip"
+            ></Chip>
+            <Chip
+              image={{
+                url: 'example/src/images/netguru-cartoon-characters3.png',
+                alt: 'Your mom',
+              }}
+            ></Chip>
+            <Chip><Button plain componentSize="slim" icon="filter"/></Chip>
+            <Chip label="Label with Icon"  image={{
+                url: IconList.bell,
+                alt: 'Your mom',
+              }}></Chip>
+              <Chip label="Label with Icon with remove"  image={{
+                url: IconList.bell,
+                alt: 'Your mom',
+              }} removable={true}
+              onRemove={this.chipRemove}></Chip>
+              <Chip removable={true}
+              onRemove={this.chipRemove}><Button plain componentSize="slim" icon="filter"/><BodyText element="span" componentSize="large">children with remove</BodyText></Chip>
+              <Chip label="All Subscribe" image={{
+                url: 'example/src/images/netguru-cartoon-characters3.png',
+                alt: 'Your mom',
+              }} removable={true}
+              onRemove={this.chipRemove}><Button plain componentSize="slim" icon="filter"></Button></Chip>
+
           </div>
 
           <div>

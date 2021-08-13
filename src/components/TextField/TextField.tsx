@@ -23,6 +23,7 @@ export interface State {
   height?: number | null;
   focused?: boolean;
   value?: string | undefined;
+  labelComponentStyle?: any;
 }
 
 export interface Props {
@@ -130,13 +131,20 @@ class TextField extends React.PureComponent<Props, State> {
   state: State = { height: null, value: '' };
 
   private input: HTMLElement;
-
+  private prefixRef: any;
   constructor(props: Props) {
     super(props);
     this.state = {
       height: null,
       value: props.value ? props.value : ''
     };
+    this.prefixRef = React.createRef();
+  }
+
+  componentDidMount() {
+    this.setState({
+      labelComponentStyle: { marginLeft: (this.prefixRef?.current?.offsetWidth || 0) + 5 },
+    });
   }
 
   // tslint:disable-next-line:function-name
@@ -196,28 +204,29 @@ class TextField extends React.PureComponent<Props, State> {
     } = this.props;
 
     const { height } = this.state;
-
+    const hasValue =  (!!this.props.value && this.props.value.length > 0) || this.state.value;
     const className = classNames(
       componentClass,
       theme.textField,
-      (Boolean(value) || propHasValue) && theme.hasValue,
+      (hasValue || propHasValue) && theme.hasValue,
       disabled && theme.disabled,
       readOnly && theme.readOnly,
       backdropHidden && theme.backdropHidden,
       errors && theme.error,
-      labelHidden && theme.labelHidden,
+      (labelHidden || !this.props.label) && theme.labelHidden,
       multiline && theme.multiline,
       resizable && theme.resizable,
       loading && theme.loading,
-      isFocused && theme.focused,
-      componentHeight && theme[variationName('Height', componentHeight)]
+      (this.state.focused || isFocused) && theme.focused,
+      componentHeight && theme[variationName('Height', componentHeight)],
+      type === 'number' && !disabled && !readOnly && showNumberIcon && theme.numberField
     );
 
     const prefixMarkup = prefix
-      ? <div onClick={this.handleInputFocus} className={theme.prefix} id={`${componentId}prefix`}>{prefix}</div>
-      : null;
+    ? <div ref={this.prefixRef} onClick={this.handleInputFocus} className={theme.prefix} id={`${componentId}prefix`}>{prefix}</div>
+    : null;
 
-    const suffixMarkup = suffix
+    const suffixMarkup = (!readOnly && suffix)
       ? <div onClick={this.handleInputFocus} className={theme.suffix} id={`${componentId}suffix`}>{suffix}</div>
       : null;
 
@@ -302,13 +311,12 @@ class TextField extends React.PureComponent<Props, State> {
       />
       : input;
 
-    const hasValue = (!!this.props.value && this.props.value.length > 0) || this.state.value;
-
     const labelStyle = classNames(
       theme.labelStyle,
       componentHeight === 'slim' && theme.labelStyleSlim,
-      (hasValue || this.state.focused || prefix) && theme.labelHasValue,
-      disabled && theme.labelDisabled
+      (hasValue || this.state.focused) && theme.labelHasValue,
+      disabled && theme.labelDisabled,
+      prefix && theme.prefix
     );
 
     return (
@@ -319,26 +327,28 @@ class TextField extends React.PureComponent<Props, State> {
         componentId={componentId}
         errors={errors}
         action={labelAction}
-        labelHidden={labelHidden}
+        labelHidden={(labelHidden || !this.props.label)}
         helpText={helpText}
         disabled={disabled}
         focused={this.state.focused || isFocused}
-        hasValue={Boolean(hasValue || propHasValue || prefix)}
+        hasValue={Boolean(hasValue || propHasValue)}
         required={required}
         componentClass={labelStyle}
         theme={theme}
+        readOnly={readOnly}
+        labelComponentStyle={!(this.state.focused || isFocused) && (!Boolean(hasValue || propHasValue)) && this.state.labelComponentStyle || {}}
       >
         <Connected
           left={connectedLeft}
           right={connectedRight}
         >
           <div className={className}>
+            {spinnerButtonsMarkup}
             <div className={theme.backdrop} />
             {prefixMarkup}
             {inputValue}
             {loading && <div className={theme.spinnerWrapper} id={`${componentId}Spinner`}><Spinner componentSize="small" componentColor="disabled" /></div>}
             {suffixMarkup}
-            {spinnerButtonsMarkup}
             {resizer}
           </div>
         </Connected>
@@ -374,8 +384,10 @@ class TextField extends React.PureComponent<Props, State> {
     const newValue = event.currentTarget.value.length <= maxLength ? event.currentTarget.value : event.currentTarget.value.substr(0, maxLength);
     if (this.props.capital && alphaRegex.test(newValue)) {
       onChange(newValue.toUpperCase());
+      this.setState({ value: newValue.toUpperCase() });
     }else if (this.props.alphanumeric && alphaRegex.test(newValue)) {
       onChange(newValue);
+      this.setState({ value: newValue });
     }else {
       if ((this.props.capital || this.props.alphanumeric) && newValue.length > 0) {
         const oldValueArray = [...newValue];
@@ -386,9 +398,11 @@ class TextField extends React.PureComponent<Props, State> {
           }
         });
         onChange(newValueArray.join(''));
+        this.setState({ value: newValueArray.join('') });
         return ;
       }
       onChange(newValue, event);
+      this.setState({ value: newValue });
     }
   }
 
