@@ -205,7 +205,7 @@ class Pagination extends React.PureComponent<IProps, IState> {
           icon="chevronLeft"
           componentClass={theme.button}
           disabled={disableProp}
-        ><VisuallyHidden>go to Previous page</VisuallyHidden></Button>
+        ><VisuallyHidden>Previous</VisuallyHidden></Button>
       );
     } else if (iconType === 'next') {
       iconButton = (
@@ -213,7 +213,7 @@ class Pagination extends React.PureComponent<IProps, IState> {
           icon="chevronRight"
           componentClass={theme.button}
           disabled={disableProp}
-          ><VisuallyHidden>go to Next page</VisuallyHidden></Button>
+          ><VisuallyHidden>Next</VisuallyHidden></Button>
       );
     }
 
@@ -1036,12 +1036,15 @@ class Pagination extends React.PureComponent<IProps, IState> {
     );
 
     return (
+      <>
+      <VisuallyHidden componentId="pagination_wrap">Pagination</VisuallyHidden>
       <ul
         className={classNames(theme['rc-pagination'], className)}
         style={props.style}
         unselectable="unselectable"
         ref={this.savePaginationNode}
         {...dataOrAriaAttributeProps}
+        aria-labeledby="pagination_wrap"
       >
         {!isHideOnSinglePage && !simplePagination && (
           <>
@@ -1099,6 +1102,7 @@ class Pagination extends React.PureComponent<IProps, IState> {
 
         {this.renderSimplePagination()}
       </ul>
+      </>
     );
   }
 }
