@@ -207,6 +207,12 @@ $border-color: color(sky, base);
   padding: 0px !important;
 }
 
+tbody > tr.tableRowNoData {
+  &:hover {
+    background-color: transparent;
+  }
+}
+
 @media screen and (max-width: 40em) {
 
     .table {
