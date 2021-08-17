@@ -58,6 +58,8 @@ export interface Props {
   onFocus?(): void;
   // Callback when focus leaves button.
   onBlur?(): void;
+  // Add title to button
+  title?:string;
 }
 
 const button = ({
@@ -84,6 +86,7 @@ const button = ({
   componentId = '',
   theme,
   iconPosition = false,
+  title,
 }: Props) => {
   const className = classNames(
     theme.button,
@@ -139,6 +142,7 @@ const button = ({
           disabled={disabled}
           aria-label={accessibilityLabel}
           style={componentStyle}
+          title={title}
         >
           {content}
         </UnstyledLink>
@@ -156,6 +160,7 @@ const button = ({
           aria-label={accessibilityLabel}
           style={componentStyle}
           id={componentId}
+          title={title}
         >
           {content}
         </button>

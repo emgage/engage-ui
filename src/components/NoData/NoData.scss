@@ -1,0 +1,15 @@
+.NoData {
+    text-align: center;
+    .icon{
+        display: inline-block;
+        width: 3.6rem;
+        height: 2.4rem;
+        .svg {
+            max-width: initial;
+            max-height: initial;
+        }
+    }
+    .bodyText {
+      margin-top: 1.2rem;  
+    }
+}

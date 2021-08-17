@@ -13,6 +13,7 @@ import TableBody from './TableBody';
 import TableRow from './TableRow';
 import TableData from './TableData';
 import BannerRow  from './BannerRow';
+import NoData from '../NoData';
 
 import { ColumnConfig, FilterConfig, NestedChild, SortState, ServerSort } from './interface';
 import * as baseTheme from './Table.scss';
@@ -107,6 +108,12 @@ export interface Props {
   theme?: any;
   disableAllRow?: boolean;
   isRowDisabled?(item: any): boolean;
+  // Set when searching items on table
+  isSearching?: boolean;
+  // Label to show when no data is available
+  noDataLabel?: string;
+  // Label to show when no data on search is available.
+  noDataInSearchLabel?: string;
 }
 
 export interface State {
@@ -300,22 +307,54 @@ class Table extends React.PureComponent<Props, State> {
     );
   }
 
+  renderNoDataBody = () => {
+    const {
+      isSearching,
+      noDataLabel = 'No data found',
+      noDataInSearchLabel = 'No matches found'
+    } = this.props;
+    if (isSearching) {
+      return ( 
+        <NoData iconSource="search" label={noDataInSearchLabel}></NoData>
+      )
+    } else {
+      return (
+        <NoData iconSource="inbox" label={noDataLabel}></NoData>
+      )
+    }
+  }
+
   // Function to render tbody & td with specifc data & if user passed any custom component that can also get rendered
   renderBody = () => {
-    const { children, column, expandingRowId = [], hideRow, rowAction, rowExpandOnLoad = false, selectRow, theme } = this.props;
+    const { children, 
+      column,
+      expandingRowId = [], hideRow,
+      rowAction,
+      rowExpandOnLoad = false,
+      selectRow,
+      theme } = this.props;
     const { data, expandedRow } = this.state;
 
     if (!children) {
       return (
+        // data.length === 0 ?  <div style={{ width: '100%' }}>
+        //   { this.renderNoDataBody() }
+        // </div> :
         <TableBody theme={theme}>
           {
+            
             data.map((item: any, index: number) => {
               if (!this.props.hideRow || !this.hideRow(item)) {
                 return this.renderTbodyRows(item, index);
               }
             })
           }
-          { !data.length ? <TableRow theme={theme}><TableData theme={theme} colSpan={column.length + (selectRow ? 1 : 0) + (rowAction ? 1 : 0)}>No record found</TableData></TableRow> : null }
+          { !data.length ? <TableRow theme={theme} componentClass="tableRowNoData" componentStyle={{ border: 'none' }}>
+              <TableData theme={theme} colSpan={column.length + (selectRow ? 1 : 0) + (rowAction ? 1 : 0)}>
+                <div style={{ padding: 40 }}>
+                  {this.renderNoDataBody()}
+                </div>
+              </TableData></TableRow>  : null }
         </TableBody>
       );
     }
