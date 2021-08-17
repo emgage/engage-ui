@@ -112,19 +112,14 @@ class ComboBox extends React.PureComponent<Props, State> {
   }
 
   componentWillReceiveProps(nextProps: any) {
-    const { items, currentValue = '' } = nextProps;
-    const { items: oldItems, currentValue: currentValueOld = '' } = this.props;
+    // Updated as we need to require search api call while user type.
+    const { items } = nextProps;
+    const { items: oldItems } = this.props;
 
     if (JSON.stringify(oldItems) !== JSON.stringify(items)) {
-      const isEmpty: boolean = items && items[0] && items[0].value && items[0].value.length === 0 || false;
       const initialItems = this.addRenderer(items, JSON.parse(JSON.stringify(items)));
-      this.setState({ initialItems, items, isEmpty });
+      this.setState({ initialItems, items });
     }
-
-    if (currentValueOld !== currentValue) {
-      this.setState({ selectedValue: currentValue });
-    }
-
   }
 
   handleClickOutside = (event: any) => {
