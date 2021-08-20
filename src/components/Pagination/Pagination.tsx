@@ -15,7 +15,7 @@ import * as baseTheme from './Pagination.scss';
 import Label from '../Label';
 import Icon from '../Icon';
 import Select from '../Select';
-
+import VisuallyHidden from '../VisuallyHidden';
 const MAX_PAGER_BUTTONS = 7;
 
 interface IProps {
@@ -1037,12 +1037,15 @@ class Pagination extends React.PureComponent<IProps, IState> {
     );
 
     return (
+      <>
+      <VisuallyHidden componentId="pagination_wrap">Pagination</VisuallyHidden>
       <ul
         className={classNames(theme['rc-pagination'], className)}
         style={props.style}
         unselectable="unselectable"
         ref={this.savePaginationNode}
         {...dataOrAriaAttributeProps}
+        aria-labeledby="pagination_wrap"
       >
         {!isHideOnSinglePage && !simplePagination && (
           <>
@@ -1100,6 +1103,7 @@ class Pagination extends React.PureComponent<IProps, IState> {
 
         {this.renderSimplePagination()}
       </ul>
+   </>
     );
   }
 }
