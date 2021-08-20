@@ -85,7 +85,7 @@ class Chip extends React.PureComponent<Props, any> {
     );
 
     const isRemovable = removable &&
-      (<Button componentClass={theme.Remove} aria-label={'Remove ' + children} onClick={onRemove} componentSize="slim" plain>
+      (<Button componentClass={theme.Remove} aria-label={'Remove ' + children} onClick={onRemove} componentSize="slim" plain accessibilityLabel="Remove">
         <Icon source="cancel" theme={theme} />
       </Button>
       );

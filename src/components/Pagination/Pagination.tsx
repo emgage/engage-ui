@@ -204,6 +204,7 @@ class Pagination extends React.PureComponent<IProps, IState> {
           icon="chevronLeft"
           componentClass={theme.button}
           disabled={disableProp}
+          accessibilityLabel="Previous"
         />
       );
     } else if (iconType === 'next') {
@@ -212,6 +213,7 @@ class Pagination extends React.PureComponent<IProps, IState> {
           icon="chevronRight"
           componentClass={theme.button}
           disabled={disableProp}
+          accessibilityLabel="Next"
         />
       );
     }

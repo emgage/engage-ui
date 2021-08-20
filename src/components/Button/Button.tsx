@@ -8,6 +8,7 @@ import Icon, { Props as IconProps } from '../Icon';
 
 import { BUTTON } from '../ThemeIdentifiers';
 import * as baseTheme from './Button.scss';
+import VisuallyHidden from '../VisuallyHidden';
 
 export type Size = 'slim' | 'large';
 
@@ -106,7 +107,10 @@ const button = ({
     : null;
 
   const iconMarkup = icon
-    ? <span className={theme.customIcon}><Icon source={icon} /></span>
+    ? <span className={theme.customIcon}>
+        <Icon source={icon} />
+        {accessibilityLabel && <VisuallyHidden>{accessibilityLabel}</VisuallyHidden> || title && <VisuallyHidden>{title}</VisuallyHidden>}
+      </span>
     : null;
 
   const childMarkup = children ? <span>{children}</span> : null;
