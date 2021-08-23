@@ -205,6 +205,7 @@ class Pagination extends React.PureComponent<IProps, IState> {
           componentClass={theme.button}
           disabled={disableProp}
           accessibilityLabel="Previous"
+          title="Previous"
         />
       );
     } else if (iconType === 'next') {
@@ -214,6 +215,7 @@ class Pagination extends React.PureComponent<IProps, IState> {
           componentClass={theme.button}
           disabled={disableProp}
           accessibilityLabel="Next"
+          title="Next"
         />
       );
     }

@@ -106,10 +106,11 @@ const button = ({
     ? <span className={theme.customIcon}><Icon source="caretDown" /></span>
     : null;
 
+    const titleOrAccesibility = title || accessibilityLabel;
   const iconMarkup = icon
     ? <span className={theme.customIcon}>
         <Icon source={icon} />
-        {accessibilityLabel && <VisuallyHidden>{accessibilityLabel}</VisuallyHidden> || title && <VisuallyHidden>{title}</VisuallyHidden>}
+        {titleOrAccesibility && <VisuallyHidden>{titleOrAccesibility}</VisuallyHidden>}
       </span>
     : null;
 
