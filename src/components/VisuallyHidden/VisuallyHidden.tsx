@@ -8,11 +8,12 @@ export interface Props {
   children?: React.ReactNode;
   // Theme to be injected via css-themr.
   theme?: any;
+  componentId?:any;
 }
 
-const visuallyHidden = ({ children, theme }: Props) => {
+const visuallyHidden = ({ children, theme, componentId }: Props) => {
   return (
-    <span className={theme.visuallyHidden}>{children}</span>
+    <span className={theme.visuallyHidden} id={componentId}>{children}</span>
   );
 };
 
