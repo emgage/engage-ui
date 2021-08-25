@@ -48,6 +48,9 @@ export interface Props {
     theme?: any;
     disableAllRow?: boolean;
     isRowDisabled?(item: any): boolean;
+    isSearching?: boolean;
+    noDataLabel?: string;
+    noDataInSearchLabel?: string;
 }
 export interface State {
     data: any;

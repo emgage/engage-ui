@@ -16,7 +16,10 @@ import Label from '../Label';
 import Icon from '../Icon';
 import Select from '../Select';
 import VisuallyHidden from '../VisuallyHidden';
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7b73c630d85a085f54492609cda6edfe26726329
 const MAX_PAGER_BUTTONS = 7;
 
 interface IProps {
@@ -205,7 +208,9 @@ class Pagination extends React.PureComponent<IProps, IState> {
           icon="chevronLeft"
           componentClass={theme.button}
           disabled={disableProp}
-        ><VisuallyHidden>Previous</VisuallyHidden></Button>
+          accessibilityLabel="Previous"
+          title="Previous"
+        />
       );
     } else if (iconType === 'next') {
       iconButton = (
@@ -213,7 +218,9 @@ class Pagination extends React.PureComponent<IProps, IState> {
           icon="chevronRight"
           componentClass={theme.button}
           disabled={disableProp}
-          ><VisuallyHidden>Next</VisuallyHidden></Button>
+          accessibilityLabel="Next"
+          title="Next"
+        />
       );
     }
 
@@ -1102,7 +1109,11 @@ class Pagination extends React.PureComponent<IProps, IState> {
 
         {this.renderSimplePagination()}
       </ul>
+<<<<<<< HEAD
       </>
+=======
+   </>
+>>>>>>> 7b73c630d85a085f54492609cda6edfe26726329
     );
   }
 }

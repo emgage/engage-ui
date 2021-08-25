@@ -8,6 +8,7 @@ import Icon, { Props as IconProps } from '../Icon';
 
 import { BUTTON } from '../ThemeIdentifiers';
 import * as baseTheme from './Button.scss';
+import VisuallyHidden from '../VisuallyHidden';
 
 export type Size = 'slim' | 'large';
 
@@ -58,6 +59,8 @@ export interface Props {
   onFocus?(): void;
   // Callback when focus leaves button.
   onBlur?(): void;
+  // Add title to button
+  title?:string;
 }
 
 const button = ({
@@ -84,6 +87,7 @@ const button = ({
   componentId = '',
   theme,
   iconPosition = false,
+  title,
 }: Props) => {
   const className = classNames(
     theme.button,
@@ -102,8 +106,12 @@ const button = ({
     ? <span className={theme.customIcon}><Icon source="caretDown" /></span>
     : null;
 
+    const titleOrAccesibility = title || accessibilityLabel;
   const iconMarkup = icon
-    ? <span className={theme.customIcon}><Icon source={icon} /></span>
+    ? <span className={theme.customIcon}>
+        <Icon source={icon} />
+        {titleOrAccesibility && <VisuallyHidden>{titleOrAccesibility}</VisuallyHidden>}
+      </span>
     : null;
 
   const childMarkup = children ? <span>{children}</span> : null;
@@ -139,6 +147,7 @@ const button = ({
           disabled={disabled}
           aria-label={accessibilityLabel}
           style={componentStyle}
+          title={title}
         >
           {content}
         </UnstyledLink>
@@ -156,6 +165,7 @@ const button = ({
           aria-label={accessibilityLabel}
           style={componentStyle}
           id={componentId}
+          title={title}
         >
           {content}
         </button>
