@@ -18,6 +18,7 @@ import NoData from '../NoData';
 import { ColumnConfig, FilterConfig, NestedChild, SortState, ServerSort } from './interface';
 import * as baseTheme from './Table.scss';
 import Spinner from '../Spinner';
+import VisuallyHidden from '../VisuallyHidden';
 
 export type RowSelection = 'checkbox' | 'radio';
 export type SortOrder = 'asc' | 'desc';
@@ -301,7 +302,7 @@ class Table extends React.PureComponent<Props, State> {
               );
             })
           }
-          { rowAction && !rowActionLeft && <TableHead key="headRowAction" theme={theme} />}
+          { rowAction && !rowActionLeft && <TableHead key="headRowAction" theme={theme}><VisuallyHidden>More Options</VisuallyHidden></TableHead>}
         </TableRow>
       </TableHeader>
     );
@@ -314,19 +315,19 @@ class Table extends React.PureComponent<Props, State> {
       noDataInSearchLabel = 'No matches found'
     } = this.props;
     if (isSearching) {
-      return ( 
+      return (
         <NoData iconSource="search" label={noDataInSearchLabel}></NoData>
-      )
-    } else {
+      );
+    }
       return (
         <NoData iconSource="inbox" label={noDataLabel}></NoData>
-      )
-    }
+      );
+
   }
 
   // Function to render tbody & td with specifc data & if user passed any custom component that can also get rendered
   renderBody = () => {
-    const { children, 
+    const { children,
       column,
       expandingRowId = [], hideRow,
       rowAction,
@@ -342,7 +343,7 @@ class Table extends React.PureComponent<Props, State> {
         // </div> :
         <TableBody theme={theme}>
           {
-            
+
             data.map((item: any, index: number) => {
               if (!this.props.hideRow || !this.hideRow(item)) {
                 return this.renderTbodyRows(item, index);

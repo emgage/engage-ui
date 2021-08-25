@@ -106,7 +106,7 @@ const button = ({
     ? <span className={theme.customIcon}><Icon source="caretDown" /></span>
     : null;
 
-    const titleOrAccesibility = title || accessibilityLabel;
+  const titleOrAccesibility = title || accessibilityLabel;
   const iconMarkup = icon
     ? <span className={theme.customIcon}>
         <Icon source={icon} />
