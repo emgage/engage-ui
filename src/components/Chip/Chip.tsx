@@ -73,7 +73,7 @@ class Chip extends React.PureComponent<Props, any> {
     const chipTextComponent = (
       <span className={theme.chipContent} key="2">
         {(firstIconComponent || label) &&
-          <Button onClick={clickable && onClick || (() => { })} componentSize="slim" plain componentClass={theme.chipButtonContent}>
+          <Button onClick={clickable && onClick || (() => { })} componentSize="slim" plain componentClass={theme.chipButtonContent} title={label}>
             {firstIconComponent}
             <span className={theme.ChipLabel}>{label}</span>
           </Button>
@@ -85,7 +85,7 @@ class Chip extends React.PureComponent<Props, any> {
     );
 
     const isRemovable = removable &&
-      (<Button componentClass={theme.Remove} aria-label={'Remove ' + children} onClick={onRemove} componentSize="slim" plain>
+      (<Button componentClass={theme.Remove} aria-label={'Remove ' + children} onClick={onRemove} componentSize="slim" plain accessibilityLabel="Remove" title="Remove">
         <Icon source="cancel" theme={theme} />
       </Button>
       );
