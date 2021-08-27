@@ -10,7 +10,7 @@
 //@import '../../../themes/Delicious/Button.scss';
 
 
-$accent-height: 4px;
+$accent-height: 1px;
 $dismiss-size: rem(16px);
 $ribbon-flex-basis: rem(32px);
 $secondary-action-vertical-padding: 0.5 * (control-height() - line-height(body));
@@ -18,10 +18,7 @@ $secondary-action-horizontal-padding: 1.5 * spacing(tightest);
 
 @mixin banner-colors($highlight, $background) {
   background-color: $background;
-  box-shadow:
-    inset $accent-height 0 0 0 $highlight,
-    inset shadow(transparent),
-    shadow();
+  border: 1px solid $highlight;
 
   &:focus {
     box-shadow:
@@ -36,7 +33,7 @@ $secondary-action-horizontal-padding: 1.5 * spacing(tightest);
   position: relative;
   display: flex;
   padding: spacing();
-  border-radius: 0 0 border-radius() border-radius();
+  border-radius: border-radius(larger);
   transition: box-shadow duration() easing();
 
   + .Banner {
@@ -70,7 +67,7 @@ $secondary-action-horizontal-padding: 1.5 * spacing(tightest);
 
 .ribbon {
   flex: 0 0 $ribbon-flex-basis;
-  margin-right: spacing();
+  margin-right: spacing(tightest);
 }
 
 .heading {
@@ -167,4 +164,3 @@ $secondary-action-horizontal-padding: 1.5 * spacing(tightest);
 .bannerBox {
   display: flex;
 }
-
