@@ -6,7 +6,6 @@ import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
 import { layeredComponent } from '@shopify/react-utilities/components';
 
 import Button from '../Button';
-import VisuallyHidden from '../VisuallyHidden';
 import KeypressListener from '../KeypressListener';
 
 import { Keys } from '../../types';
@@ -127,12 +126,8 @@ class Modal extends React.PureComponent<Props, never> {
 
     return closeButton ? (
       <div className={theme.close}>
-        { printable && <Button onClick={this.print} componentId="printModal" icon="print" plain componentSize="slim" theme={theme} componentStyle={{ marginRight: '.5rem' }}>
-          <VisuallyHidden>Print</VisuallyHidden>
-        </Button>}
-        <Button plain onClick={this.closeModal} icon="cancel" theme={theme}>
-          <VisuallyHidden>Close Modal</VisuallyHidden>
-        </Button>
+        { printable && <Button onClick={this.print} componentId="printModal" icon="print" plain componentSize="slim" theme={theme} componentStyle={{ marginRight: '.5rem' }} title="Print"></Button>}
+        <Button plain onClick={this.closeModal} icon="cancel" theme={theme} title="Close Modal"></Button>
       </div>) : null;
   }
 
