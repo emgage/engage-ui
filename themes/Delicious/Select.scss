@@ -130,9 +130,9 @@ $input-horizontal-padding: spacing(tighter) * 1.5;
 
 .labelHasValue {
   @include text-style-body-small;
-  color: theme-color(m-grey, 700);
+  color: color(ink, lighter);
 }
 
 .labelDisabled {
-  color: theme-color(m-grey, 700);
+  color: color(ink, lighter);
 }

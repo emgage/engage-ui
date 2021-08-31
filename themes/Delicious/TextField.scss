@@ -154,11 +154,11 @@ $spinner-size: rem(20px);
 
 .labelHasValue {
   @include text-style-body-small;
-  color: theme-color(m-grey, 700);
+  color: color(ink, lighter);
 }
 
 .labelDisabled {
-  color: theme-color(m-grey, 700);
+  color: color(ink, lighter);
 }
 
 .labelHidden {
