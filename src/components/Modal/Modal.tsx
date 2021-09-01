@@ -75,10 +75,10 @@ class Modal extends React.PureComponent<Props, never> {
   }
 
   closeModal = () => {
-    const { printable = false } = this.props;
+    const { printable = false, theme } = this.props;
     if (printable) {
       const bodyElement = document.body;
-      bodyElement.classList.remove('body-print');
+      bodyElement.classList.remove(`${theme.bodyPrint}`);
     }
     this.props.toggle ? this.props.toggle() : undefined;
   }
@@ -184,10 +184,10 @@ class Modal extends React.PureComponent<Props, never> {
 
   setClassToBodyForPrint = () => {
     const bodyElement = document.body;
-    const { active = false, printable = false } = this.props;
+    const { active = false, printable = false, theme } = this.props;
 
     if (bodyElement !== null && active && printable) {
-      bodyElement.classList.add("body-print");
+      bodyElement.classList.add(`${theme.bodyPrint}`);
     }
   }
 

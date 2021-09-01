@@ -314,19 +314,19 @@ class Table extends React.PureComponent<Props, State> {
       noDataInSearchLabel = 'No matches found'
     } = this.props;
     if (isSearching) {
-      return ( 
+      return (
         <NoData iconSource="search" label={noDataInSearchLabel}></NoData>
-      )
-    } else {
+      );
+    }
       return (
         <NoData iconSource="inbox" label={noDataLabel}></NoData>
-      )
-    }
+      );
+
   }
 
   // Function to render tbody & td with specifc data & if user passed any custom component that can also get rendered
   renderBody = () => {
-    const { children, 
+    const { children,
       column,
       expandingRowId = [], hideRow,
       rowAction,
@@ -342,7 +342,7 @@ class Table extends React.PureComponent<Props, State> {
         // </div> :
         <TableBody theme={theme}>
           {
-            
+
             data.map((item: any, index: number) => {
               if (!this.props.hideRow || !this.hideRow(item)) {
                 return this.renderTbodyRows(item, index);

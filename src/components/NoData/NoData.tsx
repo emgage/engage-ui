@@ -51,7 +51,7 @@ const NoData = ({
             }
 
         </div>
-    );
+  );
 };
 
 export default themr(NODATA, baseTheme)(NoData) as ThemedComponentClass<Props, {}>;
