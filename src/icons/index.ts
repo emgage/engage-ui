@@ -3,6 +3,8 @@ export { default as alert } from './alert.svg';
 export { default as alignCenter } from './align-center.svg';
 export { default as alignLeft } from './align-left.svg';
 export { default as alignRight } from './align-right.svg';
+export { default as archive } from './archive.svg';
+export { default as archiveSolid } from './archive-solid.svg';
 export { default as arrowDown } from './arrow-down.svg';
 export { default as arrowLeft } from './arrow-left.svg';
 export { default as arrowRight } from './arrow-right.svg';
