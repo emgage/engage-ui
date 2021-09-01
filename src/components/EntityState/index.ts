@@ -1,4 +1,4 @@
 import EntityState from './EntityState';
 
-export { Props, Status } from './EntityState';
+export { Props } from './EntityState';
 export default EntityState;

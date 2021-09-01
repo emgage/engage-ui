@@ -7,18 +7,15 @@ import { ENTITYSTATE } from '../ThemeIdentifiers';
 
 import * as baseTheme from './EntityState.scss';
 
-export type Status = 'success' | 'info' | 'attention' | 'warning' | 'new' | 'draft' | 'working' | 'published' | 'archive' | 'archived' | 'delete' | 'deleted' | 'locked';
-export type Progress = 'incomplete' | 'partiallyComplete' | 'complete';
-
-interface IComonEnum {
+interface ICommonEnum {
   itemName: string;
   itemID: number;
 }
 interface Item {
   processing?: string;
-  pendingAction?: IComonEnum;
-  entityState: IComonEnum;
-  locked: IComonEnum;
+  pendingAction?: ICommonEnum;
+  entityState: ICommonEnum;
+  locked: ICommonEnum;
   [key: string]: any;
 }
 
