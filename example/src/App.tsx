@@ -95,6 +95,7 @@ import {
   LazyPicker,
   SearchHelper,
   NoData,
+  EntityState,
 } from '../../src/components';
 import { IconList } from '../../src/components/Icon';
 
@@ -1524,6 +1525,17 @@ class App extends React.Component<{}, State> {
             <Button icon="infoCircle" componentSize="slim"/>,
           ]}
         />
+        <EntityState item={{
+          // processing: 'Publishing',
+          entityState: {
+            itemName: 'Deleted',
+            itemID: 7,
+          },
+          locked: {
+            itemName: 'locked',
+            itemID: 0,
+          }
+        }} />
         <BodyText componentSize="small">This is Small Body Text</BodyText>
         <BodyText>This is Default Body Text</BodyText>
         <BodyText componentSize="large">This is Large Body Text</BodyText>

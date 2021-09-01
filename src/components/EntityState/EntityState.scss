@@ -1,0 +1,68 @@
+@import 'foundation/colors';
+@import 'foundation/spacing';
+@import 'foundation/utilities';
+
+$height: rem(20px);
+$horizontal-padding: ($height / 2);
+
+$spinner-size: rem(14px);
+$spinner-spacing: ($height - $spinner-size - rem(4px)) / 2;
+
+$icon-size: rem(14px);
+$icon-spacing: ($height - $icon-size - rem(4px)) / 2;
+
+.entityState {
+  
+  .iconWrapper {
+    height: $icon-size;
+    width: $icon-size;
+    display: inline-block;
+    vertical-align: top;
+    margin: $icon-spacing $icon-spacing 0 ($icon-spacing - $horizontal-padding + rem(2px));
+  }
+
+  .iconState {
+    
+  }
+  .processingState {
+    height: $spinner-size;
+    width: $spinner-size;
+    display: inline-block;
+    vertical-align: top;
+    margin: $spinner-spacing $spinner-spacing 0 ($spinner-spacing - $horizontal-padding + rem(2px));
+    animation: spin duration(basespin) linear infinite;
+    
+    fill: #ffffff;
+    background-color: #2196f3;
+    border-radius: 50%;
+    padding: 1px;
+  }
+  .newState{
+    
+  }
+  .draftState{
+
+  }
+  .archiveState{
+
+  }
+  .deleteState{
+
+  }
+  .publishedState{
+
+  }
+  .archivedState{
+
+  }
+  .deletedState{
+    fill: #F44336;
+  }
+  .lockedState{
+  }
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
