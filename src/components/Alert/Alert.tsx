@@ -2,6 +2,8 @@ import * as React from 'react';
 import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 import { ALERT } from '../ThemeIdentifiers';
 import * as baseTheme from './Alert.scss';
+import BodyText from '../BodyText';
+import Button from '../Button';
 
 export interface State {
   // State for alert to be active or closed
@@ -18,14 +20,7 @@ export interface Props {
   theme?: any;
 }
 // Define custom close icon for smaller height-width
-const IconClose = (props:any) => {
-  return (
-    <svg width="12" height="12" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
-      <line stroke={props.color} strokeWidth="1.1" x1="1" y1="1" x2="13" y2="13"></line>
-      <line stroke={props.color} strokeWidth="1.1" x1="13" y1="1" x2="1" y2="13"></line>
-    </svg>
-  );
-};
+
 
 // Alert component, in here wrap all other required components or DOM for the Alert
 class Alert extends React.PureComponent<Props, State> {
@@ -46,35 +41,38 @@ class Alert extends React.PureComponent<Props, State> {
     const { children, componentType, theme } = this.props;
     let classes: string;
     let style: string;
-    let color: string;
+    let fill: any;
 
     switch (componentType) {
       case 'primary':
         style = theme.alertPrimary;
-        color = '#1e87f0';
+        fill = '#1e87f0';
         break;
       case 'success':
         style = theme.alertSuccess;
-        color = '#32d296';
+        fill = '#32d296';
         break;
       case 'warning' :
         style = theme.alertWarning;
-        color = '#faa05a';
+        fill = '#faa05a';
         break;
       case 'danger':
         style = theme.alertDanger;
-        color = '#f0506e';
+        fill = '#f0506e';
         break;
       default:
         style = '';
-        color = '#000';
+        fill = '#000';
     }
 
     classes = theme.alert + ' ' + style;
     return (
       <React.Fragment>
       { this.state.isActive && <div className={classes}>
-        <p>{children}</p><button type="button" className={theme.alertClose} onClick={() => this.closeAlert()}><IconClose color={color}/></button>
+        <BodyText element="p">{children}</BodyText>
+        <div className={theme.alertClose}>
+        <Button componentSize="slim" plain onClick={() => this.closeAlert()} title="Close Alert" icon="cancelSmall" componentStyle={{fill}}></Button>
+        </div>
       </div>}
       </React.Fragment>
     );
