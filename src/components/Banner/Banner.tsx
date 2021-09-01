@@ -17,6 +17,7 @@ import flagSvg from './icons/flag.svg';
 import circleAlertSvg from './icons/circle-alert.svg';
 import circleBarredSvg from './icons/circle-barred.svg';
 import confettiSvg from './icons/confetti.svg';
+import BodyText from '../BodyText';
 
 export type Status = 'success' | 'info' | 'warning' | 'critical';
 
@@ -104,9 +105,11 @@ const banner = ({
     headingMarkup = (
       <div className={theme.heading} id={headingID}>
         <Heading
-          element="h6"
+          element="h4"
           componentClass={baseTheme.bannerHading}
-          theme={theme}>
+          theme={theme}
+          headingSize="h4"
+          >
             {componentTitle}
         </Heading>
       </div>
@@ -118,9 +121,9 @@ const banner = ({
       return (
         <div key={`option_${index}`} className={baseTheme.bannerBox}>
           <Icon source = {item.icon as keyof typeof IconList} componentColor = {item.componentColor ? item.componentColor as IconColor : undefined} />
-          <p className={baseTheme.bannerContent}>
+          <BodyText element="p" componentClass={baseTheme.bannerContent}>
             {item.text}
-          </p>
+          </BodyText>
         </div>
       );
     });
@@ -157,7 +160,7 @@ const banner = ({
   const dismissButton = onDismiss
     ? (
       <div className={theme.dismiss}>
-        <Button plain icon="cancelSmall" accessibilityLabel="Dismiss notification" onClick={onDismiss} theme={theme} />
+        <Button plain icon="cancelSmall" accessibilityLabel="Dismiss notification" onClick={onDismiss} theme={theme} title="Dismiss notification"/>
       </div>
     )
     : null;

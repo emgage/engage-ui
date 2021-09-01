@@ -18,6 +18,7 @@ import NoData from '../NoData';
 import { ColumnConfig, FilterConfig, NestedChild, SortState, ServerSort } from './interface';
 import * as baseTheme from './Table.scss';
 import Spinner from '../Spinner';
+import VisuallyHidden from '../VisuallyHidden';
 
 export type RowSelection = 'checkbox' | 'radio';
 export type SortOrder = 'asc' | 'desc';
@@ -301,7 +302,7 @@ class Table extends React.PureComponent<Props, State> {
               );
             })
           }
-          { rowAction && !rowActionLeft && <TableHead key="headRowAction" theme={theme} />}
+          { rowAction && !rowActionLeft && <TableHead key="headRowAction" theme={theme}><VisuallyHidden>More Options</VisuallyHidden></TableHead>}
         </TableRow>
       </TableHeader>
     );

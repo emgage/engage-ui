@@ -91,7 +91,7 @@ steps:
           npm publish --tag next
       fi
       git add .
-      git commit -m "chore: Release [skip ci]" --no-verify
+      git commit -m "chore: Release" --no-verify
       git push
       echo "##vso[task.setvariable variable=engageui]$lib_path"
   displayName: 'Tag and Publish'

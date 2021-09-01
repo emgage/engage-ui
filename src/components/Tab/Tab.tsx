@@ -28,7 +28,7 @@ const tab = ({ tabId, tabDescription, activeTabId, onClick, theme, componentStyl
   );
   return (
     <li className={tabClassName} style={componentStyle}>
-      <Button componentSize="slim" plain onClick={onClick}>{tabDescription}</Button>
+      <Button componentSize="slim" plain onClick={onClick} title={`${tabId}`}>{tabDescription}</Button>
     </li>
   );
 };

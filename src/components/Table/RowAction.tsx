@@ -10,7 +10,6 @@ import Dropdown from '../Dropdown';
 
 import * as baseTheme from './Table.scss';
 import * as Expression from './expression';
-import VisuallyHidden from '../VisuallyHidden';
 
 interface ExpressionFunction {
   (data: any, config: any): boolean;
@@ -84,8 +83,7 @@ class RowAction extends React.PureComponent<Props, State> {
       validActionConfigs && validActionConfigs.length > 0 ?
       <React.Fragment>
         <div style={{ float: 'right' }}>
-        <Button componentId={`${componentId}BtnMoreActions`} theme={theme} componentClass={theme.rowActionButton} disabled={actionInProgress} icon="horizontalDots" onClick={(e: React.FormEvent<HTMLElement>) => this.dropdownToggle(e)}>
-          <VisuallyHidden>More Actions</VisuallyHidden>
+        <Button componentId={`${componentId}BtnMoreActions`} theme={theme} componentClass={theme.rowActionButton} disabled={actionInProgress} icon="horizontalDots" onClick={(e: React.FormEvent<HTMLElement>) => this.dropdownToggle(e)} title="More Actions">
         </Button>
           <Dropdown
             dropdownItems={validActionConfigs}
