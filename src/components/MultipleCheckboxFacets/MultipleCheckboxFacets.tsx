@@ -25,7 +25,7 @@ interface IOptions {
   value: string | number;
   count?: number;
   selected: boolean;
-  key?: string | number
+  key?: string | number;
 }
 
 interface IProps {
