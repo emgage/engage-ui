@@ -141,13 +141,15 @@ $modal-footer-background:                        #fff !default; //add $global-ba
 }
 
 @media print {
-  :global #app-root {
-    display: none;
-    opacity: 0;
-    visibility: hidden;
-    overflow: hidden;
-    height:0px;
-  }
+   .bodyPrint {
+    :global #app-root {
+      display: none;
+      opacity: 0;
+      visibility: hidden;
+      overflow: hidden;
+      height:0px;
+    }
+ 
   div[id^='TooltipLayer'] {
       display: none;
   }
@@ -177,4 +179,5 @@ $modal-footer-background:                        #fff !default; //add $global-ba
       }
     }
   }
+}
 }
