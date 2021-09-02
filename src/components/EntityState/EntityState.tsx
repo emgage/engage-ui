@@ -15,7 +15,7 @@ interface Item {
   processing?: string;
   pendingAction?: ICommonEnum;
   entityState: ICommonEnum;
-  locked: ICommonEnum;
+  locked?: ICommonEnum;
   [key: string]: any;
 }
 
@@ -59,7 +59,7 @@ const EntityState = ({
   let label = processing || '';
   let iconItemId;
   if (!processing) {
-    if (locked && locked.itemID === 0) {
+    if (!locked || locked.itemID === 0) {
       if (pendingAction && (!['None', 'Create'].includes(pendingAction.itemName))) {
         label = pendingAction.itemName;
         iconItemId = pendingAction.itemID;
@@ -67,7 +67,7 @@ const EntityState = ({
         label = entityState.itemName;
         iconItemId = entityState.itemID;
       }
-    } else if (locked && locked.itemID === 1) {
+    } else if (locked.itemID === 1) {
       label = locked.itemName;
       iconItemId = 9;
     }
