@@ -95,6 +95,7 @@ import {
   LazyPicker,
   SearchHelper,
   NoData,
+  EntityState,
 } from '../../src/components';
 import { IconList } from '../../src/components/Icon';
 
@@ -1524,6 +1525,99 @@ class App extends React.Component<{}, State> {
             <Button icon="infoCircle" componentSize="slim"/>,
           ]}
         />
+        <EntityState item={{
+          // processing: 'Publishing',
+          entityState: {
+            itemName: 'New',
+            itemID: 1,
+          },
+          locked: {
+            itemName: 'locked',
+            itemID: 0,
+          }
+        }} />
+        <EntityState item={{
+          entityState: {
+            itemName: 'Draft',
+            itemID: 2,
+          },
+          locked: {
+            itemName: 'locked',
+            itemID: 0,
+          }
+        }} />
+        <EntityState item={{
+          entityState: {
+            itemName: 'Archive',
+            itemID: 3,
+          },
+          locked: {
+            itemName: 'locked',
+            itemID: 0,
+          }
+        }} />
+        <EntityState item={{
+          entityState: {
+            itemName: 'Delete',
+            itemID: 4,
+          },
+          locked: {
+            itemName: 'locked',
+            itemID: 0,
+          }
+        }} />
+        <EntityState item={{
+          entityState: {
+            itemName: 'Published',
+            itemID: 5,
+          },
+          locked: {
+            itemName: 'locked',
+            itemID: 0,
+          }
+        }} />
+        <EntityState item={{
+          entityState: {
+            itemName: 'Archived',
+            itemID: 6,
+          },
+          locked: {
+            itemName: 'locked',
+            itemID: 0,
+          }
+        }} />
+        <EntityState item={{
+          entityState: {
+            itemName: 'Deleted',
+            itemID: 7,
+          },
+          locked: {
+            itemName: 'locked',
+            itemID: 0,
+          }
+        }} />
+        <EntityState item={{
+          processing:'Publishing',
+          entityState: {
+            itemName: 'Publishing',
+            itemID: 8,
+          },
+          locked: {
+            itemName: 'locked',
+            itemID: 1,
+          }
+        }} />
+        <EntityState item={{
+          entityState: {
+            itemName: 'Locked',
+            itemID: 9,
+          },
+          locked: {
+            itemName: 'locked',
+            itemID: 0,
+          }
+        }} />
+        <br/><br/><br/><br/><br/>
         <BodyText componentSize="small">This is Small Body Text</BodyText>
         <BodyText>This is Default Body Text</BodyText>
         <BodyText componentSize="large">This is Large Body Text</BodyText>
