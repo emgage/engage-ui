@@ -19,9 +19,6 @@ export interface Props {
   // Theme to be injected via css-themr
   theme?: any;
 }
-// Define custom close icon for smaller height-width
-
-
 // Alert component, in here wrap all other required components or DOM for the Alert
 class Alert extends React.PureComponent<Props, State> {
   constructor(props: Props) {
@@ -41,28 +38,22 @@ class Alert extends React.PureComponent<Props, State> {
     const { children, componentType, theme } = this.props;
     let classes: string;
     let style: string;
-    let fill: any;
 
     switch (componentType) {
       case 'primary':
         style = theme.alertPrimary;
-        fill = '#1e87f0';
         break;
       case 'success':
         style = theme.alertSuccess;
-        fill = '#32d296';
         break;
       case 'warning' :
         style = theme.alertWarning;
-        fill = '#faa05a';
         break;
       case 'danger':
         style = theme.alertDanger;
-        fill = '#f0506e';
         break;
       default:
         style = '';
-        fill = '#000';
     }
 
     classes = theme.alert + ' ' + style;
@@ -71,7 +62,7 @@ class Alert extends React.PureComponent<Props, State> {
       { this.state.isActive && <div className={classes}>
         <BodyText element="p">{children}</BodyText>
         <div className={theme.alertClose}>
-        <Button componentSize="slim" plain onClick={() => this.closeAlert()} title="Close Alert" icon="cancelSmall" componentStyle={{fill}}></Button>
+        <Button componentSize="slim" plain onClick={() => this.closeAlert()} title="Close Alert" icon="cancelSmall"></Button>
         </div>
       </div>}
       </React.Fragment>
