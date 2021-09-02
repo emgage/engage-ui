@@ -916,7 +916,7 @@ class App extends React.Component<{}, State> {
         name: 'Hiren',
         description:
           'Test description Test description Test description Test description',
-        status: { itemID: 1, itemName: 'New' },
+        entityState: { itemID: 1, itemName: 'New' },
         type: 'admin',
         isRowClickDisable: true,
       },
@@ -952,21 +952,21 @@ class App extends React.Component<{}, State> {
           ],
         },
         description: 'Test description2',
-        status: { itemID: 2, itemName: 'Deleted' },
+        entityState: { itemID: 7, itemName: 'Deleted' },
         type: 'admin',
       },
       {
         id: 3,
         name: 'Patel',
         description: 'Test description3',
-        status: { itemID: 3, itemName: 'Draft' },
+        entityState: { itemID: 2, itemName: 'Draft' },
         type: 'admin',
       },
       {
         id: 4,
         name: 'Raj',
         description: 'Test description2',
-        status: { itemID: 1, itemName: 'New' },
+        entityState: { itemID: 1, itemName: 'New' },
         type: 'admin',
       },
     ];
@@ -1284,9 +1284,7 @@ class App extends React.Component<{}, State> {
         sort: true,
         sortBy: 'itemName',
         injectBody: (value: any) => (
-          <Badge status={value.status.itemID === 1 ? 'success' : 'warning'}>
-            {value.status.itemName}
-          </Badge>
+          <EntityState item={value}/>
         ),
         style: { width: '100px' },
       },
