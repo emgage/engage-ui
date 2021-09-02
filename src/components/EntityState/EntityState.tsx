@@ -86,19 +86,19 @@ const EntityState = ({
         newIconSource = 'pen';
         iconComponentClass = theme.draftState;
       } else if (iconItemId === 3) {
-        newIconSource = 'export'; // need to change icon
+        newIconSource = 'archive';
         iconComponentClass = theme.archiveState;
       } else if (iconItemId === 4) {
-        newIconSource = 'circleCancel'; // need to change icon
+        newIconSource = 'cancel';
         iconComponentClass = theme.deleteState;
       } else if (iconItemId === 5) {
-        newIconSource = 'checkCircle';
+        newIconSource = 'check';
         iconComponentClass = theme.publishedState;
       } else if (iconItemId === 6) {
-        newIconSource = 'export'; // need to change icon
+        newIconSource = 'archiveSolid';
         iconComponentClass = theme.archivedState;
       } else if (iconItemId === 7) {
-        newIconSource = 'circleCancel';
+        newIconSource = 'cancel';
         iconComponentClass = theme.deletedState;
       } else if (iconItemId === 8) {
         newIconSource = 'refresh';

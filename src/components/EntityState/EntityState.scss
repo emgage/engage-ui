@@ -8,57 +8,90 @@ $horizontal-padding: ($height / 2);
 $spinner-size: rem(14px);
 $spinner-spacing: ($height - $spinner-size - rem(4px)) / 2;
 
-$icon-size: rem(14px);
+$icon-size: rem(16px);
 $icon-spacing: ($height - $icon-size - rem(4px)) / 2;
 
+$font-size: rem(13px);
 .entityState {
-  
+  display: flex;
+  align-items: center;
+  color: color(text, darkest);
+  font-size: $font-size;
   .iconWrapper {
     height: $icon-size;
     width: $icon-size;
     display: inline-block;
     vertical-align: top;
-    margin: $icon-spacing $icon-spacing 0 ($icon-spacing - $horizontal-padding + rem(2px));
+    // margin: $icon-spacing $icon-spacing 0 ($icon-spacing - $horizontal-padding + rem(2px));
+    margin-right:$horizontal-padding - .4rem;
   }
 
   .iconState {
-    
+    border: 2px solid;
+    overflow: hidden;
+    border-radius: 10px;
   }
   .processingState {
     height: $spinner-size;
     width: $spinner-size;
     display: inline-block;
     vertical-align: top;
-    margin: $spinner-spacing $spinner-spacing 0 ($spinner-spacing - $horizontal-padding + rem(2px));
+    // margin: $spinner-spacing $spinner-spacing 0 ($spinner-spacing - $horizontal-padding + rem(2px));
     animation: spin duration(basespin) linear infinite;
-    
+    border-color: #2196f3;
     fill: #ffffff;
     background-color: #2196f3;
     border-radius: 50%;
-    padding: 1px;
   }
   .newState{
-    
+    fill:#FFB300;
+    border-color: #FFB300;
+    font-weight: bold;
   }
   .draftState{
-
+    fill:#fff;
+    background-color: #FFB300;
+    font-weight: bold;
+    border-color:  #FFB300;
   }
-  .archiveState{
-
+  .archivedState{
+    fill:#9E9E9E;
+    font-weight: bold;
+    border-color: #9E9E9E;
+  }
+  .archiveState {
+    background-color:#9E9E9E;
+    font-weight: bold;
+    border-color: #9E9E9E;
+    fill:#fff;
   }
   .deleteState{
-
+    background-color: transparent;
+    fill:#F44336;
+    font-weight: bold;
+    border-color:transparent
   }
   .publishedState{
-
+    fill:#fff;
+    border-color: #4CAF50;
+    border-radius: 50px;
+    font-weight: bold;
+    background-color: #4CAF50;
   }
   .archivedState{
 
   }
   .deletedState{
-    fill: #F44336;
+    border-color: #F44336;
+    background-color: #F44336;
+    font-weight: bold;
+    fill:#fff;
   }
   .lockedState{
+    border: 1px solid #EEEEEE;
+    background-color: #EEEEEE;
+    font-weight: bold;
+    fill:#31373D;
   }
 }
 @keyframes spin {
