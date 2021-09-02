@@ -319,9 +319,9 @@ class Table extends React.PureComponent<Props, State> {
         <NoData iconSource="search" label={noDataInSearchLabel}></NoData>
       );
     }
-    return (
+      return (
         <NoData iconSource="inbox" label={noDataLabel}></NoData>
-    );
+      );
 
   }
 

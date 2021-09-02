@@ -74,6 +74,11 @@ class Modal extends React.PureComponent<Props, never> {
   }
 
   closeModal = () => {
+    const { printable = false, theme } = this.props;
+    if (printable) {
+      const bodyElement = document.body;
+      bodyElement.classList.remove(`${theme.bodyPrint}`);
+    }
     this.props.toggle ? this.props.toggle() : undefined;
   }
 
@@ -146,6 +151,7 @@ class Modal extends React.PureComponent<Props, never> {
     const activeContent = this.renderActivechildren();
 
     this.setBodyTagStyle();
+    this.setClassToBodyForPrint();
 
     return (
       <div
@@ -167,7 +173,20 @@ class Modal extends React.PureComponent<Props, never> {
     const { active = false, theme } = this.props;
 
     if (bodyElement !== null) {
-      bodyElement.className = active ? (theme.page) : '';
+      if (active) {
+        bodyElement.classList.add(`${theme.page}`);
+      } else {
+        bodyElement.classList.remove(`${theme.page}`);
+      }
+    }
+  }
+
+  setClassToBodyForPrint = () => {
+    const bodyElement = document.body;
+    const { active = false, printable = false, theme } = this.props;
+
+    if (bodyElement !== null && active && printable) {
+      bodyElement.classList.add(`${theme.bodyPrint}`);
     }
   }
 
