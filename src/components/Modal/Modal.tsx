@@ -6,7 +6,6 @@ import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
 import { layeredComponent } from '@shopify/react-utilities/components';
 
 import Button from '../Button';
-import VisuallyHidden from '../VisuallyHidden';
 import KeypressListener from '../KeypressListener';
 
 import { Keys } from '../../types';
@@ -75,6 +74,11 @@ class Modal extends React.PureComponent<Props, never> {
   }
 
   closeModal = () => {
+    const { printable = false, theme } = this.props;
+    if (printable) {
+      const bodyElement = document.body;
+      bodyElement.classList.remove(`${theme.bodyPrint}`);
+    }
     this.props.toggle ? this.props.toggle() : undefined;
   }
 
@@ -127,12 +131,8 @@ class Modal extends React.PureComponent<Props, never> {
 
     return closeButton ? (
       <div className={theme.close}>
-        { printable && <Button onClick={this.print} componentId="printModal" icon="print" plain componentSize="slim" theme={theme} componentStyle={{ marginRight: '.5rem' }}>
-          <VisuallyHidden>Print</VisuallyHidden>
-        </Button>}
-        <Button plain onClick={this.closeModal} icon="cancel" theme={theme}>
-          <VisuallyHidden>Close Modal</VisuallyHidden>
-        </Button>
+        { printable && <Button onClick={this.print} componentId="printModal" icon="print" plain componentSize="slim" theme={theme} componentStyle={{ marginRight: '.5rem' }} title="Print"></Button>}
+        <Button plain onClick={this.closeModal} icon="cancel" theme={theme} title="Close Modal"></Button>
       </div>) : null;
   }
 
@@ -151,6 +151,7 @@ class Modal extends React.PureComponent<Props, never> {
     const activeContent = this.renderActivechildren();
 
     this.setBodyTagStyle();
+    this.setClassToBodyForPrint();
 
     return (
       <div
@@ -172,7 +173,20 @@ class Modal extends React.PureComponent<Props, never> {
     const { active = false, theme } = this.props;
 
     if (bodyElement !== null) {
-      bodyElement.className = active ? (theme.page) : '';
+      if (active) {
+        bodyElement.classList.add(`${theme.page}`);
+      } else {
+        bodyElement.classList.remove(`${theme.page}`);
+      }
+    }
+  }
+
+  setClassToBodyForPrint = () => {
+    const bodyElement = document.body;
+    const { active = false, printable = false, theme } = this.props;
+
+    if (bodyElement !== null && active && printable) {
+      bodyElement.classList.add(`${theme.bodyPrint}`);
     }
   }
 

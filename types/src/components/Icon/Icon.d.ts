@@ -8,6 +8,8 @@ export declare const BUNDLED_ICONS: {
     alignCenter: any;
     alignLeft: any;
     alignRight: any;
+    archive: any;
+    archiveSolid: any;
     arrowDown: any;
     arrowLeft: any;
     arrowRight: any;
