@@ -42,6 +42,7 @@ $font-size: rem(13px);
     fill: #ffffff;
     background-color: #2196f3;
     border-radius: 50%;
+    margin-top: 0.2rem;
   }
   .newState{
     fill:#FFB300;
@@ -69,7 +70,7 @@ $font-size: rem(13px);
     background-color: transparent;
     fill:#F44336;
     font-weight: bold;
-    border-color:transparent
+    border-color:#F44336;
   }
   .publishedState{
     fill:#fff;
@@ -77,9 +78,6 @@ $font-size: rem(13px);
     border-radius: 50px;
     font-weight: bold;
     background-color: #4CAF50;
-  }
-  .archivedState{
-
   }
   .deletedState{
     border-color: #F44336;

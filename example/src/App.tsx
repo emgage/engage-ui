@@ -1595,7 +1595,7 @@ class App extends React.Component<{}, State> {
           // processing: 'Publishing',
           entityState: {
             itemName: 'Delete',
-            itemID: 7,
+            itemID: 4,
           },
           locked: {
             itemName: 'locked',
