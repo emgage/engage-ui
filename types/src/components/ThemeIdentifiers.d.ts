@@ -2,6 +2,7 @@ export declare const ACCORDION = "PAccordtion";
 export declare const ALERT = "PAlert";
 export declare const AVATAR = "PAvatar";
 export declare const BADGE = "PBadge";
+export declare const ENTITYSTATE = "PEntityState";
 export declare const BANNER = "PBanner";
 export declare const BUTTON = "PButton";
 export declare const BUTTON_GROUP = "PButtonGroup";

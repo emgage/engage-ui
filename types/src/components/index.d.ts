@@ -78,3 +78,4 @@ export { default as SwitchCheckbox, Props as SwitchCheckboxProps, } from './Swit
 export { default as SwitchCheckboxIcon, Props as SwitchCheckboxIconProps, } from './SwitchCheckboxIcon';
 export { default as SearchHelper, Props as SearchHelperProps, } from './SearchHelper';
 export { default as NoData, Props as NoDataProps, } from './NoData';
+export { default as EntityState, Props as EntityStateProps, } from './EntityState';
