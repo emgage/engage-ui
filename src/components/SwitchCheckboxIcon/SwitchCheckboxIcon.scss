@@ -7,13 +7,22 @@
         position: relative;
         margin-right: 0.8rem;
         .InnerSpan {
-            width: 4.4rem;
-            background:color(ink, lighter);
+            width: 5.4rem;
+            background:color(ink, lightest);
             display: inline-block;
             position: relative;
             border-radius: 3rem;
             height: 2.2rem;
             vertical-align: middle;
+            position: relative;
+            &:after {
+                content: "FALSE";
+                position: absolute;
+                font-size: 10px;
+                color:#fff;
+                right: 4px;
+                top: 1px;
+            }
             .innerCircle{
                 content: "";
                 display: block;
@@ -44,6 +53,17 @@
             z-index: 2;
             &:checked + .InnerSpan {
                 background-color: color(blue, base);
+                &:before {
+                    content: "TRUE";
+                    position: absolute;
+                    font-size: 10px;
+                    color:#fff;
+                    left:4px;
+                    top:1px;
+                }
+                &:after {
+                    display:none;
+                }
             .innerCircle {
                 right:2px;
                 left: auto;
