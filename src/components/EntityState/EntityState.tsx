@@ -86,7 +86,7 @@ const EntityState = ({
         newIconSource = 'pen';
         iconComponentClass = theme.draftState;
       } else if (iconItemId === 3) {
-        newIconSource = 'archive';
+        newIconSource = 'archiveSolid';
         iconComponentClass = theme.archiveState;
       } else if (iconItemId === 4) {
         newIconSource = 'cancel';
@@ -95,7 +95,7 @@ const EntityState = ({
         newIconSource = 'check';
         iconComponentClass = theme.publishedState;
       } else if (iconItemId === 6) {
-        newIconSource = 'archiveSolid';
+        newIconSource = 'archive';
         iconComponentClass = theme.archivedState;
       } else if (iconItemId === 7) {
         newIconSource = 'cancel';

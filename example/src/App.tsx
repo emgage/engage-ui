@@ -1537,7 +1537,6 @@ class App extends React.Component<{}, State> {
           }
         }} />
         <EntityState item={{
-          // processing: 'Publishing',
           entityState: {
             itemName: 'Draft',
             itemID: 2,
@@ -1548,42 +1547,8 @@ class App extends React.Component<{}, State> {
           }
         }} />
         <EntityState item={{
-          processing: 'Publishing',
-          entityState: {
-            itemName: 'refresh',
-            itemID: 8,
-          },
-          locked: {
-            itemName: 'locked',
-            itemID: 1,
-          }
-        }} />
-        <EntityState item={{
-          // processing: 'Publishing',
-          entityState: {
-            itemName: 'Published',
-            itemID: 5,
-          },
-          locked: {
-            itemName: 'locked',
-            itemID: 0,
-          }
-        }} />
-        <EntityState item={{
-          // processing: 'Publishing',
           entityState: {
             itemName: 'Archive',
-            itemID: 6,
-          },
-          locked: {
-            itemName: 'locked',
-            itemID: 0,
-          }
-        }} />
-        <EntityState item={{
-          // processing: 'Publishing',
-          entityState: {
-            itemName: 'Archived',
             itemID: 3,
           },
           locked: {
@@ -1592,7 +1557,6 @@ class App extends React.Component<{}, State> {
           }
         }} />
         <EntityState item={{
-          // processing: 'Publishing',
           entityState: {
             itemName: 'Delete',
             itemID: 4,
@@ -1603,7 +1567,26 @@ class App extends React.Component<{}, State> {
           }
         }} />
         <EntityState item={{
-          // processing: 'Publishing',
+          entityState: {
+            itemName: 'Published',
+            itemID: 5,
+          },
+          locked: {
+            itemName: 'locked',
+            itemID: 0,
+          }
+        }} />
+        <EntityState item={{
+          entityState: {
+            itemName: 'Archived',
+            itemID: 6,
+          },
+          locked: {
+            itemName: 'locked',
+            itemID: 0,
+          }
+        }} />
+        <EntityState item={{
           entityState: {
             itemName: 'Deleted',
             itemID: 7,
@@ -1614,9 +1597,9 @@ class App extends React.Component<{}, State> {
           }
         }} />
         <EntityState item={{
-          // processing: 'Publishing',
+          processing:'Publishing',
           entityState: {
-            itemName: 'refresh',
+            itemName: 'Publishing',
             itemID: 8,
           },
           locked: {
@@ -1624,8 +1607,16 @@ class App extends React.Component<{}, State> {
             itemID: 1,
           }
         }} />
-
-
+        <EntityState item={{
+          entityState: {
+            itemName: 'Locked',
+            itemID: 9,
+          },
+          locked: {
+            itemName: 'locked',
+            itemID: 0,
+          }
+        }} />
         <br/><br/><br/><br/><br/>
         <BodyText componentSize="small">This is Small Body Text</BodyText>
         <BodyText>This is Default Body Text</BodyText>
