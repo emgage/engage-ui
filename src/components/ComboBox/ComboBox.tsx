@@ -269,7 +269,7 @@ class ComboBox extends React.PureComponent<Props, State> {
           <Icon source={arrowSvg} theme={theme} />
         </div>}
 
-        {open && !isEmpty && <Popover
+        {!disabled && !readOnly && open && !isEmpty && <Popover
           addArrow={false}
           componentStyle={{ maxHeight: window.outerHeight < 768 ? 500 : 800, overflow: 'auto', width: popoverWidth }}
           anchorEl={this.state.anchorEl}
