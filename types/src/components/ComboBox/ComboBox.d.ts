@@ -36,7 +36,6 @@ interface State {
     anchorEl?: HTMLElement;
     selectedValue: string;
     popoverWidth: string;
-    isEmpty: boolean;
     serverSort: ServerSort;
 }
 declare class ComboBox extends React.PureComponent<Props, State> {
