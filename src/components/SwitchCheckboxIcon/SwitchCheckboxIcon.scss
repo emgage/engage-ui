@@ -15,14 +15,6 @@
             height: 2.2rem;
             vertical-align: middle;
             position: relative;
-            &:after {
-                content: "FALSE";
-                position: absolute;
-                font-size: 10px;
-                color:#fff;
-                right: 4px;
-                top: 1px;
-            }
             .innerCircle{
                 content: "";
                 display: block;
@@ -53,17 +45,6 @@
             z-index: 2;
             &:checked + .InnerSpan {
                 background-color: color(blue, base);
-                &:before {
-                    content: "TRUE";
-                    position: absolute;
-                    font-size: 10px;
-                    color:#fff;
-                    left:4px;
-                    top:1px;
-                }
-                &:after {
-                    display:none;
-                }
             .innerCircle {
                 right:2px;
                 left: auto;
@@ -84,4 +65,85 @@
         }
     }
 }
+}
+
+
+.switchNormal {
+    .OuterSpan {
+        .InnerSpan {
+            width: 4.2rem;
+            &:before,
+            &:after {
+                display: none;
+            }
+        }
+    }
+}
+.switchTrueFalse {
+    .OuterSpan {
+        .InnerSpan {
+            width: 5.4rem;
+            &:after {
+                content: "FALSE";
+                position: absolute;
+                font-size: 10px;
+                color:#fff;
+                right: 4px;
+                top: 1px;
+            }
+        }
+        input {
+            &:checked + .InnerSpan {
+                &:before {
+                    content: "TRUE";
+                    position: absolute;
+                    font-size: 10px;
+                    color:#fff;
+                    left:4px;
+                    top:1px;
+                }
+                &:after {
+                    display:none;
+                }
+            }
+        }
+        .Cancel,
+        .Accept {
+            display: none;
+        }
+    }
+}
+.switchYesNo {
+    .OuterSpan {
+        .InnerSpan {
+            width: 4.4rem;
+            &:after {
+                content: "NO";
+                position: absolute;
+                font-size: 10px;
+                color:#fff;
+                right: 4px;
+                top: 1px;
+            }
+        }
+        input {
+            &:checked + .InnerSpan {
+                &:before {
+                    content: "YES";
+                    position: absolute;
+                    font-size: 10px;
+                    color:#fff;
+                    left:4px;
+                    top:1px;
+                }
+                &:after {
+                    display:none;
+                }
+            }
+        }
+        .Cancel,
+        .Accept {
+            display: none;
+        }
+    }
 }

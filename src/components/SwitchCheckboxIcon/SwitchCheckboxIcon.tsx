@@ -6,6 +6,7 @@ import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
 import { classNames } from '@shopify/react-utilities/styles';
 import Icon from '../Icon/Icon';
 
+export type ISwitchType = 'normal' | 'trueFalse' | 'yesNo'
 export interface Props {
   // Set theme for SwitchCheckbox
   theme?: any;
@@ -19,17 +20,34 @@ export interface Props {
   disabled?: boolean;
   isOpen: boolean;
   handleToggle: (value: boolean) => void;
+  switchType?:ISwitchType;
 }
 
 const getUniqueID = createUniqueIDFactory('SwitchCheckboxIcon');
 
 const SwitchCheckboxIcon = (props: Props) => {
   const { theme, componentClass, componentStyle, componentId = getUniqueID() } = props;
-  const { children, isOpen, disabled, handleToggle } = props;
+  const { children, isOpen, disabled, handleToggle, switchType="normal" } = props;
+  let switchTypeClass = theme.switchNormal;
+  switch (switchType) {
+    case 'normal':
+      switchTypeClass = theme.switchNormal;
+      break;
+    case 'trueFalse':
+      switchTypeClass = theme.switchTrueFalse;
+      break;
+    case 'yesNo' :
+      switchTypeClass = theme.switchYesNo;
+      break;
+    default:
+      switchTypeClass = theme.switchNormal;
+      break;
+  }
 
   const className = classNames(
         componentClass,
-        theme.switchCheckbox
+        theme.switchCheckbox,
+        switchTypeClass 
     );
   return (<div style={componentStyle}  className={className}>
             <span className={theme.OuterSpan}>
