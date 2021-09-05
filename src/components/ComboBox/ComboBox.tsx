@@ -257,7 +257,7 @@ class ComboBox extends React.PureComponent<Props, State> {
           type="text"
           label={label}
           onChange={this.onChange}
-          value={disabled ? 'No options available' : this.state.selectedValue}
+          value={this.state.selectedValue}
           theme={theme}
           suffix={<Icon source={suffix} componentColor="inkLighter" />}
           loading={loading}
