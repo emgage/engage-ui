@@ -448,12 +448,12 @@ class Table extends React.PureComponent<Props, State> {
                   {colItem.injectBody ? colItem.injectBody(item) : renderCheckbox ?
                     <span style={{ paddingLeft: '16px' }}>
                       {item[colItem.key]}
-                      {colItem.subKey && <BodyText componentSize="small" componentColor="mid">{item[colItem.subKey]}</BodyText>}
+                      {colItem.subKey && item[colItem.subKey] && <BodyText componentClass={theme.subText} componentSize="small" componentColor="mid">{item[colItem.subKey]}</BodyText>}
                     </span>
                     :
                     <span className={theme.tableDataWrap}>
                       {item[colItem.key]}
-                      {colItem.subKey && <BodyText componentSize="small" componentColor="mid">{item[colItem.subKey]}</BodyText>}
+                      {colItem.subKey && item[colItem.subKey] && <BodyText componentClass={theme.subText} componentSize="small" componentColor="mid">{item[colItem.subKey]}</BodyText>}
                     </span>
                   }
                   {item.isRowLoading && <Spinner componentSize="small" componentColor="disabled" />}

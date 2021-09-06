@@ -30,6 +30,10 @@ $border-color: color(sky, base);
     text-overflow: ellipsis;
     text-align: left;
 
+    .subText {
+      margin-bottom: 0px;
+    }
+    
     .tableDataWrap {
       display: inline-block;
       width: -webkit-fill-available;
