@@ -447,7 +447,7 @@ class Table extends React.PureComponent<Props, State> {
                   { renderCheckbox ? this.renderCheckColumn(item, false) : ''}
                   {colItem.injectBody ? colItem.injectBody(item) : renderCheckbox ?
                     <span style={{ paddingLeft: '16px' }}>
-                      <BodyText componentSize="default">{item[colItem.key]}</BodyText>
+                      <BodyText element="span" componentSize="default">{item[colItem.key]}</BodyText>
                       {colItem.subKey && item[colItem.subKey] && <BodyText componentClass={theme.subText} componentSize="small" componentColor="darker">{item[colItem.subKey]}</BodyText>}
                     </span>
                     :
