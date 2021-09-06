@@ -1267,6 +1267,7 @@ class App extends React.Component<{}, State> {
       {
         label: 'Name',
         key: 'name',
+        subKey: 'description',
         className: '',
         sort: true,
         sortBy: 'keyword',
