@@ -31,7 +31,8 @@ $border-color: color(sky, base);
     text-align: left;
 
     .subText {
-      margin-bottom: 0px;
+      margin-top: 2px !important;
+      margin-bottom: 0px !important;
     }
     
     .tableDataWrap {
