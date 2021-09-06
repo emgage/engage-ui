@@ -13,11 +13,13 @@ import TableBody from './TableBody';
 import TableRow from './TableRow';
 import TableData from './TableData';
 import BannerRow  from './BannerRow';
+import NoData from '../NoData';
 
 import { ColumnConfig, FilterConfig, NestedChild, SortState, ServerSort } from './interface';
 import * as baseTheme from './Table.scss';
 import Spinner from '../Spinner';
 import BodyText from '../BodyText';
+import VisuallyHidden from '../VisuallyHidden';
 
 export type RowSelection = 'checkbox' | 'radio';
 export type SortOrder = 'asc' | 'desc';
@@ -107,6 +109,13 @@ export interface Props {
   striped?: boolean;
   theme?: any;
   disableAllRow?: boolean;
+  isRowDisabled?(item: any): boolean;
+  // Set when searching items on table
+  isSearching?: boolean;
+  // Label to show when no data is available
+  noDataLabel?: string;
+  // Label to show when no data on search is available.
+  noDataInSearchLabel?: string;
 }
 
 export interface State {
@@ -294,28 +303,60 @@ class Table extends React.PureComponent<Props, State> {
               );
             })
           }
-          { rowAction && !rowActionLeft && <TableHead key="headRowAction" theme={theme} />}
+          { rowAction && !rowActionLeft && <TableHead key="headRowAction" theme={theme}><VisuallyHidden>More Options</VisuallyHidden></TableHead>}
         </TableRow>
       </TableHeader>
     );
   }
 
+  renderNoDataBody = () => {
+    const {
+      isSearching,
+      noDataLabel = 'No data found',
+      noDataInSearchLabel = 'No matches found'
+    } = this.props;
+    if (isSearching) {
+      return (
+        <NoData iconSource="search" label={noDataInSearchLabel}></NoData>
+      );
+    }
+    return (
+      <NoData iconSource="inbox" label={noDataLabel}></NoData>
+    );
+
+  }
+
   // Function to render tbody & td with specifc data & if user passed any custom component that can also get rendered
   renderBody = () => {
-    const { children, column, expandingRowId = [], hideRow, rowAction, rowExpandOnLoad = false, selectRow, theme } = this.props;
+    const { children,
+      column,
+      expandingRowId = [], hideRow,
+      rowAction,
+      rowExpandOnLoad = false,
+      selectRow,
+      theme } = this.props;
     const { data, expandedRow } = this.state;
 
     if (!children) {
       return (
+        // data.length === 0 ?  <div style={{ width: '100%' }}>
+        //   { this.renderNoDataBody() }
+        // </div> :
         <TableBody theme={theme}>
           {
+
             data.map((item: any, index: number) => {
               if (!this.props.hideRow || !this.hideRow(item)) {
                 return this.renderTbodyRows(item, index);
               }
             })
           }
-          { !data.length ? <TableRow theme={theme}><TableData theme={theme} colSpan={column.length + (selectRow ? 1 : 0) + (rowAction ? 1 : 0)}>No record found</TableData></TableRow> : null }
+          { !data.length ? <TableRow theme={theme} componentClass="tableRowNoData" componentStyle={{ border: 'none' }}>
+              <TableData theme={theme} colSpan={column.length + (selectRow ? 1 : 0) + (rowAction ? 1 : 0)}>
+                <div style={{ padding: 40 }}>
+                  {this.renderNoDataBody()}
+                </div>
+              </TableData></TableRow>  : null }
         </TableBody>
       );
     }
@@ -369,7 +410,8 @@ class Table extends React.PureComponent<Props, State> {
       rowAction,
       selectRow,
       componentId = '',
-      theme
+      theme,
+      isRowDisabled,
     } = this.props;
     const { nestedChildData } = this.state;
     const { renderBanner } = item;
@@ -420,7 +462,7 @@ class Table extends React.PureComponent<Props, State> {
             })
           }
 
-          { rowAction && !rowActionLeft && <TableData componentClass={theme.lastData} componentStyle={{ float: 'right' }}>{item.isRowLoading && <Spinner componentSize="small" componentColor="disabled" />} <RowAction componentId={componentId} actionInProgress={actionInProgress && !!item.processing} isRowLoading={item.isRowLoading} actionConfig={rowAction} data={item} theme={theme} /> </TableData> }
+          { rowAction && !rowActionLeft && <TableData componentClass={theme.lastData}>{item.isRowLoading && <Spinner componentSize="small" componentColor="disabled" />} <RowAction componentId={componentId} actionInProgress={(actionInProgress && !!item.processing) || (isRowDisabled && isRowDisabled(item))} isRowLoading={item.isRowLoading} actionConfig={rowAction} data={item} theme={theme} /> </TableData> }
         </TableRow>
         { renderBanner &&
         <TableRow>
@@ -589,7 +631,7 @@ class Table extends React.PureComponent<Props, State> {
   // Function to render table row checkboxes
   renderCheckbox(rowData: any) {
     const { disableAllRow, intermediateRow, selectedRows = [] } = this.state;
-    const { selectCallbackValue, actionInProgress = false, theme  } = this.props;
+    const { selectCallbackValue, actionInProgress = false, theme, isRowDisabled } = this.props;
     const uniqueId = selectCallbackValue ? rowData[selectCallbackValue] : rowData.id;
     const rowCheckedStatus = selectedRows.indexOf(uniqueId) !== -1 ? true : intermediateRow.indexOf(uniqueId) !== -1 ? 'indeterminate' : false;
 
@@ -598,7 +640,7 @@ class Table extends React.PureComponent<Props, State> {
         label={`Check ${rowData.name}`}
         labelHidden
         theme={theme}
-        disabled={(disableAllRow ? disableAllRow : actionInProgress) || rowData.isRowLoading}
+        disabled={(disableAllRow ? disableAllRow : actionInProgress) || rowData.isRowLoading || (isRowDisabled && isRowDisabled(rowData))}
         checked={rowCheckedStatus}
         onChange={(checkedStatus: boolean) => {
           this.toggleSingleRowSelection(rowData, checkedStatus);

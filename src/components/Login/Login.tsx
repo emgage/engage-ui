@@ -2,7 +2,6 @@ import * as React from 'react';
 import Button from '../Button';
 import Dropdown from '../Dropdown';
 import Image from '../Image';
-import VisuallyHidden from '../VisuallyHidden';
 import * as baseTheme from './Login.scss';
 import { Props as DropdownItemProps } from '../Dropdown/DropdownItem';
 
@@ -79,7 +78,7 @@ export default (props: Props) => {
 
   return (
       props.isLoggedIn ?  <div className={baseTheme.loginContainer}>
-        {!props.profilePic ? <Button icon="user" componentSize="slim" componentClass={baseTheme.loginUser} onClick={e => toggle(e)}><VisuallyHidden>Loged in</VisuallyHidden></Button>
+        {!props.profilePic ? <Button icon="user" componentSize="slim" componentClass={baseTheme.loginUser} onClick={e => toggle(e)} title={`user menu for ${props.userName}`}></Button>
         : <Image onClick={e => toggle(e)} className={baseTheme.profilePic} alt="User profile pic" source={props.profilePic} />}
         <Dropdown
           dropdownItems={dropDownList}
@@ -87,7 +86,7 @@ export default (props: Props) => {
           preferredAlignment="right"
           preferredPosition="below"
         />
-      </div> : <Button url={props.loginUrl} componentClass={baseTheme.loginButton} plain >Login</Button>
+      </div> : <Button url={props.loginUrl} componentClass={baseTheme.loginButton} plain title="Login">Login</Button>
   );
 
 };

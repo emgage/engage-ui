@@ -33,7 +33,7 @@ $alert_danger_color:color(red, dark);
 .alertClose {
     position:absolute;
     top:15px;
-    right:15px;
+    right:0px;
     opacity:.4;
     margin: 0;
     border: none;
@@ -46,9 +46,9 @@ $alert_danger_color:color(red, dark);
     background-color: transparent;
     display: inline-block;
     fill: currentcolor;
-    line-height: 0;
+    line-height: 2;
     height: 1.2rem;
-    width: 1.2rem;
+    width: 3.2rem;
     transition: .1s ease-in-out;
     transition-property: color,opacity; 
 }

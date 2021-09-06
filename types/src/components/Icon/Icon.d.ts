@@ -8,12 +8,15 @@ export declare const BUNDLED_ICONS: {
     alignCenter: any;
     alignLeft: any;
     alignRight: any;
+    archive: any;
+    archiveSolid: any;
     arrowDown: any;
     arrowLeft: any;
     arrowRight: any;
     arrowUp: any;
     bell: any;
     calendar: any;
+    calendarTimes: any;
     cancel: any;
     cancelSmall: any;
     caretDown: any;
@@ -52,6 +55,7 @@ export declare const BUNDLED_ICONS: {
     external: any;
     file: any;
     fileSolid: any;
+    fileTextSearch: any;
     filter: any;
     folder: any;
     grid: any;
@@ -82,6 +86,8 @@ export declare const BUNDLED_ICONS: {
     table: any;
     tachometer: any;
     text: any;
+    thumbsDown: any;
+    thumbsUp: any;
     triangleDown: any;
     user: any;
     userCog: any;

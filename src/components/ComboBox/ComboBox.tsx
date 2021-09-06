@@ -47,7 +47,6 @@ interface State {
   anchorEl?: HTMLElement;
   selectedValue: string;
   popoverWidth: string;
-  isEmpty: boolean;
   serverSort: ServerSort;
 }
 
@@ -67,7 +66,6 @@ class ComboBox extends React.PureComponent<Props, State> {
       initialItems: this.addRenderer(items, JSON.parse(JSON.stringify(items))),
       popoverWidth: '',
       selectedValue: '' || currentValue,
-      isEmpty: false,
       serverSort: {
         field: '',
         order: '',
@@ -112,19 +110,18 @@ class ComboBox extends React.PureComponent<Props, State> {
   }
 
   componentWillReceiveProps(nextProps: any) {
-    const { items, currentValue = '' } = nextProps;
-    const { items: oldItems, currentValue: currentValueOld = '' } = this.props;
+    // Updated as we need to require search api call while user type.
+    const { items, currentValue } = nextProps;
+    const { items: oldItems, currentValue: oldCurrentValue  } = this.props;
 
     if (JSON.stringify(oldItems) !== JSON.stringify(items)) {
-      const isEmpty: boolean = items && items[0] && items[0].value && items[0].value.length === 0 || false;
       const initialItems = this.addRenderer(items, JSON.parse(JSON.stringify(items)));
-      this.setState({ initialItems, items, isEmpty });
+      this.setState({ initialItems, items });
     }
 
-    if (currentValueOld !== currentValue) {
+    if (currentValue !== oldCurrentValue) {
       this.setState({ selectedValue: currentValue });
     }
-
   }
 
   handleClickOutside = (event: any) => {
@@ -239,7 +236,6 @@ class ComboBox extends React.PureComponent<Props, State> {
       items,
       open,
       popoverWidth,
-      isEmpty,
       serverSort
     } = this.state;
 
@@ -261,11 +257,11 @@ class ComboBox extends React.PureComponent<Props, State> {
           type="text"
           label={label}
           onChange={this.onChange}
-          value={isEmpty ? 'No options available' : this.state.selectedValue}
+          value={this.state.selectedValue}
           theme={theme}
           suffix={<Icon source={suffix} componentColor="inkLighter" />}
           loading={loading}
-          disabled={isEmpty || disabled}
+          disabled={disabled}
           autoComplete={false}
           readOnly={readOnly}
         />
@@ -274,7 +270,7 @@ class ComboBox extends React.PureComponent<Props, State> {
           <Icon source={arrowSvg} theme={theme} />
         </div>}
 
-        {open && !isEmpty && <Popover
+        {!disabled && !readOnly && open && <Popover
           addArrow={false}
           componentStyle={{ maxHeight: window.outerHeight < 768 ? 500 : 800, overflow: 'auto', width: popoverWidth }}
           anchorEl={this.state.anchorEl}

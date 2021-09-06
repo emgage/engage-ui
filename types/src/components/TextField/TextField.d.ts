@@ -10,6 +10,7 @@ export interface State {
     height?: number | null;
     focused?: boolean;
     value?: string | undefined;
+    labelComponentStyle?: any;
 }
 export interface Props {
     autoSuggest?: boolean;
@@ -68,7 +69,9 @@ export interface Props {
 declare class TextField extends React.PureComponent<Props, State> {
     state: State;
     private input;
+    private prefixRef;
     constructor(props: Props);
+    componentDidMount(): void;
     UNSAFE_componentWillReceiveProps(nextProps: Props): void;
     render(): JSX.Element;
     private setInput;

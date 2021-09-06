@@ -20,6 +20,7 @@ export interface Props {
     viewMode?: ViewMode;
     isValidDate?: (currentDate: any, selectedDate: any) => boolean;
     icon?: any;
+    autoComplete?: boolean;
 }
 export interface State {
     dateTime: any;
