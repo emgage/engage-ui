@@ -452,7 +452,7 @@ class Table extends React.PureComponent<Props, State> {
                     </span>
                     :
                     <span className={theme.tableDataWrap}>
-                      <BodyText componentSize="default">{item[colItem.key]}</BodyText>
+                      <BodyText element="span" componentSize="default">{item[colItem.key]}</BodyText>
                       {colItem.subKey && item[colItem.subKey] && <BodyText componentClass={theme.subText} componentSize="small" componentColor="darker">{item[colItem.subKey]}</BodyText>}
                     </span>
                   }
