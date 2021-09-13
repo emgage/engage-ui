@@ -172,10 +172,15 @@ class Pagination extends React.PureComponent<IProps, IState> {
   }
 
   componentWillReceiveProps(newProps: IProps) {
-    const { current } = newProps;
+    const { current, pageSize } = newProps;
+    const stateObj: any = {};
     if (this.props.current !== current) {
-      this.setState({ current });
+      stateObj["current"] = current;
     }
+    if (this.props.pageSize !== pageSize) {
+      stateObj["pageSize"] = pageSize;
+    }
+    this.setState(stateObj);
   }
 
   getJumpPrevPage = () => {
