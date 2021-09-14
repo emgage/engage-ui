@@ -27,6 +27,7 @@ export interface Props {
     theme?: any;
     disabled?: boolean;
     readOnly?: boolean;
+    helpText?: string;
     errors?: [string];
 }
 interface State {
