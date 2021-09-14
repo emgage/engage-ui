@@ -17,6 +17,13 @@ $spinner-size: rem(20px);
   &.backdropHidden {
     padding-left:0px;
   }
+  &.disabled {
+    padding:0px;
+    & > .backdrop {
+      background-color: transparent;
+      border-color: transparent;
+    }
+  }
   &.labelHidden{
     &.focused {
     .prefix {
