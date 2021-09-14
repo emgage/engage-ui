@@ -2,9 +2,9 @@ import * as React from 'react';
 import { ThemedComponentClass, themr } from '@friendsofreactjs/react-css-themr';
 import { SWITCHCHECKBOX } from '../ThemeIdentifiers';
 import * as baseTheme from './SwitchCheckboxIcon.scss';
-import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
+// import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
 import { classNames } from '@shopify/react-utilities/styles';
-import Icon from '../Icon/Icon';
+// import Icon from '../Icon/Icon';
 
 export type ISwitchType = 'normal' | 'trueFalse' | 'yesNo'
 export interface Props {
@@ -21,13 +21,14 @@ export interface Props {
   isOpen: boolean;
   handleToggle: (value: boolean) => void;
   switchType?:ISwitchType;
+  falseCheck?:boolean;
 }
 
-const getUniqueID = createUniqueIDFactory('SwitchCheckboxIcon');
+// const getUniqueID = createUniqueIDFactory('SwitchCheckboxIcon');
 
 const SwitchCheckboxIcon = (props: Props) => {
-  const { theme, componentClass, componentStyle, componentId = getUniqueID() } = props;
-  const { children, isOpen, disabled, handleToggle, switchType="normal" } = props;
+  const { theme, componentClass, componentStyle, /*componentId = getUniqueID(),*/ falseCheck } = props;
+  const { /*children, isOpen, disabled, handleToggle,*/ switchType="normal" } = props;
   let switchTypeClass = theme.switchNormal;
   switch (switchType) {
     case 'normal':
@@ -47,10 +48,11 @@ const SwitchCheckboxIcon = (props: Props) => {
   const className = classNames(
         componentClass,
         theme.switchCheckbox,
-        switchTypeClass 
+        switchTypeClass,
+        falseCheck ? theme.falseSelect : ''
     );
-  return (<div style={componentStyle}  className={className}>
-            <span className={theme.OuterSpan}>
+  return (<div style={componentStyle}  className={className} aria-label="Switch">
+            {/* <span className={theme.OuterSpan}>
                 <input
                     id={componentId}
                     disabled={disabled}
@@ -67,7 +69,24 @@ const SwitchCheckboxIcon = (props: Props) => {
             </span>
             {children && <label htmlFor={componentId}>
                 {children}
-            </label>}
+            </label>} */}
+
+      <div className={theme.outeWrap}>
+        <label htmlFor="trueRadio" className={theme.trueRadio}>
+            <input type="radio" name="switch" id="trueRadio"/>
+            <span className={theme.switchRadio}>True</span>
+        </label>
+        <label htmlFor="nullRadio" className={theme.nullRadio}>
+          <input type="radio" name="switch" id="nullRadio" checked/>
+          <span className={theme.switchRadio}>null</span>
+        </label>
+        <label htmlFor="falseRadio" className={theme.falseRadio}>
+            <input type="radio" name="switch" id="falseRadio"/>
+            <span className={theme.switchRadio}>false</span>
+        </label>
+      </div>
+
+
         </div>);
 };
 
