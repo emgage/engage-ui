@@ -37,6 +37,7 @@ export interface Props {
   theme?: any;
   disabled?: boolean;
   readOnly?: boolean;
+  helpText?: string;
   errors?: [string];
 }
 
@@ -229,6 +230,7 @@ class ComboBox extends React.PureComponent<Props, State> {
       loading,
       disabled,
       readOnly,
+      helpText,
       errors
     } = this.props;
 
@@ -264,6 +266,7 @@ class ComboBox extends React.PureComponent<Props, State> {
           disabled={disabled}
           autoComplete={false}
           readOnly={readOnly}
+          helpText={helpText}
         />
 
         {!suffix && <div className={theme.comboboxArrow}>

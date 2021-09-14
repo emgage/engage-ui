@@ -157,7 +157,13 @@ class ComboBoxItem extends React.PureComponent<Props, never> {
 
   private getItem = (value: any, key: string | undefined, renderer: any) => {
     const { theme } = this.props;
-
+    if (value.length === 0) {
+      return (
+        <div>
+          No Data Found
+        </div>
+      );
+    }
     return value.map((val: any, index: number) => {
       const data = key ? val[key] : val;
 
