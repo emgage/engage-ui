@@ -135,7 +135,7 @@ class Tooltip extends React.PureComponent<Props, State> {
     const accessibilityNode = firstFocusable || activatorContainer;
 
     accessibilityNode.tabIndex = 0;
-    accessibilityNode.setAttribute('aria-describedby', id);
+    accessibilityNode.setAttribute('aria-label', id);
   }
 }
 

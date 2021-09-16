@@ -249,7 +249,6 @@ class ComboBox extends React.PureComponent<Props, State> {
     const {
       items,
       open,
-      popoverWidth,
       serverSort
     } = this.state;
 
@@ -288,7 +287,7 @@ class ComboBox extends React.PureComponent<Props, State> {
 
         {!disabled && !readOnly && open && <Popover
           addArrow={false}
-          componentStyle={{ maxHeight: window.outerHeight < 768 ? 500 : 800, overflow: 'auto', width: popoverWidth }}
+          componentStyle={{ maxHeight: window.outerHeight < 768 ? 300 : 800, overflow: 'auto' }}
           anchorEl={this.state.anchorEl}
           open={open}
           theme={theme}
