@@ -39,6 +39,7 @@ export interface Props {
   readOnly?: boolean;
   helpText?: string;
   errors?: [string];
+  backdropHidden?: boolean;
 }
 
 interface State {
@@ -231,6 +232,7 @@ class ComboBox extends React.PureComponent<Props, State> {
       disabled,
       readOnly,
       helpText,
+      backdropHidden,
       errors
     } = this.props;
 
@@ -266,6 +268,7 @@ class ComboBox extends React.PureComponent<Props, State> {
           autoComplete={false}
           readOnly={readOnly}
           helpText={helpText}
+          backdropHidden = {backdropHidden}
         />
 
         {!suffix && <div className={theme.comboboxArrow}>
