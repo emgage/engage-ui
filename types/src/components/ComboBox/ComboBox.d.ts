@@ -31,6 +31,7 @@ export interface Props {
     errors?: [string];
     onKeyUp?(value: string): void;
     handleScroll?(): void;
+    backdropHidden?: boolean;
 }
 interface State {
     open: boolean;
