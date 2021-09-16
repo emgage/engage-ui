@@ -92,6 +92,8 @@ export interface Props {
   onBlur?(e?: React.FormEvent<HTMLElement>): void;
   // Callback when value is inserted in Input.
   onInput?(e?: React.ChangeEvent<HTMLSelectElement>): void;
+  // Callback when value is inserted in Input. (return when user stop typing)
+  onKeyUp?(e: React.FormEvent<HTMLElement> | KeyboardEvent): void;
   // A regular expression to check the value against.
   pattern?: string;
   // Hint text to display.
@@ -127,6 +129,7 @@ export interface Props {
 
 const getUniqueID = createUniqueIDFactory('TextField');
 
+let timeout: any = null;
 class TextField extends React.PureComponent<Props, State> {
   state: State = { height: null, value: '' };
 
@@ -191,6 +194,7 @@ class TextField extends React.PureComponent<Props, State> {
       onFocus,
       onBlur,
       onInput,
+      onKeyUp,
       readOnly = false,
       resizable = false,
       required = false,
@@ -292,6 +296,7 @@ class TextField extends React.PureComponent<Props, State> {
       onFocus: this.handleInputOnFocus,
       onKeyDown: this.handleInputOnKeyDown,
       onBlur: this.handleInputOnBlur,
+      onKeyUp: this.handleInputOnKeyUp,
       style: newComponentStyle,
       formNoValidate: true,
       autoComplete: normalizeAutoComplete(autoComplete),
@@ -441,6 +446,24 @@ class TextField extends React.PureComponent<Props, State> {
     const { onBlur } = this.props;
     if (onBlur == null) { return; }
     onBlur(e);
+  }
+
+  @autobind
+  private handleInputOnKeyUp(e: React.FormEvent<HTMLElement> | KeyboardEvent) {
+    const { onKeyUp, readOnly } = this.props;
+
+    this.setState((prevState: State) => ({
+      ...prevState,
+      focused: readOnly ? false : true,
+    }));
+
+    if (onKeyUp == null) { return; }
+    clearTimeout(timeout);
+
+    // Make a new timeout set to go off in 1000ms (1 second)
+    timeout = setTimeout(() => {
+      onKeyUp(e);
+    },                   1000);
   }
 
   @autobind
