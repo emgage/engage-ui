@@ -39,6 +39,8 @@ export interface Props {
   readOnly?: boolean;
   helpText?: string;
   errors?: [string];
+  onKeyUp?(value: string): void;
+  handleScroll?(): void;
 }
 
 interface State {
@@ -115,6 +117,10 @@ class ComboBox extends React.PureComponent<Props, State> {
     const { items, currentValue } = nextProps;
     const { items: oldItems, currentValue: oldCurrentValue  } = this.props;
 
+    console.log(oldItems);
+    console.log(items);
+    console.log((JSON.stringify(oldItems) !== JSON.stringify(items)));
+
     if (JSON.stringify(oldItems) !== JSON.stringify(items)) {
       const initialItems = this.addRenderer(items, JSON.parse(JSON.stringify(items)));
       this.setState({ initialItems, items });
@@ -150,6 +156,11 @@ class ComboBox extends React.PureComponent<Props, State> {
     return cloneItems;
   }
 
+  onKeyUp = (e: React.FormEvent<HTMLElement> | KeyboardEvent) => {
+    if (this.props.onKeyUp) {
+      this.props.onKeyUp(this.state.selectedValue);
+    }
+  }
   /*
      on Change of combobox item, cloning the initial Items which was added to combobox,
      and then search the value on those items, and list it in popover.
@@ -231,7 +242,8 @@ class ComboBox extends React.PureComponent<Props, State> {
       disabled,
       readOnly,
       helpText,
-      errors
+      errors,
+      handleScroll = () => {},
     } = this.props;
 
     const {
@@ -267,6 +279,7 @@ class ComboBox extends React.PureComponent<Props, State> {
           autoComplete={false}
           readOnly={readOnly}
           helpText={helpText}
+          onKeyUp={this.onKeyUp}
         />
 
         {!suffix && <div className={theme.comboboxArrow}>
@@ -280,6 +293,7 @@ class ComboBox extends React.PureComponent<Props, State> {
           open={open}
           theme={theme}
           preferredAlignment="left"
+          handleScroll={handleScroll}
         >
             {itemsComponent}
           </Popover>}
