@@ -41,6 +41,8 @@ export interface Props {
   errors?: [string];
   onKeyUp?(value: string): void;
   handleScroll?(): void;
+  // Visually hide the border.
+  backdropHidden?: boolean;
 }
 
 interface State {
@@ -242,6 +244,7 @@ class ComboBox extends React.PureComponent<Props, State> {
       disabled,
       readOnly,
       helpText,
+      backdropHidden,
       errors,
       handleScroll = () => {},
     } = this.props;
@@ -279,6 +282,7 @@ class ComboBox extends React.PureComponent<Props, State> {
           readOnly={readOnly}
           helpText={helpText}
           onKeyUp={this.onKeyUp}
+          backdropHidden = {backdropHidden}
         />
 
         {!suffix && <div className={theme.comboboxArrow}>
