@@ -29,6 +29,8 @@ export interface Props {
     readOnly?: boolean;
     helpText?: string;
     errors?: [string];
+    onKeyUp?(value: string): void;
+    handleScroll?(): void;
 }
 interface State {
     open: boolean;
@@ -51,6 +53,7 @@ declare class ComboBox extends React.PureComponent<Props, State> {
     handleClickOutside: (event: any) => void;
     setWrapperRef: (node: any) => void;
     addRenderer: (items: any, cloneItems: any) => any;
+    onKeyUp: (e: React.FormEvent<HTMLElement> | KeyboardEvent) => void;
     onChange: (value: string, event: React.FormEvent<HTMLElement>) => void;
     onArrowClick: (event: React.FormEvent<HTMLElement>) => void;
     handleClick: (value: string | any, key: any) => void;

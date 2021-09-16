@@ -49,6 +49,7 @@ export interface Props {
     onKeyDown?(e: React.FormEvent<HTMLElement> | KeyboardEvent): void;
     onBlur?(e?: React.FormEvent<HTMLElement>): void;
     onInput?(e?: React.ChangeEvent<HTMLSelectElement>): void;
+    onKeyUp?(e: React.FormEvent<HTMLElement> | KeyboardEvent): void;
     pattern?: string;
     placeholder?: string;
     placeholderAlign?: PlaceholderAlign;
@@ -80,6 +81,7 @@ declare class TextField extends React.PureComponent<Props, State> {
     private handleInputOnFocus;
     private handleInputOnKeyDown;
     private handleInputOnBlur;
+    private handleInputOnKeyUp;
     private handleInputFocus;
 }
 export { TextField as UnthemedTextField };
