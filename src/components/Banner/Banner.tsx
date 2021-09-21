@@ -62,28 +62,28 @@ const banner = ({
   theme,
   secondaryText,
 }: Props) => {
-  let color: IconProps['componentColor'];
+  // let color: IconProps['componentColor'];
   let defaultIcon: IconProps['source'];
 
   switch (status) {
     case 'success':
-      color = 'greenDark';
+      // color = 'greenDark';
       defaultIcon = circleCheckMarkSvg;
       break;
     case 'info' :
-      color = 'tealDark';
+      // color = 'tealDark';
       defaultIcon = flagSvg;
       break;
     case 'warning':
-      color = 'yellowDark';
+      // color = 'yellowDark';
       defaultIcon = circleAlertSvg;
       break;
     case 'critical':
-      color = 'redDark';
+      // color = 'redDark';
       defaultIcon = circleBarredSvg;
       break;
     default:
-      color = 'ink';
+      // color = 'ink';
       defaultIcon = confettiSvg;
   }
 
