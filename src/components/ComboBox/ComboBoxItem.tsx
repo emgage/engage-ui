@@ -173,7 +173,10 @@ class ComboBoxItem extends React.PureComponent<Props, never> {
           data-value={JSON.stringify(val)}
           data-key={key ? key : false}
           data-object={JSON.stringify(val)}
-          className={theme.comboboxItem}>
+          className={theme.comboboxItem}
+          tabIndex={0}
+          role="button"
+          >
           {renderer ? renderer(val) : data}
         </div>
       );
