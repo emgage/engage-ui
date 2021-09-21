@@ -178,7 +178,7 @@ const banner = ({
     >
       {dismissButton}
       <div className={theme.ribbon}>
-        <Icon source={iconName} componentColor={color} backdrop theme={theme} />
+        <Icon source={iconName} /*componentColor={color}*/ backdrop theme={theme} />
       </div>
       <div className={baseTheme.bannerContent}>
         {headingMarkup}
