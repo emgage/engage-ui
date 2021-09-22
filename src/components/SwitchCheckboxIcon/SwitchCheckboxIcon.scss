@@ -38,21 +38,39 @@
             margin:0px;
             position: relative;
         }
-        .trueRadio input:checked + .switchRadio {
-            left:1px;
-            opacity: 1;
-            visibility: visible;
+        .trueRadio { 
+            input:checked + .switchRadio {
+                left:1px;
+                opacity: 1;
+                visibility: visible;
+            }
         }
-        .nullRadio input:checked + .switchRadio {
-            left:50%;
-            opacity: 1;
-            visibility: visible;
-            transform: translateX(-50%);
+        .nullRadio { 
+            input:checked + .switchRadio {
+                left:50%;
+                opacity: 1;
+                visibility: visible;
+                transform: translateX(-50%);
+            }
+         }
+        .falseRadio { 
+            input:checked + .switchRadio {
+                right:1px;
+                opacity: 1;
+                visibility: visible;
+            }
         }
-        .falseRadio input:checked + .switchRadio {
-            right:1px;
-            opacity: 1;
-            visibility: visible;
+        .Accept,
+        .Cancel {
+            position: absolute;
+            top: 1.5px;
+            display: none;
+        }
+        .Accept {
+            left: 1.5px;
+        }
+        .Cancel {
+            right: 1.5px;
         }
     }
 }
@@ -66,7 +84,9 @@
         background:color(blue);
         border-color:color(blue);
         width: 4.2rem;
+        
         .trueRadio {
+            
             input {
                 &:checked + .switchRadio {
                     left:1px;
@@ -86,6 +106,7 @@
             }
         }
         .falseRadio {
+            
             input {
                 &:checked + .switchRadio {
                     right:1px;
@@ -102,7 +123,7 @@
         border-color:color(blue);
         width: 5.4rem;
         .trueRadio {
-            input {
+          input {
                 &:checked + .switchRadio {
                     left:1px;
                     opacity: 1;
@@ -130,6 +151,7 @@
             }
         }
         .falseRadio {
+          
             input {
                 &:checked + .switchRadio {
                     right:1px;

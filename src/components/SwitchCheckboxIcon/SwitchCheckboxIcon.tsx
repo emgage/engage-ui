@@ -4,7 +4,7 @@ import { SWITCHCHECKBOX } from '../ThemeIdentifiers';
 import * as baseTheme from './SwitchCheckboxIcon.scss';
 // import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
 import { classNames } from '@shopify/react-utilities/styles';
-// import Icon from '../Icon/Icon';
+import Icon from '../Icon/Icon';
 
 export type ISwitchType = 'normal' | 'trueFalse' | 'yesNo'
 export interface Props {
@@ -75,6 +75,7 @@ const SwitchCheckboxIcon = (props: Props) => {
         <label htmlFor="trueRadio" className={theme.trueRadio}>
             <input type="radio" name="switch" id="trueRadio"/>
             <span className={theme.switchRadio}>True</span>
+            <Icon source="check" componentColor="blue" componentClass={theme.Accept}></Icon>
         </label>
         <label htmlFor="nullRadio" className={theme.nullRadio}>
           <input type="radio" name="switch" id="nullRadio" checked/>
@@ -83,6 +84,7 @@ const SwitchCheckboxIcon = (props: Props) => {
         <label htmlFor="falseRadio" className={theme.falseRadio}>
             <input type="radio" name="switch" id="falseRadio"/>
             <span className={theme.switchRadio}>false</span>
+            <Icon source="cancel" componentColor="inkLighter" componentClass={theme.Cancel}></Icon>
         </label>
       </div>
 

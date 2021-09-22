@@ -1853,22 +1853,13 @@ class App extends React.Component<{}, State> {
         <br/>
 
 
-          <SwitchCheckboxIcon isOpen={this.state.isOpen} handleToggle={this.handleSwitchCheckboxToggle}>
+          <SwitchCheckboxIcon isOpen={this.state.isOpen} handleToggle={this.handleSwitchCheckboxToggle} switchType="trueFalse">
           SwitchCheckboxIcon Normal
           </SwitchCheckboxIcon>
 
         <br/>
         <br/>
-        <SwitchCheckboxIcon isOpen={this.state.isOpen} handleToggle={this.handleSwitchCheckboxToggle} switchType="trueFalse">
-          SwitchCheckboxIcon True / False
-          </SwitchCheckboxIcon>
-        <br/>
-        <br/>
-        <SwitchCheckboxIcon isOpen={this.state.isOpen} handleToggle={this.handleSwitchCheckboxToggle} switchType="yesNo">
-          SwitchCheckboxIcon Yes / No
-          </SwitchCheckboxIcon>
-        <br/>
-        <br/>
+        
           <NoData iconSource="search" label="No Data found"></NoData>
         <br/>
         <br/>
