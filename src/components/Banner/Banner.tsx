@@ -62,28 +62,22 @@ const banner = ({
   theme,
   secondaryText,
 }: Props) => {
-  // let color: IconProps['componentColor'];
   let defaultIcon: IconProps['source'];
 
   switch (status) {
     case 'success':
-      // color = 'greenDark';
       defaultIcon = circleCheckMarkSvg;
       break;
     case 'info' :
-      // color = 'tealDark';
       defaultIcon = flagSvg;
       break;
     case 'warning':
-      // color = 'yellowDark';
       defaultIcon = circleAlertSvg;
       break;
     case 'critical':
-      // color = 'redDark';
       defaultIcon = circleBarredSvg;
       break;
     default:
-      // color = 'ink';
       defaultIcon = confettiSvg;
   }
 
@@ -178,7 +172,7 @@ const banner = ({
     >
       {dismissButton}
       <div className={theme.ribbon}>
-        <Icon source={iconName} /*componentColor={color}*/ backdrop theme={theme} />
+        <Icon source={iconName} backdrop theme={theme} />
       </div>
       <div className={baseTheme.bannerContent}>
         {headingMarkup}

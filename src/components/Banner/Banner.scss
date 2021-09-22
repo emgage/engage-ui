@@ -36,7 +36,7 @@ $secondary-action-horizontal-padding: 1.5 * spacing(tightest);
   padding: spacing();
   border-radius: border-radius(larger);
   transition: box-shadow duration() easing();
-  @include icon-color(color(text, darker));
+  @include icon-color(color(banner, default));
   + .Banner {
     margin-top: spacing(loose);
   }
@@ -52,22 +52,22 @@ $secondary-action-horizontal-padding: 1.5 * spacing(tightest);
 
 .statusSuccess {
   @include banner-colors(color(green), color(green, lighter));
-  @include icon-color(color(green, base));
+  @include icon-color(color(banner, success));
 }
 
 .statusInfo {
   @include banner-colors(color(teal), color(teal, lighter));
-  @include icon-color( color(blue, base));
+  @include icon-color(color(banner, info));
 }
 
 .statusWarning {
   @include banner-colors(color(yellow), color(yellow, lighter));
-  @include icon-color( color(yellow, base));
+  @include icon-color(color(banner, warning));
 }
 
 .statusCritical {
   @include banner-colors(color(red), color(red, lighter));
-  @include icon-color( color(red, base));
+  @include icon-color(color(banner, critical));
 }
 
 .ribbon {
