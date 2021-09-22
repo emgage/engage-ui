@@ -129,7 +129,7 @@
                     opacity: 1;
                     visibility: visible;
                     &:after {
-                        content:'FALSE';
+                        content:'TRUE';
                         font-size: 1rem;
                         color:color(white);
                         right: -29px;
@@ -158,7 +158,7 @@
                     opacity: 1;
                     visibility: visible;
                     &:after {
-                        content:'TRUE';
+                        content:'FALS';
                         font-size: 1rem;
                         color:color(white);
                         left: -29px;
@@ -183,7 +183,7 @@
                     opacity: 1;
                     visibility: visible;
                     &:after {
-                        content:'NO';
+                        content:'YES';
                         font-size: 1rem;
                         color:color(white);
                         right: -20px;
@@ -211,7 +211,7 @@
                     opacity: 1;
                     visibility: visible;
                     &:after {
-                        content:'YES';
+                        content:'NO';
                         font-size: 1rem;
                         color:color(white);
                         left: -20px;
@@ -225,7 +225,7 @@
     } 
 }
 
-.falseSelect {
+.falseSelect, .nullSelect{
     .outeWrap {
         background-color:#D8D8D8;
         border-color: #BDBDBD;
@@ -233,6 +233,19 @@
             box-shadow: 1px 1px 2px #9E9E9E;
             &:after {
                 color: color(text, darker) !important;
+            }
+        }
+    }
+}
+
+.trueSelect {
+    .outeWrap {
+        background:color(blue);
+        border-color:color(blue);
+        .switchRadio {
+            box-shadow: 1px 1px 2px #9E9E9E;
+            &:after {
+                color: color(white) !important;
             }
         }
     }

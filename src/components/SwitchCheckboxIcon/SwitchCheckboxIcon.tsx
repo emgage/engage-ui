@@ -6,7 +6,7 @@ import * as baseTheme from './SwitchCheckboxIcon.scss';
 import { classNames } from '@shopify/react-utilities/styles';
 import Icon from '../Icon/Icon';
 
-export type ISwitchType = 'normal' | 'trueFalse' | 'yesNo'
+export type ISwitchType = 'normal' | 'trueFalse' | 'yesNo';
 export interface Props {
   // Set theme for SwitchCheckbox
   theme?: any;
@@ -18,17 +18,17 @@ export interface Props {
   children?: React.ReactNode;
   // component props to handle toggle
   disabled?: boolean;
-  isOpen: boolean;
-  handleToggle: (value: boolean) => void;
+  isOpen?: boolean;
+  handleToggle: (value?: boolean) => void;
   switchType?:ISwitchType;
-  falseCheck?:boolean;
+  allowNull?:boolean;
 }
 
 // const getUniqueID = createUniqueIDFactory('SwitchCheckboxIcon');
 
 const SwitchCheckboxIcon = (props: Props) => {
-  const { theme, componentClass, componentStyle, /*componentId = getUniqueID(),*/ falseCheck } = props;
-  const { /*children, isOpen, disabled, handleToggle,*/ switchType="normal" } = props;
+  const { theme, componentClass, componentStyle, /*componentId = getUniqueID(),*/isOpen, allowNull } = props;
+  const { /*children, isOpen, disabled, */handleToggle, switchType= 'normal' } = props;
   let switchTypeClass = theme.switchNormal;
   switch (switchType) {
     case 'normal':
@@ -49,9 +49,14 @@ const SwitchCheckboxIcon = (props: Props) => {
         componentClass,
         theme.switchCheckbox,
         switchTypeClass,
-        falseCheck ? theme.falseSelect : ''
+        isOpen === false && theme.falseSelect,
+        isOpen === true && theme.trueSelect,
+        typeof isOpen !== 'boolean' && !isOpen && theme.nullSelect ,
+        allowNull && theme.disableSwitch
     );
+  console.log(isOpen);
   return (<div style={componentStyle}  className={className} aria-label="Switch">
+
             {/* <span className={theme.OuterSpan}>
                 <input
                     id={componentId}
@@ -73,21 +78,20 @@ const SwitchCheckboxIcon = (props: Props) => {
 
       <div className={theme.outeWrap}>
         <label htmlFor="trueRadio" className={theme.trueRadio}>
-            <input type="radio" name="switch" id="trueRadio"/>
+            <input type="radio" name="switch" id="trueRadio" onClick={() => handleToggle(true)}/>
             <span className={theme.switchRadio}>True</span>
             <Icon source="check" componentColor="blue" componentClass={theme.Accept}></Icon>
         </label>
         <label htmlFor="nullRadio" className={theme.nullRadio}>
-          <input type="radio" name="switch" id="nullRadio" checked/>
+          <input type="radio" name="switch" id="nullRadio" /*disabled={!allowNull}*/ onClick={() => allowNull && handleToggle()}/>
           <span className={theme.switchRadio}>null</span>
         </label>
         <label htmlFor="falseRadio" className={theme.falseRadio}>
-            <input type="radio" name="switch" id="falseRadio"/>
+            <input type="radio" name="switch" id="falseRadio" onClick={() => handleToggle(false)}/>
             <span className={theme.switchRadio}>false</span>
             <Icon source="cancel" componentColor="inkLighter" componentClass={theme.Cancel}></Icon>
         </label>
       </div>
-
 
         </div>);
 };
