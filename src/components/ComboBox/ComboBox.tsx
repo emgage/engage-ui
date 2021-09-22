@@ -37,7 +37,12 @@ export interface Props {
   theme?: any;
   disabled?: boolean;
   readOnly?: boolean;
+  helpText?: string;
   errors?: [string];
+  onKeyUp?(value: string): void;
+  handleScroll?(): void;
+  // Visually hide the border.
+  backdropHidden?: boolean;
 }
 
 interface State {
@@ -114,6 +119,10 @@ class ComboBox extends React.PureComponent<Props, State> {
     const { items, currentValue } = nextProps;
     const { items: oldItems, currentValue: oldCurrentValue  } = this.props;
 
+    console.log(oldItems);
+    console.log(items);
+    console.log((JSON.stringify(oldItems) !== JSON.stringify(items)));
+
     if (JSON.stringify(oldItems) !== JSON.stringify(items)) {
       const initialItems = this.addRenderer(items, JSON.parse(JSON.stringify(items)));
       this.setState({ initialItems, items });
@@ -149,6 +158,11 @@ class ComboBox extends React.PureComponent<Props, State> {
     return cloneItems;
   }
 
+  onKeyUp = (e: React.FormEvent<HTMLElement> | KeyboardEvent) => {
+    if (this.props.onKeyUp) {
+      this.props.onKeyUp(this.state.selectedValue);
+    }
+  }
   /*
      on Change of combobox item, cloning the initial Items which was added to combobox,
      and then search the value on those items, and list it in popover.
@@ -229,13 +243,15 @@ class ComboBox extends React.PureComponent<Props, State> {
       loading,
       disabled,
       readOnly,
-      errors
+      helpText,
+      backdropHidden,
+      errors,
+      handleScroll = () => {},
     } = this.props;
 
     const {
       items,
       open,
-      popoverWidth,
       serverSort
     } = this.state;
 
@@ -264,6 +280,9 @@ class ComboBox extends React.PureComponent<Props, State> {
           disabled={disabled}
           autoComplete={false}
           readOnly={readOnly}
+          helpText={helpText}
+          onKeyUp={this.onKeyUp}
+          backdropHidden = {backdropHidden}
         />
 
         {!suffix && <div className={theme.comboboxArrow}>
@@ -272,11 +291,12 @@ class ComboBox extends React.PureComponent<Props, State> {
 
         {!disabled && !readOnly && open && <Popover
           addArrow={false}
-          componentStyle={{ maxHeight: window.outerHeight < 768 ? 500 : 800, overflow: 'auto', width: popoverWidth }}
+          componentStyle={{ maxHeight: window.outerHeight < 768 ? 300 : 800, overflow: 'auto' }}
           anchorEl={this.state.anchorEl}
           open={open}
           theme={theme}
           preferredAlignment="left"
+          handleScroll={handleScroll}
         >
             {itemsComponent}
           </Popover>}
