@@ -1853,7 +1853,7 @@ class App extends React.Component<{}, State> {
         <br/>
 
 
-          <SwitchCheckboxIcon isOpen={this.state.isOpen} handleToggle={this.handleSwitchCheckboxToggle} switchType="trueFalse">
+          <SwitchCheckboxIcon isOpen={this.state.isOpen} handleToggle={this.handleSwitchCheckboxToggle} switchType="yesNo">
           SwitchCheckboxIcon Normal
           </SwitchCheckboxIcon>
 

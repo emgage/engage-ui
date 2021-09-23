@@ -56,40 +56,23 @@ const SwitchCheckboxIcon = (props: Props) => {
     );
   console.log(isOpen);
   return (<div style={componentStyle}  className={className} aria-label="Switch">
-
-            {/* <span className={theme.OuterSpan}>
-                <input
-                    id={componentId}
-                    disabled={disabled}
-                    checked={isOpen}
-                    onChange={() => handleToggle(!isOpen)}
-                    type="checkbox"
-                />
-                <span className={theme.InnerSpan}>
-                  <span className={theme.innerCircle}>
-                    <Icon source="cancel" componentColor="inkLighter" componentClass={theme.Cancel}></Icon>
-                    <Icon source="check" componentColor="blue" componentClass={theme.Accept}></Icon>
-                  </span>
-                </span>
-            </span>
-            {children && <label htmlFor={componentId}>
-                {children}
-            </label>} */}
-
       <div className={theme.outeWrap}>
-        <label htmlFor="trueRadio" className={theme.trueRadio}>
-            <input type="radio" name="switch" id="trueRadio" onClick={() => handleToggle(true)}/>
-            <span className={theme.switchRadio}>True</span>
-            <Icon source="check" componentColor="blue" componentClass={theme.Accept}></Icon>
+
+      <label htmlFor="falseRadio" className={theme.falseRadio}>
+            <input type="radio" name="switch" id="falseRadio" onClick={() => handleToggle(false)}/>
+            <span className={theme.switchRadio}>false</span>
+            <Icon source="cancel" componentColor="inkLighter" componentClass={theme.Cancel}></Icon>
         </label>
+
         <label htmlFor="nullRadio" className={theme.nullRadio}>
           <input type="radio" name="switch" id="nullRadio" /*disabled={!allowNull}*/ onClick={() => allowNull && handleToggle()}/>
           <span className={theme.switchRadio}>null</span>
         </label>
-        <label htmlFor="falseRadio" className={theme.falseRadio}>
-            <input type="radio" name="switch" id="falseRadio" onClick={() => handleToggle(false)}/>
-            <span className={theme.switchRadio}>false</span>
-            <Icon source="cancel" componentColor="inkLighter" componentClass={theme.Cancel}></Icon>
+
+        <label htmlFor="trueRadio" className={theme.trueRadio}>
+            <input type="radio" name="switch" id="trueRadio" onClick={() => handleToggle(true)}/>
+            <span className={theme.switchRadio}>True</span>
+            <Icon source="check" componentColor="blue" componentClass={theme.Accept}></Icon>
         </label>
       </div>
 
