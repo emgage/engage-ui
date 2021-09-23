@@ -155,7 +155,7 @@ interface State {
   paginationCurrent: number;
   multipleCheckboxFacetsOptions: any[];
   rangeSliderValue?: any;
-  isOpe?: boolean; // for SwitchCheckbox
+  isOpen?: boolean; // for SwitchCheckbox
 }
 
 const defaultValue = [
