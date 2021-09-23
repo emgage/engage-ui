@@ -84,12 +84,15 @@
         background:color(blue);
         border-color:color(blue);
         width: 4.2rem;
-        
+        .Accept,
+        .Cancel {
+            display: none!important;
+        }
         .trueRadio {
             
             input {
                 &:checked + .switchRadio {
-                    left:1px;
+                    left:-6px;
                     opacity: 1;
                     visibility: visible;
                 }
@@ -109,7 +112,7 @@
             
             input {
                 &:checked + .switchRadio {
-                    right:1px;
+                    right:-6px;
                     opacity: 1;
                     visibility: visible;
                 }

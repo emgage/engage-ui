@@ -155,7 +155,7 @@ interface State {
   paginationCurrent: number;
   multipleCheckboxFacetsOptions: any[];
   rangeSliderValue?: any;
-  isOpen: boolean; // for SwitchCheckbox
+  isOpe?: boolean; // for SwitchCheckbox
 }
 
 const defaultValue = [
@@ -632,7 +632,7 @@ class App extends React.Component<{}, State> {
         },
       ],
       rangeSliderValue:[5, 10],
-      isOpen: false,
+      // isOpen: false,
     };
 
     this.popovertoggle = this.popovertoggle.bind(this);
@@ -644,7 +644,7 @@ class App extends React.Component<{}, State> {
     this.closed1 = this.closed1.bind(this);
   }
 
-  handleSwitchCheckboxToggle = (isOpen: boolean) => {
+  handleSwitchCheckboxToggle = (isOpen?: boolean) => {
     this.setState({ isOpen });
     console.log('SwitchCheckbox toggle...');
   }
@@ -1853,7 +1853,7 @@ class App extends React.Component<{}, State> {
         <br/>
 
 
-          <SwitchCheckboxIcon isOpen={this.state.isOpen} handleToggle={this.handleSwitchCheckboxToggle} switchType="yesNo">
+          <SwitchCheckboxIcon isOpen={this.state.isOpen} handleToggle={this.handleSwitchCheckboxToggle}>
           SwitchCheckboxIcon Normal
           </SwitchCheckboxIcon>
 

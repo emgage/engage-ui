@@ -27,7 +27,7 @@ export interface Props {
 // const getUniqueID = createUniqueIDFactory('SwitchCheckboxIcon');
 
 const SwitchCheckboxIcon = (props: Props) => {
-  const { theme, componentClass, componentStyle, /*componentId = getUniqueID(),*/isOpen, allowNull } = props;
+  const { theme, componentClass, componentStyle, /*componentId = getUniqueID(),*/isOpen, allowNull = true } = props;
   const { /*children, isOpen, disabled, */handleToggle, switchType= 'normal' } = props;
   let switchTypeClass = theme.switchNormal;
   switch (switchType) {
@@ -59,18 +59,18 @@ const SwitchCheckboxIcon = (props: Props) => {
       <div className={theme.outeWrap}>
 
       <label htmlFor="falseRadio" className={theme.falseRadio}>
-            <input type="radio" name="switch" id="falseRadio" onClick={() => handleToggle(false)}/>
+            <input type="radio" checked={isOpen === false} name="switch" id="falseRadio" onClick={() => handleToggle(false)}/>
             <span className={theme.switchRadio}>false</span>
             <Icon source="cancel" componentColor="inkLighter" componentClass={theme.Cancel}></Icon>
         </label>
 
         <label htmlFor="nullRadio" className={theme.nullRadio}>
-          <input type="radio" name="switch" id="nullRadio" /*disabled={!allowNull}*/ onClick={() => allowNull && handleToggle()}/>
+          <input type="radio" name="switch" id="nullRadio" checked={typeof isOpen !== 'boolean' && !isOpen} disabled={!allowNull} onClick={() => allowNull && handleToggle()}/>
           <span className={theme.switchRadio}>null</span>
         </label>
 
         <label htmlFor="trueRadio" className={theme.trueRadio}>
-            <input type="radio" name="switch" id="trueRadio" onClick={() => handleToggle(true)}/>
+            <input type="radio" checked={isOpen === true} name="switch" id="trueRadio" onClick={() => handleToggle(true)}/>
             <span className={theme.switchRadio}>True</span>
             <Icon source="check" componentColor="blue" componentClass={theme.Accept}></Icon>
         </label>
