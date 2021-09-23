@@ -1,5 +1,9 @@
 @import 'foundation/colors';
 .switchCheckbox {
+    display: flex;
+    .switchLabel {
+        margin-left:6px;
+    }
     .outeWrap {
         display: flex;
         justify-content: space-between;
@@ -74,11 +78,6 @@
         }
     }
 }
-
-
-
-
-
 .switchNormal {
     .outeWrap {
         background:color(blue);
