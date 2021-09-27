@@ -53,17 +53,17 @@ const SwitchCheckboxIcon = (props: Props) => {
         allowNull && theme.disableSwitch
     );
   return (<div style={componentStyle}  className={className} aria-label="Switch">
-            <div className={theme.outeWrap}>
+            <div className={theme.outerWrap}>
 
             <label htmlFor="falseRadio" className={theme.falseRadio}>
                   <input type="radio" checked={isOpen === false} name="switch" id="falseRadio" onClick={() => handleToggle(false)}/>
-                  <span className={theme.switchRadio}>false</span>
+                  <span className={theme.switchRadio}>False</span>
                   <Icon source="cancel" componentColor="inkLighter" componentClass={theme.Cancel}></Icon>
               </label>
 
               <label htmlFor="nullRadio" className={theme.nullRadio}>
                 <input type="radio" name="switch" id="nullRadio" checked={typeof isOpen !== 'boolean' && !isOpen} disabled={!allowNull} onClick={() => allowNull && handleToggle()}/>
-                <span className={theme.switchRadio}>null</span>
+                <span className={theme.switchRadio}>Null</span>
               </label>
 
               <label htmlFor="trueRadio" className={theme.trueRadio}>

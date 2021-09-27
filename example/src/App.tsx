@@ -91,7 +91,7 @@ import {
   PageSize,
   RangeSlider,
   SwitchCheckbox,
-  SwitchCheckboxIcon,
+  // SwitchCheckboxIcon,
   LazyPicker,
   SearchHelper,
   NoData,
@@ -1846,16 +1846,16 @@ class App extends React.Component<{}, State> {
         <BodyText componentColor="reverse">reverse Color of Body text</BodyText>
         <br/>
         <br/>
-        <SwitchCheckbox isOpen={this.state.isOpen} handleToggle={this.handleSwitchCheckboxToggle}>
+        <SwitchCheckbox isOpen={this.state.isOpen} handleToggle={this.handleSwitchCheckboxToggle} switchType="trueFalse">
           SwitchCheckbox
         </SwitchCheckbox>
         <br/>
         <br/>
 
 
-          <SwitchCheckboxIcon isOpen={this.state.isOpen} handleToggle={this.handleSwitchCheckboxToggle}>
-          SwitchCheckboxIcon Normal
-          </SwitchCheckboxIcon>
+          {/* <SwitchCheckboxIcon isOpen={this.state.isOpen} handleToggle={this.handleSwitchCheckboxToggle}>
+            SwitchCheckboxIcon Normal
+          </SwitchCheckboxIcon> */}
 
         <br/>
         <br/>
