@@ -257,7 +257,7 @@ class ComboBox extends React.PureComponent<Props, State> {
 
     const itemsComponent = items.map((item, index) =>
         <ComboBoxItem
-          key={index}
+          key={item.value || index}
           item={item}
           clickHandler={this.handleClick}
           theme={theme}
