@@ -479,7 +479,7 @@ class TextField extends React.PureComponent<Props, State> {
 
 function normalizeAutoComplete(autoComplete?: boolean) {
   if (autoComplete == null) { return autoComplete; }
-  return autoComplete ? 'on' : 'off';
+  return autoComplete ? 'on' : 'new-password';
 }
 
 export { TextField as UnthemedTextField };
