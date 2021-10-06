@@ -2,7 +2,7 @@
 .switchCheckbox {
     display: flex;
     .switchLabel {
-        margin-left:6px;
+        margin-left:.6rem;
     }
     .outerWrap {
         display: flex;
@@ -10,7 +10,7 @@
         align-items: flex-start;
         width: 5.4rem;
         border: 1px solid;
-        border-radius: 30px;
+        border-radius: 3rem;
         background: transparent;
         position: relative;
         height:2.2rem;
@@ -25,19 +25,19 @@
             color:transparent;
             width:1.9rem;
             height:1.9rem;
-            background:#fff;
+            background:color(white);
             border-radius: 1rem;
             position: absolute;
             opacity: 0;
             visibility: hidden;
             top:.5px;
-            box-shadow: -1px 1px 2px #1565C0;
+            box-shadow: -1px 1px 2px color(blue, dark);
         }
         input {
             opacity: 0;
             width:100%;
             height:1.6rem;
-            z-index: 99;
+            z-index: 9;
             margin:0px;
             position: relative;
         }
@@ -70,7 +70,7 @@
             display: none;
         }
         .Accept {
-            left: -3px;
+            left: -.3rem;
         }
         .Cancel {
             right: 1.5px;
@@ -155,7 +155,7 @@
           
             input {
                 &:checked + .switchRadio {
-                    right:-3px;
+                    right:-.3rem;
                     opacity: 1;
                     visibility: visible;
                     &:after {
@@ -228,10 +228,10 @@
 
 .falseSelect, .nullSelect{
     .outerWrap {
-        background-color:#D8D8D8;
-        border-color: #BDBDBD;
+        background-color:color(sky, light);
+        border-color: color(sky, dark);
         .switchRadio {
-            box-shadow: 1px 1px 2px #9E9E9E;
+            box-shadow: 1px 1px 2px color(ink, lightest);
             &:after {
                 color: color(text, darker) !important;
             }
@@ -244,7 +244,7 @@
         background:color(blue);
         border-color:color(blue);
         .switchRadio {
-            box-shadow: 1px 1px 2px #9E9E9E;
+            box-shadow: 1px 1px 2px color(blue, dark);
             &:after {
                 color: color(white) !important;
             }
@@ -259,8 +259,8 @@
             input:checked {
                 & ~ .Accept {
                     display: block;
-                    top:3px;
-                    right:4px;
+                    top:.3rem;
+                    right:.4rem;
                 }
             }
         }
@@ -273,8 +273,8 @@
             input:checked {
                 & ~ .Cancel {
                     display: block;
-                    top:3px;
-                    left:3px;
+                    top:.3rem;
+                    left:.3rem;
                 }
             }
         }
@@ -288,7 +288,7 @@
             input:checked {
                 & ~ .Accept {
                     display: block;
-                    top:3px;
+                    top:.3rem;
                     right:1px;
                     left:auto;
                 }
