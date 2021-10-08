@@ -57,8 +57,8 @@ const SwitchCheckbox = (props: Props) => {
 
             <label htmlFor="falseRadio" className={theme.falseRadio}>
                   <input type="radio" checked={isOpen === false} name="switch" id="falseRadio" onClick={() => handleToggle(false)}/>
-                  <span className={theme.switchRadio}>False</span>
-                  <Icon source="cancel" componentColor="inkLighter" componentClass={theme.Cancel}></Icon>
+                  <span className={theme.switchRadio}><Icon source="cancel" componentColor="inkLighter" componentClass={theme.Cancel}></Icon></span>
+
               </label>
 
               <label htmlFor="nullRadio" className={theme.nullRadio}>
@@ -68,8 +68,8 @@ const SwitchCheckbox = (props: Props) => {
 
               <label htmlFor="trueRadio" className={theme.trueRadio}>
                   <input type="radio" checked={isOpen === true} name="switch" id="trueRadio" onClick={() => handleToggle(true)}/>
-                  <span className={theme.switchRadio}>True</span>
-                  <Icon source="check" componentColor="blue" componentClass={theme.Accept}></Icon>
+                  <span className={theme.switchRadio}><Icon source="check" componentColor="blue" componentClass={theme.Accept}></Icon></span>
+
               </label>
             </div>
             {children && <label className={theme.switchLabel}>{children}</label>}
