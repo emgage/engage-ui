@@ -91,7 +91,7 @@ import {
   PageSize,
   RangeSlider,
   SwitchCheckbox,
-  SwitchCheckboxIcon,
+  // SwitchCheckboxIcon,
   LazyPicker,
   SearchHelper,
   NoData,
@@ -155,7 +155,7 @@ interface State {
   paginationCurrent: number;
   multipleCheckboxFacetsOptions: any[];
   rangeSliderValue?: any;
-  isOpen: boolean; // for SwitchCheckbox
+  isOpen?: boolean; // for SwitchCheckbox
 }
 
 const defaultValue = [
@@ -632,7 +632,7 @@ class App extends React.Component<{}, State> {
         },
       ],
       rangeSliderValue:[5, 10],
-      isOpen: false,
+      // isOpen: false,
     };
 
     this.popovertoggle = this.popovertoggle.bind(this);
@@ -644,7 +644,7 @@ class App extends React.Component<{}, State> {
     this.closed1 = this.closed1.bind(this);
   }
 
-  handleSwitchCheckboxToggle = (isOpen: boolean) => {
+  handleSwitchCheckboxToggle = (isOpen?: boolean) => {
     this.setState({ isOpen });
     console.log('SwitchCheckbox toggle...');
   }
@@ -1846,20 +1846,20 @@ class App extends React.Component<{}, State> {
         <BodyText componentColor="reverse">reverse Color of Body text</BodyText>
         <br/>
         <br/>
-        <SwitchCheckbox isOpen={this.state.isOpen} handleToggle={this.handleSwitchCheckboxToggle}>
+        <SwitchCheckbox isOpen={this.state.isOpen} handleToggle={this.handleSwitchCheckboxToggle} switchType="trueFalse">
           SwitchCheckbox
         </SwitchCheckbox>
         <br/>
         <br/>
 
 
-          <SwitchCheckboxIcon isOpen={this.state.isOpen} handleToggle={this.handleSwitchCheckboxToggle}>
-          SwitchCheckboxIcon
-          </SwitchCheckboxIcon>
+          {/* <SwitchCheckboxIcon isOpen={this.state.isOpen} handleToggle={this.handleSwitchCheckboxToggle}>
+            SwitchCheckboxIcon Normal
+          </SwitchCheckboxIcon> */}
 
         <br/>
         <br/>
-        <br/>
+        
           <NoData iconSource="search" label="No Data found"></NoData>
         <br/>
         <br/>
