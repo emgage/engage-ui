@@ -1,0 +1,17 @@
+$accordianButtonColo : theme-color(m-grey, 400);
+
+body .li {
+    color: $accordianButtonColo;
+    &:hover,
+    &:focus {
+        color: $accordianButtonColo;
+    }
+}
+
+.accordionItem {
+    .header {
+        .AccordianIcon {
+            fill: $accordianButtonColo;
+        }
+    }
+}

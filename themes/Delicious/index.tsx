@@ -15,4 +15,5 @@ export const DeliciousThemeContext = {
   PPopoverPicker: require('./PopoverPicker.scss'),
   PPagination: require('./Pagination.scss'),
   PBanner: require('./Banner.scss'),
+  PSideNavigation: require('./SideNavigation.scss'),
 };
