@@ -2,7 +2,7 @@ import * as React from 'react';
 import { ThemedComponentClass, themr } from '@friendsofreactjs/react-css-themr';
 import { SWITCHCHECKBOX } from '../ThemeIdentifiers';
 import * as baseTheme from './SwitchCheckbox.scss';
-// import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
+import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
 import { classNames } from '@shopify/react-utilities/styles';
 import Icon from '../Icon/Icon';
 
@@ -20,13 +20,31 @@ export interface Props {
   disabled?: boolean;
   isOpen?: boolean;
   handleToggle: (value?: boolean) => void;
-  switchType?:ISwitchType;
-  allowNull?:boolean;
+  switchType?: ISwitchType;
+  allowNull?: boolean;
+  name?: string;
 }
 
+const getUniqueName = createUniqueIDFactory('SwitchCheckbox');
+const getFalseRadioName = createUniqueIDFactory('falseRadio');
+const getNullRadioName = createUniqueIDFactory('nullRadio');
+const getTrueRadioName = createUniqueIDFactory('trueRadio');
+
 const SwitchCheckbox = (props: Props) => {
+  const [names] = React.useState(() => {
+    const fieldName = getUniqueName();
+    const falseRadio = getFalseRadioName();
+    const nullRadio = getNullRadioName();
+    const trueRadio = getTrueRadioName();
+    return {
+      fieldName,
+      falseRadio,
+      nullRadio,
+      trueRadio,
+    };
+  });
   const { theme, componentClass, componentStyle, isOpen, allowNull = true } = props;
-  const { children, handleToggle, switchType= 'normal' } = props;
+  const { children, handleToggle, switchType = 'normal' } = props;
   let switchTypeClass = theme.switchNormal;
   switch (switchType) {
     case 'normal':
@@ -35,7 +53,7 @@ const SwitchCheckbox = (props: Props) => {
     case 'trueFalse':
       switchTypeClass = theme.switchTrueFalse;
       break;
-    case 'yesNo' :
+    case 'yesNo':
       switchTypeClass = theme.switchYesNo;
       break;
     default:
@@ -44,36 +62,60 @@ const SwitchCheckbox = (props: Props) => {
   }
 
   const className = classNames(
-        componentClass,
-        theme.switchCheckbox,
-        switchTypeClass,
-        isOpen === false && theme.falseSelect,
-        isOpen === true && theme.trueSelect,
-        typeof isOpen !== 'boolean' && !isOpen && theme.nullSelect ,
-        allowNull && theme.disableSwitch
-    );
-  return (<div style={componentStyle}  className={className} aria-label="Switch">
-            <div className={theme.outerWrap}>
+    componentClass,
+    theme.switchCheckbox,
+    switchTypeClass,
+    isOpen === false && theme.falseSelect,
+    isOpen === true && theme.trueSelect,
+    typeof isOpen !== 'boolean' && !isOpen && theme.nullSelect,
+    allowNull && theme.disableSwitch
+  );
+  return (<div style={componentStyle} className={className}>
+    <div className={theme.outerWrap}>
 
-            <label htmlFor="falseRadio" className={theme.falseRadio}>
-                  <input type="radio" checked={isOpen === false} name="switch" id="falseRadio" onClick={() => handleToggle(false)}/>
-                  <span className={theme.switchRadio}><Icon source="cancel" componentColor="inkLighter" componentClass={theme.Cancel}></Icon></span>
+      <label htmlFor={names.falseRadio} className={theme.falseRadio}>
+        <input
+          type="radio"
+          id={names.falseRadio}
+          name={names.fieldName}
+          value={names.falseRadio}
+          checked={isOpen === false}
+          onChange={() => handleToggle(false)}
+        />
+        <span className={theme.switchRadio}>
+          <Icon source="cancel" componentColor="inkLighter" componentClass={theme.Cancel} />
+        </span>
+      </label>
 
-              </label>
+      <label htmlFor={names.nullRadio} className={theme.nullRadio}>
+        <input
+          type="radio"
+          id={names.nullRadio}
+          name={names.fieldName}
+          value={names.nullRadio}
+          checked={typeof isOpen !== 'boolean' && !isOpen}
+          disabled={!allowNull}
+          onChange={() => allowNull && handleToggle()} />
+        <span className={theme.switchRadio}>Null</span>
+      </label>
 
-              <label htmlFor="nullRadio" className={theme.nullRadio}>
-                <input type="radio" name="switch" id="nullRadio" checked={typeof isOpen !== 'boolean' && !isOpen} disabled={!allowNull} onClick={() => allowNull && handleToggle()}/>
-                <span className={theme.switchRadio}>Null</span>
-              </label>
+      <label htmlFor={names.trueRadio} className={theme.trueRadio}>
+        <input
+          type="radio"
+          id={names.trueRadio}
+          name={names.fieldName}
+          value={names.trueRadio}
+          checked={isOpen === true}
+          onChange={() => handleToggle(true)}
+        />
+        <span className={theme.switchRadio}>
+          <Icon source="check" componentColor="blue" componentClass={theme.Accept} />
+        </span>
+      </label>
 
-              <label htmlFor="trueRadio" className={theme.trueRadio}>
-                  <input type="radio" checked={isOpen === true} name="switch" id="trueRadio" onClick={() => handleToggle(true)}/>
-                  <span className={theme.switchRadio}><Icon source="check" componentColor="blue" componentClass={theme.Accept}></Icon></span>
-
-              </label>
-            </div>
-            {children && <label className={theme.switchLabel}>{children}</label>}
-        </div>);
+    </div>
+    {children && <label className={theme.switchLabel}>{children}</label>}
+  </div>);
 };
 
 export default themr(SWITCHCHECKBOX, baseTheme)(SwitchCheckbox) as ThemedComponentClass<Props, {}>;
