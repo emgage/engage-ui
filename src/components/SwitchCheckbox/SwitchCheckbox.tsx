@@ -22,7 +22,6 @@ export interface Props {
   handleToggle: (value?: boolean) => void;
   switchType?: ISwitchType;
   allowNull?: boolean;
-  name?: string;
 }
 
 const getUniqueName = createUniqueIDFactory('SwitchCheckbox');
