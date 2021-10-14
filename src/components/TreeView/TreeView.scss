@@ -21,10 +21,10 @@
     width:auto;
     min-height: auto;
     &:hover svg {
-      fill:color(blue, base);
+      fill:color(blue, dark);
     }
     &:focus svg {
-      fill:color(blue, base);
+      fill:color(blue, dark);
     }
   }
 }
