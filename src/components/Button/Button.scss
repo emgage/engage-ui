@@ -119,12 +119,11 @@ $dropdown-item-padding-x: 1.6rem !default;
 // stylelint-disable selector-max-specificity
 
 .plain {
-  @include recolor-icon(color(blue));
-  margin: (-1 * $vertical-padding) (-1 * spacing());
-  background: transparent;
-  border: border(transparent);
+  @include recolor-icon(color(blue, dark));
+  margin: (-1 * $vertical-padding) (-1 * spacing()); 
+  border: border(transparent);           
   box-shadow: none;
-  color: color(blue);
+  color: color(blue, dark);  
 
   &:hover,
   &:focus,
