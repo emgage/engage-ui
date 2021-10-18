@@ -78,9 +78,10 @@
             
             input {
                 &:checked + .switchRadio {
-                    left:-.8rem;
+                    left:auto;
                     opacity: 1;
                     visibility: visible;
+                    right:.1rem;
                 }
             }
         }
@@ -98,7 +99,8 @@
             
             input {
                 &:checked + .switchRadio {
-                    right:-.8rem;
+                    left:.1rem;
+                    right:auto;
                     opacity: 1;
                     visibility: visible;
                 }
@@ -114,7 +116,8 @@
         .trueRadio {
           input {
                 &:checked + .switchRadio {
-                    left:-.2rem;
+                    right:.1rem;
+                    left:auto;
                     opacity: 1;
                     visibility: visible;
                     &:after {
@@ -143,7 +146,8 @@
           
             input {
                 &:checked + .switchRadio {
-                    right:-.3rem;
+                    left:.1rem;
+                    right:auto;
                     opacity: 1;
                     visibility: visible;
                     &:after {
@@ -168,7 +172,8 @@
         .trueRadio {
             input {
                 &:checked + .switchRadio {
-                    left:-.6rem;
+                    right:.1rem;
+                    left:auto;
                     opacity: 1;
                     visibility: visible;
                     &:after {
@@ -196,7 +201,8 @@
         .falseRadio {
             input {
                 &:checked + .switchRadio {
-                    right:-.6rem;
+                    left:.1rem;
+                    right:auto;
                     opacity: 1;
                     visibility: visible;
                     &:after {
