@@ -82,7 +82,7 @@
             
             input {
                 &:checked + .switchRadio {
-                    left:-.6rem;
+                    left:-.8rem;
                     opacity: 1;
                     visibility: visible;
                 }
@@ -102,7 +102,7 @@
             
             input {
                 &:checked + .switchRadio {
-                    right:-.6rem;
+                    right:-.8rem;
                     opacity: 1;
                     visibility: visible;
                 }
