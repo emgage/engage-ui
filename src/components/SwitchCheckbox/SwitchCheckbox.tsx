@@ -42,7 +42,7 @@ const SwitchCheckbox = (props: Props) => {
       trueRadio,
     };
   });
-  const { theme, componentClass, componentStyle, isOpen, allowNull = true } = props;
+  const { theme, componentClass, componentStyle, isOpen, allowNull = true, disabled } = props;
   const { children, handleToggle, switchType = 'normal' } = props;
   let switchTypeClass = theme.switchNormal;
   switch (switchType) {
@@ -67,7 +67,7 @@ const SwitchCheckbox = (props: Props) => {
     isOpen === false && theme.falseSelect,
     isOpen === true && theme.trueSelect,
     typeof isOpen !== 'boolean' && !isOpen && theme.nullSelect,
-    allowNull && theme.disableSwitch
+    disabled && theme.disableSwitch
   );
   return (<div style={componentStyle} className={className}>
     <div className={theme.outerWrap}>
@@ -79,6 +79,7 @@ const SwitchCheckbox = (props: Props) => {
           name={names.fieldName}
           value={names.falseRadio}
           checked={isOpen === false}
+          disabled={disabled}
           onChange={() => handleToggle(false)}
         />
         <span className={theme.switchRadio}>
@@ -93,7 +94,7 @@ const SwitchCheckbox = (props: Props) => {
           name={names.fieldName}
           value={names.nullRadio}
           checked={typeof isOpen !== 'boolean' && !isOpen}
-          disabled={!allowNull}
+          disabled={!allowNull || disabled}
           onChange={() => allowNull && handleToggle()} />
         <span className={theme.switchRadio}>Null</span>
       </label>
@@ -105,6 +106,7 @@ const SwitchCheckbox = (props: Props) => {
           name={names.fieldName}
           value={names.trueRadio}
           checked={isOpen === true}
+          disabled={disabled}
           onChange={() => handleToggle(true)}
         />
         <span className={theme.switchRadio}>
