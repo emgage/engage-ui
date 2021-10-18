@@ -74,10 +74,6 @@
         background:color(blue);
         border-color:color(blue);
         width: 4.2rem;
-        .Accept,
-        .Cancel {
-            display: none!important;
-        }
         .trueRadio {
             
             input {
@@ -300,6 +296,27 @@
                     right:auto;
                 }
             }
+        }
+    }
+}
+
+.disableSwitch{
+    .outerWrap{
+        input{
+            cursor: not-allowed !important;
+        }
+        background-color:color(sky, light)!important;
+        border-color: color(sky, dark)!important;
+        .switchRadio {
+            box-shadow: none;
+            border: 1px solid color(sky, dark)!important;
+            &:after {
+                color: color(white) !important;
+            }
+        }
+        .Accept,
+        .Cancel {
+            fill:  color(ink, lightest) !important;
         }
     }
 }
