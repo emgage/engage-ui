@@ -121,6 +121,7 @@ $dropdown-item-padding-x: 1.6rem !default;
 .plain {
   @include recolor-icon(color(blue, dark));
   margin: (-1 * $vertical-padding) (-1 * spacing()); 
+  background: transparent;
   border: border(transparent);           
   box-shadow: none;
   color: color(blue, dark);  
