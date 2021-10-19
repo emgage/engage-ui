@@ -107,5 +107,5 @@ steps:
     targetFolder: 'cdn/$(engageui)'
     filesAcl: 'public-read'
     flattenFolders: true
-  condition: or(eq(variables['Build.SourceBranch'], 'refs/heads/master'), eq(variables['Build.SourceBranch'], 'refs/heads/Next'))
+  condition: and(not(startsWith(variables['Build.SourceVersionMessage'], 'chore')), or(eq(variables['Build.SourceBranch'], 'refs/heads/master'), eq(variables['Build.SourceBranch'], 'refs/heads/Next')))
   displayName: 'Copy to S3'
