@@ -24,7 +24,7 @@ steps:
     COMMIT_ID=$(git ls-remote --head --exit-code origin Next | cut -f 1 | head -n 1)
     if [ -z "$(git log | grep $COMMIT_ID)" ]
     then
-        echo "false"
+        echo "false, $(System.PullRequest.TargetBranch)"
         echo "CI failed, Your branch $(Build.SourceBranch) is behind of Next branch changes, Kindly merge the changes from Next branch and rerun the pipeline"
         exit 1
     else
