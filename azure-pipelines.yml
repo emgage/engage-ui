@@ -30,7 +30,7 @@ steps:
     else
         echo "true"
     fi
-  condition: not(or(eq(variables['Build.SourceBranch'], 'refs/heads/master'), eq(variables['Build.SourceBranch'], 'refs/heads/Next'), startsWith(variables['Build.SourceBranch'], 'refs/heads/hotfix')))
+  condition: not(or(eq(variables['Build.SourceBranch'], 'refs/heads/master'), eq(variables['Build.SourceBranch'], 'refs/heads/Next'), startsWith(variables['Build.SourceBranch'], 'refs/heads/hotfix'),eq(variables['System.PullRequest.TargetBranch'], 'master')))
   displayName: "Check if Branch is in Sync"
 
 - task: NodeTool@0
