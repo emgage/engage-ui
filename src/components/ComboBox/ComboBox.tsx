@@ -116,10 +116,6 @@ class ComboBox extends React.PureComponent<Props, State> {
     const { items, currentValue } = nextProps;
     const { items: oldItems, currentValue: oldCurrentValue } = this.props;
 
-    console.log(oldItems);
-    console.log(items);
-    console.log(JSON.stringify(oldItems) !== JSON.stringify(items));
-
     if (JSON.stringify(oldItems) !== JSON.stringify(items)) {
       const initialItems = this.addRenderer(
         items,
