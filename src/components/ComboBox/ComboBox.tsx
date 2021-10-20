@@ -8,7 +8,6 @@ import TextField from '../TextField';
 import Popover from '../Popover';
 import arrowSvg from './icons/arrow.svg';
 import * as baseTheme from './ComboBox.scss';
-
 export type Mode = 'collapsible' | 'multiple';
 export type ItemType = 'Accordian' | 'Tabular';
 export interface ComboBoxItemProps {
@@ -28,7 +27,7 @@ export interface Props {
   currentValue?: string;
   items: ComboBoxItemProps[];
   label: string;
-  style?:any;
+  style?: any;
   suffix?: any;
   loading?: boolean;
   onSelect?(item: any): void;
@@ -54,7 +53,6 @@ interface State {
   popoverWidth: string;
   serverSort: ServerSort;
 }
-
 class ComboBox extends React.PureComponent<Props, State> {
   private getUniqueID = createUniqueIDFactory('ComboBox');
   private id = this.getUniqueID();
@@ -74,19 +72,18 @@ class ComboBox extends React.PureComponent<Props, State> {
       serverSort: {
         field: '',
         order: '',
-        callback: this.sortEntity
+        callback: this.sortEntity,
       },
     };
   }
 
   sortEntity = (field: string, order: string, sortBy: string) => {
-
     this.setState({
       serverSort: {
         ...this.state.serverSort,
         field,
         order,
-      }
+      },
     });
 
     if (this.props.sortEntity) {
@@ -117,14 +114,13 @@ class ComboBox extends React.PureComponent<Props, State> {
   componentWillReceiveProps(nextProps: any) {
     // Updated as we need to require search api call while user type.
     const { items, currentValue } = nextProps;
-    const { items: oldItems, currentValue: oldCurrentValue  } = this.props;
-
-    console.log(oldItems);
-    console.log(items);
-    console.log((JSON.stringify(oldItems) !== JSON.stringify(items)));
+    const { items: oldItems, currentValue: oldCurrentValue } = this.props;
 
     if (JSON.stringify(oldItems) !== JSON.stringify(items)) {
-      const initialItems = this.addRenderer(items, JSON.parse(JSON.stringify(items)));
+      const initialItems = this.addRenderer(
+        items,
+        JSON.parse(JSON.stringify(items))
+      );
       this.setState({ initialItems, items });
     }
 
@@ -158,9 +154,11 @@ class ComboBox extends React.PureComponent<Props, State> {
     return cloneItems;
   }
 
-  onKeyUp = (e: React.FormEvent<HTMLElement> | KeyboardEvent) => {
-    if (this.props.onKeyUp) {
-      this.props.onKeyUp(this.state.selectedValue);
+  onKeyUp = (event: any) => {
+    if (event.keyCode !== 18 || event.keyCode !== 91) {
+      if (this.props.onKeyUp) {
+        this.props.onKeyUp(this.state.selectedValue);
+      }
     }
   }
   /*
@@ -184,7 +182,9 @@ class ComboBox extends React.PureComponent<Props, State> {
         if (it.type === 'Accordian') {
           data = itemValues.map((itv: any) => {
             itv.children = itv.children.filter((child: any) => {
-              const flag = key ? ((child[key].toLowerCase()).includes(value.toLowerCase())) : (child.toLowerCase()).includes(value.toLowerCase());
+              const flag = key
+                ? child[key].toLowerCase().includes(value.toLowerCase())
+                : child.toLowerCase().includes(value.toLowerCase());
 
               return flag;
             });
@@ -194,7 +194,9 @@ class ComboBox extends React.PureComponent<Props, State> {
         } else {
           data = itemValues.filter((itv: any) => {
             const smallVal = value.toLowerCase();
-            const flag = key ? ((itv[key].toLowerCase()).includes(smallVal)) : (itv.toLowerCase()).includes(smallVal);
+            const flag = key
+              ? itv[key].toLowerCase().includes(smallVal)
+              : itv.toLowerCase().includes(smallVal);
 
             return flag;
           });
@@ -222,7 +224,7 @@ class ComboBox extends React.PureComponent<Props, State> {
     if (eventTarget && eventTarget.nodeName !== 'LABEL') {
       this.setState({
         open: !this.state.open,
-        anchorEl: event.target as HTMLElement
+        anchorEl: event.target as HTMLElement,
       });
     }
   }
@@ -232,7 +234,11 @@ class ComboBox extends React.PureComponent<Props, State> {
     if (this.props.onSelect) {
       this.props.onSelect(selectedValue);
     }
-    this.setState({ selectedValue: typeof(selectedValue) === 'object' ? selectedValue[key] : selectedValue, open: false });
+    this.setState({
+      selectedValue:
+        typeof selectedValue === 'object' ? selectedValue[key] : selectedValue,
+      open: false,
+    });
   }
 
   render() {
@@ -249,63 +255,73 @@ class ComboBox extends React.PureComponent<Props, State> {
       handleScroll = () => {},
     } = this.props;
 
-    const {
-      items,
-      open,
-      serverSort
-    } = this.state;
+    const { items, open, serverSort } = this.state;
 
-    const itemsComponent = items.map((item, index) =>
-        <ComboBoxItem
-          key={index}
-          item={item}
-          clickHandler={this.handleClick}
-          theme={theme}
-          serverSort={serverSort}
-        />
-      );
+    const itemsComponent = items.map((item, index) => (
+      <ComboBoxItem
+        key={index}
+        item={item}
+        clickHandler={this.handleClick}
+        theme={theme}
+        serverSort={serverSort}
+      />
+    ));
 
     return (
       <>
-      <div key={this.id} className={theme.comboboxContainer} onClick={this.onArrowClick} ref={node => this.setWrapperRef(node)} >
-        <TextField
-          errors={errors}
-          type="text"
-          label={label}
-          onChange={this.onChange}
-          value={this.state.selectedValue}
-          theme={theme}
-          suffix={<Icon source={suffix} componentColor="inkLighter" />}
-          loading={loading}
-          disabled={disabled}
-          autoComplete={false}
-          readOnly={readOnly}
-          helpText={helpText}
-          onKeyUp={this.onKeyUp}
-          backdropHidden = {backdropHidden}
-        />
-
-        {!suffix && <div className={theme.comboboxArrow}>
-          <Icon source={arrowSvg} theme={theme} />
-        </div>}
-
-        {!disabled && !readOnly && open && <Popover
-          addArrow={false}
-          componentStyle={{ maxHeight: window.outerHeight < 768 ? 300 : 800, overflow: 'auto' }}
-          anchorEl={this.state.anchorEl}
-          open={open}
-          theme={theme}
-          preferredAlignment="left"
-          handleScroll={handleScroll}
+        <div
+          key={this.id}
+          className={theme.comboboxContainer}
+          onClick={this.onArrowClick}
+          ref={this.setWrapperRef}
         >
-            {itemsComponent}
-          </Popover>}
-      </div>
+          <TextField
+            errors={errors}
+            type="text"
+            label={label}
+            onChange={this.onChange}
+            value={this.state.selectedValue}
+            theme={theme}
+            suffix={<Icon source={suffix} componentColor="inkLighter" />}
+            loading={loading}
+            disabled={disabled}
+            autoComplete={false}
+            readOnly={readOnly}
+            helpText={helpText}
+            onKeyUp={this.onKeyUp}
+            backdropHidden={backdropHidden}
+          />
 
+          {!suffix && (
+            <div className={theme.comboboxArrow}>
+              <Icon source={arrowSvg} theme={theme} />
+            </div>
+          )}
+
+          {!disabled && !readOnly && open && (
+            <Popover
+              addArrow={false}
+              componentStyle={{
+                maxHeight: window.outerHeight < 768 ? 300 : 800,
+                overflow: 'auto',
+              }}
+              anchorEl={this.state.anchorEl}
+              open={open}
+              theme={theme}
+              preferredAlignment="left"
+              handleScroll={handleScroll}
+            >
+              {itemsComponent}
+            </Popover>
+          )}
+        </div>
       </>
     );
   }
 }
 
 export { ComboBox as UnthemedComboBox };
-export default themr(COMBOBOX, baseTheme)(ComboBox) as ThemedComponentClass<Props, {}>;
+export default themr(COMBOBOX, baseTheme)(ComboBox) as ThemedComponentClass<
+  Props,
+  {}
+>;
