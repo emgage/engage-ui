@@ -41,6 +41,7 @@ interface State {
     selectedValue: string;
     popoverWidth: string;
     serverSort: ServerSort;
+    maxHeight: number;
 }
 declare class ComboBox extends React.PureComponent<Props, State> {
     private getUniqueID;
