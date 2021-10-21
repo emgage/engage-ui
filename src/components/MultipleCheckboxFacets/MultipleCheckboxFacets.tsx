@@ -1,3 +1,4 @@
+import Heading from '../Heading';
 import * as React from 'react';
 import Button from '../Button';
 import Checkbox from '../Checkbox';
@@ -56,10 +57,10 @@ function multiCheckboxFacet({
   labelId
 }: IProps) {
   return (
-    <fieldset className={appendClassName('facets-container', className)}>
-       <legend className="facets-title">{label}</legend>
+    <div className={appendClassName('facets-container', className)} style={{ background: '#fff', borderRadius: 8, paddingTop: 10, paddingBottom: 10, paddingLeft:20, paddingRight:20 }}>
+       <Heading componentClass="facets-title" element="h4" componentStyle={{ marginBottom: 12 }}>{label}</Heading>
       {showSearch && (
-        <div className="facet-search">
+        <div className="facet-search"  style={{ marginBottom: 12 }}>
           <TextField
             type="text"
             placeholder={searchPlaceholder || 'Search'}
@@ -77,7 +78,7 @@ function multiCheckboxFacet({
         {options.map((option: any) => {
           const checked = option.selected;
           return (
-            <div style={{ display:'flex', flex: 1 }}>
+            <div style={{ display:'flex', flex: 1, marginBottom: 8 }}>
               <div style={{ flex: 1 }}>
                 <Checkbox
                   checked={checked}
@@ -105,7 +106,7 @@ function multiCheckboxFacet({
           + More
         </Button>
       )}
-    </fieldset>
+    </div>
   );
 }
 
