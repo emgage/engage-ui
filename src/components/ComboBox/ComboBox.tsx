@@ -8,6 +8,8 @@ import TextField from '../TextField';
 import Popover from '../Popover';
 import arrowSvg from './icons/arrow.svg';
 import * as baseTheme from './ComboBox.scss';
+import { PreferredPosition } from 'components/PositionedOverlay';
+
 export type Mode = 'collapsible' | 'multiple';
 export type ItemType = 'Accordian' | 'Tabular';
 export interface ComboBoxItemProps {
@@ -52,6 +54,7 @@ interface State {
   selectedValue: string;
   popoverWidth: string;
   serverSort: ServerSort;
+  maxHeight: number;
 }
 class ComboBox extends React.PureComponent<Props, State> {
   private getUniqueID = createUniqueIDFactory('ComboBox');
@@ -69,6 +72,7 @@ class ComboBox extends React.PureComponent<Props, State> {
       initialItems: this.addRenderer(items, JSON.parse(JSON.stringify(items))),
       popoverWidth: '',
       selectedValue: '' || currentValue,
+      maxHeight: 0,
       serverSort: {
         field: '',
         order: '',
@@ -139,7 +143,8 @@ class ComboBox extends React.PureComponent<Props, State> {
 
   setWrapperRef = (node: any) => {
     if (node && !this.state.popoverWidth) {
-      this.setState({ popoverWidth: node.offsetWidth });
+      const maxHeight = (window.innerHeight) - node.getBoundingClientRect().bottom - node.offsetHeight;
+      this.setState({ maxHeight, popoverWidth: node.offsetWidth });
       this.wrapperRef = node;
     }
   }
@@ -222,7 +227,9 @@ class ComboBox extends React.PureComponent<Props, State> {
     const eventTarget: any = event.target;
     // triggering unwanted event for label click
     if (eventTarget && eventTarget.nodeName !== 'LABEL') {
+      const maxHeight = (window.innerHeight) - this.wrapperRef.getBoundingClientRect().bottom - this.wrapperRef.offsetHeight;
       this.setState({
+        maxHeight,
         open: !this.state.open,
         anchorEl: event.target as HTMLElement,
       });
@@ -266,7 +273,13 @@ class ComboBox extends React.PureComponent<Props, State> {
         serverSort={serverSort}
       />
     ));
-
+    let preferredPosition:PreferredPosition = 'below';
+    let maxHeight = 300;
+    if (this.state.maxHeight > 300) {
+      maxHeight = this.state.maxHeight;
+    } else {
+      preferredPosition = 'above';
+    }
     return (
       <>
         <div
@@ -302,7 +315,7 @@ class ComboBox extends React.PureComponent<Props, State> {
             <Popover
               addArrow={false}
               componentStyle={{
-                maxHeight: window.outerHeight < 768 ? 300 : 800,
+                maxHeight,
                 overflow: 'auto',
               }}
               anchorEl={this.state.anchorEl}
@@ -310,6 +323,7 @@ class ComboBox extends React.PureComponent<Props, State> {
               theme={theme}
               preferredAlignment="left"
               handleScroll={handleScroll}
+              preferredPosition= {preferredPosition}
             >
               {itemsComponent}
             </Popover>
