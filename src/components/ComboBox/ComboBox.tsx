@@ -147,7 +147,6 @@ class ComboBox extends React.PureComponent<Props, State> {
       this.setState({ maxHeight, popoverWidth: node.offsetWidth });
       this.wrapperRef = node;
     }
-    console.log(node);
   }
 
   addRenderer = (items: any, cloneItems: any) => {
@@ -281,7 +280,6 @@ class ComboBox extends React.PureComponent<Props, State> {
     } else {
       preferredPosition = 'above';
     }
-    console.log(maxHeight);
     return (
       <>
         <div
