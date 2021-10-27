@@ -8,7 +8,7 @@ import TextField from '../TextField';
 import Popover from '../Popover';
 import arrowSvg from './icons/arrow.svg';
 import * as baseTheme from './ComboBox.scss';
-import { PreferredPosition } from 'components/PositionedOverlay';
+import { PreferredPosition } from './../PositionedOverlay';
 
 export type Mode = 'collapsible' | 'multiple';
 export type ItemType = 'Accordian' | 'Tabular';
