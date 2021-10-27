@@ -27,7 +27,11 @@ export interface Props {
     theme?: any;
     disabled?: boolean;
     readOnly?: boolean;
+    helpText?: string;
     errors?: [string];
+    onKeyUp?(value: string): void;
+    handleScroll?(): void;
+    backdropHidden?: boolean;
 }
 interface State {
     open: boolean;
@@ -36,8 +40,8 @@ interface State {
     anchorEl?: HTMLElement;
     selectedValue: string;
     popoverWidth: string;
-    isEmpty: boolean;
     serverSort: ServerSort;
+    maxHeight: number;
 }
 declare class ComboBox extends React.PureComponent<Props, State> {
     private getUniqueID;
@@ -51,6 +55,7 @@ declare class ComboBox extends React.PureComponent<Props, State> {
     handleClickOutside: (event: any) => void;
     setWrapperRef: (node: any) => void;
     addRenderer: (items: any, cloneItems: any) => any;
+    onKeyUp: (event: any) => void;
     onChange: (value: string, event: React.FormEvent<HTMLElement>) => void;
     onArrowClick: (event: React.FormEvent<HTMLElement>) => void;
     handleClick: (value: string | any, key: any) => void;

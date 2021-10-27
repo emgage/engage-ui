@@ -56,7 +56,7 @@ export interface Props {
   // Error to display beneath the label.
   errors?: [string];
   // Function return all errors
-  getErrors?(errors:any, name?:string): void;
+  getErrors?(errors: any, name?: string): void;
   hasValue?: boolean;
   // Additional hint text to display.
   helpText?: React.ReactNode;
@@ -92,6 +92,8 @@ export interface Props {
   onBlur?(e?: React.FormEvent<HTMLElement>): void;
   // Callback when value is inserted in Input.
   onInput?(e?: React.ChangeEvent<HTMLSelectElement>): void;
+  // Callback when value is inserted in Input. (return when user stop typing)
+  onKeyUp?(e: React.FormEvent<HTMLElement> | KeyboardEvent): void;
   // A regular expression to check the value against.
   pattern?: string;
   // Hint text to display.
@@ -127,6 +129,7 @@ export interface Props {
 
 const getUniqueID = createUniqueIDFactory('TextField');
 
+let timeout: any = null;
 class TextField extends React.PureComponent<Props, State> {
   state: State = { height: null, value: '' };
 
@@ -191,6 +194,7 @@ class TextField extends React.PureComponent<Props, State> {
       onFocus,
       onBlur,
       onInput,
+      onKeyUp,
       readOnly = false,
       resizable = false,
       required = false,
@@ -204,7 +208,7 @@ class TextField extends React.PureComponent<Props, State> {
     } = this.props;
 
     const { height } = this.state;
-    const hasValue =  (!!this.props.value && this.props.value.length > 0) || this.state.value;
+    const hasValue = (!!this.props.value && this.props.value.length > 0) || this.state.value;
     const className = classNames(
       componentClass,
       theme.textField,
@@ -223,8 +227,8 @@ class TextField extends React.PureComponent<Props, State> {
     );
 
     const prefixMarkup = prefix
-    ? <div ref={this.prefixRef} onClick={this.handleInputFocus} className={theme.prefix} id={`${componentId}prefix`}>{prefix}</div>
-    : null;
+      ? <div ref={this.prefixRef} onClick={this.handleInputFocus} className={theme.prefix} id={`${componentId}prefix`}>{prefix}</div>
+      : null;
 
     const suffixMarkup = (!readOnly && suffix)
       ? <div onClick={this.handleInputFocus} className={theme.suffix} id={`${componentId}suffix`}>{suffix}</div>
@@ -238,11 +242,11 @@ class TextField extends React.PureComponent<Props, State> {
 
     const resizer = multiline === null
       ? null
-      :(<Resizer
-          contents={value || placeholder}
-          currentHeight={height}
-          minimumLines={typeof multiline === 'number' ? multiline : 3}
-        />
+      : (<Resizer
+        contents={value || placeholder}
+        currentHeight={height}
+        minimumLines={typeof multiline === 'number' ? multiline : 3}
+      />
       );
 
     let counterTextMarkup;
@@ -292,6 +296,7 @@ class TextField extends React.PureComponent<Props, State> {
       onFocus: this.handleInputOnFocus,
       onKeyDown: this.handleInputOnKeyDown,
       onBlur: this.handleInputOnBlur,
+      onKeyUp: this.handleInputOnKeyUp,
       style: newComponentStyle,
       formNoValidate: true,
       autoComplete: normalizeAutoComplete(autoComplete),
@@ -316,7 +321,7 @@ class TextField extends React.PureComponent<Props, State> {
       componentHeight === 'slim' && theme.labelStyleSlim,
       (hasValue || this.state.focused) && theme.labelHasValue,
       disabled && theme.labelDisabled,
-      prefix && theme.prefix
+      prefix && theme.prefix
     );
 
     return (
@@ -385,10 +390,10 @@ class TextField extends React.PureComponent<Props, State> {
     if (this.props.capital && alphaRegex.test(newValue)) {
       onChange(newValue.toUpperCase());
       this.setState({ value: newValue.toUpperCase() });
-    }else if (this.props.alphanumeric && alphaRegex.test(newValue)) {
+    } else if (this.props.alphanumeric && alphaRegex.test(newValue)) {
       onChange(newValue);
       this.setState({ value: newValue });
-    }else {
+    } else {
       if ((this.props.capital || this.props.alphanumeric) && newValue.length > 0) {
         const oldValueArray = [...newValue];
         const newValueArray: any[] = [];
@@ -399,7 +404,7 @@ class TextField extends React.PureComponent<Props, State> {
         });
         onChange(newValueArray.join(''));
         this.setState({ value: newValueArray.join('') });
-        return ;
+        return;
       }
       onChange(newValue, event);
       this.setState({ value: newValue });
@@ -441,6 +446,26 @@ class TextField extends React.PureComponent<Props, State> {
     const { onBlur } = this.props;
     if (onBlur == null) { return; }
     onBlur(e);
+  }
+
+  @autobind
+  private handleInputOnKeyUp(e: React.FormEvent<HTMLElement> | KeyboardEvent | any) {
+    const { onKeyUp, readOnly } = this.props;
+
+    this.setState((prevState: State) => ({
+      ...prevState,
+      focused: readOnly ? false : true,
+    }));
+
+    if (onKeyUp == null) { return; }
+    clearTimeout(timeout);
+
+    e.persist();
+
+    // Make a new timeout set to go off in 1000ms (1 second)
+    timeout = setTimeout(() => {
+      onKeyUp(e);
+    },                   1000);
   }
 
   @autobind

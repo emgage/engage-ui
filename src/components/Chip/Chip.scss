@@ -49,11 +49,11 @@ $vertical-padding: ($min-height - line-height(body) - rem(2px)) / 2;
         &:hover {
             background-color:color(blue, light);
             .firstIcon {
-                background-color: color(blue);
+                background-color: color(blue, dark);
             }
             .ChipChild {
                 button {
-                    fill: color(blue);
+                    fill: color(blue, dark);
                 }
             }
         }

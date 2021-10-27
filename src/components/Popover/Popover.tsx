@@ -11,6 +11,7 @@ import { TOOLTIP } from '../ThemeIdentifiers';
 
 import PopoverOverlay from './PopoverOverlay';
 import * as baseTheme from './Popover.scss';
+import { debounce } from 'lodash';
 
 export interface Props {
   // This will help to set popover active or inactive when required from parent component
@@ -26,6 +27,7 @@ export interface Props {
   // Unique ID
   componentId?: string;
   onClose?(): void;
+  handleScroll?(): void;
   // The direction the popover tries to display Availabel options: above | below | mostSpace
   preferredPosition?: PreferredPosition;
   preferredAlignment?: PreferredAlignment;
@@ -42,10 +44,11 @@ const getUniqueID = createUniqueIDFactory('PopoverContent');
 class Popover extends React.PureComponent<Props, State> {
   private id = getUniqueID();
   private activatorContainer: HTMLElement | null;
+  scrollRef: React.RefObject<unknown>;
 
   constructor(props: Props) {
     super(props);
-
+    this.scrollRef = React.createRef();
     this.state = {
       active: false
     };
@@ -133,6 +136,15 @@ class Popover extends React.PureComponent<Props, State> {
     }
   }
 
+  handleScroll = debounce((t) => {
+    const diffHeight = t.scrollTop + t.clientHeight - t.scrollHeight;
+    if (diffHeight >= -140) {
+      if (this.props.handleScroll) {
+        this.props.handleScroll();
+      }
+    }
+  },                      500);
+
   render() {
     const { id } = this;
     const { active } = this.state;
@@ -165,7 +177,10 @@ class Popover extends React.PureComponent<Props, State> {
         onClose={noop}
         popoverRef={this.setActivator}
       >
-        <div className={themeClass} style={componentStyle}>
+        <div className={themeClass} style={componentStyle}
+          ref={this.scrollRef as any}
+          onScroll={event => this.handleScroll(event.target)}
+          >
           {children}
         </div>
       </PopoverOverlay>

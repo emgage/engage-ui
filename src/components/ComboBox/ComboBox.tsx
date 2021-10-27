@@ -8,6 +8,7 @@ import TextField from '../TextField';
 import Popover from '../Popover';
 import arrowSvg from './icons/arrow.svg';
 import * as baseTheme from './ComboBox.scss';
+import { PreferredPosition } from 'components/PositionedOverlay';
 
 export type Mode = 'collapsible' | 'multiple';
 export type ItemType = 'Accordian' | 'Tabular';
@@ -28,7 +29,7 @@ export interface Props {
   currentValue?: string;
   items: ComboBoxItemProps[];
   label: string;
-  style?:any;
+  style?: any;
   suffix?: any;
   loading?: boolean;
   onSelect?(item: any): void;
@@ -37,7 +38,12 @@ export interface Props {
   theme?: any;
   disabled?: boolean;
   readOnly?: boolean;
+  helpText?: string;
   errors?: [string];
+  onKeyUp?(value: string): void;
+  handleScroll?(): void;
+  // Visually hide the border.
+  backdropHidden?: boolean;
 }
 
 interface State {
@@ -47,10 +53,9 @@ interface State {
   anchorEl?: HTMLElement;
   selectedValue: string;
   popoverWidth: string;
-  isEmpty: boolean;
   serverSort: ServerSort;
+  maxHeight: number;
 }
-
 class ComboBox extends React.PureComponent<Props, State> {
   private getUniqueID = createUniqueIDFactory('ComboBox');
   private id = this.getUniqueID();
@@ -67,23 +72,22 @@ class ComboBox extends React.PureComponent<Props, State> {
       initialItems: this.addRenderer(items, JSON.parse(JSON.stringify(items))),
       popoverWidth: '',
       selectedValue: '' || currentValue,
-      isEmpty: false,
+      maxHeight: 0,
       serverSort: {
         field: '',
         order: '',
-        callback: this.sortEntity
+        callback: this.sortEntity,
       },
     };
   }
 
   sortEntity = (field: string, order: string, sortBy: string) => {
-
     this.setState({
       serverSort: {
         ...this.state.serverSort,
         field,
         order,
-      }
+      },
     });
 
     if (this.props.sortEntity) {
@@ -113,12 +117,19 @@ class ComboBox extends React.PureComponent<Props, State> {
 
   componentWillReceiveProps(nextProps: any) {
     // Updated as we need to require search api call while user type.
-    const { items } = nextProps;
-    const { items: oldItems } = this.props;
+    const { items, currentValue } = nextProps;
+    const { items: oldItems, currentValue: oldCurrentValue } = this.props;
 
     if (JSON.stringify(oldItems) !== JSON.stringify(items)) {
-      const initialItems = this.addRenderer(items, JSON.parse(JSON.stringify(items)));
+      const initialItems = this.addRenderer(
+        items,
+        JSON.parse(JSON.stringify(items))
+      );
       this.setState({ initialItems, items });
+    }
+
+    if (currentValue !== oldCurrentValue) {
+      this.setState({ selectedValue: currentValue });
     }
   }
 
@@ -132,7 +143,8 @@ class ComboBox extends React.PureComponent<Props, State> {
 
   setWrapperRef = (node: any) => {
     if (node && !this.state.popoverWidth) {
-      this.setState({ popoverWidth: node.offsetWidth });
+      const maxHeight = (window.innerHeight) - node.getBoundingClientRect().bottom - node.offsetHeight;
+      this.setState({ maxHeight, popoverWidth: node.offsetWidth });
       this.wrapperRef = node;
     }
   }
@@ -147,6 +159,13 @@ class ComboBox extends React.PureComponent<Props, State> {
     return cloneItems;
   }
 
+  onKeyUp = (event: any) => {
+    if (event.keyCode !== 18 || event.keyCode !== 91) {
+      if (this.props.onKeyUp) {
+        this.props.onKeyUp(this.state.selectedValue);
+      }
+    }
+  }
   /*
      on Change of combobox item, cloning the initial Items which was added to combobox,
      and then search the value on those items, and list it in popover.
@@ -168,7 +187,9 @@ class ComboBox extends React.PureComponent<Props, State> {
         if (it.type === 'Accordian') {
           data = itemValues.map((itv: any) => {
             itv.children = itv.children.filter((child: any) => {
-              const flag = key ? ((child[key].toLowerCase()).includes(value.toLowerCase())) : (child.toLowerCase()).includes(value.toLowerCase());
+              const flag = key
+                ? child[key].toLowerCase().includes(value.toLowerCase())
+                : child.toLowerCase().includes(value.toLowerCase());
 
               return flag;
             });
@@ -178,7 +199,9 @@ class ComboBox extends React.PureComponent<Props, State> {
         } else {
           data = itemValues.filter((itv: any) => {
             const smallVal = value.toLowerCase();
-            const flag = key ? ((itv[key].toLowerCase()).includes(smallVal)) : (itv.toLowerCase()).includes(smallVal);
+            const flag = key
+              ? itv[key].toLowerCase().includes(smallVal)
+              : itv.toLowerCase().includes(smallVal);
 
             return flag;
           });
@@ -204,9 +227,11 @@ class ComboBox extends React.PureComponent<Props, State> {
     const eventTarget: any = event.target;
     // triggering unwanted event for label click
     if (eventTarget && eventTarget.nodeName !== 'LABEL') {
+      const maxHeight = (window.innerHeight) - this.wrapperRef.getBoundingClientRect().bottom - this.wrapperRef.offsetHeight;
       this.setState({
+        maxHeight,
         open: !this.state.open,
-        anchorEl: event.target as HTMLElement
+        anchorEl: event.target as HTMLElement,
       });
     }
   }
@@ -216,7 +241,11 @@ class ComboBox extends React.PureComponent<Props, State> {
     if (this.props.onSelect) {
       this.props.onSelect(selectedValue);
     }
-    this.setState({ selectedValue: typeof(selectedValue) === 'object' ? selectedValue[key] : selectedValue, open: false });
+    this.setState({
+      selectedValue:
+        typeof selectedValue === 'object' ? selectedValue[key] : selectedValue,
+      open: false,
+    });
   }
 
   render() {
@@ -227,64 +256,86 @@ class ComboBox extends React.PureComponent<Props, State> {
       loading,
       disabled,
       readOnly,
-      errors
+      helpText,
+      backdropHidden,
+      errors,
+      handleScroll = () => {},
     } = this.props;
 
-    const {
-      items,
-      open,
-      popoverWidth,
-      isEmpty,
-      serverSort
-    } = this.state;
+    const { items, open, serverSort } = this.state;
 
-    const itemsComponent = items.map((item, index) =>
-        <ComboBoxItem
-          key={index}
-          item={item}
-          clickHandler={this.handleClick}
-          theme={theme}
-          serverSort={serverSort}
-        />
-      );
-
+    const itemsComponent = items.map((item, index) => (
+      <ComboBoxItem
+        key={index}
+        item={item}
+        clickHandler={this.handleClick}
+        theme={theme}
+        serverSort={serverSort}
+      />
+    ));
+    let preferredPosition:PreferredPosition = 'below';
+    let maxHeight = 300;
+    if (this.state.maxHeight > 300) {
+      maxHeight = this.state.maxHeight;
+    } else {
+      preferredPosition = 'above';
+    }
     return (
       <>
-      <div key={this.id} className={theme.comboboxContainer} onClick={this.onArrowClick} ref={node => this.setWrapperRef(node)} >
-        <TextField
-          errors={errors}
-          type="text"
-          label={label}
-          onChange={this.onChange}
-          value={isEmpty ? 'No options available' : this.state.selectedValue}
-          theme={theme}
-          suffix={<Icon source={suffix} componentColor="inkLighter" />}
-          loading={loading}
-          disabled={isEmpty || disabled}
-          autoComplete={false}
-          readOnly={readOnly}
-        />
-
-        {!suffix && <div className={theme.comboboxArrow}>
-          <Icon source={arrowSvg} theme={theme} />
-        </div>}
-
-        {open && !isEmpty && <Popover
-          addArrow={false}
-          componentStyle={{ maxHeight: window.outerHeight < 768 ? 500 : 800, overflow: 'auto', width: popoverWidth }}
-          anchorEl={this.state.anchorEl}
-          open={open}
-          theme={theme}
-          preferredAlignment="left"
+        <div
+          key={this.id}
+          className={theme.comboboxContainer}
+          onClick={this.onArrowClick}
+          ref={this.setWrapperRef}
         >
-            {itemsComponent}
-          </Popover>}
-      </div>
+          <TextField
+            errors={errors}
+            type="text"
+            label={label}
+            onChange={this.onChange}
+            value={this.state.selectedValue}
+            theme={theme}
+            suffix={<Icon source={suffix} componentColor="inkLighter" />}
+            loading={loading}
+            disabled={disabled}
+            autoComplete={false}
+            readOnly={readOnly}
+            helpText={helpText}
+            onKeyUp={this.onKeyUp}
+            backdropHidden={backdropHidden}
+          />
 
+          {!suffix && (
+            <div className={theme.comboboxArrow}>
+              <Icon source={arrowSvg} theme={theme} />
+            </div>
+          )}
+
+          {!disabled && !readOnly && open && (
+            <Popover
+              addArrow={false}
+              componentStyle={{
+                maxHeight,
+                overflow: 'auto',
+              }}
+              anchorEl={this.state.anchorEl}
+              open={open}
+              theme={theme}
+              preferredAlignment="left"
+              handleScroll={handleScroll}
+              preferredPosition= {preferredPosition}
+            >
+              {itemsComponent}
+            </Popover>
+          )}
+        </div>
       </>
     );
   }
 }
 
 export { ComboBox as UnthemedComboBox };
-export default themr(COMBOBOX, baseTheme)(ComboBox) as ThemedComponentClass<Props, {}>;
+export default themr(COMBOBOX, baseTheme)(ComboBox) as ThemedComponentClass<
+  Props,
+  {}
+>;

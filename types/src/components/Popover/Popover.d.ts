@@ -11,6 +11,7 @@ export interface Props {
     componentStyle?: any;
     componentId?: string;
     onClose?(): void;
+    handleScroll?(): void;
     preferredPosition?: PreferredPosition;
     preferredAlignment?: PreferredAlignment;
     theme?: any;

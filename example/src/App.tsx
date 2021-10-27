@@ -91,10 +91,11 @@ import {
   PageSize,
   RangeSlider,
   SwitchCheckbox,
-  SwitchCheckboxIcon,
+  // SwitchCheckboxIcon,
   LazyPicker,
   SearchHelper,
   NoData,
+  EntityState,
 } from '../../src/components';
 import { IconList } from '../../src/components/Icon';
 
@@ -154,8 +155,215 @@ interface State {
   paginationCurrent: number;
   multipleCheckboxFacetsOptions: any[];
   rangeSliderValue?: any;
-  isOpen: boolean; // for SwitchCheckbox
+  isOpen?: boolean; // for SwitchCheckbox
 }
+
+const defaultValue = [
+  {
+    description:
+      'This field stores simple text. It cannot be rich text or HTML. Limited to 50 characters',
+    name: 'Short Text',
+    id: 1048586,
+    uri: 'ShortText',
+  },
+  {
+    description:
+      'This field stores simple text. It cannot be rich text or HTML. Limited to 512 characters',
+    name: 'Simple Text',
+    id: 2097162,
+    uri: 'SimpleText',
+  },
+  {
+    description:
+      'This field stores rich text. It may contain simple… contents. Limited to 1,024 characters in length.',
+    name: 'Rich Text',
+    id: 3145738,
+    uri: 'RichText',
+  },
+  {
+    description:
+      'This field stores rich text. It may contain simple…ng this field could adversely impact performance!',
+    name: 'Rich Text (Long)',
+    id: 4194314,
+    uri: 'RichTextLong',
+  },
+  {
+    description: 'This is "True" or "False".',
+    name: 'True or False',
+    id: 5242890,
+    uri: 'TrueFalse',
+  },
+  {
+    description:
+      'This field stores a URL or URI. It is either pure …ontain URL label. It contains a Label and URL/URI',
+    name: 'Link or URI',
+    id: 6291466,
+    uri: 'Link',
+  },
+  {
+    description: 'This field stores a valid email address.',
+    name: 'Email Address',
+    id: 7340042,
+    uri: 'Email',
+  },
+  {
+    description: 'This field stores a valid phone number.',
+    name: 'Phone Number',
+    id: 8388618,
+    uri: 'Phone',
+  },
+  {
+    description:
+      'This field stores whole numbers. lower limit -9,22…854,775,808 upper limit 9,223,372,036,854,775,807',
+    name: 'Whole Number',
+    id: 9437194,
+    uri: 'Number',
+  },
+  {
+    description:
+      'This field represents a decimal value that can acc…te 19.5 places, such as nnnnnnnnnnnnnnnnnnn.ddddd',
+    name: 'Number with decimal',
+    id: 10485770,
+    uri: 'Decimal',
+  },
+  {
+    description:
+      'This field represents currency. Both value and Cur…,477.5808 upper limit is 922,337,203,685,477.5807',
+    name: 'Money',
+    id: 11534346,
+    uri: 'Money',
+  },
+  {
+    description:
+      'This is a date and time field. Value is stored a U…:00:00.000 upper limit is 9999-12-31,23:59:59:999',
+    name: 'Date and Time',
+    id: 12582922,
+    uri: 'DateTime',
+  },
+  {
+    description:
+      'This is a date field. Value is stored a Universal …mit is 0001-01-01 upper limit is 9999-12-31,23:59',
+    name: 'Date',
+    id: 13631498,
+    uri: 'Date',
+  },
+  {
+    description:
+      'This is a time field. Value is stored a Universal …limit is 00:00:00.001 upper limit is 23:59:59.999',
+    name: 'Time',
+    id: 14680074,
+    uri: 'Time',
+  },
+  {
+    description:
+      'This field represents duration. The smallest incri…ticks upper limit 9,223,372,036,854,775,807 ticks',
+    name: 'Duration',
+    id: 15728650,
+    uri: 'Duration',
+  },
+  {
+    description:
+      'Represents a duration of time between two date/tim…Date and Time End Date and Time',
+    name: 'Date Time Span',
+    id: 16777226,
+    uri: 'DateTimeSpan',
+  },
+  {
+    description:
+      'Gemotry and Geography data representing a single 0…may contain Z (elevation) and M (measure) values.',
+    name: 'Geo Point',
+    id: 17825802,
+    uri: 'GeoPoint',
+  },
+  {
+    description:
+      'Gemotry and Geography data representing a zero or …may contain Z (elevation) and M (measure) values.',
+    name: 'Geo Points',
+    id: 18874378,
+    uri: 'GeoPoints',
+  },
+  {
+    description:
+      'Geomtry and Geography data representing a single o… of points and the line segments connecting them.',
+    name: 'Geo Line',
+    id: 19922954,
+    uri: 'GeoLineString',
+  },
+  {
+    description:
+      'Geomtry and Geography data representing a zero or … of points and the line segments connecting them.',
+    name: 'Geo Lines',
+    id: 20971530,
+    uri: 'GeoLineStrings',
+  },
+  {
+    description:
+      'Geomtry and Geography data representing a single t…or bounding ring and zero or more interior rings.',
+    name: 'Geo Polygon',
+    id: 22020106,
+    uri: 'GeoPolygon',
+  },
+  {
+    description:
+      'Geomtry and Geography data representing a zero or …or bounding ring and zero or more interior rings.',
+    name: 'Geo Polygons',
+    id: 23068682,
+    uri: 'GeoPolygons',
+  },
+  {
+    description:
+      'Represents a country or entity as specified by ISO 3166 standards.',
+    name: 'Country',
+    id: 24117258,
+    uri: 'Country',
+  },
+  {
+    description:
+      'Represents states, provinces, territories, emirate…r countries as specified by ISO 3166-2 standards.',
+    name: 'Country Subdivision',
+    id: 25165834,
+    uri: 'CountrySub',
+  },
+  {
+    description:
+      'Name for a person. Contains First Name, Middle Name and Last Name.',
+    name: 'Person Name',
+    id: 26214410,
+    uri: 'PersonName',
+  },
+  {
+    description: 'Physical address, such as mailing or postal address.',
+    name: 'Physical Address',
+    id: 27262986,
+    uri: 'PhysicalAddress',
+  },
+];
+
+const renderItems = (item: any) => {
+  return (
+    <div
+      key={item.id}
+      style={{ display: 'flex', justifyContent: 'space-around' }}
+    >
+      <div style={{ flexBasis: '30%' }}>
+        <span>{item.name}</span>
+      </div>
+      <div style={{ flexBasis: '60%' }}>
+        <span>{item.description}</span>
+      </div>
+    </div>
+  );
+}
+
+const dataScroll = [
+  {
+    key: 'name',
+    renderer: renderItems,
+    value: defaultValue,
+  },
+];
+
+
 
 class App extends React.Component<{}, State> {
   private baseUrl = `/`;
@@ -424,7 +632,7 @@ class App extends React.Component<{}, State> {
         },
       ],
       rangeSliderValue:[5, 10],
-      isOpen: false,
+      // isOpen: false,
     };
 
     this.popovertoggle = this.popovertoggle.bind(this);
@@ -436,7 +644,7 @@ class App extends React.Component<{}, State> {
     this.closed1 = this.closed1.bind(this);
   }
 
-  handleSwitchCheckboxToggle = (isOpen: boolean) => {
+  handleSwitchCheckboxToggle = (isOpen?: boolean) => {
     this.setState({ isOpen });
     console.log('SwitchCheckbox toggle...');
   }
@@ -915,7 +1123,7 @@ class App extends React.Component<{}, State> {
         name: 'Hiren',
         description:
           'Test description Test description Test description Test description',
-        status: { itemID: 1, itemName: 'New' },
+        entityState: { itemID: 1, itemName: 'New' },
         type: 'admin',
         isRowClickDisable: true,
       },
@@ -951,21 +1159,21 @@ class App extends React.Component<{}, State> {
           ],
         },
         description: 'Test description2',
-        status: { itemID: 2, itemName: 'Deleted' },
+        entityState: { itemID: 7, itemName: 'Deleted' },
         type: 'admin',
       },
       {
         id: 3,
         name: 'Patel',
         description: 'Test description3',
-        status: { itemID: 3, itemName: 'Draft' },
+        entityState: { itemID: 2, itemName: 'Draft' },
         type: 'admin',
       },
       {
         id: 4,
         name: 'Raj',
         description: 'Test description2',
-        status: { itemID: 1, itemName: 'New' },
+        entityState: { itemID: 1, itemName: 'New' },
         type: 'admin',
       },
     ];
@@ -1266,6 +1474,7 @@ class App extends React.Component<{}, State> {
       {
         label: 'Name',
         key: 'name',
+        subKey: 'description',
         className: '',
         sort: true,
         sortBy: 'keyword',
@@ -1283,9 +1492,7 @@ class App extends React.Component<{}, State> {
         sort: true,
         sortBy: 'itemName',
         injectBody: (value: any) => (
-          <Badge status={value.status.itemID === 1 ? 'success' : 'warning'}>
-            {value.status.itemName}
-          </Badge>
+          <EntityState item={value}/>
         ),
         style: { width: '100px' },
       },
@@ -1524,6 +1731,107 @@ class App extends React.Component<{}, State> {
             <Button icon="infoCircle" componentSize="slim"/>,
           ]}
         />
+        <EntityState item={{
+          // processing: 'Publishing',
+          entityState: {
+            itemName: 'New',
+            itemID: 1,
+          },
+          locked: {
+            itemName: 'locked',
+            itemID: 0,
+          }
+        }} />
+        <EntityState item={{
+          entityState: {
+            itemName: 'Draft',
+            itemID: 2,
+          },
+          locked: {
+            itemName: 'locked',
+            itemID: 0,
+          }
+        }} />
+        <EntityState item={{
+          entityState: {
+            itemName: 'Archive',
+            itemID: 3,
+          },
+          locked: {
+            itemName: 'locked',
+            itemID: 0,
+          }
+        }} />
+        <EntityState item={{
+          entityState: {
+            itemName: 'Delete',
+            itemID: 4,
+          },
+          locked: {
+            itemName: 'locked',
+            itemID: 0,
+          }
+        }} />
+        <EntityState item={{
+          entityState: {
+            itemName: 'Published',
+            itemID: 5,
+          },
+          locked: {
+            itemName: 'locked',
+            itemID: 0,
+          }
+        }} />
+        <EntityState item={{
+          entityState: {
+            itemName: 'Archived',
+            itemID: 6,
+          },
+          locked: {
+            itemName: 'locked',
+            itemID: 0,
+          }
+        }} />
+        <EntityState item={{
+          entityState: {
+            itemName: 'Deleted',
+            itemID: 7,
+          },
+          locked: {
+            itemName: 'locked',
+            itemID: 0,
+          }
+        }} />
+        <EntityState item={{
+          processing:'Publishing',
+          entityState: {
+            itemName: 'Publishing',
+            itemID: 8,
+          },
+          locked: {
+            itemName: 'locked',
+            itemID: 1,
+          }
+        }} />
+        <EntityState item={{
+          entityState: {
+            itemName: 'Locked',
+            itemID: 9,
+          },
+          locked: {
+            itemName: 'locked',
+            itemID: 0,
+          }
+        }} />
+        <br/><br/><br/><br/><br/>
+        <TextField
+            type="text"
+            placeholder="Try and write here..."
+            suffix={<Icon source="search" />}
+            onKeyUp={(e: any) => {
+                console.log('=====>>>>', this.state.selectedValue);
+            }}
+          />
         <BodyText componentSize="small">This is Small Body Text</BodyText>
         <BodyText>This is Default Body Text</BodyText>
         <BodyText componentSize="large">This is Large Body Text</BodyText>
@@ -1538,20 +1846,20 @@ class App extends React.Component<{}, State> {
         <BodyText componentColor="reverse">reverse Color of Body text</BodyText>
         <br/>
         <br/>
-        <SwitchCheckbox isOpen={this.state.isOpen} handleToggle={this.handleSwitchCheckboxToggle}>
+        <SwitchCheckbox isOpen={this.state.isOpen} handleToggle={this.handleSwitchCheckboxToggle} switchType="trueFalse">
           SwitchCheckbox
         </SwitchCheckbox>
         <br/>
         <br/>
 
 
-          <SwitchCheckboxIcon isOpen={this.state.isOpen} handleToggle={this.handleSwitchCheckboxToggle}>
-          SwitchCheckboxIcon
-          </SwitchCheckboxIcon>
+          {/* <SwitchCheckboxIcon isOpen={this.state.isOpen} handleToggle={this.handleSwitchCheckboxToggle}>
+            SwitchCheckboxIcon Normal
+          </SwitchCheckboxIcon> */}
 
         <br/>
         <br/>
-        <br/>
+        
           <NoData iconSource="search" label="No Data found"></NoData>
         <br/>
         <br/>
@@ -3113,6 +3421,7 @@ class App extends React.Component<{}, State> {
             currentValue="item1"
             suffix="user"
             loading={false}
+            helpText={'Test Helper'}
             onSelect={(value: any) => console.log(value)}
             onChangeText={(value: any) => console.log(value)}
             sortEntity={(field, order, sortBy)=> this.handleSortComboBox(field, order, sortBy)}
@@ -3859,6 +4168,7 @@ class App extends React.Component<{}, State> {
             loading={false}
             onSelect={(value: any) => console.log(value)}
             onChangeText={(value: any) => console.log(value)}
+            onKeyUp={(value: any) => console.log(value)}
           />
         </div>
         <br />
@@ -3873,6 +4183,19 @@ class App extends React.Component<{}, State> {
             onSelect={(value: any) => console.log(value)}
             onChangeText={(value: any) => console.log(value)}
             sortEntity={(field, order, sortBy)=> this.handleSortComboBox(field, order, sortBy)}
+          />
+        </div>
+        <div>ComboBox with onScroll Event</div>
+        <div style={{ width: '50%' }}>
+          <ComboBox
+            items={this.getComboBoxItemsWithOnScroll()}
+            label="Select"
+            currentValue="item1"
+            suffix="user"
+            loading={false}
+            handleScroll={() => this.handleScroll()}
+            onSelect={(value: any) => console.log(value)}
+            onChangeText={(value: any) => console.log(value)}
           />
         </div>
         <div>Multiple checkbox Facets</div>
@@ -4112,7 +4435,21 @@ class App extends React.Component<{}, State> {
 
     return data;
   }
+  
+  handleScroll = () => {
+    console.log('call api..!!');
+    // let data = dataScroll;
 
+    console.log(dataScroll[0].value);
+    dataScroll[0].value = dataScroll[0].value.concat(defaultValue) as any;
+
+  }
+
+  getComboBoxItemsWithOnScroll() {
+    console.log('getComboBoxItemsWithOnScroll', dataScroll);
+    
+    return dataScroll;
+  }
   getPopoverPickerItems = () => {
     const pickerdata1 = [{ "id": 1532945, "name": "Bright", "text": "Bright", "key": 1532945, "description": "" }, { "id": 1532948, "name": "Blue", "text": "Blue", "key": 1532948, "description": "" }, { "id": 1531924, "name": "Green", "text": "Green", "key": 1531924, "description": "" }, { "id": 1528852, "name": "Red", "text": "Red", "key": 1528852, "description": "" }, { "id": 1529876, "name": "White", "text": "White", "key": 1529876, "description": "" }, { "id": 1527828, "name": "Yellow", "text": "Yellow", "key": 1527828, "description": "" }]
     // const { comboBoxItems } = this.state;

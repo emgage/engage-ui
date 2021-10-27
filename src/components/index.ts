@@ -440,3 +440,8 @@ export {
   default as NoData,
   Props as NoDataProps,
 } from './NoData';
+
+export {
+  default as EntityState,
+  Props as EntityStateProps,
+} from './EntityState';
