@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 import { ColumnConfig, FilterConfig, NestedChild, SortState, ServerSort } from './interface';
 export declare type RowSelection = 'checkbox' | 'radio';
@@ -48,6 +49,7 @@ export interface Props {
     theme?: any;
     disableAllRow?: boolean;
     isRowDisabled?(item: any): boolean;
+    CustomRenderRow?: React.ElementType;
     isSearching?: boolean;
     noDataLabel?: string;
     noDataInSearchLabel?: string;
