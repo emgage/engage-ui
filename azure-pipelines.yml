@@ -76,6 +76,7 @@ steps:
       VERSION=$(npm view engage-ui@latest version)
       VERSION_1=(npm view engage-ui@develop version)
       [ $VERSION_1 > $VERSION ] && VERSION=$VERSION_1 || :
+      echo $VERSION
       if [ "$(Build.SourceBranchName)" == "master" ]
       then
           # Sometimes version in pacjage.json doesn't get updated hencemaking sure it is updated manually.
