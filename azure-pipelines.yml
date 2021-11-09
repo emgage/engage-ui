@@ -75,7 +75,7 @@ steps:
       git update-index --assume-unchanged .npmrc
       VERSION=$(npm view engage-ui@latest version)
       VERSION_1=$(npm view engage-ui@develop version)
-      if [ $VERSION_1 > $VERSION ]
+      if (( $(echo "$VERSION_1 $VERSION" | awk '{print ($1 > $2)}') ))
       then
         VERSION=$VERSION_1
       fi
