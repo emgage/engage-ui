@@ -74,7 +74,7 @@ steps:
       lib_path='engage-ui@develop/lib'
       git update-index --assume-unchanged .npmrc
       VERSION=$(npm view engage-ui@latest version)
-      VERSION_1=(npm view engage-ui@develop version)
+      VERSION_1=$(npm view engage-ui@develop version)
       if [ $VERSION_1 > $VERSION ]
       then
         VERSION=$VERSION_1
