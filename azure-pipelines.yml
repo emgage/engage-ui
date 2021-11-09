@@ -71,7 +71,7 @@ steps:
   inputs:
     script: |
       #!/bin/bash
-      lib_path='engage-ui@next/lib'
+      lib_path='engage-ui@develop/lib'
       git update-index --assume-unchanged .npmrc
       if [ "$(Build.SourceBranchName)" == "master" ]
       then
@@ -86,9 +86,9 @@ steps:
           VERSION=$(npm view engage-ui@next version)
           sed -i "s/\"version\": \".*\",/\"version\": \"$VERSION\",/g" package.json
           git update-index --assume-unchanged package.json
-          echo "publishing next version"
+          echo "publishing develop version"
           npm version --no-git-tag-version prerelease
-          npm publish --tag next
+          npm publish --tag develop
       fi
       git add .
       git commit -m "chore: Release" --no-verify
