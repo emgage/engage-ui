@@ -73,17 +73,18 @@ steps:
       #!/bin/bash
       lib_path='engage-ui@develop/lib'
       git update-index --assume-unchanged .npmrc
+      VERSION=$(npm view engage-ui@latest version)
+      VERSION_1=(npm view engage-ui@develop version)
+      [ $VERSION_1 > $VERSION ] && VERSION=$VERSION_1 || :
       if [ "$(Build.SourceBranchName)" == "master" ]
       then
           # Sometimes version in pacjage.json doesn't get updated hencemaking sure it is updated manually.
-          VERSION=$(npm view engage-ui@latest version)
           sed -i "s/\"version\": \".*\",/\"version\": \"$VERSION\",/g" package.json
           git update-index --assume-unchanged package.json
           npm version --no-git-tag-version minor
           npm publish --tag latest
           lib_path='engage-ui@latest/lib'
       else
-          VERSION=$(npm view engage-ui@next version)
           sed -i "s/\"version\": \".*\",/\"version\": \"$VERSION\",/g" package.json
           git update-index --assume-unchanged package.json
           echo "publishing develop version"
