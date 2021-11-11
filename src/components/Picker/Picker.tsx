@@ -124,9 +124,12 @@ const DefaultCard = (props: any) => {
       <div className={cardBackground}>
       <FlexBox align="Center">
         {
-          props.image ?
-            <span><img className={baseTheme.avatarImage} src={props.image} alt={props.alt} aria-hidden={!props.nameAfter || !props.nameBefore} /></span>
-            : null
+          props.image ? (typeof props.image === 'object' ?
+            <span className={baseTheme.firstIcon}>
+              <Icon source={props.image} theme={baseTheme} />
+            </span>
+            : <span><img className={baseTheme.avatarImage} src={props.image} alt={props.alt} aria-hidden={!props.nameAfter || !props.nameBefore} /></span>
+          ) : null
         }
         <span className={baseTheme.nameStyle}>
           <span>{props.nameBefore}</span>
