@@ -5,7 +5,7 @@
 
 trigger:
 - master
-- release/r1-release
+- releases/r1-release
 - demo/develop
 - develop
 variables:
@@ -32,7 +32,7 @@ steps:
     else
         echo "true"
     fi
-  condition: not(or(eq(variables['Build.SourceBranch'], 'refs/heads/master'), eq(variables['Build.SourceBranch'], 'refs/heads/develop'), startsWith(variables['Build.SourceBranch'], 'refs/heads/hotfix'),eq(variables['System.PullRequest.TargetBranch'], 'master')))
+  condition: not(or(eq(variables['Build.SourceBranch'], 'refs/heads/master'), eq(variables['Build.SourceBranch'], 'refs/heads/releases/r1-release'), eq(variables['Build.SourceBranch'], 'refs/heads/demo/develop'), eq(variables['Build.SourceBranch'], 'refs/heads/develop'), startsWith(variables['Build.SourceBranch'], 'refs/heads/hotfix'), eq(variables['System.PullRequest.TargetBranch'], 'master'), eq(variables['System.PullRequest.TargetBranch'], 'releases/r1-release'), eq(variables['System.PullRequest.TargetBranch'], 'demo/develop')))
   displayName: "Check if Branch is in Sync"
 
 - task: NodeTool@0
@@ -98,7 +98,7 @@ steps:
         npm publish --tag demo
         lib_path='engage-ui@demo/lib'
         ;;
-      case "release/r1-release")
+      case "releases/r1-release")
         npm version --no-git-tag-version minor
         npm publish --tag release
         lib_path='engage-ui@release/lib'
@@ -115,7 +115,7 @@ steps:
       git push
       echo "##vso[task.setvariable variable=engageui]$lib_path"
   displayName: 'Tag and Publish'
-  condition: and(not(startsWith(variables['Build.SourceVersionMessage'], 'chore')), or(eq(variables['Build.SourceBranch'], 'refs/heads/master'), eq(variables['Build.SourceBranch'], 'refs/heads/develop'), eq(variables['Build.SourceBranch'], 'refs/heads/demo/develop'), eq(variables['Build.SourceBranch'], 'refs/heads/release/r1-release')))
+  condition: and(not(startsWith(variables['Build.SourceVersionMessage'], 'chore')), or(eq(variables['Build.SourceBranch'], 'refs/heads/master'), eq(variables['Build.SourceBranch'], 'refs/heads/develop'), eq(variables['Build.SourceBranch'], 'refs/heads/demo/develop'), eq(variables['Build.SourceBranch'], 'refs/heads/releases/r1-release')))
 
 - task: S3Upload@1
   inputs:
