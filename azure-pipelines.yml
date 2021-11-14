@@ -73,34 +73,47 @@ steps:
       #!/bin/bash
       lib_path='engage-ui@develop/lib'
       git update-index --assume-unchanged .npmrc
-      VERSION=$(npm view engage-ui@latest version)
-      VERSION_1=$(npm view engage-ui@develop version)
-      if (( $(echo "$VERSION_1 $VERSION" | awk '{print ($1 > $2)}') ))
-      then
-        VERSION=$VERSION_1
-      fi
-      echo $VERSION
-      if [ "$(Build.SourceBranchName)" == "master" ]
-      then
-          # Sometimes version in pacjage.json doesn't get updated hencemaking sure it is updated manually.
-          sed -i "s/\"version\": \".*\",/\"version\": \"$VERSION\",/g" package.json
-          git update-index --assume-unchanged package.json
-          npm version --no-git-tag-version minor
-          npm publish --tag latest
-          lib_path='engage-ui@latest/lib'
-      else
-          sed -i "s/\"version\": \".*\",/\"version\": \"$VERSION\",/g" package.json
-          git update-index --assume-unchanged package.json
-          echo "publishing develop version"
-          npm version --no-git-tag-version prerelease
-          npm publish --tag develop
-      fi
+      VERSION_1=$(npm view engage-ui@latest version)
+      VERSION_2=$(npm view engage-ui@develop version)
+      VERSION_3=$(npm view engage-ui@demo version)
+      VERSION_4=$(npm view engage-ui@release version)
+      
+      NEWEST_VERSION=$(printf '%s\n' "$VERSION" "$VERSION_1" "$VERSION_2" "$VERSION_3" | sort -rV | head -n1)
+      echo "$NEWEST_VERSION"
+      # Sometimes version in package.json doesn't get updated hence making sure it is updated manually.
+      sed -i "s/\"version\": \".*\",/\"version\": \"$NEWEST_VERSION",/g" package.json
+      git update-index --assume-unchanged package.json
+      BRANCH_NAME="$(echo $(Build.SourceBranch)|sed 's#refs/heads/##g')"
+      # Tag master a major release, release and demo as minor releases and rest as prerelease.
+      switch "BRANCH_NAME") in
+      case "master")
+        npm version --no-git-tag-version major
+        npm publish --tag latest
+        lib_path='engage-ui@latest/lib'
+        ;;
+      case "demo/develop")
+        npm version --no-git-tag-version minor
+        npm publish --tag demo
+        lib_path='engage-ui@demo/lib'
+        ;;
+      case "release/r1-release")
+        npm version --no-git-tag-version minor
+        npm publish --tag release
+        lib_path='engage-ui@release/lib'
+        ;;
+      *)
+        npm version --no-git-tag-version pre-release
+        npm publish --tag develop
+        lib_path='engage-ui@develop/lib'
+        ;;
+      esac
+      echo "publishing to $lib_path"
       git add .
       git commit -m "chore: Release" --no-verify
       git push
       echo "##vso[task.setvariable variable=engageui]$lib_path"
   displayName: 'Tag and Publish'
-  condition: and(not(startsWith(variables['Build.SourceVersionMessage'], 'chore')), or(eq(variables['Build.SourceBranch'], 'refs/heads/master'), eq(variables['Build.SourceBranch'], 'refs/heads/develop')))
+  condition: and(not(startsWith(variables['Build.SourceVersionMessage'], 'chore')), or(eq(variables['Build.SourceBranch'], 'refs/heads/master'), eq(variables['Build.SourceBranch'], 'refs/heads/develop'), eq(variables['Build.SourceBranch'], 'refs/heads/demo/develop'), eq(variables['Build.SourceBranch'], 'refs/heads/release/r1-release')))
 
 - task: S3Upload@1
   inputs:
