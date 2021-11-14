@@ -5,6 +5,8 @@
 
 trigger:
 - master
+- release/r1-release
+- demo/develop
 - develop
 variables:
 - group: 'Platform Release Variables'
