@@ -104,7 +104,7 @@ steps:
         lib_path='engage-ui@release/lib'
         ;;
       *)
-        npm version --no-git-tag-version pre-release
+        npm version --no-git-tag-version prerelease
         npm publish --tag develop
         lib_path='engage-ui@develop/lib'
         ;;
