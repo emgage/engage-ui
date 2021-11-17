@@ -1,4 +1,5 @@
 export const DeliciousThemeContext = {
+  PBanner: require('./Banner.scss'),
   PButton: require('./Button.scss'),
   PButtonGroup: require('./ButtonGroup.scss'),
   PConnected: require('./Connected.scss'),
@@ -8,12 +9,11 @@ export const DeliciousThemeContext = {
   PLabelled: require('./Labelled.scss'),
   PMessage: require('./Message.scss'),
   PModal: require('./Modal.scss'),
-  PSelect: require('./Select.scss'),
-  PSpinner: require('./Spinner.scss'),
-  PTextField: require('./TextField.scss'),
+  PPagination: require('./Pagination.scss'),
   PPicker: require('./Picker.scss'),
   PPopoverPicker: require('./PopoverPicker.scss'),
-  PPagination: require('./Pagination.scss'),
-  PBanner: require('./Banner.scss'),
+  PSelect: require('./Select.scss'),
   PSideNavigation: require('./SideNavigation.scss'),
+  PSpinner: require('./Spinner.scss'),
+  PTextField: require('./TextField.scss')
 };
