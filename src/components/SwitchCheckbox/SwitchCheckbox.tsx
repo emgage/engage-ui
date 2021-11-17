@@ -74,7 +74,7 @@ const SwitchCheckbox = (props: Props) => {
     <div className={theme.outerWrap}>
 
       <label htmlFor={names.falseRadio} className={theme.falseRadio}>
-        <VisuallyHidden>{switchType === 'trueFalse' ? 'False switch' : 'No switch' }</VisuallyHidden>
+        <VisuallyHidden>{switchType === 'trueFalse' ? 'False' : 'No' }</VisuallyHidden>
 
         <input
           type="radio"
@@ -91,7 +91,7 @@ const SwitchCheckbox = (props: Props) => {
       </label>
 
       <label htmlFor={names.nullRadio} className={theme.nullRadio}>
-      <VisuallyHidden>Null switch</VisuallyHidden>
+      <VisuallyHidden>Null</VisuallyHidden>
         <input
           type="radio"
           id={names.nullRadio}
@@ -104,7 +104,7 @@ const SwitchCheckbox = (props: Props) => {
       </label>
 
       <label htmlFor={names.trueRadio} className={theme.trueRadio}>
-      <VisuallyHidden>{switchType === 'trueFalse' ? 'True switch' : 'Yes switch' }</VisuallyHidden>
+      <VisuallyHidden>{switchType === 'trueFalse' ? 'True' : 'Yes' }</VisuallyHidden>
         <input
           type="radio"
           id={names.trueRadio}
