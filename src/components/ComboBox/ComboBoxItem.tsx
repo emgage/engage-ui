@@ -9,6 +9,7 @@ import { COMBOBOX } from '../ThemeIdentifiers';
 import * as baseTheme from './ComboBox.scss';
 import Icon from '../Icon';
 import { Table } from '../Table';
+import { classNames } from '@shopify/react-utilities/styles';
 
 export interface ComboItemProps {
   type?: ItemType;
@@ -28,6 +29,7 @@ export interface Props {
   serverSort?: any;
   clickHandler?(value: string | null | boolean, key?: string): void;
   theme?: any;
+  activeIndex: number;
 }
 
 class ComboBoxItem extends React.PureComponent<Props, never> {
@@ -156,7 +158,7 @@ class ComboBoxItem extends React.PureComponent<Props, never> {
   }
 
   private getItem = (value: any, key: string | undefined, renderer: any) => {
-    const { theme } = this.props;
+    const { theme, activeIndex } = this.props;
     if (value.length === 0) {
       return (
         <div>
@@ -166,14 +168,14 @@ class ComboBoxItem extends React.PureComponent<Props, never> {
     }
     return value.map((val: any, index: number) => {
       const data = key ? val[key] : val;
-
+      const classes = classNames(theme.comboboxItem, activeIndex === index && theme.active);
       return (
         <div
           key={index + data}
           data-value={JSON.stringify(val)}
           data-key={key ? key : false}
           data-object={JSON.stringify(val)}
-          className={theme.comboboxItem}>
+          className={classes}>
           {renderer ? renderer(val) : data}
         </div>
       );

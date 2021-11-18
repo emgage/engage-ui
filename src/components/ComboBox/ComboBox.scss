@@ -49,3 +49,7 @@ $stacking-order: (
     top: 14px;
    z-index: z-index(backdrop, $stacking-order);
 }
+
+.active {
+    color: red;
+}
