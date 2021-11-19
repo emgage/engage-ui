@@ -40,7 +40,7 @@ export interface Props {
   readOnly?: boolean;
   helpText?: string;
   errors?: [string];
-  onKeyUp?(value: string): void;
+  onKeyUp?(value: string, e?: any): void;
   handleScroll?(): void;
   // Visually hide the border.
   backdropHidden?: boolean;
@@ -212,7 +212,7 @@ class ComboBox extends React.PureComponent<Props, State> {
     // if (event.keyCode !== 18 || event.keyCode !== 91) {
     if (![this.UP, this.DOWN, this.ENTER].includes(keyCode)) {
       if (this.props.onKeyUp) {
-        this.props.onKeyUp(this.state.selectedValue);
+        this.props.onKeyUp(this.state.selectedValue, event);
       }
     }
   }
