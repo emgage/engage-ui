@@ -29,7 +29,7 @@ export interface Props {
     readOnly?: boolean;
     helpText?: string;
     errors?: [string];
-    onKeyUp?(value: string): void;
+    onKeyUp?(value: string, e?: any): void;
     handleScroll?(): void;
     backdropHidden?: boolean;
 }
