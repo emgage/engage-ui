@@ -42,11 +42,15 @@ interface State {
     popoverWidth: string;
     serverSort: ServerSort;
     maxHeight: number;
+    activeIndex: number;
 }
 declare class ComboBox extends React.PureComponent<Props, State> {
     private getUniqueID;
     private id;
     private wrapperRef;
+    UP: number;
+    DOWN: number;
+    ENTER: number;
     constructor(props: Props);
     sortEntity: (field: string, order: string, sortBy: string) => void;
     componentDidMount(): void;
@@ -55,6 +59,8 @@ declare class ComboBox extends React.PureComponent<Props, State> {
     handleClickOutside: (event: any) => void;
     setWrapperRef: (node: any) => void;
     addRenderer: (items: any, cloneItems: any) => any;
+    getKey: (e: any) => any;
+    onKeyDown: (event: any) => void;
     onKeyUp: (event: any) => void;
     onChange: (value: string, event: React.FormEvent<HTMLElement>) => void;
     onArrowClick: (event: React.FormEvent<HTMLElement>) => void;
