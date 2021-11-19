@@ -208,7 +208,9 @@ class ComboBox extends React.PureComponent<Props, State> {
   }
 
   onKeyUp = (event: any) => {
-    if (event.keyCode !== 18 || event.keyCode !== 91) {
+    const keyCode = this.getKey(event);
+    // if (event.keyCode !== 18 || event.keyCode !== 91) {
+    if (![this.UP, this.DOWN, this.ENTER].includes(keyCode)) {
       if (this.props.onKeyUp) {
         this.props.onKeyUp(this.state.selectedValue);
       }
