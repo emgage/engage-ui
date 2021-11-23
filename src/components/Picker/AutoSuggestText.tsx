@@ -27,6 +27,18 @@ export interface Props {
 }
 
 class AutoSuggestText extends React.PureComponent<Props, {}> {
+
+  getFilteredSuggestions = (list= this.props?.stateProps?.suggestions || [], selectedList=this.props?.stateProps?.chipListState || []) => {
+    const newSuggestions = list.filter((it: any) => {
+      let isValid = false;
+      selectedList.forEach((cls: any) => {
+        isValid = isValid || it.key === cls.key;
+      });
+      return !isValid;
+    });
+    return newSuggestions;
+  }
+
   render() {
     const { theme, stateProps }: any = this.props;
 
@@ -34,6 +46,8 @@ class AutoSuggestText extends React.PureComponent<Props, {}> {
       theme.containerWrapper,
       this.props.stateProps ? this.props.stateProps.chipListState.length ? null : theme.empty : null
     );
+    const isActive = this.props?.autoSuggestMethods?.getInputReference() === document.activeElement;
+    const shouldRenderSuggestions = this.props?.autoSuggestMethods?.shouldRenderSuggestions || (() => { return false; }) as any;
 
     return (
       <div className={className}>
@@ -65,15 +79,16 @@ class AutoSuggestText extends React.PureComponent<Props, {}> {
               renderSectionTitle={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.renderSectionTitle : (() => { }) as any}
               getSectionSuggestions={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.getSectionSuggestions : (() => { }) as any}
               onSuggestionSelected={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.onSuggestionSelected : () => {} }
-              suggestions={this.props.stateProps ? this.props.stateProps.suggestions : []}
+              suggestions={this.getFilteredSuggestions()}
               onSuggestionsFetchRequested={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.onSuggestionsFetchRequested : () => {}}
               onSuggestionsClearRequested={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.onSuggestionsClearRequested : (() => {}) as any}
               getSuggestionValue={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.getSuggestionValue : (() => {}) as any}
               // shouldRenderSuggestions use for open list on Focus Event
-              shouldRenderSuggestions={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.shouldRenderSuggestions : (() => { }) as any}
+              shouldRenderSuggestions={shouldRenderSuggestions}
               renderSuggestion={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.renderSuggestion : (() => {}) as any}
               inputProps={this.props.stateProps ? this.props.stateProps.inputProps : null}
-              renderSuggestionsContainer={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.renderSuggestionsContainer : (() => {}) as any}
+              renderSuggestionsContainer={this.props?.autoSuggestMethods?.renderSuggestionsContainer || (() => {}) as any}
+              shouldKeepSuggestionsOnSelect={isActive ? shouldRenderSuggestions : () => { }}
             />
             :
             <Autosuggest
@@ -89,7 +104,7 @@ class AutoSuggestText extends React.PureComponent<Props, {}> {
               renderSectionTitle={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.renderSectionTitle : (() => { }) as any}
               getSectionSuggestions={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.getSectionSuggestions : (() => { }) as any}
               onSuggestionSelected={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.onSuggestionSelected : () => {} }
-              suggestions={this.props.stateProps ? this.props.stateProps.suggestions : []}
+              suggestions={this.getFilteredSuggestions()}
               onSuggestionsFetchRequested={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.onSuggestionsFetchRequested : () => {}}
               onSuggestionsClearRequested={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.onSuggestionsClearRequested : (() => {}) as any}
               getSuggestionValue={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.getSuggestionValue : (() => {}) as any}
