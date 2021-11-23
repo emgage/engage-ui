@@ -32,7 +32,7 @@ class AutoSuggestText extends React.PureComponent<Props, {}> {
     const newSuggestions = list.filter((it: any) => {
       let isValid = false;
       selectedList.forEach((cls: any) => {
-        isValid = isValid || it.key === cls.key;
+        isValid = isValid || it === cls;
       });
       return !isValid;
     });
