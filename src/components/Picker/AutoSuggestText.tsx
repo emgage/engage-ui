@@ -87,7 +87,7 @@ class AutoSuggestText extends React.PureComponent<Props, {}> {
               shouldRenderSuggestions={shouldRenderSuggestions}
               renderSuggestion={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.renderSuggestion : (() => {}) as any}
               inputProps={this.props.stateProps ? this.props.stateProps.inputProps : null}
-              renderSuggestionsContainer={this.props?.autoSuggestMethods?.renderSuggestionsContainer || (() => {}) as any}
+              renderSuggestionsContainer={this.props?.autoSuggestMethods.renderSuggestionsContainer || (() => {}) as any}
               shouldKeepSuggestionsOnSelect={isActive ? shouldRenderSuggestions : () => { }}
             />
             :

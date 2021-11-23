@@ -11,7 +11,7 @@ import FlexBox from '../FlexBox';
 import { cloneDeep, get } from 'lodash';
 import BodyText from '../BodyText';
 
-// let resultsBehaviorOpen: boolean = false;
+let resultsBehaviorOpen: boolean = false;
 
 export interface IStateProps {
   chipListState: IItemList[];
@@ -455,7 +455,7 @@ class Picker extends React.PureComponent<Props, State> {
         backdropHidden= false,
         disabled = false,
         readOnly = false,
-        // moreInfoComponent,
+        moreInfoComponent,
         componentId = '',
         theme,
         shouldRenderSuggestions,
@@ -497,11 +497,11 @@ class Picker extends React.PureComponent<Props, State> {
       };
     }
 
-    // resultsBehaviorOpen = suggestions.length !== 0;
+    resultsBehaviorOpen = suggestions.length !== 0;
 
-    // if (moreInfoComponent && resultsBehaviorOpen) {
+    if (moreInfoComponent && resultsBehaviorOpen) {
       autoSuggestMethods.renderSuggestionsContainer = this.renderSuggestionsContainer;
-    // }
+    }
 
     let suggestionList = get(stateProps, 'suggestions', []);
     if (columns.length !== 0) {
