@@ -28,7 +28,7 @@ export interface Props {
 
 class AutoSuggestText extends React.PureComponent<Props, {}> {
 
-  getFilteredSuggestions = (list= this.props?.stateProps?.suggestions || [], selectedList=this.props?.stateProps?.chipListState || []) => {
+  getFilteredSuggestions = (list= this.props?.stateProps?.suggestions || [], selectedList= this.props?.stateProps?.chipListState || []) => {
     const newSuggestions = list.filter((it: any) => {
       let isValid = false;
       selectedList.forEach((cls: any) => {

@@ -247,7 +247,7 @@ class Picker extends React.PureComponent<Props, State> {
     }
   }
 
-  getFilteredSuggestions = (list= this.state.itemsList, selectedList=this.state.chipListState, valString?:any) => {
+  getFilteredSuggestions = (list= this.state.itemsList, selectedList= this.state.chipListState, valString?:any) => {
     const newSuggestions = list.filter((it: any) => {
       let isValid = false;
       selectedList.forEach((cls: any) => {

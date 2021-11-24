@@ -115,7 +115,7 @@ const banner = ({
       return (
         <div key={`option_${index}`} className={baseTheme.bannerBox}>
           <Icon source = {item.icon as keyof typeof IconList} componentColor = {item.componentColor ? item.componentColor as IconColor : undefined} />
-          <BodyText element="p" componentClass={baseTheme.bannerContent}>
+          <BodyText element="span" componentClass={baseTheme.bannerContent}>
             {item.text}
           </BodyText>
         </div>
