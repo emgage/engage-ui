@@ -60,7 +60,10 @@ function multiCheckboxFacet({
 }: IProps) {
   return (
     <Card>
-      <Heading componentClass="facets-title" element="h4" componentStyle={{ paddingLeft: '1.25rem', paddingTop: '1.25rem' }}>{label}</Heading>
+      {label ?
+        <Heading componentClass="facets-title" element="h4" componentStyle={{ paddingLeft: '1.25rem', paddingTop: '1.25rem' }}>{label}</Heading>
+        : <></>
+      }
       <CardBody>
       {showSearch && (
         <div className="facet-search"  style={{ marginBottom: 12 }}>
@@ -94,9 +97,11 @@ function multiCheckboxFacet({
                   }
                 />
               </div>
-              <div style={{ display: 'flex', alignItems: 'center' }} className="facet-option-count">
-                <BodyText element="span" componentColor="mid">{option.count && option.count.toLocaleString('en')}</BodyText>
-              </div>
+              {option.count &&
+                <div style={{ display: 'flex', alignItems: 'center' }} className="facet-option-count">
+                  <BodyText element="span" componentColor="mid">{option.count && option.count.toLocaleString('en')}</BodyText>
+                </div>
+              }
             </div>
           );
         })}
