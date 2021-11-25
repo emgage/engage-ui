@@ -44,11 +44,11 @@ export {
   Props as ToggleButtonGroupProps,
 } from './ToggleButtonGroup';
 
-export {
-  default as Calendar,
-  Props as CalendarProps,
-  CalendarEvent
-} from './Calendar';
+// export {
+//   default as Calendar,
+//   Props as CalendarProps,
+//   CalendarEvent
+// } from './Calendar';
 
 export {
   Card,
@@ -445,3 +445,8 @@ export {
   default as EntityState,
   Props as EntityStateProps,
 } from './EntityState';
+
+export {
+  default as Segment,
+  Props as SegmentProps,
+} from './Segment';

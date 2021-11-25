@@ -1,0 +1,29 @@
+.SegmentWrap {
+  border: 1px solid #bdbdbd;
+  padding: 4px;
+  border-radius: 8px;
+  background: #f2f2f2;
+  .SegmentButton {
+    border: 1px solid transparent;
+    background: transparent;
+    width: 100%;
+    height: auto;
+    padding: 0px;
+    &.active {
+      fill: #212121;
+      color: #212121;
+    }
+    .segmentLabel {
+      color: #212121;
+    }
+    .segmentSubText {
+      color: #212121;
+      opacity: 0.8;
+    }
+    .labelIconWrap {
+      .labelIcon {
+        margin-right: 9px;
+      }
+    }
+  }
+}
