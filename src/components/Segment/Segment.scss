@@ -1,7 +1,7 @@
 .SegmentWrap {
   border: 1px solid #bdbdbd;
-  padding: 4px;
-  border-radius: 8px;
+  padding: .4rem;
+  border-radius: .8rem;
   background: #f2f2f2;
   .SegmentButton {
     border: 1px solid transparent;
@@ -10,19 +10,19 @@
     height: auto;
     padding: 0px;
     &.active {
-      fill: #212121;
-      color: #212121;
+      fill: color(text, text);
+      color: color(text, text);
     }
     .segmentLabel {
-      color: #212121;
+      color: color(text, text);
     }
     .segmentSubText {
-      color: #212121;
+      color: color(text, text);
       opacity: 0.8;
     }
     .labelIconWrap {
       .labelIcon {
-        margin-right: 9px;
+        margin-right: .9rem;
       }
     }
   }
