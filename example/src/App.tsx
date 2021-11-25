@@ -2,7 +2,7 @@ import * as React from 'react';
 import PickerAutoSuggestExample from './PickerAutoSuggestExample';
 import { ISourceData } from '../../src/components/BreadCrumb/BreadCrumb';
 import { INavigationData } from '../../src/components/SideNavigation/SideNavigation';
-
+import SegmentExample from './../../docs/src/examples/SegmentExample/SegmentExample';
 import {
   Alert,
   AppBar,
@@ -912,6 +912,7 @@ class App extends React.Component<{}, State> {
   }
 
   render() {
+    
     const Accordionitems: AccordionItemProps[] = [
       {
         children: <Banner componentTitle={'banner'} status={'success'} />,
@@ -1823,7 +1824,12 @@ class App extends React.Component<{}, State> {
             itemID: 0,
           }
         }} />
-        <br/><br/><br/><br/><br/>
+        
+        <br /><br /><br /><br /><br />
+        
+        <SegmentExample />
+        
+        <br /><br /><br /><br /><br />
         <TextField
             type="text"
             placeholder="Try and write here..."
