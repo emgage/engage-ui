@@ -60,7 +60,7 @@ declare class ComboBox extends React.PureComponent<Props, State> {
     setWrapperRef: (node: any) => void;
     addRenderer: (items: any, cloneItems: any) => any;
     getKey: (e: any) => any;
-    onKeyDown: (event: any) => void;
+    handleUpDownEvent: (event: any) => void;
     onKeyUp: (event: any) => void;
     onChange: (value: string, event: React.FormEvent<HTMLElement>) => void;
     onArrowClick: (event: React.FormEvent<HTMLElement>) => void;
