@@ -52,4 +52,10 @@ $stacking-order: (
 
 .active {
     background-color: color(sky, light);
+    animation: mymove 2s;
 }
+
+@keyframes myMove {
+    from {opacity: 0px;}
+    to {opacity: 1;}
+  }
