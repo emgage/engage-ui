@@ -102,6 +102,7 @@ class ComboBox extends React.PureComponent<Props, State> {
 
   componentDidMount() {
     const { items } = this.props;
+    this.wrapperRef && this.wrapperRef.addEventListener('keydown', this.handleUpDownEvent);
     if (items && items[0]) {
       const { type = '' } = items && items[0];
       if (type !== 'Tabular') {
@@ -118,6 +119,7 @@ class ComboBox extends React.PureComponent<Props, State> {
         document.removeEventListener('click', this.handleClickOutside);
       }
     }
+    this.wrapperRef && this.wrapperRef.removeEventListener('keydown', this.handleUpDownEvent);
   }
 
   componentWillReceiveProps(nextProps: any) {
@@ -173,7 +175,7 @@ class ComboBox extends React.PureComponent<Props, State> {
     }
   }
 
-  onKeyDown = (event: any) => {
+  handleUpDownEvent = (event: any) => {
     const keyCode = this.getKey(event);
     const { theme } = this.props;
     let { activeIndex } = this.state;
@@ -204,6 +206,7 @@ class ComboBox extends React.PureComponent<Props, State> {
           });
         },         200);
       });
+      event.preventDefault();
     }
   }
 
@@ -354,7 +357,6 @@ class ComboBox extends React.PureComponent<Props, State> {
             readOnly={readOnly}
             helpText={helpText}
             onKeyUp={this.onKeyUp}
-            onKeyDown={this.onKeyDown}
             backdropHidden={backdropHidden}
           />
 
