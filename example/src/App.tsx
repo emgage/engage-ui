@@ -3,6 +3,7 @@ import PickerAutoSuggestExample from './PickerAutoSuggestExample';
 import { ISourceData } from '../../src/components/BreadCrumb/BreadCrumb';
 import { INavigationData } from '../../src/components/SideNavigation/SideNavigation';
 import SegmentExample from './../../docs/src/examples/SegmentExample/SegmentExample';
+import IconListExample from './../../docs/src/examples/IconListExample/IconListExample';
 import {
   Alert,
   AppBar,
@@ -1732,6 +1733,18 @@ class App extends React.Component<{}, State> {
             <Button icon="infoCircle" componentSize="slim"/>,
           ]}
         />
+        <Accordion
+          items={[
+            {
+              header: <>SegmentExample</>,
+              children: <SegmentExample />
+            },
+            {
+              header: <>IconListExample</>,
+              children: <IconListExample />
+            },
+          ]}
+        />
         <EntityState item={{
           // processing: 'Publishing',
           entityState: {
@@ -1824,12 +1837,6 @@ class App extends React.Component<{}, State> {
             itemID: 0,
           }
         }} />
-        
-        <br /><br /><br /><br /><br />
-        
-        <SegmentExample />
-        
-        <br /><br /><br /><br /><br />
         <TextField
             type="text"
             placeholder="Try and write here..."
