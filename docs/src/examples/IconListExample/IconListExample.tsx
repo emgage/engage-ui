@@ -10,7 +10,7 @@ const IconListExample = () => {
       <Stack spacing="extraLoose">
         {Object.keys(IconList).map((iconName: any) => {
           return (
-            <div>
+            <div key={iconName}>
               <Tooltip content={iconName}><Icon source={iconName} /></Tooltip>
             </div>
           );
