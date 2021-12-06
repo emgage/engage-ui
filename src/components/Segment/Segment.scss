@@ -12,6 +12,14 @@
     &.active {
       fill: color(text, text);
       color: color(text, text);
+      background: color(white);
+      border-color: #bdbdbd;
+    }
+    &:hover,
+    &:focus {
+      border-color: #bdbdbd;
+      fill: color(text, text);
+      color: color(text, text);
     }
     .segmentLabel {
       color: color(text, text);
