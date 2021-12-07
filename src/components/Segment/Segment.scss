@@ -9,6 +9,10 @@
     width: 100%;
     height: auto;
     padding: 0px;
+    margin-right: .4rem;
+    &:last-child {
+      margin-right:0px;
+    }
     &.active {
       fill: color(text, text);
       color: color(text, text);
