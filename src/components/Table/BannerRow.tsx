@@ -36,9 +36,12 @@ class BannerRow extends React.PureComponent<Props, State> {
 
   onChangeHandler = (selectedValue: any) => {
     const selectedValId = selectedValue.value;
-    const selectedValLabel = selectedValId && selectedValue.label;
+    const selectedValLabel = selectedValue.label;
     const { onChange, rowItem } = this.props;
-    parseInt(selectedValId, 10) && this.setState({ selectedValue:selectedValLabel });
+    this.setState({ selectedValue:selectedValLabel });
+    if (!selectedValId) {
+      this.setState({ selectedValue: '' });
+    }
     onChange && onChange(rowItem, +selectedValId);
   }
 
@@ -67,7 +70,7 @@ class BannerRow extends React.PureComponent<Props, State> {
       theme,
     } = this.props;
 
-    const selectedVal = dropdownItems.find((op: any) => op.value == selectedValue);
+    const selectedVal = dropdownItems.find((op: any) => op.value.toString() === (selectedValue || "").toString());
 
     const selectedValLabel = selectedVal?.label || this.state.selectedValue;
 
@@ -85,6 +88,7 @@ class BannerRow extends React.PureComponent<Props, State> {
             currentValue={selectedValLabel}
             onFocus={this.onFocusHandle}
             onSelect={this.onChangeHandler}
+            suffix="caretDown"
           />
         {/* <Select
           disabled={disabled}
