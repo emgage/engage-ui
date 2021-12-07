@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as baseTheme from './Table.scss';
 import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
-import { Banner, Select } from '../index';
+import { Banner, ComboBox } from '../index';
 import { Status } from '../Banner/Banner';
 import { TABLE } from '../ThemeIdentifiers';
 import { IconList } from '../Icon';
@@ -18,6 +18,7 @@ export interface Props {
   onFocus?(rowItem: any): void;
   selectPlaceholder: string;
   selectedValue?: string;
+  theme?: any;
 }
 
 export interface State {
@@ -33,10 +34,12 @@ class BannerRow extends React.PureComponent<Props, State> {
     });
   }
 
-  onChangeHandler = (selectedValue: string) => {
+  onChangeHandler = (selectedValue: any) => {
+    const selectedValId = selectedValue.value;
+    const selectedValLabel = selectedValId && selectedValue.label;
     const { onChange, rowItem } = this.props;
-    parseInt(selectedValue, 10) && this.setState({ selectedValue });
-    onChange && onChange(rowItem, +selectedValue);
+    parseInt(selectedValId, 10) && this.setState({ selectedValue:selectedValLabel });
+    onChange && onChange(rowItem, +selectedValId);
   }
 
   onFocusHandle = () => {
@@ -60,12 +63,30 @@ class BannerRow extends React.PureComponent<Props, State> {
       loading = false,
       rowItem,
       selectPlaceholder,
-      selectedValue
+      selectedValue,
+      theme,
     } = this.props;
+
+    const selectedVal = dropdownItems.find((op: any) => op.value == selectedValue);
+
+    const selectedValLabel = selectedVal?.label || this.state.selectedValue;
 
     return(
       <Banner key={rowItem.id} componentTitle={bannerTitle} status={bannerType} icon={bannerIcon as keyof typeof IconList}>
-        <Select
+         <ComboBox
+            theme={theme}
+            disabled={disabled}
+            label={selectPlaceholder}
+            loading={loading}
+            items={[{
+              key: 'label',
+              value: dropdownItems,
+            }]}
+            currentValue={selectedValLabel}
+            onFocus={this.onFocusHandle}
+            onSelect={this.onChangeHandler}
+          />
+        {/* <Select
           disabled={disabled}
           label={''}
           labelHidden={true}
@@ -75,7 +96,7 @@ class BannerRow extends React.PureComponent<Props, State> {
           onFocus={this.onFocusHandle}
           onChange={this.onChangeHandler}
           value={this.state.selectedValue ? this.state.selectedValue : selectedValue}
-        />
+        /> */}
       </Banner>
     );
   }
