@@ -44,6 +44,8 @@ export interface Props {
   handleScroll?(): void;
   // Visually hide the border.
   backdropHidden?: boolean;
+  // Callback when Input is focussed
+  onFocus?(): void;
 }
 
 interface State {
@@ -314,6 +316,7 @@ class ComboBox extends React.PureComponent<Props, State> {
       backdropHidden,
       errors,
       handleScroll = () => {},
+      onFocus = () => {},
     } = this.props;
 
     const { items, open, serverSort, activeIndex } = this.state;
@@ -357,6 +360,7 @@ class ComboBox extends React.PureComponent<Props, State> {
             readOnly={readOnly}
             helpText={helpText}
             onKeyUp={this.onKeyUp}
+            onFocus={onFocus}
             backdropHidden={backdropHidden}
           />
 
