@@ -98,6 +98,7 @@ declare class Picker extends React.PureComponent<Props, State> {
     renderSectionTitle: (section: any) => any;
     shouldRenderSuggestions: () => boolean;
     storeInputReference: (input: any) => void;
+    getFilteredSuggestions: (list?: IItemList[], selectedList?: IItemList[], valString?: any) => IItemList[];
     render(): JSX.Element;
 }
 export { Picker as UnthemedPicker };

@@ -17,6 +17,7 @@ export interface Props {
     serverSort?: any;
     clickHandler?(value: string | null | boolean, key?: string): void;
     theme?: any;
+    activeIndex: number;
 }
 declare const _default: ThemedComponentClass<Props, never>;
 export default _default;

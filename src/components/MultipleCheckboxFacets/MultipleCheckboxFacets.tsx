@@ -4,6 +4,7 @@ import Button from '../Button';
 import Checkbox from '../Checkbox';
 import TextField from '../TextField';
 import { Card, CardBody } from '../Card';
+import BodyText from '../BodyText';
 
 function getNewClassName(newClassName: string) {
   if (!Array.isArray(newClassName)) return newClassName;
@@ -59,7 +60,10 @@ function multiCheckboxFacet({
 }: IProps) {
   return (
     <Card>
-      <Heading componentClass="facets-title" element="h4" componentStyle={{ paddingLeft: '1.25rem', paddingTop: '1.25rem' }}>{label}</Heading>
+      {label ?
+        <Heading componentClass="facets-title" element="h4" componentStyle={{ paddingLeft: '1.25rem', paddingTop: '1.25rem' }}>{label}</Heading>
+        : <></>
+      }
       <CardBody>
       {showSearch && (
         <div className="facet-search"  style={{ marginBottom: 12 }}>
@@ -93,9 +97,11 @@ function multiCheckboxFacet({
                   }
                 />
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', color: '#9e9e9e' }} className="facet-option-count">
-                {option.count && option.count.toLocaleString('en')}
-              </div>
+              {option.count &&
+                <div style={{ display: 'flex', alignItems: 'center' }} className="facet-option-count">
+                  <BodyText element="span" componentColor="mid">{option.count && option.count.toLocaleString('en')}</BodyText>
+                </div>
+              }
             </div>
           );
         })}
