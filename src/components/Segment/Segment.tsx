@@ -87,7 +87,7 @@ const Segment: React.FC<Props> = (props) => {
           const segmentClasses = classNames(theme.SegmentButton, activeItemId === item.id && theme.active);
           const isDisabled = activeItemId === item.id;
           return (
-            <Button title={item.title} key={item.id} componentClass={segmentClasses} disabled={isDisabled} onClick={() => onClick(item)}>
+            <Button componentSize="slim" title={item.title} key={item.id} componentClass={segmentClasses} disabled={isDisabled} onClick={() => onClick(item)}>
               {getLabelComponent(item)}
               {getSubTextComponent(item)}
             </Button>
