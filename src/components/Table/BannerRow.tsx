@@ -70,7 +70,7 @@ class BannerRow extends React.PureComponent<Props, State> {
       theme,
     } = this.props;
 
-    const selectedVal = dropdownItems.find((op: any) => op.value.toString() === (selectedValue || "").toString());
+    const selectedVal = dropdownItems.find((op: any) => op.value.toString() === (selectedValue || '').toString());
 
     const selectedValLabel = selectedVal?.label || this.state.selectedValue;
 

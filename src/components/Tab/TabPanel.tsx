@@ -20,6 +20,14 @@ export type Position = 'top' | 'bottom' | 'left' | 'right';
 */
 export type Alignment = 'left' | 'center' | 'right';
 
+/*
+  Orientation of Tab
+  // verticle - the tab list will display vertically
+  // horizintal - the default tab view, the list display side by side
+*/
+
+export type Orientation = 'verticle' | 'horizontal';
+
 // All prototypes type
 export interface Props {
   // Position prop defines the tab's location with reference to it's content
@@ -32,6 +40,7 @@ export interface Props {
   componentStyle?: React.CSSProperties;
   // Set theme for TabPanel
   theme?: any;
+  orientation?: Orientation;
 }
 
 export interface State {
@@ -84,7 +93,7 @@ class TabPanel extends React.PureComponent<Props, State> {
 
   // Render Tab and TabContent togeather in TabPanel
   render() {
-    const { theme, position, alignment, componentStyle } = this.props;
+    const { theme, position, alignment, componentStyle, orientation = 'horizontal' } = this.props;
 
     // Combination of classes required to bind for location prop
     const locationClassName = classNames(
@@ -92,7 +101,8 @@ class TabPanel extends React.PureComponent<Props, State> {
       position === 'top' && theme.top,
       position === 'bottom' && theme.bottom,
       position === 'left' && theme.left,
-      position === 'right' && theme.right
+      position === 'right' && theme.right,
+      orientation === 'verticle' ? theme.vertiView : theme.horizonView
     );
 
     // Combination of class required to bind for alignment prop
