@@ -1138,22 +1138,22 @@ class App extends React.Component<{}, State> {
           placeholder: 'Related Content',
           items: [
             {
-              content: 'Item 1',
-              contentId: 1,
+              label: 'Item 1',
+              value: 1,
               onClick: (value: any) => {
                 console.log(value);
               },
             },
             {
-              content: 'Item 2',
-              contentId: 2,
+              label: 'Item 2',
+              value: 2,
               onClick: (value: any) => {
                 console.log(value);
               },
             },
             {
-              content: 'Item 3',
-              contentId: 3,
+              label: 'Item 3',
+              value: 3,
               onClick: (value: any) => {
                 console.log(value);
               },
@@ -1974,12 +1974,13 @@ class App extends React.Component<{}, State> {
         <br/>
         <br/>
         <div>
-          <TabPanel defaultTabId="tab1" position={'top'} alignment={'center'}>
+          <h2 style={{fontWeight: 'bold'}}>Vertical Tab</h2>
+          <TabPanel defaultTabId="tab1" position={'top'} alignment={'center'} orientation='verticle'>
             <Tab
               tabDescription={<Badge children={'Home'} status={'success'} />}
               tabId={'tab1'}
             >
-              <p>content 0</p>
+              <p>content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0</p>
             </Tab>
             <Tab tabDescription="User" tabId={'tab2'}>
               <div></div>
@@ -1994,6 +1995,30 @@ class App extends React.Component<{}, State> {
               <p>content user3</p>
             </Tab>
           </TabPanel>
+
+
+          <h2 style={{fontWeight: 'bold'}}>Horizontal Tab</h2>
+          <TabPanel defaultTabId="tab1" position={'top'} alignment={'center'} orientation='horizontal'>
+            <Tab
+              tabDescription={<Badge children={'Home'} status={'success'} />}
+              tabId={'tab1'}
+            >
+              <p>content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0</p>
+            </Tab>
+            <Tab tabDescription="User" tabId={'tab2'}>
+              <div></div>
+            </Tab>
+            <Tab tabDescription="User1" tabId={'tab3'}>
+              <p>content user1</p>
+            </Tab>
+            <Tab tabDescription="User2" tabId={'tab4'}>
+              <p>content user2</p>
+            </Tab>
+            <Tab tabDescription="User3" tabId={'tab5'}>
+              <p>content user3</p>
+            </Tab>
+          </TabPanel>
+
           <Button onClick={() => this.setState({ activeTabId: 'tab2' })}>
             Trigger User from here
           </Button>
