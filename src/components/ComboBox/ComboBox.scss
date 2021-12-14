@@ -55,6 +55,29 @@ $stacking-order: (
     animation: mymove 2s;
 }
 
+.comboboxContainer {
+    &.comboboxFullWidthOptions {
+      div[class*="PositionedOverlay"] {
+        margin-left: unset !important;
+        width: 100%;
+        div[class*="abovePopover"],
+        div[class*="belowPopover"] {
+          padding: 0;
+          margin: 0;
+          div[class*="tip"] {
+            left: 50%;
+            margin-left: unset !important;
+          }
+          & > div {
+            & > div {
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+
 @keyframes myMove {
     from {opacity: 0px;}
     to {opacity: 1;}

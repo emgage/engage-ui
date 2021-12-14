@@ -77,6 +77,8 @@ class BannerRow extends React.PureComponent<Props, State> {
     return(
       <Banner key={rowItem.id} componentTitle={bannerTitle} status={bannerType} icon={bannerIcon as keyof typeof IconList}>
          <ComboBox
+            fullWidth
+            addArrow
             theme={theme}
             disabled={disabled}
             label={selectPlaceholder}

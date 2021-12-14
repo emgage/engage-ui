@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
+import { classNames } from '@shopify/react-utilities/styles';
 import { COMBOBOX } from '../ThemeIdentifiers';
 import ComboBoxItem from './ComboBoxItem';
 import Icon from '../Icon';
@@ -37,6 +38,8 @@ export interface Props {
   sortEntity?(field: string, order: string, sortBy: string): void;
   theme?: any;
   disabled?: boolean;
+  fullWidth?: boolean;
+  addArrow?: boolean;
   readOnly?: boolean;
   helpText?: string;
   errors?: [string];
@@ -317,6 +320,8 @@ class ComboBox extends React.PureComponent<Props, State> {
       errors,
       handleScroll = () => {},
       onFocus = () => {},
+      fullWidth = false,
+      addArrow = false,
     } = this.props;
 
     const { items, open, serverSort, activeIndex } = this.state;
@@ -331,18 +336,20 @@ class ComboBox extends React.PureComponent<Props, State> {
         activeIndex={activeIndex}
       />
     ));
-    let preferredPosition:PreferredPosition = 'below';
+    const preferredPosition:PreferredPosition = 'below';
     let maxHeight = 300;
     if (this.state.maxHeight > 300) {
       maxHeight = this.state.maxHeight;
-    } else {
-      preferredPosition = 'above';
     }
+    //  else {
+    //   preferredPosition = 'above';
+    // }
+    const containerClasses = classNames(theme.comboboxContainer, fullWidth && theme.comboboxFullWidthOptions);
     return (
       <>
         <div
           key={this.id}
-          className={theme.comboboxContainer}
+          className={containerClasses}
           onClick={this.onArrowClick}
           ref={this.setWrapperRef}
         >
@@ -372,7 +379,7 @@ class ComboBox extends React.PureComponent<Props, State> {
 
           {!disabled && !readOnly && open && (
             <Popover
-              addArrow={false}
+              addArrow={addArrow}
               componentStyle={{
                 maxHeight,
                 overflow: 'auto',
