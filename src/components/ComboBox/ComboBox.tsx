@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
+import { classNames } from '@shopify/react-utilities/styles';
 import { COMBOBOX } from '../ThemeIdentifiers';
 import ComboBoxItem from './ComboBoxItem';
 import Icon from '../Icon';
@@ -37,13 +38,17 @@ export interface Props {
   sortEntity?(field: string, order: string, sortBy: string): void;
   theme?: any;
   disabled?: boolean;
+  fullWidth?: boolean;
+  addArrow?: boolean;
   readOnly?: boolean;
   helpText?: string;
   errors?: [string];
-  onKeyUp?(value: string): void;
+  onKeyUp?(value: string, e?: any): void;
   handleScroll?(): void;
   // Visually hide the border.
   backdropHidden?: boolean;
+  // Callback when Input is focussed
+  onFocus?(): void;
 }
 
 interface State {
@@ -55,11 +60,15 @@ interface State {
   popoverWidth: string;
   serverSort: ServerSort;
   maxHeight: number;
+  activeIndex: number;
 }
 class ComboBox extends React.PureComponent<Props, State> {
   private getUniqueID = createUniqueIDFactory('ComboBox');
   private id = this.getUniqueID();
   private wrapperRef: HTMLDivElement;
+  UP = 38;
+  DOWN = 40;
+  ENTER = 13;
   constructor(props: Props) {
     super(props);
     const { items, currentValue = '' } = props;
@@ -78,6 +87,7 @@ class ComboBox extends React.PureComponent<Props, State> {
         order: '',
         callback: this.sortEntity,
       },
+      activeIndex: -1,
     };
   }
 
@@ -97,6 +107,7 @@ class ComboBox extends React.PureComponent<Props, State> {
 
   componentDidMount() {
     const { items } = this.props;
+    this.wrapperRef && this.wrapperRef.addEventListener('keydown', this.handleUpDownEvent);
     if (items && items[0]) {
       const { type = '' } = items && items[0];
       if (type !== 'Tabular') {
@@ -113,6 +124,7 @@ class ComboBox extends React.PureComponent<Props, State> {
         document.removeEventListener('click', this.handleClickOutside);
       }
     }
+    this.wrapperRef && this.wrapperRef.removeEventListener('keydown', this.handleUpDownEvent);
   }
 
   componentWillReceiveProps(nextProps: any) {
@@ -125,7 +137,7 @@ class ComboBox extends React.PureComponent<Props, State> {
         items,
         JSON.parse(JSON.stringify(items))
       );
-      this.setState({ initialItems, items });
+      this.setState({ initialItems, items, activeIndex: -1 });
     }
 
     if (currentValue !== oldCurrentValue) {
@@ -136,7 +148,7 @@ class ComboBox extends React.PureComponent<Props, State> {
   handleClickOutside = (event: any) => {
     if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
       if (this.state.open) {
-        this.setState({ open: false });
+        this.setState({ open: false, activeIndex: -1 });
       }
     }
   }
@@ -159,10 +171,56 @@ class ComboBox extends React.PureComponent<Props, State> {
     return cloneItems;
   }
 
+  getKey = (e: any) => {
+    if (window.event) { // IE
+      return e.keyCode;
+    }
+    if (e.which) { // Netscape/Firefox/Opera
+      return e.which;
+    }
+  }
+
+  handleUpDownEvent = (event: any) => {
+    const keyCode = this.getKey(event);
+    const { theme } = this.props;
+    let { activeIndex } = this.state;
+    const { items } = this.state;
+    if (items.length === 0 || !items[0].value) {
+      return;
+    }
+    if (keyCode === this.DOWN) {
+      activeIndex += 1;
+    } else if (keyCode === this.UP) {
+      activeIndex -= 1;
+    }
+    const isValidActiveIndex = activeIndex > -1 && activeIndex <= (items[0].value.length - 1);
+    if (keyCode === this.ENTER && isValidActiveIndex) {
+      const selectedItem = items[0].value[activeIndex];
+      const indexKey = items[0].key;
+      this.handleClick(selectedItem, indexKey);
+      return;
+    }
+    if (isValidActiveIndex && [this.UP, this.DOWN].includes(keyCode)) {
+      this.setState({ activeIndex, open: true }, () => {
+        setTimeout(() => {
+          const ele = this.wrapperRef.querySelector(`.${theme.active}`);
+          ele && ele.scrollIntoView({
+            behavior: 'smooth',
+            block: 'nearest',
+            inline: 'start',
+          });
+        },         200);
+      });
+      event.preventDefault();
+    }
+  }
+
   onKeyUp = (event: any) => {
-    if (event.keyCode !== 18 || event.keyCode !== 91) {
+    const keyCode = this.getKey(event);
+    // if (event.keyCode !== 18 || event.keyCode !== 91) {
+    if (![this.UP, this.DOWN, this.ENTER].includes(keyCode)) {
       if (this.props.onKeyUp) {
-        this.props.onKeyUp(this.state.selectedValue);
+        this.props.onKeyUp(this.state.selectedValue, event);
       }
     }
   }
@@ -245,6 +303,7 @@ class ComboBox extends React.PureComponent<Props, State> {
       selectedValue:
         typeof selectedValue === 'object' ? selectedValue[key] : selectedValue,
       open: false,
+      activeIndex: -1,
     });
   }
 
@@ -260,9 +319,12 @@ class ComboBox extends React.PureComponent<Props, State> {
       backdropHidden,
       errors,
       handleScroll = () => {},
+      onFocus = () => {},
+      fullWidth = false,
+      addArrow = false,
     } = this.props;
 
-    const { items, open, serverSort } = this.state;
+    const { items, open, serverSort, activeIndex } = this.state;
 
     const itemsComponent = items.map((item, index) => (
       <ComboBoxItem
@@ -271,20 +333,23 @@ class ComboBox extends React.PureComponent<Props, State> {
         clickHandler={this.handleClick}
         theme={theme}
         serverSort={serverSort}
+        activeIndex={activeIndex}
       />
     ));
-    let preferredPosition:PreferredPosition = 'below';
+    const preferredPosition:PreferredPosition = 'below';
     let maxHeight = 300;
     if (this.state.maxHeight > 300) {
       maxHeight = this.state.maxHeight;
-    } else {
-      preferredPosition = 'above';
     }
+    //  else {
+    //   preferredPosition = 'above';
+    // }
+    const containerClasses = classNames(theme.comboboxContainer, fullWidth && theme.comboboxFullWidthOptions);
     return (
       <>
         <div
           key={this.id}
-          className={theme.comboboxContainer}
+          className={containerClasses}
           onClick={this.onArrowClick}
           ref={this.setWrapperRef}
         >
@@ -302,6 +367,7 @@ class ComboBox extends React.PureComponent<Props, State> {
             readOnly={readOnly}
             helpText={helpText}
             onKeyUp={this.onKeyUp}
+            onFocus={onFocus}
             backdropHidden={backdropHidden}
           />
 
@@ -313,7 +379,7 @@ class ComboBox extends React.PureComponent<Props, State> {
 
           {!disabled && !readOnly && open && (
             <Popover
-              addArrow={false}
+              addArrow={addArrow}
               componentStyle={{
                 maxHeight,
                 overflow: 'auto',

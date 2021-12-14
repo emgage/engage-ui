@@ -124,10 +124,13 @@
                         content:'true';
                         font-size: 1rem;
                         color:color(white);
-                        left: -2.9rem;
+                        left: -3rem;
                         position: absolute;
                         z-index: 1;
                         text-transform: uppercase;
+                        line-height: 1;
+                        top: 54%;
+                        transform: translateY(-50%);
                     }
                 }
             }
@@ -154,10 +157,13 @@
                         content:'False';
                         font-size: 1rem;
                         color:color(white);
-                        right: -2.9rem;
+                        right: -3.1rem;
                         position: absolute;
                         z-index: 1;
                         text-transform: uppercase;
+                        line-height: 1;
+                        top: 54%;
+                        transform: translateY(-50%);
                     }
                 }
             }
@@ -180,10 +186,13 @@
                         content:'Yes';
                         font-size: 1rem;
                         color:color(white);
-                        left: -1.9rem;
+                        left: -2.1rem;
                         position: absolute;
                         z-index: 1;
                         text-transform: uppercase;
+                        line-height: 1;
+                        top: 54%;
+                        transform: translateY(-50%);
                     }
                 }
             }
@@ -209,10 +218,13 @@
                         content:'No';
                         font-size: 1rem;
                         color:color(white);
-                        right: -1.9rem;
+                        right: -2rem;
                         position: absolute;
                         z-index: 1;
                         text-transform: uppercase;
+                        line-height: 1;
+                        top: 54%;
+                        transform: translateY(-50%);
                     }
                 }
             }
@@ -317,12 +329,28 @@
             box-shadow: none;
             border: 1px solid color(sky, dark)!important;
             &:after {
-                color: color(white) !important;
+                color: color(text, text) !important;
             }
         }
         .Accept,
         .Cancel {
             fill:  color(ink, lightest) !important;
         }
+    }
+}
+
+.switchTrueFalse.disableSwitch {
+    .Accept, .Cancel {
+        opacity: 0;
+    }
+}
+.switchYesNo.disableSwitch {
+    .Accept, .Cancel {
+        opacity: 0;
+    }
+}
+.switchYesNo, .switchTrueFalse {
+    .Accept, .Cancel {
+        opacity: 0;
     }
 }

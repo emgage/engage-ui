@@ -110,6 +110,7 @@ export interface Props {
   theme?: any;
   disableAllRow?: boolean;
   isRowDisabled?(item: any): boolean;
+  CustomRenderRow?: React.ElementType;
   // Set when searching items on table
   isSearching?: boolean;
   // Label to show when no data is available
@@ -412,10 +413,15 @@ class Table extends React.PureComponent<Props, State> {
       componentId = '',
       theme,
       isRowDisabled,
+      CustomRenderRow,
     } = this.props;
     const { nestedChildData } = this.state;
     const { renderBanner } = item;
     let totalColumn = column && column.length;
+
+    if (CustomRenderRow) {
+      return <CustomRenderRow item={item}/>;
+    }
     if (renderBanner) {
       if (rowAction) totalColumn++;
       if (selectRow) totalColumn++;
@@ -468,6 +474,7 @@ class Table extends React.PureComponent<Props, State> {
         <TableRow>
           <TableData colSpan={totalColumn} componentClass={baseTheme.bannerRow}>
             <BannerRow
+              theme={theme}
               bannerTitle={renderBanner.bannerTitle}
               bannerType={renderBanner.bannerType}
               bannerIcon={renderBanner.bannerIcon}

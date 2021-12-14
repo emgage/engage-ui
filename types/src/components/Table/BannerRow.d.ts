@@ -12,6 +12,7 @@ export interface Props {
     onFocus?(rowItem: any): void;
     selectPlaceholder: string;
     selectedValue?: string;
+    theme?: any;
 }
 export interface State {
     selectedValue?: string;
