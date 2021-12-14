@@ -133,15 +133,13 @@
   display: block !important;
 }
 .vertiView {
-  display: block;
+  flex-direction: unset !important;
   &:after {
     content: '';
     display: block;
     clear: both;
   }
   .tabstrip {
-    float: left;
-    width: 15%;
     display: block;
     border-bottom: 0px;
     border-right: 1px solid #dfe3e8;
@@ -165,7 +163,6 @@
   }
   
   .cardct {
-    float: right;
     padding: 6px 12px;
     width: 85%;
   }
