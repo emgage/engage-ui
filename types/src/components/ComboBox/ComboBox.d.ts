@@ -26,6 +26,8 @@ export interface Props {
     sortEntity?(field: string, order: string, sortBy: string): void;
     theme?: any;
     disabled?: boolean;
+    fullWidth?: boolean;
+    addArrow?: boolean;
     readOnly?: boolean;
     helpText?: string;
     errors?: [string];

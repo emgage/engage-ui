@@ -132,4 +132,41 @@
 .card.active {
   display: block !important;
 }
-
+.vertiView {
+  display: block;
+  &:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+  .tabstrip {
+    float: left;
+    width: 15%;
+    display: block;
+    border-bottom: 0px;
+    border-right: 1px solid #dfe3e8;
+    border-top:0px;
+    .tab {
+      display: block;
+      margin:0px;
+      text-align: left;
+      border-bottom:0px;
+      border-top:0px;
+      margin-bottom:4px;
+      &:last-child {
+        margin-bottom:0px;
+      }
+      &.active,
+      &:hover {
+        border-bottom: 0px;
+        border-right-color: #1e8bfb;
+      }
+    }
+  }
+  
+  .cardct {
+    float: right;
+    padding: 6px 12px;
+    width: 85%;
+  }
+}
