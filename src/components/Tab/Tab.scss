@@ -24,10 +24,12 @@
 
 .tab button {
   color:color(ink, lighter);
+  fill:color(ink, lighter);
 }
 .tab button:hover,
 .tab button:focus {
   color: color(ink, base);
+  fill: color(ink, base);
 }
 .tabpanel {
   display: flex;

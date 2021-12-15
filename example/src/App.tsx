@@ -1977,19 +1977,22 @@ class App extends React.Component<{}, State> {
           <h2 style={{fontWeight: 'bold'}}>Vertical Tab</h2>
           <TabPanel defaultTabId="tab1" position={'top'} alignment={'center'} orientation='verticle'>
             <Tab
-              tabDescription={<Badge children={'Home'} status={'success'} />}
+              tabDescription={<Icon source="grid"/>}
               tabId={'tab1'}
-              title='Title 1'
+              title='Title 0'
             >
               <p>content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0</p>
             </Tab>
-            <Tab tabDescription="User" tabId={'tab2'} title='Title 1'>
+            <Tab tabDescription={
+              <Icon source="list" />} tabId={'tab2'} title='Title 1'>
               <div></div>
             </Tab>
-            <Tab tabDescription="User1" tabId={'tab3'} title='Title 2'>
+            <Tab tabDescription={
+              <Icon source="listAlt" />} tabId={'tab3'} title='Title 2'>
               <p>content user1</p>
             </Tab>
-            <Tab tabDescription="User2" tabId={'tab4'} title='Title 3'>
+            <Tab tabDescription={
+              <Icon source="listHierarchy" />} tabId={'tab4'} title='Title 3'>
               <p>content user2</p>
             </Tab>
             <Tab tabDescription="User3" tabId={'tab5'} title='Title 4'>
