@@ -18,17 +18,18 @@ export interface Props {
   componentStyle?: React.CSSProperties;
   // Set theme for tab
   theme?: any;
+  title?: string;
 }
 
 // return a Single tab component to be render into tabpanel
-const tab = ({ tabId, tabDescription, activeTabId, onClick, theme, componentStyle }: Props) => {
+const tab = ({ tabId, tabDescription, activeTabId, onClick, theme, componentStyle, title }: Props) => {
   const tabClassName = classNames(
     theme.tab,
     tabId === activeTabId ? theme.active : ''
   );
   return (
     <li className={tabClassName} style={componentStyle}>
-      <Button componentSize="slim" plain onClick={onClick} title={`${tabId}`}>{tabDescription}</Button>
+      <Button componentSize="slim" plain onClick={onClick} title={title}>{tabDescription}</Button>
     </li>
   );
 };
