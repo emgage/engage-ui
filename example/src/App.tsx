@@ -1979,19 +1979,20 @@ class App extends React.Component<{}, State> {
             <Tab
               tabDescription={<Badge children={'Home'} status={'success'} />}
               tabId={'tab1'}
+              title='Title 1'
             >
               <p>content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0</p>
             </Tab>
-            <Tab tabDescription="User" tabId={'tab2'}>
+            <Tab tabDescription="User" tabId={'tab2'} title='Title 1'>
               <div></div>
             </Tab>
-            <Tab tabDescription="User1" tabId={'tab3'}>
+            <Tab tabDescription="User1" tabId={'tab3'} title='Title 2'>
               <p>content user1</p>
             </Tab>
-            <Tab tabDescription="User2" tabId={'tab4'}>
+            <Tab tabDescription="User2" tabId={'tab4'} title='Title 3'>
               <p>content user2</p>
             </Tab>
-            <Tab tabDescription="User3" tabId={'tab5'}>
+            <Tab tabDescription="User3" tabId={'tab5'} title='Title 4'>
               <p>content user3</p>
             </Tab>
           </TabPanel>
