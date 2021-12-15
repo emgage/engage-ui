@@ -134,6 +134,7 @@
 }
 .vertiView {
   flex-direction: unset !important;
+  position: relative;
   &:after {
     content: '';
     display: block;
