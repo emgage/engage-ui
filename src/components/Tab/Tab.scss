@@ -142,8 +142,9 @@
   .tabstrip {
     display: block;
     border-bottom: 0px;
-    border-right: 1px solid #dfe3e8;
+    border-right: 0px;
     border-top:0px;
+    background-color: #f1f3f5;
     .tab {
       display: block;
       margin:0px;
@@ -151,13 +152,16 @@
       border-bottom:0px;
       border-top:0px;
       margin-bottom:4px;
+      
       &:last-child {
         margin-bottom:0px;
       }
       &.active,
       &:hover {
         border-bottom: 0px;
-        border-right-color: #1e8bfb;
+        border-right-color: transparent;
+    background-color: color(white);
+
       }
     }
   }
@@ -165,5 +169,6 @@
   .cardct {
     padding: 6px 12px;
     width: 85%;
+    background-color: color(white);
   }
 }
