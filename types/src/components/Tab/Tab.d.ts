@@ -7,6 +7,7 @@ export interface Props {
     onClick?(): void;
     componentStyle?: React.CSSProperties;
     theme?: any;
+    title?: string;
 }
 declare const _default: ThemedComponentClass<Props, {}>;
 export default _default;
