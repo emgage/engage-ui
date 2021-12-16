@@ -4,6 +4,8 @@ import { ISourceData } from '../../src/components/BreadCrumb/BreadCrumb';
 import { INavigationData } from '../../src/components/SideNavigation/SideNavigation';
 import SegmentExample from './../../docs/src/examples/SegmentExample/SegmentExample';
 import IconListExample from './../../docs/src/examples/IconListExample/IconListExample';
+import EntityStateExample from '../../docs/src/examples/EntityStateExample/EntityStateExample';
+
 import {
   Alert,
   AppBar,
@@ -1158,6 +1160,13 @@ class App extends React.Component<{}, State> {
                 console.log(value);
               },
             },
+            {
+              label: 'Item 0',
+              value: 0,
+              onClick: (value: any) => {
+                console.log(value);
+              },
+            },
           ],
         },
         description: 'Test description2',
@@ -1743,100 +1752,12 @@ class App extends React.Component<{}, State> {
               header: <>IconListExample</>,
               children: <IconListExample />
             },
+            {
+              header: <>EntityStateExample</>,
+              children: <EntityStateExample />
+            },
           ]}
         />
-        <EntityState item={{
-          // processing: 'Publishing',
-          entityState: {
-            itemName: 'New',
-            itemID: 1,
-          },
-          locked: {
-            itemName: 'locked',
-            itemID: 0,
-          }
-        }} />
-        <EntityState item={{
-          entityState: {
-            itemName: 'Draft',
-            itemID: 2,
-          },
-          locked: {
-            itemName: 'locked',
-            itemID: 0,
-          }
-        }} />
-        <EntityState item={{
-          entityState: {
-            itemName: 'Archive',
-            itemID: 3,
-          },
-          locked: {
-            itemName: 'locked',
-            itemID: 0,
-          }
-        }} />
-        <EntityState item={{
-          entityState: {
-            itemName: 'Delete',
-            itemID: 4,
-          },
-          locked: {
-            itemName: 'locked',
-            itemID: 0,
-          }
-        }} />
-        <EntityState item={{
-          entityState: {
-            itemName: 'Published',
-            itemID: 5,
-          },
-          locked: {
-            itemName: 'locked',
-            itemID: 0,
-          }
-        }} />
-        <EntityState item={{
-          entityState: {
-            itemName: 'Archived',
-            itemID: 6,
-          },
-          locked: {
-            itemName: 'locked',
-            itemID: 0,
-          }
-        }} />
-        <EntityState item={{
-          entityState: {
-            itemName: 'Deleted',
-            itemID: 7,
-          },
-          locked: {
-            itemName: 'locked',
-            itemID: 0,
-          }
-        }} />
-        <EntityState item={{
-          processing:'Publishing',
-          entityState: {
-            itemName: 'Publishing',
-            itemID: 8,
-          },
-          locked: {
-            itemName: 'locked',
-            itemID: 1,
-          }
-        }} />
-        <EntityState item={{
-          entityState: {
-            itemName: 'Locked',
-            itemID: 9,
-          },
-          locked: {
-            itemName: 'locked',
-            itemID: 0,
-          }
-        }} />
         <TextField
             type="text"
             placeholder="Try and write here..."
