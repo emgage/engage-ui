@@ -1892,6 +1892,15 @@ class App extends React.Component<{}, State> {
         <Icon source="event" />
         <Icon source="enumList" />
         <Icon source="user" />
+        <Icon source='checkBox'/>
+        <Icon source='signature'/>
+        <Icon source='signatureAlt'/>
+        <Icon source='radioButton'/>
+        <Icon source='textField'/>
+        <Icon source='dropdown'/>
+        <Icon source='userAdd'/>
+        <Icon source='userAlt'/>
+        <Icon source='usersAlt'/>
         <br></br>
         <span>Small change for test Change 3</span>
         <Badge children={'Badge'} working />
