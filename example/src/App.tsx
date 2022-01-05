@@ -4189,6 +4189,7 @@ class App extends React.Component<{}, State> {
           onSearch={(value) => {
             console.log('Facets More clicked', value);
           }}
+          defaultOptions={this.state.multipleCheckboxFacetsOptions}
           options={this.state.multipleCheckboxFacetsOptions}
           showMore={true}
           showSearch={true}
