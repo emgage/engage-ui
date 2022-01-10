@@ -21,7 +21,7 @@ export interface Props {
     style?: any;
     suffix?: any;
     loading?: boolean;
-    onSelect?(item: any): void;
+    onSelect?(item: any): boolean | void;
     onChangeText?(value: string): void;
     sortEntity?(field: string, order: string, sortBy: string): void;
     theme?: any;
