@@ -1,8 +1,8 @@
 @import 'foundation/spacing';
 @import 'shared/typography';
 
-$number-size: rem(12px);
-$bullet-size: rem(18px);
+$number-size: 1.2rem;
+$bullet-size: 1.8rem;
 $font-color: #616161;
 $border-color: #dbdbdb;
 
@@ -52,19 +52,19 @@ $border-color: #dbdbdb;
 .list-divider {
   margin: 0;
   + div {
-    padding: 16px 24px;
+    padding: 1.6rem 2.4rem;
     margin: 0 auto;
   }
 }
 
 .list-divider > li:nth-child(n+2) {
   margin: 0;
-  padding-top: 10px;
+  padding-top: 1rem;
   border-top: 1px solid #e5e5e5;
 }
 
 .list-divider > li {
-   padding: 15px;
+   padding: 1.5rem;
    margin: 0;
    span {
     &:first-child {
@@ -84,7 +84,7 @@ $border-color: #dbdbdb;
 }
 
 .list-striped > li {
-  padding: 10px 10px;
+  padding: 1rem;
 }
 .list-striped > li:nth-of-type(odd) {
   border-top: 1px solid #e5e5e5;

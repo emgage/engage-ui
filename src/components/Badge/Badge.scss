@@ -2,17 +2,17 @@
 @import 'foundation/spacing';
 @import 'foundation/utilities';
 
-$height: rem(20px);
+$height: 2rem;
 $horizontal-padding: ($height / 2);
 
-$pip-size: rem(10px);
+$pip-size: 1rem;
 $pip-spacing: ($height - $pip-size) / 2;
 
-$spinner-size: rem(14px);
-$spinner-spacing: ($height - $spinner-size - rem(4px)) / 2;
+$spinner-size: 1.4rem;
+$spinner-spacing: ($height - $spinner-size - 0.4rem) / 2;
 
-$icon-size: rem(14px);
-$icon-spacing: ($height - $icon-size - rem(4px)) / 2;
+$icon-size: 1.4rem;
+$icon-spacing: ($height - $icon-size - 0.4rem) / 2;
 
 $stacking-order: (
   icon: 1,
@@ -28,11 +28,11 @@ $stacking-order: (
 .badge {
   @include pip-color(color(ink, lightest));
   display: inline-block;
-  padding: 0 ($horizontal-padding - rem(2px));
+  padding: 0 ($horizontal-padding - 0.2rem);
   background-color: color(sky);
   border: rem(2px) solid color(sky);
   border-radius: $height;
-  font-size: rem(13px);
+  font-size: 1.3rem;
   line-height: ($height - rem(4px));
   color: color(ink);
   z-index: z-index(icon, $stacking-order); 
@@ -144,7 +144,7 @@ $stacking-order: (
   width: $icon-size;
   display: inline-block;
   vertical-align: top;
-  margin: $icon-spacing $icon-spacing 0 ($icon-spacing - $horizontal-padding + rem(2px));
+  margin: $icon-spacing $icon-spacing 0 ($icon-spacing - $horizontal-padding + 0.2rem);
 }
 
 .working {
@@ -152,7 +152,7 @@ $stacking-order: (
   width: $spinner-size;
   display: inline-block;
   vertical-align: top;
-  margin: $spinner-spacing $spinner-spacing 0 ($spinner-spacing - $horizontal-padding + rem(2px));
+  margin: $spinner-spacing $spinner-spacing 0 ($spinner-spacing - $horizontal-padding + 0.2rem);
   animation: spin duration(basespin) linear infinite;
 }
 

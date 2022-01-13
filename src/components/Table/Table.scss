@@ -31,7 +31,7 @@ $border-color: color(sky, base);
     text-align: left;
 
     .subText {
-      margin-top: 2px !important;
+      margin-top: 0.2rem !important;
       margin-bottom: 0px !important;
       overflow-wrap: anywhere;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
     }
@@ -74,7 +74,7 @@ $border-color: color(sky, base);
   }
 
   &.nestedTable {
-    margin-left: 29px;
+    margin-left: 2.9rem;
     border-left: 3px solid $border-color;
 
     tr:last-child {
@@ -83,14 +83,14 @@ $border-color: color(sky, base);
   }
 
   .nestedCheckbox {
-    padding-left: 10px;
-    padding-right: 16px;
-    width: 20px;
+    padding-left: 1rem;
+    padding-right: 1.6rem;
+    width: 2rem;
   }
 }
 
 .parentChildTable {
-  margin-left: 29px;
+  margin-left: 2.9rem;
   border-left: 3px solid $border-color;
 }
 

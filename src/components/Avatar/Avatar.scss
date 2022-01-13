@@ -2,9 +2,9 @@
 @import 'foundation/colors';
 @import 'shared/breakpoints';
 
-$small-size: rem(32px);
-$medium-size: rem(40px);
-$large-size: rem(60px);
+$small-size: 3.2rem;
+$medium-size: 4rem;
+$large-size: 6rem;
 
 .avatar {
   position: relative;
@@ -20,19 +20,19 @@ $large-size: rem(60px);
 .sizeSmall {
   height: $small-size;
   width: $small-size;
-  font-size: rem(14px);
+  font-size: 1.4rem;
 }
 
 .sizeMedium {
   height: $medium-size;
   width: $medium-size;
-  font-size: rem(18px);
+  font-size: 1.8rem;
 }
 
 .sizeLarge {
   height: $large-size;
   width: $large-size;
-  font-size: rem(26px);
+  font-size: 2.6rem;
 }
 
 .styleOne {

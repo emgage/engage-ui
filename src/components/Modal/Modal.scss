@@ -4,21 +4,21 @@
 $modal-z-index:                                 1010 !default;
 $modal-overlay-background:                      rgba(0,0,0,0.6) !default;
 
-$modal-dialog-margin-vertical:                  50px !default;
-$modal-dialog-width-small:                      360px !default;
-$modal-dialog-width-medium:                     600px !default;
-$modal-dialog-width-large:                      800px !default;
-$modal-dialog-width-xlarge:                     1200px !default;
+$modal-dialog-margin-vertical:                  5rem !default;
+$modal-dialog-width-small:                      36rem !default;
+$modal-dialog-width-medium:                     60rem !default;
+$modal-dialog-width-large:                      80rem !default;
+$modal-dialog-width-xlarge:                     120rem !default;
 $modal-dialog-background:                       #fff !default; //add $global-backgrouind
 
-$modal-body-padding-horizontal:                  30px !default; //add $global-gutter
+$modal-body-padding-horizontal:                  3rem !default; //add $global-gutter
 $modal-body-padding-vertical:                    $modal-body-padding-horizontal !default;
 
-$modal-header-padding-horizontal:                30px !default; //add $global-gutter
+$modal-header-padding-horizontal:                3rem !default; //add $global-gutter
 $modal-header-padding-vertical:                  ($modal-header-padding-horizontal / 2) !default;
 $modal-header-background:                        #fff !default; //add $global-backgrouind
 
-$modal-footer-padding-horizontal:                30px !default; //add $global-gutter
+$modal-footer-padding-horizontal:                3rem !default; //add $global-gutter
 $modal-footer-padding-vertical:                  ($modal-footer-padding-horizontal / 2) !default;
 $modal-footer-background:                        #fff !default; //add $global-backgrouind
 
@@ -83,8 +83,8 @@ $modal-footer-background:                        #fff !default; //add $global-ba
 
 .close {
   position: absolute;
-  top: 10px;
-  right: 20px;
+  top: 1rem;
+  right: 2rem;
 }
 
 .header {
@@ -127,7 +127,7 @@ $modal-footer-background:                        #fff !default; //add $global-ba
           display: inline-block;
           font-weight: 700;
           vertical-align: middle;
-          margin-right: 10px;
+          margin-right: 1rem;
         }
         span {
           vertical-align: middle;
@@ -169,10 +169,10 @@ $modal-footer-background:                        #fff !default; //add $global-ba
       visibility: visible!important;
       height: auto;
       .header {
-        padding: 15px 0px;
+        padding: 1.5rem 0px;
       }
       .body {
-        padding: 15px 0px;
+        padding: 1.5rem 0px;
       }
       .close {
         display: none;

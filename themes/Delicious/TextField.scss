@@ -1,5 +1,5 @@
 $backdrop-horizontal-spacing: spacing(tighter) * 1.5;
-$spinner-size: rem(20px);
+$spinner-size: 2rem;
 
 .textField {
   @include text-style-input;

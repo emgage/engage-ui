@@ -1,5 +1,5 @@
 // Increased to account for chip height
-$control-height: control-height() + rem(8px);
+$control-height: control-height() + 0.8rem;
 $backdrop-horizontal-spacing: spacing(tighter) * 1.5;
 
 $stacking-order: (
@@ -10,16 +10,16 @@ $stacking-order: (
 
 .containerWrapper {
   width: 100%;
-  border-radius: 5px;
+  border-radius: .5rem;
   cursor: text;
-  min-height: 25px;
+  min-height: 2.5rem;
   display: flex;
   flex-wrap: wrap;
   position: relative;
 
   
   &.empty {
-    min-width: 100px;
+    min-width: 10rem;
 
     > .container {
       width:100%;
@@ -75,7 +75,7 @@ $stacking-order: (
 
 .suggestionsList {
   position: absolute;
-  margin: -5px 0 0;
+  margin: -0.5rem 0 0;
   padding: 0;
   background: color(white);
   box-shadow: shadow(faint);
@@ -89,7 +89,7 @@ $stacking-order: (
 // AutoSuggest Card Styles
 
 .cardItem {
-  padding: 0 4px;
+  padding: 0 0.4rem;
 
   &.highlighted {
     background: color(sky, light);
@@ -98,7 +98,7 @@ $stacking-order: (
     width: 3.2rem;
     height: 3.2rem;
     background: color(ink, lightest);
-    border-radius: 50px;
+    border-radius: 5rem;
     text-align: center;
     display: flex;
     justify-content: center;
@@ -107,22 +107,22 @@ $stacking-order: (
   }
   .avatarImage {
     border-radius: 50%;
-    width: rem(40px);
-    height: rem(40px);
-    margin: 8px 0 8px 12px;
+    width: 4rem;
+    height: 4rem;
+    margin: 0.8rem 0 0.8rem 1.2rem;
     vertical-align: middle;
   }
 
   .nameStyle {
     @include text-style-body;
-    margin: 18px 0 18px 12px;
+    margin: 1.8rem 0 1.8rem 1.2rem;
     // width: 200px;
   }
 
   .emailStyle {
     @include text-style-body;
     @include text-emphasis-subdued;
-    margin: 18px 12px;
+    margin: 1.8rem 1.2rem;
     // width: 200px;
   }
 
@@ -137,25 +137,25 @@ $stacking-order: (
 
 
 .PopoverButtonWrap {
-  min-height: 30px;
+  min-height: 3rem;
   position: absolute;
   height: 100%;
   min-width: 13rem;
   .suggestionsList {
     width:100%;
-    padding-bottom: 30px;
+    padding-bottom: 3rem;
     position: relative;
   }
   .pickerResultHide,
   .pickerResultShow{
     width: 100%;
     background: #fff;
-    bottom: 35px;
+    bottom: 3.5rem;
     position: relative;
     text-align: center;
     z-index: z-index(popover, $stacking-order);
-    height: 35px;
-    line-height: 30px;
+    height: 3.5rem;
+    line-height: 3rem;
   }
 
 }

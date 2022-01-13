@@ -11,7 +11,7 @@
 
 .customIcon {
     display: block;
-    margin-right: 8px;
+    margin-right: 0.8rem;
     width: 2rem;
     max-height: 100%;
     max-width: 100%;
@@ -47,8 +47,8 @@ body .li {
 
 body .childLi {
     display: inline-flex;
-    margin-left: -4px; 
-    margin-top: 10px;
+    margin-left: -0.4rem; 
+    margin-top: 1rem;
     color: color(white);
     &:hover,
     &:focus {
@@ -57,7 +57,7 @@ body .childLi {
 }
 
 .listItem {  
-    padding: 6px 0px 6px 0px;
+    padding: 0.6rem 0px 0.6rem 0px;
     width: 100%;
     float: right;
     position: relative;
@@ -66,23 +66,23 @@ body .childLi {
     border-bottom:1px solid #637381;
     &.divider {
         border-bottom: 1px solid #5f5f5f;
-        padding: 12px 0px 12px 0px;
+        padding: 1.2rem 0px 1.2rem 0px;
     }
     &.parentDivider {
         width: 100%;
         left: 0;
-        padding: 10px 0px 10px 12px;
+        padding: 1rem 0px 1rem 1.2rem;
         border-bottom: 1px solid #5f5f5f;
     }
     &.parentDividerCollapse {
-        padding: 12px 0px 12px 0px;
+        padding: 1.2rem 0px 1.2rem 0px;
         border-bottom: 1px solid #5f5f5f;
     }
 
 }
 
 .collapseList {
-    padding: 12px 0px 12px 0px;
+    padding: 1.2rem 0px 1.2rem 0px;
     width: 100%;
     float: right;
     position: relative;
@@ -95,10 +95,10 @@ body .childLi {
 }
 
 .drawerCollapse {
-    width: 10px;
-    padding: 20px;
+    width: 1rem;
+    padding: 2rem;
     position: absolute;
-    top: 46px;
+    top: 4.6rem;
     left: 0;
     right: 0;
     bottom: 0;
@@ -111,7 +111,7 @@ body .childLi {
 }
 
 .rootCollapse {
-    left: 30px!important;
+    left: 3rem!important;
 }
 
 .navButton {
@@ -184,11 +184,11 @@ body .childLi {
     .header {
         div {
             display: inline-block;
-            margin-top:6px;
+            margin-top:0.6rem;
             pointer-events: none;
         }
         div + span {
-            margin-top:4px;
+            margin-top:0.4rem;
             pointer-events: none;
         }
     }

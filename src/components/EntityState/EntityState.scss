@@ -2,16 +2,16 @@
 @import 'foundation/spacing';
 @import 'foundation/utilities';
 
-$height: rem(20px);
+$height: 2rem;
 $horizontal-padding: ($height / 2);
 
-$spinner-size: rem(14px);
-$spinner-spacing: ($height - $spinner-size - rem(4px)) / 2;
+$spinner-size: 1.4rem;
+$spinner-spacing: ($height - $spinner-size - 0.4rem) / 2;
 
-$icon-size: rem(16px);
-$icon-spacing: ($height - $icon-size - rem(4px)) / 2;
+$icon-size: 1.6rem;
+$icon-spacing: ($height - $icon-size - 0.4rem) / 2;
 
-$font-size: rem(13px);
+$font-size: 1.3rem;
 .entityState {
   display: flex;
   align-items: center;
@@ -29,7 +29,7 @@ $font-size: rem(13px);
   .iconState {
     border: 2px solid;
     overflow: hidden;
-    border-radius: 10px;
+    border-radius: 1rem;
   }
   .processingState {
     height: $spinner-size;
@@ -75,7 +75,7 @@ $font-size: rem(13px);
   .publishedState{
     fill:#fff;
     border-color: #4CAF50;
-    border-radius: 50px;
+    border-radius: 5rem;
     font-weight: bold;
     background-color: #4CAF50;
   }
