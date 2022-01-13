@@ -33,7 +33,7 @@ export interface Props {
   style?: any;
   suffix?: any;
   loading?: boolean;
-  onSelect?(item: any): void;
+  onSelect?(item: any): boolean | void;
   onChangeText?(value: string): void;
   sortEntity?(field: string, order: string, sortBy: string): void;
   theme?: any;
@@ -296,12 +296,13 @@ class ComboBox extends React.PureComponent<Props, State> {
 
   handleClick = (value: string | any, key: any) => {
     const selectedValue = typeof value === 'string' ? JSON.parse(value) : value;
+    let setValue = true;
     if (this.props.onSelect) {
-      this.props.onSelect(selectedValue);
+      setValue = !this.props.onSelect(selectedValue);
     }
     this.setState({
       selectedValue:
-        typeof selectedValue === 'object' ? selectedValue[key] : selectedValue,
+        setValue ? typeof selectedValue === 'object' ? selectedValue[key] : selectedValue : this.state.selectedValue,
       open: false,
       activeIndex: -1,
     });
