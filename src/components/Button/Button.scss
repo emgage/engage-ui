@@ -14,11 +14,11 @@ $outline-button-color: color(ink, lighter);
 // ========================================================================
 
 $min-height: control-height();
-$vertical-padding: ($min-height - line-height(body) - rem(2px)) / 2;
-$slim-min-height: rem(32px);
-$slim-vertical-padding: ($slim-min-height - line-height(body) - rem(2px)) / 2;
-$large-min-height: rem(48px);
-$large-vertical-padding: ($large-min-height - line-height(body) - rem(2px)) / 2;
+$vertical-padding: ($min-height - line-height(body) - 0.2rem) / 2;
+$slim-min-height: 3.2rem;
+$slim-vertical-padding: ($slim-min-height - line-height(body) - 0.2rem) / 2;
+$large-min-height: 4.8rem;
+$large-vertical-padding: ($large-min-height - line-height(body) - 0.2rem) / 2;
 
 
 $dropdown-item-padding-y: 1rem !default;

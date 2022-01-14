@@ -96,11 +96,11 @@
 
 .tabpanel.top .tab,
 .tabpanel.bottom .tab {
-  padding: 12px 6px;
+  padding: 1.2rem 0.6rem;
 }
 .tabpanel.left .tab,
 .tabpanel.right .tab {
-  padding: 6px 12px;
+  padding: 0.6rem 1.2rem;
 }
 .tabpanel.top .tab.active {
   border-bottom-color: #1e8bfb;
@@ -170,7 +170,7 @@
   }
   
   .cardct {
-    padding: 6px 12px;
+    padding: 0.6rem 1.2rem;
     width: 85%;
     background-color: color(white);
   }

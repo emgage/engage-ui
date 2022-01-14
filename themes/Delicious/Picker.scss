@@ -1,5 +1,5 @@
 // Increased to account for chip height
-$control-height: control-height() + rem(16px);
+$control-height: control-height() + .6rem;
 $control-vertical-padding: (($control-height - control-height()) / 2);
 $backdrop-horizontal-spacing: spacing(tighter) * 1.5;
 

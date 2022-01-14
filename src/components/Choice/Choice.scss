@@ -4,15 +4,15 @@
 @import 'shared/icons';
 @import 'shared/typography';
 
-$control-size: rem(16px);
+$control-size: 1.6rem;
 
 // Need to push the control down just a little to have it appear
 // vertically centered with the label.
-$control-vertical-adjustment: 2px;
+$control-vertical-adjustment: 0.2rem;
 
 // Negative margin on the left compensates for the icon being inset
 // within its viewbox.
-$icon-horizontal-adjustment: 2px;
+$icon-horizontal-adjustment: 0.2rem;
 
 .choice {
   display: inline-flex;

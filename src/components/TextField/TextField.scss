@@ -1,7 +1,7 @@
 $backdrop-horizontal-spacing: spacing(tighter) * 1.5;
 $addon-horizontal-spacing: 0.25em;
-$spinner-buttons-icon-size: rem(12px);
-$spinner-size: rem(20px);
+$spinner-buttons-icon-size: 1.2rem;
+$spinner-size: 2rem;
 
 .textField {
   @include text-style-input;
@@ -12,7 +12,7 @@ $spinner-size: rem(20px);
   color: color(ink, lightest);
   align-items: center;
   &.numberField {
-    padding: 0 calc(2.5rem + 1px)  0 $backdrop-horizontal-spacing;
+    padding: 0 calc(2.5rem + 0.1rem)  0 $backdrop-horizontal-spacing;
   }
   &.backdropHidden {
     padding-left:0px;
@@ -241,11 +241,11 @@ $spinner-size: rem(20px);
   display: flex;
   align-self: stretch;
   flex-direction: column;
-  width: rem(22px);
+  width: 2.2rem;
   margin: 1px calc(-#{$backdrop-horizontal-spacing} + 1px) 1px $backdrop-horizontal-spacing;
   color: color(ink);
   position: absolute;
-  height:calc(100% - 2px);
+  height:calc(100% - 0.2rem);
   right: 1.2rem;
   top: 0px;
 
@@ -337,7 +337,7 @@ $spinner-size: rem(20px);
 .label {
   display: table;
   table-layout: fixed;
-  width: calc(100% - 20px);
+  width: calc(100% - 2rem);
 }
 
 .labelStyle {
@@ -363,7 +363,7 @@ body .HeightSlim {
 }
 .labelWrapper {
   .prefix {
-   margin-left:30px;
+   margin-left:3rem;
    display:block;
  }
  &.focused {

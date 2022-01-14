@@ -1,6 +1,6 @@
 $backdrop-horizontal-spacing: spacing(tighter) * 1.5;
 $addon-horizontal-spacing: 0.25em;
-$spinner-icon-size: rem(12px);
+$spinner-icon-size: 1.2rem;
 
 $stacking-order: (
   contents: 20,
@@ -153,7 +153,7 @@ $stacking-order: (
   display: flex;
   align-self: stretch;
   flex-direction: column;
-  width: rem(22px);
+  width: 2.2rem;
   margin: 1px calc(-#{$backdrop-horizontal-spacing} + 1px) 1px $backdrop-horizontal-spacing;
   color: color(ink);
 }

@@ -1,9 +1,9 @@
-$height: rem(32px);
+$height: 3.2rem;
 $horizontal-padding: spacing(tighter) * 1.5;
-$maxWidth:rem(490px);
+$maxWidth:49rem;
 
 $min-height: control-height();
-$vertical-padding: ($min-height - line-height(body) - rem(2px)) / 2;
+$vertical-padding: ($min-height - line-height(body) - 0.2rem) / 2;
 
 .Chip {
     display: inline-flex;
@@ -41,8 +41,8 @@ $vertical-padding: ($min-height - line-height(body) - rem(2px)) / 2;
             }
         }
         .firstIcon{
-            width: 30px;
-            height: 30px;
+            width: 3rem;
+            height: 3rem;
             border-radius: 100%;
             background: color(ink,lightest);
         } 
