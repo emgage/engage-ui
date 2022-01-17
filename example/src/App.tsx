@@ -1742,6 +1742,8 @@ class App extends React.Component<{}, State> {
             <Button icon="infoCircle" componentSize="slim"/>,
           ]}
         />
+
+
         <Accordion
           items={[
             {
@@ -1785,7 +1787,21 @@ class App extends React.Component<{}, State> {
         </SwitchCheckbox>
         <br/>
         <br/>
-
+        <Heading element='h2' headingSize='h4'>Way to use colum for responsive</Heading>
+        <FlexBox wrap='Wrap'>
+            <Column small='1-1' medium='1-2' large='1-4' componentStyle={{ border: '1px solid #bdbdbd', padding: 10 }}>
+              Small : 1-1(100%)<br/>Medium: 1-2(50%)<br/>Large: 1-4(25%)
+            </Column>
+            <Column small='1-1' medium='1-2' large='1-4' componentStyle={{ border: '1px solid #bdbdbd', padding: 10  }}>
+              Small : 1-1(100%)<br/>Medium: 1-2(50%)<br/>Large: 1-4(25%)
+            </Column>
+            <Column small='1-1' medium='1-2' large='1-4' componentStyle={{ border: '1px solid #bdbdbd', padding: 10  }}>
+              Small : 1-1(100%)<br/>Medium: 1-2(50%)<br/>Large: 1-4(25%)
+            </Column>
+            <Column small='1-1' medium='1-2' large='1-4' componentStyle={{ border: '1px solid #bdbdbd', padding: 10  }}>
+              Small : 1-1(100%)<br/>Medium: 1-2(50%)<br/>Large: 1-4(25%)
+            </Column>
+          </FlexBox>
 
           {/* <SwitchCheckboxIcon isOpen={this.state.isOpen} handleToggle={this.handleSwitchCheckboxToggle}>
             SwitchCheckboxIcon Normal
