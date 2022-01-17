@@ -24,10 +24,12 @@
 
 .tab button {
   color:color(ink, lighter);
+  fill:color(ink, lighter);
 }
 .tab button:hover,
 .tab button:focus {
   color: color(ink, base);
+  fill: color(ink, base);
 }
 .tabpanel {
   display: flex;
@@ -94,11 +96,11 @@
 
 .tabpanel.top .tab,
 .tabpanel.bottom .tab {
-  padding: 12px 6px;
+  padding: 1.2rem 0.6rem;
 }
 .tabpanel.left .tab,
 .tabpanel.right .tab {
-  padding: 6px 12px;
+  padding: 0.6rem 1.2rem;
 }
 .tabpanel.top .tab.active {
   border-bottom-color: #1e8bfb;
@@ -132,4 +134,44 @@
 .card.active {
   display: block !important;
 }
+.vertiView {
+  flex-direction: unset !important;
+  position: relative;
+  &:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+  .tabstrip {
+    display: block;
+    border-bottom: 0px;
+    border-right: 0px;
+    border-top:0px;
+    background-color: #f1f3f5;
+    .tab {
+      display: block;
+      margin:0px;
+      text-align: left;
+      border-bottom:0px;
+      border-top:0px;
+      margin-bottom:4px;
+      
+      &:last-child {
+        margin-bottom:0px;
+      }
+      &.active,
+      &:hover {
+        border-bottom: 0px;
+        border-right-color: transparent;
+    background-color: color(white);
 
+      }
+    }
+  }
+  
+  .cardct {
+    padding: 0.6rem 1.2rem;
+    width: 85%;
+    background-color: color(white);
+  }
+}

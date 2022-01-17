@@ -15,11 +15,11 @@ $stacking-order: (
 .accordionItemHeader {
     display: flex;
     background: $backrgound-color;
-    padding: 14px 27px;
+    padding: 1.4rem 2.7rem;
     border-bottom: 1px solid $border-color;
     color: #616161;
     .headerText {
-        margin-left: 16px;
+        margin-left: 1.6rem;
     }
 }
 
@@ -29,12 +29,12 @@ $stacking-order: (
 
 .comboboxItem,
 .accordionItem {
-    padding: 14px 16px;
+    padding: 1.4rem 1.6rem;
     border-bottom: 1px solid $border-color;
     &.accordionItem {
-        margin: 0 11px;
+        margin: 0 1.1rem;
         &:last-child {
-            padding: 14px 27px;
+            padding: 1.4rem 2.7rem;
             margin: 0;
         }
     }
@@ -45,7 +45,40 @@ $stacking-order: (
 
 .comboboxContainer .comboboxArrow {
     position: absolute;
-    right: 14px;
-    top: 14px;
+    right: 1.4rem;
+    top: 1.4rem;
    z-index: z-index(backdrop, $stacking-order);
 }
+
+.active {
+    background-color: color(sky, light);
+    animation: mymove 2s;
+}
+
+.comboboxContainer {
+    &.comboboxFullWidthOptions {
+      div[class*="PositionedOverlay"] {
+        margin-left: unset !important;
+        width: 100%;
+        div[class*="abovePopover"],
+        div[class*="belowPopover"] {
+          padding: 0;
+          margin: 0;
+          div[class*="tip"] {
+            left: 50%;
+            margin-left: unset !important;
+          }
+          & > div {
+            & > div {
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+
+@keyframes myMove {
+    from {opacity: 0px;}
+    to {opacity: 1;}
+  }

@@ -1,5 +1,5 @@
-$small-size: rem(20px);
-$large-size: rem(44px);
+$small-size: 2rem;
+$large-size: 4.4rem;
 
 @mixin spinnerSize($size) {
   height: $size;

@@ -5,6 +5,7 @@ import * as baseTheme from './SwitchCheckbox.scss';
 import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
 import { classNames } from '@shopify/react-utilities/styles';
 import Icon from '../Icon/Icon';
+import VisuallyHidden from '../VisuallyHidden';
 
 export type ISwitchType = 'normal' | 'trueFalse' | 'yesNo';
 export interface Props {
@@ -73,6 +74,8 @@ const SwitchCheckbox = (props: Props) => {
     <div className={theme.outerWrap}>
 
       <label htmlFor={names.falseRadio} className={theme.falseRadio}>
+        <VisuallyHidden>{switchType === 'trueFalse' ? 'False' : 'No' }</VisuallyHidden>
+
         <input
           type="radio"
           id={names.falseRadio}
@@ -88,6 +91,7 @@ const SwitchCheckbox = (props: Props) => {
       </label>
 
       <label htmlFor={names.nullRadio} className={theme.nullRadio}>
+      <VisuallyHidden>Null</VisuallyHidden>
         <input
           type="radio"
           id={names.nullRadio}
@@ -100,6 +104,7 @@ const SwitchCheckbox = (props: Props) => {
       </label>
 
       <label htmlFor={names.trueRadio} className={theme.trueRadio}>
+      <VisuallyHidden>{switchType === 'trueFalse' ? 'True' : 'Yes' }</VisuallyHidden>
         <input
           type="radio"
           id={names.trueRadio}

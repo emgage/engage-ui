@@ -2,6 +2,9 @@ import * as React from 'react';
 import PickerAutoSuggestExample from './PickerAutoSuggestExample';
 import { ISourceData } from '../../src/components/BreadCrumb/BreadCrumb';
 import { INavigationData } from '../../src/components/SideNavigation/SideNavigation';
+import SegmentExample from './../../docs/src/examples/SegmentExample/SegmentExample';
+import IconListExample from './../../docs/src/examples/IconListExample/IconListExample';
+import EntityStateExample from '../../docs/src/examples/EntityStateExample/EntityStateExample';
 
 import {
   Alert,
@@ -912,6 +915,7 @@ class App extends React.Component<{}, State> {
   }
 
   render() {
+    
     const Accordionitems: AccordionItemProps[] = [
       {
         children: <Banner componentTitle={'banner'} status={'success'} />,
@@ -1136,22 +1140,29 @@ class App extends React.Component<{}, State> {
           placeholder: 'Related Content',
           items: [
             {
-              content: 'Item 1',
-              contentId: 1,
+              label: 'Item 1',
+              value: 1,
               onClick: (value: any) => {
                 console.log(value);
               },
             },
             {
-              content: 'Item 2',
-              contentId: 2,
+              label: 'Item 2',
+              value: 2,
               onClick: (value: any) => {
                 console.log(value);
               },
             },
             {
-              content: 'Item 3',
-              contentId: 3,
+              label: 'Item 3',
+              value: 3,
+              onClick: (value: any) => {
+                console.log(value);
+              },
+            },
+            {
+              label: 'Item 0',
+              value: 0,
               onClick: (value: any) => {
                 console.log(value);
               },
@@ -1731,99 +1742,24 @@ class App extends React.Component<{}, State> {
             <Button icon="infoCircle" componentSize="slim"/>,
           ]}
         />
-        <EntityState item={{
-          // processing: 'Publishing',
-          entityState: {
-            itemName: 'New',
-            itemID: 1,
-          },
-          locked: {
-            itemName: 'locked',
-            itemID: 0,
-          }
-        }} />
-        <EntityState item={{
-          entityState: {
-            itemName: 'Draft',
-            itemID: 2,
-          },
-          locked: {
-            itemName: 'locked',
-            itemID: 0,
-          }
-        }} />
-        <EntityState item={{
-          entityState: {
-            itemName: 'Archive',
-            itemID: 3,
-          },
-          locked: {
-            itemName: 'locked',
-            itemID: 0,
-          }
-        }} />
-        <EntityState item={{
-          entityState: {
-            itemName: 'Delete',
-            itemID: 4,
-          },
-          locked: {
-            itemName: 'locked',
-            itemID: 0,
-          }
-        }} />
-        <EntityState item={{
-          entityState: {
-            itemName: 'Published',
-            itemID: 5,
-          },
-          locked: {
-            itemName: 'locked',
-            itemID: 0,
-          }
-        }} />
-        <EntityState item={{
-          entityState: {
-            itemName: 'Archived',
-            itemID: 6,
-          },
-          locked: {
-            itemName: 'locked',
-            itemID: 0,
-          }
-        }} />
-        <EntityState item={{
-          entityState: {
-            itemName: 'Deleted',
-            itemID: 7,
-          },
-          locked: {
-            itemName: 'locked',
-            itemID: 0,
-          }
-        }} />
-        <EntityState item={{
-          processing:'Publishing',
-          entityState: {
-            itemName: 'Publishing',
-            itemID: 8,
-          },
-          locked: {
-            itemName: 'locked',
-            itemID: 1,
-          }
-        }} />
-        <EntityState item={{
-          entityState: {
-            itemName: 'Locked',
-            itemID: 9,
-          },
-          locked: {
-            itemName: 'locked',
-            itemID: 0,
-          }
-        }} />
-        <br/><br/><br/><br/><br/>
+
+
+        <Accordion
+          items={[
+            {
+              header: <>SegmentExample</>,
+              children: <SegmentExample />
+            },
+            {
+              header: <>IconListExample</>,
+              children: <IconListExample />
+            },
+            {
+              header: <>EntityStateExample</>,
+              children: <EntityStateExample />
+            },
+          ]}
+        />
         <TextField
             type="text"
             placeholder="Try and write here..."
@@ -1851,7 +1787,21 @@ class App extends React.Component<{}, State> {
         </SwitchCheckbox>
         <br/>
         <br/>
-
+        <Heading element='h2' headingSize='h4'>Way to use colum for responsive</Heading>
+        <FlexBox wrap='Wrap'>
+            <Column small='1-1' medium='1-2' large='1-4' componentStyle={{ border: '1px solid #bdbdbd', padding: 10 }}>
+              Small : 1-1(100%)<br/>Medium: 1-2(50%)<br/>Large: 1-4(25%)
+            </Column>
+            <Column small='1-1' medium='1-2' large='1-4' componentStyle={{ border: '1px solid #bdbdbd', padding: 10  }}>
+              Small : 1-1(100%)<br/>Medium: 1-2(50%)<br/>Large: 1-4(25%)
+            </Column>
+            <Column small='1-1' medium='1-2' large='1-4' componentStyle={{ border: '1px solid #bdbdbd', padding: 10  }}>
+              Small : 1-1(100%)<br/>Medium: 1-2(50%)<br/>Large: 1-4(25%)
+            </Column>
+            <Column small='1-1' medium='1-2' large='1-4' componentStyle={{ border: '1px solid #bdbdbd', padding: 10  }}>
+              Small : 1-1(100%)<br/>Medium: 1-2(50%)<br/>Large: 1-4(25%)
+            </Column>
+          </FlexBox>
 
           {/* <SwitchCheckboxIcon isOpen={this.state.isOpen} handleToggle={this.handleSwitchCheckboxToggle}>
             SwitchCheckboxIcon Normal
@@ -1879,6 +1829,15 @@ class App extends React.Component<{}, State> {
         <Icon source="event" />
         <Icon source="enumList" />
         <Icon source="user" />
+        <Icon source='checkBox'/>
+        <Icon source='signature'/>
+        <Icon source='signatureAlt'/>
+        <Icon source='radioButton'/>
+        <Icon source='textField'/>
+        <Icon source='dropdown'/>
+        <Icon source='userAdd'/>
+        <Icon source='userAlt'/>
+        <Icon source='usersAlt'/>
         <br></br>
         <span>Small change for test Change 3</span>
         <Badge children={'Badge'} working />
@@ -1961,14 +1920,46 @@ class App extends React.Component<{}, State> {
         <br/>
         <br/>
         <div>
-          <TabPanel defaultTabId="tab1" position={'top'} alignment={'center'}>
+          <h2 style={{fontWeight: 'bold'}}>Vertical Tab</h2>
+          <TabPanel defaultTabId="tab1" position={'top'} alignment={'center'} orientation='verticle'>
+            <Tab
+              tabDescription={<Icon source="grid"/>}
+              tabId={'tab1'}
+              title='Title 0'
+              showTooltip
+            >
+              <p>content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0</p>
+            </Tab>
+            <Tab tabDescription={
+              <Icon source="list" />} tabId={'tab2'} title='Title 1' showTooltip>
+              <div></div>
+            </Tab>
+            <Tab tabDescription={
+              <Icon source="listAlt" />} tabId={'tab3'} title='Title 2' showTooltip>
+              <p>content user1</p>
+            </Tab>
+            <Tab tabDescription={
+              <Icon source="listHierarchy" />} tabId={'tab4'} title='Title 3'>
+              <p>content user2</p>
+            </Tab>
+            <Tab tabDescription="User3" tabId={'tab5'} title='Title 4'>
+              <p>content user3</p>
+            </Tab>
+          </TabPanel>
+
+
+          <h2 style={{fontWeight: 'bold'}}>Horizontal Tab</h2>
+          <TabPanel defaultTabId="tab1" position={'top'} alignment={'center'} orientation='horizontal'>
             <Tab
               tabDescription={<Badge children={'Home'} status={'success'} />}
               tabId={'tab1'}
+              title='Title 0'
+              showTooltip
             >
-              <p>content 0</p>
+              <p>content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0</p>
             </Tab>
-            <Tab tabDescription="User" tabId={'tab2'}>
+            <Tab tabDescription="User" tabId={'tab2'}
+              title='Title 0'>
               <div></div>
             </Tab>
             <Tab tabDescription="User1" tabId={'tab3'}>
@@ -1981,6 +1972,7 @@ class App extends React.Component<{}, State> {
               <p>content user3</p>
             </Tab>
           </TabPanel>
+
           <Button onClick={() => this.setState({ activeTabId: 'tab2' })}>
             Trigger User from here
           </Button>
@@ -4213,6 +4205,7 @@ class App extends React.Component<{}, State> {
           onSearch={(value) => {
             console.log('Facets More clicked', value);
           }}
+          defaultOptions={this.state.multipleCheckboxFacetsOptions}
           options={this.state.multipleCheckboxFacetsOptions}
           showMore={true}
           showSearch={true}

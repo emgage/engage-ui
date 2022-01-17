@@ -1,13 +1,13 @@
 .appHeader {
   background: #212B36;
   position: fixed;
-  padding: 8px;
+  padding: .8rem;
   color: #FFF;
   width: 100%;
   top: 0;
   z-index: 400;
   // min-height: 68px;
-  height: 52px;
+  height: 5.2rem;
 }
 
 .searchBar {
@@ -23,10 +23,10 @@
 
 @media (max-width: $breakpoint-medium) {
   .appHeader {
-    height: 96px;
+    height: 9.6rem;
     .searchBar {
       position: absolute;
-      bottom:10px;
+      bottom:1rem;
       width: calc(100% - 16px)
     }
   }

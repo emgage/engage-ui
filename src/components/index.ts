@@ -445,3 +445,8 @@ export {
   default as EntityState,
   Props as EntityStateProps,
 } from './EntityState';
+
+export {
+  default as Segment,
+  Props as SegmentProps,
+} from './Segment';

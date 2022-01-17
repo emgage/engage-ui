@@ -1,7 +1,7 @@
 
 $accent-height: 1px;
-$dismiss-size: rem(16px);
-$ribbon-flex-basis: rem(32px);
+$dismiss-size: 1.6rem;
+$ribbon-flex-basis: 3.2rem;
 $secondary-action-vertical-padding: 0.5 * (control-height() - line-height(body));
 $secondary-action-horizontal-padding: 1.5 * spacing(tightest);
 
@@ -26,54 +26,53 @@ $warningBannerBorder:theme-color(m-yellow, 600);
 $warningBannerIcon:theme-color(m-yellow, 700);
 
 @mixin banner-colors($highlight, $background) {
-    background-color: $background;
-    border: 1px solid $highlight;
-  
-    &:focus {
-      box-shadow:
-        inset $accent-height 0 0 0 $highlight,
-        inset 0 0 0 $accent-height $highlight,
-        shadow();
-    }
+  background-color: $background;
+  border: 1px solid $highlight;
+  &:focus {
+    box-shadow:
+      inset $accent-height 0 0 0 $highlight,
+      inset 0 0 0 $accent-height $highlight,
+      shadow();
   }
-  @mixin icon-color($fill) {
-    fill: $fill;
+}
+@mixin icon-color($fill) {
+  fill: $fill;
+}
+
+.banner {
+  @include banner-colors($defaultBannerBorder, $defaultBannerBg);
+  position: relative;
+  display: flex;
+  padding: spacing();
+  border-radius: border-radius(larger);
+  transition: box-shadow duration() easing();
+  @include icon-color($defaultBannerIcon);
+  + .Banner {
+    margin-top: spacing(loose);
   }
 
-  .banner {
-    @include banner-colors($defaultBannerBorder, $defaultBannerBg);
-    position: relative;
-    display: flex;
-    padding: spacing();
-    border-radius: border-radius(larger);
-    transition: box-shadow duration() easing();
-    @include icon-color($defaultBannerIcon);
-    + .Banner {
-      margin-top: spacing(loose);
-    }
-  
-    &:focus {
-      outline: none;
-    }
+  &:focus {
+    outline: none;
   }
+}
 
 
-  .statusSuccess {
-    @include banner-colors($succesBannerBorder, $succesBannerBg);
-    @include icon-color($succesBannerIcon);
-  }
-  
-  .statusInfo {
-    @include banner-colors($infoBannerBorder, $infoBannerBg);
-    @include icon-color($infoBannerIcon);
-  }
-  
-  .statusWarning {
-    @include banner-colors($warningBannerBorder, $warningBannerBg);
-    @include icon-color($warningBannerIcon);
-  }
-  
-  .statusCritical {
-    @include banner-colors($criticalBannerBorder, $criticalBannerBg);
-    @include icon-color($criticalBannerIcon);
-  }
+.statusSuccess {
+  @include banner-colors($succesBannerBorder, $succesBannerBg);
+  @include icon-color($succesBannerIcon);
+}
+
+.statusInfo {
+  @include banner-colors($infoBannerBorder, $infoBannerBg);
+  @include icon-color($infoBannerIcon);
+}
+
+.statusWarning {
+  @include banner-colors($warningBannerBorder, $warningBannerBg);
+  @include icon-color($warningBannerIcon);
+}
+
+.statusCritical {
+  @include banner-colors($criticalBannerBorder, $criticalBannerBg);
+  @include icon-color($criticalBannerIcon);
+}

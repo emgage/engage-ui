@@ -21,17 +21,20 @@ export interface Props {
     style?: any;
     suffix?: any;
     loading?: boolean;
-    onSelect?(item: any): void;
+    onSelect?(item: any): boolean | void;
     onChangeText?(value: string): void;
     sortEntity?(field: string, order: string, sortBy: string): void;
     theme?: any;
     disabled?: boolean;
+    fullWidth?: boolean;
+    addArrow?: boolean;
     readOnly?: boolean;
     helpText?: string;
     errors?: [string];
-    onKeyUp?(value: string): void;
+    onKeyUp?(value: string, e?: any): void;
     handleScroll?(): void;
     backdropHidden?: boolean;
+    onFocus?(): void;
 }
 interface State {
     open: boolean;
@@ -42,11 +45,15 @@ interface State {
     popoverWidth: string;
     serverSort: ServerSort;
     maxHeight: number;
+    activeIndex: number;
 }
 declare class ComboBox extends React.PureComponent<Props, State> {
     private getUniqueID;
     private id;
     private wrapperRef;
+    UP: number;
+    DOWN: number;
+    ENTER: number;
     constructor(props: Props);
     sortEntity: (field: string, order: string, sortBy: string) => void;
     componentDidMount(): void;
@@ -55,6 +62,8 @@ declare class ComboBox extends React.PureComponent<Props, State> {
     handleClickOutside: (event: any) => void;
     setWrapperRef: (node: any) => void;
     addRenderer: (items: any, cloneItems: any) => any;
+    getKey: (e: any) => any;
+    handleUpDownEvent: (event: any) => void;
     onKeyUp: (event: any) => void;
     onChange: (value: string, event: React.FormEvent<HTMLElement>) => void;
     onArrowClick: (event: React.FormEvent<HTMLElement>) => void;

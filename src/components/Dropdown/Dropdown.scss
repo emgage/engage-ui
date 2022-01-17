@@ -8,10 +8,10 @@
 @import 'foundation/utilities';
 @import 'shared/accessibility';
 
-$arrow-size: rem(14px);
-$visible-portion-of-arrow: rem(5px);
-$content-max-height: rem(295px);
-$content-max-width: rem(400px);
+$arrow-size: 1.4rem;
+$visible-portion-of-arrow: 0.5rem;
+$content-max-height: 29.5rem;
+$content-max-width: 40rem;
 
 $white: #fff !default;
 $black: #000 !default;
@@ -68,7 +68,7 @@ $font-weight-normal: 400 !default;
   text-align: justify;
   white-space: nowrap;
   background-color: transparent;
-  font-size: 14px;
+  font-size: 1.4rem;
   .DropdownButton {
     color: color(text, darkest);
       padding:1.2rem 1.6rem;

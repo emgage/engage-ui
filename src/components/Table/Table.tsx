@@ -474,6 +474,7 @@ class Table extends React.PureComponent<Props, State> {
         <TableRow>
           <TableData colSpan={totalColumn} componentClass={baseTheme.bannerRow}>
             <BannerRow
+              theme={theme}
               bannerTitle={renderBanner.bannerTitle}
               bannerType={renderBanner.bannerType}
               bannerIcon={renderBanner.bannerIcon}
