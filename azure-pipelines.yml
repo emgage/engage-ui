@@ -23,16 +23,18 @@ steps:
 
 - script: |
     #!/bin/bash
-    COMMIT_ID=$(git ls-remote --head --exit-code origin develop | cut -f 1 | head -n 1)
-    if [ -z "$(git log | grep $COMMIT_ID)" ]
+    git checkout develop
+    git checkout -
+    BEHIND=$(git rev-list --left-right --count develop...HEAD|awk '{print$1}')
+    if [ $BEHIND -ne 0 ]
     then
         echo "false"
-        echo "CI failed, Your branch $(Build.SourceBranch) is behind of develop branch changes, Kindly merge the changes from develop branch and rerun the pipeline"
+        echo "CI failed, Your branch $(Build.SourceBranch) is $BEHIND commits behind of develop branch changes, Kindly merge the changes from develop branch and rerun the pipeline"
         exit 1
     else
         echo "true"
     fi
-  condition: not(or(eq(variables['Build.SourceBranch'], 'refs/heads/master'), eq(variables['Build.SourceBranch'], 'refs/heads/releases/r1-release'), eq(variables['Build.SourceBranch'], 'refs/heads/demo/develop'), eq(variables['Build.SourceBranch'], 'refs/heads/develop'), startsWith(variables['Build.SourceBranch'], 'refs/heads/hotfix'), eq(variables['System.PullRequest.TargetBranch'], 'master'), eq(variables['System.PullRequest.TargetBranch'], 'releases/r1-release'), eq(variables['System.PullRequest.TargetBranch'], 'demo/develop')))
+  condition: not(or(eq(variables['Build.SourceBranch'], 'refs/heads/master'), eq(variables['Build.SourceBranch'], 'refs/heads/develop'), eq(variables['Build.SourceBranch'], 'refs/heads/demo/develop'),  eq(variables['Build.SourceBranch'], 'refs/heads/releases/r1-release'), startsWith(variables['Build.SourceBranch'], 'refs/heads/hotfix'), eq(variables['System.PullRequest.TargetBranch'], 'refs/heads/master'), eq(variables['System.PullRequest.TargetBranch'], 'refs/heads/releases/r1-release'), eq(variables['System.PullRequest.TargetBranch'], 'demo/develop')))
   displayName: "Check if Branch is in Sync"
 
 - task: NodeTool@0
