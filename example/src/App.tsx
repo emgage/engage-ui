@@ -99,6 +99,7 @@ import {
   SearchHelper,
   NoData,
   EntityState,
+  MyDropzone,
 } from '../../src/components';
 import { IconList } from '../../src/components/Icon';
 
@@ -1749,6 +1750,12 @@ class App extends React.Component<{}, State> {
             {
               header: <>SegmentExample</>,
               children: <SegmentExample />
+            },
+            {
+              header: <>MyDropzone</>,
+              children: <MyDropzone onDrop={(files: any) => {
+                console.log(files);
+              }} onRemove={() => { }} />
             },
             {
               header: <>IconListExample</>,

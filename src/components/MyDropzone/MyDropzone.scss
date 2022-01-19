@@ -1,0 +1,21 @@
+.MyDropzone {
+  .dragAndDropWrap {
+    border: 1px dashed rgb(25, 118, 210);
+    text-align: center;
+    padding: 1.5rem;
+    border-radius: 0.4rem;
+    background: rgba(25, 118, 210, 0.1);
+  }
+
+  .uploadedFileList {
+    .fileRow {
+      padding: 1rem 2rem;
+      border-bottom: 1px solid #e5e5e5;
+      &:last-child {
+        border: 0px;
+      }
+      .fileName {
+      }
+    }
+  }
+}
