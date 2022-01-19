@@ -70,3 +70,4 @@ export const AUTOSUGGEST = 'PAutosuggest';
 export const SEARCH_HELPER = 'PSearchHelper';
 export const NODATA = 'PNoData';
 export const SEGMENT = 'PSegment';
+export const MYDROPZONE = 'PMyDropzone';
