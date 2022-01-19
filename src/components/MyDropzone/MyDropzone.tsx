@@ -37,14 +37,9 @@ const MyDropzone = ({
   componentClass = '',
   componentStyle = {},
   onDrop,
-  dropzoneConfig = { },
+  dropzoneConfig = {},
   maxFiles = 1,
-  uploadedFiles = [
-    {
-      name: 'test',
-      // removable: false,
-    },
-  ],
+  uploadedFiles = [],
   onRemove,
   onBrowseClick,
   dragDropLabel = 'Drag & drop or'
