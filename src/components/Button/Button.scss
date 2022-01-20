@@ -240,7 +240,7 @@ $dropdown-item-padding-x: 1.6rem !default;
   &:first-child {
     // This compensates for the typical icon used in buttons being
     // inset within its bounding box.
-    margin-left: -2px;
+    margin-left: -0.2rem;
     // margin-right: spacing(tightest);
   }
 
@@ -250,7 +250,7 @@ $dropdown-item-padding-x: 1.6rem !default;
     // This compensates for the disclosure icon, which is substantially
     // inset within the viewbox (and makes it look like there is too much
     // spacing on the right of the button)
-    margin-right: -5px;
+    margin-right: -0.5rem;
   }
 
   &:only-child {

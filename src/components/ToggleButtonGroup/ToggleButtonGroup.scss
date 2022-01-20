@@ -26,7 +26,7 @@ $item-spacing: spacing(tighter);
     z-index: z-index(item, $stacking-order);
 
     &:not(:first-child) {
-      margin-left: -1px;
+      margin-left: -0.1rem;
     }
 
     * {
