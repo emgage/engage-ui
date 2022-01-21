@@ -11,6 +11,7 @@ export interface Step {
     style?: any;
     onClick?(): void;
     status?: string;
+    icon?: React.ReactNode;
 }
 export interface Props {
     steps: Step[];
