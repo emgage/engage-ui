@@ -16,6 +16,7 @@ export interface Step {
   style?: any;
   onClick?(): void;
   status?: string;
+  icon?: React.ReactNode;
 }
 
 export interface Props {
@@ -136,11 +137,11 @@ class Process extends React.PureComponent<Props, State> {
         { index !== 0 ? <div className={theme.processBar}><span className={theme.processDivider}></span></div> : null }
         <div className={theme.processItem}>
           <span
-            className={theme.processIndex}
+            className={item.icon ? theme.iconProcess : theme.processIndex}
             style={{ ...item.style, cursor: item.onClick ? 'pointer' : 'default' }}
             onClick={item.onClick ? this.handleOnClick : () => {}}
           >
-            {index + 1}
+            { item.icon ?  item.icon : index + 1}
           </span>
           <span className={theme.processLabel}>{item.name}</span>
         </div>
