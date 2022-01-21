@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useDropzone, DropzoneOptions } from 'react-dropzone'
+import { useDropzone, DropzoneOptions } from 'react-dropzone';
 import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 import { classNames } from '@shopify/react-utilities/styles';
 
@@ -49,7 +49,7 @@ const MyDropzone = ({
     if (files.length > 0) {
       onDrop(files);
     }
-  }, [onDrop]);
+  },                                   [onDrop]);
 
   const { getRootProps, getInputProps, open: openFileSelection } = useDropzone({
     maxFiles,
