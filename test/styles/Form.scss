@@ -1,0 +1,80 @@
+@import './ReadStyle';
+
+ul {
+  margin: 0px;
+}
+
+.formBody {
+  padding: 12px 40px;
+}
+
+.noMargin {
+  margin: 0 !important;
+}
+
+.drawerHeader, .drawerViewHeader {
+  font-size: rem(24px);
+  line-height: rem(28px);
+  margin-right: auto;
+  margin-bottom: spacing(loose);
+}
+
+.introCard {
+  padding: 0px !important;
+  margin-top: 0px !important;
+  margin-bottom: 16px;
+}
+
+.cardHeader {
+  font-size: rem(16px);
+  line-height: rem(24px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  margin-bottom: spacing(base);
+  font-weight: 600;
+  padding: 12px 16px;
+}
+
+.cardContent {
+  padding: 12px 16px;
+}
+
+.formFieldContainer {
+  margin-bottom: 16px;
+}
+
+.formFooter {
+  position: sticky;
+  padding: 10px 40px;
+  background-color: theme-color(m-grey, 50);
+  box-shadow: 0 -1px 0 0 rgba(0, 0, 0, 0.12);
+  bottom: 0;
+  margin-top: 24px;
+  button, input[type="button"], input[type="submit"] {
+    min-width: 10rem;
+  }
+}
+
+.flexBox {
+  margin-top: 5px;
+}
+
+.commonLeftMargin {
+  margin-left: 16px;
+}
+
+.switchContainer {
+  margin-bottom: 6px;
+  .formSwitch {
+    label {
+      font-weight: 600;
+      font-size: 16px;
+      color: #212121;
+    }
+  }
+  .switchDescription {
+    font-size: 13px;
+    color: #616161;
+    padding-left: 54px;
+  }
+}
+

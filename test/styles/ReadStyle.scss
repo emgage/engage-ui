@@ -1,0 +1,56 @@
+@import './Button';
+@import './Heading';
+
+/* Here import all the common style which needs to be send via theme prop for the read screen */
+.card {
+  padding: 10px 16px;
+  box-shadow: none;
+  margin-top: 14px !important;
+  border-radius: 8px;
+  max-width:1000px;
+  &:first-child {
+    margin-top: 0 !important;
+  }
+
+  > .flex { 
+    margin-top: 8px;
+
+    > div {
+      flex: 1;
+    }
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+}
+
+.card + .flex, .card + div + .flex, .card + .flex + div + .flex {
+  .heading {
+    margin: 0 !important;
+    font-weight: inherit !important
+  }
+
+  + .card {
+    > .flex {
+      padding: 40px 0;
+    }
+  }
+}
+
+.badge {
+  line-height: unset;
+  height: fit-content;
+  margin-left: 16px;
+  font-weight: normal;
+  line-height: 2rem;
+  margin-bottom: 6px;
+}
+
+.labelWrapper {
+  margin: 0 !important;
+}
+
+.textField.readOnly {
+  padding: 0 0.2rem 0 0;
+}

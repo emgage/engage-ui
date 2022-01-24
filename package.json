@@ -35,6 +35,7 @@
     "build-dev": "node node_modules/webpack/bin/webpack.js && node node_modules/webpack/bin/webpack.js --config webpack.window.config.js",
     "build-release": "node node_modules/webpack/bin/webpack.js -p && node node_modules/webpack/bin/webpack.js --config webpack.window.config.js -p",
     "example": "webpack-dev-server --config webpack.example.config --progress",
+    "uitest": "webpack-dev-server --config webpack.test.config --progress",
     "docs": "webpack-dev-server --config webpack.docs.config",
     "precommit-msg": "echo 'Running linting and testing checks...' && exit 0",
     "travis-deploy-once": "travis-deploy-once",

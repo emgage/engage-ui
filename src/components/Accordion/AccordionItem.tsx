@@ -67,7 +67,7 @@ class AccordionItem extends React.PureComponent<Props, never> {
         </div>
 
         <div className={active ? theme.body : theme.bodyCollapsed} onClick={this.handleClickChildren}>
-          {active && children}
+          {children}
         </div>
       </div>
     );

@@ -124,12 +124,9 @@ const DefaultCard = (props: any) => {
       <div className={cardBackground}>
       <FlexBox align="Center">
         {
-          props.image ? (typeof props.image === 'object' ?
-            <span className={baseTheme.subscriberIcon}>
-              <Icon source={props.image} theme={baseTheme} />
-            </span>
-            : <span><img className={baseTheme.avatarImage} src={props.image} alt={props.alt} aria-hidden={!props.nameAfter || !props.nameBefore} /></span>
-          ) : null
+          props.image ?
+            <span><img className={baseTheme.avatarImage} src={props.image} alt={props.alt} aria-hidden={!props.nameAfter || !props.nameBefore} /></span>
+            : null
         }
         <span className={baseTheme.nameStyle}>
           <span>{props.nameBefore}</span>
@@ -247,17 +244,6 @@ class Picker extends React.PureComponent<Props, State> {
     }
   }
 
-  getFilteredSuggestions = (list= this.state.itemsList, selectedList= this.state.chipListState, valString?:any) => {
-    const newSuggestions = list.filter((it: any) => {
-      let isValid = false;
-      selectedList.forEach((cls: any) => {
-        isValid = isValid || it.id === cls.id || it.name === valString;
-      });
-      return !isValid;
-    });
-    return newSuggestions;
-  }
-
   render() {
 
     const { columns = [] } = this.props;
@@ -297,13 +283,11 @@ class Picker extends React.PureComponent<Props, State> {
         if ((e.keyCode === 8) && this.state.chipListState.length && !this.state.value.length) {
           const chipListState = this.state.chipListState.slice(0, this.state.chipListState.length - 1);
           const selectedChip = this.state.chipListState.slice(this.state.chipListState.length - 1)[0];
-          const itemsList = [selectedChip, ...this.state.itemsList];
-          const newSuggestions = this.getFilteredSuggestions(itemsList, chipListState);
+          const itemsList = this.state.itemsList.concat(selectedChip);
           this.setState({
             chipListState,
             itemsList,
-            hasValue: chipListState.length ? true : false,
-            suggestions: newSuggestions,
+            hasValue: chipListState.length ? true : false
           });
           if (this.props.onRemove) {
             this.props.onRemove(selectedChip);
@@ -329,11 +313,8 @@ class Picker extends React.PureComponent<Props, State> {
         });
       },
 
-      onSuggestionsFetchRequested: ({ value, reason }: any) => {
+      onSuggestionsFetchRequested: ({ value }: any) => {
         const { shouldFilterSuggestions = true } = this.props;
-        if (reason === 'suggestion-selected') {
-          return;
-        }
         const suggestions =  shouldFilterSuggestions ? autoSuggestMethods.getSuggestions(value) : this.getSuggestionsItems(this.props.source, this.props.columns || []);
         this.setState({ suggestions });
       },
@@ -388,8 +369,7 @@ class Picker extends React.PureComponent<Props, State> {
           focusArr,
           number,
           focused,
-          hasValue: chipListState.length ? true : false,
-          isFocused: false,
+          hasValue: chipListState.length ? true : false
         });
 
         if (this.props.onRemove) {

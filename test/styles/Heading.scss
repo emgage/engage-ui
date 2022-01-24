@@ -1,0 +1,16 @@
+// This will help us to define heading style, we can define different style for each level of head tags
+.heading {
+  margin: 0;
+  margin-bottom: .9rem;
+  font-weight: 600 !important;
+  line-height: 28px;
+  padding: 0;
+  word-break: break-all;
+  max-width: 450px;
+}
+.heading span {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right:16px;
+  margin-left:0px;
+}

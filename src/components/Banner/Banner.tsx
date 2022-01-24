@@ -62,22 +62,28 @@ const banner = ({
   theme,
   secondaryText,
 }: Props) => {
+  let color: IconProps['componentColor'];
   let defaultIcon: IconProps['source'];
 
   switch (status) {
     case 'success':
+      color = 'greenDark';
       defaultIcon = circleCheckMarkSvg;
       break;
     case 'info' :
+      color = 'tealDark';
       defaultIcon = flagSvg;
       break;
     case 'warning':
+      color = 'yellowDark';
       defaultIcon = circleAlertSvg;
       break;
     case 'critical':
+      color = 'redDark';
       defaultIcon = circleBarredSvg;
       break;
     default:
+      color = 'ink';
       defaultIcon = confettiSvg;
   }
 
@@ -115,7 +121,7 @@ const banner = ({
       return (
         <div key={`option_${index}`} className={baseTheme.bannerBox}>
           <Icon source = {item.icon as keyof typeof IconList} componentColor = {item.componentColor ? item.componentColor as IconColor : undefined} />
-          <BodyText element="span" componentClass={baseTheme.bannerContent}>
+          <BodyText element="p" componentClass={baseTheme.bannerContent}>
             {item.text}
           </BodyText>
         </div>
@@ -172,7 +178,7 @@ const banner = ({
     >
       {dismissButton}
       <div className={theme.ribbon}>
-        <Icon source={iconName} backdrop theme={theme} />
+        <Icon source={iconName} componentColor={color} backdrop theme={theme} />
       </div>
       <div className={baseTheme.bannerContent}>
         {headingMarkup}

@@ -1,3 +1,15 @@
+@import 'foundation/border-radius';
+@import 'foundation/colors';
+@import 'foundation/spacing';
+@import 'foundation/shadows';
+@import 'foundation/duration';
+@import 'foundation/easing';
+@import 'shared/controls';
+@import 'shared/buttons';
+@import 'shared/links';
+//@import '../../../themes/Delicious/Button.scss';
+
+
 $accent-height: 1px;
 $dismiss-size: rem(16px);
 $ribbon-flex-basis: rem(32px);
@@ -15,9 +27,7 @@ $secondary-action-horizontal-padding: 1.5 * spacing(tightest);
       shadow();
   }
 }
-@mixin icon-color($fill) {
-  fill: $fill;
-}
+
 .banner {
   @include banner-colors(color(ink, lighter), color(sky, light));
   position: relative;
@@ -25,7 +35,7 @@ $secondary-action-horizontal-padding: 1.5 * spacing(tightest);
   padding: spacing();
   border-radius: border-radius(larger);
   transition: box-shadow duration() easing();
-  @include icon-color(color(ink));
+
   + .Banner {
     margin-top: spacing(loose);
   }
@@ -41,22 +51,18 @@ $secondary-action-horizontal-padding: 1.5 * spacing(tightest);
 
 .statusSuccess {
   @include banner-colors(color(green), color(green, lighter));
-  @include icon-color(color(green));
 }
 
 .statusInfo {
   @include banner-colors(color(teal), color(teal, lighter));
-  @include icon-color(color(teal));
 }
 
 .statusWarning {
   @include banner-colors(color(yellow), color(yellow, lighter));
-  @include icon-color(color(yellow));
 }
 
 .statusCritical {
   @include banner-colors(color(red), color(red, lighter));
-  @include icon-color(color(red));
 }
 
 .ribbon {

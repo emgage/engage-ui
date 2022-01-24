@@ -1,0 +1,227 @@
+
+body {
+  color: theme-color(m-grey, 900);
+  background-color: theme-color(m-grey, 50);
+}
+
+.pageContainer {
+  padding: spacing(base);
+}
+
+.pageHeader {
+  font-size: rem(32px);
+  font-weight: 500;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(175, 175, 175, 0.34);
+}
+
+.descriptionStyle {
+  display: inline-block;
+  font-size: rem(14px);
+  line-height: rem(20px);
+  color: theme-color(m-grey, 700);
+  margin-top: spacing(tight);
+}
+
+.valueHeader {
+  font-size: rem(13px);
+  line-height: rem(16px);
+  color: theme-color(m-grey, 700);
+}
+
+.drawerHeader, .drawerViewHeader {
+  font-size: rem(24px);
+  line-height: rem(28px);
+  margin-right: auto;
+  margin-bottom: spacing(loose);
+}
+
+.drawerViewHeader {
+  margin-bottom: 10px;
+}
+
+.formFooter {
+  position: sticky;
+  padding: 10px 40px;
+  background-color: theme-color(m-grey, 50);
+  box-shadow: 0 -1px 0 0 rgba(0, 0, 0, 0.12);
+  bottom: 0;
+  margin-top: 24px;
+  button, input[type="button"], input[type="submit"] {
+    min-width: 10rem;
+  }
+}
+
+.formContainer {
+  padding: 18px 40px;
+}
+
+.formCard, .cardStyle {
+  padding: spacing(base);
+  margin-top: spacing(base);
+}
+
+.cardNoShadow {
+  box-shadow: none;
+}
+
+.drawerStyle {
+  background: theme-color(m-grey, 50);
+}
+
+.formField, .cardBlock {
+  margin-top: spacing(base);
+}
+
+.cardHeader {
+  font-size: rem(16px);
+  line-height: rem(24px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  padding-bottom: spacing(tight);
+  margin-bottom: spacing(base);
+  font-weight: 600;
+}
+
+.cardDivider, .commonrightMargin {
+  margin-right: spacing(base);
+}
+
+.commonLeftMargin {
+  margin-left: spacing(base);
+}
+
+.commonTopMargin {
+  margin-top: spacing(base);
+}
+
+.commonBottomMargin {
+  margin-bottom: spacing(base);
+}
+
+.commonMargin {
+  margin: spacing(base);
+}
+
+.flexBox {
+  margin-top: 5px;
+}
+
+.introCard {
+  padding: spacing(base) 28px !important;
+}
+
+.memberDivider {
+  margin-top: 16px;
+}
+
+.searchField, .flex1 {
+  flex: 1;
+}
+
+.RoleGroupFilter {
+  margin-left: 10px;
+  width: 90% ;
+  margin-right: 10px;
+}
+
+.noPadding {
+  padding: 0;
+}
+
+.noMargin {
+  margin: 0 !important;
+}
+
+.filterContainer {
+  padding: 16px 16px 0;
+}
+
+.stickyHeader {
+  background-color: theme-color(white);
+  padding: 10px spacing(base);
+  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.1);
+}
+
+.stickyFooter {
+  padding: 10px 40px;
+  background-color: theme-color(white);
+  box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.1);
+  button, input[type="button"], input[type="submit"] {
+    min-width: 10rem;
+  }
+}
+
+.stickyEditHeader {
+  position: inherit;
+  background: transparent;
+  box-shadow: none;
+  padding: 20px 40px 0;
+  margin-bottom: 12px;
+}
+
+.smallFont {
+  font-size: rem(13px);
+  line-height: rem(16px);
+}
+
+.spinnerContainer {
+  position: absolute;
+  background: #FFF;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+}
+
+.tableActions {
+  margin-top: 18px;
+}
+
+.addMemberBtn {
+  padding: 0px 30px;
+}
+
+.formDivider {
+  border-bottom: solid 1px rgba(175, 175, 175, 0.34);
+  margin-top: 8px;
+}
+
+.table {
+  table-layout: fixed;
+
+  th {
+    background: #FFF;
+
+    &:nth-child(2) {
+      white-space: inherit;
+    }
+  }
+
+  td {
+    &:last-child {
+      text-align: left !important;
+    }
+  }
+}
+
+.tableMultiLineDescription {
+  font-size: 13px;
+  color: #616161;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.publishBtn {
+  min-width: rem(99px);
+}
+
+.text_overflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.contentWidthTwoThird {
+  margin-right: spacing(base);
+  width: 66.66% !important;
+}

@@ -259,7 +259,7 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
           zIndex,
           measuring: false,
           activatorRect: getRectForNode(activator),
-          left: horizontalPosition === 0 ? horizontalPosition - 16 : horizontalPosition,
+          left: horizontalPosition,
           top: tooltipOverlay ? verticalPosition.top : this.getTopHeight(preferredPosition, activatorRect, overlayRect),
           anchorPosition: overlayRect.width - activatorRect.width - overlayMargins.horizontal,
           lockPosition: Boolean(fixed),

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as baseTheme from './Table.scss';
 import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
-import { Banner, ComboBox } from '../index';
+import { Banner } from '../index';
 import { Status } from '../Banner/Banner';
 import { TABLE } from '../ThemeIdentifiers';
 import { IconList } from '../Icon';
@@ -61,22 +61,22 @@ class BannerRow extends React.PureComponent<Props, State> {
       bannerTitle,
       bannerType,
       bannerIcon,
-      disabled = false,
-      dropdownItems,
-      loading = false,
+      // disabled = false,
+      // dropdownItems,
+      // loading = false,
       rowItem,
-      selectPlaceholder,
-      selectedValue,
-      theme,
+      // selectPlaceholder,
+      // selectedValue,
+      // theme,
     } = this.props;
 
-    const selectedVal = dropdownItems.find((op: any) => op.value.toString() === (selectedValue || '').toString());
+    // const selectedVal = dropdownItems.find((op: any) => op.value.toString() === (selectedValue || '').toString());
 
-    const selectedValLabel = selectedVal?.label || this.state.selectedValue;
+    // const selectedValLabel = selectedVal?.label || this.state.selectedValue;
 
     return(
       <Banner key={rowItem.id} componentTitle={bannerTitle} status={bannerType} icon={bannerIcon as keyof typeof IconList}>
-         <ComboBox
+         {/* <ComboBox
             fullWidth
             addArrow
             theme={theme}
@@ -91,7 +91,7 @@ class BannerRow extends React.PureComponent<Props, State> {
             onFocus={this.onFocusHandle}
             onSelect={this.onChangeHandler}
             suffix="caretDown"
-          />
+          /> */}
         {/* <Select
           disabled={disabled}
           label={''}

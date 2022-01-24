@@ -1,0 +1,74 @@
+
+$low: #00C853;
+$med: #FF6D00;
+$high: #D50000;
+
+$fontSize: 14px;
+
+.statusContainer {
+  .status {
+    border-radius: 4px;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    font-weight: 600;
+    font-size: $fontSize;
+    line-height: 20px;
+    color: #FFFFFF;
+    width: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.timelineContainer {
+  .timeline {
+    height: 24px;
+    width: 120px;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: $fontSize;
+    border-radius: 12px;
+  }
+}
+
+.commentContainer {
+  :hover {
+    cursor: pointer;
+  }
+  .commentCount {
+    
+  }
+}
+
+.chipData {
+  padding-left: 12px;
+  color: #424242;
+  font-size: 14px;
+}
+
+.priorityContainer {
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 12px;
+}
+
+.drawerStyle {
+  background: #FFFFFF;
+  box-shadow: 0px 1px 12px rgba(0, 0, 0, 0.12);
+}
+
+:export {
+  low: $low;
+  med: $med;
+  high: $high;
+}

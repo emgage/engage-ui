@@ -94,17 +94,7 @@ $stacking-order: (
   &.highlighted {
     background: color(sky, light);
   }
-  .subscriberIcon {
-    width: 3.2rem;
-    height: 3.2rem;
-    background: color(ink, lightest);
-    border-radius: 50px;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    fill: color(white)
-  }
+  
   .avatarImage {
     border-radius: 50%;
     width: rem(40px);
@@ -196,4 +186,3 @@ $stacking-order: (
         }
       }
 }
-

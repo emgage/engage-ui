@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as baseTheme from './AppBar.scss';
-import Login from '../Login';
+// import Login from '../Login';
 import { DropdownItemProps } from '../Dropdown';
 import Image from '../Image';
 import TextField from '../TextField';
@@ -65,14 +65,14 @@ const AppBar: React.FC<Props> = (props) => {
    * Destructure props here
    */
   const {
-    additionalLIst,
+    // additionalLIst,
     enableGlobalGo,
     enableSearch = false,
-    isLoggedIn,
-    loginUrl,
-    logoutUrl,
-    profilePic,
-    userName,
+    // isLoggedIn,
+    // loginUrl,
+    // logoutUrl,
+    // profilePic,
+    // userName,
     logo,
     rightChildren,
     enableGlobalElement,
@@ -129,14 +129,14 @@ const AppBar: React.FC<Props> = (props) => {
       }
       <div className={baseTheme.rChild}>
       { rightChildren && <div>{renderRightChildren()}</div> }
-      <Login
+      {/* <Login
         isLoggedIn={isLoggedIn}
         loginUrl={loginUrl}
         logoutUrl={logoutUrl}
         userName={userName}
         additionalLIst={additionalLIst}
         profilePic={profilePic}
-      />
+      /> */}
       </div>
     </FlexBox>
   </header>;

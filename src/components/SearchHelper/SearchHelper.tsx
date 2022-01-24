@@ -3,7 +3,7 @@ import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 
 import { SEARCH_HELPER } from '../ThemeIdentifiers';
 import * as baseTheme from './SearchHelper.scss';
-import { FlexBox, Tooltip, List, Item, BodyText, Icon } from './../../components';
+import { FlexBox, BodyText } from './../../components';
 
 export interface Props {
   // Css class name
@@ -16,7 +16,7 @@ const SearchHelper = ({ componentClass = '' }: Props) => {
   return (
     <FlexBox componentClass={componentClass} justify="Start" align="Center">
      <BodyText element="span" componentSize="small" componentColor="text" componentStyle={{ marginRight: 4 }}> Use special operators ( +, |, –, ", * ) to narrow your search.</BodyText>
-      <Tooltip content={
+      {/* <Tooltip content={
         <List componentType="default">
           <Item>
             <FlexBox justify="SpaceBetween" componentStyle={{ maxWidth: 350 }}>
@@ -56,7 +56,7 @@ const SearchHelper = ({ componentClass = '' }: Props) => {
         </List>
       }>
         <Icon source="infoCircle" componentColor="inkLight" />
-      </Tooltip>
+      </div> */}
     </FlexBox>
   );
 };

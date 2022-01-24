@@ -1,0 +1,60 @@
+
+.commentMainContainer {
+  .highlight {
+    box-shadow: inset 4px 0px 0px #1976D2;
+  }
+  .commentTitleContainer {
+    display: flex;
+    padding-bottom: 20px;
+    // border-bottom: 1px solid #E0E0E0;
+    padding: 0 16px 12px;
+    .title {
+      flex: 1
+    }
+    .icon {
+      justify-content: flex-end;
+      :hover {
+        cursor: pointer;
+      }
+    }
+  }
+  .commentContainer {
+    padding: 4px 16px 4px;
+    .imageContainer {
+      .image {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+      }
+    }
+    .name {
+      font-style: normal;
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 20px;
+    }
+    .time {
+      font-size: 11px;
+      line-height: 12px;
+      color: #757575;
+    }
+    .comment {
+      .refName {
+        color: #1976D2;
+        font-size: 14px;
+        margin-right: 2px;
+      }
+      .text {
+        font-size: 14px;
+      }
+    }
+  }
+  .todayContainer {
+    background: #FFFFFF;
+    padding: 4px 17px;
+    border: 1px solid #E0E0E0;
+    box-sizing: border-box;
+    border-radius: 14px;
+    width: 75px;
+  }
+}

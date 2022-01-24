@@ -1,0 +1,22 @@
+/* Button & button group common styling */
+
+.buttonGroup {
+  flex-wrap: nowrap;
+  margin-top: 0;
+  align-items: start;
+
+  > .item {
+    margin: 0;
+
+    &:first-child {
+      .button {
+        padding-left: 3.7rem;
+        padding-right: 3.7rem;
+      }
+    }
+
+    &.primary + .item {
+      margin-left: 1px;
+    }
+  }
+}

@@ -160,7 +160,7 @@ class SideNavigation extends React.PureComponent<Props, State> {
             <div className={liClass} onClick={full.action} aria-disabled={false} id={componentId ? `${componentId}${full.label}` : ''}>
             {full.label}
               <div className={theme.currentAppIcon}>
-                <Icon source={full.icon} componentColor={activeItem === full.id ? 'black' : 'white'} componentClass={theme.customIcon} theme={theme} />
+                <Icon source={full.icon} componentColor={'white'} componentClass={theme.customIcon} theme={theme} />
               </div>
             </div>
 
@@ -170,7 +170,7 @@ class SideNavigation extends React.PureComponent<Props, State> {
         (
           <div key={index}>
             <div className={liClass} onClick={full.action} aria-disabled={false} id={componentId ? `${componentId}${full.label}` : ''}>
-              <Icon source={full.icon} componentColor={activeItem === full.id ? 'black' : 'white'} componentClass={theme.customIcon} theme={theme} />
+              <Icon source={full.icon} componentColor={'white'} componentClass={theme.customIcon} theme={theme} />
               {full.label}
             </div>
 
@@ -180,7 +180,7 @@ class SideNavigation extends React.PureComponent<Props, State> {
         (
           <div key={index}>
             <div className={liClass} onClick={full.action} aria-disabled={false}>
-              <Icon source={full.icon} componentColor={activeItem === full.id ? 'black' :'white'} componentClass={theme.customIcon} theme={theme} />
+              <Icon source={full.icon} componentColor={'white'} componentClass={theme.customIcon} theme={theme} />
               {full.label}
             </div>
 
@@ -215,7 +215,7 @@ class SideNavigation extends React.PureComponent<Props, State> {
         <div key={col.id} className={singleItem} id={componentId !== '' ? `${componentId}${col.label}` : ''}>
           <Tooltip content={col.label} preferredPosition="right" theme={theme}>
             <div className={liClass} onClick={col.action} aria-disabled={false}>
-              <Icon source={col.icon} componentColor={activeItem === col.id ? 'black' : 'white'} componentClass={theme.collapseIcon} theme={theme} />
+              <Icon source={col.icon} componentColor={'white'} componentClass={theme.collapseIcon} theme={theme} />
             </div>
           </Tooltip>
         </div>
