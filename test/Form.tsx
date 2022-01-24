@@ -73,8 +73,6 @@ const Form = (props: any) => {
                 type="text"
                 componentId="description"
                 label="Description (optional)"
-                // helpText="Provide a description that lets users know what type of information this field should contain."
-                // enableTextCounter={true}
                 multiline={true}
                 minLength={0}
                 maxLength={500}
@@ -82,8 +80,8 @@ const Form = (props: any) => {
             </div>
             <div className={theme.formFieldContainer}>
               <TextField
-                type="text"
-                componentId="description"
+                type="number"
+                componentId="budget"
                 label="Budget"
                 prefix={<span>$</span>}
               />
@@ -102,22 +100,16 @@ const Form = (props: any) => {
             </div>
             <div className={theme.formFieldContainer}>
               <TextField
-                type="text"
+                type="date"
                 componentId="startDate"
                 label="Start Date"
-                // helpText="Provide a description that lets users know what type of information this field should contain."
-                // enableTextCounter={true}
-                // multiline={true}
-                // minLength={0}
-                // maxLength={500}
               />
             </div>
             <div className={theme.formFieldContainer}>
               <TextField
-                type="text"
+                type="date"
                 componentId="endDate"
                 label="End Date"
-                // prefix={<span>$</span>}
               />
             </div>
           </FlexBox>
