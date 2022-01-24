@@ -155,13 +155,13 @@ const TableConfig = ({ theme }: any, commentClickHandler: any) =>  {
       hideHeader: false,
       injectBody: (data: any) => {
         const { priority } = data;
-        let priorityValue = "!!";
+        let priorityValue = "!";
         let color = theme.low;
         if (priority === "high") {
-          priorityValue = "!!!!";
+          priorityValue = "!!!";
           color = theme.high;
         } else if (priority === "med") {
-          priorityValue = "!!!";
+          priorityValue = "!!";
           color = theme.med;
         }
         return (
