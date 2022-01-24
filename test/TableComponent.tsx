@@ -23,9 +23,8 @@ declare var $: any;
 const TableConfig = ({ theme }: any, commentClickHandler: any) =>  {
   const columns = [
     {
-      label: 'PROJECT',
+      label: 'Project',
       key: 'project',
-      style: { width: '250px' },
       search: false,
       hideHeader: false,
       injectBody: (data: any) => {
@@ -42,7 +41,7 @@ const TableConfig = ({ theme }: any, commentClickHandler: any) =>  {
     {
       label: '',
       key: 'comments',
-      style: { width: '50px' },
+      style: { width: '30px' },
       search: false,
       hideHeader: true,
       injectBody: (data: any) => {
@@ -60,10 +59,9 @@ const TableConfig = ({ theme }: any, commentClickHandler: any) =>  {
       },
     },
     {
-      label: 'OWNER',
+      label: 'Owner',
       key: 'owner',
-      style: { width: '250px' },
-      // style: { width: '50px' },
+      style: { width: '150px' },
       search: false,
       hideHeader: false,
       injectBody: (data: any) => {
@@ -85,10 +83,9 @@ const TableConfig = ({ theme }: any, commentClickHandler: any) =>  {
       },
     },
     {
-      label: 'STATUS',
+      label: 'Status',
       key: 'status',
-      style: { width: '150px' },
-      // style: { width: '50px' },
+      style: { width: '81px' },
       search: false,
       hideHeader: true,
       injectBody: (data: any) => {
@@ -107,9 +104,9 @@ const TableConfig = ({ theme }: any, commentClickHandler: any) =>  {
       },
     },
     {
-      label: 'TIMELINE',
+      label: 'Timeline',
       key: 'timeline',
-      // style: { width: '50px' },
+      style: { width: '130px' },
       search: false,
       hideHeader: true,
       injectBody: (data: any) => {
@@ -135,9 +132,9 @@ const TableConfig = ({ theme }: any, commentClickHandler: any) =>  {
       },
     },
     {
-      label: 'BUDGET',
+      label: 'Budget',
       key: 'budget',
-      // style: { width: '150px' },
+      style: { width: '72px' },
       search: false,
       hideHeader: false,
       injectBody: (data: any) => {
@@ -148,9 +145,9 @@ const TableConfig = ({ theme }: any, commentClickHandler: any) =>  {
       },
     },
     {
-      label: 'PRIORITY',
+      label: 'Priority',
       key: 'priority',
-      // style: { width: '150px' },
+      style: { width: '78px' },
       search: false,
       hideHeader: false,
       injectBody: (data: any) => {
@@ -279,7 +276,7 @@ const TableComponent = (props: any) => {
           activeContentId="comments"
           onClose={onClose}
           mode="push"
-          zIndex={201}
+          zIndex={200}
           componentWidth="small"
           id="commentDrawer"
           componentClass={theme.drawerStyle}
@@ -303,7 +300,7 @@ const TableComponent = (props: any) => {
         mode="push"
         master
         componentWidth={"820px"}
-        zIndex={1000}
+        zIndex={500}
         theme={DrawerStyle}
         fixedCloseButton={false}
       >
