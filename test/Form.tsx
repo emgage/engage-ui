@@ -11,7 +11,8 @@ import {
   SwitchCheckbox,
   Button,
   // Column,
-  TextField
+  TextField,
+  Icon
 } from '../src/components';
 
 const baseTheme = require('./styles/Form.scss');
@@ -58,7 +59,7 @@ const Form = (props: any) => {
           </FlexBox>
         </div>
         <Card theme={theme} componentClass={theme.introCard}>
-          <div className={theme.cardHeader}>Item Label Formula</div>
+          <Heading element="h4" headingSize="subtitle" className={theme.cardHeader}>Project Details</Heading>
           <FlexBox direction="Column" theme={theme} componentClass={theme.cardContent}>
             <div className={theme.formFieldContainer}>
               <TextField
@@ -90,7 +91,7 @@ const Form = (props: any) => {
           </FlexBox>
         </Card>
         <Card theme={theme} componentClass={theme.introCard}>
-          <div className={theme.cardHeader}>Project Timeline</div>
+          <Heading element="h4" headingSize="subtitle" className={theme.cardHeader}>Project Timeline</Heading>
           <FlexBox direction="Column" theme={theme} componentClass={theme.cardContent}>
             <div className={theme.formFieldContainer}>
               <TextField
@@ -122,7 +123,7 @@ const Form = (props: any) => {
           </FlexBox>
         </Card>
         <Card theme={theme} componentClass={theme.introCard}>
-          <div className={theme.cardHeader}>Business Type</div>
+          <Heading element="h4" headingSize="subtitle" className={theme.cardHeader}>Business Type</Heading>
           <FlexBox direction="Column" theme={theme} componentClass={theme.cardContent}>
             <div className={theme.formFieldContainer}>
               <Picker
