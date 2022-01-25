@@ -7,7 +7,7 @@ import { classNames } from '@shopify/react-utilities/styles';
 import Icon from '../Icon/Icon';
 import VisuallyHidden from '../VisuallyHidden';
 
-export type ISwitchType = 'normal' | 'trueFalse' | 'yesNo';
+export type ISwitchType = 'yesNo';
 export interface Props {
   // Set theme for SwitchCheckbox
   theme?: any;
@@ -18,11 +18,11 @@ export interface Props {
   componentId?: string;
   children?: React.ReactNode;
   // component props to handle toggle
-  disabled?: boolean;
+  // disabled?: boolean;
   isOpen?: boolean;
   handleToggle: (value?: boolean) => void;
   switchType?: ISwitchType;
-  allowNull?: boolean;
+  // allowNull?: boolean;
 }
 
 const getUniqueName = createUniqueIDFactory('SwitchCheckbox');
@@ -43,16 +43,10 @@ const SwitchCheckbox = (props: Props) => {
       trueRadio,
     };
   });
-  const { theme, componentClass, componentStyle, isOpen, allowNull = true, disabled } = props;
-  const { children, handleToggle, switchType = 'normal' } = props;
+  const { theme, componentClass, componentStyle, isOpen } = props;
+  const { children, handleToggle, switchType = 'yesNo' } = props;
   let switchTypeClass = theme.switchNormal;
   switch (switchType) {
-    case 'normal':
-      switchTypeClass = theme.switchNormal;
-      break;
-    case 'trueFalse':
-      switchTypeClass = theme.switchTrueFalse;
-      break;
     case 'yesNo':
       switchTypeClass = theme.switchYesNo;
       break;
@@ -68,13 +62,13 @@ const SwitchCheckbox = (props: Props) => {
     isOpen === false && theme.falseSelect,
     isOpen === true && theme.trueSelect,
     typeof isOpen !== 'boolean' && !isOpen && theme.nullSelect,
-    disabled && theme.disableSwitch
+    // disabled && theme.disableSwitch
   );
   return (<div style={componentStyle} className={className}>
     <div className={theme.outerWrap}>
 
       <label htmlFor={names.falseRadio} className={theme.falseRadio}>
-        <VisuallyHidden>{switchType === 'trueFalse' ? 'False' : 'No' }</VisuallyHidden>
+        <VisuallyHidden>{'No' }</VisuallyHidden>
 
         <input
           type="radio"
@@ -82,7 +76,7 @@ const SwitchCheckbox = (props: Props) => {
           name={names.fieldName}
           value={names.falseRadio}
           checked={isOpen === false}
-          disabled={disabled}
+          // disabled={disabled}
           onChange={() => handleToggle(false)}
         />
         <span className={theme.switchRadio}>
@@ -90,7 +84,7 @@ const SwitchCheckbox = (props: Props) => {
         </span>
       </label>
 
-      <label htmlFor={names.nullRadio} className={theme.nullRadio}>
+      {/* <label htmlFor={names.nullRadio} className={theme.nullRadio}>
       <VisuallyHidden>Null</VisuallyHidden>
         <input
           type="radio"
@@ -98,20 +92,20 @@ const SwitchCheckbox = (props: Props) => {
           name={names.fieldName}
           value={names.nullRadio}
           checked={typeof isOpen !== 'boolean' && !isOpen}
-          disabled={!allowNull || disabled}
-          onChange={() => allowNull && handleToggle()} />
+          disabled={disabled}
+          onChange={() => handleToggle()} />
         <span className={theme.switchRadio}>Null</span>
-      </label>
+      </label> */}
 
       <label htmlFor={names.trueRadio} className={theme.trueRadio}>
-      <VisuallyHidden>{switchType === 'trueFalse' ? 'True' : 'Yes' }</VisuallyHidden>
+      <VisuallyHidden>{'Yes' }</VisuallyHidden>
         <input
           type="radio"
           id={names.trueRadio}
           name={names.fieldName}
           value={names.trueRadio}
           checked={isOpen === true}
-          disabled={disabled}
+          // disabled={disabled}
           onChange={() => handleToggle(true)}
         />
         <span className={theme.switchRadio}>

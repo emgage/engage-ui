@@ -33,7 +33,17 @@ const App = (props: any) => {
       <div className={theme.appContainer} style={{ top: 50, position: "relative", left: 40, width: "calc(100% - 40px)" }}>
         <Heading componentStyle={{ marginBottom: 8 }} headingSize="h2">Internal Projects</Heading>
         <BodyText componentStyle={{ marginBottom: 20 }} componentColor="darker">Project Portfolio</BodyText>
-        <TableComponent />
+        <TableComponent onDrawerClick={(state: any) => {
+          if (state) {
+            document.body.classList.add(theme.shrinkTable);
+            document.body.classList.remove(theme.expandTable);
+          }
+           else {
+            document.body.classList.add(theme.expandTable);
+            document.body.classList.remove(theme.shrinkTable);
+          }
+          
+        }} />
       </div>
     </div>
   )

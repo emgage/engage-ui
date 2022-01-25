@@ -12,7 +12,7 @@ import {
   Button,
   // Column,
   TextField,
-  Icon
+  // Icon
 } from '../src/components';
 
 const baseTheme = require('./styles/Form.scss');
@@ -59,7 +59,7 @@ const Form = (props: any) => {
           </FlexBox>
         </div>
         <Card theme={theme} componentClass={theme.introCard}>
-          <Heading element="h4" headingSize="subtitle" className={theme.cardHeader}>Project Details</Heading>
+          <Heading element="h4" headingSize="subtitle" componentClass={theme.cardHeader}>Project Details</Heading>
           <FlexBox direction="Column" theme={theme} componentClass={theme.cardContent}>
             <div className={theme.formFieldContainer}>
               <TextField
@@ -89,7 +89,7 @@ const Form = (props: any) => {
           </FlexBox>
         </Card>
         <Card theme={theme} componentClass={theme.introCard}>
-          <Heading element="h4" headingSize="subtitle" className={theme.cardHeader}>Project Timeline</Heading>
+          <Heading element="h4" headingSize="subtitle" componentClass={theme.cardHeader}>Project Timeline</Heading>
           <FlexBox direction="Column" theme={theme} componentClass={theme.cardContent}>
             <div className={theme.formFieldContainer}>
               <TextField
@@ -115,7 +115,7 @@ const Form = (props: any) => {
           </FlexBox>
         </Card>
         <Card theme={theme} componentClass={theme.introCard}>
-          <Heading element="h4" headingSize="subtitle" className={theme.cardHeader}>Business Type</Heading>
+          <Heading element="h4" headingSize="subtitle" componentClass={theme.cardHeader}>Business Type</Heading>
           <FlexBox direction="Column" theme={theme} componentClass={theme.cardContent}>
             <div className={theme.formFieldContainer}>
               <Picker

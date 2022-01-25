@@ -9,3 +9,19 @@
   padding-top: 40px;
   padding-bottom: 40px;
 }
+
+body.shrinkTable {
+  .appContainer {
+    -webkit-transition: width 0.3s ease-out;
+    transition: width 0.3s ease-out;
+    width: calc(100% - 310px) !important;
+  }
+}
+
+body.expandTable {
+  .appContainer {
+    -webkit-transition: width 0.3s ease-out;
+    transition: width 0.3s ease-out;
+    width: calc(100%);
+  }
+}

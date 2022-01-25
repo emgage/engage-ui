@@ -143,26 +143,19 @@ $stacking-order: (
 // Slide and Push mode animation
 // ------------------------------------------------------------------------
 .animation {
-  -webkit-transition: -webkit-transform 0.3s ease-out;
-  transition: transform 0.3s ease-out;
+  
 }
 
 // Reveal animation
 // ------------------------------------------------------------------------
 .reveal {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: 0;
+  
   overflow: hidden;
-  -webkit-transition: width 0.3s ease-out;
-  transition: width 0.3s ease-out;
-
   .bar {
     -webkit-transform: translateX(0);
     transform: translateX(0);
   }
+  
 }
 
 // Flip modifier
@@ -288,8 +281,6 @@ body.overlay {
 :global #root {
   position: relative;
   left: 0;
-  -webkit-transition: left 0.3s ease-out;
-  transition: left 0.3s ease-out;
   -webkit-overflow-scrolling: touch;  
 }
 

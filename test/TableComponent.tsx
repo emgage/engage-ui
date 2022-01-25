@@ -98,7 +98,7 @@ const TableConfig = ({ theme }: any, commentClickHandler: any) =>  {
         }
         return (
           <div className={theme.statusContainer}>
-            <div style={{ background: theme[statusClass]}} className={theme.status}>{status}</div>
+            <div className={`${theme.status} ${theme[statusClass]}`}>{status}</div>
           </div>
         );
       },
@@ -151,18 +151,15 @@ const TableConfig = ({ theme }: any, commentClickHandler: any) =>  {
       search: false,
       hideHeader: false,
       injectBody: (data: any) => {
-        const { priority } = data;
+        const { priority = "low" } = data;
         let priorityValue = "!";
-        let color = theme.low;
         if (priority === "high") {
           priorityValue = "!!!";
-          color = theme.high;
         } else if (priority === "med") {
           priorityValue = "!!";
-          color = theme.med;
         }
         return (
-          <div className={theme.priorityContainer} style={{ backgroundColor: color }}>{priorityValue}</div>
+          <div className={`${theme.priorityContainer} ${theme[priority]}`} >{priorityValue}</div>
         );
       },
     },
@@ -208,27 +205,27 @@ const TableSearch = ({ addButtonHandler }: any) => {
   ); 
 }
 
-function move(elem: any, px: number, reset: boolean) {
-  var left = reset ? px : 0;
-  function frame() {
-    if (reset) {
-      left -= 10  // update parameters
-      elem.style.width = `calc(100% - ${left}px)` // show frame
-      if (left == 0)  // check finish condition
-          clearInterval(id)
-    } else {
-      left += 10 // update parameters
-      elem.style.width = `calc(100% - ${left}px)` // show frame
-      if (left == px)  // check finish condition
-          clearInterval(id)
-    }
-  }
-  var id = setInterval(frame, 1) // draw every 10ms
-}
+// function move(elem: any, px: number, reset: boolean) {
+//   var left = reset ? px : 0;
+//   function frame() {
+//     if (reset) {
+//       left -= 10  // update parameters
+//       elem.style.width = `calc(100% - ${left}px)` // show frame
+//       if (left == 0)  // check finish condition
+//           clearInterval(id)
+//     } else {
+//       left += 10 // update parameters
+//       elem.style.width = `calc(100% - ${left}px)` // show frame
+//       if (left == px)  // check finish condition
+//           clearInterval(id)
+//     }
+//   }
+//   var id = setInterval(frame, 1) // draw every 10ms
+// }
 
 const TableComponent = (props: any) => {
   console.log("Table Props = ", props);
-  const { theme } = props;
+  const { theme, onDrawerClick } = props;
   const [ drawerState, setDrawerState ]: any = React.useState(undefined);
   const [ projectDrawerState, setProjectDrawerState ]: any = React.useState(undefined);
 
@@ -245,9 +242,13 @@ const TableComponent = (props: any) => {
   React.useEffect(() => {
     if (drawerState === undefined) return;
     if (drawerState) {
-      move(containerRef.current, 270, false);
+      onDrawerClick(drawerState);
+      // document.body.classList.add("shrinkTable");
+      // move(containerRef.current, 270, false);
     } else {
-      move(containerRef.current, 270, true);
+      onDrawerClick(drawerState);
+      // document.body.classList.remove("shrinkTable");
+      // move(containerRef.current, 270, true);
     }
   }, [drawerState]);
   let columns: any = TableConfig(props, onCommentClickHandler);
