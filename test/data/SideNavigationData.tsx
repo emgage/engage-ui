@@ -11,29 +11,29 @@ export const sideNavigationData: INavigationData[] = [
     action: () => null,
   }, {
     id: 0.2,
-    label: 'Global',
+    label: 'Main App',
     parentDivider: true,
     currentApp: true,
     icon: 'external'
   }, {
     id: 1,
-    label: 'Application',
+    label: 'Applicantion',
     header: <Button componentSize="slim" plain fullWidth >Application</Button>,
     // icon: 'database'
     icon: 'database'
   } , {
     id: 2,
-    label: 'Content',
+    label: 'Contents',
     header: <Button componentSize="slim" plain fullWidth >Content</Button>,
     icon: 'user'
   } , {
     id: 3,
-    label: 'App Interfaces',
+    label: 'Interfaces',
     header: <Button componentSize="slim" plain fullWidth >App Interfaces</Button>,
     icon: 'users'
   } , {
     id: 4,
-    label: 'User Management',
+    label: 'User Mgmt',
     header: <Button componentSize="slim" plain fullWidth >User Management</Button>,
     icon: 'userMd'
   } , {
@@ -43,7 +43,7 @@ export const sideNavigationData: INavigationData[] = [
     icon: 'fileSolid'
   } , {
     id: 6,
-    label: 'Workflow & Automation',
+    label: 'Workflows',
     header: <Button componentSize="slim" plain fullWidth >Workflow & Automation</Button>,
     icon: 'paintBrush'
   }
