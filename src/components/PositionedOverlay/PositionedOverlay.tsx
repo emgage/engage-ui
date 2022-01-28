@@ -175,7 +175,9 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
   }
 
   public getTopHeight(preferredPosition: string, activatorRect : any, overlayRect : any) {
-    return preferredPosition === 'below' ? window.outerHeight - activatorRect.top < 300 ? overlayRect.top > 0 ? (activatorRect.top - Math.abs(overlayRect.top) - overlayRect.height) : (activatorRect.top + Math.abs(overlayRect.top) - overlayRect.height) : null : null;
+    let height = preferredPosition === 'below' ? window.outerHeight - activatorRect.top < 300 ? overlayRect.top > 0 ? (activatorRect.top - Math.abs(overlayRect.top) - overlayRect.height) : (activatorRect.top + Math.abs(overlayRect.top) - overlayRect.height) : null : null;
+    console.log("Height from here ", height);
+    return height;
   }
 
   @autobind
@@ -229,7 +231,7 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
           scrollableContainerRect.height = document.body.scrollHeight;
         }
 
-        const overlayMargins = this.overlay.firstElementChild
+        const overlayMargins = (this.overlay.firstElementChild as any)
           ? getMarginsForNode(this.overlay.firstElementChild as HTMLElement)
           : { activator: 0, container: 0, horizontal: 0 };
         const containerRect = windowRect();
@@ -245,6 +247,7 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
           preferredPosition === 'below' ? window.outerHeight - activatorRect.top < 300 ? 'above' : preferredPosition : preferredPosition,
           fixed
         );
+        console.log("Vertical from here ", verticalPosition, activatorRect, overlayRect, this.overlay.firstElementChild);
         const horizontalPosition = calculateHorizontalPosition(
           activatorRect,
           overlayRect,
@@ -254,13 +257,13 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
           preferredPosition === 'below' ? window.outerHeight - activatorRect.top < 300 ? 'above' : preferredPosition : preferredPosition,
           preloadedPopover ? preloadedPopover : false
         );
-
+        console.log("Horizontal from here ", horizontalPosition, tooltipOverlay, (this.overlay.firstElementChild as any).offsetHeight);
         this.setState({
           zIndex,
           measuring: false,
           activatorRect: getRectForNode(activator),
-          left: horizontalPosition,
-          top: tooltipOverlay ? verticalPosition.top : this.getTopHeight(preferredPosition, activatorRect, overlayRect),
+          left: horizontalPosition + 50,
+          top: tooltipOverlay ? verticalPosition.top  : (this.getTopHeight(preferredPosition, activatorRect, overlayRect) as any) - 20,
           anchorPosition: overlayRect.width - activatorRect.width - overlayMargins.horizontal,
           lockPosition: Boolean(fixed),
           height: verticalPosition.height || 0,

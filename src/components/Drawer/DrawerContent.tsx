@@ -72,7 +72,7 @@ class DrawerContent extends React.PureComponent<Props> {
             {closeButton
               ? (
                 <span className={fixedCloseButton ? theme.fixedClose : theme.close}>
-                  <Button onClick={toggleDrawer} icon="cancel" plain theme={theme} title="Close drawer"/>
+                  <Button onClick={toggleDrawer} icon="close" plain theme={theme} title="Close drawer"/>
                 </span>
               )
               : null

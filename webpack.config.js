@@ -9,7 +9,7 @@ BaseConfig.output = {
     filename: '[name].js',
     path: path.join(__dirname, 'lib'),
     libraryTarget: 'umd',
-    library: 'EngageUI'
+    library: 'Emgage'
 },
 BaseConfig.externals = [
     {

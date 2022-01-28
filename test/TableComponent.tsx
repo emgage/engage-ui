@@ -23,9 +23,8 @@ declare var $: any;
 const TableConfig = ({ theme }: any, commentClickHandler: any) =>  {
   const columns = [
     {
-      label: 'PROJECT',
+      label: 'Project',
       key: 'project',
-      style: { width: '250px' },
       search: false,
       hideHeader: false,
       injectBody: (data: any) => {
@@ -42,7 +41,7 @@ const TableConfig = ({ theme }: any, commentClickHandler: any) =>  {
     {
       label: '',
       key: 'comments',
-      style: { width: '50px' },
+      style: { width: '30px' },
       search: false,
       hideHeader: true,
       injectBody: (data: any) => {
@@ -60,10 +59,9 @@ const TableConfig = ({ theme }: any, commentClickHandler: any) =>  {
       },
     },
     {
-      label: 'OWNER',
+      label: 'Owner',
       key: 'owner',
-      style: { width: '250px' },
-      // style: { width: '50px' },
+      style: { width: '150px' },
       search: false,
       hideHeader: false,
       injectBody: (data: any) => {
@@ -85,10 +83,9 @@ const TableConfig = ({ theme }: any, commentClickHandler: any) =>  {
       },
     },
     {
-      label: 'STATUS',
+      label: 'Status',
       key: 'status',
-      style: { width: '150px' },
-      // style: { width: '50px' },
+      style: { width: '81px' },
       search: false,
       hideHeader: true,
       injectBody: (data: any) => {
@@ -101,15 +98,15 @@ const TableConfig = ({ theme }: any, commentClickHandler: any) =>  {
         }
         return (
           <div className={theme.statusContainer}>
-            <div style={{ background: theme[statusClass]}} className={theme.status}>{status}</div>
+            <div className={`${theme.status} ${theme[statusClass]}`}>{status}</div>
           </div>
         );
       },
     },
     {
-      label: 'TIMELINE',
+      label: 'Timeline',
       key: 'timeline',
-      // style: { width: '50px' },
+      style: { width: '130px' },
       search: false,
       hideHeader: true,
       injectBody: (data: any) => {
@@ -135,9 +132,9 @@ const TableConfig = ({ theme }: any, commentClickHandler: any) =>  {
       },
     },
     {
-      label: 'BUDGET',
+      label: 'Budget',
       key: 'budget',
-      // style: { width: '150px' },
+      style: { width: '72px' },
       search: false,
       hideHeader: false,
       injectBody: (data: any) => {
@@ -148,24 +145,21 @@ const TableConfig = ({ theme }: any, commentClickHandler: any) =>  {
       },
     },
     {
-      label: 'PRIORITY',
+      label: 'Priority',
       key: 'priority',
-      // style: { width: '150px' },
+      style: { width: '78px' },
       search: false,
       hideHeader: false,
       injectBody: (data: any) => {
-        const { priority } = data;
-        let priorityValue = "!!";
-        let color = theme.low;
+        const { priority = "low" } = data;
+        let priorityValue = "!";
         if (priority === "high") {
-          priorityValue = "!!!!";
-          color = theme.high;
-        } else if (priority === "med") {
           priorityValue = "!!!";
-          color = theme.med;
+        } else if (priority === "med") {
+          priorityValue = "!!";
         }
         return (
-          <div className={theme.priorityContainer} style={{ backgroundColor: color }}>{priorityValue}</div>
+          <div className={`${theme.priorityContainer} ${theme[priority]}`} >{priorityValue}</div>
         );
       },
     },
@@ -211,27 +205,27 @@ const TableSearch = ({ addButtonHandler }: any) => {
   ); 
 }
 
-function move(elem: any, px: number, reset: boolean) {
-  var left = reset ? px : 0;
-  function frame() {
-    if (reset) {
-      left -= 10  // update parameters
-      elem.style.width = `calc(100% - ${left}px)` // show frame
-      if (left == 0)  // check finish condition
-          clearInterval(id)
-    } else {
-      left += 10 // update parameters
-      elem.style.width = `calc(100% - ${left}px)` // show frame
-      if (left == px)  // check finish condition
-          clearInterval(id)
-    }
-  }
-  var id = setInterval(frame, 1) // draw every 10ms
-}
+// function move(elem: any, px: number, reset: boolean) {
+//   var left = reset ? px : 0;
+//   function frame() {
+//     if (reset) {
+//       left -= 10  // update parameters
+//       elem.style.width = `calc(100% - ${left}px)` // show frame
+//       if (left == 0)  // check finish condition
+//           clearInterval(id)
+//     } else {
+//       left += 10 // update parameters
+//       elem.style.width = `calc(100% - ${left}px)` // show frame
+//       if (left == px)  // check finish condition
+//           clearInterval(id)
+//     }
+//   }
+//   var id = setInterval(frame, 1) // draw every 10ms
+// }
 
 const TableComponent = (props: any) => {
   console.log("Table Props = ", props);
-  const { theme } = props;
+  const { theme, onDrawerClick } = props;
   const [ drawerState, setDrawerState ]: any = React.useState(undefined);
   const [ projectDrawerState, setProjectDrawerState ]: any = React.useState(undefined);
 
@@ -248,9 +242,13 @@ const TableComponent = (props: any) => {
   React.useEffect(() => {
     if (drawerState === undefined) return;
     if (drawerState) {
-      move(containerRef.current, 270, false);
+      onDrawerClick(drawerState);
+      // document.body.classList.add("shrinkTable");
+      // move(containerRef.current, 270, false);
     } else {
-      move(containerRef.current, 270, true);
+      onDrawerClick(drawerState);
+      // document.body.classList.remove("shrinkTable");
+      // move(containerRef.current, 270, true);
     }
   }, [drawerState]);
   let columns: any = TableConfig(props, onCommentClickHandler);
@@ -279,7 +277,7 @@ const TableComponent = (props: any) => {
           activeContentId="comments"
           onClose={onClose}
           mode="push"
-          zIndex={201}
+          zIndex={200}
           componentWidth="small"
           id="commentDrawer"
           componentClass={theme.drawerStyle}
@@ -303,7 +301,7 @@ const TableComponent = (props: any) => {
         mode="push"
         master
         componentWidth={"820px"}
-        zIndex={1000}
+        zIndex={500}
         theme={DrawerStyle}
         fixedCloseButton={false}
       >

@@ -7,16 +7,8 @@ $fontSize: 14px;
 
 .statusContainer {
   .status {
-    border-radius: 4px;
-    padding-left: 8px;
-    padding-right: 8px;
-    padding-top: 4px;
-    padding-bottom: 4px;
     font-weight: 600;
     font-size: $fontSize;
-    line-height: 20px;
-    color: #FFFFFF;
-    width: 80px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -25,14 +17,11 @@ $fontSize: 14px;
 
 .timelineContainer {
   .timeline {
-    height: 24px;
-    width: 120px;
-    color: #fff;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: $fontSize;
-    border-radius: 12px;
+    font-weight: 600;
   }
 }
 
@@ -48,18 +37,15 @@ $fontSize: 14px;
 .chipData {
   padding-left: 12px;
   color: #424242;
-  font-size: 14px;
+  font-size: $fontSize;
 }
 
 .priorityContainer {
-  border-radius: 50%;
-  width: 20px;
-  height: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #fff;
-  font-size: 12px;
+  font-size: $fontSize;
+  font-weight: bold;
 }
 
 .drawerStyle {

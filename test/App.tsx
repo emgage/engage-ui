@@ -2,6 +2,7 @@ import * as React from "react";
 import { sideNavigationData } from "./data/SideNavigationData";
 import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 import {
+  BodyText,
   SideNavigation,
   Heading
 } from "../src/components";
@@ -31,8 +32,18 @@ const App = (props: any) => {
       <TestSideNavigation />
       <div className={theme.appContainer} style={{ top: 50, position: "relative", left: 40, width: "calc(100% - 40px)" }}>
         <Heading componentStyle={{ marginBottom: 8 }} headingSize="h2">Internal Projects</Heading>
-        <Heading componentStyle={{ marginBottom: 20, color: "#616161", fontSize: 14 }} headingSize="h4">Project Portfolio</Heading>
-        <TableComponent />
+        <BodyText componentStyle={{ marginBottom: 20 }} componentColor="darker">Project Portfolio</BodyText>
+        <TableComponent onDrawerClick={(state: any) => {
+          if (state) {
+            document.body.classList.add(theme.shrinkTable);
+            document.body.classList.remove(theme.expandTable);
+          }
+           else {
+            document.body.classList.add(theme.expandTable);
+            document.body.classList.remove(theme.shrinkTable);
+          }
+          
+        }} />
       </div>
     </div>
   )

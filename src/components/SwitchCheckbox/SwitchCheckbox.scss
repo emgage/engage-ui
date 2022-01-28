@@ -8,12 +8,7 @@
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
-        width: 5.4rem;
-        border: 1px solid;
-        border-radius: 3rem;
-        background: transparent;
         position: relative;
-        height:2.2rem;
         & > label {
             width: 33.33%;
             position: relative;
@@ -25,16 +20,8 @@
             color:transparent;
             width:1.9rem;
             height:1.9rem;
-            background:color(white);
-            border-radius: 1rem;
-            position: absolute;
-            opacity: 0;
-            visibility: hidden;
-            top:.5px;
-            box-shadow: -1px 1px 2px color(blue, dark);
         }
         input {
-            opacity: 0;
             width:100%;
             height:1.6rem;
             z-index: 9;
@@ -48,14 +35,6 @@
                 visibility: visible;
             }
         }
-        .nullRadio { 
-            input:checked + .switchRadio {
-                left:50%;
-                opacity: 1;
-                visibility: visible;
-                transform: translateX(-50%);
-            }
-         }
         .falseRadio { 
             input:checked + .switchRadio {
                 right:1px;
@@ -69,107 +48,7 @@
         }
     }
 }
-.switchNormal {
-    .outerWrap {
-        background:color(blue);
-        border-color:color(blue);
-        width: 4.2rem;
-        .trueRadio {
-            
-            input {
-                &:checked + .switchRadio {
-                    left:auto;
-                    opacity: 1;
-                    visibility: visible;
-                    right:.1rem;
-                }
-            }
-        }
-        .nullRadio {
-            input {
-                &:checked + .switchRadio {
-                    left:50%;
-                    opacity: 1;
-                    visibility: visible;
-                    transform: translateX(-50%);
-                }
-            }
-        }
-        .falseRadio {
-            
-            input {
-                &:checked + .switchRadio {
-                    left:.1rem;
-                    right:auto;
-                    opacity: 1;
-                    visibility: visible;
-                }
-            }
-        }
-    }  
-}
-.switchTrueFalse {
-    .outerWrap {
-        background:color(blue);
-        border-color:color(blue);
-        width: 5.4rem;
-        .trueRadio {
-          input {
-                &:checked + .switchRadio {
-                    right:.1rem;
-                    left:auto;
-                    opacity: 1;
-                    visibility: visible;
-                    &:after {
-                        content:'true';
-                        font-size: 1rem;
-                        color:color(white);
-                        left: -3rem;
-                        position: absolute;
-                        z-index: 1;
-                        text-transform: uppercase;
-                        line-height: 1;
-                        top: 54%;
-                        transform: translateY(-50%);
-                    }
-                }
-            }
-        }
-        .nullRadio {
-            input {
-                &:checked + .switchRadio {
-                    left:50%;
-                    opacity: 1;
-                    visibility: visible;
-                    transform: translateX(-50%);
-                }
-            }
-        }
-        .falseRadio {
-          
-            input {
-                &:checked + .switchRadio {
-                    left:.1rem;
-                    right:auto;
-                    opacity: 1;
-                    visibility: visible;
-                    &:after {
-                        content:'False';
-                        font-size: 1rem;
-                        color:color(white);
-                        right: -3.1rem;
-                        position: absolute;
-                        z-index: 1;
-                        text-transform: uppercase;
-                        line-height: 1;
-                        top: 54%;
-                        transform: translateY(-50%);
-                    }
-                }
-            }
-        }
-    } 
-}
+
 .switchYesNo {
     .outerWrap {
         background:color(blue);
@@ -192,21 +71,11 @@
                         text-transform: uppercase;
                         line-height: 1;
                         top: 54%;
-                        transform: translateY(-50%);
                     }
                 }
             }
         }
-        .nullRadio {
-            input {
-                &:checked + .switchRadio {
-                    left:50%;
-                    opacity: 1;
-                    visibility: visible;
-                    transform: translateX(-50%);
-                }
-            }
-        }
+        
         .falseRadio {
             input {
                 &:checked + .switchRadio {
@@ -224,7 +93,6 @@
                         text-transform: uppercase;
                         line-height: 1;
                         top: 54%;
-                        transform: translateY(-50%);
                     }
                 }
             }
@@ -232,12 +100,11 @@
     } 
 }
 
-.falseSelect, .nullSelect{
+.falseSelect{
     .outerWrap {
         background-color:color(sky, light);
         border-color: color(sky, dark);
         .switchRadio {
-            box-shadow: 1px 1px 2px color(ink, lightest);
             &:after {
                 color: color(text, darker) !important;
             }
@@ -250,107 +117,9 @@
         background:color(blue);
         border-color:color(blue);
         .switchRadio {
-            box-shadow: 1px 1px 2px color(blue, dark);
             &:after {
                 color: color(white) !important;
             }
         }
-    }
-}
-
-
-.trueSelect.switchCheckbox {
-    .outerWrap {
-        .trueRadio {
-            input:checked {
-                & ~ .Accept {
-                    display: block;
-                    top:.3rem;
-                    right:.4rem;
-                }
-            }
-        }
-    }
-}
-
-.falseSelect.switchCheckbox {
-    .outerWrap {
-        .falseRadio {
-            input:checked {
-                & ~ .Cancel {
-                    display: block;
-                    top:.3rem;
-                    left:.3rem;
-                }
-            }
-        }
-    }
-}
-
-
-.trueSelect.switchCheckbox.switchTrueFalse {
-    .outerWrap {
-        .trueRadio {
-            input:checked {
-                & ~ .Accept {
-                    display: block;
-                    top:.3rem;
-                    right:1px;
-                    left:auto;
-                }
-            }
-        }
-    }
-}
-
-.falseSelect.switchCheckbox.switchTrueFalse {
-    .outerWrap {
-        .falseRadio {
-            input:checked {
-                & ~ .Cancel {
-                    display: block;
-                    top:2px;
-                    left:2px;
-                    right:auto;
-                }
-            }
-        }
-    }
-}
-
-.disableSwitch{
-    .outerWrap{
-        input{
-            cursor: not-allowed !important;
-        }
-        background-color:color(sky, light)!important;
-        border-color: color(sky, dark)!important;
-        .switchRadio {
-            box-shadow: none;
-            border: 1px solid color(sky, dark)!important;
-            &:after {
-                color: color(text, text) !important;
-            }
-        }
-        .Accept,
-        .Cancel {
-            fill:  color(ink, lightest) !important;
-        }
-    }
-}
-
-.switchTrueFalse.disableSwitch {
-    .Accept, .Cancel {
-        opacity: 0;
-    }
-}
-.switchYesNo.disableSwitch {
-    .Accept, .Cancel {
-        opacity: 0;
-    }
-}
-.switchYesNo, .switchTrueFalse {
-    .Accept, .Cancel {
-        opacity: 0;
     }
 }
