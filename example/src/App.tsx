@@ -4,6 +4,8 @@ import { ISourceData } from '../../src/components/BreadCrumb/BreadCrumb';
 import { INavigationData } from '../../src/components/SideNavigation/SideNavigation';
 import SegmentExample from './../../docs/src/examples/SegmentExample/SegmentExample';
 import IconListExample from './../../docs/src/examples/IconListExample/IconListExample';
+import EntityStateExample from '../../docs/src/examples/EntityStateExample/EntityStateExample';
+
 import {
   Alert,
   AppBar,
@@ -1158,6 +1160,13 @@ class App extends React.Component<{}, State> {
                 console.log(value);
               },
             },
+            {
+              label: 'Item 0',
+              value: 0,
+              onClick: (value: any) => {
+                console.log(value);
+              },
+            },
           ],
         },
         description: 'Test description2',
@@ -1743,100 +1752,12 @@ class App extends React.Component<{}, State> {
               header: <>IconListExample</>,
               children: <IconListExample />
             },
+            {
+              header: <>EntityStateExample</>,
+              children: <EntityStateExample />
+            },
           ]}
         />
-        <EntityState item={{
-          // processing: 'Publishing',
-          entityState: {
-            itemName: 'New',
-            itemID: 1,
-          },
-          locked: {
-            itemName: 'locked',
-            itemID: 0,
-          }
-        }} />
-        <EntityState item={{
-          entityState: {
-            itemName: 'Draft',
-            itemID: 2,
-          },
-          locked: {
-            itemName: 'locked',
-            itemID: 0,
-          }
-        }} />
-        <EntityState item={{
-          entityState: {
-            itemName: 'Archive',
-            itemID: 3,
-          },
-          locked: {
-            itemName: 'locked',
-            itemID: 0,
-          }
-        }} />
-        <EntityState item={{
-          entityState: {
-            itemName: 'Delete',
-            itemID: 4,
-          },
-          locked: {
-            itemName: 'locked',
-            itemID: 0,
-          }
-        }} />
-        <EntityState item={{
-          entityState: {
-            itemName: 'Published',
-            itemID: 5,
-          },
-          locked: {
-            itemName: 'locked',
-            itemID: 0,
-          }
-        }} />
-        <EntityState item={{
-          entityState: {
-            itemName: 'Archived',
-            itemID: 6,
-          },
-          locked: {
-            itemName: 'locked',
-            itemID: 0,
-          }
-        }} />
-        <EntityState item={{
-          entityState: {
-            itemName: 'Deleted',
-            itemID: 7,
-          },
-          locked: {
-            itemName: 'locked',
-            itemID: 0,
-          }
-        }} />
-        <EntityState item={{
-          processing:'Publishing',
-          entityState: {
-            itemName: 'Publishing',
-            itemID: 8,
-          },
-          locked: {
-            itemName: 'locked',
-            itemID: 1,
-          }
-        }} />
-        <EntityState item={{
-          entityState: {
-            itemName: 'Locked',
-            itemID: 9,
-          },
-          locked: {
-            itemName: 'locked',
-            itemID: 0,
-          }
-        }} />
         <TextField
             type="text"
             placeholder="Try and write here..."
@@ -1892,6 +1813,15 @@ class App extends React.Component<{}, State> {
         <Icon source="event" />
         <Icon source="enumList" />
         <Icon source="user" />
+        <Icon source='checkBox'/>
+        <Icon source='signature'/>
+        <Icon source='signatureAlt'/>
+        <Icon source='radioButton'/>
+        <Icon source='textField'/>
+        <Icon source='dropdown'/>
+        <Icon source='userAdd'/>
+        <Icon source='userAlt'/>
+        <Icon source='usersAlt'/>
         <br></br>
         <span>Small change for test Change 3</span>
         <Badge children={'Badge'} working />
@@ -1977,21 +1907,26 @@ class App extends React.Component<{}, State> {
           <h2 style={{fontWeight: 'bold'}}>Vertical Tab</h2>
           <TabPanel defaultTabId="tab1" position={'top'} alignment={'center'} orientation='verticle'>
             <Tab
-              tabDescription={<Badge children={'Home'} status={'success'} />}
+              tabDescription={<Icon source="grid"/>}
               tabId={'tab1'}
+              title='Title 0'
+              showTooltip
             >
               <p>content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0</p>
             </Tab>
-            <Tab tabDescription="User" tabId={'tab2'}>
+            <Tab tabDescription={
+              <Icon source="list" />} tabId={'tab2'} title='Title 1' showTooltip>
               <div></div>
             </Tab>
-            <Tab tabDescription="User1" tabId={'tab3'}>
+            <Tab tabDescription={
+              <Icon source="listAlt" />} tabId={'tab3'} title='Title 2' showTooltip>
               <p>content user1</p>
             </Tab>
-            <Tab tabDescription="User2" tabId={'tab4'}>
+            <Tab tabDescription={
+              <Icon source="listHierarchy" />} tabId={'tab4'} title='Title 3'>
               <p>content user2</p>
             </Tab>
-            <Tab tabDescription="User3" tabId={'tab5'}>
+            <Tab tabDescription="User3" tabId={'tab5'} title='Title 4'>
               <p>content user3</p>
             </Tab>
           </TabPanel>
@@ -2002,10 +1937,13 @@ class App extends React.Component<{}, State> {
             <Tab
               tabDescription={<Badge children={'Home'} status={'success'} />}
               tabId={'tab1'}
+              title='Title 0'
+              showTooltip
             >
               <p>content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0content 0</p>
             </Tab>
-            <Tab tabDescription="User" tabId={'tab2'}>
+            <Tab tabDescription="User" tabId={'tab2'}
+              title='Title 0'>
               <div></div>
             </Tab>
             <Tab tabDescription="User1" tabId={'tab3'}>
@@ -4251,6 +4189,7 @@ class App extends React.Component<{}, State> {
           onSearch={(value) => {
             console.log('Facets More clicked', value);
           }}
+          defaultOptions={this.state.multipleCheckboxFacetsOptions}
           options={this.state.multipleCheckboxFacetsOptions}
           showMore={true}
           showSearch={true}

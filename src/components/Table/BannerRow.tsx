@@ -38,10 +38,11 @@ class BannerRow extends React.PureComponent<Props, State> {
     const selectedValId = selectedValue.value;
     const selectedValLabel = selectedValue.label;
     const { onChange, rowItem } = this.props;
-    this.setState({ selectedValue:selectedValLabel });
-    if (!selectedValId) {
-      this.setState({ selectedValue: '' });
-    }
+    this.setState({ selectedValue: selectedValLabel }, () => {
+      if (!selectedValId) {
+        this.setState({ selectedValue: '' });
+      }
+    });
     onChange && onChange(rowItem, +selectedValId);
   }
 
@@ -72,13 +73,11 @@ class BannerRow extends React.PureComponent<Props, State> {
 
     const selectedVal = dropdownItems.find((op: any) => op.value.toString() === (selectedValue || '').toString());
 
-    const selectedValLabel = selectedVal?.label || this.state.selectedValue;
+    const selectedValLabel = this.state.selectedValue || selectedVal?.label || '';
 
     return(
       <Banner key={rowItem.id} componentTitle={bannerTitle} status={bannerType} icon={bannerIcon as keyof typeof IconList}>
          <ComboBox
-            fullWidth
-            addArrow
             theme={theme}
             disabled={disabled}
             label={selectPlaceholder}

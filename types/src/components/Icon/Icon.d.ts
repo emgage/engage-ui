@@ -99,6 +99,16 @@ export declare const BUNDLED_ICONS: {
     userTie: any;
     video: any;
     view: any;
+    checkBox: any;
+    dropdown: any;
+    initial: any;
+    radioButton: any;
+    signature: any;
+    signatureAlt: any;
+    userAdd: any;
+    userAlt: any;
+    usersAlt: any;
+    textField: any;
     delete: any;
     export: any;
     import: any;

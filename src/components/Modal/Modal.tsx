@@ -73,6 +73,14 @@ class Modal extends React.PureComponent<Props, never> {
     }
   }
 
+  componentWillUnmount() {
+    const bodyElement = document.body;
+    const { theme } = this.props;
+    if (bodyElement !== null) {
+      bodyElement.classList.remove(`${theme.page}`);
+    }
+  }
+
   closeModal = () => {
     const { printable = false, theme } = this.props;
     if (printable) {
