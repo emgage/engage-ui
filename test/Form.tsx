@@ -12,7 +12,8 @@ import {
   Button,
   // Column,
   TextField,
-  // Icon
+  Select,
+  Icon
 } from '../src/components';
 
 const baseTheme = require('./styles/Form.scss');
@@ -38,25 +39,16 @@ const Form = (props: any) => {
   const [ slbeSwitch, setSlbeSwitch] = React.useState(false);
   return (
     <div>
-      <Sticky
-        position="top"
-        theme={DrawerStyle}
-        // componentClass={((editContentProperty || readContent || readField) || createStep === 0) && activeDrawer !== 'selectFieldType' && activeDrawer !== 'selectRelationship' ? theme.stickyEditHeader : ''}
-      >
-        <BreadCrumb
-          source={[{name: "Internal Projects", type: "default"}, { name: "Create New Project", type: "text"}]}
-          displayStyle="primary"
-          theme={DrawerStyle}
-        />
-      </Sticky>
       <div className={theme.formBody}>
-        <div style={{ maxWidth: '395px' }}>
-          <FlexBox direction="Column">
-            <FlexBox align="Center" componentClass={theme.drawerViewHeader}>
-              <Heading element="h3" headingSize="h3" theme={theme}>Create New Project</Heading>
-            </FlexBox>
-            {/* <BodyText componentColor="darker" componentClass={theme.paddingRight}>{currentContentIns.description}</BodyText> */}
-          </FlexBox>
+        <div className={theme.drawerViewBreadcrumb}>
+          <BreadCrumb
+            source={[{name: "Internal Projects", type: "default"}, { name: "Create New Project", type: "text"}]}
+            displayStyle="primary"
+            theme={DrawerStyle}
+          />
+        </div>
+        <div className={theme.drawerViewHeader}>
+          <Heading element="h3" headingSize="h3" theme={theme}>Create New Project</Heading>
         </div>
         <Card theme={theme} componentClass={theme.introCard}>
           <Heading element="h4" headingSize="subtitle" componentClass={theme.cardHeader}>Project Details</Heading>
@@ -74,8 +66,7 @@ const Form = (props: any) => {
                 componentId="description"
                 label="Description (optional)"
                 multiline={true}
-                minLength={0}
-                maxLength={500}
+                rows={5}
               />
             </div>
             <div className={theme.formFieldContainer}>
@@ -92,24 +83,32 @@ const Form = (props: any) => {
           <Heading element="h4" headingSize="subtitle" componentClass={theme.cardHeader}>Project Timeline</Heading>
           <FlexBox direction="Column" theme={theme} componentClass={theme.cardContent}>
             <div className={theme.formFieldContainer}>
+              <Select
+              componentId="priority"
+              name="Priority"
+              label="Priority"
+              options={[
+                { value: '', label: '' },
+                { value: 'high', label: 'High' },
+                { value: 'medium', label: 'Medium' },
+                { value: 'low', label: 'Low' },
+              ]}
+            />
+            </div>
+            <div className={theme.formFieldContainer}>
               <TextField
                 type="text"
-                componentId="priority"
-                label="Priority"
-              />
-            </div>
-            <div className={theme.formFieldContainer}>
-              <TextField
-                type="date"
                 componentId="startDate"
                 label="Start Date"
+                suffix={<Icon source="calendar" componentColor="inkLighter"/>}
               />
             </div>
             <div className={theme.formFieldContainer}>
               <TextField
-                type="date"
+                type="text"
                 componentId="endDate"
                 label="End Date"
+                suffix={<Icon source="calendar" componentColor="inkLighter"/>}
               />
             </div>
           </FlexBox>
@@ -159,7 +158,7 @@ const Form = (props: any) => {
                 componentSize="large"
                 primary={true}
               >
-                Create 
+                Create
               </Button>
               <div className={theme.commonLeftMargin}>
                 <Button

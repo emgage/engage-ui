@@ -12,6 +12,16 @@ ul {
   margin: 0 !important;
 }
 
+.drawerViewBreadcrumb {
+  // color: theme-color(m-grey, 600);
+  padding-bottom: 2.8rem;
+}
+
+.breadcrumbPrimary {
+  margin: 0;
+  padding: 0;
+}
+
 .drawerHeader, .drawerViewHeader {
   font-size: rem(24px);
   line-height: rem(28px);
