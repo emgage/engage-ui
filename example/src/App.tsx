@@ -99,6 +99,7 @@ import {
   SearchHelper,
   NoData,
   EntityState,
+  MyDropzone,
 } from '../../src/components';
 import { IconList } from '../../src/components/Icon';
 
@@ -988,9 +989,9 @@ class App extends React.Component<{}, State> {
     );
 
     const steps = [
-      { name: 'Completed', status: 'completed' },
-      { name: 'Active', status: 'active' },
-      { name: 'Upcoming' },
+      { name: 'Completed', status: 'completed', icon: <Icon source={'signature'} componentColor='white'/> },
+      { name: 'Active', status: 'active', icon: <Icon source={'file'} componentColor='white'/> },
+      { name: 'Upcoming', icon: <Icon source={'grid'} componentColor='white'/> },
     ];
 
     // const pickerdata = [
@@ -1749,6 +1750,12 @@ class App extends React.Component<{}, State> {
             {
               header: <>SegmentExample</>,
               children: <SegmentExample />
+            },
+            {
+              header: <>MyDropzone</>,
+              children: <MyDropzone onDrop={(files: any) => {
+                console.log(files);
+              }} onRemove={() => { }} />
             },
             {
               header: <>IconListExample</>,
