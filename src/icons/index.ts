@@ -110,3 +110,5 @@ export { default as userAdd } from './user-add.svg';
 export { default as userAlt } from './user-alt.svg';
 export { default as usersAlt } from './users-alt.svg';
 export { default as textField } from './text-field.svg';
+export { default as tableAlt } from './table-alt.svg';
+export { default as fileSignature } from './file-signature.svg';

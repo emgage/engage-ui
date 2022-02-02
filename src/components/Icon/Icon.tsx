@@ -113,6 +113,8 @@ import {
   userAlt,
   usersAlt,
   textField,
+  fileSignature,
+  tableAlt
 } from '../../icons';
 
 import { ICON } from '../ThemeIdentifiers';
@@ -240,6 +242,8 @@ export const BUNDLED_ICONS = {
   userAlt,
   usersAlt,
   textField,
+  fileSignature,
+  tableAlt,
   delete: deleteIcon,
   export: exportIcon,
   import: importIcon,
