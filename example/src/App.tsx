@@ -1825,7 +1825,7 @@ class App extends React.Component<{}, State> {
           <Button>On</Button>
           <Button>Off</Button>
         </ToggleButtonGroup>
-        <Icon source="checkCircle" />
+        {/* <Icon source="checkCircle" />
         <Icon source="grid" />
         <Icon source="list" />
         <Icon source="listAlt" />
@@ -1844,7 +1844,38 @@ class App extends React.Component<{}, State> {
         <Icon source='dropdown'/>
         <Icon source='userAdd'/>
         <Icon source='userAlt'/>
-        <Icon source='usersAlt'/>
+        <Icon source='usersAlt'/> */}
+
+        <Icon source='card'/>
+        <Icon source='close'/>
+        <Icon source='compress'/>
+        <Icon source='conditionalLogic'/>
+        <Icon source='createAgreement'/>
+        <Icon source='crossingArrows'/>
+        <Icon source='expand'/>
+        <Icon source='fileSignature'/>
+        <Icon source='gear'/>
+        <Icon source='internal'/>
+        <Icon source='share'/>
+        <Icon source='starHalf'/>
+        <Icon source='starOutline'/>
+        <Icon source='star'/>
+        <Icon source='tableAlt'/>
+
+        <Icon source='calendar'/>
+        <Icon source='checkBox'/>
+        <Icon source='dropdown'/>
+        <Icon source='export'/>
+        <Icon source='external'/>
+        <Icon source='import'/>
+        <Icon source='initial'/>
+        <Icon source='radioButton'/>
+        <Icon source='signatureAlt'/>
+        <Icon source='signature'/>
+        <Icon source='textField'/>
+        <Icon source='view'/>
+
+
         <br></br>
         <span>Small change for test Change 3</span>
         <Badge children={'Badge'} working />
