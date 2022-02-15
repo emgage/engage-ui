@@ -7,137 +7,137 @@ $font-family-data: (
 
 $line-height-data: (
   caption: (
-    base: rem(20px),
-    large-screen: rem(16px)
+    base: 2rem,
+    large-screen: 1.6rem
   ),
   heading: (
-    base: rem(24px)
+    base: 2.4rem
   ),
   subheading: (
-    base: rem(16px)
+    base: 1.6rem
   ),
   input: (
-    base: rem(24px)
+    base: 2.4rem
   ),
   body: (
-    base: rem(20px)
+    base: 2rem
   ),
   body-large: (
-    base: rem(24px)
+    base: 2.4rem
   ),
   body-small: (
-    base: rem(16px)
+    base: 1.6rem
   ),
   display-x-large: (
-    base: rem(36px),
-    large-screen: rem(44px)
+    base: 3.6rem,
+    large-screen: 4.4rem
   ),
   display-large: (
-    base: rem(28px),
-    large-screen: rem(32px)
+    base: 2.8rem,
+    large-screen: 3.2rem
   ),
   display-medium: (
-    base: rem(28px),
-    large-screen: rem(32px)
+    base: 2.8rem,
+    large-screen: 3.2rem
   ),
   display-small: (
-    base: rem(24px),
-    large-screen: rem(24px)
+    base: 2.4rem,
+    large-screen: 2.4rem
   ),
   heading-h1:(
-    base:rem(40px)
+    base:4rem
   ),
   heading-h2:(
-    base:rem(36px)
+    base:3.6rem
   ),
   heading-h3:(
-    base:rem(28px)
+    base:2.8rem
   ),
   heading-h4:(
-    base:rem(24px)
+    base:2.4rem
   ),
   heading-subheading:(
-    base:rem(24px)
+    base:2.4rem
   ),
   text-body-large:(
-    base:rem(24px)
+    base:2.4rem
   ),
 text-body-mid:(
-    base:rem(20px)
+    base:2rem
   ),
   text-body-small:(
-    base:rem(16px)
+    base:1.6rem
   )
 );
 
 $font-size-data: (
   caption: (
-    base: rem(13px),
-    large-screen: rem(12px)
+    base: 1.3rem,
+    large-screen: 1.2rem
   ),
   heading: (
-    base: rem(17px),
-    large-screen: rem(16px)
+    base: 1.7rem,
+    large-screen: 1.6rem
   ),
   subheading: (
-    base: rem(13px),
-    large-screen: rem(12px)
+    base: 1.3rem,
+    large-screen: 1.2rem
   ),
   input: (
-    base: rem(16px),
-    large-screen: rem(16px)
+    base: 1.6rem,
+    large-screen: 1.6rem
   ),
   body: (
-    base: rem(14px),
-    large-screen: rem(14px)
+    base: 1.4rem,
+    large-screen: 1.4rem
   ),
   body-large: (
-    base: rem(16px),
-    large-screen: rem(16px)
+    base: 1.6rem,
+    large-screen: 1.6rem
   ),
   body-small: (
-    base: rem(13px),
-    large-screen: rem(13px)
+    base: 1.3rem,
+    large-screen: 1.3rem
   ),
   display-x-large: (
-    base: rem(27px),
-    large-screen: rem(42px)
+    base: 2.7rem,
+    large-screen: 4.2rem
   ),
   display-large: (
-    base: rem(24px),
-    large-screen: rem(28px)
+    base: 2.4rem,
+    large-screen: 2.8rem
   ),
   display-medium: (
-    base: rem(21px),
-    large-screen: rem(26px)
+    base: 2.1rem,
+    large-screen: 2.6rem
   ),
   display-small: (
-    base: rem(16px),
-    large-screen: rem(20px)
+    base: 1.6rem,
+    large-screen: 2rem
   ),
   heading-h1:(
-    base:rem(40px)
+    base:4rem
   ),
   heading-h2:(
-    base:rem(32px)
+    base:3.2rem
   ),
   heading-h3:(
-    base:rem(24px)
+    base:2.4rem
   ),
   heading-h4:(
-    base:rem(16px)
+    base:1.6rem
   ),
   heading-subheading:(
-    base:rem(16px)
+    base:1.6rem
   ),
   text-body-large:(
-    base:rem(16px)
+    base:1.6rem
   ),
   text-body-mid:(
-    base:rem(14px)
+    base:1.4rem
   ),
   text-body-small:(
-    base:rem(13px)
+    base:1.3rem
   )
 
 );

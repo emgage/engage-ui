@@ -14,11 +14,11 @@ $outline-button-color: color(ink, lighter);
 // ========================================================================
 
 $min-height: control-height();
-$vertical-padding: ($min-height - line-height(body) - rem(2px)) / 2;
-$slim-min-height: rem(32px);
-$slim-vertical-padding: ($slim-min-height - line-height(body) - rem(2px)) / 2;
-$large-min-height: rem(48px);
-$large-vertical-padding: ($large-min-height - line-height(body) - rem(2px)) / 2;
+$vertical-padding: ($min-height - line-height(body) - 0.2rem) / 2;
+$slim-min-height: 3.2rem;
+$slim-vertical-padding: ($slim-min-height - line-height(body) - 0.2rem) / 2;
+$large-min-height: 4.8rem;
+$large-vertical-padding: ($large-min-height - line-height(body) - 0.2rem) / 2;
 
 
 $dropdown-item-padding-y: 1rem !default;
@@ -240,7 +240,7 @@ $dropdown-item-padding-x: 1.6rem !default;
   &:first-child {
     // This compensates for the typical icon used in buttons being
     // inset within its bounding box.
-    margin-left: -2px;
+    margin-left: -0.2rem;
     // margin-right: spacing(tightest);
   }
 
@@ -250,7 +250,7 @@ $dropdown-item-padding-x: 1.6rem !default;
     // This compensates for the disclosure icon, which is substantially
     // inset within the viewbox (and makes it look like there is too much
     // spacing on the right of the button)
-    margin-right: -5px;
+    margin-right: -0.5rem;
   }
 
   &:only-child {

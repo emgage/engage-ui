@@ -19,7 +19,7 @@
   background-color: transparent;
 }
 .tab.svg-inline--fa {
-  margin-right: 8px;
+  margin-right: 0.8rem;
 }
 
 .tab button {
@@ -44,7 +44,7 @@
     list-style: none;
     padding:0px;
     li {
-      margin-right:32px;
+      margin-right:3.2rem;
       &:last-child {
         margin-right:0px;
       }
@@ -96,11 +96,11 @@
 
 .tabpanel.top .tab,
 .tabpanel.bottom .tab {
-  padding: 12px 6px;
+  padding: 1.2rem 0.6rem;
 }
 .tabpanel.left .tab,
 .tabpanel.right .tab {
-  padding: 6px 12px;
+  padding: 0.6rem 1.2rem;
 }
 .tabpanel.top .tab.active {
   border-bottom-color: #1e8bfb;
@@ -127,7 +127,7 @@
   display: flex;
 } 
 .card {
-  padding: 12px;
+  padding: 1.2rem;
   flex: 1 0 auto;
   display: none;
 }
@@ -154,7 +154,7 @@
       text-align: left;
       border-bottom:0px;
       border-top:0px;
-      margin-bottom:4px;
+      margin-bottom:0.4rem;
       
       &:last-child {
         margin-bottom:0px;
@@ -170,7 +170,7 @@
   }
   
   .cardct {
-    padding: 6px 12px;
+    padding: 0.6rem 1.2rem;
     width: 85%;
     background-color: color(white);
   }

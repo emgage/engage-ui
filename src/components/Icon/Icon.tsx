@@ -113,6 +113,23 @@ import {
   userAlt,
   usersAlt,
   textField,
+
+  card,
+  close,
+  compress,
+  conditionalLogic,
+  createAgreement,
+  crossingArrows,
+  expand,
+  fileSignature,
+  gear,
+  internal,
+  share,
+  starHalf,
+  starOutline,
+  star,
+  tableAlt,
+
 } from '../../icons';
 
 import { ICON } from '../ThemeIdentifiers';
@@ -240,6 +257,23 @@ export const BUNDLED_ICONS = {
   userAlt,
   usersAlt,
   textField,
+
+  card,
+  close,
+  compress,
+  conditionalLogic,
+  createAgreement,
+  crossingArrows,
+  expand,
+  fileSignature,
+  gear,
+  internal,
+  share,
+  starHalf,
+  starOutline,
+  star,
+  tableAlt,
+
   delete: deleteIcon,
   export: exportIcon,
   import: importIcon,

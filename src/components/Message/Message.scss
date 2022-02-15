@@ -1,12 +1,12 @@
 .messageBlock {
-    margin: 0 0 13px;
+    margin: 0 0 1.3rem;
 }
 .messagePrompt {
     display: inline-block;
     position: relative;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    padding: 5px 8px;
+    padding: 0.5rem 0.8rem;
     background: color(red, dark);
     color: color(white);
     font-size: .8125em;
@@ -19,7 +19,7 @@
     position: absolute;
     width: 0;
     height: 0;
-    bottom: -5px;
+    bottom: -0.5rem;
     border: 5px solid color(red, dark);
     border-bottom: 0;
     border-left-color: transparent;

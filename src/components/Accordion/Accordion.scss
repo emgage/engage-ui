@@ -7,8 +7,8 @@
   transition: height 0.3s ease-in-out 0s;
   box-shadow: 0 1px 3px rgba(0,0,0,.12), 0 1px 2px rgba(0,0,0,.24);
   background: #fff;
-  margin: 12px!important;
-  border-radius: 2px;
+  margin: 1.2rem!important;
+  border-radius: .2rem;
   width: calc(100% - 24px);
 }
 
@@ -17,7 +17,7 @@
     width: 100%;
     font-size: font-size(caption);
     font-weight: font-weight(bold);
-    padding: 10px 12px;
+    padding: 1rem 1.2rem;
     position: relative;
     display: flex;
     justify-content: space-between;
@@ -40,7 +40,7 @@
     }
   }
   > .body {
-    padding: 10px;
+    padding: 1rem;
     opacity: 1;
     overflow-y: hidden;
     overflow-x: auto;

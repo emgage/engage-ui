@@ -1,7 +1,7 @@
 @import 'foundation/spacing';
 @import 'shared/typography';
 
-$breakpoint: 550px;
+$breakpoint: 55rem;
 .descriptionList {
   margin:0;
   padding:0; 
@@ -50,7 +50,7 @@ $breakpoint: 550px;
 }
 
 .description-list-divider>dt:nth-child(n+2) {
-  margin-top:20px;
-  padding-top:20px;
+  margin-top:2rem;
+  padding-top:2rem;
   border-top:1px solid #e5e5e5
  }

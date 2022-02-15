@@ -1,6 +1,6 @@
 $backdrop-horizontal-spacing: spacing(tighter) * 1.5;
 $addon-horizontal-spacing: 0.25em;
-$spinner-icon-size: rem(12px);
+$spinner-icon-size: 1.2rem;
 
 $stacking-order: (
   contents: 20,
@@ -153,8 +153,8 @@ $stacking-order: (
   display: flex;
   align-self: stretch;
   flex-direction: column;
-  width: rem(22px);
-  margin: 1px calc(-#{$backdrop-horizontal-spacing} + 1px) 1px $backdrop-horizontal-spacing;
+  width: 2.2rem;
+  margin: 0.1rem calc(-#{$backdrop-horizontal-spacing} + 0.1rem) 0.1rem $backdrop-horizontal-spacing;
   color: color(ink);
 }
 
@@ -211,7 +211,7 @@ $stacking-order: (
   }
 
   &:not(:first-child) {
-    margin-top: -1px;
+    margin-top: -0.1rem;
     border-top: border(dark);
   }
 

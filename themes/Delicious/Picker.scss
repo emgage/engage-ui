@@ -1,5 +1,5 @@
 // Increased to account for chip height
-$control-height: control-height() + rem(16px);
+$control-height: control-height() + .6rem;
 $control-vertical-padding: (($control-height - control-height()) / 2);
 $backdrop-horizontal-spacing: spacing(tighter) * 1.5;
 
@@ -29,7 +29,7 @@ $backdrop-horizontal-spacing: spacing(tighter) * 1.5;
   transition: 0.3s all ease;
 
   &.focused {
-    padding-top: calc((#{$control-vertical-padding} * 2) - 0.5rem);
+    padding-top: calc((#{$control-vertical-padding} * 2) - 0.5rem + 1rem);
     padding-bottom: 0.5rem;
 
     > .backdrop {
@@ -39,7 +39,7 @@ $backdrop-horizontal-spacing: spacing(tighter) * 1.5;
   }
 
   &.hasValue {
-    padding-top: calc((#{$control-vertical-padding} * 2) - 0.5rem);
+    padding-top: calc((#{$control-vertical-padding} * 2) - 0.5rem + 1rem);
     padding-bottom: 0.5rem;
   }
 

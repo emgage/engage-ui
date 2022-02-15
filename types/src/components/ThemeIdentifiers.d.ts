@@ -70,3 +70,4 @@ export declare const AUTOSUGGEST = "PAutosuggest";
 export declare const SEARCH_HELPER = "PSearchHelper";
 export declare const NODATA = "PNoData";
 export declare const SEGMENT = "PSegment";
+export declare const MYDROPZONE = "PMyDropzone";
