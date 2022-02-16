@@ -125,3 +125,7 @@ export { default as starHalf } from './star-half.svg';
 export { default as starOutline } from './star-outline.svg';
 export { default as star } from './star.svg';
 export { default as tableAlt } from './table-alt.svg';
+export { default as drawStroke } from './draw-stroke.svg';
+export { default as highlightStroke } from './highlight-stroke.svg';
+export { default as strikethrough } from './strikethrough.svg';
+export { default as textBlock } from './text-block.svg';

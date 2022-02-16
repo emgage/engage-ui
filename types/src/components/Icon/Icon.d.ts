@@ -124,6 +124,10 @@ export declare const BUNDLED_ICONS: {
     starOutline: any;
     star: any;
     tableAlt: any;
+    drawStroke: any;
+    highlightStroke: any;
+    strikethrough: any;
+    textBlock: any;
     delete: any;
     export: any;
     import: any;
