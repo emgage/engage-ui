@@ -9,13 +9,13 @@ $dropdown-item-padding-x: 1.6rem !default;
 
 .loginButton {
   color: white !important;
-  font-size: 16px;
+  font-size: 1.6rem;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
   line-height: 1.5;
   letter-spacing: normal;
-  @include floatRight(20px, 20px)
+  @include floatRight(2rem, 2rem)
 }
 
 .loginUser {
@@ -25,8 +25,8 @@ $dropdown-item-padding-x: 1.6rem !default;
 
 .profilePic {
   @extend .loginUser;
-  height: 32px;
-  width: 32px;
+  height: 3.2rem;
+  width: 3.2rem;
 }
 
 .signOut {

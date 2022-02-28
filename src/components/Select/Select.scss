@@ -15,13 +15,13 @@ $stacking-order: (
   icon: 30
 );
 
-$icon-size: rem(16px);
-$spinner-size: rem(20px);
+$icon-size: 1.6rem;
+$spinner-size: 2rem;
 $input-horizontal-padding: spacing(tighter) * 1.5;
 
 // Without a small amount of vertical adjustment, the text
 // in the Select does not appear vertically centered.
-$input-vertical-adjust: rem(1px);
+$input-vertical-adjust: 0.1rem;
 
 .select {
   position: relative;
@@ -119,7 +119,7 @@ $input-vertical-adjust: rem(1px);
   background: transparent;
   border: border(transparent);
   appearance: none;
-  line-height: rem(20px);
+  line-height: 2rem;
 
   &:focus {
     outline: none;

@@ -15,7 +15,7 @@ $stacking-order: (
   flex: 0 0 auto;
 
   &:not(:first-child) {
-    margin-left: -1px;
+    margin-left: -0.1rem;
   }
 }
 

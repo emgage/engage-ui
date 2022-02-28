@@ -99,6 +99,7 @@ import {
   SearchHelper,
   NoData,
   EntityState,
+  MyDropzone,
 } from '../../src/components';
 import { IconList } from '../../src/components/Icon';
 
@@ -988,9 +989,9 @@ class App extends React.Component<{}, State> {
     );
 
     const steps = [
-      { name: 'Completed', status: 'completed' },
-      { name: 'Active', status: 'active' },
-      { name: 'Upcoming' },
+      { name: 'Completed', status: 'completed', icon: <Icon source={'signature'} componentColor='white'/> },
+      { name: 'Active', status: 'active', icon: <Icon source={'file'} componentColor='white'/> },
+      { name: 'Upcoming', icon: <Icon source={'grid'} componentColor='white'/> },
     ];
 
     // const pickerdata = [
@@ -1742,11 +1743,19 @@ class App extends React.Component<{}, State> {
             <Button icon="infoCircle" componentSize="slim"/>,
           ]}
         />
+
+
         <Accordion
           items={[
             {
               header: <>SegmentExample</>,
               children: <SegmentExample />
+            },
+            {
+              header: <>MyDropzone</>,
+              children: <MyDropzone onDrop={(files: any) => {
+                console.log(files);
+              }} onRemove={() => { }} />
             },
             {
               header: <>IconListExample</>,
@@ -1785,7 +1794,21 @@ class App extends React.Component<{}, State> {
         </SwitchCheckbox>
         <br/>
         <br/>
-
+        <Heading element='h2' headingSize='h4'>Way to use colum for responsive</Heading>
+        <FlexBox wrap='Wrap'>
+            <Column small='1-1' medium='1-2' large='1-4' componentStyle={{ border: '1px solid #bdbdbd', padding: 10 }}>
+              Small : 1-1(100%)<br/>Medium: 1-2(50%)<br/>Large: 1-4(25%)
+            </Column>
+            <Column small='1-1' medium='1-2' large='1-4' componentStyle={{ border: '1px solid #bdbdbd', padding: 10  }}>
+              Small : 1-1(100%)<br/>Medium: 1-2(50%)<br/>Large: 1-4(25%)
+            </Column>
+            <Column small='1-1' medium='1-2' large='1-4' componentStyle={{ border: '1px solid #bdbdbd', padding: 10  }}>
+              Small : 1-1(100%)<br/>Medium: 1-2(50%)<br/>Large: 1-4(25%)
+            </Column>
+            <Column small='1-1' medium='1-2' large='1-4' componentStyle={{ border: '1px solid #bdbdbd', padding: 10  }}>
+              Small : 1-1(100%)<br/>Medium: 1-2(50%)<br/>Large: 1-4(25%)
+            </Column>
+          </FlexBox>
 
           {/* <SwitchCheckboxIcon isOpen={this.state.isOpen} handleToggle={this.handleSwitchCheckboxToggle}>
             SwitchCheckboxIcon Normal
@@ -1802,7 +1825,7 @@ class App extends React.Component<{}, State> {
           <Button>On</Button>
           <Button>Off</Button>
         </ToggleButtonGroup>
-        <Icon source="checkCircle" />
+        {/* <Icon source="checkCircle" />
         <Icon source="grid" />
         <Icon source="list" />
         <Icon source="listAlt" />
@@ -1821,7 +1844,38 @@ class App extends React.Component<{}, State> {
         <Icon source='dropdown'/>
         <Icon source='userAdd'/>
         <Icon source='userAlt'/>
-        <Icon source='usersAlt'/>
+        <Icon source='usersAlt'/> */}
+
+        <Icon source='card'/>
+        <Icon source='close'/>
+        <Icon source='compress'/>
+        <Icon source='conditionalLogic'/>
+        <Icon source='createAgreement'/>
+        <Icon source='crossingArrows'/>
+        <Icon source='expand'/>
+        <Icon source='fileSignature'/>
+        <Icon source='gear'/>
+        <Icon source='internal'/>
+        <Icon source='share'/>
+        <Icon source='starHalf'/>
+        <Icon source='starOutline'/>
+        <Icon source='star'/>
+        <Icon source='tableAlt'/>
+
+        <Icon source='calendar'/>
+        <Icon source='checkBox'/>
+        <Icon source='dropdown'/>
+        <Icon source='export'/>
+        <Icon source='external'/>
+        <Icon source='import'/>
+        <Icon source='initial'/>
+        <Icon source='radioButton'/>
+        <Icon source='signatureAlt'/>
+        <Icon source='signature'/>
+        <Icon source='textField'/>
+        <Icon source='view'/>
+
+
         <br></br>
         <span>Small change for test Change 3</span>
         <Badge children={'Badge'} working />

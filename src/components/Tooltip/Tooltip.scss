@@ -6,10 +6,10 @@
 @import 'foundation/duration';
 @import 'foundation/easing';
 
-$arrow-size: rem(14px);
-$visible-portion-of-arrow: rem(5px);
-$content-max-height: rem(100px);
-$content-max-width: rem(600px);
+$arrow-size: 1.4rem;
+$visible-portion-of-arrow: 0.5rem;
+$content-max-height: 10rem;
+$content-max-width: 60rem;
 
 .aboveTooltip {
   margin: $visible-portion-of-arrow spacing() spacing();
@@ -91,7 +91,7 @@ $content-max-width: rem(600px);
     margin:0px;
     li {
       padding: 0px;
-      margin-bottom:8px;
+      margin-bottom:0.8rem;
     }
     &:last-child {
       margin-bottom:0px;

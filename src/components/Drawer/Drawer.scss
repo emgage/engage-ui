@@ -3,24 +3,24 @@
 
 $drawer-bar-background:                       #fff !default; //create global var?
 
-$drawer-bar-width-collapsed:                  40px !default;
-$drawer-bar-padding-vertical-collapsed:       5px !default;
-$drawer-bar-padding-horizontal-collapsed:     5px !default;
+$drawer-bar-width-collapsed:                  4rem !default;
+$drawer-bar-padding-vertical-collapsed:       0.5rem !default;
+$drawer-bar-padding-horizontal-collapsed:     0.5rem !default;
 
-$drawer-bar-width-small:                      270px !default;
-$drawer-bar-padding-vertical-small:           30px !default;
-$drawer-bar-padding-horizontal-small:         30px !default;
+$drawer-bar-width-small:                      27rem !default;
+$drawer-bar-padding-vertical-small:           3rem !default;
+$drawer-bar-padding-horizontal-small:         3rem !default;
 
-$drawer-bar-width-medium:                     350px !default;
-$drawer-bar-padding-vertical-medium:          40px !default;
-$drawer-bar-padding-horizontal-medium:        40px !default;
+$drawer-bar-width-medium:                     35rem !default;
+$drawer-bar-padding-vertical-medium:          4rem !default;
+$drawer-bar-padding-horizontal-medium:        4rem !default;
 
-$drawer-bar-width-large:                      600px !default;
-$drawer-bar-padding-vertical-large:           40px !default;
-$drawer-bar-padding-horizontal-large:         40px !default;
+$drawer-bar-width-large:                      60rem !default;
+$drawer-bar-padding-vertical-large:           4rem !default;
+$drawer-bar-padding-horizontal-large:         4rem !default;
 
-$drawer-close-position:                       20px !default;
-$drawer-close-padding:                        5px !default;
+$drawer-close-position:                       2rem !default;
+$drawer-close-padding:                        0.5rem !default;
 
 $drawer-overlay-background:                   rgba(0,0,0,0.2) !default;
 
@@ -180,10 +180,10 @@ $stacking-order: (
   position: absolute;
   top: 0;
   bottom: 0;
-  left: -26px;
+  left: -2.6rem;
   background: $drawer-bar-background;
   z-index: 1;
-  padding: 10px 3px;
+  padding: 1rem 0.3rem;
 
   .drawerLabelText {
     writing-mode: vertical-rl;
