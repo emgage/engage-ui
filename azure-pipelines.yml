@@ -25,7 +25,6 @@ steps:
     #!/bin/bash
     git checkout develop
     git checkout -
-    echo $(System.PullRequest.TargetBranch)
     BEHIND=$(git rev-list --left-right --count develop...HEAD|awk '{print$1}')
     if [ $BEHIND -ne 0 ]
     then
@@ -35,7 +34,7 @@ steps:
     else
         echo "true"
     fi
-  condition: not(or(eq(variables['Build.SourceBranch'], 'refs/heads/master'), eq(variables['Build.SourceBranch'], 'refs/heads/develop'), eq(variables['Build.SourceBranch'], 'refs/heads/demo/develop'),  eq(variables['Build.SourceBranch'], 'refs/heads/releases/r1-release'), startsWith(variables['Build.SourceBranch'], 'refs/heads/hotfix'), eq(variables['System.PullRequest.TargetBranch'], 'refs/heads/master'), eq(variables['System.PullRequest.TargetBranch'], 'refs/heads/releases/r1-release'), eq(variables['System.PullRequest.TargetBranch'], 'demo/develop')))
+  condition: not(or(eq(variables['Build.SourceBranch'], 'refs/heads/master'), eq(variables['Build.SourceBranch'], 'refs/heads/develop'), eq(variables['Build.SourceBranch'], 'refs/heads/demo/develop'),  eq(variables['Build.SourceBranch'], 'refs/heads/releases/r1-release'), startsWith(variables['Build.SourceBranch'], 'refs/heads/hotfix'), eq(variables['System.PullRequest.TargetBranch'], 'master'), eq(variables['System.PullRequest.TargetBranch'], 'releases/r1-release'), eq(variables['System.PullRequest.TargetBranch'], 'demo/develop')))
   displayName: "Check if Branch is in Sync"
 
 - task: NodeTool@0
