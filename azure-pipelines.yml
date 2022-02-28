@@ -25,6 +25,7 @@ steps:
     #!/bin/bash
     git checkout develop
     git checkout -
+    echo $(System.PullRequest.TargetBranch)
     BEHIND=$(git rev-list --left-right --count develop...HEAD|awk '{print$1}')
     if [ $BEHIND -ne 0 ]
     then
