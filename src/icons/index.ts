@@ -129,3 +129,4 @@ export { default as drawStroke } from './draw-stroke.svg';
 export { default as highlightStroke } from './highlight-stroke.svg';
 export { default as strikethrough } from './strikethrough.svg';
 export { default as textBlock } from './text-block.svg';
+export { default as date } from './date.svg';
