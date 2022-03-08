@@ -20,6 +20,7 @@ export interface Props {
   onBrowseClick?(): void;
   maxFiles?: number;
   dragDropLabel?: string;
+  helperText?: string;
   // dropzone configuration
   dropzoneConfig?: DropzoneOptions;
   // already uploaded files array
@@ -42,7 +43,8 @@ const MyDropzone = ({
   uploadedFiles = [],
   onRemove,
   onBrowseClick,
-  dragDropLabel = 'Drag & drop or'
+  dragDropLabel = 'Drag & drop or',
+  helperText,
 }: Props) => {
 
   const handleDrop = React.useCallback((files) => {
@@ -71,6 +73,13 @@ const MyDropzone = ({
           {dragDropLabel} <Button componentSize="slim" plain onClick={onBrowseClick || openFileSelection}>browse</Button>
         </BodyText>
       </div>
+      {helperText && <BodyText
+        componentSize="small"
+        componentColor="darker"
+        element="span"
+        componentClass={theme.helperText}
+      >{helperText}
+      </BodyText>}
       {uploadedFiles.length > 0 && <div className={theme.uploadedFileList}>
         {uploadedFiles.map((file, index) => {
           const { id, name, url, removable = true } = file;

@@ -1753,7 +1753,7 @@ class App extends React.Component<{}, State> {
             },
             {
               header: <>MyDropzone</>,
-              children: <MyDropzone onDrop={(files: any) => {
+              children: <MyDropzone helperText="Allowed types: srt and vtt" onDrop={(files: any) => {
                 console.log(files);
               }} onRemove={() => { }} />
             },
