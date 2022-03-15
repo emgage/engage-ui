@@ -78,7 +78,7 @@ $stacking-order: (
   margin: -0.5rem 0 0;
   padding: 0;
   background: color(white);
-  box-shadow: shadow(faint);
+  box-shadow: shadow();
   list-style-type: none;
   z-index: z-index(popover, $stacking-order);
   min-width: 13rem;
