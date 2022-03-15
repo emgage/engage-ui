@@ -988,7 +988,7 @@ class App extends React.Component<{}, State> {
       />
     );
 
-    const steps = [
+    const steps:any = [
       { name: 'Completed', status: 'completed', icon: <Icon source={'signature'} componentColor='white'/> },
       { name: 'Active', status: 'active', icon: <Icon source={'file'} componentColor='white'/> },
       { name: 'Upcoming', icon: <Icon source={'grid'} componentColor='white'/> },
@@ -1753,7 +1753,7 @@ class App extends React.Component<{}, State> {
             },
             {
               header: <>MyDropzone</>,
-              children: <MyDropzone onDrop={(files: any) => {
+              children: <MyDropzone helperText="Allowed types: srt and vtt" onDrop={(files: any) => {
                 console.log(files);
               }} onRemove={() => { }} />
             },
@@ -1846,7 +1846,7 @@ class App extends React.Component<{}, State> {
         <Icon source='userAlt'/>
         <Icon source='usersAlt'/> */}
 
-        <Icon source='card'/>
+        {/* <Icon source='card'/>
         <Icon source='close'/>
         <Icon source='compress'/>
         <Icon source='conditionalLogic'/>
@@ -1873,7 +1873,12 @@ class App extends React.Component<{}, State> {
         <Icon source='signatureAlt'/>
         <Icon source='signature'/>
         <Icon source='textField'/>
-        <Icon source='view'/>
+        <Icon source='view'/> */}
+
+        <Icon source='drawStroke'/>
+        <Icon source='highlightStroke'/>
+        <Icon source='strikethrough'/>
+        <Icon source='textBlock'/>
 
 
         <br></br>

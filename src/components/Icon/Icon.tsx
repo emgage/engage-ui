@@ -113,7 +113,6 @@ import {
   userAlt,
   usersAlt,
   textField,
-
   card,
   close,
   compress,
@@ -129,6 +128,11 @@ import {
   starOutline,
   star,
   tableAlt,
+  drawStroke,
+  highlightStroke,
+  strikethrough,
+  textBlock,
+  date,
 
 } from '../../icons';
 
@@ -257,7 +261,6 @@ export const BUNDLED_ICONS = {
   userAlt,
   usersAlt,
   textField,
-
   card,
   close,
   compress,
@@ -273,7 +276,11 @@ export const BUNDLED_ICONS = {
   starOutline,
   star,
   tableAlt,
-
+  drawStroke,
+  highlightStroke,
+  strikethrough,
+  textBlock,
+  date,
   delete: deleteIcon,
   export: exportIcon,
   import: importIcon,
