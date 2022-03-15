@@ -40,7 +40,7 @@ const SegmentExample = () => {
         title: 'custom component 2',
       },
     ];
-  }, []);
+  },                          []);
   const [activeItemId, setActiveItemId] = React.useState<string | number>(1);
   return (
     <div className={styles.example}>

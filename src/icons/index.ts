@@ -110,7 +110,6 @@ export { default as userAdd } from './user-add.svg';
 export { default as userAlt } from './user-alt.svg';
 export { default as usersAlt } from './users-alt.svg';
 export { default as textField } from './text-field.svg';
-
 export { default as card } from './card.svg';
 export { default as close } from './close.svg';
 export { default as compress } from './compress.svg';
@@ -126,3 +125,8 @@ export { default as starHalf } from './star-half.svg';
 export { default as starOutline } from './star-outline.svg';
 export { default as star } from './star.svg';
 export { default as tableAlt } from './table-alt.svg';
+export { default as drawStroke } from './draw-stroke.svg';
+export { default as highlightStroke } from './highlight-stroke.svg';
+export { default as strikethrough } from './strikethrough.svg';
+export { default as textBlock } from './text-block.svg';
+export { default as date } from './date.svg';
