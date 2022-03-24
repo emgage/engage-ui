@@ -32,6 +32,8 @@ export interface Props {
   // Indexs of item which you want to be active for initial level
   defaultOpenIndexs?: number[] | 'all';
   theme?: any;
+  position?:string;
+  isDelete?:boolean;
 }
 
 interface State {
@@ -135,7 +137,9 @@ class Accordion extends React.PureComponent<Props, State> {
       componentClass = '',
       componentStyle = {},
       items,
-      theme
+      theme,
+      position,
+      isDelete
     } = this.props;
 
     const {
@@ -153,6 +157,8 @@ class Accordion extends React.PureComponent<Props, State> {
           clickHandler={clickHandler}
           childrenClickHandler={childrenClickHandler}
           theme={theme}
+          position={position}
+          isDelete= {isDelete}
         >
           {item.children}
         </AccordionItem>
