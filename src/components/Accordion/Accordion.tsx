@@ -34,6 +34,9 @@ export interface Props {
   theme?: any;
   position?:string;
   isDelete?:boolean;
+  rotate?: any;
+  icon?: string;
+  onDeleteClick?: any;
 }
 
 interface State {
@@ -139,7 +142,10 @@ class Accordion extends React.PureComponent<Props, State> {
       items,
       theme,
       position,
-      isDelete
+      isDelete,
+      icon,
+      onDeleteClick,
+      rotate,
     } = this.props;
 
     const {
@@ -159,6 +165,9 @@ class Accordion extends React.PureComponent<Props, State> {
           theme={theme}
           position={position}
           isDelete= {isDelete}
+          icon={icon}
+          onDeleteClick={onDeleteClick}
+          rotate={rotate}
         >
           {item.children}
         </AccordionItem>
