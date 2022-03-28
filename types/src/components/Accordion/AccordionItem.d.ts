@@ -1,5 +1,8 @@
 import * as React from 'react';
 import { ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
+export interface State {
+    activeDelete?: boolean;
+}
 export interface Props {
     active?: boolean;
     clickHandler?(event: React.FormEvent<HTMLElement>): void;
@@ -11,6 +14,12 @@ export interface Props {
     style?: any;
     toggle?(index: number): void;
     theme?: any;
+    position?: string;
+    icon?: string;
+    isDelete?: boolean;
+    activeDelete?: boolean;
+    onDeleteClick?: any;
+    rotate?: any;
 }
 declare const _default: ThemedComponentClass<Props, never>;
 export default _default;
