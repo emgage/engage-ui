@@ -7,10 +7,13 @@ import { ACCORDION } from '../ThemeIdentifiers';
 import * as baseTheme from './Accordion.scss';
 import Icon from '../Icon';
 
+export interface State {
+  activeDelete?: boolean;
+}
 export interface Props {
   // Define accordion item is active or not
   active?: boolean;
-  clickHandler?(event: React.FormEvent<HTMLElement>) : void;
+  clickHandler?(event: React.FormEvent<HTMLElement>): void;
   // Click handler for children items
   childrenClickHandler?(event: React.FormEvent<HTMLElement>): void;
   // Item of accordion component to be displayed
@@ -19,13 +22,26 @@ export interface Props {
   // Header of accordion item to be displayed
   header: React.ReactElement<any>;
   index: number;
-  style?:any;
+  style?: any;
   // Make accordion item active or inactive.
   toggle?(index: number): void;
   theme?: any;
+  position?: string;
+  icon?: string;
+  isDelete?: boolean;
+  activeDelete?: boolean;
+  onDeleteClick?: any;
+  rotate?: any;
 }
 
-class AccordionItem extends React.PureComponent<Props, never> {
+class AccordionItem extends React.PureComponent<Props, State> {
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      activeDelete: false,
+    };
+  }
+
   handleClick = (event: React.FormEvent<HTMLElement>) => {
     if (this.props.clickHandler) {
       this.props.clickHandler(event);
@@ -39,13 +55,19 @@ class AccordionItem extends React.PureComponent<Props, never> {
   }
 
   render() {
+    const { activeDelete } = this.state;
     const {
       componentClass = '',
       header,
-      children,
       active,
       style,
       theme,
+      position = 'right',
+      isDelete,
+      icon = 'chevronDown',
+      onDeleteClick,
+        children,
+        rotate,
     } = this.props;
 
     const containerClass = classNames(
@@ -56,20 +78,46 @@ class AccordionItem extends React.PureComponent<Props, never> {
     const headerClass = classNames(
       theme.header,
       active && theme.active
-
     );
 
     return (
-      <div className={containerClass} style={ active ? { overflow: 'visible', height: 'auto' } : { overflow: 'hidden', height: 38 } }>
-        <div className={headerClass} style={style} onClick={this.clickHandler}>
-          {header}
-          <Icon source="chevronDown" componentColor="black" componentClass={theme.AccordianIcon}></Icon>
-        </div>
+      // <div className={containerClass} style={ active ? { overflow: 'visible', height: 'auto' } : { overflow: 'hidden', height: 38 } }>
+      //   <div className={headerClass} style={style} onClick={this.clickHandler} onMouseEnter={()=> this.setState({ activeDelete : true })} onMouseLeave ={()=> this.setState({ activeDelete : false })}>
+      //   {header}
+      //     {position === 'left' ? <Icon source="chevronRight" componentColor="black" componentClass={theme.AccordianIcon}></Icon> : <Icon source="chevronDown" componentColor="black" componentClass={theme.AccordianIcon}></Icon>}
+      //     {/* {position === 'right' ? <Icon source="chevronDown" componentColor="black" componentClass={theme.AccordianIcon}></Icon> : null} */}
+      //     {isDelete && activeDelete && <div>delete</div> }
 
+      //   </div>
+
+      //   <div className={active ? theme.body : theme.bodyCollapsed} onClick={this.handleClickChildren}>
+      //     {active && children}
+      //   </div>
+      // </div>
+
+      <div className={containerClass} style={active ? { overflow: 'visible', height: 'auto' } : { overflow: 'hidden', height: 38 }}>
+
+        {position === 'right' ?
+
+          <div className={headerClass} style={style} onClick={this.clickHandler}>
+            {header}
+            <Icon source={icon ? icon : 'chevronDown' as any} componentColor="black" componentStyle={ rotate && active ? { transform: `rotate(${rotate}deg)` } : {}} componentClass={theme.AccordianIcon}></Icon>
+          </div>
+          :
+
+          <div className={headerClass} style={style} onClick={this.clickHandler} onMouseEnter={() => this.setState({ activeDelete: true })} onMouseLeave={() => this.setState({ activeDelete: false })}>
+            {/* <span style={{ display: 'flex', justifyContent: 'left' }}> */}
+              <Icon source={icon ? icon : 'chevronDown' as any} componentColor="black"  componentStyle={rotate && active ? { transform: `rotate(${rotate}deg)` } : {}} componentClass={theme.AccordianIcon}></Icon>
+              {header}
+              {/* </span> */}
+            {isDelete && activeDelete && <Icon source="delete" onClick={onDeleteClick}/>}
+          </div>
+        }
         <div className={active ? theme.body : theme.bodyCollapsed} onClick={this.handleClickChildren}>
           {active && children}
         </div>
       </div>
+
     );
   }
 
