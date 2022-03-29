@@ -17,6 +17,11 @@ export interface Props {
     openIndex?: number;
     defaultOpenIndexs?: number[] | 'all';
     theme?: any;
+    position?: string;
+    isDelete?: boolean;
+    rotate?: any;
+    icon?: string;
+    onDeleteClick?: any;
 }
 interface State {
     active: boolean[];
