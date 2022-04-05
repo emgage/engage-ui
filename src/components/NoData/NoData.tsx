@@ -33,7 +33,7 @@ const NoData = ({
     componentStyle,
     iconClass,
     iconStyle,
-    iconColor= 'inkLighter',
+    iconColor= 'inkLightest',
     iconSource = 'import',
     label,
     labelColor= 'mid'
