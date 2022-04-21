@@ -22,6 +22,8 @@ export interface Props {
     rotate?: any;
     icon?: string;
     onDeleteClick?: any;
+    allOpen?: boolean;
+    allClose?: boolean;
 }
 interface State {
     active: boolean[];
