@@ -37,6 +37,8 @@ export interface Props {
   rotate?: any;
   icon?: string;
   onDeleteClick?: any;
+  allOpen?: boolean;
+  allClose?: boolean;
 }
 
 interface State {
@@ -82,6 +84,16 @@ class Accordion extends React.PureComponent<Props, State> {
   // tslint:disable-next-line:function-name
   UNSAFE_componentWillReceiveProps(nextProps : Props) {
     // if both not present don't change the state
+    if (nextProps.allOpen && nextProps.allOpen !== this.props.allOpen) {
+      this.setState({
+        active: this.state.active.map(() => true),
+      });
+    }
+    if (nextProps.allClose && nextProps.allClose !== this.props.allClose) {
+      this.setState({
+        active: this.state.active.map(() => false),
+      });
+    }
     if (nextProps.openIndex === undefined && nextProps.closeIndex === undefined) {
       return null;
     }
