@@ -62,6 +62,7 @@ export { default as horizontalDots } from './horizontal-dots.svg';
 export { default as image } from './image.svg';
 export { default as import } from './import.svg';
 export { default as inbox } from './inbox.svg';
+export { default as key } from './key.svg';
 export { default as infoCircle } from './info-circle.svg';
 export { default as lightbulb } from './lightbulb.svg';
 export { default as list } from './list.svg';
