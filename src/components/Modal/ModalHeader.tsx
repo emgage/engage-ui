@@ -10,6 +10,7 @@ import * as baseTheme from './Modal.scss';
 export interface Props {
   active?: boolean;
   theme?: any;
+  noBottomPadding?: boolean;
 }
 
 class ModalHeader extends React.PureComponent<Props, never> {
@@ -18,10 +19,10 @@ class ModalHeader extends React.PureComponent<Props, never> {
   }
 
   render() {
-    const { children, theme } = this.props;
+    const { children, theme, noBottomPadding } = this.props;
 
     return (
-      <div className={theme.header}>
+      <div className={`${theme.header} ${noBottomPadding ? theme.headerNoBottomPadding : ''}`}>
         <Heading theme={theme}>{children}</Heading>
       </div>
     );
