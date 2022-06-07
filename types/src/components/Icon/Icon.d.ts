@@ -65,6 +65,7 @@ export declare const BUNDLED_ICONS: {
     image: any;
     infoCircle: any;
     inbox: any;
+    key: any;
     lightbulb: any;
     list: any;
     listAlt: any;
