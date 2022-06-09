@@ -131,3 +131,6 @@ export { default as highlightStroke } from './highlight-stroke.svg';
 export { default as strikethrough } from './strikethrough.svg';
 export { default as textBlock } from './text-block.svg';
 export { default as date } from './date.svg';
+export { default as enter } from './enter.svg';
+export { default as exit } from './exit.svg';
+export { default as hide } from './hide.svg';
