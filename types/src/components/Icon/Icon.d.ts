@@ -130,6 +130,9 @@ export declare const BUNDLED_ICONS: {
     strikethrough: any;
     textBlock: any;
     date: any;
+    enter: any;
+    exit: any;
+    hide: any;
     delete: any;
     export: any;
     import: any;
