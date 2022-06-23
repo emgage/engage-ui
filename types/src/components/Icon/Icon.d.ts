@@ -133,6 +133,8 @@ export declare const BUNDLED_ICONS: {
     enter: any;
     exit: any;
     hide: any;
+    mobile: any;
+    desktop: any;
     delete: any;
     export: any;
     import: any;
