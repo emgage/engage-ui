@@ -134,3 +134,5 @@ export { default as date } from './date.svg';
 export { default as enter } from './enter.svg';
 export { default as exit } from './exit.svg';
 export { default as hide } from './hide.svg';
+export { default as desktop } from './desktop.svg';
+export { default as mobile } from './mobile.svg';

@@ -137,6 +137,8 @@ import {
   enter,
   exit,
   hide,
+  mobile,
+  desktop,
 
 } from '../../icons';
 
@@ -289,6 +291,8 @@ export const BUNDLED_ICONS = {
   enter,
   exit,
   hide,
+  mobile,
+  desktop,
   delete: deleteIcon,
   export: exportIcon,
   import: importIcon,
