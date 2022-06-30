@@ -150,15 +150,15 @@ $spinner-size: 2rem;
   }
 
   &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: color(black) !important;
+    color: theme-color(m-grey, 600) !important;
   }
   
   &:-ms-input-placeholder { /* Internet Explorer 10-11 */
-    color: color(black)!important;
+    color: theme-color(m-grey, 600) !important;
   }
   
   &::-ms-input-placeholder { /* Microsoft Edge */
-    color: color(black)!important;
+    color: theme-color(m-grey, 600) !important;
   }
 
   &.placeholderAlignRight::placeholder {

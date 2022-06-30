@@ -20,7 +20,7 @@ $modal-header-background:                        #fff !default; //add $global-ba
 
 $modal-footer-padding-horizontal:                3rem !default; //add $global-gutter
 $modal-footer-padding-vertical:                  ($modal-footer-padding-horizontal / 2) !default;
-$modal-footer-background:                        #fff !default; //add $global-backgrouind
+$modal-footer-background:                        #fafafa !default; //add $global-backgrouind
 
 // Styles
 // ========================================================================
@@ -92,6 +92,11 @@ $modal-footer-background:                        #fff !default; //add $global-ba
   border-bottom: 1px solid #E5E5E5;
   // border-radius: 4px 4px 0 0;
   background: $modal-header-background;
+}
+
+.headerNoBottomPadding {
+  padding-bottom: 0;
+  border-bottom: 0;
 }
 
 .body {

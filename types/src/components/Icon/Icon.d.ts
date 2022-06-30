@@ -65,6 +65,7 @@ export declare const BUNDLED_ICONS: {
     image: any;
     infoCircle: any;
     inbox: any;
+    key: any;
     lightbulb: any;
     list: any;
     listAlt: any;
@@ -129,6 +130,11 @@ export declare const BUNDLED_ICONS: {
     strikethrough: any;
     textBlock: any;
     date: any;
+    enter: any;
+    exit: any;
+    hide: any;
+    mobile: any;
+    desktop: any;
     delete: any;
     export: any;
     import: any;

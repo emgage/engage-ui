@@ -101,15 +101,15 @@ class AccordionItem extends React.PureComponent<Props, State> {
 
           <div className={headerClass} style={style} onClick={this.clickHandler}>
             {header}
-            <Icon source={icon ? icon : 'chevronDown' as any} componentColor="black" componentStyle={ rotate && active ? { transform: `rotate(${rotate}deg)` } : {}} componentClass={theme.AccordianIcon}></Icon>
+            <Icon source={icon ? icon : 'chevronDown' as any} componentColor="black" componentStyle={ rotate && active ? { transform: `rotate(${rotate}deg)` } : {}} componentClass={theme.AccordianIcon}/>
           </div>
           :
 
           <div className={headerClass} style={style} onClick={this.clickHandler} onMouseEnter={() => this.setState({ activeDelete: true })} onMouseLeave={() => this.setState({ activeDelete: false })}>
-            {/* <span style={{ display: 'flex', justifyContent: 'left' }}> */}
-              <Icon source={icon ? icon : 'chevronDown' as any} componentColor="black"  componentStyle={rotate && active ? { transform: `rotate(${rotate}deg)` } : {}} componentClass={theme.AccordianIcon}></Icon>
+             <span style={{ display: 'flex', justifyContent: 'left' }}>
+              <Icon source={icon ? icon : 'chevronDown' as any} componentColor="black"  componentStyle={rotate && active ? { transform: `rotate(${rotate}deg)` } : {}} componentClass={theme.AccordianIcon}/>
               {header}
-              {/* </span> */}
+               </span>
             {isDelete && activeDelete && <Icon source="delete" onClick={onDeleteClick}/>}
           </div>
         }
