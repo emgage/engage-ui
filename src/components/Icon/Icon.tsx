@@ -134,6 +134,11 @@ import {
   strikethrough,
   textBlock,
   date,
+  enter,
+  exit,
+  hide,
+  mobile,
+  desktop,
 
 } from '../../icons';
 
@@ -283,6 +288,11 @@ export const BUNDLED_ICONS = {
   strikethrough,
   textBlock,
   date,
+  enter,
+  exit,
+  hide,
+  mobile,
+  desktop,
   delete: deleteIcon,
   export: exportIcon,
   import: importIcon,
