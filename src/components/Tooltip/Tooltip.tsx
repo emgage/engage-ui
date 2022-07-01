@@ -16,6 +16,7 @@ export interface Props {
   children?: React.ReactNode;
   // The content to display within the tooltip.
   content: any;
+  // Toggle whether the tooltip left side padding.
   leftSpace?: number;
   // Toggle whether the tooltip is visible.
   active?: boolean;
