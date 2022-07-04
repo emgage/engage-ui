@@ -32,6 +32,7 @@ export interface Props {
   activeDelete?: boolean;
   onDeleteClick?: any;
   rotate?: any;
+  key?:any;
 }
 
 class AccordionItem extends React.PureComponent<Props, State> {
@@ -68,6 +69,7 @@ class AccordionItem extends React.PureComponent<Props, State> {
       onDeleteClick,
         children,
         rotate,
+        key,
     } = this.props;
 
     const containerClass = classNames(
@@ -110,7 +112,7 @@ class AccordionItem extends React.PureComponent<Props, State> {
               <Icon source={icon ? icon : 'chevronDown' as any} componentColor="black"  componentStyle={rotate && active ? { transform: `rotate(${rotate}deg)` } : {}} componentClass={theme.AccordianIcon}/>
               {header}
                </span>
-            {isDelete && activeDelete && <Icon source="delete" onClick={onDeleteClick}/>}
+            {isDelete && activeDelete && <Icon source="delete" onClick={() => onDeleteClick(key)}/>}
           </div>
         }
         <div className={active ? theme.body : theme.bodyCollapsed} onClick={this.handleClickChildren}>
