@@ -20,6 +20,7 @@ export interface Props {
     activeDelete?: boolean;
     onDeleteClick?: any;
     rotate?: any;
+    key?: any;
 }
 declare const _default: ThemedComponentClass<Props, never>;
 export default _default;

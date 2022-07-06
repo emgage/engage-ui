@@ -4124,8 +4124,8 @@ class App extends React.Component<{}, State> {
         <br />
         <p>
           {' '}
-          Some text with a
-          <Tooltip content="This order has shipping labels.">
+          Preferred position left
+          <Tooltip  preferredPosition='left' content="This order has shipping labels.">
             <Link>Tooltip 1</Link>
           </Tooltip>{' '}
           in it

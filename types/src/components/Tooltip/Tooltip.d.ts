@@ -4,6 +4,7 @@ import { PreferredPosition } from '../PositionedOverlay';
 export interface Props {
     children?: React.ReactNode;
     content: any;
+    leftSpace?: number;
     active?: boolean;
     light?: boolean;
     preferredPosition?: PreferredPosition;

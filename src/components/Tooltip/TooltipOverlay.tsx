@@ -11,6 +11,7 @@ import { calculateTipPosition } from '../../utilities';
 export interface Props {
   // Id for tooltip.
   componentId: string;
+  leftSpace?: number;
   // Toggle whether the tooltip is visible.
   active: boolean;
   // Display tooltip with a light background.
@@ -44,6 +45,7 @@ export default class TooltipOverlay extends React.PureComponent<Props, never> {
 
     return (
       <PositionedOverlay
+        leftSpace={this.props.leftSpace}
         active={active}
         activator={activator}
         preferredPosition={preferredPosition}

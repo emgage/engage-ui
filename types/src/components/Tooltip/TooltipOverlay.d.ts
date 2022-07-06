@@ -2,6 +2,7 @@ import * as React from 'react';
 import { PreferredPosition } from '../PositionedOverlay';
 export interface Props {
     componentId: string;
+    leftSpace?: number;
     active: boolean;
     light?: boolean;
     preferredPosition?: PreferredPosition;

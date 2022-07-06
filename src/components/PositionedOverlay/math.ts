@@ -104,8 +104,12 @@ export function calculateHorizontalPosition(
     );
   }
   // Define when overlay needs to be displayed center aligned with dropdown node
+  if (preferredPosition === 'left' || preferredPosition === 'right') {
+    return preferredPosition === 'right' ? (activatorRect.center.x + activatorRect.width / 2) : ((activatorRect.left - (240)));
+  }
+
   if (preferredAlignment === 'center') {
-    return -(overlayRect.width - activatorRect.width -  16) / 2  ;
+    return  activatorRect.left   ;
 
       // Define when overlay needs to be displayed center aligned with dropdown node
   }
@@ -118,11 +122,6 @@ export function calculateHorizontalPosition(
       )
     );
   // Define when overlay needs to be displayed left or right side of dropdown  
-  } if (preferredPosition === 'left' || preferredPosition === 'right') {
-    return Math.min(
-      maximum,
-      Math.max(0, preferredPosition === 'right' ? (activatorRect.center.x + activatorRect.width / 2) : (activatorRect.center.x - (activatorRect.width) - (activatorRect.width / 2)))
-    );
   }
 
   return Math.min(

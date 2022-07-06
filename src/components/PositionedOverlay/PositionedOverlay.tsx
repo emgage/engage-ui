@@ -36,6 +36,7 @@ export interface Props {
   active: boolean;
   activator: HTMLElement;
   componentStyle?: any;
+  leftSpace?: number;
   // Define overlay position 
   preferredPosition?: PreferredPosition;
   // Define overlay alignment
@@ -64,6 +65,7 @@ export interface State {
   zIndex: number | null;
   outsideScrollableContainer: boolean;
   lockPosition: boolean;
+  leftSpace: number;
 }
 
 class PositionedOverlay extends React.PureComponent<Props, State> {
@@ -71,6 +73,7 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
     measuring: true,
     activatorRect: getRectForNode(this.props.activator),
     left: 0,
+    leftSpace: this.props.leftSpace || 0,
     top: 0,
     anchorPosition: 0,
     height: 0,
@@ -254,12 +257,13 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
           preferredPosition === 'below' ? window.outerHeight - activatorRect.top < 300 ? 'above' : preferredPosition : preferredPosition,
           preloadedPopover ? preloadedPopover : false
         );
+        const leftValue = (horizontalPosition) - this.state.leftSpace;
 
         this.setState({
           zIndex,
           measuring: false,
           activatorRect: getRectForNode(activator),
-          left: horizontalPosition === 0 ? horizontalPosition - 16 : horizontalPosition,
+          left: horizontalPosition === 0 ? horizontalPosition - 16 : preferredPosition === 'left' ? leftValue : horizontalPosition,
           top: tooltipOverlay ? verticalPosition.top : this.getTopHeight(preferredPosition, activatorRect, overlayRect),
           anchorPosition: overlayRect.width - activatorRect.width - overlayMargins.horizontal,
           lockPosition: Boolean(fixed),

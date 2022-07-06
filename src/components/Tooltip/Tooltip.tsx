@@ -16,6 +16,8 @@ export interface Props {
   children?: React.ReactNode;
   // The content to display within the tooltip.
   content: any;
+  // Toggle whether the tooltip left side padding.
+  leftSpace?: number;
   // Toggle whether the tooltip is visible.
   active?: boolean;
   // Display tooltip with a light background.
@@ -61,10 +63,12 @@ class Tooltip extends React.PureComponent<Props, State> {
       light = false,
       content,
       theme,
+      leftSpace,
     } = this.props;
 
     return (
       <TooltipOverlay
+        leftSpace={leftSpace}
         componentId={id}
         preferredPosition={preferredPosition}
         activator={activatorNode}
