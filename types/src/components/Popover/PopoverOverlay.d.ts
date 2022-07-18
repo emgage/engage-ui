@@ -9,6 +9,7 @@ export interface Props {
     activator: HTMLElement;
     popoverRef(node: HTMLElement | null): any;
     onClose(): void;
+    tipPosition?: number;
     preferredAlignment?: PreferredAlignment;
 }
 export default class PopoverOverlay extends React.PureComponent<Props, never> {
