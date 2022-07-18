@@ -23,6 +23,7 @@ export interface Props {
   popoverRef(node: HTMLElement | null): any;
   // callback when popover is closed.
   onClose(): void;
+  tipPosition?: number;
   preferredAlignment?: PreferredAlignment;
 
 }
@@ -66,7 +67,7 @@ export default class PopoverOverlay extends React.PureComponent<Props, never> {
       activatorRect,
       anchorPosition
     } = overlayDetails;
-    const { addArrow, componentId, children, preferredPosition, preferredAlignment } = this.props;
+    const { addArrow, componentId, children, preferredPosition, preferredAlignment,tipPosition } = this.props;
 
     const tipStyle = calculateTipPosition(anchorPosition + 8, left, preferredPosition === 'below' ? window.outerHeight - activatorRect.top < 250 ? 'above' : preferredPosition : preferredPosition, preferredAlignment);
 
@@ -78,9 +79,13 @@ export default class PopoverOverlay extends React.PureComponent<Props, never> {
       measuring && styles.measuring,
       positioning === 'above' && styles.positionedAbove
     );
-
+      const tipStyleCustom = {
+        ...tipStyle,
+        marginLeft: tipPosition? tipPosition : tipStyle?.marginLeft,
+        marginTop: tipStyle?. marginTop
+      }
     const tipMarkup = !measuring
-      ? <div style={tipStyle} className={styles.tip} />
+      ? <div style={tipStyleCustom} className={styles.tip} />
       : null;
 
     return (
