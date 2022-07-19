@@ -27,8 +27,25 @@ export interface Props {
   preferredAlignment?: PreferredAlignment;
 
 }
+export interface State {
+  stateRef: any;
+}
+export default class PopoverOverlay extends React.PureComponent<Props, State> {
+  overlayRef: React.RefObject<any>;
+  constructor(props: Props) {
+    super(props);
+    this.overlayRef = React.createRef();
 
-export default class PopoverOverlay extends React.PureComponent<Props, never> {
+    this.state = {
+      stateRef: {}
+    };
+  }
+  componentDidMount () {
+    this.setState({
+      stateRef: this.overlayRef.current.offsetWidth
+    })
+  }
+
   render() {
     const markup = this.props.active
       ? this.renderOverlay()
@@ -69,7 +86,7 @@ export default class PopoverOverlay extends React.PureComponent<Props, never> {
     } = overlayDetails;
     const { addArrow, componentId, children, preferredPosition, preferredAlignment,tipPosition } = this.props;
 
-    const tipStyle = calculateTipPosition(anchorPosition + 8, left, preferredPosition === 'below' ? window.outerHeight - activatorRect.top < 250 ? 'above' : preferredPosition : preferredPosition, preferredAlignment);
+    const tipStyle = calculateTipPosition(anchorPosition + 8, left, preferredPosition === 'below' ? window.outerHeight - activatorRect.top < 250 ? 'above' : preferredPosition : preferredPosition, preferredAlignment, this.state.stateRef );
 
     const containerClassName = classNames(
       (preferredPosition === 'below' || preferredPosition === 'mostSpace') && styles.belowPopover,
@@ -93,9 +110,12 @@ export default class PopoverOverlay extends React.PureComponent<Props, never> {
           {addArrow ? tipMarkup : null}
           <div className={styles.wrapper}>
           <div
+            ref={this.overlayRef as any}
             id={componentId}
             role="popover"
             className={styles.content}
+            style={{width: preferredAlignment === 'center' ? activatorRect.width : "auto"}}
+
           >
             {children}
           </div>
