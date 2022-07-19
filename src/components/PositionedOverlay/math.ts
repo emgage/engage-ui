@@ -98,10 +98,7 @@ export function calculateHorizontalPosition(
     return -(overlayRect.width - activatorRect.width - 16);
   }
   if (preferredAlignment === 'center' && (preferredPosition === 'below' || preferredPosition === 'above')) {
-    return Math.min(
-      maximum,
-      Math.max(0, activatorRect.center.x - overlayRect.width / 2)
-    );
+    return 0;
   }
   // Define when overlay needs to be displayed center aligned with dropdown node
   if (preferredPosition === 'left' || preferredPosition === 'right') {
