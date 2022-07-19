@@ -6,7 +6,7 @@ export declare const firstChild: () => (props: {
 export declare const getDisplayName: () => (COMPONENT: ReactComponent<any>) => string;
 export declare function wrapWithComponent<P>(element: React.ReactNode | null | undefined, COMPONENT: ReactComponent<P>, props?: any): React.ReactNode;
 export declare function isElementOfType(element: React.ReactNode | null | undefined, component: ReactComponent<{}> | ReactComponent<{}>[]): boolean;
-export declare function calculateTipPosition(activatorRectXAxisCenter: number, left: number, preferredPosition?: any, preferredAlignment?: any): {
+export declare function calculateTipPosition(activatorRectXAxisCenter: number, left: number, preferredPosition?: any, preferredAlignment?: any, overlayRect?: any): {
     marginLeft: number;
     marginTop: string;
     left?: undefined;

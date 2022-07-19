@@ -12,7 +12,13 @@ export interface Props {
     tipPosition?: number;
     preferredAlignment?: PreferredAlignment;
 }
-export default class PopoverOverlay extends React.PureComponent<Props, never> {
+export interface State {
+    stateRef: any;
+}
+export default class PopoverOverlay extends React.PureComponent<Props, State> {
+    overlayRef: React.RefObject<any>;
+    constructor(props: Props);
+    componentDidMount(): void;
     render(): JSX.Element | null;
     private renderOverlay;
     private renderPopover;
