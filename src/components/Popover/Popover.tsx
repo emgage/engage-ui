@@ -170,6 +170,7 @@ class Popover extends React.PureComponent<Props, State> {
 
     return (
       <PopoverOverlay
+      isPopover={true}
       tipPosition={tipPosition}
         addArrow={addArrow}
         componentId={ componentId !== '' ? componentId : id}

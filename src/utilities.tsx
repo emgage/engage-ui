@@ -63,12 +63,15 @@ export function isElementOfType(
 }
 
 // Function to calculate position of tooltip or popover
-export function calculateTipPosition(activatorRectXAxisCenter: number, left: number, preferredPosition?: any, preferredAlignment?: any, overlayRect?:any) {
+export function calculateTipPosition(activatorRectXAxisCenter: number, left: number, preferredPosition?: any, preferredAlignment?: any, overlayRect?:any, isPopover?:any) {
   if (preferredAlignment === 'right' && preferredPosition === 'below') {
     return { marginLeft: activatorRectXAxisCenter, marginTop: '-4px' };
   }
-  if (preferredAlignment === 'center' && (preferredPosition === 'below' || preferredPosition === 'above')) {
+  if (preferredAlignment === 'center' && isPopover && (preferredPosition === 'below' || preferredPosition === 'above')) {
     return { marginLeft: overlayRect / 2, marginTop: '-4px' };
+  }
+  if (preferredAlignment === 'center' &&   (preferredPosition === 'below' || preferredPosition === 'above')) {
+    return { marginLeft: activatorRectXAxisCenter - left - 16, marginTop: '-4px' };
   }
   if (preferredAlignment === 'left' && preferredPosition === 'below') {
     return { marginLeft: 16, marginTop: '-4px' };

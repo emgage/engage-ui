@@ -35,6 +35,7 @@ export interface Props {
   // Is overlay active or not
   active: boolean;
   activator: HTMLElement;
+  isPopover?:any;
   componentStyle?: any;
   leftSpace?: number;
   // Define overlay position 
@@ -255,7 +256,8 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
           overlayMargins,
           preferredAlignment,
           preferredPosition === 'below' ? window.outerHeight - activatorRect.top < 300 ? 'above' : preferredPosition : preferredPosition,
-          preloadedPopover ? preloadedPopover : false
+          preloadedPopover ? preloadedPopover : false,
+          this.props.isPopover
         );
         const leftValue = (horizontalPosition) - this.state.leftSpace;
 
