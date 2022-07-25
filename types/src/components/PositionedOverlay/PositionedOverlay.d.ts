@@ -16,6 +16,7 @@ export interface OverlayDetails {
 export interface Props {
     active: boolean;
     activator: HTMLElement;
+    isPopover?: any;
     componentStyle?: any;
     leftSpace?: number;
     preferredPosition?: PreferredPosition;

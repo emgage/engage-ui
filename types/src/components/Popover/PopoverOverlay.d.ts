@@ -8,6 +8,7 @@ export interface Props {
     children?: React.ReactNode;
     activator: HTMLElement;
     popoverRef(node: HTMLElement | null): any;
+    isPopover?: any;
     onClose(): void;
     tipPosition?: number;
     preferredAlignment?: PreferredAlignment;
