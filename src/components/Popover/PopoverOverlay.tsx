@@ -21,6 +21,7 @@ export interface Props {
   // Activator is used to trigger popover component.
   activator: HTMLElement;
   popoverRef(node: HTMLElement | null): any;
+  isPopover?: any;
   // callback when popover is closed.
   onClose(): void;
   tipPosition?: number;
@@ -65,6 +66,7 @@ export default class PopoverOverlay extends React.PureComponent<Props, State> {
 
     return (
       <PositionedOverlay
+      isPopover={this.props.isPopover}
         active={active}
         activator={activator}
         preferredPosition={preferredPosition}
@@ -86,7 +88,7 @@ export default class PopoverOverlay extends React.PureComponent<Props, State> {
     } = overlayDetails;
     const { addArrow, componentId, children, preferredPosition, preferredAlignment,tipPosition } = this.props;
 
-    const tipStyle = calculateTipPosition(anchorPosition + 8, left, preferredPosition === 'below' ? window.outerHeight - activatorRect.top < 250 ? 'above' : preferredPosition : preferredPosition, preferredAlignment, this.state.stateRef );
+    const tipStyle = calculateTipPosition(anchorPosition + 8, left, preferredPosition === 'below' ? window.outerHeight - activatorRect.top < 250 ? 'above' : preferredPosition : preferredPosition, preferredAlignment, this.state.stateRef, this.props.isPopover );
 
     const containerClassName = classNames(
       (preferredPosition === 'below' || preferredPosition === 'mostSpace') && styles.belowPopover,
