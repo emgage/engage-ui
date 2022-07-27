@@ -28,24 +28,24 @@ export interface Props {
   preferredAlignment?: PreferredAlignment;
 
 }
-export interface State {
-  stateRef: any;
-}
-export default class PopoverOverlay extends React.PureComponent<Props, State> {
-  overlayRef: React.RefObject<any>;
-  constructor(props: Props) {
-    super(props);
-    this.overlayRef = React.createRef();
+// export interface State {
+//   stateRef?: any;
+// }
+export default class PopoverOverlay extends React.PureComponent<Props, never> {
+  // overlayRef: React.RefObject<any>;
+  // constructor(props: Props) {
+  //   super(props);
+  //   this.overlayRef = React.createRef();
 
-    this.state = {
-      stateRef: {}
-    };
-  }
-  componentDidMount () {
-    this.setState({
-      stateRef: this.overlayRef.current.offsetWidth
-    })
-  }
+  //   this.state = {
+  //     stateRef: {}
+  //   };
+  // }
+  // componentDidMount () {
+  //   this.setState({
+  //     stateRef: this.overlayRef.current.offsetWidth
+  //   })
+  // }
 
   render() {
     const markup = this.props.active
@@ -88,7 +88,7 @@ export default class PopoverOverlay extends React.PureComponent<Props, State> {
     } = overlayDetails;
     const { addArrow, componentId, children, preferredPosition, preferredAlignment,tipPosition } = this.props;
 
-    const tipStyle = calculateTipPosition(anchorPosition + 8, left, preferredPosition === 'below' ? window.outerHeight - activatorRect.top < 250 ? 'above' : preferredPosition : preferredPosition, preferredAlignment, this.state.stateRef, this.props.isPopover );
+    const tipStyle = calculateTipPosition(anchorPosition + 8, left, preferredPosition === 'below' ? window.outerHeight - activatorRect.top < 250 ? 'above' : preferredPosition : preferredPosition, preferredAlignment,this.props.isPopover );
 
     const containerClassName = classNames(
       (preferredPosition === 'below' || preferredPosition === 'mostSpace') && styles.belowPopover,
@@ -112,7 +112,7 @@ export default class PopoverOverlay extends React.PureComponent<Props, State> {
           {addArrow ? tipMarkup : null}
           <div className={styles.wrapper}>
           <div
-            ref={this.overlayRef as any}
+            // ref={this.overlayRef as any}
             id={componentId}
             role="popover"
             className={styles.content}

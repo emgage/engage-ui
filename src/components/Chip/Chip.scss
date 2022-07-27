@@ -158,6 +158,8 @@ body .Remove {
   span {
       display: inline-block;
       vertical-align: middle;
+      font-size: 14px;
+      font-family: Open Sans, sans-serif;
       &:empty {
           display: none;
       }
