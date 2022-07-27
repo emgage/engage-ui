@@ -1926,18 +1926,18 @@ class App extends React.Component<{}, State> {
           />{' '}
           Badge
         </Badge>
-        <div style={{marginTop:'200px',marginBottom:'200px'}}>
-          <Button onClick={(e: any) => this.newPopoverUpdate(e)}>Popover rerqwe  fewrqweqw ewrqweqwe gfsdfsad rewerqw ewrwer</Button>
-          <Popover          
+         {/* <div>
+          <Button onClick={(e: any) => this.newPopoverUpdate(e)}>Popover</Button>
+          <Popover        
           preferredPosition='below'
           preferredAlignment='center'
 
             anchorEl={this.state.popoverAnchorEl}
             // active={this.state.popoverActiveState}
           >
-            This is popover componentgfsds fgdsfsd dsfsadas fdsfas fgdgsad reewrwerwev ertrwerwe
+            This is popover component
           </Popover>
-        </div>
+        </div> */}
         <div>
           Pagination:
           <Pagination {...PaginationDefaultProps} pageSizeList={[5, 10, 20, 50, 100]} showSizeChanger={true} onChange={(page: number) => this.setState({ paginationCurrent: page })} current={this.state.paginationCurrent} total={104}
