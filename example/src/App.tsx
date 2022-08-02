@@ -1926,11 +1926,14 @@ class App extends React.Component<{}, State> {
           />{' '}
           Badge
         </Badge>
-        {/* <div>
+         {/* <div>
           <Button onClick={(e: any) => this.newPopoverUpdate(e)}>Popover</Button>
-          <Popover
+          <Popover        
+          preferredPosition='below'
+          preferredAlignment='center'
+
             anchorEl={this.state.popoverAnchorEl}
-            active={this.state.popoverActiveState}
+            // active={this.state.popoverActiveState}
           >
             This is popover component
           </Popover>

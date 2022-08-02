@@ -8,6 +8,7 @@ export interface Props {
     preferredPosition?: PreferredPosition;
     children?: React.ReactNode;
     activator: HTMLElement;
+    hideTip?: boolean;
     onClose(): void;
 }
 export default class TooltipOverlay extends React.PureComponent<Props, never> {

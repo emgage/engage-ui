@@ -10,6 +10,7 @@ export interface Props {
     preferredPosition?: PreferredPosition;
     activatorWrapper?: string;
     theme?: any;
+    hideTip?: boolean;
 }
 export interface State {
     active: boolean;

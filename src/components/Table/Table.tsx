@@ -352,7 +352,7 @@ class Table extends React.PureComponent<Props, State> {
               }
             })
           }
-          { !data.length ? <TableRow theme={theme} componentClass="tableRowNoData" componentStyle={{ border: 'none' }}>
+          { !data.length ? <TableRow theme={theme} componentClass="tableRowNoData" componentStyle={{ border: 'none',backgroundColor:'transparent',cursor:'default' }}>
               <TableData theme={theme} colSpan={column.length + (selectRow ? 1 : 0) + (rowAction ? 1 : 0)}>
                 <div style={{ padding: 40 }}>
                   {this.renderNoDataBody()}

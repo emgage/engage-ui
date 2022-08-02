@@ -79,6 +79,12 @@ $content-max-width: 60rem;
   border-radius: border-radius();
   color: color(white);
   // max-height: $content-max-height;
+  align-items: center;
+  line-height: 0px;
+  padding-top: 10px;
+  padding-bottom: 5px;
+  padding-left: 3px;
+  padding-right: 3px;
 }
 
 .content {

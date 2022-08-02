@@ -22,6 +22,7 @@ export interface Props {
   children?: React.ReactNode;
   // Activator is used to trigger tooltip component.
   activator: HTMLElement;
+  hideTip?:boolean
   // callback when tooltip is closed.
   onClose(): void;
 }
@@ -67,7 +68,7 @@ export default class TooltipOverlay extends React.PureComponent<Props, never> {
     } = overlayDetails;
     const { componentId, children, light = false, preferredPosition } = this.props;
 
-    const tipStyle = calculateTipPosition(activatorRect.center.x, left, preferredPosition, 'center');
+    const tipStyle = calculateTipPosition(activatorRect.center.x, left, preferredPosition, 'center', false);
 
     const containerClassName = classNames(
       preferredPosition === 'below' && styles.belowTooltip,
@@ -83,7 +84,7 @@ export default class TooltipOverlay extends React.PureComponent<Props, never> {
       ? undefined
       : { maxHeight: isNaN(desiredHeight) ? 0 : 'auto' };
     const tipMarkup = !measuring
-      ? <div style={tipStyle} className={styles.tip} />
+      ? <div style={{...tipStyle, display: this.props.hideTip ? "none": "inline"}} className={styles.tip} />
       : null;
 
     return (

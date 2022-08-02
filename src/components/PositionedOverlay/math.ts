@@ -86,7 +86,8 @@ export function calculateHorizontalPosition(
   overlayMargins: Margins,
   preferredAlignment: PreferredAlignment,
   preferredPosition: PreferredPosition,
-  preloadedPopover: boolean
+  preloadedPopover: boolean,
+  isPopover?: any
 ) {
   const maximum = containerRect.width - overlayRect.width;
   // Define when overlay needs to be displayed left aligned with dropdown's left side
@@ -96,6 +97,9 @@ export function calculateHorizontalPosition(
   // Define when overlay needs to be displayed left aligned with dropdown's left side
   } if (preferredAlignment === 'right') {
     return -(overlayRect.width - activatorRect.width - 16);
+  }
+  if (preferredAlignment === 'center' && isPopover && (preferredPosition === 'below' || preferredPosition === 'above')) {
+    return 0;
   }
   if (preferredAlignment === 'center' && (preferredPosition === 'below' || preferredPosition === 'above')) {
     return Math.min(
