@@ -139,6 +139,13 @@ import {
   hide,
   mobile,
   desktop,
+  beAction,
+  bottomPanelOff,
+  bottomPanelOn,
+  code,
+  feAction,
+  sidePanelOff,
+  sidePanelOn,
 
 } from '../../icons';
 
@@ -293,6 +300,13 @@ export const BUNDLED_ICONS = {
   hide,
   mobile,
   desktop,
+  beAction,
+  bottomPanelOff,
+  bottomPanelOn,
+  code,
+  feAction,
+  sidePanelOff,
+  sidePanelOn,
   delete: deleteIcon,
   export: exportIcon,
   import: importIcon,
