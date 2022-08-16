@@ -135,6 +135,13 @@ export declare const BUNDLED_ICONS: {
     hide: any;
     mobile: any;
     desktop: any;
+    beAction: any;
+    bottomPanelOff: any;
+    bottomPanelOn: any;
+    code: any;
+    feAction: any;
+    sidePanelOff: any;
+    sidePanelOn: any;
     delete: any;
     export: any;
     import: any;
