@@ -2,6 +2,7 @@ import * as React from 'react';
 import { ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 export interface State {
     activeDelete?: boolean;
+    deleteIconOnHover?: boolean;
 }
 export interface Props {
     active?: boolean;
