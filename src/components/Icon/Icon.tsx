@@ -146,6 +146,7 @@ import {
   feAction,
   sidePanelOff,
   sidePanelOn,
+  history,
 
 } from '../../icons';
 
@@ -307,6 +308,7 @@ export const BUNDLED_ICONS = {
   feAction,
   sidePanelOff,
   sidePanelOn,
+  history,
   delete: deleteIcon,
   export: exportIcon,
   import: importIcon,
