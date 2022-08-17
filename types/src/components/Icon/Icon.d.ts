@@ -142,6 +142,7 @@ export declare const BUNDLED_ICONS: {
     feAction: any;
     sidePanelOff: any;
     sidePanelOn: any;
+    history: any;
     delete: any;
     export: any;
     import: any;
