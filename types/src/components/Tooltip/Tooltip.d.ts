@@ -11,6 +11,7 @@ export interface Props {
     activatorWrapper?: string;
     theme?: any;
     hideTip?: boolean;
+    bgColor?: any;
 }
 export interface State {
     active: boolean;
