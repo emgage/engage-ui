@@ -24,6 +24,7 @@ export interface Props {
   activator: HTMLElement;
   hideTip?:boolean
   // callback when tooltip is closed.
+  bgColor?: any;
   onClose(): void;
 }
 
@@ -84,13 +85,13 @@ export default class TooltipOverlay extends React.PureComponent<Props, never> {
       ? undefined
       : { maxHeight: isNaN(desiredHeight) ? 0 : 'auto' };
     const tipMarkup = !measuring
-      ? <div style={{...tipStyle, display: this.props.hideTip ? "none": "inline"}} className={styles.tip} />
+      ? <div style={{...tipStyle, display: this.props.hideTip ? "none": "inline", backgroundColor:this.props.bgColor}} className={styles.tip} />
       : null;
 
     return (
       <div className={containerClassName} {...layer.props}>
           {tipMarkup}
-          <div className={styles.wrapper}>
+          <div style={{ backgroundColor:this.props.bgColor}} className={styles.wrapper}>
           <div
             id={componentId}
             role="tooltip"
