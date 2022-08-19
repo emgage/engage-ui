@@ -144,3 +144,5 @@ export { default as feAction } from './fe-action.svg';
 export { default as sidePanelOff } from './side-panel-off.svg';
 export { default as sidePanelOn } from './side-panel-on.svg';
 export { default as history } from './history.svg';
+export { default as cloudAction } from './cloud-action.svg';
+export { default as deviceAction } from './device-action.svg';
