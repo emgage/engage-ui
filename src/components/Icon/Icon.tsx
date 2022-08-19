@@ -147,6 +147,8 @@ import {
   sidePanelOff,
   sidePanelOn,
   history,
+  cloudAction,
+  deviceAction,
 
 } from '../../icons';
 
@@ -309,6 +311,8 @@ export const BUNDLED_ICONS = {
   sidePanelOff,
   sidePanelOn,
   history,
+  cloudAction,
+  deviceAction,
   delete: deleteIcon,
   export: exportIcon,
   import: importIcon,
