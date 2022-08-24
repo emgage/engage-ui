@@ -135,6 +135,16 @@ export declare const BUNDLED_ICONS: {
     hide: any;
     mobile: any;
     desktop: any;
+    beAction: any;
+    bottomPanelOff: any;
+    bottomPanelOn: any;
+    code: any;
+    feAction: any;
+    sidePanelOff: any;
+    sidePanelOn: any;
+    history: any;
+    cloudAction: any;
+    deviceAction: any;
     delete: any;
     export: any;
     import: any;

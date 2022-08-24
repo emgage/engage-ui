@@ -11,6 +11,7 @@ import { calculateTipPosition } from '../../utilities';
 export interface Props {
   // Id for tooltip.
   componentId: string;
+  leftSpace?: number;
   // Toggle whether the tooltip is visible.
   active: boolean;
   // Display tooltip with a light background.
@@ -21,7 +22,9 @@ export interface Props {
   children?: React.ReactNode;
   // Activator is used to trigger tooltip component.
   activator: HTMLElement;
+  hideTip?:boolean
   // callback when tooltip is closed.
+  bgColor?: any;
   onClose(): void;
 }
 
@@ -44,6 +47,7 @@ export default class TooltipOverlay extends React.PureComponent<Props, never> {
 
     return (
       <PositionedOverlay
+        leftSpace={this.props.leftSpace}
         active={active}
         activator={activator}
         preferredPosition={preferredPosition}
@@ -65,7 +69,7 @@ export default class TooltipOverlay extends React.PureComponent<Props, never> {
     } = overlayDetails;
     const { componentId, children, light = false, preferredPosition } = this.props;
 
-    const tipStyle = calculateTipPosition(activatorRect.center.x, left, preferredPosition, 'center');
+    const tipStyle = calculateTipPosition(activatorRect.center.x, left, preferredPosition, 'center', false);
 
     const containerClassName = classNames(
       preferredPosition === 'below' && styles.belowTooltip,
@@ -81,13 +85,13 @@ export default class TooltipOverlay extends React.PureComponent<Props, never> {
       ? undefined
       : { maxHeight: isNaN(desiredHeight) ? 0 : 'auto' };
     const tipMarkup = !measuring
-      ? <div style={tipStyle} className={styles.tip} />
+      ? <div style={{...tipStyle, display: this.props.hideTip ? "none": "inline", backgroundColor:this.props.bgColor}} className={styles.tip} />
       : null;
 
     return (
       <div className={containerClassName} {...layer.props}>
           {tipMarkup}
-          <div className={styles.wrapper}>
+          <div style={{ backgroundColor:this.props.bgColor}} className={styles.wrapper}>
           <div
             id={componentId}
             role="tooltip"

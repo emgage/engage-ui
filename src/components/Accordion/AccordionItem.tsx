@@ -9,6 +9,7 @@ import Icon from '../Icon';
 
 export interface State {
   activeDelete?: boolean;
+  deleteIconOnHover?: boolean
 }
 export interface Props {
   // Define accordion item is active or not
@@ -32,13 +33,16 @@ export interface Props {
   activeDelete?: boolean;
   onDeleteClick?: any;
   rotate?: any;
+  key?:any;
 }
 
 class AccordionItem extends React.PureComponent<Props, State> {
+  deleteIconOnHover?: boolean;
   constructor(props: Props) {
     super(props);
     this.state = {
       activeDelete: false,
+      deleteIconOnHover: false
     };
   }
 
@@ -68,6 +72,7 @@ class AccordionItem extends React.PureComponent<Props, State> {
       onDeleteClick,
         children,
         rotate,
+        key,
     } = this.props;
 
     const containerClass = classNames(
@@ -110,7 +115,7 @@ class AccordionItem extends React.PureComponent<Props, State> {
               <Icon source={icon ? icon : 'chevronDown' as any} componentColor="black"  componentStyle={rotate && active ? { transform: `rotate(${rotate}deg)` } : {}} componentClass={theme.AccordianIcon}/>
               {header}
                </span>
-            {isDelete && activeDelete && <Icon source="delete" onClick={onDeleteClick}/>}
+            {isDelete && activeDelete &&<div onMouseEnter={() => this.setState({ deleteIconOnHover: true })} onMouseLeave={() => this.setState({ deleteIconOnHover: false })}  > <Icon componentStyle={{fill:this.state.deleteIconOnHover ? '#D50000' : '',cursor:'pointer'}} source="delete" onClick={() => onDeleteClick(key)}/></div>}
           </div>
         }
         <div className={active ? theme.body : theme.bodyCollapsed} onClick={this.handleClickChildren}>

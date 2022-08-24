@@ -27,6 +27,7 @@ export interface Props {
   // Unique ID
   componentId?: string;
   onClose?(): void;
+  tipPosition?: number;
   handleScroll?(): void;
   // The direction the popover tries to display Availabel options: above | below | mostSpace
   preferredPosition?: PreferredPosition;
@@ -158,6 +159,7 @@ class Popover extends React.PureComponent<Props, State> {
       preferredPosition = 'below',
       preferredAlignment = 'center',
       open = false,
+      tipPosition,
     } = this.props;
 
     const themeClass = classNames(
@@ -168,6 +170,8 @@ class Popover extends React.PureComponent<Props, State> {
 
     return (
       <PopoverOverlay
+      isPopover={true}
+      tipPosition={tipPosition}
         addArrow={addArrow}
         componentId={ componentId !== '' ? componentId : id}
         preferredPosition={preferredPosition}
