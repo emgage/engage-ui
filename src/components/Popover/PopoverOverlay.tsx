@@ -21,13 +21,32 @@ export interface Props {
   // Activator is used to trigger popover component.
   activator: HTMLElement;
   popoverRef(node: HTMLElement | null): any;
+  isPopover?: any;
   // callback when popover is closed.
   onClose(): void;
+  tipPosition?: number;
   preferredAlignment?: PreferredAlignment;
 
 }
-
+// export interface State {
+//   stateRef?: any;
+// }
 export default class PopoverOverlay extends React.PureComponent<Props, never> {
+  // overlayRef: React.RefObject<any>;
+  // constructor(props: Props) {
+  //   super(props);
+  //   this.overlayRef = React.createRef();
+
+  //   this.state = {
+  //     stateRef: {}
+  //   };
+  // }
+  // componentDidMount () {
+  //   this.setState({
+  //     stateRef: this.overlayRef.current.offsetWidth
+  //   })
+  // }
+
   render() {
     const markup = this.props.active
       ? this.renderOverlay()
@@ -47,6 +66,7 @@ export default class PopoverOverlay extends React.PureComponent<Props, never> {
 
     return (
       <PositionedOverlay
+      isPopover={this.props.isPopover}
         active={active}
         activator={activator}
         preferredPosition={preferredPosition}
@@ -66,9 +86,9 @@ export default class PopoverOverlay extends React.PureComponent<Props, never> {
       activatorRect,
       anchorPosition
     } = overlayDetails;
-    const { addArrow, componentId, children, preferredPosition, preferredAlignment } = this.props;
+    const { addArrow, componentId, children, preferredPosition, preferredAlignment,tipPosition } = this.props;
 
-    const tipStyle = calculateTipPosition(anchorPosition + 8, left, preferredPosition === 'below' ? window.outerHeight - activatorRect.top < 250 ? 'above' : preferredPosition : preferredPosition, preferredAlignment);
+    const tipStyle = calculateTipPosition(anchorPosition + 8, left, preferredPosition === 'below' ? window.outerHeight - activatorRect.top < 250 ? 'above' : preferredPosition : preferredPosition, preferredAlignment,this.props.isPopover );
 
     const containerClassName = classNames(
       (preferredPosition === 'below' || preferredPosition === 'mostSpace') && styles.belowPopover,
@@ -78,9 +98,13 @@ export default class PopoverOverlay extends React.PureComponent<Props, never> {
       measuring && styles.measuring,
       positioning === 'above' && styles.positionedAbove
     );
-
+      const tipStyleCustom = {
+        ...tipStyle,
+        marginLeft: tipPosition? tipPosition : tipStyle?.marginLeft,
+        marginTop: tipStyle?. marginTop
+      }
     const tipMarkup = !measuring
-      ? <div style={tipStyle} className={styles.tip} />
+      ? <div style={tipStyleCustom} className={styles.tip} />
       : null;
 
     return (
@@ -88,9 +112,12 @@ export default class PopoverOverlay extends React.PureComponent<Props, never> {
           {addArrow ? tipMarkup : null}
           <div className={styles.wrapper}>
           <div
+            // ref={this.overlayRef as any}
             id={componentId}
             role="popover"
             className={styles.content}
+            style={{width: preferredAlignment === 'center' ? activatorRect.width : "auto"}}
+
           >
             {children}
           </div>

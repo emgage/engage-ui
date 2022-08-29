@@ -16,7 +16,9 @@ export interface OverlayDetails {
 export interface Props {
     active: boolean;
     activator: HTMLElement;
+    isPopover?: any;
     componentStyle?: any;
+    leftSpace?: number;
     preferredPosition?: PreferredPosition;
     preferredAlignment?: PreferredAlignment;
     fullWidth?: boolean;
@@ -39,6 +41,7 @@ export interface State {
     zIndex: number | null;
     outsideScrollableContainer: boolean;
     lockPosition: boolean;
+    leftSpace: number;
 }
 export declare function intersectionWithViewport(rect: Rect, viewport?: Rect): Rect;
 declare const _default: ThemedComponentClass<Props, State>;

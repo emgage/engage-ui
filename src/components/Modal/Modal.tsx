@@ -140,7 +140,7 @@ class Modal extends React.PureComponent<Props, never> {
     return closeButton ? (
       <div className={theme.close}>
         { printable && <Button onClick={this.print} componentId="printModal" icon="print" plain componentSize="slim" theme={theme} componentStyle={{ marginRight: '.5rem' }} title="Print"></Button>}
-        <Button plain onClick={this.closeModal} icon="cancel" theme={theme} title="Close Modal"></Button>
+        <Button plain onClick={this.closeModal} icon="cancelSmall" theme={theme} title="Close Modal"></Button>
       </div>) : null;
   }
 

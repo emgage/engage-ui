@@ -39,6 +39,7 @@ export interface Props {
   onDeleteClick?: any;
   allOpen?: boolean;
   allClose?: boolean;
+  key?:any;
 }
 
 interface State {
@@ -178,7 +179,7 @@ class Accordion extends React.PureComponent<Props, State> {
           position={position}
           isDelete= {isDelete}
           icon={icon}
-          onDeleteClick={onDeleteClick}
+          onDeleteClick={() => onDeleteClick(item)}
           rotate={rotate}
         >
           {item.children}

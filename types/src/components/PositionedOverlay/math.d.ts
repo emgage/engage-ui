@@ -11,5 +11,5 @@ export declare function calculateVerticalPosition(activatorRect: Rect, overlayRe
     top: number;
     positioning: string;
 };
-export declare function calculateHorizontalPosition(activatorRect: Rect, overlayRect: Rect, containerRect: Rect, overlayMargins: Margins, preferredAlignment: PreferredAlignment, preferredPosition: PreferredPosition, preloadedPopover: boolean): number;
+export declare function calculateHorizontalPosition(activatorRect: Rect, overlayRect: Rect, containerRect: Rect, overlayMargins: Margins, preferredAlignment: PreferredAlignment, preferredPosition: PreferredPosition, preloadedPopover: boolean, isPopover?: any): number;
 export declare function rectIsOutsideOfRect(inner: Rect, outer: Rect): boolean;

@@ -24,6 +24,7 @@ export interface Props {
     onDeleteClick?: any;
     allOpen?: boolean;
     allClose?: boolean;
+    key?: any;
 }
 interface State {
     active: boolean[];
