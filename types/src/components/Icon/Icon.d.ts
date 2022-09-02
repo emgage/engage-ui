@@ -149,6 +149,14 @@ export declare const BUNDLED_ICONS: {
     export: any;
     import: any;
     minusIcon: any;
+    addFile: any;
+    appointmentAlt: any;
+    insertFileAlt: any;
+    insertFile: any;
+    meetingAlt: any;
+    replaceFile: any;
+    survey: any;
+    userOutline: any;
 };
 export interface Props {
     source: SVGSource | 'placeholder' | keyof typeof BUNDLED_ICONS;
