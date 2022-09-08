@@ -157,6 +157,7 @@ import {
   replaceFile,
   survey,
   userOutline,
+  tablet,
 } from '../../icons';
 
 // export { default as addFile } from './add-file.svg';
@@ -329,10 +330,6 @@ export const BUNDLED_ICONS = {
   history,
   cloudAction,
   deviceAction,
-  delete: deleteIcon,
-  export: exportIcon,
-  import: importIcon,
-  minusIcon: minusMinor,
   addFile,
   appointmentAlt,
   insertFileAlt,
@@ -341,6 +338,11 @@ export const BUNDLED_ICONS = {
   replaceFile,
   survey,
   userOutline,
+  tablet,
+  delete: deleteIcon,
+  export: exportIcon,
+  import: importIcon,
+  minusIcon: minusMinor,
 };
 
 const COLORS_WITH_BACKDROPS = ['teal', 'tealDark', 'greenDark', 'redDark', 'yellowDark', 'ink'];
