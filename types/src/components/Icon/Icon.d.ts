@@ -145,10 +145,6 @@ export declare const BUNDLED_ICONS: {
     history: any;
     cloudAction: any;
     deviceAction: any;
-    delete: any;
-    export: any;
-    import: any;
-    minusIcon: any;
     addFile: any;
     appointmentAlt: any;
     insertFileAlt: any;
@@ -157,6 +153,11 @@ export declare const BUNDLED_ICONS: {
     replaceFile: any;
     survey: any;
     userOutline: any;
+    tablet: any;
+    delete: any;
+    export: any;
+    import: any;
+    minusIcon: any;
 };
 export interface Props {
     source: SVGSource | 'placeholder' | keyof typeof BUNDLED_ICONS;
