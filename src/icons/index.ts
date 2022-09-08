@@ -154,3 +154,4 @@ export { default as meetingAlt } from './meeting-alt.svg';
 export { default as replaceFile } from './replace-file.svg';
 export { default as survey } from './survey.svg';
 export { default as userOutline } from './user-outline.svg';
+export { default as tablet } from './tablet.svg';
