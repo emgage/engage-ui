@@ -111,7 +111,7 @@ class AccordionItem extends React.PureComponent<Props, State> {
           :
 
           <div className={headerClass} style={style}  onMouseEnter={() => this.setState({ activeDelete: true })} onMouseLeave={() => this.setState({ activeDelete: false })}>
-             <div onClick={this.clickHandler} style={{ display: 'flex', justifyContent: 'left', width:'100%', cursor: 'pointer' }}>
+             <div onClick={this.clickHandler} style={{ display: 'flex', justifyContent: 'left', alignItems: 'center', width: '100%', cursor: 'pointer' }}>
               <Icon source={icon ? icon : 'chevronDown' as any} componentColor="black"  componentStyle={rotate && active ? { transform: `rotate(${rotate}deg)` } : {}} componentClass={theme.AccordianIcon}/>
               {header}
                </div>
