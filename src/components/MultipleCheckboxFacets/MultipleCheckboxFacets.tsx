@@ -61,7 +61,7 @@ function multiCheckboxFacet({
   labelId
 }: IProps) {
   return (
-    <Card>
+    <Card componentStyle={{ boxShadow: 'none' }}>
       {label ?
         <Heading componentClass="facets-title" element="h4" componentStyle={{ paddingLeft: '1.25rem', paddingTop: '1.25rem' }}>{label}</Heading>
         : <></>
