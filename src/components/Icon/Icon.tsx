@@ -149,8 +149,25 @@ import {
   history,
   cloudAction,
   deviceAction,
-
+  addFile,
+  appointmentAlt,
+  insertFileAlt,
+  insertFile,
+  meetingAlt,
+  replaceFile,
+  survey,
+  userOutline,
+  tablet,
 } from '../../icons';
+
+// export { default as addFile } from './add-file.svg';
+// export { default as appointmentAlt } from './appointment-alt.svg';
+// export { default as insertFileAlt } from './insert-file-alt.svg';
+// export { default as insertFile } from './insert-alt.svg';
+// export { default as meetingAlt } from './meeting-alt.svg';
+// export { default as replaceFile } from './replace-file.svg';
+// export { default as survey } from './survey.svg';
+// export { default as userOutline } from './user-outline.svg';
 
 import { ICON } from '../ThemeIdentifiers';
 import * as baseTheme from './Icon.scss';
@@ -313,6 +330,15 @@ export const BUNDLED_ICONS = {
   history,
   cloudAction,
   deviceAction,
+  addFile,
+  appointmentAlt,
+  insertFileAlt,
+  insertFile,
+  meetingAlt,
+  replaceFile,
+  survey,
+  userOutline,
+  tablet,
   delete: deleteIcon,
   export: exportIcon,
   import: importIcon,
