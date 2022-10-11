@@ -455,3 +455,8 @@ export {
   default as MyDropzone,
   Props as MyDropzoneProps,
 } from './MyDropzone';
+
+export {
+  default as CronWrapper,
+  Props as CronWrapperProps,
+} from './CronWrapper';

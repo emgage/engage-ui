@@ -100,10 +100,12 @@ import {
   NoData,
   EntityState,
   MyDropzone,
+  CronWrapper,
 } from '../../src/components';
 import { IconList } from '../../src/components/Icon';
 
 interface State {
+  val?: string;
   appName?: string;
   appUri?: string;
   appDescription: string;
@@ -375,6 +377,7 @@ class App extends React.Component<{}, State> {
   constructor(props: any) {
     super(props);
     this.state = {
+      val: '',
       comboBoxItems: [
         {
           description:
@@ -913,6 +916,12 @@ class App extends React.Component<{}, State> {
         resolve({ currentPage: 1, pageCount: 2 });
       }, 2000);
     })
+  }
+
+  setVal = (value: string) => {
+    this.setState({
+      val: value
+    });
   }
 
   render() {
@@ -1767,6 +1776,7 @@ class App extends React.Component<{}, State> {
             },
           ]}
         />
+        <CronWrapper value={this.state.val} onChange={this.setVal}  >Children</CronWrapper>
         <TextField
             type="text"
             placeholder="Try and write here..."

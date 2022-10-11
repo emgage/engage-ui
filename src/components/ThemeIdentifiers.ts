@@ -66,6 +66,7 @@ export const PAGINATION = 'PPagination';
 export const PAGER = 'PPager';
 export const PAGESIZE = 'PPageSize';
 export const SWITCHCHECKBOX = 'PSwitchCheckbox';
+export const CRONWRAPPER = 'PCronWrapper';
 export const AUTOSUGGEST = 'PAutosuggest';
 export const SEARCH_HELPER = 'PSearchHelper';
 export const NODATA = 'PNoData';
