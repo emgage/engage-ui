@@ -369,7 +369,7 @@ class TextField extends React.PureComponent<Props, State> {
 
   @autobind
   private handleNumberChange(steps: number) {
-    const { onChange, value, step = 1, min = -Infinity, max = Infinity } = this.props;
+    const { onChange, value, step = 1, min = -Infinity, max = Infinity} = this.props;
     if (onChange == null) { return; }
 
     const numericValue = value ? parseFloat(value) : 0;
@@ -382,7 +382,7 @@ class TextField extends React.PureComponent<Props, State> {
   @autobind
   private onChange(event: React.FormEvent<HTMLInputElement>) {
     this.setState({ value: event.currentTarget.value });
-    const { onChange } = this.props;
+    const { onChange, type, min = -Infinity, max= Infinity } = this.props;
     if (onChange == null) { return; }
     const maxLength = this.props.maxLength ? this.props.maxLength : Number.POSITIVE_INFINITY;
     const alphaRegex = RegExp(/^[A-Za-z0-9\b]+$/, 'g');
@@ -393,6 +393,10 @@ class TextField extends React.PureComponent<Props, State> {
     } else if (this.props.alphanumeric && alphaRegex.test(newValue)) {
       onChange(newValue);
       this.setState({ value: newValue });
+    }else if(type === "number"){
+        const verifyValueMinMax = String(Math.min(max, Math.max(parseFloat(newValue), min)));
+        if(verifyValueMinMax === "NaN") { this.setState({value: verifyValueMinMax}); return}
+        this.setState({ value: parseFloat(verifyValueMinMax) !== parseFloat(newValue) ? this.state.value : verifyValueMinMax });
     } else {
       if ((this.props.capital || this.props.alphanumeric) && newValue.length > 0) {
         const oldValueArray = [...newValue];
