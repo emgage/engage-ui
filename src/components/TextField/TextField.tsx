@@ -380,7 +380,7 @@ class TextField extends React.PureComponent<Props, State> {
   }
 
   @autobind
-  private onChange(event: React.KeyboardEvent<HTMLInputElement>) {
+  private onChange(event: React.FormEvent<HTMLInputElement>) {
     const { onChange, type, min = -Infinity, max= Infinity } = this.props;
     if (onChange == null) { this.setState({ value: event.currentTarget.value }); return; }
     const maxLength = this.props.maxLength ? this.props.maxLength : Number.POSITIVE_INFINITY;
