@@ -145,6 +145,15 @@ export declare const BUNDLED_ICONS: {
     history: any;
     cloudAction: any;
     deviceAction: any;
+    addFile: any;
+    appointmentAlt: any;
+    insertFileAlt: any;
+    insertFile: any;
+    meetingAlt: any;
+    replaceFile: any;
+    survey: any;
+    userOutline: any;
+    tablet: any;
     delete: any;
     export: any;
     import: any;
