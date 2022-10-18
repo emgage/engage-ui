@@ -29,6 +29,7 @@ export interface Props {
   // Theme to be injected via css-themr.
   theme?: any;
   hideTip?: boolean;
+  bgColor?: any;
 }
 
 export interface State {
@@ -65,11 +66,13 @@ class Tooltip extends React.PureComponent<Props, State> {
       content,
       theme,
       leftSpace,
+      bgColor
     } = this.props;
 
     return (
       <TooltipOverlay
-      hideTip={this.props.hideTip}
+        bgColor={bgColor}
+        hideTip={this.props.hideTip}
         leftSpace={leftSpace}
         componentId={id}
         preferredPosition={preferredPosition}

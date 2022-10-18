@@ -369,7 +369,7 @@ class TextField extends React.PureComponent<Props, State> {
 
   @autobind
   private handleNumberChange(steps: number) {
-    const { onChange, value, step = 1, min = -Infinity, max = Infinity } = this.props;
+    const { onChange, value, step = 1, min = -Infinity, max = Infinity} = this.props;
     if (onChange == null) { return; }
 
     const numericValue = value ? parseFloat(value) : 0;
@@ -381,9 +381,8 @@ class TextField extends React.PureComponent<Props, State> {
 
   @autobind
   private onChange(event: React.FormEvent<HTMLInputElement>) {
-    this.setState({ value: event.currentTarget.value });
-    const { onChange } = this.props;
-    if (onChange == null) { return; }
+    const { onChange, type, min = -Infinity, max= Infinity } = this.props;
+    if (onChange == null) { this.setState({ value: event.currentTarget.value }); return; }
     const maxLength = this.props.maxLength ? this.props.maxLength : Number.POSITIVE_INFINITY;
     const alphaRegex = RegExp(/^[A-Za-z0-9\b]+$/, 'g');
     const newValue = event.currentTarget.value.length <= maxLength ? event.currentTarget.value : event.currentTarget.value.substr(0, maxLength);
@@ -393,6 +392,18 @@ class TextField extends React.PureComponent<Props, State> {
     } else if (this.props.alphanumeric && alphaRegex.test(newValue)) {
       onChange(newValue);
       this.setState({ value: newValue });
+    }else if(type === "number"){
+        const verifyValueMinMax = String(Math.min(max, Math.max(parseFloat(newValue), min)));
+        if(newValue === "") {
+          onChange("");
+          this.setState({ value: "" });
+        }
+        else if(verifyValueMinMax !== "NaN") {
+          if(parseFloat(verifyValueMinMax) === parseFloat(newValue)) {
+            onChange(verifyValueMinMax);
+            this.setState({ value: verifyValueMinMax });
+          }
+        }
     } else {
       if ((this.props.capital || this.props.alphanumeric) && newValue.length > 0) {
         const oldValueArray = [...newValue];
@@ -424,7 +435,11 @@ class TextField extends React.PureComponent<Props, State> {
   }
 
   @autobind
-  private handleInputOnKeyDown(e: React.FormEvent<HTMLElement> | KeyboardEvent) {
+  private handleInputOnKeyDown(e: React.KeyboardEvent<HTMLElement> | KeyboardEvent) {
+    if(e.keyCode === 69 && this.props.type === "number") { // prevent e in number input
+      e.preventDefault(); 
+      return;
+    }
     const { onKeyDown, readOnly } = this.props;
 
     this.setState((prevState: State) => ({
