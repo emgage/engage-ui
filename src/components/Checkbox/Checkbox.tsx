@@ -71,12 +71,17 @@ class Checkbox extends React.PureComponent<Props, State> {
   handleChange = (event: any) => {
     // event.preventDefault();
     const { disabled, onChange } = this.props;
+    const { checked } = this.props;
 
     if (!disabled) {
-      this.setState({ checked: !this.state.checked });
+      let newCheckedStatus = !checked;
+      if (checked === 'indeterminate') {
+        newCheckedStatus = true;
+      }
+      this.setState({ checked: newCheckedStatus });
 
       if (onChange) {
-        onChange(!this.state.checked);
+        onChange(newCheckedStatus);
       }
     }
   }
