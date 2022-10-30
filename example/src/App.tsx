@@ -5,6 +5,7 @@ import { INavigationData } from '../../src/components/SideNavigation/SideNavigat
 import SegmentExample from './../../docs/src/examples/SegmentExample/SegmentExample';
 import IconListExample from './../../docs/src/examples/IconListExample/IconListExample';
 import EntityStateExample from '../../docs/src/examples/EntityStateExample/EntityStateExample';
+import TableExample from '../../docs/src/examples/TableExample/TableExample';
 
 import {
   Alert,
@@ -1764,6 +1765,10 @@ class App extends React.Component<{}, State> {
             {
               header: <>EntityStateExample</>,
               children: <EntityStateExample />
+            },
+            {
+              header: <>Simple Table with Checkbox Header Example</>,
+              children: <TableExample />
             },
           ]}
         />

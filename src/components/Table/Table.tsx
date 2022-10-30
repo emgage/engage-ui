@@ -32,6 +32,7 @@ export interface Props {
   callChildCallback?: boolean;
   // Column config, which renders the header
   column: ColumnConfig[];
+  headerCheckboxStatus?: boolean | 'indeterminate';
   columnFirstChildWidth?: string;
   // Custom styling
   componentStyle?: any;
@@ -96,7 +97,7 @@ export interface Props {
   // Use this key to fetch the unique id from data & send it back to selectedrow
   selectCallbackValue?: string;
   // Function to get called when row got selected
-  selectRowCallback?(rows: number[] | string[]): void;
+  selectRowCallback?(rows: number[] | string[], from?: string): void;
   // Callback function to do the server sort
   serverSort?: ServerSort;
   // Function to get called when single row got selected, it will return only one row value not the array
@@ -192,7 +193,7 @@ class Table extends React.PureComponent<Props, State> {
       this.setState({ selectedRows: defaultCheckedDataId });
 
       if (newProps.selectRowCallback) {
-        newProps.selectRowCallback(defaultCheckedDataId);
+        newProps.selectRowCallback(defaultCheckedDataId, 'willReceive');
       }
     }
   }
@@ -525,7 +526,7 @@ class Table extends React.PureComponent<Props, State> {
     const { selectRowCallback } = this.props;
 
     if (selectRowCallback) {
-      selectRowCallback(this.state.selectedRows);
+      selectRowCallback(this.state.selectedRows, 'header');
     }
   }
 
@@ -590,14 +591,19 @@ class Table extends React.PureComponent<Props, State> {
   // Function to add checkbox in header as well
   addHeaderCheckbox = (): React.ReactElement<any> => {
     const { data = [], intermediateRow = [], selectedRows = [] } = this.state;
-    const { columnFirstChildWidth = '30px', theme, hideSelectAll = false, actionInProgress = false } = this.props;
+    const { columnFirstChildWidth = '30px', theme, hideSelectAll = false, actionInProgress = false,headerCheckboxStatus } = this.props;
 
     // This gives the checked status: true means all child are checked, intermediate atlease one child is checked, false means nothing is checked
-    const rowCheckedStatus = !intermediateRow.length ?
-      (selectedRows.length && data.length === selectedRows.length ?
-        true : (selectedRows.length ?
-          'indeterminate' : false))
-      : 'indeterminate';
+    let rowCheckedStatus: any;
+    if (typeof headerCheckboxStatus !== 'undefined') {
+      rowCheckedStatus = headerCheckboxStatus;
+    } else {
+      rowCheckedStatus = !intermediateRow.length ?
+        (selectedRows.length && data.length === selectedRows.length ?
+          true : (selectedRows.length ?
+            'indeterminate' : false))
+        : 'indeterminate';
+    }
 
     return (
       <TableHead componentStyle={{ width: columnFirstChildWidth }} theme={theme}>
@@ -800,7 +806,7 @@ class Table extends React.PureComponent<Props, State> {
 
     // Check if callback is passed, if passed then call it
     if (selectRowCallback) {
-      selectRowCallback(currentSelectedRows);
+      selectRowCallback(currentSelectedRows, 'singleRow');
     }
 
     if (singleSelectRowCallback) {
