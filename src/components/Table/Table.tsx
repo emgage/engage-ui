@@ -432,7 +432,7 @@ class Table extends React.PureComponent<Props, State> {
     const checkedStatus = this.getRowCheckedStatus(item);
     return(
       <React.Fragment key={index}>
-        <TableRow theme={theme} componentClass={circleCheckbox && checkedStatus ? 'checkedRow' : ''}>
+        <TableRow theme={theme} componentClass={circleCheckbox && checkedStatus ? theme.checkedRow : ''}>
           { this.renderRowSelection(item, 'body') }
           {
             column.map((colItem: any, index: number) => {

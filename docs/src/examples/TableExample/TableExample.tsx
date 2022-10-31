@@ -106,7 +106,7 @@ const TableExample = () => {
         rowCallbackValue="id"
         onRowClick={handleSingleRowSelect}
         renderHeaderCheckbox
-        circleCheckbox
+        circleCheckbox={true}
          />
     </div>
   );
