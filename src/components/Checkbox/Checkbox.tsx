@@ -144,7 +144,7 @@ class Checkbox extends React.PureComponent<Props, State> {
 
     return (
       // circleCheckbox
-      <div className={circleCheckbox ? theme.circleCheckbox : theme.basic}>
+      <div className={!circleCheckbox ? theme.circleCheckbox : theme.basic}>
         {errorMarkup}
         <Choice
           componentId={componentId}

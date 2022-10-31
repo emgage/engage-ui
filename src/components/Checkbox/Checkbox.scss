@@ -120,8 +120,7 @@
     @include visually-hidden;
 
   
-    &:checked,
-    &.indeterminate {
+    &:checked {
       ~ .icon {
         transform: translate(-50%, -50%) scale(1);
       
@@ -129,10 +128,23 @@
       ~ .backdrop {
         @include control-backdrop(focused);
         background: #1E88E5;   
+        box-shadow: none;
         border: none;
   }
     }
-  
+    &.indeterminate {
+      ~ .icon {
+        transform: translate(-50%, -50%) scale(1);
+        fill: #1E88E5;   
+      }
+      ~ .backdrop {
+        @include control-backdrop(focused);
+        background: transparent;   
+        border: 1px solid #BDBDBD;
+        box-shadow: none;
+
+    }
+    }
     &:disabled {
   
       ~ .icon {
