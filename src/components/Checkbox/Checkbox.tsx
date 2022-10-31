@@ -41,8 +41,8 @@ export interface Props {
   value?: string;
   // Function return all errors
   getErrors?(errors:any, name?:string): void;
-  //circleCheckbox
-  circleCheckbox?: any
+  // circleCheckbox
+  circleCheckbox?: boolean;
 }
 
 export interface State {
@@ -103,7 +103,7 @@ class Checkbox extends React.PureComponent<Props, State> {
       onBlur,
       theme,
       value,
-      circleCheckbox
+      circleCheckbox,
     } = this.props;
 
     const describedBy: string[] = [];
