@@ -393,7 +393,8 @@ class TextField extends React.PureComponent<Props, State> {
       onChange(newValue);
       this.setState({ value: newValue });
     }else if(type === "number"){
-        const verifyValueMinMax = String(Math.min(max, Math.max(parseFloat(newValue), min)));
+        const decimalLength = newValue.split(".")[1]?.length
+        const verifyValueMinMax = String((Math.min(max, Math.max(parseFloat(newValue), min))).toFixed(decimalLength));
         if(newValue === "") {
           onChange("");
           this.setState({ value: "" });
