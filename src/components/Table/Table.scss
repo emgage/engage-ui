@@ -125,6 +125,13 @@ $border-color: color(sky, base);
   }
 }
 
+.checkedRow{
+  background: #E3F2FD;
+  &:hover {
+    background-color: #D1EAFF !important;
+  }
+}
+
 .sortingHeader {
   display: flex
 }
