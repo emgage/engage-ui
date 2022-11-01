@@ -89,6 +89,12 @@ $border-color: color(sky, base);
   }
 }
 
+.circleCheckBoxTable{
+  th {
+    background-color: transparent !important;
+  }
+}
+
 .parentChildTable {
   margin-left: 2.9rem;
   border-left: 3px solid $border-color;
