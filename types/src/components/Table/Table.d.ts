@@ -54,6 +54,7 @@ export interface Props {
     isSearching?: boolean;
     noDataLabel?: string;
     noDataInSearchLabel?: string;
+    circleCheckbox?: boolean;
 }
 export interface State {
     data: any;

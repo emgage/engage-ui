@@ -17,6 +17,7 @@ export interface Props {
     theme?: any;
     value?: string;
     getErrors?(errors: any, name?: string): void;
+    circleCheckbox?: boolean;
 }
 export interface State {
     checked: boolean | 'indeterminate';
