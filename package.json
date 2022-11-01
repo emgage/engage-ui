@@ -131,7 +131,7 @@
     "@shopify/images": "^1.1.0",
     "@shopify/javascript-utilities": "^2.4.1",
     "@shopify/react-utilities": "^2.0.7",
-    "@types/lodash": "^4.14.72",
+    "@types/lodash": "4.14.182",
     "@types/moment": "^2.13.0",
     "@types/node": "^7.0.12",
     "@types/prop-types": "^15.5.2",

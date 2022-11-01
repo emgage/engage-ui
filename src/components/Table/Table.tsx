@@ -118,6 +118,7 @@ export interface Props {
   noDataLabel?: string;
   // Label to show when no data on search is available.
   noDataInSearchLabel?: string;
+  circleCheckbox?: boolean;
 }
 
 export interface State {
@@ -243,6 +244,7 @@ class Table extends React.PureComponent<Props, State> {
 
     return classNames(
       theme.table,
+      this.props.circleCheckbox && theme.circleCheckBoxTable,
       bordered && theme.bordered,
       highlight && theme.highlight,
       striped && theme.striped,
@@ -415,6 +417,7 @@ class Table extends React.PureComponent<Props, State> {
       theme,
       isRowDisabled,
       CustomRenderRow,
+      circleCheckbox,
     } = this.props;
     const { nestedChildData } = this.state;
     const { renderBanner } = item;
@@ -427,9 +430,10 @@ class Table extends React.PureComponent<Props, State> {
       if (rowAction) totalColumn++;
       if (selectRow) totalColumn++;
     }
+    const checkedStatus = this.getRowCheckedStatus(item);
     return(
       <React.Fragment key={index}>
-        <TableRow theme={theme}>
+        <TableRow theme={theme} componentClass={circleCheckbox && checkedStatus ? theme.checkedRow : ''}>
           { this.renderRowSelection(item, 'body') }
           {
             column.map((colItem: any, index: number) => {
@@ -591,7 +595,7 @@ class Table extends React.PureComponent<Props, State> {
   // Function to add checkbox in header as well
   addHeaderCheckbox = (): React.ReactElement<any> => {
     const { data = [], intermediateRow = [], selectedRows = [] } = this.state;
-    const { columnFirstChildWidth = '30px', theme, hideSelectAll = false, actionInProgress = false,headerCheckboxStatus } = this.props;
+    const { columnFirstChildWidth = '30px', theme, hideSelectAll = false, actionInProgress = false, headerCheckboxStatus, circleCheckbox } = this.props;
 
     // This gives the checked status: true means all child are checked, intermediate atlease one child is checked, false means nothing is checked
     let rowCheckedStatus: any;
@@ -608,6 +612,7 @@ class Table extends React.PureComponent<Props, State> {
     return (
       <TableHead componentStyle={{ width: columnFirstChildWidth }} theme={theme}>
          { !hideSelectAll && <Checkbox
+          circleCheckbox={circleCheckbox}
           labelHidden
           theme={theme}
           label="Select all"
@@ -620,10 +625,11 @@ class Table extends React.PureComponent<Props, State> {
 
   addHeaderDisableAllRowCheckbox = ():  React.ReactElement<any> => {
     const { disableAllRow } = this.state;
-    const { columnFirstChildWidth = '30px', theme, disableAllRowCallback } = this.props;
+    const { columnFirstChildWidth = '30px', theme, disableAllRowCallback, circleCheckbox } = this.props;
 
     return (<TableHead componentStyle={{ width: columnFirstChildWidth }} theme={theme}>
            <Checkbox
+              circleCheckbox={circleCheckbox}
               labelHidden
               theme={theme}
               label="Disable all"
@@ -641,15 +647,24 @@ class Table extends React.PureComponent<Props, State> {
     return newColumn ? <TableData theme={this.props.theme}>{this.renderCheckbox(rowData)}</TableData> : <span style={{ display: 'inline-block' }}>{this.renderCheckbox(rowData)}</span>;
   }
 
+  getRowCheckedStatus = (rowData: any) => {
+    const { intermediateRow, selectedRows = [] } = this.state;
+    const { selectCallbackValue } = this.props;
+    const uniqueId = selectCallbackValue ? rowData[selectCallbackValue] : rowData.id;
+
+    const rowCheckedStatus = selectedRows.indexOf(uniqueId) !== -1 ? true : intermediateRow.indexOf(uniqueId) !== -1 ? 'indeterminate' : false;
+    return rowCheckedStatus;
+  }
+
   // Function to render table row checkboxes
   renderCheckbox(rowData: any) {
-    const { disableAllRow, intermediateRow, selectedRows = [] } = this.state;
-    const { selectCallbackValue, actionInProgress = false, theme, isRowDisabled } = this.props;
-    const uniqueId = selectCallbackValue ? rowData[selectCallbackValue] : rowData.id;
-    const rowCheckedStatus = selectedRows.indexOf(uniqueId) !== -1 ? true : intermediateRow.indexOf(uniqueId) !== -1 ? 'indeterminate' : false;
+    const { disableAllRow} = this.state;
+    const { actionInProgress = false, theme, isRowDisabled, circleCheckbox } = this.props;
+    const rowCheckedStatus = this.getRowCheckedStatus(rowData);
 
     return (
       <Checkbox
+        circleCheckbox={circleCheckbox}
         label={`Check ${rowData.name}`}
         labelHidden
         theme={theme}
@@ -664,9 +679,9 @@ class Table extends React.PureComponent<Props, State> {
 
   // Function to add checkbox for the row selection
   renderRadio = (rowData: any): React.ReactElement<any> => {
-    const { theme } = this.props;
+    const { theme, circleCheckbox } = this.props;
 
-    return <TableData theme={theme}><Checkbox label={`Check ${rowData.name}`} labelHidden theme={theme} value={rowData.id} checked={rowData.checked ? true : false} /></TableData>;
+    return <TableData theme={theme}><Checkbox circleCheckbox={circleCheckbox} label={`Check ${rowData.name}`} labelHidden theme={theme} value={rowData.id} checked={rowData.checked ? true : false} /></TableData>;
   }
 
   reRenderRow = () => {
