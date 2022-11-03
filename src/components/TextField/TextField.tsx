@@ -401,8 +401,8 @@ class TextField extends React.PureComponent<Props, State> {
         }
         else if(verifyValueMinMax !== "NaN") {
           if(parseFloat(verifyValueMinMax) === parseFloat(newValue)) {
-            onChange(verifyValueMinMax);
-            this.setState({ value: verifyValueMinMax });
+            onChange(newValue);
+            this.setState({ value: newValue });
           }
         }
     } else {
