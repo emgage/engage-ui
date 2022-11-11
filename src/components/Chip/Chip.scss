@@ -21,41 +21,74 @@ $vertical-padding: ($min-height - line-height(body) - 0.2rem) / 2;
         line-height: $height;
         height: $height;
         min-width: $height;
-        background-color: rgba(153, 153, 153, 0.2);
+        background-color: #EEEEEE;
         border-top-left-radius: $height / 2;
         border-bottom-left-radius: $height / 2;
+        border-top-right-radius: $height / 2;
+        border-bottom-right-radius: $height / 2;
+        border: 1px solid transparent;
         display: flex;
         align-items: center;
         .ChipChild {
+            margin-top: 1.5px;
             padding: 0px $horizontal-padding;
             &:nth-child(2) {
                 padding:0px;
-                margin-right: $horizontal-padding * .5;
+                // margin-right: $horizontal-padding * .5;                                                                    
                 margin-left:-$horizontal-padding * .5;
+            }
+            button {
+                padding: 0;
+                margin: 0!important;
+                display: inline-flex;                                                                                                                          
+                min-width: auto;
+                padding-right: 0.8rem; 
+                &:hover{
+                    fill: #1976D2;
+                }                                                                                                                                                                    
+            }
+        }
+        .ChipChildSpace {
+            padding: 0px $horizontal-padding;
+            margin-top: 1.5px;
+            &:nth-child(2) {
+                padding:0px;
+                padding-right: 5px;
             }
             button {
                 padding: 0;
                 margin: 0!important;
                 display: inline-flex;
                 min-width: auto;
+                &:hover{
+                    fill: #1976D2;
+                }
             }
         }
         .firstIcon{
-            width: 3rem;
-            height: 3rem;
+            width: 2.8rem;
+            height: 2.8rem;
             border-radius: 100%;
-            background: color(ink,lightest);
+            // background: color(ink,lightest);
+            background-color:#007ACE;
+            // margin-left: 0.1rem;
         } 
         &:hover {
-            background-color:color(blue, light);
-            .firstIcon {
-                background-color: color(blue, dark);
-            }
+            // background-color:color(blue, light);
+            background-color: #E3F2FD;
+            border-color: #E3F2FD;
+            // .firstIcon {
+                // background-color: color(blue, dark);
+            // }
             .ChipChild {
-                button {
-                    fill: color(blue, dark);
-                }
+                color: #1976D2;
+                // button {
+                //     fill: color(blue, dark);
+                // }
             }
+            .ChipLabel{
+                  color: #1976D2 ;
+            }   
         }
     }
 
@@ -92,6 +125,16 @@ $vertical-padding: ($min-height - line-height(body) - 0.2rem) / 2;
         }
     }
 }
+.outlinedChip {
+    .chipContent {
+          border-color:#BDBDBD !important;
+          background-color: #FFFFFF !important;
+    &:hover {
+          background-color: #E3F2FD !important;
+          border-color:#42A5F5 !important; 
+    }
+ }
+}
 
 :focus {
     /* Not removing directly, its possible that we might need this in future */
@@ -106,38 +149,36 @@ $vertical-padding: ($min-height - line-height(body) - 0.2rem) / 2;
 }
 .ChipImage {
     margin: 0px;
-    margin-left: -0.1rem;
+    // margin-left: -0.1rem;
 }
 .Image {
     flex-shrink: 0;
-    height: $height;
-    width: $height;
+    height: 2.8rem;
+    width: 2.8rem;
     border-radius: 50%; 
     display: inline-block;  
     vertical-align: middle;
+    // margin-left: 0.2rem;
 }
 
 body .Remove {
-    display: flex;
-    height: $height;
-    align-items: center;
-    justify-content: center;
-    border-radius:0px;
-    border-top-right-radius: $height / 2;
-    border-bottom-right-radius: $height / 2;
-    margin: 0rem 0rem 0rem ($horizontal-padding * .155);
-    padding-left: $horizontal-padding * .5;
-    padding-right: $horizontal-padding * .5;
-    min-width: auto;
-    min-height: auto;
-    width: auto;
-    color: rgba(0, 0, 0, 0.54);
+    // display: flex;
+    // height: $height;
+    // align-items: center;
+    // justify-content: center;
+    // border-radius:0px;
+    // border-top-right-radius: $height / 2;
+    // border-bottom-right-radius: $height / 2;
+    // margin: 0rem 0rem 0rem ($horizontal-padding * .155);
+    // padding-left: $horizontal-padding * .5;
+    // padding-right: $horizontal-padding * .5;
+    // min-width: auto;
+    // min-height: auto;
+    // width: auto;
+    // color: rgba(0, 0, 0, 0.54);
     fill: rgba(0, 0, 0, 0.54);
-    background-color: rgba(153, 153, 153, 0.2);
     &:hover {
-        color: rgba(0, 0, 0, 0.54);
-        fill: rgba(0, 0, 0, 0.54); 
-        background-color: rgba(153, 153, 153, 0.2);
+        fill:#757575; 
     }
 }
 
@@ -160,10 +201,16 @@ body .Remove {
       vertical-align: middle;
       font-size: 14px;
       font-family: Open Sans, sans-serif;
+     &:hover{
+        fill:#1976D2; 
+     }
       &:empty {
           display: none;
       }
   }
+}
+.removeIcon{
+    margin-top: -5px !important;
 }
 
 .chipContent {
@@ -174,6 +221,12 @@ body .Remove {
 }
 .ChipLabel {
     @include text-style-input;
-    padding: 0px $horizontal-padding 0px ($horizontal-padding * .5) ;
+    padding: 0px 10px 0px 10px ;
+    color: color(text, text);
+}
+
+.ChipLabelHover {
+    @include text-style-input;
+    padding: 0px 10px 0px 10px ;
     color: color(text, text);
 }

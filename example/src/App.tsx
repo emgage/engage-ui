@@ -1772,6 +1772,33 @@ class App extends React.Component<{}, State> {
             },
           ]}
         />
+{/* 
+<BodyText>Default Chip Component Update Styling</BodyText>
+      <br />
+        <Chip label="Value Value"
+         image={{
+                url: 'example/src/images/netguru-cartoon-characters3.png',
+                alt: 'Your mom',}}
+                removable={true}
+                onRemove={this.chipRemove}>
+                <Button plain componentSize="slim" icon="filter"></Button>
+              </Chip>
+               <br />
+               <br />
+              <BodyText>Outlined Chip Component Styling</BodyText>
+      <br />
+        <Chip label="Value Value"
+                image={{
+                url: IconList.user,
+                alt: 'Your mom',}}
+                removable={true}
+                outlined={true}
+                onRemove={this.chipRemove}
+                >
+                <Button plain componentSize="slim" icon="filter"></Button>
+              </Chip>
+              <br />
+              <br /> */}
         <TextField
             type="text"
             placeholder="Try and write here..."
