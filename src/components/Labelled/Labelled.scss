@@ -17,6 +17,21 @@
 body .readOnly {
   margin-left: 0px;
 }
+.markWrapper{
+  padding-left: .3rem;
+  min-width: 9px;
+  min-height: 9px;
+  max-width: 9px;
+  max-height: 9px;
+}
+.mark{
+  min-width: 9px;
+  min-height: 9px;
+  max-width: 9px;
+  max-height: 9px;
+  fill:#D50000;
+  margin-top: 3.5px;
+}
 
 // .required {}
 

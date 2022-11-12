@@ -1799,6 +1799,94 @@ class App extends React.Component<{}, State> {
               </Chip>
               <br />
               <br /> */}
+              {/* ++++++++++++++++++++++++++++++++ */}
+        <div style={{ padding: 10, border: '1px solid gray', marginTop: 20, marginBottom: 20, marginLeft: 20,background:'#fff' }}>
+          <Heading>TextFields Components</Heading>
+          <TextField
+            type="text"
+            label="Text Field with Prefix"
+            prefix="$"
+            markIfRequired={true}
+            />
+            <br />
+            <Heading>Disabled TextFields Components</Heading>
+             <TextField
+              type="text"
+              disabled
+              label="Lable"
+              value='Value'
+              helpText='helper Text'
+              enableTextCounter
+              maxLength={100}
+              minLength={100}              
+            />
+            <br />
+             <Heading>BackdropHidden TextFields Components</Heading>
+             <TextField
+              type="text"
+              label="Lable"
+              value='Value'   
+              backdropHidden         
+            />
+            <br />
+            <div>
+            <Heading>Errors TextFields Components</Heading>
+             <TextField
+              type="text"
+              label="Lable"
+              value='Value'   
+              errors={['Error Message Error Message Error Message']}   
+              enableTextCounter
+              maxLength={50}
+              minLength={2}         
+            />
+            </div>
+            <br />
+          <Heading>Picker Components</Heading>
+          <Picker
+            label="Picker Component with render header"
+            chipComponent={Chip}
+            helpText="Helper Text"
+            source={pickerdata}
+            defaultSelectedItems={selectedPickerdata}
+            columns={columnConfigPicker}
+            maxSelectedItems={5}
+            minSelectedItems={2}
+            autoSuggest
+            loading
+            renderPickerHeader={renderPickerHeader}
+            renderPickerItem={renderPickerItem}
+            noOptionsMessage={"No items Available"}
+            shouldRenderSuggestions={false}
+            markIfRequired={true}
+            
+          />
+          <br />
+          <Heading>Select Component</Heading>
+          <Select
+            componentId="appCity1"
+            name="Select city 2"
+            label="Label"
+            options={[
+              { value: '', label: '' },
+              { value: 'pasadena', label: 'Pasadena' },
+              { value: 'altadena', label: 'Altadena' },
+            ]}
+            value={this.state.appCity1}
+            // value="Value"
+            onChange={this.valueUpdater('appCity1')}
+            // placeholder="Some stuff"
+            helpText="Help Text"
+            // disabled
+            loading
+            // labelHidden
+            markIfRequired={true}
+
+          />
+          <br />
+
+        </div>
+                
         <TextField
             type="text"
             placeholder="Try and write here..."

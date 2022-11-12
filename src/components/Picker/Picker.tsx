@@ -114,6 +114,7 @@ export interface Props {
   errors?: [string];
   placeholder?: string;
   shouldFilterSuggestions?: boolean;
+  markIfRequired?: boolean
 }
 
 const DefaultCard = (props: any) => {
@@ -462,6 +463,7 @@ class Picker extends React.PureComponent<Props, State> {
         noOptionsMessage,
         errors,
         placeholder,
+        markIfRequired,
     } = this.props;
     const { isFocused, hasValue, value, suggestions, chipListState, anchorEl, popoverWidth } = this.state;
     const inputProps: any & { disabled: boolean } = {
@@ -538,6 +540,7 @@ class Picker extends React.PureComponent<Props, State> {
             disabled={disabled}
             readOnly={readOnly}
             label={label || ''}
+            markIfRequired={markIfRequired}
           />
         </div>
         {

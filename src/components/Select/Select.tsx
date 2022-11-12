@@ -63,6 +63,7 @@ export interface Props {
   onFocus?(): void;
   // Callback when focus is removed
   onBlur?(): void;
+  markIfRequired?:boolean;
 }
 
 const PLACEHOLDER_VALUE = '';
@@ -89,6 +90,7 @@ const select = ({
   onFocus,
   onBlur,
   theme,
+  markIfRequired
 }: Props) => {
   let optionsMarkup: React.ReactNode;
 
@@ -147,6 +149,7 @@ const select = ({
       componentClass={labelStyle}
       theme={theme}
       readOnly={readOnly}
+      markIfRequired={markIfRequired}
     >
       <div className={className}>
         <select

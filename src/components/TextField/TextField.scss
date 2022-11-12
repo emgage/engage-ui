@@ -15,7 +15,7 @@ $spinner-size: 2rem;
     padding: 0 calc(2.5rem + 0.1rem)  0 $backdrop-horizontal-spacing;
   }
   &.backdropHidden {
-    padding-left:0px;
+    padding-left:12px;
   }
   &.labelHidden{
     &.focused {
@@ -135,7 +135,7 @@ $spinner-size: 2rem;
   appearance: none;
 
   &:disabled {
-    color: color(ink, lightest);
+    color: #424242;
   }
 
   &:focus {
@@ -235,6 +235,13 @@ $spinner-size: 2rem;
   transition:all .3s ease-in-out;
   -moz-transition:all .3s ease-in-out;
   -webkit-transition:all .3s ease-in-out;
+}
+
+.errorIcon{
+  fill: #D50000;
+  position:relative;
+  width: 16px;
+  height: 16px;
 }
 
 .spinnerButtons {
@@ -337,7 +344,7 @@ $spinner-size: 2rem;
 .label {
   display: table;
   table-layout: fixed;
-  width: calc(100% - 2rem);
+  width: 100% !important
 }
 
 .labelStyle {

@@ -7,6 +7,8 @@ import Message from '../Message';
 import { LABELLED } from '../ThemeIdentifiers';
 
 import * as baseTheme from './Labelled.scss';
+import Icon from '../Icon/Icon'
+import FlexBox from '../FlexBox/FlexBox';
 
 export { Action, labelID };
 
@@ -43,6 +45,7 @@ export interface Props {
   theme?: any;
   onClick?: (event: React.FormEvent<any>) => void;
   readOnly?:boolean;
+  markIfRequired?:boolean
 }
 
 const labelled = ({
@@ -61,6 +64,7 @@ const labelled = ({
   componentClass,
   labelComponentStyle,
   theme,
+  markIfRequired,
   onClick = (_:any) => { },
   ...rest
 }: Props) => {
@@ -108,7 +112,10 @@ const labelled = ({
           {...rest}
           theme={theme}
         >
-          {label}
+          <FlexBox>
+            {label}
+           {markIfRequired && <span className={theme.markWrapper}><Icon componentClass={theme.mark}  source="requiredMark">*</Icon></span>}
+          </FlexBox>
         </Label>
       </div>
     )

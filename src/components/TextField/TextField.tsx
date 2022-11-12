@@ -14,6 +14,8 @@ import { TEXT_FIELD } from '../ThemeIdentifiers';
 import * as baseTheme from './TextField.scss';
 import Resizer from './Resizer';
 import SpinnerButtons from './SpinnerButtons';
+import Icon from '../Icon/Icon';
+// import Tooltip from '../Tooltip/Tooltip'
 
 export type Type = 'text' | 'email' | 'number' | 'password' | 'search' | 'tel' | 'url' | 'date' | 'datetime-local' | 'month' | 'time' | 'week';
 export type ComponentHeight = 'slim' | 'large';
@@ -125,6 +127,7 @@ export interface Props {
   // number of rows for textarea
   rows?: number;
   componentHeight?: ComponentHeight;
+  markIfRequired?: boolean
 }
 
 const getUniqueID = createUniqueIDFactory('TextField');
@@ -204,6 +207,7 @@ class TextField extends React.PureComponent<Props, State> {
       type,
       value = '',
       componentHeight = 'large',
+      markIfRequired,
       ...rest
     } = this.props;
 
@@ -232,6 +236,13 @@ class TextField extends React.PureComponent<Props, State> {
 
     const suffixMarkup = (!readOnly && suffix)
       ? <div onClick={this.handleInputFocus} className={theme.suffix} id={`${componentId}suffix`}>{suffix}</div>
+      : null;
+
+      // const errorMarkup = (!readOnly && errors)
+      // ? <Tooltip  preferredPosition='above'  theme={{'wrapper':theme.tip}} content={errors}><Icon componentClass={theme.errorIcon} source='errorIcon'></Icon></Tooltip>
+      // : null;
+       const errorMarkup = (!readOnly && errors)
+      ? <Icon componentClass={theme.errorIcon} source='errorIcon'></Icon>
       : null;
 
     const spinnerButtonsMarkup = type === 'number' && !disabled && !readOnly && showNumberIcon
@@ -330,7 +341,7 @@ class TextField extends React.PureComponent<Props, State> {
         autoSuggest={autoSuggest}
         label={label}
         componentId={componentId}
-        errors={errors}
+        // errors={errors}
         action={labelAction}
         labelHidden={(labelHidden || !this.props.label)}
         helpText={helpText}
@@ -342,6 +353,7 @@ class TextField extends React.PureComponent<Props, State> {
         theme={theme}
         readOnly={readOnly}
         labelComponentStyle={!(this.state.focused || isFocused) && (!Boolean(hasValue || propHasValue)) && this.state.labelComponentStyle || {}}
+        markIfRequired={markIfRequired}
       >
         <Connected
           left={connectedLeft}
@@ -354,6 +366,7 @@ class TextField extends React.PureComponent<Props, State> {
             {inputValue}
             {loading && <div className={theme.spinnerWrapper} id={`${componentId}Spinner`}><Spinner componentSize="small" componentColor="disabled" /></div>}
             {suffixMarkup}
+            {errorMarkup}
             {resizer}
           </div>
         </Connected>

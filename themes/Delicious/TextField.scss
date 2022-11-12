@@ -6,6 +6,13 @@ $spinner-size: 2rem;
   z-index: auto;
   padding: 0 $backdrop-horizontal-spacing;
   color: theme-color(m-grey, 900);
+
+  &.focused {
+    > .backdrop {
+      border-color: theme-color(m-blue, 300);
+      box-shadow: 0 0 0 1px theme-color(m-blue, 300);
+    }
+  }
 }
 
 .hasValue {
@@ -58,11 +65,17 @@ $spinner-size: 2rem;
     inset shadow(transparent),
     0 0 0 1px theme-color(m-red, 600);
   }
+  &.focused {
+    > .backdrop {
+      border-color: red;
+      box-shadow: 0 0 0 1px red;
+    }
+  }
 }
 
 .disabled > .backdrop {
-  background-color: theme-color(m-grey, 50);
-  border-color: theme-color(m-grey, 300);
+  background-color: #F5F5F5;
+  border-color: #F5F5F5;
 }
 
 .input {
@@ -73,7 +86,7 @@ $spinner-size: 2rem;
   transition: 0.3s all ease;
 
   &:disabled {
-    color: theme-color(m-grey, 700);
+    color: #424242;
   }
 
   &:focus {
