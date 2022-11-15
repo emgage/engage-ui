@@ -65,7 +65,7 @@
     border-radius: .3rem;
     border: .1rem solid rgba(0, 0, 0, 0.1);
     width: 100%;
-    margin-top: 1.5rem;
+    margin-top: 1.4rem;
     z-index: 3 
 }
 .isAccordionNot{
@@ -87,5 +87,10 @@
 .card{
     height: 4.8rem;
     cursor: pointer;
+}
+.textFieldHeight{
+    min-height: 36px !important;
+    max-height: 36px !important;
+    padding: 0.5rem 0.5rem !important
 }
 
