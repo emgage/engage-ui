@@ -120,7 +120,7 @@ function multiCheckboxFacet({
                   type="text"
                   // label={searchPlaceholder || 'Search'}
                   placeholder={searchPlaceholder || 'Search'}
-                  componentHeight='slim'
+                  componentHeight={isAccordion ? 'slim' : 'large'}
                   placeholderAlign='left'
                   onChange={(value) => {
                     if (onSearch) {
