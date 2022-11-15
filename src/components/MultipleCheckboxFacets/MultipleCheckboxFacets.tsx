@@ -116,8 +116,12 @@ function multiCheckboxFacet({
             {showSearch && (
               <div className="facet-search" style={{ marginBottom: 12 }}>
                 <TextField
+                theme={{'HeightSlim':baseTheme.textFieldHeight}}
                   type="text"
-                  label={searchPlaceholder || 'Search'}
+                  // label={searchPlaceholder || 'Search'}
+                  placeholder={searchPlaceholder || 'Search'}
+                  componentHeight={isAccordion ? 'slim' : 'large'}
+                  placeholderAlign='left'
                   onChange={(value) => {
                     if (onSearch) {
                       onSearch(value);
