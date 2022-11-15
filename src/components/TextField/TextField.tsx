@@ -23,7 +23,6 @@ export interface State {
   height?: number | null;
   focused?: boolean;
   value?: string | undefined;
-  labelComponentStyle?: any;
 }
 
 export interface Props {
@@ -143,11 +142,13 @@ class TextField extends React.PureComponent<Props, State> {
     };
     this.prefixRef = React.createRef();
   }
-
-  componentDidMount() {
-    this.setState({
-      labelComponentStyle: { marginLeft: (this.prefixRef?.current?.offsetWidth || 0) + 5 },
-    });
+  get labelComponentStyle() {
+    const { prefix } = this.props;
+    const marginLeft = (this.prefixRef?.current?.offsetWidth || 0);
+    if (prefix && marginLeft === 0) {
+      return {};
+    }
+    return { marginLeft: marginLeft + 5 };
   }
 
   // tslint:disable-next-line:function-name
@@ -341,7 +342,7 @@ class TextField extends React.PureComponent<Props, State> {
         componentClass={labelStyle}
         theme={theme}
         readOnly={readOnly}
-        labelComponentStyle={!(this.state.focused || isFocused) && (!Boolean(hasValue || propHasValue)) && this.state.labelComponentStyle || {}}
+        labelComponentStyle={!(this.state.focused || isFocused) && (!Boolean(hasValue || propHasValue)) && this.labelComponentStyle || {}}
       >
         <Connected
           left={connectedLeft}
