@@ -43,3 +43,49 @@
     font-size: 0.85em;
     margin-left: 2.4rem;
 }
+
+.tip{
+    width: 1.6rem;
+    height: 1.6rem;
+    border:.1rem solid rgba(0, 0, 0, 0.1);
+    background: #fff;
+    transform: rotate(45deg);
+    margin-top: 0px;
+    margin-bottom: .5rem;
+    position: absolute;
+    z-index: 2;
+    margin-left: 2rem;
+    margin-top: .7rem;
+}
+
+.isAccordion{
+    position:absolute;
+    background-color: #fff;
+    padding: 1.6rem;
+    border-radius: .3rem;
+    border: .1rem solid rgba(0, 0, 0, 0.1);
+    width: 100%;
+    margin-top: 1.5rem;
+    z-index: 3 
+}
+.isAccordionNot{
+    max-height: 0px;
+    overflow: hidden;
+    background-color: #fff;
+    z-index: 3;
+    position: relative;
+}
+.arrowIcon{
+    margin-right: 1.3rem;
+    margin-top: 1.5rem;
+    cursor: pointer;
+    fill:#616161
+}
+.cardBody{
+    padding: 0 !important;
+}
+.card{
+    height: 4.8rem;
+    cursor: pointer;
+}
+
