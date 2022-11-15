@@ -4288,6 +4288,9 @@ class App extends React.Component<{}, State> {
           showMore={true}
           showSearch={true}
           searchPlaceholder="Search"
+          isAccordion
+          isOpen={this.state.isOpen}
+          toggle={this.handleSwitchCheckboxToggle}
         />
       </div>
     );

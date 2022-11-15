@@ -48,6 +48,8 @@ interface IProps {
   hideLabel?: boolean;
   labelId?: string;
   isAccordion?: boolean;
+  isOpen?:boolean;
+  toggle?(isOpen?: boolean): void;
 }
 
 function multiCheckboxFacet({
@@ -63,12 +65,13 @@ function multiCheckboxFacet({
   onSearch,
   searchPlaceholder,
   labelId,
-  isAccordion
+  isAccordion,
+  isOpen,
+  toggle = () => { },
 
 }: IProps) {
 
   const ref:any = React.useRef(null);
-  const [open, toggle] = React.useState(!isAccordion);
 
   const handleClickOutside = (event: any) => {
     if (ref && ref.current && !ref.current.contains(event.target)) {
@@ -99,7 +102,7 @@ function multiCheckboxFacet({
     <div ref={ref}>
       <Card componentClass={isAccordion && baseTheme.card}>
         {label ?
-          <div onClick={() => { isAccordion && toggle(!open) }} style={{ cursor: 'pointer' }}>
+          <div onClick={() => { isAccordion && toggle(!isOpen) }} style={{ cursor: 'pointer' }}>
             <FlexBox justify='SpaceBetween' align='Center'>
               <Heading
                 componentClass="facets-title" element="h4" componentStyle={isAccordion ? labelStyleIfAccordion : labelStyle}>
@@ -111,8 +114,8 @@ function multiCheckboxFacet({
           : <></>
         }
         <CardBody theme={{ 'body': isAccordion ? baseTheme.cardBody : '' }}>
-          {(open && isAccordion) && <div className={baseTheme.tip}></div>}
-          <div className={!isAccordion ? baseTheme.defaultStyle : open ? baseTheme.isAccordion : baseTheme.isAccordionNot}>
+          {(isOpen && isAccordion) && <div className={baseTheme.tip}></div>}
+          <div className={!isAccordion ? baseTheme.defaultStyle : isOpen ? baseTheme.isAccordion : baseTheme.isAccordionNot}>
             {showSearch && (
               <div className="facet-search" style={{ marginBottom: 12 }}>
                 <TextField
