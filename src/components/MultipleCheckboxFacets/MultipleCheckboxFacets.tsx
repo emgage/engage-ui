@@ -74,7 +74,7 @@ function multiCheckboxFacet({
   const ref:any = React.useRef(null);
 
   const handleClickOutside = (event: any) => {
-    if (ref && ref.current && !ref.current.contains(event.target)) {
+    if (ref && ref.current && !ref.current.contains(event.target) && isAccordion && isOpen) {
       toggle(false);
     }
   };
