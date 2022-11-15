@@ -5,6 +5,9 @@ import Checkbox from '../Checkbox';
 import TextField from '../TextField';
 import { Card, CardBody } from '../Card';
 import BodyText from '../BodyText';
+import * as baseTheme from './MultipleCheckboxFacets.scss'
+import FlexBox from '../FlexBox/FlexBox';
+import Icon from '../Icon/Icon';
 
 function getNewClassName(newClassName: string) {
   if (!Array.isArray(newClassName)) return newClassName;
@@ -44,6 +47,7 @@ interface IProps {
   showSearch?: boolean;
   hideLabel?: boolean;
   labelId?: string;
+  isAccordion?: boolean;
 }
 
 function multiCheckboxFacet({
@@ -58,15 +62,37 @@ function multiCheckboxFacet({
   showSearch = false,
   onSearch,
   searchPlaceholder,
-  labelId
+  labelId,
+  isAccordion
+  
 }: IProps) {
+  
+  const [isToggle, setIsToggle] = React.useState(!isAccordion)
+
+  const labelStyle = {
+    paddingLeft: '1.25rem',
+    paddingTop: '1.25rem'
+  }
+
+  const labelStyleIfAccordion = {
+    paddingLeft: '1.6rem',
+    paddingTop: '.8rem',
+    cursor: 'pointer'
+  }
+
   return (
-    <Card>
+    <Card onClick={()=>{isAccordion && setIsToggle(!isToggle)}} componentClass={isAccordion && baseTheme.card}>
       {label ?
-        <Heading componentClass="facets-title" element="h4" componentStyle={{ paddingLeft: '1.25rem', paddingTop: '1.25rem' }}>{label}</Heading>
+      <FlexBox justify='SpaceBetween' align='Center'>
+        <Heading 
+            componentClass="facets-title" element="h4" componentStyle={isAccordion ? labelStyleIfAccordion : labelStyle}>{label}</Heading>
+       {isAccordion && <Icon componentClass={baseTheme.arrowIcon} source='caretDown'></Icon>}
+        </FlexBox>
         : <></>
       }
-      <CardBody>
+      <CardBody theme={{ 'body': isAccordion ? baseTheme.cardBody : '' }}>
+        {(isToggle && isAccordion) && <div className={baseTheme.tip}></div>}
+        <div className={!isAccordion ? baseTheme.defaultStyle : isToggle ? baseTheme.isAccordion : baseTheme.isAccordionNot}>
       {showSearch && (
         <div className="facet-search"  style={{ marginBottom: 12 }}>
           <TextField
@@ -142,6 +168,7 @@ function multiCheckboxFacet({
           + More
         </Button>
       )}
+      </div>
     </CardBody>
     </Card>
   );
