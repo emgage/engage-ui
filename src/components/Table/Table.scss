@@ -93,6 +93,16 @@ $border-color: color(sky, base);
   th {
     background-color: transparent !important;
   }
+  thead tr th{
+    color:#757575;
+    font-weight: 600;
+    &:nth-child(1){
+        padding-left: 1.6rem ;
+    }
+}
+tbody tr td:nth-child(1){
+    padding-left: 1.6rem ;
+}
 }
 
 .parentChildTable {
