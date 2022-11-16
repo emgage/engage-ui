@@ -7,10 +7,12 @@ $backdrop-horizontal-spacing: spacing(tighter) * 1.5;
 
 .labelWrapper {
   transform: translate3D(0, 2rem, 0);
+  margin-top: -.6rem !important;
  
   &.focused,
   &:not(.empty) {
     transform: translate3D(0,0.3rem,0);
+    margin-top: auto !important;
 
     .labelStyle {
       @include text-style-body-small;
