@@ -114,7 +114,6 @@ function multiCheckboxFacet({
           : <></>
         }
         <CardBody theme={{ 'body': isAccordion ? baseTheme.cardBody : '' }}>
-          {(isOpen && isAccordion) && <div className={baseTheme.tip}></div>}
           <div className={!isAccordion ? baseTheme.defaultStyle : isOpen ? baseTheme.isAccordion : baseTheme.isAccordionNot}>
             {showSearch && (
               <div className="facet-search" style={{ marginBottom: 12 }}>
