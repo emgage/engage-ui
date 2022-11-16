@@ -6,6 +6,7 @@ import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
 import { classNames } from '@shopify/react-utilities/styles';
 import Icon from '../Icon/Icon';
 import VisuallyHidden from '../VisuallyHidden';
+import { Spinner } from '../../../src/components/';
 
 export type ISwitchType = 'normal' | 'trueFalse' | 'yesNo';
 export interface Props {
@@ -23,6 +24,7 @@ export interface Props {
   handleToggle: (value?: boolean) => void;
   switchType?: ISwitchType;
   allowNull?: boolean;
+  loading?: boolean
 }
 
 const getUniqueName = createUniqueIDFactory('SwitchCheckbox');
@@ -43,7 +45,7 @@ const SwitchCheckbox = (props: Props) => {
       trueRadio,
     };
   });
-  const { theme, componentClass, componentStyle, isOpen, allowNull = true, disabled } = props;
+  const { theme, componentClass, componentStyle, isOpen, allowNull = true, disabled, loading = false } = props;
   const { children, handleToggle, switchType = 'normal' } = props;
   let switchTypeClass = theme.switchNormal;
   switch (switchType) {
@@ -71,7 +73,7 @@ const SwitchCheckbox = (props: Props) => {
     disabled && theme.disableSwitch
   );
   return (<div style={componentStyle} className={className}>
-    <div className={theme.outerWrap}>
+    <div style={{background: '#fff'}} className={theme.outerWrap}>
 
       <label htmlFor={names.falseRadio} className={theme.falseRadio}>
         <VisuallyHidden>{switchType === 'trueFalse' ? 'False' : 'No' }</VisuallyHidden>
@@ -86,7 +88,7 @@ const SwitchCheckbox = (props: Props) => {
           onChange={() => handleToggle(false)}
         />
         <span className={theme.switchRadio}>
-          <Icon source="cancel" componentColor="inkLighter" componentClass={theme.Cancel} />
+        {loading? <Spinner componentColor="reverse" componentStyle={{ fill: 'black' }} componentSize="small" accessibilityLabel="Loading" />:<Icon source="cancel" componentColor="inkLighter" componentClass={theme.Cancel} />}
         </span>
       </label>
 
@@ -115,7 +117,7 @@ const SwitchCheckbox = (props: Props) => {
           onChange={() => handleToggle(true)}
         />
         <span className={theme.switchRadio}>
-          <Icon source="check" componentColor="blue" componentClass={theme.Accept} />
+          {loading? <Spinner componentColor="reverse" componentStyle={{ fill: 'black' }} componentSize="small" accessibilityLabel="Loading" />:<Icon source="check" componentColor="blue" componentClass={theme.Accept} />}
         </span>
       </label>
 
