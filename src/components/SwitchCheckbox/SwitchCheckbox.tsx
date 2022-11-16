@@ -73,7 +73,7 @@ const SwitchCheckbox = (props: Props) => {
     disabled && theme.disableSwitch
   );
   return (<div style={componentStyle} className={className}>
-    <div style={{background: '#fff'}} className={theme.outerWrap}>
+    <div className={theme.outerWrap}>
 
       <label htmlFor={names.falseRadio} className={theme.falseRadio}>
         <VisuallyHidden>{switchType === 'trueFalse' ? 'False' : 'No' }</VisuallyHidden>
