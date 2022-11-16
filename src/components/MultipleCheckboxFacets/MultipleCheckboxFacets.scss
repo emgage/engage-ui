@@ -84,10 +84,13 @@
 .cardBody{
     padding: 0 !important;
 }
-.card{
+.button{
     height: 4.8rem;
     cursor: pointer;
     border: .1rem solid #BDBDBD !important;
+    &:hover{
+        background-color: #f5f5f5;
+    }
 }
 .textFieldHeight{
     min-height: 36px !important;

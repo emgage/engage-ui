@@ -93,14 +93,14 @@ function multiCheckboxFacet({
 
   const labelStyleIfAccordion = {
     paddingLeft: '1.6rem',
-    paddingTop: '.8rem',
+    paddingTop: '1rem',
     cursor: 'pointer',
     fontWeight:'normal',
   }
 
   return (
     <div ref={ref}>
-      <Card componentClass={isAccordion && baseTheme.card}>
+      <Card componentClass={isAccordion && baseTheme.button}>
         {label ?
           <div onClick={() => { isAccordion && toggle(!isOpen) }} style={{ cursor: 'pointer' }}>
             <FlexBox justify='SpaceBetween' align='Center'>
