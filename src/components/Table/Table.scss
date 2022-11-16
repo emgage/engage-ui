@@ -96,6 +96,7 @@ $border-color: color(sky, base);
   thead tr th{
     color:#757575;
     font-weight: 600;
+    text-transform: uppercase;
     &:nth-child(1){
         padding-left: 1.6rem ;
     }
