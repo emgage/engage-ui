@@ -158,6 +158,8 @@ import {
   survey,
   userOutline,
   tablet,
+  mail,
+  resendMail
 } from '../../icons';
 
 // export { default as addFile } from './add-file.svg';
@@ -343,6 +345,8 @@ export const BUNDLED_ICONS = {
   export: exportIcon,
   import: importIcon,
   minusIcon: minusMinor,
+  mail,
+  resendMail,
 };
 
 const COLORS_WITH_BACKDROPS = ['teal', 'tealDark', 'greenDark', 'redDark', 'yellowDark', 'ink'];
