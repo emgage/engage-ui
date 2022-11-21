@@ -158,6 +158,8 @@ export declare const BUNDLED_ICONS: {
     export: any;
     import: any;
     minusIcon: any;
+    mail: any;
+    resendMail: any;
 };
 export interface Props {
     source: SVGSource | 'placeholder' | keyof typeof BUNDLED_ICONS;
