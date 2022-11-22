@@ -159,7 +159,8 @@ import {
   userOutline,
   tablet,
   mail,
-  resendMail
+  resendMail,
+  infoIcon
 } from '../../icons';
 
 // export { default as addFile } from './add-file.svg';
@@ -347,6 +348,7 @@ export const BUNDLED_ICONS = {
   minusIcon: minusMinor,
   mail,
   resendMail,
+  infoIcon
 };
 
 const COLORS_WITH_BACKDROPS = ['teal', 'tealDark', 'greenDark', 'redDark', 'yellowDark', 'ink'];
