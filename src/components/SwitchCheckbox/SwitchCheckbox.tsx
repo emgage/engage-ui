@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {useEffect} from 'react';
 import { ThemedComponentClass, themr } from '@friendsofreactjs/react-css-themr';
 import { SWITCHCHECKBOX } from '../ThemeIdentifiers';
 import * as baseTheme from './SwitchCheckbox.scss';
@@ -45,6 +46,7 @@ const SwitchCheckbox = (props: Props) => {
       trueRadio,
     };
   });
+  const [selected, setSlected] = React.useState<any>(null)
   const { theme, componentClass, componentStyle, isOpen, allowNull = true, disabled, loading = false } = props;
   const { children, handleToggle, switchType = 'normal' } = props;
   let switchTypeClass = theme.switchNormal;
@@ -63,13 +65,17 @@ const SwitchCheckbox = (props: Props) => {
       break;
   }
 
+  useEffect(() => {
+    const open = loading ? !isOpen: isOpen
+    setSlected(open)
+  },[loading, isOpen])
   const className = classNames(
     componentClass,
     theme.switchCheckbox,
     switchTypeClass,
-    isOpen === false && theme.falseSelect,
-    isOpen === true && theme.trueSelect,
-    typeof isOpen !== 'boolean' && !isOpen && theme.nullSelect,
+    (selected === false || loading === true) && theme.falseSelect,
+    (selected === true && loading === false) && theme.trueSelect,
+    typeof selected !== 'boolean' && !selected && theme.nullSelect,
     disabled && theme.disableSwitch
   );
   return (<div style={componentStyle} className={className}>
@@ -83,12 +89,12 @@ const SwitchCheckbox = (props: Props) => {
           id={names.falseRadio}
           name={names.fieldName}
           value={names.falseRadio}
-          checked={isOpen === false}
+          checked={selected === false}
           disabled={disabled}
           onChange={() => handleToggle(false)}
         />
-        <span className={theme.switchRadio}>
-        {loading? <Spinner componentColor="reverse" componentStyle={{ fill: 'black' }} componentSize="small" accessibilityLabel="Loading" />:<Icon source="cancel" componentColor="inkLighter" componentClass={theme.Cancel} />}
+        <span style={loading ? {background: 'transparent', boxShadow: 'none'} : {}} className={theme.switchRadio}>
+        {loading? <Spinner componentColor="reverse" componentStyle={{ fill: '#757575' }} componentSize="small" accessibilityLabel="Loading" />:<Icon source="cancel" componentColor="inkLighter" componentClass={theme.Cancel} />}
         </span>
       </label>
 
@@ -99,7 +105,7 @@ const SwitchCheckbox = (props: Props) => {
           id={names.nullRadio}
           name={names.fieldName}
           value={names.nullRadio}
-          checked={typeof isOpen !== 'boolean' && !isOpen}
+          checked={typeof selected !== 'boolean' && !selected}
           disabled={!allowNull || disabled}
           onChange={() => allowNull && handleToggle()} />
         <span className={theme.switchRadio}>Null</span>
@@ -112,12 +118,12 @@ const SwitchCheckbox = (props: Props) => {
           id={names.trueRadio}
           name={names.fieldName}
           value={names.trueRadio}
-          checked={isOpen === true}
+          checked={selected === true}
           disabled={disabled}
           onChange={() => handleToggle(true)}
         />
-        <span className={theme.switchRadio}>
-          {loading? <Spinner componentColor="reverse" componentStyle={{ fill: 'black' }} componentSize="small" accessibilityLabel="Loading" />:<Icon source="check" componentColor="blue" componentClass={theme.Accept} />}
+        <span style={loading ? {background: 'transparent', boxShadow: 'none'} : {}} className={theme.switchRadio}>
+          {loading? <Spinner componentColor="reverse" componentStyle={{ fill: '#757575' }} componentSize="small" accessibilityLabel="Loading" />:<Icon source="check" componentColor="blue" componentClass={theme.Accept} />}
         </span>
       </label>
 
