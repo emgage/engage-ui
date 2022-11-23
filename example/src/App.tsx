@@ -1800,6 +1800,7 @@ class App extends React.Component<{}, State> {
               <br />
               <br /> */}
               {/* ++++++++++++++++++++++++++++++++ */}
+              <Heading>Input Components New Stylings</Heading>
         <div style={{ padding: 10, border: '1px solid gray', marginTop: 20, marginBottom: 20, marginLeft: 20,background:'#fff' }}>
           <Heading>TextFields Components</Heading>
           <TextField
@@ -1818,7 +1819,9 @@ class App extends React.Component<{}, State> {
               helpText='helper Text'
               enableTextCounter
               maxLength={100}
-              minLength={100}              
+              minLength={100} 
+            markIfRequired={true}
+
             />
             <br />
              <Heading>BackdropHidden TextFields Components</Heading>
@@ -1826,7 +1829,9 @@ class App extends React.Component<{}, State> {
               type="text"
               label="Lable"
               value='Value'   
-              backdropHidden         
+              backdropHidden      
+              markIfRequired={true}
+
             />
             <br />
             <div>
@@ -1838,7 +1843,8 @@ class App extends React.Component<{}, State> {
               errors={['Error Message Error Message Error Message']}   
               enableTextCounter
               maxLength={50}
-              minLength={2}         
+              minLength={2}  
+              markIfRequired={true}       
             />
             </div>
             <br />
@@ -1853,12 +1859,32 @@ class App extends React.Component<{}, State> {
             maxSelectedItems={5}
             minSelectedItems={2}
             autoSuggest
-            loading
+            // loading
             renderPickerHeader={renderPickerHeader}
             renderPickerItem={renderPickerItem}
             noOptionsMessage={"No items Available"}
             shouldRenderSuggestions={false}
             markIfRequired={true}
+          />
+          <br />
+          <Heading>Error Picker Components</Heading>
+          <Picker
+            label="Picker Component with render header"
+            chipComponent={Chip}
+            helpText="Helper Text"
+            source={pickerdata}
+            defaultSelectedItems={selectedPickerdata}
+            columns={columnConfigPicker}
+            maxSelectedItems={5}
+            minSelectedItems={2}
+            autoSuggest
+            // loading
+            renderPickerHeader={renderPickerHeader}
+            renderPickerItem={renderPickerItem}
+            noOptionsMessage={"No items Available"}
+            shouldRenderSuggestions={false}
+            markIfRequired={true}
+            errors={['Error Message']}
             
           />
           <br />
@@ -1878,12 +1904,68 @@ class App extends React.Component<{}, State> {
             // placeholder="Some stuff"
             helpText="Help Text"
             // disabled
-            loading
+            // loading
             // labelHidden
             markIfRequired={true}
 
           />
           <br />
+          <Heading>Error Select Component</Heading>
+          <Select
+            componentId="appCity1"
+            name="Select city 2"
+            label="Label"
+            options={[
+              { value: '', label: '' },
+              { value: 'pasadena', label: 'Pasadena' },
+              { value: 'altadena', label: 'Altadena' },
+            ]}
+            value={this.state.appCity1}
+            // value="Value"
+            onChange={this.valueUpdater('appCity1')}
+            // placeholder="Some stuff"
+            helpText="Help Text"
+            // disabled
+            // loading
+            // labelHidden
+            markIfRequired={true}
+            errors={['Error Message']}
+
+          />
+          <br />
+          <Heading>Checkbox Component</Heading>
+          <Checkbox
+            helpText="Help Text"
+            checked={this.state.checkboxState}
+            label="Checkbox Mark"
+            // circleCheckbox={true}
+            onChange={(newValue: boolean) =>
+              console.log('I am here:', newValue)
+            }
+            errors={['Error Message']}
+            markIfRequired={true}
+            // errors={['Error Message Error Message Error Message']}
+          />
+           <Heading>Radio Button Component</Heading>
+          <Checkbox
+            helpText="Help Text"
+            checked={this.state.checkboxState}
+            label="Checkbox Mark"
+            errors={['Error Message']}
+            circleCheckbox={true}
+            onChange={(newValue: boolean) =>
+              console.log('I am here:', newValue)
+            }
+            markIfRequired={true}
+          />
+          <br />
+          <Heading>SwitchCheckbox Component</Heading>
+            <SwitchCheckbox errors={['Error Message']}  markIfRequired={true} isOpen={this.state.isOpen} handleToggle={this.handleSwitchCheckboxToggle} switchType="trueFalse">
+          SwitchCheckbox
+          <br />
+          <span>Helper Text</span>
+        </SwitchCheckbox>
+          {/* +++++++++ */}
 
         </div>
                 
@@ -4376,6 +4458,9 @@ class App extends React.Component<{}, State> {
           showMore={true}
           showSearch={true}
           searchPlaceholder="Search"
+          isAccordion
+          isOpen={this.state.isOpen}
+          toggle={this.handleSwitchCheckboxToggle}
         />
       </div>
     );

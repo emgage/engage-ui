@@ -5,6 +5,9 @@ import Checkbox from '../Checkbox';
 import TextField from '../TextField';
 import { Card, CardBody } from '../Card';
 import BodyText from '../BodyText';
+import * as baseTheme from './MultipleCheckboxFacets.scss'
+import FlexBox from '../FlexBox/FlexBox';
+import Icon from '../Icon/Icon';
 
 function getNewClassName(newClassName: string) {
   if (!Array.isArray(newClassName)) return newClassName;
@@ -44,6 +47,9 @@ interface IProps {
   showSearch?: boolean;
   hideLabel?: boolean;
   labelId?: string;
+  isAccordion?: boolean;
+  isOpen?:boolean;
+  toggle?(isOpen?: boolean): void;
 }
 
 function multiCheckboxFacet({
@@ -58,92 +64,140 @@ function multiCheckboxFacet({
   showSearch = false,
   onSearch,
   searchPlaceholder,
-  labelId
-}: IProps) {
-  return (
-    <Card>
-      {label ?
-        <Heading componentClass="facets-title" element="h4" componentStyle={{ paddingLeft: '1.25rem', paddingTop: '1.25rem' }}>{label}</Heading>
-        : <></>
-      }
-      <CardBody>
-      {showSearch && (
-        <div className="facet-search"  style={{ marginBottom: 12 }}>
-          <TextField
-            type="text"
-            placeholder={searchPlaceholder || 'Search'}
-            onChange={(value) => {
-              if (onSearch) {
-                onSearch(value);
-              }
-            }}
-          />
-        </div>
-      )}
+  labelId,
+  isAccordion,
+  isOpen,
+  toggle = () => { },
 
-      <div className="facet-checkbox-container">
-        {[...options, ...defaultOptions].length < 1 && <div>No matching options</div>}
-        {defaultOptions && defaultOptions.length > 0 && <div style={{ borderBottom: '1px solid #e5e5e5', marginBottom: '7px' }}>
-          {defaultOptions.map((option: any) => {
-            const checked = option.selected;
-            return (
-              <div style={{ display: 'flex', flex: 1, marginBottom: 8 }} key={option.value}>
-                <div style={{ flex: 1 }}>
-                  <Checkbox
-                    checked={checked}
-                    componentId={`defaultOptions_example_facet_${labelId ? labelId : label}${getFilterValueDisplay(
-                      option.value
-                    )}`}
-                    label={getFilterValueDisplay(option.name)}
-                    onChange={() =>
-                      checked ? onRemove(option.value) : onSelect(option.value)
+}: IProps) {
+
+  const ref:any = React.useRef(null);
+
+  const handleClickOutside = (event: any) => {
+    if (ref && ref.current && !ref.current.contains(event.target) && isAccordion && isOpen) {
+      toggle(false);
+    }
+  };
+
+  React.useEffect(() => {
+    document.addEventListener('click', handleClickOutside, true);
+    return () => {
+      document.removeEventListener('click', handleClickOutside, true);
+    };
+  }, []);
+
+  const labelStyle = {
+    paddingLeft: '1.25rem',
+    paddingTop: '1.25rem'
+  }
+
+  const labelStyleIfAccordion = {
+    paddingLeft: '1.6rem',
+    paddingTop: '1rem',
+    cursor: 'pointer',
+    fontWeight:'normal',
+  }
+
+  return (
+    <div ref={ref}>
+      <Card componentClass={isAccordion && baseTheme.button}>
+        {label ?
+          <div onClick={() => { isAccordion && toggle(!isOpen) }} style={{ cursor: 'pointer' }}>
+            <FlexBox justify='SpaceBetween' align='Center'>
+              <Heading
+                componentClass="facets-title" element="h4" componentStyle={isAccordion ? labelStyleIfAccordion : labelStyle}>
+                {label}
+              </Heading>
+              {isAccordion && <Icon componentClass={baseTheme.arrowIcon} source='caretDown'></Icon>}
+            </FlexBox>
+          </div>
+          : <></>
+        }
+        <CardBody theme={{ 'body': isAccordion ? baseTheme.cardBody : '' }}>
+          <div className={!isAccordion ? baseTheme.defaultStyle : isOpen ? baseTheme.isAccordion : baseTheme.isAccordionNot}>
+            {showSearch && (
+              <div className="facet-search" style={{ marginBottom: 12 }}>
+                <TextField
+                theme={{'HeightSlim':baseTheme.textFieldHeight}}
+                  type="text"
+                  // label={searchPlaceholder || 'Search'}
+                  placeholder={searchPlaceholder || 'Search'}
+                  componentHeight={isAccordion ? 'slim' : 'large'}
+                  placeholderAlign='left'
+                  onChange={(value) => {
+                    if (onSearch) {
+                      onSearch(value);
                     }
-                  />
-                </div>
-                {option.count &&
-                  <div style={{ display: 'flex', alignItems: 'center' }} className="facet-option-count">
-                    <BodyText element="span" componentColor="mid">{option.count && option.count.toLocaleString('en')}</BodyText>
-                  </div>
-                }
-              </div>
-            );
-          })}
-        </div>}
-        {options.map((option: any) => {
-          const checked = option.selected;
-          return (
-            <div style={{ display:'flex', flex: 1, marginBottom: 8 }} key={option.value}>
-              <div style={{ flex: 1 }}>
-                <Checkbox
-                  checked={checked}
-                  componentId={`example_facet_${labelId ? labelId : label}${getFilterValueDisplay(
-                    option.value
-                  )}`}
-                  label={getFilterValueDisplay(option.name)}
-                  onChange={() =>
-                    checked ? onRemove(option.value) : onSelect(option.value)
-                  }
+                  }}
                 />
               </div>
-              {option.count &&
-                <div style={{ display: 'flex', alignItems: 'center' }} className="facet-option-count">
-                  <BodyText element="span" componentColor="mid">{option.count && option.count.toLocaleString('en')}</BodyText>
-                </div>
-              }
+            )}
+
+            <div className="facet-checkbox-container">
+              {[...options, ...defaultOptions].length < 1 && <div>No matching options</div>}
+              {defaultOptions && defaultOptions.length > 0 && <div style={{ borderBottom: '1px solid #e5e5e5', marginBottom: '7px' }}>
+                {defaultOptions.map((option: any) => {
+                  const checked = option.selected;
+                  return (
+                    <div style={{ display: 'flex', flex: 1, marginBottom: 8 }} key={option.value}>
+                      <div style={{ flex: 1 }}>
+                        <Checkbox
+                          checked={checked}
+                          componentId={`defaultOptions_example_facet_${labelId ? labelId : label}${getFilterValueDisplay(
+                            option.value
+                          )}`}
+                          label={getFilterValueDisplay(option.name)}
+                          onChange={() =>
+                            checked ? onRemove(option.value) : onSelect(option.value)
+                          }
+                        />
+                      </div>
+                      {option.count &&
+                        <div style={{ display: 'flex', alignItems: 'center' }} className="facet-option-count">
+                          <BodyText element="span" componentColor="mid">{option.count && option.count.toLocaleString('en')}</BodyText>
+                        </div>
+                      }
+                    </div>
+                  );
+                })}
+              </div>}
+              {options.map((option: any) => {
+                const checked = option.selected;
+                return (
+                  <div style={{ display: 'flex', flex: 1, marginBottom: 8 }} key={option.value}>
+                    <div style={{ flex: 1 }}>
+                      <Checkbox
+                        checked={checked}
+                        componentId={`example_facet_${labelId ? labelId : label}${getFilterValueDisplay(
+                          option.value
+                        )}`}
+                        label={getFilterValueDisplay(option.name)}
+                        onChange={() =>
+                          checked ? onRemove(option.value) : onSelect(option.value)
+                        }
+                      />
+                    </div>
+                    {option.count &&
+                      <div style={{ display: 'flex', alignItems: 'center' }} className="facet-option-count">
+                        <BodyText element="span" componentColor="mid">{option.count && option.count.toLocaleString('en')}</BodyText>
+                      </div>
+                    }
+                  </div>
+                );
+              })}
             </div>
-          );
-        })}
-      </div>
-      {showMore && (
-        <Button
-        plain
-        onClick={onMoreClick}
-        >
-          + More
-        </Button>
-      )}
-    </CardBody>
-    </Card>
+            {showMore && (
+              <Button
+                plain
+                onClick={onMoreClick}
+              >
+                + More
+              </Button>
+            )}
+          </div>
+        </CardBody>
+      </Card>
+    </div>
   );
 }
 

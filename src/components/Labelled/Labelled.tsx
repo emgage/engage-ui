@@ -3,7 +3,7 @@ import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 import { classNames } from '@shopify/react-utilities/styles';
 
 import Label, { Props as LabelProps, Action, labelID } from '../Label';
-import Message from '../Message';
+// import Message from '../Message';
 import { LABELLED } from '../ThemeIdentifiers';
 
 import * as baseTheme from './Labelled.scss';
@@ -89,14 +89,14 @@ const labelled = ({
     ? <div className={helpTextClassName} id={helpTextID(componentId)}>{helpText}</div>
     : null;
 
-  const errorId = errorID(componentId);
-  const errorMarkup = errors
-    ? (
-      <Message componentId={errorId} isVisible={true} theme={theme}>
-        {errors instanceof Array ? errors.join(', ') : (typeof errors === 'string' ? errors : 'An error occurred.')}
-      </Message>
-    )
-    : null;
+  // const errorId = errorID(componentId);
+  // const errorMarkup = errors
+  //   ? (
+  //     <Message componentId={errorId} isVisible={true} theme={theme}>
+  //       {errors instanceof Array ? errors.join(', ') : (typeof errors === 'string' ? errors : 'An error occurred.')}
+  //     </Message>
+  //   )
+  //   : null;
 
   const labelMarkup = label
     ? (
@@ -114,7 +114,7 @@ const labelled = ({
         >
           <FlexBox>
             {label}
-           {markIfRequired && <span className={theme.markWrapper}><Icon componentClass={theme.mark}  source="requiredMark">*</Icon></span>}
+           {markIfRequired && <span className={theme.markWrapper}><Icon componentClass={theme.mark}  source="requiredMark"></Icon></span>}
           </FlexBox>
         </Label>
       </div>
@@ -127,7 +127,7 @@ const labelled = ({
 
   return (
     <div className={wrapperClassName} id={htmlID} style={componentStyle}>
-      {errorMarkup}
+      {/* {errorMarkup} */}
       {labelMarkup}
       {children}
       {helpTextMarkup}

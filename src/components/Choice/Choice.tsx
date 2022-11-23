@@ -2,10 +2,11 @@ import * as React from 'react';
 import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 import { classNames } from '@shopify/react-utilities/styles';
 
-import Icon from '../Icon';
 import { CHOICE } from '../ThemeIdentifiers';
 
 import * as baseTheme from './Choice.scss';
+
+import { FlexBox,Icon,Tooltip } from '../../../src/components/';
 
 export type Error = boolean | string;
 
@@ -26,6 +27,8 @@ export interface Props {
   helpText?: React.ReactNode;
   // Theme to be injected via css-themr.
   theme?: any;
+  markIfRequired?:boolean;
+  errors?: any
 }
 
 const choice = ({
@@ -37,6 +40,8 @@ const choice = ({
   labelHidden = false,
   helpText,
   theme,
+  markIfRequired,
+  errors
 }: Props) => {
   const className = classNames(
     theme.choice,
@@ -46,7 +51,13 @@ const choice = ({
   const labelMarkup = (
     <label className={className} htmlFor={componentId}>
       <span className={theme.control}>{children}</span>
-      <span className={theme.label}>{label}</span>
+      <FlexBox>
+        <FlexBox>
+          <span className={theme.label}>{label}</span>
+          {markIfRequired && <span className={theme.markWrapper}><Icon componentClass={theme.mark} source="requiredMark"></Icon></span>}
+        </FlexBox>
+        {errors && <span style={{ marginLeft: '40px' }}> <Tooltip preferredPosition='above' content={errors}> <Icon componentClass={theme.errorIconStyle} source='errorIcon'></Icon></Tooltip></span>}
+      </FlexBox>
     </label>
   );
 

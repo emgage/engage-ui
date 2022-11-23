@@ -244,7 +244,6 @@ class Table extends React.PureComponent<Props, State> {
 
     return classNames(
       theme.table,
-      this.props.circleCheckbox && theme.circleCheckBoxTable,
       bordered && theme.bordered,
       highlight && theme.highlight,
       striped && theme.striped,

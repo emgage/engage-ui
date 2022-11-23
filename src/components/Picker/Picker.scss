@@ -34,6 +34,14 @@ $stacking-order: (
     margin-bottom:.5rem;
   }
 }
+.labelWrapper {
+  margin-top: -.6rem !important;
+
+  &.focused,
+  &:not(.empty) {
+    margin-top: auto !important;
+  }
+}
 
 .container {
   flex: 1 0 auto;

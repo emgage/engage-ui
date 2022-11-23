@@ -354,3 +354,25 @@
         opacity: 0;
     }
 }
+.markWrapper{
+    padding-left: .4rem;
+    min-width: 9px;
+    min-height: 9px;
+    max-width: 9px;
+    max-height: 9px;
+  }
+  .mark{
+    min-width: 9px;
+    min-height: 9px;
+    max-width: 9px;
+    max-height: 9px;
+    fill:#D50000;
+    margin-top: 3.5px;
+  }
+  .errorIconStyle{
+    fill: #D50000;
+    position:relative;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+  }

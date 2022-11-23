@@ -159,7 +159,10 @@ import {
   userOutline,
   tablet,
   requiredMark,
-  errorIcon
+  errorIcon,
+  mail,
+  resendMail,
+  infoIcon
 } from '../../icons';
 
 // export { default as addFile } from './add-file.svg';
@@ -346,7 +349,10 @@ export const BUNDLED_ICONS = {
   import: importIcon,
   minusIcon: minusMinor,
   requiredMark,
-  errorIcon
+  errorIcon,
+  mail,
+  resendMail,
+  infoIcon
 };
 
 const COLORS_WITH_BACKDROPS = ['teal', 'tealDark', 'greenDark', 'redDark', 'yellowDark', 'ink'];

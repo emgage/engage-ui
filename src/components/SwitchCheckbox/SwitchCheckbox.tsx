@@ -4,8 +4,10 @@ import { SWITCHCHECKBOX } from '../ThemeIdentifiers';
 import * as baseTheme from './SwitchCheckbox.scss';
 import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
 import { classNames } from '@shopify/react-utilities/styles';
-import Icon from '../Icon/Icon';
 import VisuallyHidden from '../VisuallyHidden';
+import { Spinner,FlexBox,Icon,Tooltip } from '../../../src/components/';
+
+
 
 export type ISwitchType = 'normal' | 'trueFalse' | 'yesNo';
 export interface Props {
@@ -23,6 +25,9 @@ export interface Props {
   handleToggle: (value?: boolean) => void;
   switchType?: ISwitchType;
   allowNull?: boolean;
+  loading?: boolean
+  markIfRequired?: boolean
+  errors?: [string];
 }
 
 const getUniqueName = createUniqueIDFactory('SwitchCheckbox');
@@ -43,7 +48,7 @@ const SwitchCheckbox = (props: Props) => {
       trueRadio,
     };
   });
-  const { theme, componentClass, componentStyle, isOpen, allowNull = true, disabled } = props;
+  const { theme, componentClass, componentStyle, isOpen, allowNull = true, disabled, loading = false, markIfRequired, errors } = props;
   const { children, handleToggle, switchType = 'normal' } = props;
   let switchTypeClass = theme.switchNormal;
   switch (switchType) {
@@ -86,7 +91,7 @@ const SwitchCheckbox = (props: Props) => {
           onChange={() => handleToggle(false)}
         />
         <span className={theme.switchRadio}>
-          <Icon source="cancel" componentColor="inkLighter" componentClass={theme.Cancel} />
+        {loading? <Spinner componentColor="reverse" componentStyle={{ fill: 'black' }} componentSize="small" accessibilityLabel="Loading" />:<Icon source="cancel" componentColor="inkLighter" componentClass={theme.Cancel} />}
         </span>
       </label>
 
@@ -115,12 +120,18 @@ const SwitchCheckbox = (props: Props) => {
           onChange={() => handleToggle(true)}
         />
         <span className={theme.switchRadio}>
-          <Icon source="check" componentColor="blue" componentClass={theme.Accept} />
+          {loading? <Spinner componentColor="reverse" componentStyle={{ fill: 'black' }} componentSize="small" accessibilityLabel="Loading" />:<Icon source="check" componentColor="blue" componentClass={theme.Accept} />}
         </span>
       </label>
 
     </div>
-    {children && <label className={theme.switchLabel}>{children}</label>}
+    {
+    children && 
+      <FlexBox>
+        <FlexBox> <label className={theme.switchLabel}>{children}</label>{markIfRequired && <span className={theme.markWrapper}><Icon componentClass={theme.mark} source="requiredMark"></Icon></span>}</FlexBox>
+        {errors && <span style={{ marginLeft: '40px' }}><Tooltip preferredPosition='above' content={errors}> <Icon componentClass={theme.errorIconStyle} source='errorIcon'></Icon></Tooltip></span>}
+      </FlexBox>
+      }
   </div>);
 };
 

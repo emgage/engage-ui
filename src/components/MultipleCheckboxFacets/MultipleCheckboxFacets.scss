@@ -43,3 +43,42 @@
     font-size: 0.85em;
     margin-left: 2.4rem;
 }
+
+.isAccordion{
+    position:absolute;
+    background-color: #fff;
+    padding: 1.6rem;
+    border-radius: .3rem;
+    box-shadow: shadow();
+    width: 100%;
+    margin-top: 1.4rem;
+    z-index: 99 
+}
+.isAccordionNot{
+    max-height: 0px;
+    overflow: hidden;
+    background-color: #fff;
+    z-index: 99;
+    position: relative;
+}
+.arrowIcon{
+    margin-right: 1.3rem;
+    margin-top: 1.5rem;
+    cursor: pointer;
+    fill:#616161
+}
+.cardBody{
+    padding: 0 !important;
+}
+.button{
+    height: 4.8rem;
+    cursor: pointer;
+    border: .1rem solid #BDBDBD !important;
+    box-shadow: none;
+}
+.textFieldHeight{
+    min-height: 36px !important;
+    max-height: 36px !important;
+    padding: 0.5rem 0.5rem !important
+}
+

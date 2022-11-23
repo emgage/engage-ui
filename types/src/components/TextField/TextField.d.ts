@@ -10,7 +10,6 @@ export interface State {
     height?: number | null;
     focused?: boolean;
     value?: string | undefined;
-    labelComponentStyle?: any;
 }
 export interface Props {
     autoSuggest?: boolean;
@@ -72,7 +71,11 @@ declare class TextField extends React.PureComponent<Props, State> {
     private input;
     private prefixRef;
     constructor(props: Props);
-    componentDidMount(): void;
+    get labelComponentStyle(): {
+        marginLeft?: undefined;
+    } | {
+        marginLeft: any;
+    };
     UNSAFE_componentWillReceiveProps(nextProps: Props): void;
     render(): JSX.Element;
     private setInput;
