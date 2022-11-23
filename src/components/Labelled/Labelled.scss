@@ -19,19 +19,50 @@ body .readOnly {
 }
 .markWrapper{
   padding-left: .4rem;
-  min-width: 9px;
-  min-height: 9px;
-  max-width: 9px;
-  max-height: 9px;
+  min-width: .9rem;
+  min-height: .9rem;
+  max-width: .9rem;
+  max-height: .9rem;
 }
 .mark{
-  min-width: 9px;
-  min-height: 9px;
-  max-width: 9px;
-  max-height: 9px;
+  min-width: .9rem;
+  min-height: .9rem;
+  max-width: .9rem;
+  max-height: .9rem;
   fill:#D50000;
   margin-top: 3.5px;
 }
+.mainContainer{
+  display: flex;
+  justify-content: flex-end;
+}
+.tooltip {
+  padding: .6rem .8rem;
+  background-color: #263238;
+  border-radius: .3rem;
+  color: #fff;
+  font-size: 1.3rem;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  display: inline-block;
+  max-width: 25rem;
+  position: absolute;
+  z-index: 99;
+  margin-top: -3rem;
+
+}
+
+.tip {
+  width: 1.2rem;
+  height: 1.2rem;
+  background: #263238;
+  transform: rotate(45deg);
+  margin-bottom: .5rem;
+  position: absolute;
+  right: 0;
+  margin-right: 1.4rem;
+  z-index: 55;
+}
+
 
 // .required {}
 

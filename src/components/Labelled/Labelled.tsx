@@ -98,6 +98,11 @@ const labelled = ({
   //   )
   //   : null;
 
+  const errorMarkup = errors ? (<div className={theme.mainContainer}><div className={theme.tooltip}>
+   {errors}
+    <div className={theme.tip}></div>
+  </div></div>):null
+
   const labelMarkup = label
     ? (
       <div className={labelWrapperClassName} onClick={onClick}>
@@ -114,7 +119,7 @@ const labelled = ({
         >
           <FlexBox>
             {label}
-           {markIfRequired && <span className={theme.markWrapper}><Icon componentClass={theme.mark}  source="requiredMark"></Icon></span>}
+            {markIfRequired && <span className={theme.markWrapper}><Icon componentClass={theme.mark} source="requiredMark"></Icon></span>}
           </FlexBox>
         </Label>
       </div>
@@ -127,7 +132,7 @@ const labelled = ({
 
   return (
     <div className={wrapperClassName} id={htmlID} style={componentStyle}>
-      {/* {errorMarkup} */}
+      {errorMarkup}
       {labelMarkup}
       {children}
       {helpTextMarkup}

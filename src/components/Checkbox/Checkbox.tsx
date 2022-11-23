@@ -136,8 +136,9 @@ class Checkbox extends React.PureComponent<Props, State> {
     const iconSource = isIndeterminate ? minusMinor : tickSmallMinor;
 
     const wrapperClassName = classNames(
-      theme.checkbox
+      theme.checkbox,
       // error && theme.error
+      errors && theme.errorsStyle
     );
 
     const inputClassName = classNames(

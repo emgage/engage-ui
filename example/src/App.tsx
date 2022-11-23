@@ -1840,7 +1840,7 @@ class App extends React.Component<{}, State> {
               type="text"
               label="Lable"
               value='Value'   
-              errors={['Error Message Error Message Error Message']}   
+              errors={['TextField Error Message']}   
               enableTextCounter
               maxLength={50}
               minLength={2}  
@@ -1884,7 +1884,7 @@ class App extends React.Component<{}, State> {
             noOptionsMessage={"No items Available"}
             shouldRenderSuggestions={false}
             markIfRequired={true}
-            errors={['Error Message']}
+            errors={['Picker Error Message']}
             
           />
           <br />
@@ -1911,6 +1911,7 @@ class App extends React.Component<{}, State> {
           />
           <br />
           <Heading>Error Select Component</Heading>
+          <div style={{width:'60%'}}>
           <Select
             componentId="appCity1"
             name="Select city 2"
@@ -1929,9 +1930,10 @@ class App extends React.Component<{}, State> {
             // loading
             // labelHidden
             markIfRequired={true}
-            errors={['Error Message']}
+            errors={['Select Error Message']}
 
           />
+          </div>
           <br />
           <Heading>Checkbox Component</Heading>
           <Checkbox
@@ -1942,7 +1944,7 @@ class App extends React.Component<{}, State> {
             onChange={(newValue: boolean) =>
               console.log('I am here:', newValue)
             }
-            errors={['Error Message']}
+            errors={['Checkbox Checked is Required']}
             markIfRequired={true}
             // errors={['Error Message Error Message Error Message']}
           />

@@ -4,7 +4,7 @@ import { classNames } from '@shopify/react-utilities/styles';
 import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
 
 import Labelled, { Action, Error, helpTextID, errorID } from '../Labelled';
-import { Icon,Spinner,Tooltip } from '../../../src/components/';
+import { Icon,Spinner } from '../../../src/components/';
 import { SELECT } from '../ThemeIdentifiers';
 
 import * as baseTheme from './Select.scss';
@@ -169,7 +169,7 @@ const select = ({
           {optionsMarkup}
         </select>
         <div className={theme.customIcon}><Icon source="triangleDown" theme={theme} /></div>
-        {errors && <Tooltip preferredPosition='above' content={errors}><span><Icon componentClass={theme.errorIcon} source='errorIcon' /></span></Tooltip>}
+        {errors && <span><Icon componentClass={theme.errorIcon} source='errorIcon' /></span>}
         {loading && <div className={theme.spinnerWrapper}><Spinner componentSize="small" componentColor="disabled" theme={theme} /></div>}
         <div className={theme.backdrop} />
       </div>

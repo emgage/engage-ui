@@ -44,14 +44,18 @@ $input-horizontal-padding: spacing(tighter) * 1.5;
 
 .error {
   .backdrop {
-    @include control-backdrop(error);
+    // @include control-backdrop(error);
+    background-color: #fff;
+    border-color: #E53935;
   }
 
   // Need to override the higher specificity of the sibling selector
   // so that errors still have red borders.
   // stylelint-disable-next-line selector-max-specificity
   .input:focus ~ .backdrop {
-    @include control-backdrop(focused-error);
+    // @include control-backdrop(focused-error);
+    border-color: #E53935;
+    box-shadow: 0 0 0 1px #E53935;
   }
 }
 
