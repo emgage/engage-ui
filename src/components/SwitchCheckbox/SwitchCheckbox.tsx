@@ -68,10 +68,12 @@ const SwitchCheckbox = (props: Props) => {
     componentClass,
     theme.switchCheckbox,
     switchTypeClass,
-    (isOpen === false || loading === true) && theme.falseSelect,
-    (isOpen === true && loading === false) && theme.trueSelect,
+    isOpen === false && theme.falseSelect,
+    isOpen === true && theme.trueSelect,
     typeof isOpen !== 'boolean' && !isOpen && theme.nullSelect,
-    disabled && theme.disableSwitch
+    disabled && theme.disableSwitch,
+    loading === true && theme.loadingSelect
+
   );
   return (<div style={componentStyle} className={className}>
     <div className={theme.outerWrap}>
@@ -88,7 +90,7 @@ const SwitchCheckbox = (props: Props) => {
           disabled={disabled}
           onChange={() => handleToggle(false)}
         />
-        <span style={loading ? {background: 'transparent', boxShadow: 'none'} : {}} className={theme.switchRadio}>
+        <span className={theme.switchRadio}>
         {loading? <Spinner componentColor="reverse" componentStyle={{ fill: '#757575' }} componentSize="small" accessibilityLabel="Loading" />:<Icon source="cancel" componentColor="inkLighter" componentClass={theme.Cancel} />}
         </span>
       </label>
@@ -117,7 +119,7 @@ const SwitchCheckbox = (props: Props) => {
           disabled={disabled}
           onChange={() => handleToggle(true)}
         />
-        <span style={loading ? {background: 'transparent', boxShadow: 'none'} : {}} className={theme.switchRadio}>
+        <span className={theme.switchRadio}>
           {loading? <Spinner componentColor="reverse" componentStyle={{ fill: '#757575' }} componentSize="small" accessibilityLabel="Loading" />:<Icon source="check" componentColor="blue" componentClass={theme.Accept} />}
         </span>
       </label>
