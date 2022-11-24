@@ -64,6 +64,9 @@ $input-vertical-adjust: 0.1rem;
   .input:focus ~ .backdrop {
     // @include control-backdrop(focused-error);
   }
+  .input{
+    cursor: pointer;
+  }
   .customIcon{
     margin-right: 2.5rem
   }

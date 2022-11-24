@@ -45,6 +45,8 @@ body .readOnly {
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   display: inline-block;
   max-width: 25rem;
+  min-width: 10rem;
+  min-height: 3.2rem;
   position: absolute;
   z-index: 99;
   margin-top: -3rem;
@@ -52,14 +54,14 @@ body .readOnly {
 }
 
 .tip {
-  width: 1.2rem;
-  height: 1.2rem;
+  width: 1rem;
+  height: 1rem;
   background: #263238;
   transform: rotate(45deg);
   margin-bottom: .5rem;
   position: absolute;
   right: 0;
-  margin-right: 1.4rem;
+  margin-right: 1.5rem;
   z-index: 55;
 }
 

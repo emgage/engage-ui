@@ -243,6 +243,7 @@ $spinner-size: 2rem;
   width: 16px;
   height: 16px;
   cursor: pointer;
+  margin-left: 1.2rem;
 }
 
 .spinnerButtons {
@@ -340,6 +341,7 @@ $spinner-size: 2rem;
   height: $spinner-size;
   margin-left: $addon-horizontal-spacing;
   pointer-events: none;
+  margin-right: 1.2rem;
 }
 
 .label {

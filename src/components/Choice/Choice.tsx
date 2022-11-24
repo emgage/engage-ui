@@ -6,7 +6,7 @@ import { CHOICE } from '../ThemeIdentifiers';
 
 import * as baseTheme from './Choice.scss';
 
-import { FlexBox,Icon,Tooltip } from '../../../src/components/';
+import { FlexBox,Icon } from '../../../src/components/';
 
 export type Error = boolean | string;
 
@@ -48,16 +48,28 @@ const choice = ({
     labelHidden && theme.labelHidden,
     disabled && theme.disabled
   );
+const [onHover, SetOnHover] = React.useState(false)
+
   const labelMarkup = (
-    <label className={className} htmlFor={componentId}>
+    <label style={{width:'20%'}} className={className} htmlFor={componentId}>
       <span className={theme.control}>{children}</span>
-      <FlexBox>
+      <div style={{width:'100%',display:'flex',justifyContent:'space-between'}}>
         <FlexBox>
           <span className={theme.label}>{label}</span>
           {markIfRequired && <span className={theme.markWrapper}><Icon componentClass={theme.mark} source="requiredMark"></Icon></span>}
         </FlexBox>
-        {errors && <span style={{ marginLeft: '40px' }}> <Tooltip preferredPosition='above' content={errors}> <Icon componentClass={theme.errorIconStyle} source='errorIcon'></Icon></Tooltip></span>}
-      </FlexBox>
+       {onHover && 
+        <div className={theme.tooltip}>
+          {errors instanceof Array ? errors.join(', ') : (typeof errors === 'string' ? errors : 'An error occurred.')}
+          <div className={theme.tip}></div>
+        </div>
+        }
+        {errors && 
+        <div onMouseEnter={() => SetOnHover(true)} onMouseLeave={() => SetOnHover(false)}>
+           <Icon componentClass={theme.errorIconStyle} source='errorIcon'></Icon>
+           </div>
+        }
+      </div>
     </label>
   );
 

@@ -45,10 +45,12 @@ export interface Props {
   theme?: any;
   onClick?: (event: React.FormEvent<any>) => void;
   readOnly?:boolean;
-  markIfRequired?:boolean
+  markIfRequired?: boolean,
+  onHover?: boolean
 }
 
 const labelled = ({
+  onHover,
   componentId,
   label,
   errors,
@@ -98,10 +100,12 @@ const labelled = ({
   //   )
   //   : null;
 
-  const errorMarkup = errors ? (<div className={theme.mainContainer}><div className={theme.tooltip}>
-   {errors}
-    <div className={theme.tip}></div>
-  </div></div>):null
+  const errorMarkup = errors
+    ? (<div className={theme.mainContainer}><div className={theme.tooltip}>
+     {errors instanceof Array ? errors.join(', ') : (typeof errors === 'string' ? errors : 'An error occurred.')}
+      <div className={theme.tip}></div>
+    </div></div>)
+    : null;
 
   const labelMarkup = label
     ? (
@@ -132,7 +136,7 @@ const labelled = ({
 
   return (
     <div className={wrapperClassName} id={htmlID} style={componentStyle}>
-      {errorMarkup}
+      {onHover && errorMarkup}
       {labelMarkup}
       {children}
       {helpTextMarkup}

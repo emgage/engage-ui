@@ -1845,6 +1845,7 @@ class App extends React.Component<{}, State> {
               maxLength={50}
               minLength={2}  
               markIfRequired={true}       
+              // loading    
             />
             </div>
             <br />
@@ -1944,7 +1945,7 @@ class App extends React.Component<{}, State> {
             onChange={(newValue: boolean) =>
               console.log('I am here:', newValue)
             }
-            errors={['Checkbox Checked is Required']}
+            errors={['Error Message']}
             markIfRequired={true}
             // errors={['Error Message Error Message Error Message']}
           />
@@ -1978,6 +1979,7 @@ class App extends React.Component<{}, State> {
             onKeyUp={(e: any) => {
                 console.log('=====>>>>', this.state.selectedValue);
             }}
+            errors={['Error Message']}
           />
         <BodyText componentSize="small">This is Small Body Text</BodyText>
         <BodyText>This is Default Body Text</BodyText>

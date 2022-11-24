@@ -25,6 +25,7 @@ export interface State {
   height?: number | null;
   focused?: boolean;
   value?: string | undefined;
+  onHover?: boolean
 }
 
 export interface Props {
@@ -141,7 +142,8 @@ class TextField extends React.PureComponent<Props, State> {
     super(props);
     this.state = {
       height: null,
-      value: props.value ? props.value : ''
+      value: props.value ? props.value : '',
+      onHover:false,
     };
     this.prefixRef = React.createRef();
   }
@@ -355,12 +357,13 @@ class TextField extends React.PureComponent<Props, State> {
         readOnly={readOnly}
         labelComponentStyle={!(this.state.focused || isFocused) && (!Boolean(hasValue || propHasValue)) && this.labelComponentStyle || {}}
         markIfRequired={markIfRequired}
+        onHover={this.state.onHover}
       >
         <Connected
           left={connectedLeft}
           right={connectedRight}
         >
-          <div className={className}>
+         <div  onMouseEnter={() => this.setState({ onHover: true })} onMouseLeave={() => this.setState({ onHover: false })} className={className}>
             {spinnerButtonsMarkup}
             <div className={theme.backdrop} />
             {prefixMarkup}

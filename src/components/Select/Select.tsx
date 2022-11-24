@@ -134,6 +134,8 @@ const select = ({
     disabled && theme.labelDisabled
   );
 
+  const [onHover, SetOnHover] = React.useState(false)
+  
   return (
     <Labelled
       componentId={componentId}
@@ -149,8 +151,9 @@ const select = ({
       theme={theme}
       readOnly={readOnly}
       markIfRequired={markIfRequired}
+      onHover={onHover}
     >
-      <div className={className}>
+      <div onMouseEnter={() => SetOnHover(true)} onMouseLeave={() => SetOnHover(false)} className={className}>
         <select
           id={componentId}
           name={name ? name : 'select'}
