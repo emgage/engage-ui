@@ -45,8 +45,9 @@ const SwitchCheckbox = (props: Props) => {
       trueRadio,
     };
   });
-  const { theme, componentClass, componentStyle, isOpen, allowNull = true, disabled, loading = false } = props;
+  const { theme, componentClass, componentStyle, isOpen:propIsOpen, allowNull = true, disabled, loading = false } = props;
   const { children, handleToggle, switchType = 'normal' } = props;
+  const isOpen = loading ? !propIsOpen : propIsOpen;
   let switchTypeClass = theme.switchNormal;
   switch (switchType) {
     case 'normal':
@@ -67,8 +68,8 @@ const SwitchCheckbox = (props: Props) => {
     componentClass,
     theme.switchCheckbox,
     switchTypeClass,
-    isOpen === false && theme.falseSelect,
-    isOpen === true && theme.trueSelect,
+    (isOpen === false || loading === true) && theme.falseSelect,
+    (isOpen === true && loading === false) && theme.trueSelect,
     typeof isOpen !== 'boolean' && !isOpen && theme.nullSelect,
     disabled && theme.disableSwitch
   );
@@ -87,8 +88,8 @@ const SwitchCheckbox = (props: Props) => {
           disabled={disabled}
           onChange={() => handleToggle(false)}
         />
-        <span className={theme.switchRadio}>
-        {loading? <Spinner componentColor="reverse" componentStyle={{ fill: 'black' }} componentSize="small" accessibilityLabel="Loading" />:<Icon source="cancel" componentColor="inkLighter" componentClass={theme.Cancel} />}
+        <span style={loading ? {background: 'transparent', boxShadow: 'none'} : {}} className={theme.switchRadio}>
+        {loading? <Spinner componentColor="reverse" componentStyle={{ fill: '#757575' }} componentSize="small" accessibilityLabel="Loading" />:<Icon source="cancel" componentColor="inkLighter" componentClass={theme.Cancel} />}
         </span>
       </label>
 
@@ -116,8 +117,8 @@ const SwitchCheckbox = (props: Props) => {
           disabled={disabled}
           onChange={() => handleToggle(true)}
         />
-        <span className={theme.switchRadio}>
-          {loading? <Spinner componentColor="reverse" componentStyle={{ fill: 'black' }} componentSize="small" accessibilityLabel="Loading" />:<Icon source="check" componentColor="blue" componentClass={theme.Accept} />}
+        <span style={loading ? {background: 'transparent', boxShadow: 'none'} : {}} className={theme.switchRadio}>
+          {loading? <Spinner componentColor="reverse" componentStyle={{ fill: '#757575' }} componentSize="small" accessibilityLabel="Loading" />:<Icon source="check" componentColor="blue" componentClass={theme.Accept} />}
         </span>
       </label>
 
