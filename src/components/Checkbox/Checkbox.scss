@@ -32,10 +32,24 @@
     @include recolor-icon(color(red, dark));
   }
 }
-.errorsStyle{
-.backdrop {
-  // border: 1px solid red
-}
+.errorsStyle {
+  .backdrop {
+    border: 1px solid #E53935;
+    background: none;
+    box-shadow: none;
+
+  }
+
+  .input {
+    &:focus,
+    &:active {
+      +.backdrop {
+        background: none;
+        box-shadow: 0 0 0 1px #E53935;
+        // box-shadow: none
+      }
+    }
+  }
 }
 
 .input {
@@ -186,5 +200,23 @@
     transition: control-icon-transition();
     pointer-events: none;
   }
+    .errorsStyle {
+      .backdrop {
+        border: 1px solid #E53935;
+        background: none;
+        box-shadow: none;
+      }
+
+      .input {
+        &:focus,
+        &:active {
+          +.backdrop {
+            background: none;
+            box-shadow: 0 0 0 1px #E53935;
+            // box-shadow: none
+          }
+        }
+      }
+    }
   }
 

@@ -74,6 +74,7 @@
         background:color(blue);
         border-color:color(blue);
         width: 4.2rem;
+        min-width: 4.2rem;
         .trueRadio {
             
             input {
@@ -113,6 +114,7 @@
         background:color(blue);
         border-color:color(blue);
         width: 5.4rem;
+        min-width: 5.4rem;
         .trueRadio {
           input {
                 &:checked + .switchRadio {
@@ -175,6 +177,7 @@
         background:color(blue);
         border-color:color(blue);
         width: 4.4rem;
+        min-width: 4.4rem;
         .trueRadio {
             input {
                 &:checked + .switchRadio {
@@ -375,7 +378,6 @@
     width: 16px;
     height: 16px;
     cursor: pointer;
-    margin-right: 1.6rem;
   }
   .tooltip {
     padding: .6rem .8rem;
@@ -385,14 +387,14 @@
     font-size: 1.3rem;
     font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
     display: inline-block;
-    max-width: 25rem;
+    // max-width: 25rem;
     min-width: 10rem;
     min-height: 3.2rem;
     position: absolute;
     z-index: 99;
     right: 0;
     margin-top: -45px;
-    margin-right: 4.5px;
+    margin-right: -1.2rem;
   }
   
   .tip {

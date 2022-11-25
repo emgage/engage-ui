@@ -56,7 +56,7 @@ export interface Props {
   // display the TextCounter.
   enableTextCounter?: boolean;
   // Error to display beneath the label.
-  errors?: [string];
+  errors?: [string] | null;
   // Function return all errors
   getErrors?(errors: any, name?: string): void;
   hasValue?: boolean;
@@ -232,6 +232,9 @@ class TextField extends React.PureComponent<Props, State> {
       componentHeight && theme[variationName('Height', componentHeight)],
       type === 'number' && !disabled && !readOnly && showNumberIcon && theme.numberField
     );
+    const backdropClassName = classNames(
+      theme.backdrop,
+    )
 
     const prefixMarkup = prefix
       ? <div ref={this.prefixRef} onClick={this.handleInputFocus} className={theme.prefix} id={`${componentId}prefix`}>{prefix}</div>
@@ -365,7 +368,7 @@ class TextField extends React.PureComponent<Props, State> {
         >
          <div  onMouseEnter={() => this.setState({ onHover: true })} onMouseLeave={() => this.setState({ onHover: false })} className={className}>
             {spinnerButtonsMarkup}
-            <div className={theme.backdrop} />
+            <div onClick={()=>this.setState({ onHover: false })} className={backdropClassName} />
             {prefixMarkup}
             {inputValue}
             {loading && <div className={theme.spinnerWrapper} id={`${componentId}Spinner`}><Spinner componentSize="small" componentColor="disabled" /></div>}

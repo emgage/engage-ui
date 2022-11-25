@@ -27,7 +27,7 @@ export interface Props {
   allowNull?: boolean;
   loading?: boolean
   markIfRequired?: boolean
-  errors?: [string];
+  errors?: [string] | null;
 }
 
 const getUniqueName = createUniqueIDFactory('SwitchCheckbox');
@@ -77,7 +77,7 @@ const [onHover, SetOnHover] = React.useState(false)
     typeof isOpen !== 'boolean' && !isOpen && theme.nullSelect,
     disabled && theme.disableSwitch
   );
-  return (<div style={{...componentStyle,width:'20%',position:'relative'}} className={className}>
+  return (<div style={{...componentStyle,position:'relative'}} className={className}>
     <div className={theme.outerWrap}>
 
       <label htmlFor={names.falseRadio} className={theme.falseRadio}>
@@ -122,7 +122,7 @@ const [onHover, SetOnHover] = React.useState(false)
           onChange={() => handleToggle(true)}
         />
         <span className={theme.switchRadio}>
-          {loading? <Spinner componentColor="reverse" componentStyle={{ fill: 'black' }} componentSize="small" accessibilityLabel="Loading" />:<Icon source="check" componentColor="blue" componentClass={theme.Accept} />}
+          {loading? <Spinner componentColor="reverse" componentStyle={{ fill: '#757575' }} componentSize="small" accessibilityLabel="Loading" />:<Icon source="check" componentColor="blue" componentClass={theme.Accept} />}
         </span>
       </label>
 
@@ -132,10 +132,10 @@ const [onHover, SetOnHover] = React.useState(false)
       <FlexBox componentStyle={{width:'100%'}}  justify='SpaceBetween'>
         <FlexBox> <label className={theme.switchLabel}>{children}</label>{markIfRequired && <span className={theme.markWrapper}><Icon componentClass={theme.mark} source="requiredMark"></Icon></span>}</FlexBox>
        
-      {onHover && <div className={theme.tooltip}>
-          {errors instanceof Array ? errors.join(', ') : (typeof errors === 'string' ? errors : 'An error occurred.')}
-          <div className={theme.tip}></div>
-        </div>}
+          {onHover && <div className={theme.tooltip}>
+            {errors instanceof Array ? errors.join(', ') : (typeof errors === 'string' ? errors : 'An error occurred.')}
+            <div className={theme.tip}></div>
+          </div>}
         {errors && <div style={{display:'inline-block',height:'16px'}} onMouseEnter={() => SetOnHover(true)} onMouseLeave={() => SetOnHover(false)}> <Icon componentClass={theme.errorIconStyle} source='errorIcon'></Icon></div>}
       </FlexBox>
       }

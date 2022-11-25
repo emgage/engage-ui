@@ -111,7 +111,7 @@ export interface Props {
   noOptionsMessage?: string;
   readOnly?: boolean;
   // Error to display beneath the label.
-  errors?: [string];
+  errors?: [string] | null;
   placeholder?: string;
   shouldFilterSuggestions?: boolean;
   markIfRequired?: boolean

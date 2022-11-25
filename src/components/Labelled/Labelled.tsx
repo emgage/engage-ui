@@ -21,7 +21,7 @@ export interface Props {
   // Label for labelled component
   label: string;
   // To display error message.
-  errors?: [string] | Error;
+  errors?: [string] | Error| null;
   // Adds an action to the label.
   action: LabelProps['action'];
   helpText?: React.ReactNode;
@@ -46,7 +46,8 @@ export interface Props {
   onClick?: (event: React.FormEvent<any>) => void;
   readOnly?:boolean;
   markIfRequired?: boolean,
-  onHover?: boolean
+  onHover?: boolean,
+
 }
 
 const labelled = ({

@@ -104,7 +104,6 @@ $icon-horizontal-adjustment: 0.2rem;
   position:relative;
   width: 16px;
   height: 16px;
-  margin-right: 1.6rem;
   &:hover{
     cursor: pointer;
   }
@@ -125,7 +124,7 @@ $icon-horizontal-adjustment: 0.2rem;
   z-index: 99;
   right: 0;
   margin-top: -45px;
-  margin-right: 4.5px;
+  margin-right: -1.2rem;
 }
 
 .tip {

@@ -51,7 +51,7 @@ const choice = ({
 const [onHover, SetOnHover] = React.useState(false)
 
   const labelMarkup = (
-    <label style={{width:'20%'}} className={className} htmlFor={componentId}>
+    <label style={{width:'100%'}} className={className} htmlFor={componentId}>
       <span className={theme.control}>{children}</span>
       <div style={{width:'100%',display:'flex',justifyContent:'space-between'}}>
         <FlexBox>

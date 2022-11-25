@@ -161,6 +161,7 @@ interface State {
   multipleCheckboxFacetsOptions: any[];
   rangeSliderValue?: any;
   isOpen?: boolean; // for SwitchCheckbox
+  TextFieldValue? : any
 }
 
 const defaultValue = [
@@ -638,6 +639,7 @@ class App extends React.Component<{}, State> {
       ],
       rangeSliderValue:[5, 10],
       // isOpen: false,
+      TextFieldValue:''
     };
 
     this.popovertoggle = this.popovertoggle.bind(this);
@@ -1801,54 +1803,57 @@ class App extends React.Component<{}, State> {
               <br /> */}
               {/* ++++++++++++++++++++++++++++++++ */}
               <Heading>Input Components New Stylings</Heading>
-        <div style={{ padding: 10, border: '1px solid gray', marginTop: 20, marginBottom: 20, marginLeft: 20,background:'#fff' }}>
+        <div style={{ padding: 10, border: '1px solid gray', marginTop: 20, marginBottom: 20, marginLeft: 20, background: '#fff' }}>
           <Heading>TextFields Components</Heading>
           <TextField
             type="text"
             label="Text Field with Prefix"
             prefix="$"
             markIfRequired={true}
-            />
-            <br />
-            <Heading>Disabled TextFields Components</Heading>
-             <TextField
-              type="text"
-              disabled
-              label="Lable"
-              value='Value'
-              helpText='helper Text'
-              enableTextCounter
-              maxLength={100}
-              minLength={100} 
+          />
+          <br />
+          <Heading>Disabled TextFields Components</Heading>
+          <TextField
+            type="text"
+            disabled
+            label="Lable"
+            value='Value'
+            helpText='helper Text'
+            enableTextCounter
+            maxLength={100}
+            minLength={100}
             markIfRequired={true}
 
-            />
-            <br />
-             <Heading>BackdropHidden TextFields Components</Heading>
-             <TextField
-              type="text"
-              label="Lable"
-              value='Value'   
-              backdropHidden      
-              markIfRequired={true}
+          />
+          <br />
+          <Heading>BackdropHidden TextFields Components</Heading>
+          <TextField
+            type="text"
+            label="Lable"
+            value='Value'
+            backdropHidden
+            markIfRequired={true}
 
-            />
-            <br />
-            <div>
+          />
+          <br />
+          <div>
             <Heading>Errors TextFields Components</Heading>
-             <TextField
+            <TextField
               type="text"
               label="Lable"
-              value='Value'   
-              errors={['TextField Error Message']}   
+              value={this.state.TextFieldValue}
+              errors={this.state.TextFieldValue===''?['TextField Error Message']:null}
+              onChange={(value)=>
+                this.setState({ TextFieldValue: value })
+              }
               enableTextCounter
               maxLength={50}
               minLength={2}  
               markIfRequired={true}       
               // loading    
             />
-            </div>
-            <br />
+          </div>
+          <br />
           <Heading>Picker Components</Heading>
           <Picker
             label="Picker Component with render header"
@@ -1885,8 +1890,9 @@ class App extends React.Component<{}, State> {
             noOptionsMessage={"No items Available"}
             shouldRenderSuggestions={false}
             markIfRequired={true}
-            errors={['Picker Error Message']}
-            
+
+            errors={true ? ['Picker Error Message'] : null}
+
           />
           <br />
           <Heading>Select Component</Heading>
@@ -1912,62 +1918,67 @@ class App extends React.Component<{}, State> {
           />
           <br />
           <Heading>Error Select Component</Heading>
-          <div style={{width:'60%'}}>
-          <Select
-            componentId="appCity1"
-            name="Select city 2"
-            label="Label"
-            options={[
-              { value: '', label: '' },
-              { value: 'pasadena', label: 'Pasadena' },
-              { value: 'altadena', label: 'Altadena' },
-            ]}
-            value={this.state.appCity1}
-            // value="Value"
-            onChange={this.valueUpdater('appCity1')}
-            // placeholder="Some stuff"
-            helpText="Help Text"
-            // disabled
-            // loading
-            // labelHidden
-            markIfRequired={true}
-            errors={['Select Error Message']}
+          <div>
+            <Select
+              componentId="appCity1"
+              name="Select city 2"
+              label="Label"
+              options={[
+                { value: '', label: '' },
+                { value: 'pasadena', label: 'Pasadena' },
+                { value: 'altadena', label: 'Altadena' },
+              ]}
+              value={this.state.appCity1}
+              // value="Value"
+              onChange={this.valueUpdater('appCity1')}
+              // placeholder="Some stuff"
+              helpText="Help Text"
+              // disabled
+              // loading
+              // labelHidden
+              markIfRequired={true}
+              errors={this.state.appCity1 ? null : ['Select Error Message']}
 
-          />
+            />
           </div>
           <br />
           <Heading>Checkbox Component</Heading>
-          <Checkbox
-            helpText="Help Text"
-            checked={this.state.checkboxState}
-            label="Checkbox Mark"
-            // circleCheckbox={true}
-            onChange={(newValue: boolean) =>
-              console.log('I am here:', newValue)
-            }
-            errors={['Error Message']}
-            markIfRequired={true}
-            // errors={['Error Message Error Message Error Message']}
-          />
-           <Heading>Radio Button Component</Heading>
-          <Checkbox
-            helpText="Help Text"
-            checked={this.state.checkboxState}
-            label="Checkbox Mark"
-            errors={['Error Message']}
-            circleCheckbox={true}
-            onChange={(newValue: boolean) =>
-              console.log('I am here:', newValue)
-            }
-            markIfRequired={true}
-          />
+          <div style={{ background: '#fff', borderRadius: 10, boxShadow: 'rgba(100, 100, 111, 0.2) 0px 7px 29px 0px', padding: '40px 22px', width: 300 }}>
+            <Checkbox
+              helpText="Help Text"
+              checked={this.state.checkboxState}
+              label="Checkbox Mark"
+              onChange={() =>
+                this.setState({ checkboxState: !this.state.checkboxState })
+              }
+              errors={this.state.checkboxState ? null : ['Error Message']}
+              markIfRequired={true}
+            />
+          </div>
+          <br />
+          <Heading>Radio Button Checkbox Component</Heading>
+          <div style={{ background: '#fff', borderRadius: 10, boxShadow: 'rgba(100, 100, 111, 0.2) 0px 7px 29px 0px', padding: '40px 22px', width: 300 }}>
+            <Checkbox
+              helpText="Help Text"
+              checked={this.state.checkboxState}
+              label="Checkbox Mark"
+              errors={this.state.checkboxState ? null : ['Error Message']}
+              circleCheckbox={true}
+              onChange={() =>
+                this.setState({ checkboxState: !this.state.checkboxState })
+              }
+              markIfRequired={true}
+            />
+          </div>
           <br />
           <Heading>SwitchCheckbox Component</Heading>
-            <SwitchCheckbox errors={['Error Message']}  markIfRequired={true} isOpen={this.state.isOpen} handleToggle={this.handleSwitchCheckboxToggle} switchType="trueFalse">
-          SwitchCheckbox
-          <br />
-          <span>Helper Text</span>
-        </SwitchCheckbox>
+          <div style={{ background: '#fff', borderRadius: 10, boxShadow: 'rgba(100, 100, 111, 0.2) 0px 7px 29px 0px', padding: '40px 22px', width: 300 }}>
+            <SwitchCheckbox errors={this.state.isOpen ? null : ['Checked is required']} markIfRequired={true} isOpen={this.state.isOpen} handleToggle={this.handleSwitchCheckboxToggle} switchType='normal'>
+              SwitchCheckbox
+              <br />
+              <span>Helper Text</span>
+            </SwitchCheckbox>
+          </div>
           {/* +++++++++ */}
 
         </div>
@@ -1979,7 +1990,6 @@ class App extends React.Component<{}, State> {
             onKeyUp={(e: any) => {
                 console.log('=====>>>>', this.state.selectedValue);
             }}
-            errors={['Error Message']}
           />
         <BodyText componentSize="small">This is Small Body Text</BodyText>
         <BodyText>This is Default Body Text</BodyText>

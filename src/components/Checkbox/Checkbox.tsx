@@ -20,7 +20,7 @@ export interface Props {
   disabled?: boolean;
   // Display an error state
   error?: Error;
-  errors?: [string];
+  errors?: [string] | null;
   // Additional text to aide in use
   helpText?: React.ReactNode;
   // Label for the checkbox

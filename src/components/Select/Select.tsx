@@ -43,7 +43,7 @@ export interface Props {
   // Name for form input
   name?: string;
   // Display an error state
-  errors?: [Error];
+  errors?: [Error] | null;
   // Disable input
   disabled?: boolean;
   // Disable editing of the input.
