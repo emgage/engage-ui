@@ -124,7 +124,7 @@ steps:
       git push
       echo "##vso[task.setvariable variable=engageui]$lib_path"
   displayName: 'Tag and Publish'
-  condition: and(not(startsWith(variables['Build.SourceVersionMessage'], 'chore')), or(eq(variables['Build.SourceBranch'], 'refs/heads/master'), eq(variables['Build.SourceBranch'], 'refs/heads/develop'), eq(variables['Build.SourceBranch'], 'refs/heads/demo/develop'), eq(variables['Build.SourceBranch'], 'refs/heads/squd6/cyberdemo/develop'), eq(variables['Build.SourceBranch'], 'refs/heads/releases/r1-release')))
+  condition: and(not(startsWith(variables['Build.SourceVersionMessage'], 'chore')), or(eq(variables['Build.SourceBranch'], 'refs/heads/master'), eq(variables['Build.SourceBranch'], 'refs/heads/develop'), eq(variables['Build.SourceBranch'], 'refs/heads/demo/develop'), eq(variables['Build.SourceBranch'], 'refs/heads/releases/r1-release')))
 
 - task: S3Upload@1
   inputs:
