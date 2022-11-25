@@ -408,3 +408,22 @@
     margin-right: 1.5rem;
     z-index: 55;
   }
+
+
+.loadingSelect{
+    .outerWrap{
+        background-color:color(sky, light)!important;
+        border-color: color(sky, dark)!important;
+        .switchRadio {
+            box-shadow: none;
+            border: none !important;
+            &:after {
+                color: color(text, text) !important;
+            }
+        }
+        .Accept,
+        .Cancel {
+            fill:  color(ink, lightest) !important;
+        }
+    }
+}
