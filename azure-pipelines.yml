@@ -8,6 +8,7 @@ trigger:
 - releases/r1-release
 - demo/develop
 - develop
+- squad6/cyberdemo/develop
 variables:
 - group: 'Platform Release Variables'
 
@@ -34,7 +35,7 @@ steps:
     else
         echo "true"
     fi
-  condition: not(or(eq(variables['Build.SourceBranch'], 'refs/heads/master'), eq(variables['Build.SourceBranch'], 'refs/heads/develop'), eq(variables['Build.SourceBranch'], 'refs/heads/demo/develop'),  eq(variables['Build.SourceBranch'], 'refs/heads/releases/r1-release'), startsWith(variables['Build.SourceBranch'], 'refs/heads/hotfix'), eq(variables['System.PullRequest.TargetBranch'], 'master'), eq(variables['System.PullRequest.TargetBranch'], 'releases/r1-release'), eq(variables['System.PullRequest.TargetBranch'], 'demo/develop')))
+  condition: not(or(eq(variables['Build.SourceBranch'], 'refs/heads/master'), eq(variables['Build.SourceBranch'], 'refs/heads/develop'), eq(variables['Build.SourceBranch'], 'refs/heads/squad6/cyberdemo/develop'), eq(variables['Build.SourceBranch'], 'refs/heads/demo/develop'),  eq(variables['Build.SourceBranch'], 'refs/heads/releases/r1-release'), startsWith(variables['Build.SourceBranch'], 'refs/heads/hotfix'), eq(variables['System.PullRequest.TargetBranch'], 'master'), eq(variables['System.PullRequest.TargetBranch'], 'releases/r1-release'), eq(variables['System.PullRequest.TargetBranch'], 'demo/develop')))
   displayName: "Check if Branch is in Sync"
 
 - task: NodeTool@0
@@ -81,8 +82,9 @@ steps:
       VERSION_2=$(npm view engage-ui@develop version)
       VERSION_3=$(npm view engage-ui@demo version)
       VERSION_4=$(npm view engage-ui@release version)
+      VERSION_5=$(npm view engage-ui@squad6 version)
       
-      NEWEST_VERSION=$(printf '%s\n' "$VERSION_1" "$VERSION_2" "$VERSION_3" "$VERSION_4" | sort -rV | head -n1)
+      NEWEST_VERSION=$(printf '%s\n' "$VERSION_1" "$VERSION_2" "$VERSION_3" "$VERSION_4" "$VERSION_5"| sort -rV | head -n1)
       echo "$NEWEST_VERSION"
       # Sometimes version in package.json doesn't get updated hence making sure it is updated manually.
       sed -i "s/\"version\": \".*\",/\"version\": \"$NEWEST_VERSION\",/g" package.json
@@ -105,6 +107,11 @@ steps:
         npm publish --tag release
         lib_path='engage-ui@release/lib'
         ;;
+      'squad6/cyberdemo/develop')
+        npm version --no-git-tag-version minor
+        npm publish --tag squad6
+        lib_path='engage-ui@squad6/lib'
+        ;;
       *)
         npm version --no-git-tag-version prerelease
         npm publish --tag develop
@@ -117,7 +124,7 @@ steps:
       git push
       echo "##vso[task.setvariable variable=engageui]$lib_path"
   displayName: 'Tag and Publish'
-  condition: and(not(startsWith(variables['Build.SourceVersionMessage'], 'chore')), or(eq(variables['Build.SourceBranch'], 'refs/heads/master'), eq(variables['Build.SourceBranch'], 'refs/heads/develop'), eq(variables['Build.SourceBranch'], 'refs/heads/demo/develop'), eq(variables['Build.SourceBranch'], 'refs/heads/releases/r1-release')))
+  condition: and(not(startsWith(variables['Build.SourceVersionMessage'], 'chore')), or(eq(variables['Build.SourceBranch'], 'refs/heads/master'), eq(variables['Build.SourceBranch'], 'refs/heads/develop'), eq(variables['Build.SourceBranch'], 'refs/heads/demo/develop'), eq(variables['Build.SourceBranch'], 'refs/heads/squd6/cyberdemo/develop'), eq(variables['Build.SourceBranch'], 'refs/heads/releases/r1-release')))
 
 - task: S3Upload@1
   inputs:
@@ -129,5 +136,5 @@ steps:
     targetFolder: 'cdn/$(engageui)'
     filesAcl: 'public-read'
     flattenFolders: true
-  condition: and(not(startsWith(variables['Build.SourceVersionMessage'], 'chore')), or(eq(variables['Build.SourceBranch'], 'refs/heads/master'), eq(variables['Build.SourceBranch'], 'refs/heads/develop'), eq(variables['Build.SourceBranch'], 'refs/heads/demo/develop'), eq(variables['Build.SourceBranch'], 'refs/heads/releases/r1-release')))
+  condition: and(not(startsWith(variables['Build.SourceVersionMessage'], 'chore')), or(eq(variables['Build.SourceBranch'], 'refs/heads/master'), eq(variables['Build.SourceBranch'], 'refs/heads/develop'), eq(variables['Build.SourceBranch'], 'refs/heads/demo/develop'), eq(variables['Build.SourceBranch'], 'refs/heads/squd6/cyberdemo/develop'), eq(variables['Build.SourceBranch'], 'refs/heads/releases/r1-release')))
   displayName: 'Copy to S3'
