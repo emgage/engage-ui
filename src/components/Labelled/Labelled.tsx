@@ -136,7 +136,7 @@ const labelled = ({
   if (helpText) { htmlID += ' ' + helpTextID(componentId); }
 
   return (
-    <div className={wrapperClassName} id={htmlID} style={componentStyle}>
+    <div className={wrapperClassName} id={htmlID} style={{...componentStyle, position:'relative'}}>
       {onHover && errorMarkup}
       {labelMarkup}
       {children}

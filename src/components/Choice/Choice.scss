@@ -64,6 +64,7 @@ $icon-horizontal-adjustment: 0.2rem;
 
 .descriptions {
   padding-left: spacing(tighter) + $control-size;
+  position: relative;
 }
 
 .helpText {
@@ -123,8 +124,8 @@ $icon-horizontal-adjustment: 0.2rem;
   position: absolute;
   z-index: 99;
   right: 0;
-  margin-top: -45px;
   margin-right: -1.2rem;
+  bottom: calc(100% + .8rem)
 }
 
 .tip {

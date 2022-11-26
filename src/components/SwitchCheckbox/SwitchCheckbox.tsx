@@ -132,7 +132,7 @@ const [onHover, SetOnHover] = React.useState(false)
     </div>
     {
     children && 
-      <FlexBox componentStyle={{width:'100%'}}  justify='SpaceBetween'>
+      <FlexBox componentStyle={{width:'100%', position:'relative'}}  justify='SpaceBetween'>
         <FlexBox> <label className={theme.switchLabel}>{children}</label>{markIfRequired && <span className={theme.markWrapper}><Icon componentClass={theme.mark} source="requiredMark"></Icon></span>}</FlexBox>
        
           {onHover && <div className={theme.tooltip}>

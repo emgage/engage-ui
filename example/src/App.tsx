@@ -1842,7 +1842,7 @@ class App extends React.Component<{}, State> {
               type="text"
               label="Lable"
               value={this.state.TextFieldValue}
-              errors={this.state.TextFieldValue===''?['TextField Error Message']:null}
+              errors={this.state.TextFieldValue==='' ? ['Error Message'] : null}
               onChange={(value)=>
                 this.setState({ TextFieldValue: value })
               }
@@ -1891,7 +1891,7 @@ class App extends React.Component<{}, State> {
             shouldRenderSuggestions={false}
             markIfRequired={true}
 
-            errors={true ? ['Picker Error Message'] : null}
+            errors={true ? ['Error Message'] : null}
 
           />
           <br />
@@ -1937,7 +1937,7 @@ class App extends React.Component<{}, State> {
               // loading
               // labelHidden
               markIfRequired={true}
-              errors={this.state.appCity1 ? null : ['Select Error Message']}
+              errors={this.state.appCity1 ? null : ['Error Message']}
 
             />
           </div>
@@ -1973,7 +1973,7 @@ class App extends React.Component<{}, State> {
           <br />
           <Heading>SwitchCheckbox Component</Heading>
           <div style={{ background: '#fff', borderRadius: 10, boxShadow: 'rgba(100, 100, 111, 0.2) 0px 7px 29px 0px', padding: '40px 22px', width: 300 }}>
-            <SwitchCheckbox errors={this.state.isOpen ? null : ['Checked is required']} markIfRequired={true} isOpen={this.state.isOpen} handleToggle={this.handleSwitchCheckboxToggle} switchType='normal'>
+            <SwitchCheckbox errors={this.state.isOpen ? null : ['Error Message']} markIfRequired={true} isOpen={this.state.isOpen} handleToggle={this.handleSwitchCheckboxToggle} switchType='normal'>
               SwitchCheckbox
               <br />
               <span>Helper Text</span>

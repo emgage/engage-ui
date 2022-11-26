@@ -387,14 +387,14 @@
     font-size: 1.3rem;
     font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
     display: inline-block;
-    // max-width: 25rem;
+    max-width: 25rem;
     min-width: 10rem;
     min-height: 3.2rem;
     position: absolute;
     z-index: 99;
     right: 0;
-    margin-top: -45px;
     margin-right: -1.2rem;
+    bottom: calc(100% + 1.2rem)
   }
   
   .tip {

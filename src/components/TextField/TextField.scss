@@ -100,6 +100,7 @@ $spinner-size: 2rem;
     background-color: color(red, lighter);
     border-color: color(red);
     box-shadow: none;
+    cursor: pointer;
   }
 
   // We need this to override the box-shadow in the focus state.
@@ -109,6 +110,11 @@ $spinner-size: 2rem;
     box-shadow:
       inset shadow(transparent),
       0 0 0 1px color(indigo);
+  }
+  .input{
+  position: relative;
+    cursor: pointer;
+    z-index: 2;
   }
 }
 
@@ -372,6 +378,7 @@ body .HeightSlim {
   }
 }
 .labelWrapper {
+   z-index: 1 !important;
   .prefix {
    margin-left:3rem;
    display:block;
