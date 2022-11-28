@@ -160,3 +160,4 @@ export { default as  errorIcon } from './error-icon.svg';
 export { default as mail } from './mail.svg';
 export { default as resendMail } from './resendMail.svg';
 export { default as infoIcon } from './info-icon.svg';
+export { default as shareFromSquare } from './share-from-square.svg';
