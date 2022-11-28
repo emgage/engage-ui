@@ -6,6 +6,7 @@ $spinner-size: 2rem;
   z-index: auto;
   padding: 0 $backdrop-horizontal-spacing;
   color: theme-color(m-grey, 900);
+  margin-top: 0px;
 
   &.focused {
     > .backdrop {

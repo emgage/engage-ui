@@ -25,6 +25,7 @@ $input-vertical-adjust: 0.1rem;
 
 .select {
   position: relative;
+  margin-top: 0px;
 
   // IE 11 fix to remove default dropdown arrow
   select::-ms-expand {
@@ -181,8 +182,10 @@ $input-vertical-adjust: 0.1rem;
 }
 .errorIcon{
   fill: #D50000;
-  width: 16px;
-  height: 16px;
+  width: 1.6rem;
+  height: 1.6rem;
+  min-width: 1.6rem;
+  min-height: 1.6rem;
   cursor: pointer;
   position: absolute;
   z-index: z-index(icon, $stacking-order);

@@ -359,24 +359,26 @@
 }
 .markWrapper{
     padding-left: .4rem;
-    min-width: 9px;
-    min-height: 9px;
-    max-width: 9px;
-    max-height: 9px;
+    min-width: .9rem;
+    min-height: .9rem;
+    max-width: .9rem;
+    max-height: .9rem;
   }
   .mark{
-    min-width: 9px;
-    min-height: 9px;
-    max-width: 9px;
-    max-height: 9px;
+    min-width: .9rem;
+    min-height: .9rem;
+    max-width: .9rem;
+    max-height: .9rem;
     fill:#D50000;
     margin-top: 3.5px;
   }
   .errorIconStyle{
     fill: #D50000;
     position:relative;
-    width: 16px;
-    height: 16px;
+    width: 1.6rem;
+    height: 1.6rem;
+    min-width: 1.6rem;
+    min-height: 1.6rem;
     cursor: pointer;
   }
   .tooltip {
