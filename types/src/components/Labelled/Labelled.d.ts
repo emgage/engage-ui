@@ -7,7 +7,7 @@ export interface Props {
     autoSuggest?: boolean;
     componentId: LabelProps['componentId'];
     label: string;
-    errors?: [string] | Error;
+    errors?: [string] | Error | null;
     action: LabelProps['action'];
     helpText?: React.ReactNode;
     disabled?: boolean;
@@ -22,6 +22,8 @@ export interface Props {
     theme?: any;
     onClick?: (event: React.FormEvent<any>) => void;
     readOnly?: boolean;
+    markIfRequired?: boolean;
+    onHover?: boolean;
 }
 export declare function errorID(id: string): string;
 export declare function helpTextID(id: string): string;

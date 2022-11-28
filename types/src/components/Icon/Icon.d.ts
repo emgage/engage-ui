@@ -158,6 +158,8 @@ export declare const BUNDLED_ICONS: {
     export: any;
     import: any;
     minusIcon: any;
+    requiredMark: any;
+    errorIcon: any;
     mail: any;
     resendMail: any;
     infoIcon: any;

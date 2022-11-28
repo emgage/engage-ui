@@ -10,6 +10,7 @@ export interface State {
     height?: number | null;
     focused?: boolean;
     value?: string | undefined;
+    onHover?: boolean;
 }
 export interface Props {
     autoSuggest?: boolean;
@@ -27,7 +28,7 @@ export interface Props {
     connectedLeft?: React.ReactNode;
     disabled?: boolean;
     enableTextCounter?: boolean;
-    errors?: [string];
+    errors?: [string] | null;
     getErrors?(errors: any, name?: string): void;
     hasValue?: boolean;
     helpText?: React.ReactNode;
@@ -65,6 +66,7 @@ export interface Props {
     value?: string;
     rows?: number;
     componentHeight?: ComponentHeight;
+    markIfRequired?: boolean;
 }
 declare class TextField extends React.PureComponent<Props, State> {
     state: State;
