@@ -11,6 +11,7 @@ $spinner-size: 2rem;
   padding: 0 $backdrop-horizontal-spacing;
   color: color(ink, lightest);
   align-items: center;
+  margin-top: 0px;
   &.numberField {
     padding: 0 calc(2.5rem + 0.1rem)  0 $backdrop-horizontal-spacing;
   }
@@ -246,8 +247,10 @@ $spinner-size: 2rem;
 .errorIcon{
   fill: #D50000;
   position:relative;
-  width: 16px;
-  height: 16px;
+  width: 1.6rem;
+  height: 1.6rem;
+  min-width: 1.6rem;
+  min-height: 1.6rem;
   cursor: pointer;
   margin-left: 1.2rem;
   margin-right: .2rem;
