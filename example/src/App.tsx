@@ -571,7 +571,7 @@ class App extends React.Component<{}, State> {
       appNumberCounter: '',
       appTextCounter: '',
       appTextCounter1: '',
-      checkboxState: true,
+      checkboxState: false,
       columns: [
         { key: 'id', name: 'ID' },
         { key: 'title', name: 'Title' },
@@ -1804,40 +1804,23 @@ class App extends React.Component<{}, State> {
               {/* ++++++++++++++++++++++++++++++++ */}
               <Heading>Input Components New Stylings</Heading>
         <div style={{ padding: 10, border: '1px solid gray', marginTop: 20, marginBottom: 20, marginLeft: 20, background: '#fff' }}>
-          <Heading>TextFields Components</Heading>
+          <Heading>TextField Component </Heading>
           <TextField
             type="text"
             label="Text Field with Prefix"
-            prefix="$"
-            markIfRequired={true}
+            value='Value'
           />
           <br />
-          <Heading>Disabled TextFields Components</Heading>
+           <Heading>TextField Component with required mark </Heading>
           <TextField
             type="text"
-            disabled
-            label="Lable"
+            label="Text Field with Prefix"
             value='Value'
-            helpText='helper Text'
-            enableTextCounter
-            maxLength={100}
-            minLength={100}
             markIfRequired={true}
-
-          />
-          <br />
-          <Heading>BackdropHidden TextFields Components</Heading>
-          <TextField
-            type="text"
-            label="Lable"
-            value='Value'
-            backdropHidden
-            markIfRequired={true}
-
           />
           <br />
           <div>
-            <Heading>Errors TextFields Components</Heading>
+            <Heading>TextField Component with Error and required mark</Heading>
             <TextField
               type="text"
               label="Lable"
@@ -1854,7 +1837,7 @@ class App extends React.Component<{}, State> {
             />
           </div>
           <br />
-          <Heading>Picker Components</Heading>
+          <Heading>Picker Component</Heading>
           <Picker
             label="Picker Component with render header"
             chipComponent={Chip}
@@ -1865,7 +1848,23 @@ class App extends React.Component<{}, State> {
             maxSelectedItems={5}
             minSelectedItems={2}
             autoSuggest
-            // loading
+            renderPickerHeader={renderPickerHeader}
+            renderPickerItem={renderPickerItem}
+            noOptionsMessage={"No items Available"}
+            shouldRenderSuggestions={false}
+          />
+          <br />
+          <Heading>Picker Component with required mark</Heading>
+          <Picker
+            label="Picker Component with render header"
+            chipComponent={Chip}
+            helpText="Helper Text"
+            source={pickerdata}
+            defaultSelectedItems={selectedPickerdata}
+            columns={columnConfigPicker}
+            maxSelectedItems={5}
+            minSelectedItems={2}
+            autoSuggest
             renderPickerHeader={renderPickerHeader}
             renderPickerItem={renderPickerItem}
             noOptionsMessage={"No items Available"}
@@ -1873,7 +1872,7 @@ class App extends React.Component<{}, State> {
             markIfRequired={true}
           />
           <br />
-          <Heading>Error Picker Components</Heading>
+          <Heading>Picker Component with Error and required mark</Heading>
           <Picker
             label="Picker Component with render header"
             chipComponent={Chip}
@@ -1913,11 +1912,31 @@ class App extends React.Component<{}, State> {
             // disabled
             // loading
             // labelHidden
+          />
+          <br />
+          <Heading>Select Component with required mark</Heading>
+          <Select
+            componentId="appCity1"
+            name="Select city 2"
+            label="Label"
+            options={[
+              { value: '', label: '' },
+              { value: 'pasadena', label: 'Pasadena' },
+              { value: 'altadena', label: 'Altadena' },
+            ]}
+            value={this.state.appCity1}
+            // value="Value"
+            onChange={this.valueUpdater('appCity1')}
+            // placeholder="Some stuff"
+            helpText="Help Text"
+            // disabled
+            // loading
+            // labelHidden
             markIfRequired={true}
 
           />
           <br />
-          <Heading>Error Select Component</Heading>
+          <Heading>Select Component with error and required mark</Heading>
           <div>
             <Select
               componentId="appCity1"

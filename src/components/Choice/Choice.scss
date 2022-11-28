@@ -124,7 +124,7 @@ $icon-horizontal-adjustment: 0.2rem;
   position: absolute;
   z-index: 99;
   right: 0;
-  margin-right: -1.2rem;
+  margin-right: -1rem;
   bottom: calc(100% + .8rem)
 }
 
@@ -135,7 +135,8 @@ $icon-horizontal-adjustment: 0.2rem;
   transform: rotate(45deg);
   margin-bottom: .5rem;
   position: absolute;
+  top: calc(100% - .5rem);
   right: 0;
-  margin-right: 1.5rem;
+  margin-right: 1.3rem;
   z-index: 55;
 }
