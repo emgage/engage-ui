@@ -158,6 +158,8 @@ import {
   survey,
   userOutline,
   tablet,
+  requiredMark,
+  errorIcon,
   mail,
   resendMail,
   infoIcon
@@ -346,6 +348,8 @@ export const BUNDLED_ICONS = {
   export: exportIcon,
   import: importIcon,
   minusIcon: minusMinor,
+  requiredMark,
+  errorIcon,
   mail,
   resendMail,
   infoIcon

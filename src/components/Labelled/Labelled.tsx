@@ -3,10 +3,12 @@ import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 import { classNames } from '@shopify/react-utilities/styles';
 
 import Label, { Props as LabelProps, Action, labelID } from '../Label';
-import Message from '../Message';
+// import Message from '../Message';
 import { LABELLED } from '../ThemeIdentifiers';
 
 import * as baseTheme from './Labelled.scss';
+import Icon from '../Icon/Icon'
+import FlexBox from '../FlexBox/FlexBox';
 
 export { Action, labelID };
 
@@ -19,7 +21,7 @@ export interface Props {
   // Label for labelled component
   label: string;
   // To display error message.
-  errors?: [string] | Error;
+  errors?: [string] | Error| null;
   // Adds an action to the label.
   action: LabelProps['action'];
   helpText?: React.ReactNode;
@@ -43,9 +45,13 @@ export interface Props {
   theme?: any;
   onClick?: (event: React.FormEvent<any>) => void;
   readOnly?:boolean;
+  markIfRequired?: boolean,
+  onHover?: boolean,
+
 }
 
 const labelled = ({
+  onHover,
   componentId,
   label,
   errors,
@@ -61,6 +67,7 @@ const labelled = ({
   componentClass,
   labelComponentStyle,
   theme,
+  markIfRequired,
   onClick = (_:any) => { },
   ...rest
 }: Props) => {
@@ -85,13 +92,20 @@ const labelled = ({
     ? <div className={helpTextClassName} id={helpTextID(componentId)}>{helpText}</div>
     : null;
 
-  const errorId = errorID(componentId);
+  // const errorId = errorID(componentId);
+  // const errorMarkup = errors
+  //   ? (
+  //     <Message componentId={errorId} isVisible={true} theme={theme}>
+  //       {errors instanceof Array ? errors.join(', ') : (typeof errors === 'string' ? errors : 'An error occurred.')}
+  //     </Message>
+  //   )
+  //   : null;
+
   const errorMarkup = errors
-    ? (
-      <Message componentId={errorId} isVisible={true} theme={theme}>
-        {errors instanceof Array ? errors.join(', ') : (typeof errors === 'string' ? errors : 'An error occurred.')}
-      </Message>
-    )
+    ? (<div className={theme.mainContainer}><div className={theme.tooltip}>
+     {errors instanceof Array ? errors.join(', ') : (typeof errors === 'string' ? errors : 'An error occurred.')}
+      <div className={theme.tip}></div>
+    </div></div>)
     : null;
 
   const labelMarkup = label
@@ -108,7 +122,10 @@ const labelled = ({
           {...rest}
           theme={theme}
         >
-          {label}
+          <FlexBox>
+            {label}
+            {markIfRequired && <span className={theme.markWrapper}><Icon componentClass={theme.mark} source="requiredMark"></Icon></span>}
+          </FlexBox>
         </Label>
       </div>
     )
@@ -119,8 +136,8 @@ const labelled = ({
   if (helpText) { htmlID += ' ' + helpTextID(componentId); }
 
   return (
-    <div className={wrapperClassName} id={htmlID} style={componentStyle}>
-      {errorMarkup}
+    <div className={wrapperClassName} id={htmlID} style={{...componentStyle, position:'relative'}}>
+      {onHover && errorMarkup}
       {labelMarkup}
       {children}
       {helpTextMarkup}

@@ -74,6 +74,7 @@
         background:color(blue);
         border-color:color(blue);
         width: 4.2rem;
+        min-width: 4.2rem;
         .trueRadio {
             
             input {
@@ -113,6 +114,7 @@
         background:color(blue);
         border-color:color(blue);
         width: 5.4rem;
+        min-width: 5.4rem;
         .trueRadio {
           input {
                 &:checked + .switchRadio {
@@ -175,6 +177,7 @@
         background:color(blue);
         border-color:color(blue);
         width: 4.4rem;
+        min-width: 4.4rem;
         .trueRadio {
             input {
                 &:checked + .switchRadio {
@@ -354,6 +357,58 @@
         opacity: 0;
     }
 }
+.markWrapper{
+    padding-left: .4rem;
+    min-width: 9px;
+    min-height: 9px;
+    max-width: 9px;
+    max-height: 9px;
+  }
+  .mark{
+    min-width: 9px;
+    min-height: 9px;
+    max-width: 9px;
+    max-height: 9px;
+    fill:#D50000;
+    margin-top: 3.5px;
+  }
+  .errorIconStyle{
+    fill: #D50000;
+    position:relative;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+  }
+  .tooltip {
+    padding: .6rem .8rem;
+    background-color: #263238;
+    border-radius: .3rem;
+    color: #fff;
+    font-size: 1.3rem;
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    display: inline-block;
+    max-width: 25rem;
+    min-width: 10rem;
+    min-height: 3.2rem;
+    position: absolute;
+    z-index: 99;
+    right: 0;
+    margin-right: -1rem;
+    bottom: calc(100% + 1.2rem)
+  }
+  
+  .tip {
+    width: 1rem;
+    height: 1rem;
+    background: #263238;
+    transform: rotate(45deg);
+    margin-bottom: .5rem;
+    position: absolute;
+    right: 0;
+    top: calc(100% - .5rem);
+    margin-right: 1.3rem;
+    z-index: 55;
+  }
 
 
 .loadingSelect{

@@ -155,6 +155,8 @@ export { default as replaceFile } from './replace-file.svg';
 export { default as survey } from './survey.svg';
 export { default as userOutline } from './user-outline.svg';
 export { default as tablet } from './tablet.svg';
+export { default as  requiredMark } from './required-mark.svg';
+export { default as  errorIcon } from './error-icon.svg';
 export { default as mail } from './mail.svg';
 export { default as resendMail } from './resendMail.svg';
 export { default as infoIcon } from './info-icon.svg';

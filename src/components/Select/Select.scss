@@ -52,14 +52,23 @@ $input-vertical-adjust: 0.1rem;
 
 .error {
   .backdrop {
-    @include control-backdrop(error);
+    // @include control-backdrop(error);
+    background-color: #fff;
+    border-color: #E53935;
+   
   }
 
   // Need to override the higher specificity of the sibling selector
   // so that errors still have red borders.
   // stylelint-disable-next-line selector-max-specificity
   .input:focus ~ .backdrop {
-    @include control-backdrop(focused-error);
+    // @include control-backdrop(focused-error);
+  }
+  .input{
+    cursor: pointer;
+  }
+  .customIcon{
+    margin-right: 2.5rem
   }
 }
 
@@ -169,4 +178,16 @@ $input-vertical-adjust: 0.1rem;
   .input {
       padding-left:0px;
   }
+}
+.errorIcon{
+  fill: #D50000;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  position: absolute;
+  z-index: z-index(icon, $stacking-order);
+  top: 50%;
+  right: $input-horizontal-padding;
+  transform: translateY(-50%);
+  margin-right: .2rem;
 }

@@ -161,6 +161,7 @@ interface State {
   multipleCheckboxFacetsOptions: any[];
   rangeSliderValue?: any;
   isOpen?: boolean; // for SwitchCheckbox
+  TextFieldValue? : any
 }
 
 const defaultValue = [
@@ -570,7 +571,7 @@ class App extends React.Component<{}, State> {
       appNumberCounter: '',
       appTextCounter: '',
       appTextCounter1: '',
-      checkboxState: true,
+      checkboxState: false,
       columns: [
         { key: 'id', name: 'ID' },
         { key: 'title', name: 'Title' },
@@ -638,6 +639,7 @@ class App extends React.Component<{}, State> {
       ],
       rangeSliderValue:[5, 10],
       // isOpen: false,
+      TextFieldValue:''
     };
 
     this.popovertoggle = this.popovertoggle.bind(this);
@@ -1799,6 +1801,7 @@ class App extends React.Component<{}, State> {
               </Chip>
               <br />
               <br /> */}
+
         <TextField
             type="text"
             placeholder="Try and write here..."
