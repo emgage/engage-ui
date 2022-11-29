@@ -121,6 +121,7 @@ export declare const BUNDLED_ICONS: {
     gear: any;
     internal: any;
     share: any;
+    shareFromSquare: any;
     starHalf: any;
     starOutline: any;
     star: any;
