@@ -440,6 +440,11 @@ class TextField extends React.PureComponent<Props, State> {
       }
       onChange(newValue, event);
       this.setState({ value: newValue });
+      const { onBlur } = this.props;
+      if (onBlur == null) { return; }
+      if (this.props.errors) {
+        onBlur(event);
+      }
     }
   }
 
