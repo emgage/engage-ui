@@ -3702,6 +3702,7 @@ class App extends React.Component<{}, State> {
                 { minLength: 2, message: 'AtList 2 character needed' },
                 { required: true, message: 'App Uri is required' },
               ]}
+              capital={true}
             />
             <div style={{ width: '100px' }}>
               <ValidatedTextField
