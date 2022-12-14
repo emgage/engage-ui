@@ -402,10 +402,12 @@ class TextField extends React.PureComponent<Props, State> {
   @autobind
   private onChange(event: React.FormEvent<HTMLInputElement>) {
     const { onChange, type, min = -Infinity, max= Infinity } = this.props;
-    const { onBlur } = this.props;
-    if (onBlur == null) { return; }
     if (this.props.errors) {
-      onBlur(event);
+      const { onBlur } = this.props;
+      if (onBlur == null) { return; }
+      if (this.props.errors) {
+        onBlur(event);
+      }
     }
     if (onChange == null) { this.setState({ value: event.currentTarget.value }); return; }
     const maxLength = this.props.maxLength ? this.props.maxLength : Number.POSITIVE_INFINITY;
