@@ -3704,7 +3704,7 @@ class App extends React.Component<{}, State> {
               ]}
               capital={true}
             />
-            <div style={{ width: '100px' }}>
+            <div>
               <ValidatedTextField
                 getErrors={this.getErrors}
                 componentId="AppName"
@@ -3916,9 +3916,19 @@ class App extends React.Component<{}, State> {
             <div style={{ backgroundColor: 'lime' }}>Demo 3</div>
           </FlexBox>
 
+          <br />
+          <br />
           <Heading>Chip</Heading>
-          <div>
-            <Chip>Basic Chip</Chip>
+          <br />
+          <div style={{display:'flex',flexWrap:'wrap',columnGap:'10px',rowGap:'10px'}}>
+          <Chip
+              outlined={true}
+            >Outlined Basic Chip</Chip>
+             <Chip
+             label='Outlined Removable Chip '
+              outlined={true}
+              removable={true}
+            ></Chip>
             <Chip
               image={{
                 url: 'example/src/images/netguru-cartoon-characters3.png',
@@ -3926,18 +3936,38 @@ class App extends React.Component<{}, State> {
               }}
               removable={true}
               onRemove={this.chipRemove}
+              label="Image label outlined chip"
+              outlined={true}
+            ><Button plain componentSize="slim" icon="filter"/></Chip>
+            <Chip
+            outlined={true}
+             label="Icon label outlined chip"  image={{
+                url: IconList.bell,
+                alt: 'Your mom',
+              }} removable={true}
+              onRemove={this.chipRemove}></Chip>
+
+            <Chip>Basic Chip</Chip>
+            <Chip
+              label='Image Chip'
+              image={{
+                url: 'example/src/images/netguru-cartoon-characters3.png',
+                alt: 'Your mom',
+              }}
+              removable={true}
+              onRemove={this.chipRemove}
             >
-              Image Chip
             </Chip>
             <Chip onClick={this.chipClick} clickable={true}>
               Clickable Chip
             </Chip>
-            <Chip onRemove={this.chipRemove} removable={true}>
-              Removable Chip
+            <Chip label='Removable Chip' onRemove={this.chipRemove} removable={true}>
             </Chip>
-            <Chip transparent>Transparent Chip</Chip>
+            <Chip
+            label='Transparent Chip'
+            transparent></Chip>
 
-              <Chip><Button plain componentSize="slim" icon="filter"/><BodyText element="span" componentSize="large">only children</BodyText></Chip>
+              <Chip label='only children'><Button plain componentSize="slim" icon="filter"/></Chip>
               <Chip label="Only label"></Chip>
               <Chip label="Label with remove" onRemove={this.chipRemove} removable={true}></Chip>
               <Chip
@@ -3965,8 +3995,10 @@ class App extends React.Component<{}, State> {
                 alt: 'Your mom',
               }} removable={true}
               onRemove={this.chipRemove}></Chip>
-              <Chip removable={true}
-              onRemove={this.chipRemove}><Button plain componentSize="slim" icon="filter"/><BodyText element="span" componentSize="large">children with remove</BodyText></Chip>
+              <Chip
+              label='children with remove'
+              removable={true}
+              onRemove={this.chipRemove}><Button plain componentSize="slim" icon="filter"/></Chip>
               <Chip label="All Subscribe" image={{
                 url: 'example/src/images/netguru-cartoon-characters3.png',
                 alt: 'Your mom',
@@ -3976,6 +4008,8 @@ class App extends React.Component<{}, State> {
           </div>
 
           <div>
+          <br />
+          <br />
             <h4>Single source video</h4>
             <Video
               poster={posterUrl}
