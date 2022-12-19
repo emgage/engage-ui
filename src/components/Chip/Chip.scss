@@ -29,6 +29,7 @@ $vertical-padding: ($min-height - line-height(body) - 0.2rem) / 2;
         border: 1px solid transparent;
         display: flex;
         align-items: center;
+        cursor: pointer ;
         .ChipChild {
             margin-top: 1.5px;
             padding: 0px $horizontal-padding;
@@ -201,6 +202,7 @@ body .Remove {
       vertical-align: middle;
       font-size: 14px;
       font-family: Open Sans, sans-serif;
+      color: #424242;
      &:hover{
         fill:#1976D2; 
      }
