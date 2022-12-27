@@ -52,7 +52,7 @@ const [onHover, SetOnHover] = React.useState(false)
 
   const { theme, componentClass, componentStyle, isOpen:propIsOpen, allowNull = true, disabled, loading = false, markIfRequired, errors } = props;
   const { children, handleToggle, switchType = 'normal' } = props;
-  const [isOpen, SetIsToggle] = React.useState(loading ? !propIsOpen : propIsOpen);
+  const isOpen = loading ? !propIsOpen : propIsOpen;
   let switchTypeClass = theme.switchNormal;
   switch (switchType) {
     case 'normal':
@@ -80,11 +80,7 @@ const [onHover, SetOnHover] = React.useState(false)
     loading === true && theme.loadingSelect
 
   );
-  const isToggle = () => {
-    if (disabled) return;
-    SetIsToggle(!isOpen)
-  }
-  return (<div onClick={isToggle} style={{...componentStyle,position:'relative'}} className={className}>
+  return (<div style={{...componentStyle,position:'relative'}} className={className}>
     <div className={theme.outerWrap}>
 
       <label htmlFor={names.falseRadio} className={theme.falseRadio}>
@@ -104,7 +100,7 @@ const [onHover, SetOnHover] = React.useState(false)
         </span>
       </label>
 
-      <label htmlFor={names.nullRadio} className={theme.nullRadio}>
+      {allowNull !== false && <label htmlFor={names.nullRadio} className={theme.nullRadio}>
       <VisuallyHidden>Null</VisuallyHidden>
         <input
           type="radio"
@@ -115,9 +111,7 @@ const [onHover, SetOnHover] = React.useState(false)
           disabled={!allowNull || disabled}
           onChange={() => allowNull && handleToggle()} />
         <span className={theme.switchRadio}>Null</span>
-      </label>
-      {switchType === 'normal' &&
-        <div className={theme.nullSwitchBox} />}
+      </label>}
 
       <label htmlFor={names.trueRadio} className={theme.trueRadio}>
       <VisuallyHidden>{switchType === 'trueFalse' ? 'True' : 'Yes' }</VisuallyHidden>
