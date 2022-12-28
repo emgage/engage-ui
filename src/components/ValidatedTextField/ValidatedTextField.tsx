@@ -14,7 +14,7 @@ export interface Props extends TextFieldProps {
   // Form in which textfield bind.
   form?: any;
   // Action to trigger validation rules.
-  validateTrigger?: ['onBlur' | 'onChange'];
+  validateTrigger?: ['onBlur' | 'onChange' ] | ['onBlur' , 'onChange' ];
   // Validation rules for textfield. Validation Rule : { required: boolean; message: string; } or { type: string; message: string; }.
   validateRules?: ValidationRule[];
 }

@@ -402,11 +402,11 @@ class TextField extends React.PureComponent<Props, State> {
   @autobind
   private onChange(event: React.FormEvent<HTMLInputElement>) {
     const { onChange, type, min = -Infinity, max= Infinity } = this.props;
-    if (this.props.getErrors) {
-      const { onBlur } = this.props;
-      if (onBlur == null) { return; }
-        onBlur(event);
-    }
+    // if (this.props.getErrors) {
+    //   const { onBlur } = this.props;
+    //   if (onBlur == null) { return; }
+    //     onBlur(event);
+    // }
     if (onChange == null) { this.setState({ value: event.currentTarget.value }); return; }
     const maxLength = this.props.maxLength ? this.props.maxLength : Number.POSITIVE_INFINITY;
     const alphaRegex = RegExp(/^[A-Za-z0-9\b]+$/, 'g');
