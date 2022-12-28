@@ -100,7 +100,7 @@ const [onHover, SetOnHover] = React.useState(false)
         </span>
       </label>
 
-      <label htmlFor={names.nullRadio} className={theme.nullRadio}>
+      {allowNull !== false && <label htmlFor={names.nullRadio} className={theme.nullRadio}>
       <VisuallyHidden>Null</VisuallyHidden>
         <input
           type="radio"
@@ -111,7 +111,7 @@ const [onHover, SetOnHover] = React.useState(false)
           disabled={!allowNull || disabled}
           onChange={() => allowNull && handleToggle()} />
         <span className={theme.switchRadio}>Null</span>
-      </label>
+      </label>}
 
       <label htmlFor={names.trueRadio} className={theme.trueRadio}>
       <VisuallyHidden>{switchType === 'trueFalse' ? 'True' : 'Yes' }</VisuallyHidden>

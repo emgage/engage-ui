@@ -40,6 +40,7 @@
             z-index: 9;
             margin:0px;
             position: relative;
+            cursor: pointer;
         }
         .trueRadio { 
             input:checked + .switchRadio {
@@ -76,7 +77,7 @@
         width: 4.2rem;
         min-width: 4.2rem;
         .trueRadio {
-            
+            width: 50%;
             input {
                 &:checked + .switchRadio {
                     left:auto;
@@ -97,7 +98,7 @@
             }
         }
         .falseRadio {
-            
+            width: 50%;
             input {
                 &:checked + .switchRadio {
                     left:.1rem;
