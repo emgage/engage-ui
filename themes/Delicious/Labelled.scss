@@ -21,6 +21,9 @@ $stacking-order: (
   }
 
 }
+.fullWidth{
+  max-width: calc(100% - 2rem);
+}
 
 .helpText {
   @include text-style-body-small;
