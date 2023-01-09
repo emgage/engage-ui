@@ -24,6 +24,7 @@ export interface Props {
     readOnly?: boolean;
     markIfRequired?: boolean;
     onHover?: boolean;
+    fullWidth?: boolean;
 }
 export declare function errorID(id: string): string;
 export declare function helpTextID(id: string): string;

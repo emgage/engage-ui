@@ -67,6 +67,7 @@ export interface Props {
     rows?: number;
     componentHeight?: ComponentHeight;
     markIfRequired?: boolean;
+    fullWidth?: boolean;
 }
 declare class TextField extends React.PureComponent<Props, State> {
     state: State;
