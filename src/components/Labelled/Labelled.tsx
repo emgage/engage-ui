@@ -47,6 +47,7 @@ export interface Props {
   readOnly?:boolean;
   markIfRequired?: boolean,
   onHover?: boolean,
+  fullWidth?: boolean
 
 }
 
@@ -68,6 +69,7 @@ const labelled = ({
   labelComponentStyle,
   theme,
   markIfRequired,
+  fullWidth,
   onClick = (_:any) => { },
   ...rest
 }: Props) => {
@@ -80,7 +82,8 @@ const labelled = ({
     focused && theme.focused,
     (errors && errors) && theme.invalid,
     !hasValue && theme.empty,
-    readOnly && theme.readOnly
+    readOnly && theme.readOnly,
+    fullWidth && theme.fullWidth
   );
 
   const helpTextClassName = classNames(

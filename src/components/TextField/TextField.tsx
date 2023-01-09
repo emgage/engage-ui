@@ -127,7 +127,8 @@ export interface Props {
   // number of rows for textarea
   rows?: number;
   componentHeight?: ComponentHeight;
-  markIfRequired?: boolean
+  markIfRequired?: boolean;
+  fullWidth?: boolean
 }
 
 const getUniqueID = createUniqueIDFactory('TextField');
@@ -211,6 +212,7 @@ class TextField extends React.PureComponent<Props, State> {
       value = '',
       componentHeight = 'large',
       markIfRequired,
+      fullWidth,
       ...rest
     } = this.props;
 
@@ -361,6 +363,7 @@ class TextField extends React.PureComponent<Props, State> {
         labelComponentStyle={!(this.state.focused || isFocused) && (!Boolean(hasValue || propHasValue)) && this.labelComponentStyle || {}}
         markIfRequired={markIfRequired}
         onHover={this.state.onHover}
+        fullWidth={fullWidth}
       >
         <Connected
           left={connectedLeft}
