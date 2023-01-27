@@ -81,8 +81,10 @@ steps:
       VERSION_2=$(npm view engage-ui@develop version)
       VERSION_3=$(npm view engage-ui@demo version)
       VERSION_4=$(npm view engage-ui@release version)
+      VERSION_5=$(npm view engage-ui@squad6 version)
       
-      NEWEST_VERSION=$(printf '%s\n' "$VERSION_1" "$VERSION_2" "$VERSION_3" "$VERSION_4" | sort -rV | head -n1)
+      NEWEST_VERSION=$(printf '%s\n' "$VERSION_1" "$VERSION_2" "$VERSION_3" "$VERSION_4" "$VERSION_5"| sort -rV | head -n1)
+
       echo "$NEWEST_VERSION"
       # Sometimes version in package.json doesn't get updated hence making sure it is updated manually.
       sed -i "s/\"version\": \".*\",/\"version\": \"$NEWEST_VERSION\",/g" package.json
