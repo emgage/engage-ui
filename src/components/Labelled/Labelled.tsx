@@ -43,6 +43,7 @@ export interface Props {
   theme?: any;
   onClick?: (event: React.FormEvent<any>) => void;
   readOnly?:boolean;
+  fullWidth?: boolean
 }
 
 const labelled = ({
@@ -61,6 +62,7 @@ const labelled = ({
   componentClass,
   labelComponentStyle,
   theme,
+  fullWidth,
   onClick = (_:any) => { },
   ...rest
 }: Props) => {
@@ -73,7 +75,8 @@ const labelled = ({
     focused && theme.focused,
     (errors && errors) && theme.invalid,
     !hasValue && theme.empty,
-    readOnly && theme.readOnly
+    readOnly && theme.readOnly,
+    fullWidth && theme.fullWidth
   );
 
   const helpTextClassName = classNames(
