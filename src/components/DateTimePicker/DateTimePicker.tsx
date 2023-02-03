@@ -50,6 +50,7 @@ export interface Props {
   icon?: any;
   // Enable automatic completion by the browser.
   autoComplete?: boolean;
+  iconColor?: string
 }
 
 export interface State {
@@ -127,7 +128,8 @@ class DateTimePicker extends React.PureComponent<Props, State>{
       componentId,
       viewMode,
       isValidDate,
-      icon = 'event'
+      icon = 'event',
+      iconColor,
     } = this.props;
     const { dateTime, open } = this.state;
 
@@ -146,7 +148,7 @@ class DateTimePicker extends React.PureComponent<Props, State>{
                 value={dateTimeValue}
                 onFocus={this.textFieldFocusHandler}
                 onChange={(dateTimeString: string) => { this.onTextInputChange(dateTimeString); }}
-                suffix={<Icon source={icon} />}
+                suffix={<Icon componentStyle={{fill: iconColor || ''}} source={icon} />}
                 placeholder={placeholder}
                 componentStyle={componentStyle}
                 componentId={componentId}
