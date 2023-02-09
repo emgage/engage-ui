@@ -14,6 +14,8 @@ export { Action, labelID };
 
 export type Error = string;
 
+export type Type = 'text' | 'email' | 'number' | 'password' | 'search' | 'tel' | 'url' | 'date' | 'datetime-local' | 'month' | 'time' | 'week';
+
 export interface Props {
   autoSuggest?: boolean;
   // ID for the input.
@@ -47,7 +49,8 @@ export interface Props {
   readOnly?:boolean;
   markIfRequired?: boolean,
   onHover?: boolean,
-  fullWidth?: boolean
+  fullWidth?: boolean,
+  type?: Type
 
 }
 
@@ -70,6 +73,7 @@ const labelled = ({
   theme,
   markIfRequired,
   fullWidth,
+  type,
   onClick = (_:any) => { },
   ...rest
 }: Props) => {
@@ -91,6 +95,11 @@ const labelled = ({
     disabled && theme.disabled
   );
 
+  const tooltipClassName = classNames(
+    theme.tooltip,
+    type === 'number' && theme.tooltipPosition
+  );
+
   const helpTextMarkup = helpText
     ? <div className={helpTextClassName} id={helpTextID(componentId)}>{helpText}</div>
     : null;
@@ -105,7 +114,7 @@ const labelled = ({
   //   : null;
 
   const errorMarkup = errors
-    ? (<div className={theme.mainContainer}><div className={theme.tooltip}>
+    ? (<div className={theme.mainContainer}><div className={tooltipClassName}>
      {errors instanceof Array ? errors.join(', ') : (typeof errors === 'string' ? errors : 'An error occurred.')}
       <div className={theme.tip}></div>
     </div></div>)
