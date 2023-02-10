@@ -3,6 +3,7 @@ import { ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 import { Props as LabelProps, Action, labelID } from '../Label';
 export { Action, labelID };
 export declare type Error = string;
+export declare type Type = 'text' | 'email' | 'number' | 'password' | 'search' | 'tel' | 'url' | 'date' | 'datetime-local' | 'month' | 'time' | 'week';
 export interface Props {
     autoSuggest?: boolean;
     componentId: LabelProps['componentId'];
@@ -25,6 +26,7 @@ export interface Props {
     markIfRequired?: boolean;
     onHover?: boolean;
     fullWidth?: boolean;
+    type?: Type;
 }
 export declare function errorID(id: string): string;
 export declare function helpTextID(id: string): string;
