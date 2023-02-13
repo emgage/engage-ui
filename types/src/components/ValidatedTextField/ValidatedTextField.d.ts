@@ -5,7 +5,7 @@ export interface Props extends TextFieldProps {
     componentId: string;
     name: string;
     form?: any;
-    validateTrigger?: ['onBlur' | 'onChange'];
+    validateTrigger?: ['onBlur' | 'onChange'] | ['onBlur', 'onChange'];
     validateRules?: ValidationRule[];
 }
 declare const _default: ThemedComponentClass<Props, {}>;

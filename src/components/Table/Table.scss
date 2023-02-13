@@ -19,6 +19,19 @@ $border-color: color(sky, base);
   .table {
     width: calc(100% - 29px);
   }
+  thead tr th {
+    color: #757575;
+    font-weight: 600;
+    text-transform: uppercase;
+
+    &:nth-child(1) {
+      padding-left: 1.6rem;
+    }
+  }
+
+  tbody tr td:nth-child(1) {
+    padding-left: 1.6rem;
+  }
 
   th, td {
     border: none;
@@ -33,7 +46,7 @@ $border-color: color(sky, base);
     .subText {
       margin-top: 0.2rem !important;
       margin-bottom: 0px !important;
-      overflow-wrap: anywhere;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
+      overflow-wrap: anywhere;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
     }
     
     .tableDataWrap {
@@ -58,8 +71,9 @@ $border-color: color(sky, base);
   }
 
   th {
-    background-color: #f4f6f8;
+    background-color:transparent;
     color: $color-grey-dark;
+    text-transform: uppercase;
   }
 
   thead {
@@ -125,8 +139,17 @@ $border-color: color(sky, base);
   }
 }
 
+.checkedRow{
+  background: #E3F2FD;
+  &:hover {
+    background-color: #D1EAFF !important;
+  }
+}
+
 .sortingHeader {
-  display: flex
+  display: flex;
+  margin-left: 0px;
+ 
 }
 
 .sortIcon {

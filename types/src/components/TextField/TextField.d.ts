@@ -10,7 +10,7 @@ export interface State {
     height?: number | null;
     focused?: boolean;
     value?: string | undefined;
-    labelComponentStyle?: any;
+    onHover?: boolean;
 }
 export interface Props {
     autoSuggest?: boolean;
@@ -28,7 +28,7 @@ export interface Props {
     connectedLeft?: React.ReactNode;
     disabled?: boolean;
     enableTextCounter?: boolean;
-    errors?: [string];
+    errors?: [string] | null;
     getErrors?(errors: any, name?: string): void;
     hasValue?: boolean;
     helpText?: React.ReactNode;
@@ -66,13 +66,19 @@ export interface Props {
     value?: string;
     rows?: number;
     componentHeight?: ComponentHeight;
+    markIfRequired?: boolean;
+    fullWidth?: boolean;
 }
 declare class TextField extends React.PureComponent<Props, State> {
     state: State;
     private input;
     private prefixRef;
     constructor(props: Props);
-    componentDidMount(): void;
+    get labelComponentStyle(): {
+        marginLeft?: undefined;
+    } | {
+        marginLeft: any;
+    };
     UNSAFE_componentWillReceiveProps(nextProps: Props): void;
     render(): JSX.Element;
     private setInput;

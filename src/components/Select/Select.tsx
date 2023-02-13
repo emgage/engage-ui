@@ -4,8 +4,7 @@ import { classNames } from '@shopify/react-utilities/styles';
 import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
 
 import Labelled, { Action, Error, helpTextID, errorID } from '../Labelled';
-import Icon from '../Icon';
-import Spinner from '../Spinner';
+import { Icon,Spinner } from '../../../src/components/';
 import { SELECT } from '../ThemeIdentifiers';
 
 import * as baseTheme from './Select.scss';
@@ -44,7 +43,7 @@ export interface Props {
   // Name for form input
   name?: string;
   // Display an error state
-  errors?: [Error];
+  errors?: [Error] | null;
   // Disable input
   disabled?: boolean;
   // Disable editing of the input.
@@ -63,6 +62,7 @@ export interface Props {
   onFocus?(): void;
   // Callback when focus is removed
   onBlur?(): void;
+  markIfRequired?:boolean;
 }
 
 const PLACEHOLDER_VALUE = '';
@@ -89,6 +89,7 @@ const select = ({
   onFocus,
   onBlur,
   theme,
+  markIfRequired
 }: Props) => {
   let optionsMarkup: React.ReactNode;
 
@@ -133,6 +134,8 @@ const select = ({
     disabled && theme.labelDisabled
   );
 
+  const [onHover, SetOnHover] = React.useState(false)
+  
   return (
     <Labelled
       componentId={componentId}
@@ -147,8 +150,10 @@ const select = ({
       componentClass={labelStyle}
       theme={theme}
       readOnly={readOnly}
+      markIfRequired={markIfRequired}
+      onHover={onHover}
     >
-      <div className={className}>
+      <div onMouseEnter={() => SetOnHover(true)} onMouseLeave={() => SetOnHover(false)} className={className}>
         <select
           id={componentId}
           name={name ? name : 'select'}
@@ -167,6 +172,7 @@ const select = ({
           {optionsMarkup}
         </select>
         <div className={theme.customIcon}><Icon source="triangleDown" theme={theme} /></div>
+        {errors && <span><Icon componentClass={theme.errorIcon} source='errorIcon' /></span>}
         {loading && <div className={theme.spinnerWrapper}><Spinner componentSize="small" componentColor="disabled" theme={theme} /></div>}
         <div className={theme.backdrop} />
       </div>

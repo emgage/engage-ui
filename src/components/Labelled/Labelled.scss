@@ -17,6 +17,60 @@
 body .readOnly {
   margin-left: 0px;
 }
+.markWrapper{
+  padding-left: .4rem;
+  min-width: .9rem;
+  min-height: .9rem;
+  max-width: .9rem;
+  max-height: .9rem;
+}
+.mark{
+  min-width: .9rem;
+  min-height: .9rem;
+  max-width: .9rem;
+  max-height: .9rem;
+  fill:#D50000;
+  margin-top: 3.5px;
+}
+.mainContainer{
+  display: flex;
+  justify-content: flex-end;
+}
+.tooltip {
+  padding: .6rem .8rem;
+  background-color: #263238;
+  border-radius: .3rem;
+  color: #fff;
+  font-size: 1.3rem;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  display: inline-block;
+  max-width: 25rem;
+  min-width: 10rem;
+  min-height: 3.2rem;
+  position: absolute;
+  z-index: 99;
+  bottom: calc(100% - .5rem);
+  margin-right: .4rem;
+  
+
+}
+
+.tooltipPosition {
+  margin-right: 2.6rem;
+}
+
+.tip {
+  width: 1rem;
+  height: 1rem;
+  background: #263238;
+  transform: rotate(45deg);
+  top: calc(100% - .5rem);
+  position: absolute;
+  right: 0;
+  margin-right: 1.3rem;
+  z-index: 55;
+}
+
 
 // .required {}
 

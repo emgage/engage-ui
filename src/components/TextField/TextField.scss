@@ -11,11 +11,12 @@ $spinner-size: 2rem;
   padding: 0 $backdrop-horizontal-spacing;
   color: color(ink, lightest);
   align-items: center;
+  margin-top: 0px;
   &.numberField {
     padding: 0 calc(2.5rem + 0.1rem)  0 $backdrop-horizontal-spacing;
   }
   &.backdropHidden {
-    padding-left:0px;
+    padding-left:12px;
   }
   &.labelHidden{
     &.focused {
@@ -100,6 +101,7 @@ $spinner-size: 2rem;
     background-color: color(red, lighter);
     border-color: color(red);
     box-shadow: none;
+    cursor: pointer;
   }
 
   // We need this to override the box-shadow in the focus state.
@@ -109,6 +111,11 @@ $spinner-size: 2rem;
     box-shadow:
       inset shadow(transparent),
       0 0 0 1px color(indigo);
+  }
+  .input{
+  position: relative;
+    cursor: pointer;
+    z-index: 2;
   }
 }
 
@@ -135,7 +142,7 @@ $spinner-size: 2rem;
   appearance: none;
 
   &:disabled {
-    color: color(ink, lightest);
+    color: #424242;
   }
 
   &:focus {
@@ -237,6 +244,22 @@ $spinner-size: 2rem;
   -webkit-transition:all .3s ease-in-out;
 }
 
+.errorIcon{
+  fill: #D50000;
+  position:relative;
+  width: 1.6rem;
+  height: 1.6rem;
+  min-width: 1.6rem;
+  min-height: 1.6rem;
+  cursor: pointer;
+  margin-left: 1.2rem;
+  margin-right: .2rem;
+}
+
+.errorIconPosition {
+  margin-right: 1rem;
+}
+
 .spinnerButtons {
   display: flex;
   align-self: stretch;
@@ -332,12 +355,13 @@ $spinner-size: 2rem;
   height: $spinner-size;
   margin-left: $addon-horizontal-spacing;
   pointer-events: none;
+  margin-right: 1.2rem;
 }
 
 .label {
   display: table;
   table-layout: fixed;
-  width: calc(100% - 2rem);
+  width: 100% !important
 }
 
 .labelStyle {
@@ -362,6 +386,7 @@ body .HeightSlim {
   }
 }
 .labelWrapper {
+   z-index: 1 !important;
   .prefix {
    margin-left:3rem;
    display:block;

@@ -31,9 +31,21 @@ export interface Props {
   // Icon click handler
   onIconClick?(): void;
   label?: string;
+  outlined?: boolean
 }
 
-class Chip extends React.PureComponent<Props, any> {
+export interface State {
+  iconHover: boolean;
+}
+class Chip extends React.PureComponent<Props, any, State> {
+  constructor(props: Props) {
+    super(props);
+
+    this.state = {
+    iconHover:false
+    };
+  }
+  
 
   onKeyDown = (item: React.FormEvent<HTMLElement>, e: KeyboardEvent) => {
     if (e.keyCode === 8 || e.keyCode === 46) {
@@ -52,10 +64,12 @@ class Chip extends React.PureComponent<Props, any> {
       onClick,
       children,
       label,
+      outlined,
     } = this.props;
 
     const className = classNames(
       theme.Chip,
+      outlined && theme.outlinedChip,
       transparent && theme.transparent);
 
     const firstIconComponent = (
@@ -71,29 +85,36 @@ class Chip extends React.PureComponent<Props, any> {
     );
 
     const chipTextComponent = (
-      <span className={theme.chipContent} key="2">
+      <span onMouseEnter={()=>this.setState({iconHover:true})} style={{paddingRight: !removable? 0 : 9}} className={theme.chipContent} key="2">
         {(firstIconComponent || label) &&
           <Button onClick={clickable && onClick || (() => { })} componentSize="slim" plain componentClass={theme.chipButtonContent} title={label}>
             {firstIconComponent}
-            <span className={theme.ChipLabel}>{label}</span>
+            <span className={this.state.iconHover ? theme.ChipLabel : theme.ChipLabelHover}>{label}</span>                                                                                                                                                                                                                             
           </Button>
         }
         {children &&
-          <span className={theme.ChipChild}>{children}</span>
+          <span onMouseEnter={()=>this.setState({iconHover:false})} onMouseLeave={()=>this.setState({iconHover:true})} className={removable ? theme.ChipChildSpace : theme.ChipChild}>{children}</span>
+        }
+        {removable &&
+        <span style={{ marginLeft : !children ? '-5px':'0px'}} className={theme.removeIcon} onMouseEnter={()=>this.setState({iconHover:false})} onMouseLeave={()=>this.setState({iconHover:true})}>
+          <Button componentClass={theme.Remove} aria-label={'Remove ' + children} onClick={onRemove} componentSize="slim" plain accessibilityLabel="Remove" title="Remove">
+            <Icon  source='cancelSmall' theme={theme} />
+          </Button>
+          </span>
         }
       </span>
     );
 
-    const isRemovable = removable &&
-      (<Button componentClass={theme.Remove} aria-label={'Remove ' + children} onClick={onRemove} componentSize="slim" plain accessibilityLabel="Remove" title="Remove">
-        <Icon source="cancel" theme={theme} />
-      </Button>
-      );
+    // const isRemovable = removable &&
+    //   (<Button componentClass={theme.Remove} aria-label={'Remove ' + children} onClick={onRemove} componentSize="slim" plain accessibilityLabel="Remove" title="Remove">
+    //     <Icon source="cancel" theme={theme} />
+    //   </Button>
+    //   );
 
     return (
       <div className={className} onKeyDown={removable ? this.onKeyDown.bind(this, Event) : null}>
         {chipTextComponent}
-        {isRemovable}
+        {/* {isRemovable} */}
       </div>
     );
   }

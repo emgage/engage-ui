@@ -10,6 +10,7 @@ export interface Props {
     activator: HTMLElement;
     hideTip?: boolean;
     bgColor?: any;
+    componentClass?: string;
     onClose(): void;
 }
 export default class TooltipOverlay extends React.PureComponent<Props, never> {

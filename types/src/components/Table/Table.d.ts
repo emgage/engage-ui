@@ -8,6 +8,7 @@ export interface Props {
     bordered?: boolean;
     callChildCallback?: boolean;
     column: ColumnConfig[];
+    headerCheckboxStatus?: boolean | 'indeterminate';
     columnFirstChildWidth?: string;
     componentStyle?: any;
     componentClass?: string;
@@ -40,7 +41,7 @@ export interface Props {
     rowExpandOnLoad?: boolean;
     selectRow?: RowSelection;
     selectCallbackValue?: string;
-    selectRowCallback?(rows: number[] | string[]): void;
+    selectRowCallback?(rows: number[] | string[], from?: string): void;
     serverSort?: ServerSort;
     singleSelectRowCallback?(row: number | string | any, checked: boolean, rows: number[] | string[], rowData: any): void;
     disableAllRowCallback?(checked: boolean): void;
@@ -53,6 +54,7 @@ export interface Props {
     isSearching?: boolean;
     noDataLabel?: string;
     noDataInSearchLabel?: string;
+    circleCheckbox?: boolean;
 }
 export interface State {
     data: any;

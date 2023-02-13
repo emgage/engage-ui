@@ -21,6 +21,7 @@ export interface Props {
     isValidDate?: (currentDate: any, selectedDate: any) => boolean;
     icon?: any;
     autoComplete?: boolean;
+    iconColor?: string;
 }
 export interface State {
     dateTime: any;
