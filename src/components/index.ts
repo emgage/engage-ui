@@ -455,3 +455,8 @@ export {
   default as MyDropzone,
   Props as MyDropzoneProps,
 } from './MyDropzone';
+
+export {
+  default as Error,
+  Props as ErrorProps,
+} from './Error';

@@ -54,7 +54,7 @@ class Pager extends React.PureComponent<IProps, {}> {
         onKeyPress={handleKeyPress}
         tabIndex={0}
       >
-        {itemRender(page, 'page', <Button componentStyle={componentStyle} componentClass={theme.button} primary={active}>{page}</Button>)}
+        {itemRender(page, 'page', <Button componentStyle={componentStyle} componentClass={theme.button} primary={active}><span className={baseTheme.pageNumber}>{page}</span></Button>)}
       </li>
     );
   }

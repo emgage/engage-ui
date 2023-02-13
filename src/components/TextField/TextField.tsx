@@ -127,7 +127,8 @@ export interface Props {
   // number of rows for textarea
   rows?: number;
   componentHeight?: ComponentHeight;
-  markIfRequired?: boolean
+  markIfRequired?: boolean;
+  fullWidth?: boolean
 }
 
 const getUniqueID = createUniqueIDFactory('TextField');
@@ -211,6 +212,7 @@ class TextField extends React.PureComponent<Props, State> {
       value = '',
       componentHeight = 'large',
       markIfRequired,
+      fullWidth,
       ...rest
     } = this.props;
 
@@ -236,6 +238,11 @@ class TextField extends React.PureComponent<Props, State> {
       theme.backdrop,
     )
 
+    const errorIconClassName = classNames(
+      theme.errorIcon,
+      type === 'number' && theme.errorIconPosition
+    )
+
     const prefixMarkup = prefix
       ? <div ref={this.prefixRef} onClick={this.handleInputFocus} className={theme.prefix} id={`${componentId}prefix`}>{prefix}</div>
       : null;
@@ -248,7 +255,7 @@ class TextField extends React.PureComponent<Props, State> {
       // ? <Tooltip  preferredPosition='above'  theme={{'wrapper':theme.tip}} content={errors}><Icon componentClass={theme.errorIcon} source='errorIcon'></Icon></Tooltip>
       // : null;
        const errorMarkup = (!readOnly && errors)
-      ? <Icon componentClass={theme.errorIcon} source='errorIcon'></Icon>
+      ? <Icon componentClass={errorIconClassName} source='errorIcon'></Icon>
       : null;
 
     const spinnerButtonsMarkup = type === 'number' && !disabled && !readOnly && showNumberIcon
@@ -361,6 +368,8 @@ class TextField extends React.PureComponent<Props, State> {
         labelComponentStyle={!(this.state.focused || isFocused) && (!Boolean(hasValue || propHasValue)) && this.labelComponentStyle || {}}
         markIfRequired={markIfRequired}
         onHover={this.state.onHover}
+        fullWidth={fullWidth}
+        type={type}
       >
         <Connected
           left={connectedLeft}
