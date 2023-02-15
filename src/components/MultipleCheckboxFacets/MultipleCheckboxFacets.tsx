@@ -50,6 +50,7 @@ interface IProps {
   isAccordion?: boolean;
   isOpen?:boolean;
   toggle?(isOpen?: boolean): void;
+  optionsPadding?: string | number;
 }
 
 function multiCheckboxFacet({
@@ -68,6 +69,7 @@ function multiCheckboxFacet({
   isAccordion,
   isOpen,
   toggle = () => { },
+  optionsPadding = ''
 
 }: IProps) {
 
@@ -113,7 +115,7 @@ function multiCheckboxFacet({
           </div>
           : <></>
         }
-        <CardBody theme={{ 'body': isAccordion ? baseTheme.cardBody : '' }}>
+        <CardBody componentStyle={{padding: optionsPadding || '' }} theme={{ 'body': isAccordion ? baseTheme.cardBody : '' }}>
           <div className={!isAccordion ? baseTheme.defaultStyle : isOpen ? baseTheme.isAccordion : baseTheme.isAccordionNot}>
             {showSearch && (
               <div className="facet-search" style={{ marginBottom: 12 }}>
