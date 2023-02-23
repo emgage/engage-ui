@@ -55,6 +55,7 @@ export interface Props {
     noDataLabel?: string;
     noDataInSearchLabel?: string;
     circleCheckbox?: boolean;
+    bannerComponentStyle?: any;
 }
 export interface State {
     data: any;
