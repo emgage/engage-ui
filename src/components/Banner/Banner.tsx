@@ -42,6 +42,7 @@ export interface Props {
   onDismiss?(): void;
   // Secondary Text below componentText
   secondaryText?: ISecondaryItems[];
+  bannerComponentStyle?: any
 }
 
 interface ISecondaryItems {
@@ -61,6 +62,7 @@ const banner = ({
   onDismiss,
   theme,
   secondaryText,
+  bannerComponentStyle
 }: Props) => {
   let defaultIcon: IconProps['source'];
 
@@ -159,7 +161,7 @@ const banner = ({
     )
     : null;
 
-  const bannerStyle = { justifyContent: 'flex-start', width: '100%' };
+  const bannerStyle = {...bannerComponentStyle, justifyContent: 'flex-start', width: '100%' };
 
   return (
     <div

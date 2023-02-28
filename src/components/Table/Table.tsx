@@ -119,6 +119,7 @@ export interface Props {
   // Label to show when no data on search is available.
   noDataInSearchLabel?: string;
   circleCheckbox?: boolean;
+  bannerComponentStyle?: any
 }
 
 export interface State {
@@ -417,6 +418,7 @@ class Table extends React.PureComponent<Props, State> {
       isRowDisabled,
       CustomRenderRow,
       circleCheckbox,
+      bannerComponentStyle,
     } = this.props;
     const { nestedChildData } = this.state;
     const { renderBanner } = item;
@@ -490,6 +492,7 @@ class Table extends React.PureComponent<Props, State> {
               onFocus={renderBanner.onFocus}
               selectPlaceholder={renderBanner.placeholder}
               selectedValue={renderBanner.selectedValue}
+              bannerComponentStyle={bannerComponentStyle}
             />
           </TableData>
         </TableRow> }
