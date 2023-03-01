@@ -17,14 +17,16 @@
 body .readOnly {
   margin-left: 0px;
 }
-.markWrapper{
+
+.markWrapper {
   padding-left: .4rem;
   min-width: .9rem;
   min-height: .9rem;
   max-width: .9rem;
   max-height: .9rem;
 }
-.mark{
+
+.mark {
   min-width: .9rem;
   min-height: .9rem;
   max-width: .9rem;
@@ -32,10 +34,12 @@ body .readOnly {
   fill:#D50000;
   margin-top: 3.5px;
 }
-.mainContainer{
+
+.mainContainer {
   display: flex;
   justify-content: flex-end;
 }
+
 .tooltip {
   padding: .6rem .8rem;
   background-color: #263238;
@@ -48,11 +52,9 @@ body .readOnly {
   min-width: 10rem;
   min-height: 3.2rem;
   position: absolute;
-  z-index: 99;
+  z-index: 999;
   bottom: calc(100% - .5rem);
   margin-right: .4rem;
-  
-
 }
 
 .tooltipPosition {
