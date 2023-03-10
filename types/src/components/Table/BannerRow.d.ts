@@ -13,6 +13,7 @@ export interface Props {
     selectPlaceholder: string;
     selectedValue?: string;
     theme?: any;
+    bannerComponentStyle?: any;
 }
 export interface State {
     selectedValue?: string;

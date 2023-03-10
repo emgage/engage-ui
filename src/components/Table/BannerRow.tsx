@@ -19,6 +19,7 @@ export interface Props {
   selectPlaceholder: string;
   selectedValue?: string;
   theme?: any;
+  bannerComponentStyle?: any
 }
 
 export interface State {
@@ -69,6 +70,7 @@ class BannerRow extends React.PureComponent<Props, State> {
       selectPlaceholder,
       selectedValue,
       theme,
+      bannerComponentStyle
     } = this.props;
 
     const selectedVal = dropdownItems.find((op: any) => op.value.toString() === (selectedValue || '').toString());
@@ -76,7 +78,7 @@ class BannerRow extends React.PureComponent<Props, State> {
     const selectedValLabel = this.state.selectedValue || selectedVal?.label || '';
 
     return(
-      <Banner key={rowItem.id} componentTitle={bannerTitle} status={bannerType} icon={bannerIcon as keyof typeof IconList}>
+      <Banner bannerComponentStyle={bannerComponentStyle}  key={rowItem.id} componentTitle={bannerTitle} status={bannerType} icon={bannerIcon as keyof typeof IconList}>
          <ComboBox
             theme={theme}
             disabled={disabled}
