@@ -16,6 +16,10 @@ export interface Props {
     icon?: keyof typeof IconList;
     onIconClick?(): void;
     label?: string;
+    outlined?: boolean;
+}
+export interface State {
+    iconHover: boolean;
 }
 declare const _default: ThemedComponentClass<Props, {}>;
 export default _default;

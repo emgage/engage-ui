@@ -6,7 +6,7 @@ import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
 import Choice, { Error, helpTextID } from '../Choice';
 import Icon from '../Icon';
 import { CHECKBOX } from '../ThemeIdentifiers';
-import Message from '../Message';
+// import Message from '../Message';
 
 import { minusMinor, tickSmallMinor } from '../../icons';
 import * as baseTheme from './Checkbox.scss';
@@ -20,7 +20,7 @@ export interface Props {
   disabled?: boolean;
   // Display an error state
   error?: Error;
-  errors?: [string];
+  errors?: [string] | null;
   // Additional text to aide in use
   helpText?: React.ReactNode;
   // Label for the checkbox
@@ -41,6 +41,10 @@ export interface Props {
   value?: string;
   // Function return all errors
   getErrors?(errors:any, name?:string): void;
+  // circleCheckbox
+  circleCheckbox?: boolean;
+  markIfRequired?:boolean
+
 }
 
 export interface State {
@@ -71,12 +75,17 @@ class Checkbox extends React.PureComponent<Props, State> {
   handleChange = (event: any) => {
     // event.preventDefault();
     const { disabled, onChange } = this.props;
+    const { checked } = this.props;
 
     if (!disabled) {
-      this.setState({ checked: !this.state.checked });
+      let newCheckedStatus = !checked;
+      if (checked === 'indeterminate') {
+        newCheckedStatus = true;
+      }
+      this.setState({ checked: newCheckedStatus });
 
       if (onChange) {
-        onChange(!this.state.checked);
+        onChange(newCheckedStatus);
       }
     }
   }
@@ -96,6 +105,8 @@ class Checkbox extends React.PureComponent<Props, State> {
       onBlur,
       theme,
       value,
+      circleCheckbox,
+      markIfRequired,
     } = this.props;
 
     const describedBy: string[] = [];
@@ -103,13 +114,13 @@ class Checkbox extends React.PureComponent<Props, State> {
       describedBy.push(helpTextID(componentId));
     }
 
-    const errorMarkup = errors
-    ? (
-      <Message componentId={`${componentId}Error`} isVisible={true} theme={theme}>
-        {errors instanceof Array ? errors.join(', ') : (typeof errors === 'string' ? errors : 'An error occurred.')}
-      </Message>
-    )
-    : null;
+    // const errorMarkup = errors
+    // ? (
+    //   <Message componentId={`${componentId}Error`} isVisible={true} theme={theme}>
+    //     {errors instanceof Array ? errors.join(', ') : (typeof errors === 'string' ? errors : 'An error occurred.')}
+    //   </Message>
+    // )
+    // : null;
 
     const ariaDescribedBy = describedBy.length
         ? describedBy.join(' ')
@@ -125,8 +136,9 @@ class Checkbox extends React.PureComponent<Props, State> {
     const iconSource = isIndeterminate ? minusMinor : tickSmallMinor;
 
     const wrapperClassName = classNames(
-      theme.checkbox
+      theme.checkbox,
       // error && theme.error
+      errors && theme.errorsStyle
     );
 
     const inputClassName = classNames(
@@ -135,8 +147,9 @@ class Checkbox extends React.PureComponent<Props, State> {
     );
 
     return (
-      <div>
-        {errorMarkup}
+      // circleCheckbox
+      <div className={circleCheckbox ? theme.circleCheckbox : theme.basic}>
+        {/* {errorMarkup} */}
         <Choice
           componentId={componentId}
           label={label}
@@ -144,6 +157,9 @@ class Checkbox extends React.PureComponent<Props, State> {
           helpText={helpText}
           disabled={disabled}
           theme={theme}
+          markIfRequired={markIfRequired}
+          errors={errors}
+          
         >
           <span className={wrapperClassName}>
             <input

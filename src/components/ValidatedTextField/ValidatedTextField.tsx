@@ -14,7 +14,7 @@ export interface Props extends TextFieldProps {
   // Form in which textfield bind.
   form?: any;
   // Action to trigger validation rules.
-  validateTrigger?: ['onBlur' | 'onChange'];
+  validateTrigger?: ['onBlur' | 'onChange' ] | ['onBlur' , 'onChange' ];
   // Validation rules for textfield. Validation Rule : { required: boolean; message: string; } or { type: string; message: string; }.
   validateRules?: ValidationRule[];
 }
@@ -36,7 +36,10 @@ class ValidatedTextFieldComponent extends React.PureComponent<Props, {}> {
     if (value) {
       if (validateRules) {
         validateRules.forEach((item: any) => {
-          if (item.minRange || item.maxRange) {
+          if (item.verifyEmail && value) {
+            this.emailValidation(item, value, callback);
+          }
+          else if (item.minRange || item.maxRange) {
             this.rangeValidation(item, value, callback);
           } else if (item.minLength || item.maxLength) {
             this.lengthValidation(item, value, callback);
@@ -58,6 +61,14 @@ class ValidatedTextFieldComponent extends React.PureComponent<Props, {}> {
       callback(validationRule.message);
     }
 
+    callback();
+  }
+  emailValidation = (validationRule: any, value: any, callback: any) => {
+    const expression: RegExp = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+    const result: boolean = expression.test(value); // true
+    if (!result) {
+    callback(validationRule.message);
+    }
     callback();
   }
 

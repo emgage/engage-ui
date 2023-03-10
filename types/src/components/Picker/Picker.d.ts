@@ -83,9 +83,10 @@ export interface Props {
     shouldRenderSuggestions?: boolean;
     noOptionsMessage?: string;
     readOnly?: boolean;
-    errors?: [string];
+    errors?: [string] | null;
     placeholder?: string;
     shouldFilterSuggestions?: boolean;
+    markIfRequired?: boolean;
 }
 declare class Picker extends React.PureComponent<Props, State> {
     wrapperRef: HTMLDivElement;

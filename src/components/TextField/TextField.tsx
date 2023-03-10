@@ -14,6 +14,8 @@ import { TEXT_FIELD } from '../ThemeIdentifiers';
 import * as baseTheme from './TextField.scss';
 import Resizer from './Resizer';
 import SpinnerButtons from './SpinnerButtons';
+import Icon from '../Icon/Icon';
+// import Tooltip from '../Tooltip/Tooltip'
 
 export type Type = 'text' | 'email' | 'number' | 'password' | 'search' | 'tel' | 'url' | 'date' | 'datetime-local' | 'month' | 'time' | 'week';
 export type ComponentHeight = 'slim' | 'large';
@@ -23,7 +25,7 @@ export interface State {
   height?: number | null;
   focused?: boolean;
   value?: string | undefined;
-  labelComponentStyle?: any;
+  onHover?: boolean
 }
 
 export interface Props {
@@ -54,7 +56,7 @@ export interface Props {
   // display the TextCounter.
   enableTextCounter?: boolean;
   // Error to display beneath the label.
-  errors?: [string];
+  errors?: [string] | null;
   // Function return all errors
   getErrors?(errors: any, name?: string): void;
   hasValue?: boolean;
@@ -125,6 +127,8 @@ export interface Props {
   // number of rows for textarea
   rows?: number;
   componentHeight?: ComponentHeight;
+  markIfRequired?: boolean;
+  fullWidth?: boolean
 }
 
 const getUniqueID = createUniqueIDFactory('TextField');
@@ -139,15 +143,18 @@ class TextField extends React.PureComponent<Props, State> {
     super(props);
     this.state = {
       height: null,
-      value: props.value ? props.value : ''
+      value: props.value ? props.value : '',
+      onHover:false,
     };
     this.prefixRef = React.createRef();
   }
-
-  componentDidMount() {
-    this.setState({
-      labelComponentStyle: { marginLeft: (this.prefixRef?.current?.offsetWidth || 0) + 5 },
-    });
+  get labelComponentStyle() {
+    const { prefix } = this.props;
+    const marginLeft = (this.prefixRef?.current?.offsetWidth || 0);
+    if (prefix && marginLeft === 0) {
+      return {};
+    }
+    return { marginLeft: marginLeft + 5 };
   }
 
   // tslint:disable-next-line:function-name
@@ -204,6 +211,8 @@ class TextField extends React.PureComponent<Props, State> {
       type,
       value = '',
       componentHeight = 'large',
+      markIfRequired,
+      fullWidth,
       ...rest
     } = this.props;
 
@@ -225,6 +234,14 @@ class TextField extends React.PureComponent<Props, State> {
       componentHeight && theme[variationName('Height', componentHeight)],
       type === 'number' && !disabled && !readOnly && showNumberIcon && theme.numberField
     );
+    const backdropClassName = classNames(
+      theme.backdrop,
+    )
+
+    const errorIconClassName = classNames(
+      theme.errorIcon,
+      type === 'number' && theme.errorIconPosition
+    )
 
     const prefixMarkup = prefix
       ? <div ref={this.prefixRef} onClick={this.handleInputFocus} className={theme.prefix} id={`${componentId}prefix`}>{prefix}</div>
@@ -232,6 +249,13 @@ class TextField extends React.PureComponent<Props, State> {
 
     const suffixMarkup = (!readOnly && suffix)
       ? <div onClick={this.handleInputFocus} className={theme.suffix} id={`${componentId}suffix`}>{suffix}</div>
+      : null;
+
+      // const errorMarkup = (!readOnly && errors)
+      // ? <Tooltip  preferredPosition='above'  theme={{'wrapper':theme.tip}} content={errors}><Icon componentClass={theme.errorIcon} source='errorIcon'></Icon></Tooltip>
+      // : null;
+       const errorMarkup = (!readOnly && errors)
+      ? <Icon componentClass={errorIconClassName} source='errorIcon'></Icon>
       : null;
 
     const spinnerButtonsMarkup = type === 'number' && !disabled && !readOnly && showNumberIcon
@@ -341,19 +365,24 @@ class TextField extends React.PureComponent<Props, State> {
         componentClass={labelStyle}
         theme={theme}
         readOnly={readOnly}
-        labelComponentStyle={!(this.state.focused || isFocused) && (!Boolean(hasValue || propHasValue)) && this.state.labelComponentStyle || {}}
+        labelComponentStyle={!(this.state.focused || isFocused) && (!Boolean(hasValue || propHasValue)) && this.labelComponentStyle || {}}
+        markIfRequired={markIfRequired}
+        onHover={this.state.onHover}
+        fullWidth={fullWidth}
+        type={type}
       >
         <Connected
           left={connectedLeft}
           right={connectedRight}
         >
-          <div className={className}>
+         <div  onMouseEnter={() => this.setState({ onHover: true })} onMouseLeave={() => this.setState({ onHover: false })} className={className}>
             {spinnerButtonsMarkup}
-            <div className={theme.backdrop} />
+            <div onClick={()=>this.setState({ onHover: false })} className={backdropClassName} />
             {prefixMarkup}
             {inputValue}
             {loading && <div className={theme.spinnerWrapper} id={`${componentId}Spinner`}><Spinner componentSize="small" componentColor="disabled" /></div>}
             {suffixMarkup}
+            {errorMarkup}
             {resizer}
           </div>
         </Connected>
@@ -369,7 +398,7 @@ class TextField extends React.PureComponent<Props, State> {
 
   @autobind
   private handleNumberChange(steps: number) {
-    const { onChange, value, step = 1, min = -Infinity, max = Infinity } = this.props;
+    const { onChange, value, step = 1, min = -Infinity, max = Infinity} = this.props;
     if (onChange == null) { return; }
 
     const numericValue = value ? parseFloat(value) : 0;
@@ -381,9 +410,13 @@ class TextField extends React.PureComponent<Props, State> {
 
   @autobind
   private onChange(event: React.FormEvent<HTMLInputElement>) {
-    this.setState({ value: event.currentTarget.value });
-    const { onChange } = this.props;
-    if (onChange == null) { return; }
+    const { onChange, type, min = -Infinity, max= Infinity } = this.props;
+    // if (this.props.getErrors) {
+    //   const { onBlur } = this.props;
+    //   if (onBlur == null) { return; }
+    //     onBlur(event);
+    // }
+    if (onChange == null) { this.setState({ value: event.currentTarget.value }); return; }
     const maxLength = this.props.maxLength ? this.props.maxLength : Number.POSITIVE_INFINITY;
     const alphaRegex = RegExp(/^[A-Za-z0-9\b]+$/, 'g');
     const newValue = event.currentTarget.value.length <= maxLength ? event.currentTarget.value : event.currentTarget.value.substr(0, maxLength);
@@ -393,6 +426,19 @@ class TextField extends React.PureComponent<Props, State> {
     } else if (this.props.alphanumeric && alphaRegex.test(newValue)) {
       onChange(newValue);
       this.setState({ value: newValue });
+    }else if(type === "number"){
+        const decimalLength = newValue.split(".")[1]?.length
+        const verifyValueMinMax = String((Math.min(max, Math.max(parseFloat(newValue), min))).toFixed(decimalLength));
+        if(newValue === "") {
+          onChange("");
+          this.setState({ value: "" });
+        }
+        else if(verifyValueMinMax !== "NaN") {
+          if(parseFloat(verifyValueMinMax) === parseFloat(newValue)) {
+            onChange(newValue);
+            this.setState({ value: newValue });
+          }
+        }
     } else {
       if ((this.props.capital || this.props.alphanumeric) && newValue.length > 0) {
         const oldValueArray = [...newValue];
@@ -424,7 +470,11 @@ class TextField extends React.PureComponent<Props, State> {
   }
 
   @autobind
-  private handleInputOnKeyDown(e: React.FormEvent<HTMLElement> | KeyboardEvent) {
+  private handleInputOnKeyDown(e: React.KeyboardEvent<HTMLElement> | KeyboardEvent) {
+    if(e.keyCode === 69 && this.props.type === "number") { // prevent e in number input
+      e.preventDefault(); 
+      return;
+    }
     const { onKeyDown, readOnly } = this.props;
 
     this.setState((prevState: State) => ({
