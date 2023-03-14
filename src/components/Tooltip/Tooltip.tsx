@@ -30,6 +30,7 @@ export interface Props {
   theme?: any;
   hideTip?: boolean;
   bgColor?: any;
+  componentClass?: string;
 }
 
 export interface State {
@@ -66,7 +67,8 @@ class Tooltip extends React.PureComponent<Props, State> {
       content,
       theme,
       leftSpace,
-      bgColor
+      bgColor,
+      componentClass
     } = this.props;
 
     return (
@@ -80,6 +82,7 @@ class Tooltip extends React.PureComponent<Props, State> {
         active={active || this.state.active}
         onClose={noop}
         light={light}
+        componentClass={componentClass}
       >
          <div className={theme.label}>
           {content}

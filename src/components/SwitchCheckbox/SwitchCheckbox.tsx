@@ -4,8 +4,10 @@ import { SWITCHCHECKBOX } from '../ThemeIdentifiers';
 import * as baseTheme from './SwitchCheckbox.scss';
 import { createUniqueIDFactory } from '@shopify/javascript-utilities/other';
 import { classNames } from '@shopify/react-utilities/styles';
-import Icon from '../Icon/Icon';
 import VisuallyHidden from '../VisuallyHidden';
+import { Spinner,FlexBox,Icon } from '../../../src/components/';
+
+
 
 export type ISwitchType = 'normal' | 'trueFalse' | 'yesNo';
 export interface Props {
@@ -23,6 +25,9 @@ export interface Props {
   handleToggle: (value?: boolean) => void;
   switchType?: ISwitchType;
   allowNull?: boolean;
+  loading?: boolean
+  markIfRequired?: boolean
+  errors?: [string] | null;
 }
 
 const getUniqueName = createUniqueIDFactory('SwitchCheckbox');
@@ -43,8 +48,11 @@ const SwitchCheckbox = (props: Props) => {
       trueRadio,
     };
   });
-  const { theme, componentClass, componentStyle, isOpen, allowNull = true, disabled } = props;
+const [onHover, SetOnHover] = React.useState(false)
+
+  const { theme, componentClass, componentStyle, isOpen:propIsOpen, allowNull = true, disabled, loading = false, markIfRequired, errors } = props;
   const { children, handleToggle, switchType = 'normal' } = props;
+  const isOpen = loading ? !propIsOpen : propIsOpen;
   let switchTypeClass = theme.switchNormal;
   switch (switchType) {
     case 'normal':
@@ -68,9 +76,11 @@ const SwitchCheckbox = (props: Props) => {
     isOpen === false && theme.falseSelect,
     isOpen === true && theme.trueSelect,
     typeof isOpen !== 'boolean' && !isOpen && theme.nullSelect,
-    disabled && theme.disableSwitch
+    disabled && theme.disableSwitch,
+    loading === true && theme.loadingSelect
+
   );
-  return (<div style={componentStyle} className={className}>
+  return (<div style={{...componentStyle,position:'relative'}} className={className}>
     <div className={theme.outerWrap}>
 
       <label htmlFor={names.falseRadio} className={theme.falseRadio}>
@@ -86,11 +96,11 @@ const SwitchCheckbox = (props: Props) => {
           onChange={() => handleToggle(false)}
         />
         <span className={theme.switchRadio}>
-          <Icon source="cancel" componentColor="inkLighter" componentClass={theme.Cancel} />
+        {loading? <Spinner componentColor="reverse" componentStyle={{ fill: '#757575' }} componentSize="small" accessibilityLabel="Loading" />:<Icon source="cancel" componentColor="inkLighter" componentClass={theme.Cancel} />}
         </span>
       </label>
 
-      <label htmlFor={names.nullRadio} className={theme.nullRadio}>
+      {allowNull !== false && <label htmlFor={names.nullRadio} className={theme.nullRadio}>
       <VisuallyHidden>Null</VisuallyHidden>
         <input
           type="radio"
@@ -101,7 +111,7 @@ const SwitchCheckbox = (props: Props) => {
           disabled={!allowNull || disabled}
           onChange={() => allowNull && handleToggle()} />
         <span className={theme.switchRadio}>Null</span>
-      </label>
+      </label>}
 
       <label htmlFor={names.trueRadio} className={theme.trueRadio}>
       <VisuallyHidden>{switchType === 'trueFalse' ? 'True' : 'Yes' }</VisuallyHidden>
@@ -115,12 +125,23 @@ const SwitchCheckbox = (props: Props) => {
           onChange={() => handleToggle(true)}
         />
         <span className={theme.switchRadio}>
-          <Icon source="check" componentColor="blue" componentClass={theme.Accept} />
+          {loading? <Spinner componentColor="reverse" componentStyle={{ fill: '#757575' }} componentSize="small" accessibilityLabel="Loading" />:<Icon source="check" componentColor="blue" componentClass={theme.Accept} />}
         </span>
       </label>
 
     </div>
-    {children && <label className={theme.switchLabel}>{children}</label>}
+    {
+    children && 
+      <FlexBox componentStyle={{width:'100%', position:'relative'}}  justify='SpaceBetween'>
+        <FlexBox> <label className={theme.switchLabel}>{children}</label>{markIfRequired && <span className={theme.markWrapper}><Icon componentClass={theme.mark} source="requiredMark"></Icon></span>}</FlexBox>
+       
+          {onHover && <div className={theme.tooltip}>
+            {errors instanceof Array ? errors.join(', ') : (typeof errors === 'string' ? errors : 'An error occurred.')}
+            <div className={theme.tip}></div>
+          </div>}
+        {errors && <div style={{display:'inline-block',height:'16px'}} onMouseEnter={() => SetOnHover(true)} onMouseLeave={() => SetOnHover(false)}> <Icon componentClass={theme.errorIconStyle} source='errorIcon'></Icon></div>}
+      </FlexBox>
+      }
   </div>);
 };
 

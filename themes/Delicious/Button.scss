@@ -196,4 +196,21 @@ $slim-min-height: 3.6rem;
     background: none;
     border: border(transparent);
   }
+
+  .content {
+    font-size: 1.4rem;
+    line-height: 2rem;
+  }
+
+}
+.content {
+  font-size: 1.6rem;
+  line-height: 1.6rem;
+  font-family: Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+.sizeSlim {
+  .content {
+    font-size: 1.4rem;
+  }
 }

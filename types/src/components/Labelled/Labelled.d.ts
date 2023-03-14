@@ -3,11 +3,12 @@ import { ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 import { Props as LabelProps, Action, labelID } from '../Label';
 export { Action, labelID };
 export declare type Error = string;
+export declare type Type = 'text' | 'email' | 'number' | 'password' | 'search' | 'tel' | 'url' | 'date' | 'datetime-local' | 'month' | 'time' | 'week';
 export interface Props {
     autoSuggest?: boolean;
     componentId: LabelProps['componentId'];
     label: string;
-    errors?: [string] | Error;
+    errors?: [string] | Error | null;
     action: LabelProps['action'];
     helpText?: React.ReactNode;
     disabled?: boolean;
@@ -22,7 +23,10 @@ export interface Props {
     theme?: any;
     onClick?: (event: React.FormEvent<any>) => void;
     readOnly?: boolean;
+    markIfRequired?: boolean;
+    onHover?: boolean;
     fullWidth?: boolean;
+    type?: Type;
 }
 export declare function errorID(id: string): string;
 export declare function helpTextID(id: string): string;

@@ -25,6 +25,7 @@ export interface Props {
   hideTip?:boolean
   // callback when tooltip is closed.
   bgColor?: any;
+  componentClass?: string;
   onClose(): void;
 }
 
@@ -67,7 +68,7 @@ export default class TooltipOverlay extends React.PureComponent<Props, never> {
       positioning,
       activatorRect,
     } = overlayDetails;
-    const { componentId, children, light = false, preferredPosition } = this.props;
+    const { componentId, children, light = false, preferredPosition ,componentClass} = this.props;
 
     const tipStyle = calculateTipPosition(activatorRect.center.x, left, preferredPosition, 'center', false);
 
@@ -78,7 +79,8 @@ export default class TooltipOverlay extends React.PureComponent<Props, never> {
       preferredPosition === 'left' && styles.leftTooltip,
       light && styles.light,
       measuring && styles.measuring,
-      positioning === 'above' && styles.positionedAbove
+      positioning === 'above' && styles.positionedAbove,
+      componentClass,
     );
 
     const contentStyles = measuring

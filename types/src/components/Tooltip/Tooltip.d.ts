@@ -12,6 +12,7 @@ export interface Props {
     theme?: any;
     hideTip?: boolean;
     bgColor?: any;
+    componentClass?: string;
 }
 export interface State {
     active: boolean;

@@ -6,7 +6,7 @@ export interface Props {
     componentId?: string;
     disabled?: boolean;
     error?: Error;
-    errors?: [string];
+    errors?: [string] | null;
     helpText?: React.ReactNode;
     label: string;
     labelHidden?: boolean;
@@ -17,6 +17,8 @@ export interface Props {
     theme?: any;
     value?: string;
     getErrors?(errors: any, name?: string): void;
+    circleCheckbox?: boolean;
+    markIfRequired?: boolean;
 }
 export interface State {
     checked: boolean | 'indeterminate';

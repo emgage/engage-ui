@@ -121,6 +121,7 @@ export declare const BUNDLED_ICONS: {
     gear: any;
     internal: any;
     share: any;
+    shareFromSquare: any;
     starHalf: any;
     starOutline: any;
     star: any;
@@ -158,6 +159,11 @@ export declare const BUNDLED_ICONS: {
     export: any;
     import: any;
     minusIcon: any;
+    requiredMark: any;
+    errorIcon: any;
+    mail: any;
+    resendMail: any;
+    infoIcon: any;
 };
 export interface Props {
     source: SVGSource | 'placeholder' | keyof typeof BUNDLED_ICONS;

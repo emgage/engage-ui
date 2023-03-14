@@ -14,6 +14,7 @@ export interface Props {
     theme?: any;
     onDismiss?(): void;
     secondaryText?: ISecondaryItems[];
+    bannerComponentStyle?: any;
 }
 interface ISecondaryItems {
     text: string;

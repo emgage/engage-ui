@@ -34,6 +34,14 @@ $stacking-order: (
     margin-bottom:.5rem;
   }
 }
+.labelWrapper {
+  margin-top: -.6rem !important;
+  z-index: 4;
+  &.focused,
+  &:not(.empty) {
+    margin-top: auto !important;
+  }
+}
 
 .container {
   flex: 1 0 auto;
@@ -56,8 +64,8 @@ $stacking-order: (
   font-family: inherit;
   font-size: inherit;
   font-weight: inherit;
+  z-index: 5;
   appearance: none;
-
   &:disabled {
     color: color(ink, lightest);
   }
@@ -161,15 +169,22 @@ $stacking-order: (
 }
 
 .error {
+  .labelWrapper{
+    cursor: pointer;
+  }
   .input::placeholder {
     // This is the only place this color is used.
     // stylelint-disable-next-line color-no-hex
     color: #9c9798;
   }
+  .input{
+    cursor: pointer;
+  }
   .backdrop {
     background-color: color(red, lighter);
     border-color: color(red);
     box-shadow: none;
+    cursor: pointer;
   }
 }
 

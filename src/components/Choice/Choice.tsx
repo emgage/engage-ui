@@ -2,10 +2,11 @@ import * as React from 'react';
 import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 import { classNames } from '@shopify/react-utilities/styles';
 
-import Icon from '../Icon';
 import { CHOICE } from '../ThemeIdentifiers';
 
 import * as baseTheme from './Choice.scss';
+
+import { FlexBox,Icon } from '../../../src/components/';
 
 export type Error = boolean | string;
 
@@ -26,6 +27,8 @@ export interface Props {
   helpText?: React.ReactNode;
   // Theme to be injected via css-themr.
   theme?: any;
+  markIfRequired?:boolean;
+  errors?: any
 }
 
 const choice = ({
@@ -37,16 +40,36 @@ const choice = ({
   labelHidden = false,
   helpText,
   theme,
+  markIfRequired,
+  errors
 }: Props) => {
   const className = classNames(
     theme.choice,
     labelHidden && theme.labelHidden,
     disabled && theme.disabled
   );
+const [onHover, SetOnHover] = React.useState(false)
+
   const labelMarkup = (
-    <label className={className} htmlFor={componentId}>
+    <label style={{width:'100%'}} className={className} htmlFor={componentId}>
       <span className={theme.control}>{children}</span>
-      <span className={theme.label}>{label}</span>
+      <div style={{width:'100%',display:'flex',justifyContent:'space-between'}}>
+        <FlexBox>
+          <span className={theme.label}>{label}</span>
+          {markIfRequired && <span className={theme.markWrapper}><Icon componentClass={theme.mark} source="requiredMark"></Icon></span>}
+        </FlexBox>
+       {onHover && 
+        <div className={theme.tooltip}>
+          {errors instanceof Array ? errors.join(', ') : (typeof errors === 'string' ? errors : 'An error occurred.')}
+          <div className={theme.tip}></div>
+        </div>
+        }
+        {errors && 
+        <div onMouseEnter={() => SetOnHover(true)} onMouseLeave={() => SetOnHover(false)}>
+           <Icon componentClass={theme.errorIconStyle} source='errorIcon'></Icon>
+           </div>
+        }
+      </div>
     </label>
   );
 
