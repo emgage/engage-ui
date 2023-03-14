@@ -51,7 +51,6 @@ export interface Props {
   onHover?: boolean,
   fullWidth?: boolean,
   type?: Type
-
 }
 
 const labelled = ({
