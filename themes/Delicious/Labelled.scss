@@ -25,6 +25,9 @@ $stacking-order: (
   max-width: calc(100% - 2rem);
 }
 
+.fullWidth{
+  max-width: calc(100% - 2rem);
+}
 .helpText {
   @include text-style-body-small;
   color: theme-color(m-grey, 700);
