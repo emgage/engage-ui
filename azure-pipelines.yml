@@ -10,6 +10,7 @@ trigger:
 - demo2/develop
 - squad2/develop
 - develop
+
 variables:
 - group: 'Platform Release Variables'
 
