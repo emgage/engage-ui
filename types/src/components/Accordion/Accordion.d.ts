@@ -34,7 +34,7 @@ declare class Accordion extends React.PureComponent<Props, State> {
     private id;
     constructor(props: Props);
     UNSAFE_componentWillReceiveProps(nextProps: Props): null | undefined;
-    render(): JSX.Element;
+    render(): React.JSX.Element;
     private toggleItem;
 }
 export { Accordion as UnthemedAccordion };

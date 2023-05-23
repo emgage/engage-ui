@@ -80,7 +80,7 @@ declare class TextField extends React.PureComponent<Props, State> {
         marginLeft: any;
     };
     UNSAFE_componentWillReceiveProps(nextProps: Props): void;
-    render(): JSX.Element;
+    render(): React.JSX.Element;
     private setInput;
     private handleNumberChange;
     private onChange;

@@ -14,7 +14,7 @@ export interface Props {
     onClose(): void;
 }
 export default class TooltipOverlay extends React.PureComponent<Props, never> {
-    render(): JSX.Element | null;
+    render(): React.JSX.Element | null;
     private renderOverlay;
     private renderTooltip;
 }
