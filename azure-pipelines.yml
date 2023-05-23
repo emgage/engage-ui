@@ -51,6 +51,8 @@ steps:
       git config --global user.name "Automated VSTS Build Server"
       BRANCH=$(echo $(Build.SourceBranch) | sed 's/refs\/heads\///')
       echo "Checking out $BRANCH"
+      echo "Build.SourceVersionMessage = $(Build.SourceVersionMessage)
+      echo "Build.SourceBranch = $(Build.SourceBranch)
       git checkout $BRANCH
   displayName: 'Attach branch'
   condition: not(eq(variables['Build.SourceBranchName'], 'merge'))
