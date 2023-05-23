@@ -125,6 +125,7 @@ import {
   gear,
   internal,
   share,
+  shareFromSquare,
   starHalf,
   starOutline,
   star,
@@ -158,6 +159,11 @@ import {
   survey,
   userOutline,
   tablet,
+  requiredMark,
+  errorIcon,
+  mail,
+  resendMail,
+  infoIcon
 } from '../../icons';
 
 // export { default as addFile } from './add-file.svg';
@@ -306,6 +312,7 @@ export const BUNDLED_ICONS = {
   gear,
   internal,
   share,
+  shareFromSquare,
   starHalf,
   starOutline,
   star,
@@ -343,6 +350,11 @@ export const BUNDLED_ICONS = {
   export: exportIcon,
   import: importIcon,
   minusIcon: minusMinor,
+  requiredMark,
+  errorIcon,
+  mail,
+  resendMail,
+  infoIcon
 };
 
 const COLORS_WITH_BACKDROPS = ['teal', 'tealDark', 'greenDark', 'redDark', 'yellowDark', 'ink'];

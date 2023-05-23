@@ -10,6 +10,8 @@ export interface Props {
     children?: React.ReactNode;
     helpText?: React.ReactNode;
     theme?: any;
+    markIfRequired?: boolean;
+    errors?: any;
 }
 export declare function helpTextID(id: string): string;
 export declare function errorID(id: string): string;

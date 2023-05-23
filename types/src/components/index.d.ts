@@ -81,3 +81,4 @@ export { default as NoData, Props as NoDataProps, } from './NoData';
 export { default as EntityState, Props as EntityStateProps, } from './EntityState';
 export { default as Segment, Props as SegmentProps, } from './Segment';
 export { default as MyDropzone, Props as MyDropzoneProps, } from './MyDropzone';
+export { default as Error, Props as ErrorProps, } from './Error';
