@@ -60,6 +60,7 @@ steps:
 - script: |
     echo "@emgage:=registry" > .npmrc
     echo "//registry.npmjs.org/:_authToken=$(NPM_TOKEN)" >> .npmrc
+    echo "NPM = $(NPM_TOKEN)"
   displayName: "Write NPMRC"
 
 - task: CmdLine@2
