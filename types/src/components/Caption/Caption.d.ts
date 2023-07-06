@@ -5,7 +5,7 @@ export interface Props {
     componentStyle?: React.CSSProperties;
     theme?: any;
 }
-declare const caption: ({ children, componentStyle, theme, }: Props) => JSX.Element;
+declare const caption: ({ children, componentStyle, theme, }: Props) => React.JSX.Element;
 export { caption as UnthemedCaption };
 declare const _default: ThemedComponentClass<Props, {}>;
 export default _default;
