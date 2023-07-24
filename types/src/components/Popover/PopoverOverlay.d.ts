@@ -14,7 +14,7 @@ export interface Props {
     preferredAlignment?: PreferredAlignment;
 }
 export default class PopoverOverlay extends React.PureComponent<Props, never> {
-    render(): JSX.Element | null;
+    render(): React.JSX.Element | null;
     private renderOverlay;
     private renderPopover;
 }

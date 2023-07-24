@@ -27,7 +27,7 @@ export declare class Dropdown extends React.PureComponent<Props, State> {
     constructor(props: Props);
     setDropdownState: () => void;
     innerToggleDropdown: () => void;
-    render(): JSX.Element;
+    render(): React.JSX.Element;
 }
 export { Dropdown as UnthemedDropdown };
 declare const _default: ThemedComponentClass<Props, {}>;
