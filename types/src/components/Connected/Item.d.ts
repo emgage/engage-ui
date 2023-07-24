@@ -13,7 +13,7 @@ export interface State {
 }
 export default class Item extends React.PureComponent<Props, State> {
     state: State;
-    render(): JSX.Element;
+    render(): React.JSX.Element;
     private handleBlur;
     private handleFocus;
 }

@@ -9,7 +9,7 @@ export interface Props {
     theme?: any;
     componentStyle?: React.CSSProperties;
 }
-declare const spinner: ({ componentSize, componentColor, accessibilityLabel, theme, componentStyle, }: Props) => JSX.Element;
+declare const spinner: ({ componentSize, componentColor, accessibilityLabel, theme, componentStyle, }: Props) => React.JSX.Element;
 export { spinner as UnthemedSelect };
 declare const _default: ThemedComponentClass<Props, {}>;
 export default _default;

@@ -68,7 +68,7 @@ declare class ComboBox extends React.PureComponent<Props, State> {
     onChange: (value: string, event: React.FormEvent<HTMLElement>) => void;
     onArrowClick: (event: React.FormEvent<HTMLElement>) => void;
     handleClick: (value: string | any, key: any) => void;
-    render(): JSX.Element;
+    render(): React.JSX.Element;
 }
 export { ComboBox as UnthemedComboBox };
 declare const _default: ThemedComponentClass<Props, {}>;

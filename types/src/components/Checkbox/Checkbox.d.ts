@@ -27,7 +27,7 @@ declare class Checkbox extends React.PureComponent<Props, State> {
     constructor(props: Props);
     componentWillReceiveProps(newProps: Props): void;
     handleChange: (event: any) => void;
-    render(): JSX.Element;
+    render(): React.JSX.Element;
 }
 export { Checkbox as UnthemedCheckbox };
 declare const _default: ThemedComponentClass<Props, {}>;

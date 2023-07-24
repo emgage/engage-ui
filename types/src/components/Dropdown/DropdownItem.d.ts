@@ -16,7 +16,7 @@ export interface Props {
 declare class DropdownItem extends React.PureComponent<Props, never> {
     id: string;
     clickCallback: (event: any) => void;
-    render(): JSX.Element;
+    render(): React.JSX.Element;
 }
 export { DropdownItem as UnthemedSelect };
 declare const _default: ThemedComponentClass<Props, {}>;
