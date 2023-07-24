@@ -9,6 +9,6 @@ export interface Props extends React.DetailedHTMLProps<React.ImgHTMLAttributes<H
     sourceSet?: SourceSet[];
 }
 declare class Image extends React.PureComponent<Props, {}> {
-    render(): JSX.Element;
+    render(): React.JSX.Element;
 }
 export default Image;

@@ -10,5 +10,5 @@ export interface Props extends React.HTMLProps<HTMLAnchorElement> {
 export declare type LinkLikeComponent = ReactComponent<Props>;
 export default class UnstyledLink extends React.PureComponent<Props, never> {
     static use(newLinkComponent: LinkLikeComponent): void;
-    render(): JSX.Element;
+    render(): React.JSX.Element;
 }

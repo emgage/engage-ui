@@ -94,6 +94,7 @@ $vertical-padding: ($min-height - line-height(body) - 0.2rem) / 2;
     }
 
     .chipButtonContent {
+        overflow-x: clip;
         color: rgba(0,0,0,.54);
         fill: rgba(0,0,0,.54);
         padding: 0px;

@@ -37,7 +37,7 @@ declare class DateTimePicker extends React.PureComponent<Props, State> {
     setDateTime: (dateTime: any) => void;
     onTextInputChange: (dateTimeString: string) => void;
     textFieldFocusHandler: () => void;
-    render(): JSX.Element;
+    render(): React.JSX.Element;
 }
 export { DateTimePicker as UnthemedDropdown };
 declare const _default: ThemedComponentClass<Props, State>;

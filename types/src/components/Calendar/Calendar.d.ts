@@ -15,6 +15,6 @@ declare class Calendar extends React.PureComponent<Props, State> {
     static getDerivedStateFromError(error: any): {
         hasError: boolean;
     };
-    render(): JSX.Element;
+    render(): React.JSX.Element;
 }
 export default Calendar;

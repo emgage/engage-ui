@@ -32,5 +32,5 @@ export interface Props {
 declare const THEMEDBUTTON: ThemedComponentClass<Props, {}>;
 export declare function buttonsFrom(action: ComplexAction, overrides?: Partial<Props>): React.ReactElement<Props>;
 export declare function buttonsFrom(actions: ComplexAction[], overrides?: Partial<Props>): React.ReactElement<Props>[];
-export declare function buttonFrom({ content, onAction, ...action }: ComplexAction, overrides?: Partial<Props>, key?: any): JSX.Element;
+export declare function buttonFrom({ content, onAction, ...action }: ComplexAction, overrides?: Partial<Props>, key?: any): React.JSX.Element;
 export default THEMEDBUTTON;
