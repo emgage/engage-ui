@@ -88,11 +88,11 @@ export default class PopoverOverlay extends React.PureComponent<Props, never> {
     } = overlayDetails;
     const { addArrow, componentId, children, preferredPosition, preferredAlignment,tipPosition } = this.props;
     console.log('render popover-------------------------->',this.props)
-    // console.log({anchorPosition})
-    // console.log({activatorRect})
-    // console.log({left})
-    // console.log({anchorPosition})
-    // console.log({measuring})
+    console.log({anchorPosition})
+    console.log({activatorRect})
+    console.log({left})
+    console.log({anchorPosition})
+    console.log({measuring})
     const tipStyle = calculateTipPosition(anchorPosition + 8, left, preferredPosition === 'below' ? window.outerHeight - activatorRect.top < 250 ? 'above' : preferredPosition : preferredPosition, preferredAlignment,this.props.isPopover );
 
     const containerClassName = classNames(
