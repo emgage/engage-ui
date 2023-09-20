@@ -455,7 +455,7 @@ class Table extends React.PureComponent<Props, State> {
                     Here injectBody helps to inject any custom component to td,
                     we also return the specifc value, which then can be used in injected component
                   */}
-                  { colItem.key === 'rowAction' ? <RowAction componentId={componentId} theme={theme} actionInProgress={actionInProgress} isRowLoading={item.isRowLoading} actionConfig={rowAction}  data={item} rowActionLeft /> : '' }
+                  { colItem.key === 'rowAction' ? <RowAction rowIndex={index} colSize={column?.length} componentId={componentId} theme={theme} actionInProgress={actionInProgress} isRowLoading={item.isRowLoading} actionConfig={rowAction}  data={item} rowActionLeft /> : '' }
                   { renderCheckbox ? this.renderCheckColumn(item, false) : ''}
                   {colItem.injectBody ? colItem.injectBody(item) : renderCheckbox ?
                     <span style={{ paddingLeft: '16px' }}>
