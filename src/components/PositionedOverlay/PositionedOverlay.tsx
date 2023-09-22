@@ -52,6 +52,7 @@ export interface Props {
   theme?: any;
   render(overlayDetails: OverlayDetails): React.ReactNode;
   onScrollOut?(): void;
+  colSize?: number
 }
 
 export interface State {
@@ -135,12 +136,14 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
 
   render() {
     const { left, zIndex, top, width } = this.state;
-    const { componentStyle = {}, render, fixed = false, theme } = this.props;
+    const { componentStyle = {}, render, fixed = false, theme,colSize } = this.props;
 
+    console.log({colSize})
+    console.log('state:>',this.state)
     const style = {
       ...componentStyle,
       top: top === null ? undefined : top,
-      marginLeft: left,
+      marginLeft: (colSize && colSize>=10)?left+220:left,
       width: width === null ? undefined : width,
       zIndex: zIndex === null ? (componentStyle.zIndex ? componentStyle.zIndex : undefined) : zIndex,
     };
