@@ -143,7 +143,7 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
     const style = {
       ...componentStyle,
       top: top === null ? undefined : top,
-      marginLeft: (colSize && colSize>=10)?left-220:left,
+      marginLeft: left,
       width: width === null ? undefined : width,
       zIndex: zIndex === null ? (componentStyle.zIndex ? componentStyle.zIndex : undefined) : zIndex,
     };
