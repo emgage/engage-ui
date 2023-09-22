@@ -340,7 +340,7 @@ class Table extends React.PureComponent<Props, State> {
       selectRow,
       theme } = this.props;
     const { data, expandedRow } = this.state;
-
+      
     if (!children) {
       return (
         // data.length === 0 ?  <div style={{ width: '100%' }}>
@@ -432,6 +432,8 @@ class Table extends React.PureComponent<Props, State> {
       if (selectRow) totalColumn++;
     }
     const checkedStatus = this.getRowCheckedStatus(item);
+    console.log('table ui component---------------------------------->')
+    console.log({column})
     return(
       <React.Fragment key={index}>
         <TableRow theme={theme} componentClass={circleCheckbox && checkedStatus ? theme.checkedRow : ''}>
