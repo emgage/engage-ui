@@ -35,6 +35,7 @@ export interface Props {
   // Unique ID
   componentId?: string;
   theme?: any;
+  colSize?: number
 }
 
 export interface State {
@@ -77,6 +78,7 @@ export class Dropdown extends React.PureComponent<Props, State> {
       returnValue,
       componentId = '',
       theme,
+      colSize
     } = this.props;
 
     // Display the drop down items
@@ -99,6 +101,7 @@ export class Dropdown extends React.PureComponent<Props, State> {
     // Use Popover component as wrapper component for drop down items
     return (
       <Popover
+        colSize={colSize}
         manualInActive={this.state.manualInActive}
         preferredPosition={preferredPosition}
         anchorEl={anchorEl}
