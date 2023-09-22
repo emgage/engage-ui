@@ -61,11 +61,13 @@ export default class PopoverOverlay extends React.PureComponent<Props, never> {
       active,
       activator,
       preferredPosition = 'below',
-      preferredAlignment = 'center'
+      preferredAlignment = 'center',
+      colSize
     } = this.props;
 
     return (
       <PositionedOverlay
+        colSize={colSize}
       isPopover={this.props.isPopover}
         active={active}
         activator={activator}
