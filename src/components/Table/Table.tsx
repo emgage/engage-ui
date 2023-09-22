@@ -476,7 +476,7 @@ class Table extends React.PureComponent<Props, State> {
             })
           }
 
-          { rowAction && !rowActionLeft && <TableData componentClass={theme.lastData}>{item.isRowLoading && <Spinner componentSize="small" componentColor="disabled" />} <RowAction componentId={componentId} colSize={column?.length} actionInProgress={(actionInProgress && !!item.processing) || (isRowDisabled && isRowDisabled(item))} isRowLoading={item.isRowLoading} actionConfig={rowAction} data={item} theme={theme} /> </TableData> }
+          { rowAction && !rowActionLeft && <TableData componentClass={theme.lastData}>{item.isRowLoading && <Spinner componentSize="small" componentColor="disabled" />} <RowAction colSize={column?.length} componentId={componentId} actionInProgress={(actionInProgress && !!item.processing) || (isRowDisabled && isRowDisabled(item))} isRowLoading={item.isRowLoading} actionConfig={rowAction} data={item} theme={theme} /> </TableData> }
         </TableRow>
         { renderBanner &&
         <TableRow>
