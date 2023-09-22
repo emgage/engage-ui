@@ -94,8 +94,13 @@ export default class PopoverOverlay extends React.PureComponent<Props, never> {
     console.log({anchorPosition})
     console.log({measuring})
     console.log({colSize})
-    const tipStyle = calculateTipPosition(anchorPosition + 8, left, preferredPosition === 'below' ? window.outerHeight - activatorRect.top < 250 ? 'above' : preferredPosition : preferredPosition, preferredAlignment,this.props.isPopover );
+    let tipStyle;
+    if(colSize && colSize>=10){
+      tipStyle = calculateTipPosition(anchorPosition + 8+220, left, preferredPosition === 'below' ? window.outerHeight - activatorRect.top < 250 ? 'above' : preferredPosition : preferredPosition, preferredAlignment,this.props.isPopover );
+    }else{
+      tipStyle = calculateTipPosition(anchorPosition + 8, left, preferredPosition === 'below' ? window.outerHeight - activatorRect.top < 250 ? 'above' : preferredPosition : preferredPosition, preferredAlignment,this.props.isPopover );
 
+    }
     const containerClassName = classNames(
       (preferredPosition === 'below' || preferredPosition === 'mostSpace') && styles.belowPopover,
       preferredPosition === 'right' && styles.rightPopover,
