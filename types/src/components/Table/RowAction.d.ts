@@ -16,6 +16,8 @@ export interface Props {
     rowActionLeft?: boolean;
     actionInProgress?: boolean;
     isRowLoading?: boolean;
+    rowIndex?: number;
+    colSize?: number;
 }
 export interface State {
     active: boolean;
