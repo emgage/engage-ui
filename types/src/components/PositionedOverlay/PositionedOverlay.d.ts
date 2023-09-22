@@ -28,6 +28,7 @@ export interface Props {
     theme?: any;
     render(overlayDetails: OverlayDetails): React.ReactNode;
     onScrollOut?(): void;
+    colSize?: number;
 }
 export interface State {
     measuring: boolean;
