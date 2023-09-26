@@ -105,6 +105,7 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
   componentDidUpdate() {
     const { outsideScrollableContainer, top } = this.state;
     const { onScrollOut, active = false } = this.props;
+    console.log('position overlay props:>',this.props)
 
     if (
       active &&
