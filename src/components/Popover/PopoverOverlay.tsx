@@ -27,6 +27,7 @@ export interface Props {
   tipPosition?: number;
   preferredAlignment?: PreferredAlignment;
   colSize?: number;
+  rowIndex?: number
 }
 // export interface State {
 //   stateRef?: any;

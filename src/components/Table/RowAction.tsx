@@ -89,6 +89,7 @@ class RowAction extends React.PureComponent<Props, State> {
         </Button>
           <Dropdown
             colSize={colSize}
+            rowIndex={rowIndex}
             dropdownItems={validActionConfigs}
             toggle={() => this.dropdownToggle}
             anchorEl = {this.state.anchorEl}
