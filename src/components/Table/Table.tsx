@@ -432,6 +432,8 @@ class Table extends React.PureComponent<Props, State> {
       if (selectRow) totalColumn++;
     }
     const checkedStatus = this.getRowCheckedStatus(item);
+    console.log('table ui component---------------------------------->')
+    console.log({column})
     return(
       <React.Fragment key={index}>
         <TableRow theme={theme} componentClass={circleCheckbox && checkedStatus ? theme.checkedRow : ''}>

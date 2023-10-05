@@ -139,6 +139,8 @@ class PositionedOverlay extends React.PureComponent<Props, State> {
     const { left, zIndex, top, width } = this.state;
     const { componentStyle = {}, render, fixed = false, theme,colSize } = this.props;
 
+    console.log({colSize})
+    console.log('state:>',this.state)
     const style = {
       ...componentStyle,
       top: top === null ? undefined : top,
