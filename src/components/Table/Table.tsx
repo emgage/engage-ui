@@ -340,7 +340,7 @@ class Table extends React.PureComponent<Props, State> {
       selectRow,
       theme } = this.props;
     const { data, expandedRow } = this.state;
-      
+
     if (!children) {
       return (
         // data.length === 0 ?  <div style={{ width: '100%' }}>
@@ -455,16 +455,16 @@ class Table extends React.PureComponent<Props, State> {
                     Here injectBody helps to inject any custom component to td,
                     we also return the specifc value, which then can be used in injected component
                   */}
-                  { colItem.key === 'rowAction' ? <RowAction rowIndex={index} colSize={column?.length} componentId={componentId} theme={theme} actionInProgress={actionInProgress} isRowLoading={item.isRowLoading} actionConfig={rowAction}  data={item} rowActionLeft /> : '' }
+                  { colItem.key === 'rowAction' ? <RowAction componentId={componentId} theme={theme} actionInProgress={actionInProgress} isRowLoading={item.isRowLoading} actionConfig={rowAction}  data={item} rowActionLeft /> : '' }
                   { renderCheckbox ? this.renderCheckColumn(item, false) : ''}
                   {colItem.injectBody ? colItem.injectBody(item) : renderCheckbox ?
                     <span style={{ paddingLeft: '16px' }}>
-                      <BodyText element="span" componentSize="default">{item[colItem.key]}</BodyText>
+                      <BodyText element="span" componentSize="default">{this.isHTML(item[colItem.key]) ? this.plainString(item[colItem.key]): item[colItem.key]}</BodyText>
                       {colItem.subKey && item[colItem.subKey] && <BodyText componentClass={theme.subText} componentSize="small" componentColor="darker">{item[colItem.subKey].replace(/\n/g, '')}</BodyText>}
                     </span>
                     :
                     <span className={theme.tableDataWrap}>
-                      <BodyText element="span" componentSize="default">{item[colItem.key]}</BodyText>
+                      <BodyText element="span" componentSize="default">{this.isHTML(item[colItem.key]) ? this.plainString(item[colItem.key]) : item[colItem.key]}</BodyText>
                       {colItem.subKey && item[colItem.subKey] && <BodyText componentClass={theme.subText} componentSize="small" componentColor="darker">{item[colItem.subKey].replace(/\n/g, '')}</BodyText>}
                     </span>
                   }
@@ -474,7 +474,9 @@ class Table extends React.PureComponent<Props, State> {
             })
           }
 
-          { rowAction && !rowActionLeft && <TableData componentClass={theme.lastData}>{item.isRowLoading && <Spinner componentSize="small" componentColor="disabled" />} <RowAction colSize={column?.length} componentId={componentId} actionInProgress={(actionInProgress && !!item.processing) || (isRowDisabled && isRowDisabled(item))} isRowLoading={item.isRowLoading} actionConfig={rowAction} data={item} theme={theme} /> </TableData> }
+          { rowAction && !rowActionLeft && <TableData componentClass={theme.lastData}>{item.isRowLoading && <Spinner componentSize="small" componentColor="disabled" />} <RowAction componentId={componentId} actionInProgress={(actionInProgress && !!item.processing) || (isRowDisabled && isRowDisabled(item))} isRowLoading={item.isRowLoading} actionConfig={rowAction} data={item} theme={theme} /> </TableData> }
+
+          { rowAction && !rowActionLeft && <TableData componentClass={theme.lastData}>{item.isRowLoading && <Spinner componentSize="small" componentColor="disabled" />} <RowAction componentId={componentId} actionInProgress={(actionInProgress && !!item.processing) || (isRowDisabled && isRowDisabled(item))} isRowLoading={item.isRowLoading} actionConfig={rowAction} data={item} theme={theme} /> </TableData> }
         </TableRow>
         { renderBanner &&
         <TableRow>
@@ -499,6 +501,13 @@ class Table extends React.PureComponent<Props, State> {
       </React.Fragment>
     );
   }
+
+  isHTML(str: string) {
+    const htmlRegex = /<[a-z][\s\S]*>/i;
+    return htmlRegex.test(str);
+  }
+
+  plainString = (htmlString: string) => htmlString.replace(/<\/?[^>]+(>|$)/g, '');
 
   callBackSelectedRows(selectedRows: any) {
     callBackSelectedRows = selectedRows;
