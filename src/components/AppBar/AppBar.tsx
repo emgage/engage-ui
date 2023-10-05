@@ -57,6 +57,7 @@ export interface Props {
    */
   profilePic?: string;
   onHeightChange?: (height: number) => void;
+  logoElement?: React.ReactNode;
 }
 
 const AppBar: React.FC<Props> = (props) => {
@@ -78,6 +79,7 @@ const AppBar: React.FC<Props> = (props) => {
     enableGlobalElement,
     searchOnKeyDown,
     onHeightChange,
+    logoElement
   } = props;
   const [searchText, setSearchText] = React.useState('');
 
@@ -107,6 +109,7 @@ const AppBar: React.FC<Props> = (props) => {
   return <header ref={headerRef} className={baseTheme.appHeader}>
     <FlexBox>
       { enableGlobalGo && enableGlobalElement }
+      { logoElement }
       { logo && <Image alt="Logo" source={logo} /> }
       { enableSearch &&
         <div className={baseTheme.searchBar}>
