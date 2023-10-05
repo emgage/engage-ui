@@ -18,6 +18,7 @@ export interface Props {
     theme?: any;
     open?: boolean;
     colSize?: number;
+    rowIndex?: number;
 }
 export interface State {
     active: boolean;
