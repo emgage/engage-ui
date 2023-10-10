@@ -109,7 +109,7 @@ const AppBar: React.FC<Props> = (props) => {
   return <header ref={headerRef} className={baseTheme.appHeader}>
     <FlexBox>
       { enableGlobalGo && enableGlobalElement }
-      { logoElement }
+      { logoElement && logoElement }
       { logo && <Image alt="Logo" source={logo} /> }
       { enableSearch &&
         <div className={baseTheme.searchBar}>
