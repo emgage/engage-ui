@@ -349,24 +349,30 @@ class Picker extends React.PureComponent<Props, State> {
       },
 
       onSuggestionSelected: (event: React.FormEvent<Element>, { suggestion }: any) => {
-        suggestion.text = suggestion.name;
-        autoSuggestMethods.updateList(suggestion);
-        this.setState((prevState) => {
-          const chipListState = [...this.state.chipListState, suggestion];
-          const item = Object.assign({}, chipListState[0], { tabIndex: 0 });
-          chipListState[0] = item;
-
-          return {
-            ...prevState,
-            chipListState,
-            value: '',
-            hasValue: true,
-          };
-        },            () => {
+        if(!suggestion.notSelectable){
+          suggestion.text = suggestion.name;
+          autoSuggestMethods.updateList(suggestion);
+          this.setState((prevState) => {
+            const chipListState = [...prevState.chipListState, suggestion];
+            const item = Object.assign({}, chipListState[0], { tabIndex: 0 });
+            chipListState[0] = item;
+  
+            return {
+              ...prevState,
+              chipListState,
+              value: '',
+              hasValue: true,
+            };
+          },            () => {
+            if (this.props.onSelect) {
+              this.props.onSelect(suggestion);
+            }
+          });
+        } else {
           if (this.props.onSelect) {
             this.props.onSelect(suggestion);
           }
-        });
+        }
       },
 
       chipRemove: (item: any) => {

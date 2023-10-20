@@ -17,6 +17,8 @@ export interface Props {
     onOpen?(): void;
     componentId?: string;
     theme?: any;
+    colSize?: number;
+    rowIndex?: number;
 }
 export interface State {
     selectedIndex: number;
