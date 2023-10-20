@@ -17,6 +17,8 @@ export interface Props {
     preferredAlignment?: PreferredAlignment;
     theme?: any;
     open?: boolean;
+    colSize?: number;
+    rowIndex?: number;
 }
 export interface State {
     active: boolean;

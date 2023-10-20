@@ -50,6 +50,7 @@ export interface Props {
      */
     profilePic?: string;
     onHeightChange?: (height: number) => void;
+    logoElement?: React.ReactNode;
 }
 declare const AppBar: React.FC<Props>;
 export default AppBar;

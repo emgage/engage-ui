@@ -30,6 +30,8 @@ export interface Props {
   rowActionLeft?: boolean;
   actionInProgress?: boolean;
   isRowLoading?: boolean;
+  rowIndex?: number
+  colSize?: number
 }
 
 export interface State {
@@ -77,15 +79,17 @@ class RowAction extends React.PureComponent<Props, State> {
   }
 
   render () {
-    const { actionConfig, data, rowActionLeft = false, actionInProgress = false, componentId = '', theme } = this.props;
+    const { actionConfig, data, rowActionLeft = false, actionInProgress = false, componentId = '', theme, rowIndex, colSize } = this.props;
     const validActionConfigs = this.getActions(actionConfig, data);
     return (
       validActionConfigs && validActionConfigs.length > 0 ?
       <React.Fragment>
         <div style={{ float: 'right' }}>
-        <Button componentId={`${componentId}BtnMoreActions`} theme={theme} componentClass={theme.rowActionButton} disabled={actionInProgress} icon="horizontalDots" onClick={(e: React.FormEvent<HTMLElement>) => this.dropdownToggle(e)} title="More Actions">
+        <Button componentId={`${componentId}BtnMoreActions`} key={rowIndex} theme={theme} componentClass={theme.rowActionButton} disabled={actionInProgress} icon="horizontalDots" onClick={(e: React.FormEvent<HTMLElement>) => this.dropdownToggle(e)} title="More Actions">
         </Button>
           <Dropdown
+            colSize={colSize}
+            rowIndex={rowIndex}
             dropdownItems={validActionConfigs}
             toggle={() => this.dropdownToggle}
             anchorEl = {this.state.anchorEl}

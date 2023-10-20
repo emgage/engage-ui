@@ -35,6 +35,8 @@ export interface Props {
   // Theme to be injected via css-themr.
   theme?: any;
   open?: boolean;
+  colSize?: number
+  rowIndex?: number
 }
 
 export interface State {
@@ -160,6 +162,8 @@ class Popover extends React.PureComponent<Props, State> {
       preferredAlignment = 'center',
       open = false,
       tipPosition,
+      colSize,
+      rowIndex
     } = this.props;
 
     const themeClass = classNames(
@@ -170,6 +174,8 @@ class Popover extends React.PureComponent<Props, State> {
 
     return (
       <PopoverOverlay
+      rowIndex={rowIndex}
+      colSize={colSize}
       isPopover={true}
       tipPosition={tipPosition}
         addArrow={addArrow}

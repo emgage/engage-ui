@@ -12,6 +12,8 @@ export interface Props {
     onClose(): void;
     tipPosition?: number;
     preferredAlignment?: PreferredAlignment;
+    colSize?: number;
+    rowIndex?: number;
 }
 export default class PopoverOverlay extends React.PureComponent<Props, never> {
     render(): React.JSX.Element | null;
