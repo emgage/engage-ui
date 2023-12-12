@@ -351,7 +351,7 @@ class Picker extends React.PureComponent<Props, State> {
       },
 
       onSuggestionSelected: (event: React.FormEvent<Element>, { suggestion }: any) => {
-        if(!suggestion.notSelectable){
+        if(!suggestion.notSelectable && !processingIds.includes(suggestion.id)){
           suggestion.text = suggestion.name;
           autoSuggestMethods.updateList(suggestion);
           this.setState((prevState) => {
