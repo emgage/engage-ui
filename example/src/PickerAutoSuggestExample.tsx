@@ -4,7 +4,17 @@ import {
   Picker,
 } from '../../src/components';
 
-class PickerAutoSuggestExample extends React.Component<{}, {}> {
+class PickerAutoSuggestExample extends React.Component<any, {}> {
+  state = {
+    processing : [2],
+  }
+  componentDidMount(){
+    setTimeout(() => {
+      this.setState({
+        processing: [],
+      });
+    }, 10000);
+  }
   render() {
 
     const pickerdata = [
@@ -26,6 +36,7 @@ class PickerAutoSuggestExample extends React.Component<{}, {}> {
         onSelect={(value: any) => console.log('I am here:', value)}
         onRemove={(value: any) => console.log('I am removed:', value)}
         suffix={'users'}
+        processingIds={this.state.processing}
         // labelHidden
         // loading
       />
