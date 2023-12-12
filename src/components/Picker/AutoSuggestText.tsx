@@ -58,7 +58,7 @@ class AutoSuggestText extends React.PureComponent<Props, {}> {
             label={input.name}
             theme={theme}
             image={{ url: input.image }}
-            removable={!processingIds.includes(input.key) && this.props.stateProps && this.props.stateProps.removable}
+            removable={!processingIds.includes(input.id) && this.props.stateProps && this.props.stateProps.removable}
             onRemove={() => this.props.autoSuggestMethods ? this.props.autoSuggestMethods.chipRemove(input) : null} key={input.key}>
               {input.icon && <Button plain componentSize="slim" icon={input.icon} onClick={input.onIconClick}></Button>}
             </Chip>) : null
