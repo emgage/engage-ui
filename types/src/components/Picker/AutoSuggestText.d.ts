@@ -8,6 +8,7 @@ export interface IStateProps {
     removable: boolean;
     multiSection?: any;
     reachedMax?: boolean;
+    processingIds?: any[];
 }
 export interface Props {
     theme?: any;

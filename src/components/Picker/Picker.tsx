@@ -21,6 +21,7 @@ export interface IStateProps {
   removable: boolean;
   multiSection?: any;
   reachedMax?: boolean;
+  processingIds?: any[];
 }
 
 export interface IItemList {
@@ -115,6 +116,7 @@ export interface Props {
   placeholder?: string;
   shouldFilterSuggestions?: boolean;
   markIfRequired?: boolean
+  processingIds?: any[];
 }
 
 const DefaultCard = (props: any) => {
@@ -261,7 +263,7 @@ class Picker extends React.PureComponent<Props, State> {
 
   render() {
 
-    const { columns = [] } = this.props;
+    const { columns = [], processingIds = [] } = this.props;
 
     function escapeRegexCharacters(str: string) {
       return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -295,7 +297,7 @@ class Picker extends React.PureComponent<Props, State> {
       },
 
       onKeyDown: (e: KeyboardEvent, focusArr?: any, chipListState?: IItemList[]) => {
-        if ((e.keyCode === 8) && this.state.chipListState.length && !this.state.value.length) {
+        if ((e.keyCode === 8) && this.state.chipListState.length && !this.state.value.length && processingIds.length === 0) {
           const chipListState = this.state.chipListState.slice(0, this.state.chipListState.length - 1);
           const selectedChip = this.state.chipListState.slice(this.state.chipListState.length - 1)[0];
           const itemsList = [selectedChip, ...this.state.itemsList];
@@ -349,24 +351,30 @@ class Picker extends React.PureComponent<Props, State> {
       },
 
       onSuggestionSelected: (event: React.FormEvent<Element>, { suggestion }: any) => {
-        suggestion.text = suggestion.name;
-        autoSuggestMethods.updateList(suggestion);
-        this.setState((prevState) => {
-          const chipListState = [...this.state.chipListState, suggestion];
-          const item = Object.assign({}, chipListState[0], { tabIndex: 0 });
-          chipListState[0] = item;
-
-          return {
-            ...prevState,
-            chipListState,
-            value: '',
-            hasValue: true,
-          };
-        },            () => {
+        if(!suggestion.notSelectable && !processingIds.includes(suggestion.id)){
+          suggestion.text = suggestion.name;
+          autoSuggestMethods.updateList(suggestion);
+          this.setState((prevState) => {
+            const chipListState = [...prevState.chipListState, suggestion];
+            const item = Object.assign({}, chipListState[0], { tabIndex: 0 });
+            chipListState[0] = item;
+  
+            return {
+              ...prevState,
+              chipListState,
+              value: '',
+              hasValue: true,
+            };
+          },            () => {
+            if (this.props.onSelect) {
+              this.props.onSelect(suggestion);
+            }
+          });
+        } else {
           if (this.props.onSelect) {
             this.props.onSelect(suggestion);
           }
-        });
+        }
       },
 
       chipRemove: (item: any) => {
@@ -483,7 +491,8 @@ class Picker extends React.PureComponent<Props, State> {
       inputProps,
       removable: readOnly ? false : true,
       multiSection: columns.length !== 0 ? true : false,
-      reachedMax: (!!this.props.maxSelectedItems && this.props.maxSelectedItems > 0 && this.props.maxSelectedItems <= chipListState.length)
+      reachedMax: (!!this.props.maxSelectedItems && this.props.maxSelectedItems > 0 && this.props.maxSelectedItems <= chipListState.length),
+      processingIds: this.props.processingIds,
     };
 
     let suffixIcon: React.ReactNode = null;
@@ -529,7 +538,7 @@ class Picker extends React.PureComponent<Props, State> {
             helpText={helpText}
             itemSelected={!!chipListState.length}
             labelHidden={labelHidden}
-            loading={loading}
+            loading={loading || processingIds.length > 0}
             value={value}
             onChange={(autoSuggestMethods.onChange) as any}
             stateProps={stateProps}

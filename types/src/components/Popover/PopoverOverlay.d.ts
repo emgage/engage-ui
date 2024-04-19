@@ -12,9 +12,11 @@ export interface Props {
     onClose(): void;
     tipPosition?: number;
     preferredAlignment?: PreferredAlignment;
+    colSize?: number;
+    rowIndex?: number;
 }
 export default class PopoverOverlay extends React.PureComponent<Props, never> {
-    render(): JSX.Element | null;
+    render(): React.JSX.Element | null;
     private renderOverlay;
     private renderPopover;
 }

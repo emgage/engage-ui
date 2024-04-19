@@ -8,6 +8,7 @@ export interface IStateProps {
     removable: boolean;
     multiSection?: any;
     reachedMax?: boolean;
+    processingIds?: any[];
 }
 export interface IItemList {
     name: string;
@@ -87,6 +88,7 @@ export interface Props {
     placeholder?: string;
     shouldFilterSuggestions?: boolean;
     markIfRequired?: boolean;
+    processingIds?: any[];
 }
 declare class Picker extends React.PureComponent<Props, State> {
     wrapperRef: HTMLDivElement;
@@ -94,13 +96,13 @@ declare class Picker extends React.PureComponent<Props, State> {
     setWrapperRef: (node: any) => void;
     componentWillReceiveProps(newProps: Props): void;
     getSuggestionsItems: (source: any, columns?: any) => any;
-    renderSuggestionsContainer: ({ containerProps, children }: any) => JSX.Element;
+    renderSuggestionsContainer: ({ containerProps, children }: any) => React.JSX.Element;
     getSectionSuggestions: (section: any) => any;
     renderSectionTitle: (section: any) => any;
     shouldRenderSuggestions: () => boolean;
     storeInputReference: (input: any) => void;
     getFilteredSuggestions: (list?: IItemList[], selectedList?: IItemList[], valString?: any) => IItemList[];
-    render(): JSX.Element;
+    render(): React.JSX.Element;
 }
 export { Picker as UnthemedPicker };
 declare const _default: ThemedComponentClass<Props, State>;

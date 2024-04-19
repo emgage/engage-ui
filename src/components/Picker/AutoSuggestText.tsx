@@ -17,6 +17,7 @@ export interface IStateProps {
   removable: boolean;
   multiSection?: any;
   reachedMax?: boolean;
+  processingIds?: any[];
 }
 
 export interface Props {
@@ -48,7 +49,7 @@ class AutoSuggestText extends React.PureComponent<Props, {}> {
     );
     const isActive = this.props?.autoSuggestMethods?.getInputReference() === document.activeElement;
     const shouldRenderSuggestions = this.props?.autoSuggestMethods?.shouldRenderSuggestions || (() => { return false; }) as any;
-
+    const processingIds:any = this.props?.stateProps?.processingIds || [];
     return (
       <div className={className}>
         {this.props.stateProps ? this.props.stateProps.chipListState.map((input: any) =>
@@ -57,7 +58,7 @@ class AutoSuggestText extends React.PureComponent<Props, {}> {
             label={input.name}
             theme={theme}
             image={{ url: input.image }}
-            removable={this.props.stateProps && this.props.stateProps.removable}
+            removable={!processingIds.includes(input.id) && this.props.stateProps && this.props.stateProps.removable}
             onRemove={() => this.props.autoSuggestMethods ? this.props.autoSuggestMethods.chipRemove(input) : null} key={input.key}>
               {input.icon && <Button plain componentSize="slim" icon={input.icon} onClick={input.onIconClick}></Button>}
             </Chip>) : null

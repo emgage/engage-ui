@@ -26,7 +26,8 @@ export interface Props {
   onClose(): void;
   tipPosition?: number;
   preferredAlignment?: PreferredAlignment;
-
+  colSize?: number;
+  rowIndex?: number
 }
 // export interface State {
 //   stateRef?: any;
@@ -61,11 +62,13 @@ export default class PopoverOverlay extends React.PureComponent<Props, never> {
       active,
       activator,
       preferredPosition = 'below',
-      preferredAlignment = 'center'
+      preferredAlignment = 'center',
+      colSize
     } = this.props;
 
     return (
       <PositionedOverlay
+        colSize={colSize}
       isPopover={this.props.isPopover}
         active={active}
         activator={activator}
@@ -87,10 +90,8 @@ export default class PopoverOverlay extends React.PureComponent<Props, never> {
       anchorPosition
     } = overlayDetails;
     const { addArrow, componentId, children, preferredPosition, preferredAlignment,tipPosition } = this.props;
-
     const tipStyle = calculateTipPosition(anchorPosition + 8, left, preferredPosition === 'below' ? window.outerHeight - activatorRect.top < 250 ? 'above' : preferredPosition : preferredPosition, preferredAlignment,this.props.isPopover );
-
-    const containerClassName = classNames(
+   const containerClassName = classNames(
       (preferredPosition === 'below' || preferredPosition === 'mostSpace') && styles.belowPopover,
       preferredPosition === 'right' && styles.rightPopover,
       preferredPosition === 'above' && styles.abovePopover,

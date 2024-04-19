@@ -88,18 +88,20 @@ const LazyPicker = (props: ILazyPickerProps) => {
 
   const handleSelect = (item: any) => {
     onSelect && onSelect(item);
-    if (fetchingCount <= 0) {
-      toggleShowMore(false);
-    } else {
-      const interval = setInterval(() => {
-        setFetchingCount((prevCount: number) => {
-          if (prevCount <= 0) {
-            toggleShowMore(false);
-            clearInterval(interval);
-          }
-          return prevCount;
-        });
-      },                           500);
+    if(!shouldRenderSuggestions){
+      if (fetchingCount <= 0) {
+        toggleShowMore(false);
+      } else {
+        const interval = setInterval(() => {
+          setFetchingCount((prevCount: number) => {
+            if (prevCount <= 0) {
+              toggleShowMore(false);
+              clearInterval(interval);
+            }
+            return prevCount;
+          });
+        },                           500);
+      }
     }
   };
 

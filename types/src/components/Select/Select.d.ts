@@ -33,7 +33,7 @@ export interface Props {
     onBlur?(): void;
     markIfRequired?: boolean;
 }
-declare const select: ({ componentId, name, groups, options, labelHidden, labelAction, loading, helpText, label, errors, value, placeholder, disabled, readOnly, backdropHidden, required, onChange, onFocus, onBlur, theme, markIfRequired }: Props) => JSX.Element;
+declare const select: ({ componentId, name, groups, options, labelHidden, labelAction, loading, helpText, label, errors, value, placeholder, disabled, readOnly, backdropHidden, required, onChange, onFocus, onBlur, theme, markIfRequired }: Props) => React.JSX.Element;
 export { select as UnthemedSelect };
 declare const _default: ThemedComponentClass<Props, {}>;
 export default _default;
