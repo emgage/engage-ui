@@ -15,6 +15,7 @@ export interface Props {
     placeholder?: string;
     autoSuggestMethods?: IAutoSuggestMethods;
     stateProps?: IStateProps;
+    handleInputFocus?: any;
 }
 declare const _default: ThemedComponentClass<Props, {}>;
 export default _default;
