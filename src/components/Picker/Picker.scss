@@ -43,6 +43,15 @@ $stacking-order: (
   }
 }
 
+.textField{
+  &:not(.focused) {
+    .input{
+      height: 0 !important;
+      width: 0 !important;
+    }
+  }
+}
+
 .container {
   flex: 1 0 auto;
   display: inline-block;

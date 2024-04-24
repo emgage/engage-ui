@@ -25,6 +25,7 @@ export interface Props {
   placeholder?: string;
   autoSuggestMethods?: IAutoSuggestMethods;
   stateProps?: IStateProps;
+  handleInputFocus?: any;
 }
 
 class AutoSuggestText extends React.PureComponent<Props, {}> {
@@ -42,7 +43,6 @@ class AutoSuggestText extends React.PureComponent<Props, {}> {
 
   render() {
     const { theme, stateProps }: any = this.props;
-
     const className = classNames(
       theme.containerWrapper,
       this.props.stateProps ? this.props.stateProps.chipListState.length ? null : theme.empty : null
@@ -51,7 +51,7 @@ class AutoSuggestText extends React.PureComponent<Props, {}> {
     const shouldRenderSuggestions = this.props?.autoSuggestMethods?.shouldRenderSuggestions || (() => { return false; }) as any;
     const processingIds:any = this.props?.stateProps?.processingIds || [];
     return (
-      <div className={className}>
+      <div onClick={this.props.handleInputFocus} className={className}>
         {this.props.stateProps ? this.props.stateProps.chipListState.map((input: any) =>
           <Chip
             icon={input.icon}
