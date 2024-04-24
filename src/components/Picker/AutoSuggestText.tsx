@@ -92,7 +92,7 @@ class AutoSuggestText extends React.PureComponent<Props, {}> {
               shouldKeepSuggestionsOnSelect={isActive ? shouldRenderSuggestions : () => { }}
             />
             :
-            <span style={!isActive ? {width: 0, height: 0} : {width: '100%', display: 'flex'}}><Autosuggest
+            <Autosuggest
               theme={{
                 ...theme,
                 container: theme.container,
@@ -112,7 +112,7 @@ class AutoSuggestText extends React.PureComponent<Props, {}> {
               renderSuggestion={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.renderSuggestion : (() => {}) as any}
               inputProps={this.props.stateProps ? this.props.stateProps.inputProps : null}
               renderSuggestionsContainer={this.props.autoSuggestMethods ? this.props.autoSuggestMethods.renderSuggestionsContainer : (() => {}) as any}
-            /></span>
+            />
             : null
           }
       </div>
