@@ -31,6 +31,9 @@ $stacking-order: (
     margin-top: control-vertical-padding();
     vertical-align: top;
     margin-bottom:.5rem;
+    .chipContent {
+      padding-right: 0px !important;
+    }
   }
 }
 .labelWrapper {
@@ -50,7 +53,7 @@ $stacking-order: (
     }
   }
   .suffix {
-    margin-left: .15rem;
+    margin-left: 0;
   }
 }
 
