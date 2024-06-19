@@ -29,9 +29,11 @@ $stacking-order: (
   //TODO: Consider using Stack component instead of adding margin.
   .Chip {
     margin-top: control-vertical-padding();
-    margin-right: control-vertical-padding();
     vertical-align: top;
     margin-bottom:.5rem;
+    .chipContent {
+      padding-right: 0px !important;
+    }
   }
 }
 .labelWrapper {
@@ -40,6 +42,18 @@ $stacking-order: (
   &.focused,
   &:not(.empty) {
     margin-top: auto !important;
+  }
+}
+
+.textField{
+  &:not(.focused) {
+    .container {
+      height: 0 !important;
+      width: 0 !important;
+    }
+  }
+  .suffix {
+    margin-left: 0;
   }
 }
 

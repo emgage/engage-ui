@@ -288,7 +288,7 @@ class ComboBox extends React.PureComponent<Props, State> {
       const maxHeight = (window.innerHeight) - this.wrapperRef.getBoundingClientRect().bottom - this.wrapperRef.offsetHeight;
       this.setState({
         maxHeight,
-        open: !this.state.open,
+        open: true,
         anchorEl: event.target as HTMLElement,
       });
     }
@@ -320,7 +320,7 @@ class ComboBox extends React.PureComponent<Props, State> {
       backdropHidden,
       errors,
       handleScroll = () => {},
-      onFocus = () => {},
+      onFocus = () => {this.setState({open: true});},
       fullWidth = false,
       addArrow = false,
     } = this.props;
