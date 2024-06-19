@@ -8,6 +8,7 @@ export interface IStateProps {
     removable: boolean;
     multiSection?: any;
     reachedMax?: boolean;
+    processingIds?: any[];
 }
 export interface IItemList {
     name: string;
@@ -87,6 +88,7 @@ export interface Props {
     placeholder?: string;
     shouldFilterSuggestions?: boolean;
     markIfRequired?: boolean;
+    processingIds?: any[];
 }
 declare class Picker extends React.PureComponent<Props, State> {
     wrapperRef: HTMLDivElement;
