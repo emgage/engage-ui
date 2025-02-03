@@ -14,6 +14,11 @@ export interface Props {
     sortBy?: string;
     serverSort?(field: string, sortBy: string): void;
     theme?: any;
+    allowDrag?: boolean;
+    isFirst?: boolean;
+    allowAddRow?: boolean;
+    onPlusClick?(position: 'right' | 'left'): void;
+    onResize?(width: number, nextWidth: number): void;
 }
 declare const _default: ThemedComponentClass<Props, {}>;
 export default _default;
