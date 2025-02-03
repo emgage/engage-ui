@@ -34,31 +34,53 @@ const tableData = [
   },
 ];
 
-const columnConfig = [
-  {
-    label: 'Name',
-    key: 'name',
-    className: '',
-    style: { width: '200px' },
-    sort: true,
-  }, {
-    label: 'Description',
-    key: 'description',
-    style: { width: 'auto' },
-  }, {
-    label: 'Status',
-    key: 'status',
-    sort: true,
-    style: { width: '150px' },
-  }, {
-    label: 'Type',
-    key: 'type',
-    style: { width: '100px' },
-  },
-];
+// const columnConfig = [
+//   {
+//     label: 'Name',
+//     key: 'name',
+//     className: '',
+//     style: { width: '200px' },
+//     sort: true,
+//   }, {
+//     label: 'Description',
+//     key: 'description',
+//     style: { width: 'auto' },
+//   }, {
+//     label: 'Status',
+//     key: 'status',
+//     sort: true,
+//     style: { width: '150px' },
+//   }, {
+//     label: 'Type',
+//     key: 'type',
+//     style: { width: '100px' },
+//   },
+// ];
 
 const TableExample = () => {
   const [selectedIds, setSelectedIds] = React.useState<number[]>([]);
+  const [columns, setColumns] = React.useState<any[]>([
+    {
+      label: 'Name',
+      key: 'name',
+      className: '',
+      style: { width: '200px' },
+      sort: true,
+    }, {
+      label: 'Description',
+      key: 'description',
+      style: { width: '100px' },
+    }, {
+      label: 'Status',
+      key: 'status',
+      sort: true,
+      style: { width: '100px' },
+    }, {
+      label: 'Type',
+      key: 'type',
+      style: { width: 'auto' },
+    },
+  ]);
 
   React.useEffect(() => {
     setSelectedIds([1, 2, 5]);
@@ -88,7 +110,7 @@ const TableExample = () => {
     <div className={styles.example}>
       <Table
         data={tableData}
-        column={columnConfig}
+        column={columns}
         defaultSortField="name"
         defaultSortOrder="asc"
         bordered
@@ -97,14 +119,37 @@ const TableExample = () => {
         selectRow="checkbox"
         defaultCheckedDataId={selectedIds}
         headerCheckboxStatus={checkboxStatus}
+        allowAddRow
+        onPlusClick={(c,p)=>{
+          console.log('onPlusClick',c,p);
+        }}
         selectRowCallback={(newSelectedIds, from) => {
+          console.log("checked", newSelectedIds, from)
           if (from === 'header') {
             selectAllHandle(newSelectedIds.length > 0);
           }
         }}
-        singleSelectRowCallback={handleSingleRowSelect}
+        singleSelectRowCallback={(...allparams)=>{
+          console.log('singleSelectRowCallback', allparams);
+          handleSingleRowSelect(allparams[0]);
+
+        }}
         rowCallbackValue="id"
-        onRowClick={handleSingleRowSelect}
+        onRowClick={(...allparams)=>{
+          console.log('onRowClick', allparams);
+          handleSingleRowSelect(...allparams);
+        }}
+        allowColumnResize
+        onResize={(col,newWidth,nextNewWidth)=>{
+          setColumns(prevCol=>{
+            const newColumns = [...prevCol];
+            const index = newColumns.findIndex((c)=>c.key === col.key);
+            newColumns[index] = {...newColumns[index], style: {width: `${newWidth}px`}};
+            newColumns[index+1] = {...newColumns[index+1], style: {width: `${nextNewWidth}px`}};
+            return newColumns;
+          });
+          }}
+        
         renderHeaderCheckbox
         circleCheckbox={true}
          />
