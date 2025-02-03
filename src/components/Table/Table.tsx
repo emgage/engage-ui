@@ -120,6 +120,12 @@ export interface Props {
   noDataInSearchLabel?: string;
   circleCheckbox?: boolean;
   bannerComponentStyle?: any
+
+  allowAddRow?: boolean;
+  onPlusClick?(item: ColumnConfig,position: 'right' | 'left'): void;
+  
+  allowColumnResize?: boolean;
+  onResize?(item: ColumnConfig,newWidth:number,nextNewWidth:number): void;
 }
 
 export interface State {
@@ -268,7 +274,7 @@ class Table extends React.PureComponent<Props, State> {
   // Render the thead with th & contain specific header label
   // Used certain flags which will help to add sorting for any specific fields
   renderHeader = () => {
-    const { column, sorting, rowAction, rowActionLeft = false, theme, componentId = '' } = this.props;
+    const { column, sorting, rowAction, rowActionLeft = false, theme, componentId = '', allowAddRow, onPlusClick,onResize = ()=>{},allowColumnResize } = this.props;
     const { field, order } = this.state.sort;
 
     return (
@@ -276,7 +282,7 @@ class Table extends React.PureComponent<Props, State> {
         <TableRow theme={theme}>
           { this.renderRowSelection(null, 'head') }
           {
-            column.map((item: ColumnConfig) => {
+            column.map((item: ColumnConfig, index: number) => {
               const { key, sort, noSort, sortBy, id = '' } = item;
               const thisSort: string = (sorting === 'all' || sort) && !noSort ? key : '';
               let trimmedComponentId = '';
@@ -297,6 +303,11 @@ class Table extends React.PureComponent<Props, State> {
                   order={field === item.key ? order.current : ''}
                   clickHandler={this.sortData}
                   serverSort={this.serverSort}
+                  allowAddRow={allowAddRow}
+                  isFirst={index === 0}
+                  allowDrag={allowColumnResize && (index+1) !== column.length}
+                  onPlusClick={(position) => onPlusClick && onPlusClick(item, position)}
+                  onResize={(newWidth,nextNewWidth) => onResize && onResize(item, newWidth,nextNewWidth)}
                   theme={theme}>
                   {/*
                     Here injectheader helps to inject any custom component,

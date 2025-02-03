@@ -175,6 +175,33 @@ $border-color: color(sky, base);
     }
   }
 }
+.iconPlusClickRight {
+  position: absolute;
+  right: -5px;
+  top: -10px;
+  cursor:pointer;
+  border: 1px solid;
+  border-radius: 50%;
+}
+.iconPlusClickLeft {
+  position: absolute;
+  left: -10px;
+  top: -10px;
+  cursor:pointer;
+  border: 1px solid;
+  border-radius: 50%;
+}
+.resizeHandle{
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  cursor: col-resize;
+  background: #ced4da;
+  margin-right: 5px;
+  z-index: 1;
+}
 
 .searchField {
   input[type="text"] {
@@ -295,7 +322,7 @@ tbody > tr.tableRowNoData {
 
 
 .ResponsiveTableWrap {
-  overflow:auto;
+  // overflow:auto;
   &::-webkit-scrollbar-track
   {
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
