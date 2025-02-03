@@ -156,13 +156,19 @@ class TableHead extends React.PureComponent<Props, any> {
         {allowAddRow && hoverColumn
           && <Icon
             componentColor="inkLight"
-            onClick={() => onPlusClick && onPlusClick('right')}
+            onClick={(e: any) => {
+              e.stopPropagation();
+              onPlusClick && onPlusClick('right')
+            }}
             componentClass={theme.iconPlusClickRight}
             source="add" />}
         {allowAddRow && hoverColumn && isFirst
           && <Icon
             componentColor="inkLight"
-            onClick={() => onPlusClick && onPlusClick('left')}
+            onClick={(e: any) => {
+              e.stopPropagation();
+              onPlusClick && onPlusClick('left')
+            }}
             componentClass={theme.iconPlusClickLeft}
           source="add" />}
       </th>
