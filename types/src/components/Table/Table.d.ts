@@ -56,6 +56,10 @@ export interface Props {
     noDataInSearchLabel?: string;
     circleCheckbox?: boolean;
     bannerComponentStyle?: any;
+    allowAddRow?: boolean;
+    onPlusClick?(item: ColumnConfig, position: 'right' | 'left'): void;
+    allowColumnResize?: boolean;
+    onResize?(item: ColumnConfig, newWidth: number, nextNewWidth: number): void;
 }
 export interface State {
     data: any;
