@@ -1727,6 +1727,7 @@ class App extends React.Component<{}, State> {
 
     return (
       <div style={{ width: 'calc(100% - 270px)', float: 'right', padding: '90px 0px 0px' }}>
+        <TableExample />
         <AppBar
           enableGlobalGo
           enableGlobalElement={<Button icon="list" componentSize="slim"/>}

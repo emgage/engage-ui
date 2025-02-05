@@ -38,11 +38,20 @@ export interface Props {
   // Callback function to do the server sort
   serverSort?(field: string, sortBy: string): void;
   theme?: any;
+
+  allowDrag?: boolean;
+  isFirst?: boolean;
+  allowAddRow?: boolean;
+  onPlusClick?(position: 'right' | 'left'): void;
+  onResize?(width: number, nextWidth: number): void;
 }
 
-class TableHead extends React.PureComponent<Props, never> {
+class TableHead extends React.PureComponent<Props, any> {
   constructor(props: Props) {
     super(props);
+    this.state = {
+      hoverColumn: false,
+    }
   }
 
   // Function to trigger the clickhandler if its defined
@@ -73,9 +82,43 @@ class TableHead extends React.PureComponent<Props, never> {
     return ;
   }
 
+  setHoverColumn = (isHovered: boolean) => {
+    this.setState({ hoverColumn: isHovered });
+  }
+
+  handleMouseDown = (e:any) => {
+    const { onResize } = this.props;
+    const startX = e.clientX;
+
+    const thElement = e.target.parentElement; // Get the `th` element
+    const startWidth =  thElement.getBoundingClientRect().width;; // Get its current width
+
+    const nextStartWidth =  thElement.nextElementSibling.getBoundingClientRect().width;; // Get its current width
+
+    const handleMouseMove = (e:any) => {
+      const delta = e.clientX - startX;
+      const newWidth = Math.max(startWidth + delta, 50);
+      const newNextWidth = Math.max(nextStartWidth - delta, 50);
+  
+      if ((startWidth + nextStartWidth) == (newWidth + newNextWidth)) {
+        onResize && onResize(newWidth, newNextWidth);
+      }
+    };
+
+    const handleMouseUp = () => {
+      document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseup", handleMouseUp);
+    };
+
+    document.addEventListener("mousemove", handleMouseMove);
+    document.addEventListener("mouseup", handleMouseUp);
+  };
+
   render () {
-    const { accessibilityId = '', componentId = '', accessibilityScope, children, colSpan, order, rowSpan, sort, componentStyle, theme } = this.props;
+    const {accessibilityId = '', componentId = '', accessibilityScope, children, colSpan, order, rowSpan, sort, componentStyle, theme } = this.props;
+    const { allowAddRow, onPlusClick,isFirst,allowDrag } = this.props;
     const customClassName = this.getClassName();
+    const {hoverColumn} = this.state;
 
     return (
       <th
@@ -84,7 +127,9 @@ class TableHead extends React.PureComponent<Props, never> {
         id={accessibilityId ? accessibilityId : componentId ? `${componentId}` : ''}
         colSpan={colSpan}
         rowSpan={rowSpan}
-        style={componentStyle}
+        style={{...componentStyle,position:'relative'}}
+        onMouseEnter={() => allowAddRow && this.setHoverColumn(true)}
+        onMouseLeave={() => allowAddRow && this.setHoverColumn(false)}
         onClick={this.triggerClick}>
         <div className={theme.sortingHeader}>
           { children }
@@ -104,6 +149,28 @@ class TableHead extends React.PureComponent<Props, never> {
               : ''
           }
         </div>
+        {allowDrag && hoverColumn && <span
+          onMouseDown={this.handleMouseDown}
+          className={theme.resizeHandle}
+        />}
+        {allowAddRow && hoverColumn
+          && <Icon
+            componentColor="inkLight"
+            onClick={(e: any) => {
+              e.stopPropagation();
+              onPlusClick && onPlusClick('right')
+            }}
+            componentClass={theme.iconPlusClickRight}
+            source="add" />}
+        {allowAddRow && hoverColumn && isFirst
+          && <Icon
+            componentColor="inkLight"
+            onClick={(e: any) => {
+              e.stopPropagation();
+              onPlusClick && onPlusClick('left')
+            }}
+            componentClass={theme.iconPlusClickLeft}
+          source="add" />}
       </th>
     );
   }
