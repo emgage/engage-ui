@@ -140,15 +140,15 @@ const TableExample = () => {
           handleSingleRowSelect(...allparams);
         }}
         allowColumnResize
-        onResize={(col,newWidth,nextNewWidth)=>{
-          setColumns(prevCol=>{
+        onResize={(col, newWidth, nextNewWidth) => {
+          setColumns(prevCol => {
             const newColumns = [...prevCol];
-            const index = newColumns.findIndex((c)=>c.key === col.key);
-            newColumns[index] = {...newColumns[index], style: {width: `${newWidth}px`}};
-            newColumns[index+1] = {...newColumns[index+1], style: {width: `${nextNewWidth}px`}};
+            const index = newColumns.findIndex((c) => c.key === col.key);
+            newColumns[index] = { ...newColumns[index], style: { width: `${newWidth}px` } };
+            newColumns[index + 1] = { ...newColumns[index + 1], style: { width: `${nextNewWidth}px` } };
             return newColumns;
           });
-          }}
+        }}
         
         renderHeaderCheckbox
         circleCheckbox={true}
