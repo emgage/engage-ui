@@ -40,6 +40,7 @@ export interface Props {
   theme?: any;
 
   allowDrag?: boolean;
+  isFirst?: boolean;
   allowAddRow?: boolean;
   onPlusClick?(position: 'right' | 'left'): void;
   onResize?(width: number, nextWidth: number): void;
@@ -49,7 +50,8 @@ class TableHead extends React.PureComponent<Props, any> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      hoverColumn: false,
+      hoverLeftColumn: false,
+      hoverRightColumn: false,
       isDragging: false,
     }
   }
@@ -79,23 +81,26 @@ class TableHead extends React.PureComponent<Props, any> {
       );
     }
 
-    return ;
+    return;
   }
 
-  setHoverColumn = (isHovered: boolean) => {
-    this.setState({ hoverColumn: isHovered });
+  setHoverLeftColumn = (isHovered: boolean) => {
+    this.setState({ hoverLeftColumn: isHovered });
+  }
+  setHoverRightColumn = (isHovered: boolean) => {
+    this.setState({ hoverRightColumn: isHovered });
   }
 
-  handleMouseDown = (e:any) => {
+  handleMouseDown = (e: any) => {
     const { onResize } = this.props;
     const startX = e.clientX;
 
     const thElement = e.target.parentElement; // Get the `th` element
-    const startWidth =  thElement.getBoundingClientRect().width;; // Get its current width
+    const startWidth = thElement.getBoundingClientRect().width; // Get its current width
 
-    const nextStartWidth =  thElement.nextElementSibling.getBoundingClientRect().width;; // Get its current width
+    const nextStartWidth = thElement.nextElementSibling.getBoundingClientRect().width;; // Get its current width
 
-    const handleMouseMove = (e:any) => {
+    const handleMouseMove = (e: any) => {
       const delta = e.clientX - startX;
       const newWidth = Math.max(startWidth + delta, 50);
       const newNextWidth = Math.max(nextStartWidth - delta, 50);
@@ -119,11 +124,13 @@ class TableHead extends React.PureComponent<Props, any> {
     document.addEventListener("mouseup", handleMouseUp);
   };
 
-  render () {
-    const {accessibilityId = '', componentId = '', accessibilityScope, children, colSpan, order, rowSpan, sort, componentStyle, theme } = this.props;
-    const { allowAddRow, onPlusClick, allowDrag } = this.props;
+  render() {
+    const { accessibilityId = '', componentId = '', accessibilityScope, children, colSpan, order, rowSpan, sort, componentStyle, theme } = this.props;
+    const { isFirst, allowAddRow, onPlusClick, allowDrag } = this.props;
     const customClassName = this.getClassName();
-    const { hoverColumn, isDragging } = this.state;
+    const { hoverLeftColumn, hoverRightColumn, isDragging } = this.state;
+
+    const canBeDragged = allowAddRow && allowDrag;
 
     return (
       <th
@@ -132,12 +139,10 @@ class TableHead extends React.PureComponent<Props, any> {
         id={accessibilityId ? accessibilityId : componentId ? `${componentId}` : ''}
         colSpan={colSpan}
         rowSpan={rowSpan}
-        style={{...componentStyle,position:'relative'}}
-        onMouseEnter={() => allowAddRow && this.setHoverColumn(true)}
-        onMouseLeave={() => allowAddRow && this.setHoverColumn(false)}
+        style={{ ...componentStyle, position: 'relative', ...(isDragging ? { cursor: 'ew-resize' } : {}) }}
         onClick={this.triggerClick}>
-        <div className={theme.sortingHeader} style={isDragging ? { cursor: 'col-resize' } : {}}>
-          { children }
+        <div className={theme.sortingHeader}>
+          {children}
           {
             sort ?
               <div className={theme.sortIcon}>
@@ -154,22 +159,60 @@ class TableHead extends React.PureComponent<Props, any> {
               : ''
           }
         </div>
-        {allowAddRow && hoverColumn
-          && (
-          <>
-            <span
-              onMouseDown={allowDrag ? this.handleMouseDown : () => { }}
-              className={`${theme.resizeHandle} ${allowDrag && theme.enabledResizeHandle}`}
-            />
-            <Icon
-              componentColor="inkLight"
-              onClick={(e: any) => {
-                e.stopPropagation();
-                onPlusClick && onPlusClick('right')
-              }}
-              componentClass={theme.iconPlusClickRight}
-              source="add" />
-          </>)}
+        <div
+          className={theme.iconPlusWrapper}
+          onMouseEnter={() => allowAddRow && this.setHoverRightColumn(true)}
+          onMouseLeave={() => allowAddRow && this.setHoverRightColumn(false)}
+          style={{ right: '-7px', ...(canBeDragged || isDragging ? { cursor: 'ew-resize' } : {}) }}
+          onMouseDown={canBeDragged ? this.handleMouseDown : () => { }}
+
+        >
+          {allowAddRow && (isDragging || hoverRightColumn)
+            && (
+              <>
+                <Icon
+                  componentColor="inkLight"
+                  onClick={(e: any) => {
+                    e.stopPropagation();
+                    onPlusClick && onPlusClick('right')
+                  }}
+                  componentClass={theme.iconPlusClick}
+                  source="add" />
+                <span
+                  className={`${theme.resizeHandle}`}
+                />
+              </>
+            )
+          }
+        </div>
+
+        {isFirst && allowAddRow &&
+          (<div
+            className={theme.iconPlusWrapper}
+            onMouseEnter={() => allowAddRow && this.setHoverLeftColumn(true)}
+            onMouseLeave={() => allowAddRow && this.setHoverLeftColumn(false)}
+            style={{ left: '-7px' }}
+          >
+            {hoverLeftColumn
+              && (
+                <>
+                  <Icon
+                    componentColor="inkLight"
+                    onClick={(e: any) => {
+                      e.stopPropagation();
+                      onPlusClick && onPlusClick('left')
+                    }}
+                    componentClass={theme.iconPlusClick}
+                    source="add" />
+                  <span
+                    className={`${theme.resizeHandle}`}
+                  />
+                </>
+              )
+            }
+          </div>
+          )
+        }
       </th>
     );
   }

@@ -305,6 +305,7 @@ class Table extends React.PureComponent<Props, State> {
                   serverSort={this.serverSort}
                   allowAddRow={allowAddRow}
                   allowDrag={allowColumnResize && (index+1) !== column.length}
+                  isFirst={index === 0}
                   onPlusClick={(position) => onPlusClick && onPlusClick(item, position)}
                   onResize={(newWidth,nextNewWidth) => onResize && onResize(item, newWidth,nextNewWidth)}
                   theme={theme}>
