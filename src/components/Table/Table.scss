@@ -175,27 +175,35 @@ $border-color: color(sky, base);
     }
   }
 }
-.iconPlusClickRight {
+.iconPlusWrapper {
   position: absolute;
-  right: -2px;
-  top: -20px;
-  cursor:pointer;
-  padding: 5px;
-  border-radius: 50%;
-  background: #757575;
-  fill: white;
+  width: 1.5rem;
+  height: 100%;
+  top: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1;
+  .iconPlusClick {
+    top: -15px;
+    position: absolute;
+    cursor:pointer;
+    border-radius: 50%;
+    background: #757575;
+    fill: white;
+    height: 1.5rem;
+    width: 1.5rem;
+    padding: 3px;
+  }
 }
+
 .resizeHandle{
-  position: absolute;
-  right: 5px;
-  top: 0;
-  width: 3px;
+  display: flex;
+  width: 1px;
   height: 100%;
   z-index: 1;
+  background: #757575;
   border-left: 1px solid #757575;
-  &.enabledResizeHandle{
-    cursor: col-resize;
-  }
 }
 
 .searchField {
