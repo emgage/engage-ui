@@ -74,6 +74,11 @@ $border-color: color(sky, base);
     background-color:transparent;
     color: $color-grey-dark;
     text-transform: uppercase;
+    &:last-child{
+      .iconPlusWrapper{
+        right: 0px !important;
+      }
+    }
   }
 
   thead {
@@ -305,6 +310,7 @@ tbody > tr.tableRowNoData {
     .table td:last-child {
         border-bottom: 0;
         text-align: left;
+     
     }
 
     .table td:before {
