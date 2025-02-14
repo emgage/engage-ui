@@ -159,60 +159,60 @@ class TableHead extends React.PureComponent<Props, any> {
               : ''
           }
         </div>
-        <div
-          className={theme.iconPlusWrapper}
-          onMouseEnter={() => allowAddRow && this.setHoverRightColumn(true)}
-          onMouseLeave={() => allowAddRow && this.setHoverRightColumn(false)}
-          style={{ right: '-7px', ...(canBeDragged || isDragging ? { cursor: 'ew-resize' } : {}) }}
-          onMouseDown={canBeDragged ? this.handleMouseDown : () => { }}
-
-        >
-          {allowAddRow && (isDragging || hoverRightColumn)
-            && (
-              <>
-                <Icon
-                  componentColor="inkLight"
-                  onClick={(e: any) => {
-                    e.stopPropagation();
-                    onPlusClick && onPlusClick('right')
-                  }}
-                  componentClass={theme.iconPlusClick}
-                  source="add" />
-                <span
-                  className={`${theme.resizeHandle}`}
-                />
-              </>
-            )
-          }
-        </div>
-
-        {isFirst && allowAddRow &&
-          (<div
-            className={theme.iconPlusWrapper}
-            onMouseEnter={() => allowAddRow && this.setHoverLeftColumn(true)}
-            onMouseLeave={() => allowAddRow && this.setHoverLeftColumn(false)}
-            style={{ left: '-7px' }}
-          >
-            {hoverLeftColumn
-              && (
-                <>
-                  <Icon
-                    componentColor="inkLight"
-                    onClick={(e: any) => {
-                      e.stopPropagation();
-                      onPlusClick && onPlusClick('left')
-                    }}
-                    componentClass={theme.iconPlusClick}
-                    source="add" />
-                  <span
-                    className={`${theme.resizeHandle}`}
-                  />
-                </>
-              )
-            }
-          </div>
-          )
-        }
+        {allowAddRow && (
+          <>
+            <div
+              className={theme.iconPlusWrapper}
+              onMouseEnter={() => this.setHoverRightColumn(true)}
+              onMouseLeave={() => this.setHoverRightColumn(false)}
+              style={{ right: '-7px', ...(canBeDragged || isDragging ? { cursor: 'ew-resize' } : {}) }}
+              onMouseDown={canBeDragged ? this.handleMouseDown : () => { }}
+            >
+              {(isDragging || hoverRightColumn)
+                && (
+                  <>
+                    <Icon
+                      componentColor="inkLight"
+                      onClick={(e: any) => {
+                        e.stopPropagation();
+                        onPlusClick && onPlusClick('right')
+                      }}
+                      componentClass={theme.iconPlusClick}
+                      source="add" />
+                    <span
+                      className={`${theme.resizeHandle}`}
+                    />
+                  </>
+                )
+              }
+            </div>
+            {isFirst && (<div
+              className={theme.iconPlusWrapper}
+              onMouseEnter={() => this.setHoverLeftColumn(true)}
+              onMouseLeave={() => this.setHoverLeftColumn(false)}
+              style={{ left: '-7px' }}
+            >
+              {hoverLeftColumn
+                && (
+                  <>
+                    <Icon
+                      componentColor="inkLight"
+                      onClick={(e: any) => {
+                        e.stopPropagation();
+                        onPlusClick && onPlusClick('left')
+                      }}
+                      componentClass={theme.iconPlusClick}
+                      source="add" />
+                    <span
+                      className={`${theme.resizeHandle}`}
+                    />
+                  </>
+                )
+              }
+            </div>
+            )}
+          </>
+        )}
       </th>
     );
   }
