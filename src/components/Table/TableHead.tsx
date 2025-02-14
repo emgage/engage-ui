@@ -161,6 +161,31 @@ class TableHead extends React.PureComponent<Props, any> {
         </div>
         {allowAddRow && (
           <>
+            {isFirst && (<div
+              className={theme.iconPlusWrapper}
+              onMouseEnter={() => this.setHoverLeftColumn(true)}
+              onMouseLeave={() => this.setHoverLeftColumn(false)}
+              style={{ left: '0px' }}
+            >
+              {hoverLeftColumn
+                && (
+                  <>
+                    <Icon
+                      componentColor="inkLight"
+                      onClick={(e: any) => {
+                        e.stopPropagation();
+                        onPlusClick && onPlusClick('left')
+                      }}
+                      componentClass={theme.iconPlusClick}
+                      source="add" />
+                    <span
+                      className={`${theme.resizeHandle}`}
+                    />
+                  </>
+                )
+              }
+            </div>
+            )}
             <div
               className={theme.iconPlusWrapper}
               onMouseEnter={() => this.setHoverRightColumn(true)}
@@ -186,31 +211,7 @@ class TableHead extends React.PureComponent<Props, any> {
                 )
               }
             </div>
-            {isFirst && (<div
-              className={theme.iconPlusWrapper}
-              onMouseEnter={() => this.setHoverLeftColumn(true)}
-              onMouseLeave={() => this.setHoverLeftColumn(false)}
-              style={{ left: '-7px' }}
-            >
-              {hoverLeftColumn
-                && (
-                  <>
-                    <Icon
-                      componentColor="inkLight"
-                      onClick={(e: any) => {
-                        e.stopPropagation();
-                        onPlusClick && onPlusClick('left')
-                      }}
-                      componentClass={theme.iconPlusClick}
-                      source="add" />
-                    <span
-                      className={`${theme.resizeHandle}`}
-                    />
-                  </>
-                )
-              }
-            </div>
-            )}
+
           </>
         )}
       </th>
