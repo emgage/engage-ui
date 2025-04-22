@@ -627,6 +627,7 @@ class Table extends React.PureComponent<Props, State> {
          { !hideSelectAll && <Checkbox
           circleCheckbox={circleCheckbox}
           labelHidden
+          name="Select all"
           theme={theme}
           label="Select all"
           disabled={actionInProgress}
