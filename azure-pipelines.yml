@@ -62,11 +62,6 @@ steps:
 
 - script: |
     sudo apt-get update
-    sudo apt-get install -y build-essential libpng-dev nasm autoconf automake libtool pkg-config
-  displayName: 'Install image dependencies'
-
-- script: |
-    sudo apt-get update
     sudo apt-get install -y \
       libpng-dev \
       nasm
@@ -75,7 +70,6 @@ steps:
 - task: CmdLine@2
   inputs:
     script: |
-      rm package-lock.json
       npm install
       npm rebuild node-sass
   displayName: 'Npm Install'
