@@ -7,7 +7,7 @@ import AccordionItem from './AccordionItem';
 import * as baseTheme from './Accordion.scss';
 
 export type Mode = 'collapsible' | 'multiple';
-
+ 
 export interface AccordionItemProps {
   header: React.ReactElement<any>;
   children: React.ReactElement<any>;
