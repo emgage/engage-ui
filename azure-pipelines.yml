@@ -60,6 +60,13 @@ steps:
     echo "//registry.npmjs.org/:_authToken=$(NPM_TOKEN)" >> .npmrc
   displayName: "Write NPMRC"
 
+- script: |
+    sudo apt-get update
+    sudo apt-get install -y \
+      libpng-dev \
+      nasm
+  displayName: 'Install system dependencies'
+
 - task: CmdLine@2
   inputs:
     script: |
