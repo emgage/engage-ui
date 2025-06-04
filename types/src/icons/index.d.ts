@@ -162,3 +162,4 @@ export { default as resendMail } from './resendMail.svg';
 export { default as infoIcon } from './info-icon.svg';
 export { default as shareFromSquare } from './share-from-square.svg';
 export { default as bulkAction } from './bulk-action.svg';
+export { default as slidersRegular } from './sliders-regular.svg';
