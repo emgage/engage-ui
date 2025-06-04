@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from '../../../../src/components/';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, ButtonGroup } from '../../../../src/components/';
 import * as styles from '../../styles/components-page.scss';
+import TextField from '../../../../src/components/TextField/index';
 
 class ModalExample extends React.Component {
   state = {
@@ -22,26 +23,33 @@ class ModalExample extends React.Component {
   render() {
     return (
       <div className={styles.example}>
-        <Button onClick={this.toggleModal}>Medium button</Button>
-          <Modal
-            active={this.state.modalOpen}
-            toggle={this.toggleModal}
-            onOpen={this.onModalOpen}
-            onClose={this.onModalClose}
-            componentWidth="medium"
-            closeOnBackgroud
-            closeOnEsc
-            closeButton>
-            <ModalHeader>Modal title</ModalHeader>
-            <ModalBody modalOverflow>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae ex pellentesque, pretium lorem vel, tempor ipsum. Phasellus suscipit lacus in velit malesuada, at bibendum mi gravida. Sed cursus nisi sem, non pellentesque ligula euismod eget. Sed quis fringilla nibh, at vestibulum turpis. Donec sed sagittis sapien. Nam quis ex quis nulla porta molestie. Vestibulum eu lorem porta, facilisis orci a, tempor quam. Suspendisse et sollicitudin nulla. Aenean consectetur imperdiet leo nec condimentum. Aliquam scelerisque magna ut tortor accumsan condimentum.
+        <Button onClick={this.toggleModal}>Permanently Delete Program</Button>
+        <Modal
+          active={this.state.modalOpen}
+          toggle={this.toggleModal}
+          onOpen={this.onModalOpen}
+          onClose={this.onModalClose}
+          componentWidth="medium"
+          closeOnBackgroud
+          closeOnEsc
+          closeButton>
+          <ModalHeader>Permanently Delete Program</ModalHeader>
+          <ModalBody modalOverflow>
+            <div style={{textAlign:'center'}}>
+              By deleting the Program Name program you will permanently lose all information for this program, including their data
+            <br />
+            Type DELETE to confirm
+            <TextField type="text" name="test" />
+            </div>
+          </ModalBody>
+          <ModalFooter >
+            <ButtonGroup componentStyle={{ justifyContent: "flex-end" }}>
 
-              Nulla quis ante sit amet leo lobortis rhoncus. Cras mollis quis leo nec tincidunt. Aliquam blandit est vitae leo ultrices, ut egestas sapien pharetra. Suspendisse nec aliquet orci. Suspendisse rutrum odio sed neque scelerisque, ut consectetur erat tincidunt. Duis ultrices metus eget ante posuere eleifend. Ut luctus felis neque, sit amet efficitur neque maximus id. Aliquam porta, tellus ut pellentesque facilisis, odio neque maximus erat, venenatis semper nisi metus id augue. Cras vel sem eu elit blandit laoreet id vitae tortor. Morbi sit amet mi rutrum, sagittis enim lacinia, dictum turpis.
-            </ModalBody>
-            <ModalFooter>
               <Button onClick={this.toggleModal}>Close</Button>
-            </ModalFooter>
-          </Modal>
+              <Button primary onClick={this.toggleModal}>Confirm</Button>
+            </ButtonGroup>
+          </ModalFooter>
+        </Modal>
       </div>
     );
   }

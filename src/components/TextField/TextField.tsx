@@ -128,7 +128,8 @@ export interface Props {
   rows?: number;
   componentHeight?: ComponentHeight;
   markIfRequired?: boolean;
-  fullWidth?: boolean
+  fullWidth?: boolean;
+  onFilterIconClick?(e: React.FormEvent<HTMLElement> | KeyboardEvent): void;
 }
 
 const getUniqueID = createUniqueIDFactory('TextField');
@@ -202,6 +203,7 @@ class TextField extends React.PureComponent<Props, State> {
       onBlur,
       onInput,
       onKeyUp,
+      onFilterIconClick,
       readOnly = false,
       resizable = false,
       required = false,
@@ -248,7 +250,7 @@ class TextField extends React.PureComponent<Props, State> {
       : null;
 
     const suffixMarkup = (!readOnly && suffix)
-      ? <div onClick={this.handleInputFocus} className={theme.suffix} id={`${componentId}suffix`}>{suffix}</div>
+      ? <div onClick={onFilterIconClick || this.handleInputFocus} className={theme.suffix} id={`${componentId}suffix`}>{suffix}</div>
       : null;
 
       // const errorMarkup = (!readOnly && errors)
