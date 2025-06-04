@@ -164,7 +164,8 @@ import {
   mail,
   resendMail,
   infoIcon,
-  bulkAction
+  bulkAction,
+  slidersRegular,
 } from '../../icons';
 
 // export { default as addFile } from './add-file.svg';
@@ -356,7 +357,8 @@ export const BUNDLED_ICONS = {
   mail,
   resendMail,
   infoIcon,
-  bulkAction
+  bulkAction,
+  slidersRegular
 };
 
 const COLORS_WITH_BACKDROPS = ['teal', 'tealDark', 'greenDark', 'redDark', 'yellowDark', 'ink'];
