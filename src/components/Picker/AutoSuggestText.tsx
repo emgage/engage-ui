@@ -2,6 +2,7 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 import { classNames } from '@shopify/react-utilities/styles';
+import { isEqual } from 'lodash';
 import { PICKER } from '../ThemeIdentifiers';
 import Chip from '../Chip';
 import { IAutoSuggestMethods, IItemList } from './Picker';
@@ -49,7 +50,7 @@ class AutoSuggestText extends React.PureComponent<Props, State> {
   componentDidUpdate(prevProps: Props) {
     const chipList = this.props?.stateProps?.chipListState;
     const prevChipList = prevProps?.stateProps?.chipListState;
-    if (chipList !== prevChipList && !this.state.showAll) {
+    if (!isEqual(chipList,prevChipList) && !this.state.showAll) {
       setTimeout(() => {
         this.updateVisibleItems();
       }, 500);
