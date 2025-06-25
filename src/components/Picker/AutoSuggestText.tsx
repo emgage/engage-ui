@@ -139,7 +139,7 @@ class AutoSuggestText extends React.PureComponent<Props, State> {
           {hiddenCount > 0 &&
             (
               <Chip
-                label={`${showAll ? 'hide' : hiddenCount}`}
+                label={`${showAll ? 'Hide' : `+ ${hiddenCount}`}`}
                 theme={theme}
                 clickable
                 onClick={(e) => {
