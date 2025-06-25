@@ -50,10 +50,8 @@ class AutoSuggestText extends React.PureComponent<Props, State> {
   componentDidUpdate(prevProps: Props) {
     const chipList = this.props?.stateProps?.chipListState;
     const prevChipList = prevProps?.stateProps?.chipListState;
-    if (!isEqual(chipList,prevChipList) && !this.state.showAll) {
-      setTimeout(() => {
-        this.updateVisibleItems();
-      }, 500);
+    if (!isEqual(chipList, prevChipList) && !this.state.showAll) {
+      this.updateVisibleItems();
     }
   }
 
