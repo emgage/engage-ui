@@ -28,9 +28,10 @@ $stacking-order: (
 
   //TODO: Consider using Stack component instead of adding margin.
   .Chip {
-    margin-top: control-vertical-padding();
+    // margin-top: control-vertical-padding();
     vertical-align: top;
     margin-bottom:.5rem;
+    margin-right: .5rem;
     .chipContent {
       padding-right: 0px !important;
     }
