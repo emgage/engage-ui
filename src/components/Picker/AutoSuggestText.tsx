@@ -56,8 +56,7 @@ class AutoSuggestText extends React.PureComponent<Props, State> {
         visibleCount: chipList?.length || 0,
       });
     }
-    if (isCountSame && !this.state.showAll) {
-        
+    if (isCountSame) {
         this.updateVisibleItems();
     }
   }
@@ -67,7 +66,6 @@ class AutoSuggestText extends React.PureComponent<Props, State> {
   }
 
   updateVisibleItems = () => {
-    if (this.state.showAll) return; // show all when expanded
 
     const container = this.containerRef.current;
     if (!container) return;
@@ -141,6 +139,7 @@ class AutoSuggestText extends React.PureComponent<Props, State> {
               <Chip
                 label={`${showAll ? 'Hide' : `+ ${hiddenCount}`}`}
                 theme={theme}
+                outlined
                 clickable
                 onClick={(e) => {
                   e.stopPropagation();
