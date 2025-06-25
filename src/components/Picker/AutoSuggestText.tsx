@@ -50,8 +50,15 @@ class AutoSuggestText extends React.PureComponent<Props, State> {
   componentDidUpdate(prevProps: Props) {
     const chipList = this.props?.stateProps?.chipListState;
     const prevChipList = prevProps?.stateProps?.chipListState;
-    if (!isEqual(chipList, prevChipList) && !this.state.showAll) {
-      this.updateVisibleItems();
+    const isCountSame = this.state.visibleCount===chipList?.length;
+    if(!isCountSame && !isEqual(chipList, prevChipList)){
+      this.setState({
+        visibleCount: chipList?.length || 0,
+      });
+    }
+    if (isCountSame && !this.state.showAll) {
+        
+        this.updateVisibleItems();
     }
   }
 
@@ -76,10 +83,9 @@ class AutoSuggestText extends React.PureComponent<Props, State> {
 
       const chipWidth = chip.offsetWidth + 6; // margin
       const remaining = chipList.length - i - 1;
-      const moreChipWidth = remaining > 0 ? 70 : 0; // approx width of "+X" chip
+      const moreChipWidth = remaining > 0 ? 38 : 0; // approx width of "+X" chip
 
       if (usedWidth + chipWidth + moreChipWidth > containerWidth) break;
-
       usedWidth += chipWidth;
       count++;
     }
