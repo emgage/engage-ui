@@ -69,6 +69,7 @@
     "@types/enzyme-adapter-react-16": "^1.0.2",
     "@types/history": "^4.7.6",
     "@types/jest": "22.2.2",
+    "@types/minimatch": "6.0.0",
     "awesome-typescript-loader": "^5.2.1",
     "babel-cli": "6.26.0",
     "babel-core": "6.26.0",
