@@ -65,6 +65,26 @@ class AutoSuggestText extends React.PureComponent<Props, State> {
     this.updateVisibleItems();
   }
 
+  measureNodeWidth(node: HTMLElement): number {
+    // Clone the node
+    const clone = node.cloneNode(true) as HTMLElement;
+
+    // Apply necessary styles
+    clone.style.visibility = 'hidden';
+    clone.style.position = 'absolute';
+    clone.style.top = '-9999px';
+    clone.style.left = '-9999px';
+    clone.style.display = 'inline-block';
+    clone.style.whiteSpace = 'nowrap';
+
+    // Append to body, measure, then remove
+    document.body.appendChild(clone);
+    const width = clone.offsetWidth;
+    document.body.removeChild(clone);
+
+    return width;
+  }
+
   updateVisibleItems = () => {
 
     const container = this.containerRef.current;
@@ -79,7 +99,7 @@ class AutoSuggestText extends React.PureComponent<Props, State> {
       const chip = children[i] as HTMLElement;
       if (!chip) break;
 
-      const chipWidth = chip.offsetWidth + 6; // margin
+      const chipWidth = this.measureNodeWidth(chip) + 6; // margin
       const remaining = chipList.length - i - 1;
       const moreChipWidth = remaining > 0 ? 38 : 0; // approx width of "+X" chip
 
