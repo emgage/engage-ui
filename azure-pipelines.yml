@@ -70,6 +70,7 @@ steps:
 - task: CmdLine@2
   inputs:
     script: |
+      rm -rf node_modules package-lock.json
       npm install
       npm rebuild node-sass
   displayName: 'Npm Install'
