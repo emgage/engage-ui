@@ -133,7 +133,7 @@
     "@shopify/react-utilities": "^2.0.7",
     "@types/lodash": "4.14.182",
     "@types/moment": "^2.13.0",
-    "@types/node": "^7.0.12",
+    "@types/node": "7.0.12",
     "@types/prop-types": "^15.5.2",
     "@types/react": "^16.9.35",
     "@types/react-addons-shallow-compare": "^0.14.20",
