@@ -37,6 +37,8 @@ interface State {
 class AutoSuggestText extends React.PureComponent<Props, State> {
 
   containerRef: React.RefObject<HTMLDivElement>;
+  rafId: number | null = null;
+  lastKnownWidth = -1;
 
   constructor(props: Props) {
     super(props);
@@ -62,8 +64,32 @@ class AutoSuggestText extends React.PureComponent<Props, State> {
   }
 
   componentDidMount() {
-    this.updateVisibleItems();
+      this.checkVisibilityLoop();
   }
+
+   componentWillUnmount() {
+    if (this.rafId) cancelAnimationFrame(this.rafId);
+  }
+
+  checkVisibilityLoop = () => {
+    const el = this.containerRef.current;
+    if (el) {
+      const width = el.offsetWidth;
+
+      if (width !== this.lastKnownWidth) {
+        this.lastKnownWidth = width;
+
+        if (width > 0) {
+          console.log('✅ Element is visible, width:', width);
+          this.updateVisibleItems();
+        } else {
+          console.log('⛔ Hidden or not rendered yet');
+        }
+      }
+    }
+
+    this.rafId = requestAnimationFrame(this.checkVisibilityLoop);
+  };
 
   measureNodeWidth(node: HTMLElement): number {
     // Clone the node
@@ -91,7 +117,7 @@ class AutoSuggestText extends React.PureComponent<Props, State> {
     if (!container) return;
     const children = Array.from(container.children);
     const chipList: any = this.props?.stateProps?.chipListState;
-    const containerWidth = this.measureNodeWidth(container);
+    const containerWidth = container.offsetWidth;
     let usedWidth = 0;
     let count = 0;
 
