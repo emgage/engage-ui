@@ -91,7 +91,7 @@ class AutoSuggestText extends React.PureComponent<Props, State> {
     if (!container) return;
     const children = Array.from(container.children);
     const chipList: any = this.props?.stateProps?.chipListState;
-    const containerWidth = container.offsetWidth;
+    const containerWidth = this.measureNodeWidth(container);
     let usedWidth = 0;
     let count = 0;
 
