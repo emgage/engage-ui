@@ -117,6 +117,7 @@ export interface Props {
   shouldFilterSuggestions?: boolean;
   markIfRequired?: boolean
   processingIds?: any[];
+  onFilterIconClick?(e: React.FormEvent<HTMLElement> | KeyboardEvent): void;
 }
 
 const DefaultCard = (props: any) => {
@@ -472,6 +473,7 @@ class Picker extends React.PureComponent<Props, State> {
         errors,
         placeholder,
         markIfRequired,
+        onFilterIconClick,
     } = this.props;
     const { isFocused, hasValue, value, suggestions, chipListState, anchorEl, popoverWidth } = this.state;
     const inputProps: any & { disabled: boolean } = {
@@ -550,6 +552,7 @@ class Picker extends React.PureComponent<Props, State> {
             readOnly={readOnly}
             label={label || ''}
             markIfRequired={markIfRequired}
+            onFilterIconClick={onFilterIconClick}
           />
         </div>
         {

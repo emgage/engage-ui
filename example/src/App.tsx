@@ -103,6 +103,7 @@ import {
   MyDropzone,
 } from '../../src/components';
 import { IconList } from '../../src/components/Icon';
+import ModalExample from '../../docs/src/examples/ModalExample/ModalExampleFirst';
 
 interface State {
   appName?: string;
@@ -161,7 +162,7 @@ interface State {
   multipleCheckboxFacetsOptions: any[];
   rangeSliderValue?: any;
   isOpen?: boolean; // for SwitchCheckbox
-  TextFieldValue? : any
+  TextFieldValue?: any
 }
 
 const defaultValue = [
@@ -637,9 +638,9 @@ class App extends React.Component<{}, State> {
           selected: false,
         },
       ],
-      rangeSliderValue:[5, 10],
+      rangeSliderValue: [5, 10],
       // isOpen: false,
-      TextFieldValue:''
+      TextFieldValue: ''
     };
 
     this.popovertoggle = this.popovertoggle.bind(this);
@@ -911,6 +912,7 @@ class App extends React.Component<{}, State> {
   }
 
   lazyGetAll = (_config: any, _method: string) => {
+    console.log('---------load -----------')
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         resolve({ currentPage: 1, pageCount: 2 });
@@ -918,8 +920,18 @@ class App extends React.Component<{}, State> {
     })
   }
 
+  pickerdata = [
+    { "id": -1, "name": "All Subscribers", "icon": 'filter', "key": -1, onIconClick: () => { }, "image": IconList.users },
+    { "id": 1532945, "name": "Bright", "text": "Bright", "key": 1532945, "description": "",notSelectable:true, },
+    { "id": 1532948, "name": "Blue", "text": "Blue", "key": 1532948, "description": "" },
+    { "id": 1531924, "name": "Green", "text": "Green", "key": 1531924, "description": "" },
+    { "id": 1528852, "name": "Red", "text": "Red", "key": 1528852, "description": "" },
+    { "id": 1529876, "name": "White", "text": "White", "key": 1529876, "description": "" },
+    { "id": 1527828, "name": "Yellow", "text": "Yellow", "key": 1527828, "description": "" }
+  ];
+
   render() {
-    
+
     const Accordionitems: AccordionItemProps[] = [
       {
         children: <Banner componentTitle={'banner'} status={'success'} />,
@@ -927,11 +939,11 @@ class App extends React.Component<{}, State> {
       },
       {
         children: <Banner componentTitle={'banner11'} status={'warning'} />,
-        header: <Button>sk1</Button>,
+        header: <Button destructive>sk1</Button>,
       },
       {
         children: <Banner componentTitle={'banner13'} status={'warning'} />,
-        header: <Button>sk3</Button>,
+        header: <Button primary>sk3</Button>,
       },
     ];
 
@@ -956,7 +968,7 @@ class App extends React.Component<{}, State> {
 
     const posterUrl = new URL(
       'http://4.bp.blogspot.com/_JSR8IC77Ub4/TKB-XAWXmhI/AAAAAAAABJA/MqOpdFTOaHo/w1200-' +
-        'h630-p-k-no-nu/C:%5Cfakepath%5Cbird1.jpg'
+      'h630-p-k-no-nu/C:%5Cfakepath%5Cbird1.jpg'
     );
     const singleVideoSource = [
       {
@@ -991,10 +1003,10 @@ class App extends React.Component<{}, State> {
       />
     );
 
-    const steps:any = [
-      { name: 'Completed', status: 'completed', icon: <Icon source={'signature'} componentColor='white'/> },
-      { name: 'Active', status: 'active', icon: <Icon source={'file'} componentColor='white'/> },
-      { name: 'Upcoming', icon: <Icon source={'grid'} componentColor='white'/> },
+    const steps: any = [
+      { name: 'Completed', status: 'completed', icon: <Icon source={'signature'} componentColor='white' /> },
+      { name: 'Active', status: 'active', icon: <Icon source={'file'} componentColor='white' /> },
+      { name: 'Upcoming', icon: <Icon source={'grid'} componentColor='white' /> },
     ];
 
     // const pickerdata = [
@@ -1056,15 +1068,7 @@ class App extends React.Component<{}, State> {
     //   },
     // ];
 
-    const pickerdata = [
-      { "id": -1, "name": "All Subscribers", "icon": 'filter', "key": -1, onIconClick: () => { }, "image": IconList.users },
-      { "id": 1532945, "name": "Bright", "text": "Bright", "key": 1532945, "description": "" },
-      { "id": 1532948, "name": "Blue", "text": "Blue", "key": 1532948, "description": "" },
-      { "id": 1531924, "name": "Green", "text": "Green", "key": 1531924, "description": "" },
-      { "id": 1528852, "name": "Red", "text": "Red", "key": 1528852, "description": "" },
-      { "id": 1529876, "name": "White", "text": "White", "key": 1529876, "description": "" },
-      { "id": 1527828, "name": "Yellow", "text": "Yellow", "key": 1527828, "description": "" }
-    ];
+   
     const selectedPickerdata = [{ "id": 1534996, "name": "Black", "text": "Black", "key": 1534996, "description": "" }];
 
     const columnConfigPicker: TableColumnConfig[] = [
@@ -1083,32 +1087,32 @@ class App extends React.Component<{}, State> {
     ];
 
     const renderPickerHeader = (column: any) => {
-      return (<div style={{marginBottom: '.5rem', minWidth: '12rem', maxWidth: '100rem', position: 'relative', zIndex: 22, padding: '1rem', backgroundColor: '#f5f5f5', boxSizing: 'border-box'}}>
-                  <FlexBox align="Center">
-                    {
-                      column.map((c: any) => <div style={{flex: '1'}}>
-                        <b>{c.label}</b>
-                        <span style={{verticalAlign: 'middle', display: 'inline-block', marginLeft: '.3rem'}}>
-                        <Icon source="caretUp" componentStyle={{fill: '#212121',width: '1.3rem', height: '1.3rem'}}/>
-                        <Icon source="caretDown"  componentStyle={{fill: '#212121',width: '1.3rem', height: '1.3rem', marginTop: '-7px'}}/>
-                        </span>
-                      </div>
-                      )}
-                  </FlexBox>
-                </div>
-                );
+      return (<div style={{ marginBottom: '.5rem', minWidth: '12rem', maxWidth: '100rem', position: 'relative', zIndex: 22, padding: '1rem', backgroundColor: '#f5f5f5', boxSizing: 'border-box' }}>
+        <FlexBox align="Center">
+          {
+            column.map((c: any) => <div style={{ flex: '1' }}>
+              <b>{c.label}</b>
+              <span style={{ verticalAlign: 'middle', display: 'inline-block', marginLeft: '.3rem' }}>
+                <Icon source="caretUp" componentStyle={{ fill: '#212121', width: '1.3rem', height: '1.3rem' }} />
+                <Icon source="caretDown" componentStyle={{ fill: '#212121', width: '1.3rem', height: '1.3rem', marginTop: '-7px' }} />
+              </span>
+            </div>
+            )}
+        </FlexBox>
+      </div>
+      );
     }
 
     const renderPickerItem = (suggestion: any, isHighlighted?: string, query?: string) => {
       let name = suggestion.name;
       // let highlightedStyle = {backgroundColor: '#ebebeb'};
-      return (<div style={{minWidth: '100rem', maxWidth: '100rem'}} >
-            <FlexBox align="Center">
-              <div style={{flex: '1', width: '50%', padding: '1rem', boxSizing: 'border-box'}}>{name}</div>
-              <div style={{flex: '1', width: '50%', padding: '1rem', boxSizing: 'border-box', marginLeft: '-2rem'}}>{name}</div>
-            </FlexBox>
-          </div>
-        )
+      return (<div style={{ minWidth: '100rem', maxWidth: '100rem' }} >
+        <FlexBox align="Center">
+          <div style={{ flex: '1', width: '50%', padding: '1rem', boxSizing: 'border-box' }}>{name}</div>
+          <div style={{ flex: '1', width: '50%', padding: '1rem', boxSizing: 'border-box', marginLeft: '-2rem' }}>{name}</div>
+        </FlexBox>
+      </div>
+      )
     }
     // const columnConfigPicker: TableColumnConfig[] = [
     //   {
@@ -1217,10 +1221,10 @@ class App extends React.Component<{}, State> {
 
     const handleHeadingClick = (index: number) => {
       const activeMenus: any = localStorage.getItem('active_navbar_menus');
-      if(activeMenus) {
+      if (activeMenus) {
         let activeMenusObj: any = JSON.parse(activeMenus);
-        
-        if(activeMenusObj[index]) {
+
+        if (activeMenusObj[index]) {
           activeMenusObj = { ...activeMenusObj, [index]: !activeMenusObj[index] };
         } else {
           activeMenusObj = { ...activeMenusObj, [index]: true };
@@ -1232,7 +1236,7 @@ class App extends React.Component<{}, State> {
         localStorage.setItem('active_navbar_menus', JSON.stringify(newObject));
       }
     }
-    
+
     const sideNavigationData: INavigationData[] = [
       {
         id: 0.1,
@@ -1256,15 +1260,15 @@ class App extends React.Component<{}, State> {
             id: 1.1,
             label: 'Basics',
             icon: 'infoCircle',
-            action: () => {(this.props as any).fromPageB ? window.location.href = `${this.baseUrl}` : null },
+            action: () => { (this.props as any).fromPageB ? window.location.href = `${this.baseUrl}` : null },
           }, {
             id: 1.2,
             label: 'Packaging',
             icon: 'notes',
-            action: () => {(this.props as any).fromPageB ? window.location.href = `${this.baseUrl}/feature` : null },
+            action: () => { (this.props as any).fromPageB ? window.location.href = `${this.baseUrl}/feature` : null },
           }
         ]
-      } , {
+      }, {
         id: 2,
         label: 'Content',
         header: <Button componentSize="slim" plain fullWidth >Content</Button>,
@@ -1274,8 +1278,8 @@ class App extends React.Component<{}, State> {
             id: 2.1,
             label: 'Content Stores',
             icon: 'database',
-            action: () => {(this.props as any).fromPageB ? window.location.href = `${this.baseUrl}/contentStores` : null },
-          },{
+            action: () => { (this.props as any).fromPageB ? window.location.href = `${this.baseUrl}/contentStores` : null },
+          }, {
             id: 2.2,
             label: 'Data Importer',
             icon: 'database',
@@ -1284,15 +1288,15 @@ class App extends React.Component<{}, State> {
             id: 2.3,
             label: 'Content Definitions',
             icon: 'database',
-            action: () => {(this.props as any).fromPageB ? window.location.href = `${this.baseUrl}/contentTemplates` : null},
-          },{
+            action: () => { (this.props as any).fromPageB ? window.location.href = `${this.baseUrl}/contentTemplates` : null },
+          }, {
             id: 2.4,
             label: 'Field Definitions',
             icon: 'database',
-            action: () => {(this.props as any).fromPageB ? window.location.href = `${this.baseUrl}/fieldTemplates` : null},
+            action: () => { (this.props as any).fromPageB ? window.location.href = `${this.baseUrl}/fieldTemplates` : null },
           }
         ]
-      } , {
+      }, {
         id: 3,
         label: 'App Interfaces',
         header: <Button componentSize="slim" plain fullWidth >App Interfaces</Button>,
@@ -1302,7 +1306,7 @@ class App extends React.Component<{}, State> {
             id: 3.1,
             label: 'Pages & Forms',
             icon: 'file',
-            action:() => {(this.props as any).fromPageB ? window.location.href = `${this.baseUrl}/pages` : null }
+            action: () => { (this.props as any).fromPageB ? window.location.href = `${this.baseUrl}/pages` : null }
           }, {
             id: 3.2,
             label: 'Page Templates',
@@ -1317,7 +1321,7 @@ class App extends React.Component<{}, State> {
             action: () => console.log('Themes Item is clicked!'),
           }
         ]
-      } , {
+      }, {
         id: 4,
         label: 'User Management',
         header: <Button componentSize="slim" plain fullWidth >User Management</Button>,
@@ -1327,22 +1331,22 @@ class App extends React.Component<{}, State> {
             id: 4.1,
             label: 'Users',
             icon: 'user',
-            action: () => {(this.props as any).fromPageB ? window.location.href = `${this.baseUrl}/users` : null },
+            action: () => { (this.props as any).fromPageB ? window.location.href = `${this.baseUrl}/users` : null },
           }, {
             id: 4.2,
             label: 'Groups',
             icon: 'users',
-            action: () => {(this.props as any).fromPageB ? window.location.href = `${this.baseUrl}/groups` : null },
+            action: () => { (this.props as any).fromPageB ? window.location.href = `${this.baseUrl}/groups` : null },
           }, {
             id: 4.3,
             label: 'Roles',
             icon: 'userMd',
-            action: () => {(this.props as any).fromPageB ? window.location.href = `${this.baseUrl}/roleDefs` : null },
+            action: () => { (this.props as any).fromPageB ? window.location.href = `${this.baseUrl}/roleDefs` : null },
           }, {
             id: 4.4,
             label: 'Access Policies',
             icon: 'lock',
-            action: () => {(this.props as any).fromPageB ? window.location.href = `${this.baseUrl}/accessPolicies` : null },
+            action: () => { (this.props as any).fromPageB ? window.location.href = `${this.baseUrl}/accessPolicies` : null },
           }, {
             id: 4.5,
             label: 'Identity Management',
@@ -1351,7 +1355,7 @@ class App extends React.Component<{}, State> {
             action: () => console.log('Identity Management Item is clicked!'),
           }
         ]
-      } , {
+      }, {
         id: 5,
         label: 'Messaging',
         header: <Button componentSize="slim" plain fullWidth >Messaging</Button>,
@@ -1361,20 +1365,20 @@ class App extends React.Component<{}, State> {
             id: 5.1,
             label: 'Sources',
             icon: 'inbox',
-            action: () => {(this.props as any).fromPageB ? window.location.href = `${this.baseUrl}/contentStores` : null},
+            action: () => { (this.props as any).fromPageB ? window.location.href = `${this.baseUrl}/contentStores` : null },
           }, {
             id: 5.2,
             label: 'Channels',
             icon: 'comments',
-            action: () => {(this.props as any).fromPageB ? window.location.href = `${this.baseUrl}/messageChannelDefs` : null},
+            action: () => { (this.props as any).fromPageB ? window.location.href = `${this.baseUrl}/messageChannelDefs` : null },
           }, {
             id: 5.3,
             label: 'Messages',
             icon: 'envelope',
-            action: () => {(this.props as any).fromPageB ? window.location.href = `${this.baseUrl}/messageDefs` : null},
+            action: () => { (this.props as any).fromPageB ? window.location.href = `${this.baseUrl}/messageDefs` : null },
           }
         ]
-      } , {
+      }, {
         id: 6,
         label: 'Workflow & Automation',
         header: <Button componentSize="slim" plain fullWidth >Workflow & Automation</Button>,
@@ -1399,7 +1403,7 @@ class App extends React.Component<{}, State> {
             action: () => console.log('Robots Item is clicked!'),
           }
         ]
-      } , {
+      }, {
         id: 7,
         label: 'Data Sync',
         header: <Button componentSize="slim" plain fullWidth >Data Sync</Button>,
@@ -1413,7 +1417,7 @@ class App extends React.Component<{}, State> {
             action: () => console.log('SQL Mapping Item is clicked!'),
           }
         ]
-      } , {
+      }, {
         id: 8,
         label: 'Media Management',
         header: <Button componentSize="slim" plain fullWidth >Media Management</Button>,
@@ -1433,7 +1437,7 @@ class App extends React.Component<{}, State> {
             action: () => console.log('File Definitions Item is clicked!'),
           }
         ]
-      } , {
+      }, {
         id: 9,
         label: 'Analytics',
         header: <Button componentSize="slim" plain fullWidth >Analytics</Button>,
@@ -1453,19 +1457,19 @@ class App extends React.Component<{}, State> {
             action: () => console.log("Reports is clicked!")
           }
         ]
-      } , {
+      }, {
         id: 10,
         label: 'Usage Analytics',
         header: <Button componentSize="slim" plain fullWidth >Usage Analytics</Button>,
         action: () => handleHeadingClick(10), // Has no effect right now as no child elements
         children: []
-      } , {
+      }, {
         id: 11,
         label: 'Projects & Tasks',
         header: <Button componentSize="slim" plain fullWidth >Projects & Tasks</Button>,
         action: () => handleHeadingClick(11), // Has no effect right now as no child elements
         children: []
-      } , {
+      }, {
         id: 12,
         label: 'Support Sherpa',
         header: <Button componentSize="slim" plain fullWidth >Support Sherpa</Button>,
@@ -1507,7 +1511,7 @@ class App extends React.Component<{}, State> {
         sort: true,
         sortBy: 'itemName',
         injectBody: (value: any) => (
-          <EntityState item={value}/>
+          <EntityState item={value} />
         ),
         style: { width: '100px' },
       },
@@ -1730,7 +1734,7 @@ class App extends React.Component<{}, State> {
         <TableExample />
         <AppBar
           enableGlobalGo
-          enableGlobalElement={<Button icon="list" componentSize="slim"/>}
+          enableGlobalElement={<Button icon="list" componentSize="slim" />}
           isLoggedIn
           logo={'https://emgage.com/SiteAssets/Emgage-logo.png'}
           loginUrl={'loginUrl'}
@@ -1742,9 +1746,9 @@ class App extends React.Component<{}, State> {
           additionalLIst={[{ content: 'extra Item', divider: true }]}
           enableSearch
           rightChildren={[
-            <Button icon="notes" componentSize="slim"/>,
-            <Button icon="userCog" componentSize="slim"/>,
-            <Button icon="infoCircle" componentSize="slim"/>,
+            <Button icon="notes" componentSize="slim" />,
+            <Button icon="userCog" componentSize="slim" />,
+            <Button icon="infoCircle" componentSize="slim" />,
           ]}
         />
 
@@ -1775,7 +1779,7 @@ class App extends React.Component<{}, State> {
             },
           ]}
         />
-{/* 
+        {/* 
 <BodyText>Default Chip Component Update Styling</BodyText>
       <br />
         <Chip label="Value Value"
@@ -1802,20 +1806,22 @@ class App extends React.Component<{}, State> {
               </Chip>
               <br />
               <br /> */}
+        <ModalExample>
 
+        </ModalExample>
         <TextField
-            type="text"
-            placeholder="Try and write here..."
-            suffix={<Icon source="search" />}
-            onKeyUp={(e: any) => {
-                console.log('=====>>>>', this.state.selectedValue);
-            }}
-          />
+          type="text"
+          placeholder="Try and write here..."
+          suffix={<Icon source="search" />}
+          onKeyUp={(e: any) => {
+            console.log('=====>>>>', this.state.selectedValue);
+          }}
+        />
         <BodyText componentSize="small">This is Small Body Text</BodyText>
         <BodyText>This is Default Body Text</BodyText>
         <BodyText componentSize="large">This is Large Body Text</BodyText>
-        <br/>
-        <br/>
+        <br />
+        <br />
         <BodyText componentColor="text">Text Color of Body text</BodyText>
         <BodyText componentColor="danger">danger Color of Body text</BodyText>
         <BodyText componentColor="darker">darker Color of Body text</BodyText>
@@ -1823,40 +1829,40 @@ class App extends React.Component<{}, State> {
         <BodyText componentColor="link">link Color of Body text</BodyText>
         <BodyText componentColor="mid">mid Color of Body text</BodyText>
         <BodyText componentColor="reverse">reverse Color of Body text</BodyText>
-        <br/>
-        <br/>
+        <br />
+        <br />
         <SwitchCheckbox isOpen={this.state.isOpen} handleToggle={this.handleSwitchCheckboxToggle} switchType="trueFalse">
           SwitchCheckbox
         </SwitchCheckbox>
-        <br/>
-        <br/>
+        <br />
+        <br />
         <Heading element='h2' headingSize='h4'>Way to use colum for responsive</Heading>
         <FlexBox wrap='Wrap'>
-            <Column small='1-1' medium='1-2' large='1-4' componentStyle={{ border: '1px solid #bdbdbd', padding: 10 }}>
-              Small : 1-1(100%)<br/>Medium: 1-2(50%)<br/>Large: 1-4(25%)
+          <Column small='1-1' medium='1-2' large='1-4' componentStyle={{ border: '1px solid #bdbdbd', padding: 10 }}>
+            Small : 1-1(100%)<br />Medium: 1-2(50%)<br />Large: 1-4(25%)
             </Column>
-            <Column small='1-1' medium='1-2' large='1-4' componentStyle={{ border: '1px solid #bdbdbd', padding: 10  }}>
-              Small : 1-1(100%)<br/>Medium: 1-2(50%)<br/>Large: 1-4(25%)
+          <Column small='1-1' medium='1-2' large='1-4' componentStyle={{ border: '1px solid #bdbdbd', padding: 10 }}>
+            Small : 1-1(100%)<br />Medium: 1-2(50%)<br />Large: 1-4(25%)
             </Column>
-            <Column small='1-1' medium='1-2' large='1-4' componentStyle={{ border: '1px solid #bdbdbd', padding: 10  }}>
-              Small : 1-1(100%)<br/>Medium: 1-2(50%)<br/>Large: 1-4(25%)
+          <Column small='1-1' medium='1-2' large='1-4' componentStyle={{ border: '1px solid #bdbdbd', padding: 10 }}>
+            Small : 1-1(100%)<br />Medium: 1-2(50%)<br />Large: 1-4(25%)
             </Column>
-            <Column small='1-1' medium='1-2' large='1-4' componentStyle={{ border: '1px solid #bdbdbd', padding: 10  }}>
-              Small : 1-1(100%)<br/>Medium: 1-2(50%)<br/>Large: 1-4(25%)
+          <Column small='1-1' medium='1-2' large='1-4' componentStyle={{ border: '1px solid #bdbdbd', padding: 10 }}>
+            Small : 1-1(100%)<br />Medium: 1-2(50%)<br />Large: 1-4(25%)
             </Column>
-          </FlexBox>
+        </FlexBox>
 
-          {/* <SwitchCheckboxIcon isOpen={this.state.isOpen} handleToggle={this.handleSwitchCheckboxToggle}>
+        {/* <SwitchCheckboxIcon isOpen={this.state.isOpen} handleToggle={this.handleSwitchCheckboxToggle}>
             SwitchCheckboxIcon Normal
           </SwitchCheckboxIcon> */}
 
-        <br/>
-        <br/>
-        
-          <NoData iconSource="search" label="No Data found"></NoData>
-        <br/>
-        <br/>
-        <br/>
+        <br />
+        <br />
+
+        <NoData iconSource="search" label="No Data found"></NoData>
+        <br />
+        <br />
+        <br />
         <ToggleButtonGroup segmented={true} helpText="Test Help Text">
           <Button>On</Button>
           <Button>Off</Button>
@@ -1911,10 +1917,10 @@ class App extends React.Component<{}, State> {
         <Icon source='textField'/>
         <Icon source='view'/> */}
 
-        <Icon source='drawStroke'/>
-        <Icon source='highlightStroke'/>
-        <Icon source='strikethrough'/>
-        <Icon source='textBlock'/>
+        <Icon source='drawStroke' />
+        <Icon source='highlightStroke' />
+        <Icon source='strikethrough' />
+        <Icon source='textBlock' />
 
 
         <br></br>
@@ -1962,7 +1968,7 @@ class App extends React.Component<{}, State> {
           />{' '}
           Badge
         </Badge>
-         {/* <div>
+        {/* <div>
           <Button onClick={(e: any) => this.newPopoverUpdate(e)}>Popover</Button>
           <Popover        
           preferredPosition='below'
@@ -1986,7 +1992,7 @@ class App extends React.Component<{}, State> {
           />
           PageSize:
           <PageSize
-            onKeyPress={() => {}}
+            onKeyPress={() => { }}
             currentPageSize={this.state.currentPageSize}
             onClick={(currentPageSize: number) =>
               this.setState({ currentPageSize })
@@ -1997,15 +2003,15 @@ class App extends React.Component<{}, State> {
         </div>
 
         <div>
-          <Calendar/>
+          <Calendar />
         </div>
-        <br/>
-        <br/>
+        <br />
+        <br />
         <div>
-          <h2 style={{fontWeight: 'bold'}}>Vertical Tab</h2>
+          <h2 style={{ fontWeight: 'bold' }}>Vertical Tab</h2>
           <TabPanel defaultTabId="tab1" position={'top'} alignment={'center'} orientation='verticle'>
             <Tab
-              tabDescription={<Icon source="grid"/>}
+              tabDescription={<Icon source="grid" />}
               tabId={'tab1'}
               title='Title 0'
               showTooltip
@@ -2030,7 +2036,7 @@ class App extends React.Component<{}, State> {
           </TabPanel>
 
 
-          <h2 style={{fontWeight: 'bold'}}>Horizontal Tab</h2>
+          <h2 style={{ fontWeight: 'bold' }}>Horizontal Tab</h2>
           <TabPanel defaultTabId="tab1" position={'top'} alignment={'center'} orientation='horizontal'>
             <Tab
               tabDescription={<Badge children={'Home'} status={'success'} />}
@@ -2381,7 +2387,7 @@ class App extends React.Component<{}, State> {
               this.state.bulkAction.selectedRow.length
                 ? `(${this.state.bulkAction.selectedRow.length})`
                 : ''
-            }`}
+              }`}
           </Button>
 
           <div className="fieldGroup">
@@ -3142,7 +3148,7 @@ class App extends React.Component<{}, State> {
               value={this.state.appNumberCounter}
               onChange={this.valueUpdater('appNumberCounter')}
               helpText={<SearchHelper />}
-              // showNumberIcon={false}
+            // showNumberIcon={false}
             />
 
             <TextField
@@ -3161,7 +3167,7 @@ class App extends React.Component<{}, State> {
               // disabled
               loading
               labelHidden
-              // suffix={<Icon componentColor="inkLightest" source="users" />}
+            // suffix={<Icon componentColor="inkLightest" source="users" />}
             />
             <TextField
               type="text"
@@ -3178,8 +3184,8 @@ class App extends React.Component<{}, State> {
               onChange={this.valueUpdater('appTextCounter')}
               // disabled
               loading
-              // labelHidden
-              // suffix={<Icon componentColor="inkLightest" source="users" />}
+            // labelHidden
+            // suffix={<Icon componentColor="inkLightest" source="users" />}
             />
             <TextField
               type="text"
@@ -3194,8 +3200,8 @@ class App extends React.Component<{}, State> {
               readOnly
               loading
               backdropHidden
-              // multiline
-              // labelHidden
+            // multiline
+            // labelHidden
             />
             <Select
               componentId="appCity1"
@@ -3213,7 +3219,7 @@ class App extends React.Component<{}, State> {
               helpText="Help Text"
               // disabled
               loading
-              // labelHidden
+            // labelHidden
             />
           </Column>
 
@@ -3487,24 +3493,24 @@ class App extends React.Component<{}, State> {
             horizontal
           />
 
-      <div>ComboBox Table</div>
-        <div style={{ width: '50%' }}>
-          <ComboBox
-            items={this.getComboBoxTableItems()}
-            label="Select"
-            currentValue="item1"
-            suffix="user"
-            loading={false}
-            helpText={'Test Helper'}
-            onSelect={(value: any) => console.log(value)}
-            onChangeText={(value: any) => console.log(value)}
-            sortEntity={(field, order, sortBy)=> this.handleSortComboBox(field, order, sortBy)}
-          />
-        </div>
-            <br/>
-            <br/>
-          
-        <div>Popover Picker</div>
+          <div>ComboBox Table</div>
+          <div style={{ width: '50%' }}>
+            <ComboBox
+              items={this.getComboBoxTableItems()}
+              label="Select"
+              currentValue="item1"
+              suffix="user"
+              loading={false}
+              helpText={'Test Helper'}
+              onSelect={(value: any) => console.log(value)}
+              onChangeText={(value: any) => console.log(value)}
+              sortEntity={(field, order, sortBy) => this.handleSortComboBox(field, order, sortBy)}
+            />
+          </div>
+          <br />
+          <br />
+
+          <div>Popover Picker</div>
           <PopoverPicker
             items={this.getPopoverPickerItems()}
             label="Popover Picker Component "
@@ -3518,14 +3524,14 @@ class App extends React.Component<{}, State> {
             noOptionsMessage={"No options available"}
             helpText={"This is HelpText Example"}
           />
-        <br/>
-        <br />
+          <br />
+          <br />
 
           <LazyPicker
             pickerProps={{
               label: 'Lazy Picker',
               helpText: 'Helper Text',
-              source: pickerdata,
+              source: this.pickerdata,
               defaultSelectedItems: [],
               maxSelectedItems: 5,
               minSelectedItems: 2,
@@ -3533,16 +3539,26 @@ class App extends React.Component<{}, State> {
               loading: false,
               noOptionsMessage: 'No items Available',
               shouldRenderSuggestions: true,
+              suffix:'slidersRegular',
+              onFilterIconClick:()=>{
+                alert('test')
+              },
+
+              onSelect: (selectedItem) => {
+                this.pickerdata.splice(0,1);
+                this.forceUpdate();
+                console.log(selectedItem);
+              }
             }}
             getAll={this.lazyGetAll}
           />
 
-        <Picker
+          <Picker
             label="Picker Component with render header"
             chipComponent={Chip}
             helpText="Helper Text"
             additionalText={'2 required'}
-            source={pickerdata}
+            source={this.pickerdata}
             defaultSelectedItems={selectedPickerdata}
             columns={columnConfigPicker}
             maxSelectedItems={5}
@@ -3554,35 +3570,35 @@ class App extends React.Component<{}, State> {
             noOptionsMessage={"No items Available"}
             shouldRenderSuggestions={false}
           />
-        
-        <br />
-        <br />
 
-        <Picker
+          <br />
+          <br />
+
+          <Picker
             label="Picker Component with More"
             chipComponent={Chip}
             helpText="Helper Text"
-            source={pickerdata}
+            source={this.pickerdata}
             defaultSelectedItems={selectedPickerdata}
             maxSelectedItems={5}
             minSelectedItems={2}
             autoSuggest
             loading
-            moreInfoComponent={<Button children="More Info" plain componentSize="slim" onClick={() => console.log('load more click')}/>}
+            moreInfoComponent={<Button children="More Info" plain componentSize="slim" onClick={() => console.log('load more click')} />}
             // disabled
             // readOnly
             noOptionsMessage={"No items Available"}
             // moreInfoComponent={<Button>More Info</Button>}
             shouldRenderSuggestions={false}
-            // readOnly
+          // readOnly
           />
-        <br/>
+          <br />
 
           <Picker
             label="Picker Component without render"
             chipComponent={Chip}
             helpText="Helper Text"
-            source={pickerdata}
+            source={this.pickerdata}
             defaultSelectedItems={selectedPickerdata}
             maxSelectedItems={5}
             minSelectedItems={2}
@@ -3594,16 +3610,16 @@ class App extends React.Component<{}, State> {
             noOptionsMessage={"No items Available"}
             // moreInfoComponent={<Button>More Info</Button>}
             shouldRenderSuggestions={false}
-            // readOnly
+          // readOnly
           />
-        <br/>
-          
+          <br />
 
-        <Picker
+
+          <Picker
             label="Picker Component without render min max"
             chipComponent={Chip}
             helpText="Helper Text"
-            source={pickerdata}
+            source={this.pickerdata}
             defaultSelectedItems={selectedPickerdata}
             maxSelectedItems={2}
             minSelectedItems={1}
@@ -3616,16 +3632,16 @@ class App extends React.Component<{}, State> {
             noOptionsMessage={"No items Available"}
             // moreInfoComponent={<Button>More Info</Button>}
             shouldRenderSuggestions={false}
-            // readOnly
+          // readOnly
           />
-        <br/>
+          <br />
 
 
           <Picker
             label="Picker Component with render"
             chipComponent={Chip}
             helpText="Helper Text"
-            source={pickerdata}
+            source={this.pickerdata}
             defaultSelectedItems={selectedPickerdata}
             maxSelectedItems={5}
             minSelectedItems={2}
@@ -3638,16 +3654,16 @@ class App extends React.Component<{}, State> {
             noOptionsMessage={"No items Available"}
             // moreInfoComponent={<Button>More Info</Button>}
             shouldRenderSuggestions={false}
-            // readOnly
+          // readOnly
           />
 
           <br />
-          
+
           <Picker
             label="Picker Component with Focuse"
             chipComponent={Chip}
             helpText="Helper Text"
-            source={pickerdata}
+            source={this.pickerdata}
             defaultSelectedItems={selectedPickerdata}
             maxSelectedItems={5}
             minSelectedItems={2}
@@ -3662,7 +3678,7 @@ class App extends React.Component<{}, State> {
             shouldRenderSuggestions={true}
             readOnly
             backdropHidden
-            // disabled
+          // disabled
           />
           <ValidatedForm
             showError={this.state.showError}
@@ -3921,12 +3937,12 @@ class App extends React.Component<{}, State> {
           <br />
           <Heading>Chip</Heading>
           <br />
-          <div style={{display:'flex',flexWrap:'wrap',columnGap:'10px',rowGap:'10px'}}>
-          <Chip
+          <div style={{ display: 'flex', flexWrap: 'wrap', columnGap: '10px', rowGap: '10px' }}>
+            <Chip
               outlined={true}
             >Outlined Basic Chip</Chip>
-             <Chip
-             label='Outlined Removable Chip '
+            <Chip
+              label='Outlined Removable Chip '
               outlined={true}
               removable={true}
             ></Chip>
@@ -3939,10 +3955,10 @@ class App extends React.Component<{}, State> {
               onRemove={this.chipRemove}
               label="Image label outlined chip"
               outlined={true}
-            ><Button plain componentSize="slim" icon="filter"/></Chip>
+            ><Button plain componentSize="slim" icon="filter" /></Chip>
             <Chip
-            outlined={true}
-             label="Icon label outlined chip"  image={{
+              outlined={true}
+              label="Icon label outlined chip" image={{
                 url: IconList.bell,
                 alt: 'Your mom',
               }} removable={true}
@@ -3965,13 +3981,13 @@ class App extends React.Component<{}, State> {
             <Chip label='Removable Chip' onRemove={this.chipRemove} removable={true}>
             </Chip>
             <Chip
-            label='Transparent Chip'
-            transparent></Chip>
+              label='Transparent Chip'
+              transparent></Chip>
 
-              <Chip label='only children'><Button plain componentSize="slim" icon="filter"/></Chip>
-              <Chip label="Only label"></Chip>
-              <Chip label="Label with remove" onRemove={this.chipRemove} removable={true}></Chip>
-              <Chip
+            <Chip label='only children'><Button plain componentSize="slim" icon="filter" /></Chip>
+            <Chip label="Only label"></Chip>
+            <Chip label="Label with remove" onRemove={this.chipRemove} removable={true}></Chip>
+            <Chip
               image={{
                 url: 'example/src/images/netguru-cartoon-characters3.png',
                 alt: 'Your mom',
@@ -3986,31 +4002,31 @@ class App extends React.Component<{}, State> {
                 alt: 'Your mom',
               }}
             ></Chip>
-            <Chip><Button plain componentSize="slim" icon="filter"/></Chip>
-            <Chip label="Label with Icon"  image={{
-                url: IconList.bell,
-                alt: 'Your mom',
-              }}></Chip>
-              <Chip label="Label with Icon with remove"  image={{
-                url: IconList.bell,
-                alt: 'Your mom',
-              }} removable={true}
+            <Chip><Button plain componentSize="slim" icon="filter" /></Chip>
+            <Chip label="Label with Icon" image={{
+              url: IconList.bell,
+              alt: 'Your mom',
+            }}></Chip>
+            <Chip label="Label with Icon with remove" image={{
+              url: IconList.bell,
+              alt: 'Your mom',
+            }} removable={true}
               onRemove={this.chipRemove}></Chip>
-              <Chip
+            <Chip
               label='children with remove'
               removable={true}
-              onRemove={this.chipRemove}><Button plain componentSize="slim" icon="filter"/></Chip>
-              <Chip label="All Subscribe" image={{
-                url: 'example/src/images/netguru-cartoon-characters3.png',
-                alt: 'Your mom',
-              }} removable={true}
+              onRemove={this.chipRemove}><Button plain componentSize="slim" icon="filter" /></Chip>
+            <Chip label="All Subscribe" image={{
+              url: 'example/src/images/netguru-cartoon-characters3.png',
+              alt: 'Your mom',
+            }} removable={true}
               onRemove={this.chipRemove}><Button plain componentSize="slim" icon="filter"></Button></Chip>
 
           </div>
 
           <div>
-          <br />
-          <br />
+            <br />
+            <br />
             <h4>Single source video</h4>
             <Video
               poster={posterUrl}
@@ -4199,7 +4215,7 @@ class App extends React.Component<{}, State> {
         <p>
           {' '}
           Preferred position left
-          <Tooltip  preferredPosition='left' content="This order has shipping labels.">
+          <Tooltip preferredPosition='left' content="This order has shipping labels.">
             <Link>Tooltip 1</Link>
           </Tooltip>{' '}
           in it
@@ -4291,7 +4307,7 @@ class App extends React.Component<{}, State> {
             loading={false}
             onSelect={(value: any) => console.log(value)}
             onChangeText={(value: any) => console.log(value)}
-            sortEntity={(field, order, sortBy)=> this.handleSortComboBox(field, order, sortBy)}
+            sortEntity={(field, order, sortBy) => this.handleSortComboBox(field, order, sortBy)}
           />
         </div>
         <div>ComboBox with onScroll Event</div>
@@ -4548,7 +4564,7 @@ class App extends React.Component<{}, State> {
 
     return data;
   }
-  
+
   handleScroll = () => {
     console.log('call api..!!');
     // let data = dataScroll;
@@ -4560,7 +4576,7 @@ class App extends React.Component<{}, State> {
 
   getComboBoxItemsWithOnScroll() {
     console.log('getComboBoxItemsWithOnScroll', dataScroll);
-    
+
     return dataScroll;
   }
   getPopoverPickerItems = () => {
@@ -4626,9 +4642,9 @@ class App extends React.Component<{}, State> {
   }
 
   handleSortComboBox = (field: string, order: string, sortBy: string) => {
-    
-    console.log("handleSortComboBox", field,order,sortBy);
-    
+
+    console.log("handleSortComboBox", field, order, sortBy);
+
 
     const { comboBoxItems } = this.state;
 
@@ -4669,12 +4685,12 @@ class App extends React.Component<{}, State> {
     // Set the sorted data to the state
     // Setting sorting field & order to the state
     this.setState({ comboBoxItems: sortedData });
-    
+
   }
 
   setRangeSliderValue = (value: any) => {
     debugger;
-    this.setState({ rangeSliderValue:value });
+    this.setState({ rangeSliderValue: value });
   }
 
   renderItems(item: any) {

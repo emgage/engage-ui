@@ -17,6 +17,7 @@
     "noEmitHelpers": true,
     "importHelpers": true,
     "declaration": true,
+    "skipLibCheck": true,
     "lib": [
       "dom",
       "es2015",

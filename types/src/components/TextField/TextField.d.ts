@@ -68,6 +68,7 @@ export interface Props {
     componentHeight?: ComponentHeight;
     markIfRequired?: boolean;
     fullWidth?: boolean;
+    onFilterIconClick?(e: React.FormEvent<HTMLElement> | KeyboardEvent): void;
 }
 declare class TextField extends React.PureComponent<Props, State> {
     state: State;

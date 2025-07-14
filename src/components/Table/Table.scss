@@ -74,6 +74,11 @@ $border-color: color(sky, base);
     background-color:transparent;
     color: $color-grey-dark;
     text-transform: uppercase;
+    &:last-child{
+      .iconPlusWrapper{
+        right: 0px !important;
+      }
+    }
   }
 
   thead {
@@ -175,32 +180,35 @@ $border-color: color(sky, base);
     }
   }
 }
-.iconPlusClickRight {
+.iconPlusWrapper {
   position: absolute;
-  right: -5px;
-  top: -10px;
-  cursor:pointer;
-  border: 1px solid;
-  border-radius: 50%;
-}
-.iconPlusClickLeft {
-  position: absolute;
-  left: -10px;
-  top: -10px;
-  cursor:pointer;
-  border: 1px solid;
-  border-radius: 50%;
-}
-.resizeHandle{
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 4px;
+  width: 1.5rem;
   height: 100%;
-  cursor: col-resize;
-  background: #ced4da;
-  margin-right: 5px;
+  top: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   z-index: 1;
+  .iconPlusClick {
+    top: -15px;
+    position: absolute;
+    cursor:pointer;
+    border-radius: 50%;
+    background: #757575;
+    fill: white;
+    height: 1.5rem;
+    width: 1.5rem;
+    padding: 3px;
+  }
+}
+
+.resizeHandle{
+  display: flex;
+  width: 1px;
+  height: 100%;
+  z-index: 1;
+  background: #757575;
+  border-left: 1px solid #757575;
 }
 
 .searchField {
@@ -302,6 +310,7 @@ tbody > tr.tableRowNoData {
     .table td:last-child {
         border-bottom: 0;
         text-align: left;
+     
     }
 
     .table td:before {
