@@ -2,6 +2,7 @@
 import * as React from 'react';
 import { themr, ThemedComponentClass } from '@friendsofreactjs/react-css-themr';
 import { classNames } from '@shopify/react-utilities/styles';
+import { isEqual } from 'lodash';
 import { PICKER } from '../ThemeIdentifiers';
 import Chip from '../Chip';
 import { IAutoSuggestMethods, IItemList } from './Picker';
@@ -28,7 +29,113 @@ export interface Props {
   handleInputFocus?: any;
 }
 
-class AutoSuggestText extends React.PureComponent<Props, {}> {
+interface State {
+  visibleCount: number;
+  showAll: boolean;
+}
+
+class AutoSuggestText extends React.PureComponent<Props, State> {
+
+  containerRef: React.RefObject<HTMLDivElement>;
+  rafId: number | null = null;
+  lastKnownWidth = -1;
+
+  constructor(props: Props) {
+    super(props);
+    this.containerRef = React.createRef();
+    this.state = {
+      visibleCount: this.props?.stateProps?.chipListState.length || 0,
+      showAll: false,
+    };
+  }
+
+  componentDidUpdate(prevProps: Props) {
+    const chipList = this.props?.stateProps?.chipListState;
+    const prevChipList = prevProps?.stateProps?.chipListState;
+    const isCountSame = this.state.visibleCount===chipList?.length;
+    if(!isCountSame && !isEqual(chipList, prevChipList)){
+      this.setState({
+        visibleCount: chipList?.length || 0,
+      });
+    }
+    if (isCountSame) {
+        this.updateVisibleItems();
+    }
+  }
+
+  componentDidMount() {
+      this.checkVisibilityLoop();
+  }
+
+   componentWillUnmount() {
+    if (this.rafId) cancelAnimationFrame(this.rafId);
+  }
+
+  checkVisibilityLoop = () => {
+    const el = this.containerRef.current;
+    if (el) {
+      const width = el.offsetWidth;
+
+      if (width !== this.lastKnownWidth) {
+        this.lastKnownWidth = width;
+
+        if (width > 0) {
+          console.log('✅ Element is visible, width:', width);
+          this.updateVisibleItems();
+        } else {
+          console.log('⛔ Hidden or not rendered yet');
+        }
+      }
+    }
+
+    this.rafId = requestAnimationFrame(this.checkVisibilityLoop);
+  };
+
+  measureNodeWidth(node: HTMLElement): number {
+    // Clone the node
+    const clone = node.cloneNode(true) as HTMLElement;
+
+    // Apply necessary styles
+    clone.style.visibility = 'hidden';
+    clone.style.position = 'absolute';
+    clone.style.top = '-9999px';
+    clone.style.left = '-9999px';
+    clone.style.display = 'inline-block';
+    clone.style.whiteSpace = 'nowrap';
+
+    // Append to body, measure, then remove
+    document.body.appendChild(clone);
+    const width = clone.offsetWidth;
+    document.body.removeChild(clone);
+
+    return width;
+  }
+
+  updateVisibleItems = () => {
+
+    const container = this.containerRef.current;
+    if (!container) return;
+    const children = Array.from(container.children);
+    const chipList: any = this.props?.stateProps?.chipListState;
+    const containerWidth = container.offsetWidth;
+    let usedWidth = 0;
+    let count = 0;
+
+    for (let i = 0; i < chipList.length; i++) {
+      const chip = children[i] as HTMLElement;
+      if (!chip) break;
+
+      const chipWidth = this.measureNodeWidth(chip) + 6; // margin
+      const remaining = chipList.length - i - 1;
+      const moreChipWidth = remaining > 0 ? 38 : 0; // approx width of "+X" chip
+
+      if (usedWidth + chipWidth + moreChipWidth > containerWidth) break;
+      usedWidth += chipWidth;
+      count++;
+    }
+
+    this.setState({ visibleCount: count });
+  };
 
   getFilteredSuggestions = (list= this.props?.stateProps?.suggestions || [], selectedList= this.props?.stateProps?.chipListState || []) => {
     const newSuggestions = list.filter((it: any) => {
@@ -47,22 +154,53 @@ class AutoSuggestText extends React.PureComponent<Props, {}> {
       theme.containerWrapper,
       this.props.stateProps ? this.props.stateProps.chipListState.length ? null : theme.empty : null
     );
+    const chipList = this.props?.stateProps?.chipListState || [];
+    const { visibleCount, showAll } = this.state;
+
+    const visibleItems = chipList.slice(0, visibleCount);
+    const hiddenCount = chipList.length - visibleCount;
+
     const isActive = this.props?.autoSuggestMethods?.getInputReference() === document.activeElement;
     const shouldRenderSuggestions = this.props?.autoSuggestMethods?.shouldRenderSuggestions || (() => { return false; }) as any;
     const processingIds:any = this.props?.stateProps?.processingIds || [];
     return (
       <div onClick={this.props.handleInputFocus} className={className}>
-        {this.props.stateProps ? this.props.stateProps.chipListState.map((input: any) =>
-          <Chip
-            icon={input.icon}
-            label={input.name}
-            theme={theme}
-            image={{ url: input.image }}
-            removable={!processingIds.includes(input.id) && this.props.stateProps && this.props.stateProps.removable}
-            onRemove={() => this.props.autoSuggestMethods ? this.props.autoSuggestMethods.chipRemove(input) : null} key={input.key}>
+        <div 
+          ref={this.containerRef}
+          style={{ width: '100%', marginTop: '1.1rem', }}>
+          {(showAll ? chipList : visibleItems).map((input: any) =>
+            <Chip
+              icon={input.icon}
+              label={input.name}
+              theme={theme}
+              image={{ url: input.image }}
+              removable={!processingIds.includes(input.id) && this.props.stateProps && this.props.stateProps.removable}
+              onRemove={() => this.props.autoSuggestMethods ? this.props.autoSuggestMethods.chipRemove(input) : null}
+              key={input.key}>
               {input.icon && <Button plain componentSize="slim" icon={input.icon} onClick={input.onIconClick}></Button>}
-            </Chip>) : null
-        }
+            </Chip>)
+          }
+          {hiddenCount > 0 &&
+            (
+              <Chip
+                label={`${showAll ? 'Hide' : `+ ${hiddenCount}`}`}
+                theme={theme}
+                outlined
+                clickable
+                onClick={(e) => {
+                  e.stopPropagation();
+                  this.setState(prevState => {
+                    return {
+                      ...prevState,
+                      showAll: !prevState.showAll
+                    }
+                  });
+                }}
+              >
+              </Chip>
+            )
+          }
+        </div>
 
         {
           !stateProps.reachedMax ?

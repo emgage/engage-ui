@@ -89,6 +89,7 @@ export interface Props {
     shouldFilterSuggestions?: boolean;
     markIfRequired?: boolean;
     processingIds?: any[];
+    onFilterIconClick?(e: React.FormEvent<HTMLElement> | KeyboardEvent): void;
 }
 declare class Picker extends React.PureComponent<Props, State> {
     wrapperRef: HTMLDivElement;

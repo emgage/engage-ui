@@ -50,7 +50,9 @@ class TableHead extends React.PureComponent<Props, any> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      hoverColumn: false,
+      hoverLeftColumn: false,
+      hoverRightColumn: false,
+      isDragging: false,
     }
   }
 
@@ -79,33 +81,41 @@ class TableHead extends React.PureComponent<Props, any> {
       );
     }
 
-    return ;
+    return;
   }
 
-  setHoverColumn = (isHovered: boolean) => {
-    this.setState({ hoverColumn: isHovered });
+  setHoverLeftColumn = (isHovered: boolean) => {
+    this.setState({ hoverLeftColumn: isHovered });
+  }
+  setHoverRightColumn = (isHovered: boolean) => {
+    this.setState({ hoverRightColumn: isHovered });
   }
 
-  handleMouseDown = (e:any) => {
+  handleMouseDown = (e: any) => {
     const { onResize } = this.props;
     const startX = e.clientX;
 
     const thElement = e.target.parentElement; // Get the `th` element
-    const startWidth =  thElement.getBoundingClientRect().width;; // Get its current width
+    const startWidth = thElement.getBoundingClientRect().width; // Get its current width
 
-    const nextStartWidth =  thElement.nextElementSibling.getBoundingClientRect().width;; // Get its current width
+    const nextStartWidth = thElement.nextElementSibling.getBoundingClientRect().width;; // Get its current width
 
-    const handleMouseMove = (e:any) => {
+    const handleMouseMove = (e: any) => {
       const delta = e.clientX - startX;
       const newWidth = Math.max(startWidth + delta, 50);
       const newNextWidth = Math.max(nextStartWidth - delta, 50);
-  
+      this.setState({
+        isDragging: true,
+      });
       if ((startWidth + nextStartWidth) == (newWidth + newNextWidth)) {
         onResize && onResize(newWidth, newNextWidth);
       }
     };
 
     const handleMouseUp = () => {
+      this.setState({
+        isDragging: false,
+      });
       document.removeEventListener("mousemove", handleMouseMove);
       document.removeEventListener("mouseup", handleMouseUp);
     };
@@ -114,11 +124,13 @@ class TableHead extends React.PureComponent<Props, any> {
     document.addEventListener("mouseup", handleMouseUp);
   };
 
-  render () {
-    const {accessibilityId = '', componentId = '', accessibilityScope, children, colSpan, order, rowSpan, sort, componentStyle, theme } = this.props;
-    const { allowAddRow, onPlusClick,isFirst,allowDrag } = this.props;
+  render() {
+    const { accessibilityId = '', componentId = '', accessibilityScope, children, colSpan, order, rowSpan, sort, componentStyle, theme } = this.props;
+    const { isFirst, allowAddRow, onPlusClick, allowDrag } = this.props;
     const customClassName = this.getClassName();
-    const {hoverColumn} = this.state;
+    const { hoverLeftColumn, hoverRightColumn, isDragging } = this.state;
+
+    const canBeDragged = allowAddRow && allowDrag;
 
     return (
       <th
@@ -127,12 +139,10 @@ class TableHead extends React.PureComponent<Props, any> {
         id={accessibilityId ? accessibilityId : componentId ? `${componentId}` : ''}
         colSpan={colSpan}
         rowSpan={rowSpan}
-        style={{...componentStyle,position:'relative'}}
-        onMouseEnter={() => allowAddRow && this.setHoverColumn(true)}
-        onMouseLeave={() => allowAddRow && this.setHoverColumn(false)}
+        style={{ ...componentStyle, position: 'relative', ...(isDragging ? { cursor: 'ew-resize' } : {}) }}
         onClick={this.triggerClick}>
         <div className={theme.sortingHeader}>
-          { children }
+          {children}
           {
             sort ?
               <div className={theme.sortIcon}>
@@ -149,28 +159,61 @@ class TableHead extends React.PureComponent<Props, any> {
               : ''
           }
         </div>
-        {allowDrag && hoverColumn && <span
-          onMouseDown={this.handleMouseDown}
-          className={theme.resizeHandle}
-        />}
-        {allowAddRow && hoverColumn
-          && <Icon
-            componentColor="inkLight"
-            onClick={(e: any) => {
-              e.stopPropagation();
-              onPlusClick && onPlusClick('right')
-            }}
-            componentClass={theme.iconPlusClickRight}
-            source="add" />}
-        {allowAddRow && hoverColumn && isFirst
-          && <Icon
-            componentColor="inkLight"
-            onClick={(e: any) => {
-              e.stopPropagation();
-              onPlusClick && onPlusClick('left')
-            }}
-            componentClass={theme.iconPlusClickLeft}
-          source="add" />}
+        {allowAddRow && (
+          <>
+            {isFirst && (<div
+              className={theme.iconPlusWrapper}
+              onMouseEnter={() => this.setHoverLeftColumn(true)}
+              onMouseLeave={() => this.setHoverLeftColumn(false)}
+              style={{ left: '0px' }}
+            >
+              {hoverLeftColumn
+                && (
+                  <>
+                    <Icon
+                      componentColor="inkLight"
+                      onClick={(e: any) => {
+                        e.stopPropagation();
+                        onPlusClick && onPlusClick('left')
+                      }}
+                      componentClass={theme.iconPlusClick}
+                      source="add" />
+                    <span
+                      className={`${theme.resizeHandle}`}
+                    />
+                  </>
+                )
+              }
+            </div>
+            )}
+            <div
+              className={theme.iconPlusWrapper}
+              onMouseEnter={() => this.setHoverRightColumn(true)}
+              onMouseLeave={() => this.setHoverRightColumn(false)}
+              style={{ right: '-7px', ...(canBeDragged || isDragging ? { cursor: 'ew-resize' } : {}) }}
+              onMouseDown={canBeDragged ? this.handleMouseDown : () => { }}
+            >
+              {(isDragging || hoverRightColumn)
+                && (
+                  <>
+                    <Icon
+                      componentColor="inkLight"
+                      onClick={(e: any) => {
+                        e.stopPropagation();
+                        onPlusClick && onPlusClick('right')
+                      }}
+                      componentClass={theme.iconPlusClick}
+                      source="add" />
+                    <span
+                      className={`${theme.resizeHandle}`}
+                    />
+                  </>
+                )
+              }
+            </div>
+
+          </>
+        )}
       </th>
     );
   }

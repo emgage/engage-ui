@@ -304,8 +304,8 @@ class Table extends React.PureComponent<Props, State> {
                   clickHandler={this.sortData}
                   serverSort={this.serverSort}
                   allowAddRow={allowAddRow}
-                  isFirst={index === 0}
                   allowDrag={allowColumnResize && (index+1) !== column.length}
+                  isFirst={index === 0}
                   onPlusClick={(position) => onPlusClick && onPlusClick(item, position)}
                   onResize={(newWidth,nextNewWidth) => onResize && onResize(item, newWidth,nextNewWidth)}
                   theme={theme}>
@@ -627,6 +627,7 @@ class Table extends React.PureComponent<Props, State> {
          { !hideSelectAll && <Checkbox
           circleCheckbox={circleCheckbox}
           labelHidden
+          name="Select all"
           theme={theme}
           label="Select all"
           disabled={actionInProgress}
