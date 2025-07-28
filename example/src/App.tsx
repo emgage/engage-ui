@@ -88,7 +88,7 @@ import {
   GridType,
   GridStyle,
   Sticky,
-  Process,
+  Flow,
   ToggleButtonGroup,
   Pagination,
   PaginationDefaultProps,
@@ -1004,9 +1004,25 @@ class App extends React.Component<{}, State> {
     );
 
     const steps: any = [
-      { name: 'Completed', status: 'completed', icon: <Icon source={'signature'} componentColor='white' /> },
-      { name: 'Active', status: 'active', icon: <Icon source={'file'} componentColor='white' /> },
-      { name: 'Upcoming', icon: <Icon source={'grid'} componentColor='white' /> },
+      { name: 'Completed', status: 'completed' },
+      { name: 'Active', status: 'active',  },
+      { name: 'Upcoming',  },
+      { name: 'Upcoming',  },
+      { name: 'Upcoming',  },
+      { name: 'Upcoming',  },
+      { name: 'Upcoming',  },
+      { name: 'Upcoming',  },
+      { name: 'Upcoming',  },
+      { name: 'Upcoming',  },
+      { name: 'Upcoming',  },
+      { name: 'Upcoming',  },
+      { name: 'Upcoming',  },
+      { name: 'Upcoming',  },
+      { name: 'Upcoming',  },
+      { name: 'Upcoming',  },
+      { name: 'Upcoming',  },
+      { name: 'Upcoming',  },
+      { name: 'Upcoming',  },
     ];
 
     // const pickerdata = [
@@ -2279,19 +2295,29 @@ class App extends React.Component<{}, State> {
           This is my process indicator
           <Button onClick={() => this.processNext()}>Next Process</Button>
           <Button onClick={() => this.processPrevious()}>
-            Previous Process
+            Previous Process 123
           </Button>
-          <Process
+          <Flow
             steps={steps}
-            allowBackStepping
-            onClick={(processComponentState: number) =>
-              this.updateProcessStateonClick(processComponentState)
-            }
-            onComponentStateUpdate={(
-              currentState: number,
-              processComponentState: number
-            ) => this.updateProcessState(currentState, processComponentState)}
-            processComponentState={this.state.processComponentState}
+            onClick={(processComponentState: any,e) => {
+              console.log(e)
+              console.log('processComponentState', processComponentState);
+            }}
+            additionalLeft={0}
+            infoWidth={200}
+            infoStyle={{
+            }}
+            renderInfo={() => {
+              return (
+                `<div>
+                  <div>Step Name</div>
+                  <div>Step Name</div>
+                  <div>Step Name</div>
+                  <div>Step Name</div>
+                  <div>Step Name</div>
+                </div>`
+              );
+            }}
           />
         </div>
         <br />
