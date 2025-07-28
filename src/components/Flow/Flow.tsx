@@ -142,7 +142,7 @@ class Flow extends React.PureComponent<Props, any> {
             position: 'fixed',
             left: (left - (infoWidth / 2)) + additionalLeft,
             top: top + additionTop,
-            zIndex: 1,
+            zIndex: 2,
             width: infoWidth,
           }}>
             <div className={theme.processTip} style={{ left: (infoWidth / 2) - additionalLeft }}>
