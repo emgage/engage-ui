@@ -7,7 +7,7 @@ export declare type Type = 'text' | 'email' | 'number' | 'password' | 'search' |
 export interface Props {
     autoSuggest?: boolean;
     componentId: LabelProps['componentId'];
-    label: string;
+    label: string | React.ReactNode;
     errors?: [string] | Error | null;
     action: LabelProps['action'];
     helpText?: React.ReactNode;
