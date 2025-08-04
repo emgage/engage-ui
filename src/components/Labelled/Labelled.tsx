@@ -21,7 +21,7 @@ export interface Props {
   // ID for the input.
   componentId: LabelProps['componentId'];
   // Label for labelled component
-  label: string;
+  label: string | React.ReactNode;
   // To display error message.
   errors?: [string] | Error| null;
   // Adds an action to the label.
