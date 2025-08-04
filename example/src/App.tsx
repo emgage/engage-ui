@@ -3601,7 +3601,7 @@ class App extends React.Component<{}, State> {
           <br />
 
           <Picker
-            label="Picker Component with More"
+            label={<FlexBox align="Center" ><div style={{marginRight:'.5rem'}}>Picker Component with More</div><Tooltip preferredPosition="above" content="More Info"><Icon componentColor="inkLight" source="circleQuestion" /></Tooltip></FlexBox>}
             chipComponent={Chip}
             helpText="Helper Text"
             source={this.pickerdata}
