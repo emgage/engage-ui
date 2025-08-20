@@ -400,6 +400,11 @@ export {
 } from './Process';
 
 export {
+  default as Flow,
+  Props as FlowProps,
+} from './Flow';
+
+export {
   default as DateTimePicker,
   Props as DateTimePickerProps
 } from './DateTimePicker';

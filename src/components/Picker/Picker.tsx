@@ -78,7 +78,7 @@ export interface Props {
   // Additional text to display below helpertext.
   additionalText?: React.ReactNode;
   // Label for the input.
-  label?: string;
+  label?: string | React.ReactNode;
   // Visually hide the label.
   labelHidden?: boolean;
   // Display loading indicator

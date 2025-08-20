@@ -62,6 +62,7 @@ export const BREADCRUMB = 'PBreadcrumb';
 export const COMBOBOX = 'PComboBox';
 export const STICKY = 'PSticky';
 export const PROCESS = 'PProcess';
+export const FLOW = 'PFlow';
 export const PAGINATION = 'PPagination';
 export const PAGER = 'PPager';
 export const PAGESIZE = 'PPageSize';

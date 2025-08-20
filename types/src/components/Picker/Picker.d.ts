@@ -57,7 +57,7 @@ export interface State {
 export interface Props {
     helpText?: React.ReactNode;
     additionalText?: React.ReactNode;
-    label?: string;
+    label?: string | React.ReactNode;
     labelHidden?: boolean;
     loading?: boolean;
     backdropHidden?: boolean;

@@ -69,6 +69,7 @@ export { BreadCrumb, Props as BreadcrumbProps, ISourceData as BreadcrumbSourceDa
 export { default as ComboBox, Props as ComboBoxProps, ComboBoxItemType, } from './ComboBox';
 export { default as Sticky, Props as StickyProps, } from './Sticky';
 export { default as Process, Props as ProcessProps, } from './Process';
+export { default as Flow, Props as FlowProps, } from './Flow';
 export { default as DateTimePicker, Props as DateTimePickerProps } from './DateTimePicker';
 export { default as Login, Props as LoginProps, } from './Login';
 export { default as AppBar } from './AppBar';

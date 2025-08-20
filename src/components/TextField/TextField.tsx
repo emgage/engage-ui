@@ -65,7 +65,7 @@ export interface Props {
   itemSelected?: boolean;
   isFocused?: boolean;
   // Label for the input.
-  label?: string;
+  label?: string | React.ReactNode;
   // Adds an action to the label.
   labelAction?: Action;
   // Visually hide the label.
