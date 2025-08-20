@@ -34,7 +34,7 @@ export interface Props {
     helpText?: React.ReactNode;
     itemSelected?: boolean;
     isFocused?: boolean;
-    label?: string;
+    label?: string | React.ReactNode;
     labelAction?: Action;
     labelHidden?: boolean;
     loading?: boolean;

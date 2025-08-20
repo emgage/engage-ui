@@ -166,6 +166,7 @@ export declare const BUNDLED_ICONS: {
     infoIcon: any;
     bulkAction: any;
     slidersRegular: any;
+    circleQuestion: any;
 };
 export interface Props {
     source: SVGSource | 'placeholder' | keyof typeof BUNDLED_ICONS;
